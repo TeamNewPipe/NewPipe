@@ -10,13 +10,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.viewbinding.ViewBinding;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -26,6 +25,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.databinding.PlaylistControlBinding;
+import org.schabi.newpipe.databinding.StatisticPlaylistControlBinding;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
@@ -37,6 +38,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StreamDialogEntry;
@@ -59,13 +61,10 @@ public class StatisticsPlaylistFragment
     @State
     Parcelable itemsListState;
     private StatisticSortMode sortMode = StatisticSortMode.LAST_PLAYED;
-    private View headerPlayAllButton;
-    private View headerPopupButton;
-    private View headerBackgroundButton;
-    private View playlistCtrl;
-    private View sortButton;
-    private ImageView sortButtonIcon;
-    private TextView sortButtonText;
+
+    private StatisticPlaylistControlBinding headerBinding;
+    private PlaylistControlBinding playlistControlBinding;
+
     /* Used for independent events */
     private Subscription databaseSubscription;
     private HistoryRecordManager recordManager;
@@ -130,17 +129,12 @@ public class StatisticsPlaylistFragment
     }
 
     @Override
-    protected View getListHeader() {
-        final View headerRootLayout = activity.getLayoutInflater()
-                .inflate(R.layout.statistic_playlist_control, itemsList, false);
-        playlistCtrl = headerRootLayout.findViewById(R.id.playlist_control);
-        headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
-        headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
-        headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
-        sortButton = headerRootLayout.findViewById(R.id.sortButton);
-        sortButtonIcon = headerRootLayout.findViewById(R.id.sortButtonIcon);
-        sortButtonText = headerRootLayout.findViewById(R.id.sortButtonText);
-        return headerRootLayout;
+    protected ViewBinding getListHeader() {
+        headerBinding = StatisticPlaylistControlBinding.inflate(activity.getLayoutInflater(),
+                itemsList, false);
+        playlistControlBinding = headerBinding.playlistControl;
+
+        return headerBinding;
     }
 
     @Override
@@ -244,14 +238,13 @@ public class StatisticsPlaylistFragment
         if (itemListAdapter != null) {
             itemListAdapter.unsetSelectedListener();
         }
-        if (headerBackgroundButton != null) {
-            headerBackgroundButton.setOnClickListener(null);
-        }
-        if (headerPlayAllButton != null) {
-            headerPlayAllButton.setOnClickListener(null);
-        }
-        if (headerPopupButton != null) {
-            headerPopupButton.setOnClickListener(null);
+        if (playlistControlBinding != null) {
+            playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(null);
+            playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(null);
+            playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(null);
+
+            headerBinding = null;
+            playlistControlBinding = null;
         }
 
         if (databaseSubscription != null) {
@@ -310,7 +303,7 @@ public class StatisticsPlaylistFragment
             return;
         }
 
-        playlistCtrl.setVisibility(View.VISIBLE);
+        playlistControlBinding.getRoot().setVisibility(View.VISIBLE);
 
         itemListAdapter.clearStreamItemList();
 
@@ -325,13 +318,13 @@ public class StatisticsPlaylistFragment
             itemsListState = null;
         }
 
-        headerPlayAllButton.setOnClickListener(view ->
+        playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view ->
                 NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
-        headerPopupButton.setOnClickListener(view ->
+        playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view ->
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
-        headerBackgroundButton.setOnClickListener(view ->
+        playlistControlBinding.playlistCtrlPlayBgButton.setOnClickListener(view ->
                 NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
-        sortButton.setOnClickListener(view -> toggleSortMode());
+        headerBinding.sortButton.setOnClickListener(view -> toggleSortMode());
 
         hideLoading();
     }
@@ -367,15 +360,15 @@ public class StatisticsPlaylistFragment
         if (sortMode == StatisticSortMode.LAST_PLAYED) {
             sortMode = StatisticSortMode.MOST_PLAYED;
             setTitle(getString(R.string.title_most_played));
-            sortButtonIcon.setImageResource(
+            headerBinding.sortButtonIcon.setImageResource(
                 ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_history));
-            sortButtonText.setText(R.string.title_last_played);
+            headerBinding.sortButtonText.setText(R.string.title_last_played);
         } else {
             sortMode = StatisticSortMode.LAST_PLAYED;
             setTitle(getString(R.string.title_last_played));
-            sortButtonIcon.setImageResource(
+            headerBinding.sortButtonIcon.setImageResource(
                 ThemeHelper.resolveResourceIdFromAttr(requireContext(), R.attr.ic_filter_list));
-            sortButtonText.setText(R.string.title_most_played);
+            headerBinding.sortButtonText.setText(R.string.title_most_played);
         }
         startLoading(true);
     }
@@ -412,6 +405,9 @@ public class StatisticsPlaylistFragment
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share
             ));
+        }
+        if (KoreUtil.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
+            entries.add(StreamDialogEntry.play_with_kodi);
         }
         StreamDialogEntry.setEnabledEntries(entries);
 

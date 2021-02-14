@@ -26,6 +26,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -33,7 +34,8 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import org.schabi.newpipe.R;
+import org.schabi.newpipe.App;
+import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
@@ -46,9 +48,9 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
  */
 public final class MainPlayer extends Service {
     private static final String TAG = "MainPlayer";
-    private static final boolean DEBUG = BasePlayer.DEBUG;
+    private static final boolean DEBUG = Player.DEBUG;
 
-    private VideoPlayerImpl playerImpl;
+    private Player player;
     private WindowManager windowManager;
 
     private final IBinder mBinder = new MainPlayer.LocalBinder();
@@ -64,25 +66,23 @@ public final class MainPlayer extends Service {
     //////////////////////////////////////////////////////////////////////////*/
 
     static final String ACTION_CLOSE
-            = "org.schabi.newpipe.player.MainPlayer.CLOSE";
+            = App.PACKAGE_NAME + ".player.MainPlayer.CLOSE";
     static final String ACTION_PLAY_PAUSE
-            = "org.schabi.newpipe.player.MainPlayer.PLAY_PAUSE";
-    static final String ACTION_OPEN_CONTROLS
-            = "org.schabi.newpipe.player.MainPlayer.OPEN_CONTROLS";
+            = App.PACKAGE_NAME + ".player.MainPlayer.PLAY_PAUSE";
     static final String ACTION_REPEAT
-            = "org.schabi.newpipe.player.MainPlayer.REPEAT";
+            = App.PACKAGE_NAME + ".player.MainPlayer.REPEAT";
     static final String ACTION_PLAY_NEXT
-            = "org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_NEXT";
+            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_PLAY_NEXT";
     static final String ACTION_PLAY_PREVIOUS
-            = "org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_PREVIOUS";
+            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_PLAY_PREVIOUS";
     static final String ACTION_FAST_REWIND
-            = "org.schabi.newpipe.player.MainPlayer.ACTION_FAST_REWIND";
+            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_FAST_REWIND";
     static final String ACTION_FAST_FORWARD
-            = "org.schabi.newpipe.player.MainPlayer.ACTION_FAST_FORWARD";
+            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_FAST_FORWARD";
     static final String ACTION_SHUFFLE
-            = "org.schabi.newpipe.player.MainPlayer.ACTION_SHUFFLE";
+            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_SHUFFLE";
     public static final String ACTION_RECREATE_NOTIFICATION
-            = "org.schabi.newpipe.player.MainPlayer.ACTION_RECREATE_NOTIFICATION";
+            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_RECREATE_NOTIFICATION";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service's LifeCycle
@@ -101,13 +101,12 @@ public final class MainPlayer extends Service {
     }
 
     private void createView() {
-        final View layout = View.inflate(this, R.layout.player, null);
+        final PlayerBinding binding = PlayerBinding.inflate(LayoutInflater.from(this));
 
-        playerImpl = new VideoPlayerImpl(this);
-        playerImpl.setup(layout);
-        playerImpl.shouldUpdateOnProgress = true;
+        player = new Player(this);
+        player.setupFromView(binding);
 
-        NotificationUtil.getInstance().createNotificationAndStartForeground(playerImpl, this);
+        NotificationUtil.getInstance().createNotificationAndStartForeground(player, this);
     }
 
     @Override
@@ -117,19 +116,19 @@ public final class MainPlayer extends Service {
                     + "], flags = [" + flags + "], startId = [" + startId + "]");
         }
         if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())
-                && playerImpl.playQueue == null) {
+                && player.getPlayQueue() == null) {
             // Player is not working, no need to process media button's action
             return START_NOT_STICKY;
         }
 
         if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())
-                || intent.getStringExtra(VideoPlayer.PLAY_QUEUE_KEY) != null) {
-            NotificationUtil.getInstance().createNotificationAndStartForeground(playerImpl, this);
+                || intent.getStringExtra(Player.PLAY_QUEUE_KEY) != null) {
+            NotificationUtil.getInstance().createNotificationAndStartForeground(player, this);
         }
 
-        playerImpl.handleIntent(intent);
-        if (playerImpl.mediaSessionManager != null) {
-            playerImpl.mediaSessionManager.handleMediaButtonIntent(intent);
+        player.handleIntent(intent);
+        if (player.getMediaSessionManager() != null) {
+            player.getMediaSessionManager().handleMediaButtonIntent(intent);
         }
         return START_NOT_STICKY;
     }
@@ -139,20 +138,20 @@ public final class MainPlayer extends Service {
             Log.d(TAG, "stop() called");
         }
 
-        if (playerImpl.getPlayer() != null) {
-            playerImpl.wasPlaying = playerImpl.getPlayer().getPlayWhenReady();
+        if (!player.exoPlayerIsNull()) {
+            player.saveWasPlaying();
             // Releases wifi & cpu, disables keepScreenOn, etc.
             if (!autoplayEnabled) {
-                playerImpl.onPause();
+                player.pause();
             }
             // We can't just pause the player here because it will make transition
             // from one stream to a new stream not smooth
-            playerImpl.getPlayer().stop(false);
-            playerImpl.setRecovery();
+            player.smoothStopPlayer();
+            player.setRecovery();
             // Android TV will handle back button in case controls will be visible
             // (one more additional unneeded click while the player is hidden)
-            playerImpl.hideControls(0, 0);
-            playerImpl.onQueueClosed();
+            player.hideControls(0, 0);
+            player.closeItemsList();
             // Notification shows information about old stream but if a user selects
             // a stream from backStack it's not actual anymore
             // So we should hide the notification at all.
@@ -166,7 +165,7 @@ public final class MainPlayer extends Service {
     @Override
     public void onTaskRemoved(final Intent rootIntent) {
         super.onTaskRemoved(rootIntent);
-        if (!playerImpl.videoPlayerSelected()) {
+        if (!player.videoPlayerSelected()) {
             return;
         }
         onDestroy();
@@ -179,7 +178,23 @@ public final class MainPlayer extends Service {
         if (DEBUG) {
             Log.d(TAG, "destroy() called");
         }
-        onClose();
+
+        if (player != null) {
+            // Exit from fullscreen when user closes the player via notification
+            if (player.isFullscreen()) {
+                player.toggleFullscreen();
+            }
+            removeViewFromParent();
+
+            player.saveStreamProgressState();
+            player.setRecovery();
+            player.stopActivityBinding();
+            player.removePopupFromView();
+            player.destroy();
+        }
+
+        NotificationUtil.getInstance().cancelNotificationAndStopForeground(this);
+        stopSelf();
     }
 
     @Override
@@ -193,57 +208,31 @@ public final class MainPlayer extends Service {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Actions
-    //////////////////////////////////////////////////////////////////////////*/
-    private void onClose() {
-        if (DEBUG) {
-            Log.d(TAG, "onClose() called");
-        }
-
-        if (playerImpl != null) {
-            // Exit from fullscreen when user closes the player via notification
-            if (playerImpl.isFullscreen()) {
-                playerImpl.toggleFullscreen();
-            }
-            removeViewFromParent();
-
-            playerImpl.setRecovery();
-            playerImpl.savePlaybackState();
-            playerImpl.stopActivityBinding();
-            playerImpl.removePopupFromView();
-            playerImpl.destroy();
-        }
-
-        NotificationUtil.getInstance().cancelNotificationAndStopForeground(this);
-        stopSelf();
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
     boolean isLandscape() {
         // DisplayMetrics from activity context knows about MultiWindow feature
         // while DisplayMetrics from app context doesn't
-        final DisplayMetrics metrics = (playerImpl != null
-                && playerImpl.getParentActivity() != null
-                ? playerImpl.getParentActivity().getResources()
+        final DisplayMetrics metrics = (player != null
+                && player.getParentActivity() != null
+                ? player.getParentActivity().getResources()
                 : getResources()).getDisplayMetrics();
         return metrics.heightPixels < metrics.widthPixels;
     }
 
     @Nullable
     public View getView() {
-        if (playerImpl == null) {
+        if (player == null) {
             return null;
         }
 
-        return playerImpl.getRootView();
+        return player.getRootView();
     }
 
     public void removeViewFromParent() {
         if (getView() != null && getView().getParent() != null) {
-            if (playerImpl.getParentActivity() != null) {
+            if (player.getParentActivity() != null) {
                 // This means view was added to fragment
                 final ViewGroup parent = (ViewGroup) getView().getParent();
                 parent.removeView(getView());
@@ -261,8 +250,8 @@ public final class MainPlayer extends Service {
             return MainPlayer.this;
         }
 
-        public VideoPlayerImpl getPlayer() {
-            return MainPlayer.this.playerImpl;
+        public Player getPlayer() {
+            return MainPlayer.this.player;
         }
     }
 }

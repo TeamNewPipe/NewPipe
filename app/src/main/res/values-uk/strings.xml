@@ -631,4 +631,5 @@
     <string name="notification_action_1_title">Кнопка другої дії</string>
     <string name="notification_action_0_title">Кнопка першої дії</string>
     <string name="notification_scale_to_square_image_title">Збільшити мініатюру до масштабу 1:1</string>
+    <string name="open_with">Відкрити за допомогою</string>
 </resources>

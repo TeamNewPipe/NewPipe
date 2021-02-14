@@ -1,4 +1,4 @@
-• Memperjelas deskripsi dari opsi ekspor basisdata di dalam pengaturan.
+• Memperjelas deskripsi dari opsi ekspor database pada pengaturan.
 • Memperbaiki penguraian komentar YouTube.
 • Memperbaiki tampilan nama layanan media.ccc.de.
 • Memperbarui terjemahan.

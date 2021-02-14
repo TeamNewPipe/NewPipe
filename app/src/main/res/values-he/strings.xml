@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">יש לגעת ב־„חיפוש” כדי להתחיל
+    <string name="main_bg_subtitle">יש לגעת בכפתור „חיפוש” כדי להתחיל
 \n</string>
     <string name="view_count_text">%1$s צפיות</string>
     <string name="upload_date_text">פורסם ב־%1$s</string>
@@ -672,4 +672,15 @@
     <string name="msg_calculating_hash">הגיבוב</string>
     <string name="hash_channel_description">התראות על תהליכי גיבוב</string>
     <string name="hash_channel_name">התראת גיבוב סרטון</string>
+    <string name="recent">אחרונים</string>
+    <string name="show_meta_info_summary">לכבות את התיבות שמציגות את המידע על יוצרי התזרים, תוכן התזרים או בקשת חיפוש.</string>
+    <string name="show_meta_info_title">הצגת מידע על</string>
+    <string name="chapters">פרקים</string>
+    <string name="description_tab_description">תיאור</string>
+    <string name="related_streams_tab_description">תזרימים קשורים</string>
+    <string name="comments_tab_description">הערות</string>
+    <string name="show_description_summary">יש לכבות כדי להסתיר תיאורי סרטונים ומידע נוסף</string>
+    <string name="show_description_title">הצגת תיאור</string>
+    <string name="open_with">פתיחה באמצעות</string>
+    <string name="no_app_to_open_intent">אין יישומון על המכשיר שלך שיכול לפתוח את זה</string>
 </resources>

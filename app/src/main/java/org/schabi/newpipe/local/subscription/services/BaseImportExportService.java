@@ -36,11 +36,11 @@ import androidx.core.app.ServiceCompat;
 import org.reactivestreams.Publisher;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
+import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.ErrorInfo;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.ExceptionUtils;
 
 import java.io.FileNotFoundException;
 import java.util.Collections;

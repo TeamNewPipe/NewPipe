@@ -10,7 +10,7 @@
     <string name="download">Преузми</string>
     <string name="search">Тражи</string>
     <string name="settings">Поставке</string>
-    <string name="did_you_mean">Да ли сте мислили: %1$s\?</string>
+    <string name="did_you_mean">Да ли сте мислили: \"%1$s\"\?</string>
     <string name="share_dialog_title">Подели помоћу</string>
     <string name="choose_browser">Отвори помоћу</string>
     <string name="screen_rotation">ротација</string>

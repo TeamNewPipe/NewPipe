@@ -333,7 +333,7 @@
     <string name="playback_tempo">Geschwindigkeit</string>
     <string name="playback_pitch">Tonhöhe</string>
     <string name="unhook_checkbox">Entkoppeln (kann zu Verzerrungen führen)</string>
-    <string name="download_thumbnail_summary">Abschalten, um das Laden von Vorschaubildern zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher.</string>
+    <string name="download_thumbnail_summary">Deaktiviere diese Option, um das Laden von Vorschaubildern zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher.</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
     <string name="auto_queue_summary">Wiedergabe durch Anhängen eines verwandten Streams an die Warteschlange (ohne Wiederholungsschleife) fortsetzen</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
@@ -652,4 +652,15 @@
     <string name="msg_calculating_hash">Hash wird berechnet</string>
     <string name="hash_channel_description">Benachrichtigungen für den Video-hashing Fortschritt</string>
     <string name="hash_channel_name">Video Hash Benachrichtigung</string>
+    <string name="recent">Letzte</string>
+    <string name="show_meta_info_title">Metadaten anzeigen</string>
+    <string name="show_meta_info_summary">Deaktiviere diese Option, um Meta-Infofelder mit zusätzlichen Informationen zum Stream-Ersteller, zum Stream-Inhalt oder zu einer Suchanforderung auszublenden.</string>
+    <string name="chapters">Kapitel</string>
+    <string name="description_tab_description">Beschreibung</string>
+    <string name="related_streams_tab_description">Ähnliche Streams</string>
+    <string name="comments_tab_description">Kommentare</string>
+    <string name="show_description_summary">Deaktiviere diese Option, um die Videobeschreibung und zusätzliche Informationen auszublenden</string>
+    <string name="show_description_title">Beschreibung anzeigen</string>
+    <string name="open_with">Öffnen mit</string>
+    <string name="no_app_to_open_intent">Keine App auf deinem Gerät kann dies öffnen</string>
 </resources>

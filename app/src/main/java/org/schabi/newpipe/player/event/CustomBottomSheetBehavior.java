@@ -6,9 +6,12 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
 import org.schabi.newpipe.R;
 
 import java.util.Arrays;
@@ -24,7 +27,7 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
     private boolean skippingInterception = false;
     private final List<Integer> skipInterceptionOfElements = Arrays.asList(
             R.id.detail_content_root_layout, R.id.relatedStreamsLayout,
-            R.id.playQueuePanel, R.id.viewpager, R.id.bottomControls,
+            R.id.itemsListPanel, R.id.view_pager, R.id.tab_layout, R.id.bottomControls,
             R.id.playPauseButton, R.id.playPreviousButton, R.id.playNextButton);
 
     @Override

@@ -1,0 +1,4 @@
+Thay đổi trong phiên bản 0.17.2
+
+Sửa lỗi
+• Sửa lỗi không có video nào

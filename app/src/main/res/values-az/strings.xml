@@ -242,4 +242,61 @@
     <string name="one_item_deleted">1 element silindi.</string>
     <string name="peertube_instance_add_title">Nümunə əlavə et</string>
     <string name="peertube_instance_url_summary">Sevimli \"PeerTube\" nümunələrinizi seçin</string>
+    <string name="delete_downloaded_files">Yüklənmiş faylları sil</string>
+    <string name="confirm_prompt">Yükləmə tarixçənizi təmizləmək və ya yüklənmiş bütün faylları silmək istəyirsiniz\?</string>
+    <string name="clear_download_history">Yükləmə tarixçəsini təmizlə</string>
+    <string name="start_downloads">Yükləmələrə başla</string>
+    <string name="pause_downloads">Yükləmələrə fasilə ver</string>
+    <string name="downloads_storage_ask_title">Haraya yüklənəcəyini soruş</string>
+    <string name="downloads_storage_ask_summary">Hər yükləmədə harada saxlanılacağı soruşulacaq</string>
+    <string name="downloads_storage_use_saf_summary">\'Saxlanca Müraciət Çərçivəsi\' xarici SD karta yükləməyə imkan verir.
+\nBəzi cihazlar uyğun deyil</string>
+    <string name="systems_language">Sistem öncülü</string>
+    <string name="app_language_title">Tətbiq dili</string>
+    <plurals name="days">
+        <item quantity="one">%d gün</item>
+        <item quantity="other">%d gün</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d saat</item>
+        <item quantity="other">%d saat</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d dəqiqə</item>
+        <item quantity="other">%d dəqiqə</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%d saniyə</item>
+        <item quantity="other">%d saniyə</item>
+    </plurals>
+    <string name="feed_oldest_subscription_update">Axın sonuncu dəfə güncəlləndi: %s</string>
+    <string name="feed_update_threshold_title">Axın güncəlləmə astanası</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Sürətli rejimi aktiv et</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Sürətli rejimi deaktiv et</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Axının çox yavaş yükləndiyini düşünürsünüz\? Əgər elədirsə, sürətli yükləməni işə salmağı sınayın (ayarlardan dəyişə və ya aşağıdakı düyməni basa bilərsiniz).
+\n
+\nNewPipe axını yükləmək üçün 2 metod təklif edir:
+\n• Bütün abunəlik kanallarını gətirtmək, bu yavaş olsa da tamdır;
+\n• Ayrılmış xidmət uc nöqtəsi istifadə etmək, bu sürətlidir, amma tam deyil.
+\n
+\nBu ikisi arasında fərq odur ki, sürətlisində, adətən elementin müddəti və növü kimi bəzi məlumatlar çatışmır (canlı video ilə adisini ayırd edə bilmir) və daha az element gətirir.
+\n
+\nYouTube öz RSS axını ilə bu sürətli metodu təklif edən xidmətlərdən biridir. 
+\n
+\nBeləliklə, seçim sizin nəyə üstünlük verməyinizdən asılıdır: sürət yoxsa dəqiq məlumat.</string>
+    <string name="player_stream_failure">Bu axını oxutmaq olmadı</string>
+    <string name="app_ui_crash">Tətbiq/UI çökdü</string>
+    <string name="could_not_load_image">Təsvir yüklənmədi</string>
+    <string name="live_streams_not_supported">Canlı yayımlar hələ ki dəstəklənmir</string>
+    <string name="could_not_setup_download_menu">Yükləmə menyusu qurulmadı</string>
+    <string name="content_not_available">Məzmun əlçatmazdır</string>
+    <string name="could_not_load_thumbnails">Kiçik təsvirlərin hamısı yüklənmədi</string>
+    <string name="network_error">Şəbəkə xətası</string>
+    <string name="download_to_sdcard_error_message">Xarici SD karta yükləmək mümkün deyil. Yükləmə qovluğu üçün təyin edilmiş yer sıfırlansın\?</string>
+    <string name="download_to_sdcard_error_title">Xarici saxlanc əlçatmazdır</string>
+    <string name="clear_views_history_summary">Oxutma axının tarixçəsini və oxutma mövqelərini siləcək</string>
+    <string name="show_meta_info_title">Üst bilgini göstər</string>
+    <string name="show_description_summary">Video təsvirini və əlavə bilgiləri gizlətmək üçün söndürün</string>
+    <string name="show_description_title">Təsviri göstər</string>
+    <string name="notification_colorize_title">Bildirişləri rənglə</string>
 </resources>

@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
+import android.net.Uri;
 
 import androidx.fragment.app.Fragment;
 
@@ -70,8 +71,17 @@ public enum StreamDialogEntry {
         }
     }),
 
+    play_with_kodi(R.string.play_with_kodi_title, (fragment, item) -> {
+        final Uri videoUrl = Uri.parse(item.getUrl());
+        try {
+            NavigationHelper.playWithKore(fragment.getContext(), videoUrl);
+        } catch (final Exception e) {
+            KoreUtil.showInstallKoreDialog(fragment.getActivity());
+        }
+    }),
+
     share(R.string.share, (fragment, item) ->
-            ShareUtils.shareUrl(fragment.getContext(), item.getName(), item.getUrl()));
+            ShareUtils.shareText(fragment.getContext(), item.getName(), item.getUrl()));
 
 
     ///////////////

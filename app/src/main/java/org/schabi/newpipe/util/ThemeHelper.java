@@ -22,7 +22,6 @@ package org.schabi.newpipe.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
-import androidx.preference.PreferenceManager;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 
@@ -32,6 +31,7 @@ import androidx.annotation.StyleRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;

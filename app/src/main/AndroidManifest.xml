@@ -53,7 +53,7 @@
         </service>
 
         <activity
-            android:name=".player.BackgroundPlayerActivity"
+            android:name=".player.PlayQueueActivity"
             android:label="@string/title_activity_play_queue"
             android:launchMode="singleTask" />
 
@@ -227,7 +227,7 @@
                 <data android:host="invidio.us" />
                 <data android:host="dev.invidio.us" />
                 <data android:host="www.invidio.us" />
-                <data android:host="vid.encryptionin.space" />
+                <data android:host="redirect.invidious.io" />
                 <data android:host="invidious.snopyta.org" />
                 <data android:host="yewtu.be" />
                 <data android:host="tube.connect.cafe" />
@@ -239,6 +239,10 @@
                 <data android:host="vid.mint.lgbt" />
                 <data android:host="invidiou.site" />
                 <data android:host="invidious.fdn.fr" />
+                <data android:host="invidious.048596.xyz" />
+                <data android:host="invidious.zee.li" />
+                <data android:host="vid.puffyan.us" />
+                <data android:host="ytprivate.com" />
                 <data android:pathPrefix="/" />
             </intent-filter>
 
@@ -318,6 +322,8 @@
             android:name=".RouterActivity$FetcherService"
             android:exported="false" />
 
+        <!-- opting out of sending metrics to Google in Android System WebView -->
+        <meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
         <!-- see https://github.com/TeamNewPipe/NewPipe/issues/3947 -->
         <!-- Version < 3.0. DeX Mode and Screen Mirroring support -->
         <meta-data android:name="com.samsung.android.keepalive.density" android:value="true"/>

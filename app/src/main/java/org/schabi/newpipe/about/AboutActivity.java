@@ -29,37 +29,46 @@ public class AboutActivity extends AppCompatActivity {
      * List of all software components.
      */
     private static final SoftwareComponent[] SOFTWARE_COMPONENTS = {
-            new SoftwareComponent("Giga Get", "2014 - 2015", "Peter Cai",
+            new SoftwareComponent("ACRA", "2013", "Kevin Gaudin",
+                    "https://github.com/ACRA/acra", StandardLicenses.APACHE2),
+            new SoftwareComponent("AndroidX", "2005 - 2011", "The Android Open Source Project",
+                    "https://developer.android.com/jetpack", StandardLicenses.APACHE2),
+            new SoftwareComponent("CircleImageView", "2014 - 2020", "Henning Dodenhof",
+                    "https://github.com/hdodenhof/CircleImageView",
+                    StandardLicenses.APACHE2),
+            new SoftwareComponent("ExoPlayer", "2014 - 2020", "Google, Inc.",
+                    "https://github.com/google/ExoPlayer", StandardLicenses.APACHE2),
+            new SoftwareComponent("GigaGet", "2014 - 2015", "Peter Cai",
                     "https://github.com/PaperAirplane-Dev-Team/GigaGet", StandardLicenses.GPL3),
+            new SoftwareComponent("Groupie", "2016", "Lisa Wray",
+                    "https://github.com/lisawray/groupie", StandardLicenses.MIT),
+            new SoftwareComponent("Icepick", "2015", "Frankie Sardo",
+                    "https://github.com/frankiesardo/icepick", StandardLicenses.EPL1),
+            new SoftwareComponent("Jsoup", "2009 - 2020", "Jonathan Hedley",
+                    "https://github.com/jhy/jsoup", StandardLicenses.MIT),
+            new SoftwareComponent("Markwon", "2019", "Dimitry Ivanov",
+                    "https://github.com/noties/Markwon", StandardLicenses.APACHE2),
+            new SoftwareComponent("Material Components for Android", "2016 - 2020", "Google, Inc.",
+                    "https://github.com/material-components/material-components-android",
+                    StandardLicenses.APACHE2),
             new SoftwareComponent("NewPipe Extractor", "2017 - 2020", "Christian Schabesberger",
                     "https://github.com/TeamNewPipe/NewPipeExtractor", StandardLicenses.GPL3),
-            new SoftwareComponent("Jsoup", "2017", "Jonathan Hedley",
-                    "https://github.com/jhy/jsoup", StandardLicenses.MIT),
-            new SoftwareComponent("Rhino", "2015", "Mozilla",
-                    "https://www.mozilla.org/rhino/", StandardLicenses.MPL2),
-            new SoftwareComponent("ACRA", "2013", "Kevin Gaudin",
-                    "http://www.acra.ch", StandardLicenses.APACHE2),
+            new SoftwareComponent("NoNonsense-FilePicker", "2016", "Jonas Kalderstam",
+                    "https://github.com/spacecowboy/NoNonsense-FilePicker",
+                    StandardLicenses.MPL2),
+            new SoftwareComponent("OkHttp", "2019", "Square, Inc.",
+                    "https://square.github.io/okhttp/", StandardLicenses.APACHE2),
+            new SoftwareComponent("PrettyTime", "2012 - 2020", "Lincoln Baxter, III",
+                    "https://github.com/ocpsoft/prettytime", StandardLicenses.APACHE2),
+            new SoftwareComponent("RxAndroid", "2015", "The RxAndroid authors",
+                    "https://github.com/ReactiveX/RxAndroid", StandardLicenses.APACHE2),
+            new SoftwareComponent("RxBinding", "2015", "Jake Wharton",
+                    "https://github.com/JakeWharton/RxBinding", StandardLicenses.APACHE2),
+            new SoftwareComponent("RxJava", "2016 - 2020", "RxJava Contributors",
+                    "https://github.com/ReactiveX/RxJava", StandardLicenses.APACHE2),
             new SoftwareComponent("Universal Image Loader", "2011 - 2015", "Sergey Tarasevich",
                     "https://github.com/nostra13/Android-Universal-Image-Loader",
                     StandardLicenses.APACHE2),
-            new SoftwareComponent("CircleImageView", "2014 - 2020", "Henning Dodenhof",
-                    "https://github.com/hdodenhof/CircleImageView", StandardLicenses.APACHE2),
-            new SoftwareComponent("NoNonsense-FilePicker", "2016", "Jonas Kalderstam",
-                    "https://github.com/spacecowboy/NoNonsense-FilePicker", StandardLicenses.MPL2),
-            new SoftwareComponent("ExoPlayer", "2014 - 2020", "Google Inc",
-                    "https://github.com/google/ExoPlayer", StandardLicenses.APACHE2),
-            new SoftwareComponent("RxAndroid", "2015 - 2018", "The RxAndroid authors",
-                    "https://github.com/ReactiveX/RxAndroid", StandardLicenses.APACHE2),
-            new SoftwareComponent("RxJava", "2016 - 2020", "RxJava Contributors",
-                    "https://github.com/ReactiveX/RxJava", StandardLicenses.APACHE2),
-            new SoftwareComponent("RxBinding", "2015 - 2018", "Jake Wharton",
-                    "https://github.com/JakeWharton/RxBinding", StandardLicenses.APACHE2),
-            new SoftwareComponent("PrettyTime", "2012 - 2020", "Lincoln Baxter, III",
-                    "https://github.com/ocpsoft/prettytime", StandardLicenses.APACHE2),
-            new SoftwareComponent("Markwon", "2017 - 2020", "Noties",
-                    "https://github.com/noties/Markwon", StandardLicenses.APACHE2),
-            new SoftwareComponent("Groupie", "2016", "Lisa Wray",
-                    "https://github.com/lisawray/groupie", StandardLicenses.MIT)
     };
 
     private static final int POS_ABOUT = 0;
@@ -115,7 +124,8 @@ public class AboutActivity extends AppCompatActivity {
      * A placeholder fragment containing a simple view.
      */
     public static class AboutFragment extends Fragment {
-        public AboutFragment() { }
+        public AboutFragment() {
+        }
 
         /**
          * Created a new instance of this fragment for the given section number.
@@ -136,16 +146,17 @@ public class AboutActivity extends AppCompatActivity {
             aboutBinding.appVersion.setText(BuildConfig.VERSION_NAME);
 
             aboutBinding.githubLink.setOnClickListener(nv ->
-                    openUrlInBrowser(context, context.getString(R.string.github_url)));
+                    openUrlInBrowser(context, context.getString(R.string.github_url), false));
 
             aboutBinding.donationLink.setOnClickListener(v ->
-                    openUrlInBrowser(context, context.getString(R.string.donation_url)));
+                    openUrlInBrowser(context, context.getString(R.string.donation_url), false));
 
             aboutBinding.websiteLink.setOnClickListener(nv ->
-                    openUrlInBrowser(context, context.getString(R.string.website_url)));
+                    openUrlInBrowser(context, context.getString(R.string.website_url), false));
 
             aboutBinding.privacyPolicyLink.setOnClickListener(v ->
-                    openUrlInBrowser(context, context.getString(R.string.privacy_policy_url)));
+                    openUrlInBrowser(context, context.getString(R.string.privacy_policy_url),
+                            false));
 
             return aboutBinding.getRoot();
         }

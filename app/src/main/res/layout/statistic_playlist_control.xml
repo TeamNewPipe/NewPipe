@@ -38,6 +38,8 @@
             tools:ignore="RtlHardcoded" />
     </RelativeLayout>
 
-    <include layout="@layout/playlist_control" />
+    <include
+        android:id="@+id/playlist_control"
+        layout="@layout/playlist_control" />
 
 </LinearLayout>

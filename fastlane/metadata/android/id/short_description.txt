@@ -1,1 +1,1 @@
-Aplikasi YouTube gratis yang ringan untuk Android.
+Sebuah klien YouTube gratis dan ringan untuk android.

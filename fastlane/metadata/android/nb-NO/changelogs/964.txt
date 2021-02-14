@@ -1,0 +1,7 @@
+* Tillagt støtte for kapittel i avspillerkontroller
+* [PeerTube] Tillagt Sepia-søk
+* La til delingsknapp igjen i detaljvisning og flyttet strøm-beskrivelse inn i fanedesignet
+* Tillagt element for avspilling av video på Kodi
+* Fikset krasj når ingen forvalgt nettleser er satt på noen enheter og forbedring av delingsdialoger
+* Veksle spill/pause med maskinvaremellomromstast i fullskjermsspiller
+* [media.ccc.de] Forskjellige fikser og forbedringer

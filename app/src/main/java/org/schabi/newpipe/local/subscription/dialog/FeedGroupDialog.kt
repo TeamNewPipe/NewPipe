@@ -19,15 +19,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.Section
-import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import icepick.Icepick
 import icepick.State
-import kotlinx.android.synthetic.main.dialog_feed_group_create.*
-import kotlinx.android.synthetic.main.toolbar_search_layout.*
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
+import org.schabi.newpipe.databinding.DialogFeedGroupCreateBinding
+import org.schabi.newpipe.databinding.ToolbarSearchLayoutBinding
 import org.schabi.newpipe.fragments.BackPressable
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialog.ScreenState.DeleteScreen
@@ -45,6 +45,12 @@ import java.io.Serializable
 import kotlin.collections.contains
 
 class FeedGroupDialog : DialogFragment(), BackPressable {
+    private var _feedGroupCreateBinding: DialogFeedGroupCreateBinding? = null
+    private val feedGroupCreateBinding get() = _feedGroupCreateBinding!!
+
+    private var _searchLayoutBinding: ToolbarSearchLayoutBinding? = null
+    private val searchLayoutBinding get() = _searchLayoutBinding!!
+
     private lateinit var viewModel: FeedGroupDialogViewModel
     private var groupId: Long = NO_GROUP_SELECTED
     private var groupIcon: FeedGroupIcon? = null
@@ -107,14 +113,16 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        iconsListState = icon_selector.layoutManager?.onSaveInstanceState()
-        subscriptionsListState = subscriptions_selector_list.layoutManager?.onSaveInstanceState()
+        iconsListState = feedGroupCreateBinding.iconSelector.layoutManager?.onSaveInstanceState()
+        subscriptionsListState = feedGroupCreateBinding.subscriptionsSelectorList.layoutManager?.onSaveInstanceState()
 
         Icepick.saveInstanceState(this, outState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _feedGroupCreateBinding = DialogFeedGroupCreateBinding.bind(view)
+        _searchLayoutBinding = feedGroupCreateBinding.subscriptionsHeaderSearchContainer
 
         viewModel = ViewModelProvider(
             this,
@@ -146,7 +154,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
             add(subscriptionEmptyFooter)
             spanCount = 4
         }
-        subscriptions_selector_list.apply {
+        feedGroupCreateBinding.subscriptionsSelectorList.apply {
             // Disable animations, too distracting.
             itemAnimator = null
             adapter = subscriptionGroupAdapter
@@ -172,8 +180,11 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        subscriptions_selector_list?.adapter = null
-        icon_selector?.adapter = null
+        feedGroupCreateBinding.subscriptionsSelectorList.adapter = null
+        feedGroupCreateBinding.iconSelector.adapter = null
+
+        _feedGroupCreateBinding = null
+        _searchLayoutBinding = null
     }
 
     /*/​//////////////////////////////////////////////////////////////////////////
@@ -193,30 +204,30 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     }
 
     private fun setupListeners() {
-        delete_button.setOnClickListener { showScreen(DeleteScreen) }
+        feedGroupCreateBinding.deleteButton.setOnClickListener { showScreen(DeleteScreen) }
 
-        cancel_button.setOnClickListener {
+        feedGroupCreateBinding.cancelButton.setOnClickListener {
             when (currentScreen) {
                 InitialScreen -> dismiss()
                 else -> showScreen(InitialScreen)
             }
         }
 
-        group_name_input_container.error = null
-        group_name_input.doOnTextChanged { text, _, _, _ ->
-            if (group_name_input_container.isErrorEnabled && !text.isNullOrBlank()) {
-                group_name_input_container.error = null
+        feedGroupCreateBinding.groupNameInputContainer.error = null
+        feedGroupCreateBinding.groupNameInput.doOnTextChanged { text, _, _, _ ->
+            if (feedGroupCreateBinding.groupNameInputContainer.isErrorEnabled && !text.isNullOrBlank()) {
+                feedGroupCreateBinding.groupNameInputContainer.error = null
             }
         }
 
-        confirm_button.setOnClickListener { handlePositiveButton() }
+        feedGroupCreateBinding.confirmButton.setOnClickListener { handlePositiveButton() }
 
-        select_channel_button.setOnClickListener {
-            subscriptions_selector_list.scrollToPosition(0)
+        feedGroupCreateBinding.selectChannelButton.setOnClickListener {
+            feedGroupCreateBinding.subscriptionsSelectorList.scrollToPosition(0)
             showScreen(SubscriptionsPickerScreen)
         }
 
-        val headerMenu = subscriptions_header_toolbar.menu
+        val headerMenu = feedGroupCreateBinding.subscriptionsHeaderToolbar.menu
         requireActivity().menuInflater.inflate(R.menu.menu_feed_group_dialog, headerMenu)
 
         headerMenu.findItem(R.id.action_search).setOnMenuItemClickListener {
@@ -234,8 +245,8 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
             }
         }
 
-        toolbar_search_clear.setOnClickListener {
-            if (toolbar_search_edit_text.text.isEmpty()) {
+        searchLayoutBinding.toolbarSearchClear.setOnClickListener {
+            if (searchLayoutBinding.toolbarSearchEditText.text.isNullOrEmpty()) {
                 hideSearch()
                 return@setOnClickListener
             }
@@ -243,14 +254,14 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
             showKeyboardSearch()
         }
 
-        toolbar_search_edit_text.setOnClickListener {
+        searchLayoutBinding.toolbarSearchEditText.setOnClickListener {
             if (DeviceUtils.isTv(context)) {
                 showKeyboardSearch()
             }
         }
 
-        toolbar_search_edit_text.doOnTextChanged { _, _, _, _ ->
-            val newQuery: String = toolbar_search_edit_text.text.toString()
+        searchLayoutBinding.toolbarSearchEditText.doOnTextChanged { _, _, _, _ ->
+            val newQuery: String = searchLayoutBinding.toolbarSearchEditText.text.toString()
             subscriptionsCurrentSearchQuery = newQuery
             viewModel.filterSubscriptionsBy(newQuery)
         }
@@ -266,16 +277,16 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     }
 
     private fun handlePositiveButtonInitialScreen() {
-        val name = group_name_input.text.toString().trim()
+        val name = feedGroupCreateBinding.groupNameInput.text.toString().trim()
         val icon = selectedIcon ?: groupIcon ?: FeedGroupIcon.ALL
 
         if (name.isBlank()) {
-            group_name_input_container.error = getString(R.string.feed_group_dialog_empty_name)
-            group_name_input.text = null
-            group_name_input.requestFocus()
+            feedGroupCreateBinding.groupNameInputContainer.error = getString(R.string.feed_group_dialog_empty_name)
+            feedGroupCreateBinding.groupNameInput.text = null
+            feedGroupCreateBinding.groupNameInput.requestFocus()
             return
         } else {
-            group_name_input_container.error = null
+            feedGroupCreateBinding.groupNameInputContainer.error = null
         }
 
         if (selectedSubscriptions.isEmpty()) {
@@ -296,10 +307,10 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         groupSortOrder = feedGroupEntity?.sortOrder ?: -1
 
         val feedGroupIcon = if (selectedIcon == null) icon else selectedIcon!!
-        icon_preview.setImageResource(feedGroupIcon.getDrawableRes(requireContext()))
+        feedGroupCreateBinding.iconPreview.setImageResource(feedGroupIcon.getDrawableRes(requireContext()))
 
-        if (group_name_input.text.isNullOrBlank()) {
-            group_name_input.setText(name)
+        if (feedGroupCreateBinding.groupNameInput.text.isNullOrBlank()) {
+            feedGroupCreateBinding.groupNameInput.setText(name)
         }
     }
 
@@ -346,10 +357,10 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         subscriptionMainSection.update(subscriptions, false)
 
         if (subscriptionsListState != null) {
-            subscriptions_selector_list.layoutManager?.onRestoreInstanceState(subscriptionsListState)
+            feedGroupCreateBinding.subscriptionsSelectorList.layoutManager?.onRestoreInstanceState(subscriptionsListState)
             subscriptionsListState = null
         } else {
-            subscriptions_selector_list.scrollToPosition(0)
+            feedGroupCreateBinding.subscriptionsSelectorList.scrollToPosition(0)
         }
     }
 
@@ -359,15 +370,15 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
             R.plurals.feed_group_dialog_selection_count,
             selectedCount, selectedCount
         )
-        selected_subscription_count_view.text = selectedCountText
-        subscriptions_header_info.text = selectedCountText
+        feedGroupCreateBinding.selectedSubscriptionCountView.text = selectedCountText
+        feedGroupCreateBinding.subscriptionsHeaderInfo.text = selectedCountText
     }
 
     private fun setupIconPicker() {
         val groupAdapter = GroupAdapter<GroupieViewHolder>()
         groupAdapter.addAll(FeedGroupIcon.values().map { PickerIconItem(requireContext(), it) })
 
-        icon_selector.apply {
+        feedGroupCreateBinding.iconSelector.apply {
             layoutManager = GridLayoutManager(requireContext(), 7, RecyclerView.VERTICAL, false)
             adapter = groupAdapter
 
@@ -381,20 +392,20 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
             when (item) {
                 is PickerIconItem -> {
                     selectedIcon = item.icon
-                    icon_preview.setImageResource(item.iconRes)
+                    feedGroupCreateBinding.iconPreview.setImageResource(item.iconRes)
 
                     showScreen(InitialScreen)
                 }
             }
         }
-        icon_preview.setOnClickListener {
-            icon_selector.scrollToPosition(0)
+        feedGroupCreateBinding.iconPreview.setOnClickListener {
+            feedGroupCreateBinding.iconSelector.scrollToPosition(0)
             showScreen(IconPickerScreen)
         }
 
         if (groupId == NO_GROUP_SELECTED) {
             val icon = selectedIcon ?: FeedGroupIcon.ALL
-            icon_preview.setImageResource(icon.getDrawableRes(requireContext()))
+            feedGroupCreateBinding.iconPreview.setImageResource(icon.getDrawableRes(requireContext()))
         }
     }
 
@@ -405,22 +416,22 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     private fun showScreen(screen: ScreenState) {
         currentScreen = screen
 
-        options_root.onlyVisibleIn(InitialScreen)
-        icon_selector.onlyVisibleIn(IconPickerScreen)
-        subscriptions_selector.onlyVisibleIn(SubscriptionsPickerScreen)
-        delete_screen_message.onlyVisibleIn(DeleteScreen)
+        feedGroupCreateBinding.optionsRoot.onlyVisibleIn(InitialScreen)
+        feedGroupCreateBinding.iconSelector.onlyVisibleIn(IconPickerScreen)
+        feedGroupCreateBinding.subscriptionsSelector.onlyVisibleIn(SubscriptionsPickerScreen)
+        feedGroupCreateBinding.deleteScreenMessage.onlyVisibleIn(DeleteScreen)
 
-        separator.onlyVisibleIn(SubscriptionsPickerScreen, IconPickerScreen)
-        cancel_button.onlyVisibleIn(InitialScreen, DeleteScreen)
+        feedGroupCreateBinding.separator.onlyVisibleIn(SubscriptionsPickerScreen, IconPickerScreen)
+        feedGroupCreateBinding.cancelButton.onlyVisibleIn(InitialScreen, DeleteScreen)
 
-        confirm_button.setText(
+        feedGroupCreateBinding.confirmButton.setText(
             when {
                 currentScreen == InitialScreen && groupId == NO_GROUP_SELECTED -> R.string.create
                 else -> android.R.string.ok
             }
         )
 
-        delete_button.isGone = currentScreen != InitialScreen || groupId == NO_GROUP_SELECTED
+        feedGroupCreateBinding.deleteButton.isGone = currentScreen != InitialScreen || groupId == NO_GROUP_SELECTED
 
         hideKeyboard()
         hideSearch()
@@ -434,26 +445,26 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     // Utils
     //​//////////////////////////////////////////////////////////////////////// */
 
-    private fun isSearchVisible() = subscriptions_header_search_container?.visibility == View.VISIBLE
+    private fun isSearchVisible() = _searchLayoutBinding?.root?.visibility == View.VISIBLE
 
     private fun resetSearch() {
-        toolbar_search_edit_text.setText("")
+        searchLayoutBinding.toolbarSearchEditText.setText("")
         subscriptionsCurrentSearchQuery = ""
         viewModel.clearSubscriptionsFilter()
     }
 
     private fun hideSearch() {
         resetSearch()
-        subscriptions_header_search_container.visibility = View.GONE
-        subscriptions_header_info_container.visibility = View.VISIBLE
-        subscriptions_header_toolbar.menu.findItem(R.id.action_search).isVisible = true
+        searchLayoutBinding.root.visibility = View.GONE
+        feedGroupCreateBinding.subscriptionsHeaderInfoContainer.visibility = View.VISIBLE
+        feedGroupCreateBinding.subscriptionsHeaderToolbar.menu.findItem(R.id.action_search).isVisible = true
         hideKeyboardSearch()
     }
 
     private fun showSearch() {
-        subscriptions_header_search_container.visibility = View.VISIBLE
-        subscriptions_header_info_container.visibility = View.GONE
-        subscriptions_header_toolbar.menu.findItem(R.id.action_search).isVisible = false
+        searchLayoutBinding.root.visibility = View.VISIBLE
+        feedGroupCreateBinding.subscriptionsHeaderInfoContainer.visibility = View.GONE
+        feedGroupCreateBinding.subscriptionsHeaderToolbar.menu.findItem(R.id.action_search).isVisible = false
         showKeyboardSearch()
     }
 
@@ -462,37 +473,43 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     }
 
     private fun showKeyboardSearch() {
-        if (toolbar_search_edit_text.requestFocus()) {
-            inputMethodManager.showSoftInput(toolbar_search_edit_text, InputMethodManager.SHOW_IMPLICIT)
+        if (searchLayoutBinding.toolbarSearchEditText.requestFocus()) {
+            inputMethodManager.showSoftInput(
+                searchLayoutBinding.toolbarSearchEditText,
+                InputMethodManager.SHOW_IMPLICIT
+            )
         }
     }
 
     private fun hideKeyboardSearch() {
         inputMethodManager.hideSoftInputFromWindow(
-            toolbar_search_edit_text.windowToken,
+            searchLayoutBinding.toolbarSearchEditText.windowToken,
             InputMethodManager.RESULT_UNCHANGED_SHOWN
         )
-        toolbar_search_edit_text.clearFocus()
+        searchLayoutBinding.toolbarSearchEditText.clearFocus()
     }
 
     private fun showKeyboard() {
-        if (group_name_input.requestFocus()) {
-            inputMethodManager.showSoftInput(group_name_input, InputMethodManager.SHOW_IMPLICIT)
+        if (feedGroupCreateBinding.groupNameInput.requestFocus()) {
+            inputMethodManager.showSoftInput(
+                feedGroupCreateBinding.groupNameInput,
+                InputMethodManager.SHOW_IMPLICIT
+            )
         }
     }
 
     private fun hideKeyboard() {
         inputMethodManager.hideSoftInputFromWindow(
-            group_name_input.windowToken,
+            feedGroupCreateBinding.groupNameInput.windowToken,
             InputMethodManager.RESULT_UNCHANGED_SHOWN
         )
-        group_name_input.clearFocus()
+        feedGroupCreateBinding.groupNameInput.clearFocus()
     }
 
     private fun disableInput() {
-        delete_button?.isEnabled = false
-        confirm_button?.isEnabled = false
-        cancel_button?.isEnabled = false
+        _feedGroupCreateBinding?.deleteButton?.isEnabled = false
+        _feedGroupCreateBinding?.confirmButton?.isEnabled = false
+        _feedGroupCreateBinding?.cancelButton?.isEnabled = false
         isCancelable = false
 
         hideKeyboard()

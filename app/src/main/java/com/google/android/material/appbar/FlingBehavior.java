@@ -10,6 +10,7 @@ import android.widget.OverScroller;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 import org.schabi.newpipe.R;
 
 import java.lang.reflect.Field;
@@ -27,7 +28,7 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
     private boolean allowScroll = true;
     private final Rect globalRect = new Rect();
     private final List<Integer> skipInterceptionOfElements = Arrays.asList(
-            R.id.playQueuePanel, R.id.playbackSeekBar,
+            R.id.itemsListPanel, R.id.playbackSeekBar,
             R.id.playPauseButton, R.id.playPreviousButton, R.id.playNextButton);
 
     @Override

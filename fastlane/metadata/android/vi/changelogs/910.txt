@@ -1,0 +1,1 @@
+Sửa lỗi nhập database dẫn tới chặn NewPipe chạy trong một số trường hợp hiếm gặp.

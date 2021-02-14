@@ -44,7 +44,7 @@
     <string name="show_age_restricted_content_title">Tampilkan konten yang dibatasi usia</string>
     <string name="network_error">Galat jaringan</string>
     <string name="could_not_load_thumbnails">Tidak bisa memuat semua thumbnail</string>
-    <string name="did_you_mean">Apakah maksud anda \"%1$s\"\?</string>
+    <string name="did_you_mean">Apakah maksud Anda \"%1$s\"\?</string>
     <string name="screen_rotation">rotasi</string>
     <string name="duration_live">Langsung</string>
     <string name="downloads">Unduhan</string>
@@ -63,7 +63,7 @@
     <string name="error_snackbar_action">Lapor</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Yang terjadi:</string>
-    <string name="your_comment">Komentar anda (dalam bahasa Inggris):</string>
+    <string name="your_comment">Komentar Anda (dalam bahasa Inggris):</string>
     <string name="error_details_headline">Detail:</string>
     <string name="list_thumbnail_view_description">Thumbnail pratinjau video</string>
     <string name="detail_thumbnail_view_description">Putar video, durasi:</string>
@@ -157,7 +157,7 @@
     <string name="app_description">Aplikasi streaming bebas dan ringan untuk Android.</string>
     <string name="view_on_github">Lihat di GitHub</string>
     <string name="app_license_title">Lisensi NewPipe</string>
-    <string name="contribution_encouragement">Terlepas apakah anda memiliki ide untuk; terjemahan, perubahan desain, pembersihan kode, atau perubahan kode yang signifikan, segala bantuan akan selalu diterima. Semakin banyak akan semakin baik jadinya!</string>
+    <string name="contribution_encouragement">Terlepas apakah Anda memiliki ide untuk; terjemahan, perubahan desain, pembersihan kode, atau perubahan kode yang signifikan, segala bantuan akan selalu diterima. Semakin banyak akan semakin baik jadinya!</string>
     <string name="read_full_license">Baca lisensi</string>
     <string name="contribution_title">Kontribusi</string>
     <string name="subscribe_button_title">Melanggan</string>
@@ -206,7 +206,7 @@
     <string name="switch_to_main">Alihkan ke Utama</string>
     <string name="import_data_title">Impor basis data</string>
     <string name="export_data_title">Ekspor basis data</string>
-    <string name="import_data_summary">Timpa riwayat, langganan, daftar putar dan (opsional) pengaturan anda saat ini</string>
+    <string name="import_data_summary">Timpa riwayat, langganan, daftar putar dan (opsional) pengaturan Anda saat ini</string>
     <string name="export_data_summary">Ekspor riwayat, langganan, daftar putar dan pengaturan</string>
     <string name="player_stream_failure">Tidak bisa memutar stream ini</string>
     <string name="player_unrecoverable_failure">Telah terjadi galat pemutar yang tidak bisa dipulihkan</string>
@@ -238,7 +238,7 @@
     <string name="dismiss">Abaikan</string>
     <string name="rename">Ubah nama</string>
     <string name="donation_title">Donasi</string>
-    <string name="donation_encouragement">NewPipe dikembangkan oleh relawan yang menyisihkan waktu untuk memberi anda pengalaman terbaik. Segala dukungan kepada pengembang akan membuat NewPipe menjadi lebih baik sambil menikmati secangkir kopi.</string>
+    <string name="donation_encouragement">NewPipe dikembangkan oleh relawan yang menyisihkan waktu untuk memberi Anda pengalaman terbaik. Segala dukungan kepada pengembang akan membuat NewPipe menjadi lebih baik sambil menikmati secangkir kopi.</string>
     <string name="give_back">Beri dukungan</string>
     <string name="website_title">Situs Web</string>
     <string name="website_encouragement">Kunjungi situs web NewPipe untuk info dan berita.</string>
@@ -263,7 +263,7 @@
     <string name="import_complete_toast">Diimpor</string>
     <string name="no_valid_zip_file">Berkas ZIP tidak valid</string>
     <string name="could_not_import_all_files">Perhatian: Tidak bisa mengimpor semua berkas.</string>
-    <string name="override_current_data">Ini akan menimpa pengaturan anda saat ini.</string>
+    <string name="override_current_data">Ini akan menimpa pengaturan Anda saat ini.</string>
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trending</string>
     <string name="top_50">Top 50</string>
@@ -302,7 +302,7 @@
     <string name="resize_fill">Isi</string>
     <string name="resize_zoom">Perbesar</string>
     <string name="caption_auto_generated">Otomatis dibuat</string>
-    <string name="no_player_found_toast">Pemutar stream tidak ditemukan (anda bisa memasang VLC untuk memutarnya).</string>
+    <string name="no_player_found_toast">Pemutar stream tidak ditemukan (Anda bisa memasang VLC untuk memutarnya).</string>
     <string name="controls_download_desc">Unduh berkas stream</string>
     <string name="subscription_change_failed">Tidak bisa mengubah langganan</string>
     <string name="show_info">Tampilkan info</string>
@@ -326,8 +326,8 @@
     <string name="tab_subscriptions">Langganan</string>
     <string name="use_inexact_seek_title">Gunakan tinjau cepat tak pasti</string>
     <string name="use_inexact_seek_summary">Memungkinkan pengguna memilih posisi waktu video dengan cepat tetapi dengan tingkat presisi yang rendah. Mencari 5, 15 atau 25 detik tidak berhasil dengan ini.</string>
-    <string name="app_license">NewPipe adalah perangkat lunak libre copyleft: Anda bisa menggunakannya, mempelajarinya, berbagi, dan meningkatkannya. Secara khusus anda bisa mendistribusikan ulang dan/atau memodifikasinya dibawah syarat Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan anda) versi yang lebih baru.</string>
-    <string name="import_settings">Apakah anda juga ingin mengimpor pengaturan\?</string>
+    <string name="app_license">NewPipe adalah perangkat lunak libre copyleft: Anda bisa menggunakannya, mempelajarinya, berbagi, dan meningkatkannya. Secara khusus Anda bisa mendistribusikan ulang dan/atau memodifikasinya dibawah syarat Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan Anda) versi yang lebih baru.</string>
+    <string name="import_settings">Apakah Anda juga ingin mengimpor pengaturan\?</string>
     <string name="preferred_open_action_settings_title">Tindakan \'buka\' yang diinginkan</string>
     <string name="preferred_open_action_settings_summary">Tindakan baku ketika membuka konten — %s</string>
     <string name="caption_setting_title">Teks</string>
@@ -353,16 +353,16 @@
 \n4. Klik \"Langkah berikutnya\" dan kemudian pada \"Buat ekspor\"
 \n5. Klik tombol \"Unduh\" setelah muncul dan
 \n6. Dari download takeout zip ekstrak file .json (biasanya di bawah \"YouTube dan YouTube Music / subscriptions /subscriptions.json\") dan impor di sini.</string>
-    <string name="import_soundcloud_instructions">Impor profil SoundCloud dengan mengetik URL atau ID anda: 
-\n 
+    <string name="import_soundcloud_instructions">Impor profil SoundCloud dengan mengetik URL atau ID Anda:
+\n
 \n1. Aktifkan \"mode desktop\" di peramban web (situs tidak tersedia untuk perangkat seluler)
 \n2. Kunjungi URL ini: %1$s
 \n3. Masuk ketika ditanya
-\n4. Salin URL profil anda ketika dialihkan.</string>
+\n4. Salin URL profil Anda ketika dialihkan.</string>
     <string name="import_soundcloud_instructions_hint">idAnda, soundcloud.com/idAnda</string>
     <string name="import_network_expensive_warning">Perlu diingat operasi ini membutuhkan bandwidth yang besar.
 \n
-\nApakah anda ingin melanjutkan\?</string>
+\nApakah Anda ingin melanjutkan\?</string>
     <string name="playback_speed_control">Kontrol Kecepatan Pemutaran</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Nada</string>
@@ -372,13 +372,13 @@
     <string name="tracks">Trek</string>
     <string name="users">Pengguna</string>
     <string name="privacy_policy_title">Kebijakan Privasi NewPipe</string>
-    <string name="privacy_policy_encouragement">Proyek NewPipe sangat memperhatikan privasi anda. Karena itu, apl tidak mengumpulkan data apapun tanpa sepengetahuan anda.
-\nKebijakan privasi NewPipe menjelaskan secara detail data apa saja yang dikirim dan disimpan ketika anda mengirimkan laporan kerusakan.</string>
+    <string name="privacy_policy_encouragement">Proyek NewPipe sangat memperhatikan privasi Anda. Karena itu, apl tidak mengumpulkan data apapun tanpa sepengetahuan Anda.
+\nKebijakan privasi NewPipe menjelaskan secara detail data apa saja yang dikirim dan disimpan ketika Anda mengirimkan laporan kerusakan.</string>
     <string name="read_privacy_policy">Baca kebijakan privasi</string>
     <string name="skip_silence_checkbox">Percepat saat diam</string>
     <string name="playback_step">Langkah</string>
     <string name="playback_reset">Atur ulang</string>
-    <string name="start_accept_privacy_policy">Agar sesuai dengan Regulasi Perlindungan Data Umum Eropa (GDPR), dengan ini kami tarik perhatian anda ke kebijakan privasi NewPipe. Silakan baca dengan seksama.
+    <string name="start_accept_privacy_policy">Agar sesuai dengan Regulasi Perlindungan Data Umum Eropa (GDPR), dengan ini kami tarik perhatian Anda ke kebijakan privasi NewPipe. Silakan baca dengan seksama.
 \nAnda harus menerimanya untuk mengirimkan laporan bug kepada kami.</string>
     <string name="accept">Setuju</string>
     <string name="decline">Tolak</string>
@@ -406,7 +406,7 @@
     <string name="download_to_sdcard_error_message">Tidak bisa mengunduh ke kartu SD eksternal. Atur ulang lokasi folder unduhan\?</string>
     <string name="saved_tabs_invalid_json">Tidak bisa membaca tab yang disimpan, beralih menggunakan tab bawaan</string>
     <string name="restore_defaults">Kembali ke awal</string>
-    <string name="restore_defaults_confirmation">Apakah anda ingin mengembalikan ke bawaan\?</string>
+    <string name="restore_defaults_confirmation">Apakah Anda ingin mengembalikan ke bawaan\?</string>
     <string name="subscribers_count_not_available">Jumlah pelanggan tidak tersedia</string>
     <string name="main_page_content_summary">Tab apa yang ditampilkan di halaman utama</string>
     <string name="selection">Pilihan</string>
@@ -470,7 +470,7 @@
     <string name="error_postprocessing_stopped">NewPipe telah ditutup saat sedang memproses berkas</string>
     <string name="error_insufficient_storage">Tidak ada ruang kosong tersisa pada perangkat</string>
     <string name="error_progress_lost">Kehilangan laju, karena berkas telah dihapus</string>
-    <string name="confirm_prompt">Apakah anda yakin ingin menghapus semua riwayat unduhan dan berkas yang telah diunduh\?</string>
+    <string name="confirm_prompt">Apakah Anda yakin ingin menghapus semua riwayat unduhan dan berkas yang telah diunduh\?</string>
     <string name="enable_queue_limit">Batasi antrean unduhan</string>
     <string name="enable_queue_limit_desc">Satu unduhan akan berjalan pada waktu yang bersamaan</string>
     <string name="start_downloads">Mulai unduh</string>
@@ -478,7 +478,7 @@
     <string name="downloads_storage_ask_title">Tanyakan lokasi unduhan</string>
     <string name="downloads_storage_ask_summary">Anda akan ditanya lokasi penyimpanan berkas unduhan</string>
     <string name="downloads_storage_ask_summary_kitkat">Anda akan ditanya lokasi penyimpanan berkas unduhan.
-\nPilih SAF jika anda ingin mengunduh ke kartu SD eksternal</string>
+\nPilih SAF jika Anda ingin mengunduh ke kartu SD eksternal</string>
     <string name="error_timeout">Batas waktu koneksi</string>
     <string name="downloads_storage_use_saf_title">Gunakan SAF</string>
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' memungkinkan unduhan ke kartu SD eksternal.
@@ -501,8 +501,8 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">Bahasa akan diterapkan setelah aplikasi dimulai ulang.</string>
     <string name="peertube_instance_url_title">Situs PeerTube</string>
-    <string name="peertube_instance_url_summary">Pilih situs PeerTube favorit anda</string>
-    <string name="peertube_instance_url_help">Temukan situs yang anda suka di %s</string>
+    <string name="peertube_instance_url_summary">Pilih situs PeerTube favorit Anda</string>
+    <string name="peertube_instance_url_help">Temukan situs yang Anda suka di %s</string>
     <string name="peertube_instance_add_title">Tambah situs</string>
     <string name="peertube_instance_add_help">Masukkan URL situs</string>
     <string name="peertube_instance_add_fail">Tidak bisa memvalidasi situs</string>
@@ -551,7 +551,7 @@
         <item quantity="other">%d dipilih</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Nama grup kosong</string>
-    <string name="feed_group_dialog_delete_message">Apakah anda ingin menghapus grup ini\?</string>
+    <string name="feed_group_dialog_delete_message">Apakah Anda ingin menghapus grup ini\?</string>
     <string name="feed_create_new_group_button_title">Baru</string>
     <string name="settings_category_feed_title">Feed</string>
     <string name="feed_update_threshold_title">Rentang pembaruan feed</string>
@@ -570,13 +570,13 @@
     <string name="remove_watched">Buang ditonton</string>
     <string name="restricted_video">Video ini dibatasi usia.
 \n
-\nAktifkan \"%1$s\" di dalam pengaturan jika anda ingin melihatnya.</string>
+\nAktifkan \"%1$s\" di dalam pengaturan jika Anda ingin melihatnya.</string>
     <string name="content_not_supported">Konten ini belum didukung oleh NewPipe.
 \n
 \nSemoga akan didukung pada versi berikutnya.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Iya, dan video yang ditonton sebagian</string>
     <string name="remove_watched_popup_warning">Video yang sudah ditonton sebelum dan sesudah ditambahkan ke daftar putar akan dibuang.
-\nApakah anda yakin\? Ini tidak bisa diurungkan!</string>
+\nApakah Anda yakin\? Ini tidak bisa diurungkan!</string>
     <string name="unmute">Batal bisukan</string>
     <string name="mute">Bisukan</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Apakah kamu berpikir umpan memuat sangat lambat\? Jika iya, coba nyalakan memuat cepat (kamu dapat mengubahnya pada pengaturan atau dengan menekan tombol di bawah)
@@ -596,7 +596,7 @@
     <string name="video_detail_by">Oleh %s</string>
     <string name="channel_created_by">Dibuat oleh %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Thumbnail avatar kanal</string>
-    <string name="error_report_open_github_notice">Harap periksa apakah masalah yang sama sudah ada atau belum. Ketika laporan anda ternyata sudah ada, anda membuat kami menghabiskan waktu yang seharusnya bisa kami gunakan untuk meningkatkan aplikasi menjadi lebih baik.</string>
+    <string name="error_report_open_github_notice">Harap periksa apakah masalah yang sama sudah ada atau belum. Ketika laporan Anda ternyata sudah ada, Anda membuat kami menghabiskan waktu yang seharusnya bisa kami gunakan untuk meningkatkan aplikasi menjadi lebih baik.</string>
     <string name="error_report_open_issue_button_text">Laporkan di GitHub</string>
     <string name="copy_for_github">Salin laporan dengan format</string>
     <string name="search_showing_result_for">Menampilkan hasil untuk: %s</string>
@@ -611,7 +611,7 @@
     <string name="unsupported_url_dialog_message">URL tidak dikenali. Buka dengan aplikasi lain\?</string>
     <string name="auto_queue_toggle">Otomatis antre</string>
     <string name="clear_queue_confirmation_description">Antrean dari pemutar yang aktif akan digantikan</string>
-    <string name="clear_queue_confirmation_summary">Beralih ke pemutar yang lain mungkin akan mengganti antrean anda</string>
+    <string name="clear_queue_confirmation_summary">Beralih ke pemutar yang lain mungkin akan mengganti antrean Anda</string>
     <string name="clear_queue_confirmation_title">Konfirmasi sebelum mengosongkan antrean</string>
     <string name="settings_category_notification_title">Notifikasi</string>
     <string name="notification_action_nothing">Tidak ada</string>
@@ -630,7 +630,7 @@
     <string name="show_memory_leaks">Tampilkan kebocoran memori</string>
     <string name="enqueued">Ditambahkan</string>
     <string name="enqueue_stream">Tambahkan</string>
-    <string name="clear_cookie_summary">Hapus kuki yang disimpan oleh NewPipe saat anda memecahkan reCAPTCHA</string>
+    <string name="clear_cookie_summary">Hapus kuki yang disimpan oleh NewPipe saat Anda memecahkan reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Kuki reCAPTCHA telah dihapus</string>
     <string name="clear_cookie_title">Hapus kuki reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube menyediakan \"Mode Terbatas\" yang menyembunyikan video konten dewasa</string>
@@ -640,4 +640,17 @@
     <string name="show_thumbnail_summary">Gunakan thumbnail untuk latar layar penguncian dan notifikasi</string>
     <string name="show_thumbnail_title">Tampilkan thumbnail</string>
     <string name="msg_calculating_hash">Mengkalkulasi hash</string>
+    <string name="recent">Baru-baru ini</string>
+    <string name="show_meta_info_summary">Nonaktifkan untuk menyembunyikan kotak info tentang informasi tambahan tentang kreator, konten stream atau pencarian.</string>
+    <string name="show_meta_info_title">Tampilkan info meta</string>
+    <string name="hash_channel_description">Notifikasi untuk laju pemrosesan hash video</string>
+    <string name="hash_channel_name">Notifikasi Hash Video</string>
+    <string name="no_app_to_open_intent">Tidak ada apl di perangkat Anda yang bisa membuka ini</string>
+    <string name="chapters">Chapter</string>
+    <string name="description_tab_description">Deskripsi</string>
+    <string name="related_streams_tab_description">Stream terkait</string>
+    <string name="comments_tab_description">Komentar</string>
+    <string name="show_description_summary">Nonaktifkan untuk menyembunyikan deskripsi dan informasi tambahan</string>
+    <string name="show_description_title">Tampilkan deskripsi</string>
+    <string name="open_with">Buka dengan</string>
 </resources>

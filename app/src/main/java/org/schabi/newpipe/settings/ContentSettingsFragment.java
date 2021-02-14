@@ -32,14 +32,9 @@ import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Map;
-import java.util.zip.ZipFile;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -48,13 +43,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private static final int REQUEST_EXPORT_PATH = 30945;
 
     private ContentSettingsManager manager;
-
-    private File databasesDir;
-    private File newpipeDb;
-    private File newpipeDbJournal;
-    private File newpipeDbShm;
-    private File newpipeDbWal;
-    private File newpipeSettings;
 
     private String thumbnailLoadToggleKey;
     private String youtubeRestrictedModeEnabledKey;
@@ -120,16 +108,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         final File homeDir = ContextCompat.getDataDir(requireContext());
-        databasesDir = new File(homeDir, "/databases");
-        newpipeDb = new File(homeDir, "/databases/newpipe.db");
-        newpipeDbJournal = new File(homeDir, "/databases/newpipe.db-journal");
-        newpipeDbShm = new File(homeDir, "/databases/newpipe.db-shm");
-        newpipeDbWal = new File(homeDir, "/databases/newpipe.db-wal");
-
-        newpipeSettings = new File(homeDir, "/databases/newpipe.settings");
-        newpipeSettings.delete();
-
-        manager = new ContentSettingsManager(homeDir);
+        manager = new ContentSettingsManager(new NewPipeFileLocator(homeDir));
+        manager.deleteSettingsFile();
 
         addPreferencesFromResource(R.xml.content_settings);
 
@@ -224,33 +204,24 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private void importDatabase(final String filePath) {
         // check if file is supported
-        try (ZipFile zipFile = new ZipFile(filePath)) {
-        } catch (final IOException ioe) {
+        if (!ZipHelper.isValidZipFile(filePath)) {
             Toast.makeText(getContext(), R.string.no_valid_zip_file, Toast.LENGTH_SHORT)
-                    .show();
+                .show();
             return;
         }
 
         try {
-            if (!databasesDir.exists() && !databasesDir.mkdir()) {
+            if (!manager.ensureDbDirectoryExists()) {
                 throw new Exception("Could not create databases dir");
             }
 
-            final boolean isDbFileExtracted = ZipHelper.extractFileFromZip(filePath,
-                    newpipeDb.getPath(), "newpipe.db");
-
-            if (isDbFileExtracted) {
-                newpipeDbJournal.delete();
-                newpipeDbWal.delete();
-                newpipeDbShm.delete();
-            } else {
+            if (!manager.extractDb(filePath)) {
                 Toast.makeText(getContext(), R.string.could_not_import_all_files, Toast.LENGTH_LONG)
-                        .show();
+                    .show();
             }
 
             //If settings file exist, ask if it should be imported.
-            if (ZipHelper.extractFileFromZip(filePath, newpipeSettings.getPath(),
-                    "newpipe.settings")) {
+            if (manager.extractSettings(filePath)) {
                 final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
                 alert.setTitle(R.string.import_settings);
 
@@ -261,7 +232,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 });
                 alert.setPositiveButton(getString(R.string.finish), (dialog, which) -> {
                     dialog.dismiss();
-                    loadSharedPreferences(newpipeSettings);
+                    manager.loadSharedPreferences(PreferenceManager
+                        .getDefaultSharedPreferences(requireContext()));
                     // restart app to properly load db
                     System.exit(0);
                 });
@@ -272,34 +244,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             }
         } catch (final Exception e) {
             onError(e);
-        }
-    }
-
-    private void loadSharedPreferences(final File src) {
-        try (ObjectInputStream input = new ObjectInputStream(new FileInputStream(src))) {
-            final SharedPreferences.Editor prefEdit = PreferenceManager
-                    .getDefaultSharedPreferences(requireContext()).edit();
-            prefEdit.clear();
-            final Map<String, ?> entries = (Map<String, ?>) input.readObject();
-            for (final Map.Entry<String, ?> entry : entries.entrySet()) {
-                final Object v = entry.getValue();
-                final String key = entry.getKey();
-
-                if (v instanceof Boolean) {
-                    prefEdit.putBoolean(key, (Boolean) v);
-                } else if (v instanceof Float) {
-                    prefEdit.putFloat(key, (Float) v);
-                } else if (v instanceof Integer) {
-                    prefEdit.putInt(key, (Integer) v);
-                } else if (v instanceof Long) {
-                    prefEdit.putLong(key, (Long) v);
-                } else if (v instanceof String) {
-                    prefEdit.putString(key, (String) v);
-                }
-            }
-            prefEdit.commit();
-        } catch (final IOException | ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 

@@ -145,7 +145,7 @@
                             tools:text="The Video Artist  LONG very LONG very Long" />
                     </LinearLayout>
 
-                    <Button
+                    <TextView
                         android:id="@+id/qualityTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
@@ -154,13 +154,12 @@
                         android:gravity="center"
                         android:minWidth="0dp"
                         android:padding="@dimen/player_main_buttons_padding"
-                        android:text="720p"
-                        android:textAllCaps="false"
                         android:textColor="@android:color/white"
                         android:textStyle="bold"
-                        tools:ignore="HardcodedText,RtlHardcoded" />
+                        tools:ignore="HardcodedText,RtlHardcoded"
+                        tools:text="720p" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/playbackSpeed"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
@@ -169,7 +168,6 @@
                         android:gravity="center"
                         android:minWidth="0dp"
                         android:padding="@dimen/player_main_buttons_padding"
-                        android:textAllCaps="false"
                         android:textColor="@android:color/white"
                         android:textStyle="bold"
                         tools:ignore="RtlHardcoded,RtlSymmetry"
@@ -190,6 +188,24 @@
                         android:scaleType="fitCenter"
                         android:visibility="gone"
                         app:srcCompat="@drawable/ic_list_white_24dp"
+                        tools:ignore="ContentDescription,RtlHardcoded"
+                        tools:visibility="visible" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/segmentsButton"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingStart="3dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="3dp"
+                        android:paddingBottom="3dp"
+                        android:scaleType="fitCenter"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_format_list_numbered_white_24"
                         tools:ignore="ContentDescription,RtlHardcoded"
                         tools:visibility="visible" />
 
@@ -216,7 +232,7 @@
                     tools:ignore="RtlHardcoded"
                     tools:visibility="visible">
 
-                    <Button
+                    <TextView
                         android:id="@+id/resizeTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
@@ -454,7 +470,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/playQueuePanel"
+        android:id="@+id/itemsListPanel"
         android:layout_width="380dp"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
@@ -463,14 +479,30 @@
         tools:visibility="visible">
 
         <RelativeLayout
-            android:id="@+id/playQueueControl"
+            android:id="@+id/itemsListControl"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:clickable="true"
             android:focusable="true">
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/itemsListHeaderTitle"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/itemsListClose"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="56dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/chapters"
+                android:textColor="@android:color/white"
+                android:visibility="gone" />
+
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/playQueueClose"
+                android:id="@+id/itemsListClose"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
@@ -519,10 +551,10 @@
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/playQueue"
+            android:id="@+id/itemsList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/playQueueControl"
+            android:layout_below="@id/itemsListControl"
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/play_queue_item" />

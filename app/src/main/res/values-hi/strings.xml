@@ -558,4 +558,46 @@
     <string name="notification_action_0_title">पहला एक्शन बटन</string>
     <string name="notification_scale_to_square_image_summary">अधिसूचना में दिखाए गए वीडियो थंबनेल को 16: 9 से 1: 1 के अनुपात में दिखाया गया है (विकृतियों का परिचय दे सकता है)</string>
     <string name="notification_scale_to_square_image_title">वीडियो छवि को 1:1 के आस्पेक्ट अनुपात मैं देखें</string>
+    <plurals name="hours">
+        <item quantity="one">%dघंटा</item>
+        <item quantity="other">%dघंटे</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%dसेकंड</item>
+        <item quantity="other">Seconds</item>
+    </plurals>
+    <string name="remove_watched_popup_title">देखे गए वीडियो हटायें\?</string>
+    <string name="remove_watched">देखे गए को हटा दें</string>
+    <string name="systems_language">सिस्टम डिफ़ॉल्ट</string>
+    <string name="app_language_title">ऐप भाषा</string>
+    <string name="deleted_downloads">%1$d डाउनलोड को हटा दिया गया</string>
+    <string name="delete_downloaded_files">डाउनलोड की गई फ़ाइलें हटाएं</string>
+    <string name="clear_download_history">डाउनलोड इतिहास हटायें</string>
+    <string name="wifi_only">केवल वाईफाई पर</string>
+    <string name="autoplay_summary">स्वचालित रूप से प्लेबैक शुरू करें —%s</string>
+    <string name="show_memory_leaks">मेमरी लीक दर्शाएँ</string>
+    <string name="unmute">अन्म्यूट</string>
+    <string name="mute">म्यूट</string>
+    <string name="most_liked">सबसे ज्यादा पसंद</string>
+    <string name="recently_added">हाल ही में जोड़ा</string>
+    <string name="local">लोकल</string>
+    <string name="no_playlist_bookmarked_yet">कोई प्लेलिस्ट का बुक्मार्क्स नहीं है</string>
+    <string name="select_a_playlist">एक प्लेलिस्ट का चयन करें</string>
+    <string name="infinite_videos">∞ विडीओ</string>
+    <string name="more_than_100_videos">१००+ विडीओ</string>
+    <string name="description_tab_description">विवरण</string>
+    <string name="related_streams_tab_description">संबंधित स्ट्रीमस</string>
+    <string name="comments_tab_description">टिप्पणियाँ</string>
+    <string name="error_report_open_github_notice">कृपया जांचें लें कि क्या आपके क्रैश पर चर्चा करने वाला मुद्दा पहले से मौजूद है। डुप्लिकेट टिकट बनाते समय, आप हमसे समय लेते हैं जो हम वास्तविक बग को ठीक करने के साथ खर्च कर सकते हैं।</string>
+    <string name="error_report_open_issue_button_text">गिटहब पर रिपोर्ट करें</string>
+    <string name="permission_display_over_apps">अन्य ऐप्स पर प्रदर्शित करने की अनुमति दें</string>
+    <string name="hash_channel_description">विडीओ हैशिंग की प्रगति की सूचना</string>
+    <string name="hash_channel_name">वीडियो हैश अधिसूचना</string>
+    <string name="show_meta_info_summary">स्ट्रीम निर्माता, स्ट्रीम विषय सूची या खोज अनुरोध के बारे में अतिरिक्त जानकारी के साथ मेटा जानकारी बक्से को छिपाने के लिए बंद करें.</string>
+    <string name="show_meta_info_title">मेटा जानकारी दिखाएँ</string>
+    <string name="show_description_summary">वीडियो विवरण और अतिरिक्त जानकारी छिपाने के लिए बंद करें</string>
+    <string name="show_description_title">विवरण दिखाएं</string>
+    <string name="clear_queue_confirmation_description">सक्रिय प्लेअर क़तार को बदल दिया जाएगा</string>
+    <string name="clear_queue_confirmation_summary">एक प्लेअर से दूसरे प्लेअर पर स्विच करने पर आपके क़तार बदल सकते है</string>
+    <string name="open_with">के साथ खोलें</string>
 </resources>

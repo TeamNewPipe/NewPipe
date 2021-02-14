@@ -11,17 +11,18 @@ import android.widget.ProgressBar;
 import androidx.appcompat.content.res.AppCompatResources;
 
 import org.jetbrains.annotations.NotNull;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.MainPlayer;
-import org.schabi.newpipe.player.VideoPlayerImpl;
+import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 
-import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
-import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
-import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
-import static org.schabi.newpipe.util.AnimationUtils.Type.SCALE_AND_ALPHA;
-import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.ktx.AnimationType.ALPHA;
+import static org.schabi.newpipe.ktx.AnimationType.SCALE_AND_ALPHA;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.player.Player.DEFAULT_CONTROLS_DURATION;
+import static org.schabi.newpipe.player.Player.DEFAULT_CONTROLS_HIDE_TIME;
+import static org.schabi.newpipe.player.Player.STATE_PLAYING;
 
 /**
  * GestureListener for the player
@@ -33,14 +34,14 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 public class PlayerGestureListener
         extends BasePlayerGestureListener
         implements View.OnTouchListener {
-    private static final String TAG = ".PlayerGestureListener";
-    private static final boolean DEBUG = BasePlayer.DEBUG;
+    private static final String TAG = PlayerGestureListener.class.getSimpleName();
+    private static final boolean DEBUG = MainActivity.DEBUG;
 
     private final int maxVolume;
 
-    public PlayerGestureListener(final VideoPlayerImpl playerImpl, final MainPlayer service) {
-        super(playerImpl, service);
-        maxVolume = playerImpl.getAudioReactor().getMaxVolume();
+    public PlayerGestureListener(final Player player, final MainPlayer service) {
+        super(player, service);
+        maxVolume = player.getAudioReactor().getMaxVolume();
     }
 
     @Override
@@ -48,46 +49,44 @@ public class PlayerGestureListener
                             @NotNull final DisplayPortion portion) {
         if (DEBUG) {
             Log.d(TAG, "onDoubleTap called with playerType = ["
-                    + playerImpl.getPlayerType() + "], portion = ["
-                    + portion + "]");
+                    + player.getPlayerType() + "], portion = [" + portion + "]");
         }
-        if (playerImpl.isSomePopupMenuVisible()) {
-            playerImpl.hideControls(0, 0);
+        if (player.isSomePopupMenuVisible()) {
+            player.hideControls(0, 0);
         }
 
         if (portion == DisplayPortion.LEFT) {
-            playerImpl.onFastRewind();
+            player.fastRewind();
         } else if (portion == DisplayPortion.MIDDLE) {
-            playerImpl.onPlayPause();
+            player.playPause();
         } else if (portion == DisplayPortion.RIGHT) {
-            playerImpl.onFastForward();
+            player.fastForward();
         }
     }
 
     @Override
     public void onSingleTap(@NotNull final MainPlayer.PlayerType playerType) {
         if (DEBUG) {
-            Log.d(TAG, "onSingleTap called with playerType = ["
-                + playerImpl.getPlayerType() + "]");
+            Log.d(TAG, "onSingleTap called with playerType = [" + player.getPlayerType() + "]");
         }
         if (playerType == MainPlayer.PlayerType.POPUP) {
 
-            if (playerImpl.isControlsVisible()) {
-                playerImpl.hideControls(100, 100);
+            if (player.isControlsVisible()) {
+                player.hideControls(100, 100);
             } else {
-                playerImpl.getPlayPauseButton().requestFocus();
-                playerImpl.showControlsThenHide();
+                player.getPlayPauseButton().requestFocus();
+                player.showControlsThenHide();
             }
 
         } else /* playerType == MainPlayer.PlayerType.VIDEO */ {
 
-            if (playerImpl.isControlsVisible()) {
-                playerImpl.hideControls(150, 0);
+            if (player.isControlsVisible()) {
+                player.hideControls(150, 0);
             } else {
-                if (playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED) {
-                    playerImpl.showControls(0);
+                if (player.getCurrentState() == Player.STATE_COMPLETED) {
+                    player.showControls(0);
                 } else {
-                    playerImpl.showControlsThenHide();
+                    player.showControlsThenHide();
                 }
             }
         }
@@ -101,8 +100,7 @@ public class PlayerGestureListener
                          final float distanceX, final float distanceY) {
         if (DEBUG) {
             Log.d(TAG, "onScroll called with playerType = ["
-                + playerImpl.getPlayerType() + "], portion = ["
-                + portion + "]");
+                + player.getPlayerType() + "], portion = [" + portion + "]");
         }
         if (playerType == MainPlayer.PlayerType.VIDEO) {
             final boolean isBrightnessGestureEnabled =
@@ -123,31 +121,31 @@ public class PlayerGestureListener
             }
 
         } else /* MainPlayer.PlayerType.POPUP */ {
-            final View closingOverlayView = playerImpl.getClosingOverlayView();
-            if (playerImpl.isInsideClosingRadius(movingEvent)) {
+            final View closingOverlayView = player.getClosingOverlayView();
+            if (player.isInsideClosingRadius(movingEvent)) {
                 if (closingOverlayView.getVisibility() == View.GONE) {
-                    animateView(closingOverlayView, true, 250);
+                    animate(closingOverlayView, true, 200);
                 }
             } else {
                 if (closingOverlayView.getVisibility() == View.VISIBLE) {
-                    animateView(closingOverlayView, false, 0);
+                    animate(closingOverlayView, false, 200);
                 }
             }
         }
     }
 
     private void onScrollMainVolume(final float distanceX, final float distanceY) {
-        playerImpl.getVolumeProgressBar().incrementProgressBy((int) distanceY);
-        final float currentProgressPercent = (float) playerImpl
-                .getVolumeProgressBar().getProgress() / playerImpl.getMaxGestureLength();
+        player.getVolumeProgressBar().incrementProgressBy((int) distanceY);
+        final float currentProgressPercent = (float) player
+                .getVolumeProgressBar().getProgress() / player.getMaxGestureLength();
         final int currentVolume = (int) (maxVolume * currentProgressPercent);
-        playerImpl.getAudioReactor().setVolume(currentVolume);
+        player.getAudioReactor().setVolume(currentVolume);
 
         if (DEBUG) {
             Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
         }
 
-        playerImpl.getVolumeImageView().setImageDrawable(
+        player.getVolumeImageView().setImageDrawable(
                 AppCompatResources.getDrawable(service, currentProgressPercent <= 0
                         ? R.drawable.ic_volume_off_white_24dp
                         : currentProgressPercent < 0.25 ? R.drawable.ic_volume_mute_white_24dp
@@ -155,23 +153,23 @@ public class PlayerGestureListener
                         : R.drawable.ic_volume_up_white_24dp)
         );
 
-        if (playerImpl.getVolumeRelativeLayout().getVisibility() != View.VISIBLE) {
-            animateView(playerImpl.getVolumeRelativeLayout(), SCALE_AND_ALPHA, true, 200);
+        if (player.getVolumeRelativeLayout().getVisibility() != View.VISIBLE) {
+            animate(player.getVolumeRelativeLayout(), true, 200, SCALE_AND_ALPHA);
         }
-        if (playerImpl.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
-            playerImpl.getBrightnessRelativeLayout().setVisibility(View.GONE);
+        if (player.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
+            player.getBrightnessRelativeLayout().setVisibility(View.GONE);
         }
     }
 
     private void onScrollMainBrightness(final float distanceX, final float distanceY) {
-        final Activity parent = playerImpl.getParentActivity();
+        final Activity parent = player.getParentActivity();
         if (parent == null) {
             return;
         }
 
         final Window window = parent.getWindow();
         final WindowManager.LayoutParams layoutParams = window.getAttributes();
-        final ProgressBar bar = playerImpl.getBrightnessProgressBar();
+        final ProgressBar bar = player.getBrightnessProgressBar();
         final float oldBrightness = layoutParams.screenBrightness;
         bar.setProgress((int) (bar.getMax() * Math.max(0, Math.min(1, oldBrightness))));
         bar.incrementProgressBy((int) distanceY);
@@ -188,7 +186,7 @@ public class PlayerGestureListener
                     + "currentBrightness = " + currentProgressPercent);
         }
 
-        playerImpl.getBrightnessImageView().setImageDrawable(
+        player.getBrightnessImageView().setImageDrawable(
                 AppCompatResources.getDrawable(service,
                         currentProgressPercent < 0.25
                                 ? R.drawable.ic_brightness_low_white_24dp
@@ -197,11 +195,11 @@ public class PlayerGestureListener
                                 : R.drawable.ic_brightness_high_white_24dp)
         );
 
-        if (playerImpl.getBrightnessRelativeLayout().getVisibility() != View.VISIBLE) {
-            animateView(playerImpl.getBrightnessRelativeLayout(), SCALE_AND_ALPHA, true, 200);
+        if (player.getBrightnessRelativeLayout().getVisibility() != View.VISIBLE) {
+            animate(player.getBrightnessRelativeLayout(), true, 200, SCALE_AND_ALPHA);
         }
-        if (playerImpl.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
-            playerImpl.getVolumeRelativeLayout().setVisibility(View.GONE);
+        if (player.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
+            player.getVolumeRelativeLayout().setVisibility(View.GONE);
         }
     }
 
@@ -210,41 +208,35 @@ public class PlayerGestureListener
                             @NotNull final MotionEvent event) {
         if (DEBUG) {
             Log.d(TAG, "onScrollEnd called with playerType = ["
-                + playerImpl.getPlayerType() + "]");
+                + player.getPlayerType() + "]");
         }
         if (playerType == MainPlayer.PlayerType.VIDEO) {
             if (DEBUG) {
                 Log.d(TAG, "onScrollEnd() called");
             }
 
-            if (playerImpl.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
-                animateView(playerImpl.getVolumeRelativeLayout(), SCALE_AND_ALPHA,
-                        false, 200, 200);
+            if (player.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
+                animate(player.getVolumeRelativeLayout(), false, 200, SCALE_AND_ALPHA,
+                        200);
             }
-            if (playerImpl.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
-                animateView(playerImpl.getBrightnessRelativeLayout(), SCALE_AND_ALPHA,
-                        false, 200, 200);
+            if (player.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
+                animate(player.getBrightnessRelativeLayout(), false, 200, SCALE_AND_ALPHA,
+                        200);
             }
 
-            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == STATE_PLAYING) {
-                playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+            if (player.isControlsVisible() && player.getCurrentState() == STATE_PLAYING) {
+                player.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
             }
         } else {
-            if (playerImpl == null) {
-                return;
-            }
-            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == STATE_PLAYING) {
-                playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+            if (player.isControlsVisible() && player.getCurrentState() == STATE_PLAYING) {
+                player.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
             }
 
-            if (playerImpl.isInsideClosingRadius(event)) {
-                playerImpl.closePopup();
-            } else {
-                animateView(playerImpl.getClosingOverlayView(), false, 0);
-
-                if (!playerImpl.isPopupClosing) {
-                    animateView(playerImpl.getCloseOverlayButton(), false, 200);
-                }
+            if (player.isInsideClosingRadius(event)) {
+                player.closePopup();
+            } else if (!player.isPopupClosing()) {
+                animate(player.getCloseOverlayButton(), false, 200);
+                animate(player.getClosingOverlayView(), false, 200);
             }
         }
     }
@@ -254,12 +246,12 @@ public class PlayerGestureListener
         if (DEBUG) {
             Log.d(TAG, "onPopupResizingStart called");
         }
-        playerImpl.showAndAnimateControl(-1, true);
-        playerImpl.getLoadingPanel().setVisibility(View.GONE);
+        player.showAndAnimateControl(-1, true);
+        player.getLoadingPanel().setVisibility(View.GONE);
 
-        playerImpl.hideControls(0, 0);
-        animateView(playerImpl.getCurrentDisplaySeek(), false, 0, 0);
-        animateView(playerImpl.getResizingIndicator(), true, 200, 0);
+        player.hideControls(0, 0);
+        animate(player.getCurrentDisplaySeek(), false, 0, ALPHA, 0);
+        animate(player.getResizingIndicator(), true, 200, ALPHA, 0);
     }
 
     @Override
@@ -267,7 +259,7 @@ public class PlayerGestureListener
         if (DEBUG) {
             Log.d(TAG, "onPopupResizingEnd called");
         }
-        animateView(playerImpl.getResizingIndicator(), false, 100, 0);
+        animate(player.getResizingIndicator(), false, 100, ALPHA, 0);
     }
 }
 

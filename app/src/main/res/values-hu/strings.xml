@@ -75,7 +75,8 @@
     <string name="user_report">Felhasználói jelentés</string>
     <string name="video">Videó</string>
     <string name="audio">Audio</string>
-    <string name="main_bg_subtitle">A kezdéshez koppints a \"Keresés\"-re</string>
+    <string name="main_bg_subtitle">A kezdéshez koppints a \"Keresés\"-re
+\n</string>
     <string name="could_not_load_thumbnails">Nem sikerült az összes előnézeti kép betöltése</string>
     <string name="parsing_error">Nem sikerült a weblap betöltése</string>
     <string name="light_parsing_error">Nem sikerült a weblap teljes betöltése</string>
@@ -463,4 +464,7 @@
     <string name="notification_action_nothing">Semmi</string>
     <string name="notification_action_shuffle">Keverés</string>
     <string name="notification_action_repeat">Ismétlés</string>
+    <string name="show_description_title">Leírás megjelenítése</string>
+    <string name="notification_action_buffering">Bufferelés</string>
+    <string name="open_with">Megnyitás ezzel</string>
 </resources>
