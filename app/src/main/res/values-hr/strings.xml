@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Dodirnite pretragu za početak
+    <string name="main_bg_subtitle">Za početak dodirnite \"Pretraži\"
 \n</string>
     <string name="view_count_text">%1$s pregleda</string>
     <string name="upload_date_text">Objavljeno %1$s</string>
@@ -18,7 +18,7 @@
     <string name="choose_browser">Izaberi pretraživač</string>
     <string name="screen_rotation">rotacija</string>
     <string name="use_external_video_player_title">Koristi vanjski reproduktor videozapisa</string>
-    <string name="use_external_video_player_summary">Uklanja zvuk na nekim rezolucijama</string>
+    <string name="use_external_video_player_summary">Uklanja zvuk pri nekim rezolucijama</string>
     <string name="use_external_audio_player_title">Koristi vanjski reproduktor za zvuk</string>
     <string name="popup_mode_share_menu_title">Skočni prozor</string>
     <string name="subscribe_button_title">Pretplati se</string>
@@ -39,9 +39,9 @@
     <string name="download_path_audio_dialog_title">Odaberi mapu za preuzimanje audio datoteka</string>
     <string name="autoplay_by_calling_app_title">Automatska reprodukcija</string>
     <string name="autoplay_by_calling_app_summary">Reproducira videozapis kad je NewPipe pozvan iz druge aplikacije</string>
-    <string name="default_resolution_title">Zadana razlučivost</string>
-    <string name="default_popup_resolution_title">Zadana razlučivost skočnog prozora</string>
-    <string name="show_higher_resolutions_title">Prikaži veće razlučivosti</string>
+    <string name="default_resolution_title">Standardna rezolucija</string>
+    <string name="default_popup_resolution_title">Standardna rezolucija skočnog prozora</string>
+    <string name="show_higher_resolutions_title">Prikaži više rezolucije</string>
     <string name="show_higher_resolutions_summary">Samo neki uređaji podržavaju reprodukciju 2K/4K videozapisa</string>
     <string name="play_with_kodi_title">Reproduciraj sa Kodijem</string>
     <string name="kore_not_found">Kore aplikacija nije pronađena. Želite li ju instalirati?</string>
@@ -91,7 +91,7 @@
     <string name="refresh">Osvježi</string>
     <string name="clear">Očisti</string>
     <string name="popup_resizing_indicator_title">Mijenjanje veličine</string>
-    <string name="best_resolution">Najbolja razlučivost</string>
+    <string name="best_resolution">Najbolja rezolucija</string>
     <string name="general_error">Greška</string>
     <string name="network_error">Greška u mreži</string>
     <string name="could_not_load_thumbnails">Nije moguće učitati sve ikone</string>
@@ -662,4 +662,15 @@
     <string name="msg_calculating_hash">Izračunavanje šifriranja</string>
     <string name="hash_channel_name">Obavijest šifriranja videa</string>
     <string name="hash_channel_description">Obavijesti o napretku šifriranja videa</string>
+    <string name="recent">Nedavni</string>
+    <string name="show_meta_info_summary">Isključi za skrivanje polja metapodataka s dodatnim podacima o autoru streama, sadržaju streama ili zahtjevu za pretraživanje.</string>
+    <string name="show_meta_info_title">Prikaži metapodatke</string>
+    <string name="related_streams_tab_description">Slični videozapisi</string>
+    <string name="no_app_to_open_intent">Nijedna aplikacija na vašem uređaju ne može to otvoriti</string>
+    <string name="chapters">Poglavlja videozapisa</string>
+    <string name="description_tab_description">Opis</string>
+    <string name="comments_tab_description">Komentari</string>
+    <string name="show_description_summary">Isključite da biste sakrili opis videozapisa i dodatne informacije</string>
+    <string name="show_description_title">Prikaži opis</string>
+    <string name="open_with">Otvorite uz pomoć aplikacije</string>
 </resources>

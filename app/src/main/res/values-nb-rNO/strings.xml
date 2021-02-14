@@ -78,7 +78,7 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Prøv igjen</string>
-    <string name="storage_permission_denied">Innvilg lagringslesetilgang først</string>
+    <string name="storage_permission_denied">Gi tilgang til lagring først</string>
     <string name="duration_live">Direkte</string>
     <string name="downloads">Nedlastinger</string>
     <string name="downloads_title">Nedlastinger</string>
@@ -367,7 +367,7 @@
 \n2. Gå til denne nettadressen: %1$s
 \n3. Logg inn når forespurt
 \n4. Kopier profil-nettadressen du ble videresendt til.</string>
-    <string name="use_inexact_seek_summary">Unøyaktig blafring tillater spilleren å blafre til posisjoner raskere med redusert nøyaktighet. Blafring i 5, 15, eller 25 sekunder fungerer ikke sammen med dette.</string>
+    <string name="use_inexact_seek_summary">Unøyaktig blafring lar spilleren søke posisjoner raskere med redusert presisjon. Å søke i 5, 15 eller 25 sekunder fungerer ikke med dette.</string>
     <string name="download_thumbnail_summary">Skru av for å stoppe innlasting av miniatyrbilder, noe som sparer data- og minnebruk. Endring av dette vil tømme både disk- og minne-hurtiglager.</string>
     <string name="auto_queue_summary">Fortsett fullendt (ikke-repeterende) avspillingskø ved å legge til en relatert strøm</string>
     <string name="enable_leak_canary_summary">Minnelekkasjeoppsyn kan forårsake programmet å opptre uresponsivt under haugdumping</string>
@@ -505,7 +505,7 @@
         <item quantity="other">%s lyttere</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">Språket vil endres når programmet startes på ny.</string>
-    <string name="default_kiosk_page_summary">Forvalgt kiosk</string>
+    <string name="default_kiosk_page_summary">Standard kiosk</string>
     <string name="peertube_instance_url_title">PeerTube-instanser</string>
     <string name="local">Lokal</string>
     <string name="recently_added">Nylig lagt til</string>
@@ -525,7 +525,7 @@
     <string name="recovering">gjenoppretter</string>
     <string name="error_download_resource_gone">Kan ikke gjenopprette denne nedlastingen</string>
     <string name="seek_duration_title">Hurtigframoverspoling/-tilbakeblafringsvarighet</string>
-    <string name="permission_display_over_apps">Gi tilgang til visning over andre programmer</string>
+    <string name="permission_display_over_apps">Gi tillatelse til å vise over andre apper</string>
     <string name="app_language_title">Programspråk</string>
     <string name="systems_language">Systemforvalg</string>
     <string name="subtitle_activity_recaptcha">Trykk \"Ferdig\" når den er løst</string>
@@ -581,19 +581,19 @@
     <string name="remove_watched">Fjern sette</string>
     <string name="channel_created_by">Opprettet av %s</string>
     <string name="video_detail_by">Av %s</string>
-    <string name="youtube_restricted_mode_enabled_title">Begrenset YouTube-modus</string>
+    <string name="youtube_restricted_mode_enabled_title">Slå på YouTubes \"begrensede modus\"</string>
     <string name="never">Aldri</string>
     <string name="wifi_only">Kun på Wi-Fi</string>
     <string name="select_a_playlist">Velg en spilleliste</string>
     <string name="error_report_open_issue_button_text">Innrapporter på GitHub</string>
     <string name="auto_queue_toggle">Legg i kø automatisk</string>
-    <string name="clear_queue_confirmation_description">Kø fra aktiv avspiller vil bli avspilt</string>
-    <string name="clear_queue_confirmation_summary">Etter bytting fra en avspiller til en annen kan det hende at køen erstattes</string>
-    <string name="clear_queue_confirmation_title">Spør om bekreftelse før tømming av kø</string>
+    <string name="clear_queue_confirmation_description">Den aktive spillerkøen blir erstattet</string>
+    <string name="clear_queue_confirmation_summary">Bytte fra en spiller til en annen kan erstatte køen din</string>
+    <string name="clear_queue_confirmation_title">Be om bekreftelse før du tømmer køen</string>
     <string name="search_showing_result_for">Viser resultater for: %s</string>
     <string name="show_original_time_ago_title">Vis opprinnelig tid siden for elementer</string>
     <string name="notification_action_buffering">Bygger mellomlager</string>
-    <string name="notification_action_shuffle">Veksle</string>
+    <string name="notification_action_shuffle">Tilfeldig rekkefølge</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Synes du at strøminnlastingen er for treg\? Prøv å skru på rask innlasting (du kan endre det i innstillingene, eller ved å trykke på knappen nedenfor).
 \n
 \nNewPipe tilbyr to strøminnlastingsstrategier:
@@ -606,10 +606,10 @@
 \n
 \nValget koker ned til det du foretrekker: hastighet eller presis info.</string>
     <string name="show_original_time_ago_summary">Originaltekster fra tjenester vil vises for elementer i strømmen</string>
-    <string name="error_report_open_github_notice">Sjekk hvorvidt en feilrapport som omhandler problemet ditt allerede finnes. Når du oppretter dupliserte feilrapporter stjeler du tid fra prosjektet som kunne blitt brukt til å fikse feilen.</string>
-    <string name="notification_actions_at_most_three">Du kan velge opptil tre handlinger å vise i kompaktmerknaden.</string>
-    <string name="notification_actions_summary">Rediger hver merknadshandling nedenfor ved å trykke på den. Velg opptil tre av dem for visning i den kompakte merknaden ved å bruke avkryssningsboksene til høyre.</string>
-    <string name="notification_scale_to_square_image_summary">Skaler video-miniatyrbildet vist i merknaden fra 16:9 til 1:1-aspekt (forvrengning kan oppstå)</string>
+    <string name="error_report_open_github_notice">Sjekk om det allerede eksisterer et problem som diskuterer krasj. Når du oppretter duplikatbilletter, tar du deg tid fra oss som vi kan bruke på å fikse den faktiske feilen.</string>
+    <string name="notification_actions_at_most_three">Du kan maksimalt velge tre handlinger som skal vises i kompaktvarselet!</string>
+    <string name="notification_actions_summary">Rediger hver varslingshandling nedenfor ved å trykke på den. Velg opptil tre av dem som skal vises i det kompakte varselet ved å bruke avmerkingsboksene til høyre.</string>
+    <string name="notification_scale_to_square_image_summary">Skaler videominiatyrbildet som vises i varselet fra 16:9 til 1:1 sideforhold (kan føre til forvrengninger)</string>
     <string name="feed_use_dedicated_fetch_method_summary">Tilgjengelig i noen tjenester, det er vanligvis mye raskere, men kan gi et begrenset antall elementer, og ofte ufullstendig info (f.eks. ingen varighet, elementtype, ingen sanntidsstatus).</string>
     <string name="feed_use_dedicated_fetch_method_title">Hent fra dedikert strøm når tilgjengelig</string>
     <string name="feed_update_threshold_summary">Tid etter siste oppdatering før et abonnement anslås utdatert — %s</string>
@@ -629,13 +629,13 @@
     <string name="no_playlist_bookmarked_yet">Ingen spillelistebokmerker enda</string>
     <string name="copy_for_github">Kopier formatert rapport</string>
     <string name="settings_category_notification_title">Merknad</string>
-    <string name="notification_action_repeat">Gjentagelse</string>
+    <string name="notification_action_repeat">Gjenta</string>
     <string name="notification_action_4_title">Femte handlingstast</string>
     <string name="notification_action_3_title">Fjerde handlingstast</string>
     <string name="notification_action_2_title">Tredje handlingstast</string>
     <string name="notification_action_1_title">Andre handlingstast</string>
     <string name="notification_action_0_title">Første handlingstast</string>
-    <string name="notification_scale_to_square_image_title">Skaler miniatyrbilde til 1:1-aspekt</string>
+    <string name="notification_scale_to_square_image_title">Skaler miniatyrbildet til 1: 1-sideforhold</string>
     <string name="notification_action_nothing">Ingenting</string>
     <string name="show_memory_leaks">Vis minnelekkasjer</string>
     <string name="enqueued">Satt i kø</string>
@@ -643,13 +643,24 @@
     <string name="clear_cookie_title">Tøm reCAPTCHA-kaker</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA-kaker har blitt slettet</string>
     <string name="clear_cookie_summary">Tøm kaker som NewPipe lagrer når du løser en reCAPTCHA</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube tilbyr et «Begrenset modus» som skjuler mulig innhold kun for voksne.</string>
-    <string name="show_age_restricted_content_summary">Vis innhold som muligens er upassende for barn, siden det har aldersgrense (som 18+).</string>
-    <string name="notification_colorize_summary">Få Android til å tilpasse merknadens farge i henhold til hovedfargen på miniatyrbildet (merk at dette ikke støttes på alle enheter)</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube tilbyr en \"Begrenset modus\" som skjuler potensielt modent innhold</string>
+    <string name="show_age_restricted_content_summary">Vis innhold som muligens er uegnet for barn fordi det har en aldersgrense (som 18+)</string>
+    <string name="notification_colorize_summary">La Android tilpasse varselets farge i henhold til hovedfargen i miniatyrbildet (merk at dette ikke er tilgjengelig på alle enheter)</string>
     <string name="notification_colorize_title">Fargelegg merknad</string>
     <string name="show_thumbnail_summary">Vis miniatyrbilde på låseskjerm som bakgrunn og i merknader</string>
     <string name="show_thumbnail_title">Vis miniatyrbilde</string>
     <string name="msg_calculating_hash">Regner ut sjekksum</string>
     <string name="hash_channel_description">Merknad for videosjekksummeringsframdrift</string>
     <string name="hash_channel_name">Videosjekksumsmerknad</string>
+    <string name="show_meta_info_summary">Slå av for å skjule metainformasjonsbokser med tilleggsinformasjon om strømskaperen, strøminnhold eller en søkeforespørsel.</string>
+    <string name="show_meta_info_title">Vis metainfo</string>
+    <string name="recent">Nylige</string>
+    <string name="no_app_to_open_intent">Ingen programmer på enheten din kan åpne dette</string>
+    <string name="chapters">Kapitler</string>
+    <string name="description_tab_description">Beskrivelse</string>
+    <string name="related_streams_tab_description">Relaterte strømmer</string>
+    <string name="comments_tab_description">Kommentarer</string>
+    <string name="show_description_summary">Skru av for å skjule videobeskrivelse og ytterligere info</string>
+    <string name="show_description_title">Vis beskrivelse</string>
+    <string name="open_with">Åpne med</string>
 </resources>

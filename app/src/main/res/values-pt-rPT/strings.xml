@@ -647,6 +647,20 @@
     <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente impróprio para crianças porque tem um limite de idade (como 18+)</string>
     <string name="notification_colorize_summary">Fazer com que o Android personalize a cor da notificação de acordo com a cor principal na miniatura (esta opção não está disponível em todos os dispositivos)</string>
     <string name="notification_colorize_title">Colorir notificação</string>
-    <string name="show_thumbnail_summary">Mostrar miniaturas no ecrã de bloqueio como fundo e como notificação</string>
+    <string name="show_thumbnail_summary">Usar miniaturas no fundo do ecrã de bloqueio e em notificações</string>
     <string name="show_thumbnail_title">Mostrar miniatura</string>
+    <string name="recent">Recente</string>
+    <string name="msg_calculating_hash">A calcular \'hash\'</string>
+    <string name="hash_channel_description">Notificar sobre o progresso das \'hash\' de vídeos</string>
+    <string name="hash_channel_name">Notificação \'hash\' do vídeo</string>
+    <string name="show_meta_info_summary">Desligue para ocultar caixas de informações meta com informações adicionais sobre o criador do fluxo, conteúdo de fluxo ou uma solicitação de pesquisa.</string>
+    <string name="show_meta_info_title">Mostrar informação meta</string>
+    <string name="no_app_to_open_intent">Isto não pode ser aberto por nenhuma app neste aparelho</string>
+    <string name="chapters">Capítulos</string>
+    <string name="description_tab_description">" "</string>
+    <string name="related_streams_tab_description">Emissões relacionadas</string>
+    <string name="comments_tab_description">Comentários</string>
+    <string name="show_description_summary">Desative para ocultar a descrição do vídeo e informações adicionais</string>
+    <string name="show_description_title">Mostrar descrição</string>
+    <string name="open_with">Abrir com</string>
 </resources>

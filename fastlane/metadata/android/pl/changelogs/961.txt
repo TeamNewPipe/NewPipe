@@ -1,0 +1,12 @@
+• [YouTube] Wsparcie Mix
+• [YouTube] Wyświetla informacje o nadawcach publicznych i Covid-19
+• [media.ccc.de] Dodano najnowsze filmy
+• Dodano tłumaczenie somalijskie
+
+• Wiele ulepszeń wewnętrznych
+
+• Naprawiono udostępnianie filmów z poziomu odtwarzacza
+• Naprawiono pusty widok sieciowy ReCaptcha
+• Naprawiono awarię występującą podczas usuwania strumienia z listy
+• [PeerTube] Naprawiono powiązane strumienie
+• [YouTube] Naprawiono wyszukiwanie w YouTube Music

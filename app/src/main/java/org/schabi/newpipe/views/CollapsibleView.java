@@ -31,7 +31,7 @@ import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.ktx.ViewUtils;
 
 import java.lang.annotation.Retention;
 import java.util.ArrayList;
@@ -128,7 +128,7 @@ public class CollapsibleView extends LinearLayout {
         if (currentAnimator != null && currentAnimator.isRunning()) {
             currentAnimator.cancel();
         }
-        currentAnimator = AnimationUtils.animateHeight(this, ANIMATION_DURATION, 0);
+        currentAnimator = ViewUtils.animateHeight(this, ANIMATION_DURATION, 0);
 
         setCurrentState(COLLAPSED);
     }
@@ -151,7 +151,7 @@ public class CollapsibleView extends LinearLayout {
         if (currentAnimator != null && currentAnimator.isRunning()) {
             currentAnimator.cancel();
         }
-        currentAnimator = AnimationUtils.animateHeight(this, ANIMATION_DURATION, this.targetHeight);
+        currentAnimator = ViewUtils.animateHeight(this, ANIMATION_DURATION, this.targetHeight);
         setCurrentState(EXPANDED);
     }
 

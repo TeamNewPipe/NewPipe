@@ -28,7 +28,7 @@ import org.schabi.newpipe.util.Localization;
 import icepick.State;
 import io.reactivex.rxjava3.core.Single;
 
-import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
 
 /**
  * Created by Christian Schabesberger on 23.09.17.
@@ -160,7 +160,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     @Override
     public void showLoading() {
         super.showLoading();
-        animateView(itemsList, false, 100);
+        animate(itemsList, false, 100);
     }
 
     @Override

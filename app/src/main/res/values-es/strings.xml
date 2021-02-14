@@ -652,4 +652,5 @@
     <string name="notification_colorize_summary">Permitir a Android personalizar el color de la notificación con el color principal de la imagen (ten en cuenta que esta opción no funciona en todos los dispositivos)</string>
     <string name="show_thumbnail_summary">Usar miniatura como fondo de pantalla de bloqueo y notificaciones</string>
     <string name="show_thumbnail_title">Mostrar vista previa</string>
+    <string name="show_meta_info_summary">Desactive para ocultar información adicional sobre el creador o contenido de la transmisión.</string>
 </resources>

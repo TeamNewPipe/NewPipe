@@ -8,6 +8,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: create and checkout branch
+        # push events already checked out the branch
+        if: github.event_name == 'pull_request'
+        run: git checkout -B ${{ github.head_ref }}
+
       - name: set up JDK 1.8
         uses: actions/setup-java@v1.4.3
         with:

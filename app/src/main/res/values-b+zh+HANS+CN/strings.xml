@@ -647,4 +647,15 @@
     <string name="hash_channel_name">视频哈希值计算通知</string>
     <string name="hash_channel_description">视频正在哈希值计算时显示的通知</string>
     <string name="msg_calculating_hash">计算哈希值中</string>
+    <string name="recent">最近</string>
+    <string name="show_meta_info_summary">隐藏关于视频创建者及内容或搜索请求的额外元信息框。</string>
+    <string name="show_meta_info_title">显示元数据信息</string>
+    <string name="show_description_title">显示简介</string>
+    <string name="chapters">章节</string>
+    <string name="description_tab_description">简介</string>
+    <string name="related_streams_tab_description">相关视频</string>
+    <string name="comments_tab_description">评论</string>
+    <string name="show_description_summary">显示视频描述和其他信息</string>
+    <string name="open_with">用…打开</string>
+    <string name="no_app_to_open_intent">设备上没有应用可以打开</string>
 </resources>

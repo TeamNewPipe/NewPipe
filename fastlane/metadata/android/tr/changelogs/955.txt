@@ -1,0 +1,3 @@
+[YouTube] Bazı kullanıcılar için arama düzeltildi
+[YouTube] Rastgele şifre çözme istisnalarını düzeltildi
+[SoundCloud] "/" karakteriyle biten URL'ler artık doğru şekilde ayrıştırılıyor

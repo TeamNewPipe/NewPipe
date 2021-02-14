@@ -40,7 +40,7 @@
     <string name="use_tor_title">Torを使用する</string>
     <string name="use_tor_summary">(実験的) 強制的に Tor を経由した経路で保存して､匿名性を高めます(ストリーミング再生には、まだ対応していません)。</string>
     <string name="theme_title">テーマ</string>
-    <string name="dark_theme_title">グレー</string>
+    <string name="dark_theme_title">ダーク</string>
     <string name="light_theme_title">ホワイト</string>
     <string name="settings_category_appearance_title">外観</string>
     <string name="settings_category_other_title">その他</string>
@@ -74,7 +74,7 @@
     <string name="retry">再試行</string>
     <string name="storage_permission_denied">ストレージへのアクセスを許可してください</string>
     <string name="autoplay_by_calling_app_title">自動再生</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe が他のアプリから呼び出された時､動画を再生します｡</string>
+    <string name="autoplay_by_calling_app_summary">NewPipeが他のアプリから呼び出された時､動画を再生します｡</string>
     <string name="report_error">不具合を報告</string>
     <string name="user_report">利用者レポートを送る</string>
     <string name="duration_live">生放送</string>
@@ -128,14 +128,14 @@
     <string name="controls_popup_title">ポップアップ</string>
     <string name="filter">フィルター</string>
     <string name="refresh">更新</string>
-    <string name="clear">クリア</string>
+    <string name="clear">消去</string>
     <string name="popup_remember_size_pos_title">ポップアップの属性を記憶</string>
     <string name="popup_remember_size_pos_summary">ポップアップしたサイズと位置を記憶します</string>
     <string name="settings_category_popup_title">ポップアップ</string>
     <string name="popup_resizing_indicator_title">サイズを変更</string>
     <string name="use_external_video_player_summary">一部の解像度では音声がありません</string>
     <string name="player_gesture_controls_title">プレイヤーのジェスチャー制御</string>
-    <string name="player_gesture_controls_summary">ジェスチャーを使用してプレイヤーの明るさと音量をコントロールする</string>
+    <string name="player_gesture_controls_summary">ジェスチャーを使用してプレイヤーの明るさと音量を制御する</string>
     <string name="show_search_suggestions_title">検索候補の表示</string>
     <string name="show_search_suggestions_summary">検索時に候補を表示します</string>
     <string name="best_resolution">最高の解像度</string>
@@ -228,7 +228,7 @@
     <string name="just_once">一度だけ</string>
     <string name="import_data_title">データベースをインポート</string>
     <string name="export_data_title">データベースをエクスポート</string>
-    <string name="import_data_summary">既存の再生履歴、登録チャンネル一覧、プレイリストおよび（任意の）設定は上書きされます</string>
+    <string name="import_data_summary">既存の履歴、登録リスト、プレイリストおよび (任意) 設定は上書きされます</string>
     <string name="export_data_summary">再生履歴、登録チャンネル一覧、プレイリストおよび設定をエクスポートします</string>
     <string name="player_recoverable_failure">再生エラーからの回復中</string>
     <string name="external_player_unsupported_link_type">外部プレイヤーは、これらのタイプのリンクをサポートしていません</string>
@@ -247,7 +247,7 @@
     <string name="popup_player">ポップアッププレイヤー</string>
     <string name="preferred_player_fetcher_notification_title">情報を取得しています…</string>
     <string name="preferred_player_fetcher_notification_message">コンテンツを読み込んでいます</string>
-    <string name="controls_download_desc">動画ファイルをダウンロード</string>
+    <string name="controls_download_desc">動画をダウンロード</string>
     <string name="show_info">情報を表示</string>
     <string name="tab_bookmarks">ブックマークしたプレイリスト</string>
     <string name="download_thumbnail_title">サムネイルを読み込む</string>
@@ -318,8 +318,8 @@
     <string name="read_privacy_policy">プライバシーポリシーを確認</string>
     <string name="use_inexact_seek_title">おおまかなシーク</string>
     <string name="use_inexact_seek_summary">おおまかなシークを使用することで精度が下がる代わりに高速にシークができます。5 秒、15 秒または 25 秒間隔のシークはできません。</string>
-    <string name="download_thumbnail_summary">すべてのサムネイルの読み込みと保存を無効化します。このオプションを切り替えるとメモリおよびディスク上の画像キャッシュがクリアされます。</string>
-    <string name="auto_queue_summary">キューに関連動画を追加して再生を続ける</string>
+    <string name="download_thumbnail_summary">すべてのサムネイルの読み込みと保存を無効化します。このオプションを切り替えるとメモリおよびディスク上の画像キャッシュが消去されます。</string>
+    <string name="auto_queue_summary">キューに関連動画を追加して再生を続ける (繰り返ししない場合)</string>
     <string name="delete_view_history_alert">すべての再生履歴を削除しますか？</string>
     <string name="delete_search_history_alert">すべての検索履歴を削除しますか？</string>
     <string name="invalid_source">このファイル/コンテンツはありません</string>
@@ -337,7 +337,7 @@
     <string name="app_license">NewPipe はコピーレフトなソフトウェアです。あなたは自由にそれを使用し、研究し、そして改善することができます。あなたは、GNU フリーソフトウェア財団が公開する GNU General Public ライセンス バージョン3以降の下に、自由に再配布・修正を行うことができます。</string>
     <string name="title_last_played">最終再生日時</string>
     <string name="title_most_played">最も再生された動画</string>
-    <string name="resize_zoom">ズーム</string>
+    <string name="resize_zoom">拡大</string>
     <string name="controls_add_to_playlist_title">プレイリスト</string>
     <string name="show_hold_to_append_title">「長押しして追加」のヒントを表示</string>
     <string name="tracks">トラック</string>
@@ -353,11 +353,14 @@
     <string name="caption_auto_generated">自動生成</string>
     <string name="caption_setting_description">プレーヤーのキャプションテキストの縮尺と背景スタイルを変更します。有効にするには、アプリの再起動が必要です。</string>
     <string name="empty_subscription_feed_subtitle">何もありません</string>
-    <string name="import_youtube_instructions">保存したエクスポートファイルからYouTubeの登録をインポート: 
-\n 
-\n1. このURLを開きます: %1$s 
-\n2. ログインしていなければログインします 
-\n3. ダウンロードが始まります (これがエクスポートファイルです)</string>
+    <string name="import_youtube_instructions">Google takeout から YouTube の登録リストをインポート:
+\n
+\n1. この URL を開きます: %1$s
+\n2. ログインしていなければログインします
+\n3. \"All data included\" をクリックし、そして \"Deselect all\" をクリック、そして \"subscriptions\" のみを選択し、\"OK\" をクリック
+\n4. \"Next step\" をクリックし、そして \"Create export\" をクリック
+\n5. 表示されたら \"Download\" ボタンをクリック
+\n6. ダウンロードした takeout の zip から、.json ファイル (たいてい、\"YouTube and YouTube Music/subscriptions/subscriptions.json\" の下にある) を抽出し、ここにインポートします。</string>
     <string name="playback_reset">リセット</string>
     <string name="accept">同意する</string>
     <string name="decline">拒否する</string>
@@ -495,7 +498,7 @@
     </plurals>
     <string name="no_one_listening">誰も聴いていません</string>
     <plurals name="listening">
-        <item quantity="other">%s が聴取中</item>
+        <item quantity="other">%s 人が聴取中</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">アプリを再起動すると、言語が変更されます。</string>
     <string name="seek_duration_title">高速早送り/巻き戻し時間</string>
@@ -608,32 +611,46 @@
     <string name="never">しない</string>
     <string name="wifi_only">Wi-Fi のみ</string>
     <string name="title_activity_play_queue">キューを再生</string>
-    <string name="clear_queue_confirmation_title">キューをクリアする前に確認する</string>
+    <string name="clear_queue_confirmation_title">キューを消去する前に確認する</string>
     <string name="unsupported_url_dialog_message">URL を認識できませんでした。他のアプリで開きますか？</string>
     <string name="notification_scale_to_square_image_summary">通知に表示される動画サムネイルを 16:9 から 1:1 のアスペクト比にスケールします (ゆがみが生じるかもしれません)</string>
     <string name="notification_scale_to_square_image_title">サムネイルを 1:1 のアスペクト比にスケールする</string>
     <string name="notification_actions_summary">以下をタップして通知のアクションを編集します。右側にあるチェックボックスを使用してコンパクトな通知に表示するものを 3 つまで選択します。</string>
-    <string name="notification_actions_at_most_three">コンパクトな通知に表示される 3 つのアクションを選ぶことができます！</string>
+    <string name="notification_actions_at_most_three">コンパクトな通知に表示されるアクションは 3 つまで選ぶことができます！</string>
     <string name="notification_action_4_title">5 番目のアクションボタン</string>
     <string name="notification_action_3_title">4 番目のアクションボタン</string>
     <string name="notification_action_2_title">3 番目のアクションボタン</string>
     <string name="notification_action_1_title">2 番目のアクションボタン</string>
     <string name="notification_action_0_title">1 番目のアクションボタン</string>
     <string name="notification_action_nothing">なし</string>
-    <string name="notification_action_repeat">リピート</string>
+    <string name="notification_action_repeat">繰り返し</string>
     <string name="notification_action_shuffle">シャッフル</string>
     <string name="notification_action_buffering">バッファリング</string>
     <string name="settings_category_notification_title">通知</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube は、成人向けの可能性があるコンテンツを除外する「制限付きモード」を提供しています。</string>
-    <string name="show_age_restricted_content_summary">年齢制限のあるコンテンツを表示します。</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube は、成人向けの可能性があるコンテンツを除外する「制限付きモード」を提供しています</string>
+    <string name="show_age_restricted_content_summary">年齢制限 (18+ など) の理由で、子供には不適切な可能性のあるコンテンツを表示する</string>
     <string name="enqueue_stream">キューに追加</string>
     <string name="enqueued">キューに追加しました</string>
     <string name="clear_cookie_summary">reCAPTCHA を解いたときに NewPipe が保存した Cookie を消去します</string>
     <string name="clear_cookie_title">reCAPTCHA の Cookie を消去</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA の Cookie が消去されました</string>
     <string name="show_memory_leaks">メモリリークを表示</string>
-    <string name="show_thumbnail_summary">ロックスクリーンの背景と通知にサムネイルを表示する</string>
+    <string name="show_thumbnail_summary">ロック画面の背景と通知の両方にサムネイルを使用する</string>
     <string name="show_thumbnail_title">サムネイルを表示する</string>
-    <string name="notification_colorize_title">通知をカラーにする</string>
+    <string name="notification_colorize_title">色つきの通知</string>
     <string name="notification_colorize_summary">サムネイルのメインカラーを元に、通知をカラーにします(全てのデバイスで動作するとは限りません)</string>
+    <string name="show_meta_info_title">メタ情報を表示</string>
+    <string name="msg_calculating_hash">ハッシュを計算中</string>
+    <string name="hash_channel_name">動画のハッシュ化通知</string>
+    <string name="hash_channel_description">動画のハッシュ化進行状況の通知</string>
+    <string name="comments_tab_description">コメント</string>
+    <string name="show_description_summary">無効にするとビデオの概要と追加情報を非表示にします</string>
+    <string name="show_description_title">説明を表示</string>
+    <string name="recent">最近</string>
+    <string name="open_with">開く</string>
+    <string name="description_tab_description">説明</string>
+    <string name="related_streams_tab_description">関連動画</string>
+    <string name="show_meta_info_summary">動画作成者、動画コンテンツ、検索リクエストに関する追加情報を含むメタ情報ボックスを非表示にするにはオフにします。</string>
+    <string name="no_app_to_open_intent">お使いのデバイス上のアプリでは、これを開くことはできません</string>
+    <string name="chapters">チャプター</string>
 </resources>

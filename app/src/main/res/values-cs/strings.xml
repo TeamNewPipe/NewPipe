@@ -157,8 +157,8 @@
     <string name="popup_resizing_indicator_title">Změna velikosti</string>
     <string name="best_resolution">Nejlepší rozlišení</string>
     <string name="undo">Vrátit</string>
-    <string name="notification_channel_name">NewPipe notifikace</string>
-    <string name="notification_channel_description">Notifikace pro NewPipe přehrávače v pozadí a v okně</string>
+    <string name="notification_channel_name">Oznámení NewPipe</string>
+    <string name="notification_channel_description">Oznámení pro NewPipe přehrávače v pozadí a v okně</string>
     <string name="search_no_results">Žádné výsledky</string>
     <string name="empty_subscription_feed_subtitle">Je tu sranda jak v márnici</string>
     <string name="short_billion">mld.</string>
@@ -408,8 +408,8 @@
     <string name="brightness_gesture_control_summary">Používat gesta pro ovládání jasu přehrávače</string>
     <string name="settings_category_updates_title">Aktualizace</string>
     <string name="file_deleted">Soubor smazán</string>
-    <string name="app_update_notification_channel_name">Notifikace aktualizace aplikace</string>
-    <string name="app_update_notification_channel_description">Notifikace pro novou verzi NewPipe</string>
+    <string name="app_update_notification_channel_name">Oznámení o aktualizaci aplikace</string>
+    <string name="app_update_notification_channel_description">Oznámení o nové verzi NewPipe</string>
     <string name="download_to_sdcard_error_title">Externí úložiště není k dispozici</string>
     <string name="saved_tabs_invalid_json">Nelze načíst uložené karty, takže se použijí výchozí karty</string>
     <string name="restore_defaults">Obnovit do výchozího nastavení</string>
@@ -420,7 +420,7 @@
     <string name="updates_setting_title">Aktualizace</string>
     <string name="events">Události</string>
     <string name="conferences">Konference</string>
-    <string name="updates_setting_description">Zobrazit oznámení s výzvou k aktualizaci aplikace, když je k dispozici nová verze</string>
+    <string name="updates_setting_description">Zobrazit oznámení s výzvou k aktualizaci aplikace, je-li k dispozici nová verze</string>
     <string name="list_view_mode">Režim zobrazení seznamu</string>
     <string name="list">Seznam</string>
     <string name="grid">Mřížka</string>
@@ -639,7 +639,7 @@
     <string name="notification_action_shuffle">Promíchat</string>
     <string name="notification_action_repeat">Opakovat</string>
     <string name="notification_actions_at_most_three">Do kompaktního oznámení lze vybrat nejvíce tři akce!</string>
-    <string name="notification_actions_summary">Upravte každou akci notifikace níže poklepáním. Pomocí zaškrtávacích políček vpravo vyberte až tři z nich, které se mají zobrazit v kompaktním oznámení.</string>
+    <string name="notification_actions_summary">Upravte každou akci oznámení níže poklepáním. Pomocí zaškrtávacích políček vpravo vyberte až tři z nich, které se mají zobrazit v kompaktním oznámení.</string>
     <string name="notification_action_4_title">Páté akční tlačítko</string>
     <string name="notification_action_3_title">Čtvrté akční tlačítko</string>
     <string name="notification_action_2_title">Třetí akční tlačítko</string>
@@ -656,7 +656,21 @@
     <string name="youtube_restricted_mode_enabled_summary">YouTube poskytuje \"Omezený režim\", který skrývá potenciální obsahy pro dospělé</string>
     <string name="show_age_restricted_content_summary">Zobrazit obsah, i když je patrně nevhodný pro děti, protože odkazuje na věkové omezení (např. 18+)</string>
     <string name="notification_colorize_summary">Nechte Android přizpůsobit barvu oznámení podle hlavní barvy v miniatuře (není k dispozici na všech zařízeních)</string>
-    <string name="notification_colorize_title">Barevné notifikace</string>
+    <string name="notification_colorize_title">Přibarvit oznámení</string>
     <string name="show_thumbnail_summary">Použít miniaturu pro pozadí zamknuté obrazovky a oznámení</string>
     <string name="show_thumbnail_title">Zobrazit miniaturu</string>
+    <string name="hash_channel_name">Oznámení o hašování videa</string>
+    <string name="recent">Nedávné</string>
+    <string name="msg_calculating_hash">Počítám haš</string>
+    <string name="hash_channel_description">Oznámení o postupu hašování videa</string>
+    <string name="show_meta_info_summary">Vypnout, abyste skryli rámečky s meta informací s údaji o autorovi streamu, obsahu streamu nebo požadavků hledání.</string>
+    <string name="show_meta_info_title">Zobrazit meta informaci</string>
+    <string name="chapters">Kapitoly</string>
+    <string name="description_tab_description">Popis</string>
+    <string name="comments_tab_description">Komentáře</string>
+    <string name="show_description_title">Zobrazit popis</string>
+    <string name="open_with">Otevřít s</string>
+    <string name="no_app_to_open_intent">Na Vašem zařízení není aplikace, která to umí otevřít</string>
+    <string name="related_streams_tab_description">Podobné strýmy</string>
+    <string name="show_description_summary">Vypnout pro skrytí popisu videa a doplňkové informace</string>
 </resources>

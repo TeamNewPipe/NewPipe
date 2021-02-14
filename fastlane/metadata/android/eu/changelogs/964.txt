@@ -1,0 +1,8 @@
+• Kapituluen euskarria gehitu
+• [PeerTube] Sepia bilaketa gehitu
+• Bideoaren xehetasunetan partekatzeko botoia gehitu eta jarioen deskribapena fitxetara mugitu
+• Desgaitu distira berrezartzea keinua desgaituta badago
+• Kodi-n bideoa erreproduzitzeko zerrenda-elementua gehitu
+• Lehenetsitako arakatzailerik ez zeukaten gailuetan hutsegitea konpondu eta partekatzeko elkarrizketak hobetu
+• Erreproduzitu/pausatu erreproduzitzailean hardware espazio botoiarekin
+• [media.ccc.de] Hainbat hobekuntza

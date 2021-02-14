@@ -21,7 +21,6 @@
 
     <string name="use_external_video_player_key" translatable="false">use_external_video_player</string>
     <string name="use_external_audio_player_key" translatable="false">use_external_audio_player</string>
-    <string name="use_old_player_key" translatable="false">use_oldplayer</string>
 
     <string name="volume_gesture_control_key" translatable="false">volume_gesture_control</string>
     <string name="brightness_gesture_control_key" translatable="false">brightness_gesture_control</string>
@@ -32,6 +31,10 @@
     <string name="screen_brightness_key" translatable="false">screen_brightness_key</string>
     <string name="screen_brightness_timestamp_key" translatable="false">screen_brightness_timestamp_key</string>
     <string name="clear_queue_confirmation_key" translatable="false">clear_queue_confirmation_key</string>
+
+    <string name="popup_saved_width_key" translatable="false">popup_saved_width</string>
+    <string name="popup_saved_x_key" translatable="false">popup_saved_x</string>
+    <string name="popup_saved_y_key" translatable="false">popup_saved_y</string>
 
     <string name="seek_duration_key" translatable="false">seek_duration</string>
     <string name="seek_duration_default_value" translatable="false">10000</string>
@@ -69,7 +72,6 @@
         <item>@string/minimize_on_exit_background_description</item>
         <item>@string/minimize_on_exit_popup_description</item>
     </string-array>
-
 
     <string name="autoplay_key" translatable="false">autoplay_key</string>
     <string name="autoplay_value" translatable="false">@string/autoplay_wifi_key</string>
@@ -195,8 +197,9 @@
     <!-- Content & History -->
     <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
     <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
-    <string name="show_next_video_key" translatable="false">show_next_video</string>
     <string name="show_comments_key" translatable="false">show_comments</string>
+    <string name="show_next_video_key" translatable="false">show_next_video</string>
+    <string name="show_description_key" translatable="false">show_description</string>
     <string name="show_meta_info_key" translatable="false">show_meta_info</string>
     <string name="stream_info_selected_tab_key" translatable="false">stream_info_selected_tab</string>
     <string name="show_hold_to_append_key" translatable="false">show_hold_to_append</string>
@@ -339,6 +342,7 @@
     <!-- Updates -->
     <string name="update_app_key" translatable="false">update_app_key</string>
     <string name="update_pref_screen_key" translatable="false">update_pref_screen_key</string>
+    <string name="update_expiry_key" translatable="false">update_expiry_key</string>
 
     <!-- SponsorBlock -->
     <string name="sponsor_block_home_page_key" translatable="false">sponsor_block_home_page</string>
@@ -1173,7 +1177,7 @@
         <item>sardu</item>
         <item>Slovenčina</item>
         <item>Slovenščina</item>
-        <item>Af Soomaali</item>
+        <item>Soomaali</item>
         <item>Shqip</item>
         <item>Српски</item>
         <item>Svenska</item>

@@ -1,0 +1,12 @@
+• [YouTube] Hỗ trợ playlist Mix
+• [YouTube] Hiện thông tin về các nhà đài và COVID-19
+• [media.ccc.de] Thêm mục gần đây
+• Hỗ trợ ngôn ngữ Somali
+
+• Nhiều cải thiện phía sau nền
+
+• Sửa lỗi chia sẻ video trong chính trình phát
+• Sửa lỗi trang ReCaptcha trống
+• Sửa lỗi khi loại bỏ một stream khỏi danh sách
+• [PeerTube] Sửa lỗi các stream liên quan
+• [YouTube] Sửa lỗi tìm kiếm YouTube Music

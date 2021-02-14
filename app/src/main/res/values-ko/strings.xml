@@ -50,7 +50,8 @@
     <string name="use_tor_summary">(실험적) 향상된 프라이버시를 위해 다운로드 트래픽을 강제로 Tor를 통해 전송 (스트리밍 비디오는 아직 지원되지 않습니다).</string>
     <string name="err_dir_create">다운로드 디렉토리를 만들 수 없습니다 \'%1$s\'</string>
     <string name="info_dir_created">다운로드 디렉토리를 만들었습니다 \'%1$s\'</string>
-    <string name="main_bg_subtitle">검색 버튼을 눌러서 시작하세요</string>
+    <string name="main_bg_subtitle">\"검색\" 버튼을 눌러서 시작하세요
+\n</string>
     <string name="autoplay_by_calling_app_title">자동재생</string>
     <string name="autoplay_by_calling_app_summary">NewPipe가 다른 앱에서 호출되었을 때 동영상을 재생합니다</string>
     <string name="content">컨텐츠</string>
@@ -322,11 +323,14 @@
     <string name="previous_export">이전 내보내기</string>
     <string name="subscriptions_import_unsuccessful">구독 목록 가져오기 실패</string>
     <string name="subscriptions_export_unsuccessful">구독 목록 내보내기 실패</string>
-    <string name="import_youtube_instructions">\'YouTube 구독 파일\'을 다운로드해서 구독 목록을 가져올 수 있습니다: 
-\n 
-\n1. 이곳으로 가세요: %1$s 
-\n2. 요청에 따라 로그인을 진행합니다 
-\n3. 다운로드가 곧 시작 됩니다 (이 파일이 구독 파일입니다)</string>
+    <string name="import_youtube_instructions">Google 테이크아웃을 통해 YouTube 구독 목록을 가져올 수 있습니다:
+\n
+\n1. 이곳으로 가세요: %1$s
+\n2. 요청에 따라 로그인을 진행합니다
+\n3. \"모든 데이터 포함됨\"을 누른 뒤 \"모두 선택 해제\"를 누릅니다. 그 다음 \"구독정보\"를 선택하고 \"확인\"을 누릅니다
+\n4. \"다음 단계\"를 누르고 \"내보내기 생성\"을 선택합니다
+\n5. \"다운로드\" 버튼을 눌러 다운로드 한 후
+\n6. 테이크아웃 ZIP파일을 압축해제 하여 .json 파일 (일반적으로 \"YouTube 및 YouTube Music/구독/구독.json\")을 받고 가져옵니다.</string>
     <string name="import_soundcloud_instructions">SoundCloud 프로필을 가져오시려면 URL 및 ID를 입력해주세요. 
 \n 
 \n프로필 URL을 찾으시려면 다음 과정을 따라해 주세요. 
@@ -450,7 +454,7 @@
     <string name="pause_downloads_on_mobile_desc">모바일 데이터로 전환될 때, 일부 다운로드는 정지되지 않습니다</string>
     <string name="conferences">컨퍼런스</string>
     <string name="show_comments_title">댓글 보기</string>
-    <string name="show_comments_summary">댓글을 보지 않으려면 비활성화하세요</string>
+    <string name="show_comments_summary">댓글 숨기기</string>
     <string name="autoplay_title">자동 재생</string>
     <string name="no_comments">댓글 없음</string>
     <string name="error_unable_to_load_comments">댓글을 불러올 수 없음</string>
@@ -578,4 +582,6 @@
     <string name="notification_action_2_title">세번째 버튼</string>
     <string name="notification_action_1_title">두번째 버튼</string>
     <string name="permission_display_over_apps">다른 앱 위에 표시되는 권한 부여</string>
+    <string name="show_meta_info_title">메타 정보 표시</string>
+    <string name="notification_colorize_title">색상화된 알림</string>
 </resources>

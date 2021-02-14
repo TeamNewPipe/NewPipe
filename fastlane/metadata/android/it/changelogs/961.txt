@@ -1,0 +1,12 @@
+- [YouTube] Supporto mix
+- [YouTube] Visualizza le informazioni sulle emittenti pubbliche e su Covid-19
+- [media.ccc.de] Aggiunti video recenti
+- Aggiunta traduzione in somalo
+
+- Molti miglioramenti interni
+
+- Condivisione fissa dei video dall'interno del lettore
+- Vuoto fisso ReCaptcha webview
+- Crash fisso che si è verificato durante la rimozione di un flusso da una lista
+- [PeerTube] Flussi fissi correlati
+- [YouTube] Ricerca fissa di musica su YouTube

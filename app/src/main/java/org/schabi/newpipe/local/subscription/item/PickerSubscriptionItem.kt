@@ -1,49 +1,51 @@
 package org.schabi.newpipe.local.subscription.item
 
 import android.view.View
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.nostra13.universalimageloader.core.ImageLoader
-import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
-import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.picker_subscription_item.*
-import kotlinx.android.synthetic.main.picker_subscription_item.view.*
+import com.xwray.groupie.viewbinding.BindableItem
+import com.xwray.groupie.viewbinding.GroupieViewHolder
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
-import org.schabi.newpipe.util.AnimationUtils
-import org.schabi.newpipe.util.AnimationUtils.animateView
+import org.schabi.newpipe.databinding.PickerSubscriptionItemBinding
+import org.schabi.newpipe.ktx.AnimationType
+import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.util.ImageDisplayConstants
 
 data class PickerSubscriptionItem(
     val subscriptionEntity: SubscriptionEntity,
     var isSelected: Boolean = false
-) : Item() {
+) : BindableItem<PickerSubscriptionItemBinding>() {
     override fun getId(): Long = subscriptionEntity.uid
     override fun getLayout(): Int = R.layout.picker_subscription_item
     override fun getSpanSize(spanCount: Int, position: Int): Int = 1
 
-    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
+    override fun bind(viewBinding: PickerSubscriptionItemBinding, position: Int) {
         ImageLoader.getInstance().displayImage(
             subscriptionEntity.avatarUrl,
-            viewHolder.thumbnail_view, ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS
+            viewBinding.thumbnailView, ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS
         )
 
-        viewHolder.title_view.text = subscriptionEntity.name
-        viewHolder.selected_highlight.isVisible = isSelected
+        viewBinding.titleView.text = subscriptionEntity.name
+        viewBinding.selectedHighlight.isVisible = isSelected
     }
 
-    override fun unbind(viewHolder: GroupieViewHolder) {
+    override fun unbind(viewHolder: GroupieViewHolder<PickerSubscriptionItemBinding>) {
         super.unbind(viewHolder)
 
-        viewHolder.selected_highlight.animate().setListener(null).cancel()
-        viewHolder.selected_highlight.visibility = View.GONE
-        viewHolder.selected_highlight.alpha = 1F
+        viewHolder.binding.selectedHighlight.apply {
+            animate().setListener(null).cancel()
+            isGone = true
+            alpha = 1F
+        }
     }
+
+    override fun initializeViewBinding(view: View) = PickerSubscriptionItemBinding.bind(view)
 
     fun updateSelected(containerView: View, isSelected: Boolean) {
         this.isSelected = isSelected
-        animateView(
-            containerView.selected_highlight,
-            AnimationUtils.Type.LIGHT_SCALE_AND_ALPHA, isSelected, 150
-        )
+        PickerSubscriptionItemBinding.bind(containerView).selectedHighlight
+            .animate(isSelected, 150, AnimationType.LIGHT_SCALE_AND_ALPHA)
     }
 }

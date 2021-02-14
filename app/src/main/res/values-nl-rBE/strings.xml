@@ -132,8 +132,8 @@
     <string name="switch_to_main">Verplaatsen naar normaal</string>
     <string name="import_data_title">Databank importeren</string>
     <string name="export_data_title">Databank exporteren</string>
-    <string name="import_data_summary">Dit overschrijft uw huidige geschiedenis en abonnementen</string>
-    <string name="export_data_summary">Exporteert geschiedenis, abonnementen en speellijsten</string>
+    <string name="import_data_summary">Dit overschrijft uw huidige geschiedenis, abonnementen, speellijsten en optioneel uw instellingen</string>
+    <string name="export_data_summary">Exporteert geschiedenis, abonnementen, speellijsten en instellingen</string>
     <string name="general_error">Fout</string>
     <string name="network_error">Netwerkfout</string>
     <string name="could_not_load_thumbnails">Kon niet alle miniaturen laden</string>
@@ -647,4 +647,12 @@
     <string name="show_original_time_ago_title">Toon oorspronkelijke tijd geleden op items</string>
     <string name="notification_colorize_summary">Laat Android de kleur van de notificatie aanpassen, op basis van de meest voorkomende kleur in de thumbnail (let op: niet beschikbaar op elk apparaat)</string>
     <string name="notification_colorize_title">Notificatie kleur aanpassen</string>
+    <string name="recent">Recent</string>
+    <string name="show_thumbnail_summary">Gebruik miniatuur voor de achtergrond en meldingen op vergrendeld scherm</string>
+    <string name="show_thumbnail_title">Toon miniatuur</string>
+    <string name="msg_calculating_hash">Hash aan het berekenen</string>
+    <string name="hash_channel_description">Meldingen van vooruitgang video hashing</string>
+    <string name="hash_channel_name">Video Hash Melding</string>
+    <string name="show_meta_info_summary">Zet uit om metadata pop-ups te verbergen met extra informatie over de stream auteur, stream inhoud of een zoekaanvraag.</string>
+    <string name="show_meta_info_title">Toon metadata</string>
 </resources>

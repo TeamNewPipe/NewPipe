@@ -659,4 +659,18 @@
     <string name="notification_colorize_title">Pokolorowanie powiadomienia</string>
     <string name="show_thumbnail_summary">Używaj miniatury zarówno jako tła ekranu blokady, jak i powiadomień</string>
     <string name="show_thumbnail_title">Pokazuj miniaturę</string>
+    <string name="recent">Ostatnie</string>
+    <string name="msg_calculating_hash">Obliczanie skrótu</string>
+    <string name="hash_channel_description">Powiadomienia o postępie tworzenia skrótów wideo</string>
+    <string name="hash_channel_name">Powiadomienie o obliczaniu skrótu wideo</string>
+    <string name="show_meta_info_summary">Wyłącz, aby ukryć pola z dodatkowymi informacjami o twórcy strumienia, zawartości strumienia lub żądaniu wyszukiwania.</string>
+    <string name="show_meta_info_title">Pokaż metainformacje</string>
+    <string name="chapters">Rozdziały</string>
+    <string name="description_tab_description">Opis</string>
+    <string name="comments_tab_description">Komentarze</string>
+    <string name="show_description_summary">Wyłącz, aby ukryć opis filmu i informacje dodatkowe</string>
+    <string name="show_description_title">Pokaż opis</string>
+    <string name="open_with">Otwórz za pomocą</string>
+    <string name="no_app_to_open_intent">Żadna aplikacja na Twoim urządzeniu nie może tego otworzyć</string>
+    <string name="related_streams_tab_description">Powiązane strumienie</string>
 </resources>

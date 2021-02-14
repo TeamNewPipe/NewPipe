@@ -2,10 +2,12 @@ package org.schabi.newpipe.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 public class CustomCollapsingToolbarLayout extends CollapsingToolbarLayout {

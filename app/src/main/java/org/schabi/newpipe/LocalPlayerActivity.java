@@ -30,12 +30,12 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.disposables.SerialDisposable;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
-import static org.schabi.newpipe.player.BasePlayer.STATE_BLOCKED;
-import static org.schabi.newpipe.player.BasePlayer.STATE_BUFFERING;
-import static org.schabi.newpipe.player.BasePlayer.STATE_COMPLETED;
-import static org.schabi.newpipe.player.BasePlayer.STATE_PAUSED;
-import static org.schabi.newpipe.player.BasePlayer.STATE_PAUSED_SEEK;
-import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
+import static org.schabi.newpipe.player.Player.STATE_BLOCKED;
+import static org.schabi.newpipe.player.Player.STATE_BUFFERING;
+import static org.schabi.newpipe.player.Player.STATE_COMPLETED;
+import static org.schabi.newpipe.player.Player.STATE_PAUSED;
+import static org.schabi.newpipe.player.Player.STATE_PAUSED_SEEK;
+import static org.schabi.newpipe.player.Player.STATE_PLAYING;
 
 public class LocalPlayerActivity extends AppCompatActivity implements Player.EventListener {
     private SimpleExoPlayer simpleExoPlayer;

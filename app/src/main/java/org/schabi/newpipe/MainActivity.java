@@ -68,7 +68,7 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
-import org.schabi.newpipe.player.VideoPlayer;
+import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -468,7 +468,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         assureCorrectAppLanguage(this);
         // Change the date format to match the selected language on resume
-        Localization.init(getApplicationContext());
+        Localization.initPrettyTime(Localization.resolvePrettyTime(getApplicationContext()));
         super.onResume();
 
         // Close drawer on return, and don't show animation,
@@ -763,7 +763,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (linkType) {
                     case STREAM:
                         final String intentCacheKey = intent.getStringExtra(
-                                VideoPlayer.PLAY_QUEUE_KEY);
+                                Player.PLAY_QUEUE_KEY);
                         final PlayQueue playQueue = intentCacheKey != null
                                 ? SerializedCache.getInstance()
                                 .take(intentCacheKey, PlayQueue.class)

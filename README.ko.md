@@ -16,7 +16,7 @@
 <p align="center"><a href="https://newpipe.net">Website</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
 <hr>
 
-*Read this in other languages: [English](README.md), [한국어](README.ko.md).*
+*Read this in other languages: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md).*
 
 <b>경고: 이 버전은 베타 버전이므로, 버그가 발생할 수도 있습니다. 만약 버그가 발생하였다면, 우리의 GITHUB 저장소에서 ISSUE를 열람하여 주십시오.</b>
 
@@ -98,7 +98,7 @@ NewPipe 코드의 변경이 있을 때(기능 추가 또는 버그 수정으로 
 1. 당신의 기록, 구독, 그리고 재생목록을 유지할 수 있도록 Settings > Content > Export Database 를 통해 데이터를 백업하십시오.
 2. NewPipe를 삭제하십시오.
 3. 새로운 소스에서 APK를 다운로드하고 이것을 설치하십시오.
-4. Step 1의 Settings > Content > Export Database 을 통해 데이터를 불러오십시오.
+4. Step 1의 Settings > Content > Import Database 을 통해 데이터를 불러오십시오.
 
 ## Contribution
 당신이 아이디어, 번역, 디자인 변경, 코드 정리, 또는 정말 큰 코드 수정에 대한 의견이 있다면, 도움은 항상 환영합니다.
