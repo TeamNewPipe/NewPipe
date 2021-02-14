@@ -493,4 +493,46 @@
     <string name="screen_rotation">gaddinta</string>
     <string name="search">Raadi</string>
     <string name="download">Daji</string>
+<!-- SponsorBlock -->
+    <string name="sponsor_block">SponsorBlock</string>
+    <string name="sponsor_block_home_page_title">Fur website-ka</string>
+    <string name="sponsor_block_home_page_summary">Booqo website-ka rasmiga ah ee SponsorBlock.</string>
+    <string name="sponsor_block_enable_title">Ka bood Xaysisiistayaasha</string>
+    <string name="sponsor_block_enable_summary">Isticmaal nidaamka wadashaqaynta [API] SponsorBlock Si uu app-ku si iskii ah oga boodo xayisiisyada ku dhex jira muuqaalada. Nidaamkan hadda wuxuu ku shaqeeyaa muuqaalada YouTube kaliya.</string>
+    <string name="sponsor_block_api_url_title">Tixraaca wadashaqaynta [API]</string>
+    <string name="sponsor_block_api_url_summary">Tixraaca la isticmaali doono marka la hirgalinayo nidaamka wadashaqaynta SponsorBlock. Waa in la fadhiisiyaa tixraacan si uu SponsorBlock u shaqeeyo.</string>
+    <string name="sponsor_block_notifications_title">I ogaysii ka boodida</string>
+    <string name="sponsor_block_notifications_summary">Tus ogaysiis yar marka xayisiis laga boodo.</string>
+    <string name="sponsor_block_privacy_title">Siyaasada Sirdhawrka</string>
+    <string name="sponsor_block_privacy_summary">Fur Siyaasada Sirdhawrka SponsorBlock.</string>
+    <string name="sponsor_block_api_url_help_text">Kani waa tixraaca la isticmaali doono markuu app-ku u baahanyahay inuu ogaado qaybaha muuqaalka ee uu ka boodayo.\n\nWaxaad ku fadhiisin kartaa tixraaca rasmiga ah ee SponsorBlock adoo ku dhufanaya istikhyaarka hoose ee \'Isticmaal ka rasmiga ah\', inkastoo lagugula talinayo inaad akhrido Siyaasada Sir-dhawrka SponsorBlock.</string>
+    <string name="sponsor_block_privacy_policy_text">Siyaasada Sirdhawrka SponsorBlock</string>
+    <string name="sponsor_block_homepage_url">https://sponsor.ajay.app/</string>
+    <string name="sponsor_block_default_api_url">https://sponsor.ajay.app/api/</string>
+    <string name="sponsor_block_privacy_policy_url">https://gist.github.com/ajayyy/aa9f8ded2b573d4f73a3ffa0ef74f796</string>
+    <string name="sponsor_block_skip_sponsor_toast">Waxaa laga booday xayisiiste</string>
+    <string name="sponsor_block_skip_intro_toast">Waxaa laga booday kala-badhe/hordhac</string>
+    <string name="sponsor_block_skip_outro_toast">Waxaa laga booday qaybaha dhamaadka/xusid</string>
+    <string name="sponsor_block_skip_interaction_toast">Waxaa laga booday xusuusin falcelin</string>
+    <string name="sponsor_block_skip_self_promo_toast">Waxaa laga booday xayisiis aan cidu maalgashanin/isxayisiin</string>
+    <string name="sponsor_block_skip_non_music_toast">Waxaa laga booday qayb aan hees ahayn</string>
+    <string name="sponsor_block_toggle_skipping">Furo ka boodida xayisiistayaasha</string>
+    <string name="sponsor_block_clear_whitelist_title">Nadiifi Kuwa La Ogolyahay</string>
+    <string name="sponsor_block_clear_whitelist_summary">Nadiifi soosaarayaasha uusa SponsorBlock qabanaynin.</string>
+    <string name="sponsor_block_enabled_toast">SponsorBlock wuu furanyahay</string>
+    <string name="sponsor_block_disabled_toast">SponsorBlock wuu xidhanyahay</string>
+    <string name="sponsor_block_whitelist_cleared_toast">Waa la nafiifiyay Kuwa La Ogolyahay</string>
+    <string name="sponsor_block_uploader_added_to_whitelist_toast">Soosaaraha waxaa lagu daray Kuwa La Ogolyahay</string>
+    <string name="sponsor_block_uploader_removed_from_whitelist_toast">Soosaaraha waxaa laga saaray Kuwa La Ogolyahay</string>
+    <string name="sponsor_block_confirm_clear_whitelist">Ma hubtaa tirtirista Kuwa La Ogolyahay?</string>
+    <string name="sponsor_block_confirm_reset_colors">Ma hubtaa inaad dib ugu celinayso midabada qaybaha siday ahaayeen?</string>
+    <string name="sponsor_block_reset_colors_toast">Dib uceli midabbada .</string>
+    <!-- Extras -->
+    <string name="extras">Dheeraad ah</string>
+    <string name="extras_todo_summary">Waxkabaddalada yaryar, macmilida, iyo fadhiyo dheeraad ah.</string>
+    <string name="experimental_settings">Fadhiga tijaabada ah</string>
+    <string name="disable_tablet_ui_title">Xidh qaabka tablet-ka</string>
+    <string name="disable_tablet_ui_summary">Ha isticmaalin qaabka tablet-ka loogu talagalay. Tan waxaa loogu talagalay macmilo gaar ah kaliya. Waxaad u baahantahay inaad app-ka dib usoo kiciso si aad isbadalka u aragto.</string>
+    <string name="disable_tv_ui_title">Xidh qaabka TV-ga</string>
+    <string name="disable_tv_ui_summary">Ha isticmaalin qaabka tablet-ka loogu talagalay. Tan waxaa loogu talagalay macmilo gaar ah kaliya. Waxaad u baahantahay inaad app-ka dib usoo kiciso si aad isbadalka u aragto.</string>
 </resources>
