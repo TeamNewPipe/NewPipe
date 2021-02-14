@@ -33,7 +33,6 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.AttrRes;
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -1329,13 +1328,21 @@ public final class VideoDetailFragment
 
     @Override
     public void showError(final String message, final boolean showRetryButton) {
-        showError(message, showRetryButton, R.drawable.not_available_monkey);
+        super.showError(message, showRetryButton);
+        setErrorImage(R.drawable.not_available_monkey);
+
+        if (binding.relatedStreamsLayout != null) { // hide related streams for tablets
+            binding.relatedStreamsLayout.setVisibility(View.INVISIBLE);
+        }
+
+        // hide comments / related streams / description tabs
+        binding.viewPager.setVisibility(View.GONE);
+        binding.tabLayout.setVisibility(View.GONE);
     }
 
-    protected void showError(final String message, final boolean showRetryButton,
-                             @DrawableRes final int imageError) {
-        super.showError(message, showRetryButton);
-        setErrorImage(imageError);
+    private void hideAgeRestrictedContent() {
+        showError(getString(R.string.restricted_video,
+                getString(R.string.show_age_restricted_content_title)), false);
     }
 
     private void setupBroadcastReceiver() {
@@ -1558,18 +1565,6 @@ public final class VideoDetailFragment
         binding.detailControlsPopup.setVisibility(noVideoStreams ? View.GONE : View.VISIBLE);
         binding.detailThumbnailPlayButton.setImageResource(
                 noVideoStreams ? R.drawable.ic_headset_shadow : R.drawable.ic_play_arrow_shadow);
-    }
-
-    private void hideAgeRestrictedContent() {
-        showError(getString(R.string.restricted_video,
-                getString(R.string.show_age_restricted_content_title)), false);
-
-        if (binding.relatedStreamsLayout != null) { // tablet
-            binding.relatedStreamsLayout.setVisibility(View.INVISIBLE);
-        }
-
-        binding.viewPager.setVisibility(View.GONE);
-        binding.tabLayout.setVisibility(View.GONE);
     }
 
     private void displayUploaderAsSubChannel(final StreamInfo info) {
