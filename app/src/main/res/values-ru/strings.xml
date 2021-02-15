@@ -126,7 +126,6 @@
     <string name="show_search_suggestions_summary">Предлагать варианты при поиске</string>
     <string name="later">Позже</string>
     <string name="disabled">Отключено</string>
-    <string name="popup_resizing_indicator_title">Изменение размера</string>
     <string name="use_external_video_player_summary">Убирает звук в некоторых разрешениях</string>
     <string name="short_million">" млн"</string>
     <string name="short_billion">" млрд"</string>

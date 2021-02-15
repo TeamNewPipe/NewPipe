@@ -133,7 +133,6 @@
     <string name="controls_background_title">Segundo plano</string>
     <string name="use_external_video_player_summary">Remove o áudio em algumas resoluções</string>
     <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição do popup</string>
-    <string name="popup_resizing_indicator_title">Redimensionar</string>
     <string name="player_gesture_controls_title">Controlo de reprodução por gestos</string>
     <string name="player_gesture_controls_summary">Utilizar gestos para controlar o brilho e o volume do reprodutor</string>
     <string name="show_search_suggestions_title">Sugestões de pesquisa</string>

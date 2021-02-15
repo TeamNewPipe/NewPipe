@@ -135,7 +135,6 @@
     <string name="filter">필터</string>
     <string name="refresh">새로고침</string>
     <string name="clear">지우기</string>
-    <string name="popup_resizing_indicator_title">크기 조절</string>
     <string name="best_resolution">최대 해상도</string>
     <string name="undo">되돌리기</string>
     <string name="play_all">전부 재생</string>

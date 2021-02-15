@@ -40,7 +40,6 @@
     <string name="export_data_summary">هەناردەکردنی مێژوو و بەشداربوون و لیستەکان</string>
     <string name="use_inexact_seek_summary">بردنەپێشی ناتەواوی خێرا وا لە کارپێکەرەکە داکات کە بەخێرایی شوێنەکە بگۆڕێت. بردنەپێشی ٥ یان ١٥ یان ٢٥ چرکەیی لەگەڵ ئەمەدا کارناکات.</string>
     <string name="enable_disposed_exceptions_summary">سکاڵاکردن لەسەر نەگەیاندنی Rx ی پەسەندنەکرا لە دەرەوەی پارچە یان چالاکی لەدوای پوختەکردن</string>
-    <string name="popup_resizing_indicator_title">قەبارە دانانەوە</string>
     <string name="show_next_and_similar_title">پیشاندانی ’دواتر’ و ڤیدیۆ ’هاوشێوەکان’</string>
     <string name="resize_zoom">هێنانەپێش</string>
     <string name="saved_tabs_invalid_json">پەڕە بنەڕەتییەکان بەکاردەبردرێن, ناتوانرێ پەڕە پاشەکەوتکراوەکان بخوێنرێنەوە</string>

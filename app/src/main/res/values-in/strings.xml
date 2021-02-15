@@ -132,7 +132,6 @@
     <string name="popup_remember_size_pos_title">Ingat properti popup</string>
     <string name="popup_remember_size_pos_summary">Ingat ukuran dan posisi terakhir popup</string>
     <string name="settings_category_popup_title">Popup</string>
-    <string name="popup_resizing_indicator_title">Ubah ukuran</string>
     <string name="player_gesture_controls_title">Kontrol gestur pemutar</string>
     <string name="player_gesture_controls_summary">Gunakan gestur untuk mengontrol kecerahan dan volume pemutar</string>
     <string name="show_search_suggestions_title">Saran pencarian</string>

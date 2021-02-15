@@ -72,7 +72,6 @@
     <string name="filter">Bộ lọc</string>
     <string name="refresh">Tải lại</string>
     <string name="clear">Xóa</string>
-    <string name="popup_resizing_indicator_title">Thay đổi kích thước</string>
     <string name="best_resolution">Độ phân giải tốt nhất</string>
     <string name="general_error">Lỗi</string>
     <string name="network_error">Lỗi kết nối mạng</string>

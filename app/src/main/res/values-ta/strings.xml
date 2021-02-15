@@ -130,7 +130,6 @@
     <string name="disabled">செயலிழக்கச் செய்யப்பட்டுள்ளது</string>
     <string name="filter">வடிகட்டு</string>
     <string name="refresh">புதுப்பி</string>
-    <string name="popup_resizing_indicator_title">மறுஅளவாக்கம்</string>
     <string name="undo">முந்தய நிலைக்குச் செல்</string>
     <string name="play_all">அனைத்தையும் இயக்கு</string>
     <string name="notification_channel_name">NewPipe அறிவிப்புகள்</string>

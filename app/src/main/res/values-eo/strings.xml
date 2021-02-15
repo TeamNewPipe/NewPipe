@@ -125,7 +125,6 @@
     <string name="refresh">Aktualigi</string>
     <string name="clear">Forviŝi</string>
     <string name="settings_category_popup_title">Ŝprucfenestro</string>
-    <string name="popup_resizing_indicator_title">Regrandiganta</string>
     <string name="player_gesture_controls_title">Kontrolo de gesto de ludilo</string>
     <string name="player_gesture_controls_summary">Uzi gestojn por kontroli la brilon kaj volumenon</string>
     <string name="show_search_suggestions_title">Serĉi sugestojn</string>
