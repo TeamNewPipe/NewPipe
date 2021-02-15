@@ -38,8 +38,14 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_switch_main"
+        android:id="@+id/action_clear_queue"
         android:orderInCategory="3"
+        android:title="@string/clear_queue"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_switch_main"
+        android:orderInCategory="4"
         android:title="@string/switch_to_main"
         app:showAsAction="never" />
 </menu>

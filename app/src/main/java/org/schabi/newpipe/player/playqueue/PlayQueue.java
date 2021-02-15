@@ -304,6 +304,18 @@ public abstract class PlayQueue implements Serializable {
     }
 
     /**
+     * Removes all the items from the play queue.
+     */
+    public synchronized void removeAll() {
+        while (streams.size() > 0) {
+            final int index = streams.size() - 1;
+            removeInternal(index);
+            broadcast(new RemoveEvent(index, getIndex()));
+        }
+    }
+
+
+    /**
      * Report an exception for the item at the current index in order and skip to the next one
      * <p>
      * This is done as a separate event as the underlying manager may have

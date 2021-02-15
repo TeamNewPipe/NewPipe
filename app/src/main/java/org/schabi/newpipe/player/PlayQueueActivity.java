@@ -140,6 +140,9 @@ public final class PlayQueueActivity extends AppCompatActivity
             case R.id.action_system_audio:
                 startActivity(new Intent(Settings.ACTION_SOUND_SETTINGS));
                 return true;
+            case R.id.action_clear_queue:
+                clearQueue();
+                return true;
             case R.id.action_switch_main:
                 this.player.setRecovery();
                 NavigationHelper.playOnMainPlayer(this, player.getPlayQueue(), true);
@@ -504,6 +507,10 @@ public final class PlayQueueActivity extends AppCompatActivity
         PlaylistAppendDialog.onPlaylistFound(getApplicationContext(),
             () -> d.show(getSupportFragmentManager(), TAG),
             () -> PlaylistCreationDialog.newInstance(d).show(getSupportFragmentManager(), TAG));
+    }
+
+    private void clearQueue() {
+        player.getPlayQueue().removeAll();
     }
 
     ////////////////////////////////////////////////////////////////////////////
