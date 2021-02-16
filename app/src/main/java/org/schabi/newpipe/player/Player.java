@@ -1433,7 +1433,7 @@ public final class Player implements
     }
 
     public boolean getPlaybackSkipSilence() {
-        return simpleExoPlayer != null
+        return !exoPlayerIsNull() && simpleExoPlayer.getAudioComponent() != null
                 && simpleExoPlayer.getAudioComponent().getSkipSilenceEnabled();
     }
 
@@ -1460,7 +1460,9 @@ public final class Player implements
         savePlaybackParametersToPrefs(this, roundedSpeed, roundedPitch, skipSilence);
         simpleExoPlayer.setPlaybackParameters(
                 new PlaybackParameters(roundedSpeed, roundedPitch));
-        simpleExoPlayer.getAudioComponent().setSkipSilenceEnabled(skipSilence);
+        if (simpleExoPlayer.getAudioComponent() != null) {
+            simpleExoPlayer.getAudioComponent().setSkipSilenceEnabled(skipSilence);
+        }
     }
     //endregion
 
@@ -2336,6 +2338,7 @@ public final class Player implements
             case ExoPlaybackException.TYPE_OUT_OF_MEMORY:
             case ExoPlaybackException.TYPE_REMOTE:
             case ExoPlaybackException.TYPE_RENDERER:
+            case ExoPlaybackException.TYPE_TIMEOUT:
             default:
                 showUnrecoverableError(error);
                 onPlaybackShutdown();
@@ -3358,7 +3361,7 @@ public final class Player implements
         final List<String> availableLanguages = new ArrayList<>(textTracks.length);
         for (int i = 0; i < textTracks.length; i++) {
             final TrackGroup textTrack = textTracks.get(i);
-            if (textTrack.length > 0 && textTrack.getFormat(0) != null) {
+            if (textTrack.length > 0) {
                 availableLanguages.add(textTrack.getFormat(0).language);
             }
         }
