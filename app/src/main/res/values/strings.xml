@@ -764,4 +764,6 @@
     <string name="disable_tablet_ui_summary">Ignore tablet layouts. This is intended for specific workarounds. You may need to restart the app to see the effects.</string>
     <string name="disable_tv_ui_title">Disable TV UI</string>
     <string name="disable_tv_ui_summary">Ignore TV layouts. This is intended for specific workarounds. You may need to restart the app to see the effects.</string>
+    <string name="disable_error_reports_title">Disable Error Reporting</string>
+    <string name="disable_error_reports_summary">Prevent all error reporting screens from appearing. This may result in the app behaving unexpectedly. <b>USE AT YOUR OWN RISK!</b></string>
 </resources>

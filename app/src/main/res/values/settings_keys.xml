@@ -371,6 +371,7 @@
     <string name="enable_local_player_key" translatable="false">enable_local_player</string>
     <string name="disable_tablet_ui_key" translatable="false">disable_tablet_ui</string>
     <string name="disable_tv_ui_key" translatable="false">disable_tv_ui</string>
+    <string name="disable_error_reports_key" translatable="false">disable_error_reports</string>
 
     <!-- Localizations   -->
     <string name="default_localization_key" translatable="false">system</string>

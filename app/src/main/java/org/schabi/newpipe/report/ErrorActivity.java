@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -19,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.grack.nanojson.JsonWriter;
@@ -94,6 +96,13 @@ public class ErrorActivity extends AppCompatActivity {
     public static void reportError(final Context context, final List<Throwable> el,
                                    final Class returnActivity, final View rootView,
                                    final ErrorInfo errorInfo) {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        if (prefs.getBoolean(context
+                .getString(R.string.disable_error_reports_key), false)) {
+            return;
+        }
+
         if (rootView != null) {
             Snackbar.make(rootView, R.string.error_snackbar_message, 3 * 1000)
                     .setActionTextColor(Color.YELLOW)
