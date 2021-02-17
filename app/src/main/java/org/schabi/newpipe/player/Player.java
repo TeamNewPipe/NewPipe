@@ -128,7 +128,6 @@ import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.SponsorBlockMode;
 import org.schabi.newpipe.util.VideoSegment;
 import org.schabi.newpipe.views.ExpandableSurfaceView;
-import org.schabi.newpipe.views.MarkableSeekBar;
 import org.schabi.newpipe.views.SeekBarMarker;
 
 import java.io.IOException;
@@ -4284,12 +4283,7 @@ public final class Player implements
     }
 
     private void markSegments() {
-        if (!(binding.playbackSeekBar instanceof MarkableSeekBar)) {
-            return;
-        }
-
-        final MarkableSeekBar markableSeekBar = (MarkableSeekBar) binding.playbackSeekBar;
-        markableSeekBar.clearMarkers();
+        binding.playbackSeekBar.clearMarkers();
 
         final VideoSegment[] segments = getVideoSegments();
 
@@ -4308,9 +4302,10 @@ public final class Player implements
             final SeekBarMarker seekBarMarker =
                     new SeekBarMarker(segment.startTime, segment.endTime,
                             (int) simpleExoPlayer.getDuration(), color);
-            markableSeekBar.seekBarMarkers.add(seekBarMarker);
+            binding.playbackSeekBar.seekBarMarkers.add(seekBarMarker);
         }
-        markableSeekBar.drawMarkers();
+
+        binding.playbackSeekBar.drawMarkers();
     }
 
     private Integer parseSegmentCategory(final String category) {
