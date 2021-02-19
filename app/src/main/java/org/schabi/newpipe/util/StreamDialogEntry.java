@@ -24,6 +24,10 @@ public enum StreamDialogEntry {
     // enum values with DEFAULT actions //
     //////////////////////////////////////
 
+    show_channel_details(R.string.show_channel_details, (fragment, item) -> {
+        NavigationHelper.openChannelFragment(fragment.getChildFragmentManager(), item.getServiceId(), item.getUploaderUrl(), item.getUploaderName());
+    }),
+
     /**
      * Enqueues the stream automatically to the current PlayerType.<br>
      * <br>

@@ -124,8 +124,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     /**
      * If the default implementation of {@link StateSaver.WriteRead} should be used.
      *
-     * @see StateSaver
      * @param useDefaultStateSaving Whether the default implementation should be used
+     * @see StateSaver
      */
     public void setUseDefaultStateSaving(final boolean useDefaultStateSaving) {
         this.useDefaultStateSaving = useDefaultStateSaving;
@@ -350,7 +350,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             return;
         }
 
-        final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
+        final ArrayList<StreamDialogEntry> entries =
+                new ArrayList<>(Arrays.asList(StreamDialogEntry.show_channel_details));
 
         if (PlayerHolder.getType() != null) {
             entries.add(StreamDialogEntry.enqueue);
@@ -361,7 +362,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share
             ));
-        } else  {
+        } else {
             entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,
                     StreamDialogEntry.start_here_on_popup,
