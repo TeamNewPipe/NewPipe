@@ -10,6 +10,7 @@ import org.schabi.newpipe.player.playqueue.events.InitEvent;
 import org.schabi.newpipe.player.playqueue.events.MoveEvent;
 import org.schabi.newpipe.player.playqueue.events.PlayQueueEvent;
 import org.schabi.newpipe.player.playqueue.events.RecoveryEvent;
+import org.schabi.newpipe.player.playqueue.events.RemoveAllEvent;
 import org.schabi.newpipe.player.playqueue.events.RemoveEvent;
 import org.schabi.newpipe.player.playqueue.events.ReorderEvent;
 import org.schabi.newpipe.player.playqueue.events.SelectEvent;
@@ -310,8 +311,8 @@ public abstract class PlayQueue implements Serializable {
         while (streams.size() > 0) {
             final int index = streams.size() - 1;
             removeInternal(index);
-            broadcast(new RemoveEvent(index, getIndex()));
         }
+        broadcast(new RemoveAllEvent());
     }
 
 

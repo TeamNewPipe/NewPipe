@@ -129,6 +129,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 break;
             case INIT:
             case REORDER:
+            case REMOVE_ALL:
             default:
                 notifyDataSetChanged();
                 break;
