@@ -30,6 +30,13 @@
         <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="false"
+            android:key="@string/disable_tv_ui_key"
+            android:summary="@string/disable_tv_ui_summary"
+            android:title="@string/disable_tv_ui_title"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="false"
             android:key="@string/disable_error_reports_key"
             android:summary="@string/disable_error_reports_summary"
             android:title="@string/disable_error_reports_title"/>
