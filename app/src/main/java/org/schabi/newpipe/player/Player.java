@@ -701,6 +701,8 @@ public final class Player implements
             // (to disable/enable video stream or to set quality)
             setRecovery();
             reloadPlayQueueManager();
+            stopProgressLoop();
+            startProgressLoop();
         }
 
         setupElementsVisibility();
@@ -4256,6 +4258,11 @@ public final class Player implements
     }
 
     public VideoSegment getSkippableSegment(final int progress) {
+        // currentItem may get set to something later (asynchronously)
+        if (currentItem == null) {
+            return null;
+        }
+
         final VideoSegment[] videoSegments = currentItem.getVideoSegments();
         if (videoSegments == null) {
             return null;
