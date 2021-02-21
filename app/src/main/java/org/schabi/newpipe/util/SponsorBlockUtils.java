@@ -2,9 +2,12 @@ package org.schabi.newpipe.util;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.preference.PreferenceManager;
 
 import com.grack.nanojson.JsonArray;
 import com.grack.nanojson.JsonObject;
@@ -13,6 +16,8 @@ import com.grack.nanojson.JsonParser;
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -29,15 +34,40 @@ public final class SponsorBlockUtils {
     }
 
     @SuppressWarnings("CheckStyle")
-    public static VideoSegment[] getYouTubeVideoSegments(final String apiUrl,
-                                                  final String videoId,
-                                                  final boolean includeSponsorCategory,
-                                                  final boolean includeIntroCategory,
-                                                  final boolean includeOutroCategory,
-                                                  final boolean includeInteractionCategory,
-                                                  final boolean includeSelfPromoCategory,
-                                                  final boolean includeMusicCategory)
+    public static VideoSegment[] getYouTubeVideoSegments(final Context context,
+                                                         final StreamInfo streamInfo)
             throws UnsupportedEncodingException {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        final boolean isSponsorBlockEnabled = prefs.getBoolean(context
+                .getString(R.string.sponsor_block_enable_key), false);
+
+        if (!isSponsorBlockEnabled) {
+            return null;
+        }
+
+        final String apiUrl = prefs.getString(context
+                .getString(R.string.sponsor_block_api_url_key), null);
+
+        if (!streamInfo.getUrl().startsWith("https://www.youtube.com")
+                || apiUrl == null
+                || apiUrl.isEmpty()) {
+            return null;
+        }
+
+        final boolean includeSponsorCategory = prefs.getBoolean(context
+                .getString(R.string.sponsor_block_category_sponsor_key), false);
+        final boolean includeIntroCategory = prefs.getBoolean(context
+                .getString(R.string.sponsor_block_category_intro_key), false);
+        final boolean includeOutroCategory = prefs.getBoolean(context
+                .getString(R.string.sponsor_block_category_outro_key), false);
+        final boolean includeInteractionCategory = prefs.getBoolean(context
+                .getString(R.string.sponsor_block_category_interaction_key), false);
+        final boolean includeSelfPromoCategory = prefs.getBoolean(context
+                .getString(R.string.sponsor_block_category_self_promo_key), false);
+        final boolean includeMusicCategory = prefs.getBoolean(context
+                .getString(R.string.sponsor_block_category_non_music_key), false);
+
         final ArrayList<String> categoryParamList = new ArrayList<>();
 
         if (includeSponsorCategory) {
@@ -66,7 +96,7 @@ public final class SponsorBlockUtils {
         String categoryParams = "[\"" + TextUtils.join("\",\"", categoryParamList) + "\"]";
         categoryParams = URLEncoder.encode(categoryParams, "utf-8");
 
-        final String videoIdHash = toSha256(videoId);
+        final String videoIdHash = toSha256(streamInfo.getId());
 
         if (videoIdHash == null) {
             return null;
@@ -106,7 +136,7 @@ public final class SponsorBlockUtils {
             final JsonObject jObj1 = (JsonObject) obj1;
 
             final String responseVideoId = jObj1.getString("videoID");
-            if (!responseVideoId.equals(videoId)) {
+            if (!responseVideoId.equals(streamInfo.getId())) {
                 continue;
             }
 

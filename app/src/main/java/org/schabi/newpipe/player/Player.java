@@ -227,6 +227,7 @@ public final class Player implements
     public static final String SELECT_ON_APPEND = "select_on_append";
     public static final String PLAYER_TYPE = "player_type";
     public static final String IS_MUTED = "is_muted";
+    public static final String VIDEO_SEGMENTS = "video_segments";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Time constants
@@ -381,7 +382,6 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // SponsorBlock
     //////////////////////////////////////////////////////////////////////////*/
-    private VideoSegment[] videoSegments;
     private SponsorBlockMode sponsorBlockMode = SponsorBlockMode.DISABLED;
 
 
@@ -842,7 +842,7 @@ public final class Player implements
         }
 
         if (playQueue != null) {
-            playQueueManager = new MediaSourceManager(this, playQueue);
+            playQueueManager = new MediaSourceManager(context, this, playQueue);
         }
     }
 
@@ -4223,13 +4223,6 @@ public final class Player implements
     // SponsorBlock
     //////////////////////////////////////////////////////////////////////////*/
     //region
-    public VideoSegment[] getVideoSegments() {
-        return videoSegments;
-    }
-
-    public void setVideoSegments(final VideoSegment[] videoSegments) {
-        this.videoSegments = videoSegments;
-    }
 
     public void onBlockingSponsorsButtonClicked() {
         if (DEBUG) {
@@ -4263,6 +4256,7 @@ public final class Player implements
     }
 
     public VideoSegment getSkippableSegment(final int progress) {
+        final VideoSegment[] videoSegments = currentItem.getVideoSegments();
         if (videoSegments == null) {
             return null;
         }
@@ -4285,7 +4279,7 @@ public final class Player implements
     private void markSegments() {
         binding.playbackSeekBar.clearMarkers();
 
-        final VideoSegment[] segments = getVideoSegments();
+        final VideoSegment[] segments = currentItem.getVideoSegments();
 
         if (segments == null || segments.length == 0) {
             return;

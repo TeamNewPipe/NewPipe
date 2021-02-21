@@ -101,7 +101,6 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.SponsorBlockUtils;
 import org.schabi.newpipe.util.ThemeHelper;
-import org.schabi.newpipe.util.VideoSegment;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -160,8 +159,12 @@ public final class VideoDetailFragment
     private boolean showRelatedStreams;
     private boolean showDescription;
     private String selectedTabTag;
-    @AttrRes @NonNull final List<Integer> tabIcons = new ArrayList<>();
-    @StringRes @NonNull final List<Integer> tabContentDescriptions = new ArrayList<>();
+    @AttrRes
+    @NonNull
+    final List<Integer> tabIcons = new ArrayList<>();
+    @StringRes
+    @NonNull
+    final List<Integer> tabContentDescriptions = new ArrayList<>();
     private boolean tabSettingsChanged = false;
     private int lastAppBarVerticalOffset = Integer.MAX_VALUE; // prevents useless updates
 
@@ -187,12 +190,13 @@ public final class VideoDetailFragment
     private final CompositeDisposable disposables = new CompositeDisposable();
     @Nullable
     private Disposable positionSubscriber = null;
+    @Nullable
+    private Disposable videoSegmentsSubscriber = null;
 
     private List<VideoStream> sortedVideoStreams;
     private int selectedVideoStreamIndex = -1;
     private BottomSheetBehavior<FrameLayout> bottomSheetBehavior;
     private BroadcastReceiver broadcastReceiver;
-    private VideoSegment[] videoSegments;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -378,6 +382,9 @@ public final class VideoDetailFragment
 
         if (positionSubscriber != null) {
             positionSubscriber.dispose();
+        }
+        if (videoSegmentsSubscriber != null) {
+            videoSegmentsSubscriber.dispose();
         }
         if (currentWorker != null) {
             currentWorker.dispose();
@@ -678,8 +685,8 @@ public final class VideoDetailFragment
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 animate(binding.touchAppendDetail, true, 250, AnimationType.ALPHA,
                         0, () ->
-                        animate(binding.touchAppendDetail, false, 1500,
-                                AnimationType.ALPHA, 1000));
+                                animate(binding.touchAppendDetail, false, 1500,
+                                        AnimationType.ALPHA, 1000));
             }
             return false;
         };
@@ -887,43 +894,7 @@ public final class VideoDetailFragment
 
     private void runWorker(final boolean forceLoad, final boolean addToBackStack) {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
-
-        final String apiUrl = prefs.getString(getContext()
-                .getString(R.string.sponsor_block_api_url_key), null);
-        final boolean isSponsorBlockEnabled = prefs.getBoolean(getContext()
-                .getString(R.string.sponsor_block_enable_key), false);
-        final boolean includeSponsorCategory = prefs.getBoolean(getContext()
-                        .getString(R.string.sponsor_block_category_sponsor_key), false);
-        final boolean includeIntroCategory = prefs.getBoolean(getContext()
-                .getString(R.string.sponsor_block_category_intro_key), false);
-        final boolean includeOutroCategory = prefs.getBoolean(getContext()
-                .getString(R.string.sponsor_block_category_outro_key), false);
-        final boolean includeInteractionCategory = prefs.getBoolean(getContext()
-                .getString(R.string.sponsor_block_category_interaction_key), false);
-        final boolean includeSelfPromoCategory = prefs.getBoolean(getContext()
-                .getString(R.string.sponsor_block_category_self_promo_key), false);
-        final boolean includeMusicCategory = prefs.getBoolean(getContext()
-                .getString(R.string.sponsor_block_category_non_music_key), false);
-
         currentWorker = ExtractorHelper.getStreamInfo(serviceId, url, forceLoad)
-                .flatMap(streamInfo -> Single.fromCallable(() -> {
-                    if (isSponsorBlockEnabled
-                            && streamInfo.getUrl().startsWith("https://www.youtube.com")
-                            && apiUrl != null
-                            && !apiUrl.isEmpty()) {
-                        this.videoSegments = SponsorBlockUtils.getYouTubeVideoSegments(
-                                apiUrl,
-                                streamInfo.getId(),
-                                includeSponsorCategory,
-                                includeIntroCategory,
-                                includeOutroCategory,
-                                includeInteractionCategory,
-                                includeSelfPromoCategory,
-                                includeMusicCategory);
-                    }
-
-                    return streamInfo;
-                }))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
@@ -1182,7 +1153,6 @@ public final class VideoDetailFragment
             playerService.getView().setVisibility(View.GONE);
         }
         addVideoPlayerView();
-        playerService.setVideoSegments(videoSegments);
 
         final Intent playerIntent = NavigationHelper
                 .getPlayerIntent(requireContext(), MainPlayer.class, queue, true, autoPlayEnabled);
@@ -1634,29 +1604,43 @@ public final class VideoDetailFragment
     }
 
     public void openDownloadDialog() {
-        try {
-            final DownloadDialog downloadDialog = DownloadDialog.newInstance(currentInfo);
-            downloadDialog.setVideoStreams(sortedVideoStreams);
-            downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
-            downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
-            downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
-            downloadDialog.setVideoSegments(videoSegments);
+        videoSegmentsSubscriber = Single.fromCallable(() -> {
+            try {
+                return SponsorBlockUtils.getYouTubeVideoSegments(getContext(), currentInfo);
+            } catch (final Exception e) {
+                // TODO: handle
+                return null;
+            }
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(videoSegments -> {
+                    try {
+                        final DownloadDialog downloadDialog =
+                                DownloadDialog.newInstance(currentInfo);
+                        downloadDialog.setVideoStreams(sortedVideoStreams);
+                        downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
+                        downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
+                        downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
+                        downloadDialog.setVideoSegments(videoSegments);
 
-            downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
-        } catch (final Exception e) {
-            final ErrorInfo info = ErrorInfo.make(UserAction.UI_ERROR,
-                    ServiceList.all()
-                            .get(currentInfo
-                                    .getServiceId())
-                            .getServiceInfo()
-                            .getName(), "",
-                    R.string.could_not_setup_download_menu);
+                        downloadDialog.show(
+                                activity.getSupportFragmentManager(), "downloadDialog");
+                    } catch (final Exception e) {
+                        final ErrorInfo info = ErrorInfo.make(UserAction.UI_ERROR,
+                                ServiceList.all()
+                                        .get(currentInfo
+                                                .getServiceId())
+                                        .getServiceInfo()
+                                        .getName(), "",
+                                R.string.could_not_setup_download_menu);
 
-            ErrorActivity.reportError(activity,
-                    e,
-                    activity.getClass(),
-                    activity.findViewById(android.R.id.content), info);
-        }
+                        ErrorActivity.reportError(activity,
+                                e,
+                                activity.getClass(),
+                                activity.findViewById(android.R.id.content), info);
+                    }
+                });
     }
 
     /*//////////////////////////////////////////////////////////////////////////

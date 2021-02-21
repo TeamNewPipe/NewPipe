@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player.playback;
 
+import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
 
@@ -23,6 +24,7 @@ import org.schabi.newpipe.player.playqueue.events.PlayQueueEvent;
 import org.schabi.newpipe.player.playqueue.events.RemoveEvent;
 import org.schabi.newpipe.player.playqueue.events.ReorderEvent;
 import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.SponsorBlockUtils;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -69,6 +71,8 @@ public class MediaSourceManager {
      */
     private static final int MAXIMUM_LOADER_SIZE = WINDOW_SIZE * 2 + 1;
 
+    @NonNull
+    private final Context context;
     @NonNull
     private final PlaybackListener playbackListener;
     @NonNull
@@ -125,14 +129,16 @@ public class MediaSourceManager {
 
     private final Handler removeMediaSourceHandler = new Handler();
 
-    public MediaSourceManager(@NonNull final PlaybackListener listener,
+    public MediaSourceManager(@NonNull final Context context,
+                              @NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {
-        this(listener, playQueue, 400L,
+        this(context, listener, playQueue, 400L,
                 /*playbackNearEndGapMillis=*/TimeUnit.MILLISECONDS.convert(30, TimeUnit.SECONDS),
                 /*progressUpdateIntervalMillis*/TimeUnit.MILLISECONDS.convert(2, TimeUnit.SECONDS));
     }
 
-    private MediaSourceManager(@NonNull final PlaybackListener listener,
+    private MediaSourceManager(@NonNull final Context context,
+                               @NonNull final PlaybackListener listener,
                                @NonNull final PlayQueue playQueue,
                                final long loadDebounceMillis,
                                final long playbackNearEndGapMillis,
@@ -146,6 +152,7 @@ public class MediaSourceManager {
                     + " ms] for them to be useful.");
         }
 
+        this.context = context;
         this.playbackListener = listener;
         this.playQueue = playQueue;
 
@@ -428,6 +435,9 @@ public class MediaSourceManager {
 
             final long expiration = System.currentTimeMillis()
                     + ServiceHelper.getCacheExpirationMillis(streamInfo.getServiceId());
+
+            stream.setVideoSegments(SponsorBlockUtils.getYouTubeVideoSegments(context, streamInfo));
+
             return new LoadedMediaSource(source, stream, expiration);
         }).onErrorReturn(throwable -> new FailedMediaSource(stream,
                 new StreamInfoLoadException(throwable)));
