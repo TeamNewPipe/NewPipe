@@ -63,8 +63,7 @@ public class ErrorActivity extends AppCompatActivity {
     public static final String ERROR_INFO = "error_info";
 
     public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
-    public static final String ERROR_EMAIL_SUBJECT
-            = "Exception in NewPipe " + BuildConfig.VERSION_NAME;
+    public static final String ERROR_EMAIL_SUBJECT = "Exception in ";
 
     public static final String ERROR_GITHUB_ISSUE_URL
             = "https://github.com/TeamNewPipe/NewPipe/issues";
@@ -214,7 +213,9 @@ public class ErrorActivity extends AppCompatActivity {
                         final Intent i = new Intent(Intent.ACTION_SENDTO)
                                 .setData(Uri.parse("mailto:")) // only email apps should handle this
                                 .putExtra(Intent.EXTRA_EMAIL, new String[]{ERROR_EMAIL_ADDRESS})
-                                .putExtra(Intent.EXTRA_SUBJECT, ERROR_EMAIL_SUBJECT)
+                                .putExtra(Intent.EXTRA_SUBJECT, ERROR_EMAIL_SUBJECT
+                                        + getString(R.string.app_name) + " "
+                                        + BuildConfig.VERSION_NAME)
                                 .putExtra(Intent.EXTRA_TEXT, buildJson());
                         if (i.resolveActivity(getPackageManager()) != null) {
                             ShareUtils.openIntentInApp(context, i);
