@@ -14,7 +14,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 964
-        versionName "0.20.10"
+        versionName "0.20.10_r3"
 
         multiDexEnabled true
 
