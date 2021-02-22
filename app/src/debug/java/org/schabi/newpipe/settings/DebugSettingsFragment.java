@@ -3,6 +3,7 @@ package org.schabi.newpipe.settings;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.preference.Preference;
 
 import org.schabi.newpipe.R;
 
@@ -13,11 +14,22 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        findPreference(getString(R.string.show_memory_leaks_key))
-                .setOnPreferenceClickListener(preference -> {
-                    startActivity(LeakCanary.INSTANCE.newLeakDisplayActivityIntent());
-                    return true;
-                });
+        final Preference showMemoryLeaksPreference
+                = findPreference(getString(R.string.show_memory_leaks_key));
+        final Preference crashTheAppPreference
+                = findPreference(getString(R.string.crash_the_app_key));
+
+        assert showMemoryLeaksPreference != null;
+        assert crashTheAppPreference != null;
+
+        showMemoryLeaksPreference.setOnPreferenceClickListener(preference -> {
+            startActivity(LeakCanary.INSTANCE.newLeakDisplayActivityIntent());
+            return true;
+        });
+
+        crashTheAppPreference.setOnPreferenceClickListener(preference -> {
+            throw new RuntimeException();
+        });
     }
 
     @Override
