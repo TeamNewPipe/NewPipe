@@ -29,4 +29,9 @@
         android:summary="@string/show_original_time_ago_summary"
         android:title="@string/show_original_time_ago_title"
         app:iconSpaceReserved="false" />
+
+    <Preference
+        android:key="@string/crash_the_app_key"
+        android:title="@string/crash_the_app"
+        app:iconSpaceReserved="false" />
 </PreferenceScreen>
