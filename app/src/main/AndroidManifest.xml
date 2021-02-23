@@ -318,7 +318,8 @@
             android:name=".LocalPlayerActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:foregroundServiceType="mediaPlayback" />
+            android:foregroundServiceType="mediaPlayback"
+            android:configChanges="orientation|screenSize|layoutDirection" />
 
         <service
             android:name=".RouterActivity$FetcherService"
