@@ -700,5 +700,5 @@
     <string name="recent">Recent</string>
     <string name="chapters">Chapters</string>
     <string name="no_app_to_open_intent">No app on your device can open this</string>
-    <string name="clear_queue">Clear queue</string>
+    <string name="clear_queue">Clear Queue</string>
 </resources>
