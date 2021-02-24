@@ -51,7 +51,7 @@ public class LocalPlayer implements EventListener {
         this.mPrefs = PreferenceManager.getDefaultSharedPreferences(App.getApp());
     }
 
-    public void initPlayer(final String uri, final VideoSegment[] segments) {
+    public void initialize(final String uri, final VideoSegment[] segments) {
         this.videoSegments = segments;
         this.progressUpdateReactor = new SerialDisposable();
 
@@ -61,6 +61,13 @@ public class LocalPlayer implements EventListener {
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
         simpleExoPlayer.setHandleAudioBecomingNoisy(true);
+
+        final String autoPlayStr =
+                mPrefs.getString(context.getString(R.string.autoplay_key), "");
+        final boolean autoPlay =
+                !autoPlayStr.equals(context.getString(R.string.autoplay_never_key));
+
+        simpleExoPlayer.setPlayWhenReady(autoPlay);
 
         if (uri == null || uri.length() == 0) {
             return;
@@ -72,7 +79,7 @@ public class LocalPlayer implements EventListener {
         simpleExoPlayer.prepare(videoSource);
     }
 
-    public SimpleExoPlayer getPlayer() {
+    public SimpleExoPlayer getExoPlayer() {
         return this.simpleExoPlayer;
     }
 

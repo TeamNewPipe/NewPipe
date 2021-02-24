@@ -40,14 +40,14 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Eve
 
         final Intent intent = getIntent();
 
-        final String uri = intent.getDataString();
-        final VideoSegment[] segments = getSegmentsFromIntent(intent);
+        final String uri = parseUriFromIntent(intent);
+        final VideoSegment[] segments = parseSegmentsFromIntent(intent);
 
         localPlayer = new LocalPlayer(this);
-        localPlayer.initPlayer(uri, segments);
+        localPlayer.initialize(uri, segments);
 
         final PlayerView playerView = findViewById(R.id.player_view);
-        playerView.setPlayer(localPlayer.getPlayer());
+        playerView.setPlayer(localPlayer.getExoPlayer());
     }
 
     @Override
@@ -93,7 +93,11 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Eve
         setKeepScreenOn(false);
     }
 
-    private static VideoSegment[] getSegmentsFromIntent(final Intent intent) {
+    private static String parseUriFromIntent(final Intent intent) {
+        return intent.getDataString();
+    }
+
+    private static VideoSegment[] parseSegmentsFromIntent(final Intent intent) {
         final List<VideoSegment> result = new ArrayList<>();
 
         final String segmentsJson = intent.getStringExtra("segments");
