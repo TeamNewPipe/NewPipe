@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ui.PlayerView;
@@ -21,13 +22,15 @@ import com.grack.nanojson.JsonParser;
 
 import org.schabi.newpipe.player.LocalPlayer;
 import org.schabi.newpipe.player.LocalPlayerListener;
+import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
+import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.VideoSegment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LocalPlayerActivity extends AppCompatActivity implements Player.EventListener,
-        LocalPlayerListener {
+        LocalPlayerListener, PlaybackParameterDialog.Callback {
     private LocalPlayer localPlayer;
     public static final String TAG = "LocalPlayerActivity";
 
@@ -35,6 +38,7 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Eve
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local_player);
+        ThemeHelper.setTheme(this);
 
         hideSystemUi(isLandscape());
 
@@ -48,6 +52,19 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Eve
 
         final PlayerView playerView = findViewById(R.id.player_view);
         playerView.setPlayer(localPlayer.getExoPlayer());
+
+        playerView.getVideoSurfaceView().setOnLongClickListener(v -> {
+            showPlaybackParameterDialog();
+            return true;
+        });
+    }
+
+    public void showPlaybackParameterDialog() {
+        final PlaybackParameters playbackParameters =
+                localPlayer.getExoPlayer().getPlaybackParameters();
+        PlaybackParameterDialog.newInstance(playbackParameters.speed, playbackParameters.pitch,
+                playbackParameters.skipSilence, this)
+                .show(getSupportFragmentManager(), TAG);
     }
 
     @Override
@@ -61,6 +78,12 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Eve
         super.onConfigurationChanged(newConfig);
 
         hideSystemUi(isLandscape());
+    }
+
+    @Override
+    public void onPlaybackParameterChanged(final float playbackTempo, final float playbackPitch,
+                                           final boolean playbackSkipSilence) {
+        localPlayer.setPlaybackParameters(playbackTempo, playbackPitch, playbackSkipSilence);
     }
 
     @Override

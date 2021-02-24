@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.preference.PreferenceManager;
 
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.EventListener;
 import com.google.android.exoplayer2.SeekParameters;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -15,7 +16,6 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 
-import org.schabi.newpipe.App;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -48,7 +48,7 @@ public class LocalPlayer implements EventListener {
 
     public LocalPlayer(final Context context) {
         this.context = context;
-        this.mPrefs = PreferenceManager.getDefaultSharedPreferences(App.getApp());
+        this.mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     public void initialize(final String uri, final VideoSegment[] segments) {
@@ -61,6 +61,16 @@ public class LocalPlayer implements EventListener {
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
         simpleExoPlayer.setHandleAudioBecomingNoisy(true);
+
+        final PlaybackParameters playbackParameters = simpleExoPlayer.getPlaybackParameters();
+        final float speed = mPrefs.getFloat(context.getString(
+                R.string.playback_speed_key), playbackParameters.speed);
+        final float pitch = mPrefs.getFloat(context.getString(
+                R.string.playback_pitch_key), playbackParameters.pitch);
+        final boolean skipSilence = mPrefs.getBoolean(context.getString(
+                R.string.playback_skip_silence_key), playbackParameters.skipSilence);
+
+        setPlaybackParameters(speed, pitch, skipSilence);
 
         final String autoPlayStr =
                 mPrefs.getString(context.getString(R.string.autoplay_key), "");
@@ -92,6 +102,20 @@ public class LocalPlayer implements EventListener {
         simpleExoPlayer.stop();
         simpleExoPlayer.release();
         progressUpdateReactor.set(null);
+    }
+
+    public void setPlaybackParameters(final float speed, final float pitch,
+                                      final boolean skipSilence) {
+        final float roundedSpeed = Math.round(speed * 100.0f) / 100.0f;
+        final float roundedPitch = Math.round(pitch * 100.0f) / 100.0f;
+
+        mPrefs.edit()
+                .putFloat(context.getString(R.string.playback_speed_key), speed)
+                .putFloat(context.getString(R.string.playback_pitch_key), pitch)
+                .putBoolean(context.getString(R.string.playback_skip_silence_key), skipSilence)
+                .apply();
+        simpleExoPlayer.setPlaybackParameters(
+                new PlaybackParameters(roundedSpeed, roundedPitch, skipSilence));
     }
 
     @Override
