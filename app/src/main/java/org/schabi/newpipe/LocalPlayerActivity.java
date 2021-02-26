@@ -32,6 +32,7 @@ import java.util.List;
 public class LocalPlayerActivity extends AppCompatActivity implements Player.EventListener,
         LocalPlayerListener, PlaybackParameterDialog.Callback {
     private LocalPlayer localPlayer;
+    private PlayerView playerView;
     public static final String TAG = "LocalPlayerActivity";
 
     @Override
@@ -49,14 +50,17 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Eve
 
         localPlayer = new LocalPlayer(this);
         localPlayer.initialize(uri, segments);
+        localPlayer.setListener(this);
 
-        final PlayerView playerView = findViewById(R.id.player_view);
+        playerView = findViewById(R.id.player_view);
         playerView.setPlayer(localPlayer.getExoPlayer());
 
         playerView.getVideoSurfaceView().setOnLongClickListener(v -> {
             showPlaybackParameterDialog();
-            return true;
+            return false;
         });
+
+        playerView.getVideoSurfaceView().setOnClickListener(v -> playerView.performClick());
     }
 
     public void showPlaybackParameterDialog() {
@@ -98,7 +102,7 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Eve
 
     @Override
     public void onBuffering(final SimpleExoPlayer player) {
-
+        setKeepScreenOn(true);
     }
 
     @Override
@@ -153,6 +157,7 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Eve
         } else {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
+        playerView.getRootView().setKeepScreenOn(keepScreenOn);
     }
 
     private void hideSystemUi(final boolean isLandscape) {

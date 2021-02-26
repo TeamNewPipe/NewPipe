@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.preference.PreferenceManager;
 
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.EventListener;
 import com.google.android.exoplayer2.SeekParameters;
@@ -61,6 +62,7 @@ public class LocalPlayer implements EventListener {
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
         simpleExoPlayer.setHandleAudioBecomingNoisy(true);
+        simpleExoPlayer.setWakeMode(C.WAKE_MODE_NETWORK);
 
         final PlaybackParameters playbackParameters = simpleExoPlayer.getPlaybackParameters();
         final float speed = mPrefs.getFloat(context.getString(
