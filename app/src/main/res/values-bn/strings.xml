@@ -23,7 +23,7 @@
     <string name="auto">অটো</string>
     <string name="grid">ছক</string>
     <string name="list">তালিকা</string>
-    <string name="minimize_on_exit_none_description">না</string>
+    <string name="minimize_on_exit_none_description">কোনটি না</string>
     <string name="limit_data_usage_none_description">কোন সীমা নেই</string>
     <string name="decline">অস্বীকার করো</string>
     <string name="accept">স্বীকার করো</string>
@@ -487,7 +487,7 @@
         <item quantity="one">%d মিনিট</item>
         <item quantity="other">%d মিনিট</item>
     </plurals>
-    <string name="max_retry_msg">সর্বোচ্চ চেয্টা</string>
+    <string name="max_retry_msg">সর্বোচ্চ চেষ্টা</string>
     <string name="recent">সাম্প্রতিক</string>
     <string name="peertube_instance_add_exists">ইন্সট্যান্স ইতোমধ্যে বিদ্যমান</string>
     <string name="default_content_country_title">ডিফল্ট কন্টেন্টের দেশ</string>
@@ -507,6 +507,31 @@
     <string name="feed_groups_header_title">চ্যানেল গ্রুপ</string>
     <string name="chapters">অধ্যায়</string>
     <string name="comments_tab_description">মতামত</string>
-    <string name="description_tab_description">বিস্তারিত</string>
+    <string name="description_tab_description">বিবরণ</string>
     <string name="open_with">দিয়ে খুলো</string>
+    <string name="feed_update_threshold_title">ফিড হালনাগাদ সীমা</string>
+    <string name="feed_group_dialog_empty_name">খালি গ্রুপ নাম</string>
+    <string name="feed_group_dialog_empty_selection">কোনো সাবস্ক্রিপশন নির্বাচিত হয়নি</string>
+    <string name="feed_subscription_not_loaded_count">%d: লোড হয়নি</string>
+    <string name="remove_watched_popup_title">দেখা ভিডিওগুলো সরাও\?</string>
+    <string name="choose_instance_prompt">একটি ইন্সট্যান্স নাও</string>
+    <string name="enable_queue_limit">ডাউনলোড সারি সীমিত করো</string>
+    <string name="deleted_downloads">%1$dটি ডাউনলোড মোছা হয়েছে</string>
+    <string name="generate_unique_name">অনন্য নাম বানাও</string>
+    <string name="download_finished_more">%s টি ডাউনলোড শেষ</string>
+    <string name="list_view_mode">তালিকা দর্শন মোড</string>
+    <string name="wifi_only">শুধুমাত্র ওয়াই-ফাই-তে</string>
+    <string name="skip_silence_checkbox">নীরবতার সময় দ্রুত আগাও</string>
+    <string name="playback_speed_control">প্লেব্যাক গতি নিয়ন্ত্রণ</string>
+    <string name="preferred_open_action_settings_title">পছন্দসই \'মুক্ত\' ক্রিয়া</string>
+    <string name="enable_disposed_exceptions_title">আউট-অফ-লাইফসাইকেল ত্রুটি প্রতিবেদন করো</string>
+    <string name="playlist_thumbnail_change_success">প্লে-তালিকার থাম্বনেইল পরিবর্তিত হয়েছে।</string>
+    <string name="preferred_player_fetcher_notification_message">অনুরোধকৃত তথ্য লোড হচ্ছে</string>
+    <string name="start_here_on_main">এখানে প্লে শুরু করো</string>
+    <string name="hold_to_append">সারিতে ঢুকাতে ধরে রাখো</string>
+    <string name="select_a_kiosk">কিয়স্ক নির্বাচন করো</string>
+    <string name="charset_most_special_characters">সর্বাধিক বিশেষ অক্ষর</string>
+    <string name="subscribers_count_not_available">সাব্সক্রাইবার গণনা পাওয়া যায়নি</string>
+    <string name="detail_drag_description">সাজাতে টানো</string>
+    <string name="copy_for_github">প্রতিবেদন অনুলিপি করো</string>
 </resources>

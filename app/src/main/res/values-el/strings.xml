@@ -167,7 +167,7 @@
     <string name="switch_to_main">Αλλαγή σε Κύριο</string>
     <string name="import_data_title">Εισαγωγή βάσης δεδομένων</string>
     <string name="export_data_title">Εξαγωγή βάσης δεδομένων</string>
-    <string name="import_data_summary">Παρακάμπτει το τρέχον ιστορικό, εγγραφές, λίστες αναπαραγωγής και (προαιρετικά) ρυθμίσεις σας</string>
+    <string name="import_data_summary">Παρακάμπτει το τρέχον ιστορικό, εγγραφές, λίστες αναπαραγωγής και (προαιρετικά) τις ρυθμίσεις σας</string>
     <string name="export_data_summary">Εξαγωγή ιστορικού, εγγραφών, λιστών αναπαραγωγής και ρυθμίσεων</string>
     <string name="clear_views_history_title">Εκκαθάριση ιστορικού προβολής</string>
     <string name="clear_views_history_summary">Διαγράφει το ιστορικό των αναπαραχθέντων ροών και των θέσεων αναπαραγωγής</string>

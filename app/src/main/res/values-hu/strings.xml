@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s megtekintés</string>
     <string name="upload_date_text">Közzétéve: %1$s</string>
-    <string name="no_player_found">Nem található megfelelő lejátszó. Telepíted a VLC lejátszót?</string>
+    <string name="no_player_found">Nem megfelelő médialejátszó. Szeretné telepíti a VLC médialejátszót\?</string>
     <string name="install">Telepítés</string>
     <string name="cancel">Mégse</string>
     <string name="open_in_browser">Megnyitás böngészőben</string>
@@ -14,9 +14,9 @@
     <string name="share_dialog_title">Megosztás ezzel</string>
     <string name="choose_browser">Válasszon böngészőt</string>
     <string name="screen_rotation">forgatás</string>
-    <string name="download_path_title">Videók letöltési helye</string>
-    <string name="download_path_summary">Ide kerülnek a letöltött videók</string>
-    <string name="download_path_dialog_title">Válassza ki a videófájlok letöltési helyét</string>
+    <string name="download_path_title">Videófájlok letöltési mappája</string>
+    <string name="download_path_summary">A letöltött videók itt lesznek tárolva</string>
+    <string name="download_path_dialog_title">Válasszon letöltési mappát a videófájloknak</string>
     <string name="default_resolution_title">Alapértelmezett felbontás</string>
     <string name="play_with_kodi_title">Lejátszás Kodi-val</string>
     <string name="kore_not_found">Telepíted a Kore lejátszót\?</string>
@@ -111,7 +111,7 @@
     <string name="controls_background_title">Háttér</string>
     <string name="controls_popup_title">Felugró ablak</string>
     <string name="no_player_found_toast">Nem található stream lejátszó alkalmazás (feltelepítheted a VLC-t a lejátszáshoz).</string>
-    <string name="open_in_popup_mode">Megnyitás felugró ablakként</string>
+    <string name="open_in_popup_mode">Megnyitás felugró módban</string>
     <string name="use_external_video_player_summary">Néhány felbontásnál eltávolítja a hangot</string>
     <string name="popup_mode_share_menu_title">Felugró ablak</string>
     <string name="subscribe_button_title">Feliratkozás</string>

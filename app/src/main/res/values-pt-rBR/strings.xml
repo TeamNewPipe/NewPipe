@@ -10,7 +10,7 @@
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduz vídeo quando o NewPipe for chamado por outro aplicativo</string>
     <string name="autoplay_by_calling_app_title">Reprodução automática</string>
-    <string name="black_theme_title">AMOLED</string>
+    <string name="black_theme_title">Preto (AMOLED)</string>
     <string name="cancel">Cancelar</string>
     <string name="checksum">Checksum</string>
     <string name="choose_browser">Escolher navegador</string>
@@ -653,7 +653,7 @@
     <string name="hash_channel_name">Notificação de Hash do Vídeo</string>
     <string name="show_meta_info_summary">Desative para ocultar as caixas de informações meta com informações adicionais sobre o criador, conteúdo do stream ou uma solicitação de pesquisa.</string>
     <string name="show_meta_info_title">Mostrar informação meta</string>
-    <string name="recent">Recente</string>
+    <string name="recent">Recentes</string>
     <string name="chapters">Capítulos</string>
     <string name="description_tab_description">Descrição</string>
     <string name="related_streams_tab_description">Transmissões relacionadas</string>

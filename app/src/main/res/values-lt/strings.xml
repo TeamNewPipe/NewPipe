@@ -316,4 +316,7 @@
     <string name="tab_choose">Pasirinkti skirtuką</string>
     <string name="tab_new">Naujas skirtukas</string>
     <string name="unsubscribe">Atsisakyti prenumeratos</string>
+    <string name="search_showing_result_for">Rodomi rezultatai užklausai: %s</string>
+    <string name="open_with">Atverti su</string>
+    <string name="notification_action_repeat">Pakartoti</string>
 </resources>

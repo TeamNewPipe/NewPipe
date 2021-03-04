@@ -671,4 +671,5 @@
     <string name="show_description_summary">Vypnutím skryjete popis videa a ďalšie informácie</string>
     <string name="show_description_title">Zobraziť popis</string>
     <string name="open_with">Otvoriť s</string>
+    <string name="no_app_to_open_intent">Aplikácia na otvorenie súboru nie je nainštalovaná</string>
 </resources>
