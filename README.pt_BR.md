@@ -79,6 +79,7 @@ O NewPipe suporta vários serviços. Nosso [documentação](https://teamnewpipe.
 * SoundCloud \[beta\]
 * media.ccc.de \[beta\]
 * PeerTube instances \[beta\]
+* Bandcamp \[beta\]
 
 ## Atualizações
 Quando uma alteração no código NewPipe (devido à adição de recursos ou fixação de bugs), eventualmente ocorrerá uma versão. Estes estão no formato x.xx.x . A fim de obter esta nova versão, você pode:
