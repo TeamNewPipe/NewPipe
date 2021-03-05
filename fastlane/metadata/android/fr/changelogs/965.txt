@@ -1,0 +1,6 @@
+Correction d'un crash lors de la réorganisation des groupes de chaînes.
+Correction d'erreurs lors du chargement de la suite des vidéos d'une chaîne ou playlist YouTube.
+Correction de la récupération des commentaires YouTube.
+Correction de l'extraction de SoundCloud et du contenu géo-restreint.
+Ajout du support des chemins /watch/, /v/ et /w/ dans les URLs YouTube.
+Ajout de la traduction du Kurde du Nord.
