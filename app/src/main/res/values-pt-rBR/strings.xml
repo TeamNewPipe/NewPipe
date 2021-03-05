@@ -335,10 +335,10 @@
 \n6. A partir do arquivo zip baixado, retire o arquivo .json (geralmente em \"YouTube e YouTube Music/assinaturas/assinaturas.json\") e importe aqui.</string>
     <string name="import_soundcloud_instructions">Importe um perfil do SoundCloud digitando o URL ou seu ID:
 \n
-\n1. Ative o \"modo desktop\" no navegador (o site está indisponível em celulares) 
-\n2. Acesse este URL: %1$s 
-\n3. Logue quando solicitado 
-\n4. Copie o URL do perfil redirecionado</string>
+\n1. Ative o \"modo desktop\" no navegador (o site está indisponível em celulares)
+\n2. Acesse este URL: %1$s
+\n3. Logue quando solicitado
+\n4. Copie o URL do perfil redirecionado.</string>
     <string name="import_soundcloud_instructions_hint">seuID, soundcloud.com/seuid</string>
     <string name="import_network_expensive_warning">Tenha em mente que esta operação poderá usar bastante a conexão com a internet.
 \n
@@ -662,4 +662,5 @@
     <string name="show_description_title">Mostrar descrição</string>
     <string name="open_with">Abrir com</string>
     <string name="no_app_to_open_intent">Nenhum aplicativo em seu dispositivo pode abrir isso</string>
+    <string name="crash_the_app">O aplicativo parou</string>
 </resources>

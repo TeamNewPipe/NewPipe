@@ -682,4 +682,5 @@
     <string name="show_description_title">הצגת תיאור</string>
     <string name="open_with">פתיחה באמצעות</string>
     <string name="no_app_to_open_intent">אין יישומון על המכשיר שלך שיכול לפתוח את זה</string>
+    <string name="crash_the_app">להקריס את היישומון</string>
 </resources>

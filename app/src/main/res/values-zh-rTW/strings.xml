@@ -652,4 +652,5 @@
     <string name="show_description_title">顯示描述</string>
     <string name="open_with">開啟以</string>
     <string name="no_app_to_open_intent">您裝置上沒有應用程式可以打開這個</string>
+    <string name="crash_the_app">應用程式當機</string>
 </resources>

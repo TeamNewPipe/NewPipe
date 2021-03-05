@@ -662,4 +662,5 @@
     <string name="show_description_title">Mostra descrizione</string>
     <string name="open_with">Apri con</string>
     <string name="no_app_to_open_intent">Sul tuo dispositivo non c\'è alcuna app che può aprirlo</string>
+    <string name="crash_the_app">Fai crashare l\'app</string>
 </resources>
