@@ -115,6 +115,7 @@ public final class SponsorBlockUtils {
             final String responseBody =
                     DownloaderImpl
                             .getInstance()
+                            .setCustomTimeout(3)
                             .get(apiUrl + params)
                             .responseBody();
 
