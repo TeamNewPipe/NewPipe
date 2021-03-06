@@ -4289,6 +4289,11 @@ public final class Player implements
     private void markSegments() {
         binding.playbackSeekBar.clearMarkers();
 
+        if (currentItem == null) {
+            Log.w(TAG, "markSegments() - currentItem was null");
+            return;
+        }
+
         final VideoSegment[] segments = currentItem.getVideoSegments();
 
         if (segments == null || segments.length == 0) {
