@@ -2,7 +2,6 @@ package org.schabi.newpipe.util;
 
 import android.app.UiModeManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.BatteryManager;
@@ -11,10 +10,8 @@ import android.view.KeyEvent;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.App;
-import org.schabi.newpipe.R;
 
 public final class DeviceUtils {
 
@@ -25,17 +22,6 @@ public final class DeviceUtils {
     }
 
     public static boolean isTv(final Context context) {
-        return isTv(context, false);
-    }
-
-    public static boolean isTv(final Context context, final boolean forceCheck) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-        if (!forceCheck && prefs.getBoolean(context
-                .getString(R.string.disable_tv_ui_key), false)) {
-            return false;
-        }
-
         if (isTV != null) {
             return isTV;
         }
@@ -67,17 +53,6 @@ public final class DeviceUtils {
     }
 
     public static boolean isTablet(@NonNull final Context context) {
-        return isTablet(context, false);
-    }
-
-    public static boolean isTablet(@NonNull final Context context, final boolean forceCheck) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-        if (!forceCheck && prefs.getBoolean(context
-                .getString(R.string.disable_tablet_ui_key), false)) {
-            return false;
-        }
-
         return (context
                 .getResources()
                 .getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)

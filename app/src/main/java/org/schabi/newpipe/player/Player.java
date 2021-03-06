@@ -3828,6 +3828,13 @@ public final class Player implements
         final boolean videoInLandscapeButNotInFullscreen =
                 service.isLandscape() && !isFullscreen && videoPlayerSelected() && !isAudioOnly;
 
+        if (prefs.getBoolean(
+                context.getString(R.string.force_auto_fullscreen_key), false)
+                && videoInLandscapeButNotInFullscreen) {
+            toggleFullscreen();
+            return;
+        }
+
         final boolean notPaused = currentState != STATE_COMPLETED && currentState != STATE_PAUSED;
         if (parent != null
                 && videoInLandscapeButNotInFullscreen

@@ -370,8 +370,7 @@
 
     <!-- Extras -->
     <string name="enable_local_player_key" translatable="false">enable_local_player</string>
-    <string name="disable_tablet_ui_key" translatable="false">disable_tablet_ui</string>
-    <string name="disable_tv_ui_key" translatable="false">disable_tv_ui</string>
+    <string name="force_auto_fullscreen_key" translatable="false">force_auto_fullscreen</string>
     <string name="disable_error_reports_key" translatable="false">disable_error_reports</string>
 
     <!-- Localizations   -->

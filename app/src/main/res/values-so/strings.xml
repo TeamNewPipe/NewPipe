@@ -700,8 +700,4 @@
     <string name="extras">Dheeraad ah</string>
     <string name="extras_todo_summary">Waxkabaddalada yaryar, macmilida, iyo fadhiyo dheeraad ah.</string>
     <string name="experimental_settings">Fadhiga tijaabada ah</string>
-    <string name="disable_tablet_ui_title">Xidh qaabka tablet-ka</string>
-    <string name="disable_tablet_ui_summary">Ha isticmaalin qaabka tablet-ka loogu talagalay. Tan waxaa loogu talagalay macmilo gaar ah kaliya. Waxaad u baahantahay inaad app-ka dib usoo kiciso si aad isbadalka u aragto.</string>
-    <string name="disable_tv_ui_title">Xidh qaabka TV-ga</string>
-    <string name="disable_tv_ui_summary">Ha isticmaalin qaabka tablet-ka loogu talagalay. Tan waxaa loogu talagalay macmilo gaar ah kaliya. Waxaad u baahantahay inaad app-ka dib usoo kiciso si aad isbadalka u aragto.</string>
 </resources>

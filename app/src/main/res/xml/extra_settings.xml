@@ -23,16 +23,9 @@
         <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="false"
-            android:key="@string/disable_tablet_ui_key"
-            android:summary="@string/disable_tablet_ui_summary"
-            android:title="@string/disable_tablet_ui_title"/>
-
-        <SwitchPreference
-            app:iconSpaceReserved="false"
-            android:defaultValue="false"
-            android:key="@string/disable_tv_ui_key"
-            android:summary="@string/disable_tv_ui_summary"
-            android:title="@string/disable_tv_ui_title"/>
+            android:key="@string/force_auto_fullscreen_key"
+            android:summary="@string/force_auto_fullscreen_summary"
+            android:title="@string/force_auto_fullscreen_title"/>
 
         <SwitchPreference
             app:iconSpaceReserved="false"

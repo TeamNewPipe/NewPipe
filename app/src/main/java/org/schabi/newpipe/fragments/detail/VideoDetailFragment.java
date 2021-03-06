@@ -746,7 +746,7 @@ public final class VideoDetailFragment
 
         // If we are in fullscreen mode just exit from it via first back press
         if (player != null && player.isFullscreen()) {
-            if (!DeviceUtils.isTablet(activity, true)) {
+            if (!DeviceUtils.isTablet(activity)) {
                 player.pause();
             }
             restoreDefaultOrientation();
