@@ -72,7 +72,6 @@
     <string name="filter">Bộ lọc</string>
     <string name="refresh">Tải lại</string>
     <string name="clear">Xóa</string>
-    <string name="popup_resizing_indicator_title">Thay đổi kích thước</string>
     <string name="best_resolution">Độ phân giải tốt nhất</string>
     <string name="general_error">Lỗi</string>
     <string name="network_error">Lỗi kết nối mạng</string>
@@ -117,7 +116,7 @@
     <string name="pause">Dừng</string>
     <string name="view">Chơi</string>
     <string name="delete">Xóa</string>
-    <string name="checksum">Checksum</string>
+    <string name="checksum">Mã tổng kiểm (checksum)</string>
     <string name="add">Nhiệm vụ mới</string>
     <string name="finish">OK</string>
     <string name="msg_name">Tên file</string>
@@ -578,7 +577,7 @@
     <string name="feed_update_threshold_option_always_update">Luôn cập nhật</string>
     <string name="feed_update_threshold_summary">Khoảng thời gian kể từ lần cuối cập nhật thông tin kênh trước khi nó được coi là hết hạn — %s</string>
     <string name="feed_update_threshold_title">Ngưỡng thời gian cập nhật feed</string>
-    <string name="settings_category_feed_title">Feed</string>
+    <string name="settings_category_feed_title">Nguồn cấp (feed)</string>
     <string name="feed_create_new_group_button_title">Tạo</string>
     <string name="feed_group_dialog_delete_message">Bạn muốn xóa nhóm kênh này\?</string>
     <string name="feed_group_dialog_empty_name">Tên nhóm kênh trống</string>

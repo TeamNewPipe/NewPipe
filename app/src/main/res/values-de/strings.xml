@@ -105,7 +105,7 @@
     <string name="msg_server_unsupported">Nicht unterstützter Server</string>
     <string name="could_not_load_image">Konnte Bild nicht laden</string>
     <string name="app_ui_crash">App/UI abgestürzt</string>
-    <string name="msg_threads">Themen</string>
+    <string name="msg_threads">Threads</string>
     <string name="msg_running">NewPipe lädt herunter</string>
     <string name="msg_running_detail">Für Details antippen</string>
     <string name="msg_url_malform">Ungültige URL oder Internet nicht verfügbar</string>
@@ -139,7 +139,6 @@
     <string name="filter">Filter</string>
     <string name="refresh">Aktualisieren</string>
     <string name="clear">Löschen</string>
-    <string name="popup_resizing_indicator_title">Größenänderung</string>
     <string name="best_resolution">Beste Auflösung</string>
     <string name="action_about">Über</string>
     <string name="title_activity_about">Über NewPipe</string>

@@ -76,7 +76,6 @@
     <string name="filter">Filtras</string>
     <string name="refresh">Atnaujinti</string>
     <string name="clear">Išvalyti</string>
-    <string name="popup_resizing_indicator_title">Dydžio keitimas</string>
     <string name="best_resolution">Geriausia raiška</string>
     <string name="general_error">Klaida</string>
     <string name="network_error">Tinklo klaida</string>
@@ -317,4 +316,7 @@
     <string name="tab_choose">Pasirinkti skirtuką</string>
     <string name="tab_new">Naujas skirtukas</string>
     <string name="unsubscribe">Atsisakyti prenumeratos</string>
+    <string name="search_showing_result_for">Rodomi rezultatai užklausai: %s</string>
+    <string name="open_with">Atverti su</string>
+    <string name="notification_action_repeat">Pakartoti</string>
 </resources>

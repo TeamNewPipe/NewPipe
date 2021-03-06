@@ -280,7 +280,6 @@
     <string name="later">Més tard</string>
     <string name="filter">Filtra</string>
     <string name="refresh">Actualitza</string>
-    <string name="popup_resizing_indicator_title">S\'està redimensionant</string>
     <string name="play_all">Reprodueix-ho tot</string>
     <string name="toggle_orientation">Canvia l\'orientació</string>
     <string name="switch_to_background">Canvia al mode en rerefons</string>
@@ -655,4 +654,9 @@
     <string name="notification_scale_to_square_image_summary">Escala la miniatura del vídeo mostrat a la notificació de 16:9 a raó d\'1:1 (pot causar deformacions)</string>
     <string name="notification_scale_to_square_image_title">Escala a raó d\'1:1</string>
     <string name="search_showing_result_for">Mostrant resultats per a: %s</string>
+    <string name="chapters">Capítols</string>
+    <string name="description_tab_description">Descripció</string>
+    <string name="comments_tab_description">Comentaris</string>
+    <string name="show_description_title">Mostra la descripció</string>
+    <string name="open_with">Obre amb</string>
 </resources>

@@ -2,7 +2,7 @@
 <resources>
     <string name="main_bg_subtitle">Ketuk \"Cari\" untuk memulai
 \n</string>
-    <string name="view_count_text">%1$s ditonton</string>
+    <string name="view_count_text">%1$s Penonton</string>
     <string name="upload_date_text">Dipublikasikan tanggal %1$s</string>
     <string name="install">Pasang</string>
     <string name="cancel">Batal</string>
@@ -107,7 +107,7 @@
     <string name="recaptcha_request_toast">Meminta kode reCAPTCHA</string>
     <string name="black_theme_title">Hitam</string>
     <string name="all">Semua</string>
-    <string name="channel">Kanal</string>
+    <string name="channel">Channels</string>
     <string name="short_thousand">r</string>
     <string name="short_million">J</string>
     <string name="short_billion">T</string>
@@ -132,7 +132,6 @@
     <string name="popup_remember_size_pos_title">Ingat properti popup</string>
     <string name="popup_remember_size_pos_summary">Ingat ukuran dan posisi terakhir popup</string>
     <string name="settings_category_popup_title">Popup</string>
-    <string name="popup_resizing_indicator_title">Ubah ukuran</string>
     <string name="player_gesture_controls_title">Kontrol gestur pemutar</string>
     <string name="player_gesture_controls_summary">Gunakan gestur untuk mengontrol kecerahan dan volume pemutar</string>
     <string name="show_search_suggestions_title">Saran pencarian</string>
@@ -321,7 +320,7 @@
     <string name="title_history_view">Ditonton</string>
     <string name="tab_bookmarks">Daftar Putar</string>
     <string name="auto_queue_title">Putar otomatis streaming berikutnya</string>
-    <string name="channel_unsubscribed">Berhenti berlanggan kanal</string>
+    <string name="channel_unsubscribed">Berhenti berlanggan channel</string>
     <string name="subscription_update_failed">Tidak bisa memperbarui langganan</string>
     <string name="tab_subscriptions">Langganan</string>
     <string name="use_inexact_seek_title">Gunakan tinjau cepat tak pasti</string>

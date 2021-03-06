@@ -146,7 +146,6 @@
     <string name="filter">Filter</string>
     <string name="refresh">Oppdater</string>
     <string name="clear">Tøm</string>
-    <string name="popup_resizing_indicator_title">Endrer størrelse</string>
     <string name="best_resolution">Beste oppløsning</string>
     <string name="notification_channel_name">NewPipe-merknad</string>
     <string name="notification_channel_description">Merknad for NewPipe-bakgrunn og oppsprettsspillere</string>

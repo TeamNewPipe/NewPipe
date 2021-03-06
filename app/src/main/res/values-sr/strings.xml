@@ -137,7 +137,6 @@
     <string name="show_search_suggestions_title">Предлози у претрази</string>
     <string name="show_search_suggestions_summary">Приказује предлоге током претраге</string>
     <string name="settings_category_popup_title">Искачући прозор</string>
-    <string name="popup_resizing_indicator_title">Мењање величине</string>
     <string name="subscribed_button_title">Претплаћен</string>
     <string name="subscribe_button_title">Претплати</string>
     <string name="tab_main">Главно</string>

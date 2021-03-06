@@ -136,7 +136,6 @@
     <string name="refresh">重新整理</string>
     <string name="clear">清除</string>
     <string name="best_resolution">最佳解像度</string>
-    <string name="popup_resizing_indicator_title">調整大小</string>
     <string name="short_billion">B</string>
     <string name="title_activity_about">關於 NewPipe</string>
     <string name="action_settings">設定</string>

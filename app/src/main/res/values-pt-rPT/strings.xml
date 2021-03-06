@@ -171,7 +171,6 @@
         <item quantity="other">%s a ver</item>
     </plurals>
     <string name="msg_wait">Por favor aguarde…</string>
-    <string name="popup_resizing_indicator_title">Redimensionar</string>
     <string name="app_update_notification_content_text">Toque para descarregar</string>
     <string name="clear">Limpar</string>
     <string name="unsubscribe">Cancelar subscrição</string>
@@ -307,7 +306,7 @@
     <string name="website_encouragement">Visite o site NewPipe para obter mais informação e novidades.</string>
     <string name="import_soundcloud_instructions">Importe o seu perfil SoundCloud digitando o URL ou a ID.:
 \n
-\n1. Ative o modo desktop do seu navegador web (o site não está disponível para aparelhos móveis)
+\n1. Ative o modo desktop do seu navegador web (o site não está disponível para dispositivos móveis)
 \n2. Aceda a este URL: %1$s
 \n3. Inicie a sessão
 \n4. Copie o URL do seu perfil.</string>
@@ -448,7 +447,7 @@
     <string name="error_download_resource_gone">Não é possível recuperar esta descarga</string>
     <string name="rename_playlist">Mudar nome</string>
     <string name="feed_group_dialog_empty_selection">Nenhuma subscrição selecionada</string>
-    <string name="enable_watch_history_summary">Manter histórico dos vídeos vistos</string>
+    <string name="enable_watch_history_summary">Manter histórico dos vídeos visualizados</string>
     <string name="search_history_deleted">Histórico de pesquisa removido.</string>
     <string name="clear_search_history_title">Limpar histórico de pesquisas</string>
     <string name="msg_error">Erro</string>
@@ -591,7 +590,7 @@
     <string name="channel_page_summary">Página do canal</string>
     <string name="export_data_title">Exportar base de dados</string>
     <string name="use_tor_title">Utilizar Tor</string>
-    <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar apenas assinaturas não agrupadas</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar apenas subscrições não agrupadas</string>
     <string name="player_stream_failure">Não foi possível reproduzir este vídeo</string>
     <string name="background_player">Reprodutor em segundo plano</string>
     <string name="view">Reproduzir</string>
@@ -649,15 +648,15 @@
     <string name="notification_colorize_title">Colorir notificação</string>
     <string name="show_thumbnail_summary">Usar miniaturas no fundo do ecrã de bloqueio e em notificações</string>
     <string name="show_thumbnail_title">Mostrar miniatura</string>
-    <string name="recent">Recente</string>
+    <string name="recent">Recentes</string>
     <string name="msg_calculating_hash">A calcular \'hash\'</string>
     <string name="hash_channel_description">Notificar sobre o progresso das \'hash\' de vídeos</string>
     <string name="hash_channel_name">Notificação \'hash\' do vídeo</string>
-    <string name="show_meta_info_summary">Desligue para ocultar caixas de informações meta com informações adicionais sobre o criador do fluxo, conteúdo de fluxo ou uma solicitação de pesquisa.</string>
-    <string name="show_meta_info_title">Mostrar informação meta</string>
-    <string name="no_app_to_open_intent">Isto não pode ser aberto por nenhuma app neste aparelho</string>
+    <string name="show_meta_info_summary">Desative para ocultar as caixas com informações adicionais acerca do criador, do conteúdo ou de um pedido de pesquisa.</string>
+    <string name="show_meta_info_title">Mostrar meta-informação</string>
+    <string name="no_app_to_open_intent">Não possui qualquer aplicação para abrir este ficheiro</string>
     <string name="chapters">Capítulos</string>
-    <string name="description_tab_description">" "</string>
+    <string name="description_tab_description">Descrição</string>
     <string name="related_streams_tab_description">Emissões relacionadas</string>
     <string name="comments_tab_description">Comentários</string>
     <string name="show_description_summary">Desative para ocultar a descrição do vídeo e informações adicionais</string>

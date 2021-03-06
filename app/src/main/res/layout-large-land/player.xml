@@ -694,22 +694,6 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/resizing_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left|top"
-        android:background="#6e000000"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="@string/popup_resizing_indicator_title"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        tools:ignore="RtlHardcoded"
-        tools:visibility="gone" />
-
     <View
         android:id="@+id/closingOverlay"
         android:layout_width="match_parent"

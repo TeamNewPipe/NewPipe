@@ -69,7 +69,7 @@
     <string name="settings_category_history_title">التاريخ و ذاكرة التخزين المؤقت</string>
     <string name="content">محتوى</string>
     <string name="downloads">التحميلات</string>
-    <string name="downloads_title">التحميلات</string>
+    <string name="downloads_title">الملفات المحملة</string>
     <string name="all">الجميع</string>
     <string name="channel">القناة</string>
     <string name="video">الفيديو</string>
@@ -102,16 +102,16 @@
     <string name="resume_on_audio_focus_gain_title">استئناف التشغيل</string>
     <string name="resume_on_audio_focus_gain_summary">متابعة التشغيل بعد المقاطعات (مثل المكالمات الهاتفية)</string>
     <string name="show_hold_to_append_title">إظهار التلميحات \"اضغط للتجاهل\"</string>
-    <string name="show_hold_to_append_summary">عرض تلميح على صفحة التفاصيل عند استخدام وضع مشغل الخلفية أو النافذة المنبثقة</string>
+    <string name="show_hold_to_append_summary">أظهر تلميح عند الضغط على الخلفية أو الزر المنبثق في الفيديو \"التفاصيل:\"</string>
     <string name="settings_category_player_title">المشغل</string>
     <string name="settings_category_player_behavior_title">السلوك</string>
     <string name="settings_category_popup_title">الوضع المنبثق</string>
     <string name="popup_playing_toast">تشغيل في وضع منبثق</string>
     <string name="background_player_append">تم وضعه على قائمة الانتظار في مشغل الخلفية</string>
     <string name="popup_playing_append">تم وضعه على قائمة الانتظار في مشغل النافذة المنبثقة</string>
-    <string name="show_age_restricted_content_title">إظهار محتوى مقيد حسب العمر</string>
+    <string name="show_age_restricted_content_title">عرض محتوى مقيد حسب العمر</string>
     <string name="duration_live">بث مباشر</string>
-    <string name="error_report_title">تقرير خطأ</string>
+    <string name="error_report_title">تقرير عن المشكلة</string>
     <string name="playlist">قائمة التشغيل</string>
     <string name="yes">نعم</string>
     <string name="later">لاحقاً</string>
@@ -119,7 +119,6 @@
     <string name="filter">فلتر</string>
     <string name="refresh">تحديث</string>
     <string name="clear">تنظيف</string>
-    <string name="popup_resizing_indicator_title">تغيير الحجم</string>
     <string name="best_resolution">أفضل دقة</string>
     <string name="undo">تراجع</string>
     <string name="play_all">تشغيل الكل</string>
@@ -157,7 +156,7 @@
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
         <item quantity="zero">%s مشترك</item>
-        <item quantity="one">%s l مشارك</item>
+        <item quantity="one">%s l مشاركين</item>
         <item quantity="two">%s مشتركين</item>
         <item quantity="few">%s مشتركين</item>
         <item quantity="many">%s مشتركين</item>
@@ -303,7 +302,7 @@
     <string name="controls_download_desc">تنزيل ملف البث</string>
     <string name="tab_bookmarks">الإشارات المرجعية</string>
     <string name="use_inexact_seek_title">استعمال التقديم السريع الغير دقيق</string>
-    <string name="use_inexact_seek_summary">يسمح البحث غير الدقيق للمشغل بالبحث عن مواضع بشكل أسرع وبدقة منخفضة. البحث عن 5 ,15 أو 25 ثانية لا يعمل مع هذا.</string>
+    <string name="use_inexact_seek_summary">يسمح البحث غير الدقيق للمشغل بالسعي إلى المواضع بشكل أسرع وبدقة منخفضة. البحث لمدة 5 أو 15 أو 25 ثانية لا يعمل مع هذا.</string>
     <string name="download_thumbnail_title">تحميل الصور المصغرة</string>
     <string name="thumbnail_cache_wipe_complete_notice">تم إفراغ مساحة ذاكرة التخزين المؤقتة الخاصة بالصور</string>
     <string name="file">الملف</string>
@@ -327,7 +326,7 @@
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_complete_notice">تم محو ذاكرة التخزين المؤقت للبيانات الوصفية</string>
     <string name="auto_queue_title">وضع البث القادم تلقائيا في قائمة الإنتظار</string>
-    <string name="auto_queue_summary">استمر في إنهاء قائمة انتظار التشغيل (الغير المتكررة) من خلال إلحاق التدفق المرتبط</string>
+    <string name="auto_queue_summary">استمر عند إنهاء قائمة التشغيل (الغير المتكررة) من خلال إلحاق التدفق المرتبط</string>
     <string name="set_as_playlist_thumbnail">إضافة صورة مصغرة إلى قائمة التشغيل</string>
     <string name="bookmark_playlist">تفضيل قائمة التشغيل</string>
     <string name="playlist_thumbnail_change_success">تم تغيير الصورة المصغرة لقائمة التشغيل.</string>
@@ -364,14 +363,14 @@
     <string name="previous_export">نسخة احتياطية</string>
     <string name="subscriptions_import_unsuccessful">تعذر استيراد الاشتراكات</string>
     <string name="subscriptions_export_unsuccessful">لا يمكن تصدير الاشتراكات</string>
-    <string name="import_youtube_instructions">استيراد اشتراكات YouTube من Google Takeout
+    <string name="import_youtube_instructions">استيراد اشتراكات من يوتيوب من جوجل تك اوت
 \n
-\n1. انتقل إلى عنوان URL هذا : %1$s
+\n1. انتقل إلى عنوان الرابط هذا : %1$s
 \n2. تسجيل الدخول عندما يُطلب منك ذلك
-\n3. انقر على \"جميع البيانات المدرجة\" ، ثم على \"إلغاء تحديد الكل\" ، ثم حدد \"الاشتراكات\" فقط وانقر على \"موافق\"
+\n3. انقر على \"جميع البيانات المدرجة\", ثم على \"إلغاء تحديد الكل\", ثم حدد \"الاشتراكات\" فقط وانقر على \"موافق\"
 \n4. انقر على \"الخطوة التالية\" ثم على \"إنشاء تصدير\"
 \n5. انقر فوق الزر \"تنزيل\" بعد ظهوره و
-\n6. من الملف المضغوط الذي تم تنزيله ، استخرج ملف .json (عادةً ضمن \"YouTube و YouTube)Music/subscriptions/subscriptions.json\") واستورده</string>
+\n6. من الملف المضغوط الذي تم تنزيله ، استخرج ملف .جسون (عادة ضمن \"يوتيوب و موسيقى اليوتيوب /الاشتراكات / الاشتراكات جسون\") واستوردها هنا.</string>
     <string name="import_soundcloud_instructions">قم باستيراد ملف تعريف SoundCloud عن طريق كتابة عنوان URL أو معرفك: 
 \n 
 \n1. تمكين \"وضع سطح المكتب\" في متصفح الويب (الموقع غير متاح للأجهزة المحمولة) 
@@ -419,7 +418,7 @@
     <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
     <string name="volume_gesture_control_title">إيماء التحكم بالصوت</string>
     <string name="events">الأحداث</string>
-    <string name="app_update_notification_channel_description">الإخطارات لإصدار NewPipe الجديد</string>
+    <string name="app_update_notification_channel_description">إشعارات لإصدار NewPipe الجديد</string>
     <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متوفرة</string>
     <string name="download_to_sdcard_error_message">لا يمكن التنزيل على بطاقة SD الخارجية. هل تريد إعادة تعيين موقع مجلد التنزيل؟</string>
     <string name="saved_tabs_invalid_json">تعذرت قراءة علامات التبويب المحفوظة، لذا استخدم علامات التبويب الافتراضية</string>
@@ -642,8 +641,8 @@
     <string name="remove_watched">إزالة ما تمت مشاهدته</string>
     <string name="show_original_time_ago_summary">ستكون النصوص الأصلية من الخدمات مرئية في عناصر البث</string>
     <string name="show_original_time_ago_title">عرض الوقت الأصلي على العناصر</string>
-    <string name="youtube_restricted_mode_enabled_title">شغيل \"وضع تقييد المحتوى\" في يوتيوب</string>
-    <string name="video_detail_by">لـ %s</string>
+    <string name="youtube_restricted_mode_enabled_title">قم بتشغيل \"وضع تقييد المحتوى\" في يوتيوب</string>
+    <string name="video_detail_by">بواسطة %s</string>
     <string name="channel_created_by">أنشأها %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">الصورة الرمزية للقناة</string>
     <string name="playlist_page_summary">صفحة قائمة التشغيل</string>
