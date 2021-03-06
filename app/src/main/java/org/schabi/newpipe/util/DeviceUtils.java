@@ -25,9 +25,13 @@ public final class DeviceUtils {
     }
 
     public static boolean isTv(final Context context) {
+        return isTv(context, false);
+    }
+
+    public static boolean isTv(final Context context, final boolean forceCheck) {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-        if (prefs.getBoolean(context
+        if (!forceCheck && prefs.getBoolean(context
                 .getString(R.string.disable_tv_ui_key), false)) {
             return false;
         }
@@ -63,9 +67,13 @@ public final class DeviceUtils {
     }
 
     public static boolean isTablet(@NonNull final Context context) {
+        return isTablet(context, false);
+    }
+
+    public static boolean isTablet(@NonNull final Context context, final boolean forceCheck) {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-        if (prefs.getBoolean(context
+        if (!forceCheck && prefs.getBoolean(context
                 .getString(R.string.disable_tablet_ui_key), false)) {
             return false;
         }
