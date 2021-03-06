@@ -383,7 +383,7 @@ public final class Player implements
     // SponsorBlock
     //////////////////////////////////////////////////////////////////////////*/
     private SponsorBlockMode sponsorBlockMode = SponsorBlockMode.DISABLED;
-
+    private int lastSkipTarget = -1;
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1563,6 +1563,7 @@ public final class Player implements
         if (sponsorBlockMode == SponsorBlockMode.ENABLED) {
             final VideoSegment segment = getSkippableSegment(currentProgress);
             if (segment == null) {
+                lastSkipTarget = -1;
                 return;
             }
 
@@ -1573,6 +1574,12 @@ public final class Player implements
             if (skipTarget < 0) {
                 skipTarget = 0;
             }
+
+            if (lastSkipTarget == skipTarget) {
+                return;
+            }
+
+            lastSkipTarget = skipTarget;
 
             // temporarily force EXACT seek parameters to prevent infinite skip looping
             final SeekParameters seekParams = simpleExoPlayer.getSeekParameters();

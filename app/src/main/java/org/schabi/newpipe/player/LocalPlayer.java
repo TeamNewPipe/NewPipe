@@ -46,6 +46,7 @@ public class LocalPlayer implements EventListener {
     private VideoSegment[] videoSegments;
     private LocalPlayerListener listener;
     private int lastCurrentProgress = -1;
+    private int lastSkipTarget = -1;
 
     public LocalPlayer(final Context context) {
         this.context = context;
@@ -248,6 +249,7 @@ public class LocalPlayer implements EventListener {
 
         final VideoSegment segment = getSkippableSegment(currentProgress);
         if (segment == null) {
+            lastSkipTarget = -1;
             return;
         }
 
@@ -258,6 +260,12 @@ public class LocalPlayer implements EventListener {
         if (skipTarget < 0) {
             skipTarget = 0;
         }
+
+        if (lastSkipTarget == skipTarget) {
+            return;
+        }
+
+        lastSkipTarget = skipTarget;
 
         // temporarily force EXACT seek parameters to prevent infinite skip looping
         final SeekParameters seekParams = simpleExoPlayer.getSeekParameters();
