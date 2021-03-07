@@ -285,6 +285,20 @@
                         tools:ignore="RtlHardcoded" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/screenLock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:contentDescription="@string/share"
+                        android:focusable="true"
+                        android:padding="@dimen/player_main_buttons_padding"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@android:drawable/ic_lock_idle_lock"
+                        tools:ignore="RtlHardcoded" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/openInBrowser"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
@@ -463,6 +477,26 @@
                 tools:ignore="ContentDescription" />
 
         </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/lockedRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/video_overlay_color"
+        android:visibility="gone"
+        tools:visibility="visible" >
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/lockedButton"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_pause_white_24dp"
+            tools:ignore="ContentDescription" />
 
     </RelativeLayout>
 

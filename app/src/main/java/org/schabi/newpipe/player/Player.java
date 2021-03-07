@@ -288,6 +288,7 @@ public final class Player implements
     private boolean isFullscreen = false;
     private boolean isVerticalVideo = false;
     private boolean fragmentIsVisible = false;
+    private boolean isLocked = false;
 
     private List<VideoStream> availableStreams;
     private int selectedStreamIndex;
@@ -523,6 +524,7 @@ public final class Player implements
         binding.screenRotationButton.setOnClickListener(this);
         binding.playWithKodi.setOnClickListener(this);
         binding.openInBrowser.setOnClickListener(this);
+        binding.screenLock.setOnClickListener(this);
         binding.playerCloseButton.setOnClickListener(this);
         binding.switchMute.setOnClickListener(this);
 
@@ -1682,16 +1684,23 @@ public final class Player implements
         if (DEBUG) {
             Log.d(TAG, "showControlsThenHide() called");
         }
-        showOrHideButtons();
-        showSystemUIPartially();
 
         final int hideTime = binding.playbackControlRoot.isInTouchMode()
-                ? DEFAULT_CONTROLS_HIDE_TIME
-                : DPAD_CONTROLS_HIDE_TIME;
+            ? DEFAULT_CONTROLS_HIDE_TIME
+            : DPAD_CONTROLS_HIDE_TIME;
 
-        showHideShadow(true, DEFAULT_CONTROLS_DURATION);
-        animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
+        if (isLocked) {
+            animate(binding.lockedRoot, true, DEFAULT_CONTROLS_DURATION,
                 AnimationType.ALPHA, 0, () -> hideControls(DEFAULT_CONTROLS_DURATION, hideTime));
+        } else {
+            showOrHideButtons();
+            showSystemUIPartially();
+
+            showHideShadow(true, DEFAULT_CONTROLS_DURATION);
+            animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
+                AnimationType.ALPHA, 0, () -> hideControls(DEFAULT_CONTROLS_DURATION, hideTime));
+        }
+
     }
 
     public void showControls(final long duration) {
@@ -3438,6 +3447,9 @@ public final class Player implements
             onPlayWithKodiClicked();
         } else if (v.getId() == binding.openInBrowser.getId()) {
             onOpenInBrowserClicked();
+        } else if (v.getId() == binding.screenLock.getId()) {
+            onScreenLockClicked();
+            return;
         } else if (v.getId() == binding.fullScreenButton.getId()) {
             setRecovery();
             NavigationHelper.playOnMainPlayer(context, playQueue, true);
@@ -3585,6 +3597,11 @@ public final class Player implements
             ShareUtils.openUrlInBrowser(getParentActivity(),
                     currentMetadata.getMetadata().getOriginalUrl());
         }
+    }
+
+    private void onScreenLockClicked() {
+        isLocked = true;
+        hideControls(DEFAULT_CONTROLS_DURATION, 0);
     }
     //endregion
 
