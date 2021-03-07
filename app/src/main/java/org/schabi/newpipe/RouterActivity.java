@@ -150,36 +150,39 @@ public class RouterActivity extends AppCompatActivity {
     private void handleUrl(final String url) {
         disposables.add(Observable
                 .fromCallable(() -> {
-                    if (currentServiceId == -1) {
-                        currentService = NewPipe.getServiceByUrl(url);
-                        currentServiceId = currentService.getServiceId();
-                        currentLinkType = currentService.getLinkTypeByUrl(url);
-                        currentUrl = url;
-                    } else {
-                        currentService = NewPipe.getService(currentServiceId);
-                    }
+                    try {
+                        if (currentServiceId == -1) {
+                            currentService = NewPipe.getServiceByUrl(url);
+                            currentServiceId = currentService.getServiceId();
+                            currentLinkType = currentService.getLinkTypeByUrl(url);
+                            currentUrl = url;
+                        } else {
+                            currentService = NewPipe.getService(currentServiceId);
+                        }
 
-                    return currentLinkType != LinkType.NONE;
+                        // return whether the url was found to be supported or not
+                        return currentLinkType != LinkType.NONE;
+                    } catch (final ExtractionException e) {
+                        // this can be reached only when the url is completely unsupported
+                        return false;
+                    }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(result -> {
-                    if (result) {
+                .subscribe(isUrlSupported -> {
+                    if (isUrlSupported) {
                         onSuccess();
                     } else {
                         showUnsupportedUrlDialog(url);
                     }
-                }, throwable -> handleError(this,
-                        new ErrorInfo(throwable, UserAction.SHARE_TO_NEWPIPE, url))));
+                }, throwable -> handleError(this, new ErrorInfo(throwable,
+                        UserAction.SHARE_TO_NEWPIPE, "Getting service from url: " + url))));
     }
 
     /**
-     * @param context the context. If instance of {@link RouterActivity} it will be finished at the
-     *                end, and if needed {@link #showUnsupportedUrlDialog(String)} will be called
-     *                on it.
-     * @param errorInfo The error information. The field {@link ErrorInfo#getRequest()} has to
-     *                  contain the url, if context is instance of {@link RouterActivity}, since it
-     *                  could be used to call {@link #showUnsupportedUrlDialog(String)}.
+     * @param context the context. It will be {@code finish()}ed at the end of the handling if it is
+     *                an instance of {@link RouterActivity}.
+     * @param errorInfo the error information
      */
     private static void handleError(final Context context, final ErrorInfo errorInfo) {
         if (errorInfo.getThrowable() != null) {
@@ -214,10 +217,6 @@ public class RouterActivity extends AppCompatActivity {
             Toast.makeText(context, R.string.content_not_available, Toast.LENGTH_LONG).show();
         } else if (errorInfo.getThrowable() instanceof ContentNotSupportedException) {
             Toast.makeText(context, R.string.content_not_supported, Toast.LENGTH_LONG).show();
-        } else if (errorInfo.getThrowable() instanceof ExtractionException
-                && context instanceof RouterActivity) {
-            // unfortunately we cannot tell if the error is really caused by an unsupported url
-            ((RouterActivity) context).showUnsupportedUrlDialog(errorInfo.getRequest());
         } else {
             ErrorActivity.reportError(context, errorInfo);
         }
@@ -548,8 +547,8 @@ public class RouterActivity extends AppCompatActivity {
                     .subscribe(intent -> {
                         startActivity(intent);
                         finish();
-                    }, throwable -> handleError(this,
-                            new ErrorInfo(throwable, UserAction.SHARE_TO_NEWPIPE, currentUrl)))
+                    }, throwable -> handleError(this, new ErrorInfo(throwable,
+                            UserAction.SHARE_TO_NEWPIPE, "Starting info activity: " + currentUrl)))
             );
             return;
         }
