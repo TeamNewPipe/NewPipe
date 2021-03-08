@@ -142,6 +142,7 @@ public final class PlayQueueActivity extends AppCompatActivity
                 return true;
             case R.id.action_clear_queue:
                 player.getPlayQueue().removeAll();
+                player.hidePlayer();
                 return true;
             case R.id.action_switch_main:
                 this.player.setRecovery();

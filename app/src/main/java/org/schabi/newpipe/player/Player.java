@@ -1346,6 +1346,13 @@ public final class Player implements
         animatePopupOverlayAndFinishService();
     }
 
+    public void hidePlayer() {
+        context.sendBroadcast(new Intent(
+                        VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER
+                )
+        );
+    }
+
     public void removePopupFromView() {
         if (windowManager != null) {
             // wrap in try-catch since it could sometimes generate errors randomly
@@ -3454,7 +3461,7 @@ public final class Player implements
         } else if (v.getId() == binding.switchMute.getId()) {
             onMuteUnmuteButtonClicked();
         } else if (v.getId() == binding.playerCloseButton.getId()) {
-            context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
+            hidePlayer();
         }
 
         if (currentState != STATE_COMPLETED) {
