@@ -484,8 +484,9 @@ public final class PlayerHelper {
                 break;
         }
 
+        // save the new resize mode so it can be restored in a future session
         player.getPrefs().edit().putInt(
-                player.getContext().getString(R.string.last_resize_mode), resizeMode).apply();
+                player.getContext().getString(R.string.last_resize_mode), newResizeMode).apply();
         return newResizeMode;
     }
 
