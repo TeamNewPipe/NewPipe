@@ -662,4 +662,5 @@
     <string name="show_description_title">Açıklamayı göster</string>
     <string name="open_with">Birlikte aç</string>
     <string name="no_app_to_open_intent">Aygıtınızdaki hiçbir uygulama bunu açamıyor</string>
+    <string name="crash_the_app">Uygulamayı çöktür</string>
 </resources>

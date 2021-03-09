@@ -664,5 +664,6 @@
     <string name="comments_tab_description">Commentaires</string>
     <string name="show_description_summary">Désactiver pour masquer la description de la vidéo et les informations supplémentaires</string>
     <string name="show_description_title">Afficher la description</string>
-    <string name="crash_the_app">Plante l\'application</string>
+    <string name="crash_the_app">Faire planter l\'application</string>
+    <string name="georestricted_content">Ce contenu n\'est pas disponible dans votre pays.</string>
 </resources>

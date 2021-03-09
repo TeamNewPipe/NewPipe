@@ -20,9 +20,15 @@ import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
+import org.schabi.newpipe.extractor.exceptions.AgeRestrictedContentException;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
+import org.schabi.newpipe.extractor.exceptions.GeographicRestrictionException;
+import org.schabi.newpipe.extractor.exceptions.PaidContentException;
+import org.schabi.newpipe.extractor.exceptions.PrivateContentException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
+import org.schabi.newpipe.extractor.exceptions.SoundCloudGoPlusContentException;
+import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentException;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.ErrorInfo;
@@ -223,11 +229,29 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         if (exception instanceof ReCaptchaException) {
             onReCaptchaException((ReCaptchaException) exception);
             return true;
-        } else if (exception instanceof ContentNotAvailableException) {
-            showError(getString(R.string.content_not_available), false);
-            return true;
         } else if (ExceptionUtils.isNetworkRelated(exception)) {
             showError(getString(R.string.network_error), true);
+            return true;
+        } else if (exception instanceof AgeRestrictedContentException) {
+            showError(getString(R.string.restricted_video_no_stream), false);
+            return true;
+        } else if (exception instanceof GeographicRestrictionException) {
+            showError(getString(R.string.georestricted_content), false);
+            return true;
+        } else if (exception instanceof PaidContentException) {
+            showError(getString(R.string.paid_content), false);
+            return true;
+        } else if (exception instanceof PrivateContentException) {
+            showError(getString(R.string.private_content), false);
+            return true;
+        } else if (exception instanceof SoundCloudGoPlusContentException) {
+            showError(getString(R.string.soundcloud_go_plus_content), false);
+            return true;
+        } else if (exception instanceof YoutubeMusicPremiumContentException) {
+            showError(getString(R.string.youtube_music_premium_content), false);
+            return true;
+        } else if (exception instanceof ContentNotAvailableException) {
+            showError(getString(R.string.content_not_available), false);
             return true;
         } else if (exception instanceof ContentNotSupportedException) {
             showError(getString(R.string.content_not_supported), false);

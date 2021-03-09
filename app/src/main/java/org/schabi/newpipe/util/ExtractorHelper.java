@@ -1,6 +1,6 @@
 /*
  * Copyright 2017 Mauricio Colli <mauriciocolli@outlook.com>
- * Extractors.java is part of NewPipe
+ * ExtractorHelper.java is part of NewPipe
  *
  * License: GPL-3.0+
  * This program is free software: you can redistribute it and/or modify
@@ -44,10 +44,16 @@ import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
+import org.schabi.newpipe.extractor.exceptions.AgeRestrictedContentException;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
+import org.schabi.newpipe.extractor.exceptions.GeographicRestrictionException;
+import org.schabi.newpipe.extractor.exceptions.PaidContentException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.exceptions.PrivateContentException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
+import org.schabi.newpipe.extractor.exceptions.SoundCloudGoPlusContentException;
+import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentException;
 import org.schabi.newpipe.extractor.feed.FeedExtractor;
 import org.schabi.newpipe.extractor.feed.FeedInfo;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
@@ -300,6 +306,21 @@ public final class ExtractorHelper {
                 context.startActivity(intent);
             } else if (ExceptionUtils.isNetworkRelated(exception)) {
                 Toast.makeText(context, R.string.network_error, Toast.LENGTH_LONG).show();
+            } else if (exception instanceof AgeRestrictedContentException) {
+                Toast.makeText(context, R.string.restricted_video_no_stream,
+                        Toast.LENGTH_LONG).show();
+            } else if (exception instanceof GeographicRestrictionException) {
+                Toast.makeText(context, R.string.georestricted_content, Toast.LENGTH_LONG).show();
+            } else if (exception instanceof PaidContentException) {
+                Toast.makeText(context, R.string.paid_content, Toast.LENGTH_LONG).show();
+            } else if (exception instanceof PrivateContentException) {
+                Toast.makeText(context, R.string.private_content, Toast.LENGTH_LONG).show();
+            } else if (exception instanceof SoundCloudGoPlusContentException) {
+                Toast.makeText(context, R.string.soundcloud_go_plus_content,
+                        Toast.LENGTH_LONG).show();
+            } else if (exception instanceof YoutubeMusicPremiumContentException) {
+                Toast.makeText(context, R.string.youtube_music_premium_content,
+                        Toast.LENGTH_LONG).show();
             } else if (exception instanceof ContentNotAvailableException) {
                 Toast.makeText(context, R.string.content_not_available, Toast.LENGTH_LONG).show();
             } else if (exception instanceof ContentNotSupportedException) {
