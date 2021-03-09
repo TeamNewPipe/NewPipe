@@ -1019,7 +1019,7 @@ public final class Player implements
     }
 
     private void showHideLockButton() {
-        boolean showLockButton = !DeviceUtils.isTv(context) && isFullscreen;
+        final boolean showLockButton = !DeviceUtils.isTv(context) && isFullscreen;
         binding.screenLock.setVisibility(showLockButton ? View.VISIBLE : View.GONE);
     }
 
@@ -1621,8 +1621,8 @@ public final class Player implements
 
     public boolean isControlsVisible() {
         return binding != null && (
-            binding.playbackControlRoot.getVisibility() == View.VISIBLE ||
-            binding.lockedRoot.getVisibility() == View.VISIBLE
+            binding.playbackControlRoot.getVisibility() == View.VISIBLE
+            || binding.lockedRoot.getVisibility() == View.VISIBLE
         );
     }
 
@@ -1707,12 +1707,12 @@ public final class Player implements
         showControls(duration, null);
     }
 
-    public void showControls(final long duration, Runnable callback) {
+    public void showControls(final long duration, final Runnable callback) {
         if (DEBUG) {
             Log.d(TAG, "showControls() called");
         }
 
-        RelativeLayout layoutToShow;
+        final RelativeLayout layoutToShow;
         if (!isLocked) {
             showOrHideButtons();
             showSystemUIPartially();
@@ -1737,13 +1737,13 @@ public final class Player implements
         hideControls(duration, delay, null);
     }
 
-    public void hideControls(final long duration, final long delay, Runnable callback) {
+    public void hideControls(final long duration, final long delay, final Runnable callback) {
         if (DEBUG) {
             Log.d(TAG, "hideControls() called with: duration = [" + duration
                     + "], delay = [" + delay + "]");
         }
 
-        RelativeLayout layoutToHide;
+        final RelativeLayout layoutToHide;
         if (!isLocked) {
             showOrHideButtons();
             layoutToHide = binding.playbackControlRoot;
@@ -2097,6 +2097,11 @@ public final class Player implements
         changePopupWindowFlags(IDLE_WINDOW_FLAGS);
 
         NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
+
+        if (isLocked) {
+            unlockScreen();
+        }
+
         if (isFullscreen) {
             toggleFullscreen();
         }
@@ -3468,7 +3473,7 @@ public final class Player implements
         } else if (v.getId() == binding.playNextButton.getId()) {
             playNext();
         } else if (v.getId() == binding.unlockButton.getId()) {
-            unlockScreen();
+            onUnlockClicked();
             return;
         } else if (v.getId() == binding.queueButton.getId()) {
             onQueueClicked();
@@ -3644,18 +3649,22 @@ public final class Player implements
 
     private void onScreenLockClicked() {
         hideControls(DEFAULT_CONTROLS_DURATION, 0, () -> {
-            getParentActivity().setRequestedOrientation(isVerticalVideo ?
-                ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT :
-                ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+            getParentActivity().setRequestedOrientation(isVerticalVideo
+                ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
+                : ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
             );
             this.isLocked = true;
         });
     }
 
     private void unlockScreen() {
+        this.isLocked = false;
+        getParentActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+    }
+
+    private void onUnlockClicked() {
         hideControls(DEFAULT_CONTROLS_DURATION / 2, 0, () -> {
-            this.isLocked = false;
-            getParentActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+            unlockScreen();
             showControls(DEFAULT_CONTROLS_DURATION / 2);
         });
     }
