@@ -1698,9 +1698,7 @@ public final class Player implements
         final int hideTime = binding.playbackControlRoot.isInTouchMode()
             ? DEFAULT_CONTROLS_HIDE_TIME
             : DPAD_CONTROLS_HIDE_TIME;
-        showControls(DEFAULT_CONTROLS_DURATION, () -> {
-            hideControls(DEFAULT_CONTROLS_DURATION, hideTime);
-        });
+        showControls(DEFAULT_CONTROLS_DURATION, () -> hideControls(DEFAULT_CONTROLS_DURATION, hideTime));
     }
 
     public void showControls(final long duration) {
@@ -3662,9 +3660,9 @@ public final class Player implements
     }
 
     private void onUnlockClicked() {
-        hideControls(DEFAULT_CONTROLS_DURATION / 2, 0, () -> {
+        hideControls(DEFAULT_CONTROLS_DURATION, 0, () -> {
             unlockScreen();
-            showControls(DEFAULT_CONTROLS_DURATION / 2);
+            showControlsThenHide();
         });
     }
     //endregion
