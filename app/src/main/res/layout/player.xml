@@ -452,7 +452,6 @@
                 app:srcCompat="@drawable/ic_previous_white_24dp"
                 tools:ignore="ContentDescription" />
 
-
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/playPauseButton"
                 android:layout_width="0dp"
@@ -489,13 +488,14 @@
         tools:visibility="visible" >
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/lockedButton"
+            android:id="@+id/unlockButton"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_pause_white_24dp"
+            app:srcCompat="@drawable/ic_done_white_24dp"
             tools:ignore="ContentDescription" />
 
     </RelativeLayout>

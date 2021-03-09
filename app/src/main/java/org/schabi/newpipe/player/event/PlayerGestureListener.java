@@ -104,8 +104,9 @@ public class PlayerGestureListener
         }
         if (playerType == MainPlayer.PlayerType.VIDEO) {
             final boolean isBrightnessGestureEnabled =
-                PlayerHelper.isBrightnessGestureEnabled(service);
-            final boolean isVolumeGestureEnabled = PlayerHelper.isVolumeGestureEnabled(service);
+                PlayerHelper.isBrightnessGestureEnabled(service) && !player.isLocked();
+            final boolean isVolumeGestureEnabled =
+                PlayerHelper.isVolumeGestureEnabled(service) && !player.isLocked();
 
             if (isBrightnessGestureEnabled && isVolumeGestureEnabled) {
                 if (portion == DisplayPortion.LEFT_HALF) {
