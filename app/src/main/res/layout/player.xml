@@ -487,17 +487,36 @@
         android:visibility="gone"
         tools:visibility="visible" >
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/unlockButton"
+        <LinearLayout
+            android:id="@+id/unlockView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:orientation="vertical"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_lock_white_24dp"
-            tools:ignore="ContentDescription" />
+            android:gravity="center"
+            tools:ignore="RtlHardcoded">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/unlockButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_lock_white_24dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/holdToUnlock"
+                android:text="@string/hold_to_unlock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 

@@ -517,7 +517,7 @@ public final class Player implements
         binding.playPauseButton.setOnClickListener(this);
         binding.playPreviousButton.setOnClickListener(this);
         binding.playNextButton.setOnClickListener(this);
-        binding.unlockButton.setOnClickListener(this);
+        binding.unlockButton.setOnLongClickListener(this);
 
         binding.moreOptionsButton.setOnClickListener(this);
         binding.moreOptionsButton.setOnLongClickListener(this);
@@ -3472,9 +3472,6 @@ public final class Player implements
             playPrevious();
         } else if (v.getId() == binding.playNextButton.getId()) {
             playNext();
-        } else if (v.getId() == binding.unlockButton.getId()) {
-            onUnlockClicked();
-            return;
         } else if (v.getId() == binding.queueButton.getId()) {
             onQueueClicked();
             return;
@@ -3542,6 +3539,8 @@ public final class Player implements
             fragmentListener.onMoreOptionsLongClicked();
             hideControls(0, 0);
             hideSystemUIIfNeeded();
+        } else if (v.getId() == binding.unlockButton.getId()) {
+            onUnlockClicked();
         }
         return true;
     }
