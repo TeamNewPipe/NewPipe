@@ -295,7 +295,7 @@
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
-                        app:srcCompat="@android:drawable/ic_lock_idle_lock"
+                        app:srcCompat="@drawable/ic_lock_open_white_24dp"
                         tools:ignore="RtlHardcoded" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
@@ -489,13 +489,14 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/unlockButton"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_margin="8dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_done_white_24dp"
+            app:srcCompat="@drawable/ic_lock_white_24dp"
             tools:ignore="ContentDescription" />
 
     </RelativeLayout>
