@@ -941,6 +941,7 @@ public final class Player implements
             binding.secondaryControls.setTranslationY(0);
             binding.share.setVisibility(View.GONE);
             binding.playWithKodi.setVisibility(View.GONE);
+            binding.screenLock.setVisibility(View.GONE);
             binding.openInBrowser.setVisibility(View.GONE);
             binding.switchMute.setVisibility(View.GONE);
             binding.playerCloseButton.setVisibility(View.GONE);
@@ -2801,6 +2802,7 @@ public final class Player implements
         registerStreamViewed();
         updateStreamRelatedViews();
         showHideKodiButton();
+        showHideLockButton();
 
         binding.titleTextView.setText(tag.getMetadata().getName());
         binding.channelTextView.setText(tag.getMetadata().getUploaderName());
@@ -3754,16 +3756,15 @@ public final class Player implements
         if (isFullscreen) {
             binding.titleTextView.setVisibility(View.VISIBLE);
             binding.channelTextView.setVisibility(View.VISIBLE);
-            binding.screenLock.setVisibility(View.VISIBLE);
             binding.playerCloseButton.setVisibility(View.GONE);
         } else {
             binding.titleTextView.setVisibility(View.GONE);
             binding.channelTextView.setVisibility(View.GONE);
             binding.playerCloseButton.setVisibility(
                     videoPlayerSelected() ? View.VISIBLE : View.GONE);
-            binding.screenLock.setVisibility(View.GONE);
         }
         setupScreenRotationButton();
+        showHideLockButton();
     }
 
     public void checkLandscape() {
