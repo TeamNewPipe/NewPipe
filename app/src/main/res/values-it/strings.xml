@@ -135,7 +135,6 @@
     <string name="filter">Filtra i risultati</string>
     <string name="refresh">Ricarica</string>
     <string name="clear">Cancella</string>
-    <string name="popup_resizing_indicator_title">Ridimensionamento</string>
     <string name="best_resolution">Risoluzione migliore</string>
     <string name="msg_popup_permission">Questo permesso è necessario
 \nper utilizzare il lettore popup</string>
@@ -663,4 +662,5 @@
     <string name="show_description_title">Mostra descrizione</string>
     <string name="open_with">Apri con</string>
     <string name="no_app_to_open_intent">Sul tuo dispositivo non c\'è alcuna app che può aprirlo</string>
+    <string name="crash_the_app">Fai crashare l\'app</string>
 </resources>

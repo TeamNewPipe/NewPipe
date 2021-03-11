@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Başlamak için \"Ara\" bölümüne dokunun
+    <string name="main_bg_subtitle">Başlamak için \"Ara\" bölümüne dokun
 \n</string>
     <string name="view_count_text">%1$s görüntüleme</string>
     <string name="upload_date_text">Yayınlanma: %1$s</string>
@@ -132,7 +132,6 @@
     <string name="popup_remember_size_pos_title">Açılır pencere özelliklerini hatırla</string>
     <string name="popup_remember_size_pos_summary">Açılan pencerenin son boyutunu ve konumunu hatırla</string>
     <string name="settings_category_popup_title">Açılır pencere</string>
-    <string name="popup_resizing_indicator_title">Yeniden boyutlandırılıyor</string>
     <string name="use_external_video_player_summary">Bazı çözünürlüklerde sesi kaldırır</string>
     <string name="player_gesture_controls_summary">Oynatıcının parlaklığını ve sesini denetlemek için hareketleri kullan</string>
     <string name="player_gesture_controls_title">Hareketli oynatıcı denetimi</string>
@@ -173,10 +172,10 @@
     <string name="enable_search_history_summary">Arama sorgularını yerel olarak saklayın</string>
     <string name="enable_watch_history_title">İzleme geçmişi</string>
     <string name="enable_watch_history_summary">İzlenen videoların kaydını tut</string>
-    <string name="resume_on_audio_focus_gain_title">Oynatmaya devam et</string>
-    <string name="resume_on_audio_focus_gain_summary">Kesintilerden sonra (örneğin telefon çağrısı) oynatmaya devam et</string>
+    <string name="resume_on_audio_focus_gain_title">Oynatmayı sürdür</string>
+    <string name="resume_on_audio_focus_gain_summary">Kesintilerden sonra (örneğin telefon çağrısı) oynatmayı sürdür</string>
     <string name="settings_category_player_title">Oynatıcı</string>
-    <string name="settings_category_player_behavior_title">Tercihler</string>
+    <string name="settings_category_player_behavior_title">Davranış</string>
     <string name="settings_category_history_title">Geçmiş ve önbellek</string>
     <string name="playlist">Oynatma Listesi</string>
     <string name="undo">Geri al</string>
@@ -307,8 +306,8 @@
     <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsündeki teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
     <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
     <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının daha düşük hassasiyetle daha hızlı konumlamasını sağlar. 5, 15 veya 25 saniyeye konumlama bununla birlikte çalışmamaktadır.</string>
-    <string name="auto_queue_title">Sonraki akışı otomatik kuyruğa ekle</string>
-    <string name="auto_queue_summary">İlgili bir akış ekleyerek sonlu (tekrarlanmayan) oynatma sırasını devam ettir</string>
+    <string name="auto_queue_title">Sonraki akışı kuyruğa kendiliğinden ekle</string>
+    <string name="auto_queue_summary">İlgili bir akış ekleyerek sonlanacak (yinelemeyen) oynatma sırasını sürdür</string>
     <string name="file">Dosya</string>
     <string name="invalid_directory">Böyle bir dizin yok</string>
     <string name="invalid_source">Böyle bir dosya/içerik kaynağı yok</string>
@@ -340,9 +339,9 @@
 \n3. Sorulduğunda giriş yapın
 \n4. Yönlendirildiğiniz profil URL\'sini kopyalayın.</string>
     <string name="import_soundcloud_instructions_hint">kimliginiz, soundcloud.com/kimliginiz</string>
-    <string name="import_network_expensive_warning">Bu sürecin ağa yük olabileceğini unutmayın. 
-\n 
-\nDevam etmek istiyor musunuz?</string>
+    <string name="import_network_expensive_warning">Bu sürecin ağa yük olabileceğini unutmayın.
+\n
+\nSürdürmek istiyor musunuz\?</string>
     <string name="download_thumbnail_title">Küçük resimleri yükle</string>
     <string name="download_thumbnail_summary">Küçük resimlerin yüklenmesini önlemek, veri ve hafıza kullanımından tasarruf etmek için kapatın. Değişiklikler, hem bellek içi hem de diskteki görüntü önbelleğini temizler.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Görüntü önbelleği silindi</string>
@@ -354,7 +353,7 @@
     <string name="playback_pitch">Ses yüksekliği</string>
     <string name="unhook_checkbox">Ayır (bozulmaya neden olabilir)</string>
     <string name="no_streams_available_download">İndirilebilecek akış yok</string>
-    <string name="preferred_open_action_settings_title">Tercih edilen \'aç\' eylemi</string>
+    <string name="preferred_open_action_settings_title">Yeğlenen \'aç\' eylemi</string>
     <string name="preferred_open_action_settings_summary">İçerik açılırken varsayılan eylem — %s</string>
     <string name="caption_setting_title">Alt yazılar</string>
     <string name="caption_setting_description">Oynatıcı alt yazı metin ölçeğini ve arka plan biçimini değiştirin. Etkili olması için uygulamayı yeniden başlatma gerektirir.</string>
@@ -416,7 +415,7 @@
     <string name="list_view_mode">Liste görünümü kipi</string>
     <string name="list">Liste</string>
     <string name="grid">Izgara</string>
-    <string name="auto">Otomatik</string>
+    <string name="auto">Kendiliğinden</string>
     <string name="switch_view">Görünümü Değiştir</string>
     <string name="app_update_notification_content_title">NewPipe güncellemesi var!</string>
     <string name="app_update_notification_content_text">İndirmek için dokunun</string>
@@ -455,7 +454,7 @@
     <string name="missions_header_pending">Beklemede</string>
     <string name="show_comments_title">Yorumları göster</string>
     <string name="show_comments_summary">Yorumları gizlemek için kapatın</string>
-    <string name="autoplay_title">Otomatik oynat</string>
+    <string name="autoplay_title">Kendiliğinden oynat</string>
     <string name="no_comments">Yorum yok</string>
     <string name="error_unable_to_load_comments">Yorumlar yüklenemedi</string>
     <string name="close">Kapat</string>
@@ -518,7 +517,7 @@
     <string name="local">Yerel</string>
     <string name="recently_added">Son eklenen</string>
     <string name="most_liked">En çok beğenilen</string>
-    <string name="playlist_no_uploader">Otomatik oluşturulan (yükleyen bulunamadı)</string>
+    <string name="playlist_no_uploader">Kendiliğinden oluşturulan (yükleyen bulunamadı)</string>
     <string name="recovering">kurtarılıyor</string>
     <string name="error_download_resource_gone">Bu indirme kurtarılamıyor</string>
     <string name="choose_instance_prompt">Oluşum seçin</string>
@@ -616,10 +615,10 @@
     <string name="no_playlist_bookmarked_yet">Henüz oynatma listesi yer imleri yok</string>
     <string name="never">Asla</string>
     <string name="wifi_only">Yalnızca Wi-Fi\'de</string>
-    <string name="autoplay_summary">Oynatmayı otomatik olarak başlat — %s</string>
+    <string name="autoplay_summary">Oynatmayı kendiliğinden başlat — %s</string>
     <string name="title_activity_play_queue">Oynatma kuyruğu</string>
     <string name="unsupported_url_dialog_message">URL tanınamadı. Başka bir uygulamayla açılsın mı\?</string>
-    <string name="auto_queue_toggle">Otomatik kuyruğa ekle</string>
+    <string name="auto_queue_toggle">Kendiliğinden kuyruğa ekle</string>
     <string name="clear_queue_confirmation_description">Etkin oynatıcının kuyruğu değiştirilecek</string>
     <string name="clear_queue_confirmation_summary">Bir oynatıcıdan diğerine geçmek kuyruğunuzu değiştirebilir</string>
     <string name="clear_queue_confirmation_title">Bir kuyruğu temizlemeden önce onay iste</string>
@@ -663,4 +662,5 @@
     <string name="show_description_title">Açıklamayı göster</string>
     <string name="open_with">Birlikte aç</string>
     <string name="no_app_to_open_intent">Aygıtınızdaki hiçbir uygulama bunu açamıyor</string>
+    <string name="crash_the_app">Uygulamayı çöktür</string>
 </resources>

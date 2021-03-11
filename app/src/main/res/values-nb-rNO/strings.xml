@@ -146,7 +146,6 @@
     <string name="filter">Filter</string>
     <string name="refresh">Oppdater</string>
     <string name="clear">Tøm</string>
-    <string name="popup_resizing_indicator_title">Endrer størrelse</string>
     <string name="best_resolution">Beste oppløsning</string>
     <string name="notification_channel_name">NewPipe-merknad</string>
     <string name="notification_channel_description">Merknad for NewPipe-bakgrunn og oppsprettsspillere</string>
@@ -663,4 +662,5 @@
     <string name="show_description_summary">Skru av for å skjule videobeskrivelse og ytterligere info</string>
     <string name="show_description_title">Vis beskrivelse</string>
     <string name="open_with">Åpne med</string>
+    <string name="crash_the_app">Krasj programmet</string>
 </resources>

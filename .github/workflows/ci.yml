@@ -1,6 +1,13 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  pull_request:
+    branches:
+      - dev
+  push:
+    branches: 
+      - dev
+      - master
 
 jobs:
   build-and-test:

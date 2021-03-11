@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Tap \"Search\" to get started
 \n</string>
@@ -164,6 +164,7 @@
     <string name="youtube_restricted_mode_enabled_title">Turn on YouTube\'s \"Restricted Mode\"</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube provides a \"Restricted Mode\" which hides potentially mature content</string>
     <string name="restricted_video">This video is age restricted.\n\nTurn on \"%1$s\" in the settings if you want to see it.</string>
+    <string name="restricted_video_no_stream">This video is age-restricted.\nDue to new YouTube policies with age-restricted videos, NewPipe cannot access any of its video streams and thus is unable to play it.</string>
     <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -186,7 +187,6 @@
     <string name="filter">Filter</string>
     <string name="refresh">Refresh</string>
     <string name="clear">Clear</string>
-    <string name="popup_resizing_indicator_title">Resizing</string>
     <string name="best_resolution">Best resolution</string>
     <string name="undo">Undo</string>
     <string name="file_deleted">File deleted</string>
@@ -519,6 +519,7 @@
     <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal</string>
     <string name="show_original_time_ago_title">Show original time ago on items</string>
     <string name="show_original_time_ago_summary">Original texts from services will be visible in stream items</string>
+    <string name="crash_the_app">Crash the app</string>
     <!-- Subscriptions import/export -->
     <string name="import_export_title">Import/export</string>
     <string name="import_title">Import</string>
@@ -701,4 +702,9 @@
     <string name="chapters">Chapters</string>
     <string name="no_app_to_open_intent">No app on your device can open this</string>
     <string name="clear_queue">Clear Queue</string>
+    <string name="georestricted_content">This content is not available in your country.</string>
+    <string name="soundcloud_go_plus_content">This is a SoundCloud Go+ track, at least in your country, so it cannot be streamed or downloaded by NewPipe.</string>
+    <string name="private_content">This content is private, so it cannot be streamed or downloaded by NewPipe.</string>
+    <string name="youtube_music_premium_content">This video is available only to YouTube Music Premium members, so it cannot be streamed or downloaded by NewPipe.</string>
+    <string name="paid_content">This content is only available to users who have paid, so it cannot be streamed or downloaded by NewPipe.</string>
 </resources>

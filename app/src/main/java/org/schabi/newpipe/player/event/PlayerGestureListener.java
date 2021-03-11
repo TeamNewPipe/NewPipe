@@ -251,7 +251,6 @@ public class PlayerGestureListener
 
         player.hideControls(0, 0);
         animate(player.getCurrentDisplaySeek(), false, 0, ALPHA, 0);
-        animate(player.getResizingIndicator(), true, 200, ALPHA, 0);
     }
 
     @Override
@@ -259,7 +258,6 @@ public class PlayerGestureListener
         if (DEBUG) {
             Log.d(TAG, "onPopupResizingEnd called");
         }
-        animate(player.getResizingIndicator(), false, 100, ALPHA, 0);
     }
 }
 

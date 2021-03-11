@@ -71,7 +71,6 @@
     <string name="filter">ফিল্টার</string>
     <string name="refresh">রিফ্রেশ</string>
     <string name="clear">পরিষ্কার</string>
-    <string name="popup_resizing_indicator_title">আকার পরিবর্তন</string>
     <!-- error strings -->
     <string name="general_error">ত্রুটি</string>
     <string name="network_error">নেটওয়ার্ক ত্রুটি</string>
@@ -321,7 +320,7 @@
     <string name="recaptcha_done_button">হয়েছে</string>
     <string name="events">ইভেন্টগুলো</string>
     <string name="settings_category_updates_title">আপডেট</string>
-    <string name="minimize_on_exit_none_description">না</string>
+    <string name="minimize_on_exit_none_description">কোনটি না</string>
     <string name="accept">স্বীকার করো</string>
     <string name="decline">অস্বীকার করো</string>
     <string name="caption_setting_title">ক্যাপশন</string>

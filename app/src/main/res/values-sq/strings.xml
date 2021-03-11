@@ -505,7 +505,6 @@
     <string name="file_deleted">Skedari u fshi</string>
     <string name="undo">Zhbëj</string>
     <string name="best_resolution">Rezolucioni më i mirë</string>
-    <string name="popup_resizing_indicator_title">Ndryshimi i madhësisë</string>
     <string name="clear">Pastro</string>
     <string name="refresh">Rifresko</string>
     <string name="filter">Filtër</string>
@@ -638,4 +637,19 @@
     <string name="recaptcha_cookies_cleared">Biskotat reCAPTCHA janë pastruar</string>
     <string name="clear_cookie_title">Pastroni biskotat reCAPTCHA</string>
     <string name="notification_colorize_title">Ngjyros njoftimin</string>
+    <string name="no_app_to_open_intent">Nuk ka app në këtë pajisje që mund ta ngarkojë</string>
+    <string name="chapters">Kapitujt</string>
+    <string name="recent">Të fundit</string>
+    <string name="show_thumbnail_title">Shfaq pamjen miniaturë</string>
+    <string name="msg_calculating_hash">Duke llogaritur hash</string>
+    <string name="description_tab_description">Përshkrimi</string>
+    <string name="related_streams_tab_description">Streams të ngjashme</string>
+    <string name="comments_tab_description">Komentet</string>
+    <string name="hash_channel_description">Njoftimet mbi progresin e hash-imit të videove</string>
+    <string name="hash_channel_name">Njoftimi për Hash e Videos</string>
+    <string name="show_meta_info_title">Shfaq të dhënat meta</string>
+    <string name="show_description_summary">Ç\'aktivizoje për të fshehur përshkrimin e videos dhe informacione shtesë</string>
+    <string name="show_description_title">Shfaq përshkrimin</string>
+    <string name="notification_colorize_summary">Lejoje Android që të modifikojë ngjyrën e njoftimit bazuar tek ngjyra kryesore në pamjen miniaturë (mbani mend që kjo nuk është e disponueshme në të gjitha pajisjet)</string>
+    <string name="open_with">Hape me</string>
 </resources>

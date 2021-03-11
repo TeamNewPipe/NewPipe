@@ -33,9 +33,13 @@ data class FeedGroupReorderItem(
     override fun bind(viewBinding: FeedGroupReorderItemBinding, position: Int) {
         viewBinding.groupName.text = name
         viewBinding.groupIcon.setImageResource(icon.getDrawableRes(viewBinding.root.context))
-        viewBinding.handle.setOnTouchListener { _, event ->
+    }
+
+    override fun bind(viewHolder: GroupieViewHolder<FeedGroupReorderItemBinding>, position: Int, payloads: MutableList<Any>) {
+        super.bind(viewHolder, position, payloads)
+        viewHolder.binding.handle.setOnTouchListener { _, event ->
             if (event.actionMasked == MotionEvent.ACTION_DOWN) {
-                dragCallback.startDrag(GroupieViewHolder(viewBinding))
+                dragCallback.startDrag(viewHolder)
                 return@setOnTouchListener true
             }
 

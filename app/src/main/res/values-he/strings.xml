@@ -76,7 +76,6 @@
     <string name="filter">מסנן</string>
     <string name="refresh">רענון</string>
     <string name="clear">פינוי</string>
-    <string name="popup_resizing_indicator_title">שינוי גודל</string>
     <string name="general_error">שגיאה</string>
     <string name="network_error">שגיאת רשת</string>
     <string name="could_not_load_thumbnails">אין אפשרות לטעון את כל התמונות הממוזערות</string>
@@ -683,4 +682,5 @@
     <string name="show_description_title">הצגת תיאור</string>
     <string name="open_with">פתיחה באמצעות</string>
     <string name="no_app_to_open_intent">אין יישומון על המכשיר שלך שיכול לפתוח את זה</string>
+    <string name="crash_the_app">להקריס את היישומון</string>
 </resources>

@@ -90,7 +90,7 @@
     <string name="what_device_headline">Информация:</string>
     <string name="what_happened_headline">Что произошло:</string>
     <string name="error_details_headline">Подробности:</string>
-    <string name="use_tor_summary">Загружать через Tor для повышения конфиденциальности (прямые трансляции пока не поддерживаются)</string>
+    <string name="use_tor_summary">Загружать через Tor для повышения конфиденциальности (прямые трансляции пока не поддерживаются).</string>
     <string name="report_error">Сообщить об ошибке</string>
     <string name="user_report">Сообщить о нарушении</string>
     <string name="info_dir_created">Создана папка для загрузок \"%1$s\"</string>
@@ -119,18 +119,17 @@
     <string name="all">Всё</string>
     <string name="filter">Фильтр</string>
     <string name="add">Новая цель</string>
-    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:</string>
+    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВариант ОС:</string>
     <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>
     <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
     <string name="show_search_suggestions_summary">Предлагать варианты при поиске</string>
     <string name="later">Позже</string>
     <string name="disabled">Отключено</string>
-    <string name="popup_resizing_indicator_title">Изменение размера</string>
     <string name="use_external_video_player_summary">Убирает звук в некоторых разрешениях</string>
-    <string name="short_million">" млн"</string>
-    <string name="short_billion">" млрд"</string>
-    <string name="short_thousand">" тыс."</string>
+    <string name="short_million">млн</string>
+    <string name="short_billion">млрд</string>
+    <string name="short_thousand">тыс.</string>
     <string name="default_popup_resolution_title">Разрешение всплывающего окна</string>
     <string name="popup_remember_size_pos_summary">Помнить последние размер и позицию всплывающего окна</string>
     <string name="show_search_suggestions_title">Поисковые предложения</string>
@@ -244,7 +243,7 @@
     <string name="start_here_on_main">Играть отсюда в плеере</string>
     <string name="start_here_on_background">Играть отсюда в фоне</string>
     <string name="start_here_on_popup">Играть отсюда в окне</string>
-    <string name="no_player_found_toast">Потоковый плеер не найден (можно установить VLC)</string>
+    <string name="no_player_found_toast">Потоковый плеер не найден (можно установить VLC).</string>
     <string name="default_content_country_title">Страна контента по умолчанию</string>
     <string name="service_title">Сервис</string>
     <string name="always">Всегда</string>
@@ -275,7 +274,7 @@
     <string name="tab_bookmarks">Плейлисты</string>
     <string name="controls_add_to_playlist_title">В плейлист</string>
     <string name="use_inexact_seek_title">Быстрый поиск позиции</string>
-    <string name="use_inexact_seek_summary">Выполняется быстрее, но менее точно. Не работает для перемотки на 5, 15 или 25 секунд</string>
+    <string name="use_inexact_seek_summary">Выполняется быстрее, но менее точно. Не работает для перемотки на 5, 15 или 25 секунд.</string>
     <string name="auto_queue_title">Автодополнение очереди</string>
     <string name="auto_queue_summary">Добавлять похожие потоки в очередь при воспроизведении последнего потока, если не включён повтор</string>
     <string name="settings_category_debug_title">Отладка</string>
@@ -302,8 +301,8 @@
     <string name="export_complete_toast">Экспорт завершён</string>
     <string name="import_complete_toast">Импорт завершён</string>
     <string name="no_valid_zip_file">Нет верного Zip-файла</string>
-    <string name="could_not_import_all_files">Внимание: не все файлы были импортированы</string>
-    <string name="override_current_data">Текущие данные будут заменены</string>
+    <string name="could_not_import_all_files">Внимание: не все файлы были импортированы.</string>
+    <string name="override_current_data">Текущие данные будут заменены.</string>
     <string name="drawer_header_action_paceholder_text">Скоро здесь кое-что появится ;D</string>
     <string name="always_ask_open_action">Всегда спрашивать</string>
     <string name="create_playlist">Новый плейлист</string>
@@ -317,8 +316,8 @@
     <string name="delete_playlist_prompt">Удалить плейлист\?</string>
     <string name="playlist_creation_success">Плейлист создан</string>
     <string name="playlist_add_stream_success">Добавлено в плейлист</string>
-    <string name="playlist_thumbnail_change_success">Миниатюра плейлиста изменена</string>
-    <string name="playlist_delete_failure">Не удалось удалить плейлист</string>
+    <string name="playlist_thumbnail_change_success">Миниатюра плейлиста изменена.</string>
+    <string name="playlist_delete_failure">Не удалось удалить плейлист.</string>
     <string name="caption_none">Без субтитров</string>
     <string name="resize_fit">Подогнать</string>
     <string name="resize_fill">Заполнить</string>
@@ -356,7 +355,7 @@
 \n 
 \nПродолжить?</string>
     <string name="download_thumbnail_title">Загружать миниатюры</string>
-    <string name="download_thumbnail_summary">Отключите, чтобы не загружать миниатюры и сэкономить трафик и память. Изменение настройки очистит кэш изображений</string>
+    <string name="download_thumbnail_summary">Отключите, чтобы не загружать миниатюры и сэкономить трафик и память. Изменение настройки очистит кэш изображений.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш изображений очищен</string>
     <string name="metadata_cache_wipe_title">Очистить кэш метаданных</string>
     <string name="metadata_cache_wipe_complete_notice">Кэш метаданных очищен</string>
@@ -369,16 +368,16 @@
     <string name="no_streams_available_download">Нет потоков для загрузки</string>
     <string name="caption_setting_title">Субтитры</string>
     <string name="toast_no_player">Приложение для воспроизведения этого файла не установлено</string>
-    <string name="caption_setting_description">Изменить размер текста и стиль субтитров. Нужен перезапуск</string>
+    <string name="caption_setting_description">Изменить размер текста и стиль субтитров. Нужен перезапуск.</string>
     <string name="clear_views_history_title">Очистить историю</string>
     <string name="delete_view_history_alert">Удалить всю историю просмотров\?</string>
-    <string name="watch_history_deleted">История просмотров удалена</string>
+    <string name="watch_history_deleted">История просмотров удалена.</string>
     <string name="clear_search_history_title">Очистить запросы поиска</string>
     <string name="clear_search_history_summary">Удалить все запросы поиска</string>
     <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков и позиции воспроизведения</string>
     <string name="delete_search_history_alert">Удалить всю историю поиска\?</string>
-    <string name="search_history_deleted">История поиска удалена</string>
-    <string name="one_item_deleted">1 элемент удалён</string>
+    <string name="search_history_deleted">История поиска удалена.</string>
+    <string name="one_item_deleted">1 элемент удалён.</string>
     <string name="app_license">NewPipe — свободное программное обеспечение: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с условиями GNU General Public License, опубликованной Free Software Foundation, либо версии 3, либо (по вашему выбору) любой более поздней версии.</string>
     <string name="preferred_open_action_settings_title">При открытии ссылки</string>
     <string name="import_settings">Хотите импортировать настройки?</string>
@@ -472,7 +471,7 @@
     <string name="autoplay_title">Автовоспроизведение</string>
     <string name="no_comments">Нет комментариев</string>
     <string name="error_unable_to_load_comments">Не удалось загрузить комментарии</string>
-    <string name="watch_history_states_deleted">Позиции воспроизведения удалены</string>
+    <string name="watch_history_states_deleted">Позиции воспроизведения удалены.</string>
     <string name="missing_file">Файл перемещён или удалён</string>
     <string name="overwrite_unrelated_warning">Файл с таким именем уже существует</string>
     <string name="overwrite_failed">не удаётся перезаписать файл</string>
@@ -490,7 +489,8 @@
     <string name="downloads_storage_ask_summary_kitkat">Для каждой загрузки запрашивать папку для сохранения. 
 \nИспользуйте SAF для загрузки на SD-карту</string>
     <string name="downloads_storage_use_saf_title">Использовать SAF</string>
-    <string name="downloads_storage_use_saf_summary">Storage Access Framework позволяет сохранять файлы на SD-карте. Поддерживается не всеми устройствами</string>
+    <string name="downloads_storage_use_saf_summary">Storage Access Framework позволяет сохранять файлы на SD-карте.
+\nПоддерживается не всеми устройствами</string>
     <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>
     <string name="clear_playback_states_summary">Удалить все позиции воспроизведения</string>
     <string name="delete_playback_states_alert">Удалить все позиции воспроизведения\?</string>
@@ -509,7 +509,7 @@
         <item quantity="few">%s слушателя</item>
         <item quantity="many">%s слушателей</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Язык будет изменён после перезапуска</string>
+    <string name="localization_changes_requires_app_restart">Язык будет изменён после перезапуска.</string>
     <string name="seek_duration_title">Шаг перемотки</string>
     <string name="peertube_instance_url_title">Серверы PeerTube</string>
     <string name="peertube_instance_url_summary">Выберите предпочтительные серверы</string>
@@ -592,7 +592,7 @@
 \n
 \nВыбор за вами: скорость или точность.</string>
     <string name="feed_use_dedicated_fetch_method_title">Обновление по RSS, если доступно</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, может возвращать не всё содержимое канала и не содержать часть сведений (длительность, статус трансляции)</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, может возвращать не всё содержимое канала и не содержать часть сведений (длительность, статус трансляции).</string>
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
     <string name="restricted_video">Это видео имеет возрастное ограничение.
 \n
@@ -608,8 +608,7 @@
     <string name="remove_watched">Удалить просмотренные</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Да, и частично просмотренные</string>
     <string name="remove_watched_popup_warning">Видео, просмотренные до или после добавления в плейлист, будут удалены.
-\n
-\nПродолжить\?</string>
+\nПродолжить\? Не может быть отменено!</string>
     <string name="remove_watched_popup_title">Удалить просмотренные видео\?</string>
     <string name="show_original_time_ago_summary">Отображать сообщённое сервисом время с момента публикации</string>
     <string name="show_original_time_ago_title">Исходное время публикации</string>
@@ -640,7 +639,7 @@
     <string name="notification_action_shuffle">Перемешать</string>
     <string name="notification_action_repeat">Повтор</string>
     <string name="notification_actions_at_most_three">В компактном уведомлении доступно не более трёх действий!</string>
-    <string name="notification_actions_summary">Действия можно изменить, нажав на них. Отметьте не более трёх для отображения в компактном уведомлении</string>
+    <string name="notification_actions_summary">Действия можно изменить, нажав на них. Отметьте не более трёх для отображения в компактном уведомлении.</string>
     <string name="notification_action_4_title">Пятое действие</string>
     <string name="notification_action_3_title">Четвёртое действие</string>
     <string name="notification_action_2_title">Третье действие</string>
@@ -664,7 +663,7 @@
     <string name="hash_channel_name">Уведомление о хэшировании</string>
     <string name="msg_calculating_hash">Вычисляется хэш</string>
     <string name="recent">Недавнее</string>
-    <string name="show_meta_info_summary">Отключите, чтобы скрыть поля метаданных (автор потока, содержимое потока или поисковый запрос)</string>
+    <string name="show_meta_info_summary">Отключите, чтобы скрыть поля метаданных (автор потока, содержимое потока или поисковый запрос).</string>
     <string name="show_meta_info_title">Показать метаданные</string>
     <string name="related_streams_tab_description">Похожие потоки</string>
     <string name="chapters">Главы</string>
@@ -674,4 +673,5 @@
     <string name="show_description_title">Показать описание</string>
     <string name="open_with">Открыть в</string>
     <string name="no_app_to_open_intent">Подходящее приложение не найдено</string>
+    <string name="crash_the_app">Сбой приложения</string>
 </resources>

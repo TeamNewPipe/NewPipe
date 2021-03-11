@@ -76,7 +76,7 @@
     <string name="error_snackbar_action">Informar</string>
     <string name="what_device_headline">Información:</string>
     <string name="what_happened_headline">Qué ha ocurrido:</string>
-    <string name="your_comment">Su comentario (en Inglés):</string>
+    <string name="your_comment">Su comentario (en inglés):</string>
     <string name="error_details_headline">Detalles:</string>
     <string name="report_error">Informar de un error</string>
     <string name="user_report">Informe de usuario</string>
@@ -104,7 +104,7 @@
     <string name="no_available_dir">Defina una carpeta de descargas más tarde en los ajustes</string>
     <string name="could_not_load_image">No se pudo cargar la imagen</string>
     <string name="app_ui_crash">La interfaz de la aplicación dejó de funcionar</string>
-    <string name="info_labels">Lo sucedido:\\nPetición:\\nIdioma del Contenido:\\nPaís del contenido:\\nIdioma de la aplicación:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
+    <string name="info_labels">Lo sucedido:\\nPetición:\\nIdioma del contenido:\\nPaís del contenido:\\nIdioma de la aplicación:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
     <string name="black_theme_title">Negro</string>
     <string name="all">Todo</string>
     <string name="channel">Canal</string>
@@ -112,7 +112,7 @@
     <string name="later">Después</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">G</string>
+    <string name="short_billion">MM</string>
     <string name="open_in_popup_mode">Abrir en modo emergente</string>
     <string name="msg_popup_permission">Se necesita este permiso
 \npara abrir en modo emergente</string>
@@ -133,7 +133,6 @@
     <string name="popup_remember_size_pos_title">Recordar propiedades del reproductor emergente</string>
     <string name="popup_remember_size_pos_summary">Recordar el último tamaño y posición del reproductor emergente</string>
     <string name="settings_category_popup_title">Emergente</string>
-    <string name="popup_resizing_indicator_title">Redimensionando</string>
     <string name="use_external_video_player_summary">Quita el audio en algunas resoluciones</string>
     <string name="player_gesture_controls_title">Controles del reproductor por gestos</string>
     <string name="player_gesture_controls_summary">Usar gestos para controlar el brillo y volumen del reproductor</string>
@@ -184,7 +183,7 @@
     <string name="history_empty">El historial está vacío</string>
     <string name="history_cleared">Se vació el historial</string>
     <string name="notification_channel_name">Notificación de NewPipe</string>
-    <string name="notification_channel_description">Notificaciones de reproductores en segundo plano o emergentes de NewPipe</string>
+    <string name="notification_channel_description">Notificaciones para reproductores en segundo plano y emergentes de NewPipe</string>
     <string name="settings_category_player_title">Reproductor</string>
     <string name="settings_category_player_behavior_title">Funcionamiento</string>
     <string name="settings_category_history_title">Historial y caché</string>
@@ -235,7 +234,7 @@
     <string name="start_here_on_main">Comenzar a reproducir aquí</string>
     <string name="start_here_on_background">Comenzar a reproducir en segundo plano</string>
     <string name="start_here_on_popup">Reproducir en modo emergente</string>
-    <string name="show_hold_to_append_title">Mostrar consejo «Mantener pulsado para añadir»</string>
+    <string name="show_hold_to_append_title">Mostrar la sugerencia \"Mantener pulsado para añadir a la cola\"</string>
     <string name="new_and_hot">Nuevo y lo mejor</string>
     <string name="hold_to_append">Mantener pulsado para añadir a la cola</string>
     <string name="donation_title">Donar</string>
@@ -367,7 +366,7 @@
     <string name="caption_setting_description">Modificar la escala de texto de los subtítulos y los estilos de fondo. Requiere reiniciar la aplicación para que surta efecto.</string>
     <string name="clear_views_history_title">Vaciar historial de reproducciones</string>
     <string name="clear_views_history_summary">Borra el historial de contenido visto y posiciones de reproducción</string>
-    <string name="delete_view_history_alert">¿Borrar todo el historial de reproducciones\?</string>
+    <string name="delete_view_history_alert">¿Eliminar todo el historial de reproducciones\?</string>
     <string name="watch_history_deleted">Historial de reproducciones borrado.</string>
     <string name="clear_search_history_title">Vaciar historial de búsquedas</string>
     <string name="clear_search_history_summary">Borra el historial de búsqueda de palabras clave</string>
@@ -502,8 +501,8 @@
     <string name="default_kiosk_page_summary">Quiosco predefinido</string>
     <string name="no_one_watching">Nadie está viendo</string>
     <plurals name="watching">
-        <item quantity="one">%s viendo</item>
-        <item quantity="other">%s viendo</item>
+        <item quantity="one">Viendo %s</item>
+        <item quantity="other">Viendo %s</item>
     </plurals>
     <string name="no_one_listening">Nadie está escuchando</string>
     <plurals name="listening">
@@ -595,9 +594,9 @@
     <string name="artists">Artistas</string>
     <string name="albums">Álbumes</string>
     <string name="songs">Canciones</string>
-    <string name="restricted_video">Este video tiene restricción por edades.
+    <string name="restricted_video">Este video tiene restricción de edad.
 \n
-\nHabilita «%1$s» en los ajustes si quieres verlo.</string>
+\nHabilita \"%1$s\" en los ajustes si quieres verlo.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sí, y también videos vistos parcialmente</string>
     <string name="remove_watched_popup_warning">Los videos que ya se hayan visto luego de añadidos a la lista de reproducción, serán quitados.
 \n¿Estás seguro\? ¡Esta acción no se puede deshacer!</string>
@@ -633,7 +632,7 @@
     <string name="notification_action_buffering">Almacenar en memoria (búfer)</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">¡Puedes seleccionar como máximo tres acciones para mostrar en la notificación compacta!</string>
-    <string name="notification_actions_summary">Edita cada una de las notificaciones de acción de abajo pulsando sobre ella. Selecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación de la derecha.</string>
+    <string name="notification_actions_summary">Edita cada acción de la notificación pulsando sobre ella a continuación. Selecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación a la derecha.</string>
     <string name="notification_action_4_title">Botón de quinta acción</string>
     <string name="notification_action_3_title">Botón de cuarta acción</string>
     <string name="notification_action_2_title">Botón de tercera acción</string>
@@ -653,4 +652,17 @@
     <string name="show_thumbnail_summary">Usar miniatura como fondo de pantalla de bloqueo y notificaciones</string>
     <string name="show_thumbnail_title">Mostrar vista previa</string>
     <string name="show_meta_info_summary">Desactive para ocultar información adicional sobre el creador o contenido de la transmisión.</string>
+    <string name="show_description_summary">Desactivar para ocultar la descripción del vídeo y la información adicional</string>
+    <string name="no_app_to_open_intent">Ninguna aplicación en su dispositivo puede abrir esto</string>
+    <string name="chapters">Capítulos</string>
+    <string name="recent">Recientes</string>
+    <string name="msg_calculating_hash">Calculando el hash</string>
+    <string name="description_tab_description">Descripción</string>
+    <string name="related_streams_tab_description">Transmisiones relacionadas</string>
+    <string name="comments_tab_description">Comentarios</string>
+    <string name="hash_channel_description">Notificaciones sobre el progreso del hashing del vídeo</string>
+    <string name="hash_channel_name">Notificación del hash de vídeo</string>
+    <string name="show_meta_info_title">Mostrar metainformación</string>
+    <string name="show_description_title">Mostrar descripción</string>
+    <string name="open_with">Abrir con</string>
 </resources>

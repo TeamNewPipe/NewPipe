@@ -154,7 +154,6 @@
     <string name="filter">Filtr</string>
     <string name="refresh">Obnovit</string>
     <string name="clear">Vyčistit</string>
-    <string name="popup_resizing_indicator_title">Změna velikosti</string>
     <string name="best_resolution">Nejlepší rozlišení</string>
     <string name="undo">Vrátit</string>
     <string name="notification_channel_name">Oznámení NewPipe</string>
@@ -673,4 +672,5 @@
     <string name="no_app_to_open_intent">Na Vašem zařízení není aplikace, která to umí otevřít</string>
     <string name="related_streams_tab_description">Podobné strýmy</string>
     <string name="show_description_summary">Vypnout pro skrytí popisu videa a doplňkové informace</string>
+    <string name="crash_the_app">Zbořit aplikaci</string>
 </resources>

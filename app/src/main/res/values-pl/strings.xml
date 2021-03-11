@@ -129,7 +129,6 @@
     <string name="filter">Filtr</string>
     <string name="refresh">Odśwież</string>
     <string name="clear">Wyczyść</string>
-    <string name="popup_resizing_indicator_title">Zmiana rozmiaru</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
@@ -673,4 +672,5 @@
     <string name="open_with">Otwórz za pomocą</string>
     <string name="no_app_to_open_intent">Żadna aplikacja na Twoim urządzeniu nie może tego otworzyć</string>
     <string name="related_streams_tab_description">Powiązane strumienie</string>
+    <string name="crash_the_app">Awaria aplikacji</string>
 </resources>

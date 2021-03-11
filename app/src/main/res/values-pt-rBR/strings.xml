@@ -10,7 +10,7 @@
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduz vídeo quando o NewPipe for chamado por outro aplicativo</string>
     <string name="autoplay_by_calling_app_title">Reprodução automática</string>
-    <string name="black_theme_title">AMOLED</string>
+    <string name="black_theme_title">Preto (AMOLED)</string>
     <string name="cancel">Cancelar</string>
     <string name="checksum">Checksum</string>
     <string name="choose_browser">Escolher navegador</string>
@@ -132,7 +132,6 @@
     <string name="popup_remember_size_pos_title">Lembrar propriedades do popup</string>
     <string name="popup_remember_size_pos_summary">Lembrar último tamanho e posição do popup</string>
     <string name="settings_category_popup_title">Popup</string>
-    <string name="popup_resizing_indicator_title">Redimensionando</string>
     <string name="use_external_video_player_summary">Remove o som em algumas resoluções</string>
     <string name="player_gesture_controls_title">Controles de gestos do player</string>
     <string name="player_gesture_controls_summary">Use gestos para mudar volume e brilho do player</string>
@@ -336,10 +335,10 @@
 \n6. A partir do arquivo zip baixado, retire o arquivo .json (geralmente em \"YouTube e YouTube Music/assinaturas/assinaturas.json\") e importe aqui.</string>
     <string name="import_soundcloud_instructions">Importe um perfil do SoundCloud digitando o URL ou seu ID:
 \n
-\n1. Ative o \"modo desktop\" no navegador (o site está indisponível em celulares) 
-\n2. Acesse este URL: %1$s 
-\n3. Logue quando solicitado 
-\n4. Copie o URL do perfil redirecionado</string>
+\n1. Ative o \"modo desktop\" no navegador (o site está indisponível em celulares)
+\n2. Acesse este URL: %1$s
+\n3. Logue quando solicitado
+\n4. Copie o URL do perfil redirecionado.</string>
     <string name="import_soundcloud_instructions_hint">seuID, soundcloud.com/seuid</string>
     <string name="import_network_expensive_warning">Tenha em mente que esta operação poderá usar bastante a conexão com a internet.
 \n
@@ -654,7 +653,7 @@
     <string name="hash_channel_name">Notificação de Hash do Vídeo</string>
     <string name="show_meta_info_summary">Desative para ocultar as caixas de informações meta com informações adicionais sobre o criador, conteúdo do stream ou uma solicitação de pesquisa.</string>
     <string name="show_meta_info_title">Mostrar informação meta</string>
-    <string name="recent">Recente</string>
+    <string name="recent">Recentes</string>
     <string name="chapters">Capítulos</string>
     <string name="description_tab_description">Descrição</string>
     <string name="related_streams_tab_description">Transmissões relacionadas</string>
@@ -663,4 +662,5 @@
     <string name="show_description_title">Mostrar descrição</string>
     <string name="open_with">Abrir com</string>
     <string name="no_app_to_open_intent">Nenhum aplicativo em seu dispositivo pode abrir isso</string>
+    <string name="crash_the_app">O aplicativo parou</string>
 </resources>
