@@ -39,23 +39,29 @@ public final class URLHandler {
      * @param timestampType the type of timestamp
      * @return true if the URL can be handled by NewPipe, false if it cannot
      */
-    public static boolean handleUrl(final Context context, final String url, final int timestampType) {
+    public static boolean canHandleUrl(final Context context,
+                                       final String url,
+                                       final int timestampType) {
         String matchedUrl = "";
         int seconds = -1;
-        final Pattern TIMESTAMP_PATTERN;
+        final Pattern timestampPattern;
 
         if (timestampType == 0) {
-            TIMESTAMP_PATTERN = Pattern.compile("(.*)&t=(\\d+)");
+            timestampPattern = Pattern.compile("(.*)&t=(\\d+)");
         } else if (timestampType == 1) {
-            TIMESTAMP_PATTERN = Pattern.compile("(.*)#timestamp=(\\d+)");
+            timestampPattern = Pattern.compile("(.*)#timestamp=(\\d+)");
         } else {
             return false;
         }
 
-        final Matcher matcher = TIMESTAMP_PATTERN.matcher(url);
+        final Matcher matcher = timestampPattern.matcher(url);
         if (matcher.matches()) {
             matchedUrl = matcher.group(1);
             seconds = Integer.parseInt(matcher.group(2));
+        }
+
+        if (matchedUrl == null || matchedUrl.isEmpty()) {
+            return false;
         }
 
         final StreamingService service;
@@ -88,8 +94,10 @@ public final class URLHandler {
      * @param seconds the position in seconds at which the floating player will start
      * @return true if the playback of the content has successfully started or false if not
      */
-    private static boolean playOnPopup(final Context context, final String url,
-                                       final StreamingService service, final int seconds) {
+    public static boolean playOnPopup(final Context context,
+                                      final String url,
+                                      final StreamingService service,
+                                      final int seconds) {
         final LinkHandlerFactory factory = service.getStreamLHFactory();
         final String cleanUrl;
 

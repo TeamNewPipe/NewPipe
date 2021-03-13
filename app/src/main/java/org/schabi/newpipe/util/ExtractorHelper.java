@@ -311,7 +311,8 @@ public final class ExtractorHelper {
 
             metaInfoSeparator.setVisibility(View.VISIBLE);
             return TextLinkifier.createLinksFromHtmlBlock(context, stringBuilder.toString(),
-                    metaInfoTextView, HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING);
+                    metaInfoTextView, null, null,
+                    HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING);
         }
     }
 

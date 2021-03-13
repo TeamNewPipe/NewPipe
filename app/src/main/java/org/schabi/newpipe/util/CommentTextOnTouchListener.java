@@ -47,7 +47,7 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
                     if (action == MotionEvent.ACTION_UP) {
                         boolean handled = false;
                         if (link[0] instanceof URLSpan) {
-                            handled = URLHandler.handleUrl(v.getContext(),
+                            handled = URLHandler.canHandleUrl(v.getContext(),
                                     ((URLSpan) link[0]).getURL(), 1);
                         }
                         if (!handled) {
