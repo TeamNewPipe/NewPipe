@@ -1709,7 +1709,7 @@ public final class Player implements
         showControls(duration, null);
     }
 
-    public void showControls(final long duration, final Runnable callback) {
+    public void showControls(final long duration, @Nullable final Runnable callback) {
         if (DEBUG) {
             Log.d(TAG, "showControls() called");
         }
@@ -1739,7 +1739,10 @@ public final class Player implements
         hideControls(duration, delay, null);
     }
 
-    public void hideControls(final long duration, final long delay, final Runnable callback) {
+    public void hideControls(
+        final long duration,
+        final long delay,
+        @Nullable final Runnable callback) {
         if (DEBUG) {
             Log.d(TAG, "hideControls() called with: duration = [" + duration
                     + "], delay = [" + delay + "]");
