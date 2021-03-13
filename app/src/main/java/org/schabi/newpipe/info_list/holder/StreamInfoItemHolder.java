@@ -1,10 +1,10 @@
 package org.schabi.newpipe.info_list.holder;
 
 import android.text.TextUtils;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.TextView;
-
-import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -13,6 +13,8 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
+
+import androidx.preference.PreferenceManager;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 
@@ -42,6 +44,8 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
 
 public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
     public final TextView itemAdditionalDetails;
+    public final TextView itemVideoTitleView;
+    public final TextView itemUploaderView;
 
     public StreamInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
         this(infoItemBuilder, R.layout.list_stream_item, parent);
@@ -51,6 +55,8 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
                                 final ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
         itemAdditionalDetails = itemView.findViewById(R.id.itemAdditionalDetails);
+        itemVideoTitleView = itemView.findViewById(R.id.itemVideoTitleView);
+        itemUploaderView = itemView.findViewById(R.id.itemUploaderView);
     }
 
     @Override
@@ -64,6 +70,21 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
         final StreamInfoItem item = (StreamInfoItem) infoItem;
 
         itemAdditionalDetails.setText(getStreamInfoDetailLine(item));
+        itemAdditionalDetails.getViewTreeObserver()
+                .addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                    @Override
+                    public boolean onPreDraw() {
+                        itemAdditionalDetails.getViewTreeObserver().removeOnPreDrawListener(this);
+                        if (itemAdditionalDetails.getTop() <= itemVideoTitleView.getBottom()) {
+                            itemAdditionalDetails.setVisibility(View.INVISIBLE);
+                        } else if (itemAdditionalDetails.getTop() <= itemUploaderView.getBottom()) {
+                            itemAdditionalDetails.setVisibility(View.INVISIBLE);
+                        } else {
+                            itemAdditionalDetails.setVisibility(View.VISIBLE);
+                        }
+                        return true;
+                    }
+                });
     }
 
     private String getStreamInfoDetailLine(final StreamInfoItem infoItem) {
