@@ -25,9 +25,9 @@ public final class ShareUtils {
      * second param (a system chooser will be opened if there are multiple markets and no default)
      * and falls back to Google Play Store web URL if no app to handle the market scheme was found.
      * <p>
-     * It uses {@link ShareUtils#openIntentInApp(Context, Intent)} to open market scheme and
-     * {@link ShareUtils#openUrlInBrowser(Context, String, boolean)} to open Google Play Store web
-     * URL with false for the boolean param.
+     * It uses {@link ShareUtils#openIntentInApp(Context, Intent, boolean)} to open market scheme
+     * and {@link ShareUtils#openUrlInBrowser(Context, String, boolean)} to open Google Play Store
+     * web URL with false for the boolean param.
      *
      * @param context   the context to use
      * @param packageId the package id of the app to be installed
@@ -36,7 +36,7 @@ public final class ShareUtils {
         // Try market:// scheme
         final boolean marketSchemeResult = openIntentInApp(context, new Intent(Intent.ACTION_VIEW,
                 Uri.parse("market://details?id=" + packageId))
-                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK), false);
         if (!marketSchemeResult) {
             // Fall back to Google Play Store Web URL (F-Droid can handle it)
             openUrlInBrowser(context,
@@ -48,7 +48,7 @@ public final class ShareUtils {
      * Open the url with the system default browser.
      * <p>
      * If no browser is set as default, fallbacks to
-     * {@link ShareUtils#openAppChooser(Context, Intent, String)}
+     * {@link ShareUtils#openAppChooser(Context, Intent, boolean)}
      *
      * @param context                the context to use
      * @param url                    the url to browse
@@ -71,7 +71,7 @@ public final class ShareUtils {
 
         if (defaultPackageName.equals("android")) {
             // No browser set as default (doesn't work on some devices)
-            openAppChooser(context, intent, context.getString(R.string.open_with));
+            openAppChooser(context, intent, true);
         } else {
             if (defaultPackageName.isEmpty()) {
                 // No app installed to open a web url
@@ -84,7 +84,7 @@ public final class ShareUtils {
                 } catch (final ActivityNotFoundException e) {
                     // Not a browser but an app chooser because of OEMs changes
                     intent.setPackage(null);
-                    openAppChooser(context, intent, context.getString(R.string.open_with));
+                    openAppChooser(context, intent, true);
                 }
             }
         }
@@ -96,7 +96,7 @@ public final class ShareUtils {
      * Open the url with the system default browser.
      * <p>
      * If no browser is set as default, fallbacks to
-     * {@link ShareUtils#openAppChooser(Context, Intent, String)}
+     * {@link ShareUtils#openAppChooser(Context, Intent, boolean)}
      * <p>
      * This calls {@link ShareUtils#openUrlInBrowser(Context, String, boolean)} with true
      * for the boolean parameter
@@ -116,22 +116,29 @@ public final class ShareUtils {
      * {@link ShareUtils#openUrlInBrowser(Context, String, boolean)} should be used.
      * <p>
      * If no app is set as default, fallbacks to
-     * {@link ShareUtils#openAppChooser(Context, Intent, String)}
+     * {@link ShareUtils#openAppChooser(Context, Intent, boolean)}.
+     * <p>
      *
-     * @param context the context to use
-     * @param intent  the intent to open
+     * @param context   the context to use
+     * @param intent    the intent to open
+     * @param showToast the boolean to set if a toast is displayed to user when no app is installed
+     *                  to open the intent (true) or not (false)
      * @return true if the intent can be opened or false if it cannot be
      */
-    public static boolean openIntentInApp(final Context context, final Intent intent) {
+    public static boolean openIntentInApp(final Context context, final Intent intent,
+                                          final boolean showToast) {
         final String defaultPackageName = getDefaultAppPackageName(context, intent);
 
         if (defaultPackageName.equals("android")) {
             // No app set as default (doesn't work on some devices)
-            openAppChooser(context, intent, context.getString(R.string.open_with));
+            openAppChooser(context, intent, true);
         } else {
             if (defaultPackageName.isEmpty()) {
                 // No app installed to open the intent
-                Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG).show();
+                if (showToast) {
+                    Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG)
+                            .show();
+                }
                 return false;
             } else {
                 try {
@@ -140,7 +147,7 @@ public final class ShareUtils {
                 } catch (final ActivityNotFoundException e) {
                     // Not an app to open the intent but an app chooser because of OEMs changes
                     intent.setPackage(null);
-                    openAppChooser(context, intent, context.getString(R.string.open_with));
+                    openAppChooser(context, intent, true);
                 }
             }
         }
@@ -152,18 +159,25 @@ public final class ShareUtils {
      * Open the system chooser to launch an intent.
      * <p>
      * This method opens an {@link android.content.Intent#ACTION_CHOOSER} of the intent putted
-     * as the viewIntent param. A string for the chooser's title must be passed as the last param.
+     * as the intent param. If the setTitleChooser boolean is true, the string "Open with" will be
+     * set as the title of the system chooser.
+     * For Android P and higher, title for {@link android.content.Intent#ACTION_SEND} system
+     * choosers must be set on this intent, not on the
+     * {@link android.content.Intent#ACTION_CHOOSER} intent.
      *
-     * @param context              the context to use
-     * @param intent               the intent to open
-     * @param chooserStringTitle   the string of chooser's title
+     * @param context         the context to use
+     * @param intent          the intent to open
+     * @param setTitleChooser set the title "Open with" to the chooser if true, else not
      */
-    private static void openAppChooser(final Context context, final Intent intent,
-                                       final String chooserStringTitle) {
+    private static void openAppChooser(final Context context,
+                                       final Intent intent,
+                                       final boolean setTitleChooser) {
         final Intent chooserIntent = new Intent(Intent.ACTION_CHOOSER);
         chooserIntent.putExtra(Intent.EXTRA_INTENT, intent);
-        chooserIntent.putExtra(Intent.EXTRA_TITLE, chooserStringTitle);
         chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (setTitleChooser) {
+            chooserIntent.putExtra(Intent.EXTRA_TITLE, context.getString(R.string.open_with));
+        }
         context.startActivity(chooserIntent);
     }
 
@@ -201,10 +215,13 @@ public final class ShareUtils {
     public static void shareText(final Context context, final String subject, final String url) {
         final Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        if (!subject.isEmpty()) {
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        }
         shareIntent.putExtra(Intent.EXTRA_TEXT, url);
+        shareIntent.putExtra(Intent.EXTRA_TITLE, context.getString(R.string.share_dialog_title));
 
-        openAppChooser(context, shareIntent, context.getString(R.string.share_dialog_title));
+        openAppChooser(context, shareIntent, false);
     }
 
     /**

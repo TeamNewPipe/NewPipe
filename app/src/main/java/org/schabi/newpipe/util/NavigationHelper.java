@@ -252,7 +252,7 @@ public final class NavigationHelper {
 
     public static void resolveActivityOrAskToInstall(final Context context, final Intent intent) {
         if (intent.resolveActivity(context.getPackageManager()) != null) {
-            ShareUtils.openIntentInApp(context, intent);
+            ShareUtils.openIntentInApp(context, intent, false);
         } else {
             if (context instanceof Activity) {
                 new AlertDialog.Builder(context)

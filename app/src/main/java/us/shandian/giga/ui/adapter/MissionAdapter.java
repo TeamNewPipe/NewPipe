@@ -348,10 +348,8 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         if (BuildConfig.DEBUG)
             Log.v(TAG, "Mime: " + mimeType + " package: " + BuildConfig.APPLICATION_ID + ".provider");
 
-        final Uri uri = resolveShareableUri(mission);
-
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(uri, mimeType);
+        intent.setDataAndType(resolveShareableUri(mission), mimeType);
         intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -361,10 +359,8 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
         }
 
-        //mContext.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
         if (intent.resolveActivity(mContext.getPackageManager()) != null) {
-            ShareUtils.openIntentInApp(mContext, intent);
+            ShareUtils.openIntentInApp(mContext, intent, false);
         } else {
             Toast.makeText(mContext, R.string.toast_no_player, Toast.LENGTH_LONG).show();
         }
@@ -377,19 +373,13 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         shareIntent.setType(resolveMimeType(mission));
         shareIntent.putExtra(Intent.EXTRA_STREAM, resolveShareableUri(mission));
         shareIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
+
         final Intent intent = new Intent(Intent.ACTION_CHOOSER);
         intent.putExtra(Intent.EXTRA_INTENT, shareIntent);
         intent.putExtra(Intent.EXTRA_TITLE, mContext.getString(R.string.share_dialog_title));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        try {
-            intent.setPackage("android");
-            mContext.startActivity(intent);
-        } catch (final ActivityNotFoundException e) {
-            // falling back to OEM chooser if Android's system chooser was removed by the OEM
-            intent.setPackage(null);
-            mContext.startActivity(intent);
-        }
+        mContext.startActivity(intent);
     }
 
     /**
