@@ -1853,6 +1853,7 @@ public final class VideoDetailFragment
 
         if (fullscreen) {
             hideSystemUiIfNeeded();
+            binding.overlayPlayPauseButton.requestFocus();
         } else {
             showSystemUi();
         }
