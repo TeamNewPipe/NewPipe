@@ -41,15 +41,13 @@
 [<img src="fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png" width=405>](fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png)
 
 ## Descripción
-
-<<<<<<< 95c2dcef3d096c2631b593cdb6284fbc8d5df6d8
 NewPipe no usa ninguna librería de framework de Google, ni la API de YouTube. Los sitios web solamente se analizan para extraer la información requerida, asi que esta app se puede usar sin los servicios de Google instalados. Además, no se necesita una cuenta de YouTube para usar NewPipe, lo cual es un software libre de copyleft.
 
 ### Características
-
 * Buscar videos
 * Mostrar información general sobre videos
 * Mirar videos de YouTube
+* Escuchar audio de YouTube
 * Modo popup (reproductor flotante)
 * Elegir reproductor para mirar el video
 * Descargar videos
@@ -75,7 +73,6 @@ NewPipe no usa ninguna librería de framework de Google, ni la API de YouTube. L
 * Mostrar comentarios
 
 ### Servicios apoyados
-
 NewPipe apoya varios servicios. Nuestras [documentaciones](https://teamnewpipe.github.io/documentation/) proveen más información en como se puede agregar un servicio nuevo a la app y el extractor. Por favor contáctenos si pretende agregar uno nuevo. Actualmente los servicios apoyados son:
 
 * YouTube
