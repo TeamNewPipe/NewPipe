@@ -81,6 +81,7 @@ NewPipe suportă servicii multiple. [Documentele](https://teamnewpipe.github.io/
 * SoundCloud \[beta\]
 * media.ccc.de \[beta\]
 * Instanţe PeerTube \[beta\]
+* Bandcamp \[beta\]
 
 <!-- Hidden span to keep old links compatible. -->
 <span id="updates"></span>

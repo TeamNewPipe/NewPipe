@@ -79,6 +79,7 @@ NewPipe는 여러가지 서비스를 지원합니다. 우리의 [문서](https:/
 * SoundCloud \[beta\]
 * media.ccc.de \[beta\]
 * PeerTube instances \[beta\]
+* Bandcamp \[beta\]
 
 ## Updates
 NewPipe 코드의 변경이 있을 때(기능 추가 또는 버그 수정으로 인해), 결국 릴리즈가 발생할 것입니다. 이것들의 형식은 x.xx.x 입니다. 

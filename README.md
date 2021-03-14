@@ -81,6 +81,7 @@ NewPipe supports multiple services. Our [docs](https://teamnewpipe.github.io/doc
 * SoundCloud \[beta\]
 * media.ccc.de \[beta\]
 * PeerTube instances \[beta\]
+* Bandcamp \[beta\]
 
 <!-- Hidden span to keep old links compatible. -->
 <span id="updates"></span>

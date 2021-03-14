@@ -79,6 +79,7 @@ NewPipe wuxuu taageeraa adeegyo badan. [warqadan](https://teamnewpipe.github.io/
 * SoundCloud \[tijaabo\]
 * media.ccc.de \[tijaabo\]
 * PeerTube instances \[tijaabo\]
+* Bandcamp \[tijaabo\]
 
 ## Kushubida iyo cusboonaysiinta
 Marka koodhka NewPipe isbadal ku dhaco (wax cusub oo lagusoo kordhiyay ama cilad bixin), ugu dambayn waxaa lasii daayaa mid cusub (Siidayn). Siidaynta qaabkeedu waa x.xx.x . Si aad midka cusub u hesho, waxaad samayn kartaa:

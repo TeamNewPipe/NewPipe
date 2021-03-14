@@ -84,6 +84,7 @@ NewPipe は複数のサービスに対応しています。[ドキュメント](
 * SoundCloud \[ベータ\]
 * media.ccc.de \[ベータ\]
 * PeerTube インスタンス \[ベータ\]
+* Bandcamp \[ベータ\]
 
 <!-- Hidden span to keep old links compatible. -->
 <span id="updates"></span>
