@@ -6,15 +6,15 @@
 <!-- <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"></a></p> -->
 
 <p align="center">
-<a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/badge/lanzamiento-v0.20.11-blue.svg" ></a>
+<a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/badge/Lanzamiento-v0.20.11-blue.svg" ></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/Licencia-GPL%20v3-blue.svg"></a>
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Build Status"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
-<a href="https://hosted.weblate.org/engage/newpipe/es/" alt="Estado de la traducción"><img src="https://hosted.weblate.org/widgets/newpipe/es/-/svg-badge.svg"></a>
+<a href="https://hosted.weblate.org/engage/newpipe/es/" alt="Estado de la traducción"><img src="https://hosted.weblate.org/widgets/newpipe/es/svg-badge.svg"></a>
 <a href="http://webchat.freenode.net/?channels=%23newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/Canal%20de%20IRC%20-%23newpipe-brightgreen.svg"></a>
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
-<p align="center"><a href="#screenshots">Capturas de pantalla</a> &bull; <a href="#description">Descripción</a> &bull; <a href="#features">Características</a> &bull; <a href="#installation-and-updates">Installación y actualizaciones</a> &bull; <a href="#contribution">Contribuciones</a> &bull; <a href="#donate">Donar</a> &bull; <a href="#license">Licencias</a></p>
+<p align="center"><a href="#capturas-de-pantalla">Capturas de pantalla</a> &bull; <a href="#description">Descripción</a> &bull; <a href="#features">Características</a> &bull; <a href="#installation-and-updates">Installación y actualizaciones</a> &bull; <a href="#contribution">Contribuciones</a> &bull; <a href="#donate">Donar</a> &bull; <a href="#license">Licencias</a></p>
 <p align="center"><a href="https://newpipe.net">Sitio web</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">Preguntas Frecuentes</a> &bull; <a href="https://newpipe.net/press/">Prensa</a></p>
 <hr>
 
@@ -24,7 +24,7 @@
 
 <b>PUTTING NEWPIPE OR ANY FORK OF IT INTO THE GOOGLE PLAY STORE VIOLATES THEIR TERMS AND CONDITIONS.</b>
 
-## Screenshots
+## Capturas de pantalla
 
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png)
