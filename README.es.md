@@ -42,6 +42,7 @@
 
 ## Descripción
 
+<<<<<<< 95c2dcef3d096c2631b593cdb6284fbc8d5df6d8
 NewPipe no usa ninguna librería de framework de Google, ni la API de YouTube. Los sitios web solamente se analizan para extraer la información requerida, asi que esta app se puede usar sin los servicios de Google instalados. Además, no se necesita una cuenta de YouTube para usar NewPipe, lo cual es un software libre de copyleft.
 
 ### Características
@@ -68,7 +69,6 @@ NewPipe no usa ninguna librería de framework de Google, ni la API de YouTube. L
 * Buscar/mirar listas de reproducción
 * Mirar listas de reproducción en fila
 * Poner videos en fila
-* Local playlists
 * Listas locales de reproducción
 * Subtítulos
 * Apoyo de medios en directo
