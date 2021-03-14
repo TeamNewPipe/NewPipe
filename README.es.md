@@ -109,7 +109,6 @@ Mientras tanto, si quiere cambiar los fuentes por alguna razón (por ejemplo, la
 Si tiene ideas, traducciónes, cambios de diseño, limpieza de código, o cambios grandes de código, su ayuda es siempre bienvenida.
 Cuanto más realizamos, mejor se pone la aplicación!
 
-If you'd like to get involved, check our [contribution notes](.github/CONTRIBUTING.md).
 Si quiere involucrarse, fíjese en nuestras [notas de contribución](.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/es/">
@@ -117,8 +116,6 @@ Si quiere involucrarse, fíjese en nuestras [notas de contribución](.github/CON
 </a>
 
 ## Donar
-If you like NewPipe we'd be happy about a donation. You can either send bitcoin or donate via Bountysource or Liberapay. For further info on donating to NewPipe, please visit our [website](https://newpipe.net/donate).
-
 Si le gusta el NewPipe estaremos felices con una donación. O puede enviar bitcoin o donar a través de Bountysource o Liberapay. Para obtener más información sobre como donar a NewPipe, por favor visita nuestro [sitio web](https://newpipe.net/donate).
 
 <table>
