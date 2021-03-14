@@ -14,6 +14,7 @@
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
+
 <p align="center"><a href="#capturas-de-pantalla">Capturas de pantalla</a> &bull; <a href="#descripción">Descripción</a> &bull; <a href="#características">Características</a> &bull; <a href="#installación-y-actualizaciones">Installación y actualizaciones</a> &bull; <a href="#contribución">Contribución</a> &bull; <a href="#donar">Donar</a> &bull; <a href="#licencias">Licencias</a></p>
 <p align="center"><a href="https://newpipe.net">Sitio web</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">Preguntas Frecuentes</a> &bull; <a href="https://newpipe.net/press/">Prensa</a></p>
 <hr>
