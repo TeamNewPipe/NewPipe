@@ -21,13 +21,11 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.ReCaptchaActivity;
+import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.ErrorInfo;
-import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
@@ -198,7 +196,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
         } catch (final Exception e) {
-            onError(e);
+            ErrorActivity.reportUiErrorInSnackbar(this, "Exporting database", e);
         }
     }
 
@@ -243,20 +241,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 System.exit(0);
             }
         } catch (final Exception e) {
-            onError(e);
+            ErrorActivity.reportUiErrorInSnackbar(this, "Importing database", e);
         }
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Error
-    //////////////////////////////////////////////////////////////////////////*/
-
-    protected void onError(final Throwable e) {
-        final Activity activity = getActivity();
-        ErrorActivity.reportError(activity, e,
-                activity.getClass(),
-                null,
-                ErrorInfo.make(UserAction.UI_ERROR,
-                        "none", "", R.string.app_ui_crash));
     }
 }

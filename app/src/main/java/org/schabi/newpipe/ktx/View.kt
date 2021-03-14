@@ -319,6 +319,16 @@ fun View.slideUp(duration: Long, delay: Long, @FloatRange(from = 0.0, to = 1.0) 
         .start()
 }
 
+/**
+ * Instead of hiding normally using [animate], which would make
+ * the recycler view unable to capture touches after being hidden, this just animates the alpha
+ * value setting it to `0.0` after `200` milliseconds.
+ */
+fun View.animateHideRecyclerViewAllowingScrolling() {
+    // not hiding normally because the view needs to still capture touches and allow scroll
+    animate().alpha(0.0f).setDuration(200).start()
+}
+
 enum class AnimationType {
     ALPHA, SCALE_AND_ALPHA, LIGHT_SCALE_AND_ALPHA, SLIDE_AND_ALPHA, LIGHT_SLIDE_AND_ALPHA
 }

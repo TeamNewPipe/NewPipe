@@ -60,6 +60,7 @@ import org.schabi.newpipe.databinding.DrawerHeaderBinding;
 import org.schabi.newpipe.databinding.DrawerLayoutBinding;
 import org.schabi.newpipe.databinding.InstanceSpinnerLayoutBinding;
 import org.schabi.newpipe.databinding.ToolbarLayoutBinding;
+import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -72,7 +73,6 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KioskTranslator;
@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             setupDrawer();
         } catch (final Exception e) {
-            ErrorActivity.reportUiError(this, e);
+            ErrorActivity.reportUiErrorInSnackbar(this, "Setting up drawer", e);
         }
 
         if (DeviceUtils.isTv(this)) {
@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     tabSelected(item);
                 } catch (final Exception e) {
-                    ErrorActivity.reportUiError(this, e);
+                    ErrorActivity.reportUiErrorInSnackbar(this, "Selecting main page tab", e);
                 }
                 break;
             case R.id.menu_options_about_group:
@@ -340,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 showTabs();
             } catch (final Exception e) {
-                ErrorActivity.reportUiError(this, e);
+                ErrorActivity.reportUiErrorInSnackbar(this, "Showing main page tabs", e);
             }
         }
     }
@@ -487,7 +487,7 @@ public class MainActivity extends AppCompatActivity {
             drawerHeaderBinding.drawerHeaderActionButton.setContentDescription(
                     getString(R.string.drawer_header_description) + selectedServiceName);
         } catch (final Exception e) {
-            ErrorActivity.reportUiError(this, e);
+            ErrorActivity.reportUiErrorInSnackbar(this, "Setting up service toggle", e);
         }
 
         final SharedPreferences sharedPreferences
@@ -679,19 +679,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
         if (DEBUG) {
             Log.d(TAG, "onOptionsItemSelected() called with: item = [" + item + "]");
         }
-        final int id = item.getItemId();
 
-        switch (id) {
-            case android.R.id.home:
-                onHomeButtonPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            onHomeButtonPressed();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -799,7 +796,7 @@ public class MainActivity extends AppCompatActivity {
                 NavigationHelper.gotoMainFragment(getSupportFragmentManager());
             }
         } catch (final Exception e) {
-            ErrorActivity.reportUiError(this, e);
+            ErrorActivity.reportUiErrorInSnackbar(this, "Handling intent", e);
         }
     }
 

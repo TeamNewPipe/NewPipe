@@ -53,7 +53,7 @@
     <!--ERROR PANEL-->
     <include
         android:id="@+id/error_panel"
-        layout="@layout/error_retry"
+        layout="@layout/error_panel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
