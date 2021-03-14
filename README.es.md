@@ -14,15 +14,15 @@
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
-<p align="center"><a href="#capturas-de-pantalla">Capturas de pantalla</a> &bull; <a href="#description">Descripción</a> &bull; <a href="#features">Características</a> &bull; <a href="#installation-and-updates">Installación y actualizaciones</a> &bull; <a href="#contribution">Contribuciones</a> &bull; <a href="#donate">Donar</a> &bull; <a href="#license">Licencias</a></p>
+<p align="center"><a href="#capturas-de-pantalla">Capturas de pantalla</a> &bull; <a href="#descripción">Descripción</a> &bull; <a href="#features">Características</a> &bull; <a href="#installation-and-updates">Installación y actualizaciones</a> &bull; <a href="#contribution">Contribuciones</a> &bull; <a href="#donate">Donar</a> &bull; <a href="#license">Licencias</a></p>
 <p align="center"><a href="https://newpipe.net">Sitio web</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">Preguntas Frecuentes</a> &bull; <a href="https://newpipe.net/press/">Prensa</a></p>
 <hr>
 
 *Lea esto en otros idionas: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md) .*
 
-<b>WARNING: THIS IS A BETA VERSION, THEREFORE YOU MAY ENCOUNTER BUGS. IF YOU DO, OPEN AN ISSUE VIA OUR GITHUB REPOSITORY.</b>
+<b>AVISO: ESTA ES UNA VERSIÓN BETA, POR LO TANTO, PUEDE ENCONTRAR BUGS (ERRORES). SI ENCUANTRA UNO, ABRA UN ISSUE A TRAVÉS DE NUESTRO REPOSITORIO GITHUB.</b>
 
-<b>PUTTING NEWPIPE OR ANY FORK OF IT INTO THE GOOGLE PLAY STORE VIOLATES THEIR TERMS AND CONDITIONS.</b>
+<b>COLOCAR NEWPIPE O CUALQUIER FORK (BIFURCACIÓN) REALIZADO DE ELLO EN GOOGLE PLAY STORE VIOLA SUS TÉRMINOS Y CONDICIONES.</b>
 
 ## Capturas de pantalla
 
@@ -39,7 +39,7 @@
 [<img src="fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png" width=405>](fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png)
 [<img src="fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png" width=405>](fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png)
 
-## Description
+## Descripción
 
 NewPipe does not use any Google framework libraries, nor the YouTube API. Websites are only parsed to fetch required info, so this app can be used on devices without Google services installed. Also, you don't need a YouTube account to use NewPipe, which is copylefted libre software.
 
