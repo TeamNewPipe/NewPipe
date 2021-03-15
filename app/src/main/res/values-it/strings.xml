@@ -663,4 +663,11 @@
     <string name="open_with">Apri con</string>
     <string name="no_app_to_open_intent">Sul tuo dispositivo non c\'è alcuna app che può aprirlo</string>
     <string name="crash_the_app">Fai crashare l\'app</string>
+    <string name="paid_content">Questo contenuto è disponibile solo per gli utenti paganti, quindi non può essere riprodotto o scaricato da NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Nel tuo Paese questa è una traccia SoundCloud Go+, quindi non può essere riprodotta o scaricata da NewPipe.</string>
+    <string name="youtube_music_premium_content">Questo video è disponibile solo per i membri di YouTube Music Premium, quindi non può essere riprodotto o scaricato da NewPipe.</string>
+    <string name="private_content">Questo contenuto è privato, quindi non può essere riprodotto o scaricato da NewPipe.</string>
+    <string name="georestricted_content">Questo contenuto non è disponibile nel tuo Paese.</string>
+    <string name="restricted_video_no_stream">Questo video è soggetto a restrizioni di età.
+\nA causa delle nuove politiche di YouTube, NewPipe non può accedere a questo tipo di video.</string>
 </resources>

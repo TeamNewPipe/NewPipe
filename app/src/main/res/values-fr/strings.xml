@@ -666,4 +666,7 @@
     <string name="show_description_title">Afficher la description</string>
     <string name="crash_the_app">Faire planter l\'application</string>
     <string name="georestricted_content">Ce contenu n\'est pas disponible dans votre pays.</string>
+    <string name="paid_content">Ce contenu n\'est disponible que pour les abonnés, il ne peut donc pas être diffusé en continu ni téléchargé par NewPipe.</string>
+    <string name="youtube_music_premium_content">Cette vidéo n\'est disponible que pour les membres de YouTube Music Premium, elle ne peut donc pas être diffusée en continu ni téléchargée par NewPipe.</string>
+    <string name="private_content">Ce contenu est privé, il ne peut donc pas être diffusé en continu ni téléchargé par NewPipe.</string>
 </resources>

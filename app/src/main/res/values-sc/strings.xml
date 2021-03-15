@@ -662,4 +662,12 @@
     <string name="show_description_summary">Istuda pro cuare sa descritzione de su vìdeu e sas informatziones additzionales</string>
     <string name="show_description_title">Ammustra sa descritzione</string>
     <string name="open_with">Aberi cun</string>
+    <string name="paid_content">Custu vìdeu est a disponimentu petzi pro sos impreadores chi ant pagadu, e duncas non podet èssere riproduidu o iscarrigadu dae NewPipe.</string>
+    <string name="youtube_music_premium_content">Custu vìdeu est a disponimentu petzi pro sos membros de YouTube Music Premium, e duncas non podet èssere riproduidu o iscarrigadu dae NewPipe.</string>
+    <string name="private_content">Custu cuntenutu est privadu, e duncas non podet èssere riproduidu o iscarrigadu dae NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Custa est una rasta SoundCloud Go+, a su mancu in su paisu tuo, e duncas non podet èssere riproduida o iscarrigada dae NewPipe.</string>
+    <string name="georestricted_content">Custu cuntenutu no est a disponimentu in su paisu tuo.</string>
+    <string name="crash_the_app">Faghe serrare s\'aplicatzione</string>
+    <string name="restricted_video_no_stream">Custu vìdeu tenet unu lìmite de edade.
+\nPro neghe de sas polìticas noas de YouTube in subra de sos vìdeos limitados pro edade, NewPipe non podet atzèdere a perunu flussu vìdeu de custa genia e duncas non los podet riproduire.</string>
 </resources>

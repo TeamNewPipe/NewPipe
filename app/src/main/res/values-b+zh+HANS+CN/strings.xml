@@ -658,4 +658,11 @@
     <string name="open_with">用…打开</string>
     <string name="no_app_to_open_intent">设备上没有应用可以打开</string>
     <string name="crash_the_app">让应用崩溃</string>
+    <string name="paid_content">此内容仅对已付费的用户可用，因此NewPipe 无法流式传输或下载该内容。</string>
+    <string name="youtube_music_premium_content">该视频仅供 YouTube Music Premium 会员使用，因此 NewPipe 无法流式传输或下载该视频。</string>
+    <string name="private_content">此内容是私有的，因此 NewPipe 无法流式传输或下载该内容。</string>
+    <string name="soundcloud_go_plus_content">这是 SoundCloud Go +曲目，至少在你所在的国家/地区是这样，因此 NewPipe 无法流式传输或下载它。</string>
+    <string name="georestricted_content">此内容在你所在的国家/地区不可用。</string>
+    <string name="restricted_video_no_stream">这个视频有年龄限制。
+\n 由于 YouTube 新的针对此类视频的政策，NewPipe 无法访问其任何视频流，因此无法播放它。</string>
 </resources>

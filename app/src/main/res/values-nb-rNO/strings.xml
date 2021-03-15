@@ -50,7 +50,7 @@
     <string name="use_tor_summary">(Eksperimentelt) Tving nedlasting av trafikk gjennom Tor for forbedret personvern (strømming av videoer støttes ikke enda).</string>
     <string name="err_dir_create">Kan ikke opprette nedlastingsmappe \'%1$s\'</string>
     <string name="info_dir_created">Opprettet nedlastingsmappen \'%1$s\'</string>
-    <string name="main_bg_subtitle">Trykk «Søk» for å begynne
+    <string name="main_bg_subtitle">Trykk «Søk» for å komme i gang
 \n</string>
     <string name="autoplay_by_calling_app_title">Automatisk avspilling</string>
     <string name="autoplay_by_calling_app_summary">Spiller en video når NewPipe blir forespurt av et annet program</string>
@@ -263,7 +263,7 @@
     <string name="preferred_player_fetcher_notification_message">Laster forespurt innhold</string>
     <string name="import_data_title">Importer database</string>
     <string name="export_data_title">Eksporter database</string>
-    <string name="import_data_summary">Overstyrer din nåværende historikk og abonnementsliste</string>
+    <string name="import_data_summary">Overstyrer din nåværende historikk, abonnementsliste, spillelister og (alternativt) innstillinger</string>
     <string name="export_data_summary">Eksporter historikk, abonnementer, spillelister og innstillinger</string>
     <string name="export_complete_toast">Eksportert</string>
     <string name="import_complete_toast">Importert</string>
@@ -352,11 +352,11 @@
     <string name="import_settings">Ønsker du også å importere innstillinger?</string>
     <string name="subscriptions_import_unsuccessful">Kunne ikke importere abonnementer</string>
     <string name="subscriptions_export_unsuccessful">Kunne ikke eksportere abonnementer</string>
-    <string name="import_youtube_instructions">Importer YoutTube-abonnementer ved å laste ned eksportfilen:
+    <string name="import_youtube_instructions">Importer YoutTube-abonnementer fra Google takeout:
 \n
 \n1. Gå til denne nettadressen: %1$s
 \n2. Logg inn når forespurt
-\n3. En nedlasting av eksportfilen bør starte
+\n3. Klikk på «All data inkludert\", så på «Fravelg alt», så på kun «Abonnementer», og klikk så «OK».
 \n4. Klikk på «Neste steg» og så på «Opprett eksport»
 \n5. Klikk på «Last ned»-knappen etter den vises, og
 \n6. Fra nedlastet takeout.zip, pakk ut .json-filen (vanligvis under «YouTube og YouTube Music/subscriptions/subscriptions.json» og importer den her.</string>
@@ -423,7 +423,7 @@
     <string name="grid">Rutenett</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Veksle visning</string>
-    <string name="app_update_notification_content_title">Ny NewPipe-versjon tilgjengelig.</string>
+    <string name="app_update_notification_content_title">Ny NewPipe-versjon er tilgjengelig!</string>
     <string name="app_update_notification_content_text">Trykk for å laste ned</string>
     <string name="missions_header_finished">Fullført</string>
     <string name="paused">pauset</string>
@@ -590,14 +590,14 @@
     <string name="clear_queue_confirmation_summary">Bytte fra en spiller til en annen kan erstatte køen din</string>
     <string name="clear_queue_confirmation_title">Be om bekreftelse før du tømmer køen</string>
     <string name="search_showing_result_for">Viser resultater for: %s</string>
-    <string name="show_original_time_ago_title">Vis opprinnelig tid siden for elementer</string>
+    <string name="show_original_time_ago_title">Vis opprinnelig tidsforskjell for elementer</string>
     <string name="notification_action_buffering">Bygger mellomlager</string>
     <string name="notification_action_shuffle">Tilfeldig rekkefølge</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Synes du at strøminnlastingen er for treg\? Prøv å skru på rask innlasting (du kan endre det i innstillingene, eller ved å trykke på knappen nedenfor).
 \n
 \nNewPipe tilbyr to strøminnlastingsstrategier:
-\n• Henting av hele abonnementskanalen, som er tregt, men fullstendig.
-\n• Bruk av et dedikert tjenesteendepunkt, som er raskt men vanligvis ikke fullstendig.
+\n• Hent hele abonnementskanalen, noe som er tregt, men fullstendig.
+\n• Bruk av et dedikert tjenesteendepunkt, noe som er raskt men vanligvis ikke fullstendig.
 \n
 \nForskjellen mellom dem er at den raske vanligvis mangler info, som elementers varighet eller type (kan ikke skjelne mellom sanntidsvideoer og normale) og det kan gi færre elementer.
 \n
@@ -609,11 +609,11 @@
     <string name="notification_actions_at_most_three">Du kan maksimalt velge tre handlinger som skal vises i kompaktvarselet!</string>
     <string name="notification_actions_summary">Rediger hver varslingshandling nedenfor ved å trykke på den. Velg opptil tre av dem som skal vises i det kompakte varselet ved å bruke avmerkingsboksene til høyre.</string>
     <string name="notification_scale_to_square_image_summary">Skaler videominiatyrbildet som vises i varselet fra 16:9 til 1:1 sideforhold (kan føre til forvrengninger)</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Tilgjengelig i noen tjenester, det er vanligvis mye raskere, men kan gi et begrenset antall elementer, og ofte ufullstendig info (f.eks. ingen varighet, elementtype, ingen sanntidsstatus).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Tilgjengelig i noen tjenester, det er vanligvis mye raskere, men kan gi et begrenset antall elementer, og ofte ufullstendig info (f.eks. ingen varighet, elementtype, eller sanntidsstatus).</string>
     <string name="feed_use_dedicated_fetch_method_title">Hent fra dedikert strøm når tilgjengelig</string>
-    <string name="feed_update_threshold_summary">Tid etter siste oppdatering før et abonnement anslås utdatert — %s</string>
+    <string name="feed_update_threshold_summary">Tid siden siste oppdatering før et abonnement vurderes utdatert — %s</string>
     <string name="new_seek_duration_toast">Som følge av begrensninger i ExoPlayer er blafringsdistansen begrenset til %d sekunder</string>
-    <string name="remove_watched_popup_warning">Videoer som har blitt sett før og etter at de er lagt til spillelisten vil bli fjernet.
+    <string name="remove_watched_popup_warning">Videoer som har blitt sett før og etter at de er lagt til spillelisten, vil bli fjernet.
 \nEr du sikker\? Dette kan ikke angres!</string>
     <string name="autoplay_summary">Start avspilling automatisk — %s</string>
     <string name="unsupported_url_dialog_message">Kunne ikke gjenkjenne angitt nettadresse. Åpne den med annet program\?</string>
@@ -646,7 +646,7 @@
     <string name="show_age_restricted_content_summary">Vis innhold som muligens er uegnet for barn fordi det har en aldersgrense (som 18+)</string>
     <string name="notification_colorize_summary">La Android tilpasse varselets farge i henhold til hovedfargen i miniatyrbildet (merk at dette ikke er tilgjengelig på alle enheter)</string>
     <string name="notification_colorize_title">Fargelegg merknad</string>
-    <string name="show_thumbnail_summary">Vis miniatyrbilde på låseskjerm som bakgrunn og i merknader</string>
+    <string name="show_thumbnail_summary">Bruk miniatyrbilde som bakgrunn for både låseskjerm og merknader</string>
     <string name="show_thumbnail_title">Vis miniatyrbilde</string>
     <string name="msg_calculating_hash">Regner ut sjekksum</string>
     <string name="hash_channel_description">Merknad for videosjekksummeringsframdrift</string>
@@ -663,4 +663,11 @@
     <string name="show_description_title">Vis beskrivelse</string>
     <string name="open_with">Åpne med</string>
     <string name="crash_the_app">Krasj programmet</string>
+    <string name="restricted_video_no_stream">Denne videoen er aldersbegrenset.
+\nSom følge av YouTube sin praksis med slike har ikke NewPipe tilgang til videostrømmene, og kan derfor ikke spille den.</string>
+    <string name="paid_content">Innholdet er kun tilgjengelig for brukere som har betalt, så det kan ikke strømmes eller lastes ned av NewPipe.</string>
+    <string name="private_content">Innholdet er privat, så det kan ikke strømmes eller lastes ned av NewPipe.</string>
+    <string name="youtube_music_premium_content">Videoen er kun tilgjengelig for YouTube Music Premium-medlemmer, så den kan ikke strømmes eller lastes ned av NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Dette er et spor fra SoundCloud Go+, ihvertfall i ditt land, så det kan ikke strømmes eller lastes ned av NewPipe.</string>
+    <string name="georestricted_content">Innholdet er ikke tilgjengelig i din region.</string>
 </resources>

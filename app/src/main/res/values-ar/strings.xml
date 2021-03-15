@@ -702,4 +702,12 @@
     <string name="show_description_summary">قم بإيقاف التشغيل لإخفاء وصف الفيديو والمعلومات الإضافية</string>
     <string name="show_description_title">إظهار الوصف</string>
     <string name="open_with">فتح مع</string>
+    <string name="paid_content">يتوفر هذا المحتوى فقط للمستخدمين الذين قاموا بالدفع، لذلك لا يمكن بثها أو تنزيلها من قبل NewPipe.</string>
+    <string name="youtube_music_premium_content">يتوفر هذا الفيديو فقط لأعضاء YouTube Music Premium ، لذلك لا يمكن بثه أو تنزيله من قبل NewPipe.</string>
+    <string name="private_content">هذا المحتوى خاص، لذلك لا يمكن دفقه أو تنزيله بواسطة NewPipe.</string>
+    <string name="soundcloud_go_plus_content">هذا هو مسار SoundCloud Go+ ، على الأقل في بلدك ، لذلك لا يمكن بثها أو تنزيلها من قبل NewPipe.</string>
+    <string name="georestricted_content">هذا المحتوى غير متوفر في بلدك.</string>
+    <string name="crash_the_app">اغلق التطبيق قسريا</string>
+    <string name="restricted_video_no_stream">هذا الفيديو مقيد بالفئة العمرية.
+\nنظرًا لسياسات YouTube الجديدة مع مقاطع الفيديو المقيدة بالفئة العمرية ، لا يمكن لـ NewPipe الوصول إلى أي من مقاطع الفيديو الخاصة بها وبالتالي يتعذر تشغيلها.</string>
 </resources>

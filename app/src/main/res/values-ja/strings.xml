@@ -652,4 +652,12 @@
     <string name="show_meta_info_summary">動画作成者、動画コンテンツ、検索リクエストに関する追加情報を含むメタ情報ボックスを非表示にするにはオフにします。</string>
     <string name="no_app_to_open_intent">お使いのデバイス上のアプリでは、これを開くことはできません</string>
     <string name="chapters">チャプター</string>
+    <string name="paid_content">このコンテンツは有料のユーザーのみが利用できるため、NewPipeでのストリーミングやダウンロードはできません。</string>
+    <string name="youtube_music_premium_content">この動画は YouTube ミュージック プレミアム会員のみが利用できるようになっているので、NewPipe でストリーミングやダウンロードを行うことはできません。</string>
+    <string name="private_content">このコンテンツは非公開のため、NewPipeでストリーミングやダウンロードすることはできません。</string>
+    <string name="soundcloud_go_plus_content">これは SoundCloud Go+ トラックなので、少なくともあなたの国では、NewPipeではストリーミングやダウンロードができません。</string>
+    <string name="georestricted_content">このコンテンツは、お住まいの国ではご利用いただけません。</string>
+    <string name="crash_the_app">アプリのクラッシュ</string>
+    <string name="restricted_video_no_stream">この動画は年齢制限があります。
+\n年齢制限付き動画を含む新しい YouTube ポリシーにより、NewPipe は動画ストリームにアクセスできないため再生できません。</string>
 </resources>

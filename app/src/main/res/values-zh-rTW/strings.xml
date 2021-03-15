@@ -653,4 +653,11 @@
     <string name="open_with">開啟以</string>
     <string name="no_app_to_open_intent">您裝置上沒有應用程式可以打開這個</string>
     <string name="crash_the_app">應用程式當機</string>
+    <string name="paid_content">此內容僅對已付費的內容可用，因此無法由 NewPipe 串流或下載。</string>
+    <string name="youtube_music_premium_content">此影片僅供 YouTube Music Premium 會員使用，因此無法由 NewPipe 串流或下載。</string>
+    <string name="private_content">此內容為私人內容，因此無法由 NewPipe 串流或下載。</string>
+    <string name="soundcloud_go_plus_content">這是 SoundCloud Go+ 的曲目，因此至少在您的國家無法由 NewPipe 串流或下載。</string>
+    <string name="georestricted_content">此內容在您所在的國家不可用。</string>
+    <string name="restricted_video_no_stream">此影片有年齡限制。
+\n因為 YouTube 新的年齡影片限制政策，NewPipe 無法存取任何這類的視訊串流，因此無法播放。</string>
 </resources>

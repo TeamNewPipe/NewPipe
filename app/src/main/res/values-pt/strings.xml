@@ -663,4 +663,11 @@
     <string name="show_description_title">Mostrar descrição</string>
     <string name="open_with">Abrir com</string>
     <string name="crash_the_app">A app travou</string>
+    <string name="restricted_video_no_stream">Este vídeo tem uma restrição de idade.
+\nDevido às novas políticas do YouTube com vídeos com restrição de idade, o NewPipe não pode acessar nenhum dos seus fluxos de vídeo, portanto, é incapaz de reproduzi-lo.</string>
+    <string name="paid_content">Este conteúdo só está disponível para utilizadores que pagaram, portanto não pode ser transmitido ou descarregado pelo NewPipe.</string>
+    <string name="youtube_music_premium_content">Este vídeo está disponível apenas para os membros do YouTube Music Premium, portanto não pode ser transmitido ou descarregado pelo NewPipe.</string>
+    <string name="private_content">Este conteúdo é privado, portanto não pode ser transmitido ou descarregado pelo NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Esta é uma faixa de SoundCloud Go+, pelo menos no seu país, pelo que não pode ser transmitida ou descarregada por NewPipe.</string>
+    <string name="georestricted_content">Este conteúdo não está disponível no seu país.</string>
 </resources>

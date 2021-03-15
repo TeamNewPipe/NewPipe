@@ -1,0 +1,8 @@
+"### Peningkatan
+- Menambahkan kemampuan untuk membatasi kualitas video jika menggunakan data seluler. #1339
+- Ingat kecerahan untuk sesi yang sedang dipakai #1442 
+- Tingkatkan kinerja unduhan untuk CPU yang lebih bawah #1431
+- Tambah dukungan (hidup) untuk sesi media #1433
+
+###Perbaikan
+- Memperbaiki crash ketika memulai unduhan (perbaikan sekarang tersedia untuk rilis build) #1441

@@ -663,4 +663,11 @@
     <string name="open_with">Άνοιγμα με</string>
     <string name="no_app_to_open_intent">Καμία εφαρμογή στη συσκευή σας δεν μπορεί το ανοίξει</string>
     <string name="crash_the_app">Κατάρρευση εφαρμογής</string>
+    <string name="paid_content">Αυτό το περιεχόμενο είναι διαθέσιμο μόνο σε χρήστες που έχουν πληρώσει και δεν μπορεί να αναπαραχθεί ή να το κατεβάσετε με το NewPipe.</string>
+    <string name="youtube_music_premium_content">Αυτό το βίντεο είναι διαθέσιμο μόνο για τα μέλη του YouTube Music Premium και δεν μπορεί να αναπαραχθεί ή να το κατεβάσετε με το NewPipe.</string>
+    <string name="private_content">Αυτό το περιεχόμενο είναι ιδιωτικό και δεν μπορεί να αναπαραχθεί ή να το κατεβάσετε με το NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Αυτό είναι ένα κομμάτι SoundCloud Go+, τουλάχιστον στη χώρα σας. Έτσι δεν μπορεί να αναπαραχθεί ή να το κατεβάσετε με το NewPipe.</string>
+    <string name="georestricted_content">Αυτό το περιεχόμενο δεν είναι διαθέσιμο στη χώρα σας.</string>
+    <string name="restricted_video_no_stream">Αυτό το βίντεο έχει περιορισμό ηλικίας.
+\nΛόγω της νέας πολιτικής του YouTube για αυτά τα βίντεο, το NewPipe δεν μπορεί να το αναπαράγει.</string>
 </resources>

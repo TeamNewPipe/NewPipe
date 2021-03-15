@@ -18,10 +18,10 @@
     <string name="view_count_text">%1$s wyświetleń</string>
     <string name="upload_date_text">Opublikowano %1$s</string>
     <string name="no_player_found">Nie znaleziono odtwarzacza strumienia. Zainstalować VLC\?</string>
-    <string name="download_path_title">Folder pobierania wideo</string>
+    <string name="download_path_title">Folder zapisywania wideo</string>
     <string name="download_path_summary">Pobrane pliki wideo są przechowywane tutaj</string>
     <string name="download_path_dialog_title">Wybierz folder pobierania plików wideo</string>
-    <string name="download_path_audio_title">Ścieżka pobierania dźwięków</string>
+    <string name="download_path_audio_title">Folder zapisywania audio</string>
     <string name="download_path_audio_summary">Pobrane pliki wideo są przechowywane tutaj</string>
     <string name="download_path_audio_dialog_title">Wybierz folder pobierania plików audio</string>
     <string name="autoplay_by_calling_app_title">Autoodtwarzanie</string>
@@ -249,7 +249,7 @@
     <string name="service_title">Usługa</string>
     <string name="always">Zawsze</string>
     <string name="just_once">Tylko raz</string>
-    <string name="toggle_orientation">Przełącz orientację ekranu</string>
+    <string name="toggle_orientation">Obróć obraz</string>
     <string name="switch_to_background">Odtwarzaj w tle</string>
     <string name="external_player_unsupported_link_type">Zewnętrzne odtwarzacze nie obsługują linków tego typu</string>
     <string name="invalid_url_toast">Nieprawidłowy adres URL</string>
@@ -320,7 +320,7 @@
     <string name="metadata_cache_wipe_summary">Wyczyść pamięć podręczną stron</string>
     <string name="metadata_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną metadanych</string>
     <string name="auto_queue_title">Automatyczne kolejkowanie następnego strumienia</string>
-    <string name="auto_queue_summary">Kontynuuj kończenie (niepowtarzanie) kolejki odtwarzania, dołączając powiązany strumień</string>
+    <string name="auto_queue_summary">Gdy kończy się odtwarzanie listy utworów, dodaj do niej kolejny sugerowany utwór</string>
     <string name="file">Plik</string>
     <string name="invalid_directory">Nie ma takiego folderu</string>
     <string name="invalid_source">Nie ma takiego źródła plików/treści</string>
@@ -510,7 +510,7 @@
         <item quantity="many">%s słuchaczy</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">Język zmieni się po ponownym uruchomieniu aplikacji.</string>
-    <string name="seek_duration_title">Krok czasu przewijania</string>
+    <string name="seek_duration_title">Wielkość skoku przy przewijaniu</string>
     <string name="peertube_instance_url_title">Wystąpienia PeerTube</string>
     <string name="peertube_instance_url_summary">Wybierz swoje ulubione instancje PeerTube</string>
     <string name="peertube_instance_url_help">Znajdź wystąpienia, które lubisz na %s</string>
@@ -673,4 +673,11 @@
     <string name="no_app_to_open_intent">Żadna aplikacja na Twoim urządzeniu nie może tego otworzyć</string>
     <string name="related_streams_tab_description">Powiązane strumienie</string>
     <string name="crash_the_app">Awaria aplikacji</string>
+    <string name="paid_content">Ta zawartość jest płatna, więc jest dostępna tylko dla użytkowników, którzy za nią zapłacili, dlatego nie może być przesyłana strumieniowo lub pobierana przez NewPipe.</string>
+    <string name="youtube_music_premium_content">Ten film jest dostępny tylko dla subskrybentów YouTube Music Premium, więc nie może być przesyłany strumieniowo ani pobierany przez NewPipe.</string>
+    <string name="private_content">Ta zawartość jest prywatna, więc nie może być przesyłana strumieniowo ani pobierana przez NewPipe.</string>
+    <string name="georestricted_content">Ta zawartość nie jest dostępna w Twoim kraju.</string>
+    <string name="restricted_video_no_stream">Ten film jest ograniczony wiekowo.
+\nZe względu na nowe zasady YouTube z ograniczeniem wiekowym, NewPipe nie ma dostępu do żadnego z jego strumieni wideo i dlatego nie jest w stanie go odtworzyć.</string>
+    <string name="soundcloud_go_plus_content">To jest utwór SoundCloud Go+, przynajmniej w Twoim kraju, więc nie może być przesyłany strumieniowo lub pobierany przez NewPipe.</string>
 </resources>

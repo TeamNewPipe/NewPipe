@@ -652,4 +652,12 @@
     <string name="show_description_summary">Nonaktifkan untuk menyembunyikan deskripsi dan informasi tambahan</string>
     <string name="show_description_title">Tampilkan deskripsi</string>
     <string name="open_with">Buka dengan</string>
+    <string name="paid_content">Konten ini hanya tersedia untuk pengguna yang telah membayar, sehingga tidak dapat ditonton atau diunduh oleh NewPipe.</string>
+    <string name="youtube_music_premium_content">Video ini hanya tersedia untuk anggota Premium YouTube Music, sehingga tidak dapat di stream atau diunduh oleh Newpipe.</string>
+    <string name="private_content">Konten ini bersifat pribadi, jadi tidak di stream ataupun diunduh oleh NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Ini adalah sebuah trek SoundCloud Go +, setidaknya di negara Anda, sehingga tidak dapat di stream atau diunduh oleh Newpipe.</string>
+    <string name="georestricted_content">Konten ini tidak tersedia di negara Anda.</string>
+    <string name="crash_the_app">Aplikasi crash</string>
+    <string name="restricted_video_no_stream">Video ini dibatasi usia.
+\nKarena kebijakan YouTube yang baru dengan video yang dibatasi usia, Newpipe tidak dapat mengakses aliran video dan karenanya tidak dapat memainkannya.</string>
 </resources>

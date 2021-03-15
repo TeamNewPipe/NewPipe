@@ -683,4 +683,11 @@
     <string name="open_with">פתיחה באמצעות</string>
     <string name="no_app_to_open_intent">אין יישומון על המכשיר שלך שיכול לפתוח את זה</string>
     <string name="crash_the_app">להקריס את היישומון</string>
+    <string name="paid_content">תוכן זה זמין רק למשתמשים ששילמו, לכן לא ניתן להזרים או להוריד אותו עם NewPipe.</string>
+    <string name="youtube_music_premium_content">סרטון זה זמין רק למנויי YouTube Music Premium, לכן לא ניתן להזרים או להוריד אותו עם NewPipe.</string>
+    <string name="private_content">זה תוכן פרטי, לכן לא ניתן להזרים או להוריד אותו עם NewPipe.</string>
+    <string name="soundcloud_go_plus_content">רצועה זו של SoundCloud Go+‎ מוגבלת, לפחות במדינה שלך, לכן לא ניתן להזרים או להוריד אותה עם NewPipe.</string>
+    <string name="georestricted_content">תוכן זה אינו זמין במדינה שלך.</string>
+    <string name="restricted_video_no_stream">הצפייה בסרטון הזה מוגבלת בגיל.
+\nעקב מדיניות חדשה ב־YouTube בנוגע לסרטונים מוגבלי גיל, ל־NewPipe אין אפשרות לגשת לתזרימי הווידאו של השירות ולכן אין אפשרות לנגן אותם.</string>
 </resources>

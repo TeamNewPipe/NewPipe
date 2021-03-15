@@ -445,7 +445,7 @@
     <string name="error_path_creation">Das Zielverzeichnis kann nicht erstellt werden</string>
     <string name="error_permission_denied">System verweigert den Zugriff</string>
     <string name="error_ssl_exception">Aufbau einer sicheren Verbindung nicht möglich</string>
-    <string name="error_unknown_host">Der Server konnte nicht gefunden werden</string>
+    <string name="error_unknown_host">Server konnte nicht gefunden werden</string>
     <string name="error_connect_host">Verbindung mit dem Server nicht möglich</string>
     <string name="error_http_no_content">Der Server sendet keine Daten</string>
     <string name="error_http_unsupported_range">Der Server erlaubt kein mehrfädiges Herunterladen – wiederhole mit @string/msg_threads = 1</string>
@@ -592,7 +592,7 @@
     <string name="songs">Lieder</string>
     <string name="content_not_supported">Dieser Inhalt wird von NewPipe noch nicht unterstützt.
 \n
-\nEs wird hoffentlich in einer zukünftigen Version unterstützt.</string>
+\nEr wird hoffentlich in einer zukünftigen Version unterstützt.</string>
     <string name="restricted_video">Dieses Video ist altersbeschränkt.
 \n
 \nAktiviere in den Einstellungen „%1$s“, falls du diese sehen möchtest.</string>
@@ -604,7 +604,7 @@
     <string name="show_original_time_ago_title">Originalzeit vor Elementen anzeigen</string>
     <string name="show_original_time_ago_summary">Originaltexte von Diensten werden in Stream-Elementen sichtbar sein</string>
     <string name="youtube_restricted_mode_enabled_title">Aktivieren des „Eingeschränkten Modus“ von YouTube</string>
-    <string name="detail_sub_channel_thumbnail_view_description">Avatarbild des Kanals</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Profilbild des Kanals</string>
     <string name="channel_created_by">Erstellt von %s</string>
     <string name="video_detail_by">Von %s</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Nur nicht gruppierte Abonnements anzeigen</string>
@@ -662,4 +662,12 @@
     <string name="show_description_title">Beschreibung anzeigen</string>
     <string name="open_with">Öffnen mit</string>
     <string name="no_app_to_open_intent">Keine App auf deinem Gerät kann dies öffnen</string>
+    <string name="private_content">Dieser Inhalt ist privat, kann also nicht von NewPipe gestreamt oder heruntergeladen werden.</string>
+    <string name="paid_content">Diese Inhalte sind nur für Benutzer verfügbar, die bezahlt haben, können also nicht von NewPipe gestreamt oder heruntergeladen werden.</string>
+    <string name="youtube_music_premium_content">Dieses Video ist nur für YouTube Music Premium-Mitglieder verfügbar und kann daher nicht von NewPipe gestreamt oder heruntergeladen werden.</string>
+    <string name="soundcloud_go_plus_content">Dies ist ein SoundCloud Go+ Track, zumindest in deinem Land, kann er nicht gestreamt oder von NewPipe heruntergeladen werden.</string>
+    <string name="georestricted_content">Dieser Inhalt ist in deinem Land nicht verfügbar.</string>
+    <string name="crash_the_app">Absturz der App</string>
+    <string name="restricted_video_no_stream">Dieses Video ist altersbeschränkt.
+\nAufgrund neuer YouTube-Richtlinien mit altersbeschränkten Videos kann NewPipe auf keinen dieser Videostreams zugreifen und ist daher nicht in der Lage, es abzuspielen.</string>
 </resources>

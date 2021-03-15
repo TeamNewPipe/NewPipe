@@ -1,0 +1,8 @@
+"###Perbaikan
+- Pengaturan Impor/Ekspor #1333
+- Kurangi Overdraw (peningkatan kinerja) #1371
+- Perbaikan kecil dalam kode #1375
+- Penambahan semua tentang GDPR #1420
+
+###Diperbaiki
+- Downloader: perbaiki crash ketika memuat unduhan yang belum selesai dari berkas .giga #1407
