@@ -2,8 +2,7 @@
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Una interfaz de streaming lijera y libre para Android.</h4>
 
-<!-- F-Droid está extremadamente obsoleto, asi que podemos esconder esto por ahora. -->
-<!-- <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"></a></p> -->
+<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"></a></p>
 
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/badge/Lanzamiento-v0.20.11-blue.svg" ></a>
@@ -88,7 +87,7 @@ NewPipe apoya varios servicios. Nuestras [documentaciones](https://teamnewpipe.g
 Se puede instalar NewPipe usando uno de los métodos siguientes:
  1. Agregar nuestro repositorio personalizado a F-Droid e instalarlo desde allí. Las instrucciones están aquí: https://newpipe.schabi.org/FAQ/tutorials/install-add-fdroid-repo/
  2. Descargar el archivo APK del enlace [Github Releases](https://github.com/TeamNewPipe/NewPipe/releases) e instalarlo.
- 3. Actualizar a través de F-Droid. Este es el método más lento para obtener la actualización, como F-Droid debe reconocer cambios, construir el APK aparte, firmarlo con una clave, y finalmente empujar la actualización a los usuarios. (**IMPORTANTE**: a partir del momento de la escritura de este documento, un problema previene lanzamientos más nuevos que la versión 0.20.1 estar publicados. Por lo tanto, hasta que este problema ha sido resuelto, si quiere utilizar F-Droid, tenemos que recomendar el método 1.)
+ 3. Actualizar a través de F-Droid. Este es el método más lento para obtener la actualización, como F-Droid debe reconocer cambios, construir el APK aparte, firmarlo con una clave, y finalmente empujar la actualización a los usuarios.
  4. Construir un APK de depuración por si mismo. Este es el modo más rápido para realizar nuevas características en su dispositivo, pero es mucho más complicado, asi que recomendamos uno de los otros métodos.
 
 Recomendamos el método 1 para la mayoría de usuarios. Los APKs instalados usando método 1 o 2 son compatibles el uno con el otro, pero no con las instalaciones usando método 3. Esta es debida a la misma clave digital (la nuestra), siendo utilizado en los métodos 1 y 2, pero una clave digital diferente (la de F-Droid) siendo utilizado en el método 3. Construir un APK de depuración usando método 4 excluye una clave enteramente. Firmando con claves  digitales ayuda a asegurar de que un
