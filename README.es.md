@@ -79,6 +79,7 @@ NewPipe apoya varios servicios. Nuestras [documentaciones](https://teamnewpipe.g
 * SoundCloud \[beta\]
 * media.ccc.de \[beta\]
 * PeerTube instances \[beta\]
+* Bandcamp \[beta\]
 
 <!-- Brecha escondida para mantener compatibles los enlaces viejos. -->
 <span id="actualizaciones"></span>
