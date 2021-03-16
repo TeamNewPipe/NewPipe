@@ -2,8 +2,7 @@
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Un front-end de streaming „uşor” liber, pentru Android.</h4>
 
-<!-- F-Droid is extremely out of date, so we hide this for now. -->
-<!-- <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"></a></p> -->
+<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-ro.svg"></a></p>
 
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
