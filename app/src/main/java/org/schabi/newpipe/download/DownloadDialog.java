@@ -159,10 +159,6 @@ public class DownloadDialog extends DialogFragment
         setVideoStreams(new StreamSizeWrapper<>(videoStreams, getContext()));
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // LifeCycle
-    //////////////////////////////////////////////////////////////////////////*/
-
     public void setVideoStreams(final StreamSizeWrapper<VideoStream> wvs) {
         this.wrappedVideoStreams = wvs;
     }
