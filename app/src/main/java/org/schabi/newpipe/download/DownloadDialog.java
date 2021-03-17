@@ -757,15 +757,14 @@ public class DownloadDialog extends DialogFragment
             return;
         }
 
-        // check if is our file
+        // get state of potential mission referring to the same file
         final MissionState state = downloadManager.checkForExistingMission(storage);
-        @StringRes
-        final int msgBtn;
-        @StringRes
-        final int msgBody;
+        @StringRes final int msgBtn;
+        @StringRes final int msgBody;
 
+        // this switch checks if there is already a mission referring to the same file
         switch (state) {
-            case Finished:
+            case Finished: // there is already a finished mission
                 msgBtn = R.string.overwrite;
                 msgBody = R.string.overwrite_finished_warning;
                 break;
@@ -777,7 +776,7 @@ public class DownloadDialog extends DialogFragment
                 msgBtn = R.string.generate_unique_name;
                 msgBody = R.string.download_already_running;
                 break;
-            case None:
+            case None: // there is no mission referring to the same file
                 if (mainStorage == null) {
                     // This part is called if:
                     // * using SAF on older android version
@@ -812,7 +811,7 @@ public class DownloadDialog extends DialogFragment
                 msgBody = R.string.overwrite_unrelated_warning;
                 break;
             default:
-                return;
+                return; // unreachable
         }
 
         final AlertDialog.Builder askDialog = new AlertDialog.Builder(context)

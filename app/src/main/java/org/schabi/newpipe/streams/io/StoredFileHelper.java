@@ -290,11 +290,10 @@ public class StoredFileHelper implements Serializable {
         }
 
         // WARNING: DocumentFile.exists() and DocumentFile.isFile() methods are slow
-        final boolean exists = docFile == null ? ioFile.exists() : docFile.exists();
-        // ¿docFile.isVirtual() means is no-physical?
-        final boolean isFile = docFile == null ? ioFile.isFile() : docFile.isFile();
-
-        return exists && isFile;
+        // docFile.isVirtual() means it is non-physical?
+        return docFile == null
+                ? (ioFile.exists() && ioFile.isFile())
+                : (docFile.exists() && docFile.isFile());
     }
 
     public boolean create() {
