@@ -233,7 +233,7 @@ dependencies {
     implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
     implementation "com.jakewharton.rxbinding4:rxbinding:4.0.0"
 
-    implementation "org.ocpsoft.prettytime:prettytime:4.0.6.Final"
+    implementation "org.ocpsoft.prettytime:prettytime:5.0.0.Final"
 
     testImplementation 'junit:junit:4.13.1'
     testImplementation "org.mockito:mockito-core:${mockitoVersion}"

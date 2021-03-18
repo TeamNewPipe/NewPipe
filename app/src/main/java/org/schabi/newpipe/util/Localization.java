@@ -20,7 +20,6 @@ import org.ocpsoft.prettytime.units.Decade;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
-import org.schabi.newpipe.ktx.OffsetDateTimeKt;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -30,7 +29,6 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -314,11 +312,7 @@ public final class Localization {
     }
 
     public static String relativeTime(final OffsetDateTime offsetDateTime) {
-        return relativeTime(OffsetDateTimeKt.toCalendar(offsetDateTime));
-    }
-
-    public static String relativeTime(final Calendar calendarTime) {
-        return prettyTime.formatUnrounded(calendarTime);
+        return prettyTime.formatUnrounded(offsetDateTime);
     }
 
     private static void changeAppLanguage(final Locale loc, final Resources res) {
