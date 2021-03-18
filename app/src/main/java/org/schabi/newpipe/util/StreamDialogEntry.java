@@ -25,6 +25,8 @@ public enum StreamDialogEntry {
     //////////////////////////////////////
 
     show_channel_details(R.string.show_channel_details, (fragment, item) -> {
+        // TODO(mhmdanas): investigate why `getActivity().getSupportFragmentManager()` works but
+        // `getParentFragmentManager` doesn't.
         NavigationHelper.openChannelFragment(fragment.getActivity().getSupportFragmentManager(),
                 item.getServiceId(), item.getUploaderUrl(), item.getUploaderName());
     }),
