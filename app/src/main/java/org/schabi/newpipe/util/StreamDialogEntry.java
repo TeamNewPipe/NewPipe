@@ -1,4 +1,3 @@
-
 package org.schabi.newpipe.util;
 
 import android.content.Context;
