@@ -79,6 +79,7 @@
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>
     <string name="theme_title">Theme</string>
+    <string name="night_theme_title">Night Theme</string>
     <string name="light_theme_title">Light</string>
     <string name="dark_theme_title">Dark</string>
     <string name="black_theme_title">Black</string>
@@ -709,4 +710,7 @@
     <string name="paid_content">This content is only available to users who have paid, so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="featured">Featured</string>
     <string name="radio">Radio</string>
+    <string name="auto_device_theme_title">Automatic (device theme)</string>
+    <string name="night_theme_summary">Select your favorite night theme — %s</string>
+    <string name="select_night_theme_toast">You can select your favorite night theme below</string>
 </resources>
