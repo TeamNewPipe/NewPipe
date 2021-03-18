@@ -213,13 +213,21 @@ public final class ShareUtils {
      * @param url     the url to share
      */
     public static void shareText(final Context context, final String subject, final String url) {
+        shareText(context, subject, url, true);
+    }
+
+
+    public static void shareText(final Context context,
+                                 final String subject,
+                                 final String url,
+                                 final boolean showPreviewText) {
         final Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
-        if (!subject.isEmpty()) {
+        if (!subject.isEmpty() && showPreviewText) {
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+            shareIntent.putExtra(Intent.EXTRA_TITLE, subject);
         }
         shareIntent.putExtra(Intent.EXTRA_TEXT, url);
-        shareIntent.putExtra(Intent.EXTRA_TITLE, context.getString(R.string.share_dialog_title));
 
         openAppChooser(context, shareIntent, false);
     }

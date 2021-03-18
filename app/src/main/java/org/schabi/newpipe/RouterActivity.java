@@ -234,7 +234,7 @@ public class RouterActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.open_in_browser,
                         (dialog, which) -> ShareUtils.openUrlInBrowser(this, url))
                 .setNegativeButton(R.string.share,
-                        (dialog, which) -> ShareUtils.shareText(this, "", url)) // no subject
+                        (dialog, which) -> ShareUtils.shareText(this, "", url, false)) //no subject
                 .setNeutralButton(R.string.cancel, null)
                 .setOnDismissListener(dialog -> finish())
                 .show();
