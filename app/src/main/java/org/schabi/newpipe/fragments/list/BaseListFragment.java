@@ -350,7 +350,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             return;
         }
 
-        final ArrayList<StreamDialogEntry> entries =
+        final List<StreamDialogEntry> entries =
                 new ArrayList<>(Arrays.asList(StreamDialogEntry.show_channel_details));
 
         if (PlayerHolder.getType() != null) {
