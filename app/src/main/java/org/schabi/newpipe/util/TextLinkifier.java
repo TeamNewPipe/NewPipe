@@ -29,6 +29,8 @@ import static org.schabi.newpipe.util.URLHandler.playOnPopup;
 
 public final class TextLinkifier {
     public static final String TAG = TextLinkifier.class.getSimpleName();
+    private static final Pattern TIMESTAMPS_PATTERN_IN_PLAIN_TEXT =
+            Pattern.compile("(?:([0-5]?[0-9]):)?([0-5]?[0-9]):([0-5][0-9])");
 
     private TextLinkifier() {
     }
@@ -115,9 +117,6 @@ public final class TextLinkifier {
                 streamingService, contentUrl);
     }
 
-    private static final Pattern TIMESTAMPS_PATTERN_IN_PLAIN_TEXT =
-            Pattern.compile("(?:([0-5]?[0-9]):)?([0-5]?[0-9]):([0-5][0-9])");
-
     /**
      * Add click listeners which opens the popup player on timestamps in a plain text.
      * <p>
@@ -125,11 +124,11 @@ public final class TextLinkifier {
      * using a regular expression, adds for each a {@link ClickableSpan} which opens the popup
      * player at the time indicated in the timestamps.
      *
-     * @param context               the context to use
-     * @param spannableDescription  the SpannableStringBuilder with the text of the
-     *                              content description
-     * @param contentUrl            the URL of the content
-     * @param streamingService      the {@link StreamingService} of the content
+     * @param context              the context to use
+     * @param spannableDescription the SpannableStringBuilder with the text of the
+     *                             content description
+     * @param contentUrl           the URL of the content
+     * @param streamingService     the {@link StreamingService} of the content
      */
     private static void addClickListenersOnTimestamps(final Context context,
                                                       final SpannableStringBuilder
@@ -144,23 +143,24 @@ public final class TextLinkifier {
             final int timestampEnd = timestampMatches.end(0);
             final String parsedTimestamp = descriptionText.substring(timestampStart, timestampEnd);
             final String[] timestampParts = parsedTimestamp.split(":");
-            final int seconds;
+            final int time;
             if (timestampParts.length == 3) { // timestamp format: XX:XX:XX
-                seconds = Integer.parseInt(timestampParts[0]) * 3600 + Integer.parseInt(
-                        timestampParts[1]) * 60 + Integer.parseInt(timestampParts[2]);
+                time = Integer.parseInt(timestampParts[0]) * 3600 // hours
+                        + Integer.parseInt(timestampParts[1]) * 60 // minutes
+                        + Integer.parseInt(timestampParts[2]); // seconds
                 spannableDescription.setSpan(new ClickableSpan() {
                     @Override
                     public void onClick(@NonNull final View view) {
-                        playOnPopup(context, contentUrl, streamingService, seconds);
+                        playOnPopup(context, contentUrl, streamingService, time);
                     }
                 }, timestampStart, timestampEnd, 0);
             } else if (timestampParts.length == 2) { // timestamp format: XX:XX
-                seconds = Integer.parseInt(timestampParts[0]) * 60 + Integer.parseInt(
-                        timestampParts[1]);
+                time = Integer.parseInt(timestampParts[0]) * 60 // minutes
+                        + Integer.parseInt(timestampParts[1]); // seconds
                 spannableDescription.setSpan(new ClickableSpan() {
                     @Override
                     public void onClick(@NonNull final View view) {
-                        playOnPopup(context, contentUrl, streamingService, seconds);
+                        playOnPopup(context, contentUrl, streamingService, time);
                     }
                 }, timestampStart, timestampEnd, 0);
             }
@@ -203,7 +203,7 @@ public final class TextLinkifier {
             for (final URLSpan span : urls) {
                 final ClickableSpan clickableSpan = new ClickableSpan() {
                     public void onClick(@NonNull final View view) {
-                        if (!URLHandler.canHandleUrl(context, span.getURL(), 0)) {
+                        if (!URLHandler.handleUrl(context, span.getURL(), 0)) {
                             ShareUtils.openUrlInBrowser(context, span.getURL(), false);
                         }
                     }

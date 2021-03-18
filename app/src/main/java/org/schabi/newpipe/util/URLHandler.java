@@ -19,12 +19,15 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public final class URLHandler {
+    private static final Pattern AMPERSAND_TIMESTAMP_PATTERN = Pattern.compile("(.*)&t=(\\d+)");
+    private static final Pattern HASHTAG_TIMESTAMP_PATTERN =
+            Pattern.compile("(.*)#timestamp=(\\d+)");
 
     private URLHandler() {
     }
 
     /**
-     * Check if an URL can be handled in NewPipe.
+     * Handle an URL in NewPipe.
      * <p>
      * This method will check if the provided url can be handled in NewPipe or not. If this is a
      * service URL with a timestamp, the popup player will be opened.
@@ -39,17 +42,17 @@ public final class URLHandler {
      * @param timestampType the type of timestamp
      * @return true if the URL can be handled by NewPipe, false if it cannot
      */
-    public static boolean canHandleUrl(final Context context,
-                                       final String url,
-                                       final int timestampType) {
+    public static boolean handleUrl(final Context context,
+                                    final String url,
+                                    final int timestampType) {
         String matchedUrl = "";
         int seconds = -1;
         final Pattern timestampPattern;
 
         if (timestampType == 0) {
-            timestampPattern = Pattern.compile("(.*)&t=(\\d+)");
+            timestampPattern = AMPERSAND_TIMESTAMP_PATTERN;
         } else if (timestampType == 1) {
-            timestampPattern = Pattern.compile("(.*)#timestamp=(\\d+)");
+            timestampPattern = HASHTAG_TIMESTAMP_PATTERN;
         } else {
             return false;
         }
@@ -107,13 +110,13 @@ public final class URLHandler {
             return false;
         }
 
-        final Single single
+        final Single<StreamInfo> single
                 = ExtractorHelper.getStreamInfo(service.getServiceId(), cleanUrl, false);
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
                     final PlayQueue playQueue
-                            = new SinglePlayQueue((StreamInfo) info, seconds * 1000);
+                            = new SinglePlayQueue(info, seconds * 1000);
                     NavigationHelper.playOnPopupPlayer(context, playQueue, false);
                 });
         return true;
