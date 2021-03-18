@@ -1,3 +1,4 @@
+
 package org.schabi.newpipe.util;
 
 import android.content.Context;
@@ -25,7 +26,7 @@ public enum StreamDialogEntry {
     //////////////////////////////////////
 
     show_channel_details(R.string.show_channel_details, (fragment, item) -> {
-        NavigationHelper.openChannelFragment(fragment.getChildFragmentManager(),
+        NavigationHelper.openChannelFragment(fragment.getActivity().getSupportFragmentManager(),
                 item.getServiceId(), item.getUploaderUrl(), item.getUploaderName());
     }),
 
