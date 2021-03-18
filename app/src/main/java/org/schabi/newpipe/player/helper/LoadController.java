@@ -80,12 +80,14 @@ public class LoadController implements LoadControl {
     }
 
     @Override
-    public boolean shouldContinueLoading(final long bufferedDurationUs,
+    public boolean shouldContinueLoading(final long playbackPositionUs,
+                                         final long bufferedDurationUs,
                                          final float playbackSpeed) {
         if (!preloadingEnabled) {
             return false;
         }
-        return internalLoadControl.shouldContinueLoading(bufferedDurationUs, playbackSpeed);
+        return internalLoadControl.shouldContinueLoading(
+                playbackPositionUs, bufferedDurationUs, playbackSpeed);
     }
 
     @Override

@@ -601,7 +601,8 @@ public final class Player implements
         final PlaybackParameters savedParameters = retrievePlaybackParametersFromPrefs(this);
         final float playbackSpeed = savedParameters.speed;
         final float playbackPitch = savedParameters.pitch;
-        final boolean playbackSkipSilence = savedParameters.skipSilence;
+        final boolean playbackSkipSilence = getPrefs().getBoolean(getContext().getString(
+                R.string.playback_skip_silence_key), getPlaybackSkipSilence());
 
         final boolean samePlayQueue = playQueue != null && playQueue.equals(newQueue);
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
@@ -1516,7 +1517,8 @@ public final class Player implements
     }
 
     public boolean getPlaybackSkipSilence() {
-        return getPlaybackParameters().skipSilence;
+        return !exoPlayerIsNull() && simpleExoPlayer.getAudioComponent() != null
+                && simpleExoPlayer.getAudioComponent().getSkipSilenceEnabled();
     }
 
     public PlaybackParameters getPlaybackParameters() {
@@ -1541,7 +1543,10 @@ public final class Player implements
 
         savePlaybackParametersToPrefs(this, roundedSpeed, roundedPitch, skipSilence);
         simpleExoPlayer.setPlaybackParameters(
-                new PlaybackParameters(roundedSpeed, roundedPitch, skipSilence));
+                new PlaybackParameters(roundedSpeed, roundedPitch));
+        if (simpleExoPlayer.getAudioComponent() != null) {
+            simpleExoPlayer.getAudioComponent().setSkipSilenceEnabled(skipSilence);
+        }
     }
     //endregion
 
@@ -2417,6 +2422,7 @@ public final class Player implements
             case ExoPlaybackException.TYPE_OUT_OF_MEMORY:
             case ExoPlaybackException.TYPE_REMOTE:
             case ExoPlaybackException.TYPE_RENDERER:
+            case ExoPlaybackException.TYPE_TIMEOUT:
             default:
                 showUnrecoverableError(error);
                 onPlaybackShutdown();
@@ -3439,7 +3445,7 @@ public final class Player implements
         final List<String> availableLanguages = new ArrayList<>(textTracks.length);
         for (int i = 0; i < textTracks.length; i++) {
             final TrackGroup textTrack = textTracks.get(i);
-            if (textTrack.length > 0 && textTrack.getFormat(0) != null) {
+            if (textTrack.length > 0) {
                 availableLanguages.add(textTrack.getFormat(0).language);
             }
         }
