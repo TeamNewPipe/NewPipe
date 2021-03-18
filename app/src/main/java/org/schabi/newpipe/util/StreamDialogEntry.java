@@ -25,7 +25,8 @@ public enum StreamDialogEntry {
     //////////////////////////////////////
 
     show_channel_details(R.string.show_channel_details, (fragment, item) -> {
-        NavigationHelper.openChannelFragment(fragment.getChildFragmentManager(), item.getServiceId(), item.getUploaderUrl(), item.getUploaderName());
+        NavigationHelper.openChannelFragment(fragment.getChildFragmentManager(),
+                item.getServiceId(), item.getUploaderUrl(), item.getUploaderName());
     }),
 
     /**
