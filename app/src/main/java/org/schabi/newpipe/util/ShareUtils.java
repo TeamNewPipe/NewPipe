@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
@@ -25,15 +26,15 @@ public final class ShareUtils {
      * second param (a system chooser will be opened if there are multiple markets and no default)
      * and falls back to Google Play Store web URL if no app to handle the market scheme was found.
      * <p>
-     * It uses {@link ShareUtils#openIntentInApp(Context, Intent, boolean)} to open market scheme
-     * and {@link ShareUtils#openUrlInBrowser(Context, String, boolean)} to open Google Play Store
+     * It uses {@link #openIntentInApp(Context, Intent, boolean)} to open market scheme
+     * and {@link #openUrlInBrowser(Context, String, boolean)} to open Google Play Store
      * web URL with false for the boolean param.
      *
      * @param context   the context to use
      * @param packageId the package id of the app to be installed
      */
     public static void installApp(final Context context, final String packageId) {
-        // Try market:// scheme
+        // Try market scheme
         final boolean marketSchemeResult = openIntentInApp(context, new Intent(Intent.ACTION_VIEW,
                 Uri.parse("market://details?id=" + packageId))
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK), false);
@@ -48,7 +49,7 @@ public final class ShareUtils {
      * Open the url with the system default browser.
      * <p>
      * If no browser is set as default, fallbacks to
-     * {@link ShareUtils#openAppChooser(Context, Intent, boolean)}
+     * {@link #openAppChooser(Context, Intent, boolean)}
      *
      * @param context                the context to use
      * @param url                    the url to browse
@@ -56,7 +57,8 @@ public final class ShareUtils {
      *                               for HTTP protocol or for the created intent
      * @return true if the URL can be opened or false if it cannot
      */
-    public static boolean openUrlInBrowser(final Context context, final String url,
+    public static boolean openUrlInBrowser(final Context context,
+                                           final String url,
                                            final boolean httpDefaultBrowserTest) {
         final String defaultPackageName;
         final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url))
@@ -96,9 +98,9 @@ public final class ShareUtils {
      * Open the url with the system default browser.
      * <p>
      * If no browser is set as default, fallbacks to
-     * {@link ShareUtils#openAppChooser(Context, Intent, boolean)}
+     * {@link #openAppChooser(Context, Intent, boolean)}
      * <p>
-     * This calls {@link ShareUtils#openUrlInBrowser(Context, String, boolean)} with true
+     * This calls {@link #openUrlInBrowser(Context, String, boolean)} with true
      * for the boolean parameter
      *
      * @param context the context to use
@@ -113,19 +115,20 @@ public final class ShareUtils {
      * Open an intent with the system default app.
      * <p>
      * The intent can be of every type, excepted a web intent for which
-     * {@link ShareUtils#openUrlInBrowser(Context, String, boolean)} should be used.
+     * {@link #openUrlInBrowser(Context, String, boolean)} should be used.
      * <p>
      * If no app is set as default, fallbacks to
-     * {@link ShareUtils#openAppChooser(Context, Intent, boolean)}.
+     * {@link #openAppChooser(Context, Intent, boolean)}.
      * <p>
      *
      * @param context   the context to use
      * @param intent    the intent to open
-     * @param showToast the boolean to set if a toast is displayed to user when no app is installed
+     * @param showToast a boolean to set if a toast is displayed to user when no app is installed
      *                  to open the intent (true) or not (false)
      * @return true if the intent can be opened or false if it cannot be
      */
-    public static boolean openIntentInApp(final Context context, final Intent intent,
+    public static boolean openIntentInApp(final Context context,
+                                          final Intent intent,
                                           final boolean showToast) {
         final String defaultPackageName = getDefaultAppPackageName(context, intent);
 
@@ -178,6 +181,36 @@ public final class ShareUtils {
         if (setTitleChooser) {
             chooserIntent.putExtra(Intent.EXTRA_TITLE, context.getString(R.string.open_with));
         }
+
+        // Migrate any clip data and flags from the original intent.
+        final int permFlags;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            permFlags = intent.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                    | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+                    | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
+        } else {
+            permFlags = intent.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                    | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+        }
+        if (permFlags != 0) {
+            ClipData targetClipData = intent.getClipData();
+            if (targetClipData == null && intent.getData() != null) {
+                final ClipData.Item item = new ClipData.Item(intent.getData());
+                final String[] mimeTypes;
+                if (intent.getType() != null) {
+                    mimeTypes = new String[] {intent.getType()};
+                } else {
+                    mimeTypes = new String[] {};
+                }
+                targetClipData = new ClipData(null, mimeTypes, item);
+            }
+            if (targetClipData != null) {
+                chooserIntent.setClipData(targetClipData);
+                chooserIntent.addFlags(permFlags);
+            }
+        }
         context.startActivity(chooserIntent);
     }
 
@@ -208,24 +241,45 @@ public final class ShareUtils {
     /**
      * Open the android share menu to share the current url.
      *
-     * @param context the context to use
-     * @param subject the url subject, typically the title
-     * @param url     the url to share
+     * @param context         the context to use
+     * @param subject         the url subject, typically the title
+     * @param url             the url to share
+     * @param imagePreviewUrl the image of the subject
      */
-    public static void shareText(final Context context, final String subject, final String url) {
-        shareText(context, subject, url, true);
-    }
-
-
     public static void shareText(final Context context,
                                  final String subject,
                                  final String url,
+                                 final String imagePreviewUrl) {
+        shareText(context, subject, url, imagePreviewUrl, true);
+    }
+
+    /**
+     * Open the android share sheet to share the current url.
+     *
+     * For Android 10+ users, a content preview is shown, which includes the title of the shared
+     * content.
+     * Support sharing the image of the content needs to done, if possible.
+     *
+     * @param context         the context to use
+     * @param subject         the url subject, typically the title
+     * @param url             the url to share
+     * @param imagePreviewUrl the image of the subject
+     * @param showPreviewText show the subject as an extra title of the Android share sheet if true
+     */
+    public static void shareText(final Context context,
+                                 final String subject,
+                                 final String url,
+                                 final String imagePreviewUrl,
                                  final boolean showPreviewText) {
         final Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
-        if (!subject.isEmpty() && showPreviewText) {
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        if (!imagePreviewUrl.isEmpty() && !subject.isEmpty() && showPreviewText) {
             shareIntent.putExtra(Intent.EXTRA_TITLE, subject);
+            /* TODO: add the image of the content to Android share sheet with setClipData after
+                generating a content URI of this image, then use ClipData.newUri(the content
+                resolver, null, the content URI) and set the ClipData to the share intent with
+                shareIntent.setClipData(generated ClipData).*/
+            //shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         }
         shareIntent.putExtra(Intent.EXTRA_TEXT, url);
 

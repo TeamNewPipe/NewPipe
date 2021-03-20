@@ -3593,7 +3593,8 @@ public final class Player implements
         } else if (v.getId() == binding.moreOptionsButton.getId()) {
             onMoreOptionsClicked();
         } else if (v.getId() == binding.share.getId()) {
-            ShareUtils.shareText(context, getVideoTitle(), getVideoUrlAtCurrentTime());
+            ShareUtils.shareText(context, getVideoTitle(), getVideoUrlAtCurrentTime(),
+                            currentItem.getThumbnailUrl());
         } else if (v.getId() == binding.playWithKodi.getId()) {
             onPlayWithKodiClicked();
         } else if (v.getId() == binding.openInBrowser.getId()) {

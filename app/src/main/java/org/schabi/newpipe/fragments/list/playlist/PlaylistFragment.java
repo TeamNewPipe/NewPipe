@@ -251,7 +251,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 ShareUtils.openUrlInBrowser(requireContext(), url);
                 break;
             case R.id.menu_item_share:
-                ShareUtils.shareText(requireContext(), name, url);
+                ShareUtils.shareText(requireContext(), name, url, currentInfo.getThumbnailUrl());
                 break;
             case R.id.menu_item_bookmark:
                 onBookmarkClicked();

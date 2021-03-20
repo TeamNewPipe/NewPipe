@@ -454,8 +454,8 @@ public final class VideoDetailFragment
                 break;
             case R.id.detail_controls_share:
                 if (currentInfo != null) {
-                    ShareUtils.shareText(requireContext(),
-                            currentInfo.getName(), currentInfo.getUrl());
+                    ShareUtils.shareText(requireContext(), currentInfo.getName(),
+                            currentInfo.getUrl(), currentInfo.getThumbnailUrl());
                 }
                 break;
             case R.id.detail_controls_open_in_browser:
