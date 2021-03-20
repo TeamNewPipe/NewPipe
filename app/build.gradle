@@ -1,3 +1,7 @@
+plugins {
+    id "org.sonarqube" version "3.1.1"
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -111,7 +115,7 @@ configurations {
 }
 
 checkstyle {
-    configFile rootProject.file('checkstyle.xml')
+    configDir rootProject.file(".")
     ignoreFailures false
     showViolations true
     toolVersion = checkstyleVersion
@@ -156,6 +160,14 @@ task formatKtlint(type: JavaExec) {
 
 afterEvaluate {
     preDebugBuild.dependsOn formatKtlint, runCheckstyle, runKtlint
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "TeamNewPipe_NewPipe"
+        property "sonar.organization", "teamnewpipe"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
 }
 
 dependencies {
