@@ -27,6 +27,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.ServiceCompat;
 import androidx.core.widget.TextViewCompat;
@@ -35,7 +37,6 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
-import org.schabi.newpipe.databinding.SingleChoiceDialogViewBinding;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -324,13 +325,54 @@ public class RouterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Toggle the visibility for advanced options view.
+     * @param dialogView Main view of the dialog.
+     * @param visible State of the visibility.
+     */
+    private void toggleAdvancedOptions(final View dialogView, final boolean visible) {
+        final AppCompatButton toggle = dialogView.findViewById(R.id.toggle_adv);
+        final SwitchCompat prioritizeEnqueue = dialogView.findViewById(R.id.prioritize_enqueue);
+
+        final int visibility = (visible
+                ? View.VISIBLE
+                : View.GONE);
+        final int icon = (visible
+                ? R.drawable.ic_arrow_drop_down
+                : R.drawable.ic_arrow_drop_right);
+
+        prioritizeEnqueue.setVisibility(visibility);
+        TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(toggle,
+                AppCompatResources.getDrawable(getApplicationContext(), icon),
+                null, null, null);
+    };
+
     private void showDialog(final List<AdapterChoiceItem> choices) {
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         final Context themeWrapperContext = getThemeWrapperContext();
 
         final LayoutInflater inflater = LayoutInflater.from(themeWrapperContext);
-        final RadioGroup radioGroup = SingleChoiceDialogViewBinding.inflate(getLayoutInflater())
-                .list;
+        final View dialogView = View.inflate(themeWrapperContext, R.layout.dialog_share_context,
+                null);
+        final RadioGroup radioGroup = dialogView.findViewById(R.id.player_group);
+        final AppCompatButton toggle = dialogView.findViewById(R.id.toggle_adv);
+        final SwitchCompat prioritizeEnqueue = dialogView.findViewById(R.id.prioritize_enqueue);
+
+        /* Initialize component states. */
+        toggleAdvancedOptions(dialogView, false);
+        prioritizeEnqueue.setChecked(preferences.getBoolean(
+                getString(R.string.prioritize_enqueue),
+                false));
+
+        /* Save linked preference when changed. */
+        prioritizeEnqueue.setOnCheckedChangeListener((v, checked) -> {
+            preferences.edit().putBoolean(getString(R.string.prioritize_enqueue), checked).apply();
+        });
+        /* Toggle advanced options view. */
+        toggle.setOnClickListener(v -> {
+            toggleAdvancedOptions(dialogView,
+                    prioritizeEnqueue.getVisibility() != View.VISIBLE);
+        });
 
         final DialogInterface.OnClickListener dialogButtonsClickListener = (dialog, which) -> {
             final int indexOfChild = radioGroup.indexOfChild(
@@ -349,7 +391,7 @@ public class RouterActivity extends AppCompatActivity {
 
         alertDialogChoice = new AlertDialog.Builder(themeWrapperContext)
                 .setTitle(R.string.preferred_open_action_share_menu_title)
-                .setView(radioGroup)
+                .setView(dialogView)
                 .setCancelable(true)
                 .setNegativeButton(R.string.just_once, dialogButtonsClickListener)
                 .setPositiveButton(R.string.always, dialogButtonsClickListener)
@@ -796,12 +838,32 @@ public class RouterActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (choice.playerChoice.equals(videoPlayerKey)) {
-                    NavigationHelper.playOnMainPlayer(this, playQueue, false);
-                } else if (choice.playerChoice.equals(backgroundPlayerKey)) {
-                    NavigationHelper.playOnBackgroundPlayer(this, playQueue, true);
-                } else if (choice.playerChoice.equals(popupPlayerKey)) {
-                    NavigationHelper.playOnPopupPlayer(this, playQueue, true);
+                final boolean prioritizeEnqueue = preferences.getBoolean(
+                        getString(R.string.prioritize_enqueue),
+                        false);
+                // BUG: getType() always return null if main view is not open.
+                // final MainPlayer.PlayerType type = PlayerHolder.getType();
+
+                /* If prioritize_enqueue is enabled and we have running player, then enqueue
+                   this stream. Otherwise, open preferred player instead. */
+                if (prioritizeEnqueue /* && type != null*/) {
+                    if (choice.playerChoice.equals(videoPlayerKey)) {
+                        NavigationHelper.enqueueOnPlayer(this, playQueue,
+                                MainPlayer.PlayerType.VIDEO);
+                    } else if (choice.playerChoice.equals(backgroundPlayerKey)) {
+                        NavigationHelper.enqueueOnPlayer(this, playQueue);
+                    } else if (choice.playerChoice.equals(popupPlayerKey)) {
+                        NavigationHelper.enqueueOnPlayer(this, playQueue,
+                                MainPlayer.PlayerType.POPUP);
+                    }
+                } else {
+                    if (choice.playerChoice.equals(videoPlayerKey)) {
+                        NavigationHelper.playOnMainPlayer(this, playQueue, false);
+                    } else if (choice.playerChoice.equals(backgroundPlayerKey)) {
+                        NavigationHelper.playOnBackgroundPlayer(this, playQueue, true);
+                    } else if (choice.playerChoice.equals(popupPlayerKey)) {
+                        NavigationHelper.playOnPopupPlayer(this, playQueue, true);
+                    }
                 }
             };
         }
