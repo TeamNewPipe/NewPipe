@@ -351,7 +351,6 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         }
 
         final List<StreamDialogEntry> entries = new ArrayList<>();
-        entries.add(StreamDialogEntry.show_channel_details)
 
         if (PlayerHolder.getType() != null) {
             entries.add(StreamDialogEntry.enqueue);
@@ -373,6 +372,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         if (KoreUtil.shouldShowPlayWithKodi(context, item.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
         }
+
+        entries.add(StreamDialogEntry.show_channel_details)
+
         StreamDialogEntry.setEnabledEntries(entries);
 
         new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context),
