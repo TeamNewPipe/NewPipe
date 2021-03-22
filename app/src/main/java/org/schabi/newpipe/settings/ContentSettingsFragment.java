@@ -10,7 +10,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
@@ -50,8 +49,35 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private String initialLanguage;
 
     @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
+        final File homeDir = ContextCompat.getDataDir(requireContext());
+        manager = new ContentSettingsManager(new NewPipeFileLocator(homeDir));
+        manager.deleteSettingsFile();
+
+        addPreferencesFromResource(R.xml.content_settings);
+
+        final Preference importDataPreference = findPreference(getString(R.string.import_data));
+        importDataPreference.setOnPreferenceClickListener(p -> {
+            final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
+                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
+                            FilePickerActivityHelper.MODE_FILE);
+            startActivityForResult(i, REQUEST_IMPORT_PATH);
+            return true;
+        });
+
+        final Preference exportDataPreference = findPreference(getString(R.string.export_data));
+        exportDataPreference.setOnPreferenceClickListener(p -> {
+            final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
+                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
+                            FilePickerActivityHelper.MODE_DIR);
+            startActivityForResult(i, REQUEST_EXPORT_PATH);
+            return true;
+        });
+
         thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
         youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
 
@@ -101,37 +127,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
 
         return super.onPreferenceTreeClick(preference);
-    }
-
-    @Override
-    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        final File homeDir = ContextCompat.getDataDir(requireContext());
-        manager = new ContentSettingsManager(new NewPipeFileLocator(homeDir));
-        manager.deleteSettingsFile();
-
-        addPreferencesFromResource(R.xml.content_settings);
-
-        final Preference importDataPreference = findPreference(getString(R.string.import_data));
-        importDataPreference.setOnPreferenceClickListener(p -> {
-            final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
-                            FilePickerActivityHelper.MODE_FILE);
-            startActivityForResult(i, REQUEST_IMPORT_PATH);
-            return true;
-        });
-
-        final Preference exportDataPreference = findPreference(getString(R.string.export_data));
-        exportDataPreference.setOnPreferenceClickListener(p -> {
-            final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
-                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
-                            FilePickerActivityHelper.MODE_DIR);
-            startActivityForResult(i, REQUEST_EXPORT_PATH);
-            return true;
-        });
     }
 
     @Override

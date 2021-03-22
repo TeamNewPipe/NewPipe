@@ -8,7 +8,6 @@ import android.provider.Settings;
 import android.text.format.DateUtils;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.preference.ListPreference;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -23,8 +22,8 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
     private SharedPreferences.OnSharedPreferenceChangeListener listener;
 
     @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
+        addPreferencesFromResource(R.xml.video_audio_settings);
 
         updateSeekOptions();
 
@@ -102,11 +101,6 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
                             Toast.LENGTH_LONG);
             toast.show();
         }
-    }
-
-    @Override
-    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.video_audio_settings);
     }
 
     @Override
