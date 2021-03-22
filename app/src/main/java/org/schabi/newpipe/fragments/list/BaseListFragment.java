@@ -373,7 +373,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             entries.add(StreamDialogEntry.play_with_kodi);
         }
 
-        entries.add(StreamDialogEntry.show_channel_details)
+        entries.add(StreamDialogEntry.show_channel_details);
 
         StreamDialogEntry.setEnabledEntries(entries);
 
