@@ -46,4 +46,4 @@ You'll see exactly what is sent, be able to add your comments, and then send it.
 * Post suggestions, changes, ideas etc. on GitHub or IRC.
 
 **SUGGESTION**
-Please add an Option for Downloading Youtube Videos by Playlist(like youtube-dl) so its very comfortable for users 
+Please add an Option for Downloading Youtube Videos by Playlist and Channel so its very comfortable for users 
