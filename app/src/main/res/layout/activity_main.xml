@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_holder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -18,14 +18,14 @@
             layout="@layout/toolbar_layout"
             android:id="@+id/toolbar_layout"/>
 
-        <FrameLayout
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_player_holder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             app:behavior_hideable="true"
             app:behavior_peekHeight="0dp"
-            app:layout_behavior="org.schabi.newpipe.player.event.CustomBottomSheetBehavior"></FrameLayout>
+            app:layout_behavior="org.schabi.newpipe.player.event.CustomBottomSheetBehavior" />
 
     </org.schabi.newpipe.views.FocusAwareCoordinator>
 
