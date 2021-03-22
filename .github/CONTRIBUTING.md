@@ -44,3 +44,6 @@ You'll see exactly what is sent, be able to add your comments, and then send it.
 * The [#newpipe](irc:irc.freenode.net/newpipe) channel on freenode has the core team and other developers in it. [Click here for webchat](https://webchat.freenode.net/?channels=newpipe)!
 * You can also use a Matrix account to join the Newpipe channel at [#freenode_#newpipe:matrix.org](https://matrix.to/#/#freenode_#newpipe:matrix.org).
 * Post suggestions, changes, ideas etc. on GitHub or IRC.
+
+**SUGGESTION**
+Please add an Option for Downloading Youtube Videos by Playlist(like youtube-dl) so its very comfortable for users 
