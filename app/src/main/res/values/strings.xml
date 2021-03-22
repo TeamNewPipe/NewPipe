@@ -580,6 +580,7 @@
     <string name="clear_download_history">Clear download history</string>
     <string name="confirm_prompt">Do you want to clear your download history or delete all downloaded files?</string>
     <string name="delete_downloaded_files">Delete downloaded files</string>
+    <string name="delete_downloaded_files_confirm">Erase all downloaded files from disk?</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Deleted %1$s download</item>
         <item quantity="other">Deleted %1$s downloads</item>
