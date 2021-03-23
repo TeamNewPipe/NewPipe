@@ -1,9 +1,7 @@
 package org.schabi.newpipe.info_list.holder;
 
 import android.text.TextUtils;
-import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
@@ -70,21 +68,6 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
         final StreamInfoItem item = (StreamInfoItem) infoItem;
 
         itemAdditionalDetails.setText(getStreamInfoDetailLine(item));
-        itemAdditionalDetails.getViewTreeObserver()
-                .addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                    @Override
-                    public boolean onPreDraw() {
-                        itemAdditionalDetails.getViewTreeObserver().removeOnPreDrawListener(this);
-                        if (itemAdditionalDetails.getTop() <= itemVideoTitleView.getBottom()) {
-                            itemAdditionalDetails.setVisibility(View.INVISIBLE);
-                        } else if (itemAdditionalDetails.getTop() <= itemUploaderView.getBottom()) {
-                            itemAdditionalDetails.setVisibility(View.INVISIBLE);
-                        } else {
-                            itemAdditionalDetails.setVisibility(View.VISIBLE);
-                        }
-                        return true;
-                    }
-                });
     }
 
     private String getStreamInfoDetailLine(final StreamInfoItem infoItem) {
