@@ -42,8 +42,6 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
 
 public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
     public final TextView itemAdditionalDetails;
-    public final TextView itemVideoTitleView;
-    public final TextView itemUploaderView;
 
     public StreamInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
         this(infoItemBuilder, R.layout.list_stream_item, parent);
@@ -53,8 +51,6 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
                                 final ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
         itemAdditionalDetails = itemView.findViewById(R.id.itemAdditionalDetails);
-        itemVideoTitleView = itemView.findViewById(R.id.itemVideoTitleView);
-        itemUploaderView = itemView.findViewById(R.id.itemUploaderView);
     }
 
     @Override
