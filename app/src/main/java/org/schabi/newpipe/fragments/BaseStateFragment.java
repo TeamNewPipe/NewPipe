@@ -56,12 +56,6 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        errorPanelHelper.dispose();
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Init
     //////////////////////////////////////////////////////////////////////////*/
@@ -72,6 +66,14 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         emptyStateView = rootView.findViewById(R.id.empty_state_view);
         loadingProgressBar = rootView.findViewById(R.id.loading_progress_bar);
         errorPanelHelper = new ErrorPanelHelper(this, rootView, this::onRetryButtonClicked);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (errorPanelHelper != null) {
+            errorPanelHelper.dispose();
+        }
     }
 
     protected void onRetryButtonClicked() {
