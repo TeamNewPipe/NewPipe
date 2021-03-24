@@ -48,7 +48,7 @@ public class SettingsActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(final Bundle savedInstanceBundle) {
-        ThemeHelper.setTheme(this);
+        setTheme(ThemeHelper.getSettingsThemeStyle(this));
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceBundle);
 
