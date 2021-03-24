@@ -662,4 +662,15 @@
     <string name="show_description_title">Tus faahfaahinta</string>
     <string name="open_with">Ku fur</string>
     <string name="no_app_to_open_intent">Wax app ah oo kuugu jira mafuri karo midkan</string>
+    <string name="radio">Raadye</string>
+    <string name="featured">Laguu sooxulay</string>
+    <string name="paid_content">Shaygan waxaa loo heli karaa kaliya xubnaha bixiyay lacag, sidaa darteed NewPipe laguma daawan/dagsan karo.</string>
+    <string name="youtube_music_premium_content">Muuqaalkan waxaa loo heli karaa kaliya xubnaha YouTube Music Premium, sidaa darteed NewPipe laguma daawan/dagsan karo.</string>
+    <string name="private_content">Shaygan waa khaas, sidaa darteed NewPipe laguma daawan karo lagumana dajin karo.</string>
+    <string name="soundcloud_go_plus_content">Shaygan waa SoundCloud Go+, ama ugu yaraan wadankaaga ayuu ka yahay, sidaa darteed NewPipe laguma daawan/dagsan karo.</string>
+    <string name="georestricted_content">Shaygan wadanka aad joogto looma heli karo.</string>
+    <string name="crash_the_app">Khalkhali app-ka</string>
+    <string name="recaptcha_solve">Xalli</string>
+    <string name="restricted_video_no_stream">Muuqaalkan da\'da qofka ayuu ku xidhan yahay.
+\nAyadooy ugu wacantahay talaabooyin cusub oo YouTube uu ku qaaday muuqaalada da\'da ku xidhan, NewPipe ma furi karo muuqaalkan.</string>
 </resources>

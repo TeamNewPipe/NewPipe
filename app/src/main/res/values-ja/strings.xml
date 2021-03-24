@@ -9,7 +9,7 @@
     <string name="download">ダウンロード</string>
     <string name="search">検索</string>
     <string name="settings">設定</string>
-    <string name="did_you_mean">もしかして: \"%1$s\"</string>
+    <string name="did_you_mean">もしかして: 「%1$s」\?</string>
     <string name="share_dialog_title">共有</string>
     <string name="choose_browser">ブラウザを選択</string>
     <string name="screen_rotation">回転</string>
@@ -78,7 +78,7 @@
     <string name="report_error">不具合を報告</string>
     <string name="user_report">利用者レポートを送る</string>
     <string name="duration_live">生放送</string>
-    <string name="main_bg_subtitle">開始するには \"検索\" をタップ
+    <string name="main_bg_subtitle">開始するには「検索」をタップ
 \n</string>
     <string name="start">開始</string>
     <string name="pause">一時停止</string>
@@ -522,7 +522,7 @@
     <string name="permission_display_over_apps">他のアプリの上に表示する権限を与えてください</string>
     <string name="app_language_title">アプリの言語</string>
     <string name="systems_language">システムの既定</string>
-    <string name="subtitle_activity_recaptcha">解けたら \"完了\" を押してください</string>
+    <string name="subtitle_activity_recaptcha">解けたら「完了」を押してください</string>
     <string name="recaptcha_done_button">完了</string>
     <string name="videos_string">動画</string>
     <plurals name="seconds">

@@ -531,7 +531,7 @@
     <string name="recaptcha_done_button">Egina</string>
     <string name="videos_string">Bideoak</string>
     <plurals name="seconds">
-        <item quantity="one">%d segundu</item>
+        <item quantity="one">segundu %d</item>
         <item quantity="other">%d segundu</item>
     </plurals>
     <string name="new_seek_duration_toast">ExoPlayer-en mugak direla eta bilaketaren iraupena %d segundotan ezarri da</string>
@@ -662,4 +662,15 @@
     <string name="show_description_summary">Desaktibatu bideoaren deskribapena eta informazio gehigarria ezkutatzeko</string>
     <string name="show_description_title">Erakutsi deskribapena</string>
     <string name="open_with">Ireki honekin...</string>
+    <string name="radio">Irratia</string>
+    <string name="featured">Nabarmenduak</string>
+    <string name="paid_content">Eduki hau ordaindu duten erabiltzaileentzat soilik dago eskuragarri, eta NewPipe-k ezin du tramsmititu edo deskargatu.</string>
+    <string name="youtube_music_premium_content">Bideo hau YouTube Music Premium kideentzako soilik eskuragarri dago, eta NewPipe-k ezin du transmititu edo deskargatu.</string>
+    <string name="private_content">Eduki hau pribatua da, eta NewPipe-k ezin du transmititu edo deskargatu.</string>
+    <string name="soundcloud_go_plus_content">Hau SoundCloud Go+ pista bat da, zure herrialdean gutxienez, eta NewPipe-k ezin du transmititu edo deskargatu.</string>
+    <string name="georestricted_content">Eduki hau ez dago eskuragarri zure herrialdean.</string>
+    <string name="crash_the_app">Aplikazioa kraskatu</string>
+    <string name="recaptcha_solve">Ebatzi</string>
+    <string name="restricted_video_no_stream">Bideo hau adinez mugatua dago.
+\nAdinez mugatutako bideoekiko YouTube-ren politika berriengatik, NewPipe-k ezin ditu bideo hauek atzitu eta ezin ditu erreproduzitu.</string>
 </resources>

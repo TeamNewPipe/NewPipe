@@ -670,4 +670,7 @@
     <string name="georestricted_content">Este conteúdo não está disponível no seu país.</string>
     <string name="restricted_video_no_stream">Este vídeo tem uma restrição de idade.
 \nDevido às novas políticas do YouTube com vídeos com restrição de idade, o NewPipe não pode acessar nenhum dos seus fluxos de vídeo, portanto, é incapaz de reproduzi-lo.</string>
+    <string name="radio">Rádio</string>
+    <string name="featured">Destaque</string>
+    <string name="recaptcha_solve">Resolver</string>
 </resources>

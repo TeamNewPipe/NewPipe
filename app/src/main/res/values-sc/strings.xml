@@ -670,4 +670,7 @@
     <string name="crash_the_app">Faghe serrare s\'aplicatzione</string>
     <string name="restricted_video_no_stream">Custu vìdeu tenet unu lìmite de edade.
 \nPro neghe de sas polìticas noas de YouTube in subra de sos vìdeos limitados pro edade, NewPipe non podet atzèdere a perunu flussu vìdeu de custa genia e duncas non los podet riproduire.</string>
+    <string name="radio">Ràdiu</string>
+    <string name="featured">In evidèntzia</string>
+    <string name="recaptcha_solve">Risolve</string>
 </resources>

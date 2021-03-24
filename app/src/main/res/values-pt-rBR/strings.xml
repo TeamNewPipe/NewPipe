@@ -106,7 +106,7 @@
     <string name="use_tor_title">Usar Tor</string>
     <string name="user_report">Relatório do usuário</string>
     <string name="show_play_with_kodi_title">Mostrar \"Reproduzir com Kodi\"</string>
-    <string name="info_labels">Ocorrido:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo:\\nIdioma do app:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão SO:</string>
+    <string name="info_labels">Ocorrido:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo:\\nIdioma do app:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão da SO:</string>
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="default_popup_resolution_title">Resolução padrão do popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções maiores</string>
@@ -670,4 +670,7 @@
     <string name="georestricted_content">Este conteúdo não está disponível em seu país.</string>
     <string name="restricted_video_no_stream">Este vídeo tem restrição de idade.
 \nDevido às novas políticas do YouTube sobre vídeos com restrição de idade, NewPipe não pode acessar nenhum vídeo do stream e, portanto, não pode reproduzi-lo.</string>
+    <string name="radio">Rádio</string>
+    <string name="featured">Destaque</string>
+    <string name="recaptcha_solve">Resolvido</string>
 </resources>

@@ -528,7 +528,7 @@
     <string name="permission_display_over_apps">Doni la permeson por afiŝiĝi supre aliaj apoj</string>
     <string name="app_language_title">Preferata aplingvo</string>
     <string name="systems_language">Sistemnormo</string>
-    <string name="subtitle_activity_recaptcha">Premu « Finita » kiam solvita</string>
+    <string name="subtitle_activity_recaptcha">Premu “Finita” kiam solvita</string>
     <string name="recaptcha_done_button">Finita</string>
     <plurals name="seconds">
         <item quantity="one">%d sekundo</item>

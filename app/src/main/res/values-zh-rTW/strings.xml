@@ -660,4 +660,7 @@
     <string name="georestricted_content">此內容在您所在的國家不可用。</string>
     <string name="restricted_video_no_stream">此影片有年齡限制。
 \n因為 YouTube 新的年齡影片限制政策，NewPipe 無法存取任何這類的視訊串流，因此無法播放。</string>
+    <string name="radio">廣播</string>
+    <string name="featured">精選</string>
+    <string name="recaptcha_solve">解決</string>
 </resources>
