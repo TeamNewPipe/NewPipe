@@ -35,7 +35,7 @@
     <string name="detail_dislikes_img_view_description">Non mi piace</string>
     <string name="detail_likes_img_view_description">Mi piace</string>
     <string name="err_dir_create">Impossibile creare la cartella di download \'%1$s\'</string>
-    <string name="info_dir_created">Creata la cartella per i download \'%1$s\'</string>
+    <string name="info_dir_created">Cartella per i download \"%1$s\" creata</string>
     <string name="use_external_video_player_title">Usa lettore video esterno</string>
     <string name="use_external_audio_player_title">Usa lettore audio esterno</string>
     <string name="download_path_audio_title">Cartella audio scaricati</string>
@@ -477,7 +477,7 @@
     <string name="error_insufficient_storage">Spazio insufficiente sul dispositivo</string>
     <string name="error_progress_lost">Progresso perso poiché il file è stato eliminato</string>
     <string name="confirm_prompt">Vuoi cancellare la cronologia dei download o eliminare tutti i file scaricati\?</string>
-    <string name="enable_queue_limit_desc">Sarà avviato un solo dowload per volta</string>
+    <string name="enable_queue_limit_desc">Sarà avviato un solo download per volta</string>
     <string name="start_downloads">Avvia i download</string>
     <string name="pause_downloads">Sospendi i download</string>
     <string name="downloads_storage_ask_title">Chiedi dove scaricare</string>
@@ -521,7 +521,7 @@
     <string name="recovering">recupero</string>
     <string name="error_download_resource_gone">Impossibile recuperare questo download</string>
     <string name="choose_instance_prompt">Scegli un\'istanza</string>
-    <string name="clear_download_history">Elimina cronologia dei download</string>
+    <string name="clear_download_history">Elimina la cronologia dei download</string>
     <string name="delete_downloaded_files">Elimina file scaricati</string>
     <string name="deleted_downloads">%1$d download eliminati</string>
     <string name="permission_display_over_apps">Consentire la visualizzazione sopra altre applicazioni</string>
@@ -609,7 +609,7 @@
     <string name="feed_group_show_only_ungrouped_subscriptions">Mostra solo iscrizioni non raggruppate</string>
     <string name="select_a_playlist">Seleziona una playlist</string>
     <string name="search_showing_result_for">Risultati per: %s</string>
-    <string name="playlist_page_summary">Playlist</string>
+    <string name="playlist_page_summary">Pagina delle playlist</string>
     <string name="error_report_open_github_notice">Prima di segnalare un problema, verificare che non sia già stato riportato da qualcun altro. Il tempo che gli sviluppatori utilizzerebbero per creare un ulteriore ticket potrebbe essere invece impiegato per correggere il problema stesso.</string>
     <string name="error_report_open_issue_button_text">Segnala su GitHub</string>
     <string name="copy_for_github">Copia segnalazione formattata</string>
@@ -670,4 +670,7 @@
     <string name="georestricted_content">Questo contenuto non è disponibile nel tuo Paese.</string>
     <string name="restricted_video_no_stream">Questo video è soggetto a restrizioni di età.
 \nA causa delle nuove politiche di YouTube, NewPipe non può accedere a questo tipo di video.</string>
+    <string name="radio">Radio</string>
+    <string name="featured">In evidenza</string>
+    <string name="recaptcha_solve">Risolvi</string>
 </resources>

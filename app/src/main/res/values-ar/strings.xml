@@ -709,5 +709,8 @@
     <string name="georestricted_content">هذا المحتوى غير متوفر في بلدك.</string>
     <string name="crash_the_app">اغلق التطبيق قسريا</string>
     <string name="restricted_video_no_stream">هذا الفيديو مقيد بالفئة العمرية.
-\nنظرًا لسياسات YouTube الجديدة مع مقاطع الفيديو المقيدة بالفئة العمرية ، لا يمكن لـ NewPipe الوصول إلى أي من مقاطع الفيديو الخاصة بها وبالتالي يتعذر تشغيلها.</string>
+\nنظرًا لسياسات YouTube الجديدة المتعلقة بمقاطع الفيديو المقيدة بالفئة العمرية ، لا يمكن لـ NewPipe الوصول إلى أي من مقاطع الفيديو الخاصة بها وبالتالي يتعذر تشغيلها.</string>
+    <string name="radio">إذاعة</string>
+    <string name="featured">المميزة</string>
+    <string name="recaptcha_solve">حل</string>
 </resources>

@@ -10,7 +10,7 @@
     <string name="download">Λήψη</string>
     <string name="search">Αναζήτηση</string>
     <string name="settings">Ρυθμίσεις</string>
-    <string name="did_you_mean">Μήπως εννοείτε \"%1$s\";</string>
+    <string name="did_you_mean">Μήπως εννοείτε «%1$s»;</string>
     <string name="share_dialog_title">Κοινοποίηση με</string>
     <string name="choose_browser">Επιλέξτε πρόγραμμα περιήγησης</string>
     <string name="screen_rotation">περιστροφή</string>
@@ -25,7 +25,7 @@
     <string name="default_resolution_title">Προεπιλεγμένη ανάλυση</string>
     <string name="play_with_kodi_title">Αναπαραγωγή με το Kodi</string>
     <string name="kore_not_found">Εγκατάσταση της εφαρμογής Kore;</string>
-    <string name="show_play_with_kodi_title">Εμφάνιση της επιλογής \"Αναπαραγωγή με το Kodi\"</string>
+    <string name="show_play_with_kodi_title">Εμφάνιση της επιλογής «Αναπαραγωγή με το Kodi»</string>
     <string name="show_play_with_kodi_summary">Προβολή μιας επιλογής για αναπαραγωγή με το Kodi media center</string>
     <string name="play_audio">Ήχος</string>
     <string name="default_audio_format_title">Προεπιλεγμένη μορφή ήχου</string>
@@ -33,7 +33,7 @@
     <string name="dark_theme_title">Σκοτεινό</string>
     <string name="light_theme_title">Φωτεινό</string>
     <string name="download_dialog_title">Λήψη</string>
-    <string name="show_next_and_similar_title">Εμφάνιση \"Επόμενου\" και \"Σχετικών\" βίντεο</string>
+    <string name="show_next_and_similar_title">Εμφάνιση «Επόμενου» και «Σχετικών» βίντεο</string>
     <string name="unsupported_url">Δεν υποστηρίζεται η διεύθυνση URL</string>
     <string name="content_language_title">Προεπιλεγμένη γλώσσα περιεχομένου</string>
     <string name="settings_category_video_audio_title">Βίντεο και ήχος</string>
@@ -87,7 +87,7 @@
     <string name="title_activity_history">Ιστορικό</string>
     <string name="action_history">Ιστορικό</string>
     <string name="show_info">Εμφάνιση πληροφοριών</string>
-    <string name="main_bg_subtitle">Πατήστε \"Αναζήτηση\" για να ξεκινήσετε
+    <string name="main_bg_subtitle">Πατήστε «Αναζήτηση» για να ξεκινήσετε
 \n</string>
     <string name="no_player_found_toast">Δε βρέθηκε πρόγραμμα αναπαραγωγής ροής δεδομένων (μπορείτε να εγκαταστήσετε το VLC για να κάνετε αναπαραγωγή).</string>
     <string name="controls_download_desc">Λήψη του αρχείου ροής</string>
@@ -128,7 +128,7 @@
     <string name="enable_watch_history_summary">Κρατήστε ιστορικό των αναπαραχθέντων βίντεο</string>
     <string name="resume_on_audio_focus_gain_title">Ανάκτηση αναπαραγωγής</string>
     <string name="resume_on_audio_focus_gain_summary">Συνέχιση της αναπαραγωγής έπειτα από διακοπές (π.χ. κλήσεις)</string>
-    <string name="show_hold_to_append_title">Εμφάνιση επεξήγησης του \"Πιέστε παρατεταμένα για προσθήκη\"</string>
+    <string name="show_hold_to_append_title">Εμφάνιση επεξήγησης του «Πιέστε παρατεταμένα για προσθήκη»</string>
     <string name="show_hold_to_append_summary">Εμφάνιση υπόδειξης όταν πατηθεί το κουμπί παρασκηνίου ή αναδυόμενου παραθύρου στη σελίδα λεπτομερειών του βίντεο</string>
     <string name="default_content_country_title">Προεπιλεγμένη χώρα περιεχομένου</string>
     <string name="service_title">Υπηρεσία</string>
@@ -360,13 +360,13 @@
 \n
 \n1. Πλοηγηθείτε στο: %1$s
 \n2. Εισέλθετε στο λογαριασμό σας, όταν σας ζητηθεί.
-\n3. Πατήστε το \"Περιλαμβάνονται όλα τα δεδομένα του YouTube\", στη συνέχεια \"Κατάργηση επιλογής όλων\" και επιλέξτε μόνο το \"συνδρομές\" και \"ΟΚ\".
-\n4. Πατήστε \"Επόμενο βήμα\" και μετά \"Δημιουργία εξαγωγής\".
-\n5. Πατήστε \"Λήψη\" όταν εμφανιστεί.
-\n6. Από το ληφθέν αρχείο zip εξάγετε το αρχείο \"συνδρομές.json\" και εισάγετε το εδώ.</string>
+\n3. Πατήστε το «Περιλαμβάνονται όλα τα δεδομένα του YouTube», στη συνέχεια «Κατάργηση επιλογής όλων» και επιλέξτε μόνο το «συνδρομές» και «ΟΚ».
+\n4. Πατήστε «Επόμενο βήμα» και μετά «Δημιουργία εξαγωγής».
+\n5. Πατήστε «Λήψη» όταν εμφανιστεί.
+\n6. Από το ληφθέν αρχείο zip εξάγετε το αρχείο «συνδρομές.json» και εισάγετε το εδώ.</string>
     <string name="import_soundcloud_instructions">Για να εισάγετε τον λογαριασμό SoundCloud σας, πληκτρολογήστε τον σύνδεσμο ή το ID σας:
 \n
-\n1. Ενεργοποιήστε τη λειτουργία \"Desktop mode\" στον φυλλομετρητή σας (καθώς η ιστοσελίδα δεν είναι διαθέσιμη για κινητά)
+\n1. Ενεργοποιήστε τη λειτουργία «Desktop mode» στον φυλλομετρητή σας (καθώς η ιστοσελίδα δεν είναι διαθέσιμη για κινητά)
 \n2. Πλοηθηθείτε στο %1$s
 \n3. Εισέλθετε στο λογαριασμό σας, όταν σας ζητηθεί
 \n4. Αντιγράψτε τον σύνδεσμο του λογαριασμού στον οποίο ανακατευθυνθήκατε.</string>
@@ -486,7 +486,7 @@
     <string name="downloads_storage_ask_summary_kitkat">Θα σας ζητηθεί πού να αποθηκεύσετε κάθε λήψη.
 \nΕπιλέξτε SAF αν θέλετε να κατεβάσετε σε μια εξωτερική κάρτα SD</string>
     <string name="downloads_storage_use_saf_title">Χρήση SAF</string>
-    <string name="downloads_storage_use_saf_summary">Το \"Πλαίσιο Πρόσβασης Αποθήκευσης\" (SAF) επιτρέπει λήψεις σε μια εξωτερική κάρτα SD.
+    <string name="downloads_storage_use_saf_summary">Το «Πλαίσιο Πρόσβασης Αποθήκευσης» (SAF) επιτρέπει λήψεις σε μια εξωτερική κάρτα SD.
 \nΟρισμένες συσκευές δεν είναι συμβατές</string>
     <string name="clear_playback_states_title">Διαγραφή θέσεων αναπαραγωγής</string>
     <string name="clear_playback_states_summary">Διαγράφει όλες τις θέσεις αναπαραγωγής</string>
@@ -541,7 +541,7 @@
     <string name="no_playlist_bookmarked_yet">Δεν υπάρχουν σελιδοδείκτες λίστας αναπαραγωγής ακόμα</string>
     <string name="select_a_playlist">Επιλέξτε μια λίστα αναπαραγωγής</string>
     <string name="recaptcha_done_button">Τέλος</string>
-    <string name="subtitle_activity_recaptcha">Πατήστε \"Τέλος\" όταν επιλυθεί</string>
+    <string name="subtitle_activity_recaptcha">Πατήστε «Τέλος» όταν επιλυθεί</string>
     <string name="infinite_videos">∞ βίντεο</string>
     <string name="more_than_100_videos">100+ βίντεο</string>
     <string name="error_report_open_issue_button_text">Αναφορά στο GitHub</string>
@@ -553,7 +553,7 @@
     <string name="songs">Τραγούδια</string>
     <string name="restricted_video">Αυτό το βίντεο έχει περιορισμό ηλικίας.
 \n
-\nΕνεργοποιήστε το \"%1$s\" στις ρυθμίσεις εάν θέλετε να το δείτε.</string>
+\nΕνεργοποιήστε το «%1$s» στις ρυθμίσεις εάν θέλετε να το δείτε.</string>
     <string name="youtube_restricted_mode_enabled_title">Λειτουργία περιορισμένης πρόσβασης του YouTube</string>
     <string name="settings_category_notification_title">Ειδοποίηση</string>
     <string name="unsupported_url_dialog_message">Δεν ήταν δυνατή η αναγνώριση της διεύθυνσης URL. Άνοιγμα με άλλη εφαρμογή;</string>
@@ -631,10 +631,10 @@
     <string name="enqueue_stream">Προσθήκη στην ουρά</string>
     <string name="most_liked">Πιο αγαπημένα</string>
     <string name="error_report_open_github_notice">Παρακαλούμε ελέγξτε αν το πρόβλημα σας έχει ήδη αναφερθεί. Οι διπλές αναφορές μας στερούν το χρόνο που θα μπορούσαμε να διαθέσουμε για την επίλυση του προβλήματος.</string>
-    <string name="clear_cookie_summary">Εκκαθάριση των cookies που αποθηκεύει η εφαρμογή όταν λύνετε ένα reCAPTCHA</string>
+    <string name="clear_cookie_summary">Εκκαθάριση των cookies που αποθηκεύει η εφαρμογή όταν επιλύετε ένα reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Τα reCAPTCHA cookies εκκαθαρίστηκαν</string>
     <string name="clear_cookie_title">Εκκαθάριση reCAPTCHA cookies</string>
-    <string name="youtube_restricted_mode_enabled_summary">Το YouTube διαθέτει \"Περιορισμένη Λειτουργία\" η οποία κρύβει πιθανώς ακατάλληλο περιεχόμενο</string>
+    <string name="youtube_restricted_mode_enabled_summary">Το YouTube διαθέτει «Περιορισμένη Λειτουργία» η οποία κρύβει πιθανώς ακατάλληλο περιεχόμενο</string>
     <string name="show_age_restricted_content_summary">Εμφάνιση πιθανώς ακατάλληλου περιεχομένου (18+)</string>
     <string name="peertube_instance_add_exists">Το instance υπάρχει ήδη</string>
     <string name="peertube_instance_add_fail">Αδυναμία πιστοποίησης του instance</string>
@@ -670,4 +670,7 @@
     <string name="georestricted_content">Αυτό το περιεχόμενο δεν είναι διαθέσιμο στη χώρα σας.</string>
     <string name="restricted_video_no_stream">Αυτό το βίντεο έχει περιορισμό ηλικίας.
 \nΛόγω της νέας πολιτικής του YouTube για αυτά τα βίντεο, το NewPipe δεν μπορεί να το αναπαράγει.</string>
+    <string name="featured">Επιλεγμένα</string>
+    <string name="radio">Ράδιο</string>
+    <string name="recaptcha_solve">Λύση</string>
 </resources>

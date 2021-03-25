@@ -670,4 +670,7 @@
     <string name="private_content">Este conteúdo é privado, portanto não pode ser transmitido ou descarregado pelo NewPipe.</string>
     <string name="soundcloud_go_plus_content">Esta é uma faixa de SoundCloud Go+, pelo menos no seu país, pelo que não pode ser transmitida ou descarregada por NewPipe.</string>
     <string name="georestricted_content">Este conteúdo não está disponível no seu país.</string>
+    <string name="radio">Rádio</string>
+    <string name="featured">Destaques</string>
+    <string name="recaptcha_solve">Resolver</string>
 </resources>

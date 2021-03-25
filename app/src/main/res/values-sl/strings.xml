@@ -514,4 +514,24 @@ odpiranje v pojavnem načinu</string>
     <string name="show_description_title">Prikaži opis</string>
     <string name="download_choose_new_path">Spremenite mapo z prenosi</string>
     <string name="search_showing_result_for">Prikazujem rezultate za %s</string>
+    <string name="enqueue">Vrsta</string>
+    <string name="queued">V vrsti</string>
+    <string name="app_update_notification_content_title">NewPipe posodobitve so na voljo!</string>
+    <string name="switch_view">Zamenjaj pogled</string>
+    <string name="auto">Avtomatsko</string>
+    <string name="grid">Mreža</string>
+    <string name="never">Nikoli</string>
+    <string name="wifi_only">Samo na Wi-Fi</string>
+    <string name="minimize_on_exit_background_description">Minimiziraj na predvajalnik v ozadju</string>
+    <string name="minimize_on_exit_none_description">Nič</string>
+    <string name="limit_mobile_data_usage_title">Omeji ločjlivost pri uporabi mobilnih podatkov</string>
+    <string name="limit_data_usage_none_description">Brez omejitev</string>
+    <string name="decline">Zavrni</string>
+    <string name="playback_step">Korak</string>
+    <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
+    <string name="kiosk_page_summary">Stran kiosk</string>
+    <string name="main_page_content_summary">Kateri zavihki so prikazani na domači strani</string>
+    <string name="recaptcha_solve">Rešiti</string>
+    <string name="metadata_cache_wipe_summary">Izbrišite vse predpomnjene podatke spletnih strani</string>
+    <string name="open_with">Odpiranje z</string>
 </resources>

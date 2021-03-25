@@ -572,7 +572,7 @@
     <string name="select_a_playlist">Selecteer een afspeellijst</string>
     <string name="default_kiosk_page_summary">Standaard kiosk</string>
     <string name="recaptcha_done_button">Klaar</string>
-    <string name="subtitle_activity_recaptcha">Tik op \"Klaar\" zodra opgelost</string>
+    <string name="subtitle_activity_recaptcha">Tik op ‘Klaar’ zodra opgelost</string>
     <string name="infinite_videos">∞ video\'s</string>
     <string name="more_than_100_videos">100+ video\'s</string>
     <plurals name="listening">

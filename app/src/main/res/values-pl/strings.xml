@@ -680,4 +680,7 @@
     <string name="restricted_video_no_stream">Ten film jest ograniczony wiekowo.
 \nZe względu na nowe zasady YouTube z ograniczeniem wiekowym, NewPipe nie ma dostępu do żadnego z jego strumieni wideo i dlatego nie jest w stanie go odtworzyć.</string>
     <string name="soundcloud_go_plus_content">To jest utwór SoundCloud Go+, przynajmniej w Twoim kraju, więc nie może być przesyłany strumieniowo lub pobierany przez NewPipe.</string>
+    <string name="radio">Radio</string>
+    <string name="featured">Polecane</string>
+    <string name="recaptcha_solve">Rozwiąż</string>
 </resources>
