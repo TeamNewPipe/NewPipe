@@ -673,4 +673,9 @@
     <string name="recaptcha_solve">Xalli</string>
     <string name="restricted_video_no_stream">Muuqaalkan da\'da qofka ayuu ku xidhan yahay.
 \nAyadooy ugu wacantahay talaabooyin cusub oo YouTube uu ku qaaday muuqaalada da\'da ku xidhan, NewPipe ma furi karo muuqaalkan.</string>
+    <string name="download_has_started">Dajintii way bilaabatay</string>
+    <string name="select_night_theme_toast">Hoos ayaad ka dooran kartaa nashqada habaynkii ee aad door-biday</string>
+    <string name="night_theme_summary">Dooro nashqada habaynkii ee aad doorbiday — %s</string>
+    <string name="auto_device_theme_title">ismaamulaya (raacaya aalada)</string>
+    <string name="night_theme_title">Nashqada Habaynka</string>
 </resources>

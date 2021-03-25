@@ -690,4 +690,12 @@
     <string name="georestricted_content">תוכן זה אינו זמין במדינה שלך.</string>
     <string name="restricted_video_no_stream">הצפייה בסרטון הזה מוגבלת בגיל.
 \nעקב מדיניות חדשה ב־YouTube בנוגע לסרטונים מוגבלי גיל, ל־NewPipe אין אפשרות לגשת לתזרימי הווידאו של השירות ולכן אין אפשרות לנגן אותם.</string>
+    <string name="download_has_started">ההורדה החלה</string>
+    <string name="select_night_theme_toast">באפשרותך לבחור את ערכת העיצוב הלילית המועדפת עליך להלן</string>
+    <string name="night_theme_summary">נא לבחור את ערכת העיצוב הלילית המועדפת עליך — %s</string>
+    <string name="auto_device_theme_title">אוטומטי (לפי ערכת העיצוב של המכשיר)</string>
+    <string name="radio">ברירה</string>
+    <string name="featured">מובילים</string>
+    <string name="recaptcha_solve">לפתור</string>
+    <string name="night_theme_title">ערכת עיצוב לילית</string>
 </resources>

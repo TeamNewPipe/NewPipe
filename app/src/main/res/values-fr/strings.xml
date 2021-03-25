@@ -679,4 +679,5 @@
     <string name="auto_device_theme_title">Automatique (thème de l\'appareil)</string>
     <string name="night_theme_summary">Choisissez votre thème nuit favori — %s</string>
     <string name="select_night_theme_toast">Vous pouvez choisir votre thème nuit favori</string>
+    <string name="download_has_started">Le téléchargement a démarré</string>
 </resources>

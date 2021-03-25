@@ -670,4 +670,12 @@
     <string name="youtube_music_premium_content">Videoen er kun tilgjengelig for YouTube Music Premium-medlemmer, så den kan ikke strømmes eller lastes ned av NewPipe.</string>
     <string name="soundcloud_go_plus_content">Dette er et spor fra SoundCloud Go+, ihvertfall i ditt land, så det kan ikke strømmes eller lastes ned av NewPipe.</string>
     <string name="georestricted_content">Innholdet er ikke tilgjengelig i din region.</string>
+    <string name="download_has_started">Nedlastingen har startet</string>
+    <string name="select_night_theme_toast">Du kan velge din favorittnattdrakt nedenfor</string>
+    <string name="night_theme_summary">Velg din favorittnattdrakt — %s</string>
+    <string name="auto_device_theme_title">Automatisk (enhetsdrakt)</string>
+    <string name="radio">Radio</string>
+    <string name="featured">Framhevet</string>
+    <string name="recaptcha_solve">Løs</string>
+    <string name="night_theme_title">Nattdrakt</string>
 </resources>

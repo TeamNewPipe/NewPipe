@@ -673,4 +673,9 @@
     <string name="featured">Επιλεγμένα</string>
     <string name="radio">Ράδιο</string>
     <string name="recaptcha_solve">Λύση</string>
+    <string name="download_has_started">Η λήψη ξεκίνησε</string>
+    <string name="select_night_theme_toast">Μπορείτε να επιλέξετε το αγαπημένο σας νυχτερινό θέμα παρακάτω</string>
+    <string name="night_theme_summary">Επιλέξτε το αγαπημένο σας νυχτερινό θέμα — %s</string>
+    <string name="auto_device_theme_title">Αυτόματο (θέμα συσκευής)</string>
+    <string name="night_theme_title">Νυχτερινό θέμα</string>
 </resources>

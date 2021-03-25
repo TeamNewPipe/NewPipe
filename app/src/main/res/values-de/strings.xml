@@ -673,4 +673,9 @@
     <string name="radio">Radio</string>
     <string name="featured">Vorgestellt</string>
     <string name="recaptcha_solve">Lösen</string>
+    <string name="download_has_started">Download hat begonnen</string>
+    <string name="select_night_theme_toast">Du kannst dein bevorzugtes Nachtdesign unten auswählen</string>
+    <string name="night_theme_summary">Wähle dein bevorzugtes Nachtdesign — %s</string>
+    <string name="auto_device_theme_title">Automatisch (Gerätedesign)</string>
+    <string name="night_theme_title">Nachtdesign</string>
 </resources>

@@ -713,4 +713,9 @@
     <string name="radio">إذاعة</string>
     <string name="featured">المميزة</string>
     <string name="recaptcha_solve">حل</string>
+    <string name="download_has_started">بدأ التنزيل</string>
+    <string name="select_night_theme_toast">يمكنك اختيار نسقك الليلي المفضل أدناه</string>
+    <string name="night_theme_summary">حدد موضوعك الليلي المفضل - %s</string>
+    <string name="auto_device_theme_title">تلقائي (سمة الجهاز)</string>
+    <string name="night_theme_title">الثيم الليلي</string>
 </resources>
