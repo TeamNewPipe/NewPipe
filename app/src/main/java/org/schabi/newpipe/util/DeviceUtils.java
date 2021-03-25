@@ -11,6 +11,7 @@ import android.view.KeyEvent;
 
 import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
@@ -129,5 +130,14 @@ public final class DeviceUtils {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
                 && !HI3798MV200
                 && !CVT_MT5886_EU_1G;
+    }
+
+    public static boolean isLandscape(final Context context) {
+        return context.getResources().getDisplayMetrics().heightPixels < context.getResources()
+                .getDisplayMetrics().widthPixels;
+    }
+
+    public static boolean isInMultiWindow(final AppCompatActivity activity) {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && activity.isInMultiWindowMode();
     }
 }
