@@ -10,6 +10,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.external_communication.InternalUrlsHandler;
+
 public class CommentTextOnTouchListener implements View.OnTouchListener {
     public static final CommentTextOnTouchListener INSTANCE = new CommentTextOnTouchListener();
 
@@ -47,7 +50,7 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
                     if (action == MotionEvent.ACTION_UP) {
                         boolean handled = false;
                         if (link[0] instanceof URLSpan) {
-                            handled = URLHandler.handleUrl(v.getContext(),
+                            handled = InternalUrlsHandler.handleUrl(v.getContext(),
                                     ((URLSpan) link[0]).getURL(), 1);
                         }
                         if (!handled) {

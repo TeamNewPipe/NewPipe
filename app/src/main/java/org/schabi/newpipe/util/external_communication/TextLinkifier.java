@@ -1,4 +1,4 @@
-package org.schabi.newpipe.util;
+package org.schabi.newpipe.util.external_communication;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
@@ -25,12 +25,13 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-import static org.schabi.newpipe.util.URLHandler.playOnPopup;
+import static org.schabi.newpipe.util.external_communication.InternalUrlsHandler.playOnPopup;
 
 public final class TextLinkifier {
     public static final String TAG = TextLinkifier.class.getSimpleName();
     private static final Pattern TIMESTAMPS_PATTERN_IN_PLAIN_TEXT =
-            Pattern.compile("(?:([0-5]?[0-9]):)?([0-5]?[0-9]):([0-5][0-9])");
+            Pattern.compile("(?:^|(?![:])\\W)(?:([0-5]?[0-9]):)?([0-5]?[0-9]):"
+                    + "([0-5][0-9])(?=$|(?![:])\\W)");
 
     private TextLinkifier() {
     }
@@ -139,8 +140,8 @@ public final class TextLinkifier {
         final Matcher timestampMatches = TIMESTAMPS_PATTERN_IN_PLAIN_TEXT.matcher(descriptionText);
 
         while (timestampMatches.find()) {
-            final int timestampStart = timestampMatches.start(0);
-            final int timestampEnd = timestampMatches.end(0);
+            final int timestampStart = timestampMatches.start(2);
+            final int timestampEnd = timestampMatches.end(3);
             final String parsedTimestamp = descriptionText.substring(timestampStart, timestampEnd);
             final String[] timestampParts = parsedTimestamp.split(":");
             final int time;
@@ -203,7 +204,7 @@ public final class TextLinkifier {
             for (final URLSpan span : urls) {
                 final ClickableSpan clickableSpan = new ClickableSpan() {
                     public void onClick(@NonNull final View view) {
-                        if (!URLHandler.handleUrl(context, span.getURL(), 0)) {
+                        if (!InternalUrlsHandler.handleUrl(context, span.getURL(), 0)) {
                             ShareUtils.openUrlInBrowser(context, span.getURL(), false);
                         }
                     }

@@ -56,9 +56,9 @@ import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.PREVIOUS_EXPORT_MODE
 import org.schabi.newpipe.streams.io.StoredFileHelper
+import org.schabi.newpipe.util.external_communication.ShareUtils
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
-import org.schabi.newpipe.util.ShareUtils
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

@@ -1,4 +1,4 @@
-package org.schabi.newpipe.util;
+package org.schabi.newpipe.util.external_communication;
 
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
@@ -239,49 +239,35 @@ public final class ShareUtils {
     }
 
     /**
-     * Open the android share menu to share the current url.
-     *
-     * @param context         the context to use
-     * @param subject         the url subject, typically the title
-     * @param url             the url to share
-     * @param imagePreviewUrl the image of the subject
-     */
-    public static void shareText(final Context context,
-                                 final String subject,
-                                 final String url,
-                                 final String imagePreviewUrl) {
-        shareText(context, subject, url, imagePreviewUrl, true);
-    }
-
-    /**
-     * Open the android share sheet to share the current url.
+     * Open the android share sheet to share a content.
      *
      * For Android 10+ users, a content preview is shown, which includes the title of the shared
      * content.
      * Support sharing the image of the content needs to done, if possible.
      *
      * @param context         the context to use
-     * @param subject         the url subject, typically the title
-     * @param url             the url to share
+     * @param title           the title of the content
+     * @param content         the content to share
      * @param imagePreviewUrl the image of the subject
-     * @param showPreviewText show the subject as an extra title of the Android share sheet if true
      */
     public static void shareText(final Context context,
-                                 final String subject,
-                                 final String url,
-                                 final String imagePreviewUrl,
-                                 final boolean showPreviewText) {
+                                 final String title,
+                                 final String content,
+                                 final String imagePreviewUrl) {
         final Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
-        if (!imagePreviewUrl.isEmpty() && !subject.isEmpty() && showPreviewText) {
-            shareIntent.putExtra(Intent.EXTRA_TITLE, subject);
-            /* TODO: add the image of the content to Android share sheet with setClipData after
-                generating a content URI of this image, then use ClipData.newUri(the content
-                resolver, null, the content URI) and set the ClipData to the share intent with
-                shareIntent.setClipData(generated ClipData).*/
-            //shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        if (!title.isEmpty()) {
+            shareIntent.putExtra(Intent.EXTRA_TITLE, title);
         }
-        shareIntent.putExtra(Intent.EXTRA_TEXT, url);
+
+        /* TODO: add the image of the content to Android share sheet with setClipData after
+            generating a content URI of this image, then use ClipData.newUri(the content resolver,
+            null, the content URI) and set the ClipData to the share intent with
+            shareIntent.setClipData(generated ClipData).
+        if (!imagePreviewUrl.isEmpty()) {
+            //shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }*/
+        shareIntent.putExtra(Intent.EXTRA_TEXT, content);
 
         openAppChooser(context, shareIntent, false);
     }

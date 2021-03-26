@@ -47,7 +47,7 @@ import java.util.List;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-import static org.schabi.newpipe.util.ShareUtils.shareText;
+import static org.schabi.newpipe.util.external_communication.ShareUtils.shareText;
 
 public final class PlayQueueActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,

@@ -1,4 +1,4 @@
-package org.schabi.newpipe.util;
+package org.schabi.newpipe.util.external_communication;
 
 import android.content.Context;
 
@@ -10,6 +10,8 @@ import org.schabi.newpipe.extractor.linkhandler.LinkHandlerFactory;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,12 +20,12 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public final class URLHandler {
+public final class InternalUrlsHandler {
     private static final Pattern AMPERSAND_TIMESTAMP_PATTERN = Pattern.compile("(.*)&t=(\\d+)");
     private static final Pattern HASHTAG_TIMESTAMP_PATTERN =
             Pattern.compile("(.*)#timestamp=(\\d+)");
 
-    private URLHandler() {
+    private InternalUrlsHandler() {
     }
 
     /**
