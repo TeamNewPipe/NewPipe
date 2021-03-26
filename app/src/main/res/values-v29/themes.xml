@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Base.V29.LightTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.V29.LightTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:enforceNavigationBarContrast">false</item>
     </style>

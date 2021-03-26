@@ -20,7 +20,7 @@
         <item name="alertDialogTheme">@style/FilePickerAlertDialogThemeLight</item>
     </style>
 
-    <style name="FilePickerAlertDialogThemeLight" parent="Theme.AppCompat.Dialog.Alert">
+    <style name="FilePickerAlertDialogThemeLight" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
         <item name="colorAccent">@color/light_settings_accent_color</item>
@@ -36,7 +36,7 @@
         <item name="alertDialogTheme">@style/FilePickerAlertDialogThemeDark</item>
     </style>
 
-    <style name="FilePickerAlertDialogThemeDark" parent="Theme.AppCompat.Dialog.Alert">
+    <style name="FilePickerAlertDialogThemeDark" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <item name="colorPrimary">@color/dark_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
         <item name="colorAccent">@color/dark_settings_accent_color</item>

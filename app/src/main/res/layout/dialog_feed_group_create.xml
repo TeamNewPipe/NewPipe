@@ -109,8 +109,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:gravity="center_vertical"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
+                android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
                 app:titleTextAppearance="@style/Toolbar.Title">
 
                 <LinearLayout

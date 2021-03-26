@@ -31,6 +31,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
@@ -119,6 +120,7 @@ public final class ThemeHelper {
         final String automaticDeviceThemeKey = res.getString(R.string.auto_device_theme_key);
 
         final String selectedThemeKey = getSelectedThemeKey(context);
+
 
         int baseTheme = R.style.DarkTheme; // default to dark theme
         if (selectedThemeKey.equals(lightThemeKey)) {
@@ -286,6 +288,23 @@ public final class ThemeHelper {
             case Configuration.UI_MODE_NIGHT_NO:
             default:
                 return false;
+        }
+    }
+
+    public static void setDayNightMode(final Context context) {
+        setDayNightMode(context, ThemeHelper.getSelectedThemeKey(context));
+    }
+
+    public static void setDayNightMode(final Context context, final String selectedThemeKey) {
+        final Resources res = context.getResources();
+
+        if (selectedThemeKey.equals(res.getString(R.string.light_theme_key))) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else if (selectedThemeKey.equals(res.getString(R.string.dark_theme_key))
+                || selectedThemeKey.equals(res.getString(R.string.black_theme_key))) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         }
     }
 }
