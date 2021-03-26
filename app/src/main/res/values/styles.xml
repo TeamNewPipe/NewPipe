@@ -9,7 +9,9 @@
     </style>
 
     <!-- Base themes -->
-    <style name="Base.LightTheme" parent="Theme.AppCompat.DayNight.DarkActionBar" />
+    <style name="Base.V7.LightTheme" parent="Theme.AppCompat.DayNight.NoActionBar" />
+
+    <style name="Base.LightTheme" parent="Base.V7.LightTheme" />
 
     <style name="LightTheme" parent="Base.LightTheme">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
