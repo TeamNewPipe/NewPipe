@@ -671,7 +671,11 @@ public final class Player implements
                     //.doFinally()
                     .subscribe(
                             state -> {
-                                newQueue.setRecovery(newQueue.getIndex(), state.getProgressTime());
+                                if (!state.isFinished(newQueue.getItem().getDuration())) {
+                                    // resume playback only if the stream was not played to the end
+                                    newQueue.setRecovery(newQueue.getIndex(),
+                                            state.getProgressTime());
+                                }
                                 initPlayback(newQueue, repeatMode, playbackSpeed, playbackPitch,
                                         playbackSkipSilence, playWhenReady, isMuted);
                             },

@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.core.Flowable
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
 import org.schabi.newpipe.database.stream.StreamWithState
+import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import java.time.OffsetDateTime
 
@@ -79,6 +80,9 @@ abstract class FeedDAO {
 
         WHERE (
             sh.stream_id IS NULL
+            OR sst.stream_id IS NULL
+            OR sst.progress_time < s.duration * 1000 - ${StreamStateEntity.PLAYBACK_FINISHED_END_MILLISECONDS}
+            OR sst.progress_time < s.duration * 1000 * 3 / 4
             OR s.stream_type = 'LIVE_STREAM'
             OR s.stream_type = 'AUDIO_LIVE_STREAM'
         )
