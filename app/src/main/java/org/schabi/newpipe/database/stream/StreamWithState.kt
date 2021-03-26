@@ -10,8 +10,5 @@ data class StreamWithState(
     val stream: StreamEntity,
 
     @ColumnInfo(name = StreamStateEntity.STREAM_PROGRESS_TIME)
-    val stateProgressTime: Long?,
-
-    @ColumnInfo(name = "is_stream_in_history")
-    val isInHistory: Boolean = false
+    val stateProgressTime: Long?
 )

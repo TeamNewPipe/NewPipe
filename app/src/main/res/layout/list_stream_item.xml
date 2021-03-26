@@ -26,32 +26,6 @@
         tools:ignore="RtlHardcoded" />
 
     <TextView
-        android:id="@+id/itemInHistoryIndicatorView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@id/itemThumbnailView"
-        android:layout_alignTop="@id/itemThumbnailView"
-        android:layout_alignEnd="@id/itemThumbnailView"
-        android:layout_alignBottom="@id/itemThumbnailView"
-        android:layout_gravity="top|left"
-        android:background="@drawable/item_in_history_indicator_background"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:paddingLeft="@dimen/item_in_history_indicator_horizontal_margin"
-        android:paddingTop="@dimen/item_in_history_indicator_vertical_margin"
-        android:paddingRight="@dimen/item_in_history_indicator_horizontal_margin"
-        android:paddingBottom="@dimen/item_in_history_indicator_vertical_margin"
-        android:text="@string/item_in_history"
-        android:textAllCaps="true"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/item_in_history_indicator_text_color"
-        android:textSize="@dimen/item_in_history_indicator_text_size"
-        android:textStyle="bold"
-        android:visibility="gone"
-        tools:ignore="RtlHardcoded"
-        tools:visibility="visible" />
-
-    <TextView
         android:id="@+id/itemDurationView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

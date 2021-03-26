@@ -30,7 +30,6 @@ data class StreamItem(
 
     private val stream: StreamEntity = streamWithState.stream
     private val stateProgressTime: Long? = streamWithState.stateProgressTime
-    private val isInHistory: Boolean = streamWithState.isInHistory
 
     override fun getId(): Long = stream.uid
 
@@ -93,9 +92,6 @@ data class StreamItem(
             viewBinding.itemDurationView.visibility = View.GONE
             viewBinding.itemProgressView.visibility = View.GONE
         }
-
-        viewBinding.itemInHistoryIndicatorView.visibility =
-            if (isInHistory && !isLiveStream) View.VISIBLE else View.GONE
 
         ImageLoader.getInstance().displayImage(
             stream.thumbnailUrl, viewBinding.itemThumbnailView,
