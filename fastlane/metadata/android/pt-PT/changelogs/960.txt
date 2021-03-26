@@ -1,0 +1,4 @@
+• Melhorada a descrição da opção de exportação da base de dados nas definições.
+• Correções ao processamento de comentários no YouTube.
+• Corrigido o nome de exibição para o serviço media.ccc.de.
+• Traduções atualizadas.

@@ -1,0 +1,14 @@
+Peningkatan
+• Tambahan judul untuk akesesibilitas pada tuna aksara #2655
+• Bahasa pengaturan folder Unduhan lebih konsisten & kurang ambiguitas #2637
+
+Perbaikan
+• Periksa jika byte terakhir dalam blok telah terunduh #2646
+• #2672
+• Animasi clear box dual pencarian menjadi hanya satu #2695
+• [SoundCloud] Perbaikan ekstrak id_klien #2745
+
+Pengembangan
+• Penambahan 'dependencies' dari NewPipeExtractor ke NewPipe #2535
+• Migrasi ke AndroidX #2685
+• Permbaharuan ExoPlayer 2.10.6 #2697, #2736

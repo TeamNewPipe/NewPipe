@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Tap \"Search\" to get started
 \n</string>
@@ -79,6 +79,7 @@
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>
     <string name="theme_title">Theme</string>
+    <string name="night_theme_title">Night Theme</string>
     <string name="light_theme_title">Light</string>
     <string name="dark_theme_title">Dark</string>
     <string name="black_theme_title">Black</string>
@@ -164,6 +165,7 @@
     <string name="youtube_restricted_mode_enabled_title">Turn on YouTube\'s \"Restricted Mode\"</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube provides a \"Restricted Mode\" which hides potentially mature content</string>
     <string name="restricted_video">This video is age restricted.\n\nTurn on \"%1$s\" in the settings if you want to see it.</string>
+    <string name="restricted_video_no_stream">This video is age-restricted.\nDue to new YouTube policies with age-restricted videos, NewPipe cannot access any of its video streams and thus is unable to play it.</string>
     <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -371,6 +373,7 @@
     <string name="title_activity_recaptcha">reCAPTCHA challenge</string>
     <string name="subtitle_activity_recaptcha">Press \"Done\" when solved</string>
     <string name="recaptcha_request_toast">reCAPTCHA challenge requested</string>
+    <string name="recaptcha_solve">Solve</string>
     <string name="recaptcha_done_button">Done</string>
     <!-- Downloads -->
     <string name="settings_category_downloads_title">Download</string>
@@ -700,4 +703,15 @@
     <string name="recent">Recent</string>
     <string name="chapters">Chapters</string>
     <string name="no_app_to_open_intent">No app on your device can open this</string>
+    <string name="georestricted_content">This content is not available in your country.</string>
+    <string name="soundcloud_go_plus_content">This is a SoundCloud Go+ track, at least in your country, so it cannot be streamed or downloaded by NewPipe.</string>
+    <string name="private_content">This content is private, so it cannot be streamed or downloaded by NewPipe.</string>
+    <string name="youtube_music_premium_content">This video is available only to YouTube Music Premium members, so it cannot be streamed or downloaded by NewPipe.</string>
+    <string name="paid_content">This content is only available to users who have paid, so it cannot be streamed or downloaded by NewPipe.</string>
+    <string name="featured">Featured</string>
+    <string name="radio">Radio</string>
+    <string name="auto_device_theme_title">Automatic (device theme)</string>
+    <string name="night_theme_summary">Select your favorite night theme — %s</string>
+    <string name="select_night_theme_toast">You can select your favorite night theme below</string>
+    <string name="download_has_started">Download has started</string>
 </resources>

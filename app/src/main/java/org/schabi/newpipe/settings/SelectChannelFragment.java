@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,10 +19,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
+import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.ErrorInfo;
-import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
@@ -108,7 +105,7 @@ public class SelectChannelFragment extends DialogFragment {
         emptyView.setVisibility(View.GONE);
 
 
-        final SubscriptionManager subscriptionManager = new SubscriptionManager(getContext());
+        final SubscriptionManager subscriptionManager = new SubscriptionManager(requireContext());
         subscriptionManager.subscriptions().toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -122,7 +119,7 @@ public class SelectChannelFragment extends DialogFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCancel(final DialogInterface dialogInterface) {
+    public void onCancel(@NonNull final DialogInterface dialogInterface) {
         super.onCancel(dialogInterface);
         if (onCancelListener != null) {
             onCancelListener.onCancel();
@@ -156,31 +153,22 @@ public class SelectChannelFragment extends DialogFragment {
     private Observer<List<SubscriptionEntity>> getSubscriptionObserver() {
         return new Observer<List<SubscriptionEntity>>() {
             @Override
-            public void onSubscribe(final Disposable d) { }
+            public void onSubscribe(@NonNull final Disposable disposable) { }
 
             @Override
-            public void onNext(final List<SubscriptionEntity> newSubscriptions) {
+            public void onNext(@NonNull final List<SubscriptionEntity> newSubscriptions) {
                 displayChannels(newSubscriptions);
             }
 
             @Override
-            public void onError(final Throwable exception) {
-                SelectChannelFragment.this.onError(exception);
+            public void onError(@NonNull final Throwable exception) {
+                ErrorActivity.reportUiErrorInSnackbar(SelectChannelFragment.this,
+                        "Loading subscription", exception);
             }
 
             @Override
             public void onComplete() { }
         };
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Error
-    //////////////////////////////////////////////////////////////////////////*/
-
-    protected void onError(final Throwable e) {
-        final Activity activity = getActivity();
-        ErrorActivity.reportError(activity, e, activity.getClass(), null, ErrorInfo
-                .make(UserAction.UI_ERROR, "none", "", R.string.app_ui_crash));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -197,6 +185,7 @@ public class SelectChannelFragment extends DialogFragment {
 
     private class SelectChannelAdapter
             extends RecyclerView.Adapter<SelectChannelAdapter.SelectChannelItemHolder> {
+        @NonNull
         @Override
         public SelectChannelItemHolder onCreateViewHolder(final ViewGroup parent,
                                                           final int viewType) {

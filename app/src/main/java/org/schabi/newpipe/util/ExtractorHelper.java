@@ -1,6 +1,6 @@
 /*
  * Copyright 2017 Mauricio Colli <mauriciocolli@outlook.com>
- * Extractors.java is part of NewPipe
+ * ExtractorHelper.java is part of NewPipe
  *
  * License: GPL-3.0+
  * This program is free software: you can redistribute it and/or modify
@@ -20,12 +20,9 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
@@ -33,7 +30,6 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor.InfoItemsPage;
@@ -44,23 +40,14 @@ import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
-import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
-import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
-import org.schabi.newpipe.extractor.exceptions.ParsingException;
-import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.feed.FeedExtractor;
 import org.schabi.newpipe.extractor.feed.FeedInfo;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.search.SearchInfo;
-import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.suggestion.SuggestionExtractor;
-import org.schabi.newpipe.ktx.ExceptionUtils;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.ErrorInfo;
-import org.schabi.newpipe.report.UserAction;
 
 import java.util.Collections;
 import java.util.List;
@@ -275,50 +262,6 @@ public final class ExtractorHelper {
     }
 
     /**
-     * A simple and general error handler that show a Toast for known exceptions,
-     * and for others, opens the report error activity with the (optional) error message.
-     *
-     * @param context              Android app context
-     * @param serviceId            the service the exception happened in
-     * @param url                  the URL where the exception happened
-     * @param exception            the exception to be handled
-     * @param userAction           the action of the user that caused the exception
-     * @param optionalErrorMessage the optional error message
-     */
-    public static void handleGeneralException(final Context context, final int serviceId,
-                                              final String url, final Throwable exception,
-                                              final UserAction userAction,
-                                              final String optionalErrorMessage) {
-        final Handler handler = new Handler(context.getMainLooper());
-
-        handler.post(() -> {
-            if (exception instanceof ReCaptchaException) {
-                Toast.makeText(context, R.string.recaptcha_request_toast, Toast.LENGTH_LONG).show();
-                // Starting ReCaptcha Challenge Activity
-                final Intent intent = new Intent(context, ReCaptchaActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            } else if (ExceptionUtils.isNetworkRelated(exception)) {
-                Toast.makeText(context, R.string.network_error, Toast.LENGTH_LONG).show();
-            } else if (exception instanceof ContentNotAvailableException) {
-                Toast.makeText(context, R.string.content_not_available, Toast.LENGTH_LONG).show();
-            } else if (exception instanceof ContentNotSupportedException) {
-                Toast.makeText(context, R.string.content_not_supported, Toast.LENGTH_LONG).show();
-            } else {
-                final int errorId = exception instanceof YoutubeStreamExtractor.DeobfuscateException
-                        ? R.string.youtube_signature_deobfuscation_error
-                        : exception instanceof ParsingException
-                        ? R.string.parsing_error : R.string.general_error;
-                ErrorActivity.reportError(handler, context, exception, MainActivity.class, null,
-                        ErrorInfo.make(userAction, serviceId == -1 ? "none"
-                                : NewPipe.getNameOfService(serviceId),
-                                url + (optionalErrorMessage == null ? ""
-                                        : optionalErrorMessage), errorId));
-            }
-        });
-    }
-
-    /**
      * Formats the text contained in the meta info list as HTML and puts it into the text view,
      * while also making the separator visible. If the list is null or empty, or the user chose not
      * to see meta information, both the text view and the separator are hidden
@@ -331,10 +274,9 @@ public final class ExtractorHelper {
                                                     final TextView metaInfoTextView,
                                                     final View metaInfoSeparator) {
         final Context context = metaInfoTextView.getContext();
-        final boolean showMetaInfo = PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.show_meta_info_key), true);
-
-        if (!showMetaInfo || metaInfos == null || metaInfos.isEmpty()) {
+        if (metaInfos == null || metaInfos.isEmpty()
+                || !PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                        context.getString(R.string.show_meta_info_key), true)) {
             metaInfoTextView.setVisibility(View.GONE);
             metaInfoSeparator.setVisibility(View.GONE);
             return Disposable.empty();

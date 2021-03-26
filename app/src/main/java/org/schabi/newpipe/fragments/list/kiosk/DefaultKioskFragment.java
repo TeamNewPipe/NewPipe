@@ -2,14 +2,16 @@ package org.schabi.newpipe.fragments.list.kiosk;
 
 import android.os.Bundle;
 
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.kiosk.KioskList;
-import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.ServiceHelper;
 
 public class DefaultKioskFragment extends KioskFragment {
+
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +48,8 @@ public class DefaultKioskFragment extends KioskFragment {
             currentInfo = null;
             currentNextPage = null;
         } catch (final ExtractionException e) {
-            onUnrecoverableError(e, UserAction.REQUESTED_KIOSK, "none",
-                    "Loading default kiosk from selected service", 0);
+            showError(new ErrorInfo(e, UserAction.REQUESTED_KIOSK,
+                    "Loading default kiosk for selected service"));
         }
     }
 }

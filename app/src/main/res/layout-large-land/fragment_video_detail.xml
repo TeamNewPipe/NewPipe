@@ -219,7 +219,7 @@
                     <!--ERROR PANEL-->
                     <include
                         android:id="@+id/error_panel"
-                        layout="@layout/error_retry"
+                        layout="@layout/error_panel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/detail_title_root_layout"
@@ -703,6 +703,8 @@
                 android:background="?attr/selectableItemBackground"
                 android:padding="10dp"
                 android:scaleType="center"
+                android:focusable="true"
+                android:focusedByDefault="true"
                 app:srcCompat="?attr/ic_play_arrow"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 

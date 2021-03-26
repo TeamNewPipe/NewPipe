@@ -370,7 +370,7 @@
     <string name="feed_update_threshold_summary">শেষ হালনাগাদের পর একটি সাবস্ক্রিপশনের আগের সময় সেকেলে বিবেচিত — %s</string>
     <string name="feed_update_threshold_title">ফিড হালনাগাদ প্রবেশস্থল</string>
     <string name="settings_category_feed_title">ফিড</string>
-    <string name="feed_group_show_only_ungrouped_subscriptions">শুধুমাত্র আনগ্রুপড সাবস্ক্রিপশনসমূহ দেখান</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">শুধুমাত্র অদলবদ্ধ সদস্যতা দেখাও</string>
     <string name="feed_group_dialog_delete_message">আপনি কি এ গ্রুপটি মুছতে চান\?</string>
     <string name="feed_group_dialog_empty_name">খালি গ্রুপ নেম</string>
     <plurals name="feed_group_dialog_selection_count">

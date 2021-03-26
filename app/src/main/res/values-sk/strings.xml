@@ -672,4 +672,12 @@
     <string name="show_description_title">Zobraziť popis</string>
     <string name="open_with">Otvoriť s</string>
     <string name="no_app_to_open_intent">Aplikácia na otvorenie súboru nie je nainštalovaná</string>
+    <string name="paid_content">Tento obsah je k dispozícii iba platiacim používateľom, preto ho NewPipe nemôže streamovať ani sťahovať.</string>
+    <string name="youtube_music_premium_content">Toto video je k dispozícii iba členom služby YouTube Music Premium, preto ho NewPipe nemôže streamovať ani sťahovať.</string>
+    <string name="private_content">Toto je privátny obsah a preto ho NewPipe nemôže prehrávať ani sťahovať.</string>
+    <string name="soundcloud_go_plus_content">Táto skladba je typu SoundCloud Go+, pre vašu krajinu je tento typ zakázaný a preto ju NewPipe nemôže streamovať ani sťahovať.</string>
+    <string name="georestricted_content">Tento obsah nie je vo vašej krajine k dispozícii.</string>
+    <string name="crash_the_app">Vynútiť zastavenie</string>
+    <string name="restricted_video_no_stream">Toto video je vekovo obmedzené.
+\nNewPipe ho nemôže prehrať z dôvodu nových pravidiel služby YouTube pre videá s vekovým obmedzením.</string>
 </resources>

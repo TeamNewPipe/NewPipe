@@ -38,7 +38,7 @@
     <string name="download_path_audio_summary">Preuzete audio datoteke se spremaju ovdje</string>
     <string name="download_path_audio_dialog_title">Odaberi mapu za preuzimanje audio datoteka</string>
     <string name="autoplay_by_calling_app_title">Automatska reprodukcija</string>
-    <string name="autoplay_by_calling_app_summary">Reproducira videozapis kad je NewPipe pozvan iz druge aplikacije</string>
+    <string name="autoplay_by_calling_app_summary">Reproducira videozapis kad se NewPipe pozove iz jedne druge aplikacije</string>
     <string name="default_resolution_title">Standardna rezolucija</string>
     <string name="default_popup_resolution_title">Standardna rezolucija skočnog prozora</string>
     <string name="show_higher_resolutions_title">Prikaži više rezolucije</string>
@@ -279,7 +279,7 @@
     <string name="service_title">Usluga</string>
     <string name="channels">Kanali</string>
     <string name="playlists">Playliste</string>
-    <string name="tracks">Pjesme</string>
+    <string name="tracks">Snimke</string>
     <string name="users">Korisnici</string>
     <string name="always">Uvijek</string>
     <string name="just_once">Samo jednom</string>
@@ -669,7 +669,23 @@
     <string name="chapters">Poglavlja videozapisa</string>
     <string name="description_tab_description">Opis</string>
     <string name="comments_tab_description">Komentari</string>
-    <string name="show_description_summary">Isključite da biste sakrili opis videozapisa i dodatne informacije</string>
+    <string name="show_description_summary">Isključi za skrivanje opisa videozapisa i dodatnih informacija</string>
     <string name="show_description_title">Prikaži opis</string>
     <string name="open_with">Otvorite uz pomoć aplikacije</string>
+    <string name="soundcloud_go_plus_content">Ovo je SoundCloud Go+ snimka (barem u tvojoj zemlji), stoga ga NewPipe ne može emitirati ili preuzeti.</string>
+    <string name="restricted_video_no_stream">Ovaj je video dobno ograničen.
+\nZbog novih YouTube pravila za videa s dobnim ograničenjem, NewPipe ne može pristupiti nijednoj vlastitoj video emisiji i stoga je ne može reproducirati.</string>
+    <string name="download_has_started">Preuzimanje je započeto</string>
+    <string name="select_night_theme_toast">Dolje možeš odabrati omiljenu noćnu temu</string>
+    <string name="night_theme_summary">Odaberi omiljenu noćnu temu – %s</string>
+    <string name="auto_device_theme_title">Automatski (tema uređaja)</string>
+    <string name="radio">Radio</string>
+    <string name="featured">Istaknuto</string>
+    <string name="paid_content">Ovaj je sadržaj dostupan samo korisnicima koji su platili, stoga ga NewPipe ne može emitirati ili preuzeti.</string>
+    <string name="youtube_music_premium_content">Ovaj je video dostupan samo za „YouTube Music Premium” članove, stoga ga NewPipe ne može emitirati ili preuzeti.</string>
+    <string name="private_content">Ovaj sadržaj je privatan, stoga ga NewPipe ne može emitirati ili preuzeti.</string>
+    <string name="georestricted_content">Ovaj sadržaj nije dostupan u tvojoj zemlji.</string>
+    <string name="crash_the_app">Prekini program</string>
+    <string name="recaptcha_solve">Riješi</string>
+    <string name="night_theme_title">Noćna tema</string>
 </resources>

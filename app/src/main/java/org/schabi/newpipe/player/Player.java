@@ -601,7 +601,8 @@ public final class Player implements
         final PlaybackParameters savedParameters = retrievePlaybackParametersFromPrefs(this);
         final float playbackSpeed = savedParameters.speed;
         final float playbackPitch = savedParameters.pitch;
-        final boolean playbackSkipSilence = savedParameters.skipSilence;
+        final boolean playbackSkipSilence = getPrefs().getBoolean(getContext().getString(
+                R.string.playback_skip_silence_key), getPlaybackSkipSilence());
 
         final boolean samePlayQueue = playQueue != null && playQueue.equals(newQueue);
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
@@ -1129,6 +1130,12 @@ public final class Player implements
                 // Close it because when changing orientation from portrait
                 // (in fullscreen mode) the size of queue layout can be larger than the screen size
                 closeItemsList();
+                // When the orientation changed, the screen height might be smaller.
+                // If the end screen thumbnail is not re-scaled,
+                // it can be larger than the current screen height
+                // and thus enlarging the whole player.
+                // This causes the seekbar to be ouf the visible area.
+                updateEndScreenThumbnail();
                 break;
             case Intent.ACTION_SCREEN_ON:
                 // Interrupt playback only when screen turns on
@@ -1187,6 +1194,78 @@ public final class Player implements
                 .loadImage(url, ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS, this);
     }
 
+    /**
+     * Scale the player audio / end screen thumbnail down if necessary.
+     * <p>
+     * This is necessary when the thumbnail's height is larger than the device's height
+     * and thus is enlarging the player's height
+     * causing the bottom playback controls to be out of the visible screen.
+     * </p>
+     */
+    public void updateEndScreenThumbnail() {
+        if (currentThumbnail == null) {
+            return;
+        }
+
+        final float endScreenHeight = calculateMaxEndScreenThumbnailHeight();
+
+        final Bitmap endScreenBitmap = Bitmap.createScaledBitmap(
+                currentThumbnail,
+                (int) (currentThumbnail.getWidth()
+                        / (currentThumbnail.getHeight() / endScreenHeight)),
+                (int) endScreenHeight,
+                true);
+
+        if (DEBUG) {
+            Log.d(TAG, "Thumbnail - updateEndScreenThumbnail() called with: "
+                    + "currentThumbnail = [" + currentThumbnail + "], "
+                    + currentThumbnail.getWidth() + "x" + currentThumbnail.getHeight()
+                    + ", scaled end screen height = " + endScreenHeight
+                    + ", scaled end screen width = " + endScreenBitmap.getWidth());
+        }
+
+        binding.endScreen.setImageBitmap(endScreenBitmap);
+    }
+
+    /**
+     * Calculate the maximum allowed height for the {@link R.id.endScreen}
+     * to prevent it from enlarging the player.
+     * <p>
+     * The calculating follows these rules:
+     * <ul>
+     * <li>
+     *     Show at least stream title and content creator on TVs and tablets
+     *     when in landscape (always the case for TVs) and not in fullscreen mode.
+     *     This requires to have at least <code>85dp</code> free space for {@link R.id.detail_root}
+     *     and additional space for the stream title text size
+     *     ({@link R.id.detail_title_root_layout}).
+     *     The text size is <code>15sp</code> on tablets and <code>16sp</code> on TVs,
+     *     see {@link R.id.titleTextView}.
+     * </li>
+     * <li>
+     *     Otherwise, the max thumbnail height is the screen height.
+     * </li>
+     * </ul>
+     *
+     * @return the maximum height for the end screen thumbnail
+     */
+    private float calculateMaxEndScreenThumbnailHeight() {
+        // ensure that screenHeight is initialized and thus not 0
+        updateScreenSize();
+
+        if (DeviceUtils.isTv(context) && !isFullscreen) {
+            final int videoInfoHeight =
+                    DeviceUtils.dpToPx(85, context) + DeviceUtils.spToPx(16, context);
+            return Math.min(currentThumbnail.getHeight(), screenHeight - videoInfoHeight);
+        } else if (DeviceUtils.isTablet(context) && service.isLandscape() && !isFullscreen) {
+            final int videoInfoHeight =
+                    DeviceUtils.dpToPx(85, context) + DeviceUtils.spToPx(15, context);
+            return Math.min(currentThumbnail.getHeight(), screenHeight - videoInfoHeight);
+        } else { // fullscreen player: max height is the device height
+            return Math.min(currentThumbnail.getHeight(), screenHeight);
+        }
+    }
+
     @Override
     public void onLoadingStarted(final String imageUri, final View view) {
         if (DEBUG) {
@@ -1207,23 +1286,29 @@ public final class Player implements
     @Override
     public void onLoadingComplete(final String imageUri, final View view,
                                   final Bitmap loadedImage) {
-        final float width = Math.min(
+        // scale down the notification thumbnail for performance
+        final float notificationThumbnailWidth = Math.min(
                 context.getResources().getDimension(R.dimen.player_notification_thumbnail_width),
                 loadedImage.getWidth());
+        currentThumbnail = Bitmap.createScaledBitmap(
+                loadedImage,
+                (int) notificationThumbnailWidth,
+                (int) (loadedImage.getHeight()
+                        / (loadedImage.getWidth() / notificationThumbnailWidth)),
+                true);
 
         if (DEBUG) {
             Log.d(TAG, "Thumbnail - onLoadingComplete() called with: "
                     + "imageUri = [" + imageUri + "], view = [" + view + "], "
                     + "loadedImage = [" + loadedImage + "], "
                     + loadedImage.getWidth() + "x" + loadedImage.getHeight()
-                    + ", scaled width = " + width);
+                    + ", scaled notification width = " + notificationThumbnailWidth);
         }
 
-        currentThumbnail = Bitmap.createScaledBitmap(loadedImage,
-                (int) width,
-                (int) (loadedImage.getHeight() / (loadedImage.getWidth() / width)), true);
-        binding.endScreen.setImageBitmap(loadedImage);
         NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
+
+        // there is a new thumbnail, thus the end screen thumbnail needs to be changed, too.
+        updateEndScreenThumbnail();
     }
 
     @Override
@@ -1432,7 +1517,8 @@ public final class Player implements
     }
 
     public boolean getPlaybackSkipSilence() {
-        return getPlaybackParameters().skipSilence;
+        return !exoPlayerIsNull() && simpleExoPlayer.getAudioComponent() != null
+                && simpleExoPlayer.getAudioComponent().getSkipSilenceEnabled();
     }
 
     public PlaybackParameters getPlaybackParameters() {
@@ -1457,7 +1543,10 @@ public final class Player implements
 
         savePlaybackParametersToPrefs(this, roundedSpeed, roundedPitch, skipSilence);
         simpleExoPlayer.setPlaybackParameters(
-                new PlaybackParameters(roundedSpeed, roundedPitch, skipSilence));
+                new PlaybackParameters(roundedSpeed, roundedPitch));
+        if (simpleExoPlayer.getAudioComponent() != null) {
+            simpleExoPlayer.getAudioComponent().setSkipSilenceEnabled(skipSilence);
+        }
     }
     //endregion
 
@@ -2333,6 +2422,7 @@ public final class Player implements
             case ExoPlaybackException.TYPE_OUT_OF_MEMORY:
             case ExoPlaybackException.TYPE_REMOTE:
             case ExoPlaybackException.TYPE_RENDERER:
+            case ExoPlaybackException.TYPE_TIMEOUT:
             default:
                 showUnrecoverableError(error);
                 onPlaybackShutdown();
@@ -3355,7 +3445,7 @@ public final class Player implements
         final List<String> availableLanguages = new ArrayList<>(textTracks.length);
         for (int i = 0; i < textTracks.length; i++) {
             final TrackGroup textTrack = textTracks.get(i);
-            if (textTrack.length > 0 && textTrack.getFormat(0) != null) {
+            if (textTrack.length > 0) {
                 availableLanguages.add(textTrack.getFormat(0).language);
             }
         }

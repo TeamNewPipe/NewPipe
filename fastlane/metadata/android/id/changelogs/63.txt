@@ -1,0 +1,8 @@
+"###Peningkatan
+- Pengaturan Impor/Ekspor #1333
+- Mengurangi Pengambaran berlebih (peningkatan performa) #1371
+- Perbaikan kecil dalam kode #1375
+- Penambahan semua tentang GDPR #1420
+
+###Diperbaiki
+- Downloader: perbaikan kegagalan ketika memuat unduhan yang belum selesai dari berkas dengan format .giga #1407

@@ -85,7 +85,7 @@
             android:name=".ExitActivity"
             android:label="@string/general_error"
             android:theme="@android:style/Theme.NoDisplay" />
-        <activity android:name=".report.ErrorActivity" />
+        <activity android:name=".error.ErrorActivity" />
 
         <!-- giga get related -->
         <activity
@@ -106,7 +106,7 @@
         </activity>
 
         <activity
-            android:name=".ReCaptchaActivity"
+            android:name=".error.ReCaptchaActivity"
             android:label="@string/recaptcha" />
 
         <provider
@@ -316,6 +316,22 @@
                 <data android:pathPrefix="/videos/" /> <!-- it contains playlists -->
                 <data android:pathPrefix="/accounts/" />
                 <data android:pathPrefix="/video-channels/" />
+            </intent-filter>
+
+            <!-- Bandcamp filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:host="bandcamp.com"/>
+                <data android:host="*.bandcamp.com"/>
+                <data android:pathPrefix="/"/>
             </intent-filter>
         </activity>
         <service

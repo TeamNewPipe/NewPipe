@@ -451,4 +451,10 @@
     <string name="missions_header_pending">Menunggu</string>
     <string name="download_choose_new_path">Ubah folder muat turun untuk melihat kesan</string>
     <string name="search_showing_result_for">Menunjuk carian untuk: %s</string>
+    <plurals name="days">
+        <item quantity="other">%d hari</item>
+    </plurals>
+    <string name="help">Bantuan</string>
+    <string name="settings_category_notification_title">Pemberitahuan</string>
+    <string name="open_with">Buka dengan</string>
 </resources>

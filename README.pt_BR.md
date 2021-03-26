@@ -1,7 +1,9 @@
 <p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
+
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Uma interface de streaming leve e gratuita para Android.</h4>
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"></a></p> 
+
+<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-pt-br.svg"></a></p>
 
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
@@ -16,7 +18,7 @@
 <p align="center"><a href="https://newpipe.net">Site</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
 <hr>
 
-*Read this in other languages: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md).*
+*Read this in other languages: [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md).*
 
 <b>AVISO: ESTA É UMA VERSÃO BETA, PORTANTO, VOCÊ PODE ENCONTRAR BUGS. ENCONTROU ALGUM, ABRA UM ISSUE ATRAVÉS DO NOSSO REPOSITÓRIO GITHUB.</b>
 
@@ -79,6 +81,7 @@ O NewPipe suporta vários serviços. Nosso [documentação](https://teamnewpipe.
 * SoundCloud \[beta\]
 * media.ccc.de \[beta\]
 * PeerTube instances \[beta\]
+* Bandcamp \[beta\]
 
 ## Atualizações
 Quando uma alteração no código NewPipe (devido à adição de recursos ou fixação de bugs), eventualmente ocorrerá uma versão. Estes estão no formato x.xx.x . A fim de obter esta nova versão, você pode:
