@@ -9,7 +9,11 @@
     </style>
 
     <!-- Base themes -->
-    <style name="Base.V7.LightTheme" parent="Theme.AppCompat.DayNight.NoActionBar" />
+    <style name="Base.V7" parent="Theme.AppCompat.DayNight.NoActionBar"/>
+
+    <style name="Base" parent="Base.V7"/>
+
+    <style name="Base.V7.LightTheme" parent="Base" />
 
     <style name="Base.LightTheme" parent="Base.V7.LightTheme" />
 
@@ -119,7 +123,7 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
-    <style name="Base.V7.DarkTheme" parent="Theme.AppCompat.DayNight.NoActionBar" />
+    <style name="Base.V7.DarkTheme" parent="Base" />
 
     <style name="Base.DarkTheme" parent="Base.V7.DarkTheme" />
 
@@ -292,10 +296,6 @@
         <item name="colorAccent">@color/black_settings_accent_color</item>
     </style>
 
-    <style name="Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">18sp</item>
-    </style>
-
     <style name="OldVideoPlayerTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
@@ -337,6 +337,12 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
     </style>
 
 </resources>
