@@ -16,8 +16,8 @@ import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
 import org.schabi.newpipe.databinding.ActivityAboutBinding
 import org.schabi.newpipe.databinding.FragmentAboutBinding
+import org.schabi.newpipe.util.external_communication.ShareUtils
 import org.schabi.newpipe.util.Localization
-import org.schabi.newpipe.util.ShareUtils
 import org.schabi.newpipe.util.ThemeHelper
 
 class AboutActivity : AppCompatActivity() {
