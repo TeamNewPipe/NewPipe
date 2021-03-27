@@ -28,8 +28,8 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabTextColor="@color/modeColor"
-            app:tabIndicatorColor="@color/modeColor" />
+            app:tabTextColor="@color/white"
+            app:tabIndicatorColor="@color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
