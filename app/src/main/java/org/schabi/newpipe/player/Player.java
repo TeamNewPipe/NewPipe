@@ -2686,7 +2686,7 @@ public final class Player implements
             Log.d(TAG, "onPlayPause() called");
         }
 
-        if (isPlaying()) {
+        if (isPlayingWhenReady()) {
             pause();
         } else {
             play();
@@ -4010,6 +4010,10 @@ public final class Player implements
 
     public boolean isPlaying() {
         return !exoPlayerIsNull() && simpleExoPlayer.isPlaying();
+    }
+
+    public boolean isPlayingWhenReady() {
+        return !exoPlayerisNull() && simpleExoPlayer.getPlayWhenReady()
     }
 
     private boolean isLoading() {
