@@ -1,6 +1,10 @@
 <resources>
 
-    <style name="OpeningTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Base.V7.OpeningTheme" parent="Theme.AppCompat.DayNight.NoActionBar"/>
+
+    <style name="Base.OpeningTheme" parent="Base.V7.OpeningTheme"/>
+
+    <style name="OpeningTheme" parent="Base.OpeningTheme">
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
         <item name="colorAccent">@android:color/transparent</item>

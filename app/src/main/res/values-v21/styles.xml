@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="Base.V21.OpeningTheme" parent="Base.V7.OpeningTheme">
+        <item name="android:navigationBarColor">@color/light_youtube_primary_color</item>
+    </style>
+
+    <style name="Base.OpeningTheme" parent="Base.V21.OpeningTheme" />
+
     <style name="Base.V21.LightTheme" parent="Base.V7.LightTheme">
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
