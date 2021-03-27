@@ -13,7 +13,7 @@ class PickerIconItem(
     val icon: FeedGroupIcon
 ) : BindableItem<PickerIconItemBinding>() {
     @DrawableRes
-    val iconRes: Int = icon.getDrawableRes(context)
+    val iconRes: Int = icon.getDrawableRes()
 
     override fun getLayout(): Int = R.layout.picker_icon_item
 

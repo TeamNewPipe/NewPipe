@@ -923,21 +923,21 @@ public final class VideoDetailFragment
         if (shouldShowComments()) {
             pageAdapter.addFragment(
                     CommentsFragment.getInstance(serviceId, url, title), COMMENTS_TAB_TAG);
-            tabIcons.add(R.drawable.ic_comment_white_24dp);
+            tabIcons.add(R.drawable.ic_comment);
             tabContentDescriptions.add(R.string.comments_tab_description);
         }
 
         if (showRelatedStreams && binding.relatedStreamsLayout == null) {
             // temp empty fragment. will be updated in handleResult
             pageAdapter.addFragment(new EmptyFragment(false), RELATED_TAB_TAG);
-            tabIcons.add(R.drawable.ic_art_track_white_24dp);
+            tabIcons.add(R.drawable.ic_art_track);
             tabContentDescriptions.add(R.string.related_streams_tab_description);
         }
 
         if (showDescription) {
             // temp empty fragment. will be updated in handleResult
             pageAdapter.addFragment(new EmptyFragment(false), DESCRIPTION_TAB_TAG);
-            tabIcons.add(R.drawable.ic_description_white_24dp);
+            tabIcons.add(R.drawable.ic_description);
             tabContentDescriptions.add(R.string.description_tab_description);
         }
 
@@ -2274,11 +2274,10 @@ public final class VideoDetailFragment
     }
 
     private void setOverlayPlayPauseImage(final boolean playerIsPlaying) {
-        final int attr = playerIsPlaying
-                ? R.attr.ic_pause
-                : R.attr.ic_play_arrow;
-        binding.overlayPlayPauseButton.setImageResource(
-                ThemeHelper.resolveResourceIdFromAttr(activity, attr));
+        final int drawable = playerIsPlaying
+                ? R.drawable.ic_pause
+                : R.drawable.ic_play_arrow;
+        binding.overlayPlayPauseButton.setImageResource(drawable);
     }
 
     private void setOverlayLook(final AppBarLayout appBar,

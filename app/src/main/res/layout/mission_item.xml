@@ -39,7 +39,7 @@
                 android:layout_marginRight="1dp"
                 android:contentDescription="TODO"
                 android:scaleType="center"
-                app:srcCompat="@drawable/ic_more_vert_white_24dp" />
+                app:srcCompat="@drawable/ic_more_vert" />
 
         </RelativeLayout>
 

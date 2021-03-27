@@ -52,7 +52,7 @@
             android:layout_gravity="top|center_horizontal"
             android:layout_marginTop="4dp"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/ic_done_white_24dp"
+            app:srcCompat="@drawable/ic_done"
             tools:ignore="ContentDescription" />
     </FrameLayout>
 </FrameLayout>

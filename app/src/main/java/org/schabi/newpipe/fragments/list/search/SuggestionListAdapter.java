@@ -117,8 +117,8 @@ public class SuggestionListAdapter
             queryView = rootView.findViewById(R.id.suggestion_search);
             insertView = rootView.findViewById(R.id.suggestion_insert);
 
-            historyResId = resolveResourceIdFromAttr(rootView.getContext(), R.attr.ic_history);
-            searchResId = resolveResourceIdFromAttr(rootView.getContext(), R.attr.ic_search);
+            historyResId = R.drawable.ic_history;
+            searchResId = R.drawable.ic_search;
         }
 
         private static int resolveResourceIdFromAttr(final Context context,

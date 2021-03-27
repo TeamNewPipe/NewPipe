@@ -957,7 +957,7 @@ public final class Player implements
                     = LinearLayout.LayoutParams.MATCH_PARENT;
             binding.secondaryControls.setVisibility(View.INVISIBLE);
             binding.moreOptionsButton.setImageDrawable(AppCompatResources.getDrawable(context,
-                    R.drawable.ic_expand_more_white_24dp));
+                    R.drawable.ic_expand_more));
             binding.share.setVisibility(View.VISIBLE);
             binding.openInBrowser.setVisibility(View.VISIBLE);
             binding.switchMute.setVisibility(View.VISIBLE);
@@ -2020,7 +2020,7 @@ public final class Player implements
         animate(binding.loadingPanel, true, 0);
         animate(binding.surfaceForeground, true, 100);
 
-        binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
+        binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow);
         animatePlayButtons(false, 100);
         binding.getRoot().setKeepScreenOn(false);
 
@@ -2049,7 +2049,7 @@ public final class Player implements
 
         animate(binding.playPauseButton, false, 80, AnimationType.SCALE_AND_ALPHA, 0,
                 () -> {
-                    binding.playPauseButton.setImageResource(R.drawable.ic_pause_white_24dp);
+                    binding.playPauseButton.setImageResource(R.drawable.ic_pause);
                     animatePlayButtons(true, 200);
                     if (!isQueueVisible) {
                         binding.playPauseButton.requestFocus();
@@ -2090,7 +2090,7 @@ public final class Player implements
 
         animate(binding.playPauseButton, false, 80, AnimationType.SCALE_AND_ALPHA, 0,
                 () -> {
-                    binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
+                    binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow);
                     animatePlayButtons(true, 200);
                     if (!isQueueVisible) {
                         binding.playPauseButton.requestFocus();
@@ -2129,7 +2129,7 @@ public final class Player implements
 
         animate(binding.playPauseButton, false, 0, AnimationType.SCALE_AND_ALPHA, 0,
                 () -> {
-                    binding.playPauseButton.setImageResource(R.drawable.ic_replay_white_24dp);
+                    binding.playPauseButton.setImageResource(R.drawable.ic_replay);
                     animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
                 });
 
@@ -2290,7 +2290,7 @@ public final class Player implements
 
     private void setMuteButton(final ImageButton button, final boolean isMuted) {
         button.setImageDrawable(AppCompatResources.getDrawable(context, isMuted
-                ? R.drawable.ic_volume_off_white_24dp : R.drawable.ic_volume_up_white_24dp));
+                ? R.drawable.ic_volume_off : R.drawable.ic_volume_up));
     }
     //endregion
 
@@ -2734,7 +2734,7 @@ public final class Player implements
         }
         seekBy(retrieveSeekDurationFromPreferences(this));
         triggerProgressUpdate();
-        showAndAnimateControl(R.drawable.ic_fast_forward_white_24dp, true);
+        showAndAnimateControl(R.drawable.ic_fast_forward, true);
     }
 
     public void fastRewind() {
@@ -2743,7 +2743,7 @@ public final class Player implements
         }
         seekBy(-retrieveSeekDurationFromPreferences(this));
         triggerProgressUpdate();
-        showAndAnimateControl(R.drawable.ic_fast_rewind_white_24dp, true);
+        showAndAnimateControl(R.drawable.ic_fast_rewind, true);
     }
     //endregion
 
@@ -3691,8 +3691,8 @@ public final class Player implements
                         || DeviceUtils.isTablet(context))
                 ? View.VISIBLE : View.GONE);
         binding.screenRotationButton.setImageDrawable(AppCompatResources.getDrawable(context,
-                isFullscreen ? R.drawable.ic_fullscreen_exit_white_24dp
-                : R.drawable.ic_fullscreen_white_24dp));
+                isFullscreen ? R.drawable.ic_fullscreen_exit
+                : R.drawable.ic_fullscreen));
     }
 
     private void setResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode) {

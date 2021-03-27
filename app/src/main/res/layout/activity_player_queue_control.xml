@@ -180,7 +180,7 @@
             android:focusable="true"
             android:scaleType="fitXY"
             android:tint="?attr/colorAccent"
-            app:srcCompat="@drawable/ic_repeat_white_24dp"
+            app:srcCompat="@drawable/ic_repeat"
             tools:ignore="ContentDescription" />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -195,7 +195,7 @@
             android:focusable="true"
             android:scaleType="fitCenter"
             android:tint="?attr/colorAccent"
-            app:srcCompat="@drawable/ic_previous_white_24dp"
+            app:srcCompat="@drawable/ic_previous"
             tools:ignore="ContentDescription" />
 
         <ImageButton
@@ -225,7 +225,7 @@
             android:focusable="true"
             android:scaleType="fitCenter"
             android:tint="?attr/colorAccent"
-            app:srcCompat="@drawable/ic_pause_white_24dp"
+            app:srcCompat="@drawable/ic_pause"
             tools:ignore="ContentDescription" />
 
         <ProgressBar
@@ -274,7 +274,7 @@
             android:focusable="true"
             android:scaleType="fitCenter"
             android:tint="?attr/colorAccent"
-            app:srcCompat="@drawable/ic_next_white_24dp"
+            app:srcCompat="@drawable/ic_next"
             tools:ignore="ContentDescription" />
 
         <ImageButton
@@ -290,7 +290,7 @@
             android:focusable="true"
             android:scaleType="fitXY"
             android:tint="?attr/colorAccent"
-            app:srcCompat="@drawable/ic_shuffle_white_24dp"
+            app:srcCompat="@drawable/ic_shuffle"
             tools:ignore="ContentDescription" />
 
     </RelativeLayout>
