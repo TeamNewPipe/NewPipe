@@ -4013,7 +4013,7 @@ public final class Player implements
     }
 
     public boolean isPlayingWhenReady() {
-        return !exoPlayerisNull() && simpleExoPlayer.getPlayWhenReady()
+        return !exoPlayerIsNull() && simpleExoPlayer.getPlayWhenReady();
     }
 
     private boolean isLoading() {
