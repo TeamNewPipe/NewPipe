@@ -115,8 +115,7 @@ class FeedImportExportItem(
     private fun setupExportToItems(listHolder: ViewGroup) {
         val previousBackupItem = addItemView(
             listHolder.context.getString(R.string.file),
-            R.drawable.ic_save,
-            listHolder
+            R.drawable.ic_save, listHolder
         )
         previousBackupItem.setOnClickListener { onExportSelected() }
     }
