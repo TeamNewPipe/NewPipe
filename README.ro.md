@@ -89,7 +89,7 @@ NewPipe suportă servicii multiple. [Documentele](https://teamnewpipe.github.io/
 Puteţi instala NewPipe folosind una dintre următoarele metode:
  1. Adăugaţi depozitul nostru F-droid personalizat. Instrucţiunile sunt aici: https://newpipe.schabi.org/FAQ/tutorials/install-add-fdroid-repo/
  2. Descărcaţi APK-ul din [Github Releases](https://github.com/TeamNewPipe/NewPipe/releases) şi instalaţi-l.
- 3. Actualizaţi via F-Droid. Aceasta este cea mai lentă metodă de a obţine actualizări, deoarece F-Droid trebuie să recunoască schimbările, să constriască APK-ul, să îl semneze, iar apoi să îl trimită utilizatorilor. (**IMPORTANT**: în momentul scrierii, o problemă împiedică versiunile mai noi de 0.20.1 să fie publicate. Aşa că, dacă doriţi să folosiţi F-droid, până această problemă este rezolvată, vă recomandăm metoda 1.)
+ 3. Actualizaţi via F-Droid. Aceasta este cea mai lentă metodă de a obţine actualizări, deoarece F-Droid trebuie să recunoască schimbările, să constriască APK-ul, să îl semneze, iar apoi să îl trimită utilizatorilor.
  4. Construiţi un APK de depanare. Aceasta este cea mai rapidă metodă de a primi funcţii noi, dar este mult mai complicată, aşa că vă recomandăm să folosiţi una dintre celelalte metode.
 
 Recomandăm metoda 1 pentru majoritatea utilizatorilor. APK-urile din metodele 1 şi 2 suntcompatibile una cu cealaltă, dar nu cu cele din metoda 3. Acest lucru se datorează faptului că aceeași cheie de semnare (a noastră) este utilizată pentru 1 și 2, dar o altă cheie de semnare (F-Droid) este utilizată pentru 3. Construirea unui APK de depanare folosind metoda 4 exclude o cheie în întregime. Cheile de semnare vă asigură că un utilizator nu este păcălit să instaleze o actualizare rău intenționată a unei aplicații.
