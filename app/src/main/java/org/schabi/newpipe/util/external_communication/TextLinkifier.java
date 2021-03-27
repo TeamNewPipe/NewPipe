@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.core.text.HtmlCompat;
 
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,9 +30,9 @@ import static org.schabi.newpipe.util.external_communication.InternalUrlsHandler
 
 public final class TextLinkifier {
     public static final String TAG = TextLinkifier.class.getSimpleName();
-    private static final Pattern TIMESTAMPS_PATTERN_IN_PLAIN_TEXT =
-            Pattern.compile("(?:^|(?![:])\\W)(?:([0-5]?[0-9]):)?([0-5]?[0-9]):"
-                    + "([0-5][0-9])(?=$|(?![:])\\W)");
+    private static final Pattern HASHTAGS_PATTERN = Pattern.compile("(#[A-Za-z0-9_]+)");
+    private static final Pattern TIMESTAMPS_PATTERN = Pattern.compile(
+            "(?:^|(?!:)\\W)(?:([0-5]?[0-9]):)?([0-5]?[0-9]):([0-5][0-9])(?=$|(?!:)\\W)");
 
     private TextLinkifier() {
     }
@@ -119,6 +120,41 @@ public final class TextLinkifier {
     }
 
     /**
+     * Add click listeners which opens a search on hashtags in a plain text.
+     * <p>
+     * This method finds all timestamps in the {@link SpannableStringBuilder} of the description
+     * using a regular expression, adds for each a {@link ClickableSpan} which opens
+     * {@link NavigationHelper#openSearch(Context, int, String)} and makes a search on the hashtag,
+     * in the service of the content.
+     *
+     * @param context              the context to use
+     * @param spannableDescription the SpannableStringBuilder with the text of the
+     *                             content description
+     * @param streamingService     the {@link StreamingService} of the content
+     */
+    private static void addClickListenersOnHashtags(final Context context,
+                                                    final SpannableStringBuilder
+                                                            spannableDescription,
+                                                    final StreamingService streamingService) {
+        final String descriptionText = spannableDescription.toString();
+        final Matcher hashtagsMatches = HASHTAGS_PATTERN.matcher(descriptionText);
+
+        while (hashtagsMatches.find()) {
+            final int hashtagStart = hashtagsMatches.start(1);
+            final int hashtagEnd = hashtagsMatches.end(1);
+            final String parsedHashtag = descriptionText.substring(hashtagStart, hashtagEnd);
+
+            spannableDescription.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull final View view) {
+                    NavigationHelper.openSearch(context, streamingService.getServiceId(),
+                            parsedHashtag);
+                }
+            }, hashtagStart, hashtagEnd, 0);
+        }
+    }
+
+    /**
      * Add click listeners which opens the popup player on timestamps in a plain text.
      * <p>
      * This method finds all timestamps in the {@link SpannableStringBuilder} of the description
@@ -137,11 +173,11 @@ public final class TextLinkifier {
                                                       final String contentUrl,
                                                       final StreamingService streamingService) {
         final String descriptionText = spannableDescription.toString();
-        final Matcher timestampMatches = TIMESTAMPS_PATTERN_IN_PLAIN_TEXT.matcher(descriptionText);
+        final Matcher timestampsMatches = TIMESTAMPS_PATTERN.matcher(descriptionText);
 
-        while (timestampMatches.find()) {
-            final int timestampStart = timestampMatches.start(2);
-            final int timestampEnd = timestampMatches.end(3);
+        while (timestampsMatches.find()) {
+            final int timestampStart = timestampsMatches.start(2);
+            final int timestampEnd = timestampsMatches.end(3);
             final String parsedTimestamp = descriptionText.substring(timestampStart, timestampEnd);
             final String[] timestampParts = parsedTimestamp.split(":");
             final int time;
@@ -178,7 +214,8 @@ public final class TextLinkifier {
      * This method will also add click listeners on timestamps in this description, which will play
      * the content in the popup player at the time indicated in the timestamp, by using
      * {@link TextLinkifier#addClickListenersOnTimestamps(Context, SpannableStringBuilder, String,
-     * StreamingService)} method.
+     * StreamingService)} method and click listeners on hashtags, which will open a search
+     * on the current service with the hashtag.
      * <p>
      * This method is required in order to intercept links and e.g. show a confirmation dialog
      * before opening a web link.
@@ -220,6 +257,7 @@ public final class TextLinkifier {
             if (contentUrl != null || streamingService != null) {
                 addClickListenersOnTimestamps(context, textBlockLinked, contentUrl,
                         streamingService);
+                addClickListenersOnHashtags(context, textBlockLinked, streamingService);
             }
 
             return textBlockLinked;
