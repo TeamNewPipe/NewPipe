@@ -1329,7 +1329,7 @@ public final class VideoDetailFragment
     @Override
     public void handleError() {
         super.handleError();
-        setErrorImage(R.drawable.not_available_monkey);
+        setErrorImage(R.drawable.ic_not_available_monkey);
 
         if (binding.relatedStreamsLayout != null) { // hide related streams for tablets
             binding.relatedStreamsLayout.setVisibility(View.INVISIBLE);
