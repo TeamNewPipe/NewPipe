@@ -87,6 +87,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         binding.mainTabLayout.setupWithViewPager(binding.pager);
         binding.mainTabLayout.addOnTabSelectedListener(this);
+        binding.mainTabLayout.setTabRippleColor(binding.mainTabLayout.getTabRippleColor()
+                .withAlpha(32));
 
         setupTabs();
     }
