@@ -1,9 +1,8 @@
 <resources>
 
-    <style name="Base.V7.OpeningTheme" parent="Theme.AppCompat.DayNight.NoActionBar"/>
-
-    <style name="Base.OpeningTheme" parent="Base.V7.OpeningTheme"/>
-
+    <!-- Opening Theme -->
+    <style name="Base.V19.OpeningTheme" parent="Theme.AppCompat.DayNight.NoActionBar"/>
+    <style name="Base.OpeningTheme" parent="Base.V19.OpeningTheme"/>
     <style name="OpeningTheme" parent="Base.OpeningTheme">
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
@@ -12,18 +11,14 @@
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
-    <!-- Base themes -->
-    <style name="Base.V7" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <!-- Base Theme -->
+    <style name="Base.V19" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
+    <style name="Base" parent="Base.V19"/>
 
-    <style name="Base" parent="Base.V7"/>
-
-    <style name="Base.V7.LightTheme" parent="Base" />
-
-    <style name="Base.LightTheme" parent="Base.V7.LightTheme" />
-
-    <style name="LightTheme" parent="Base.LightTheme">
+    <!-- Light Theme -->
+    <style name="Base.V19.LightTheme" parent="Base">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
         <item name="colorAccent">@color/light_youtube_accent_color</item>
@@ -43,12 +38,11 @@
         <item name="border_color">@color/light_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_light</item>
     </style>
+    <style name="Base.LightTheme" parent="Base.V19.LightTheme" />
+    <style name="LightTheme" parent="Base.LightTheme"/>
 
-    <style name="Base.V7.DarkTheme" parent="Base" />
-
-    <style name="Base.DarkTheme" parent="Base.V7.DarkTheme" />
-
-    <style name="DarkTheme" parent="Base.DarkTheme">
+    <!-- Dark Theme -->
+    <style name="Base.V19.DarkTheme" parent="Base">
         <item name="colorPrimary">@color/dark_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
         <item name="colorAccent">@color/dark_youtube_accent_color</item>
@@ -68,12 +62,11 @@
         <item name="border_color">@color/dark_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_dark</item>
     </style>
+    <style name="Base.DarkTheme" parent="Base.V19.DarkTheme" />
+    <style name="DarkTheme" parent="Base.DarkTheme"/>
 
-    <style name="Base.V7.BlackTheme" parent="DarkTheme" />
-
-    <style name="Base.BlackTheme" parent="Base.V7.BlackTheme" />
-
-    <style name="BlackTheme" parent="Base.BlackTheme">
+    <!-- Black Theme -->
+    <style name="Base.V19.BlackTheme" parent="DarkTheme">
         <item name="android:windowBackground">@color/black_background_color</item>
         <item name="windowBackground">@color/black_background_color</item>
 
@@ -85,6 +78,8 @@
         <item name="border_color">@color/black_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_black</item>
     </style>
+    <style name="Base.BlackTheme" parent="Base.V19.BlackTheme" />
+    <style name="BlackTheme" parent="Base.BlackTheme"/>
 
     <!-- Dialogs -->
     <style name="LightDialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
