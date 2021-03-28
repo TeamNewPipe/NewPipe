@@ -474,7 +474,7 @@
         android:layout_width="380dp"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
-        android:background="?attr/queue_background_color"
+        android:background="@color/queue_background_color"
         android:visibility="gone"
         tools:visibility="visible">
 

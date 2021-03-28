@@ -12,7 +12,6 @@
     <attr name="dashed_border" format="reference" />
 
     <attr name="separator_color" format="color" />
-    <attr name="queue_background_color" format="color" />
     <attr name="contrast_background_color" format="color" />
     <attr name="windowBackground" format="color" />
     <attr name="colorPrimary" format="color" />

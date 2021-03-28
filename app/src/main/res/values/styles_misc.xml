@@ -41,4 +41,28 @@
         <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
         <item name="colorAccent">@color/dark_settings_accent_color</item>
     </style>
+
+    <style name="ItemStreamSegmentTitle" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="ItemStreamSegmentSubtitle" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/white_secondary</item>
+    </style>
+
+    <style name="DarkPopupMenu" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="WhiteAccentTheme">
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+    <style name="WhiteTintTheme">
+        <item name="tint">@color/white</item>
+    </style>
+    <style name="DarkTintTheme">
+        <item name="tint">@color/black</item>
+    </style>
+    <style name="ContrastTintTheme">
+        <item name="tint">@color/contrastColor</item>
+    </style>
+
 </resources>

@@ -32,7 +32,6 @@
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
         <item name="checked_selector">@drawable/selector_checked_light</item>
         <item name="focused_selector">@drawable/selector_focused_light</item>
-        <item name="queue_background_color">@color/light_queue_background_color</item>
         <item name="toolbar_shadow">@drawable/toolbar_shadow_light</item>
         <item name="selector">@drawable/selector_light</item>
         <item name="colorControlHighlight">@color/light_ripple_color</item>
@@ -60,7 +59,6 @@
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
         <item name="checked_selector">@drawable/selector_checked_dark</item>
         <item name="focused_selector">@drawable/selector_focused_dark</item>
-        <item name="queue_background_color">@color/dark_queue_background_color</item>
         <item name="toolbar_shadow">@drawable/toolbar_shadow_dark</item>
         <item name="selector">@drawable/selector_dark</item>
         <item name="colorControlHighlight">@color/dark_ripple_color</item>
@@ -185,17 +183,6 @@
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
         <item name="tint">@color/white</item>
         <item name="iconTint">@color/white</item>
-    </style>
-
-    <style name="WhiteAccentTheme">
-        <item name="colorAccent">@color/white</item>
-    </style>
-
-    <style name="WhiteTintTheme">
-        <item name="tint">@color/white</item>
-    </style>
-    <style name="ContrastTintTheme">
-        <item name="tint">@color/contrastColor</item>
     </style>
 
 </resources>

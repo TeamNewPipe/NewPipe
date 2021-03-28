@@ -26,6 +26,7 @@ import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -446,9 +447,12 @@ public final class Player implements
         binding.playbackSeekBar.getProgressDrawable()
                 .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY));
 
-        qualityPopupMenu = new PopupMenu(context, binding.qualityTextView);
+        final ContextThemeWrapper themeWrapper = new ContextThemeWrapper(getContext(),
+                R.style.DarkPopupMenu);
+
+        qualityPopupMenu = new PopupMenu(themeWrapper, binding.qualityTextView);
         playbackSpeedPopupMenu = new PopupMenu(context, binding.playbackSpeed);
-        captionPopupMenu = new PopupMenu(context, binding.captionTextView);
+        captionPopupMenu = new PopupMenu(themeWrapper, binding.captionTextView);
 
         binding.progressBarLoadingPanel.getIndeterminateDrawable()
                 .setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY));
