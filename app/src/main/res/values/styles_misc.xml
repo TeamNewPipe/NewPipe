@@ -14,6 +14,9 @@
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
         <item name="colorAccent">@color/light_settings_accent_color</item>
+
+        <item name="nnf_toolbarTheme">@style/ToolbarTheme</item>
+
         <item name="android:windowBackground">@color/light_background_color</item>
         <item name="nnf_separator_color">@color/light_separator_color</item>
 
@@ -30,6 +33,9 @@
         <item name="colorPrimary">@color/dark_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
         <item name="colorAccent">@color/dark_settings_accent_color</item>
+
+        <item name="nnf_toolbarTheme">@style/ToolbarTheme</item>
+
         <item name="android:windowBackground">@color/dark_background_color</item>
         <item name="nnf_separator_color">@color/black_separator_color</item>
 
