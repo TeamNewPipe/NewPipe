@@ -1109,7 +1109,7 @@ public final class VideoDetailFragment
                 && PlayerHelper.isStartMainPlayerFullscreenEnabled(requireContext())
                 && !DeviceUtils.isLandscape(requireContext())
                 && PlayerHelper.globalScreenOrientationLocked(requireContext())) {
-            // open directly in fullscreen TODO does it work for large-land layouts?
+            // toggle landscape in order to open directly in fullscreen
             onScreenRotationButtonClicked();
         }
 

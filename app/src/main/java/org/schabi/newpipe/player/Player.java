@@ -621,6 +621,9 @@ public final class Player implements
             return;
         }
 
+        // needed for tablets, check the function for a better explanation
+        directlyOpenFullscreenIfNeeded();
+
         final PlaybackParameters savedParameters = retrievePlaybackParametersFromPrefs(this);
         final float playbackSpeed = savedParameters.speed;
         final float playbackPitch = savedParameters.pitch;
@@ -741,6 +744,20 @@ public final class Player implements
             }
         }
         NavigationHelper.sendPlayerStartedEvent(context);
+    }
+
+    private void directlyOpenFullscreenIfNeeded() {
+        if (fragmentListener != null
+                && PlayerHelper.isStartMainPlayerFullscreenEnabled(service)
+                && DeviceUtils.isTablet(service)
+                && videoPlayerSelected()
+                && PlayerHelper.globalScreenOrientationLocked(service)) {
+            // Open fullscreen on tablets where the option to have the main player start
+            // automatically in fullscreen mode is on. Rotating the device to landscape is already
+            // done in VideoDetailFragment when the thumbnail is clicked, and that's enough for
+            // phones, but not for tablets since the mini player can be also shown in landscape.
+            fragmentListener.onScreenRotationButtonClicked();
+        }
     }
 
     private void initPlayback(@NonNull final PlayQueue queue,
