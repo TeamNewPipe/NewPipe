@@ -57,12 +57,15 @@
 
     <style name="WhiteTintTheme">
         <item name="tint">@color/white</item>
+        <item name="iconTint">@color/white</item>
     </style>
     <style name="DarkTintTheme">
         <item name="tint">@color/black</item>
+        <item name="iconTint">@color/black</item>
     </style>
     <style name="ContrastTintTheme">
         <item name="tint">@color/contrastColor</item>
+        <item name="iconTint">@color/contrastColor</item>
     </style>
 
 </resources>
