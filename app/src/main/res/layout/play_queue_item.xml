@@ -80,7 +80,7 @@
         android:layout_toRightOf="@id/itemThumbnailView"
         android:ellipsize="end"
         android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="@style/ItemStreamSegmentTitle"
         android:textSize="@dimen/video_item_search_title_text_size"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. " />
 
@@ -95,7 +95,7 @@
         android:layout_toRightOf="@id/itemThumbnailView"
         android:ellipsize="end"
         android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/ItemStreamSegmentSubtitle"
         android:textSize="@dimen/video_item_search_upload_date_text_size"
         tools:text="Uploader" />
 
