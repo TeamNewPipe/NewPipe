@@ -706,7 +706,7 @@ public final class Player implements
             // Android TV: without it focus will frame the whole player
             binding.playPauseButton.requestFocus();
 
-            if (simpleExoPlayer.getPlayWhenReady()) {
+            if (getPlayWhenReady()) {
                 play();
             } else {
                 pause();
@@ -1687,7 +1687,7 @@ public final class Player implements
     }
 
     public void saveWasPlaying() {
-        this.wasPlaying = simpleExoPlayer.getPlayWhenReady();
+        this.wasPlaying = getPlayWhenReady();
     }
     //endregion
 
