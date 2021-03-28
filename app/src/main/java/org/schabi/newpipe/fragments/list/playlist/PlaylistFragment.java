@@ -423,7 +423,9 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     @Override
     public void setTitle(final String title) {
         super.setTitle(title);
-        headerBinding.playlistTitleView.setText(title);
+        if (headerBinding != null) {
+            headerBinding.playlistTitleView.setText(title);
+        }
     }
 
     private void onBookmarkClicked() {
