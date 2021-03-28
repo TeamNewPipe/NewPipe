@@ -513,7 +513,7 @@
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/ic_close" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/repeatButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -527,8 +527,8 @@
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/exo_controls_repeat_off"
                 android:tint="?attr/colorAccent"
+                app:srcCompat="@drawable/exo_controls_repeat_off"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
             <androidx.appcompat.widget.AppCompatImageButton

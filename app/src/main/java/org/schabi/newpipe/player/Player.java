@@ -52,6 +52,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.DisplayCutoutCompat;
 import androidx.core.view.ViewCompat;
@@ -2225,7 +2226,7 @@ public final class Player implements
             Log.d(TAG, "ExoPlayer - onRepeatModeChanged() called with: "
                     + "repeatMode = [" + repeatMode + "]");
         }
-        setRepeatModeButton(binding.repeatButton, repeatMode);
+        setRepeatModeButton(((AppCompatImageButton) binding.repeatButton), repeatMode);
         onShuffleOrRepeatModeChanged();
     }
 
@@ -2253,7 +2254,7 @@ public final class Player implements
         NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
-    private void setRepeatModeButton(final ImageButton imageButton, final int repeatMode) {
+    private void setRepeatModeButton(final AppCompatImageButton imageButton, final int repeatMode) {
         switch (repeatMode) {
             case REPEAT_MODE_OFF:
                 imageButton.setImageResource(R.drawable.exo_controls_repeat_off);
