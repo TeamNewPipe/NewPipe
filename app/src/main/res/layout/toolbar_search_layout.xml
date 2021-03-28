@@ -18,6 +18,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:hint="@string/search"
+        android:textColor="@color/white"
         android:imeOptions="actionSearch|flagNoFullscreen"
         android:inputType="textFilter|textNoSuggestions"
         android:maxLines="1"
@@ -46,6 +47,7 @@
             android:layout_gravity="center"
             android:contentDescription="@string/search"
             android:scaleType="fitCenter"
+            app:tint="@color/white"
             app:srcCompat="@drawable/ic_close"
             tools:ignore="RtlHardcoded" />
     </FrameLayout>
