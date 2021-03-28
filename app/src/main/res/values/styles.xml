@@ -185,7 +185,10 @@
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
         <item name="tint">@color/white</item>
         <item name="iconTint">@color/white</item>
-        <item name="android:textCursorDrawable">@drawable/white_edit_text_cursor</item>
+    </style>
+
+    <style name="WhiteAccentTheme">
+        <item name="colorAccent">@color/white</item>
     </style>
 
     <style name="WhiteTintTheme">

@@ -22,6 +22,7 @@
         android:inputType="textFilter|textNoSuggestions"
         android:maxLines="1"
         android:nextFocusDown="@+id/suggestions_list"
+        android:theme="@style/WhiteAccentTheme"
         tools:ignore="RtlHardcoded" />
 
     <FrameLayout
