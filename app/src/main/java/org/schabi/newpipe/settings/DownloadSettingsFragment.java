@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.preference.Preference;
 
@@ -46,8 +45,8 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     private Context ctx;
 
     @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
+        addPreferencesFromResource(R.xml.download_settings);
 
         downloadPathVideoPreference = getString(R.string.download_path_video_key);
         downloadPathAudioPreference = getString(R.string.download_path_audio_key);
@@ -74,11 +73,6 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             updatePathPickers(!(boolean) value);
             return true;
         });
-    }
-
-    @Override
-    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.download_settings);
     }
 
     @Override
