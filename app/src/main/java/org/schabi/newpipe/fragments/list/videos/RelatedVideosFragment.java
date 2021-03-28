@@ -16,12 +16,11 @@ import androidx.viewbinding.ViewBinding;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.RelatedStreamsHeaderBinding;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.ListExtractor;
-import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.ktx.ViewUtils;
-import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.RelatedStreamInfo;
 
 import java.io.Serializable;
@@ -45,6 +44,10 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
         final RelatedVideosFragment instance = new RelatedVideosFragment();
         instance.setInitialData(info);
         return instance;
+    }
+
+    public RelatedVideosFragment() {
+        super(UserAction.REQUESTED_STREAM);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -125,41 +128,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
         }
         ViewUtils.slideUp(requireView(), 120, 96, 0.06f);
 
-        if (!result.getErrors().isEmpty()) {
-            showSnackBarError(result.getErrors(), UserAction.REQUESTED_STREAM,
-                    NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
-        }
-
         disposables.clear();
-    }
-
-    @Override
-    public void handleNextItems(final ListExtractor.InfoItemsPage result) {
-        super.handleNextItems(result);
-
-        if (!result.getErrors().isEmpty()) {
-            showSnackBarError(result.getErrors(),
-                    UserAction.REQUESTED_STREAM,
-                    NewPipe.getNameOfService(serviceId),
-                    "Get next page of: " + url,
-                    R.string.general_error);
-        }
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // OnError
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    protected boolean onError(final Throwable exception) {
-        if (super.onError(exception)) {
-            return true;
-        }
-
-        hideLoading();
-        showSnackBarError(exception, UserAction.REQUESTED_STREAM,
-                NewPipe.getNameOfService(serviceId), url, R.string.general_error);
-        return true;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -190,11 +159,9 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     @Override
     protected void onRestoreInstanceState(@NonNull final Bundle savedState) {
         super.onRestoreInstanceState(savedState);
-        if (savedState != null) {
-            final Serializable serializable = savedState.getSerializable(INFO_KEY);
-            if (serializable instanceof RelatedStreamInfo) {
-                this.relatedStreamInfo = (RelatedStreamInfo) serializable;
-            }
+        final Serializable serializable = savedState.getSerializable(INFO_KEY);
+        if (serializable instanceof RelatedStreamInfo) {
+            this.relatedStreamInfo = (RelatedStreamInfo) serializable;
         }
     }
 

@@ -1,0 +1,10 @@
+###Peningkatan
+
+- Nonaktifkan Animasi Ikon burgermenu #1486
+- Kembali (undo) hapus unduhan #1472
+- Unduh Opsi di menu Bagikan #1498
+- Tambah Pilihan Bagikan ke menu ketuk panjang #1454
+- Minimalkan pemutar utama saat keluar #1354
+- Perpustakaan versi pembaruan dan basis data Backup Fix #1510
+- Pembaruan ExoPlayer 2.8.2 #1392
+(weblate notification : Translation text too long! (terjemahan terlalu panjang)

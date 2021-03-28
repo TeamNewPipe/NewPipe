@@ -37,12 +37,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -56,14 +54,16 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.databinding.FragmentVideoDetailBinding;
 import org.schabi.newpipe.download.DownloadDialog;
+import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ReCaptchaActivity;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -71,6 +71,7 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
+import org.schabi.newpipe.fragments.EmptyFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.videos.RelatedVideosFragment;
 import org.schabi.newpipe.ktx.AnimationType;
@@ -86,9 +87,6 @@ import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.ErrorInfo;
-import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -153,18 +151,15 @@ public final class VideoDetailFragment
     private static final String COMMENTS_TAB_TAG = "COMMENTS";
     private static final String RELATED_TAB_TAG = "NEXT VIDEO";
     private static final String DESCRIPTION_TAB_TAG = "DESCRIPTION TAB";
+    private static final String EMPTY_TAB_TAG = "EMPTY TAB";
 
     // tabs
     private boolean showComments;
     private boolean showRelatedStreams;
     private boolean showDescription;
     private String selectedTabTag;
-    @AttrRes
-    @NonNull
-    final List<Integer> tabIcons = new ArrayList<>();
-    @StringRes
-    @NonNull
-    final List<Integer> tabContentDescriptions = new ArrayList<>();
+    @AttrRes @NonNull final List<Integer> tabIcons = new ArrayList<>();
+    @StringRes @NonNull final List<Integer> tabContentDescriptions = new ArrayList<>();
     private boolean tabSettingsChanged = false;
     private int lastAppBarVerticalOffset = Integer.MAX_VALUE; // prevents useless updates
 
@@ -219,7 +214,6 @@ public final class VideoDetailFragment
                                    final MainPlayer connectedPlayerService,
                                    final boolean playAfterConnect) {
         player = connectedPlayer;
-
         playerService = connectedPlayerService;
 
         // It will do nothing if the player is not in fullscreen mode
@@ -538,7 +532,7 @@ public final class VideoDetailFragment
             NavigationHelper.openChannelFragment(getFM(), currentInfo.getServiceId(),
                     subChannelUrl, subChannelName);
         } catch (final Exception e) {
-            ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+            ErrorActivity.reportUiErrorInSnackbar(this, "Opening channel fragment", e);
         }
     }
 
@@ -685,8 +679,8 @@ public final class VideoDetailFragment
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 animate(binding.touchAppendDetail, true, 250, AnimationType.ALPHA,
                         0, () ->
-                                animate(binding.touchAppendDetail, false, 1500,
-                                        AnimationType.ALPHA, 1000));
+                        animate(binding.touchAppendDetail, false, 1500,
+                                AnimationType.ALPHA, 1000));
             }
             return false;
         };
@@ -696,13 +690,12 @@ public final class VideoDetailFragment
         binding.detailThumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);
 
         if (!isEmpty(info.getThumbnailUrl())) {
-            final String infoServiceName = NewPipe.getNameOfService(info.getServiceId());
             final ImageLoadingListener onFailListener = new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingFailed(final String imageUri, final View view,
                                             final FailReason failReason) {
-                    showSnackBarError(failReason.getCause(), UserAction.LOAD_IMAGE,
-                            infoServiceName, imageUri, R.string.could_not_load_thumbnails);
+                    showSnackBarError(new ErrorInfo(failReason.getCause(), UserAction.LOAD_IMAGE,
+                            imageUri, info));
                 }
             };
 
@@ -918,10 +911,8 @@ public final class VideoDetailFragment
                             openVideoPlayer();
                         }
                     }
-                }, throwable -> {
-                    isLoading.set(false);
-                    onError(throwable);
-                });
+                }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_STREAM,
+                        url == null ? "no url" : url, serviceId)));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -944,17 +935,21 @@ public final class VideoDetailFragment
         }
 
         if (showRelatedStreams && binding.relatedStreamsLayout == null) {
-            //temp empty fragment. will be updated in handleResult
-            pageAdapter.addFragment(new Fragment(), RELATED_TAB_TAG);
+            // temp empty fragment. will be updated in handleResult
+            pageAdapter.addFragment(new EmptyFragment(false), RELATED_TAB_TAG);
             tabIcons.add(R.drawable.ic_art_track_white_24dp);
             tabContentDescriptions.add(R.string.related_streams_tab_description);
         }
 
         if (showDescription) {
             // temp empty fragment. will be updated in handleResult
-            pageAdapter.addFragment(new Fragment(), DESCRIPTION_TAB_TAG);
+            pageAdapter.addFragment(new EmptyFragment(false), DESCRIPTION_TAB_TAG);
             tabIcons.add(R.drawable.ic_description_white_24dp);
             tabContentDescriptions.add(R.string.description_tab_description);
+        }
+
+        if (pageAdapter.getCount() == 0) {
+            pageAdapter.addFragment(new EmptyFragment(true), EMPTY_TAB_TAG);
         }
         pageAdapter.notifyDataSetUpdate();
 
@@ -1339,8 +1334,8 @@ public final class VideoDetailFragment
     }
 
     @Override
-    public void showError(final String message, final boolean showRetryButton) {
-        super.showError(message, showRetryButton);
+    public void handleError() {
+        super.handleError();
         setErrorImage(R.drawable.not_available_monkey);
 
         if (binding.relatedStreamsLayout != null) { // hide related streams for tablets
@@ -1353,8 +1348,8 @@ public final class VideoDetailFragment
     }
 
     private void hideAgeRestrictedContent() {
-        showError(getString(R.string.restricted_video,
-                getString(R.string.show_age_restricted_content_title)), false);
+        showTextError(getString(R.string.restricted_video,
+                getString(R.string.show_age_restricted_content_title)));
     }
 
     private void setupBroadcastReceiver() {
@@ -1560,11 +1555,19 @@ public final class VideoDetailFragment
         }
 
         if (!info.getErrors().isEmpty()) {
-            showSnackBarError(info.getErrors(),
-                    UserAction.REQUESTED_STREAM,
-                    NewPipe.getNameOfService(info.getServiceId()),
-                    info.getUrl(),
-                    0);
+            // Bandcamp fan pages are not yet supported and thus a ContentNotAvailableException is
+            // thrown. This is not an error and thus should not be shown to the user.
+            for (final Throwable throwable : info.getErrors()) {
+                if (throwable instanceof ContentNotSupportedException
+                        && "Fan pages are not supported".equals(throwable.getMessage())) {
+                    info.getErrors().remove(throwable);
+                }
+            }
+
+            if (!info.getErrors().isEmpty()) {
+                showSnackBarError(new ErrorInfo(info.getErrors(),
+                        UserAction.REQUESTED_STREAM, info.getUrl(), info));
+            }
         }
 
         binding.detailControlsDownload.setVisibility(info.getStreamType() == StreamType.LIVE_STREAM
@@ -1604,6 +1607,10 @@ public final class VideoDetailFragment
     }
 
     public void openDownloadDialog() {
+        if (currentInfo == null) {
+            return;
+        }
+
         videoSegmentsSubscriber = Single.fromCallable(() -> {
             try {
                 return SponsorBlockUtils.getYouTubeVideoSegments(getContext(), currentInfo);
@@ -1612,58 +1619,29 @@ public final class VideoDetailFragment
                 return null;
             }
         })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(videoSegments -> {
-                    try {
-                        final DownloadDialog downloadDialog =
-                                DownloadDialog.newInstance(currentInfo);
-                        downloadDialog.setVideoStreams(sortedVideoStreams);
-                        downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
-                        downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
-                        downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
-                        downloadDialog.setVideoSegments(videoSegments);
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(videoSegments -> {
+            try {
+                final DownloadDialog downloadDialog = DownloadDialog.newInstance(currentInfo);
+                downloadDialog.setVideoStreams(sortedVideoStreams);
+                downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
+                downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
+                downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
 
-                        downloadDialog.show(
-                                activity.getSupportFragmentManager(), "downloadDialog");
-                    } catch (final Exception e) {
-                        final ErrorInfo info = ErrorInfo.make(UserAction.UI_ERROR,
-                                ServiceList.all()
-                                        .get(currentInfo
-                                                .getServiceId())
-                                        .getServiceInfo()
-                                        .getName(), "",
-                                R.string.could_not_setup_download_menu);
-
-                        ErrorActivity.reportError(activity,
-                                e,
-                                activity.getClass(),
-                                activity.findViewById(android.R.id.content), info);
-                    }
-                });
+                downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
+            } catch (final Exception e) {
+                ErrorActivity.reportErrorInSnackbar(activity,
+                        new ErrorInfo(e, UserAction.DOWNLOAD_OPEN_DIALOG,
+                                "Showing download dialog",
+                                currentInfo));
+            }
+        });
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Stream Results
     //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    protected boolean onError(final Throwable exception) {
-        if (super.onError(exception)) {
-            return true;
-        }
-
-        final int errorId = exception instanceof YoutubeStreamExtractor.DeobfuscateException
-                ? R.string.youtube_signature_deobfuscation_error
-                : exception instanceof ExtractionException
-                ? R.string.parsing_error
-                : R.string.general_error;
-
-        onUnrecoverableError(exception, UserAction.REQUESTED_STREAM,
-                NewPipe.getNameOfService(serviceId), url, errorId);
-
-        return true;
-    }
 
     private void updateProgressInfo(@NonNull final StreamInfo info) {
         if (positionSubscriber != null) {
@@ -1880,6 +1858,7 @@ public final class VideoDetailFragment
 
         if (fullscreen) {
             hideSystemUiIfNeeded();
+            binding.overlayPlayPauseButton.requestFocus();
         } else {
             showSystemUi();
         }
@@ -2305,7 +2284,7 @@ public final class VideoDetailFragment
     private void updateOverlayData(@Nullable final String overlayTitle,
                                    @Nullable final String uploader,
                                    @Nullable final String thumbnailUrl) {
-        binding.overlayTitleTextView.setText(isEmpty(title) ? "" : title);
+        binding.overlayTitleTextView.setText(isEmpty(overlayTitle) ? "" : overlayTitle);
         binding.overlayChannelTextView.setText(isEmpty(uploader) ? "" : uploader);
         binding.overlayThumbnail.setImageResource(R.drawable.dummy_thumbnail_dark);
         if (!isEmpty(thumbnailUrl)) {

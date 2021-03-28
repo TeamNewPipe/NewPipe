@@ -24,6 +24,7 @@ import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.list.ListViewContract;
 
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 
 /**
  * This fragment is design to be used with persistent data such as
@@ -184,7 +185,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     public void showLoading() {
         super.showLoading();
         if (itemsList != null) {
-            animate(itemsList, false, 200);
+            animateHideRecyclerViewAllowingScrolling(itemsList);
         }
         if (headerRootBinding != null) {
             animate(headerRootBinding.getRoot(), false, 200);
@@ -199,19 +200,6 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         }
         if (headerRootBinding != null) {
             animate(headerRootBinding.getRoot(), true, 200);
-        }
-    }
-
-    @Override
-    public void showError(final String message, final boolean showRetryButton) {
-        super.showError(message, showRetryButton);
-        showListFooter(false);
-
-        if (itemsList != null) {
-            animate(itemsList, false, 200);
-        }
-        if (headerRootBinding != null) {
-            animate(headerRootBinding.getRoot(), false, 200);
         }
     }
 
@@ -249,9 +237,18 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     }
 
     @Override
-    protected boolean onError(final Throwable exception) {
+    public void handleError() {
+        super.handleError();
         resetFragment();
-        return super.onError(exception);
+
+        showListFooter(false);
+
+        if (itemsList != null) {
+            animateHideRecyclerViewAllowingScrolling(itemsList);
+        }
+        if (headerRootBinding != null) {
+            animate(headerRootBinding.getRoot(), false, 200);
+        }
     }
 
     @Override

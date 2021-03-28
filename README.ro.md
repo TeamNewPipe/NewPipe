@@ -2,8 +2,7 @@
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Un front-end de streaming „uşor” liber, pentru Android.</h4>
 
-<!-- F-Droid is extremely out of date, so we hide this for now. -->
-<!-- <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"></a></p> -->
+<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-ro.svg"></a></p>
 
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
@@ -18,7 +17,7 @@
 <p align="center"><a href="https://newpipe.net">Website</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Presă</a></p>
 <hr>
 
-*Citiţi în alte limbi: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md)*
+*Citiţi în alte limbi: [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md)*
 
 <b>Atenţionare: ACEASTA ESTE O VERSIUNE BETA, AŞA CĂ S-AR PUTE SĂ ÎNTÂLNIŢI ERORI. DACĂ SE ÎNTÂMPLĂ ACEST LUCRU, DESCHIDEŢI UN ISSUE PRIN REPSITORY-UL NOSTRU GITHUB.</b>
 
@@ -81,6 +80,7 @@ NewPipe suportă servicii multiple. [Documentele](https://teamnewpipe.github.io/
 * SoundCloud \[beta\]
 * media.ccc.de \[beta\]
 * Instanţe PeerTube \[beta\]
+* Bandcamp \[beta\]
 
 <!-- Hidden span to keep old links compatible. -->
 <span id="updates"></span>

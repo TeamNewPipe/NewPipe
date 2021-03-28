@@ -637,15 +637,15 @@
 \n
 \n1. Fur nidaamka \"Desktop mode\" browser-kaaga dhexdiisa (sababtoo ah websitekan moobilada kuma shaqaynayo)
 \n2. Booqo tixraacan %1$s
-\n3. Gali akoonkaaga marka lagu waydiiyo
+\n3. Gali akoonkaaga marka lagu waydiiyo 
 \n4. Koobiyee tixraaca boga ee lagugu xawilay.</string>
     <string name="import_youtube_instructions">Soo gali rukumada YouTube-ka:
 \n
 \n1. Booqo tixraacan: %1$s
-\n2. Gali akoonkaaga marka lagu waydiiyo
-\n3. Kusii dhufo \"Xogtoo dhan kudar\", kadibna \"Ha calaamdin dhamaan\" kadibna dooro kaliya \"Rukunka\" oo \"OK\" dheh
+\n2. Gali akoonkaaga marka lagu waydiiyo 
+\n3. Kusii dhufo \"Xogtoo dhan kudar\", kadibna \"Ha calaamdin dhamaan\" kadibna dooro kaliya \"Rukunka\" oo \"OK\" dheh 
 \n4. Ku dhufo \"Talaabada xigta\" kadibna \"Samee gudbin\"
-\n5. Ku dhufo batoonka \"Daji\" kadib markuu soo muuqdo
+\n5. Ku dhufo batoonka \"Daji\" kadib markuu soo muuqdo 
 \n6. Zip-ka lasoo dajiyay kala furfur faylka .jason (badanaa wuxuu hoos tagaa \" \"YouTube and YouTube Music/subscriptions/subscriptions.json\") kadibna xagan soo gali.</string>
     <string name="caption_setting_title">Qoraal-hooseed</string>
     <string name="caption_auto_generated">isa-sameeyay</string>
@@ -662,6 +662,22 @@
     <string name="show_description_title">Tus faahfaahinta</string>
     <string name="open_with">Ku fur</string>
     <string name="no_app_to_open_intent">Wax app ah oo kuugu jira mafuri karo midkan</string>
+    <string name="radio">Raadye</string>
+    <string name="featured">Laguu sooxulay</string>
+    <string name="paid_content">Shaygan waxaa loo heli karaa kaliya xubnaha bixiyay lacag, sidaa darteed NewPipe laguma daawan/dagsan karo.</string>
+    <string name="youtube_music_premium_content">Muuqaalkan waxaa loo heli karaa kaliya xubnaha YouTube Music Premium, sidaa darteed NewPipe laguma daawan/dagsan karo.</string>
+    <string name="private_content">Shaygan waa khaas, sidaa darteed NewPipe laguma daawan karo lagumana dajin karo.</string>
+    <string name="soundcloud_go_plus_content">Shaygan waa SoundCloud Go+, ama ugu yaraan wadankaaga ayuu ka yahay, sidaa darteed NewPipe laguma daawan/dagsan karo.</string>
+    <string name="georestricted_content">Shaygan wadanka aad joogto looma heli karo.</string>
+    <string name="crash_the_app">Khalkhali app-ka</string>
+    <string name="recaptcha_solve">Xalli</string>
+    <string name="restricted_video_no_stream">Muuqaalkan da\'da qofka ayuu ku xidhan yahay.
+\nAyadooy ugu wacantahay talaabooyin cusub oo YouTube uu ku qaaday muuqaalada da\'da ku xidhan, NewPipe ma furi karo muuqaalkan.</string>
+    <string name="download_has_started">Dajintii way bilaabatay</string>
+    <string name="select_night_theme_toast">Hoos ayaad ka dooran kartaa nashqada habaynkii ee aad door-biday</string>
+    <string name="night_theme_summary">Dooro nashqada habaynkii ee aad doorbiday — %s</string>
+    <string name="auto_device_theme_title">ismaamulaya (raacaya aalada)</string>
+    <string name="night_theme_title">Nashqada Habaynka</string>
 <!-- SponsorBlock -->
     <string name="sponsor_block">SponsorBlock</string>
     <string name="sponsor_block_home_page_title">Fur website-ka</string>

@@ -66,8 +66,14 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Eve
     public void showPlaybackParameterDialog() {
         final PlaybackParameters playbackParameters =
                 localPlayer.getExoPlayer().getPlaybackParameters();
+
+        boolean skipSilence = false;
+
+        if (localPlayer.getExoPlayer().getAudioComponent() != null) {
+            skipSilence = localPlayer.getExoPlayer().getAudioComponent().getSkipSilenceEnabled();
+        }
         PlaybackParameterDialog.newInstance(playbackParameters.speed, playbackParameters.pitch,
-                playbackParameters.skipSilence, this)
+                skipSilence, this)
                 .show(getSupportFragmentManager(), TAG);
     }
 

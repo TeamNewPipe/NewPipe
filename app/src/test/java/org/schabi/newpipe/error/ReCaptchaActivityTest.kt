@@ -1,8 +1,7 @@
-package org.schabi.newpipe
+package org.schabi.newpipe.error
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.schabi.newpipe.ReCaptchaActivity.YT_URL
 
 class ReCaptchaActivityTest {
     private fun assertSanitized(expected: String, actual: String?) {
@@ -10,9 +9,9 @@ class ReCaptchaActivityTest {
     }
 
     @Test fun `null, empty or blank url is sanitized correctly`() {
-        assertSanitized(YT_URL, null)
-        assertSanitized(YT_URL, "")
-        assertSanitized(YT_URL, "  \n \t ")
+        assertSanitized(ReCaptchaActivity.YT_URL, null)
+        assertSanitized(ReCaptchaActivity.YT_URL, "")
+        assertSanitized(ReCaptchaActivity.YT_URL, "  \n \t ")
     }
 
     @Test fun `YouTube url containing pbj=1 is sanitized correctly`() {

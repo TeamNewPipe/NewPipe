@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.EventListener;
 import com.google.android.exoplayer2.SeekParameters;
@@ -70,8 +71,14 @@ public class LocalPlayer implements EventListener {
                 R.string.playback_speed_key), playbackParameters.speed);
         final float pitch = mPrefs.getFloat(context.getString(
                 R.string.playback_pitch_key), playbackParameters.pitch);
+
+        boolean defaultSkipSilence = false;
+        if (simpleExoPlayer.getAudioComponent() != null) {
+            defaultSkipSilence = simpleExoPlayer.getAudioComponent().getSkipSilenceEnabled();
+        }
+
         final boolean skipSilence = mPrefs.getBoolean(context.getString(
-                R.string.playback_skip_silence_key), playbackParameters.skipSilence);
+                R.string.playback_skip_silence_key), defaultSkipSilence);
 
         setPlaybackParameters(speed, pitch, skipSilence);
 
@@ -86,10 +93,16 @@ public class LocalPlayer implements EventListener {
             return;
         }
 
+        final MediaItem mediaItem = new MediaItem.Builder()
+                .setUri(Uri.parse(uri))
+                .build();
+
         final MediaSource videoSource = new ProgressiveMediaSource
                 .Factory(new DefaultDataSourceFactory(context, DownloaderImpl.USER_AGENT))
-                .createMediaSource(Uri.parse(uri));
-        simpleExoPlayer.prepare(videoSource);
+                .createMediaSource(mediaItem);
+
+        simpleExoPlayer.addMediaSource(videoSource);
+        simpleExoPlayer.prepare();
     }
 
     public SimpleExoPlayer getExoPlayer() {
@@ -117,8 +130,13 @@ public class LocalPlayer implements EventListener {
                 .putFloat(context.getString(R.string.playback_pitch_key), pitch)
                 .putBoolean(context.getString(R.string.playback_skip_silence_key), skipSilence)
                 .apply();
+
         simpleExoPlayer.setPlaybackParameters(
-                new PlaybackParameters(roundedSpeed, roundedPitch, skipSilence));
+                new PlaybackParameters(roundedSpeed, roundedPitch));
+
+        if (simpleExoPlayer.getAudioComponent() != null) {
+            simpleExoPlayer.getAudioComponent().setSkipSilenceEnabled(skipSilence);
+        }
     }
 
     @Override

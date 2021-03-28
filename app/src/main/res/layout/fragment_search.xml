@@ -104,11 +104,10 @@
     <!--ERROR PANEL-->
     <include
         android:id="@+id/error_panel"
-        layout="@layout/error_retry"
+        layout="@layout/error_panel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_centerInParent="true"
         android:visibility="gone"
         tools:visibility="visible" />
 

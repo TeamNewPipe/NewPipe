@@ -672,4 +672,5 @@
     <string name="no_app_to_open_intent">Na Vašem zařízení není aplikace, která to umí otevřít</string>
     <string name="related_streams_tab_description">Podobné strýmy</string>
     <string name="show_description_summary">Vypnout pro skrytí popisu videa a doplňkové informace</string>
+    <string name="crash_the_app">Zbořit aplikaci</string>
 </resources>

@@ -38,17 +38,18 @@ import icepick.State
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.databinding.FragmentFeedBinding
+import org.schabi.newpipe.error.ErrorInfo
+import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.fragments.list.BaseListFragment
 import org.schabi.newpipe.ktx.animate
+import org.schabi.newpipe.ktx.animateHideRecyclerViewAllowingScrolling
 import org.schabi.newpipe.local.feed.service.FeedLoadService
-import org.schabi.newpipe.report.UserAction
 import org.schabi.newpipe.util.Localization
-import java.util.Calendar
+import java.time.OffsetDateTime
 
 class FeedFragment : BaseListFragment<FeedState, Unit>() {
     private var _feedBinding: FragmentFeedBinding? = null
     private val feedBinding get() = _feedBinding!!
-    private val errorBinding get() = _feedBinding!!.errorPanel
 
     private lateinit var viewModel: FeedViewModel
     @State
@@ -57,7 +58,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
     private var groupId = FeedGroupEntity.GROUP_ALL_ID
     private var groupName = ""
-    private var oldestSubscriptionUpdate: Calendar? = null
+    private var oldestSubscriptionUpdate: OffsetDateTime? = null
 
     init {
         setHasOptionsMenu(true)
@@ -106,7 +107,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     override fun initListeners() {
         super.initListeners()
         feedBinding.refreshRootView.setOnClickListener { reloadContent() }
-        feedBinding.swiperefresh.setOnRefreshListener { reloadContent() }
+        feedBinding.swipeRefreshLayout.setOnRefreshListener { reloadContent() }
     }
 
     // /////////////////////////////////////////////////////////////////////////
@@ -171,50 +172,26 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     // /////////////////////////////////////////////////////////////////////////
 
     override fun showLoading() {
+        super.showLoading()
+        feedBinding.itemsList.animateHideRecyclerViewAllowingScrolling()
         feedBinding.refreshRootView.animate(false, 0)
-        feedBinding.itemsList.animate(false, 0)
-
-        feedBinding.loadingProgressBar.animate(true, 200)
         feedBinding.loadingProgressText.animate(true, 200)
-
-        feedBinding.emptyStateView.root.animate(false, 0)
-        errorBinding.root.animate(false, 0)
+        feedBinding.swipeRefreshLayout.isRefreshing = true
     }
 
     override fun hideLoading() {
+        super.hideLoading()
         feedBinding.refreshRootView.animate(true, 200)
-        feedBinding.itemsList.animate(true, 300)
-
-        feedBinding.loadingProgressBar.animate(false, 0)
         feedBinding.loadingProgressText.animate(false, 0)
-
-        feedBinding.emptyStateView.root.animate(false, 0)
-        errorBinding.root.animate(false, 0)
-        feedBinding.swiperefresh.isRefreshing = false
+        feedBinding.swipeRefreshLayout.isRefreshing = false
     }
 
     override fun showEmptyState() {
+        super.showEmptyState()
+        feedBinding.itemsList.animateHideRecyclerViewAllowingScrolling()
         feedBinding.refreshRootView.animate(true, 200)
-        feedBinding.itemsList.animate(false, 0)
-
-        feedBinding.loadingProgressBar.animate(false, 0)
         feedBinding.loadingProgressText.animate(false, 0)
-
-        feedBinding.emptyStateView.root.animate(true, 800)
-        errorBinding.root.animate(false, 0)
-    }
-
-    override fun showError(message: String, showRetryButton: Boolean) {
-        infoListAdapter.clearStreamItemList()
-        feedBinding.refreshRootView.animate(false, 120)
-        feedBinding.itemsList.animate(false, 120)
-
-        feedBinding.loadingProgressBar.animate(false, 120)
-        feedBinding.loadingProgressText.animate(false, 120)
-
-        errorBinding.errorMessageView.text = message
-        errorBinding.errorButtonRetry.animate(showRetryButton, if (showRetryButton) 600 else 0)
-        errorBinding.root.animate(true, 300)
+        feedBinding.swipeRefreshLayout.isRefreshing = false
     }
 
     override fun handleResult(result: FeedState) {
@@ -225,6 +202,15 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         }
 
         updateRefreshViewState()
+    }
+
+    override fun handleError() {
+        super.handleError()
+        infoListAdapter.clearStreamItemList()
+        feedBinding.itemsList.animateHideRecyclerViewAllowingScrolling()
+        feedBinding.refreshRootView.animate(false, 0)
+        feedBinding.loadingProgressText.animate(false, 0)
+        feedBinding.swipeRefreshLayout.isRefreshing = false
     }
 
     private fun handleProgressState(progressState: FeedState.ProgressState) {
@@ -266,13 +252,6 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
             )
         }
 
-        if (loadedState.itemsErrors.isNotEmpty()) {
-            showSnackBarError(
-                loadedState.itemsErrors, UserAction.REQUESTED_FEED,
-                "none", "Loading feed", R.string.general_error
-            )
-        }
-
         if (loadedState.items.isEmpty()) {
             showEmptyState()
         } else {
@@ -281,12 +260,13 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     }
 
     private fun handleErrorState(errorState: FeedState.ErrorState): Boolean {
-        hideLoading()
-        errorState.error?.let {
-            onError(errorState.error)
-            return true
+        return if (errorState.error == null) {
+            hideLoading()
+            false
+        } else {
+            showError(ErrorInfo(errorState.error, UserAction.REQUESTED_FEED, "Loading feed"))
+            true
         }
-        return false
     }
 
     private fun updateRelativeTimeViews() {
@@ -295,12 +275,10 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     }
 
     private fun updateRefreshViewState() {
-        val oldestSubscriptionUpdateText = when {
-            oldestSubscriptionUpdate != null -> Localization.relativeTime(oldestSubscriptionUpdate!!)
-            else -> "—"
-        }
-
-        feedBinding.refreshText.text = getString(R.string.feed_oldest_subscription_update, oldestSubscriptionUpdateText)
+        feedBinding.refreshText.text = getString(
+            R.string.feed_oldest_subscription_update,
+            oldestSubscriptionUpdate?.let { Localization.relativeTime(it) } ?: "—"
+        )
     }
 
     // /////////////////////////////////////////////////////////////////////////
@@ -318,18 +296,6 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
             }
         )
         listState = null
-    }
-
-    override fun onError(exception: Throwable): Boolean {
-        if (super.onError(exception)) return true
-
-        if (useAsFrontPage) {
-            showSnackBarError(exception, UserAction.REQUESTED_FEED, "none", "Loading Feed", 0)
-            return true
-        }
-
-        onUnrecoverableError(exception, UserAction.REQUESTED_FEED, "none", "Loading Feed", 0)
-        return true
     }
 
     companion object {

@@ -663,4 +663,5 @@
     <string name="title_licenses">Lîsansên partiya sêyemîn</string>
     <string name="action_about">Derbar</string>
     <string name="action_settings">Mîhengên</string>
+    <string name="crash_the_app">Serlêdanê kilît bikin</string>
 </resources>

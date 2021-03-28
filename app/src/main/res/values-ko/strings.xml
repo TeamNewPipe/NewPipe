@@ -535,7 +535,7 @@
     <string name="mute">무음</string>
     <string name="no_playlist_bookmarked_yet">아직 재생목록 책갈피가 없습니다</string>
     <string name="select_a_playlist">재생목록 선택</string>
-    <string name="subtitle_activity_recaptcha">해결 되었다면 \"완료\"를 누르세요</string>
+    <string name="subtitle_activity_recaptcha">해결 되었다면 “완료”를 누르세요</string>
     <string name="infinite_videos">∞ 비디오</string>
     <string name="more_than_100_videos">100+ 비디오</string>
     <string name="help">도움말</string>

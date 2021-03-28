@@ -398,7 +398,7 @@
     <string name="use_inexact_seek_summary">കുറഞ്ഞ കൃത്യതയോടെ സീക് ചെയ്യാൻ Inexact seek സഹായിക്കുന്നു. 5/15/25 സെക്കൻഡ് സീക്‌ ഈ മോഡിൽ പ്രവർത്തിക്കുകയില്ല.</string>
     <string name="popup_remember_size_pos_summary">പോപ്പപ്പിന്റെ അവസാന വലുപ്പവും സ്ഥാനവും ഓർത്തിരിക്കുക</string>
     <string name="popup_remember_size_pos_title">പോപ്പപ്പ് വലുപ്പവും സ്ഥാനവും ഓർത്തിരിക്കുക</string>
-    <string name="black_theme_title">കട്ട ഇരുട്ട് തീം</string>
+    <string name="black_theme_title">"കറുപ്പ്  തീം"</string>
     <string name="dark_theme_title">ഡാർക്ക് തീം</string>
     <string name="light_theme_title">ലൈറ്റ് തീം</string>
     <string name="theme_title">തീം</string>
@@ -444,7 +444,7 @@
     <string name="screen_rotation">സ്ക്രീൻ റൊറ്റേഷൻ</string>
     <string name="choose_browser">ബ്രൗസർ തിരഞ്ഞെടുക്കുക</string>
     <string name="share_dialog_title">പങ്കുവയ്ക്കൂ</string>
-    <string name="did_you_mean">ഇതാണോ കവി ഉദ്ദേശിച്ചേ: %1$s\?</string>
+    <string name="did_you_mean">"നിങ്ങൾ ഉദ്ദേശിച്ചത്  : \"%1$s\" ആണോ\?"</string>
     <string name="settings">ക്രമീകരണങ്ങൾ</string>
     <string name="search">തിരയുക</string>
     <string name="controls_download_desc">സ്ട്രീം ഫൈൽ ഡൗൺലോഡ് ചെയ്യുക</string>
@@ -458,7 +458,8 @@
     <string name="no_player_found">സ്ട്രീം പ്ലയർ കണ്ടെത്താനായില്ല. VLC ഇൻസ്റ്റാൾ ചെയ്യട്ടെ\?</string>
     <string name="upload_date_text">%1$s - ന് പ്രസിദ്ധീകരിച്ചു</string>
     <string name="view_count_text">%1$s തവണ കാണപ്പെട്ടു</string>
-    <string name="main_bg_subtitle">\"സെർച്ച്\" അമർത്തൂ! നമുക്ക് തുടങ്ങാം</string>
+    <string name="main_bg_subtitle">തുടങ്ങാൻ \"തിരയൽ\" അമർത്തുക
+\n</string>
     <string name="content_not_supported">ഈ ഉള്ളടക്കത്തെ ഇതുവരെ ന്യൂ‌പൈപ്പ് പിന്തുണയ്‌ക്കുന്നില്ല.
 \n
 \nഭാവിയിലെ ഒരു പതിപ്പിൽ ഇത് പിന്തുണയ്‌ക്കുമെന്ന് പ്രതീക്ഷിക്കുന്നു.</string>
@@ -609,4 +610,12 @@
     <string name="playlist_page_summary">പ്ലേലിസ്റ്റ് പേജ്</string>
     <string name="error_report_open_issue_button_text">തെറ്റ് GitHub ല്‍ റിപ്പോര്‍ട്ട് ചെയ്യുക</string>
     <string name="notification_scale_to_square_image_title">ലഘുചിത്രം 1: 1 വീക്ഷണാനുപാതത്തിലേക്ക് സ്കെയിൽ ചെയ്യുക</string>
+    <string name="notification_colorize_summary">"വീഡിയോ കവർ ചിത്രത്തിന്റെ മെയിൻ കളറിന്     അനുസരിച്ചു നോട്ടിഫിക്കേഷന്റെ കളർ മാറ്റാൻ ആൻഡ്രോയ്ഡിനെ അനുവദിക്കുക (ഇത് എല്ലാം ഉപകരണങ്ങളിലും ലഭ്യമല്ല )"</string>
+    <string name="notification_colorize_title">നോട്ടിഫിക്കേഷൻ വർണ്ണാഭമാകുക</string>
+    <string name="notification_action_nothing">ഒന്നുമില്ല</string>
+    <string name="notification_action_shuffle">ക്രമരഹിതം</string>
+    <string name="notification_action_repeat">ആവർത്തിക്കുക</string>
+    <string name="notification_actions_at_most_three">നിങ്ങൾക്ക് കോംപാക്ട് നോട്ടിഫിക്കേഷൻ ആയി കാണിക്കാൻ മൂന്ന് നോട്ടിഫിക്കേഷൻ വരെ തിരഞ്ഞെടുക്കാം.</string>
+    <string name="open_with">ഇതിനോടൊപ്പം തുറക്കുക</string>
+    <string name="notification_scale_to_square_image_summary">നോട്ടിഫിക്കേഷനിൽ കാണിക്കുന്ന വീഡിയോ കവർ ചിത്രം 16:9 എന്ന അനുപാതത്തിൽ നിന്നും 1:1 ലേക്ക് മാറ്റാം (പ്രശ്നങ്ങൾ ഉണ്ടാവാൻ സാധ്യത )</string>
 </resources>
