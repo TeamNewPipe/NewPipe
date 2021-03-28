@@ -23,7 +23,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.util.TypedValue;
 
 import androidx.annotation.AttrRes;
@@ -202,20 +201,6 @@ public final class ThemeHelper {
             // default to dark theme
             return R.style.DarkSettingsTheme;
         }
-    }
-
-    /**
-     * Get a resource id from a resource styled according to the context's theme.
-     *
-     * @param context Android app context
-     * @param attr    attribute reference of the resource
-     * @return resource ID
-     */
-    public static int resolveResourceIdFromAttr(final Context context, @AttrRes final int attr) {
-        final TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr});
-        final int attributeResourceId = a.getResourceId(0, 0);
-        a.recycle();
-        return attributeResourceId;
     }
 
     /**
