@@ -1,14 +1,12 @@
 package org.schabi.newpipe.fragments.list.search;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.AttrRes;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
@@ -119,14 +117,6 @@ public class SuggestionListAdapter
 
             historyResId = R.drawable.ic_history;
             searchResId = R.drawable.ic_search;
-        }
-
-        private static int resolveResourceIdFromAttr(final Context context,
-                                                     @AttrRes final int attr) {
-            final TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr});
-            final int attributeResourceId = a.getResourceId(0, 0);
-            a.recycle();
-            return attributeResourceId;
         }
 
         private void updateFrom(final SuggestionItem item) {
