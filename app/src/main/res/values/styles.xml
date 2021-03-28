@@ -13,7 +13,9 @@
     </style>
 
     <!-- Base themes -->
-    <style name="Base.V7" parent="Theme.AppCompat.DayNight.NoActionBar"/>
+    <style name="Base.V7" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+    </style>
 
     <style name="Base" parent="Base.V7"/>
 
@@ -40,8 +42,6 @@
         <item name="card_item_contrast_color">@color/light_card_item_contrast_color</item>
         <item name="border_color">@color/light_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_light</item>
-
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
     <style name="Base.V7.DarkTheme" parent="Base" />
@@ -67,8 +67,6 @@
         <item name="card_item_contrast_color">@color/dark_card_item_contrast_color</item>
         <item name="border_color">@color/dark_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_dark</item>
-
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
     <style name="Base.V7.BlackTheme" parent="DarkTheme" />
