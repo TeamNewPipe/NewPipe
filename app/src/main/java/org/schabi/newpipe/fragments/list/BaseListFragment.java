@@ -45,6 +45,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Queue;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 
@@ -373,7 +374,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             entries.add(StreamDialogEntry.play_with_kodi);
         }
 
-        entries.add(StreamDialogEntry.show_channel_details);
+        if (!isNullOrEmpty(item.getUploaderUrl())) {
+            entries.add(StreamDialogEntry.show_channel_details);
+        }
 
         StreamDialogEntry.setEnabledEntries(entries);
 
