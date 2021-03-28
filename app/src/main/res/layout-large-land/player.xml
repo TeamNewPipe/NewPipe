@@ -556,6 +556,7 @@
             android:layout_height="match_parent"
             android:layout_below="@id/itemsListControl"
             android:scrollbars="vertical"
+            android:theme="@style/PlayQueueItemTextTheme"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/play_queue_item" />
 

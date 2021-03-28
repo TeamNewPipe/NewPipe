@@ -42,10 +42,15 @@
         <item name="colorAccent">@color/dark_settings_accent_color</item>
     </style>
 
-    <style name="ItemStreamSegmentTitle" parent="TextAppearance.AppCompat.Large">
+    <style name="PlayQueueItemTextTheme">
+        <item name="android:textAppearanceLarge">@style/PlayQueueItemTitle</item>
+        <item name="android:textAppearanceSmall">@style/PlayQueueItemSubtitle</item>
+    </style>
+
+    <style name="PlayQueueItemTitle" parent="TextAppearance.AppCompat.Large">
         <item name="android:textColor">@color/white</item>
     </style>
-    <style name="ItemStreamSegmentSubtitle" parent="TextAppearance.AppCompat.Small">
+    <style name="PlayQueueItemSubtitle" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/white_secondary</item>
     </style>
 
