@@ -61,17 +61,17 @@
     </style>
 
     <style name="FloatingActionButtonTheme" parent="Widget.Design.FloatingActionButton">
-        <item name="tint">@color/white</item>
+        <item name="tint">?attr/actionColor</item>
     </style>
 
     <style name="DarkPopupMenu" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">@android:color/white</item>
-        <item name="tint">@color/white</item>
-        <item name="iconTint">@color/white</item>
+        <item name="android:textColorPrimary">?attr/actionColor</item>
+        <item name="android:textColorSecondary">?attr/actionColor</item>
+        <item name="tint">?attr/actionColor</item>
+        <item name="iconTint">?attr/actionColor</item>
     </style>
     <style name="ContrastToolbarTheme" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
@@ -82,17 +82,9 @@
         <item name="toolbarSearchColor">@color/contrastColor</item>
     </style>
 
-    <style name="WhiteAccentTheme">
-        <item name="colorAccent">@color/white</item>
-    </style>
-
     <style name="WhiteTintTheme">
         <item name="tint">@color/white</item>
         <item name="iconTint">@color/white</item>
-    </style>
-    <style name="DarkTintTheme">
-        <item name="tint">@color/black</item>
-        <item name="iconTint">@color/black</item>
     </style>
     <style name="ContrastTintTheme">
         <item name="tint">@color/contrastColor</item>

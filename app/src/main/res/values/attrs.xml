@@ -11,6 +11,7 @@
     <attr name="focused_selector" format="reference" />
     <attr name="dashed_border" format="reference" />
 
+    <attr name="actionColor" format="color" />
     <attr name="separator_color" format="color" />
     <attr name="contrast_background_color" format="color" />
     <attr name="windowBackground" format="color" />
