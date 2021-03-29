@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -59,41 +60,27 @@ class AboutActivity : AppCompatActivity() {
      * A placeholder fragment containing a simple view.
      */
     class AboutFragment : Fragment() {
+        private fun Button.openLink(url: Int) {
+            setOnClickListener {
+                ShareUtils.openUrlInBrowser(
+                    context,
+                    requireContext().getString(url),
+                    false
+                )
+            }
+        }
+
         override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
         ): View {
             val aboutBinding = FragmentAboutBinding.inflate(inflater, container, false)
-            val context = context
             aboutBinding.aboutAppVersion.text = BuildConfig.VERSION_NAME
-            aboutBinding.aboutGithubLink.setOnClickListener {
-                ShareUtils.openUrlInBrowser(
-                    context,
-                    context!!.getString(R.string.github_url),
-                    false
-                )
-            }
-            aboutBinding.aboutDonationLink.setOnClickListener {
-                ShareUtils.openUrlInBrowser(
-                    context,
-                    context!!.getString(R.string.donation_url),
-                    false
-                )
-            }
-            aboutBinding.aboutWebsiteLink.setOnClickListener {
-                ShareUtils.openUrlInBrowser(
-                    context,
-                    context!!.getString(R.string.website_url),
-                    false
-                )
-            }
-            aboutBinding.aboutPrivacyPolicyLink.setOnClickListener {
-                ShareUtils.openUrlInBrowser(
-                    context, context!!.getString(R.string.privacy_policy_url),
-                    false
-                )
-            }
+            aboutBinding.aboutGithubLink.openLink(R.string.github_url)
+            aboutBinding.aboutDonationLink.openLink(R.string.donation_url)
+            aboutBinding.aboutWebsiteLink.openLink(R.string.website_url)
+            aboutBinding.aboutPrivacyPolicyLink.openLink(R.string.privacy_policy_url)
             return aboutBinding.root
         }
     }
