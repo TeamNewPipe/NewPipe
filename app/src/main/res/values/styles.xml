@@ -13,6 +13,7 @@
 
     <!-- Base Theme -->
     <style name="Base.V19" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="floatingActionButtonStyle">@style/FloatingActionButtonTheme</item>
         <item name="toolbarSearchColor">@color/white</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>

@@ -112,7 +112,6 @@ public class ChooseTabsFragment extends Fragment {
         final MenuItem restoreItem = menu.add(Menu.NONE, MENU_ITEM_RESTORE_ID, Menu.NONE,
                 R.string.restore_defaults);
         restoreItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
         restoreItem.setIcon(AppCompatResources.getDrawable(requireContext(),
                 R.drawable.ic_settings_backup_restore));
     }

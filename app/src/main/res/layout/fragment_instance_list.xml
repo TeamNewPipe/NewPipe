@@ -44,7 +44,6 @@
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:tint="@color/white"
         app:backgroundTint="?attr/colorPrimary"
         app:fabSize="auto"
         app:srcCompat="@drawable/ic_add" />

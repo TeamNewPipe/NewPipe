@@ -60,6 +60,10 @@
         <item name="android:textColor">@color/white_secondary</item>
     </style>
 
+    <style name="FloatingActionButtonTheme" parent="Widget.Design.FloatingActionButton">
+        <item name="tint">@color/white</item>
+    </style>
+
     <style name="DarkPopupMenu" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

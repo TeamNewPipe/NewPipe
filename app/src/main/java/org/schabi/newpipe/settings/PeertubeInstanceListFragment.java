@@ -3,9 +3,6 @@ package org.schabi.newpipe.settings;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -148,13 +145,8 @@ public class PeertubeInstanceListFragment extends Fragment {
         final MenuItem restoreItem = menu
                 .add(Menu.NONE, MENU_ITEM_RESTORE_ID, Menu.NONE, R.string.restore_defaults);
         restoreItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        final Drawable icon = AppCompatResources.getDrawable(requireContext(),
-                R.drawable.ic_settings_backup_restore);
-        if (icon != null) {
-            icon.mutate();
-            icon.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
-        }
-        restoreItem.setIcon(icon);
+        restoreItem.setIcon(AppCompatResources.getDrawable(requireContext(),
+                R.drawable.ic_settings_backup_restore));
     }
 
     @Override
