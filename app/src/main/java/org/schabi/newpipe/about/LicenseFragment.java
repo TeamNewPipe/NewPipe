@@ -74,7 +74,7 @@ public class LicenseFragment extends Fragment {
         final FragmentLicensesBinding binding = FragmentLicensesBinding
                 .inflate(inflater, container, false);
 
-        binding.appReadLicense.setOnClickListener(v -> {
+        binding.licensesAppReadLicense.setOnClickListener(v -> {
             activeLicense = StandardLicenses.GPL3;
             compositeDisposable.add(LicenseFragmentHelper.showLicense(getActivity(),
                     StandardLicenses.GPL3));
@@ -96,7 +96,7 @@ public class LicenseFragment extends Fragment {
                 compositeDisposable.add(LicenseFragmentHelper.showLicense(getActivity(),
                         component.getLicense()));
             });
-            binding.softwareComponents.addView(root);
+            binding.licensesSoftwareComponents.addView(root);
             registerForContextMenu(root);
         }
         if (activeLicense != null) {
@@ -125,10 +125,10 @@ public class LicenseFragment extends Fragment {
             return false;
         }
         switch (item.getItemId()) {
-            case R.id.action_website:
+            case R.id.menu_software_website:
                 ShareUtils.openUrlInBrowser(getActivity(), component.getLink());
                 return true;
-            case R.id.action_show_license:
+            case R.id.menu_software_show_license:
                 compositeDisposable.add(LicenseFragmentHelper.showLicense(getActivity(),
                         component.getLicense()));
         }

@@ -85,16 +85,16 @@ public class AboutActivity extends AppCompatActivity {
         final ActivityAboutBinding aboutBinding = ActivityAboutBinding.inflate(getLayoutInflater());
         setContentView(aboutBinding.getRoot());
 
-        setSupportActionBar(aboutBinding.toolbar);
+        setSupportActionBar(aboutBinding.aboutToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        final SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(this);
+        final AboutStateAdapter mAboutStateAdapter = new AboutStateAdapter(this);
 
         // Set up the ViewPager with the sections adapter.
-        aboutBinding.container.setAdapter(mSectionsPagerAdapter);
+        aboutBinding.aboutViewPager2.setAdapter(mAboutStateAdapter);
 
-        new TabLayoutMediator(aboutBinding.tabs, aboutBinding.container, (tab, position) -> {
+        new TabLayoutMediator(aboutBinding.aboutTabLayout, aboutBinding.aboutViewPager2, (tab, position) -> {
             switch (position) {
                 default:
                 case POS_ABOUT:
@@ -143,18 +143,18 @@ public class AboutActivity extends AppCompatActivity {
                     FragmentAboutBinding.inflate(inflater, container, false);
             final Context context = getContext();
 
-            aboutBinding.appVersion.setText(BuildConfig.VERSION_NAME);
+            aboutBinding.aboutAppVersion.setText(BuildConfig.VERSION_NAME);
 
-            aboutBinding.githubLink.setOnClickListener(nv ->
+            aboutBinding.aboutGithubLink.setOnClickListener(nv ->
                     openUrlInBrowser(context, context.getString(R.string.github_url), false));
 
-            aboutBinding.donationLink.setOnClickListener(v ->
+            aboutBinding.aboutDonationLink.setOnClickListener(v ->
                     openUrlInBrowser(context, context.getString(R.string.donation_url), false));
 
-            aboutBinding.websiteLink.setOnClickListener(nv ->
+            aboutBinding.aboutWebsiteLink.setOnClickListener(nv ->
                     openUrlInBrowser(context, context.getString(R.string.website_url), false));
 
-            aboutBinding.privacyPolicyLink.setOnClickListener(v ->
+            aboutBinding.aboutPrivacyPolicyLink.setOnClickListener(v ->
                     openUrlInBrowser(context, context.getString(R.string.privacy_policy_url),
                             false));
 
@@ -166,8 +166,8 @@ public class AboutActivity extends AppCompatActivity {
      * A {@link FragmentStateAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public static class SectionsPagerAdapter extends FragmentStateAdapter {
-        public SectionsPagerAdapter(final FragmentActivity fa) {
+    private static class AboutStateAdapter extends FragmentStateAdapter {
+        AboutStateAdapter(final FragmentActivity fa) {
             super(fa);
         }
 
