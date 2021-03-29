@@ -137,6 +137,8 @@ public class ErrorActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
+
+        ThemeHelper.setDayNightMode(this);
         ThemeHelper.setTheme(this);
 
         activityErrorBinding = ActivityErrorBinding.inflate(getLayoutInflater());

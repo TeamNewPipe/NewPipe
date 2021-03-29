@@ -47,6 +47,9 @@ public final class ThemeHelper {
      * Apply the selected theme (on NewPipe settings) in the context
      * with the default style (see {@link #setTheme(Context, int)}).
      *
+     * ThemeHelper.setDayNightMode should be called before
+     * the applying theme for the first time in session
+     *
      * @param context context that the theme will be applied
      */
     public static void setTheme(final Context context) {
@@ -56,6 +59,9 @@ public final class ThemeHelper {
     /**
      * Apply the selected theme (on NewPipe settings) in the context,
      * themed according with the styles defined for the service .
+     *
+     * ThemeHelper.setDayNightMode should be called before
+     * the applying theme for the first time in session
      *
      * @param context   context that the theme will be applied
      * @param serviceId the theme will be styled to the service with this id,
