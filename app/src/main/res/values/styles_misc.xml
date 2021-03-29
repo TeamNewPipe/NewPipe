@@ -68,9 +68,6 @@
 
     <style name="DarkPopupMenu" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="BaseToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
-    </style>
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
         <item name="android:textColorPrimary">?attr/actionColor</item>
