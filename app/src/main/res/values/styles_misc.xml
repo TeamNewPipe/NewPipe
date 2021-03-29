@@ -95,9 +95,8 @@
         <item name="iconTint">@color/contrastColor</item>
     </style>
 
-
-    <style name="SearchToolbarTheme">
-        <item name="colorAccent">@color/white</item>
+    <style name="ToolbarSearchInputTheme">
+        <item name="colorAccent">?attr/toolbarSearchColor</item>
     </style>
 
 </resources>

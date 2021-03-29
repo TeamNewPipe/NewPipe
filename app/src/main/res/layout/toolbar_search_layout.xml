@@ -23,6 +23,7 @@
         android:inputType="textFilter|textNoSuggestions"
         android:maxLines="1"
         android:nextFocusDown="@+id/suggestions_list"
+        android:theme="@style/ToolbarSearchInputTheme"
         tools:ignore="RtlHardcoded" />
 
     <FrameLayout
