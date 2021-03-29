@@ -13,6 +13,7 @@
 
     <!-- Base Theme -->
     <style name="Base.V19" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="toolbarSearchColor">@color/white</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
     <style name="Base" parent="Base.V19"/>
@@ -168,14 +169,6 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@null</item>
-    </style>
-
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">@android:color/white</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
-        <item name="tint">@color/white</item>
-        <item name="iconTint">@color/white</item>
     </style>
 
 </resources>

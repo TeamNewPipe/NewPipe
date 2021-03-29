@@ -62,6 +62,22 @@
 
     <style name="DarkPopupMenu" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="tint">@color/white</item>
+        <item name="iconTint">@color/white</item>
+    </style>
+    <style name="ContrastToolbarTheme" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
+        <item name="android:textColorPrimary">@color/contrastColor</item>
+        <item name="android:textColorSecondary">@color/contrastColor</item>
+        <item name="tint">@color/contrastColor</item>
+        <item name="iconTint">@color/contrastColor</item>
+        <item name="toolbarSearchColor">@color/contrastColor</item>
+    </style>
+
     <style name="WhiteAccentTheme">
         <item name="colorAccent">@color/white</item>
     </style>
@@ -77,6 +93,11 @@
     <style name="ContrastTintTheme">
         <item name="tint">@color/contrastColor</item>
         <item name="iconTint">@color/contrastColor</item>
+    </style>
+
+
+    <style name="SearchToolbarTheme">
+        <item name="colorAccent">@color/white</item>
     </style>
 
 </resources>
