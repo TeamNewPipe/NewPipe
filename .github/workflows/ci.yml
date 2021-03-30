@@ -5,7 +5,7 @@ on:
     branches:
       - dev
   push:
-    branches: 
+    branches:
       - dev
       - master
 
@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: gradle/wrapper-validation-action@v1
 
       - name: create and checkout branch
         # push events already checked out the branch
