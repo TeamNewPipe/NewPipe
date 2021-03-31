@@ -181,7 +181,7 @@
     <string name="use_tor_summary">(Eksperimentāls) Piespiediet lejupielādēt saturu caur Tor, lai palielinātu privātumu (tiešraides vēl nav atbalstītas).</string>
     <string name="use_tor_title">Izmantojiet Tor</string>
     <string name="description_tab_description">Apraksts</string>
-    <string name="related_streams_tab_description">Līdzīgi video</string>
+    <string name="related_items_tab_description">Līdzīgi video</string>
     <string name="comments_tab_description">Komentāri</string>
     <string name="detail_dislikes_img_view_description">Nepatīk</string>
     <string name="detail_likes_img_view_description">Patīk</string>

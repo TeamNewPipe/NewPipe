@@ -180,10 +180,10 @@ public final class PlayerHelper {
      * if a candidate next video's url already exists in the existing items.
      * </p>
      * <p>
-     * The first item in {@link StreamInfo#getRelatedStreams()} is checked first.
+     * The first item in {@link StreamInfo#getRelatedItems()} is checked first.
      * If it is non-null and is not part of the existing items, it will be used as the next stream.
-     * Otherwise, a random item with non-repeating url will be selected
-     * from the {@link StreamInfo#getRelatedStreams()}.
+     * Otherwise, a random stream with non-repeating url will be selected
+     * from the {@link StreamInfo#getRelatedItems()}. Non-stream items are ignored.
      * </p>
      *
      * @param info          currently playing stream
@@ -198,7 +198,7 @@ public final class PlayerHelper {
             urls.add(item.getUrl());
         }
 
-        final List<InfoItem> relatedItems = info.getRelatedStreams();
+        final List<InfoItem> relatedItems = info.getRelatedItems();
         if (Utils.isNullOrEmpty(relatedItems)) {
             return null;
         }

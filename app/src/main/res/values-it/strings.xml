@@ -654,7 +654,7 @@
     <string name="recent">Recente</string>
     <string name="show_meta_info_summary">Disattiva per nascondere i riquadri con informazioni aggiuntive sul contenuto, sul suo creatore o su una richiesta di ricerca.</string>
     <string name="show_meta_info_title">Mostra meta-informazioni</string>
-    <string name="related_streams_tab_description">Contenuti correlati</string>
+    <string name="related_items_tab_description">Contenuti correlati</string>
     <string name="chapters">Capitoli</string>
     <string name="description_tab_description">Descrizione</string>
     <string name="comments_tab_description">Commenti</string>

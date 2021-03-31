@@ -676,7 +676,7 @@
     <string name="show_meta_info_title">הצגת מידע על</string>
     <string name="chapters">פרקים</string>
     <string name="description_tab_description">תיאור</string>
-    <string name="related_streams_tab_description">תזרימים קשורים</string>
+    <string name="related_items_tab_description">תזרימים קשורים</string>
     <string name="comments_tab_description">הערות</string>
     <string name="show_description_summary">יש לכבות כדי להסתיר תיאורי סרטונים ומידע נוסף</string>
     <string name="show_description_title">הצגת תיאור</string>

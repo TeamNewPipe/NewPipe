@@ -671,7 +671,7 @@
     <string name="show_description_title">Pokaż opis</string>
     <string name="open_with">Otwórz za pomocą</string>
     <string name="no_app_to_open_intent">Żadna aplikacja na Twoim urządzeniu nie może tego otworzyć</string>
-    <string name="related_streams_tab_description">Powiązane strumienie</string>
+    <string name="related_items_tab_description">Powiązane strumienie</string>
     <string name="crash_the_app">Awaria aplikacji</string>
     <string name="paid_content">Ta zawartość jest płatna, więc jest dostępna tylko dla użytkowników, którzy za nią zapłacili, dlatego nie może być przesyłana strumieniowo lub pobierana przez NewPipe.</string>
     <string name="youtube_music_premium_content">Ten film jest dostępny tylko dla subskrybentów YouTube Music Premium, więc nie może być przesyłany strumieniowo ani pobierany przez NewPipe.</string>

@@ -656,7 +656,7 @@
     <string name="show_meta_info_title">Εμφάνιση μεταδεδομένων</string>
     <string name="chapters">Κεφάλαια</string>
     <string name="description_tab_description">Περιγραφή</string>
-    <string name="related_streams_tab_description">Σχετιζόμενες ροές</string>
+    <string name="related_items_tab_description">Σχετιζόμενες ροές</string>
     <string name="comments_tab_description">Σχόλια</string>
     <string name="show_description_summary">Απενεργοποιήστε για απόκρυψη περιγραφής και πρόσθετων πληροφοριών</string>
     <string name="show_description_title">Εμφάνιση περιγραφής</string>

@@ -15,38 +15,38 @@ import androidx.preference.PreferenceManager;
 import androidx.viewbinding.ViewBinding;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.databinding.RelatedStreamsHeaderBinding;
+import org.schabi.newpipe.databinding.RelatedItemsHeaderBinding;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.ktx.ViewUtils;
-import org.schabi.newpipe.util.RelatedStreamInfo;
+import org.schabi.newpipe.util.RelatedItemInfo;
 
 import java.io.Serializable;
 
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
-public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInfo>
+public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String INFO_KEY = "related_info_key";
     private final CompositeDisposable disposables = new CompositeDisposable();
-    private RelatedStreamInfo relatedStreamInfo;
+    private RelatedItemInfo relatedItemInfo;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
 
-    private RelatedStreamsHeaderBinding headerBinding;
+    private RelatedItemsHeaderBinding headerBinding;
 
-    public static RelatedVideosFragment getInstance(final StreamInfo info) {
-        final RelatedVideosFragment instance = new RelatedVideosFragment();
+    public static RelatedItemsFragment getInstance(final StreamInfo info) {
+        final RelatedItemsFragment instance = new RelatedItemsFragment();
         instance.setInitialData(info);
         return instance;
     }
 
-    public RelatedVideosFragment() {
+    public RelatedItemsFragment() {
         super(UserAction.REQUESTED_STREAM);
     }
 
@@ -63,7 +63,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_related_streams, container, false);
+        return inflater.inflate(R.layout.fragment_related_items, container, false);
     }
 
     @Override
@@ -80,8 +80,8 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
 
     @Override
     protected ViewBinding getListHeader() {
-        if (relatedStreamInfo != null && relatedStreamInfo.getRelatedItems() != null) {
-            headerBinding = RelatedStreamsHeaderBinding
+        if (relatedItemInfo != null && relatedItemInfo.getRelatedItems() != null) {
+            headerBinding = RelatedItemsHeaderBinding
                     .inflate(activity.getLayoutInflater(), itemsList, false);
 
             final SharedPreferences pref = PreferenceManager
@@ -107,8 +107,8 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<RelatedStreamInfo> loadResult(final boolean forceLoad) {
-        return Single.fromCallable(() -> relatedStreamInfo);
+    protected Single<RelatedItemInfo> loadResult(final boolean forceLoad) {
+        return Single.fromCallable(() -> relatedItemInfo);
     }
 
     @Override
@@ -120,7 +120,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     }
 
     @Override
-    public void handleResult(@NonNull final RelatedStreamInfo result) {
+    public void handleResult(@NonNull final RelatedItemInfo result) {
         super.handleResult(result);
 
         if (headerBinding != null) {
@@ -145,23 +145,23 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
 
     private void setInitialData(final StreamInfo info) {
         super.setInitialData(info.getServiceId(), info.getUrl(), info.getName());
-        if (this.relatedStreamInfo == null) {
-            this.relatedStreamInfo = RelatedStreamInfo.getInfo(info);
+        if (this.relatedItemInfo == null) {
+            this.relatedItemInfo = RelatedItemInfo.getInfo(info);
         }
     }
 
     @Override
     public void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(INFO_KEY, relatedStreamInfo);
+        outState.putSerializable(INFO_KEY, relatedItemInfo);
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull final Bundle savedState) {
         super.onRestoreInstanceState(savedState);
         final Serializable serializable = savedState.getSerializable(INFO_KEY);
-        if (serializable instanceof RelatedStreamInfo) {
-            this.relatedStreamInfo = (RelatedStreamInfo) serializable;
+        if (serializable instanceof RelatedItemInfo) {
+            this.relatedItemInfo = (RelatedItemInfo) serializable;
         }
     }
 
