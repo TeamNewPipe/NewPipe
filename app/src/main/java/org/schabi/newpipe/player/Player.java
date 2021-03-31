@@ -74,6 +74,7 @@ import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.google.android.exoplayer2.util.Util;
 import com.google.android.exoplayer2.video.VideoListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -488,8 +489,13 @@ public final class Player implements
         // Setup subtitle view
         simpleExoPlayer.addTextOutput(binding.subtitleView);
 
-        // Setup audio session with onboard equalizer
-        trackSelector.setParameters(trackSelector.buildUponParameters().setTunnelingEnabled(true));
+        // enable media tunneling
+        if (DeviceUtils.shouldSupportMediaTunneling()) {
+            trackSelector.setParameters(
+                    trackSelector.buildUponParameters().setTunnelingEnabled(true));
+        } else if (DEBUG) {
+            Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] does not support media tunneling");
+        }
     }
 
     private void initListeners() {
