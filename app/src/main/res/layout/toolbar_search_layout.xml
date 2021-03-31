@@ -42,6 +42,7 @@
             android:background="?attr/selectableItemBackgroundBorderless" />
 
         <ImageView
+            android:id="@+id/toolbar_search_clear_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="center"
