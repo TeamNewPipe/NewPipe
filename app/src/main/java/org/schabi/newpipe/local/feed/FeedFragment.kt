@@ -50,6 +50,7 @@ import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
+import org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty
 import org.schabi.newpipe.fragments.list.BaseListFragment
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.animateHideRecyclerViewAllowingScrolling
@@ -323,17 +324,22 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
                 }
             )
             .setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { _, _ -> })
+        var message = getString(R.string.feed_load_error_account_info, subscriptionEntity.name)
         if (cause is AccountTerminatedException) {
-            builder.setMessage(R.string.feed_load_error_terminated)
-        } else if (cause is ContentNotAvailableException && isFastFeedModeEnabled) {
-            builder.setMessage(R.string.feed_load_error_fast_unknown)
-                .setNeutralButton(R.string.feed_use_dedicated_fetch_method_disable_button) { _, _ ->
+            message += "\n" + getString(R.string.feed_load_error_terminated)
+        } else if (cause is ContentNotAvailableException) {
+            if (isFastFeedModeEnabled) {
+                message += "\n" + getString(R.string.feed_load_error_fast_unknown)
+                builder.setNeutralButton(R.string.feed_use_dedicated_fetch_method_disable_button) { _, _ ->
                     sharedPreferences.edit {
                         putBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), false)
                     }
                 }
+            } else if (!isNullOrEmpty(cause.message)) {
+                message += "\n" + cause.message
+            }
         }
-        builder.create().show()
+        builder.setMessage(message).create().show()
     }
 
     private fun updateRelativeTimeViews() {
