@@ -58,19 +58,21 @@ object LicenseFragmentHelper {
      */
     private fun getLicenseStylesheet(context: Context): String {
         val isLightTheme = ThemeHelper.isLightThemeSelected(context)
-        return ("body{padding:12px 15px;margin:0;" + "background:#" + getHexRGBColor(
-            context,
-            if (isLightTheme) R.color.light_license_background_color
-            else R.color.dark_license_background_color
-        ) + ";" + "color:#" + getHexRGBColor(
-            context,
-            if (isLightTheme) R.color.light_license_text_color
-            else R.color.dark_license_text_color
-        ) + "}" + "a[href]{color:#" + getHexRGBColor(
-            context,
-            if (isLightTheme) R.color.light_youtube_primary_color
-            else R.color.dark_youtube_primary_color
-        ) + "}" + "pre{white-space:pre-wrap}")
+        return (
+            "body{padding:12px 15px;margin:0;" + "background:#" + getHexRGBColor(
+                context,
+                if (isLightTheme) R.color.light_license_background_color
+                else R.color.dark_license_background_color
+            ) + ";" + "color:#" + getHexRGBColor(
+                context,
+                if (isLightTheme) R.color.light_license_text_color
+                else R.color.dark_license_text_color
+            ) + "}" + "a[href]{color:#" + getHexRGBColor(
+                context,
+                if (isLightTheme) R.color.light_youtube_primary_color
+                else R.color.dark_youtube_primary_color
+            ) + "}" + "pre{white-space:pre-wrap}"
+            )
     }
 
     /**
