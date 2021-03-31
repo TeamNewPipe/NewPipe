@@ -10,7 +10,7 @@
     <string name="download">Descargar</string>
     <string name="search">Buscar</string>
     <string name="settings">Ajustes</string>
-    <string name="did_you_mean">¿Quiso decir «%1$s»\?</string>
+    <string name="did_you_mean">¿Quisiste decir «%1$s»\?</string>
     <string name="share_dialog_title">Compartir con</string>
     <string name="choose_browser">Elegir navegador</string>
     <string name="screen_rotation">giro</string>
@@ -76,7 +76,7 @@
     <string name="error_snackbar_action">Informar</string>
     <string name="what_device_headline">Información:</string>
     <string name="what_happened_headline">Qué ha ocurrido:</string>
-    <string name="your_comment">Su comentario (en inglés):</string>
+    <string name="your_comment">Tu comentario (en inglés):</string>
     <string name="error_details_headline">Detalles:</string>
     <string name="report_error">Informar de un error</string>
     <string name="user_report">Informe de usuario</string>
@@ -123,7 +123,7 @@
     <string name="default_video_format_title">Formato de vídeo predefinido</string>
     <string name="disabled">Desactivado</string>
     <string name="show_higher_resolutions_title">Mostrar resoluciones más altas</string>
-    <string name="show_higher_resolutions_summary">Sólo algunos dispositivos pueden reproducir vídeos en 2K / 4K</string>
+    <string name="show_higher_resolutions_summary">Solo algunos dispositivos pueden reproducir vídeos en 2K / 4K</string>
     <string name="default_popup_resolution_title">Resolución predefinida de emergente</string>
     <string name="controls_background_title">Segundo plano</string>
     <string name="controls_popup_title">Emergente</string>
@@ -152,7 +152,7 @@
     <string name="app_description">Reproducción de transmisiones ligera y libre para Android.</string>
     <string name="view_on_github">Ver en GitHub</string>
     <string name="app_license_title">Licencia de NewPipe</string>
-    <string name="contribution_encouragement">Si puede traducir, quiere cambiar el diseño, tiene ideas para mejorar el código o proponer mejoras grandes, siempre agradeceremos su ayuda. ¡Mientras más manos participen, mejor!</string>
+    <string name="contribution_encouragement">Si puedes traducir, quieres cambiar el diseño, tienes ideas para mejorar el código o proponer mejoras grandes, siempre agradeceremos tu ayuda. ¡Mientras más manos participen, mejor!</string>
     <string name="read_full_license">Leer licencia</string>
     <string name="contribution_title">Contribuir</string>
     <string name="subscribe_button_title">Suscribirse</string>
@@ -238,7 +238,7 @@
     <string name="new_and_hot">Nuevo y lo mejor</string>
     <string name="hold_to_append">Mantener pulsado para añadir a la cola</string>
     <string name="donation_title">Donar</string>
-    <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre para brindarle la mejor experiencia. Haga una aportación para ayudarlos a crear un NewPipe mejor mientras disfrutan de una taza de café.</string>
+    <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre para brindarle la mejor experiencia. Haz una aportación para ayudarlos a crear un NewPipe mejor mientras disfrutan de una taza de café.</string>
     <string name="give_back">Dar de vuelta</string>
     <string name="website_title">Sitio web</string>
     <string name="website_encouragement">Visite el sitio web de NewPipe para más información y noticias.</string>
@@ -250,7 +250,7 @@
     <string name="service_title">Servicio</string>
     <string name="drawer_open">Abrir cajón</string>
     <string name="drawer_close">Cerrar cajón</string>
-    <string name="no_player_found_toast">No se encontró ningún reproductor de retransmisiones (puede instalar VLC para reproducirlo).</string>
+    <string name="no_player_found_toast">No se encontró ningún reproductor de retransmisiones (puedes instalar VLC para reproducirlo).</string>
     <string name="always">Siempre</string>
     <string name="just_once">Solo una vez</string>
     <string name="external_player_unsupported_link_type">Los reproductores externos no soportan este tipo de enlaces</string>
@@ -264,13 +264,13 @@
     <string name="preferred_player_fetcher_notification_message">Cargando contenido solicitado</string>
     <string name="import_data_title">Importar base de datos</string>
     <string name="export_data_title">Exportar base de datos</string>
-    <string name="import_data_summary">Anula su historial actual, suscripciones, listas de reproducción y (opcionalmente) ajustes</string>
+    <string name="import_data_summary">Anula tu historial actual, suscripciones, listas de reproducción y (opcionalmente) ajustes</string>
     <string name="export_data_summary">Exportar historial, suscripciones, listas de reproducción y ajustes</string>
     <string name="export_complete_toast">Exportado</string>
     <string name="import_complete_toast">Importado</string>
     <string name="no_valid_zip_file">Archivo ZIP no válido</string>
     <string name="could_not_import_all_files">Atención: no se pudieron importar todos los archivos.</string>
-    <string name="override_current_data">Esto reemplazará su configuración actual.</string>
+    <string name="override_current_data">Esto reemplazará tu configuración actual.</string>
     <string name="controls_download_desc">Descargar archivo de retransmisión</string>
     <string name="show_info">Mostrar información</string>
     <string name="tab_bookmarks">Playlists en marcadores</string>
@@ -344,10 +344,10 @@
 \n2. Vaya a esta URL: %1$s
 \n3. Inicie sesión cuando se le pida
 \n4. Copie la URL del perfil a la que fue redireccionado.</string>
-    <string name="import_soundcloud_instructions_hint">suID, soundcloud.com/suID</string>
-    <string name="import_network_expensive_warning">Observe que esta operación puede causar un uso intensivo de la red.
+    <string name="import_soundcloud_instructions_hint">tuID, soundcloud.com/tuID</string>
+    <string name="import_network_expensive_warning">Esta operación puede causar un uso intensivo de la red.
 \n
-\n¿Quiere continuar\?</string>
+\n¿Quieres continuar\?</string>
     <string name="download_thumbnail_title">Cargar miniaturas</string>
     <string name="download_thumbnail_summary">Desactivar para evitar la carga de miniaturas y ahorrar datos y memoria. Se vaciará la caché de imágenes en la memoria volátil y en el disco.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Se vació la caché de imágenes</string>
@@ -373,14 +373,14 @@
     <string name="delete_search_history_alert">¿Borrar todo el historial de búsqueda\?</string>
     <string name="search_history_deleted">Historial de búsquedas borrado.</string>
     <string name="one_item_deleted">Se ha borrado 1 elemento.</string>
-    <string name="app_license">NewPipe es un software copyleft libre: puedes usarlo, estudiarlo, compartirlo y mejorarlo a voluntad. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia, o (a tu elección) cualquier versión posterior.</string>
-    <string name="import_settings">¿Quiere importar también los ajustes\?</string>
+    <string name="app_license">NewPipe es un software copyleft libre: puedes usarlo, estudiarlo, compartirlo y mejorarlo a voluntad. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la licencia, o (a tu elección) cualquier versión posterior.</string>
+    <string name="import_settings">¿Quieres importar también los ajustes\?</string>
     <string name="privacy_policy_title">Normativa de privacidad de NewPipe</string>
-    <string name="privacy_policy_encouragement">El proyecto NewPipe toma su privacidad muy en serio. Por ello, la aplicación no recopila algún dato sin su consentimiento.
+    <string name="privacy_policy_encouragement">El proyecto NewPipe toma tu privacidad muy en serio. Por ello, la aplicación no recopila ningún dato sin tu consentimiento.
 \nLa normativa de privacidad de NewPipe explica en detalle qué datos se envían y almacenan al enviar un informe de fallo.</string>
     <string name="read_privacy_policy">Leer la normativa de privacidad</string>
-    <string name="start_accept_privacy_policy">Para cumplir con el «Reglamento general europeo de protección de datos (GDPR)», atraemos su atención sobre la política de privacidad de NewPipe. Por favor léase cuidadosamente.
-\nDebe aceptarlo para enviarnos el informe de error.</string>
+    <string name="start_accept_privacy_policy">Para cumplir con el «Reglamento general europeo de protección de datos (GDPR)», atraemos tu atención sobre la normativa de privacidad de NewPipe. Por favor léase cuidadosamente.
+\nDebes aceptarlo para enviarnos el informe de error.</string>
     <string name="accept">Aceptar</string>
     <string name="decline">Declinar</string>
     <string name="limit_data_usage_none_description">Sin límite</string>
@@ -389,7 +389,7 @@
     <string name="minimize_on_exit_summary">Acción de cambiar a otra aplicación desde el reproductor principal — %s</string>
     <string name="minimize_on_exit_none_description">Ninguna</string>
     <string name="minimize_on_exit_background_description">Minimizar a reproductor en segundo plano</string>
-    <string name="minimize_on_exit_popup_description">Minimizar al reproductor flotante</string>
+    <string name="minimize_on_exit_popup_description">Minimizar al reproductor emergente</string>
     <string name="skip_silence_checkbox">Avance rápido durante el silencio</string>
     <string name="playback_step">Paso</string>
     <string name="playback_reset">Reiniciar</string>
@@ -450,8 +450,8 @@
     <string name="error_download_resource_gone">No se puede recuperar esta descarga</string>
     <string name="downloads_storage_ask_title">Preguntar dónde descargar</string>
     <string name="downloads_storage_ask_summary">Se preguntará dónde guardar cada descarga</string>
-    <string name="downloads_storage_ask_summary_kitkat">Se le preguntará dónde guardar cada descarga.
-\nHabilite esta opción junto con SAF si quiere descargar en la tarjeta SD</string>
+    <string name="downloads_storage_ask_summary_kitkat">Se te preguntará dónde guardar cada descarga.
+\nActiva esta opción junto con SAF si quiere descargar en la tarjeta SD</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
     <string name="downloads_storage_use_saf_summary">El \'Framework de Acceso al Almacenamiento\' permite descargar en una tarjeta SD externa. 
 \nAlgunos dispositivos no son compatibles</string>
@@ -568,7 +568,7 @@
     <string name="feed_group_dialog_delete_message">¿Borrar este grupo\?</string>
     <string name="feed_create_new_group_button_title">Nuevo</string>
     <string name="settings_category_feed_title">Contenido</string>
-    <string name="feed_update_threshold_title">Velocidad de actualización del feed</string>
+    <string name="feed_update_threshold_title">Velocidad de actualización del contenido</string>
     <string name="feed_update_threshold_summary">Tiempo para que una suscripción se considere desactualizada — %s</string>
     <string name="feed_update_threshold_option_always_update">Actualizar siempre</string>
     <string name="feed_use_dedicated_fetch_method_title">Extraer desde feed dedicado cuando esté disponible</string>
@@ -590,18 +590,18 @@
 \n
 \nEsperamos que sea soportado en una versión futura.</string>
     <string name="infinite_videos">∞ vídeos</string>
-    <string name="more_than_100_videos">Más de 100 videos</string>
+    <string name="more_than_100_videos">Más de 100 vídeos</string>
     <string name="artists">Artistas</string>
     <string name="albums">Álbumes</string>
     <string name="songs">Canciones</string>
-    <string name="restricted_video">Este video tiene restricción de edad.
+    <string name="restricted_video">Este vídeo tiene restricción de edad.
 \n
-\nHabilita \"%1$s\" en los ajustes si quieres verlo.</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sí, y también videos vistos parcialmente</string>
-    <string name="remove_watched_popup_warning">Los videos que ya se hayan visto luego de añadidos a la lista de reproducción, serán quitados.
+\nActivar \"%1$s\" en los ajustes si quieres verlo.</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Sí, y también vídeos vistos parcialmente</string>
+    <string name="remove_watched_popup_warning">Los vídeos que ya se hayan visto luego de añadidos a la lista de reproducción, serán quitados.
 \n¿Estás seguro\? ¡Esta acción no se puede deshacer!</string>
-    <string name="remove_watched_popup_title">¿Quitar videos ya vistos\?</string>
-    <string name="remove_watched">Quitar videos ya vistos</string>
+    <string name="remove_watched_popup_title">¿Quitar vídeos ya vistos\?</string>
+    <string name="remove_watched">Quitar vídeos ya vistos</string>
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Creado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura de avatar del canal</string>
@@ -609,10 +609,10 @@
     <string name="show_original_time_ago_title">Mostrar tiempo atrás original en ítems</string>
     <string name="youtube_restricted_mode_enabled_title">Activar el «Modo restringido» de YouTube</string>
     <string name="playlist_page_summary">Página de lista de reproducción</string>
-    <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar sólo suscripciones desagrupadas</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Mostrar solo suscripciones desagrupadas</string>
     <string name="no_playlist_bookmarked_yet">Sin marcadores de lista de reproducción aún</string>
-    <string name="select_a_playlist">Seleccione una lista de reproducción</string>
-    <string name="error_report_open_github_notice">Por favor revise si ya existe una discusión sobre su problema. Al crear entradas duplicadas, toma tiempo de nosotros que podríamos usar para arreglar tal problema.</string>
+    <string name="select_a_playlist">Selecciona una lista de reproducción</string>
+    <string name="error_report_open_github_notice">Por favor revisa si ya existe una discusión sobre tu problema. Al crear entradas duplicadas, toma tiempo de nosotros que podríamos usar para arreglar tal problema.</string>
     <string name="error_report_open_issue_button_text">Informar en Github</string>
     <string name="copy_for_github">Copiar informe con formato</string>
     <string name="search_showing_result_for">Mostrando resultados para: %s</string>
@@ -646,14 +646,14 @@
     <string name="enqueue_stream">Añadir a la cola</string>
     <string name="recaptcha_cookies_cleared">Las cookies reCAPTCHA han sido limpiadas</string>
     <string name="clear_cookie_title">Limpiar las cookies reCAPTCHA</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube provee un «Modo restringido», el cual oculta contenido potencialmente sólo apto para adultos</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube provee un «Modo restringido», el cual oculta contenido potencialmente solo apto para adultos</string>
     <string name="notification_colorize_title">Ajustar color de notificación</string>
     <string name="notification_colorize_summary">Permitir a Android personalizar el color de la notificación con el color principal de la imagen (ten en cuenta que esta opción no funciona en todos los dispositivos)</string>
     <string name="show_thumbnail_summary">Usar miniatura como fondo de pantalla de bloqueo y notificaciones</string>
     <string name="show_thumbnail_title">Mostrar vista previa</string>
-    <string name="show_meta_info_summary">Desactive para ocultar información adicional sobre el creador o contenido de la transmisión.</string>
+    <string name="show_meta_info_summary">Desactivar para ocultar información adicional sobre el creador o contenido de la transmisión.</string>
     <string name="show_description_summary">Desactivar para ocultar la descripción del vídeo y la información adicional</string>
-    <string name="no_app_to_open_intent">Ninguna aplicación en su dispositivo puede abrir esto</string>
+    <string name="no_app_to_open_intent">Ninguna aplicación en tu dispositivo puede abrir esto</string>
     <string name="chapters">Capítulos</string>
     <string name="recent">Recientes</string>
     <string name="msg_calculating_hash">Calculando el hash</string>
@@ -665,4 +665,12 @@
     <string name="show_meta_info_title">Mostrar metainformación</string>
     <string name="show_description_title">Mostrar descripción</string>
     <string name="open_with">Abrir con</string>
+    <string name="soundcloud_go_plus_content">Esta es una pista de SoundCloud Go+, al menos en tu país, por lo que no puede ser transmitido ni descargado por NewPipe.</string>
+    <string name="crash_the_app">La aplicación dejó de funcionar</string>
+    <string name="paid_content">Este contenido solo está disponible para los usuarios que hayan pagado, por lo que no puede ser transmitido o descargado por NewPipe.</string>
+    <string name="youtube_music_premium_content">Este vídeo solo está disponible para los miembros de YouTube Music Premium, por lo que no puede ser transmitido ni descargado por NewPipe.</string>
+    <string name="private_content">Este contenido es privado, por lo que no puede ser transmitido ni descargado por NewPipe.</string>
+    <string name="georestricted_content">Este contenido no está disponible en tu país.</string>
+    <string name="restricted_video_no_stream">Este vídeo tiene restricción de edad.
+\nDebido a las nuevas políticas de YouTube con vídeos con restricción de edad, NewPipe no puede acceder a ninguna de sus transmisiones de vídeo, y por lo tanto, no puede reproducirlo.</string>
 </resources>

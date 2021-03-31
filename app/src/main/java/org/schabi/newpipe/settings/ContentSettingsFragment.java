@@ -10,7 +10,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
@@ -21,13 +20,11 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.ReCaptchaActivity;
+import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.ErrorInfo;
-import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
@@ -52,8 +49,35 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private String initialLanguage;
 
     @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
+        final File homeDir = ContextCompat.getDataDir(requireContext());
+        manager = new ContentSettingsManager(new NewPipeFileLocator(homeDir));
+        manager.deleteSettingsFile();
+
+        addPreferencesFromResource(R.xml.content_settings);
+
+        final Preference importDataPreference = findPreference(getString(R.string.import_data));
+        importDataPreference.setOnPreferenceClickListener(p -> {
+            final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
+                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
+                            FilePickerActivityHelper.MODE_FILE);
+            startActivityForResult(i, REQUEST_IMPORT_PATH);
+            return true;
+        });
+
+        final Preference exportDataPreference = findPreference(getString(R.string.export_data));
+        exportDataPreference.setOnPreferenceClickListener(p -> {
+            final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
+                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
+                            FilePickerActivityHelper.MODE_DIR);
+            startActivityForResult(i, REQUEST_EXPORT_PATH);
+            return true;
+        });
+
         thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
         youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
 
@@ -103,37 +127,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
 
         return super.onPreferenceTreeClick(preference);
-    }
-
-    @Override
-    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        final File homeDir = ContextCompat.getDataDir(requireContext());
-        manager = new ContentSettingsManager(new NewPipeFileLocator(homeDir));
-        manager.deleteSettingsFile();
-
-        addPreferencesFromResource(R.xml.content_settings);
-
-        final Preference importDataPreference = findPreference(getString(R.string.import_data));
-        importDataPreference.setOnPreferenceClickListener(p -> {
-            final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
-                            FilePickerActivityHelper.MODE_FILE);
-            startActivityForResult(i, REQUEST_IMPORT_PATH);
-            return true;
-        });
-
-        final Preference exportDataPreference = findPreference(getString(R.string.export_data));
-        exportDataPreference.setOnPreferenceClickListener(p -> {
-            final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
-                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
-                            FilePickerActivityHelper.MODE_DIR);
-            startActivityForResult(i, REQUEST_EXPORT_PATH);
-            return true;
-        });
     }
 
     @Override
@@ -198,7 +191,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
         } catch (final Exception e) {
-            onError(e);
+            ErrorActivity.reportUiErrorInSnackbar(this, "Exporting database", e);
         }
     }
 
@@ -243,20 +236,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 System.exit(0);
             }
         } catch (final Exception e) {
-            onError(e);
+            ErrorActivity.reportUiErrorInSnackbar(this, "Importing database", e);
         }
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Error
-    //////////////////////////////////////////////////////////////////////////*/
-
-    protected void onError(final Throwable e) {
-        final Activity activity = getActivity();
-        ErrorActivity.reportError(activity, e,
-                activity.getClass(),
-                null,
-                ErrorInfo.make(UserAction.UI_ERROR,
-                        "none", "", R.string.app_ui_crash));
     }
 }

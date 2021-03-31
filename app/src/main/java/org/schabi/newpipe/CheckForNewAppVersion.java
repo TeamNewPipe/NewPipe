@@ -10,19 +10,22 @@ import android.content.pm.Signature;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
+
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
 import com.grack.nanojson.JsonParserException;
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Maybe;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+
+import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.UserAction;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
@@ -31,9 +34,11 @@ import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.ErrorInfo;
-import org.schabi.newpipe.report.UserAction;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public final class CheckForNewAppVersion {
     private CheckForNewAppVersion() { }
@@ -58,9 +63,8 @@ public final class CheckForNewAppVersion {
             packageInfo = application.getPackageManager().getPackageInfo(
                     application.getPackageName(), PackageManager.GET_SIGNATURES);
         } catch (final PackageManager.NameNotFoundException e) {
-            ErrorActivity.reportError(application, e, null, null,
-                    ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                            "Could not find package info", R.string.app_ui_crash));
+            ErrorActivity.reportError(application, new ErrorInfo(e,
+                    UserAction.CHECK_FOR_NEW_APP_VERSION, "Could not find package info"));
             return "";
         }
 
@@ -72,9 +76,8 @@ public final class CheckForNewAppVersion {
             final CertificateFactory cf = CertificateFactory.getInstance("X509");
             c = (X509Certificate) cf.generateCertificate(input);
         } catch (final CertificateException e) {
-            ErrorActivity.reportError(application, e, null, null,
-                    ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                            "Certificate error", R.string.app_ui_crash));
+            ErrorActivity.reportError(application, new ErrorInfo(e,
+                    UserAction.CHECK_FOR_NEW_APP_VERSION, "Certificate error"));
             return "";
         }
 
@@ -83,9 +86,8 @@ public final class CheckForNewAppVersion {
             final byte[] publicKey = md.digest(c.getEncoded());
             return byte2HexFormatted(publicKey);
         } catch (NoSuchAlgorithmException | CertificateEncodingException e) {
-            ErrorActivity.reportError(application, e, null, null,
-                    ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                            "Could not retrieve SHA1 key", R.string.app_ui_crash));
+            ErrorActivity.reportError(application, new ErrorInfo(e,
+                    UserAction.CHECK_FOR_NEW_APP_VERSION, "Could not retrieve SHA1 key"));
             return "";
         }
     }

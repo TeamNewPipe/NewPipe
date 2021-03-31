@@ -484,8 +484,9 @@ public final class PlayerHelper {
                 break;
         }
 
+        // save the new resize mode so it can be restored in a future session
         player.getPrefs().edit().putInt(
-                player.getContext().getString(R.string.last_resize_mode), resizeMode).apply();
+                player.getContext().getString(R.string.last_resize_mode), newResizeMode).apply();
         return newResizeMode;
     }
 
@@ -494,9 +495,7 @@ public final class PlayerHelper {
                 R.string.playback_speed_key), player.getPlaybackSpeed());
         final float pitch = player.getPrefs().getFloat(player.getContext().getString(
                 R.string.playback_pitch_key), player.getPlaybackPitch());
-        final boolean skipSilence = player.getPrefs().getBoolean(player.getContext().getString(
-                R.string.playback_skip_silence_key), player.getPlaybackSkipSilence());
-        return new PlaybackParameters(speed, pitch, skipSilence);
+        return new PlaybackParameters(speed, pitch);
     }
 
     public static void savePlaybackParametersToPrefs(final Player player,

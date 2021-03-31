@@ -35,15 +35,14 @@ import androidx.core.app.ServiceCompat;
 
 import org.reactivestreams.Publisher;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.ErrorInfo;
-import org.schabi.newpipe.report.UserAction;
 
 import java.io.FileNotFoundException;
-import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -152,13 +151,10 @@ public abstract class BaseImportExportService extends Service {
         postErrorResult(null, null);
     }
 
-    protected void stopAndReportError(@Nullable final Throwable error, final String request) {
+    protected void stopAndReportError(final Throwable throwable, final String request) {
         stopService();
-
-        final ErrorInfo errorInfo = ErrorInfo
-                .make(UserAction.SUBSCRIPTION, "unknown", request, R.string.general_error);
-        ErrorActivity.reportError(this, error != null ? Collections.singletonList(error)
-                        : Collections.emptyList(), null, null, errorInfo);
+        ErrorActivity.reportError(this, new ErrorInfo(
+                throwable, UserAction.SUBSCRIPTION_IMPORT_EXPORT, request));
     }
 
     protected void postErrorResult(final String title, final String text) {

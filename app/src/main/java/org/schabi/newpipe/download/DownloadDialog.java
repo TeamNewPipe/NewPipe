@@ -37,6 +37,9 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.RouterActivity;
 import org.schabi.newpipe.databinding.DownloadDialogBinding;
+import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.Localization;
@@ -45,9 +48,6 @@ import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.ErrorInfo;
-import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.FilenameUtils;
@@ -61,7 +61,6 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -591,17 +590,6 @@ public class DownloadDialog extends DialogFragment
                 .show();
     }
 
-    private void showErrorActivity(final Exception e) {
-        ErrorActivity.reportError(
-                context,
-                Collections.singletonList(e),
-                null,
-                null,
-                ErrorInfo
-                        .make(UserAction.SOMETHING_ELSE, "-", "-", R.string.general_error)
-        );
-    }
-
     private void prepareSelectedDownload() {
         final StoredDirectoryHelper mainStorage;
         final MediaFormat format;
@@ -684,6 +672,9 @@ public class DownloadDialog extends DialogFragment
         prefs.edit()
                 .putString(getString(R.string.last_used_download_type), selectedMediaType)
                 .apply();
+
+        Toast.makeText(context, getString(R.string.download_has_started),
+                Toast.LENGTH_SHORT).show();
     }
 
     private void checkSelectedDownload(final StoredDirectoryHelper mainStorage,
@@ -705,7 +696,8 @@ public class DownloadDialog extends DialogFragment
                         mainStorage.getTag());
             }
         } catch (final Exception e) {
-            showErrorActivity(e);
+            ErrorActivity.reportErrorInSnackbar(this,
+                    new ErrorInfo(e, UserAction.DOWNLOAD_FAILED, "Getting storage"));
             return;
         }
 

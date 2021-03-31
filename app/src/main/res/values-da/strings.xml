@@ -463,4 +463,5 @@
     <string name="notification_action_1_title">Andre handlingstast</string>
     <string name="notification_action_2_title">Tredje handlingstast</string>
     <string name="search_showing_result_for">Viser resultater for: %s</string>
+    <string name="open_with">Åben med</string>
 </resources>

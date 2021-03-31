@@ -14,7 +14,6 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +21,7 @@ import androidx.viewbinding.ViewBinding;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.PignateFooterBinding;
+import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
@@ -33,7 +33,6 @@ import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.player.helper.PlayerHolder;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -46,7 +45,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Queue;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 
 public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         implements ListViewContract<I, N>, StateSaver.WriteRead,
@@ -124,8 +125,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     /**
      * If the default implementation of {@link StateSaver.WriteRead} should be used.
      *
-     * @see StateSaver
      * @param useDefaultStateSaving Whether the default implementation should be used
+     * @see StateSaver
      */
     public void setUseDefaultStateSaving(final boolean useDefaultStateSaving) {
         this.useDefaultStateSaving = useDefaultStateSaving;
@@ -292,7 +293,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                             selectedItem.getUrl(),
                             selectedItem.getName());
                 } catch (final Exception e) {
-                    ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                    ErrorActivity.reportUiErrorInSnackbar(
+                            BaseListFragment.this, "Opening channel fragment", e);
                 }
             }
         });
@@ -307,7 +309,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                             selectedItem.getUrl(),
                             selectedItem.getName());
                 } catch (final Exception e) {
-                    ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                    ErrorActivity.reportUiErrorInSnackbar(BaseListFragment.this,
+                            "Opening playlist fragment", e);
                 }
             }
         });
@@ -348,7 +351,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             return;
         }
 
-        final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
+        final List<StreamDialogEntry> entries = new ArrayList<>();
 
         if (PlayerHolder.getType() != null) {
             entries.add(StreamDialogEntry.enqueue);
@@ -359,7 +362,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share
             ));
-        } else  {
+        } else {
             entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,
                     StreamDialogEntry.start_here_on_popup,
@@ -370,6 +373,11 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         if (KoreUtil.shouldShowPlayWithKodi(context, item.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
         }
+
+        if (!isNullOrEmpty(item.getUploaderUrl())) {
+            entries.add(StreamDialogEntry.show_channel_details);
+        }
+
         StreamDialogEntry.setEnabledEntries(entries);
 
         new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context),
@@ -407,22 +415,22 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void showLoading() {
+        super.showLoading();
+        animateHideRecyclerViewAllowingScrolling(itemsList);
+    }
+
+    @Override
     public void hideLoading() {
         super.hideLoading();
         animate(itemsList, true, 300);
     }
 
     @Override
-    public void showError(final String message, final boolean showRetryButton) {
-        super.showError(message, showRetryButton);
-        showListFooter(false);
-        animate(itemsList, false, 200);
-    }
-
-    @Override
     public void showEmptyState() {
         super.showEmptyState();
         showListFooter(false);
+        animateHideRecyclerViewAllowingScrolling(itemsList);
     }
 
     @Override
@@ -437,6 +445,13 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     @Override
     public void handleNextItems(final N result) {
         isLoading.set(false);
+    }
+
+    @Override
+    public void handleError() {
+        super.handleError();
+        showListFooter(false);
+        animateHideRecyclerViewAllowingScrolling(itemsList);
     }
 
     @Override

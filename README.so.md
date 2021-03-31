@@ -1,14 +1,15 @@
 <p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">App bilaash ah oo fudud looguna talagalay in Android-ka wax loogu daawado.</h4>
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"></a></p> 
+
+<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-so.svg"></a></p>
 
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="Siidaynta GitHub "><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="Laysinka: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Darajada Dhismaha"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Heerka Turjimaada"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
-<a href="http://webchat.freenode.net/?channels=%23newpipe" alt="Kanaalka IRC: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
+<a href="https://webchat.freenode.net/#newpipe" alt="Kanaalka IRC: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
 <a href="https://www.bountysource.com/teams/newpipe" alt="Kuwa Bountysource "><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
@@ -16,7 +17,7 @@
 <p align="center"><a href="https://newpipe.net">Website-ka</a> &bull; <a href="https://newpipe.net/blog/">Maqaalada</a> &bull; <a href="https://newpipe.net/FAQ/">Su'aalaha Aalaa La-iswaydiiyo</a> &bull; <a href="https://newpipe.net/press/">Warbaahinta</a></p>
 <hr>
 
-*Ku akhri luuqad kale: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md).*
+*Ku akhri luuqad kale: [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md).*
 
 <b>DIGNIIN: MIDKAN, NOOCA APP-KA EE HADDA WALI TIJAABO AYUU KU JIRAA, SIDAA DARTEED CILLADO AYAAD LA KULMI KARTAA. HADAAD LA KULANTO, KA FUR ARIN SHARAXAYA QAYBTANADA ARRIMAHA EE GITHUB-KA.</b>
 
@@ -79,6 +80,7 @@ NewPipe wuxuu taageeraa adeegyo badan. [warqadan](https://teamnewpipe.github.io/
 * SoundCloud \[tijaabo\]
 * media.ccc.de \[tijaabo\]
 * PeerTube instances \[tijaabo\]
+* Bandcamp \[tijaabo\]
 
 ## Kushubida iyo cusboonaysiinta
 Marka koodhka NewPipe isbadal ku dhaco (wax cusub oo lagusoo kordhiyay ama cilad bixin), ugu dambayn waxaa lasii daayaa mid cusub (Siidayn). Siidaynta qaabkeedu waa x.xx.x . Si aad midka cusub u hesho, waxaad samayn kartaa:
@@ -131,6 +133,6 @@ Mashruuca NewPipe waxay ujeedadiisu tahay inuu bixiyo wax kuu gaar ah, oo adoon 
 Sidaa darteed, app-ku wax xog ah ma uruuriyo fasaxaaga la'aantii. Siyaasada Sirdhawrka NewPipe ayaa si faahfaahsan u sharaxda waxii xog ah ee la diro markaad cillad wariso, ama aad bogganaga faallo ka dhiibato. Warqada waxaad ka heli kartaa [halkan](https://newpipe.net/legal/privacy/).
 
 ## Laysinka
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
 NewPipe waa barnaamij bilaash ah oon lahayn xuquuqda daabacaada: Waad isticmaali kartaa, waad wadaagi kartaa waadna hormarin kartaa hadaad rabto. Gaar ahaan waad sii daabici kartaa ama wax baad ka badali kartaa ayadoo la raacayo shuruudaha sharciga guud ee [GNU](https://www.gnu.org/licenses/gpl.html) sida ay soosaareen Ururka Barnaamijyada Bilaashka ah, soosaarista 3aad ee laysinka, ama (hadaad doonto) nooc walba oo kasii dambeeyay laysinkii 3aad. 

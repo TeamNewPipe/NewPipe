@@ -1,4 +1,4 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.error;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +20,9 @@ import androidx.preference.PreferenceManager;
 import androidx.webkit.WebViewClientCompat;
 
 import org.schabi.newpipe.databinding.ActivityRecaptchaBinding;
+import org.schabi.newpipe.DownloaderImpl;
+import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.UnsupportedEncodingException;

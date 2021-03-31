@@ -1,1 +1,0 @@
-一个轻量级的自由Android YouTube客户端。

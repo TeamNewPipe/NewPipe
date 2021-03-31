@@ -22,13 +22,13 @@ import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.ErrorInfo;
-import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -84,10 +84,12 @@ public class SubscriptionsImportFragment extends BaseFragment {
 
         setupServiceVariables();
         if (supportedSources.isEmpty() && currentServiceId != Constants.NO_SERVICE_ID) {
-            ErrorActivity.reportError(activity, Collections.emptyList(), null, null,
-                    ErrorInfo.make(UserAction.SOMETHING_ELSE,
+            ErrorActivity.reportErrorInSnackbar(activity,
+                    new ErrorInfo(new String[]{}, UserAction.SUBSCRIPTION_IMPORT_EXPORT,
                             NewPipe.getNameOfService(currentServiceId),
-                            "Service don't support importing", R.string.general_error));
+                            "Service does not support importing subscriptions",
+                            R.string.general_error,
+                            null));
             activity.finish();
         }
     }
