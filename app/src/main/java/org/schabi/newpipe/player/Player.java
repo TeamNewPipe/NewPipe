@@ -489,10 +489,7 @@ public final class Player implements
         simpleExoPlayer.addTextOutput(binding.subtitleView);
 
         // Setup audio session with onboard equalizer
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            trackSelector.setParameters(trackSelector.buildUponParameters()
-                    .setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context)));
-        }
+        trackSelector.setParameters(trackSelector.buildUponParameters().setTunnelingEnabled(true));
     }
 
     private void initListeners() {
@@ -624,10 +621,10 @@ public final class Player implements
                 && newQueue.getItem().getUrl().equals(playQueue.getItem().getUrl())
                 && newQueue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
             // Player can have state = IDLE when playback is stopped or failed
-            // and we should retry() in this case
+            // and we should retry in this case
             if (simpleExoPlayer.getPlaybackState()
                     == com.google.android.exoplayer2.Player.STATE_IDLE) {
-                simpleExoPlayer.retry();
+                simpleExoPlayer.prepare();
             }
             simpleExoPlayer.seekTo(playQueue.getIndex(), newQueue.getItem().getRecoveryPosition());
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
@@ -638,10 +635,10 @@ public final class Player implements
                 && !playQueue.isDisposed()) {
             // Do not re-init the same PlayQueue. Save time
             // Player can have state = IDLE when playback is stopped or failed
-            // and we should retry() in this case
+            // and we should retry in this case
             if (simpleExoPlayer.getPlaybackState()
                     == com.google.android.exoplayer2.Player.STATE_IDLE) {
-                simpleExoPlayer.retry();
+                simpleExoPlayer.prepare();
             }
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
 
@@ -1649,7 +1646,7 @@ public final class Player implements
 
         saveWasPlaying();
         if (isPlaying()) {
-            simpleExoPlayer.setPlayWhenReady(false);
+            simpleExoPlayer.pause();
         }
 
         showControls(0);
@@ -1665,7 +1662,7 @@ public final class Player implements
 
         seekTo(seekBar.getProgress());
         if (wasPlaying || simpleExoPlayer.getDuration() == seekBar.getProgress()) {
-            simpleExoPlayer.setPlayWhenReady(true);
+            simpleExoPlayer.play();
         }
 
         binding.playbackCurrentTime.setText(getTimeString(seekBar.getProgress()));
@@ -1908,7 +1905,7 @@ public final class Player implements
     }
 
     @Override // exoplayer listener
-    public void onLoadingChanged(final boolean isLoading) {
+    public void onIsLoadingChanged(final boolean isLoading) {
         if (DEBUG) {
             Log.d(TAG, "ExoPlayer - onLoadingChanged() called with: "
                     + "isLoading = [" + isLoading + "]");
@@ -1952,7 +1949,8 @@ public final class Player implements
         if (currentState == STATE_BLOCKED) {
             changeState(STATE_BUFFERING);
         }
-        simpleExoPlayer.prepare(mediaSource);
+        simpleExoPlayer.setMediaSource(mediaSource);
+        simpleExoPlayer.prepare();
     }
 
     public void changeState(final int state) {
@@ -2351,6 +2349,12 @@ public final class Player implements
                     break;
                 }
             case DISCONTINUITY_REASON_SEEK:
+                if (DEBUG) {
+                    Log.d(TAG, "ExoPlayer - onSeekProcessed() called");
+                }
+                if (isPrepared) {
+                    saveStreamProgressState();
+                }
             case DISCONTINUITY_REASON_SEEK_ADJUSTMENT:
             case DISCONTINUITY_REASON_INTERNAL:
                 if (playQueue.getIndex() != newWindowIndex) {
@@ -2415,10 +2419,8 @@ public final class Player implements
                 setRecovery();
                 reloadPlayQueueManager();
                 break;
-            case ExoPlaybackException.TYPE_OUT_OF_MEMORY:
             case ExoPlaybackException.TYPE_REMOTE:
             case ExoPlaybackException.TYPE_RENDERER:
-            case ExoPlaybackException.TYPE_TIMEOUT:
             default:
                 showUnrecoverableError(error);
                 onPlaybackShutdown();
@@ -2623,16 +2625,6 @@ public final class Player implements
             simpleExoPlayer.seekToDefaultPosition();
         }
     }
-
-    @Override // exoplayer override
-    public void onSeekProcessed() {
-        if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - onSeekProcessed() called");
-        }
-        if (isPrepared) {
-            saveStreamProgressState();
-        }
-    }
     //endregion
 
 
@@ -2660,7 +2652,7 @@ public final class Player implements
             }
         }
 
-        simpleExoPlayer.setPlayWhenReady(true);
+        simpleExoPlayer.play();
         saveStreamProgressState();
     }
 
@@ -2673,7 +2665,7 @@ public final class Player implements
         }
 
         audioReactor.abandonAudioFocus();
-        simpleExoPlayer.setPlayWhenReady(false);
+        simpleExoPlayer.pause();
         saveStreamProgressState();
     }
 
