@@ -8,13 +8,13 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/notificationActionIcon"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_width="48dp"
+        android:layout_height="0dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="?android:textColorPrimary"
