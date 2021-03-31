@@ -156,8 +156,12 @@ public final class VideoDetailFragment
     private boolean showRelatedStreams;
     private boolean showDescription;
     private String selectedTabTag;
-    @AttrRes @NonNull final List<Integer> tabIcons = new ArrayList<>();
-    @StringRes @NonNull final List<Integer> tabContentDescriptions = new ArrayList<>();
+    @AttrRes
+    @NonNull
+    final List<Integer> tabIcons = new ArrayList<>();
+    @StringRes
+    @NonNull
+    final List<Integer> tabContentDescriptions = new ArrayList<>();
     private boolean tabSettingsChanged = false;
     private int lastAppBarVerticalOffset = Integer.MAX_VALUE; // prevents useless updates
 
@@ -672,8 +676,8 @@ public final class VideoDetailFragment
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 animate(binding.touchAppendDetail, true, 250, AnimationType.ALPHA,
                         0, () ->
-                        animate(binding.touchAppendDetail, false, 1500,
-                                AnimationType.ALPHA, 1000));
+                                animate(binding.touchAppendDetail, false, 1500,
+                                        AnimationType.ALPHA, 1000));
             }
             return false;
         };
@@ -1009,6 +1013,11 @@ public final class VideoDetailFragment
     }
 
     public void updateTabLayoutVisibility() {
+
+        if (binding == null) {
+            //If binding is null we do not need to and should not do anything with its object(s)
+            return;
+        }
         if (pageAdapter.getCount() < 2 || binding.viewPager.getVisibility() != View.VISIBLE) {
             // hide tab layout if there is only one tab or if the view pager is also hidden
             binding.tabLayout.setVisibility(View.GONE);
