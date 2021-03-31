@@ -19,6 +19,7 @@ import org.schabi.newpipe.databinding.ItemMetadataBinding;
 import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.TextLinkifier;
 
 import icepick.State;
@@ -139,6 +140,10 @@ public class DescriptionFragment extends BaseFragment {
 
         final ItemMetadataBinding binding = ItemMetadataBinding.inflate(inflater, layout, false);
         binding.metadataTypeView.setText(type);
+        binding.metadataTypeView.setOnLongClickListener(v -> {
+            ShareUtils.copyToClipboard(requireContext(), content);
+            return true;
+        });
 
         if (linkifyContent) {
             TextLinkifier.createLinksFromPlainText(layout.getContext(), content,

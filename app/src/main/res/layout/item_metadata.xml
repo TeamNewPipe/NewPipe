@@ -15,10 +15,10 @@
     <TextView
         android:id="@+id/metadata_type_view"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
-        android:gravity="end"
+        android:gravity="center_vertical|end"
         android:textAllCaps="true"
         android:textColor="?android:attr/textColorPrimary"
         android:textStyle="bold"
