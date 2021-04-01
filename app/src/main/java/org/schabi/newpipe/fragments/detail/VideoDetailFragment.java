@@ -672,8 +672,8 @@ public final class VideoDetailFragment
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 animate(binding.touchAppendDetail, true, 250, AnimationType.ALPHA,
                         0, () ->
-                                animate(binding.touchAppendDetail, false, 1500,
-                                        AnimationType.ALPHA, 1000));
+                        animate(binding.touchAppendDetail, false, 1500,
+                                AnimationType.ALPHA, 1000));
             }
             return false;
         };
