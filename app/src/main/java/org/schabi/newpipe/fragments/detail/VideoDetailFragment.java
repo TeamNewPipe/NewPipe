@@ -1014,6 +1014,7 @@ public final class VideoDetailFragment
             //If binding is null we do not need to and should not do anything with its object(s)
             return;
         }
+
         if (pageAdapter.getCount() < 2 || binding.viewPager.getVisibility() != View.VISIBLE) {
             // hide tab layout if there is only one tab or if the view pager is also hidden
             binding.tabLayout.setVisibility(View.GONE);
