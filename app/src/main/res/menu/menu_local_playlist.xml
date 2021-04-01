@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/menu_item_rename_playlist"
-        android:title="Rename Playlist"
+        android:title="@string/rename_playlist"
         app:showAsAction="never" />
     <item
         android:id="@+id/menu_item_remove_watched"

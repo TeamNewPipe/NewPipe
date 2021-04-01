@@ -27,7 +27,6 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
@@ -73,7 +72,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     // Save the list 10 seconds after the last change occurred
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
-
     @State
     protected Long playlistId;
     @State
@@ -341,7 +339,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             }
 
             @Override
-            public void onComplete() { }
+            public void onComplete() {
+            }
         };
     }
 
@@ -363,41 +362,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                         .show();
             }
         } else if (item.getItemId() == R.id.menu_item_rename_playlist) {
-            final View dialogView = View.inflate(getContext(), R.layout.dialog_bookmark, null);
-            final EditText editText = dialogView.findViewById(R.id.playlist_name_edit_text);
-            editText.setText(name);
-
-            if (DEBUG) {
-                Log.d(TAG, name);
-            }
-
-            final android.app.AlertDialog.Builder builder =
-                    new android.app.AlertDialog.Builder(activity);
-            builder.setView(dialogView)
-                    .setPositiveButton(R.string.rename_playlist, (dialog, which) ->
-                            changeLocalPlaylistName(playlistId, editText.getText().toString()))
-                    .setNegativeButton(R.string.cancel, null)
-                    .create()
-                    .show();
+            createRenameDialog();
         } else {
             return super.onOptionsItemSelected(item);
         }
         return true;
-    }
-
-    private void changeLocalPlaylistName(final long id, final String playlistName) {
-        final AppDatabase database = NewPipeDatabase.getInstance(activity);
-        final LocalPlaylistManager localPlaylistManager = new LocalPlaylistManager(database);
-        localPlaylistManager.renamePlaylist(id, playlistName);
-        final Disposable disposable = localPlaylistManager.renamePlaylist(id, playlistName)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(longs -> { /*Do nothing on success*/ }, throwable -> showError(
-                        new ErrorInfo(throwable,
-                                UserAction.REQUESTED_BOOKMARK,
-                                "Changing playlist name")));
-        disposables.add(disposable);
-
-        setTitle(playlistName);
     }
 
     public void removeWatchedStreams(final boolean removePartiallyWatched) {
@@ -453,7 +422,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                                     playlistItem.getStreamId());
 
                             final boolean hasState = streamStatesIter.next() != null;
-                            if (indexInHistory < 0 ||  hasState) {
+                            if (indexInHistory < 0 || hasState) {
                                 notWatchedItems.add(playlistItem);
                             } else if (!thumbnailVideoRemoved
                                     && playlistManager.getPlaylistThumbnail(playlistId)
@@ -755,7 +724,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
             @Override
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder,
-                                 final int swipeDir) { }
+                                 final int swipeDir) {
+            }
         };
     }
 
@@ -788,7 +758,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share
             ));
-        } else  {
+        } else {
             entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,
                     StreamDialogEntry.start_here_on_popup,
