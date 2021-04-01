@@ -5,11 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.text.HtmlCompat;
 
 import org.schabi.newpipe.BaseFragment;
@@ -35,6 +35,7 @@ public class DescriptionFragment extends BaseFragment {
     StreamInfo streamInfo = null;
     @Nullable
     Disposable descriptionDisposable = null;
+    FragmentDescriptionBinding binding;
 
     public DescriptionFragment() {
     }
@@ -47,11 +48,10 @@ public class DescriptionFragment extends BaseFragment {
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
-        final FragmentDescriptionBinding binding =
-                FragmentDescriptionBinding.inflate(inflater, container, false);
+        binding = FragmentDescriptionBinding.inflate(inflater, container, false);
         if (streamInfo != null) {
-            setupUploadDate(binding.detailUploadDateView);
-            setupDescription(binding.detailDescriptionView);
+            setupUploadDate();
+            setupDescription();
             setupMetadata(inflater, binding.detailMetadataLayout);
         }
         return binding.getRoot();
@@ -65,39 +65,81 @@ public class DescriptionFragment extends BaseFragment {
         }
     }
 
-    private void setupUploadDate(final TextView uploadDateTextView) {
+
+    private void setupUploadDate() {
         if (streamInfo.getUploadDate() != null) {
-            uploadDateTextView.setText(Localization
+            binding.detailUploadDateView.setText(Localization
                     .localizeUploadDate(activity, streamInfo.getUploadDate().offsetDateTime()));
         } else {
-            uploadDateTextView.setVisibility(View.GONE);
+            binding.detailUploadDateView.setVisibility(View.GONE);
         }
     }
 
-    private void setupDescription(final TextView descriptionTextView) {
+
+    private void setupDescription() {
         final Description description = streamInfo.getDescription();
         if (description == null || isEmpty(description.getContent())
                 || description == Description.emptyDescription) {
-            descriptionTextView.setVisibility(View.GONE);
+            binding.detailDescriptionView.setVisibility(View.GONE);
+            binding.detailSelectDescriptionButton.setVisibility(View.GONE);
             return;
         }
 
+        // start with disabled state. This also loads description content (!)
+        disableDescriptionSelection();
+
+        binding.detailSelectDescriptionButton.setOnClickListener(v -> {
+            if (binding.detailDescriptionNoteView.getVisibility() == View.VISIBLE) {
+                disableDescriptionSelection();
+            } else {
+                // enable selection only when button is clicked to prevent flickering
+                enableDescriptionSelection();
+            }
+        });
+    }
+
+    private void enableDescriptionSelection() {
+        binding.detailDescriptionNoteView.setVisibility(View.VISIBLE);
+        binding.detailDescriptionView.setTextIsSelectable(true);
+
+        final String buttonLabel = getString(R.string.description_select_disable);
+        binding.detailSelectDescriptionButton.setContentDescription(buttonLabel);
+        TooltipCompat.setTooltipText(binding.detailSelectDescriptionButton, buttonLabel);
+        binding.detailSelectDescriptionButton.setImageResource(R.drawable.ic_close);
+    }
+
+    private void disableDescriptionSelection() {
+        // show description content again, otherwise some links are not clickable
+        loadDescriptionContent();
+
+        binding.detailDescriptionNoteView.setVisibility(View.GONE);
+        binding.detailDescriptionView.setTextIsSelectable(false);
+
+        final String buttonLabel = getString(R.string.description_select_enable);
+        binding.detailSelectDescriptionButton.setContentDescription(buttonLabel);
+        TooltipCompat.setTooltipText(binding.detailSelectDescriptionButton, buttonLabel);
+        binding.detailSelectDescriptionButton.setImageResource(R.drawable.ic_select_all);
+    }
+
+    private void loadDescriptionContent() {
+        final Description description = streamInfo.getDescription();
         switch (description.getType()) {
             case Description.HTML:
                 descriptionDisposable = TextLinkifier.createLinksFromHtmlBlock(requireContext(),
-                        description.getContent(), descriptionTextView,
+                        description.getContent(), binding.detailDescriptionView,
                         HtmlCompat.FROM_HTML_MODE_LEGACY);
                 break;
             case Description.MARKDOWN:
                 descriptionDisposable = TextLinkifier.createLinksFromMarkdownText(requireContext(),
-                        description.getContent(), descriptionTextView);
+                        description.getContent(), binding.detailDescriptionView);
                 break;
             case Description.PLAIN_TEXT: default:
                 descriptionDisposable = TextLinkifier.createLinksFromPlainText(requireContext(),
-                        description.getContent(), descriptionTextView);
+                        description.getContent(), binding.detailDescriptionView);
                 break;
         }
     }
+
 
     private void setupMetadata(final LayoutInflater inflater,
                                final LinearLayout layout) {
@@ -138,21 +180,23 @@ public class DescriptionFragment extends BaseFragment {
             return;
         }
 
-        final ItemMetadataBinding binding = ItemMetadataBinding.inflate(inflater, layout, false);
-        binding.metadataTypeView.setText(type);
-        binding.metadataTypeView.setOnLongClickListener(v -> {
+        final ItemMetadataBinding itemBinding
+                = ItemMetadataBinding.inflate(inflater, layout, false);
+
+        itemBinding.metadataTypeView.setText(type);
+        itemBinding.metadataTypeView.setOnLongClickListener(v -> {
             ShareUtils.copyToClipboard(requireContext(), content);
             return true;
         });
 
         if (linkifyContent) {
-            TextLinkifier.createLinksFromPlainText(layout.getContext(), content,
-                    binding.metadataContentView);
+            TextLinkifier.createLinksFromPlainText(requireContext(),
+                    content, itemBinding.metadataContentView);
         } else {
-            binding.metadataContentView.setText(content);
+            itemBinding.metadataContentView.setText(content);
         }
 
-        layout.addView(binding.getRoot());
+        layout.addView(itemBinding.getRoot());
     }
 
     private void addTagsMetadataItem(final LayoutInflater inflater, final LinearLayout layout) {
@@ -192,7 +236,7 @@ public class DescriptionFragment extends BaseFragment {
 
             if (contentRes != 0) {
                 addMetadataItem(inflater, layout, false,
-                        R.string.metadata_privacy, layout.getContext().getString(contentRes));
+                        R.string.metadata_privacy, getString(contentRes));
             }
         }
     }
