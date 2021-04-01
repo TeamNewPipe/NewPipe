@@ -156,12 +156,8 @@ public final class VideoDetailFragment
     private boolean showRelatedStreams;
     private boolean showDescription;
     private String selectedTabTag;
-    @AttrRes
-    @NonNull
-    final List<Integer> tabIcons = new ArrayList<>();
-    @StringRes
-    @NonNull
-    final List<Integer> tabContentDescriptions = new ArrayList<>();
+    @AttrRes @NonNull final List<Integer> tabIcons = new ArrayList<>();
+    @StringRes @NonNull final List<Integer> tabContentDescriptions = new ArrayList<>();
     private boolean tabSettingsChanged = false;
     private int lastAppBarVerticalOffset = Integer.MAX_VALUE; // prevents useless updates
 
