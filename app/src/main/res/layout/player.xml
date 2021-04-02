@@ -101,6 +101,7 @@
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
                         android:visibility="gone"
+                        app:tint="@color/white"
                         app:srcCompat="@drawable/ic_close"
                         tools:ignore="ContentDescription,RtlHardcoded" />
 
@@ -190,6 +191,7 @@
                         android:paddingBottom="3dp"
                         android:scaleType="fitCenter"
                         android:visibility="gone"
+                        app:tint="@color/white"
                         app:srcCompat="@drawable/ic_list"
                         tools:ignore="ContentDescription,RtlHardcoded" />
 
@@ -207,6 +209,7 @@
                         android:paddingBottom="3dp"
                         android:scaleType="fitCenter"
                         android:visibility="gone"
+                        app:tint="@color/white"
                         app:srcCompat="@drawable/ic_format_list_numbered"
                         tools:ignore="ContentDescription,RtlHardcoded" />
 
@@ -219,6 +222,7 @@
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
+                        app:tint="@color/white"
                         app:srcCompat="@drawable/ic_expand_more"
                         tools:ignore="ContentDescription,RtlHardcoded" />
 
@@ -282,6 +286,7 @@
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
+                        app:tint="@color/white"
                         app:srcCompat="@drawable/ic_cast"
                         tools:ignore="RtlHardcoded" />
 
@@ -296,6 +301,7 @@
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
+                        app:tint="@color/white"
                         app:srcCompat="@drawable/ic_language"
                         tools:ignore="RtlHardcoded" />
 
@@ -310,6 +316,7 @@
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
+                        app:tint="@color/white"
                         app:srcCompat="@drawable/ic_share"
                         tools:ignore="RtlHardcoded" />
 
@@ -323,6 +330,7 @@
                         android:focusable="true"
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitXY"
+                        app:tint="@color/white"
                         app:srcCompat="@drawable/ic_volume_off"
                         tools:ignore="RtlHardcoded" />
 
@@ -336,6 +344,7 @@
                         android:padding="@dimen/player_main_buttons_padding"
                         android:scaleType="fitCenter"
                         android:visibility="gone"
+                        app:tint="@color/white"
                         app:srcCompat="@drawable/ic_fullscreen"
                         tools:ignore="ContentDescription,RtlHardcoded"
                         tools:visibility="visible" />
@@ -413,6 +422,7 @@
                     android:padding="@dimen/player_main_buttons_padding"
                     android:scaleType="fitCenter"
                     android:visibility="gone"
+                    app:tint="@color/white"
                     app:srcCompat="@drawable/ic_fullscreen"
                     tools:ignore="ContentDescription,RtlHardcoded"
                     tools:visibility="visible" />
@@ -436,6 +446,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitCenter"
+                app:tint="@color/white"
                 app:srcCompat="@drawable/ic_previous"
                 tools:ignore="ContentDescription" />
 
@@ -447,6 +458,7 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitCenter"
+                app:tint="@color/white"
                 app:srcCompat="@drawable/ic_pause"
                 tools:ignore="ContentDescription" />
 
@@ -460,6 +472,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitCenter"
+                app:tint="@color/white"
                 app:srcCompat="@drawable/ic_next"
                 tools:ignore="ContentDescription" />
 
@@ -511,6 +524,7 @@
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
+                app:tint="@color/white"
                 app:srcCompat="@drawable/ic_close" />
 
             <androidx.appcompat.widget.AppCompatImageButton
