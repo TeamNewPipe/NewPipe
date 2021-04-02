@@ -19,6 +19,7 @@
 
 package org.schabi.newpipe.local.feed
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
@@ -28,6 +29,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.Nullable
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import androidx.core.os.bundleOf
@@ -35,21 +37,32 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import icepick.State
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
+import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.databinding.FragmentFeedBinding
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.UserAction
+import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
+import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.fragments.list.BaseListFragment
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.animateHideRecyclerViewAllowingScrolling
 import org.schabi.newpipe.local.feed.service.FeedLoadService
+import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.Localization
 import java.time.OffsetDateTime
 
 class FeedFragment : BaseListFragment<FeedState, Unit>() {
     private var _feedBinding: FragmentFeedBinding? = null
     private val feedBinding get() = _feedBinding!!
+
+    private val disposables = CompositeDisposable()
 
     private lateinit var viewModel: FeedViewModel
     @State
@@ -158,6 +171,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     }
 
     override fun onDestroy() {
+        disposables.dispose()
         super.onDestroy()
         activity?.supportActionBar?.subtitle = null
     }
@@ -243,9 +257,9 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
         oldestSubscriptionUpdate = loadedState.oldestUpdate
 
-        val loadedCount = loadedState.notLoadedCount > 0
-        feedBinding.refreshSubtitleText.isVisible = loadedCount
-        if (loadedCount) {
+        val feedsNotLoaded = loadedState.notLoadedCount > 0
+        feedBinding.refreshSubtitleText.isVisible = feedsNotLoaded
+        if (feedsNotLoaded) {
             feedBinding.refreshSubtitleText.text = getString(
                 R.string.feed_subscription_not_loaded_count,
                 loadedState.notLoadedCount
@@ -264,9 +278,62 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
             hideLoading()
             false
         } else {
-            showError(ErrorInfo(errorState.error, UserAction.REQUESTED_FEED, "Loading feed"))
+            if (errorState.error is FeedLoadService.RequestException) {
+                disposables.add(
+                    Single.fromCallable {
+                        NewPipeDatabase.getInstance(requireContext()).subscriptionDAO()
+                            .getSubscription(errorState.error.subscriptionId)
+                    }.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                            {
+                                subscriptionEntity ->
+                                handleFeedNotAvailable(
+                                    subscriptionEntity,
+                                    errorState.error.cause?.cause
+                                )
+                            },
+                            { throwable -> throwable.printStackTrace() }
+                        )
+                )
+            } else {
+                showError(ErrorInfo(errorState.error, UserAction.REQUESTED_FEED, "Loading feed"))
+            }
             true
         }
+    }
+
+    private fun handleFeedNotAvailable(
+        subscriptionEntity: SubscriptionEntity,
+        @Nullable cause: Throwable?
+    ) {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val isFastFeedModeEnabled = sharedPreferences.getBoolean(
+            getString(R.string.feed_use_dedicated_fetch_method_key), false
+        )
+        val builder = AlertDialog.Builder(requireContext())
+            .setTitle(R.string.feed_load_error)
+            .setPositiveButton(
+                R.string.unsubscribe,
+                DialogInterface.OnClickListener {
+                    _, _ ->
+                    SubscriptionManager(requireContext()).deleteSubscription(
+                        subscriptionEntity.serviceId, subscriptionEntity.url
+                    ).subscribe()
+                }
+            )
+            .setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { _, _ -> })
+        if (cause is AccountTerminatedException) {
+            builder.setMessage(R.string.feed_load_error_terminated)
+        } else if (cause is ContentNotAvailableException && isFastFeedModeEnabled) {
+            builder.setMessage(R.string.feed_load_error_fast_unknown)
+                .setNeutralButton(R.string.feed_use_dedicated_fetch_method_disable_button) { _, _ ->
+                    sharedPreferences.edit {
+                        putBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), false)
+                    }
+                }
+        }
+        builder.create().show()
     }
 
     private fun updateRelativeTimeViews() {
