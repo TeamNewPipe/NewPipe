@@ -658,7 +658,7 @@
     <string name="recent">Recientes</string>
     <string name="msg_calculating_hash">Calculando el hash</string>
     <string name="description_tab_description">Descripción</string>
-    <string name="related_streams_tab_description">Transmisiones relacionadas</string>
+    <string name="related_items_tab_description">Transmisiones relacionadas</string>
     <string name="comments_tab_description">Comentarios</string>
     <string name="hash_channel_description">Notificaciones sobre el progreso del hashing del vídeo</string>
     <string name="hash_channel_name">Notificación del hash de vídeo</string>

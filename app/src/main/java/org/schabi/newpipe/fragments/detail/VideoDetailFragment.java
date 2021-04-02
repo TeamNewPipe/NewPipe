@@ -73,7 +73,7 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.EmptyFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
-import org.schabi.newpipe.fragments.list.videos.RelatedVideosFragment;
+import org.schabi.newpipe.fragments.list.videos.RelatedItemsFragment;
 import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
@@ -153,7 +153,7 @@ public final class VideoDetailFragment
 
     // tabs
     private boolean showComments;
-    private boolean showRelatedStreams;
+    private boolean showRelatedItems;
     private boolean showDescription;
     private String selectedTabTag;
     @AttrRes @NonNull final List<Integer> tabIcons = new ArrayList<>();
@@ -280,7 +280,7 @@ public final class VideoDetailFragment
 
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         showComments = prefs.getBoolean(getString(R.string.show_comments_key), true);
-        showRelatedStreams = prefs.getBoolean(getString(R.string.show_next_video_key), true);
+        showRelatedItems = prefs.getBoolean(getString(R.string.show_next_video_key), true);
         showDescription = prefs.getBoolean(getString(R.string.show_description_key), true);
         selectedTabTag = prefs.getString(
                 getString(R.string.stream_info_selected_tab_key), COMMENTS_TAB_TAG);
@@ -413,7 +413,7 @@ public final class VideoDetailFragment
             showComments = sharedPreferences.getBoolean(key, true);
             tabSettingsChanged = true;
         } else if (key.equals(getString(R.string.show_next_video_key))) {
-            showRelatedStreams = sharedPreferences.getBoolean(key, true);
+            showRelatedItems = sharedPreferences.getBoolean(key, true);
             tabSettingsChanged = true;
         } else if (key.equals(getString(R.string.show_description_key))) {
             showComments = sharedPreferences.getBoolean(key, true);
@@ -927,11 +927,11 @@ public final class VideoDetailFragment
             tabContentDescriptions.add(R.string.comments_tab_description);
         }
 
-        if (showRelatedStreams && binding.relatedStreamsLayout == null) {
+        if (showRelatedItems && binding.relatedItemsLayout == null) {
             // temp empty fragment. will be updated in handleResult
             pageAdapter.addFragment(new EmptyFragment(false), RELATED_TAB_TAG);
             tabIcons.add(R.drawable.ic_art_track_white_24dp);
-            tabContentDescriptions.add(R.string.related_streams_tab_description);
+            tabContentDescriptions.add(R.string.related_items_tab_description);
         }
 
         if (showDescription) {
@@ -974,14 +974,14 @@ public final class VideoDetailFragment
     }
 
     private void updateTabs(@NonNull final StreamInfo info) {
-        if (showRelatedStreams) {
-            if (binding.relatedStreamsLayout == null) { // phone
-                pageAdapter.updateItem(RELATED_TAB_TAG, RelatedVideosFragment.getInstance(info));
+        if (showRelatedItems) {
+            if (binding.relatedItemsLayout == null) { // phone
+                pageAdapter.updateItem(RELATED_TAB_TAG, RelatedItemsFragment.getInstance(info));
             } else { // tablet + TV
                 getChildFragmentManager().beginTransaction()
-                        .replace(R.id.relatedStreamsLayout, RelatedVideosFragment.getInstance(info))
+                        .replace(R.id.relatedItemsLayout, RelatedItemsFragment.getInstance(info))
                         .commitAllowingStateLoss();
-                binding.relatedStreamsLayout.setVisibility(
+                binding.relatedItemsLayout.setVisibility(
                         player != null && player.isFullscreen() ? View.GONE : View.VISIBLE);
             }
         }
@@ -1337,8 +1337,8 @@ public final class VideoDetailFragment
         super.handleError();
         setErrorImage(R.drawable.not_available_monkey);
 
-        if (binding.relatedStreamsLayout != null) { // hide related streams for tablets
-            binding.relatedStreamsLayout.setVisibility(View.INVISIBLE);
+        if (binding.relatedItemsLayout != null) { // hide related streams for tablets
+            binding.relatedItemsLayout.setVisibility(View.INVISIBLE);
         }
 
         // hide comments / related streams / description tabs
@@ -1432,12 +1432,12 @@ public final class VideoDetailFragment
         binding.detailTitleRootLayout.setClickable(false);
         binding.detailSecondaryControlPanel.setVisibility(View.GONE);
 
-        if (binding.relatedStreamsLayout != null) {
-            if (showRelatedStreams) {
-                binding.relatedStreamsLayout.setVisibility(
+        if (binding.relatedItemsLayout != null) {
+            if (showRelatedItems) {
+                binding.relatedItemsLayout.setVisibility(
                         player != null && player.isFullscreen() ? View.GONE : View.INVISIBLE);
             } else {
-                binding.relatedStreamsLayout.setVisibility(View.GONE);
+                binding.relatedItemsLayout.setVisibility(View.GONE);
             }
         }
 
@@ -1849,8 +1849,8 @@ public final class VideoDetailFragment
             showSystemUi();
         }
 
-        if (binding.relatedStreamsLayout != null) {
-            binding.relatedStreamsLayout.setVisibility(fullscreen ? View.GONE : View.VISIBLE);
+        if (binding.relatedItemsLayout != null) {
+            binding.relatedItemsLayout.setVisibility(fullscreen ? View.GONE : View.VISIBLE);
         }
         scrollToTop();
 

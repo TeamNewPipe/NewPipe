@@ -697,7 +697,7 @@
     <string name="no_app_to_open_intent">لا يوجد تطبيق على جهازك يمكنه فتح هذا</string>
     <string name="chapters">فصول</string>
     <string name="description_tab_description">وصف</string>
-    <string name="related_streams_tab_description">التيارات ذات الصلة</string>
+    <string name="related_items_tab_description">التيارات ذات الصلة</string>
     <string name="comments_tab_description">تعليقات</string>
     <string name="show_description_summary">قم بإيقاف التشغيل لإخفاء وصف الفيديو والمعلومات الإضافية</string>
     <string name="show_description_title">إظهار الوصف</string>

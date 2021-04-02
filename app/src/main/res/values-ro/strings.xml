@@ -664,7 +664,7 @@
     <string name="no_one_watching">Nimeni nu se uită</string>
     <string name="drawer_header_description">Comutare serviciu, selectat în prezent:</string>
     <string name="description_tab_description">Descriere</string>
-    <string name="related_streams_tab_description">Fluxuri corelate</string>
+    <string name="related_items_tab_description">Fluxuri corelate</string>
     <string name="comments_tab_description">Comentarii</string>
     <string name="error_report_open_github_notice">Vă rugăm să verificați dacă există deja o problemă legată de crash-ul dvs. Când creați bilete duplicat, ne luați timp pe care l-am putea petrece cu remedierea erorii.</string>
     <string name="copy_for_github">Copiați raportul formatat</string>

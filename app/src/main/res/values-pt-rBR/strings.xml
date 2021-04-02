@@ -656,7 +656,7 @@
     <string name="recent">Recentes</string>
     <string name="chapters">Capítulos</string>
     <string name="description_tab_description">Descrição</string>
-    <string name="related_streams_tab_description">Transmissões relacionadas</string>
+    <string name="related_items_tab_description">Transmissões relacionadas</string>
     <string name="comments_tab_description">Comentários</string>
     <string name="show_description_summary">Desative para ocultar a descrição do vídeo e informações adicionais</string>
     <string name="show_description_title">Mostrar descrição</string>
