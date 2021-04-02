@@ -613,14 +613,12 @@
 
         </org.schabi.newpipe.views.FocusAwareCoordinator>
 
-        <FrameLayout
-            android:id="@+id/relatedStreamsLayout"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/relatedItemsLayout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_weight="3">
-
-        </FrameLayout>
+            android:layout_weight="3" />
     </LinearLayout>
 
     <RelativeLayout

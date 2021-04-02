@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.preference.Preference;
 
@@ -22,8 +21,8 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
     private String captionSettingsKey;
 
     @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
+        addPreferencesFromResource(R.xml.appearance_settings);
 
         final String themeKey = getString(R.string.theme_key);
         // the key of the active theme when settings were opened (or recreated after theme change)
@@ -57,11 +56,6 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
         if (!CAPTIONING_SETTINGS_ACCESSIBLE) {
             removePreference(captionSettingsKey);
         }
-    }
-
-    @Override
-    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.appearance_settings);
     }
 
     @Override

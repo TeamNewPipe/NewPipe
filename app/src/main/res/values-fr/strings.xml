@@ -661,7 +661,7 @@
     <string name="no_app_to_open_intent">Aucune application sur votre appareil ne peut ouvrir ceci</string>
     <string name="chapters">Chapitres</string>
     <string name="description_tab_description">Description</string>
-    <string name="related_streams_tab_description">Flux associés</string>
+    <string name="related_items_tab_description">Flux associés</string>
     <string name="comments_tab_description">Commentaires</string>
     <string name="show_description_summary">Désactiver pour masquer la description de la vidéo et les informations supplémentaires</string>
     <string name="show_description_title">Afficher la description</string>
