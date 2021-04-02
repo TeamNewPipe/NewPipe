@@ -19,7 +19,6 @@
 
 package org.schabi.newpipe.local.feed
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
@@ -256,8 +255,6 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
             listState = null
         }
 
-        oldestSubscriptionUpdate = loadedState.oldestUpdate
-
         val feedsNotLoaded = loadedState.notLoadedCount > 0
         feedBinding.refreshSubtitleText.isVisible = feedsNotLoaded
         if (feedsNotLoaded) {
@@ -266,6 +263,12 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
                 loadedState.notLoadedCount
             )
         }
+
+        if (oldestSubscriptionUpdate != loadedState.oldestUpdate) {
+            // ignore errors if they have already been handled for the current update
+            handleItemsErrors(loadedState.itemsErrors)
+        }
+        oldestSubscriptionUpdate = loadedState.oldestUpdate
 
         if (loadedState.items.isEmpty()) {
             showEmptyState()
@@ -279,51 +282,59 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
             hideLoading()
             false
         } else {
-            if (errorState.error is FeedLoadService.RequestException) {
-                disposables.add(
-                    Single.fromCallable {
-                        NewPipeDatabase.getInstance(requireContext()).subscriptionDAO()
-                            .getSubscription(errorState.error.subscriptionId)
-                    }.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                            {
-                                subscriptionEntity ->
-                                handleFeedNotAvailable(
-                                    subscriptionEntity,
-                                    errorState.error.cause?.cause
-                                )
-                            },
-                            { throwable -> throwable.printStackTrace() }
-                        )
-                )
-            } else {
-                showError(ErrorInfo(errorState.error, UserAction.REQUESTED_FEED, "Loading feed"))
-            }
+            showError(ErrorInfo(errorState.error, UserAction.REQUESTED_FEED, "Loading feed"))
             true
+        }
+    }
+
+    private fun handleItemsErrors(errors: List<Throwable>) {
+        errors.forEachIndexed() { i, t ->
+            if (t is FeedLoadService.RequestException &&
+                t.cause is ContentNotAvailableException
+            ) {
+                Single.fromCallable {
+                    NewPipeDatabase.getInstance(requireContext()).subscriptionDAO()
+                        .getSubscription(t.subscriptionId)
+                }.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                        {
+                            subscriptionEntity ->
+                            handleFeedNotAvailable(
+                                subscriptionEntity,
+                                t.cause?.cause,
+                                errors.subList(i + 1, errors.size)
+                            )
+                        },
+                        { throwable -> throwable.printStackTrace() }
+                    )
+                return // this will be called on the remaining errors by handleFeedNotAvailable()
+            }
         }
     }
 
     private fun handleFeedNotAvailable(
         subscriptionEntity: SubscriptionEntity,
-        @Nullable cause: Throwable?
+        @Nullable cause: Throwable?,
+        nextItemsErrors: List<Throwable>
     ) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val isFastFeedModeEnabled = sharedPreferences.getBoolean(
             getString(R.string.feed_use_dedicated_fetch_method_key), false
         )
+
         val builder = AlertDialog.Builder(requireContext())
             .setTitle(R.string.feed_load_error)
             .setPositiveButton(
-                R.string.unsubscribe,
-                DialogInterface.OnClickListener {
-                    _, _ ->
-                    SubscriptionManager(requireContext()).deleteSubscription(
-                        subscriptionEntity.serviceId, subscriptionEntity.url
-                    ).subscribe()
-                }
-            )
-            .setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { _, _ -> })
+                R.string.unsubscribe
+            ) { _, _ ->
+                SubscriptionManager(requireContext()).deleteSubscription(
+                    subscriptionEntity.serviceId, subscriptionEntity.url
+                ).subscribe()
+                handleItemsErrors(nextItemsErrors)
+            }
+            .setNegativeButton(R.string.cancel) { _, _ -> }
+
         var message = getString(R.string.feed_load_error_account_info, subscriptionEntity.name)
         if (cause is AccountTerminatedException) {
             message += "\n" + getString(R.string.feed_load_error_terminated)
