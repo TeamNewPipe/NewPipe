@@ -117,9 +117,8 @@ public final class ShareUtils {
      * The intent can be of every type, excepted a web intent for which
      * {@link #openUrlInBrowser(Context, String, boolean)} should be used.
      * <p>
-     * If no app is set as default, fallbacks to
-     * {@link #openAppChooser(Context, Intent, boolean)}.
-     * <p>
+     * If no app can open the intent, a toast with the message {@code No app on your device can
+     * open this} is shown.
      *
      * @param context   the context to use
      * @param intent    the intent to open
@@ -132,27 +131,15 @@ public final class ShareUtils {
                                           final boolean showToast) {
         final String defaultPackageName = getDefaultAppPackageName(context, intent);
 
-        if (defaultPackageName.equals("android")) {
-            // No app set as default (doesn't work on some devices)
-            openAppChooser(context, intent, true);
-        } else {
-            if (defaultPackageName.isEmpty()) {
-                // No app installed to open the intent
-                if (showToast) {
-                    Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG)
-                            .show();
-                }
-                return false;
-            } else {
-                try {
-                    intent.setPackage(defaultPackageName);
-                    context.startActivity(intent);
-                } catch (final ActivityNotFoundException e) {
-                    // Not an app to open the intent but an app chooser because of OEMs changes
-                    intent.setPackage(null);
-                    openAppChooser(context, intent, true);
-                }
+        if (defaultPackageName.isEmpty()) {
+            // No app installed to open the intent
+            if (showToast) {
+                Toast.makeText(context, R.string.no_app_to_open_intent, Toast.LENGTH_LONG)
+                        .show();
             }
+            return false;
+        } else {
+            context.startActivity(intent);
         }
 
         return true;
@@ -256,6 +243,7 @@ public final class ShareUtils {
                                  final String imagePreviewUrl) {
         final Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, content);
         if (!title.isEmpty()) {
             shareIntent.putExtra(Intent.EXTRA_TITLE, title);
         }
@@ -267,7 +255,6 @@ public final class ShareUtils {
         if (!imagePreviewUrl.isEmpty()) {
             //shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         }*/
-        shareIntent.putExtra(Intent.EXTRA_TEXT, content);
 
         openAppChooser(context, shareIntent, false);
     }
