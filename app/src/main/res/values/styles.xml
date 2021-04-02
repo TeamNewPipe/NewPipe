@@ -130,25 +130,6 @@
         <item name="colorAccent">@color/black_settings_accent_color</item>
     </style>
 
-    <style name="OldVideoPlayerTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
-        <item name="colorAccent">@color/light_youtube_accent_color</item>
-        <item name="android:windowFullscreen">false</item>
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="windowActionBarOverlay">true</item>
-        <item name="android:actionBarStyle">@style/OldVideoPlayerActionBarTheme</item>
-        <item name="actionBarStyle">@style/OldVideoPlayerActionBarTheme</item>
-        <item name="android:windowBackground">@android:color/black</item>
-    </style>
-
-    <style name="OldVideoPlayerActionBarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="android:displayOptions">showHome</item>
-        <item name="displayOptions">showHome</item>
-        <item name="android:background">@color/video_overlay_color</item>
-        <item name="background">@color/video_overlay_color</item>
-    </style>
-
     <style name="RouterActivityThemeLight" parent="LightTheme">
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
