@@ -139,7 +139,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @State
     boolean wasSearchFocused = false;
 
-    private Map<Integer, String> menuItemToFilterName;
+    @Nullable private Map<Integer, String> menuItemToFilterName = null;
     private StreamingService service;
     private Page nextPage;
     private boolean isSuggestionsEnabled = true;
@@ -455,11 +455,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     }
 
     @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        final List<String> cf = new ArrayList<>(1);
-        cf.add(menuItemToFilterName.get(item.getItemId()));
-        changeContentFilter(item, cf);
-
+    public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
+        if (menuItemToFilterName != null) {
+            final List<String> cf = new ArrayList<>(1);
+            cf.add(menuItemToFilterName.get(item.getItemId()));
+            changeContentFilter(item, cf);
+        }
         return true;
     }
 
