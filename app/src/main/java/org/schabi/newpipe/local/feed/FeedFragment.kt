@@ -264,7 +264,9 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
             )
         }
 
-        if (oldestSubscriptionUpdate != loadedState.oldestUpdate) {
+        if (oldestSubscriptionUpdate != loadedState.oldestUpdate ||
+            (oldestSubscriptionUpdate == null && loadedState.oldestUpdate == null)
+        ) {
             // ignore errors if they have already been handled for the current update
             handleItemsErrors(loadedState.itemsErrors)
         }
@@ -302,7 +304,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
                             subscriptionEntity ->
                             handleFeedNotAvailable(
                                 subscriptionEntity,
-                                t.cause?.cause,
+                                t.cause,
                                 errors.subList(i + 1, errors.size)
                             )
                         },
