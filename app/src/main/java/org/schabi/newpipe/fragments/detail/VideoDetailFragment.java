@@ -1628,7 +1628,7 @@ public final class VideoDetailFragment
                 downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
                 downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
                 downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
-
+                downloadDialog.setVideoSegments(videoSegments);
                 downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
             } catch (final Exception e) {
                 ErrorActivity.reportErrorInSnackbar(activity,
