@@ -20,6 +20,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
+
 public final class InternalUrlsHandler {
     private static final Pattern AMPERSAND_TIMESTAMP_PATTERN = Pattern.compile("(.*)&t=(\\d+)");
     private static final Pattern HASHTAG_TIMESTAMP_PATTERN =
@@ -29,47 +31,67 @@ public final class InternalUrlsHandler {
     }
 
     /**
+     * Handle a YouTube timestamp comment URL in NewPipe.
+     * <p>
+     * This method will check if the provided url is a YouTube comment description URL ({@code
+     * https://www.youtube.com/watch?v=}video_id{@code #timestamp=}time_in_seconds). If yes, the
+     * popup player will be opened when the user will click on the timestamp in the comment,
+     * at the time and for the video indicated in the timestamp.
+     *
+     * @param context the context to use
+     * @param url     the URL to check if it can be handled
+     * @return true if the URL can be handled by NewPipe, false if it cannot
+     */
+    public static boolean handleUrlCommentsTimestamp(final Context context, final String url) {
+        return handleUrl(context, url, HASHTAG_TIMESTAMP_PATTERN);
+    }
+
+    /**
+     * Handle a YouTube timestamp description URL in NewPipe.
+     * <p>
+     * This method will check if the provided url is a YouTube timestamp description URL ({@code
+     * https://www.youtube.com/watch?v=}video_id{@code &t=}time_in_seconds). If yes, the popup
+     * player will be opened when the user will click on the timestamp in the video description,
+     * at the time and for the video indicated in the timestamp.
+     *
+     * @param context the context to use
+     * @param url     the URL to check if it can be handled
+     * @return true if the URL can be handled by NewPipe, false if it cannot
+     */
+    public static boolean handleUrlDescriptionTimestamp(final Context context, final String url) {
+        return handleUrl(context, url, AMPERSAND_TIMESTAMP_PATTERN);
+    }
+
+    /**
      * Handle an URL in NewPipe.
      * <p>
      * This method will check if the provided url can be handled in NewPipe or not. If this is a
-     * service URL with a timestamp, the popup player will be opened.
-     * <p>
-     * The timestamp param accepts two integers, corresponding to two timestamps types:
-     * 0 for {@code &t=} (used for timestamps in descriptions),
-     * 1 for {@code #timestamp=} (used for timestamps in comments).
-     * Any other value of this integer will return false.
+     * service URL with a timestamp, the popup player will be opened and true will be returned;
+     * else, false will be returned.
      *
-     * @param context       the context to be used
+     * @param context       the context to use
      * @param url           the URL to check if it can be handled
-     * @param timestampType the type of timestamp
+     * @param pattern       the pattern
      * @return true if the URL can be handled by NewPipe, false if it cannot
      */
-    public static boolean handleUrl(final Context context,
-                                    final String url,
-                                    final int timestampType) {
-        String matchedUrl = "";
-        int seconds = -1;
-        final Matcher matcher;
-
-        if (timestampType == 0) {
-            matcher = AMPERSAND_TIMESTAMP_PATTERN.matcher(url);
-        } else if (timestampType == 1) {
-            matcher = HASHTAG_TIMESTAMP_PATTERN.matcher(url);
+    private static boolean handleUrl(final Context context,
+                                     final String url,
+                                     final Pattern pattern) {
+        final String matchedUrl;
+        final StreamingService service;
+        final StreamingService.LinkType linkType;
+        final int seconds;
+        final Matcher matcher = pattern.matcher(url);
+        if (matcher.matches()) {
+            matchedUrl = matcher.group(1);
+            seconds = Integer.parseInt(matcher.group(2));
         } else {
             return false;
         }
 
-        if (matcher.matches()) {
-            matchedUrl = matcher.group(1);
-            seconds = Integer.parseInt(matcher.group(2));
-        }
-        if (matchedUrl == null || matchedUrl.isEmpty()) {
+        if (isNullOrEmpty(matchedUrl)) {
             return false;
         }
-
-        final StreamingService service;
-        final StreamingService.LinkType linkType;
-
         try {
             service = NewPipe.getServiceByUrl(matchedUrl);
             linkType = service.getLinkTypeByUrl(matchedUrl);

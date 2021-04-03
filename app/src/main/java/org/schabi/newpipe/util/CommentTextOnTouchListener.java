@@ -50,7 +50,8 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
                     if (action == MotionEvent.ACTION_UP) {
                         if (link[0] instanceof URLSpan) {
                             final String url = ((URLSpan) link[0]).getURL();
-                            if (!InternalUrlsHandler.handleUrl(v.getContext(), url, 1)) {
+                            if (!InternalUrlsHandler.handleUrlCommentsTimestamp(v.getContext(),
+                                    url)) {
                                 ShareUtils.openUrlInBrowser(v.getContext(), url, false);
                             }
                         }
