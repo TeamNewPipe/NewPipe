@@ -375,6 +375,8 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
         final Intent intent = new Intent(Intent.ACTION_CHOOSER);
         intent.putExtra(Intent.EXTRA_INTENT, shareIntent);
+        // unneeded to set a title to the chooser on Android P and higher because the system
+        // ignores this title on these versions
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
             intent.putExtra(Intent.EXTRA_TITLE, mContext.getString(R.string.share_dialog_title));
         }

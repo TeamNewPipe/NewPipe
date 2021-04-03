@@ -144,13 +144,18 @@ public final class TextLinkifier {
             final int hashtagEnd = hashtagsMatches.end(1);
             final String parsedHashtag = descriptionText.substring(hashtagStart, hashtagEnd);
 
-            spannableDescription.setSpan(new ClickableSpan() {
-                @Override
-                public void onClick(@NonNull final View view) {
-                    NavigationHelper.openSearch(context, streamingService.getServiceId(),
-                            parsedHashtag);
-                }
-            }, hashtagStart, hashtagEnd, 0);
+            // don't add a ClickableSpan if there is already one, which should be a part of an URL,
+            // already parsed before
+            if (spannableDescription.getSpans(hashtagStart, hashtagEnd,
+                    ClickableSpan.class).length == 0) {
+                spannableDescription.setSpan(new ClickableSpan() {
+                    @Override
+                    public void onClick(@NonNull final View view) {
+                        NavigationHelper.openSearch(context, streamingService.getServiceId(),
+                                parsedHashtag);
+                    }
+                }, hashtagStart, hashtagEnd, 0);
+            }
         }
     }
 
@@ -181,26 +186,24 @@ public final class TextLinkifier {
             final String parsedTimestamp = descriptionText.substring(timestampStart, timestampEnd);
             final String[] timestampParts = parsedTimestamp.split(":");
             final int time;
+
             if (timestampParts.length == 3) { // timestamp format: XX:XX:XX
                 time = Integer.parseInt(timestampParts[0]) * 3600 // hours
                         + Integer.parseInt(timestampParts[1]) * 60 // minutes
                         + Integer.parseInt(timestampParts[2]); // seconds
-                spannableDescription.setSpan(new ClickableSpan() {
-                    @Override
-                    public void onClick(@NonNull final View view) {
-                        playOnPopup(context, contentUrl, streamingService, time);
-                    }
-                }, timestampStart, timestampEnd, 0);
             } else if (timestampParts.length == 2) { // timestamp format: XX:XX
                 time = Integer.parseInt(timestampParts[0]) * 60 // minutes
                         + Integer.parseInt(timestampParts[1]); // seconds
-                spannableDescription.setSpan(new ClickableSpan() {
-                    @Override
-                    public void onClick(@NonNull final View view) {
-                        playOnPopup(context, contentUrl, streamingService, time);
-                    }
-                }, timestampStart, timestampEnd, 0);
+            } else {
+                continue;
             }
+
+            spannableDescription.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull final View view) {
+                    playOnPopup(context, contentUrl, streamingService, time);
+                }
+            }, timestampStart, timestampEnd, 0);
         }
     }
 
@@ -239,10 +242,11 @@ public final class TextLinkifier {
             final URLSpan[] urls = textBlockLinked.getSpans(0, chars.length(), URLSpan.class);
 
             for (final URLSpan span : urls) {
+                final String url = span.getURL();
                 final ClickableSpan clickableSpan = new ClickableSpan() {
                     public void onClick(@NonNull final View view) {
-                        if (!InternalUrlsHandler.handleUrl(context, span.getURL(), 0)) {
-                            ShareUtils.openUrlInBrowser(context, span.getURL(), false);
+                        if (!InternalUrlsHandler.handleUrl(context, url, 0)) {
+                            ShareUtils.openUrlInBrowser(context, url, false);
                         }
                     }
                 };

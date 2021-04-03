@@ -48,14 +48,11 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
 
                 if (link.length != 0) {
                     if (action == MotionEvent.ACTION_UP) {
-                        boolean handled = false;
                         if (link[0] instanceof URLSpan) {
-                            handled = InternalUrlsHandler.handleUrl(v.getContext(),
-                                    ((URLSpan) link[0]).getURL(), 1);
-                        }
-                        if (!handled) {
-                            ShareUtils.openUrlInBrowser(v.getContext(),
-                                    ((URLSpan) link[0]).getURL(), false);
+                            final String url = ((URLSpan) link[0]).getURL();
+                            if (!InternalUrlsHandler.handleUrl(v.getContext(), url, 1)) {
+                                ShareUtils.openUrlInBrowser(v.getContext(), url, false);
+                            }
                         }
                     } else if (action == MotionEvent.ACTION_DOWN) {
                         Selection.setSelection(buffer,

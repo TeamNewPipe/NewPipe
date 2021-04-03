@@ -49,22 +49,20 @@ public final class InternalUrlsHandler {
                                     final int timestampType) {
         String matchedUrl = "";
         int seconds = -1;
-        final Pattern timestampPattern;
+        final Matcher matcher;
 
         if (timestampType == 0) {
-            timestampPattern = AMPERSAND_TIMESTAMP_PATTERN;
+            matcher = AMPERSAND_TIMESTAMP_PATTERN.matcher(url);
         } else if (timestampType == 1) {
-            timestampPattern = HASHTAG_TIMESTAMP_PATTERN;
+            matcher = HASHTAG_TIMESTAMP_PATTERN.matcher(url);
         } else {
             return false;
         }
 
-        final Matcher matcher = timestampPattern.matcher(url);
         if (matcher.matches()) {
             matchedUrl = matcher.group(1);
             seconds = Integer.parseInt(matcher.group(2));
         }
-
         if (matchedUrl == null || matchedUrl.isEmpty()) {
             return false;
         }
@@ -78,7 +76,6 @@ public final class InternalUrlsHandler {
         } catch (final ExtractionException e) {
             return false;
         }
-
         if (linkType == StreamingService.LinkType.NONE) {
             return false;
         }
