@@ -1334,7 +1334,7 @@ public final class VideoDetailFragment
     @Override
     public void handleError() {
         super.handleError();
-        setErrorImage(R.attr.not_available_monkey);
+        setErrorImage(R.drawable.not_available_monkey);
 
         if (binding.relatedItemsLayout != null) { // hide related streams for tablets
             binding.relatedItemsLayout.setVisibility(View.INVISIBLE);
