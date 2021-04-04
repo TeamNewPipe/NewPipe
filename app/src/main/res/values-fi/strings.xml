@@ -658,6 +658,6 @@
     <string name="no_app_to_open_intent">Mikään sovellus laitteessasi ei voi avata tätä</string>
     <string name="chapters">Jaksot</string>
     <string name="description_tab_description">Kuvaus</string>
-    <string name="related_streams_tab_description">Samankaltaiset striimit</string>
+    <string name="related_items_tab_description">Samankaltaiset striimit</string>
     <string name="comments_tab_description">Kommentit</string>
 </resources>

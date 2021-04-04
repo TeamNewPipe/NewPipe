@@ -656,7 +656,7 @@
     <string name="show_meta_info_title">Faahfaahinta dheeraadka ah</string>
     <string name="chapters">Cutubyada</string>
     <string name="description_tab_description">Faahfaahin</string>
-    <string name="related_streams_tab_description">La xidhiidha</string>
+    <string name="related_items_tab_description">La xidhiidha</string>
     <string name="comments_tab_description">Faallooyin</string>
     <string name="show_description_summary">Xidh si aad u qariso faahfaahinta muuqaalka iyo xogaha dheeraadka ah</string>
     <string name="show_description_title">Tus faahfaahinta</string>

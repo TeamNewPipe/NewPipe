@@ -647,7 +647,7 @@
     <string name="no_app_to_open_intent">Tidak ada apl di perangkat Anda yang bisa membuka ini</string>
     <string name="chapters">Chapter</string>
     <string name="description_tab_description">Deskripsi</string>
-    <string name="related_streams_tab_description">Stream terkait</string>
+    <string name="related_items_tab_description">Stream terkait</string>
     <string name="comments_tab_description">Komentar</string>
     <string name="show_description_summary">Nonaktifkan untuk menyembunyikan deskripsi dan informasi tambahan</string>
     <string name="show_description_title">Tampilkan deskripsi</string>
