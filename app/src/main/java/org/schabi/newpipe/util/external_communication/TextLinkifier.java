@@ -23,6 +23,7 @@ import io.noties.markwon.Markwon;
 import io.noties.markwon.linkify.LinkifyPlugin;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -201,7 +202,8 @@ public final class TextLinkifier {
             spannableDescription.setSpan(new ClickableSpan() {
                 @Override
                 public void onClick(@NonNull final View view) {
-                    playOnPopup(context, contentUrl, streamingService, time);
+                    playOnPopup(new CompositeDisposable(), context, contentUrl, streamingService,
+                            time);
                 }
             }, timestampStart, timestampEnd, 0);
         }
@@ -245,7 +247,8 @@ public final class TextLinkifier {
                 final String url = span.getURL();
                 final ClickableSpan clickableSpan = new ClickableSpan() {
                     public void onClick(@NonNull final View view) {
-                        if (!InternalUrlsHandler.handleUrlDescriptionTimestamp(context, url)) {
+                        if (!InternalUrlsHandler.handleUrlDescriptionTimestamp(
+                                new CompositeDisposable(), context, url)) {
                             ShareUtils.openUrlInBrowser(context, url, false);
                         }
                     }

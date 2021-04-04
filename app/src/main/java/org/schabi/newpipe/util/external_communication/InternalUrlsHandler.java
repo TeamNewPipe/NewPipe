@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
@@ -38,12 +39,15 @@ public final class InternalUrlsHandler {
      * popup player will be opened when the user will click on the timestamp in the comment,
      * at the time and for the video indicated in the timestamp.
      *
-     * @param context the context to use
-     * @param url     the URL to check if it can be handled
+     * @param disposables a field of the Activity/Fragment class that calls this method
+     * @param context     the context to use
+     * @param url         the URL to check if it can be handled
      * @return true if the URL can be handled by NewPipe, false if it cannot
      */
-    public static boolean handleUrlCommentsTimestamp(final Context context, final String url) {
-        return handleUrl(context, url, HASHTAG_TIMESTAMP_PATTERN);
+    public static boolean handleUrlCommentsTimestamp(final CompositeDisposable disposables,
+                                                     final Context context,
+                                                     final String url) {
+        return handleUrl(disposables, context, url, HASHTAG_TIMESTAMP_PATTERN);
     }
 
     /**
@@ -54,12 +58,15 @@ public final class InternalUrlsHandler {
      * player will be opened when the user will click on the timestamp in the video description,
      * at the time and for the video indicated in the timestamp.
      *
-     * @param context the context to use
-     * @param url     the URL to check if it can be handled
+     * @param disposables a field of the Activity/Fragment class that calls this method
+     * @param context     the context to use
+     * @param url         the URL to check if it can be handled
      * @return true if the URL can be handled by NewPipe, false if it cannot
      */
-    public static boolean handleUrlDescriptionTimestamp(final Context context, final String url) {
-        return handleUrl(context, url, AMPERSAND_TIMESTAMP_PATTERN);
+    public static boolean handleUrlDescriptionTimestamp(final CompositeDisposable disposables,
+                                                        final Context context,
+                                                        final String url) {
+        return handleUrl(disposables, context, url, AMPERSAND_TIMESTAMP_PATTERN);
     }
 
     /**
@@ -69,12 +76,14 @@ public final class InternalUrlsHandler {
      * service URL with a timestamp, the popup player will be opened and true will be returned;
      * else, false will be returned.
      *
-     * @param context       the context to use
-     * @param url           the URL to check if it can be handled
-     * @param pattern       the pattern
+     * @param disposables a field of the Activity/Fragment class that calls this method
+     * @param context     the context to use
+     * @param url         the URL to check if it can be handled
+     * @param pattern     the pattern to use
      * @return true if the URL can be handled by NewPipe, false if it cannot
      */
-    private static boolean handleUrl(final Context context,
+    private static boolean handleUrl(final CompositeDisposable disposables,
+                                     final Context context,
                                      final String url,
                                      final Pattern pattern) {
         final String matchedUrl;
@@ -102,7 +111,7 @@ public final class InternalUrlsHandler {
             return false;
         }
         if (linkType == StreamingService.LinkType.STREAM && seconds != -1) {
-            return playOnPopup(context, matchedUrl, service, seconds);
+            return playOnPopup(disposables, context, matchedUrl, service, seconds);
         } else {
             NavigationHelper.openRouterActivity(context, matchedUrl);
             return true;
@@ -112,13 +121,15 @@ public final class InternalUrlsHandler {
     /**
      * Play a content in the floating player.
      *
-     * @param context the context to be used
-     * @param url     the URL of the content
-     * @param service the service of the content
-     * @param seconds the position in seconds at which the floating player will start
+     * @param disposables a field of the Activity/Fragment class that calls this method
+     * @param context     the context to be used
+     * @param url         the URL of the content
+     * @param service     the service of the content
+     * @param seconds     the position in seconds at which the floating player will start
      * @return true if the playback of the content has successfully started or false if not
      */
-    public static boolean playOnPopup(final Context context,
+    public static boolean playOnPopup(final CompositeDisposable disposables,
+                                      final Context context,
                                       final String url,
                                       final StreamingService service,
                                       final int seconds) {
@@ -133,13 +144,13 @@ public final class InternalUrlsHandler {
 
         final Single<StreamInfo> single
                 = ExtractorHelper.getStreamInfo(service.getServiceId(), cleanUrl, false);
-        single.subscribeOn(Schedulers.io())
+        disposables.add(single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
                     final PlayQueue playQueue
                             = new SinglePlayQueue(info, seconds * 1000);
                     NavigationHelper.playOnPopupPlayer(context, playQueue, false);
-                });
+                }));
         return true;
     }
 }

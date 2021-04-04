@@ -13,6 +13,8 @@ import android.widget.TextView;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.external_communication.InternalUrlsHandler;
 
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+
 public class CommentTextOnTouchListener implements View.OnTouchListener {
     public static final CommentTextOnTouchListener INSTANCE = new CommentTextOnTouchListener();
 
@@ -50,8 +52,8 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
                     if (action == MotionEvent.ACTION_UP) {
                         if (link[0] instanceof URLSpan) {
                             final String url = ((URLSpan) link[0]).getURL();
-                            if (!InternalUrlsHandler.handleUrlCommentsTimestamp(v.getContext(),
-                                    url)) {
+                            if (!InternalUrlsHandler.handleUrlCommentsTimestamp(
+                                    new CompositeDisposable(), v.getContext(), url)) {
                                 ShareUtils.openUrlInBrowser(v.getContext(), url, false);
                             }
                         }
