@@ -673,4 +673,9 @@
     <string name="radio">Radio</string>
     <string name="featured">In evidenza</string>
     <string name="recaptcha_solve">Risolvi</string>
+    <string name="download_has_started">Download avviato</string>
+    <string name="select_night_theme_toast">Qua sotto è possibile selezionare il tema notturno preferito</string>
+    <string name="night_theme_summary">Seleziona il tema notturno preferito — %s</string>
+    <string name="auto_device_theme_title">Automatico (tema del dispositivo)</string>
+    <string name="night_theme_title">Tema Notturno</string>
 </resources>

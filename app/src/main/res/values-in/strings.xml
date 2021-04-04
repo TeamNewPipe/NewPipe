@@ -3,7 +3,7 @@
     <string name="main_bg_subtitle">Ketuk \"Cari\" untuk memulai
 \n</string>
     <string name="view_count_text">%1$s Penonton</string>
-    <string name="upload_date_text">Dipublikasikan tanggal %1$s</string>
+    <string name="upload_date_text">Dipublikasikan pada tanggal %1$s</string>
     <string name="install">Pasang</string>
     <string name="cancel">Batal</string>
     <string name="open_in_browser">Buka di browser</string>

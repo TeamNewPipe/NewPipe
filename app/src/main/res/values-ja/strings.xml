@@ -660,4 +660,5 @@
     <string name="crash_the_app">アプリのクラッシュ</string>
     <string name="restricted_video_no_stream">この動画は年齢制限があります。
 \n年齢制限付き動画を含む新しい YouTube ポリシーにより、NewPipe は動画ストリームにアクセスできないため再生できません。</string>
+    <string name="select_night_theme_toast">以下からお好みの夜間テーマを選択できます</string>
 </resources>

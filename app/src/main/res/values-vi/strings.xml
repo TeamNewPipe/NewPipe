@@ -127,11 +127,11 @@
     <string name="msg_url_malform">URL không hợp lệ hoặc Internet không khả dụng</string>
     <string name="msg_running">NewPipe đang tải xuống</string>
     <string name="msg_running_detail">Chạm để biết chi tiết</string>
-    <string name="msg_wait">Vui lòng đợi …</string>
-    <string name="msg_copied">Sao chép vào clipboard</string>
-    <string name="no_available_dir">Chọn một thư mục tải về có sẵn trong cài đặt</string>
-    <string name="msg_popup_permission">Cần quyền này để 
-\nmở trong chế độ popup</string>
+    <string name="msg_wait">Xin hãy đợi…</string>
+    <string name="msg_copied">Đã sao chép vào clipboard</string>
+    <string name="no_available_dir">Hãy chọn một thư mục để tải xuống trong phần cài đặt</string>
+    <string name="msg_popup_permission">Chế độ popup cần quyền này
+\n để hoạt động</string>
     <string name="title_activity_recaptcha">reCAPTCHA</string>
     <string name="recaptcha_request_toast">Yêu cầu reCAPTCHA</string>
     <string name="title_activity_about">Giới thiệu về NewPipe</string>
@@ -256,8 +256,8 @@
     <string name="dismiss">Bỏ qua</string>
     <string name="rename">Đổi tên</string>
     <string name="one_item_deleted">Đã xóa 1 mục.</string>
-    <string name="settings_category_downloads_title">Tải về</string>
-    <string name="settings_file_charset_title">Các ký tự được cho phép trong tên tệp</string>
+    <string name="settings_category_downloads_title">Tải xuống</string>
+    <string name="settings_file_charset_title">Các ký tự được cho phép cho tên tệp</string>
     <string name="settings_file_replacement_character_summary">Ký tự không hợp lệ được thay thế bằng giá trị này</string>
     <string name="settings_file_replacement_character_title">Ký tự thay thế</string>
     <string name="charset_letters_and_digits">Chỉ chữ cái và chữ số</string>
@@ -556,7 +556,7 @@
     <string name="video_detail_by">Bởi %s</string>
     <string name="channel_created_by">Được tạo bởi %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Ảnh đại diện của kênh</string>
-    <string name="content_not_supported">Nội dung này hiện chưa được hỗ trợ bởi NewPipe.
+    <string name="content_not_supported">NewPipe chưa hỗ trợ loại nội dung này.
 \n
 \nCó thể nó sẽ được hỗ trợ bởi một phiên bản mới hơn trong tương lai.</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Bạn có thấy feed của mình cập nhật chậm không\? Nếu có thì bạn có thể thử chế độ tăng tốc (bạn có thể bật/tắt chế độ này trong cài đặt hoặc bằng cách nhấn nút bên dưới).
@@ -565,20 +565,20 @@
 \n• Tải thông tin cả kênh cho từng kênh một; chậm nhưng chắc.
 \n• Tải từ các nguồn chuyên dụng; nhanh nhưng thường không đầy đủ.
 \n
-\nĐiểm khác biệt giữa 2 cách trên là cách nhanh hơn (chế độ tăng tốc) thường có thể thiếu thông tin - như thời lượng hay loại (VD: không thể phân biệt được giữa video thường và livestream) - và thiếu item hơn.
+\nĐiểm khác biệt giữa 2 cách trên là cách nhanh hơn (chế độ tăng tốc) thường có thể thiếu thông tin - như thời lượng hay loại (VD: không thể phân biệt được giữa video thường và livestream) - và thiếu nội dung hơn.
 \n
-\nYouTube là một trong số các dịch vụ có hỗ trợ cách cập nhật nhanh trên, sử dụng RSS feed.
+\nYouTube là một trong số các dịch vụ có hỗ trợ cập nhật nhanh, sử dụng RSS.
 \n
-\nSuy cho cùng, việc lựa chọn chế độ trên sẽ tùy thuộc vào mong muốn của bạn: tốc độ cập nhật, hay độ chính xác thông tin.</string>
+\nTuy nhiên, việc lựa chọn chế độ tùy thuộc vào mong muốn của bạn: tốc độ hay thông tin.</string>
     <string name="feed_use_dedicated_fetch_method_title">Tải thông tin từ các nguồn chuyên dụng nếu có thể</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Bật chế độ tăng tốc</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Tắt chế độ tăng tốc</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Áp dụng cho một vài dịch vụ; thường sẽ nhanh hơn nhưng có thể thiếu một vài item và thông tin không đầy đủ (VD: không có thời lượng, loại item, livestreams).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Có thể được với một số dịch vụ, thường sẽ nhanh hơn nhưng có thể bị giới hạn nội dung nhận được hoặc nội dung nhận được không đầy đủ (v.d. thời lượng, trạng thái,..).</string>
     <string name="feed_update_threshold_option_always_update">Luôn cập nhật</string>
     <string name="feed_update_threshold_summary">Khoảng thời gian kể từ lần cuối cập nhật thông tin kênh trước khi nó được coi là hết hạn — %s</string>
     <string name="feed_update_threshold_title">Ngưỡng thời gian cập nhật feed</string>
     <string name="settings_category_feed_title">Nguồn cấp (feed)</string>
-    <string name="feed_create_new_group_button_title">Tạo</string>
+    <string name="feed_create_new_group_button_title">Tạo mới</string>
     <string name="feed_group_dialog_delete_message">Bạn muốn xóa nhóm kênh này\?</string>
     <string name="feed_group_dialog_empty_name">Tên nhóm kênh trống</string>
     <plurals name="feed_group_dialog_selection_count">
@@ -638,10 +638,10 @@
     <string name="youtube_restricted_mode_enabled_summary">YouTube cung cấp \"Chế độ hạn chế\" để ẩn nội dung người lớn</string>
     <string name="notification_colorize_summary">Yêu cầu Android tùy chỉnh màu của thông báo theo màu chính của video, có thể không khả dụng trong vài thiết bị</string>
     <string name="notification_colorize_title">àu thông báo</string>
-    <string name="no_app_to_open_intent">Không có ứng dụng nào trên thiết bị của bạn có thể mở cái này</string>
+    <string name="no_app_to_open_intent">Thiết bị của bạn không có ứng dụng để mở tệp này</string>
     <string name="chapters">Chương</string>
     <string name="recent">Gần đây</string>
-    <string name="msg_calculating_hash">Đang tính toán hash</string>
+    <string name="msg_calculating_hash">Đang tính hash</string>
     <string name="description_tab_description">Mô tả</string>
     <string name="related_items_tab_description">Stream liên quan</string>
     <string name="comments_tab_description">Bình luận</string>
@@ -652,4 +652,18 @@
     <string name="show_description_summary">Tắt tùy chọn này để ẩn mô tả video và các thông tin khác</string>
     <string name="show_description_title">Hiện mô tả</string>
     <string name="open_with">Mở bằng</string>
+    <string name="download_has_started">Tệp đã bắt đầu được tải xuống</string>
+    <string name="select_night_theme_toast">Bạn có thể chọn giao diện tối cho mình bên dưới</string>
+    <string name="night_theme_summary">Chọn giao diện tối của bạn — %s</string>
+    <string name="auto_device_theme_title">Tự động (theme hệ thống)</string>
+    <string name="radio">Radio</string>
+    <string name="paid_content">Nội dung này chỉ dành cho người dùng trả phí, nên NewPipe không thể phát hay tải xuống.</string>
+    <string name="youtube_music_premium_content">Video này chỉ được dành cho thành viên YouTube Music Premium, nên NewPipe không thể phát hay tải xuống.</string>
+    <string name="private_content">Nội dung này được để ở chế độ riêng tư, nên NewPipe không thể phát hay tải xuống.</string>
+    <string name="soundcloud_go_plus_content">Đây là một track SoundCloud Go+, nên NewPipe không thể phát hay tải xuống được, ít nhất là tại quốc gia của bạn.</string>
+    <string name="georestricted_content">Nội dung này không có ở quốc gia của bạn.</string>
+    <string name="crash_the_app">Làm văng ứng dụng</string>
+    <string name="restricted_video_no_stream">Video này đã bị giới hạn độ tuổi.
+\nVì những quy định mới của YouTube, NewPipe không thể phát được video này, vì không thể tìm thấy nguồn phát video.</string>
+    <string name="night_theme_title">Giao diện tối</string>
 </resources>

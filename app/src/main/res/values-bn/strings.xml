@@ -554,4 +554,23 @@
     <string name="detail_sub_channel_thumbnail_view_description">চ্যানেলের অবতার প্রতিচ্ছবি</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">দ্রুত মোড বন্ধ করো</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">দ্রুত মোড চালু করো</string>
+    <string name="error_file_creation">ফাইল বামানো যায়নি</string>
+    <string name="limit_mobile_data_usage_title">মোবাইল ডাটা ব্যবহারের সময় আকার সীমিত রাখো</string>
+    <string name="show_original_time_ago_title">ভুক্তিতে আসল সময় দেখাও</string>
+    <string name="radio">রেডিও</string>
+    <string name="featured">বিশেষ</string>
+    <string name="recaptcha_solve">সমাধান করো</string>
+    <string name="feed_update_threshold_summary">শেষ হালনাগাদের পর একটি সাবস্ক্রিপশনের আগের সময় সেকেলে বিবেচিত — %s</string>
+    <string name="feed_group_dialog_delete_message">আপনি কি এ গ্রুপটি মুছতে চান\?</string>
+    <string name="website_encouragement">আরও তথ্য এবং খবরের জন্য নিউপাইপ ওয়েবসাইট দেখো।</string>
+    <string name="toast_no_player">এ ফাইলটি চালানোর জন্য কোন অ্য়াপ ইন্সটল নেই</string>
+    <string name="drawer_header_action_paceholder_text">এখানে দ্রুতই কিছু আসবে ;D</string>
+    <string name="override_current_data">এতে তোমার বর্তমান অবস্থা সরানো হবে।</string>
+    <string name="could_not_import_all_files">সতর্কতা: সব তথ্য আনা যায়নি।</string>
+    <string name="copyright">© %3$s এর মাধ্যমে %2$s দিয়ে %1$s</string>
+    <string name="hash_channel_description">ভিডিও হ্যাশিং অগ্রগতির বিজ্ঞপ্তি</string>
+    <string name="download_has_started">ডাউনলোড শুরু হয়েছে</string>
+    <string name="auto_device_theme_title">স্বয়ংক্রিয় (ডিভাইস রঙ)</string>
+    <string name="show_description_summary">ভিডিও ব্যাখ্যা ও অন্যান্য তথ্য লুকাও</string>
+    <string name="night_theme_title">অন্ধকার রঙ</string>
 </resources>
