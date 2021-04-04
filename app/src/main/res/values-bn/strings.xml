@@ -491,7 +491,7 @@
     <string name="recent">সাম্প্রতিক</string>
     <string name="peertube_instance_add_exists">ইন্সট্যান্স ইতোমধ্যে বিদ্যমান</string>
     <string name="default_content_country_title">ডিফল্ট কন্টেন্টের দেশ</string>
-    <string name="related_streams_tab_description">সম্পর্কিত স্ট্রিম</string>
+    <string name="related_items_tab_description">সম্পর্কিত স্ট্রিম</string>
     <string name="show_description_title">বর্ণনা দেখাও</string>
     <string name="msg_calculating_hash">হ্যাশ গণনা করা হচ্ছে</string>
     <string name="show_thumbnail_title">থাম্বনেইল দেখাও</string>

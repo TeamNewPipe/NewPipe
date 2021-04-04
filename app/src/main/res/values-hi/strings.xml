@@ -585,7 +585,7 @@
     <string name="infinite_videos">∞ विडीओ</string>
     <string name="more_than_100_videos">१००+ विडीओ</string>
     <string name="description_tab_description">विवरण</string>
-    <string name="related_streams_tab_description">संबंधित स्ट्रीमस</string>
+    <string name="related_items_tab_description">संबंधित स्ट्रीमस</string>
     <string name="comments_tab_description">टिप्पणियाँ</string>
     <string name="error_report_open_github_notice">कृपया जांचें लें कि क्या आपके क्रैश पर चर्चा करने वाला मुद्दा पहले से मौजूद है। डुप्लिकेट टिकट बनाते समय, आप हमसे समय लेते हैं जो हम वास्तविक बग को ठीक करने के साथ खर्च कर सकते हैं।</string>
     <string name="error_report_open_issue_button_text">गिटहब पर रिपोर्ट करें</string>

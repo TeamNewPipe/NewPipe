@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="?android:textColorPrimary"
         tools:ignore="ContentDescription"
-        tools:src="@drawable/ic_previous_white_24dp" />
+        tools:src="@drawable/ic_previous" />
 
     <TextView
         android:id="@+id/notificationActionTitle"

@@ -9,19 +9,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RelatedStreamInfo extends ListInfo<InfoItem> {
-    public RelatedStreamInfo(final int serviceId, final ListLinkHandler listUrlIdHandler,
-                             final String name) {
+public class RelatedItemInfo extends ListInfo<InfoItem> {
+    public RelatedItemInfo(final int serviceId, final ListLinkHandler listUrlIdHandler,
+                           final String name) {
         super(serviceId, listUrlIdHandler, name);
     }
 
-    public static RelatedStreamInfo getInfo(final StreamInfo info) {
+    public static RelatedItemInfo getInfo(final StreamInfo info) {
         final ListLinkHandler handler = new ListLinkHandler(
                 info.getOriginalUrl(), info.getUrl(), info.getId(), Collections.emptyList(), null);
-        final RelatedStreamInfo relatedStreamInfo = new RelatedStreamInfo(
+        final RelatedItemInfo relatedItemInfo = new RelatedItemInfo(
                 info.getServiceId(), handler, info.getName());
-        final List<InfoItem> streams = new ArrayList<>(info.getRelatedStreams());
-        relatedStreamInfo.setRelatedItems(streams);
-        return relatedStreamInfo;
+        final List<InfoItem> relatedItems = new ArrayList<>(info.getRelatedItems());
+        relatedItemInfo.setRelatedItems(relatedItems);
+        return relatedItemInfo;
     }
 }
