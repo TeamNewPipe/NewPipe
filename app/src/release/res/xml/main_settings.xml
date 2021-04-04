@@ -42,7 +42,7 @@
 
     <PreferenceScreen
         android:fragment="org.schabi.newpipe.settings.UpdateSettingsFragment"
-        android:icon="@drawable/ic_cloud_download_black"
+        android:icon="@drawable/ic_cloud_download"
         android:key="update_pref_screen_key"
         android:title="@string/settings_category_updates_title"
         app:iconSpaceReserved="false" />
