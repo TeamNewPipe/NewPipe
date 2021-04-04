@@ -643,7 +643,7 @@
     <string name="recent">Gần đây</string>
     <string name="msg_calculating_hash">Đang tính toán hash</string>
     <string name="description_tab_description">Mô tả</string>
-    <string name="related_streams_tab_description">Stream liên quan</string>
+    <string name="related_items_tab_description">Stream liên quan</string>
     <string name="comments_tab_description">Bình luận</string>
     <string name="hash_channel_description">Thông báo cho quá trình hash video</string>
     <string name="hash_channel_name">Thông báo hash video</string>

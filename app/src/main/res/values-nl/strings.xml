@@ -658,7 +658,7 @@
     <string name="show_description_title">Toon beschrijving</string>
     <string name="no_app_to_open_intent">Geen app op je apparaat kan dit openen</string>
     <string name="chapters">Hoofdstukken</string>
-    <string name="related_streams_tab_description">Gerelateerde streams</string>
+    <string name="related_items_tab_description">Gerelateerde streams</string>
     <string name="comments_tab_description">Commentaar</string>
     <string name="show_description_summary">Schakel dit uit om video beschrijvingen en additionele informatie te verbergen</string>
     <string name="open_with">Openen met</string>

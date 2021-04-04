@@ -652,7 +652,7 @@
     <string name="show_description_title">显示简介</string>
     <string name="chapters">章节</string>
     <string name="description_tab_description">简介</string>
-    <string name="related_streams_tab_description">相关视频</string>
+    <string name="related_items_tab_description">相关视频</string>
     <string name="comments_tab_description">评论</string>
     <string name="show_description_summary">显示视频描述和其他信息</string>
     <string name="open_with">用…打开</string>

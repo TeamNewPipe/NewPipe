@@ -656,7 +656,7 @@
     <string name="show_meta_info_title">Üst bilgiyi göster</string>
     <string name="chapters">Bölümler</string>
     <string name="description_tab_description">Açıklama</string>
-    <string name="related_streams_tab_description">İlgili akışlar</string>
+    <string name="related_items_tab_description">İlgili akışlar</string>
     <string name="comments_tab_description">Yorumlar</string>
     <string name="show_description_summary">Video açıklamasını ve ek bilgileri gizlemek için kapatın</string>
     <string name="show_description_title">Açıklamayı göster</string>

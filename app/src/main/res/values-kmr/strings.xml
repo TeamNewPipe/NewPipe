@@ -73,7 +73,7 @@
     <string name="use_tor_summary">(Ceribandî) Ji bo nepeniya zêde trafîka dakêşanê bi rêya Tor bikişîne (vîdyoyên weşanê hîn piştgirî nabin).</string>
     <string name="use_tor_title">Tor bikar bînin</string>
     <string name="description_tab_description">Terîf</string>
-    <string name="related_streams_tab_description">Çemên pêwendîdar</string>
+    <string name="related_items_tab_description">Çemên pêwendîdar</string>
     <string name="comments_tab_description">Îrove</string>
     <string name="detail_dislikes_img_view_description">Hejmara nefretan</string>
     <string name="detail_likes_img_view_description">Evîn</string>

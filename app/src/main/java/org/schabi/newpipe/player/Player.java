@@ -26,6 +26,7 @@ import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -51,6 +52,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.DisplayCutoutCompat;
 import androidx.core.view.ViewCompat;
@@ -447,9 +449,12 @@ public final class Player implements
         binding.playbackSeekBar.getProgressDrawable()
                 .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY));
 
-        qualityPopupMenu = new PopupMenu(context, binding.qualityTextView);
+        final ContextThemeWrapper themeWrapper = new ContextThemeWrapper(getContext(),
+                R.style.DarkPopupMenu);
+
+        qualityPopupMenu = new PopupMenu(themeWrapper, binding.qualityTextView);
         playbackSpeedPopupMenu = new PopupMenu(context, binding.playbackSpeed);
-        captionPopupMenu = new PopupMenu(context, binding.captionTextView);
+        captionPopupMenu = new PopupMenu(themeWrapper, binding.captionTextView);
 
         binding.progressBarLoadingPanel.getIndeterminateDrawable()
                 .setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY));
@@ -956,7 +961,7 @@ public final class Player implements
                     = LinearLayout.LayoutParams.MATCH_PARENT;
             binding.secondaryControls.setVisibility(View.INVISIBLE);
             binding.moreOptionsButton.setImageDrawable(AppCompatResources.getDrawable(context,
-                    R.drawable.ic_expand_more_white_24dp));
+                    R.drawable.ic_expand_more));
             binding.share.setVisibility(View.VISIBLE);
             binding.openInBrowser.setVisibility(View.VISIBLE);
             binding.switchMute.setVisibility(View.VISIBLE);
@@ -2020,7 +2025,7 @@ public final class Player implements
         animate(binding.loadingPanel, true, 0);
         animate(binding.surfaceForeground, true, 100);
 
-        binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
+        binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow);
         animatePlayButtons(false, 100);
         binding.getRoot().setKeepScreenOn(false);
 
@@ -2049,7 +2054,7 @@ public final class Player implements
 
         animate(binding.playPauseButton, false, 80, AnimationType.SCALE_AND_ALPHA, 0,
                 () -> {
-                    binding.playPauseButton.setImageResource(R.drawable.ic_pause_white_24dp);
+                    binding.playPauseButton.setImageResource(R.drawable.ic_pause);
                     animatePlayButtons(true, 200);
                     if (!isQueueVisible) {
                         binding.playPauseButton.requestFocus();
@@ -2090,7 +2095,7 @@ public final class Player implements
 
         animate(binding.playPauseButton, false, 80, AnimationType.SCALE_AND_ALPHA, 0,
                 () -> {
-                    binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow_white_24dp);
+                    binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow);
                     animatePlayButtons(true, 200);
                     if (!isQueueVisible) {
                         binding.playPauseButton.requestFocus();
@@ -2129,7 +2134,7 @@ public final class Player implements
 
         animate(binding.playPauseButton, false, 0, AnimationType.SCALE_AND_ALPHA, 0,
                 () -> {
-                    binding.playPauseButton.setImageResource(R.drawable.ic_replay_white_24dp);
+                    binding.playPauseButton.setImageResource(R.drawable.ic_replay);
                     animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
                 });
 
@@ -2221,7 +2226,7 @@ public final class Player implements
             Log.d(TAG, "ExoPlayer - onRepeatModeChanged() called with: "
                     + "repeatMode = [" + repeatMode + "]");
         }
-        setRepeatModeButton(binding.repeatButton, repeatMode);
+        setRepeatModeButton(((AppCompatImageButton) binding.repeatButton), repeatMode);
         onShuffleOrRepeatModeChanged();
     }
 
@@ -2249,7 +2254,7 @@ public final class Player implements
         NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
-    private void setRepeatModeButton(final ImageButton imageButton, final int repeatMode) {
+    private void setRepeatModeButton(final AppCompatImageButton imageButton, final int repeatMode) {
         switch (repeatMode) {
             case REPEAT_MODE_OFF:
                 imageButton.setImageResource(R.drawable.exo_controls_repeat_off);
@@ -2290,7 +2295,7 @@ public final class Player implements
 
     private void setMuteButton(final ImageButton button, final boolean isMuted) {
         button.setImageDrawable(AppCompatResources.getDrawable(context, isMuted
-                ? R.drawable.ic_volume_off_white_24dp : R.drawable.ic_volume_up_white_24dp));
+                ? R.drawable.ic_volume_off : R.drawable.ic_volume_up));
     }
     //endregion
 
@@ -2728,7 +2733,7 @@ public final class Player implements
         }
         seekBy(retrieveSeekDurationFromPreferences(this));
         triggerProgressUpdate();
-        showAndAnimateControl(R.drawable.ic_fast_forward_white_24dp, true);
+        showAndAnimateControl(R.drawable.ic_fast_forward, true);
     }
 
     public void fastRewind() {
@@ -2737,7 +2742,7 @@ public final class Player implements
         }
         seekBy(-retrieveSeekDurationFromPreferences(this));
         triggerProgressUpdate();
-        showAndAnimateControl(R.drawable.ic_fast_rewind_white_24dp, true);
+        showAndAnimateControl(R.drawable.ic_fast_rewind, true);
     }
     //endregion
 
@@ -3685,8 +3690,8 @@ public final class Player implements
                         || DeviceUtils.isTablet(context))
                 ? View.VISIBLE : View.GONE);
         binding.screenRotationButton.setImageDrawable(AppCompatResources.getDrawable(context,
-                isFullscreen ? R.drawable.ic_fullscreen_exit_white_24dp
-                : R.drawable.ic_fullscreen_white_24dp));
+                isFullscreen ? R.drawable.ic_fullscreen_exit
+                : R.drawable.ic_fullscreen));
     }
 
     private void setResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode) {
