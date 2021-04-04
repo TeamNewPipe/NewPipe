@@ -1325,6 +1325,7 @@ public final class VideoDetailFragment
         if (binding == null || activity == null) {
             return;
         }
+            
         binding.detailThumbnailImageView.setImageDrawable(
                 AppCompatResources.getDrawable(requireContext(), imageResource));
         animate(binding.detailThumbnailImageView, false, 0, AnimationType.ALPHA,
