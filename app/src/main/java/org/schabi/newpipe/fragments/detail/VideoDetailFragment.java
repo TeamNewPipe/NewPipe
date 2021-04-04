@@ -1325,9 +1325,10 @@ public final class VideoDetailFragment
         if (binding == null || activity == null) {
             return;
         }
-
         binding.detailThumbnailImageView.setImageDrawable(
-                AppCompatResources.getDrawable(requireContext(), imageResource));
+                AppCompatResources.getDrawable(requireContext(),
+                        ThemeHelper.resolveResourceIdFromAttr(requireContext(),
+                                imageResource)));
         animate(binding.detailThumbnailImageView, false, 0, AnimationType.ALPHA,
                 0, () -> animate(binding.detailThumbnailImageView, true, 500));
     }
@@ -1335,7 +1336,7 @@ public final class VideoDetailFragment
     @Override
     public void handleError() {
         super.handleError();
-        setErrorImage(R.drawable.not_available_monkey);
+        setErrorImage(R.attr.not_available_monkey);
 
         if (binding.relatedStreamsLayout != null) { // hide related streams for tablets
             binding.relatedStreamsLayout.setVisibility(View.INVISIBLE);

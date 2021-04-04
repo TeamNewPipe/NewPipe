@@ -91,6 +91,7 @@
     <attr name="checked_selector" format="reference" />
     <attr name="focused_selector" format="reference" />
     <attr name="dashed_border" format="reference" />
+    <attr name="not_available_monkey" format="reference" />
 
     <attr name="separator_color" format="color" />
     <attr name="queue_background_color" format="color" />
