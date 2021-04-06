@@ -63,6 +63,7 @@
         android:id="@+id/itemUploaderView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_uploader_text_size"
@@ -83,6 +84,7 @@
         android:textSize="@dimen/video_item_search_upload_date_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/itemVideoTitleView"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemUploaderView"
         tools:text="2 years ago • 10M views" />
 
