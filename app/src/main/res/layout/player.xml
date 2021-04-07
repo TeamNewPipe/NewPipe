@@ -544,6 +544,17 @@
                 android:tint="?attr/colorAccent"
                 app:srcCompat="@drawable/ic_shuffle_white_24dp"
                 tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/itemsListHeaderDuration"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="false"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/shuffleButton"
+                android:maxLines="1"
+                android:textColor="@android:color/white" />
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
