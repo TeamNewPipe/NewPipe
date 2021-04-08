@@ -106,6 +106,7 @@ public final class DeviceUtils {
      */
     public static boolean shouldSupportMediaTunneling() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                && !HI3798MV200 && !CVT_MT5886_EU_1G;
+                && !HI3798MV200
+                && !CVT_MT5886_EU_1G;
     }
 }
