@@ -26,6 +26,9 @@ public final class DeviceUtils {
     // Formuler Z8 Pro, Z8, CC, Z Alpha, Z+ Neo
     private static final boolean HI3798MV200 = Build.VERSION.SDK_INT == 24
             && Build.DEVICE.equals("Hi3798MV200");
+    // Zephir TS43UHD-2
+    private static final boolean CVT_MT5886_EU_1G = Build.VERSION.SDK_INT == 24
+            && Build.DEVICE.equals("cvt_mt5886_eu_1g");
 
     private DeviceUtils() {
     }
@@ -103,7 +106,7 @@ public final class DeviceUtils {
      */
     public static boolean shouldSupportMediaTunneling() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                && !HI3798MV200;
+                && !HI3798MV200
+                && !CVT_MT5886_EU_1G;
     }
-
 }
