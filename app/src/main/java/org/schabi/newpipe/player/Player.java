@@ -1596,6 +1596,10 @@ public final class Player implements
             segmentAdapter.selectSegmentAt(getNearestStreamSegmentPosition(currentProgress));
         }
 
+        if (isQueueVisible) {
+            updateQueueTime(currentProgress);
+        }
+
         final boolean showThumbnail = prefs.getBoolean(
                 context.getString(R.string.show_thumbnail_key), true);
         // setMetadata only updates the metadata when any of the metadata keys are null
@@ -2964,6 +2968,7 @@ public final class Player implements
         buildQueue();
 
         binding.itemsListHeaderTitle.setVisibility(View.GONE);
+        binding.itemsListHeaderDuration.setVisibility(View.VISIBLE);
         binding.shuffleButton.setVisibility(View.VISIBLE);
         binding.repeatButton.setVisibility(View.VISIBLE);
 
@@ -2973,6 +2978,8 @@ public final class Player implements
                 AnimationType.SLIDE_AND_ALPHA);
 
         binding.itemsList.scrollToPosition(playQueue.getIndex());
+
+        updateQueueTime((int) simpleExoPlayer.getCurrentPosition());
     }
 
     private void buildQueue() {
@@ -3194,6 +3201,32 @@ public final class Player implements
 
         buildPlaybackSpeedMenu();
         binding.playbackSpeed.setVisibility(View.VISIBLE);
+    }
+
+    private void updateQueueTime(final int currentTime) {
+        final int currentStream = playQueue.getIndex();
+        int before = 0;
+        int after = 0;
+
+        final List<PlayQueueItem> streams = playQueue.getStreams();
+        final int nStreams = streams.size();
+
+        for (int i = 0; i < nStreams; i++) {
+            if (i < currentStream) {
+                before += streams.get(i).getDuration();
+            } else {
+                after += streams.get(i).getDuration();
+            }
+        }
+
+        before *= 1000;
+        after *= 1000;
+
+        binding.itemsListHeaderDuration.setText(
+                String.format("%s/%s",
+                        getTimeString(currentTime + before),
+                        getTimeString(before + after)
+                ));
     }
     //endregion
 
