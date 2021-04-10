@@ -318,8 +318,13 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                     .into(headerBinding.uploaderAvatarView);
         }
 
-        headerBinding.playlistStreamCount.setText(Localization
-                .localizeStreamCount(getContext(), result.getStreamCount()));
+        final int playlistOverallDurationSeconds = result.getRelatedItems().stream()
+            .mapToInt(x -> Math.toIntExact(x.getDuration())).sum();
+        headerBinding.playlistStreamCount.setText(
+            Localization.concatenateStrings(
+                Localization.localizeStreamCount(getContext(), result.getStreamCount()),
+                Localization.getDurationString(playlistOverallDurationSeconds))
+        );
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.REQUESTED_PLAYLIST,
