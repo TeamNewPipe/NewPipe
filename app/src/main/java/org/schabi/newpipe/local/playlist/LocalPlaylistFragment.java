@@ -502,7 +502,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     }
 
                     final long videoCount = itemListAdapter.getItemsList().size();
-                    setVideoCount(videoCount);
+                    setStreamCountAndOverallDuration(itemListAdapter.getItemsList());
                     if (videoCount == 0) {
                         showEmptyState();
                     }
@@ -532,7 +532,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
             itemsListState = null;
         }
-        setVideoCount(itemListAdapter.getItemsList().size());
+        setStreamCountAndOverallDuration(itemListAdapter.getItemsList());
 
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
 
@@ -665,7 +665,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .subscribe(itemsToKeep -> {
                     itemListAdapter.clearStreamItemList();
                     itemListAdapter.addItems(itemsToKeep);
-                    setVideoCount(itemListAdapter.getItemsList().size());
+                    setStreamCountAndOverallDuration(itemListAdapter.getItemsList());
                     saveChanges();
 
                     hideLoading();
@@ -684,7 +684,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             updateThumbnailUrl();
         }
 
-        setVideoCount(itemListAdapter.getItemsList().size());
+        setStreamCountAndOverallDuration(itemListAdapter.getItemsList());
         saveChanges();
     }
 
@@ -855,10 +855,20 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         this.name = !TextUtils.isEmpty(title) ? title : "";
     }
 
-    private void setVideoCount(final long count) {
+    private void setStreamCountAndOverallDuration(final ArrayList<LocalItem> itemsList) {
         if (activity != null && headerBinding != null) {
-            headerBinding.playlistStreamCount.setText(Localization
-                    .localizeStreamCount(activity, count));
+            final long streamCount = itemsList.size();
+            final long playlistOverallDurationSeconds = itemsList.stream()
+                    .filter(PlaylistStreamEntry.class::isInstance)
+                    .map(PlaylistStreamEntry.class::cast)
+                    .map(PlaylistStreamEntry::getStreamEntity)
+                    .mapToLong(StreamEntity::getDuration)
+                    .sum();
+            headerBinding.playlistStreamCount.setText(
+                    Localization.concatenateStrings(
+                            Localization.localizeStreamCount(activity, streamCount),
+                            Localization.getDurationString(playlistOverallDurationSeconds))
+            );
         }
     }
 
