@@ -12,8 +12,10 @@ import android.view.KeyEvent;
 import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.App;
+import org.schabi.newpipe.R;
 
 public final class DeviceUtils {
 
@@ -65,10 +67,18 @@ public final class DeviceUtils {
     }
 
     public static boolean isTablet(@NonNull final Context context) {
-        return (context
-                .getResources()
-                .getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
-                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+        final String tabletModeSetting = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.tablet_mode_key), "");
+
+        if (tabletModeSetting.equals(context.getString(R.string.tablet_mode_on_key))) {
+            return true;
+        } else if (tabletModeSetting.equals(context.getString(R.string.tablet_mode_off_key))) {
+            return false;
+        }
+
+        // else automatically determine whether we are in a tablet or not
+        return (context.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
     public static boolean isConfirmKey(final int keyCode) {
