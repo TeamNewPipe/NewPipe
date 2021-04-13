@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/file_name"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="6dp"
         android:gravity="left"
         android:orientation="horizontal"
@@ -44,6 +45,7 @@
             android:id="@+id/video_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
             android:checked="true"
             android:text="@string/video" />
 
@@ -51,21 +53,25 @@
             android:id="@+id/audio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
             android:text="@string/audio" />
 
         <RadioButton
             android:id="@+id/subtitle_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
             android:text="@string/caption_setting_title" />
+
     </RadioGroup>
 
     <Spinner
         android:id="@+id/quality_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/video_audio_group"
+        android:layout_below="@+id/cover_button"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="6dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="12dp"
         android:minWidth="150dp"
@@ -80,6 +86,17 @@
         android:layout_marginRight="24dp"
         android:layout_marginBottom="6dp"
         android:text="@string/msg_threads" />
+
+    <CheckBox
+        android:id="@+id/cover_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/video_audio_group"
+        android:layout_alignParentStart="false"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="0dp"
+        android:checked="true"
+        android:text="@string/cover_image" />
 
     <LinearLayout
         android:id="@+id/threads_layout"
@@ -107,4 +124,5 @@
             android:max="31"
             android:progress="3" />
     </LinearLayout>
+
 </RelativeLayout>

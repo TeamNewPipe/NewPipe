@@ -76,6 +76,7 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;
 import us.shandian.giga.service.MissionState;
 
+
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class DownloadDialog extends DialogFragment
