@@ -28,4 +28,13 @@
 
   <suppress checks="FileLength"
     files="VideoDetailFragment.java"/>
+    
+  <suppress checks=".*"
+    files="FixedFrameRateEstimator.java"/>
+  <suppress checks=".*"
+    files="NewPipeRenderersFactory.java"/>
+  <suppress checks=".*"
+    files="NewPipeVideoRenderer.java"/>  
+  <suppress checks=".*"
+    files="VideoFrameReleaseHelper.java"/>  
 </suppressions>
