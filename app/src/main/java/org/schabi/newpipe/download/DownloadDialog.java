@@ -855,60 +855,60 @@ public class DownloadDialog extends DialogFragment
         long nearLength = 0;
 
         // more download logic: select muxer, subtitle converter, etc.
-        switch (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()) {
-            case R.id.audio_button:
-                kind = 'a';
-                selectedStream = audioStreamsAdapter.getItem(selectedAudioIndex);
+        final int checkedRadioButtonId = dialogBinding.videoAudioGroup.getCheckedRadioButtonId();
+        if(checkedRadioButtonId == R.id.audio_button){
+            kind = 'a';
+            selectedStream = audioStreamsAdapter.getItem(selectedAudioIndex);
 
-                if (selectedStream.getFormat() == MediaFormat.M4A) {
-                    psName = Postprocessing.ALGORITHM_M4A_NO_DASH;
-                } else if (selectedStream.getFormat() == MediaFormat.WEBMA_OPUS) {
-                    psName = Postprocessing.ALGORITHM_OGG_FROM_WEBM_DEMUXER;
+            if (selectedStream.getFormat() == MediaFormat.M4A) {
+                psName = Postprocessing.ALGORITHM_M4A_NO_DASH;
+            } else if (selectedStream.getFormat() == MediaFormat.WEBMA_OPUS) {
+                psName = Postprocessing.ALGORITHM_OGG_FROM_WEBM_DEMUXER;
+            }
+        }
+        else if(checkedRadioButtonId == R.id.video_button){
+            kind = 'v';
+            selectedStream = videoStreamsAdapter.getItem(selectedVideoIndex);
+
+            final SecondaryStreamHelper<AudioStream> secondary = videoStreamsAdapter
+                    .getAllSecondary()
+                    .get(wrappedVideoStreams.getStreamsList().indexOf(selectedStream));
+
+            if (secondary != null) {
+                secondaryStream = secondary.getStream();
+
+                if (selectedStream.getFormat() == MediaFormat.MPEG_4) {
+                    psName = Postprocessing.ALGORITHM_MP4_FROM_DASH_MUXER;
+                } else {
+                    psName = Postprocessing.ALGORITHM_WEBM_MUXER;
                 }
-                break;
-            case R.id.video_button:
-                kind = 'v';
-                selectedStream = videoStreamsAdapter.getItem(selectedVideoIndex);
 
-                final SecondaryStreamHelper<AudioStream> secondary = videoStreamsAdapter
-                        .getAllSecondary()
-                        .get(wrappedVideoStreams.getStreamsList().indexOf(selectedStream));
+                psArgs = null;
+                final long videoSize = wrappedVideoStreams
+                        .getSizeInBytes((VideoStream) selectedStream);
 
-                if (secondary != null) {
-                    secondaryStream = secondary.getStream();
-
-                    if (selectedStream.getFormat() == MediaFormat.MPEG_4) {
-                        psName = Postprocessing.ALGORITHM_MP4_FROM_DASH_MUXER;
-                    } else {
-                        psName = Postprocessing.ALGORITHM_WEBM_MUXER;
-                    }
-
-                    psArgs = null;
-                    final long videoSize = wrappedVideoStreams
-                            .getSizeInBytes((VideoStream) selectedStream);
-
-                    // set nearLength, only, if both sizes are fetched or known. This probably
-                    // does not work on slow networks but is later updated in the downloader
-                    if (secondary.getSizeInBytes() > 0 && videoSize > 0) {
-                        nearLength = secondary.getSizeInBytes() + videoSize;
-                    }
+                // set nearLength, only, if both sizes are fetched or known. This probably
+                // does not work on slow networks but is later updated in the downloader
+                if (secondary.getSizeInBytes() > 0 && videoSize > 0) {
+                    nearLength = secondary.getSizeInBytes() + videoSize;
                 }
-                break;
-            case R.id.subtitle_button:
-                threads = 1; // use unique thread for subtitles due small file size
-                kind = 's';
-                selectedStream = subtitleStreamsAdapter.getItem(selectedSubtitleIndex);
+            }
+        }
+        else if(checkedRadioButtonId == R.id.subtitle_button){
+            threads = 1; // use unique thread for subtitles due small file size
+            kind = 's';
+            selectedStream = subtitleStreamsAdapter.getItem(selectedSubtitleIndex);
 
-                if (selectedStream.getFormat() == MediaFormat.TTML) {
-                    psName = Postprocessing.ALGORITHM_TTML_CONVERTER;
-                    psArgs = new String[]{
-                            selectedStream.getFormat().getSuffix(),
-                            "false" // ignore empty frames
-                    };
-                }
-                break;
-            default:
-                return;
+            if (selectedStream.getFormat() == MediaFormat.TTML) {
+                psName = Postprocessing.ALGORITHM_TTML_CONVERTER;
+                psArgs = new String[]{
+                        selectedStream.getFormat().getSuffix(),
+                        "false" // ignore empty frames
+                };
+            }
+        }
+        else{
+            return;
         }
 
         if (secondaryStream == null) {
