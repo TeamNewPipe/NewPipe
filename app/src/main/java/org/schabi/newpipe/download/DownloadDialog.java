@@ -301,12 +301,10 @@ public class DownloadDialog extends DialogFragment
             }
 
             @Override
-            public void onStartTrackingTouch(final SeekBar p1) {
-            }
+            public void onStartTrackingTouch(final SeekBar p1) { }
 
             @Override
-            public void onStopTrackingTouch(final SeekBar p1) {
-            }
+            public void onStopTrackingTouch(final SeekBar p1) { }
         });
 
         fetchStreamsSize();
