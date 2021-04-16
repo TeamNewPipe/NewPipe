@@ -301,10 +301,12 @@ public class DownloadDialog extends DialogFragment
             }
 
             @Override
-            public void onStartTrackingTouch(final SeekBar p1) { }
+            public void onStartTrackingTouch(final SeekBar p1) {
+            }
 
             @Override
-            public void onStopTrackingTouch(final SeekBar p1) { }
+            public void onStopTrackingTouch(final SeekBar p1) {
+            }
         });
 
         fetchStreamsSize();
@@ -315,22 +317,25 @@ public class DownloadDialog extends DialogFragment
 
         disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedVideoStreams)
                 .subscribe(result -> {
-            if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.video_button) {
-                setupVideoSpinner();
-            }
-        }));
+                    if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()
+                            == R.id.video_button) {
+                        setupVideoSpinner();
+                    }
+                }));
         disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedAudioStreams)
                 .subscribe(result -> {
-            if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button) {
-                setupAudioSpinner();
-            }
-        }));
+                    if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()
+                            == R.id.audio_button) {
+                        setupAudioSpinner();
+                    }
+                }));
         disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedSubtitleStreams)
                 .subscribe(result -> {
-            if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.subtitle_button) {
-                setupSubtitleSpinner();
-            }
-        }));
+                    if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()
+                            == R.id.subtitle_button) {
+                        setupSubtitleSpinner();
+                    }
+                }));
     }
 
     @Override
@@ -511,7 +516,7 @@ public class DownloadDialog extends DialogFragment
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         final String defaultMedia = prefs.getString(getString(R.string.last_used_download_type),
-                    getString(R.string.last_download_type_video_key));
+                getString(R.string.last_download_type_video_key));
 
         if (isVideoStreamsAvailable
                 && (defaultMedia.equals(getString(R.string.last_download_type_video_key)))) {
@@ -702,10 +707,8 @@ public class DownloadDialog extends DialogFragment
 
         // check if is our file
         final MissionState state = downloadManager.checkForExistingMission(storage);
-        @StringRes
-        final int msgBtn;
-        @StringRes
-        final int msgBody;
+        @StringRes final int msgBtn;
+        @StringRes final int msgBody;
 
         switch (state) {
             case Finished:
@@ -856,7 +859,7 @@ public class DownloadDialog extends DialogFragment
 
         // more download logic: select muxer, subtitle converter, etc.
         final int checkedRadioButtonId = dialogBinding.videoAudioGroup.getCheckedRadioButtonId();
-        if(checkedRadioButtonId == R.id.audio_button){
+        if (checkedRadioButtonId == R.id.audio_button) {
             kind = 'a';
             selectedStream = audioStreamsAdapter.getItem(selectedAudioIndex);
 
@@ -865,8 +868,7 @@ public class DownloadDialog extends DialogFragment
             } else if (selectedStream.getFormat() == MediaFormat.WEBMA_OPUS) {
                 psName = Postprocessing.ALGORITHM_OGG_FROM_WEBM_DEMUXER;
             }
-        }
-        else if(checkedRadioButtonId == R.id.video_button){
+        } else if (checkedRadioButtonId == R.id.video_button) {
             kind = 'v';
             selectedStream = videoStreamsAdapter.getItem(selectedVideoIndex);
 
@@ -893,8 +895,7 @@ public class DownloadDialog extends DialogFragment
                     nearLength = secondary.getSizeInBytes() + videoSize;
                 }
             }
-        }
-        else if(checkedRadioButtonId == R.id.subtitle_button){
+        } else if (checkedRadioButtonId == R.id.subtitle_button) {
             threads = 1; // use unique thread for subtitles due small file size
             kind = 's';
             selectedStream = subtitleStreamsAdapter.getItem(selectedSubtitleIndex);
@@ -906,8 +907,7 @@ public class DownloadDialog extends DialogFragment
                         "false" // ignore empty frames
                 };
             }
-        }
-        else{
+        } else {
             return;
         }
 
