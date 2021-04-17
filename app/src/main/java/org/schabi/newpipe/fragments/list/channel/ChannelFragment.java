@@ -393,7 +393,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         }
 
         final int viewId = v.getId();
-        if(viewId == R.id.sub_channel_avatar_view || viewId == R.id.sub_channel_title_view){
+        if (viewId == R.id.sub_channel_avatar_view || viewId == R.id.sub_channel_title_view) {
             if (!TextUtils.isEmpty(currentInfo.getParentChannelUrl())) {
                 try {
                     NavigationHelper.openChannelFragment(getFM(), currentInfo.getServiceId(),
