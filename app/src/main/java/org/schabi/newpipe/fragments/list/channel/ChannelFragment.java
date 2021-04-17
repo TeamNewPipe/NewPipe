@@ -189,26 +189,24 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                NavigationHelper.openSettings(requireContext());
-                break;
-            case R.id.menu_item_rss:
-                openRssFeed();
-                break;
-            case R.id.menu_item_openInBrowser:
-                if (currentInfo != null) {
-                    ShareUtils.openUrlInBrowser(requireContext(), currentInfo.getOriginalUrl());
-                }
-                break;
-            case R.id.menu_item_share:
-                if (currentInfo != null) {
-                    ShareUtils.shareText(requireContext(), name, currentInfo.getOriginalUrl());
-                }
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
+        final int itemId = item.getItemId();
+
+        if (itemId == R.id.action_settings) {
+            NavigationHelper.openSettings(requireContext());
+        } else if (itemId == R.id.menu_item_rss) {
+            openRssFeed();
+        } else if (itemId == R.id.menu_item_openInBrowser) {
+            if (currentInfo != null) {
+                ShareUtils.openUrlInBrowser(requireContext(), currentInfo.getOriginalUrl());
+            }
+        } else if (itemId == R.id.menu_item_share) {
+            if (currentInfo != null) {
+                ShareUtils.shareText(requireContext(), name, currentInfo.getOriginalUrl());
+            }
+        } else {
+            return super.onOptionsItemSelected(item);
         }
+
         return true;
     }
 
@@ -394,22 +392,21 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
             return;
         }
 
-        switch (v.getId()) {
-            case R.id.sub_channel_avatar_view:
-            case R.id.sub_channel_title_view:
-                if (!TextUtils.isEmpty(currentInfo.getParentChannelUrl())) {
-                    try {
-                        NavigationHelper.openChannelFragment(getFM(), currentInfo.getServiceId(),
-                                currentInfo.getParentChannelUrl(),
-                                currentInfo.getParentChannelName());
-                    } catch (final Exception e) {
-                        ErrorActivity.reportUiErrorInSnackbar(this, "Opening channel fragment", e);
-                    }
-                } else if (DEBUG) {
-                    Log.i(TAG, "Can't open parent channel because we got no channel URL");
+        final int viewId = v.getId();
+        if(viewId == R.id.sub_channel_avatar_view || viewId == R.id.sub_channel_title_view){
+            if (!TextUtils.isEmpty(currentInfo.getParentChannelUrl())) {
+                try {
+                    NavigationHelper.openChannelFragment(getFM(), currentInfo.getServiceId(),
+                            currentInfo.getParentChannelUrl(),
+                            currentInfo.getParentChannelName());
+                } catch (final Exception e) {
+                    ErrorActivity.reportUiErrorInSnackbar(this, "Opening channel fragment", e);
                 }
-                break;
+            } else if (DEBUG) {
+                Log.i(TAG, "Can't open parent channel because we got no channel URL");
+            }
         }
+
     }
 
     /*//////////////////////////////////////////////////////////////////////////
