@@ -531,7 +531,7 @@
     <string name="hold_to_append">সারিতে ঢুকাতে ধরে রাখো</string>
     <string name="select_a_kiosk">কিয়স্ক নির্বাচন করো</string>
     <string name="charset_most_special_characters">সর্বাধিক বিশেষ অক্ষর</string>
-    <string name="subscribers_count_not_available">সাব্সক্রাইবার গণনা পাওয়া যায়নি</string>
+    <string name="subscribers_count_not_available">সাবস্ক্রাইবার গণনা পাওয়া যায়নি</string>
     <string name="detail_drag_description">সাজাতে টানো</string>
     <string name="copy_for_github">প্রতিবেদন অনুলিপি করো</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">শুধুমাত্র অদলবদ্ধ সদস্যতা দেখাও</string>
@@ -563,7 +563,7 @@
     <string name="feed_update_threshold_summary">শেষ হালনাগাদের পর একটি সাবস্ক্রিপশনের আগের সময় সেকেলে বিবেচিত — %s</string>
     <string name="feed_group_dialog_delete_message">আপনি কি এ গ্রুপটি মুছতে চান\?</string>
     <string name="website_encouragement">আরও তথ্য এবং খবরের জন্য নিউপাইপ ওয়েবসাইট দেখো।</string>
-    <string name="toast_no_player">এ ফাইলটি চালানোর জন্য কোন অ্য়াপ ইন্সটল নেই</string>
+    <string name="toast_no_player">এ ফাইলটি চালানোর জন্য কোন অ্যাপ ইন্সটলকৃত নেই</string>
     <string name="drawer_header_action_paceholder_text">এখানে দ্রুতই কিছু আসবে ;D</string>
     <string name="override_current_data">এতে তোমার বর্তমান অবস্থা সরানো হবে।</string>
     <string name="could_not_import_all_files">সতর্কতা: সব তথ্য আনা যায়নি।</string>
@@ -573,4 +573,7 @@
     <string name="auto_device_theme_title">স্বয়ংক্রিয় (ডিভাইস রঙ)</string>
     <string name="show_description_summary">ভিডিও ব্যাখ্যা ও অন্যান্য তথ্য লুকাও</string>
     <string name="night_theme_title">অন্ধকার রঙ</string>
+    <string name="notification_channel_description">নিউপাইপের জন্য পটভূমিতে ও পপ-আপ প্লেয়ারের বিজ্ঞপ্তি</string>
+    <string name="error_ssl_exception">নিরাপদ সংযোগ স্থাপন করা যায় নি</string>
+    <string name="show_channel_details">চ্যানেলের তথ্য দেখাও</string>
 </resources>

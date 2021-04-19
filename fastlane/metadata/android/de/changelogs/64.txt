@@ -1,0 +1,8 @@
+### Verbesserungen
+- Eine Möglichkeit die Videoqualität, bei Nutzung mobiler Daten, zu drosseln wurde hinzugefügt. #1339
+- Merke Helligkeitsstufe für diese Instanz #1442
+- Verbesserte download Leistung für schwächere CPUs #1431
+- Hinzugefügte (instand) Unterstützung für Mediensitzungen #1433
+
+### Reparaturen (Fix)
+- Absturz beim Öffnen von Downloads behoben (Fix jetzt für Release-Builds verfügbar) # 1441
