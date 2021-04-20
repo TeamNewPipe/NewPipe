@@ -312,25 +312,27 @@ public class DownloadDialog extends DialogFragment
 
     private void fetchStreamsSize() {
         disposables.clear();
-
         disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedVideoStreams)
                 .subscribe(result -> {
-            if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.video_button) {
-                setupVideoSpinner();
-            }
-        }));
+                    if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()
+                            == R.id.video_button) {
+                        setupVideoSpinner();
+                    }
+                }, throwable -> Log.e(TAG, "Throwable " + throwable.getMessage())));
         disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedAudioStreams)
                 .subscribe(result -> {
-            if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button) {
-                setupAudioSpinner();
-            }
-        }));
+                    if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()
+                            == R.id.audio_button) {
+                        setupAudioSpinner();
+                    }
+                }, throwable -> Log.e(TAG, "Throwable " + throwable.getMessage())));
         disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedSubtitleStreams)
                 .subscribe(result -> {
-            if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.subtitle_button) {
-                setupSubtitleSpinner();
-            }
-        }));
+                    if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()
+                            == R.id.subtitle_button) {
+                        setupSubtitleSpinner();
+                    }
+                }, throwable -> Log.e(TAG, "Throwable " + throwable.getMessage())));
     }
 
     @Override
