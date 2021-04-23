@@ -1,0 +1,63 @@
+name: CI Sync Branches
+
+on:
+  schedule:
+    - cron:  '0 0 * * *'    # Evey day at 00:00
+
+  workflow_dispatch:  # click the button on Github repo!
+
+
+jobs:
+  sync_master_with_upstream:
+    runs-on: ubuntu-latest
+    name: Sync master with upstream latest
+
+    steps:
+    - name: Checkout master
+      uses: actions/checkout@v2
+      with:
+        ref: master
+
+    - name: Pull (Fast-Forward) upstream changes
+      id: sync
+      uses: aormsby/Fork-Sync-With-Upstream-action@v2.1
+      with:
+        upstream_repository: TeamNewPipe/NewPipe
+        upstream_branch: master
+        target_branch: master
+        git_pull_args: --ff-only                    # optional arg use, defaults to simple 'pull'
+        github_token: ${{ secrets.GITHUB_TOKEN }}   # optional, for accessing repos that require authentication
+
+    - name: Check for new commits
+      if: steps.sync.outputs.has_new_commits
+      run: echo "There were new commits."
+
+    - name: Timestamp
+      run: date
+
+  sync_dev_with_upstream:
+    runs-on: ubuntu-latest
+    name: Sync dev with upstream latest
+
+    steps:
+    - name: Checkout dev
+      uses: actions/checkout@v2
+      with:
+        ref: dev
+
+    - name: Pull (Fast-Forward) upstream changes
+      id: sync
+      uses: aormsby/Fork-Sync-With-Upstream-action@v2.1
+      with:
+        upstream_repository: TeamNewPipe/NewPipe
+        upstream_branch: dev
+        target_branch: dev
+        git_pull_args: --ff-only                    # optional arg use, defaults to simple 'pull'
+        github_token: ${{ secrets.GITHUB_TOKEN }}   # optional, for accessing repos that require authentication
+
+    - name: Check for new commits
+      if: steps.sync.outputs.has_new_commits
+      run: echo "There were new commits."
+
+    - name: Timestamp
+      run: date
