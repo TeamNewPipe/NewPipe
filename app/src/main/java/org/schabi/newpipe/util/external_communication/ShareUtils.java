@@ -260,6 +260,23 @@ public final class ShareUtils {
     }
 
     /**
+     * Open the android share sheet to share a content.
+     *
+     * For Android 10+ users, a content preview is shown, which includes the title of the shared
+     * content.
+     * <p>
+     * This calls {@link #shareText(Context, String, String, String)} with an empty string for the
+     * imagePreviewUrl parameter.
+     *
+     * @param context the context to use
+     * @param title   the title of the content
+     * @param content the content to share
+     */
+    public static void shareText(final Context context, final String title, final String content) {
+        shareText(context, title, content, "");
+    }
+
+    /**
      * Copy the text to clipboard, and indicate to the user whether the operation was completed
      * successfully using a Toast.
      *

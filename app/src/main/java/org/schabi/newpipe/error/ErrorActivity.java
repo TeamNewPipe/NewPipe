@@ -195,7 +195,8 @@ public class ErrorActivity extends AppCompatActivity {
                 onBackPressed();
                 return true;
             case R.id.menu_item_share_error:
-                ShareUtils.shareText(this, getString(R.string.error_report_title), buildJson());
+                ShareUtils.shareText(getApplicationContext(),
+                        getString(R.string.error_report_title), buildJson());
                 return true;
             default:
                 return false;
