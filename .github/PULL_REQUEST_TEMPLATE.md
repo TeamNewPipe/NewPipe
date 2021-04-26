@@ -13,8 +13,8 @@
 - take over the world
 
 #### Fixes the following issue(s)
-<!-- Also add any other links relevant to your change. -->
-- 
+<!-- Prefix issues with "Fixes" so that GitHub closes them when the PR is merged (note that each "Fixes #" should be in its own item). Also add any other relevant links. -->
+- Fixes #
 
 #### Relies on the following changes
 <!-- Delete this if it doesn't apply to you. -->

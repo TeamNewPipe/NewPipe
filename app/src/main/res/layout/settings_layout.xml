@@ -6,14 +6,14 @@
     android:orientation="vertical"
     tools:context="org.schabi.newpipe.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/fragment_holder"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/settings_fragment_holder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize" />
 
     <include
         layout="@layout/toolbar_layout"
-        android:id="@+id/toolbar_layout"/>
+        android:id="@+id/settings_toolbar_layout"/>
 
 </RelativeLayout>

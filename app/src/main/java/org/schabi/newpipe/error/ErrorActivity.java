@@ -1,7 +1,6 @@
 package org.schabi.newpipe.error;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,6 +15,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -137,6 +137,8 @@ public class ErrorActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
+
+        ThemeHelper.setDayNightMode(this);
         ThemeHelper.setTheme(this);
 
         activityErrorBinding = ActivityErrorBinding.inflate(getLayoutInflater());

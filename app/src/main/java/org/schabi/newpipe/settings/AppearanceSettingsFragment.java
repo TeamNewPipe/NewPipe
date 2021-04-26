@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.preference.Preference;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.ThemeHelper;
 
 public class AppearanceSettingsFragment extends BasePreferenceFragment {
     private static final boolean CAPTIONING_SETTINGS_ACCESSIBLE =
@@ -21,8 +21,8 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
     private String captionSettingsKey;
 
     @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
+        addPreferencesFromResource(R.xml.appearance_settings);
 
         final String themeKey = getString(R.string.theme_key);
         // the key of the active theme when settings were opened (or recreated after theme change)
@@ -59,11 +59,6 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
     }
 
     @Override
-    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.appearance_settings);
-    }
-
-    @Override
     public boolean onPreferenceTreeClick(final Preference preference) {
         if (preference.getKey().equals(captionSettingsKey) && CAPTIONING_SETTINGS_ACCESSIBLE) {
             try {
@@ -88,6 +83,8 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
                                   final Object newValue) {
         defaultPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, true).apply();
         defaultPreferences.edit().putString(themeKey, newValue.toString()).apply();
+
+        ThemeHelper.setDayNightMode(getContext(), newValue.toString());
 
         if (!newValue.equals(beginningThemeKey) && getActivity() != null) {
             // if it's not the current theme

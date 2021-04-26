@@ -9,7 +9,7 @@
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Build Status"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
-<a href="http://webchat.freenode.net/?channels=%23newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
+<a href="https://webchat.freenode.net/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
@@ -87,9 +87,9 @@ NewPipe suportă servicii multiple. [Documentele](https://teamnewpipe.github.io/
 
 ## Instalare şi actualizări
 Puteţi instala NewPipe folosind una dintre următoarele metode:
- 1. Adăugaţi depozitul nostru F-droid personalizat. Instrucţiunile sunt aici: https://newpipe.schabi.org/FAQ/tutorials/install-add-fdroid-repo/
+ 1. Adăugaţi depozitul nostru F-droid personalizat. Instrucţiunile sunt aici: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
  2. Descărcaţi APK-ul din [Github Releases](https://github.com/TeamNewPipe/NewPipe/releases) şi instalaţi-l.
- 3. Actualizaţi via F-Droid. Aceasta este cea mai lentă metodă de a obţine actualizări, deoarece F-Droid trebuie să recunoască schimbările, să constriască APK-ul, să îl semneze, iar apoi să îl trimită utilizatorilor. (**IMPORTANT**: în momentul scrierii, o problemă împiedică versiunile mai noi de 0.20.1 să fie publicate. Aşa că, dacă doriţi să folosiţi F-droid, până această problemă este rezolvată, vă recomandăm metoda 1.)
+ 3. Actualizaţi via F-Droid. Aceasta este cea mai lentă metodă de a obţine actualizări, deoarece F-Droid trebuie să recunoască schimbările, să constriască APK-ul, să îl semneze, iar apoi să îl trimită utilizatorilor.
  4. Construiţi un APK de depanare. Aceasta este cea mai rapidă metodă de a primi funcţii noi, dar este mult mai complicată, aşa că vă recomandăm să folosiţi una dintre celelalte metode.
 
 Recomandăm metoda 1 pentru majoritatea utilizatorilor. APK-urile din metodele 1 şi 2 suntcompatibile una cu cealaltă, dar nu cu cele din metoda 3. Acest lucru se datorează faptului că aceeași cheie de semnare (a noastră) este utilizată pentru 1 și 2, dar o altă cheie de semnare (F-Droid) este utilizată pentru 3. Construirea unui APK de depanare folosind metoda 4 exclude o cheie în întregime. Cheile de semnare vă asigură că un utilizator nu este păcălit să instaleze o actualizare rău intenționată a unei aplicații.
@@ -137,7 +137,7 @@ Proiectul NewPipe îşi propune să furnizeze o experienţă privată şi anonim
 Prin urmare, aplicaţia nu colectează niciun fel de informaţii fără acordul dumneavoastră. Politica de confidențialitate a NewPipe explică în detaliu ce date sunt trimise și stocate atunci când trimiteți un raport de blocare sau comentați pe blogul nostru. Puteți găsi documentul [aici](https://newpipe.net/legal/privacy/).
 
 ## Licenţă
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
 NewPipe este Software Gratuit: Îl puteţi folosi şi împărtăşi cum doriţi. Mai exact, îl puteți redistribui și / sau modifica în conformitate cu termenii
 [GNU General Public License](https://www.gnu.org/licenses/gpl.html) aşa cum a fost publicat de Free Software Foundation, fie versiunea 3 a Licenței, fie

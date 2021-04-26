@@ -9,7 +9,7 @@
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="Laysinka: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Darajada Dhismaha"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Heerka Turjimaada"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
-<a href="http://webchat.freenode.net/?channels=%23newpipe" alt="Kanaalka IRC: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
+<a href="https://webchat.freenode.net/#newpipe" alt="Kanaalka IRC: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
 <a href="https://www.bountysource.com/teams/newpipe" alt="Kuwa Bountysource "><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
@@ -133,6 +133,6 @@ Mashruuca NewPipe waxay ujeedadiisu tahay inuu bixiyo wax kuu gaar ah, oo adoon 
 Sidaa darteed, app-ku wax xog ah ma uruuriyo fasaxaaga la'aantii. Siyaasada Sirdhawrka NewPipe ayaa si faahfaahsan u sharaxda waxii xog ah ee la diro markaad cillad wariso, ama aad bogganaga faallo ka dhiibato. Warqada waxaad ka heli kartaa [halkan](https://newpipe.net/legal/privacy/).
 
 ## Laysinka
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
 NewPipe waa barnaamij bilaash ah oon lahayn xuquuqda daabacaada: Waad isticmaali kartaa, waad wadaagi kartaa waadna hormarin kartaa hadaad rabto. Gaar ahaan waad sii daabici kartaa ama wax baad ka badali kartaa ayadoo la raacayo shuruudaha sharciga guud ee [GNU](https://www.gnu.org/licenses/gpl.html) sida ay soosaareen Ururka Barnaamijyada Bilaashka ah, soosaarista 3aad ee laysinka, ama (hadaad doonto) nooc walba oo kasii dambeeyay laysinkii 3aad. 

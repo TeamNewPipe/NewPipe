@@ -1,7 +1,6 @@
 package org.schabi.newpipe.settings;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
@@ -50,8 +49,35 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private String initialLanguage;
 
     @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
+        final File homeDir = ContextCompat.getDataDir(requireContext());
+        manager = new ContentSettingsManager(new NewPipeFileLocator(homeDir));
+        manager.deleteSettingsFile();
+
+        addPreferencesFromResource(R.xml.content_settings);
+
+        final Preference importDataPreference = findPreference(getString(R.string.import_data));
+        importDataPreference.setOnPreferenceClickListener(p -> {
+            final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
+                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
+                            FilePickerActivityHelper.MODE_FILE);
+            startActivityForResult(i, REQUEST_IMPORT_PATH);
+            return true;
+        });
+
+        final Preference exportDataPreference = findPreference(getString(R.string.export_data));
+        exportDataPreference.setOnPreferenceClickListener(p -> {
+            final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
+                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
+                            FilePickerActivityHelper.MODE_DIR);
+            startActivityForResult(i, REQUEST_EXPORT_PATH);
+            return true;
+        });
+
         thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
         youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
 
@@ -104,37 +130,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     }
 
     @Override
-    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        final File homeDir = ContextCompat.getDataDir(requireContext());
-        manager = new ContentSettingsManager(new NewPipeFileLocator(homeDir));
-        manager.deleteSettingsFile();
-
-        addPreferencesFromResource(R.xml.content_settings);
-
-        final Preference importDataPreference = findPreference(getString(R.string.import_data));
-        importDataPreference.setOnPreferenceClickListener(p -> {
-            final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
-                            FilePickerActivityHelper.MODE_FILE);
-            startActivityForResult(i, REQUEST_IMPORT_PATH);
-            return true;
-        });
-
-        final Preference exportDataPreference = findPreference(getString(R.string.export_data));
-        exportDataPreference.setOnPreferenceClickListener(p -> {
-            final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
-                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
-                            FilePickerActivityHelper.MODE_DIR);
-            startActivityForResult(i, REQUEST_EXPORT_PATH);
-            return true;
-        });
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
 
@@ -174,7 +169,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
                 exportDatabase(path + "/NewPipeData-" + sdf.format(new Date()) + ".zip");
             } else {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                final AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
                 builder.setMessage(R.string.override_current_data)
                         .setPositiveButton(getString(R.string.finish),
                                 (d, id) -> importDatabase(path))
@@ -220,7 +215,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
             //If settings file exist, ask if it should be imported.
             if (manager.extractSettings(filePath)) {
-                final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                final AlertDialog.Builder alert = new AlertDialog.Builder(requireContext());
                 alert.setTitle(R.string.import_settings);
 
                 alert.setNegativeButton(android.R.string.no, (dialog, which) -> {
