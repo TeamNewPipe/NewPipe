@@ -288,7 +288,7 @@
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="storage_permission_denied">U ogolow app-ka kaydka aaalada marka hore</string>
-    <string name="retry">Markale iskuday</string>
+    <string name="retry">Kuceli</string>
     <string name="audio">Dhagaysi</string>
     <string name="video">Muuqaal</string>
     <string name="info_dir_created">Waa la sameeyay galka soodajinta ee \'%1$s\'</string>
