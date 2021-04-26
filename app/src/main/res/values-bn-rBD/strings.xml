@@ -397,4 +397,5 @@
     </plurals>
     <string name="website_encouragement">আরও তথ্য এবং খবরের জন্য নিউপাইপ ওয়েবসাইট দেখো।</string>
     <string name="open_with">দিয়ে খুলো</string>
+    <string name="comments_tab_description">মতামত</string>
 </resources>
