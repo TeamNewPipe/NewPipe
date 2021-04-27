@@ -27,7 +27,7 @@
         android:layout_gravity="center"
         android:clickable="true"
         android:focusable="true"
-        app:srcCompat="@drawable/ic_help_white_24dp"
+        app:srcCompat="@drawable/ic_help"
         android:background="?attr/selectableItemBackground"
         android:tint="?attr/colorAccent"/>
 </LinearLayout>

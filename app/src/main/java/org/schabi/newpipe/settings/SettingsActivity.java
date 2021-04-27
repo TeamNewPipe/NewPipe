@@ -56,11 +56,11 @@ public class SettingsActivity extends AppCompatActivity
                 SettingsLayoutBinding.inflate(getLayoutInflater());
         setContentView(settingsLayoutBinding.getRoot());
 
-        setSupportActionBar(settingsLayoutBinding.toolbarLayout.toolbar);
+        setSupportActionBar(settingsLayoutBinding.settingsToolbarLayout.toolbar);
 
         if (savedInstanceBundle == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_holder, new MainSettingsFragment())
+                    .replace(R.id.settings_fragment_holder, new MainSettingsFragment())
                     .commit();
         }
 
@@ -102,7 +102,7 @@ public class SettingsActivity extends AppCompatActivity
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out,
                         R.animator.custom_fade_in, R.animator.custom_fade_out)
-                .replace(R.id.fragment_holder, fragment)
+                .replace(R.id.settings_fragment_holder, fragment)
                 .addToBackStack(null)
                 .commit();
         return true;
