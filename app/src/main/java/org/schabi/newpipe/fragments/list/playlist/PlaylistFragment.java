@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.preference.PreferenceManager;
+import androidx.viewbinding.ViewBinding;
 
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
@@ -278,8 +280,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     @Override
     public void handleNextItems(final ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
-        playlistOverallDurationSeconds += calcSumDuration(result.getItems());
-        setVideoCountAndOverallDuration(result.hasNextPage());
+        setVideoCountAndOverallDuration(result.getItems(), result.hasNextPage());
     }
 
     @Override
@@ -329,8 +330,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         }
 
         videoCount = result.getStreamCount();
-        playlistOverallDurationSeconds = calcSumDuration(result.getRelatedItems());
-        setVideoCountAndOverallDuration(result.hasNextPage());
+        setVideoCountAndOverallDuration(result.getRelatedItems(), result.hasNextPage());
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.REQUESTED_PLAYLIST,
@@ -486,23 +486,28 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         playlistBookmarkButton.setTitle(titleRes);
     }
 
-    private void setVideoCountAndOverallDuration(final boolean isDurationLongerThanCalculated) {
+    private void setVideoCountAndOverallDuration(final List<StreamInfoItem> list,
+                                                 final boolean isDurationLonger) {
         if (activity != null && headerBinding != null) {
-            final String durationPostfix = isDurationLongerThanCalculated ? "+" : "";
-            headerBinding.playlistStreamCount.setText(
-                Localization.concatenateStrings(
-                    Localization.localizeStreamCount(activity, videoCount),
-                    Localization.getDurationString(playlistOverallDurationSeconds)
-                            + durationPostfix)
-            );
+            if (!PreferenceManager.getDefaultSharedPreferences(activity)
+                    .getBoolean(getString(R.string.show_playlist_duration_key), true)) {
+                headerBinding.playlistStreamCount.setText(
+                        Localization.localizeStreamCount(activity, videoCount)
+                );
+            } else {
+                final String durationPostfix = isDurationLonger ? "+" : "";
+                playlistOverallDurationSeconds += list.stream()
+                    .mapToInt(x -> Math.toIntExact(x.getDuration()))
+                    .sum();
+                headerBinding.playlistStreamCount.setText(
+                    Localization.concatenateStrings(
+                        Localization.localizeStreamCount(activity, videoCount),
+                        Localization.getDurationString(playlistOverallDurationSeconds)
+                        + durationPostfix
+                    )
+                );
+            }
         }
-    }
-
-    private int calcSumDuration(final List<StreamInfoItem> list) {
-        final int duration = list.stream()
-            .mapToInt(x -> Math.toIntExact(x.getDuration()))
-            .sum();
-        return duration;
     }
 
 }
