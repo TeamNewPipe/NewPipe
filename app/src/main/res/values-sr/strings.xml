@@ -489,7 +489,6 @@
     <string name="drawer_header_description">Укључи / искључи услугу, која је тренутно изабрана:</string>
     <string name="detail_drag_description">Превуците за преуређивање</string>
     <string name="description_tab_description">Опис</string>
-    <string name="related_streams_tab_description">Повезани стримови</string>
     <string name="comments_tab_description">Коментари</string>
     <string name="error_report_open_github_notice">Проверите да ли већ постоји проблем који говори о вашем паду апликације. Када правите дупликате карата, одузимате нам време које бисмо могли потрошити на исправљање стварне грешке.</string>
     <string name="error_report_open_issue_button_text">Пријави на GitHub-у</string>

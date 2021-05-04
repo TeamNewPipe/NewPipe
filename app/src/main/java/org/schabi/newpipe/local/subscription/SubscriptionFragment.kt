@@ -208,7 +208,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         if (data != null && data.data != null && resultCode == Activity.RESULT_OK) {
             if (requestCode == REQUEST_EXPORT_CODE) {
                 val exportFile = Utils.getFileForUri(data.data!!)
-                if (!exportFile.parentFile.canWrite() || !exportFile.parentFile.canRead()) {
+                val parentFile = exportFile.parentFile!!
+                if (!parentFile.canWrite() || !parentFile.canRead()) {
                     Toast.makeText(activity, R.string.invalid_directory, Toast.LENGTH_SHORT).show()
                 } else {
                     activity.startService(
