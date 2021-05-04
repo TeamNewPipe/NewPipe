@@ -45,6 +45,7 @@ NewPipe does not use any Google framework libraries, nor the YouTube API. Websit
 ### Features
 
 * Search videos
+* No Login Required
 * Display general info about videos
 * Watch YouTube videos
 * Listen to YouTube videos
