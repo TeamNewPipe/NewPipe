@@ -297,7 +297,7 @@ public final class PlayerHelper {
     }
 
     public static long getPreferredFileSize() {
-        return 512 * 1024L;
+        return 2 * 1024 * 1024L; // ExoPlayer CacheDataSink.MIN_RECOMMENDED_FRAGMENT_SIZE
     }
 
     /**
