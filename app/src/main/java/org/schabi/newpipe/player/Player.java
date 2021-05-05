@@ -188,7 +188,6 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static org.schabi.newpipe.util.Localization.containsCaseInsensitive;
 
 public final class Player implements
-        PlaybackListener,
         ImageLoadingListener,
         VideoListener,
         SeekBar.OnSeekBarChangeListener,
@@ -248,6 +247,8 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
 
     private final PlaybackStateListener playbackStateListener = new PlaybackStateListener();
+
+    private final PlayerPlaybackListener playerPlaybackListener = new PlayerPlaybackListener();
 
     private PlayQueue playQueue;
     private PlayQueueAdapter playQueueAdapter;
@@ -764,7 +765,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Destroy and recovery
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Destroy and recovery
 
     private void destroyPlayer() {
         if (DEBUG) {
@@ -845,17 +846,8 @@ public final class Player implements
         }
 
         if (playQueue != null) {
-            playQueueManager = new MediaSourceManager(this, playQueue);
+            playQueueManager = new MediaSourceManager(playerPlaybackListener, playQueue);
         }
-    }
-
-    @Override // own playback listener
-    public void onPlaybackShutdown() {
-        if (DEBUG) {
-            Log.d(TAG, "onPlaybackShutdown() called");
-        }
-        // destroys the service, which in turn will destroy the player
-        service.onDestroy();
     }
 
     public void smoothStopPlayer() {
@@ -1900,40 +1892,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Playback states
     //////////////////////////////////////////////////////////////////////////*/
-    //region
-
-    @Override // own playback listener
-    public void onPlaybackBlock() {
-        if (exoPlayerIsNull()) {
-            return;
-        }
-        if (DEBUG) {
-            Log.d(TAG, "Playback - onPlaybackBlock() called");
-        }
-
-        currentItem = null;
-        currentMetadata = null;
-        simpleExoPlayer.stop();
-        isPrepared = false;
-
-        changeState(STATE_BLOCKED);
-    }
-
-    @Override // own playback listener
-    public void onPlaybackUnblock(final MediaSource mediaSource) {
-        if (DEBUG) {
-            Log.d(TAG, "Playback - onPlaybackUnblock() called");
-        }
-
-        if (exoPlayerIsNull()) {
-            return;
-        }
-        if (currentState == STATE_BLOCKED) {
-            changeState(STATE_BUFFERING);
-        }
-        simpleExoPlayer.setMediaSource(mediaSource);
-        simpleExoPlayer.prepare();
-    }
+    //region Playback states
 
     public void changeState(final int state) {
         if (DEBUG) {
@@ -2312,21 +2271,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Playback position and seek
     //////////////////////////////////////////////////////////////////////////*/
-    //region
-
-    @Override // own playback listener (this is a getter)
-    public boolean isApproachingPlaybackEdge(final long timeToEndMillis) {
-        // If live, then not near playback edge
-        // If not playing, then not approaching playback edge
-        if (exoPlayerIsNull() || isLive() || !isPlaying()) {
-            return false;
-        }
-
-        final long currentPositionMillis = simpleExoPlayer.getCurrentPosition();
-        final long currentDurationMillis = simpleExoPlayer.getDuration();
-        return currentDurationMillis - currentPositionMillis < timeToEndMillis;
-    }
-
+    //region Playback position and seek
     /**
      * Checks if the current playback is a livestream AND is playing at or beyond the live edge.
      *
@@ -2350,59 +2295,6 @@ public final class Player implements
         return timelineWindow.getDefaultPositionMs() <= simpleExoPlayer.getCurrentPosition();
     }
 
-    @Override // own playback listener
-    public void onPlaybackSynchronize(@NonNull final PlayQueueItem item) {
-        if (DEBUG) {
-            Log.d(TAG, "Playback - onPlaybackSynchronize() called with "
-                    + "item=[" + item.getTitle() + "], url=[" + item.getUrl() + "]");
-        }
-        if (exoPlayerIsNull() || playQueue == null) {
-            return;
-        }
-
-        final boolean onPlaybackInitial = currentItem == null;
-        final boolean hasPlayQueueItemChanged = currentItem != item;
-
-        final int currentPlayQueueIndex = playQueue.indexOf(item);
-        final int currentPlaylistIndex = simpleExoPlayer.getCurrentWindowIndex();
-        final int currentPlaylistSize = simpleExoPlayer.getCurrentTimeline().getWindowCount();
-
-        // If nothing to synchronize
-        if (!hasPlayQueueItemChanged) {
-            return;
-        }
-        currentItem = item;
-
-        // Check if on wrong window
-        if (currentPlayQueueIndex != playQueue.getIndex()) {
-            Log.e(TAG, "Playback - Play Queue may be desynchronized: item "
-                    + "index=[" + currentPlayQueueIndex + "], "
-                    + "queue index=[" + playQueue.getIndex() + "]");
-
-            // Check if bad seek position
-        } else if ((currentPlaylistSize > 0 && currentPlayQueueIndex >= currentPlaylistSize)
-                || currentPlayQueueIndex < 0) {
-            Log.e(TAG, "Playback - Trying to seek to invalid "
-                    + "index=[" + currentPlayQueueIndex + "] with "
-                    + "playlist length=[" + currentPlaylistSize + "]");
-
-        } else if (currentPlaylistIndex != currentPlayQueueIndex || onPlaybackInitial
-                || !isPlaying()) {
-            if (DEBUG) {
-                Log.d(TAG, "Playback - Rewinding to correct "
-                        + "index=[" + currentPlayQueueIndex + "], "
-                        + "from=[" + currentPlaylistIndex + "], "
-                        + "size=[" + currentPlaylistSize + "].");
-            }
-
-            if (item.getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
-                simpleExoPlayer.seekTo(currentPlayQueueIndex, item.getRecoveryPosition());
-                playQueue.unsetRecovery(currentPlayQueueIndex);
-            } else {
-                simpleExoPlayer.seekToDefaultPosition(currentPlayQueueIndex);
-            }
-        }
-    }
 
     private void maybeCorrectSeekPosition() {
         if (playQueue == null || exoPlayerIsNull() || currentMetadata == null) {
@@ -2733,7 +2625,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Play queue, segments and streams
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Play queue, segments and streams
 
     private void maybeAutoQueueNextStream(@NonNull final MediaSourceTag metadata) {
         if (playQueue == null || playQueue.getIndex() != playQueue.size() - 1
@@ -2765,13 +2657,6 @@ public final class Player implements
             saveStreamProgressState();
         }
         playQueue.setIndex(index);
-    }
-
-    @Override
-    public void onPlayQueueEdited() {
-        notifyPlaybackUpdateToListeners();
-        showOrHideButtons();
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
     private void onQueueClicked() {
@@ -2946,12 +2831,6 @@ public final class Player implements
                 }
             }
         };
-    }
-
-    @Override // own playback listener
-    @Nullable
-    public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-        return (isAudioOnly ? audioResolver : videoResolver).resolve(info);
     }
 
     public void disablePreloadingOfCurrentTrack() {
@@ -4226,7 +4105,7 @@ public final class Player implements
                 case ExoPlaybackException.TYPE_RENDERER:
                 default:
                     showUnrecoverableError(error);
-                    onPlaybackShutdown();
+                    playerPlaybackListener.onPlaybackShutdown();
                     break;
             }
 
@@ -4237,4 +4116,140 @@ public final class Player implements
         //endregion
     }
     //endregion /* Impl EventListener */
+
+    //region Impl NewPipe's own PlaybackListener
+    class PlayerPlaybackListener implements PlaybackListener {
+
+        //region Playback position and seek
+        @Override // own playback listener (this is a getter)
+        public boolean isApproachingPlaybackEdge(final long timeToEndMillis) {
+            // If live, then not near playback edge
+            // If not playing, then not approaching playback edge
+            if (exoPlayerIsNull() || isLive() || !isPlaying()) {
+                return false;
+            }
+
+            final long currentPositionMillis = simpleExoPlayer.getCurrentPosition();
+            final long currentDurationMillis = simpleExoPlayer.getDuration();
+            return currentDurationMillis - currentPositionMillis < timeToEndMillis;
+        }
+
+        @Override // own playback listener
+        public void onPlaybackSynchronize(@NonNull final PlayQueueItem item) {
+            if (DEBUG) {
+                Log.d(TAG, "Playback - onPlaybackSynchronize() called with "
+                        + "item=[" + item.getTitle() + "], url=[" + item.getUrl() + "]");
+            }
+            if (exoPlayerIsNull() || playQueue == null) {
+                return;
+            }
+
+            final boolean onPlaybackInitial = currentItem == null;
+            final boolean hasPlayQueueItemChanged = currentItem != item;
+
+            final int currentPlayQueueIndex = playQueue.indexOf(item);
+            final int currentPlaylistIndex = simpleExoPlayer.getCurrentWindowIndex();
+            final int currentPlaylistSize = simpleExoPlayer.getCurrentTimeline().getWindowCount();
+
+            // If nothing to synchronize
+            if (!hasPlayQueueItemChanged) {
+                return;
+            }
+            currentItem = item;
+
+            // Check if on wrong window
+            if (currentPlayQueueIndex != playQueue.getIndex()) {
+                Log.e(TAG, "Playback - Play Queue may be desynchronized: item "
+                        + "index=[" + currentPlayQueueIndex + "], "
+                        + "queue index=[" + playQueue.getIndex() + "]");
+
+                // Check if bad seek position
+            } else if ((currentPlaylistSize > 0 && currentPlayQueueIndex >= currentPlaylistSize)
+                    || currentPlayQueueIndex < 0) {
+                Log.e(TAG, "Playback - Trying to seek to invalid "
+                        + "index=[" + currentPlayQueueIndex + "] with "
+                        + "playlist length=[" + currentPlaylistSize + "]");
+
+            } else if (currentPlaylistIndex != currentPlayQueueIndex || onPlaybackInitial
+                    || !isPlaying()) {
+                if (DEBUG) {
+                    Log.d(TAG, "Playback - Rewinding to correct "
+                            + "index=[" + currentPlayQueueIndex + "], "
+                            + "from=[" + currentPlaylistIndex + "], "
+                            + "size=[" + currentPlaylistSize + "].");
+                }
+
+                if (item.getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
+                    simpleExoPlayer.seekTo(currentPlayQueueIndex, item.getRecoveryPosition());
+                    playQueue.unsetRecovery(currentPlayQueueIndex);
+                } else {
+                    simpleExoPlayer.seekToDefaultPosition(currentPlayQueueIndex);
+                }
+            }
+        }
+        //endregion
+
+        //region Playback states
+        @Override // own playback listener
+        public void onPlaybackBlock() {
+            if (exoPlayerIsNull()) {
+                return;
+            }
+            if (DEBUG) {
+                Log.d(TAG, "Playback - onPlaybackBlock() called");
+            }
+
+            currentItem = null;
+            currentMetadata = null;
+            simpleExoPlayer.stop();
+            isPrepared = false;
+
+            changeState(STATE_BLOCKED);
+        }
+
+        @Override // own playback listener
+        public void onPlaybackUnblock(final MediaSource mediaSource) {
+            if (DEBUG) {
+                Log.d(TAG, "Playback - onPlaybackUnblock() called");
+            }
+
+            if (exoPlayerIsNull()) {
+                return;
+            }
+            if (currentState == STATE_BLOCKED) {
+                changeState(STATE_BUFFERING);
+            }
+            simpleExoPlayer.setMediaSource(mediaSource);
+            simpleExoPlayer.prepare();
+        }
+        //endregion
+
+        //region Play queue, segments and streams
+        @Override // own playback listener
+        @Nullable
+        public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
+            return (isAudioOnly ? audioResolver : videoResolver).resolve(info);
+        }
+
+        @Override
+        public void onPlayQueueEdited() {
+            notifyPlaybackUpdateToListeners();
+            showOrHideButtons();
+            NotificationUtil.getInstance()
+                    .createNotificationIfNeededAndUpdate(Player.this, false);
+        }
+        //endregion
+
+        //region Destroy and recovery
+        @Override // own playback listener
+        public void onPlaybackShutdown() {
+            if (DEBUG) {
+                Log.d(TAG, "onPlaybackShutdown() called");
+            }
+            // destroys the service, which in turn will destroy the player
+            service.onDestroy();
+        }
+        //endregion
+    }
+    //endregion /* Impl NewPipe's own PlaybackListener */
 }
