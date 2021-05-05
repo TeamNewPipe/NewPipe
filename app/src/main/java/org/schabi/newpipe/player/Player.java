@@ -188,7 +188,6 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static org.schabi.newpipe.util.Localization.containsCaseInsensitive;
 
 public final class Player implements
-        EventListener,
         PlaybackListener,
         ImageLoadingListener,
         VideoListener,
@@ -247,6 +246,8 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
     //////////////////////////////////////////////////////////////////////////*/
+
+    private final PlaybackStateListener playbackStateListener = new PlaybackStateListener();
 
     private PlayQueue playQueue;
     private PlayQueueAdapter playQueueAdapter;
@@ -378,10 +379,7 @@ public final class Player implements
 
 
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Constructor
-    //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Constructor
 
     public Player(@NonNull final MainPlayer service) {
         this.service = service;
@@ -476,7 +474,7 @@ public final class Player implements
                 .setTrackSelector(trackSelector)
                 .setLoadControl(loadController)
                 .build();
-        simpleExoPlayer.addListener(this);
+        simpleExoPlayer.addListener(playbackStateListener);
         simpleExoPlayer.setPlayWhenReady(playOnReady);
         simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
         simpleExoPlayer.setWakeMode(C.WAKE_MODE_NETWORK);
@@ -773,7 +771,7 @@ public final class Player implements
             Log.d(TAG, "destroyPlayer() called");
         }
         if (!exoPlayerIsNull()) {
-            simpleExoPlayer.removeListener(this);
+            simpleExoPlayer.removeListener(playbackStateListener);
             simpleExoPlayer.stop();
             simpleExoPlayer.release();
         }
@@ -1904,63 +1902,6 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region
 
-    @Override // exoplayer listener
-    public void onPlayerStateChanged(final boolean playWhenReady, final int playbackState) {
-        if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - onPlayerStateChanged() called with: "
-                    + "playWhenReady = [" + playWhenReady + "], "
-                    + "playbackState = [" + playbackState + "]");
-        }
-
-        if (currentState == STATE_PAUSED_SEEK) {
-            if (DEBUG) {
-                Log.d(TAG, "ExoPlayer - onPlayerStateChanged() is currently blocked");
-            }
-            return;
-        }
-
-        switch (playbackState) {
-            case com.google.android.exoplayer2.Player.STATE_IDLE: // 1
-                isPrepared = false;
-                break;
-            case com.google.android.exoplayer2.Player.STATE_BUFFERING: // 2
-                if (isPrepared) {
-                    changeState(STATE_BUFFERING);
-                }
-                break;
-            case com.google.android.exoplayer2.Player.STATE_READY: //3
-                maybeUpdateCurrentMetadata();
-                maybeCorrectSeekPosition();
-                if (!isPrepared) {
-                    isPrepared = true;
-                    onPrepared(playWhenReady);
-                }
-                changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
-                break;
-            case com.google.android.exoplayer2.Player.STATE_ENDED: // 4
-                changeState(STATE_COMPLETED);
-                saveStreamProgressStateCompleted();
-                isPrepared = false;
-                break;
-        }
-    }
-
-    @Override // exoplayer listener
-    public void onIsLoadingChanged(final boolean isLoading) {
-        if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - onLoadingChanged() called with: "
-                    + "isLoading = [" + isLoading + "]");
-        }
-
-        if (!isLoading && currentState == STATE_PAUSED && isProgressLoopRunning()) {
-            stopProgressLoop();
-        } else if (isLoading && !isProgressLoopRunning()) {
-            startProgressLoop();
-        }
-
-        maybeUpdateCurrentMetadata();
-    }
-
     @Override // own playback listener
     public void onPlaybackBlock() {
         if (exoPlayerIsNull()) {
@@ -2220,7 +2161,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Repeat and shuffle
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Repeat and shuffle
 
     public void onRepeatClicked() {
         if (DEBUG) {
@@ -2249,35 +2190,6 @@ public final class Player implements
         if (!exoPlayerIsNull()) {
             simpleExoPlayer.setRepeatMode(repeatMode);
         }
-    }
-
-    @Override
-    public void onRepeatModeChanged(@RepeatMode final int repeatMode) {
-        if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - onRepeatModeChanged() called with: "
-                    + "repeatMode = [" + repeatMode + "]");
-        }
-        setRepeatModeButton(((AppCompatImageButton) binding.repeatButton), repeatMode);
-        onShuffleOrRepeatModeChanged();
-    }
-
-    @Override
-    public void onShuffleModeEnabledChanged(final boolean shuffleModeEnabled) {
-        if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - onShuffleModeEnabledChanged() called with: "
-                    + "mode = [" + shuffleModeEnabled + "]");
-        }
-
-        if (playQueue != null) {
-            if (shuffleModeEnabled) {
-                playQueue.shuffle();
-            } else {
-                playQueue.unshuffle();
-            }
-        }
-
-        setShuffleButton(binding.shuffleButton, shuffleModeEnabled);
-        onShuffleOrRepeatModeChanged();
     }
 
     private void onShuffleOrRepeatModeChanged() {
@@ -2338,80 +2250,6 @@ public final class Player implements
     //region
 
     @Override
-    public void onTimelineChanged(@NonNull final Timeline timeline, final int reason) {
-        if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - onTimelineChanged() called with "
-                    + "timeline size = [" + timeline.getWindowCount() + "], "
-                    + "reason = [" + reason + "]");
-        }
-
-        maybeUpdateCurrentMetadata();
-        // force recreate notification to ensure seek bar is shown when preparation finishes
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, true);
-    }
-
-    @Override
-    public void onTracksChanged(@NonNull final TrackGroupArray trackGroups,
-                                @NonNull final TrackSelectionArray trackSelections) {
-        if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - onTracksChanged(), "
-                    + "track group size = " + trackGroups.length);
-        }
-        maybeUpdateCurrentMetadata();
-        onTextTracksChanged();
-    }
-
-    @Override
-    public void onPlaybackParametersChanged(@NonNull final PlaybackParameters playbackParameters) {
-        if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - playbackParameters(), speed = [" + playbackParameters.speed
-                    + "], pitch = [" + playbackParameters.pitch + "]");
-        }
-        binding.playbackSpeed.setText(formatSpeed(playbackParameters.speed));
-    }
-
-    @Override
-    public void onPositionDiscontinuity(@DiscontinuityReason final int discontinuityReason) {
-        if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - onPositionDiscontinuity() called with "
-                    + "discontinuityReason = [" + discontinuityReason + "]");
-        }
-        if (playQueue == null) {
-            return;
-        }
-
-        // Refresh the playback if there is a transition to the next video
-        final int newWindowIndex = simpleExoPlayer.getCurrentWindowIndex();
-        switch (discontinuityReason) {
-            case DISCONTINUITY_REASON_PERIOD_TRANSITION:
-                // When player is in single repeat mode and a period transition occurs,
-                // we need to register a view count here since no metadata has changed
-                if (getRepeatMode() == REPEAT_MODE_ONE && newWindowIndex == playQueue.getIndex()) {
-                    registerStreamViewed();
-                    break;
-                }
-            case DISCONTINUITY_REASON_SEEK:
-                if (DEBUG) {
-                    Log.d(TAG, "ExoPlayer - onSeekProcessed() called");
-                }
-                if (isPrepared) {
-                    saveStreamProgressState();
-                }
-            case DISCONTINUITY_REASON_SEEK_ADJUSTMENT:
-            case DISCONTINUITY_REASON_INTERNAL:
-                if (playQueue.getIndex() != newWindowIndex) {
-                    saveStreamProgressStateCompleted(); // current stream has ended
-                    playQueue.setIndex(newWindowIndex);
-                }
-                break;
-            case DISCONTINUITY_REASON_AD_INSERTION:
-                break; // only makes Android Studio linter happy, as there are no ads
-        }
-
-        maybeUpdateCurrentMetadata();
-    }
-
-    @Override
     public void onRenderedFirstFrame() {
         //TODO check if this causes black screen when switching to fullscreen
         animate(binding.surfaceForeground, false, DEFAULT_CONTROLS_DURATION);
@@ -2424,56 +2262,6 @@ public final class Player implements
     // Errors
     //////////////////////////////////////////////////////////////////////////*/
     //region
-    /**
-     * Process exceptions produced by {@link com.google.android.exoplayer2.ExoPlayer ExoPlayer}.
-     * <p>There are multiple types of errors:</p>
-     * <ul>
-     * <li>{@link ExoPlaybackException#TYPE_SOURCE TYPE_SOURCE}</li>
-     * <li>{@link ExoPlaybackException#TYPE_UNEXPECTED TYPE_UNEXPECTED}:
-     * If a runtime error occurred, then we can try to recover it by restarting the playback
-     * after setting the timestamp recovery.</li>
-     * <li>{@link ExoPlaybackException#TYPE_RENDERER TYPE_RENDERER}:
-     * If the renderer failed, treat the error as unrecoverable.</li>
-     * </ul>
-     *
-     * @see #processSourceError(IOException)
-     * @see com.google.android.exoplayer2.Player.EventListener#onPlayerError(ExoPlaybackException)
-     */
-    @Override
-    public void onPlayerError(@NonNull final ExoPlaybackException error) {
-        if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - onPlayerError() called with: " + "error = [" + error + "]");
-        }
-        if (errorToast != null) {
-            errorToast.cancel();
-            errorToast = null;
-        }
-
-        saveStreamProgressState();
-
-        switch (error.type) {
-            case ExoPlaybackException.TYPE_SOURCE:
-                processSourceError(error.getSourceException());
-                showStreamError(error);
-                break;
-            case ExoPlaybackException.TYPE_UNEXPECTED:
-                showRecoverableError(error);
-                setRecovery();
-                reloadPlayQueueManager();
-                break;
-            case ExoPlaybackException.TYPE_REMOTE:
-            case ExoPlaybackException.TYPE_RENDERER:
-            default:
-                showUnrecoverableError(error);
-                onPlaybackShutdown();
-                break;
-        }
-
-        if (fragmentListener != null) {
-            fragmentListener.onPlayerError(error);
-        }
-    }
-
     private void processSourceError(final IOException error) {
         if (exoPlayerIsNull() || playQueue == null) {
             return;
@@ -4220,6 +4008,233 @@ public final class Player implements
     public PlayQueueAdapter getPlayQueueAdapter() {
         return playQueueAdapter;
     }
-
     //endregion
+
+    //region Impl EventListener
+    private class PlaybackStateListener implements EventListener {
+
+        //region Playback states
+        @Override // exoplayer listener
+        public void onPlayerStateChanged(final boolean playWhenReady, final int playbackState) {
+            if (DEBUG) {
+                Log.d(TAG, "ExoPlayer - onPlayerStateChanged() called with: "
+                        + "playWhenReady = [" + playWhenReady + "], "
+                        + "playbackState = [" + playbackState + "]");
+            }
+
+            if (currentState == STATE_PAUSED_SEEK) {
+                if (DEBUG) {
+                    Log.d(TAG, "ExoPlayer - onPlayerStateChanged() is currently blocked");
+                }
+                return;
+            }
+
+            switch (playbackState) {
+                case com.google.android.exoplayer2.Player.STATE_IDLE: // 1
+                    isPrepared = false;
+                    break;
+                case com.google.android.exoplayer2.Player.STATE_BUFFERING: // 2
+                    if (isPrepared) {
+                        changeState(STATE_BUFFERING);
+                    }
+                    break;
+                case com.google.android.exoplayer2.Player.STATE_READY: //3
+                    maybeUpdateCurrentMetadata();
+                    maybeCorrectSeekPosition();
+                    if (!isPrepared) {
+                        isPrepared = true;
+                        onPrepared(playWhenReady);
+                    }
+                    changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
+                    break;
+                case com.google.android.exoplayer2.Player.STATE_ENDED: // 4
+                    changeState(STATE_COMPLETED);
+                    saveStreamProgressStateCompleted();
+                    isPrepared = false;
+                    break;
+            }
+        }
+
+        @Override // exoplayer listener
+        public void onIsLoadingChanged(final boolean isLoading) {
+            if (DEBUG) {
+                Log.d(TAG, "ExoPlayer - onLoadingChanged() called with: "
+                        + "isLoading = [" + isLoading + "]");
+            }
+
+            if (!isLoading && currentState == STATE_PAUSED && isProgressLoopRunning()) {
+                stopProgressLoop();
+            } else if (isLoading && !isProgressLoopRunning()) {
+                startProgressLoop();
+            }
+
+            maybeUpdateCurrentMetadata();
+        }
+        //endregion
+
+        //region Repeat and shuffle
+        @Override
+        public void onRepeatModeChanged(@RepeatMode final int repeatMode) {
+            if (DEBUG) {
+                Log.d(TAG, "ExoPlayer - onRepeatModeChanged() called with: "
+                        + "repeatMode = [" + repeatMode + "]");
+            }
+            setRepeatModeButton(((AppCompatImageButton) binding.repeatButton), repeatMode);
+            onShuffleOrRepeatModeChanged();
+        }
+
+        @Override
+        public void onShuffleModeEnabledChanged(final boolean shuffleModeEnabled) {
+            if (DEBUG) {
+                Log.d(TAG, "ExoPlayer - onShuffleModeEnabledChanged() called with: "
+                        + "mode = [" + shuffleModeEnabled + "]");
+            }
+
+            if (playQueue != null) {
+                if (shuffleModeEnabled) {
+                    playQueue.shuffle();
+                } else {
+                    playQueue.unshuffle();
+                }
+            }
+
+            setShuffleButton(binding.shuffleButton, shuffleModeEnabled);
+            onShuffleOrRepeatModeChanged();
+        }
+        //endregion
+
+        //region ExoPlayer listeners (that didn't fit in other categories)
+        @Override
+        public void onTimelineChanged(@NonNull final Timeline timeline, final int reason) {
+            if (DEBUG) {
+                Log.d(TAG, "ExoPlayer - onTimelineChanged() called with "
+                        + "timeline size = [" + timeline.getWindowCount() + "], "
+                        + "reason = [" + reason + "]");
+            }
+
+            maybeUpdateCurrentMetadata();
+            // force recreate notification to ensure seek bar is shown when preparation finishes
+            NotificationUtil.getInstance().
+                    createNotificationIfNeededAndUpdate(Player.this, true);
+        }
+
+        @Override
+        public void onTracksChanged(@NonNull final TrackGroupArray trackGroups,
+                                    @NonNull final TrackSelectionArray trackSelections) {
+            if (DEBUG) {
+                Log.d(TAG, "ExoPlayer - onTracksChanged(), "
+                        + "track group size = " + trackGroups.length);
+            }
+            maybeUpdateCurrentMetadata();
+            onTextTracksChanged();
+        }
+
+        @Override
+        public void onPlaybackParametersChanged(
+                @NonNull final PlaybackParameters playbackParameters) {
+            if (DEBUG) {
+                Log.d(TAG, "ExoPlayer - playbackParameters(), "
+                        + "speed = [" + playbackParameters.speed
+                        + "], pitch = [" + playbackParameters.pitch + "]");
+            }
+            binding.playbackSpeed.setText(formatSpeed(playbackParameters.speed));
+        }
+
+        @Override
+        public void onPositionDiscontinuity(@DiscontinuityReason final int discontinuityReason) {
+            if (DEBUG) {
+                Log.d(TAG, "ExoPlayer - onPositionDiscontinuity() called with "
+                        + "discontinuityReason = [" + discontinuityReason + "]");
+            }
+            if (playQueue == null) {
+                return;
+            }
+
+            // Refresh the playback if there is a transition to the next video
+            final int newWindowIndex = simpleExoPlayer.getCurrentWindowIndex();
+            switch (discontinuityReason) {
+                case DISCONTINUITY_REASON_PERIOD_TRANSITION:
+                    // When player is in single repeat mode and a period transition occurs,
+                    // we need to register a view count here since no metadata has changed
+                    if (getRepeatMode() == REPEAT_MODE_ONE
+                            && newWindowIndex == playQueue.getIndex()) {
+                        registerStreamViewed();
+                        break;
+                    }
+                case DISCONTINUITY_REASON_SEEK:
+                    if (DEBUG) {
+                        Log.d(TAG, "ExoPlayer - onSeekProcessed() called");
+                    }
+                    if (isPrepared) {
+                        saveStreamProgressState();
+                    }
+                case DISCONTINUITY_REASON_SEEK_ADJUSTMENT:
+                case DISCONTINUITY_REASON_INTERNAL:
+                    if (playQueue.getIndex() != newWindowIndex) {
+                        saveStreamProgressStateCompleted(); // current stream has ended
+                        playQueue.setIndex(newWindowIndex);
+                    }
+                    break;
+                case DISCONTINUITY_REASON_AD_INSERTION:
+                    break; // only makes Android Studio linter happy, as there are no ads
+            }
+
+            maybeUpdateCurrentMetadata();
+        }
+        //endregion
+
+        //region Errors
+        /**
+         * Process exceptions produced by {@link com.google.android.exoplayer2.ExoPlayer ExoPlayer}.
+         * <p>There are multiple types of errors:</p>
+         * <ul>
+         * <li>{@link ExoPlaybackException#TYPE_SOURCE TYPE_SOURCE}</li>
+         * <li>{@link ExoPlaybackException#TYPE_UNEXPECTED TYPE_UNEXPECTED}:
+         * If a runtime error occurred, then we can try to recover it by restarting the playback
+         * after setting the timestamp recovery.</li>
+         * <li>{@link ExoPlaybackException#TYPE_RENDERER TYPE_RENDERER}:
+         * If the renderer failed, treat the error as unrecoverable.</li>
+         * </ul>
+         *
+         * @see #processSourceError(IOException)
+         * @see EventListener#onPlayerError(ExoPlaybackException)
+         */
+        @Override
+        public void onPlayerError(@NonNull final ExoPlaybackException error) {
+            if (DEBUG) {
+                Log.d(TAG, "ExoPlayer - onPlayerError() called with: "
+                        + "error = [" + error + "]");
+            }
+            if (errorToast != null) {
+                errorToast.cancel();
+                errorToast = null;
+            }
+
+            saveStreamProgressState();
+
+            switch (error.type) {
+                case ExoPlaybackException.TYPE_SOURCE:
+                    processSourceError(error.getSourceException());
+                    showStreamError(error);
+                    break;
+                case ExoPlaybackException.TYPE_UNEXPECTED:
+                    showRecoverableError(error);
+                    setRecovery();
+                    reloadPlayQueueManager();
+                    break;
+                case ExoPlaybackException.TYPE_REMOTE:
+                case ExoPlaybackException.TYPE_RENDERER:
+                default:
+                    showUnrecoverableError(error);
+                    onPlaybackShutdown();
+                    break;
+            }
+
+            if (fragmentListener != null) {
+                fragmentListener.onPlayerError(error);
+            }
+        }
+        //endregion
+    }
+    //endregion /* Impl EventListener */
 }
