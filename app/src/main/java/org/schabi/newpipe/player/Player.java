@@ -188,7 +188,6 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static org.schabi.newpipe.util.Localization.containsCaseInsensitive;
 
 public final class Player implements
-        ImageLoadingListener,
         VideoListener,
         SeekBar.OnSeekBarChangeListener,
         View.OnClickListener,
@@ -249,6 +248,8 @@ public final class Player implements
     private final PlaybackStateListener playbackStateListener = new PlaybackStateListener();
 
     private final PlayerPlaybackListener playerPlaybackListener = new PlayerPlaybackListener();
+    private final PlayerImageLoadingListener playerImageLoaderListener
+            = new PlayerImageLoadingListener();
 
     private PlayQueue playQueue;
     private PlayQueueAdapter playQueueAdapter;
@@ -1189,7 +1190,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Thumbnail loading
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Thumbnail loading
 
     private void initThumbnail(final String url) {
         if (DEBUG) {
@@ -1199,8 +1200,9 @@ public final class Player implements
             return;
         }
         ImageLoader.getInstance().resume();
-        ImageLoader.getInstance()
-                .loadImage(url, ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS, this);
+        ImageLoader.getInstance().loadImage(url,
+                ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS,
+                playerImageLoaderListener);
     }
 
     /**
@@ -1275,60 +1277,6 @@ public final class Player implements
         }
     }
 
-    @Override
-    public void onLoadingStarted(final String imageUri, final View view) {
-        if (DEBUG) {
-            Log.d(TAG, "Thumbnail - onLoadingStarted() called on: "
-                    + "imageUri = [" + imageUri + "], view = [" + view + "]");
-        }
-    }
-
-    @Override
-    public void onLoadingFailed(final String imageUri, final View view,
-                                final FailReason failReason) {
-        Log.e(TAG, "Thumbnail - onLoadingFailed() called on imageUri = [" + imageUri + "]",
-                failReason.getCause());
-        currentThumbnail = null;
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-    }
-
-    @Override
-    public void onLoadingComplete(final String imageUri, final View view,
-                                  final Bitmap loadedImage) {
-        // scale down the notification thumbnail for performance
-        final float notificationThumbnailWidth = Math.min(
-                context.getResources().getDimension(R.dimen.player_notification_thumbnail_width),
-                loadedImage.getWidth());
-        currentThumbnail = Bitmap.createScaledBitmap(
-                loadedImage,
-                (int) notificationThumbnailWidth,
-                (int) (loadedImage.getHeight()
-                        / (loadedImage.getWidth() / notificationThumbnailWidth)),
-                true);
-
-        if (DEBUG) {
-            Log.d(TAG, "Thumbnail - onLoadingComplete() called with: "
-                    + "imageUri = [" + imageUri + "], view = [" + view + "], "
-                    + "loadedImage = [" + loadedImage + "], "
-                    + loadedImage.getWidth() + "x" + loadedImage.getHeight()
-                    + ", scaled notification width = " + notificationThumbnailWidth);
-        }
-
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-
-        // there is a new thumbnail, thus the end screen thumbnail needs to be changed, too.
-        updateEndScreenThumbnail();
-    }
-
-    @Override
-    public void onLoadingCancelled(final String imageUri, final View view) {
-        if (DEBUG) {
-            Log.d(TAG, "Thumbnail - onLoadingCancelled() called with: "
-                    + "imageUri = [" + imageUri + "], view = [" + view + "]");
-        }
-        currentThumbnail = null;
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-    }
     //endregion
 
 
@@ -4252,4 +4200,71 @@ public final class Player implements
         //endregion
     }
     //endregion /* Impl NewPipe's own PlaybackListener */
+
+    //region Impl ImageLoadingListener
+    class PlayerImageLoadingListener implements ImageLoadingListener {
+
+        //region Thumbnail loading
+        @Override
+        public void onLoadingStarted(final String imageUri, final View view) {
+            if (DEBUG) {
+                Log.d(TAG, "Thumbnail - onLoadingStarted() called on: "
+                        + "imageUri = [" + imageUri + "], view = [" + view + "]");
+            }
+        }
+
+        @Override
+        public void onLoadingFailed(final String imageUri, final View view,
+                                    final FailReason failReason) {
+            Log.e(TAG, "Thumbnail - onLoadingFailed() called on imageUri = [" + imageUri + "]",
+                    failReason.getCause());
+            currentThumbnail = null;
+            NotificationUtil.getInstance()
+                    .createNotificationIfNeededAndUpdate(Player.this, false);
+        }
+
+        @Override
+        public void onLoadingComplete(final String imageUri, final View view,
+                                      final Bitmap loadedImage) {
+            // scale down the notification thumbnail for performance
+            final float notificationThumbnailWidth = Math.min(
+                    context.getResources().getDimension(
+                            R.dimen.player_notification_thumbnail_width),
+                    loadedImage.getWidth());
+
+            currentThumbnail = Bitmap.createScaledBitmap(
+                    loadedImage,
+                    (int) notificationThumbnailWidth,
+                    (int) (loadedImage.getHeight()
+                            / (loadedImage.getWidth() / notificationThumbnailWidth)),
+                    true);
+
+            if (DEBUG) {
+                Log.d(TAG, "Thumbnail - onLoadingComplete() called with: "
+                        + "imageUri = [" + imageUri + "], view = [" + view + "], "
+                        + "loadedImage = [" + loadedImage + "], "
+                        + loadedImage.getWidth() + "x" + loadedImage.getHeight()
+                        + ", scaled notification width = " + notificationThumbnailWidth);
+            }
+
+            NotificationUtil.getInstance()
+                    .createNotificationIfNeededAndUpdate(Player.this, false);
+
+            // there is a new thumbnail, thus the end screen thumbnail needs to be changed, too.
+            updateEndScreenThumbnail();
+        }
+
+        @Override
+        public void onLoadingCancelled(final String imageUri, final View view) {
+            if (DEBUG) {
+                Log.d(TAG, "Thumbnail - onLoadingCancelled() called with: "
+                        + "imageUri = [" + imageUri + "], view = [" + view + "]");
+            }
+            currentThumbnail = null;
+            NotificationUtil.getInstance()
+                    .createNotificationIfNeededAndUpdate(Player.this, false);
+        }
+        //endregion
+    }
+    //endregion /* Impl ImageLoadingListener */
 }
