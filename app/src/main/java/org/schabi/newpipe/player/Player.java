@@ -188,7 +188,6 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static org.schabi.newpipe.util.Localization.containsCaseInsensitive;
 
 public final class Player implements
-        SeekBar.OnSeekBarChangeListener,
         View.OnClickListener,
         PopupMenu.OnMenuItemClickListener,
         PopupMenu.OnDismissListener,
@@ -250,6 +249,9 @@ public final class Player implements
     private final PlayerImageLoadingListener playerImageLoaderListener
             = new PlayerImageLoadingListener();
     private final PlayerVideoListener playerVideoListener = new PlayerVideoListener();
+
+    private final PlayerOnSeekBarChangeListener playerOnSeekBarChangeListener
+            = new PlayerOnSeekBarChangeListener();
 
     private PlayQueue playQueue;
     private PlayQueueAdapter playQueueAdapter;
@@ -509,7 +511,7 @@ public final class Player implements
     }
 
     private void initListeners() {
-        binding.playbackSeekBar.setOnSeekBarChangeListener(this);
+        binding.playbackSeekBar.setOnSeekBarChangeListener(playerOnSeekBarChangeListener);
         binding.playbackSpeed.setOnClickListener(this);
         binding.qualityTextView.setOnClickListener(this);
         binding.captionTextView.setOnClickListener(this);
@@ -1513,7 +1515,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Progress loop and updates
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Progress loop and updates
 
     private void onUpdateProgress(final int currentProgress,
                                   final int duration,
@@ -1603,62 +1605,6 @@ public final class Player implements
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignored -> triggerProgressUpdate(),
                         error -> Log.e(TAG, "Progress update failure: ", error));
-    }
-
-    @Override // seekbar listener
-    public void onProgressChanged(final SeekBar seekBar, final int progress,
-                                  final boolean fromUser) {
-        if (DEBUG && fromUser) {
-            Log.d(TAG, "onProgressChanged() called with: "
-                    + "seekBar = [" + seekBar + "], progress = [" + progress + "]");
-        }
-        if (fromUser) {
-            binding.currentDisplaySeek.setText(getTimeString(progress));
-        }
-    }
-
-    @Override // seekbar listener
-    public void onStartTrackingTouch(final SeekBar seekBar) {
-        if (DEBUG) {
-            Log.d(TAG, "onStartTrackingTouch() called with: seekBar = [" + seekBar + "]");
-        }
-        if (currentState != STATE_PAUSED_SEEK) {
-            changeState(STATE_PAUSED_SEEK);
-        }
-
-        saveWasPlaying();
-        if (isPlaying()) {
-            simpleExoPlayer.pause();
-        }
-
-        showControls(0);
-        animate(binding.currentDisplaySeek, true, DEFAULT_CONTROLS_DURATION,
-                AnimationType.SCALE_AND_ALPHA);
-    }
-
-    @Override // seekbar listener
-    public void onStopTrackingTouch(final SeekBar seekBar) {
-        if (DEBUG) {
-            Log.d(TAG, "onStopTrackingTouch() called with: seekBar = [" + seekBar + "]");
-        }
-
-        seekTo(seekBar.getProgress());
-        if (wasPlaying || simpleExoPlayer.getDuration() == seekBar.getProgress()) {
-            simpleExoPlayer.play();
-        }
-
-        binding.playbackCurrentTime.setText(getTimeString(seekBar.getProgress()));
-        animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
-
-        if (currentState == STATE_PAUSED_SEEK) {
-            changeState(STATE_BUFFERING);
-        }
-        if (!isProgressLoopRunning()) {
-            startProgressLoop();
-        }
-        if (wasPlaying) {
-            showControlsThenHide();
-        }
     }
 
     public void saveWasPlaying() {
@@ -4277,4 +4223,69 @@ public final class Player implements
         }
     }
     //endregion /* Impl VideoListener */
+
+    //region Impl SeekBar.OnSeekBarChangeListener
+    class PlayerOnSeekBarChangeListener implements SeekBar.OnSeekBarChangeListener {
+
+        //region Progress loop and updates
+        @Override // seekbar listener
+        public void onProgressChanged(final SeekBar seekBar, final int progress,
+                                      final boolean fromUser) {
+            if (DEBUG && fromUser) {
+                Log.d(TAG, "onProgressChanged() called with: "
+                        + "seekBar = [" + seekBar + "], progress = [" + progress + "]");
+            }
+            if (fromUser) {
+                binding.currentDisplaySeek.setText(getTimeString(progress));
+            }
+        }
+
+        @Override // seekbar listener
+        public void onStartTrackingTouch(final SeekBar seekBar) {
+            if (DEBUG) {
+                Log.d(TAG, "onStartTrackingTouch() called with: seekBar = [" + seekBar + "]");
+            }
+            if (currentState != STATE_PAUSED_SEEK) {
+                changeState(STATE_PAUSED_SEEK);
+            }
+
+            saveWasPlaying();
+            if (isPlaying()) {
+                simpleExoPlayer.pause();
+            }
+
+            showControls(0);
+            animate(binding.currentDisplaySeek, true, DEFAULT_CONTROLS_DURATION,
+                    AnimationType.SCALE_AND_ALPHA);
+        }
+
+        @Override // seekbar listener
+        public void onStopTrackingTouch(final SeekBar seekBar) {
+            if (DEBUG) {
+                Log.d(TAG,
+                        "onStopTrackingTouch() called with: seekBar = [" + seekBar + "]");
+            }
+
+            seekTo(seekBar.getProgress());
+            if (wasPlaying || simpleExoPlayer.getDuration() == seekBar.getProgress()) {
+                simpleExoPlayer.play();
+            }
+
+            binding.playbackCurrentTime.setText(getTimeString(seekBar.getProgress()));
+            animate(binding.currentDisplaySeek, false, 200,
+                    AnimationType.SCALE_AND_ALPHA);
+
+            if (currentState == STATE_PAUSED_SEEK) {
+                changeState(STATE_BUFFERING);
+            }
+            if (!isProgressLoopRunning()) {
+                startProgressLoop();
+            }
+            if (wasPlaying) {
+                showControlsThenHide();
+            }
+        }
+        //endregion
+    }
+    //endregion /* Impl SeekBar.OnSeekBarChangeListener */
 }
