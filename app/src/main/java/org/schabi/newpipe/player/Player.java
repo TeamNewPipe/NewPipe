@@ -188,7 +188,6 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static org.schabi.newpipe.util.Localization.containsCaseInsensitive;
 
 public final class Player implements
-        VideoListener,
         SeekBar.OnSeekBarChangeListener,
         View.OnClickListener,
         PopupMenu.OnMenuItemClickListener,
@@ -250,6 +249,7 @@ public final class Player implements
     private final PlayerPlaybackListener playerPlaybackListener = new PlayerPlaybackListener();
     private final PlayerImageLoadingListener playerImageLoaderListener
             = new PlayerImageLoadingListener();
+    private final PlayerVideoListener playerVideoListener = new PlayerVideoListener();
 
     private PlayQueue playQueue;
     private PlayQueueAdapter playQueueAdapter;
@@ -490,7 +490,7 @@ public final class Player implements
 
         // Setup video view
         simpleExoPlayer.setVideoSurfaceView(binding.surfaceView);
-        simpleExoPlayer.addVideoListener(this);
+        simpleExoPlayer.addVideoListener(playerVideoListener);
 
         // Setup subtitle view
         simpleExoPlayer.addTextOutput(binding.subtitleView);
@@ -774,6 +774,7 @@ public final class Player implements
         }
         if (!exoPlayerIsNull()) {
             simpleExoPlayer.removeListener(playbackStateListener);
+            simpleExoPlayer.removeVideoListener(playerVideoListener);
             simpleExoPlayer.stop();
             simpleExoPlayer.release();
         }
@@ -2154,13 +2155,8 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // ExoPlayer listeners (that didn't fit in other categories)
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region ExoPlayer listeners (that didn't fit in other categories)
 
-    @Override
-    public void onRenderedFirstFrame() {
-        //TODO check if this causes black screen when switching to fullscreen
-        animate(binding.surfaceForeground, false, DEFAULT_CONTROLS_DURATION);
-    }
     //endregion
 
 
@@ -3346,7 +3342,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Video size, resize, orientation, fullscreen
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region  Video size, resize, orientation, fullscreen
 
     private void setupScreenRotationButton() {
         binding.screenRotationButton.setVisibility(videoPlayerSelected()
@@ -3367,34 +3363,6 @@ public final class Player implements
         if (binding != null) {
             setResizeMode(nextResizeModeAndSaveToPrefs(this, binding.surfaceView.getResizeMode()));
         }
-    }
-
-    @Override // exoplayer listener
-    public void onVideoSizeChanged(final int width, final int height,
-                                   final int unappliedRotationDegrees,
-                                   final float pixelWidthHeightRatio) {
-        if (DEBUG) {
-            Log.d(TAG, "onVideoSizeChanged() called with: "
-                    + "width / height = [" + width + " / " + height
-                    + " = " + (((float) width) / height) + "], "
-                    + "unappliedRotationDegrees = [" + unappliedRotationDegrees + "], "
-                    + "pixelWidthHeightRatio = [" + pixelWidthHeightRatio + "]");
-        }
-
-        binding.surfaceView.setAspectRatio(((float) width) / height);
-        isVerticalVideo = width < height;
-
-        if (globalScreenOrientationLocked(context)
-                && isFullscreen
-                && service.isLandscape() == isVerticalVideo
-                && !DeviceUtils.isTv(context)
-                && !DeviceUtils.isTablet(context)
-                && fragmentListener != null) {
-            // set correct orientation
-            fragmentListener.onScreenRotationButtonClicked();
-        }
-
-        setupScreenRotationButton();
     }
 
     public void toggleFullscreen() {
@@ -4267,4 +4235,46 @@ public final class Player implements
         //endregion
     }
     //endregion /* Impl ImageLoadingListener */
+
+    //region Impl VideoListener
+    class PlayerVideoListener implements VideoListener {
+
+        //region ExoPlayer listeners (that didn't fit in other categories)
+        @Override
+        public void onRenderedFirstFrame() {
+            //TODO check if this causes black screen when switching to fullscreen
+            animate(binding.surfaceForeground, false, DEFAULT_CONTROLS_DURATION);
+        }
+        //endregion
+
+        //region  Video size, resize, orientation, fullscreen
+        @Override // exoplayer listener
+        public void onVideoSizeChanged(final int width, final int height,
+                                       final int unappliedRotationDegrees,
+                                       final float pixelWidthHeightRatio) {
+            if (DEBUG) {
+                Log.d(TAG, "onVideoSizeChanged() called with: "
+                        + "width / height = [" + width + " / " + height
+                        + " = " + (((float) width) / height) + "], "
+                        + "unappliedRotationDegrees = [" + unappliedRotationDegrees + "], "
+                        + "pixelWidthHeightRatio = [" + pixelWidthHeightRatio + "]");
+            }
+
+            binding.surfaceView.setAspectRatio(((float) width) / height);
+            isVerticalVideo = width < height;
+
+            if (globalScreenOrientationLocked(context)
+                    && isFullscreen
+                    && service.isLandscape() == isVerticalVideo
+                    && !DeviceUtils.isTv(context)
+                    && !DeviceUtils.isTablet(context)
+                    && fragmentListener != null) {
+                // set correct orientation
+                fragmentListener.onScreenRotationButtonClicked();
+            }
+
+            setupScreenRotationButton();
+        }
+    }
+    //endregion /* Impl VideoListener */
 }
