@@ -6,8 +6,8 @@
     <color name="light_youtube_accent_color">#000000</color>
     <color name="light_youtube_statusbar_color">#e53935</color>
 
-    <color name="dark_youtube_primary_color">#CD322E</color>
-    <color name="dark_youtube_dark_color">#992722</color>
+    <color name="dark_youtube_primary_color">#992722</color>
+    <color name="dark_youtube_dark_color">#7a1717</color>
     <color name="dark_youtube_accent_color">#FFFFFF</color>
     <color name="dark_youtube_statusbar_color">#CD322E</color>
 
