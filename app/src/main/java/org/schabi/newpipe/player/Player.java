@@ -188,7 +188,6 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static org.schabi.newpipe.util.Localization.containsCaseInsensitive;
 
 public final class Player implements
-        View.OnClickListener,
         PopupMenu.OnMenuItemClickListener,
         PopupMenu.OnDismissListener,
         View.OnLongClickListener {
@@ -252,6 +251,8 @@ public final class Player implements
 
     private final PlayerOnSeekBarChangeListener playerOnSeekBarChangeListener
             = new PlayerOnSeekBarChangeListener();
+    private final PlayerViewOnClickListener playerViewOnClickListener
+            = new PlayerViewOnClickListener();
 
     private PlayQueue playQueue;
     private PlayQueueAdapter playQueueAdapter;
@@ -512,35 +513,35 @@ public final class Player implements
 
     private void initListeners() {
         binding.playbackSeekBar.setOnSeekBarChangeListener(playerOnSeekBarChangeListener);
-        binding.playbackSpeed.setOnClickListener(this);
-        binding.qualityTextView.setOnClickListener(this);
-        binding.captionTextView.setOnClickListener(this);
-        binding.resizeTextView.setOnClickListener(this);
-        binding.playbackLiveSync.setOnClickListener(this);
+        binding.playbackSpeed.setOnClickListener(playerViewOnClickListener);
+        binding.qualityTextView.setOnClickListener(playerViewOnClickListener);
+        binding.captionTextView.setOnClickListener(playerViewOnClickListener);
+        binding.resizeTextView.setOnClickListener(playerViewOnClickListener);
+        binding.playbackLiveSync.setOnClickListener(playerViewOnClickListener);
 
         final PlayerGestureListener listener = new PlayerGestureListener(this, service);
         gestureDetector = new GestureDetector(context, listener);
         binding.getRoot().setOnTouchListener(listener);
 
-        binding.queueButton.setOnClickListener(this);
-        binding.segmentsButton.setOnClickListener(this);
-        binding.repeatButton.setOnClickListener(this);
-        binding.shuffleButton.setOnClickListener(this);
+        binding.queueButton.setOnClickListener(playerViewOnClickListener);
+        binding.segmentsButton.setOnClickListener(playerViewOnClickListener);
+        binding.repeatButton.setOnClickListener(playerViewOnClickListener);
+        binding.shuffleButton.setOnClickListener(playerViewOnClickListener);
 
-        binding.playPauseButton.setOnClickListener(this);
-        binding.playPreviousButton.setOnClickListener(this);
-        binding.playNextButton.setOnClickListener(this);
+        binding.playPauseButton.setOnClickListener(playerViewOnClickListener);
+        binding.playPreviousButton.setOnClickListener(playerViewOnClickListener);
+        binding.playNextButton.setOnClickListener(playerViewOnClickListener);
 
-        binding.moreOptionsButton.setOnClickListener(this);
+        binding.moreOptionsButton.setOnClickListener(playerViewOnClickListener);
         binding.moreOptionsButton.setOnLongClickListener(this);
-        binding.share.setOnClickListener(this);
         binding.share.setOnLongClickListener(this);
-        binding.fullScreenButton.setOnClickListener(this);
-        binding.screenRotationButton.setOnClickListener(this);
-        binding.playWithKodi.setOnClickListener(this);
-        binding.openInBrowser.setOnClickListener(this);
-        binding.playerCloseButton.setOnClickListener(this);
-        binding.switchMute.setOnClickListener(this);
+        binding.share.setOnClickListener(playerViewOnClickListener);
+        binding.fullScreenButton.setOnClickListener(playerViewOnClickListener);
+        binding.screenRotationButton.setOnClickListener(playerViewOnClickListener);
+        binding.playWithKodi.setOnClickListener(playerViewOnClickListener);
+        binding.openInBrowser.setOnClickListener(playerViewOnClickListener);
+        binding.playerCloseButton.setOnClickListener(playerViewOnClickListener);
+        binding.switchMute.setOnClickListener(playerViewOnClickListener);
 
         settingsContentObserver = new ContentObserver(new Handler()) {
             @Override
@@ -3100,87 +3101,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Click listeners
     //////////////////////////////////////////////////////////////////////////*/
-    //region
-
-    @Override
-    public void onClick(final View v) {
-        if (DEBUG) {
-            Log.d(TAG, "onClick() called with: v = [" + v + "]");
-        }
-        if (v.getId() == binding.qualityTextView.getId()) {
-            onQualitySelectorClicked();
-        } else if (v.getId() == binding.playbackSpeed.getId()) {
-            onPlaybackSpeedClicked();
-        } else if (v.getId() == binding.resizeTextView.getId()) {
-            onResizeClicked();
-        } else if (v.getId() == binding.captionTextView.getId()) {
-            onCaptionClicked();
-        } else if (v.getId() == binding.playbackLiveSync.getId()) {
-            seekToDefault();
-        } else if (v.getId() == binding.playPauseButton.getId()) {
-            playPause();
-        } else if (v.getId() == binding.playPreviousButton.getId()) {
-            playPrevious();
-        } else if (v.getId() == binding.playNextButton.getId()) {
-            playNext();
-        } else if (v.getId() == binding.queueButton.getId()) {
-            onQueueClicked();
-            return;
-        } else if (v.getId() == binding.segmentsButton.getId()) {
-            onSegmentsClicked();
-            return;
-        } else if (v.getId() == binding.repeatButton.getId()) {
-            onRepeatClicked();
-            return;
-        } else if (v.getId() == binding.shuffleButton.getId()) {
-            onShuffleClicked();
-            return;
-        } else if (v.getId() == binding.moreOptionsButton.getId()) {
-            onMoreOptionsClicked();
-        } else if (v.getId() == binding.share.getId()) {
-            ShareUtils.shareText(context, getVideoTitle(), getVideoUrlAtCurrentTime(),
-                            currentItem.getThumbnailUrl());
-        } else if (v.getId() == binding.playWithKodi.getId()) {
-            onPlayWithKodiClicked();
-        } else if (v.getId() == binding.openInBrowser.getId()) {
-            onOpenInBrowserClicked();
-        } else if (v.getId() == binding.fullScreenButton.getId()) {
-            setRecovery();
-            NavigationHelper.playOnMainPlayer(context, playQueue, true);
-            return;
-        } else if (v.getId() == binding.screenRotationButton.getId()) {
-            // Only if it's not a vertical video or vertical video but in landscape with locked
-            // orientation a screen orientation can be changed automatically
-            if (!isVerticalVideo
-                    || (service.isLandscape() && globalScreenOrientationLocked(context))) {
-                fragmentListener.onScreenRotationButtonClicked();
-            } else {
-                toggleFullscreen();
-            }
-        } else if (v.getId() == binding.switchMute.getId()) {
-            onMuteUnmuteButtonClicked();
-        } else if (v.getId() == binding.playerCloseButton.getId()) {
-            context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
-        }
-
-        if (currentState != STATE_COMPLETED) {
-            controlsVisibilityHandler.removeCallbacksAndMessages(null);
-            showHideShadow(true, DEFAULT_CONTROLS_DURATION);
-            animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
-                    AnimationType.ALPHA, 0, () -> {
-                        if (currentState == STATE_PLAYING && !isSomePopupMenuVisible) {
-                            if (v.getId() == binding.playPauseButton.getId()
-                                    // Hide controls in fullscreen immediately
-                                    || (v.getId() == binding.screenRotationButton.getId()
-                                    && isFullscreen)) {
-                                hideControls(0, 0);
-                            } else {
-                                hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-                            }
-                        }
-                    });
-        }
-    }
+    //region Click listeners
 
     @Override
     public boolean onLongClick(final View v) {
@@ -4288,4 +4209,89 @@ public final class Player implements
         //endregion
     }
     //endregion /* Impl SeekBar.OnSeekBarChangeListener */
+
+    //region Impl View.OnClickListener
+    class PlayerViewOnClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(final View v) {
+            if (DEBUG) {
+                Log.d(TAG, "onClick() called with: v = [" + v + "]");
+            }
+            if (v.getId() == binding.qualityTextView.getId()) {
+                onQualitySelectorClicked();
+            } else if (v.getId() == binding.playbackSpeed.getId()) {
+                onPlaybackSpeedClicked();
+            } else if (v.getId() == binding.resizeTextView.getId()) {
+                onResizeClicked();
+            } else if (v.getId() == binding.captionTextView.getId()) {
+                onCaptionClicked();
+            } else if (v.getId() == binding.playbackLiveSync.getId()) {
+                seekToDefault();
+            } else if (v.getId() == binding.playPauseButton.getId()) {
+                playPause();
+            } else if (v.getId() == binding.playPreviousButton.getId()) {
+                playPrevious();
+            } else if (v.getId() == binding.playNextButton.getId()) {
+                playNext();
+            } else if (v.getId() == binding.queueButton.getId()) {
+                onQueueClicked();
+                return;
+            } else if (v.getId() == binding.segmentsButton.getId()) {
+                onSegmentsClicked();
+                return;
+            } else if (v.getId() == binding.repeatButton.getId()) {
+                onRepeatClicked();
+                return;
+            } else if (v.getId() == binding.shuffleButton.getId()) {
+                onShuffleClicked();
+                return;
+            } else if (v.getId() == binding.moreOptionsButton.getId()) {
+                onMoreOptionsClicked();
+            } else if (v.getId() == binding.share.getId()) {
+                ShareUtils.shareText(context, getVideoTitle(), getVideoUrlAtCurrentTime(),
+                        currentItem.getThumbnailUrl());
+            } else if (v.getId() == binding.playWithKodi.getId()) {
+                onPlayWithKodiClicked();
+            } else if (v.getId() == binding.openInBrowser.getId()) {
+                onOpenInBrowserClicked();
+            } else if (v.getId() == binding.fullScreenButton.getId()) {
+                setRecovery();
+                NavigationHelper.playOnMainPlayer(context, playQueue, true);
+                return;
+            } else if (v.getId() == binding.screenRotationButton.getId()) {
+                // Only if it's not a vertical video or vertical video but in landscape with locked
+                // orientation a screen orientation can be changed automatically
+                if (!isVerticalVideo
+                        || (service.isLandscape() && globalScreenOrientationLocked(context))) {
+                    fragmentListener.onScreenRotationButtonClicked();
+                } else {
+                    toggleFullscreen();
+                }
+            } else if (v.getId() == binding.switchMute.getId()) {
+                onMuteUnmuteButtonClicked();
+            } else if (v.getId() == binding.playerCloseButton.getId()) {
+                context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
+            }
+
+            if (currentState != STATE_COMPLETED) {
+                controlsVisibilityHandler.removeCallbacksAndMessages(null);
+                showHideShadow(true, DEFAULT_CONTROLS_DURATION);
+                animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
+                        AnimationType.ALPHA, 0, () -> {
+                            if (currentState == STATE_PLAYING && !isSomePopupMenuVisible) {
+                                if (v.getId() == binding.playPauseButton.getId()
+                                        // Hide controls in fullscreen immediately
+                                        || (v.getId() == binding.screenRotationButton.getId()
+                                        && isFullscreen)) {
+                                    hideControls(0, 0);
+                                } else {
+                                    hideControls(DEFAULT_CONTROLS_DURATION,
+                                            DEFAULT_CONTROLS_HIDE_TIME);
+                                }
+                            }
+                        });
+            }
+        }
+    }
+    //endregion /* Impl View.OnClickListener */
 }
