@@ -188,7 +188,6 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static org.schabi.newpipe.util.Localization.containsCaseInsensitive;
 
 public final class Player implements
-        PopupMenu.OnMenuItemClickListener,
         PopupMenu.OnDismissListener {
     public static final boolean DEBUG = MainActivity.DEBUG;
     public static final String TAG = Player.class.getSimpleName();
@@ -254,6 +253,8 @@ public final class Player implements
             = new PlayerViewOnClickListener();
     private final PlayerViewOnLongClickListener playerViewOnLongClickListener
             = new PlayerViewOnLongClickListener();
+    private final PlayerPopupMenuOnMenuItemClickListener playerPopupMenuOnMenuItemClickListener
+            = new PlayerPopupMenuOnMenuItemClickListener();
 
 
     private PlayQueue playQueue;
@@ -2821,7 +2822,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Popup menus ("popup" means that they pop up, not that they belong to the popup player)
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Popup menus ("popup" means that they pop up, not that they belong to the popup player)
 
     private void buildQualityMenu() {
         if (qualityPopupMenu == null) {
@@ -2837,7 +2838,7 @@ public final class Player implements
         if (getSelectedVideoStream() != null) {
             binding.qualityTextView.setText(getSelectedVideoStream().resolution);
         }
-        qualityPopupMenu.setOnMenuItemClickListener(this);
+        qualityPopupMenu.setOnMenuItemClickListener(playerPopupMenuOnMenuItemClickListener);
         qualityPopupMenu.setOnDismissListener(this);
     }
 
@@ -2852,7 +2853,7 @@ public final class Player implements
                     formatSpeed(PLAYBACK_SPEEDS[i]));
         }
         binding.playbackSpeed.setText(formatSpeed(getPlaybackSpeed()));
-        playbackSpeedPopupMenu.setOnMenuItemClickListener(this);
+        playbackSpeedPopupMenu.setOnMenuItemClickListener(playerPopupMenuOnMenuItemClickListener);
         playbackSpeedPopupMenu.setOnDismissListener(this);
     }
 
@@ -2918,43 +2919,6 @@ public final class Player implements
             }
         }
         captionPopupMenu.setOnDismissListener(this);
-    }
-
-    /**
-     * Called when an item of the quality selector or the playback speed selector is selected.
-     */
-    @Override
-    public boolean onMenuItemClick(final MenuItem menuItem) {
-        if (DEBUG) {
-            Log.d(TAG, "onMenuItemClick() called with: "
-                    + "menuItem = [" + menuItem + "], "
-                    + "menuItem.getItemId = [" + menuItem.getItemId() + "]");
-        }
-
-        if (menuItem.getGroupId() == POPUP_MENU_ID_QUALITY) {
-            final int menuItemIndex = menuItem.getItemId();
-            if (selectedStreamIndex == menuItemIndex || availableStreams == null
-                    || availableStreams.size() <= menuItemIndex) {
-                return true;
-            }
-
-            saveStreamProgressState(); //TODO added, check if good
-            final String newResolution = availableStreams.get(menuItemIndex).resolution;
-            setRecovery();
-            setPlaybackQuality(newResolution);
-            reloadPlayQueueManager();
-
-            binding.qualityTextView.setText(menuItem.getTitle());
-            return true;
-        } else if (menuItem.getGroupId() == POPUP_MENU_ID_PLAYBACK_SPEED) {
-            final int speedIndex = menuItem.getItemId();
-            final float speed = PLAYBACK_SPEEDS[speedIndex];
-
-            setPlaybackSpeed(speed);
-            binding.playbackSpeed.setText(formatSpeed(speed));
-        }
-
-        return false;
     }
 
     /**
@@ -4301,4 +4265,47 @@ public final class Player implements
         }
     }
     //endregion /* Impl View.OnLongClickListener */
+
+    //region Impl PopupMenu.OnMenuItemClickListener
+    /* "popup" means that they pop up, not that they belong to the popup player. */
+    class PlayerPopupMenuOnMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
+
+        /**
+         * Called when an item of the quality selector or the playback speed selector is selected.
+         */
+        @Override
+        public boolean onMenuItemClick(final MenuItem menuItem) {
+            if (DEBUG) {
+                Log.d(TAG, "onMenuItemClick() called with: "
+                        + "menuItem = [" + menuItem + "], "
+                        + "menuItem.getItemId = [" + menuItem.getItemId() + "]");
+            }
+
+            if (menuItem.getGroupId() == POPUP_MENU_ID_QUALITY) {
+                final int menuItemIndex = menuItem.getItemId();
+                if (selectedStreamIndex == menuItemIndex || availableStreams == null
+                        || availableStreams.size() <= menuItemIndex) {
+                    return true;
+                }
+
+                saveStreamProgressState(); //TODO added, check if good
+                final String newResolution = availableStreams.get(menuItemIndex).resolution;
+                setRecovery();
+                setPlaybackQuality(newResolution);
+                reloadPlayQueueManager();
+
+                binding.qualityTextView.setText(menuItem.getTitle());
+                return true;
+            } else if (menuItem.getGroupId() == POPUP_MENU_ID_PLAYBACK_SPEED) {
+                final int speedIndex = menuItem.getItemId();
+                final float speed = PLAYBACK_SPEEDS[speedIndex];
+
+                setPlaybackSpeed(speed);
+                binding.playbackSpeed.setText(formatSpeed(speed));
+            }
+
+            return false;
+        }
+    }
+    //endregion /* Impl PopupMenu.OnMenuItemClickListener */
 }
