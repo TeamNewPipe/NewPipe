@@ -189,8 +189,7 @@ import static org.schabi.newpipe.util.Localization.containsCaseInsensitive;
 
 public final class Player implements
         PopupMenu.OnMenuItemClickListener,
-        PopupMenu.OnDismissListener,
-        View.OnLongClickListener {
+        PopupMenu.OnDismissListener {
     public static final boolean DEBUG = MainActivity.DEBUG;
     public static final String TAG = Player.class.getSimpleName();
 
@@ -253,6 +252,9 @@ public final class Player implements
             = new PlayerOnSeekBarChangeListener();
     private final PlayerViewOnClickListener playerViewOnClickListener
             = new PlayerViewOnClickListener();
+    private final PlayerViewOnLongClickListener playerViewOnLongClickListener
+            = new PlayerViewOnLongClickListener();
+
 
     private PlayQueue playQueue;
     private PlayQueueAdapter playQueueAdapter;
@@ -533,8 +535,8 @@ public final class Player implements
         binding.playNextButton.setOnClickListener(playerViewOnClickListener);
 
         binding.moreOptionsButton.setOnClickListener(playerViewOnClickListener);
-        binding.moreOptionsButton.setOnLongClickListener(this);
-        binding.share.setOnLongClickListener(this);
+        binding.moreOptionsButton.setOnLongClickListener(playerViewOnLongClickListener);
+        binding.share.setOnLongClickListener(playerViewOnLongClickListener);
         binding.share.setOnClickListener(playerViewOnClickListener);
         binding.fullScreenButton.setOnClickListener(playerViewOnClickListener);
         binding.screenRotationButton.setOnClickListener(playerViewOnClickListener);
@@ -3103,18 +3105,6 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Click listeners
 
-    @Override
-    public boolean onLongClick(final View v) {
-        if (v.getId() == binding.moreOptionsButton.getId() && isFullscreen) {
-            fragmentListener.onMoreOptionsLongClicked();
-            hideControls(0, 0);
-            hideSystemUIIfNeeded();
-        } else if (v.getId() == binding.share.getId()) {
-            ShareUtils.copyToClipboard(context, getVideoUrlAtCurrentTime());
-        }
-        return true;
-    }
-
     public boolean onKeyDown(final int keyCode) {
         switch (keyCode) {
             default:
@@ -4294,4 +4284,21 @@ public final class Player implements
         }
     }
     //endregion /* Impl View.OnClickListener */
+
+    //region Impl View.OnLongClickListener
+    class PlayerViewOnLongClickListener implements View.OnLongClickListener {
+
+        @Override
+        public boolean onLongClick(final View v) {
+            if (v.getId() == binding.moreOptionsButton.getId() && isFullscreen) {
+                fragmentListener.onMoreOptionsLongClicked();
+                hideControls(0, 0);
+                hideSystemUIIfNeeded();
+            } else if (v.getId() == binding.share.getId()) {
+                ShareUtils.copyToClipboard(context, getVideoUrlAtCurrentTime());
+            }
+            return true;
+        }
+    }
+    //endregion /* Impl View.OnLongClickListener */
 }
