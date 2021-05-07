@@ -174,7 +174,7 @@ sonarqube {
 }
 
 dependencies {
-/** Desugaring **/
+    /** Desugaring **/
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
 
 /** NewPipe libraries **/
@@ -256,6 +256,9 @@ dependencies {
 
     // Date and time formatting
     implementation "org.ocpsoft.prettytime:prettytime:5.0.0.Final"
+
+    // File Metadata Changing
+    implementation group: 'org', name: 'jaudiotagger', version: '2.0.3'
 
 /** Debugging **/
     // Memory leak detection

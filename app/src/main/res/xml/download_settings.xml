@@ -70,5 +70,13 @@
         android:summary="@string/enable_queue_limit_desc"
         android:title="@string/enable_queue_limit"
         app:iconSpaceReserved="false" />
+    <SwitchPreferenceCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultValue="false"
+        android:key="@string/download_cover_preference"
+        android:summary="@string/download_cover_preference_summary"
+        android:title="@string/download_cover_preference_title"
+        app:iconSpaceReserved="false" />
 
 </PreferenceScreen>

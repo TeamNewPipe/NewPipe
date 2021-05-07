@@ -288,6 +288,10 @@ public class DownloadDialog extends DialogFragment
 
         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
 
+        final boolean downloadCover = prefs.getBoolean("download_cover_preference", false);
+        Log.i("DEBUG_COVER", "" + downloadCover);
+        dialogBinding.coverButton.setChecked(downloadCover);
+
         final int threads = prefs.getInt(getString(R.string.default_download_threads), 3);
         dialogBinding.threadsCount.setText(String.valueOf(threads));
         dialogBinding.threads.setProgress(threads - 1);
