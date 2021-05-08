@@ -2,7 +2,6 @@
 <h2 align="center"><b>NewPipe feature-cover-image</b></h2>
 <h3 align="center">This is a feature branch trying to add cover images to downloaded files in NewPipe.</h4>
 <h4 align="center">https://github.com/TeamNewPipe/NewPipe</h4>
-<h4 align="center">A libre lightweight streaming frontend for Android.</h4>
 
 # Progress of Cover image feature:
  - jaudiotagger dependency exists: ✔
