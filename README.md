@@ -11,6 +11,14 @@
  - Cover image gets fetched somehow (just use the same one as the newpipe thumbnail? is that full resolution): ❌
  - Cover image gets added with jaudiotagger: ❌
 
+
+
+
+
+
+
+
+
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
