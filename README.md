@@ -13,6 +13,14 @@
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 
+# Progress of Cover image feature:
+ - jaudiotagger dependency exists: ✔
+ - Checkbox in Download dialogue exists: ✔
+ - Preference to usually enable that checkbox exists: ✔
+ - Preference does something: ❌
+ - Cover image gets fetched somehow (just use the same one as the newpipe thumbnail? is that full resolution): ❌
+ - Cover image gets added with jaudiotagger: ❌
+
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
