@@ -714,7 +714,12 @@ public final class Player implements
             // Android TV: without it focus will frame the whole player
             binding.playPauseButton.requestFocus();
 
-            playPause();
+            // Note: This is for automatically playing (when "Resume playback" is off), see #6179
+            if (getPlayWhenReady()) {
+                play();
+            } else {
+                pause();
+            }
         }
         NavigationHelper.sendPlayerStartedEvent(context);
     }
