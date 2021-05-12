@@ -76,8 +76,7 @@
     <string name="report_error">Пријавите грешку</string>
     <string name="user_report">Извештај корисника</string>
     <string name="duration_live">Уживо</string>
-    <string name="main_bg_subtitle">тапните на лупу да започнете
-\n</string>
+    <string name="main_bg_subtitle">тапните на лупу да започнете</string>
     <string name="autoplay_by_calling_app_title">Аутопуштање</string>
     <string name="autoplay_by_calling_app_summary">Пушта видео по позиву из друге апликације</string>
     <string name="start">Почни</string>

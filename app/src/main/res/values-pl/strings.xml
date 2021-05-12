@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Naciśnij „Szukaj”, aby zacząć
-\n</string>
+    <string name="main_bg_subtitle">Naciśnij „Szukaj”, aby zacząć</string>
     <string name="install">Zainstaluj</string>
     <string name="cancel">Anuluj</string>
     <string name="open_in_browser">Otwórz w przeglądarce</string>

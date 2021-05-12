@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Palieskite „Ieškoti“, kad pradėtumėte
-\n</string>
+    <string name="main_bg_subtitle">Palieskite „Ieškoti“, kad pradėtumėte</string>
     <string name="view_count_text">%1$s peržiūrų</string>
     <string name="upload_date_text">Publikuota %1$s</string>
     <string name="no_player_found">Nerastas srauto grotuvas. Įdiegti VLC\?</string>

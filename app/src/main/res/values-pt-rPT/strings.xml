@@ -7,8 +7,7 @@
     <string name="import_network_expensive_warning">Tenha em atenção de que esta operação pode sobrecarregar a sua rede.
 \n
 \nDeseja continuar\?</string>
-    <string name="main_bg_subtitle">Toque \"Pesquisar\" para iniciar
-\n</string>
+    <string name="main_bg_subtitle">Toque \"Pesquisar\" para iniciar</string>
     <string name="enable_playback_resume_title">Continuar reprodução</string>
     <string name="msg_threads">Processos</string>
     <string name="settings_file_replacement_character_summary">Os carateres inválidos são substituídos por este valor</string>

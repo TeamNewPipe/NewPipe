@@ -43,8 +43,7 @@
     <string name="no_player_found_toast">प्लेअर सापडले नाही (तुम्ही VLC player वापरून फाईल चालवू शकता).</string>
     <string name="no_player_found">प्लेअर सापडले नाही. VLC प्लेअर इंस्टॉल करू इच्छिता का\?</string>
     <string name="upload_date_text">प्रकाशित केले गेले</string>
-    <string name="main_bg_subtitle">सुरू करण्यासाठी \"शोधा\" दाबा
-\n</string>
+    <string name="main_bg_subtitle">सुरू करण्यासाठी \"शोधा\" दाबा</string>
     <string name="play_with_kodi_title">कोडी वापरून चालवा</string>
     <string name="show_higher_resolutions_summary">फक्त काही उपकरणे 2k/4k व्हिडिओ चालवू शकतात</string>
     <string name="show_higher_resolutions_title">वरचे रेसॉल्युशन दाखवा</string>

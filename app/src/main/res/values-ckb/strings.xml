@@ -497,8 +497,7 @@
     <string name="drawer_header_description">خزمەتگوزاری چەسپاو، ئێستا هەڵبژێردراو:</string>
     <string name="delete_search_history_alert">تەواوی گەڕانەکانت بسڕدرێنەوە؟</string>
     <string name="resume_on_audio_focus_gain_summary">بەردەوام بوونی ڤیدیۆ لەدوای هەبوونی هەر بڕینێک (وەک پەیوەندی تەلەفۆنی)</string>
-    <string name="main_bg_subtitle">کرته‌ له‌ \"گه‌ڕان\" بكه‌ بۆ ده‌ستپێكردن
-\n</string>
+    <string name="main_bg_subtitle">کرته‌ له‌ \"گه‌ڕان\" بكه‌ بۆ ده‌ستپێكردن</string>
     <string name="enable_search_history_summary">کۆگای گەڕانی نێوخۆیی</string>
     <string name="settings_category_video_audio_title">ڤیدیۆ وە دەنگ</string>
     <string name="share">هاوبه‌شپێكردن</string>

@@ -75,8 +75,7 @@
     <string name="audio">Audio</string>
     <string name="retry">Réessayer</string>
     <string name="storage_permission_denied">Veuillez d’abord accorder l’accès au stockage</string>
-    <string name="main_bg_subtitle">Appuyez sur la loupe pour commencer
-\n</string>
+    <string name="main_bg_subtitle">Appuyez sur la loupe pour commencer</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique</string>
     <string name="user_report">Rapport utilisateur</string>
     <string name="error_snackbar_action">Signaler</string>

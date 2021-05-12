@@ -615,8 +615,7 @@
     <string name="no_player_found">Netika atrasts video atskaņotājs. Instalēt VLC\?</string>
     <string name="upload_date_text">Publicēts %1$s</string>
     <string name="view_count_text">%1$s skatījumi</string>
-    <string name="main_bg_subtitle">Nospiediet \"Meklēt\", lai sāktu
-\n</string>
+    <string name="main_bg_subtitle">Nospiediet \"Meklēt\", lai sāktu</string>
     <string name="notification_colorize_title">Iekrāsot notifikāciju</string>
     <string name="notification_action_nothing">Nekas</string>
     <string name="notification_action_buffering">Lādējas</string>

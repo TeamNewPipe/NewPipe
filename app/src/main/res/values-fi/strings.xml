@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Napauta hakua aloittaaksesi
-\n</string>
+    <string name="main_bg_subtitle">Napauta hakua aloittaaksesi</string>
     <string name="view_count_text">%1$s näyttökertaa</string>
     <string name="upload_date_text">Julkaistu %1$s</string>
     <string name="no_player_found">Ei löytynyt suoratoistosoitinta. Asennetaanko VLC\?</string>

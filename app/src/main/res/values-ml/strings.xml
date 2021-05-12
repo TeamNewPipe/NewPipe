@@ -461,8 +461,7 @@
     <string name="no_player_found">സ്ട്രീം പ്ലയർ കണ്ടെത്താനായില്ല. VLC ഇൻസ്റ്റാൾ ചെയ്യട്ടെ\?</string>
     <string name="upload_date_text">%1$s - ന് പ്രസിദ്ധീകരിച്ചു</string>
     <string name="view_count_text">%1$s തവണ കാണപ്പെട്ടു</string>
-    <string name="main_bg_subtitle">തുടങ്ങാൻ \"തിരയൽ\" അമർത്തുക
-\n</string>
+    <string name="main_bg_subtitle">തുടങ്ങാൻ \"തിരയൽ\" അമർത്തുക</string>
     <string name="content_not_supported">ഈ ഉള്ളടക്കത്തെ ഇതുവരെ ന്യൂ‌പൈപ്പ് പിന്തുണയ്‌ക്കുന്നില്ല.
 \n
 \nഭാവിയിലെ ഒരു പതിപ്പിൽ ഇത് പിന്തുണയ്‌ക്കുമെന്ന് പ്രതീക്ഷിക്കുന്നു.</string>

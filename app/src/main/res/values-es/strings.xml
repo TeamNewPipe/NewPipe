@@ -59,8 +59,7 @@
     <string name="live_streams_not_supported">Las transmisiones en vivo no son soportadas aún</string>
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Mostrar contenido con restricción de edad</string>
-    <string name="main_bg_subtitle">Toca en «Buscar» para comenzar
-\n</string>
+    <string name="main_bg_subtitle">Toca en «Buscar» para comenzar</string>
     <string name="autoplay_by_calling_app_title">Reproducción automática</string>
     <string name="autoplay_by_calling_app_summary">Reproducir un vídeo cuando NewPipe es llamado desde otra aplicación</string>
     <string name="duration_live">En directo</string>

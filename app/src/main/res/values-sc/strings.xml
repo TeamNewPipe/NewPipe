@@ -610,8 +610,7 @@
     <string name="no_player_found">Perunu riproduidore de flussos agatadu. Cheres installare VLC\?</string>
     <string name="upload_date_text">Publicadu su %1$s</string>
     <string name="view_count_text">%1$s visualizatziones</string>
-    <string name="main_bg_subtitle">Toca \"Chirca\" pro incumintzare
-\n</string>
+    <string name="main_bg_subtitle">Toca \"Chirca\" pro incumintzare</string>
     <string name="never">Mai</string>
     <string name="wifi_only">Cun su Wi-Fi ebbia</string>
     <string name="autoplay_summary">Incumintza cun sa riprodutzione automaticamente — %s</string>
