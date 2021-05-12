@@ -73,7 +73,7 @@
     <string name="audio">Áudio</string>
     <string name="retry">Tentar novamente</string>
     <string name="storage_permission_denied">Deve conceder acesso ao armazenamento</string>
-    <string name="main_bg_subtitle">Toque \"Pesquisar\" para iniciar
+    <string name="main_bg_subtitle">Toque na \"lupa\" para começar
 \n</string>
     <string name="autoplay_by_calling_app_title">Reprodução automática</string>
     <string name="autoplay_by_calling_app_summary">Reproduzir vídeo se NewPipe for invocado por outra aplicação</string>
@@ -123,7 +123,7 @@
     <string name="disabled">Desativado</string>
     <string name="default_popup_resolution_title">Resolução padrão para janela popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
-    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos conseguem reproduzir vídeos em 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Apenas alguns aparelhos conseguem reproduzir vídeos em 2K/4K</string>
     <string name="controls_popup_title">Popup</string>
     <string name="popup_remember_size_pos_title">Lembrar propriedades de popup</string>
     <string name="settings_category_popup_title">Popup</string>
@@ -332,7 +332,7 @@
 \n6. A partir do zip descarregado extraia o ficheiro .json (normalmente em \"YouTube e YouTube Music/subscriptions/subscriptions.json\") e importe-o aqui.</string>
     <string name="import_soundcloud_instructions">Importe o seu perfil SoundCloud digitando o URL ou a ID.:
 \n
-\n1. Ative o modo desktop do seu navegador web (o site não está disponível para dispositivos móveis)
+\n1. Ative o modo desktop do seu navegador web (o site não está disponível para aparelhos móveis)
 \n2. Aceda a este URL: %1$s
 \n3. Inicie a sessão
 \n4. Copie o URL do seu perfil.</string>
@@ -359,7 +359,7 @@
     <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que utilizam o seu tempo livre para nos proporcionar a melhor experiência. Retribua para ajudar os programadores a tornarem NewPipe ainda melhor.</string>
     <string name="give_back">Contribuir</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
-    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, não recolhe quaisquer dados sem o seu consentimento.
+    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Por isso, não recolhe nenhum dado sem o seu consentimento.
 \nA polícia de privacidade do NewPipe explica, em detalhe, os tipos de dados enviados sempre que submete um relatório de erro.</string>
     <string name="read_privacy_policy">Ver política de privacidade</string>
     <string name="auto_queue_title">Colocar vídeo seguinte na fila</string>
@@ -473,7 +473,7 @@
     <string name="overwrite_failed">não é possível sobrescrever o ficheiro</string>
     <string name="download_already_pending">Existe uma descarga pendente com este nome</string>
     <string name="error_postprocessing_stopped">NewPipe foi fechado enquanto trabalhava no ficheiro</string>
-    <string name="error_insufficient_storage">Não há espaço livre no dispositivo</string>
+    <string name="error_insufficient_storage">Não há espaço livre no aparelho</string>
     <string name="error_progress_lost">Progresso perdido, o ficheiro foi eliminado</string>
     <string name="error_timeout">Ligação expirada</string>
     <string name="confirm_prompt">Deseja limpar o histórico de descargas ou remover todos os ficheiros descarregados\?</string>
@@ -644,7 +644,7 @@
     <string name="clear_cookie_title">Limpar cookies reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">O YouTube fornece um \"Modo restrito\" que oculta o conteúdo destinado a adultos</string>
     <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente impróprio para crianças porque tem um limite de idade (como 18+)</string>
-    <string name="notification_colorize_summary">Fazer com que o Android personalize a cor da notificação de acordo com a cor principal na miniatura (esta opção não está disponível em todos os dispositivos)</string>
+    <string name="notification_colorize_summary">Fazer com que o Android personalize a cor da notificação conforme a cor principal na miniatura (esta opção não está disponível em todos os aparelhos)</string>
     <string name="notification_colorize_title">Colorir notificação</string>
     <string name="show_thumbnail_summary">Usar miniaturas no fundo do ecrã de bloqueio e em notificações</string>
     <string name="show_thumbnail_title">Mostrar miniatura</string>

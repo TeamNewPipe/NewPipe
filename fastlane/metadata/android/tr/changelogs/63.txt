@@ -1,0 +1,8 @@
+### Geliştirmeler
+- İçe/Dışa aktarma ayarları #1333
+- Aşmalar azaltıldı(performance iyileştirmeleri) #1371
+- Küçük kod iyileştirmeleri #1375
+- GPDR hakkında her şey eklendi #1420
+
+### Düzeltildi
+- İndirici: .giga dosyalarından bitmeyen indirmeler yüklenirken çökmeler düzeltildi #1407

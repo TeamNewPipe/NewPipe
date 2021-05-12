@@ -1,0 +1,1 @@
+En esta versión, el sitio web de Youtube fue actualizado. La antigua versión será descontinuada en marzo y será necesario actualizar NewPipe.

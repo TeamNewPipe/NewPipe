@@ -198,4 +198,15 @@
     <string name="rename">Sisem</string>
     <string name="pause">Sbedd</string>
     <string name="unknown_content">[Arussin]</string>
+    <string name="description_tab_description">Aglam</string>
+    <string name="playlist_add_stream_success">Rnu ɣer telgamt n tɣuri</string>
+    <string name="title_history_view">Ittwaẓeṛ</string>
+    <string name="tab_licenses">Turagin</string>
+    <string name="dismiss">Ttu</string>
+    <string name="undo">Ser</string>
+    <string name="albums">Ilbumen</string>
+    <string name="playlists">Tilgamin n tɣuri</string>
+    <string name="playlist">Talgamt n tɣuri</string>
+    <string name="autoplay_title">Taɣuri tawurmant</string>
+    <string name="autoplay_by_calling_app_title">Taɣuri tawurmant</string>
 </resources>
