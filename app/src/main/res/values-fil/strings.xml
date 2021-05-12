@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Pindutin ang \'hanap\' upang magsimula
-\n</string>
+    <string name="main_bg_subtitle">Pindutin ang \'hanap\' upang magsimula</string>
     <string name="view_count_text">%1$s view</string>
     <string name="upload_date_text">Nai-publish noong %1$s</string>
     <string name="no_player_found">Walang nakitang stream player. Mag-install ng VLC\?</string>

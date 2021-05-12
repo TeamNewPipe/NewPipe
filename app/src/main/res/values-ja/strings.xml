@@ -78,8 +78,7 @@
     <string name="report_error">不具合を報告</string>
     <string name="user_report">利用者レポートを送る</string>
     <string name="duration_live">生放送</string>
-    <string name="main_bg_subtitle">開始するには「検索」をタップ
-\n</string>
+    <string name="main_bg_subtitle">開始するには「検索」をタップ</string>
     <string name="start">開始</string>
     <string name="pause">一時停止</string>
     <string name="view">再生</string>

@@ -71,8 +71,7 @@
     <string name="view_count_text">%1$s ayaa lafuray</string>
     <string name="no_player_found">Wax fura lama helin shaygan. Ku shubo VLC\?</string>
     <string name="upload_date_text">Lasoo galiyay: %1$s</string>
-    <string name="main_bg_subtitle">Ku dhufo \"Raadi\" 🔍 si aad u bilowdo
-\n</string>
+    <string name="main_bg_subtitle">Ku dhufo \"Raadi\" 🔍 si aad u bilowdo</string>
     <string name="overwrite_unrelated_warning">Shay magacan leh ayaa horay ujiray</string>
     <string name="overwrite">Ku badal</string>
     <string name="generate_unique_name">Usamee magac gaar ah</string>

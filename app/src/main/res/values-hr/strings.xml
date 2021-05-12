@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Za početak dodirnite \"Pretraži\"
-\n</string>
+    <string name="main_bg_subtitle">Za početak dodirnite \"Pretraži\"</string>
     <string name="view_count_text">%1$s pregleda</string>
     <string name="upload_date_text">Objavljeno %1$s</string>
     <string name="no_player_found">Reproduktor za stream nije pronađen. Instalirati VLC\?</string>

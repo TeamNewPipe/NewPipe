@@ -39,6 +39,5 @@
     <string name="share">Condividi</string>
     <string name="no_player_found_toast">Nisciuno lettore truvato (può installà VLC p\' \'o reprodurre).</string>
     <string name="no_player_found">Nisciuno lettore truvato. Vuo\' installà VLC\?</string>
-    <string name="main_bg_subtitle">Priemme \"Truova\" p\'accummencià
-\n</string>
+    <string name="main_bg_subtitle">Priemme \"Truova\" p\'accummencià</string>
 </resources>

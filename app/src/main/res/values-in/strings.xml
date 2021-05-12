@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Ketuk \"Cari\" untuk memulai
-\n</string>
+    <string name="main_bg_subtitle">Ketuk \"Cari\" untuk memulai</string>
     <string name="view_count_text">%1$s x ditonton</string>
     <string name="upload_date_text">Dipublikasikan pada tanggal %1$s</string>
     <string name="install">Pasang</string>

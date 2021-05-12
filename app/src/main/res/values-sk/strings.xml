@@ -55,8 +55,7 @@
     <string name="use_tor_summary">(Experimentálne) Vyžadovať preberanie cez Tor pre väčšie súkromie (streamovanie videa momentálne nie je podporované).</string>
     <string name="err_dir_create">Nemožno vytvoriť adresár na preberanie \'%1$s\'</string>
     <string name="info_dir_created">Zložka na preberanie bola vytvorená \'%1$s\'</string>
-    <string name="main_bg_subtitle">Ťuknite na \"Vyhľadávanie\"
-\n</string>
+    <string name="main_bg_subtitle">Ťuknite na \"Vyhľadávanie\"</string>
     <string name="autoplay_by_calling_app_title">Automatické prehrávanie</string>
     <string name="autoplay_by_calling_app_summary">Prehrá video pri zavolaní NewPipe inou aplikáciou</string>
     <string name="content">Obsah</string>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Докоснете търсачката, за да започнете
-\n</string>
+    <string name="main_bg_subtitle">Докоснете търсачката, за да започнете</string>
     <string name="view_count_text">%1$s гледания</string>
     <string name="upload_date_text">Публикувано на %1$s</string>
     <string name="no_player_found">Не е намерен стрийм плейър. Желаете ли да инсталирате VLC?</string>

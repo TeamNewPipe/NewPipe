@@ -72,8 +72,7 @@
     <string name="video">Video</string>
     <string name="audio">Geluid</string>
     <string name="retry">Opnieuw proberen</string>
-    <string name="main_bg_subtitle">Druk op \"zoeken\" om te beginnen
-\n</string>
+    <string name="main_bg_subtitle">Druk op \"zoeken\" om te beginnen</string>
     <string name="autoplay_by_calling_app_title">Automatisch afspelen</string>
     <string name="autoplay_by_calling_app_summary">Speelt video’s af als NewPipe vanuit een andere app wordt geopend</string>
     <string name="duration_live">Live</string>

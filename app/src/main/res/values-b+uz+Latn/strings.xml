@@ -19,8 +19,7 @@
     <string name="no_player_found">Hech qanday translatsiya pleyeri topilmadi. VLC o\'rnatilsinmi\?</string>
     <string name="upload_date_text">%1$s tomonidan e‘lon qilingan</string>
     <string name="view_count_text">%1$s marta ko‘rilgan</string>
-    <string name="main_bg_subtitle">Boshlash uchun \"Izlash\" tugmasini bosing
-\n</string>
+    <string name="main_bg_subtitle">Boshlash uchun \"Izlash\" tugmasini bosing</string>
     <string name="player_gesture_controls_summary">Player yorqinligini va ovoz balandligini boshqarish uchun imo-ishoralardan foydalanish</string>
     <string name="player_gesture_controls_title">Player imo-ishoralarini boshqarish</string>
     <string name="volume_gesture_control_summary">Player tovushini boshqarish uchun imo-ishoralardan foydalanish</string>

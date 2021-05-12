@@ -73,8 +73,7 @@
     <string name="audio">Áudio</string>
     <string name="retry">Tentar novamente</string>
     <string name="storage_permission_denied">Deve conceder acesso ao armazenamento</string>
-    <string name="main_bg_subtitle">Toque na \"lupa\" para começar
-\n</string>
+    <string name="main_bg_subtitle">Toque na \"lupa\" para começar</string>
     <string name="autoplay_by_calling_app_title">Reprodução automática</string>
     <string name="autoplay_by_calling_app_summary">Reproduzir vídeo se NewPipe for invocado por outra aplicação</string>
     <string name="duration_live">Em direto</string>

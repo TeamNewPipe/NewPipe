@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Alustamiseks toksa \"Luubi ikooni\"
-\n</string>
+    <string name="main_bg_subtitle">Alustamiseks toksa \"Luubi ikooni\"</string>
     <string name="view_count_text">%1$s vaatamist</string>
     <string name="upload_date_text">Avaldatud %1$s</string>
     <string name="no_player_found">Voogesituseks puudub pleier. Kas paigaldada VLC?</string>
