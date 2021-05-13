@@ -126,6 +126,11 @@ public class DownloadMission extends Mission {
     volatile long fallbackResumeOffset;
 
     /**
+     * If the cover gets downloaded, chosen by the user
+     */
+    public boolean cover = false;
+
+    /**
      * Maximum of download threads running, chosen by the user
      */
     public int threadCount = 3;
@@ -159,6 +164,7 @@ public class DownloadMission extends Mission {
             throw new IllegalArgumentException("urls array is empty");
         this.urls = urls;
         this.kind = kind;
+        this.cover = false;
         this.offsets = new long[urls.length];
         this.enqueued = true;
         this.maxRetry = 3;

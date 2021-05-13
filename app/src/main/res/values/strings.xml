@@ -716,7 +716,7 @@
     <string name="select_night_theme_toast">You can select your favorite night theme below</string>
     <string name="download_has_started">Download has started</string>
     <string name="cover_image">Cover Image</string>
-    <string name="download_cover_preference_title">Initially add cover image</string>
-    <string name="download_cover_preference">cover_pref_key</string>
-    <string name="download_cover_preference_summary">The thumbnail will be downloaded and added to file as a cover image by default</string>
+    <string name="download_cover_pref_title">Add cover image by default</string>
+    <string name="download_cover_pref">download_cover_pref</string>
+    <string name="download_cover_pref_summary">The thumbnail will be downloaded and added to file as a cover image by default</string>
 </resources>

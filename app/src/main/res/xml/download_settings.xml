@@ -74,9 +74,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:defaultValue="false"
-        android:key="@string/download_cover_preference"
-        android:summary="@string/download_cover_preference_summary"
-        android:title="@string/download_cover_preference_title"
+        android:key="@string/download_cover_pref"
+        android:summary="@string/download_cover_pref_summary"
+        android:title="@string/download_cover_pref_title"
         app:iconSpaceReserved="false" />
 
 </PreferenceScreen>

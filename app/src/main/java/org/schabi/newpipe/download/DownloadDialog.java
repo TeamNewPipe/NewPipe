@@ -288,9 +288,9 @@ public class DownloadDialog extends DialogFragment
 
         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
 
-        final boolean downloadCover = prefs.getBoolean("download_cover_preference", false);
-        Log.i("DEBUG_COVER", "" + downloadCover);
-        dialogBinding.coverButton.setChecked(downloadCover);
+        final boolean cover = prefs.getBoolean(getString(R.string.download_cover_pref), false);
+        Log.i("DEBUG_COVER", "" + cover);
+        dialogBinding.coverButton.setChecked(cover);
 
         final int threads = prefs.getInt(getString(R.string.default_download_threads), 3);
         dialogBinding.threadsCount.setText(String.valueOf(threads));
@@ -860,6 +860,9 @@ public class DownloadDialog extends DialogFragment
         long nearLength = 0;
 
         // more download logic: select muxer, subtitle converter, etc.
+        final boolean cover;
+        cover = dialogBinding.coverButton.isChecked();
+
         switch (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()) {
             case R.id.audio_button:
                 kind = 'a';
@@ -931,7 +934,7 @@ public class DownloadDialog extends DialogFragment
                     new MissionRecoveryInfo(secondaryStream)};
         }
 
-        DownloadManagerService.startMission(context, urls, storage, kind, threads,
+        DownloadManagerService.startMission(context, urls, storage, kind, cover, threads,
                 currentInfo.getUrl(), psName, psArgs, nearLength, recoveryInfo);
 
         dismiss();

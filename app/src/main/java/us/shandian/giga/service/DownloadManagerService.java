@@ -70,6 +70,7 @@ public class DownloadManagerService extends Service {
 
     private static final String EXTRA_URLS = "DownloadManagerService.extra.urls";
     private static final String EXTRA_KIND = "DownloadManagerService.extra.kind";
+    private static final String EXTRA_COVER = "DownloadManagerService.extra.cover";
     private static final String EXTRA_THREADS = "DownloadManagerService.extra.threads";
     private static final String EXTRA_POSTPROCESSING_NAME = "DownloadManagerService.extra.postprocessingName";
     private static final String EXTRA_POSTPROCESSING_ARGS = "DownloadManagerService.extra.postprocessingArgs";
@@ -378,6 +379,7 @@ public class DownloadManagerService extends Service {
      * @param urls         array of urls to download
      * @param storage      where the file is saved
      * @param kind         type of file (a: audio  v: video  s: subtitle ?: file-extension defined)
+     * @param cover        if the cover image gets downloaded
      * @param threads      the number of threads maximal used to download chunks of the file.
      * @param psName       the name of the required post-processing algorithm, or {@code null} to ignore.
      * @param source       source url of the resource
@@ -386,12 +388,13 @@ public class DownloadManagerService extends Service {
      * @param recoveryInfo array of MissionRecoveryInfo, in case is required recover the download
      */
     public static void startMission(Context context, String[] urls, StoredFileHelper storage,
-                                    char kind, int threads, String source, String psName,
+                                    char kind, boolean cover, int threads, String source, String psName,
                                     String[] psArgs, long nearLength, MissionRecoveryInfo[] recoveryInfo) {
         Intent intent = new Intent(context, DownloadManagerService.class);
         intent.setAction(Intent.ACTION_RUN);
         intent.putExtra(EXTRA_URLS, urls);
         intent.putExtra(EXTRA_KIND, kind);
+        intent.putExtra(EXTRA_COVER, cover);
         intent.putExtra(EXTRA_THREADS, threads);
         intent.putExtra(EXTRA_SOURCE, source);
         intent.putExtra(EXTRA_POSTPROCESSING_NAME, psName);
@@ -412,6 +415,7 @@ public class DownloadManagerService extends Service {
         Uri parentPath = intent.getParcelableExtra(EXTRA_PARENT_PATH);
         int threads = intent.getIntExtra(EXTRA_THREADS, 1);
         char kind = intent.getCharExtra(EXTRA_KIND, '?');
+        boolean cover = intent.getBooleanExtra(EXTRA_COVER, false);
         String psName = intent.getStringExtra(EXTRA_POSTPROCESSING_NAME);
         String[] psArgs = intent.getStringArrayExtra(EXTRA_POSTPROCESSING_ARGS);
         String source = intent.getStringExtra(EXTRA_SOURCE);
@@ -437,6 +441,7 @@ public class DownloadManagerService extends Service {
             recovery[i] = (MissionRecoveryInfo) parcelRecovery[i];
 
         final DownloadMission mission = new DownloadMission(urls, storage, kind, ps);
+        mission.cover = cover;
         mission.threadCount = threads;
         mission.source = source;
         mission.nearLength = nearLength;

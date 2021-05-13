@@ -23,6 +23,8 @@ import us.shandian.giga.io.StoredDirectoryHelper;
 import us.shandian.giga.io.StoredFileHelper;
 import us.shandian.giga.util.Utility;
 
+import org.jaudiotagger.tag.Tag;
+
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 
 public class DownloadManager {
@@ -246,6 +248,10 @@ public class DownloadManager {
 
             if (canDownloadInCurrentNetwork() && start) {
                 mission.start();
+            }
+            // add cover image
+            if (mission.cover) {
+                Log.i("DEBUG_COVER", "Adding a cover is set to true");
             }
         }
     }
