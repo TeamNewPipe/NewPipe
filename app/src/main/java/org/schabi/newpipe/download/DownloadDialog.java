@@ -676,9 +676,6 @@ public class DownloadDialog extends DialogFragment
         prefs.edit()
                 .putString(getString(R.string.last_used_download_type), selectedMediaType)
                 .apply();
-
-        Toast.makeText(context, getString(R.string.download_has_started),
-                Toast.LENGTH_SHORT).show();
     }
 
     private void checkSelectedDownload(final StoredDirectoryHelper mainStorage,
@@ -936,6 +933,9 @@ public class DownloadDialog extends DialogFragment
 
         DownloadManagerService.startMission(context, urls, storage, kind, cover, threads,
                 currentInfo.getUrl(), psName, psArgs, nearLength, recoveryInfo);
+
+        Toast.makeText(context, getString(R.string.download_has_started),
+                Toast.LENGTH_SHORT).show();
 
         dismiss();
     }

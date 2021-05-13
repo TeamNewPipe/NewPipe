@@ -47,8 +47,7 @@
     <string name="download_path_audio_title">Папка для скачанного аудио</string>
     <string name="download_path_audio_summary">Папка для скачанного аудио</string>
     <string name="download_path_audio_dialog_title">Введите путь к папке для скачивания аудио</string>
-    <string name="main_bg_subtitle">Нажмите \"Поиск\", чтобы начать
-\n</string>
+    <string name="main_bg_subtitle">Нажмите на \"лупу\", чтобы начать</string>
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
     <string name="msg_threads">Потоки</string>
@@ -687,4 +686,7 @@
     <string name="restricted_video_no_stream">Это видео имеет возрастные ограничения.
 \nСогласно новой политике YouTube в отношении видео с возрастными ограничениями NewPipe не может иметь доступ ни к одному потоку этого видео и, таким образом, не имеет возможности воспроизвести его.</string>
     <string name="night_theme_title">Ночная тема</string>
+    <string name="featured">Рекомендуемые</string>
+    <string name="recaptcha_solve">Решить</string>
+    <string name="show_channel_details">Подробно о канале</string>
 </resources>

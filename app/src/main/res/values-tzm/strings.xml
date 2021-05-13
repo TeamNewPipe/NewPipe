@@ -160,8 +160,7 @@
     <string name="service_title">Tanafut</string>
     <string name="download_dialog_title">Agem</string>
     <string name="subscribe_button_title">Lteɣ</string>
-    <string name="main_bg_subtitle">Add \"Rzu\" i usenti
-\n</string>
+    <string name="main_bg_subtitle">Add \"Rzu\" i usenti</string>
     <string name="show_play_with_kodi_title">Ssemal tadɣert \"Γer s Kodi\"</string>
     <string name="download_path_dialog_title">Dɣer asedaw n wagam n ifuyla n ividyuten</string>
     <string name="use_external_audio_player_title">Ssemres ameɣri n imsli abeṛṛani</string>
@@ -169,4 +168,44 @@
     <string name="use_external_video_player_title">Asenṭeḍ ameɣri n uvidyu abeṛṛani</string>
     <string name="screen_rotation">abeṛṛem</string>
     <string name="did_you_mean">Txsed ad tarad \"%1$s\"\?</string>
+    <string name="night_theme_title">Asgum n yiḍ</string>
+    <string name="open_with">Ṛẓem s</string>
+    <string name="feed_groups_header_title">Tirubba n tbadut</string>
+    <string name="fragment_feed_title">Matta n umaynu</string>
+    <string name="always_ask_open_action">ttseqsa abda</string>
+    <string name="blank_page_summary">Tasna ixwan</string>
+    <string name="item_deleted">Ittwakkes uferdis</string>
+    <string name="action_open_website">Ṛẓem asit</string>
+    <string name="title_activity_about">Ɣef NewPipe</string>
+    <string name="msg_wait">Ṛaja…</string>
+    <plurals name="listening">
+        <item quantity="one">%s umsflid</item>
+        <item quantity="other">%s imsfliden</item>
+    </plurals>
+    <string name="no_views">Walu tannayin</string>
+    <string name="network_error">Azgal n uẓeṭṭa</string>
+    <string name="just_once">Ɣas yat</string>
+    <string name="radio">Aṛadyu</string>
+    <string name="recaptcha_solve">Fru</string>
+    <string name="comments_tab_description">Ixfawalen</string>
+    <string name="never">Usar</string>
+    <string name="playback_step">Asurif</string>
+    <string name="rename_playlist">Sisem</string>
+    <string name="action_history">Amezray</string>
+    <string name="title_activity_history">Amezray</string>
+    <string name="msg_error">Azgal</string>
+    <string name="rename">Sisem</string>
+    <string name="pause">Sbedd</string>
+    <string name="unknown_content">[Arussin]</string>
+    <string name="description_tab_description">Aglam</string>
+    <string name="playlist_add_stream_success">Rnu ɣer telgamt n tɣuri</string>
+    <string name="title_history_view">Ittwaẓeṛ</string>
+    <string name="tab_licenses">Turagin</string>
+    <string name="dismiss">Ttu</string>
+    <string name="undo">Ser</string>
+    <string name="albums">Ilbumen</string>
+    <string name="playlists">Tilgamin n tɣuri</string>
+    <string name="playlist">Talgamt n tɣuri</string>
+    <string name="autoplay_title">Taɣuri tawurmant</string>
+    <string name="autoplay_by_calling_app_title">Taɣuri tawurmant</string>
 </resources>

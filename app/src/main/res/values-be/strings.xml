@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Націсніце \"Пошук\", каб пачаць
-\n</string>
+    <string name="main_bg_subtitle">Націсніце \"Пошук\", каб пачаць</string>
     <string name="view_count_text">%1$s праглядаў</string>
     <string name="upload_date_text">Апублікавана %1$s</string>
     <string name="no_player_found">Патокавы плэер не знойдзены. Усталяваць VLC?</string>

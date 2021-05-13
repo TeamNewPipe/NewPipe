@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Ketuk \"Cari\" untuk memulai
-\n</string>
-    <string name="view_count_text">%1$s Penonton</string>
+    <string name="main_bg_subtitle">Ketuk \"Cari\" untuk memulai</string>
+    <string name="view_count_text">%1$s x ditonton</string>
     <string name="upload_date_text">Dipublikasikan pada tanggal %1$s</string>
     <string name="install">Pasang</string>
     <string name="cancel">Batal</string>
@@ -10,7 +9,7 @@
     <string name="share">Bagikan</string>
     <string name="download">Unduh</string>
     <string name="search">Telusuri</string>
-    <string name="settings">Setelan</string>
+    <string name="settings">Pengaturan</string>
     <string name="share_dialog_title">Bagikan dengan</string>
     <string name="choose_browser">Pilih browser</string>
     <string name="use_external_video_player_title">Gunakan pemutar video eksternal</string>
@@ -159,8 +158,8 @@
     <string name="contribution_encouragement">Terlepas apakah Anda memiliki ide untuk; terjemahan, perubahan desain, pembersihan kode, atau perubahan kode yang signifikan, segala bantuan akan selalu diterima. Semakin banyak akan semakin baik jadinya!</string>
     <string name="read_full_license">Baca lisensi</string>
     <string name="contribution_title">Kontribusi</string>
-    <string name="subscribe_button_title">Melanggan</string>
-    <string name="subscribed_button_title">Berlanggan</string>
+    <string name="subscribe_button_title">Berlangganan</string>
+    <string name="subscribed_button_title">Disubscribe</string>
     <string name="fragment_feed_title">Apa Yang Baru</string>
     <string name="resume_on_audio_focus_gain_title">Lanjutkan pemutaran</string>
     <string name="resume_on_audio_focus_gain_summary">Melanjutkan pemutaran setelah interupsi (mis. panggilan telepon)</string>
@@ -263,8 +262,8 @@
     <string name="no_valid_zip_file">Berkas ZIP tidak valid</string>
     <string name="could_not_import_all_files">Perhatian: Tidak bisa mengimpor semua berkas.</string>
     <string name="override_current_data">Ini akan menimpa pengaturan Anda saat ini.</string>
-    <string name="kiosk">Kiosk</string>
-    <string name="trending">Trending</string>
+    <string name="kiosk">Kios</string>
+    <string name="trending">Sedang Tren</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Baru dan aktual</string>
     <string name="play_queue_remove">Hapus</string>
@@ -287,8 +286,8 @@
     <string name="delete_playlist">Hapus</string>
     <string name="rename_playlist">Ubah Nama</string>
     <string name="name">Nama</string>
-    <string name="append_playlist">Tambahkan Ke Daftar Putar</string>
-    <string name="set_as_playlist_thumbnail">Atur sebagai Thumbnail Daftar Putar</string>
+    <string name="append_playlist">Tambah ke daftar putar</string>
+    <string name="set_as_playlist_thumbnail">Atur sebagai thumbnail daftar putar</string>
     <string name="bookmark_playlist">Markah Daftar Putar</string>
     <string name="unbookmark_playlist">Hapus Markah</string>
     <string name="delete_playlist_prompt">Hapus daftar putar ini\?</string>
@@ -322,7 +321,7 @@
     <string name="auto_queue_title">Putar otomatis streaming berikutnya</string>
     <string name="channel_unsubscribed">Berhenti berlanggan channel</string>
     <string name="subscription_update_failed">Tidak bisa memperbarui langganan</string>
-    <string name="tab_subscriptions">Langganan</string>
+    <string name="tab_subscriptions">Subscription</string>
     <string name="use_inexact_seek_title">Gunakan tinjau cepat tak pasti</string>
     <string name="use_inexact_seek_summary">Memungkinkan pengguna memilih posisi waktu video dengan cepat tetapi dengan tingkat presisi yang rendah. Mencari 5, 15 atau 25 detik tidak berhasil dengan ini.</string>
     <string name="app_license">NewPipe adalah perangkat lunak libre copyleft: Anda bisa menggunakannya, mempelajarinya, berbagi, dan meningkatkannya. Secara khusus Anda bisa mendistribusikan ulang dan/atau memodifikasinya dibawah syarat Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan Anda) versi yang lebih baru.</string>
@@ -371,7 +370,7 @@
     <string name="tracks">Trek</string>
     <string name="users">Pengguna</string>
     <string name="privacy_policy_title">Kebijakan Privasi NewPipe</string>
-    <string name="privacy_policy_encouragement">Proyek NewPipe sangat memperhatikan privasi Anda. Karena itu, apl tidak mengumpulkan data apapun tanpa sepengetahuan Anda.
+    <string name="privacy_policy_encouragement">Proyek NewPipe sangat memperhatikan privasi Anda. Karena itu, apl tidak mengumpulkan data apapun tanpa persetujuan Anda.
 \nKebijakan privasi NewPipe menjelaskan secara detail data apa saja yang dikirim dan disimpan ketika Anda mengirimkan laporan kerusakan.</string>
     <string name="read_privacy_policy">Baca kebijakan privasi</string>
     <string name="skip_silence_checkbox">Percepat saat diam</string>
@@ -615,7 +614,7 @@
     <string name="settings_category_notification_title">Notifikasi</string>
     <string name="notification_action_nothing">Tidak ada</string>
     <string name="notification_action_buffering">Bufer</string>
-    <string name="notification_action_shuffle">Shuffle</string>
+    <string name="notification_action_shuffle">Aduk</string>
     <string name="notification_action_repeat">Ulangi</string>
     <string name="notification_actions_at_most_three">Anda bisa memilih hingga tiga tindakan untuk ditampilkan dalam notifikasi ringkas!</string>
     <string name="notification_actions_summary">Sentuh untuk menyunting tindakan notifikasi di bawah. Pilih hingga tiga diantaranya untuk ditampilkan dalam notifikasi ringkas dengan menggunakan kotak centang di sebelah kanan.</string>
@@ -653,8 +652,8 @@
     <string name="show_description_title">Tampilkan deskripsi</string>
     <string name="open_with">Buka dengan</string>
     <string name="paid_content">Konten ini hanya tersedia untuk pengguna yang telah membayar, sehingga tidak dapat ditonton atau diunduh oleh NewPipe.</string>
-    <string name="youtube_music_premium_content">Video ini hanya tersedia untuk anggota Premium YouTube Music, sehingga tidak dapat di stream atau diunduh oleh Newpipe.</string>
-    <string name="private_content">Konten ini bersifat pribadi, jadi tidak di stream ataupun diunduh oleh NewPipe.</string>
+    <string name="youtube_music_premium_content">Video ini hanya tersedia untuk anggota Premium YouTube Music, sehingga tidak dapat di stream atau diunduh oleh NewPipe.</string>
+    <string name="private_content">Konten ini bersifat pribadi, jadi tidak dapat di stream ataupun diunduh oleh NewPipe.</string>
     <string name="soundcloud_go_plus_content">Ini adalah sebuah trek SoundCloud Go +, setidaknya di negara Anda, sehingga tidak dapat di stream atau diunduh oleh Newpipe.</string>
     <string name="georestricted_content">Konten ini tidak tersedia di negara Anda.</string>
     <string name="crash_the_app">Aplikasi crash</string>
@@ -664,8 +663,9 @@
     <string name="night_theme_summary">Pilih tema malam favoritmu — %s</string>
     <string name="auto_device_theme_title">Otomatis (tema perangkat)</string>
     <string name="radio">Radio</string>
-    <string name="featured">Fitur</string>
-    <string name="recaptcha_solve">Solusikan</string>
+    <string name="featured">Unggulan</string>
+    <string name="recaptcha_solve">Selesaikan</string>
     <string name="night_theme_title">Tema malam</string>
     <string name="download_has_started">Pengunduhan dimulai</string>
+    <string name="show_channel_details">Tampilkan rincian channel</string>
 </resources>
