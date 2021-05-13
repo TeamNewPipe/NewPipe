@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">A libre lightweight streaming frontend for Android.</h4>
@@ -145,3 +146,13 @@ will. Specifically you can redistribute and/or modify it under the terms of the
 [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as
 published by the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.  
+=======
+ - jaudiotagger dependency exists: ✔
+ - Checkbox in Download dialogue exists: ✔
+ - Preference to usually enable that checkbox exists: ✔
+ - Preference does something: ❌
+ - Preference does something: ✔
+ ![image](https://user-images.githubusercontent.com/71931749/118102184-bff8e600-b3d8-11eb-917d-279f93cb424d.png)
+ - Cover image gets fetched somehow (just use the same one as the newpipe thumbnail? is that full resolution): ❌
+ - Cover image gets added with jaudiotagger: ❌
+>>>>>>> feature-cover-image-dev
