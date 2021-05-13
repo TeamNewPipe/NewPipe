@@ -87,7 +87,10 @@ public enum StreamDialogEntry {
     }),
 
     share(R.string.share, (fragment, item) ->
-            ShareUtils.shareText(fragment.getContext(), item.getName(), item.getUrl()));
+            ShareUtils.shareText(fragment.getContext(), item.getName(), item.getUrl())),
+
+    open_in_browser(R.string.open_in_browser, (fragment, item) ->
+            ShareUtils.openUrlInBrowser(fragment.getContext(), item.getUrl()));
 
 
     ///////////////
