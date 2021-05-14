@@ -45,6 +45,7 @@ NewPipe nu foloseşte nici-o bibliotecă Google framework sau API-ul Youtube. We
 ### Funcţii
 
 * Căutarea videoclipurilor
+* Nu este necesară logarea
 * Afişarea informaţiilor generale despre videoclipuri
 * Urmărirea videoclipurilor Youtube
 * Ascultarea videoclipurilor Youtube
