@@ -495,7 +495,11 @@ public final class Player implements
         simpleExoPlayer.addTextOutput(binding.subtitleView);
 
         // enable media tunneling
-        if (DeviceUtils.shouldSupportMediaTunneling()) {
+        if (DEBUG && PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.disable_media_tunneling_key), false)) {
+            Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] "
+                    + "media tunneling disabled in debug preferences");
+        } else if (DeviceUtils.shouldSupportMediaTunneling()) {
             trackSelector.setParameters(
                     trackSelector.buildUponParameters().setTunnelingEnabled(true));
         } else if (DEBUG) {
