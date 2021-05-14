@@ -497,8 +497,8 @@ public final class Player implements
         // enable media tunneling
         if (DEBUG && PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.disable_media_tunneling_key), false)) {
-            Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] " +
-                    "media tunneling disabled in debug preferences");
+            Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] "
+                    + "media tunneling disabled in debug preferences");
         } else if (DeviceUtils.shouldSupportMediaTunneling()) {
             trackSelector.setParameters(
                     trackSelector.buildUponParameters().setTunnelingEnabled(true));
