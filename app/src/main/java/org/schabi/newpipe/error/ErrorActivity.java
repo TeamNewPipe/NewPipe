@@ -191,7 +191,7 @@ public class ErrorActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.home:
+            case android.R.id.home:
                 onBackPressed();
                 return true;
             case R.id.menu_item_share_error:
