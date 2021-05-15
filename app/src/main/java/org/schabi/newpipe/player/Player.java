@@ -500,8 +500,8 @@ public final class Player implements
             Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] "
                     + "media tunneling disabled in debug preferences");
         } else if (DeviceUtils.shouldSupportMediaTunneling()) {
-            trackSelector.setParameters(
-                    trackSelector.buildUponParameters().setTunnelingEnabled(true));
+            trackSelector.setParameters(trackSelector.buildUponParameters()
+                    .setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context)));
         } else if (DEBUG) {
             Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] does not support media tunneling");
         }
