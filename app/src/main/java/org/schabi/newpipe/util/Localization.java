@@ -210,6 +210,10 @@ public final class Localization {
     }
 
     public static String getDurationString(final long duration) {
+        return getDurationString(duration, true);
+    }
+
+    public static String getDurationString(final long duration, final boolean isDurationComplete) {
         final String output;
 
         final long days = duration / (24 * 60 * 60L); /* greater than a day */
@@ -227,7 +231,8 @@ public final class Localization {
         } else {
             output = String.format(Locale.US, "%d:%02d", minutes, seconds);
         }
-        return output;
+        final String durationPostfix = isDurationComplete ? "" : "+";
+        return output + durationPostfix;
     }
 
     /**

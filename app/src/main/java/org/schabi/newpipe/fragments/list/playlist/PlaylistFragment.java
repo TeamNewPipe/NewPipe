@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.preference.PreferenceManager;
 import androidx.viewbinding.ViewBinding;
 
 import com.google.android.material.shape.CornerFamily;
@@ -280,7 +279,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     @Override
     public void handleNextItems(final ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
-        setVideoCountAndOverallDuration(result.getItems(), result.hasNextPage());
+        setVideoCountAndOverallDuration(result.getItems(), !result.hasNextPage());
     }
 
     @Override
@@ -330,7 +329,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         }
 
         videoCount = result.getStreamCount();
-        setVideoCountAndOverallDuration(result.getRelatedItems(), result.hasNextPage());
+        setVideoCountAndOverallDuration(result.getRelatedItems(), !result.hasNextPage());
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(new ErrorInfo(result.getErrors(), UserAction.REQUESTED_PLAYLIST,
@@ -487,26 +486,17 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     }
 
     private void setVideoCountAndOverallDuration(final List<StreamInfoItem> list,
-                                                 final boolean isDurationLonger) {
+                                                 final boolean isDurationComplete) {
         if (activity != null && headerBinding != null) {
-            if (!PreferenceManager.getDefaultSharedPreferences(activity)
-                    .getBoolean(getString(R.string.show_playlist_duration_key), true)) {
-                headerBinding.playlistStreamCount.setText(
-                        Localization.localizeStreamCount(activity, videoCount)
-                );
-            } else {
-                final String durationPostfix = isDurationLonger ? "+" : "";
-                playlistOverallDurationSeconds += list.stream()
+            playlistOverallDurationSeconds += list.stream()
                     .mapToLong(x -> x.getDuration())
                     .sum();
-                headerBinding.playlistStreamCount.setText(
-                    Localization.concatenateStrings(
-                        Localization.localizeStreamCount(activity, videoCount),
-                        Localization.getDurationString(playlistOverallDurationSeconds)
-                        + durationPostfix
-                    )
-                );
-            }
+            headerBinding.playlistStreamCount.setText(
+                Localization.concatenateStrings(
+                    Localization.localizeStreamCount(activity, videoCount),
+                    Localization.getDurationString(playlistOverallDurationSeconds,
+                            isDurationComplete))
+            );
         }
     }
 
