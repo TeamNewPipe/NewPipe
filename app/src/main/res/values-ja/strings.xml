@@ -78,7 +78,7 @@
     <string name="report_error">不具合を報告</string>
     <string name="user_report">利用者レポートを送る</string>
     <string name="duration_live">生放送</string>
-    <string name="main_bg_subtitle">開始するには「検索」をタップ</string>
+    <string name="main_bg_subtitle">虫眼鏡をタップして開始します。</string>
     <string name="start">開始</string>
     <string name="pause">一時停止</string>
     <string name="view">再生</string>
@@ -661,7 +661,13 @@
 \n年齢制限付き動画を含む新しい YouTube ポリシーにより、NewPipe は動画ストリームにアクセスできないため再生できません。</string>
     <string name="select_night_theme_toast">以下からお好みの夜間テーマを選択できます</string>
     <string name="auto_device_theme_title">自動 (デバイスのテーマ)</string>
-    <string name="night_theme_summary">%s</string>
+    <string name="night_theme_summary">お好みの夜間テーマを選択 — %s</string>
     <string name="recaptcha_solve">解決</string>
     <string name="night_theme_title">夜間テーマ</string>
+    <string name="download_has_started">ダウンロードを開始しました</string>
+    <string name="show_channel_details">チャンネルの詳細を表示</string>
+    <string name="radio">ラジオ</string>
+    <string name="featured">おすすめ</string>
+    <string name="disable_media_tunneling_summary">ビデオ再生が止まったり出ない場合はメディアトンネリングを無効にしてください</string>
+    <string name="disable_media_tunneling_title">マルチメディアトンネリングを無効にする</string>
 </resources>

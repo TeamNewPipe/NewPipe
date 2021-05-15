@@ -24,7 +24,7 @@
     <string name="show_play_with_kodi_summary">Приказ опције за пуштање видеа у Коди медија центру</string>
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Подразумевани формат звука</string>
-    <string name="download_dialog_title">Преузми</string>
+    <string name="download_dialog_title">Преузимање</string>
     <string name="unsupported_url">УРЛ није подржан</string>
     <string name="show_next_and_similar_title">Прикажи „следећи“ и „слични“ видео</string>
     <string name="content_language_title">Подразумевани језик садржаја</string>
@@ -106,7 +106,7 @@
     <string name="title_activity_recaptcha">reCAPTCHA стопка</string>
     <string name="recaptcha_request_toast">Решите reCAPTCHA задатак</string>
     <string name="black_theme_title">црна</string>
-    <string name="all">Сви</string>
+    <string name="all">Све</string>
     <string name="channel">Канал</string>
     <string name="short_thousand">хиљ</string>
     <string name="short_million">мил</string>
@@ -131,8 +131,8 @@
     <string name="use_external_video_player_summary">Уклања звук на неким резолуцијама</string>
     <string name="popup_remember_size_pos_title">Упамти својства искачућег прозора</string>
     <string name="popup_remember_size_pos_summary">памти последњу величину и позицију искачућег прозора</string>
-    <string name="player_gesture_controls_title">Контроле прејера потезом</string>
-    <string name="player_gesture_controls_summary">Користите покрете како би контролисали осветљеност и јачину звука плејера</string>
+    <string name="player_gesture_controls_title">Контроле плејера потезом</string>
+    <string name="player_gesture_controls_summary">Користите потезе за контролу осветљености и јачине звука у плејеру</string>
     <string name="show_search_suggestions_title">Предлози у претрази</string>
     <string name="show_search_suggestions_summary">Приказује предлоге током претраге</string>
     <string name="settings_category_popup_title">Искачући прозор</string>
@@ -176,11 +176,11 @@
     <string name="subscription_update_failed">Не могу да ажурирам претплату</string>
     <string name="settings_category_player_title">Плејер</string>
     <string name="settings_category_player_behavior_title">Понашање</string>
-    <string name="settings_category_history_title">Историја и кеш меморија</string>
+    <string name="settings_category_history_title">Историја и кеш</string>
     <string name="playlist">Листа пуштања</string>
     <string name="undo">Врати</string>
-    <string name="notification_channel_name">Обавештење</string>
-    <string name="notification_channel_description">Обавештења за Њупајп у позадини и искачуће прозоре</string>
+    <string name="notification_channel_name">Њупајп обавештење</string>
+    <string name="notification_channel_description">Обавештења за Њупајп плејере у позадини и искачућем прозору</string>
     <string name="search_no_results">Нема резултата</string>
     <string name="empty_subscription_feed_subtitle">Нема ничега овде осим цврчака</string>
     <string name="no_subscribers">Нема претплатника</string>
@@ -257,7 +257,7 @@
     <string name="download_thumbnail_summary">Искључите да спречите преузимање сличица, смањујући утрошак преноса података и меморије. Изменом ће се очистити и меморијски и диск кеш.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Очишћен кеш са сликама</string>
     <string name="metadata_cache_wipe_title">Уклони кеширане метаподатке</string>
-    <string name="metadata_cache_wipe_summary">Уклони све податке о кешираним веб-странама</string>
+    <string name="metadata_cache_wipe_summary">Уклања све податке кешираних веб-страна</string>
     <string name="unsubscribe">Откажи праћење</string>
     <string name="tab_new">Нови језичак</string>
     <string name="tab_choose">Изаберите језичак</string>
@@ -537,44 +537,44 @@
     <string name="hash_channel_name">Обавештење о видео хешу</string>
     <string name="app_update_notification_channel_description">Обавештења о новој верзији ЊуПајпа</string>
     <string name="app_update_notification_channel_name">Обавештење о ажурирању апликације</string>
-    <string name="file">Датотека</string>
-    <string name="file_deleted">Датотека је избрисана</string>
-    <string name="artists">Уметници</string>
+    <string name="file">Фајл</string>
+    <string name="file_deleted">Фајл избрисан</string>
+    <string name="artists">Извођачи</string>
     <string name="albums">Албуми</string>
     <string name="songs">Песме</string>
     <string name="events">Догађаји</string>
     <string name="users">Корисници</string>
     <string name="tracks">Нумере</string>
     <string name="videos_string">Видео</string>
-    <string name="playlists">Плејлисте</string>
+    <string name="playlists">Листе пуштања</string>
     <string name="channels">Канали</string>
     <string name="restricted_video_no_stream">Овај видео је старосно ограничен.
-\nЗбог нових Јутјуб смерница са старосним видео записима, Њупајп не може да приступи ниједном од својих видео токова, па стога није у могућности да га репродукује.</string>
+\nЗбог нових Јутјуб смерница за такве видео записе, Њупајп не може да им приступи, па није у могућности да их репродукује.</string>
     <string name="restricted_video">Овај видео је старосно ограничен.
 \n
-\nУкључите „%1$s“ у подешавањима ако желите да га видите.</string>
-    <string name="youtube_restricted_mode_enabled_summary">Јутјуб нуди „Ограничени режим“ који скрива потенцијални садржај за одрасле</string>
+\nУкључите „%1$s“ у поставкама ако желите да га видите.</string>
+    <string name="youtube_restricted_mode_enabled_summary">Јутјуб омогућава „Ограничени режим“ који скрива потенцијални садржај за одрасле</string>
     <string name="youtube_restricted_mode_enabled_title">Укључите Јутјубов „Ограничени режим“</string>
-    <string name="show_age_restricted_content_summary">Прикажите садржај који је можда неприкладан за децу јер има старосну границу (попут 18+)</string>
+    <string name="show_age_restricted_content_summary">Приказ садржаја који можда није прикладан за децу јер има старосну границу (попут 18+)</string>
     <string name="settings_category_notification_title">Обавештење</string>
     <string name="settings_category_updates_title">Ажурирања</string>
     <string name="peertube_instance_add_exists">Инстанца већ постоји</string>
     <string name="peertube_instance_add_https_only">Подржане су само HTTPS УРЛ адресе</string>
-    <string name="peertube_instance_add_fail">Није могуће потврдити инстанцу</string>
-    <string name="peertube_instance_add_help">Унесите УРЛ адресе инстанце</string>
+    <string name="peertube_instance_add_fail">Не могу да потврдим инстанцу</string>
+    <string name="peertube_instance_add_help">Унесите УРЛ инстанце</string>
     <string name="peertube_instance_add_title">Додајте инстанцу</string>
     <string name="peertube_instance_url_help">Пронађите инстанце које вам се свиђају на %s</string>
     <string name="peertube_instance_url_title">PeerTube инстанца</string>
     <string name="peertube_instance_url_summary">Изаберите своје омиљене инстанце PeerTube</string>
-    <string name="unsupported_url_dialog_message">УРЛ није препознат. Отворити помоћу друге апликације\?</string>
-    <string name="autoplay_title">Аутоматско покретање</string>
+    <string name="unsupported_url_dialog_message">УРЛ није препознат. Отворити другом апликацијом\?</string>
+    <string name="autoplay_title">Аутоматско пуштање</string>
     <string name="settings_category_clear_data_title">Очисти податке</string>
     <string name="enable_playback_state_lists_summary">Прикажите индикаторе положаја репродукције на листама</string>
     <string name="enable_playback_state_lists_title">Позиције на листама</string>
     <string name="enable_playback_resume_summary">Вратите последњу позицију репродукције</string>
-    <string name="enable_playback_resume_title">Наставите репродукцију</string>
-    <string name="brightness_gesture_control_summary">Користите покрете за контролу осветљености плејера</string>
-    <string name="brightness_gesture_control_title">Контрола геста осветљености</string>
+    <string name="enable_playback_resume_title">Наставак репродукције</string>
+    <string name="brightness_gesture_control_summary">Користите покрете за контролу осветљаја</string>
+    <string name="brightness_gesture_control_title">Контрола осветљености потезом</string>
     <string name="volume_gesture_control_summary">Користите потезе за контролу јачине звука плејера</string>
     <string name="volume_gesture_control_title">Контрола јачине звука потезом</string>
     <string name="auto_queue_toggle">Аутоматски ред</string>

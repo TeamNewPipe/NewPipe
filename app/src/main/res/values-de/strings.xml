@@ -81,7 +81,7 @@
     <string name="report_error">Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
     <string name="duration_live">Live</string>
-    <string name="main_bg_subtitle">„Suchen“ antippen, um zu beginnen</string>
+    <string name="main_bg_subtitle">Tippe auf die Lupe, um zu beginnen.</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Fehlerbericht</string>
@@ -678,4 +678,6 @@
     <string name="auto_device_theme_title">Automatisch (Gerätedesign)</string>
     <string name="night_theme_title">Nachtdesign</string>
     <string name="show_channel_details">Kanal-Details anzeigen</string>
+    <string name="disable_media_tunneling_summary">Deaktiviere das Media-Tunneling, wenn bei der Videowiedergabe ein schwarzer Bildschirm oder Stottern auftritt</string>
+    <string name="disable_media_tunneling_title">Media-Tunneling deaktivieren</string>
 </resources>

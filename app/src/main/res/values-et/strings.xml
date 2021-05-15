@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Alustamiseks toksa \"Luubi ikooni\"</string>
+    <string name="main_bg_subtitle">Alustamiseks toksa suurendusklaasi ikooni.</string>
     <string name="view_count_text">%1$s vaatamist</string>
     <string name="upload_date_text">Avaldatud %1$s</string>
     <string name="no_player_found">Voogesituseks puudub pleier. Kas paigaldada VLC?</string>
@@ -589,4 +589,44 @@
     <string name="error_insufficient_storage">Seadmes pole enam ruumi</string>
     <string name="download_already_pending">Sellise nimega allalaadimine on juba pooleli</string>
     <string name="overwrite_failed">faili asendamine ei õnnestu</string>
+    <string name="feed_create_new_group_button_title">Uus</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d valitud</item>
+        <item quantity="other">%d valitud</item>
+    </plurals>
+    <string name="feed_group_dialog_empty_selection">Sa pole tellimusi valinud</string>
+    <string name="feed_group_dialog_select_subscriptions">Vali tellimused</string>
+    <string name="feed_processing_message">Töötlen andmevoogu…</string>
+    <string name="feed_notification_loading">Laadin andmevoogu…</string>
+    <string name="feed_subscription_not_loaded_count">Pole laaditud: %d</string>
+    <string name="feed_oldest_subscription_update">Andmevoo viimane uuendus: %s</string>
+    <string name="feed_groups_header_title">Kanalite rühmad</string>
+    <plurals name="days">
+        <item quantity="one">%d päev</item>
+        <item quantity="other">%d päeva</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d tund</item>
+        <item quantity="other">%d tundi</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minut</item>
+        <item quantity="other">%d minutit</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%d sekund</item>
+        <item quantity="other">%d sekundit</item>
+    </plurals>
+    <string name="remove_watched_popup_warning">Sellega eemaldame vaadatud videod ja esitusloendisse lisatud videod.
+\nKas sa oled kindel\? Seda tegevuste ei saa hiljem tagasi pöörata!</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Jah, sealhulgas videod, mille vaatmine jäi pooleli</string>
+    <string name="remove_watched_popup_title">Kas eemaldame vaadatud videod\?</string>
+    <string name="remove_watched">Eemalda vaadatud videod</string>
+    <string name="systems_language">Kasuta süsteemi keelt</string>
+    <string name="app_language_title">Rakenduse keel</string>
+    <string name="downloads_storage_ask_summary">Alati küsime kuhu kausta soovid faile alla laadida</string>
+    <string name="downloads_storage_ask_title">Küsi allalaaditavate failide salvestamise kausta</string>
+    <string name="pause_downloads">Peata allalaadimised</string>
+    <string name="start_downloads">Alusta allalaadimistega</string>
+    <string name="copy_for_github">Kopeeri vormindatud aruanne</string>
 </resources>

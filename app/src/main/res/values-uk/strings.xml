@@ -690,4 +690,6 @@
     <string name="notification_actions_at_most_three">У компактному сповіщенні є не більше трьох дій!</string>
     <string name="notification_actions_summary">Дії можна змінити, натиснувши на них. Відзначте не більше трьох для показу в місткому сповіщенні.</string>
     <string name="notification_scale_to_square_image_summary">Масштабувати мініатюру відео 16: 9 до 1:1 (можливі спотворення)</string>
+    <string name="disable_media_tunneling_summary">Вимкнення тунелювання медіаданих за наявності чорного екрана або гальмування під час відтворення відео</string>
+    <string name="disable_media_tunneling_title">Вимкнути тунелювання медіа</string>
 </resources>
