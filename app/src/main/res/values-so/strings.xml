@@ -482,7 +482,6 @@
     <string name="clear_queue_confirmation_summary">Kala badalka daareha waxay badali kartaa hormada sidaas darteed waydii in la xaqiijiyo intaan hormada la tirtirin</string>
     <string name="clear_queue_confirmation_title">Xaqiijinta tirtirka hormada</string>
     <string name="seek_duration_title">Wakhtiga horay udhaafinta/dibucelinta</string>
-    <string name="use_inexact_seek_summary">Dhaaf-dhaafinta dagdaga ah ee waxa daaran, 100% sax wax uma dhaafiso waxayna u sahashaa muuqaal daareha inuu u dhaaf dhaafiyo si dagdag ah. Nidaamkan 5, 15 ama 25 ilbiriqsi wax looma dhaafin karo.</string>
     <string name="black_theme_title">Mugdi</string>
     <string name="light_theme_title">Caddaan</string>
     <string name="play_audio">Dhagaysi</string>
