@@ -375,7 +375,11 @@ public final class Player implements
     @NonNull private final SharedPreferences prefs;
     @NonNull private final HistoryRecordManager recordManager;
 
+     /*//////////////////////////////////////////////////////////////////////////
+    // this field is added to address issue #6217 regarding the replay button appearing twice.
+    //////////////////////////////////////////////////////////////////////////*/
 
+    private boolean isOnreplay = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Constructor
@@ -2142,12 +2146,16 @@ public final class Player implements
     }
 
     private void onCompleted() {
+        if (isOnreplay) {
+            return;
+        }
         if (DEBUG) {
             Log.d(TAG, "onCompleted() called");
         }
 
         animate(binding.playPauseButton, false, 0, AnimationType.SCALE_AND_ALPHA, 0,
                 () -> {
+                    isOnreplay = true;
                     binding.playPauseButton.setImageResource(R.drawable.ic_replay);
                     animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
                 });
@@ -3546,6 +3554,10 @@ public final class Player implements
             seekToDefault();
         } else if (v.getId() == binding.playPauseButton.getId()) {
             playPause();
+            if (isOnreplay) {
+                isOnreplay = false;
+                playPause();
+            }
         } else if (v.getId() == binding.playPreviousButton.getId()) {
             playPrevious();
         } else if (v.getId() == binding.playNextButton.getId()) {
