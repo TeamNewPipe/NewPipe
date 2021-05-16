@@ -37,8 +37,7 @@
     <string name="later">稍后</string>
     <string name="network_error">网络错误</string>
     <plurals name="videos">
-        <item quantity="one">%s 部视频</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 部视频</item>
     </plurals>
     <string name="disabled">禁用</string>
     <string name="controls_background_title">后台播放</string>
@@ -127,8 +126,7 @@
     <string name="search_no_results">没有结果</string>
     <string name="no_subscribers">无人订阅</string>
     <plurals name="subscribers">
-        <item quantity="one">%s 人订阅</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 人订阅</item>
     </plurals>
     <string name="no_videos">无视频</string>
     <string name="detail_drag_description">拖动以重新排序</string>
@@ -498,8 +496,7 @@
     </plurals>
     <string name="no_one_listening">没有人在听</string>
     <plurals name="listening">
-        <item quantity="one">%s 位听众</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 位听众</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">语言更改将在重启应用后生效。</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
@@ -528,24 +525,20 @@
     <string name="recaptcha_done_button">完成</string>
     <string name="videos_string">视频</string>
     <plurals name="seconds">
-        <item quantity="one">%d 秒</item>
-        <item quantity="other"/>
+        <item quantity="other">%d 秒</item>
     </plurals>
     <string name="new_seek_duration_toast">由于 ExoPlayer 的限制，寻址间隔置为 %d 秒</string>
     <string name="mute">静音</string>
     <string name="unmute">取消静音</string>
     <string name="help">帮助</string>
     <plurals name="minutes">
-        <item quantity="one">%d 分钟</item>
-        <item quantity="other"/>
+        <item quantity="other">%d 分钟</item>
     </plurals>
     <plurals name="hours">
-        <item quantity="one">%d 小时</item>
-        <item quantity="other"/>
+        <item quantity="other">%d 小时</item>
     </plurals>
     <plurals name="days">
-        <item quantity="one">%d 天</item>
-        <item quantity="other"/>
+        <item quantity="other">%d 天</item>
     </plurals>
     <string name="feed_groups_header_title">频道组</string>
     <string name="feed_oldest_subscription_update">订阅最后更新：%s</string>
@@ -555,8 +548,7 @@
     <string name="feed_group_dialog_select_subscriptions">选择订阅</string>
     <string name="feed_group_dialog_empty_selection">未选中任何订阅</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="one">已选中 %d</item>
-        <item quantity="other"/>
+        <item quantity="other">已选中 %d</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">清空组名</string>
     <string name="feed_group_dialog_delete_message">您要删除该组吗？</string>
