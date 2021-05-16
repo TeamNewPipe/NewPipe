@@ -1,64 +1,52 @@
-package org.schabi.newpipe.database;
+package org.schabi.newpipe.database
 
-import androidx.room.TypeConverter;
+import androidx.room.TypeConverter
+import org.schabi.newpipe.extractor.stream.StreamType
+import org.schabi.newpipe.local.subscription.FeedGroupIcon
+import java.time.Instant
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 
-import org.schabi.newpipe.extractor.stream.StreamType;
-import org.schabi.newpipe.local.subscription.FeedGroupIcon;
-
-import java.time.Instant;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
-
-public final class Converters {
-    private Converters() { }
-
+object Converters {
     /**
-     * Convert a long value to a {@link OffsetDateTime}.
+     * Convert a long value to a [OffsetDateTime].
      *
      * @param value the long value
-     * @return the {@code OffsetDateTime}
+     * @return the `OffsetDateTime`
      */
     @TypeConverter
-    public static OffsetDateTime offsetDateTimeFromTimestamp(final Long value) {
-        return value == null ? null : OffsetDateTime.ofInstant(Instant.ofEpochMilli(value),
-                ZoneOffset.UTC);
+    fun offsetDateTimeFromTimestamp(value: Long?): OffsetDateTime? {
+        return value?.let { OffsetDateTime.ofInstant(Instant.ofEpochMilli(it), ZoneOffset.UTC) }
     }
 
     /**
-     * Convert a {@link OffsetDateTime} to a long value.
+     * Convert a [OffsetDateTime] to a long value.
      *
-     * @param offsetDateTime the {@code OffsetDateTime}
+     * @param offsetDateTime the `OffsetDateTime`
      * @return the long value
      */
     @TypeConverter
-    public static Long offsetDateTimeToTimestamp(final OffsetDateTime offsetDateTime) {
-        return offsetDateTime == null ? null : offsetDateTime.withOffsetSameInstant(ZoneOffset.UTC)
-                .toInstant().toEpochMilli();
+    fun offsetDateTimeToTimestamp(offsetDateTime: OffsetDateTime?): Long? {
+        return offsetDateTime?.withOffsetSameInstant(ZoneOffset.UTC)?.toInstant()?.toEpochMilli()
     }
 
     @TypeConverter
-    public static StreamType streamTypeOf(final String value) {
-        return StreamType.valueOf(value);
+    fun streamTypeOf(value: String): StreamType {
+        return StreamType.valueOf(value)
     }
 
     @TypeConverter
-    public static String stringOf(final StreamType streamType) {
-        return streamType.name();
+    fun stringOf(streamType: StreamType): String {
+        return streamType.name
     }
 
     @TypeConverter
-    public static Integer integerOf(final FeedGroupIcon feedGroupIcon) {
-        return feedGroupIcon.getId();
+    fun integerOf(feedGroupIcon: FeedGroupIcon): Int {
+        return feedGroupIcon.id
     }
 
     @TypeConverter
-    public static FeedGroupIcon feedGroupIconOf(final Integer id) {
-        for (final FeedGroupIcon icon : FeedGroupIcon.values()) {
-            if (icon.getId() == id) {
-                return icon;
-            }
-        }
-
-        throw new IllegalArgumentException("There's no feed group icon with the id \"" + id + "\"");
+    fun feedGroupIconOf(id: Int): FeedGroupIcon {
+        return FeedGroupIcon.values().first { it.id == id }
     }
 }
