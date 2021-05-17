@@ -135,8 +135,6 @@ public class MainActivity extends AppCompatActivity {
             TLSSocketFactoryCompat.setAsDefault();
         }
 
-        PrivacyHelper.setScreenshotMode(this);
-
         ThemeHelper.setDayNightMode(this);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
@@ -494,6 +492,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (final Exception e) {
             ErrorActivity.reportUiErrorInSnackbar(this, "Setting up service toggle", e);
         }
+
+        PrivacyHelper.setScreenshotMode(this);
 
         final SharedPreferences sharedPreferences
                 = PreferenceManager.getDefaultSharedPreferences(this);

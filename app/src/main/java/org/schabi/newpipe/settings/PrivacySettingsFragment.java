@@ -16,6 +16,8 @@ public class PrivacySettingsFragment extends BasePreferenceFragment {
             if (newValue.toString().equals("false")) {
                 getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
                         WindowManager.LayoutParams.FLAG_SECURE);
+            } else {
+                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
             }
             return true;
         }));
