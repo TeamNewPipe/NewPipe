@@ -41,6 +41,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private ContentSettingsManager manager;
 
+    private String importExportDataPathKey;
+
     private String thumbnailLoadToggleKey;
     private String youtubeRestrictedModeEnabledKey;
 
@@ -56,6 +58,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         addPreferencesFromResource(R.xml.content_settings);
 
+        importExportDataPathKey = getString(R.string.import_export_data_path);
         final Preference importDataPreference = findPreference(getString(R.string.import_data));
         importDataPreference.setOnPreferenceClickListener(p -> {
             final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
@@ -63,6 +66,10 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_MODE,
                             FilePickerActivityHelper.MODE_FILE);
+            final String path = defaultPreferences.getString(importExportDataPathKey, "");
+            if (isValidPath(path)) {
+                i.putExtra(FilePickerActivityHelper.EXTRA_START_PATH, path);
+            }
             startActivityForResult(i, REQUEST_IMPORT_PATH);
             return true;
         });
@@ -74,6 +81,10 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
                     .putExtra(FilePickerActivityHelper.EXTRA_MODE,
                             FilePickerActivityHelper.MODE_DIR);
+            final String path = defaultPreferences.getString(importExportDataPathKey, "");
+            if (isValidPath(path)) {
+                i.putExtra(FilePickerActivityHelper.EXTRA_START_PATH, path);
+            }
             startActivityForResult(i, REQUEST_EXPORT_PATH);
             return true;
         });
@@ -164,7 +175,10 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         if ((requestCode == REQUEST_IMPORT_PATH || requestCode == REQUEST_EXPORT_PATH)
                 && resultCode == Activity.RESULT_OK && data.getData() != null) {
-            final String path = Utils.getFileForUri(data.getData()).getAbsolutePath();
+            final File file = Utils.getFileForUri(data.getData());
+            final String path = file.getAbsolutePath();
+            setImportExportDataPath(file);
+
             if (requestCode == REQUEST_EXPORT_PATH) {
                 final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
                 exportDatabase(path + "/NewPipeData-" + sdf.format(new Date()) + ".zip");
@@ -238,5 +252,28 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         } catch (final Exception e) {
             ErrorActivity.reportUiErrorInSnackbar(this, "Importing database", e);
         }
+    }
+
+    private boolean isValidPath(final String path) {
+        if (path == null || path.isEmpty()) {
+            return false;
+        }
+        final File file = new File(path);
+        return file.exists() && file.isDirectory();
+    }
+
+    private void setImportExportDataPath(final File file) {
+        final String directoryPath;
+        if (!file.isDirectory()) {
+            final File parentFile = file.getParentFile();
+            if (parentFile != null) {
+                directoryPath = parentFile.getAbsolutePath();
+            } else {
+                directoryPath = "";
+            }
+        } else {
+            directoryPath = file.getAbsolutePath();
+        }
+        defaultPreferences.edit().putString(importExportDataPathKey, directoryPath).apply();
     }
 }
