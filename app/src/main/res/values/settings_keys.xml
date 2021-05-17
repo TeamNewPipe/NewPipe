@@ -243,6 +243,9 @@
 
     <string name="show_thumbnail_key" translatable="false">show_thumbnail_key</string>
 
+    <!-- Privacy and security -->
+    <string name="enable_screen_capture_key" translatable="false">enable_screen_capture</string>
+
     <!-- Values will be localized in runtime -->
     <string-array name="feed_update_threshold_options" translatable="false">
         <item>@string/feed_update_threshold_option_always_update</item>

@@ -716,4 +716,7 @@
     <string name="night_theme_summary">Select your favorite night theme — %s</string>
     <string name="select_night_theme_toast">You can select your favorite night theme below</string>
     <string name="download_has_started">Download has started</string>
+    <string name="settings_category_privacy_title">Privacy and security</string>
+    <string name="enable_screen_capture_title">Allow screen capture</string>
+    <string name="enable_screen_capture_summary">enable/disable screenshot and screen capture</string>
 </resources>
