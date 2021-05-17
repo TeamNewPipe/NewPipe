@@ -39,6 +39,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.PrivacyHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.Collections;
@@ -82,6 +83,7 @@ public final class PlayQueueActivity extends AppCompatActivity
     protected void onCreate(final Bundle savedInstanceState) {
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
+        PrivacyHelper.setScreenshotMode(this);
         ThemeHelper.setTheme(this);
 
         queueControlBinding = ActivityPlayerQueueControlBinding.inflate(getLayoutInflater());

@@ -17,6 +17,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.databinding.ActivityAboutBinding
 import org.schabi.newpipe.databinding.FragmentAboutBinding
 import org.schabi.newpipe.util.Localization
+import org.schabi.newpipe.util.PrivacyHelper
 import org.schabi.newpipe.util.ShareUtils
 import org.schabi.newpipe.util.ThemeHelper
 
@@ -24,6 +25,7 @@ class AboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Localization.assureCorrectAppLanguage(this)
         super.onCreate(savedInstanceState)
+        PrivacyHelper.setScreenshotMode(this)
         ThemeHelper.setTheme(this)
         title = getString(R.string.title_activity_about)
         val aboutBinding = ActivityAboutBinding.inflate(layoutInflater)

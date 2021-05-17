@@ -37,7 +37,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
@@ -81,6 +80,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PeertubeHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.PrivacyHelper;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
@@ -134,6 +134,8 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
             TLSSocketFactoryCompat.setAsDefault();
         }
+
+        PrivacyHelper.setScreenshotMode(this);
 
         ThemeHelper.setDayNightMode(this);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
@@ -501,11 +503,6 @@ public class MainActivity extends AppCompatActivity {
             }
             sharedPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
             ActivityCompat.recreate(this);
-        }
-
-        if (sharedPreferences.getBoolean(getString(R.string.enable_screen_capture_key), false)) {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-                    WindowManager.LayoutParams.FLAG_SECURE);
         }
 
         if (sharedPreferences.getBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false)) {

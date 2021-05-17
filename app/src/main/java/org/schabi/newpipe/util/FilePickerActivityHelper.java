@@ -56,6 +56,7 @@ public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.File
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
+        PrivacyHelper.setScreenshotMode(this);
         if (ThemeHelper.isLightThemeSelected(this)) {
             this.setTheme(R.style.FilePickerThemeLight);
         } else {

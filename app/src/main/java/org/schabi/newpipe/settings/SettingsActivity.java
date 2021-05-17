@@ -14,6 +14,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.SettingsLayoutBinding;
 import org.schabi.newpipe.util.DeviceUtils;
+import org.schabi.newpipe.util.PrivacyHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
 
@@ -48,6 +49,7 @@ public class SettingsActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(final Bundle savedInstanceBundle) {
+        PrivacyHelper.setScreenshotMode(this);
         setTheme(ThemeHelper.getSettingsThemeStyle(this));
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceBundle);

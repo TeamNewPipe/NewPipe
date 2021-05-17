@@ -69,6 +69,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.PrivacyHelper;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.urlfinder.UrlFinder;
@@ -121,7 +122,7 @@ public class RouterActivity extends AppCompatActivity {
                 finish();
             }
         }
-
+        PrivacyHelper.setScreenshotMode(this);
         setTheme(ThemeHelper.isLightThemeSelected(this)
                 ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
     }

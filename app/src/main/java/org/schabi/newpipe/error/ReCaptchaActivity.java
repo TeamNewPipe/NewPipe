@@ -23,6 +23,7 @@ import org.schabi.newpipe.databinding.ActivityRecaptchaBinding;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.PrivacyHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.UnsupportedEncodingException;
@@ -68,6 +69,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        PrivacyHelper.setScreenshotMode(this);
         ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
 
