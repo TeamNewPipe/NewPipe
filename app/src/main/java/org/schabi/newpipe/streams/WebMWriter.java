@@ -712,7 +712,7 @@ public class WebMWriter implements Closeable {
             return 0;
         }
 
-        // TODO: in the adove code, find and select the shortest track for the desired kind
+        // TODO: in the above code, find and select the shortest track for the desired kind
         for (i = 0; i < infoTracks.length; i++) {
             if (kind == infoTracks[i].trackType) {
                 return i;
