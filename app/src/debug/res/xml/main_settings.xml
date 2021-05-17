@@ -49,7 +49,7 @@
 
     <PreferenceScreen
         android:fragment="org.schabi.newpipe.settings.PrivacySettingsFragment"
-        android:icon="@drawable/ic_telescope"
+        android:icon="@drawable/ic_shield"
         android:title="@string/settings_category_privacy_title"
         app:iconSpaceReserved="false" />
 
