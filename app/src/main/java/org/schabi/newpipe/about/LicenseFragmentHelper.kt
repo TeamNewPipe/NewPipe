@@ -135,9 +135,9 @@ object LicenseFragmentHelper {
                     alert.setView(webView)
                     Localization.assureCorrectAppLanguage(context)
                     alert.setPositiveButton(
-                        "DISMISS"
+                        R.string.dismiss
                     ) { dialog, _ -> dialog.dismiss() }
-                    alert.setNeutralButton("Open website") { _, _ ->
+                    alert.setNeutralButton(R.string.open_website_license) { _, _ ->
                         ShareUtils.openUrlInBrowser(context, component.link)
                     }
                     alert.show()
