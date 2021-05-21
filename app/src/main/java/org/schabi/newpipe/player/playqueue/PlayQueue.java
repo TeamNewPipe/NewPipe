@@ -46,22 +46,21 @@ public abstract class PlayQueue implements Serializable {
 
     @NonNull
     private final AtomicInteger queueIndex;
-    private final List<PlayQueueItem> history;
+    private final List<PlayQueueItem> history = new ArrayList<>();
 
     private transient BehaviorSubject<PlayQueueEvent> eventBroadcast;
     private transient Flowable<PlayQueueEvent> broadcastReceiver;
 
-    private transient boolean disposed;
+    private transient boolean disposed = false;
 
     PlayQueue(final int index, final List<PlayQueueItem> startWith) {
         streams = new ArrayList<>(startWith);
-        history = new ArrayList<>();
+
         if (streams.size() > index) {
             history.add(streams.get(index));
         }
 
         queueIndex = new AtomicInteger(index);
-        disposed = false;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
