@@ -500,22 +500,14 @@ public abstract class PlayQueue implements Serializable {
      * we don't have to do anything with new queue.
      * This method also gives a chance to track history of items in a queue in
      * VideoDetailFragment without duplicating items from two identical queues
-     * */
+     */
     @Override
     public boolean equals(@Nullable final Object obj) {
-        if (!(obj instanceof PlayQueue)
-                || getStreams().size() != ((PlayQueue) obj).getStreams().size()) {
+        if (!(obj instanceof PlayQueue)) {
             return false;
         }
-
         final PlayQueue other = (PlayQueue) obj;
-        for (int i = 0; i < getStreams().size(); i++) {
-            if (!getItem(i).getUrl().equals(other.getItem(i).getUrl())) {
-                return false;
-            }
-        }
-
-        return true;
+        return streams.equals(other.streams);
     }
 
     public boolean isDisposed() {
