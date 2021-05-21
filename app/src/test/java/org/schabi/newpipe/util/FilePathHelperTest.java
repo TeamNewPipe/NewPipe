@@ -12,6 +12,12 @@ import static org.junit.Assert.assertTrue;
 public class FilePathHelperTest {
     @Test
     public void testIsValidDirectoryPath() throws IOException {
+        // empty path is not valid
+        assertFalse(FilePathUtils.isValidDirectoryPath(""));
+
+        // null path is not valid
+        assertFalse(FilePathUtils.isValidDirectoryPath(null));
+
         // path that exists
         final File dir1 = Files.createTempDirectory("dir1").toFile();
         assertTrue(FilePathUtils.isValidDirectoryPath(dir1.getAbsolutePath()));
