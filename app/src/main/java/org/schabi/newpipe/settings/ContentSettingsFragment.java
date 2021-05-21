@@ -29,6 +29,7 @@ import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.FilePathUtils;
+import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.File;
@@ -211,7 +212,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.export_button, (dialog1, which) -> {
                     final String fileName = fileNameET.getText().toString();
-                    if (fileName.matches("[-_. A-Za-z0-9]+\\.zip")) {
+                    if (FilenameUtils.isValidFileName(fileName, "zip")) {
                         exportDatabase(path + "/" + fileName);
                     } else {
                         Toast.makeText(getContext(), R.string.no_valid_zip_file_name,
