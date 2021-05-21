@@ -509,6 +509,11 @@ public abstract class PlayQueue implements Serializable {
         return streams.equals(other.streams);
     }
 
+    @Override
+    public int hashCode() {
+        return streams.hashCode();
+    }
+
     public boolean isDisposed() {
         return disposed;
     }
