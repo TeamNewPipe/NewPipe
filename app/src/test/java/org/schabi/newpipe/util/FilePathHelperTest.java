@@ -1,5 +1,6 @@
 package org.schabi.newpipe.util;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
@@ -10,28 +11,44 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class FilePathHelperTest {
+
+    private File dir;
+
+    @Before
+    public void setUp() throws IOException {
+        dir = Files.createTempDirectory("dir1").toFile();
+    }
+
     @Test
-    public void testIsValidDirectoryPath() throws IOException {
-        // empty path is not valid
+    public void testIsValidDirectoryPathWithEmptyString() {
         assertFalse(FilePathUtils.isValidDirectoryPath(""));
+    }
 
-        // null path is not valid
+    @Test
+    public void testIsValidDirectoryPathWithNullString() {
         assertFalse(FilePathUtils.isValidDirectoryPath(null));
+    }
 
-        // path that exists
-        final File dir1 = Files.createTempDirectory("dir1").toFile();
-        assertTrue(FilePathUtils.isValidDirectoryPath(dir1.getAbsolutePath()));
+    @Test
+    public void testIsValidDirectoryPathWithValidPath() {
+        assertTrue(FilePathUtils.isValidDirectoryPath(dir.getAbsolutePath()));
+    }
 
-        // a directory in above path that exists
-        final File subDir = Files.createDirectory(dir1.toPath().resolve("subdir")).toFile();
+    @Test
+    public void testIsValidDirectoryPathWithDeepValidDirectory() throws IOException {
+        final File subDir = Files.createDirectory(dir.toPath().resolve("subdir")).toFile();
         assertTrue(FilePathUtils.isValidDirectoryPath(subDir.getAbsolutePath()));
+    }
 
-        // a directory in above path that doesn't exist
-        assertFalse(FilePathUtils.isValidDirectoryPath(dir1.toPath().resolve("not-exists-subdir").
+    @Test
+    public void testIsValidDirectoryPathWithNotExistDirectory() {
+        assertFalse(FilePathUtils.isValidDirectoryPath(dir.toPath().resolve("not-exists-subdir").
                 toFile().getAbsolutePath()));
+    }
 
-        // file is not a valid direcotry path
-        final File tempFile = Files.createFile(dir1.toPath().resolve("simple_file")).toFile();
+    @Test
+    public void testIsValidDirectoryPathWithFile() throws IOException {
+        final File tempFile = Files.createFile(dir.toPath().resolve("simple_file")).toFile();
         assertFalse(FilePathUtils.isValidDirectoryPath(tempFile.getAbsolutePath()));
     }
 
