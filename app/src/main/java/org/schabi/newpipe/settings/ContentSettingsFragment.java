@@ -257,15 +257,15 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private void setImportExportDataPath(final File file) {
         final String directoryPath;
-        if (!file.isDirectory()) {
+        if (file.isDirectory()) {
+            directoryPath = file.getAbsolutePath();
+        } else {
             final File parentFile = file.getParentFile();
             if (parentFile != null) {
                 directoryPath = parentFile.getAbsolutePath();
             } else {
                 directoryPath = "";
             }
-        } else {
-            directoryPath = file.getAbsolutePath();
         }
         defaultPreferences.edit().putString(importExportDataPathKey, directoryPath).apply();
     }
