@@ -54,8 +54,7 @@ public abstract class PlayQueue implements Serializable {
     private transient boolean disposed;
 
     PlayQueue(final int index, final List<PlayQueueItem> startWith) {
-        streams = new ArrayList<>();
-        streams.addAll(startWith);
+        streams = new ArrayList<>(startWith);
         history = new ArrayList<>();
         if (streams.size() > index) {
             history.add(streams.get(index));
