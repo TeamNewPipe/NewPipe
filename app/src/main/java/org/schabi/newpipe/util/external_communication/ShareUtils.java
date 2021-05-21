@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
@@ -33,7 +34,7 @@ public final class ShareUtils {
      * @param context   the context to use
      * @param packageId the package id of the app to be installed
      */
-    public static void installApp(final Context context, final String packageId) {
+    public static void installApp(@NonNull final Context context, final String packageId) {
         // Try market scheme
         final boolean marketSchemeResult = openIntentInApp(context, new Intent(Intent.ACTION_VIEW,
                 Uri.parse("market://details?id=" + packageId))
@@ -57,7 +58,7 @@ public final class ShareUtils {
      *                               for HTTP protocol or for the created intent
      * @return true if the URL can be opened or false if it cannot
      */
-    public static boolean openUrlInBrowser(final Context context,
+    public static boolean openUrlInBrowser(@NonNull final Context context,
                                            final String url,
                                            final boolean httpDefaultBrowserTest) {
         final String defaultPackageName;
@@ -107,7 +108,7 @@ public final class ShareUtils {
      * @param url     the url to browse
      * @return true if the URL can be opened or false if it cannot be
      **/
-    public static boolean openUrlInBrowser(final Context context, final String url) {
+    public static boolean openUrlInBrowser(@NonNull final Context context, final String url) {
         return openUrlInBrowser(context, url, true);
     }
 
@@ -126,8 +127,8 @@ public final class ShareUtils {
      *                  to open the intent (true) or not (false)
      * @return true if the intent can be opened or false if it cannot be
      */
-    public static boolean openIntentInApp(final Context context,
-                                          final Intent intent,
+    public static boolean openIntentInApp(@NonNull final Context context,
+                                          @NonNull final Intent intent,
                                           final boolean showToast) {
         final String defaultPackageName = getDefaultAppPackageName(context, intent);
 
@@ -159,8 +160,8 @@ public final class ShareUtils {
      * @param intent          the intent to open
      * @param setTitleChooser set the title "Open with" to the chooser if true, else not
      */
-    private static void openAppChooser(final Context context,
-                                       final Intent intent,
+    private static void openAppChooser(@NonNull final Context context,
+                                       @NonNull final Intent intent,
                                        final boolean setTitleChooser) {
         final Intent chooserIntent = new Intent(Intent.ACTION_CHOOSER);
         chooserIntent.putExtra(Intent.EXTRA_INTENT, intent);
@@ -214,7 +215,8 @@ public final class ShareUtils {
      * @return the package name of the default app, an empty string if there's no app installed to
      * handle the intent or the app chooser if there's no default
      */
-    private static String getDefaultAppPackageName(final Context context, final Intent intent) {
+    private static String getDefaultAppPackageName(@NonNull final Context context,
+                                                   @NonNull final Intent intent) {
         final ResolveInfo resolveInfo = context.getPackageManager().resolveActivity(intent,
                 PackageManager.MATCH_DEFAULT_ONLY);
 
@@ -237,8 +239,8 @@ public final class ShareUtils {
      * @param content         the content to share
      * @param imagePreviewUrl the image of the subject
      */
-    public static void shareText(final Context context,
-                                 final String title,
+    public static void shareText(@NonNull final Context context,
+                                 @NonNull final String title,
                                  final String content,
                                  final String imagePreviewUrl) {
         final Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -272,7 +274,9 @@ public final class ShareUtils {
      * @param title   the title of the content
      * @param content the content to share
      */
-    public static void shareText(final Context context, final String title, final String content) {
+    public static void shareText(@NonNull final Context context,
+                                 @NonNull final String title,
+                                 final String content) {
         shareText(context, title, content, "");
     }
 
@@ -283,7 +287,7 @@ public final class ShareUtils {
      * @param context the context to use
      * @param text    the text to copy
      */
-    public static void copyToClipboard(final Context context, final String text) {
+    public static void copyToClipboard(@NonNull final Context context, final String text) {
         final ClipboardManager clipboardManager =
                 ContextCompat.getSystemService(context, ClipboardManager.class);
 

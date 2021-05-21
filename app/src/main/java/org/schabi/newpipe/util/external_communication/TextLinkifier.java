@@ -55,6 +55,7 @@ public final class TextLinkifier {
      *                         will be called
      * @return a disposable to be stored somewhere and disposed when activity/fragment is destroyed
      */
+    @NonNull
     public static Disposable createLinksFromHtmlBlock(final Context context,
                                                       final String htmlBlock,
                                                       final TextView textView,
@@ -82,9 +83,10 @@ public final class TextLinkifier {
      * @param contentUrl       the URL of the content
      * @return a disposable to be stored somewhere and disposed when activity/fragment is destroyed
      */
+    @NonNull
     public static Disposable createLinksFromPlainText(final Context context,
                                                       final String plainTextBlock,
-                                                      final TextView textView,
+                                                      @NonNull final TextView textView,
                                                       final StreamingService streamingService,
                                                       final String contentUrl) {
         textView.setAutoLinkMask(Linkify.WEB_URLS);
@@ -109,6 +111,7 @@ public final class TextLinkifier {
      * @param contentUrl       the URL of the content
      * @return a disposable to be stored somewhere and disposed when activity/fragment is destroyed
      */
+    @NonNull
     public static Disposable createLinksFromMarkdownText(final Context context,
                                                          final String markdownBlock,
                                                          final TextView textView,
@@ -134,7 +137,7 @@ public final class TextLinkifier {
      * @param streamingService     the {@link StreamingService} of the content
      */
     private static void addClickListenersOnHashtags(final Context context,
-                                                    final SpannableStringBuilder
+                                                    @NonNull final SpannableStringBuilder
                                                             spannableDescription,
                                                     final StreamingService streamingService) {
         final String descriptionText = spannableDescription.toString();
@@ -174,7 +177,7 @@ public final class TextLinkifier {
      * @param streamingService     the {@link StreamingService} of the content
      */
     private static void addClickListenersOnTimestamps(final Context context,
-                                                      final SpannableStringBuilder
+                                                      @NonNull final SpannableStringBuilder
                                                               spannableDescription,
                                                       final String contentUrl,
                                                       final StreamingService streamingService) {
@@ -232,6 +235,7 @@ public final class TextLinkifier {
      * @param contentUrl       the URL of the content
      * @return a disposable to be stored somewhere and disposed when activity/fragment is destroyed
      */
+    @NonNull
     private static Disposable changeIntentsOfDescriptionLinks(final Context context,
                                                               final CharSequence chars,
                                                               final TextView textView,
@@ -279,7 +283,7 @@ public final class TextLinkifier {
                         });
     }
 
-    private static void setTextViewCharSequence(final TextView textView,
+    private static void setTextViewCharSequence(@NonNull final TextView textView,
                                                 final CharSequence charSequence) {
         textView.setText(charSequence);
         textView.setMovementMethod(LinkMovementMethod.getInstance());

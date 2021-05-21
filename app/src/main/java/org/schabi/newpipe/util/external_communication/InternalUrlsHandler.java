@@ -2,6 +2,8 @@ package org.schabi.newpipe.util.external_communication;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -44,9 +46,10 @@ public final class InternalUrlsHandler {
      * @param url         the URL to check if it can be handled
      * @return true if the URL can be handled by NewPipe, false if it cannot
      */
-    public static boolean handleUrlCommentsTimestamp(final CompositeDisposable disposables,
+    public static boolean handleUrlCommentsTimestamp(@NonNull final CompositeDisposable
+                                                             disposables,
                                                      final Context context,
-                                                     final String url) {
+                                                     @NonNull final String url) {
         return handleUrl(disposables, context, url, HASHTAG_TIMESTAMP_PATTERN);
     }
 
@@ -63,9 +66,10 @@ public final class InternalUrlsHandler {
      * @param url         the URL to check if it can be handled
      * @return true if the URL can be handled by NewPipe, false if it cannot
      */
-    public static boolean handleUrlDescriptionTimestamp(final CompositeDisposable disposables,
+    public static boolean handleUrlDescriptionTimestamp(@NonNull final CompositeDisposable
+                                                                disposables,
                                                         final Context context,
-                                                        final String url) {
+                                                        @NonNull final String url) {
         return handleUrl(disposables, context, url, AMPERSAND_TIMESTAMP_PATTERN);
     }
 
@@ -82,10 +86,10 @@ public final class InternalUrlsHandler {
      * @param pattern     the pattern to use
      * @return true if the URL can be handled by NewPipe, false if it cannot
      */
-    private static boolean handleUrl(final CompositeDisposable disposables,
+    private static boolean handleUrl(@NonNull final CompositeDisposable disposables,
                                      final Context context,
-                                     final String url,
-                                     final Pattern pattern) {
+                                     @NonNull final String url,
+                                     @NonNull final Pattern pattern) {
         final String matchedUrl;
         final StreamingService service;
         final StreamingService.LinkType linkType;
@@ -128,10 +132,10 @@ public final class InternalUrlsHandler {
      * @param seconds     the position in seconds at which the floating player will start
      * @return true if the playback of the content has successfully started or false if not
      */
-    public static boolean playOnPopup(final CompositeDisposable disposables,
+    public static boolean playOnPopup(@NonNull final CompositeDisposable disposables,
                                       final Context context,
                                       final String url,
-                                      final StreamingService service,
+                                      @NonNull final StreamingService service,
                                       final int seconds) {
         final LinkHandlerFactory factory = service.getStreamLHFactory();
         final String cleanUrl;
