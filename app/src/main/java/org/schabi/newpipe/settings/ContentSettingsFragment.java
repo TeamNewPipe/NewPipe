@@ -28,6 +28,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
+import org.schabi.newpipe.util.FilePathUtils;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.File;
@@ -69,7 +70,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     .putExtra(FilePickerActivityHelper.EXTRA_MODE,
                             FilePickerActivityHelper.MODE_FILE);
             final String path = defaultPreferences.getString(importExportDataPathKey, "");
-            if (isValidPath(path)) {
+            if (FilePathUtils.isValidDirectoryPath(path)) {
                 i.putExtra(FilePickerActivityHelper.EXTRA_START_PATH, path);
             }
             startActivityForResult(i, REQUEST_IMPORT_PATH);
@@ -84,7 +85,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     .putExtra(FilePickerActivityHelper.EXTRA_MODE,
                             FilePickerActivityHelper.MODE_DIR);
             final String path = defaultPreferences.getString(importExportDataPathKey, "");
-            if (isValidPath(path)) {
+            if (FilePathUtils.isValidDirectoryPath(path)) {
                 i.putExtra(FilePickerActivityHelper.EXTRA_START_PATH, path);
             }
             startActivityForResult(i, REQUEST_EXPORT_PATH);
@@ -282,25 +283,17 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
     }
 
-    private boolean isValidPath(final String path) {
-        if (path == null || path.isEmpty()) {
-            return false;
-        }
-        final File file = new File(path);
-        return file.exists() && file.isDirectory();
-    }
-
     private void setImportExportDataPath(final File file) {
         final String directoryPath;
-        if (!file.isDirectory()) {
+        if (file.isDirectory()) {
+            directoryPath = file.getAbsolutePath();
+        } else {
             final File parentFile = file.getParentFile();
             if (parentFile != null) {
                 directoryPath = parentFile.getAbsolutePath();
             } else {
                 directoryPath = "";
             }
-        } else {
-            directoryPath = file.getAbsolutePath();
         }
         defaultPreferences.edit().putString(importExportDataPathKey, directoryPath).apply();
     }
