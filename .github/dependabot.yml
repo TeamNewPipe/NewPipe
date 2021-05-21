@@ -1,0 +1,18 @@
+version: 2
+updates:
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "*"
+    # GitHub actions are using git tags (v1 = v1.2 = v1.2.3) which should be compatible until a major change is performed
+    update-types: 
+    - "version-update:semver-minor"
+    - "version-update:semver-patch"
+- package-ecosystem: gradle
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
