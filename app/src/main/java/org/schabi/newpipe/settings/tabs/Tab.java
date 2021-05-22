@@ -618,6 +618,18 @@ public abstract class Tab {
                     && playlistType == other.playlistType;
         }
 
+        @Override
+        public int hashCode() {
+            return Objects.hash(
+                    getTabId(),
+                    playlistServiceId,
+                    playlistId,
+                    playlistUrl,
+                    playlistName,
+                    playlistType
+            );
+        }
+
         public int getPlaylistServiceId() {
             return playlistServiceId;
         }
