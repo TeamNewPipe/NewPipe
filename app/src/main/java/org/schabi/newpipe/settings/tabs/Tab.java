@@ -112,12 +112,11 @@ public abstract class Tab {
 
     @Override
     public boolean equals(final Object obj) {
-        if (obj == this) {
-            return true;
+        if (!(obj instanceof Tab)) {
+            return false;
         }
-
-        return obj instanceof Tab && obj.getClass() == this.getClass()
-                && ((Tab) obj).getTabId() == this.getTabId();
+        final Tab other = (Tab) obj;
+        return getTabId() == other.getTabId();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
