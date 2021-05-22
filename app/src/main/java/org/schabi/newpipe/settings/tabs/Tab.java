@@ -446,9 +446,14 @@ public abstract class Tab {
 
         @Override
         public boolean equals(final Object obj) {
-            return super.equals(obj) && channelServiceId == ((ChannelTab) obj).channelServiceId
-                    && Objects.equals(channelUrl, ((ChannelTab) obj).channelUrl)
-                    && Objects.equals(channelName, ((ChannelTab) obj).channelName);
+            if (!(obj instanceof ChannelTab)) {
+                return false;
+            }
+            final ChannelTab other = (ChannelTab) obj;
+            return super.equals(obj)
+                    && channelServiceId == other.channelServiceId
+                    && channelUrl.equals(other.channelName)
+                    && channelName.equals(other.channelName);
         }
 
         public int getChannelServiceId() {
