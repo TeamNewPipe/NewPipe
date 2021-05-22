@@ -371,6 +371,11 @@ public abstract class Tab {
                     && kioskId.equals(other.kioskId);
         }
 
+        @Override
+        public int hashCode() {
+            return Objects.hash(getTabId(), kioskServiceId, kioskId);
+        }
+
         public int getKioskServiceId() {
             return kioskServiceId;
         }
