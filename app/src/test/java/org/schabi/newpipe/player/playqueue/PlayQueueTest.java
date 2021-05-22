@@ -7,11 +7,15 @@ import org.junit.runner.RunWith;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 
 @SuppressWarnings("checkstyle:HideUtilityClassConstructor")
 @RunWith(Enclosed.class)
@@ -29,6 +33,73 @@ public class PlayQueueTest {
                 throw new UnsupportedOperationException();
             }
         };
+    }
+
+    public static class SetIndexTests {
+        private static final int SIZE = 5;
+        private PlayQueue nonEmptyQueue;
+        private PlayQueue emptyQueue;
+
+        @Before
+        public void setup() {
+            nonEmptyQueue = spy(mockPlayQueue(
+                    0, Collections.nCopies(SIZE, mock(PlayQueueItem.class))
+            ));
+            emptyQueue = spy(mockPlayQueue(0, new ArrayList<>()));
+        }
+
+        @Test
+        public void negative() {
+            nonEmptyQueue.setIndex(-5);
+            assertEquals(0, nonEmptyQueue.getIndex());
+
+            emptyQueue.setIndex(-5);
+            assertEquals(0, nonEmptyQueue.getIndex());
+        }
+
+        @Test
+        public void inBounds() {
+            nonEmptyQueue.setIndex(2);
+            assertEquals(2, nonEmptyQueue.getIndex());
+
+            // emptyQueue not tested because 0 isn't technically inBounds
+        }
+
+        @Test
+        public void outOfBoundIsComplete() {
+            doReturn(true).when(nonEmptyQueue).isComplete();
+            nonEmptyQueue.setIndex(7);
+            assertEquals(2, nonEmptyQueue.getIndex());
+
+            doReturn(true).when(emptyQueue).isComplete();
+            emptyQueue.setIndex(2);
+            assertEquals(0, emptyQueue.getIndex());
+        }
+
+        @Test
+        public void outOfBoundsNotComplete() {
+            doReturn(false).when(nonEmptyQueue).isComplete();
+            nonEmptyQueue.setIndex(7);
+            assertEquals(SIZE - 1, nonEmptyQueue.getIndex());
+
+            doReturn(false).when(emptyQueue).isComplete();
+            emptyQueue.setIndex(2);
+            assertEquals(0, emptyQueue.getIndex());
+        }
+
+        @Test
+        public void indexZero() {
+            nonEmptyQueue.setIndex(0);
+            assertEquals(0, nonEmptyQueue.getIndex());
+
+            doReturn(true).when(emptyQueue).isComplete();
+            emptyQueue.setIndex(0);
+            assertEquals(0, emptyQueue.getIndex());
+
+            doReturn(false).when(emptyQueue).isComplete();
+            emptyQueue.setIndex(0);
+            assertEquals(0, emptyQueue.getIndex());
+        }
     }
 
     public static class EqualsTests {
