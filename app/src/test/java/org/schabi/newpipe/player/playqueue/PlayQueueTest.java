@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -109,6 +110,32 @@ public class PlayQueueTest {
             doReturn(false).when(emptyQueue).isComplete();
             emptyQueue.setIndex(0);
             assertEquals(0, emptyQueue.getIndex());
+        }
+
+        @SuppressWarnings("unchecked")
+        @Test
+        public void addToHistory() throws NoSuchFieldException, IllegalAccessException {
+            final Field field;
+            field = PlayQueue.class.getDeclaredField("history");
+            field.setAccessible(true);
+            List<PlayQueueItem> history;
+
+            /*
+            history's size is currently 1. 0 is the also the current index, so history should not
+            be affected.
+             */
+            nonEmptyQueue.setIndex(0);
+            history = (List<PlayQueueItem>) Objects.requireNonNull(
+                    field.get(nonEmptyQueue)
+            );
+            assertEquals(1, history.size());
+
+            // Index 3 != 0, so the second history element should be the item at streams[3]
+            nonEmptyQueue.setIndex(3);
+            history = (List<PlayQueueItem>) Objects.requireNonNull(
+                    field.get(nonEmptyQueue)
+            );
+            assertEquals(nonEmptyQueue.getItem(3), history.get(1));
         }
     }
 
