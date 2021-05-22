@@ -135,18 +135,36 @@ public abstract class PlayQueue implements Serializable {
     public synchronized void setIndex(final int index) {
         final int oldIndex = getIndex();
 
-        int newIndex = index;
+        final int newIndex;
+
         if (index < 0) {
             newIndex = 0;
+        } else if (index < streams.size()) {
+            // Regular assignment for index in bounds
+            newIndex = index;
+        } else if (streams.isEmpty()) {
+            // Out of bounds from here on
+            // Need to check if stream is empty to prevent arithmetic error and negative index
+            newIndex = 0;
+        } else if (isComplete()) {
+            // Circular indexing
+            newIndex = index % streams.size();
+        } else {
+            // Index of last element
+            newIndex = streams.size() - 1;
         }
-        if (index >= streams.size()) {
-            newIndex = isComplete() ? index % streams.size() : streams.size() - 1;
-        }
+
+        queueIndex.set(newIndex);
+
         if (oldIndex != newIndex) {
             history.add(streams.get(newIndex));
         }
 
-        queueIndex.set(newIndex);
+        /*
+        TODO: Documentation states that a SelectEvent will only be emitted if the new index is...
+        different from the old one but this is emitted regardless? Not sure what this what it does
+        exactly so I won't touch it
+         */
         broadcast(new SelectEvent(oldIndex, newIndex));
     }
 
