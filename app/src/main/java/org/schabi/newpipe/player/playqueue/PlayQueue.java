@@ -476,7 +476,6 @@ public abstract class PlayQueue implements Serializable {
         final int originIndex = getIndex();
         final PlayQueueItem current = getItem();
 
-        streams.clear();
         streams = backup;
         backup = null;
 
