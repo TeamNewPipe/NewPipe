@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player.playqueue;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -10,6 +11,7 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -107,6 +109,34 @@ public class PlayQueueTest {
             doReturn(false).when(emptyQueue).isComplete();
             emptyQueue.setIndex(0);
             assertEquals(0, emptyQueue.getIndex());
+        }
+    }
+
+    public static class GetItemTests {
+        private static List<PlayQueueItem> streams;
+        private PlayQueue queue;
+
+        @BeforeClass
+        public static void init() {
+            streams = new ArrayList<>(Collections.nCopies(5, makeItemWithUrl("OTHER_URL")));
+            streams.set(3, makeItemWithUrl("TARGET_URL"));
+        }
+
+        @Before
+        public void setup() {
+            queue = mockPlayQueue(0, streams);
+        }
+
+        @Test
+        public void inBounds() {
+            assertEquals("TARGET_URL", Objects.requireNonNull(queue.getItem(3)).getUrl());
+            assertEquals("OTHER_URL", Objects.requireNonNull(queue.getItem(1)).getUrl());
+        }
+
+        @Test
+        public void outOfBounds() {
+            assertNull(queue.getItem(-1));
+            assertNull(queue.getItem(5));
         }
     }
 
