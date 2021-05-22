@@ -432,11 +432,12 @@ public abstract class PlayQueue implements Serializable {
      * Will emit a {@link ReorderEvent} if shuffled.
      * </p>
      *
-     * @implNote Does nothing if the queue is empty or has a size of 1
+     * @implNote Does nothing if the queue has a size <= 2 (the currently playing video must stay on
+     * top, so shuffling a size-2 list does nothing)
      */
     public synchronized void shuffle() {
         // Can't shuffle an list that's empty or only has one element
-        if (size() <= 1) {
+        if (size() <= 2) {
             return;
         }
         // Create a backup if it doesn't already exist
