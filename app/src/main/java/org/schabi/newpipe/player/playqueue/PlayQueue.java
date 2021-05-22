@@ -196,8 +196,6 @@ public abstract class PlayQueue implements Serializable {
      * @return the index of the given item
      */
     public int indexOf(@NonNull final PlayQueueItem item) {
-        // referential equality, can't think of a better way to do this
-        // todo: better than this
         return streams.indexOf(item);
     }
 
