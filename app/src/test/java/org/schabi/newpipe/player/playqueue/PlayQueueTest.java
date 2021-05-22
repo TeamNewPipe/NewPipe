@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -33,6 +34,13 @@ public class PlayQueueTest {
                 throw new UnsupportedOperationException();
             }
         };
+    }
+
+    public static PlayQueueItem makeItemWithUrl(final String url) {
+        final StreamInfoItem infoItem = new StreamInfoItem(
+                0, url, "", StreamType.VIDEO_STREAM
+        );
+        return new PlayQueueItem(infoItem);
     }
 
     public static class SetIndexTests {
@@ -103,22 +111,8 @@ public class PlayQueueTest {
     }
 
     public static class EqualsTests {
-        private PlayQueueItem item1;
-        private PlayQueueItem item2;
-
-        @Before
-        public void setup() {
-            final String url1 = "www.website1.com";
-            final String url2 = "www.website2.com";
-            final StreamInfoItem info1 = new StreamInfoItem(
-                    0, url1, "", StreamType.VIDEO_STREAM
-            );
-            final StreamInfoItem info2 = new StreamInfoItem(
-                    0, url2, "", StreamType.VIDEO_STREAM
-            );
-            item1 = new PlayQueueItem(info1);
-            item2 = new PlayQueueItem(info2);
-        }
+        private final PlayQueueItem item1 = makeItemWithUrl("URL_1");
+        private final PlayQueueItem item2 = makeItemWithUrl("URL_2");
 
         @Test
         public void sameStreams() {
