@@ -23,7 +23,7 @@ import static org.mockito.Mockito.spy;
 @SuppressWarnings("checkstyle:HideUtilityClassConstructor")
 @RunWith(Enclosed.class)
 public class PlayQueueTest {
-    public static PlayQueue mockPlayQueue(final int index, final List<PlayQueueItem> streams) {
+    static PlayQueue mockPlayQueue(final int index, final List<PlayQueueItem> streams) {
         // I tried using Mockito, but it didn't work for some reason
         return new PlayQueue(index, streams) {
             @Override
@@ -38,7 +38,7 @@ public class PlayQueueTest {
         };
     }
 
-    public static PlayQueueItem makeItemWithUrl(final String url) {
+    static PlayQueueItem makeItemWithUrl(final String url) {
         final StreamInfoItem infoItem = new StreamInfoItem(
                 0, url, "", StreamType.VIDEO_STREAM
         );
