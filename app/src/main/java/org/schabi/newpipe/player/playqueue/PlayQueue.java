@@ -40,17 +40,15 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject;
  */
 public abstract class PlayQueue implements Serializable {
     public static final boolean DEBUG = MainActivity.DEBUG;
-
-    private List<PlayQueueItem> backup;
-    private List<PlayQueueItem> streams;
-
     @NonNull
     private final AtomicInteger queueIndex;
     private final List<PlayQueueItem> history = new ArrayList<>();
 
+    private List<PlayQueueItem> backup;
+    private List<PlayQueueItem> streams;
+
     private transient BehaviorSubject<PlayQueueEvent> eventBroadcast;
     private transient Flowable<PlayQueueEvent> broadcastReceiver;
-
     private transient boolean disposed = false;
 
     PlayQueue(final int index, final List<PlayQueueItem> startWith) {
