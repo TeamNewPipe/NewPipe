@@ -456,6 +456,11 @@ public abstract class Tab {
                     && channelName.equals(other.channelName);
         }
 
+        @Override
+        public int hashCode() {
+            return Objects.hash(getTabId(), channelServiceId, channelUrl, channelName);
+        }
+
         public int getChannelServiceId() {
             return channelServiceId;
         }
