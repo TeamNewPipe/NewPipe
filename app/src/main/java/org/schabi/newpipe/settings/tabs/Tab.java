@@ -119,6 +119,11 @@ public abstract class Tab {
         return getTabId() == other.getTabId();
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getTabId());
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // JSON Handling
     //////////////////////////////////////////////////////////////////////////*/
