@@ -362,8 +362,13 @@ public abstract class Tab {
 
         @Override
         public boolean equals(final Object obj) {
-            return super.equals(obj) && kioskServiceId == ((KioskTab) obj).kioskServiceId
-                    && Objects.equals(kioskId, ((KioskTab) obj).kioskId);
+            if (!(obj instanceof KioskTab)) {
+                return false;
+            }
+            final KioskTab other = (KioskTab) obj;
+            return super.equals(obj)
+                    && kioskServiceId == other.kioskServiceId
+                    && kioskId.equals(other.kioskId);
         }
 
         public int getKioskServiceId() {
