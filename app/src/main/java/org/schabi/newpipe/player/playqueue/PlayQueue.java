@@ -422,34 +422,41 @@ public abstract class PlayQueue implements Serializable {
     }
 
     /**
-     * Shuffles the current play queue.
+     * Shuffles the current play queue
      * <p>
-     * This method first backs up the existing play queue and item being played.
-     * Then a newly shuffled play queue will be generated along with currently
-     * playing item placed at the beginning of the queue.
+     * This method first backs up the existing play queue and item being played. Then a newly
+     * shuffled play queue will be generated along with currently playing item placed at the
+     * beginning of the queue. This item will also be added to the history.
      * </p>
      * <p>
-     * Will emit a {@link ReorderEvent} in any context.
+     * Will emit a {@link ReorderEvent} if shuffled.
      * </p>
+     *
+     * @implNote Does nothing if the queue is empty or has a size of 1
      */
     public synchronized void shuffle() {
+        // Can't shuffle an list that's empty or only has one element
+        if (size() <= 1) {
+            return;
+        }
+        // Create a backup if it doesn't already exist
         if (backup == null) {
             backup = new ArrayList<>(streams);
         }
-        final int originIndex = getIndex();
-        final PlayQueueItem current = getItem();
+
+        final int originalIndex = getIndex();
+        final PlayQueueItem currentItem = getItem();
+
         Collections.shuffle(streams);
 
-        final int newIndex = streams.indexOf(current);
-        if (newIndex != -1) {
-            streams.add(0, streams.remove(newIndex));
-        }
+        // Move currentItem to the head of the queue
+        streams.remove(currentItem);
+        streams.add(0, currentItem);
         queueIndex.set(0);
-        if (streams.size() > 0) {
-            history.add(streams.get(0));
-        }
 
-        broadcast(new ReorderEvent(originIndex, queueIndex.get()));
+        history.add(currentItem);
+
+        broadcast(new ReorderEvent(originalIndex, 0));
     }
 
     /**
