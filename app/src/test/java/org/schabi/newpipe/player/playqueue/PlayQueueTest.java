@@ -24,7 +24,7 @@ import static org.mockito.Mockito.spy;
 @SuppressWarnings("checkstyle:HideUtilityClassConstructor")
 @RunWith(Enclosed.class)
 public class PlayQueueTest {
-    static PlayQueue mockPlayQueue(final int index, final List<PlayQueueItem> streams) {
+    static PlayQueue makePlayQueue(final int index, final List<PlayQueueItem> streams) {
         // I tried using Mockito, but it didn't work for some reason
         return new PlayQueue(index, streams) {
             @Override
@@ -53,10 +53,10 @@ public class PlayQueueTest {
 
         @Before
         public void setup() {
-            nonEmptyQueue = spy(mockPlayQueue(
+            nonEmptyQueue = spy(makePlayQueue(
                     0, Collections.nCopies(SIZE, mock(PlayQueueItem.class))
             ));
-            emptyQueue = spy(mockPlayQueue(0, new ArrayList<>()));
+            emptyQueue = spy(makePlayQueue(0, new ArrayList<>()));
         }
 
         @Test
@@ -151,7 +151,7 @@ public class PlayQueueTest {
 
         @Before
         public void setup() {
-            queue = mockPlayQueue(0, streams);
+            queue = makePlayQueue(0, streams);
         }
 
         @Test
@@ -174,8 +174,8 @@ public class PlayQueueTest {
         @Test
         public void sameStreams() {
             final List<PlayQueueItem> streams = Collections.nCopies(5, item1);
-            final PlayQueue queue1 = mockPlayQueue(0, streams);
-            final PlayQueue queue2 = mockPlayQueue(0, streams);
+            final PlayQueue queue1 = makePlayQueue(0, streams);
+            final PlayQueue queue2 = makePlayQueue(0, streams);
             assertEquals(queue1, queue2);
         }
 
@@ -183,8 +183,8 @@ public class PlayQueueTest {
         public void sameSizeDifferentItems() {
             final List<PlayQueueItem> streams1 = Collections.nCopies(5, item1);
             final List<PlayQueueItem> streams2 = Collections.nCopies(5, item2);
-            final PlayQueue queue1 = mockPlayQueue(0, streams1);
-            final PlayQueue queue2 = mockPlayQueue(0, streams2);
+            final PlayQueue queue1 = makePlayQueue(0, streams1);
+            final PlayQueue queue2 = makePlayQueue(0, streams2);
             assertNotEquals(queue1, queue2);
         }
 
@@ -192,8 +192,8 @@ public class PlayQueueTest {
         public void differentSizeStreams() {
             final List<PlayQueueItem> streams1 = Collections.nCopies(5, item1);
             final List<PlayQueueItem> streams2 = Collections.nCopies(6, item2);
-            final PlayQueue queue1 = mockPlayQueue(0, streams1);
-            final PlayQueue queue2 = mockPlayQueue(0, streams2);
+            final PlayQueue queue1 = makePlayQueue(0, streams1);
+            final PlayQueue queue2 = makePlayQueue(0, streams2);
             assertNotEquals(queue1, queue2);
         }
     }
