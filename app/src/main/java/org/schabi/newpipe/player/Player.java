@@ -91,6 +91,7 @@ import org.schabi.newpipe.databinding.PlayerPopupCloseOverlayBinding;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamSegment;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -1632,9 +1633,22 @@ public final class Player implements
         if (exoPlayerIsNull()) {
             return;
         }
+        // Use duration of currentItem for non-live streams,
+        // because HLS streams are fragmented
+        // and thus the whole duration is not available to the player
+        // TODO: revert #6307 when introducing proper HLS support
+        final int duration;
+        if (currentItem != null
+                && currentItem.getStreamType() != StreamType.AUDIO_LIVE_STREAM
+                && currentItem.getStreamType() != StreamType.LIVE_STREAM) {
+            // convert seconds to milliseconds
+            duration =  (int) (currentItem.getDuration() * 1000);
+        } else {
+            duration = (int) simpleExoPlayer.getDuration();
+        }
         onUpdateProgress(
                 Math.max((int) simpleExoPlayer.getCurrentPosition(), 0),
-                (int) simpleExoPlayer.getDuration(),
+                duration,
                 simpleExoPlayer.getBufferedPercentage()
         );
     }
