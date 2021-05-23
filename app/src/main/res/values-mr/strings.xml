@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="view_count_text">पहिले गेले</string>
     <string name="autoplay_by_calling_app_title">ऑटो प्ले</string>
     <string name="download_path_audio_dialog_title">ऑडिओ फाईल साठी डाउनलोड फोल्डर निवडा</string>
     <string name="download_path_audio_summary">डाउनलोड केलेल्या ऑडियो फाईल येथे साठवल्या जातात</string>
@@ -28,8 +27,7 @@
     <string name="screen_rotation">फिरविणे</string>
     <string name="choose_browser">ब्राऊझर निवडा</string>
     <string name="share_dialog_title">शेअर करा</string>
-    <string name="search_showing_result_for">यासाठी रिझल्ट दाखवत आहे:</string>
-    <string name="did_you_mean">तुम्हाला असे म्हणायचे आहे का \?</string>
+    <string name="search_showing_result_for">यासाठी रिझल्ट दाखवत आहे: %s</string>
     <string name="settings">सेटिंग</string>
     <string name="search">शोधा</string>
     <string name="controls_download_desc">फाईल डाउनलोड</string>
@@ -42,7 +40,6 @@
     <string name="install">इंस्टॉल</string>
     <string name="no_player_found_toast">प्लेअर सापडले नाही (तुम्ही VLC player वापरून फाईल चालवू शकता).</string>
     <string name="no_player_found">प्लेअर सापडले नाही. VLC प्लेअर इंस्टॉल करू इच्छिता का\?</string>
-    <string name="upload_date_text">प्रकाशित केले गेले</string>
     <string name="main_bg_subtitle">सुरू करण्यासाठी \"शोधा\" दाबा</string>
     <string name="play_with_kodi_title">कोडी वापरून चालवा</string>
     <string name="show_higher_resolutions_summary">फक्त काही उपकरणे 2k/4k व्हिडिओ चालवू शकतात</string>
