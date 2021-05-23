@@ -590,13 +590,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             @Override
             public void afterTextChanged(final Editable s) {
                 // Remove rich text formatting
-                final CharacterStyle[] toBeRemovedSpans = s.getSpans(
-                        0, s.length(), CharacterStyle.class
-                );
-                for (final CharacterStyle toBeRemovedSpan : toBeRemovedSpans) {
-                    s.removeSpan(toBeRemovedSpan);
+                for (final CharacterStyle span : s.getSpans(0, s.length(), CharacterStyle.class)) {
+                    s.removeSpan(span);
                 }
-                
+
                 final String newText = searchEditText.getText().toString();
                 suggestionPublisher.onNext(newText);
             }
