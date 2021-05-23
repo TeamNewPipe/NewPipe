@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Za početak dodirnite \"Pretraži\"</string>
+    <string name="main_bg_subtitle">Za početak dodirnite \"Lupo\"</string>
     <string name="view_count_text">%1$s pregleda</string>
     <string name="upload_date_text">Objavljeno %1$s</string>
     <string name="no_player_found">Reproduktor za stream nije pronađen. Instalirati VLC\?</string>
@@ -262,8 +262,8 @@
     <string name="playlist_add_stream_success">Dodano kao playlistu</string>
     <string name="playlist_thumbnail_change_success">Minijatura playliste se promijenila.</string>
     <string name="playlist_delete_failure">Greška prilikom brisanja playliste.</string>
-    <string name="caption_none">Bez naslova</string>
-    <string name="resize_fit">Podesno</string>
+    <string name="caption_none">Bez titlova</string>
+    <string name="resize_fit">Popuni</string>
     <string name="resize_fill">Ispuniti</string>
     <string name="resize_zoom">Povećaj</string>
     <string name="caption_auto_generated">Auto generirano</string>
@@ -407,7 +407,7 @@
     <string name="conferences">Konferencije</string>
     <string name="preferred_open_action_settings_title">Preferirana \'otvori\' akcija</string>
     <string name="preferred_open_action_settings_summary">Zadana radnja pri otvaranju sadržaja — %s</string>
-    <string name="caption_setting_title">Podnaslovi</string>
+    <string name="caption_setting_title">Titlovi</string>
     <string name="caption_setting_description">Izmijenite skalu teksta naslova player-a i pozadinske stilove. Potrebno je ponovno pokretanje aplikacije kako bi stupilo na snagu.</string>
     <string name="enable_disposed_exceptions_summary">Prisilno izvješćivanje o greškama Rx-a koje se ne mogu isporučiti izvan \'fragmenta\' ili životnog ciklusa aktivnosti nakon odlaganja</string>
     <string name="import_soundcloud_instructions">Uvezite SoundCloud profil tako da upišete URL ili svoj ID:
@@ -688,4 +688,6 @@
     <string name="recaptcha_solve">Riješi</string>
     <string name="night_theme_title">Noćna tema</string>
     <string name="show_channel_details">Prikaži detalje kanala</string>
+    <string name="disable_media_tunneling_summary">Iskljuci medija tuneling ako dobivate crni ekran kada gledate video</string>
+    <string name="disable_media_tunneling_title">Iskljuci medija tuneling</string>
 </resources>

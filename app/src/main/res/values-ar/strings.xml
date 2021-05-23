@@ -718,4 +718,6 @@
     <string name="auto_device_theme_title">تلقائي (سمة الجهاز)</string>
     <string name="night_theme_title">الثيم الليلي</string>
     <string name="show_channel_details">إظهار تفاصيل القناة</string>
+    <string name="disable_media_tunneling_summary">تعطيل نفق الوسائط إذا واجهت شاشة سوداء أو التقطيع في تشغيل الفيديو</string>
+    <string name="disable_media_tunneling_title">تعطيل نفق الوسائط</string>
 </resources>

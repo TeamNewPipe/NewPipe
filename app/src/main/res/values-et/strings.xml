@@ -629,4 +629,15 @@
     <string name="pause_downloads">Peata allalaadimised</string>
     <string name="start_downloads">Alusta allalaadimistega</string>
     <string name="copy_for_github">Kopeeri vormindatud aruanne</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">Näita vaid rühmitamata tellimus</string>
+    <string name="feed_group_dialog_delete_message">Kas sa soovid selle kanalite rühma kustutada\?</string>
+    <string name="feed_group_dialog_empty_name">Rühmal puudub nimi</string>
+    <string name="new_seek_duration_toast">ExoPlayer\'i piirangute tõttu seadistasime otsingusammu %d sekundile</string>
+    <string name="enable_queue_limit_desc">Luba korraga vaid üks allalaadimine</string>
+    <string name="enable_queue_limit">Piira allalaadimiste järjekorda</string>
+    <string name="error_progress_lost">Faili kustutamisega läks ka tööjärg kautsi</string>
+    <string name="error_postprocessing_stopped">Faili töötlemisel NewPipe lõpetas töö</string>
+    <string name="disable_media_tunneling_summary">Lülita meedia tunneldamine välja juhul, kui esitamisel tekib must ekraan või pildi kuvamine on katkendlik</string>
+    <string name="disable_media_tunneling_title">Lülita meedia tunneldamine välja</string>
+    <string name="drawer_header_description">Vaheta teenust, hetkel on kasutusel:</string>
 </resources>

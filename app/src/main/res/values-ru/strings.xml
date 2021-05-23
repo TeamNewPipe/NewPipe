@@ -689,4 +689,6 @@
     <string name="featured">Рекомендуемые</string>
     <string name="recaptcha_solve">Решить</string>
     <string name="show_channel_details">Подробно о канале</string>
+    <string name="disable_media_tunneling_summary">Отключите туннелирование медиа, если вы видите черный экран или подёргивание при воспроизведении видео</string>
+    <string name="disable_media_tunneling_title">Отключить туннелирование медиа</string>
 </resources>

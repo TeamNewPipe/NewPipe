@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Tik op \"Zoeken\" om te beginnen</string>
+    <string name="main_bg_subtitle">Tik op het loepje om te beginnen.</string>
     <string name="view_count_text">%1$s keer bekeken</string>
     <string name="upload_date_text">Gepubliceerd op %1$s</string>
     <string name="no_player_found">Er is geen stream videospeler gevonden. Wilt u VLC installeren\?</string>
@@ -653,4 +653,16 @@
     <string name="hash_channel_name">Video Hash Melding</string>
     <string name="show_meta_info_summary">Zet uit om metadata pop-ups te verbergen met extra informatie over de stream auteur, stream inhoud of een zoekaanvraag.</string>
     <string name="show_meta_info_title">Toon metadata</string>
+    <string name="disable_media_tunneling_title">Media vertunneling uitschakelen</string>
+    <string name="show_channel_details">Toon kanaal details</string>
+    <string name="recaptcha_solve">Los op</string>
+    <string name="description_tab_description">Beschrijving</string>
+    <string name="related_items_tab_description">Gerelateerde items</string>
+    <string name="comments_tab_description">Reacties</string>
+    <string name="restricted_video_no_stream">Deze video heeft een leeftijdsbeperking.
+\nAls gevolg van het nieuwe YouTube-beleid met video\'s met leeftijdsbeperkingen heeft NewPipe geen toegang tot deze videostreams en kan deze dus niet afspelen.</string>
+    <string name="show_description_summary">Zet uit om videobeschrijving en extra informatie te verbergen</string>
+    <string name="show_description_title">Toon beschrijving</string>
+    <string name="night_theme_title">Nacht Thema</string>
+    <string name="open_with">Open met</string>
 </resources>

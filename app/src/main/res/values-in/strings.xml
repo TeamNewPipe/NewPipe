@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Ketuk \"Cari\" untuk memulai</string>
+    <string name="main_bg_subtitle">Ketuk kaca pembesar untuk segera memulai.</string>
     <string name="view_count_text">%1$s x ditonton</string>
     <string name="upload_date_text">Dipublikasikan pada tanggal %1$s</string>
     <string name="install">Pasang</string>
@@ -668,4 +668,6 @@
     <string name="night_theme_title">Tema malam</string>
     <string name="download_has_started">Pengunduhan dimulai</string>
     <string name="show_channel_details">Tampilkan rincian channel</string>
+    <string name="disable_media_tunneling_summary">Nonaktifkan terowongan media (tunnel) jiaka anda mengalami sebuah layar hitam atau kerusakan dalam memutar video</string>
+    <string name="disable_media_tunneling_title">Nonaktifkan terowongan media (tunnel)</string>
 </resources>

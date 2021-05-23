@@ -28,7 +28,7 @@
     <string name="show_hold_to_append_title">Show ‘Hold to append’ tip</string>
     <string name="show_play_with_kodi_title">Show ‘Play with Kodi’ option</string>
     <string name="did_you_mean">Did you mean ‘%1$s’\?</string>
-    <string name="main_bg_subtitle">Tap ‘Search’ to get started</string>
+    <string name="main_bg_subtitle">Tap the magnifying glass to get started.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel’s avatar thumbnail</string>
     <string name="feed_update_threshold_summary">Time after last update before a subscription is considered outdated – %s</string>
     <string name="autoplay_summary">Start playback automatically – %s</string>
