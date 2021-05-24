@@ -3,8 +3,6 @@ package org.schabi.newpipe.player.playqueue;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.experimental.runners.Enclosed;
-import org.junit.runner.RunWith;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 
@@ -22,7 +20,6 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
 @SuppressWarnings("checkstyle:HideUtilityClassConstructor")
-@RunWith(Enclosed.class)
 public class PlayQueueTest {
     static PlayQueue makePlayQueue(final int index, final List<PlayQueueItem> streams) {
         // I tried using Mockito, but it didn't work for some reason
