@@ -332,7 +332,6 @@
                 <data android:scheme="https"/>
                 <data android:host="bandcamp.com"/>
                 <data android:host="*.bandcamp.com"/>
-                <data android:pathPrefix="/"/>
             </intent-filter>
         </activity>
         <service
