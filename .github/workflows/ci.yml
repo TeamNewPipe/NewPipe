@@ -25,7 +25,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 8
-          distribution: "zulu"
+          distribution: "adopt"
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v2
@@ -54,7 +54,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 8
-          distribution: "zulu"
+          distribution: "adopt"
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v2
@@ -79,7 +79,7 @@ jobs:
 #         uses: actions/setup-java@v2
 #         with:
 #           java-version: 11 # Sonar requires JDK 11
-#           distribution: "zulu"
+#           distribution: "adopt"
 
 #       - name: Cache SonarCloud packages
 #         uses: actions/cache@v2
