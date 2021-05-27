@@ -87,8 +87,7 @@
     <string name="title_activity_history">Ιστορικό</string>
     <string name="action_history">Ιστορικό</string>
     <string name="show_info">Εμφάνιση πληροφοριών</string>
-    <string name="main_bg_subtitle">Πατήστε «Αναζήτηση» για να ξεκινήσετε
-\n</string>
+    <string name="main_bg_subtitle">Πατήστε το μεγενθυτικό φακό για να ξεκινήσετε.</string>
     <string name="no_player_found_toast">Δε βρέθηκε πρόγραμμα αναπαραγωγής ροής δεδομένων (μπορείτε να εγκαταστήσετε το VLC για να κάνετε αναπαραγωγή).</string>
     <string name="controls_download_desc">Λήψη του αρχείου ροής</string>
     <string name="use_external_video_player_summary">Αφαιρείται ο ήχος από κάποιες αναλύσεις</string>
@@ -679,4 +678,6 @@
     <string name="auto_device_theme_title">Αυτόματο (θέμα συσκευής)</string>
     <string name="night_theme_title">Νυχτερινό θέμα</string>
     <string name="show_channel_details">Εμφάνιση λεπτομερειών καναλιού</string>
+    <string name="disable_media_tunneling_summary">Απενεργοποιήστε το media tunneling, αν εμφανίζεται μαύρη οθόνη ή διακοπτόμενος ήχος κατά την αναπαραγωγή βίντεο</string>
+    <string name="disable_media_tunneling_title">Απενεργοποίηση media tunneling</string>
 </resources>

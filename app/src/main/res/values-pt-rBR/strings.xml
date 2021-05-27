@@ -88,8 +88,7 @@
     <string name="light_parsing_error">O site não pôde ser analisado totalmente</string>
     <string name="list_thumbnail_view_description">Miniatura de visualização do vídeo</string>
     <string name="live_streams_not_supported">Transmissões ao vivo ainda não são suportadas</string>
-    <string name="main_bg_subtitle">Toque em \"Pesquisar\" para começar
-\n</string>
+    <string name="main_bg_subtitle">Toque na lupa para começar.</string>
     <string name="msg_exists">Arquivo já existe</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_url_malform">Link inválido ou internet indisponível</string>
@@ -106,7 +105,7 @@
     <string name="use_tor_title">Usar Tor</string>
     <string name="user_report">Relatório do usuário</string>
     <string name="show_play_with_kodi_title">Mostrar \"Reproduzir com Kodi\"</string>
-    <string name="info_labels">Ocorrido:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo:\\nIdioma do app:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão da SO:</string>
+    <string name="info_labels">Ocorrido:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo:\\nIdioma do app:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do Sistema Operacional:</string>
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="default_popup_resolution_title">Resolução padrão do popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções maiores</string>
@@ -679,4 +678,6 @@
     <string name="auto_device_theme_title">Automático (tema do dispositivo)</string>
     <string name="night_theme_title">Tema Noturno</string>
     <string name="show_channel_details">Mostrar detalhes do canal</string>
+    <string name="disable_media_tunneling_summary">Desative o túnel de mídia se você tiver uma tela preta ou a reprodução do vídeo estiver engasgando</string>
+    <string name="disable_media_tunneling_title">Desativar túnel de mídia</string>
 </resources>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন
-\n</string>
+    <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন</string>
     <string name="view_count_text">%1$s জন দেখছে</string>
     <string name="upload_date_text">প্রকাশকাল %1$s</string>
     <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। VLC ইনস্টল করতে চাও\?</string>
@@ -320,7 +319,7 @@
     <string name="recaptcha_done_button">হয়েছে</string>
     <string name="events">ইভেন্টগুলো</string>
     <string name="settings_category_updates_title">আপডেট</string>
-    <string name="minimize_on_exit_none_description">কোনটি না</string>
+    <string name="minimize_on_exit_none_description">কোনোটি না</string>
     <string name="accept">স্বীকার করো</string>
     <string name="decline">অস্বীকার করো</string>
     <string name="caption_setting_title">ক্যাপশন</string>

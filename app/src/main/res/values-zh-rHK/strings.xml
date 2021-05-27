@@ -50,8 +50,7 @@
     <string name="download_path_audio_dialog_title">選擇聲音檔案的下載路徑</string>
     <string name="err_dir_create">未能建立下載路徑「%1$s」</string>
     <string name="info_dir_created">已建立下載路徑「%1$s」</string>
-    <string name="main_bg_subtitle">點擊 \"搜索\" 以開始使用
-\n</string>
+    <string name="main_bg_subtitle">點擊 \"搜索\" 以開始使用</string>
     <string name="autoplay_by_calling_app_title">自動撥放</string>
     <string name="autoplay_by_calling_app_summary">當 NewPipe 被其他程式調用時播放視頻</string>
     <string name="content">內容</string>

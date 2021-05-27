@@ -1,1 +1,1 @@
-Sistemată extracția funcției de decriptare a YouTube.
+Repară extracția funcției de decriptare a YouTube.

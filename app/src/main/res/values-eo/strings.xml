@@ -65,8 +65,7 @@
     <string name="report_error">Signali eraron</string>
     <string name="video">Filmeto</string>
     <string name="retry">Reprovi</string>
-    <string name="main_bg_subtitle">Premi \"Serĉi\" por komenci
-\n</string>
+    <string name="main_bg_subtitle">Premi \"Serĉi\" por komenci</string>
     <string name="no_player_found_toast">Neniu elsendlflua ludilo trovita (instalu VLC por ludi ĝin).</string>
     <string name="open_in_popup_mode">Malfermi en ŝprucfenestran modon</string>
     <string name="use_external_video_player_summary">Forigas aŭdon ĉe kelkaj rezolucioj</string>

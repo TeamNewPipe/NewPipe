@@ -610,8 +610,7 @@
     <string name="no_player_found">Perunu riproduidore de flussos agatadu. Cheres installare VLC\?</string>
     <string name="upload_date_text">Publicadu su %1$s</string>
     <string name="view_count_text">%1$s visualizatziones</string>
-    <string name="main_bg_subtitle">Toca \"Chirca\" pro incumintzare
-\n</string>
+    <string name="main_bg_subtitle">Toca sa lente de ismanniamentu pro incumintzare.</string>
     <string name="never">Mai</string>
     <string name="wifi_only">Cun su Wi-Fi ebbia</string>
     <string name="autoplay_summary">Incumintza cun sa riprodutzione automaticamente — %s</string>
@@ -679,4 +678,6 @@
     <string name="auto_device_theme_title">Automàticu (tema de su dispositivu)</string>
     <string name="night_theme_title">Tema pro sa note</string>
     <string name="show_channel_details">Ammustra sos detàllios de su canale</string>
+    <string name="disable_media_tunneling_summary">Disabìlita sa tunnellizatzione de sos elementos multimediales si durante sa riprodutzione bi sunt ischermadas nieddas o su flussu de su vìdeu no est regulare</string>
+    <string name="disable_media_tunneling_title">Disabìlita sa tunnellizatzione de sos mèdios</string>
 </resources>

@@ -91,6 +91,7 @@ import org.schabi.newpipe.databinding.PlayerPopupCloseOverlayBinding;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamSegment;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -495,9 +496,13 @@ public final class Player implements
         simpleExoPlayer.addTextOutput(binding.subtitleView);
 
         // enable media tunneling
-        if (DeviceUtils.shouldSupportMediaTunneling()) {
-            trackSelector.setParameters(
-                    trackSelector.buildUponParameters().setTunnelingEnabled(true));
+        if (DEBUG && PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.disable_media_tunneling_key), false)) {
+            Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] "
+                    + "media tunneling disabled in debug preferences");
+        } else if (DeviceUtils.shouldSupportMediaTunneling()) {
+            trackSelector.setParameters(trackSelector.buildUponParameters()
+                    .setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context)));
         } else if (DEBUG) {
             Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] does not support media tunneling");
         }
@@ -714,7 +719,12 @@ public final class Player implements
             // Android TV: without it focus will frame the whole player
             binding.playPauseButton.requestFocus();
 
-            playPause();
+            // Note: This is for automatically playing (when "Resume playback" is off), see #6179
+            if (getPlayWhenReady()) {
+                play();
+            } else {
+                pause();
+            }
         }
         NavigationHelper.sendPlayerStartedEvent(context);
     }
@@ -1623,9 +1633,22 @@ public final class Player implements
         if (exoPlayerIsNull()) {
             return;
         }
+        // Use duration of currentItem for non-live streams,
+        // because HLS streams are fragmented
+        // and thus the whole duration is not available to the player
+        // TODO: revert #6307 when introducing proper HLS support
+        final int duration;
+        if (currentItem != null
+                && currentItem.getStreamType() != StreamType.AUDIO_LIVE_STREAM
+                && currentItem.getStreamType() != StreamType.LIVE_STREAM) {
+            // convert seconds to milliseconds
+            duration =  (int) (currentItem.getDuration() * 1000);
+        } else {
+            duration = (int) simpleExoPlayer.getDuration();
+        }
         onUpdateProgress(
                 Math.max((int) simpleExoPlayer.getCurrentPosition(), 0),
-                (int) simpleExoPlayer.getDuration(),
+                duration,
                 simpleExoPlayer.getBufferedPercentage()
         );
     }

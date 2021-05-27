@@ -15,7 +15,7 @@ class HeaderItem(
     override fun bind(viewBinding: HeaderItemBinding, position: Int) {
         viewBinding.headerTitle.text = title
 
-        val listener: OnClickListener? = if (onClickListener != null) OnClickListener { onClickListener.invoke() } else null
+        val listener = onClickListener?.let { OnClickListener { onClickListener.invoke() } }
         viewBinding.root.setOnClickListener(listener)
     }
 

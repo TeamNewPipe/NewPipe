@@ -473,7 +473,7 @@
     <string name="songs">Låtar</string>
     <string name="restricted_video">Denna video är åldersbegränsad.
 \n
-\nOm du vill visa den aktiverar du \"Åldersbegränsat innehåll\" i inställningarna.</string>
+\nOm du vill visa den aktiverar du \"%1$s\" i inställningarna.</string>
     <string name="no_comments">Inga kommentarer</string>
     <string name="subtitle_activity_recaptcha">Tryck på \"Klar\" när det är löst</string>
     <string name="infinite_videos">∞ videos</string>

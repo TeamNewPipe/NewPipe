@@ -11,8 +11,7 @@
     <string name="cancel">ᱵᱟᱹᱰᱨᱟᱹ</string>
     <string name="install">ᱵᱚᱦᱟᱞ</string>
     <string name="view_count_text">%1$s ᱧᱮᱞᱠᱚ</string>
-    <string name="main_bg_subtitle">ᱮᱦᱲᱵ ᱞᱟᱹᱜᱤᱫ \"ᱥᱮᱸᱫᱽᱨᱟ\" ᱨᱮ ᱚᱛᱟᱭ ᱢᱮ
-\n</string>
+    <string name="main_bg_subtitle">ᱮᱦᱲᱵ ᱞᱟᱹᱜᱤᱫ \"ᱥᱮᱸᱫᱽᱨᱟ\" ᱨᱮ ᱚᱛᱟᱭ ᱢᱮ</string>
     <string name="use_external_video_player_title">ᱵᱟᱦᱨᱮ ᱣᱤᱰᱤᱭᱚ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱮᱵᱷᱟᱨ ᱢᱮ</string>
     <string name="search_showing_result_for">ᱛᱮᱞᱟ ᱫᱮᱠᱷᱟᱣᱜᱽ ᱠᱟᱱᱟᱺ%s</string>
     <string name="did_you_mean">ᱟᱢᱟᱜ ᱚᱨᱛᱷᱚ \"%1$s\" ᱥᱮ\?</string>

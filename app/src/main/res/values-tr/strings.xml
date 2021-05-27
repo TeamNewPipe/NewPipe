@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Başlamak için \"Ara\" bölümüne dokun
-\n</string>
+    <string name="main_bg_subtitle">Başlamak için büyüteç simgesine dokunun.</string>
     <string name="view_count_text">%1$s görüntüleme</string>
     <string name="upload_date_text">Yayınlanma: %1$s</string>
     <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC yüklensin mi\?</string>
@@ -679,4 +678,6 @@
     <string name="auto_device_theme_title">Kendiliğinden (aygıt teması)</string>
     <string name="night_theme_title">Gece Teması</string>
     <string name="show_channel_details">Kanal ayrıntılarını göster</string>
+    <string name="disable_media_tunneling_summary">Ortam yürütümünde siyah ekran veya tutukluk yaşıyorsanız ortam tünellemeyi devre dışı bırakın</string>
+    <string name="disable_media_tunneling_title">Ortam tünellemeyi devre dışı bırak</string>
 </resources>

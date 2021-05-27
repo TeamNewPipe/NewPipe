@@ -646,6 +646,5 @@
     <string name="open_in_popup_mode">Abrir nel mou ventanu</string>
     <string name="install">Instalar</string>
     <string name="no_player_found">Nun s\'atopó nengún reproductor de fluxos. ¿Instalar VLC\?</string>
-    <string name="main_bg_subtitle">Toca «Buscar» pa entamar
-\n</string>
+    <string name="main_bg_subtitle">Toca «Buscar» pa entamar</string>
 </resources>
