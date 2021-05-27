@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: 💬 IRC
-    url: https://webchat.freenode.net/#newpipe
+    url: ircs://irc.libera.chat:6697/newpipe
     about: Chat with us via IRC for quick Q/A
   - name: 💬 Matrix
     url: https://matrix.to/#/#freenode_#newpipe:matrix.org
