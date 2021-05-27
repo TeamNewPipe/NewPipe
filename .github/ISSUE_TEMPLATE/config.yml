@@ -4,5 +4,5 @@ contact_links:
     url: ircs://irc.libera.chat:6697/newpipe
     about: Chat with us via IRC for quick Q/A
   - name: 💬 Matrix
-    url: https://matrix.to/#/#freenode_#newpipe:matrix.org
+    url: https://matrix.to/#/#newpipe:libera.chat
     about: Chat with us via Matrix for quick Q/A
