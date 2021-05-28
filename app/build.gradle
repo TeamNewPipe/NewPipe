@@ -270,7 +270,7 @@ dependencies {
     debugImplementation "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
 
 /** Testing **/
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
     testImplementation "org.mockito:mockito-core:${mockitoVersion}"
     testImplementation "org.mockito:mockito-inline:${mockitoVersion}"
 
