@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: 💬 IRC
-    url: ircs://irc.libera.chat:6697/newpipe
+    url: https://web.libera.chat/#newpipe
     about: Chat with us via IRC for quick Q/A
   - name: 💬 Matrix
     url: https://matrix.to/#/#newpipe:libera.chat
