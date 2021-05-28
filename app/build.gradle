@@ -178,7 +178,7 @@ sonarqube {
 
 dependencies {
 /** Desugaring **/
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
 /** NewPipe libraries **/
     // You can use a local version by uncommenting a few lines in settings.gradle
