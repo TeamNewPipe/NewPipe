@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Nhấn \"Tìm kiếm\" để bắt đầu
-\n</string>
+    <string name="main_bg_subtitle">Nhấn vào kính lúp để bắt đầu.</string>
     <string name="view_count_text">%1$s lượt xem</string>
     <string name="upload_date_text">Đăng vào %1$s</string>
     <string name="no_player_found">Không tìm thấy trình phát. Cài đặt VLC\?</string>
@@ -669,4 +668,6 @@
     <string name="featured">Nổi bật</string>
     <string name="show_channel_details">Hiện chi tiết kênh</string>
     <string name="recaptcha_solve">Giải</string>
+    <string name="disable_media_tunneling_summary">Tắt truyền phương tiện qua đường hầm nếu bạn gặp màn hình đen hoặc khựng khi phát video</string>
+    <string name="disable_media_tunneling_title">Tắt truyền phương tiện qua đường hầm</string>
 </resources>

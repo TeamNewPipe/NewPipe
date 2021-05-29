@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Toque en \"Buscar\" para comezar
-\n</string>
+    <string name="main_bg_subtitle">Toque en \"Buscar\" para comezar</string>
     <string name="view_count_text">%1$s visualizacións</string>
     <string name="upload_date_text">Publicado o día %1$s</string>
     <string name="no_player_found">Non foi encontrado ningún reprodutor. Quere instalar o VLC\?</string>
@@ -586,7 +585,7 @@
     <string name="videos_string">Vídeos</string>
     <string name="restricted_video">Este vídeo está restrinxido por idade.
 \n
-\nSe desexa visualizalo, habilite \"Contido restrinxido por idade\" nos axustes.</string>
+\nSe desexa visualizalo, habilite \"%1$s\" nos axustes.</string>
     <string name="youtube_restricted_mode_enabled_title">Modo restrinxido de YouTube</string>
     <string name="settings_category_updates_title">Actualizacións</string>
     <string name="peertube_instance_add_exists">A instancia xa existe</string>

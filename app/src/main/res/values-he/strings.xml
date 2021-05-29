@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">יש לגעת ב־„חיפוש” כדי להתחיל
-\n</string>
+    <string name="main_bg_subtitle">יש לגעת בזכוכית המגדלת כדי להתחיל.</string>
     <string name="view_count_text">%1$s צפיות</string>
     <string name="upload_date_text">פורסם ב־%1$s</string>
     <string name="no_player_found">לא נמצאו נגני הזרמה, להתקין VLC\?</string>
@@ -699,4 +698,6 @@
     <string name="recaptcha_solve">לפתור</string>
     <string name="night_theme_title">ערכת עיצוב לילית</string>
     <string name="show_channel_details">להציג את פרטי הערוץ</string>
+    <string name="disable_media_tunneling_summary">כדאי להשבית תיעול מדיה אם הופיעה תופעה של מסך שחור או גמגום בנגינת וידאו</string>
+    <string name="disable_media_tunneling_title">השבתת תיעול מדיה</string>
 </resources>

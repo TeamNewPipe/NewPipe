@@ -61,8 +61,7 @@
     <string name="show_age_restricted_content_title">Zobrazit věkově omezený obsah</string>
     <string name="duration_live">Živě</string>
     <string name="light_parsing_error">Nebylo možné kompletně analyzovat stránku</string>
-    <string name="main_bg_subtitle">Začít klepnutím na \"Hledat\"
-\n</string>
+    <string name="main_bg_subtitle">Začněte klepnutím na lupu.</string>
     <string name="msg_copied">Zkopírováno do schránky</string>
     <string name="msg_wait">Počkejte prosím…</string>
     <string name="msg_running">NewPipe stahuje</string>
@@ -689,4 +688,6 @@
     <string name="restricted_video_no_stream">Toto video je věkově omezeno.
 \nKvůli novým pravidlům YouTube ohledně věkově omezených videí nemůže NewPipe získat přístup na streamy videa, a tak je nemůže přehrát.</string>
     <string name="night_theme_title">Noční motiv</string>
+    <string name="disable_media_tunneling_summary">Vypněte media-tunelling, pokud zaznamenáte temnou obrazovku nebo zadrhávání během playbacku</string>
+    <string name="disable_media_tunneling_title">Vypnout media-tunelling</string>
 </resources>

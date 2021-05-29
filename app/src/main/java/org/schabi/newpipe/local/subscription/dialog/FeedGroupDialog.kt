@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import androidx.core.os.bundleOf
 import androidx.core.view.isGone
@@ -127,7 +128,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
 
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
             // KitKat doesn't apply container's theme to <include> content
-            val contrastColor = ColorStateList.valueOf(resources.getColor(R.color.contrastColor))
+            val contrastColor = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.contrastColor))
             searchLayoutBinding.toolbarSearchEditText.setTextColor(contrastColor)
             searchLayoutBinding.toolbarSearchEditText.setHintTextColor(contrastColor.withAlpha(128))
             ImageViewCompat.setImageTintList(searchLayoutBinding.toolbarSearchClearIcon, contrastColor)
@@ -385,7 +386,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
 
     private fun setupIconPicker() {
         val groupAdapter = GroupAdapter<GroupieViewHolder>()
-        groupAdapter.addAll(FeedGroupIcon.values().map { PickerIconItem(requireContext(), it) })
+        groupAdapter.addAll(FeedGroupIcon.values().map { PickerIconItem(it) })
 
         feedGroupCreateBinding.iconSelector.apply {
             layoutManager = GridLayoutManager(requireContext(), 7, RecyclerView.VERTICAL, false)

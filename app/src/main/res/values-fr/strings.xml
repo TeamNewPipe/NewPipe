@@ -75,8 +75,7 @@
     <string name="audio">Audio</string>
     <string name="retry">Réessayer</string>
     <string name="storage_permission_denied">Veuillez d’abord accorder l’accès au stockage</string>
-    <string name="main_bg_subtitle">Appuyez sur la loupe pour commencer
-\n</string>
+    <string name="main_bg_subtitle">Appuyez sur la loupe pour commencer.</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique</string>
     <string name="user_report">Rapport utilisateur</string>
     <string name="error_snackbar_action">Signaler</string>
@@ -98,7 +97,7 @@
     <string name="msg_server_unsupported">Serveur non pris en charge</string>
     <string name="msg_exists">Fichier déjà existant</string>
     <string name="msg_url_malform">Lien malformé ou accès à Internet indisponible</string>
-    <string name="msg_running">NewPipe télécharge …</string>
+    <string name="msg_running">NewPipe télécharge...</string>
     <string name="msg_running_detail">Appuyer pour plus de détails</string>
     <string name="msg_wait">Veuillez patienter…</string>
     <string name="msg_copied">Copié dans le presse-papiers</string>
@@ -115,7 +114,7 @@
     <string name="yes">Oui</string>
     <string name="later">Plus tard</string>
     <string name="disabled">Désactivés</string>
-    <string name="info_labels">Quoi :\\nRequête :\\nLangue du contenu :\\nPays du contenu :\\nLangue de l’application :\\nService :\\nDate UTC :\\nPaquet :\\nVersion :\\nVersion du système d’exploitation :</string>
+    <string name="info_labels">Quoi :\\nRequest :\\nContent Language :\\nContent Country :\\nApp Language :\\nService :\\nGMT Time :\\nPackage :\\nVersion :\\nOS version :</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="msg_popup_permission">Cette autorisation est nécessaire pour
@@ -681,4 +680,6 @@
     <string name="select_night_theme_toast">Vous pouvez choisir votre thème nuit favori</string>
     <string name="download_has_started">Le téléchargement a démarré</string>
     <string name="show_channel_details">Afficher les détails de la chaîne</string>
+    <string name="disable_media_tunneling_summary">Désactivez le tunnelage multimédia si vous constatez un écran noir ou un bégaiement lors de la lecture d\'une vidéo</string>
+    <string name="disable_media_tunneling_title">Désactiver le tunnelage média</string>
 </resources>

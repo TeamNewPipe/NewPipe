@@ -50,8 +50,7 @@
     <string name="use_tor_summary">(Eksperimentelt) Tving nedlasting av trafikk gjennom Tor for forbedret personvern (strømming av videoer støttes ikke enda).</string>
     <string name="err_dir_create">Kan ikke opprette nedlastingsmappe \'%1$s\'</string>
     <string name="info_dir_created">Opprettet nedlastingsmappen \'%1$s\'</string>
-    <string name="main_bg_subtitle">Trykk «Søk» for å komme i gang
-\n</string>
+    <string name="main_bg_subtitle">Trykk forstørrelsesglasset for å begynne</string>
     <string name="autoplay_by_calling_app_title">Automatisk avspilling</string>
     <string name="autoplay_by_calling_app_summary">Spiller en video når NewPipe blir forespurt av et annet program</string>
     <string name="content">Innhold</string>
@@ -605,7 +604,7 @@
 \n
 \nValget koker ned til det du foretrekker: hastighet eller presis info.</string>
     <string name="show_original_time_ago_summary">Originaltekster fra tjenester vil vises for elementer i strømmen</string>
-    <string name="error_report_open_github_notice">Sjekk om det allerede eksisterer et problem som diskuterer krasj. Når du oppretter duplikatbilletter, tar du deg tid fra oss som vi kan bruke på å fikse den faktiske feilen.</string>
+    <string name="error_report_open_github_notice">Sjekk om det allerede eksisterer et problem som diskuterer ditt krasj. Når du oppretter duplikatbilletter, tar du tid fra oss som vi kan bruke på å fikse den faktiske feilen.</string>
     <string name="notification_actions_at_most_three">Du kan maksimalt velge tre handlinger som skal vises i kompaktvarselet!</string>
     <string name="notification_actions_summary">Rediger hver varslingshandling nedenfor ved å trykke på den. Velg opptil tre av dem som skal vises i det kompakte varselet ved å bruke avmerkingsboksene til høyre.</string>
     <string name="notification_scale_to_square_image_summary">Skaler videominiatyrbildet som vises i varselet fra 16:9 til 1:1 sideforhold (kan føre til forvrengninger)</string>
@@ -679,4 +678,6 @@
     <string name="recaptcha_solve">Løs</string>
     <string name="night_theme_title">Nattdrakt</string>
     <string name="show_channel_details">Vis kanaldetaljer</string>
+    <string name="disable_media_tunneling_summary">Skru av media-tunnelering hvis du opplever svart skjerm eller videohakking</string>
+    <string name="disable_media_tunneling_title">Skru av media-tunnelering</string>
 </resources>

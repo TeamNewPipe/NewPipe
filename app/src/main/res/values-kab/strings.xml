@@ -163,8 +163,7 @@
     <string name="open_in_browser">Ldi deg uminig</string>
     <string name="view_count_text">%1$s n tmeẓriwin</string>
     <string name="upload_date_text">Yeffeɣ-d deg %1$s</string>
-    <string name="main_bg_subtitle">Senned ɣef «Nadi» akken ad tebduḍ
-\n</string>
+    <string name="main_bg_subtitle">Senned ɣef «Nadi» akken ad tebduḍ</string>
     <string name="no_views">Ula d yiwet n tmeẓriwt</string>
     <plurals name="views">
         <item quantity="one">%s n tmeẓriwt</item>

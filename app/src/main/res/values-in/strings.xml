@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Ketuk \"Cari\" untuk memulai
-\n</string>
+    <string name="main_bg_subtitle">Ketuk kaca pembesar untuk segera memulai.</string>
     <string name="view_count_text">%1$s x ditonton</string>
     <string name="upload_date_text">Dipublikasikan pada tanggal %1$s</string>
     <string name="install">Pasang</string>
@@ -10,7 +9,7 @@
     <string name="share">Bagikan</string>
     <string name="download">Unduh</string>
     <string name="search">Telusuri</string>
-    <string name="settings">Setelan</string>
+    <string name="settings">Pengaturan</string>
     <string name="share_dialog_title">Bagikan dengan</string>
     <string name="choose_browser">Pilih browser</string>
     <string name="use_external_video_player_title">Gunakan pemutar video eksternal</string>
@@ -159,8 +158,8 @@
     <string name="contribution_encouragement">Terlepas apakah Anda memiliki ide untuk; terjemahan, perubahan desain, pembersihan kode, atau perubahan kode yang signifikan, segala bantuan akan selalu diterima. Semakin banyak akan semakin baik jadinya!</string>
     <string name="read_full_license">Baca lisensi</string>
     <string name="contribution_title">Kontribusi</string>
-    <string name="subscribe_button_title">Melanggan</string>
-    <string name="subscribed_button_title">Berlanggan</string>
+    <string name="subscribe_button_title">Berlangganan</string>
+    <string name="subscribed_button_title">Disubscribe</string>
     <string name="fragment_feed_title">Apa Yang Baru</string>
     <string name="resume_on_audio_focus_gain_title">Lanjutkan pemutaran</string>
     <string name="resume_on_audio_focus_gain_summary">Melanjutkan pemutaran setelah interupsi (mis. panggilan telepon)</string>
@@ -322,7 +321,7 @@
     <string name="auto_queue_title">Putar otomatis streaming berikutnya</string>
     <string name="channel_unsubscribed">Berhenti berlanggan channel</string>
     <string name="subscription_update_failed">Tidak bisa memperbarui langganan</string>
-    <string name="tab_subscriptions">Langganan</string>
+    <string name="tab_subscriptions">Subscription</string>
     <string name="use_inexact_seek_title">Gunakan tinjau cepat tak pasti</string>
     <string name="use_inexact_seek_summary">Memungkinkan pengguna memilih posisi waktu video dengan cepat tetapi dengan tingkat presisi yang rendah. Mencari 5, 15 atau 25 detik tidak berhasil dengan ini.</string>
     <string name="app_license">NewPipe adalah perangkat lunak libre copyleft: Anda bisa menggunakannya, mempelajarinya, berbagi, dan meningkatkannya. Secara khusus Anda bisa mendistribusikan ulang dan/atau memodifikasinya dibawah syarat Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan Anda) versi yang lebih baru.</string>
@@ -669,4 +668,6 @@
     <string name="night_theme_title">Tema malam</string>
     <string name="download_has_started">Pengunduhan dimulai</string>
     <string name="show_channel_details">Tampilkan rincian channel</string>
+    <string name="disable_media_tunneling_summary">Nonaktifkan terowongan media (tunnel) jiaka anda mengalami sebuah layar hitam atau kerusakan dalam memutar video</string>
+    <string name="disable_media_tunneling_title">Nonaktifkan terowongan media (tunnel)</string>
 </resources>

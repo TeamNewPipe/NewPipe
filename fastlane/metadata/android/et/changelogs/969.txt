@@ -1,0 +1,8 @@
+• Luba paigaldust välisele andmekandjale
+• [Bandcamp] Lisasime kolme esimese kommentaari kuvamise
+• Allalaadimisel näitame vaid 'Allalaadimine on alanud' teadet
+• Kui reCaptcha küpsist pole kasutusel, siis ära loo uut küpsist
+• [Esitaja] Parandasime puhvri kasutust
+• [Esitaja] Parandasime vea, kus automaatne esitamine ei toiminud
+• Allalaadimiste kustutamisel ära arvesta eelmiseid teateid
+• Parandasime olukorra, kus püüdsime kustutada kirjet, mis polnud loendis

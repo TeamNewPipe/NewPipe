@@ -126,8 +126,7 @@
     <string name="search_showing_result_for">ⴰⵙⵎⴰⵍ ⵏ ⵜⴰⵢⴰⴼⵓⵜ ⵉ: %s</string>
     <string name="did_you_mean">ⵎⵉⵏ ⵜⵅⵙⴷ ⴰⴷ ⵜⵉⵏⵉⴷ:\"%1$s\"\?</string>
     <string name="view_count_text">%1$s ⵏ ⵜⴰⵏⵏⴰⵢⵉⵏ</string>
-    <string name="main_bg_subtitle">ⴰⴷⵔ ⵅ \"ⵔⵣⵓ\"ⴰⴼⴰⴷ ⴰⴷ ⵜⵜⴰⵡⵍⴷ
-\n</string>
+    <string name="main_bg_subtitle">ⴰⴷⵔ ⵅ \"ⵔⵣⵓ\"ⴰⴼⴰⴷ ⴰⴷ ⵜⵜⴰⵡⵍⴷ</string>
     <string name="show_comments_title">ⵙⴽⵏ ⵉⵅⴼⴰⵡⴰⵍⵏ</string>
     <string name="theme_title">ⴰⵙⴳⵓⵎ</string>
 </resources>

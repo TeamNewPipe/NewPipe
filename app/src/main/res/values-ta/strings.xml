@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">தொடங்க \"தேடல்\" ஐ தட்டவும்
-\n</string>
+    <string name="main_bg_subtitle">தொடங்க \"தேடல்\" ஐ தட்டவும்</string>
     <string name="view_count_text">%1$s பார்வைகள்</string>
     <string name="upload_date_text">%1$s அன்று வெளியிடப்பட்டது</string>
     <string name="no_player_found">நிகழ்பட ஓட்டி கண்டறியப்படவில்லை. VLC நிறுவ வேண்டுமா\?</string>

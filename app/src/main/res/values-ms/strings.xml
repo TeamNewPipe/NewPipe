@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Tekan \"Cari\" untuk bermula
-\n</string>
+    <string name="main_bg_subtitle">Tekan \"Cari\" untuk bermula</string>
     <string name="view_count_text">%1$s tontonan</string>
     <string name="upload_date_text">Diterbitkan pada %1$s</string>
     <string name="no_player_found">Tiada pemain strim ditemui. Adakah anda mahu memasang VLC\?</string>

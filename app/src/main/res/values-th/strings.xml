@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">แตะที่ปุ่ม \"ค้นหา\" เพื่อเริ่มต้น
-\n</string>
+    <string name="main_bg_subtitle">แตะที่ปุ่ม \"ค้นหา\" เพื่อเริ่มต้น</string>
     <string name="view_count_text">%1$s ครั้ง</string>
     <string name="upload_date_text">เผยแพร่เมื่อ %1$s</string>
     <string name="no_player_found">ไม่พบแอปที่สามารถสตรีมสื่อวีดีโอได้ คุณต้องการติดตั้ง VLC หรือไม่\?</string>

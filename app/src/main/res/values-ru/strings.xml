@@ -47,8 +47,7 @@
     <string name="download_path_audio_title">Папка для скачанного аудио</string>
     <string name="download_path_audio_summary">Папка для скачанного аудио</string>
     <string name="download_path_audio_dialog_title">Введите путь к папке для скачивания аудио</string>
-    <string name="main_bg_subtitle">Нажмите \"Поиск\", чтобы начать
-\n</string>
+    <string name="main_bg_subtitle">Нажмите на лупу, чтобы начать.</string>
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
     <string name="msg_threads">Потоки</string>
@@ -690,4 +689,6 @@
     <string name="featured">Рекомендуемые</string>
     <string name="recaptcha_solve">Решить</string>
     <string name="show_channel_details">Подробно о канале</string>
+    <string name="disable_media_tunneling_summary">Отключите туннелирование медиа, если вы видите черный экран или подёргивание при воспроизведении видео</string>
+    <string name="disable_media_tunneling_title">Отключить туннелирование медиа</string>
 </resources>

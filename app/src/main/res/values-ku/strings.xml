@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">کرتە له‌ ”گه‌ڕان” بكه‌ بۆ ده‌ستپێكردن
-\n</string>
+    <string name="main_bg_subtitle">کرتە له‌ ”گه‌ڕان” بكه‌ بۆ ده‌ستپێكردن</string>
     <string name="view_count_text">%1$s بینراو</string>
     <string name="upload_date_text">بڵاوكراوه‌ته‌وه‌ له‌ %1$s</string>
     <string name="no_player_found">هیچ لێدەرێکی ڤیدیۆیی نه‌دۆزرایه‌وه‌. ده‌ته‌وێت VLC دابمەزرێنیت؟</string>
