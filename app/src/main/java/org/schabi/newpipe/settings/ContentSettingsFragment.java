@@ -1,5 +1,6 @@
 package org.schabi.newpipe.settings;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -205,7 +206,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     .getDefaultSharedPreferences(requireContext());
             manager.exportDatabase(preferences, path);
 
-            setImportExportDataPath(folder);
+            setImportExportDataPath(folder, false);
 
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
         } catch (final Exception e) {
@@ -230,7 +231,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
             if (!manager.extractDb(filePath)) {
                 Toast.makeText(getContext(), R.string.could_not_import_all_files, Toast.LENGTH_LONG)
-                    .show();
+                        .show();
             }
 
             //If settings file exist, ask if it should be imported.
@@ -264,14 +265,16 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
      */
     private void finishImport(final File file) {
         if (file.getParentFile() != null) {
-            setImportExportDataPath(file.getParentFile());
+            //immediately because app is about to exit
+            setImportExportDataPath(file.getParentFile(), true);
         }
 
         // restart app to properly load db
         System.exit(0);
     }
 
-    private void setImportExportDataPath(final File file) {
+    @SuppressLint("ApplySharedPref")
+    private void setImportExportDataPath(final File file, final boolean immediately) {
         final String directoryPath;
         if (file.isDirectory()) {
             directoryPath = file.getAbsolutePath();
@@ -283,6 +286,13 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 directoryPath = "";
             }
         }
-        defaultPreferences.edit().putString(importExportDataPathKey, directoryPath).apply();
+        final SharedPreferences.Editor editor = defaultPreferences
+                .edit()
+                .putString(importExportDataPathKey, directoryPath);
+        if (immediately) {
+            editor.commit();
+        } else {
+            editor.apply();
+        }
     }
 }
