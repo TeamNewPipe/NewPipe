@@ -25,8 +25,8 @@ import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
-import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.FilePathUtils;
+import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.File;
@@ -178,11 +178,9 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 && resultCode == Activity.RESULT_OK && data.getData() != null) {
             final File file = Utils.getFileForUri(data.getData());
             final String path = file.getAbsolutePath();
-            setImportExportDataPath(file);
 
             if (requestCode == REQUEST_EXPORT_PATH) {
-                final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
-                exportDatabase(path + "/NewPipeData-" + sdf.format(new Date()) + ".zip");
+                exportDatabase(file);
             } else {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
                 builder.setMessage(R.string.override_current_data)
@@ -195,14 +193,20 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
     }
 
-    private void exportDatabase(final String path) {
+    private void exportDatabase(final File folder) {
         try {
+            final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
+            final String path = folder.getAbsolutePath() + "/NewPipeData-"
+                    + sdf.format(new Date()) + ".zip";
+
             //checkpoint before export
             NewPipeDatabase.checkpoint();
 
             final SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(requireContext());
+                    .getDefaultSharedPreferences(requireContext());
             manager.exportDatabase(preferences, path);
+
+            setImportExportDataPath(folder);
 
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
         } catch (final Exception e) {
