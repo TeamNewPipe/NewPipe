@@ -193,7 +193,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
     }
 
-    private void exportDatabase(final File folder) {
+    private void exportDatabase(@NonNull final File folder) {
         try {
             final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
             final String path = folder.getAbsolutePath() + "/NewPipeData-"
@@ -214,7 +214,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
     }
 
-    private void importDatabase(final File file) {
+    private void importDatabase(@NonNull final File file) {
         final String filePath = file.getAbsolutePath();
 
         // check if file is supported
@@ -263,7 +263,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
      *
      * @param file The file of the created backup
      */
-    private void finishImport(final File file) {
+    private void finishImport(@NonNull final File file) {
         if (file.getParentFile() != null) {
             //immediately because app is about to exit
             setImportExportDataPath(file.getParentFile(), true);
@@ -274,7 +274,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     }
 
     @SuppressLint("ApplySharedPref")
-    private void setImportExportDataPath(final File file, final boolean immediately) {
+    private void setImportExportDataPath(@NonNull final File file, final boolean immediately) {
         final String directoryPath;
         if (file.isDirectory()) {
             directoryPath = file.getAbsolutePath();
