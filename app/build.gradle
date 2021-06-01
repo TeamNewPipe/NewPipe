@@ -258,7 +258,7 @@ dependencies {
     implementation "com.jakewharton.rxbinding4:rxbinding:4.0.0"
 
     // Date and time formatting
-    implementation "org.ocpsoft.prettytime:prettytime:5.0.0.Final"
+    implementation "org.ocpsoft.prettytime:prettytime:5.0.1.Final"
 
 /** Debugging **/
     // Memory leak detection
