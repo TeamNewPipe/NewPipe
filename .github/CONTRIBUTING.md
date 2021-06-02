@@ -42,6 +42,5 @@ You'll see exactly what is sent, be able to add your comments, and then send it.
 ## Communication
 
 * The #newpipe channel on Libera Chat (`ircs://irc.libera.chat:6697/newpipe`) has the core team and other developers in it. [Click here for webchat](https://web.libera.chat/#newpipe)!
-* You can also use a Matrix account to join the NewPipe channel at [
-#newpipe:libera.chat](https://matrix.to/#/#newpipe:libera.chat).
+* You can also use a Matrix account to join the NewPipe channel at [#newpipe:libera.chat](https://matrix.to/#/#newpipe:libera.chat).
 * Post suggestions, changes, ideas etc. on GitHub or IRC.
