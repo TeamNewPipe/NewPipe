@@ -12,13 +12,17 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.text.HtmlCompat;
 
+import com.google.android.material.chip.Chip;
+
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentDescriptionBinding;
 import org.schabi.newpipe.databinding.ItemMetadataBinding;
+import org.schabi.newpipe.databinding.ItemMetadataTagsBinding;
 import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.TextLinkifier;
 
@@ -201,16 +205,32 @@ public class DescriptionFragment extends BaseFragment {
 
     private void addTagsMetadataItem(final LayoutInflater inflater, final LinearLayout layout) {
         if (streamInfo.getTags() != null && !streamInfo.getTags().isEmpty()) {
-            final StringBuilder tags = new StringBuilder();
-            for (int i = 0; i < streamInfo.getTags().size(); ++i) {
-                if (i != 0) {
-                    tags.append(", ");
-                }
-                tags.append(streamInfo.getTags().get(i));
+            final ItemMetadataTagsBinding itemBinding
+                    = ItemMetadataTagsBinding.inflate(inflater, layout, false);
+
+            for (final String tag : streamInfo.getTags()) {
+                final Chip chip = (Chip) inflater.inflate(R.layout.chip,
+                        itemBinding.metadataTagsChips, false);
+                chip.setText(tag);
+                chip.setOnClickListener(this::onTagClick);
+                chip.setOnLongClickListener(this::onTagLongClick);
+                itemBinding.metadataTagsChips.addView(chip);
             }
 
-            addMetadataItem(inflater, layout, false, R.string.metadata_tags, tags.toString());
+            layout.addView(itemBinding.getRoot());
         }
+    }
+
+    private void onTagClick(final View chip) {
+        if (getParentFragment() != null) {
+            NavigationHelper.openSearchFragment(getParentFragment().getParentFragmentManager(),
+                    streamInfo.getServiceId(), ((Chip) chip).getText().toString());
+        }
+    }
+
+    private boolean onTagLongClick(final View chip) {
+        ShareUtils.copyToClipboard(requireContext(), ((Chip) chip).getText().toString());
+        return true;
     }
 
     private void addPrivacyMetadataItem(final LayoutInflater inflater, final LinearLayout layout) {
