@@ -137,7 +137,10 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         }
 
         if (item.getLikeCount() >= 0) {
-            itemLikesCountView.setText(String.valueOf(item.getLikeCount()));
+            itemLikesCountView.setText(
+                    Localization.shortCount(
+                            itemBuilder.getContext(),
+                            item.getLikeCount()));
         } else {
             itemLikesCountView.setText("-");
         }
