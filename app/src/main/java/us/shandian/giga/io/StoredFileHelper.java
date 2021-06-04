@@ -275,7 +275,7 @@ public class StoredFileHelper implements Serializable {
             if (!docTree.canRead() || !docTree.canWrite()) return false;
             try {
                 docFile = createSAF(context, srcType, srcName);
-                if (docFile == null || docFile.getName() == null) return false;
+                if (docFile.getName() == null) return false;
                 result = true;
             } catch (IOException e) {
                 return false;
