@@ -354,7 +354,9 @@ public class StoredFileHelper implements Serializable {
         }
     }
 
-    private DocumentFile createSAF(@Nullable Context context, String mime, String filename) throws IOException {
+    @NonNull
+    private DocumentFile createSAF(@Nullable Context context, String mime, String filename)
+            throws IOException {
         DocumentFile res = StoredDirectoryHelper.findFileSAFHelper(context, docTree, filename);
 
         if (res != null && res.exists() && res.isDirectory()) {
