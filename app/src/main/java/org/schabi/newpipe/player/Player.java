@@ -532,6 +532,7 @@ public final class Player implements
         binding.moreOptionsButton.setOnClickListener(this);
         binding.moreOptionsButton.setOnLongClickListener(this);
         binding.share.setOnClickListener(this);
+        binding.share.setOnLongClickListener(this);
         binding.fullScreenButton.setOnClickListener(this);
         binding.screenRotationButton.setOnClickListener(this);
         binding.playWithKodi.setOnClickListener(this);
@@ -3629,6 +3630,10 @@ public final class Player implements
             fragmentListener.onMoreOptionsLongClicked();
             hideControls(0, 0);
             hideSystemUIIfNeeded();
+        } else if (v.getId() == binding.share.getId()) {
+            if (currentMetadata != null) {
+                ShareUtils.copyToClipboard(context, currentMetadata.getMetadata().getOriginalUrl());
+            }
         }
         return true;
     }
