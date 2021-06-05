@@ -682,4 +682,19 @@
     <string name="show_channel_details">Afficher les détails de la chaîne</string>
     <string name="disable_media_tunneling_summary">Désactivez le tunnelage multimédia si vous constatez un écran noir ou un bégaiement lors de la lecture d\'une vidéo</string>
     <string name="disable_media_tunneling_title">Désactiver le tunnelage média</string>
+    <string name="description_select_disable">Désactiver la sélection de texte dans la description</string>
+    <string name="description_select_enable">Permettre la sélection de texte dans la description</string>
+    <string name="metadata_privacy_internal">Interne</string>
+    <string name="metadata_privacy_private">Privé</string>
+    <string name="metadata_privacy_unlisted">Non répertorié</string>
+    <string name="metadata_privacy_public">Public</string>
+    <string name="metadata_thumbnail_url">URL de la vignette</string>
+    <string name="metadata_host">Hôte</string>
+    <string name="metadata_support">Support</string>
+    <string name="metadata_language">Langue</string>
+    <string name="metadata_age_limit">Limite d\'âge</string>
+    <string name="metadata_privacy">Vie privée</string>
+    <string name="metadata_licence">Licence</string>
+    <string name="metadata_tags">Étiquettes</string>
+    <string name="metadata_category">Catégorie</string>
 </resources>

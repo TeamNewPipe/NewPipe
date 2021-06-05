@@ -656,7 +656,7 @@
     <string name="private_content">Konten ini bersifat pribadi, jadi tidak dapat di stream ataupun diunduh oleh NewPipe.</string>
     <string name="soundcloud_go_plus_content">Ini adalah sebuah trek SoundCloud Go +, setidaknya di negara Anda, sehingga tidak dapat di stream atau diunduh oleh Newpipe.</string>
     <string name="georestricted_content">Konten ini tidak tersedia di negara Anda.</string>
-    <string name="crash_the_app">Aplikasi crash</string>
+    <string name="crash_the_app">Hentikan aplikasi</string>
     <string name="restricted_video_no_stream">Video ini dibatasi usia.
 \nKarena kebijakan YouTube yang baru dengan video yang dibatasi usia, Newpipe tidak dapat mengakses aliran video dan karenanya tidak dapat memainkannya.</string>
     <string name="select_night_theme_toast">Kamu bisa pilih tema malam favoritmu dibawah</string>
@@ -670,4 +670,20 @@
     <string name="show_channel_details">Tampilkan rincian channel</string>
     <string name="disable_media_tunneling_summary">Nonaktifkan terowongan media (tunnel) jiaka anda mengalami sebuah layar hitam atau kerusakan dalam memutar video</string>
     <string name="disable_media_tunneling_title">Nonaktifkan terowongan media (tunnel)</string>
+    <string name="metadata_privacy_internal">Internal</string>
+    <string name="metadata_privacy_private">Privasi</string>
+    <string name="metadata_privacy_unlisted">Tidak didaftar</string>
+    <string name="metadata_privacy_public">Publik</string>
+    <string name="metadata_thumbnail_url">Alamat URL gambar mini/thumbnail</string>
+    <string name="metadata_host">Host</string>
+    <string name="metadata_support">Dukungan</string>
+    <string name="metadata_language">Bahasa</string>
+    <string name="metadata_age_limit">Batas umur</string>
+    <string name="metadata_privacy">Privasi</string>
+    <string name="metadata_licence">Lisensi</string>
+    <string name="metadata_tags">Tag</string>
+    <string name="metadata_category">Kategori</string>
+    <string name="description_select_disable">Nonaktifkan dapat memilih teks pada deskripsi</string>
+    <string name="description_select_enable">Aktifkan dapat memilih teks pada deskripsi</string>
+    <string name="description_select_note">Anda sekarang dapat memilih teks di dalam deskripsi. Perhatikan bahwa halaman mungkin berkedip dan tautan tidak dapat diklik saat dalam mode pemilihan.</string>
 </resources>

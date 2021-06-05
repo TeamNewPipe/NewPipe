@@ -665,4 +665,19 @@
     <string name="show_description_title">Toon beschrijving</string>
     <string name="night_theme_title">Nacht Thema</string>
     <string name="open_with">Open met</string>
+    <string name="featured">Featured</string>
+    <string name="private_content">Deze inhoud is privé, waardoor het niet kan worden gestreamd of gedownload door NewPipe.</string>
+    <string name="crash_the_app">Laat de app crashen</string>
+    <string name="disable_media_tunneling_summary">Schakel media tunneling uit indien u een zwart scherm of haperingen vaststelt bij het afspelen van video\'s</string>
+    <string name="download_has_started">De download is begonnen</string>
+    <string name="select_night_theme_toast">U kunt uw favoriete nachtthema hieronder kiezen</string>
+    <string name="night_theme_summary">Kies uw favoriete nachtthema - %s</string>
+    <string name="auto_device_theme_title">Automatisch (thema van de telefoon)</string>
+    <string name="radio">Radio</string>
+    <string name="paid_content">Deze inhoud is enkel toegankelijk voor betalende gebruikers, waardoor het niet kan worden gestreamd of gedownload door NewPipe.</string>
+    <string name="youtube_music_premium_content">Deze video is enkel toegankelijk voor YouTube Music Premium leden, waardoor het niet kan worden gestreamd of gedownload door NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Dit is (tenminste in uw land) een SoundCloud Go+ titel, waardoor het niet kan worden gestreamd of gedownload door NewPipe.</string>
+    <string name="georestricted_content">Deze inhoud is niet toegankelijk in uw land.</string>
+    <string name="no_app_to_open_intent">Geen app beschikbaar om dit te openen</string>
+    <string name="chapters">Hoofdstukken</string>
 </resources>
