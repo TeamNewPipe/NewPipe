@@ -1546,8 +1546,8 @@ public final class VideoDetailFragment
                 .getDefaultResolutionIndex(activity, sortedVideoStreams);
         updateProgressInfo(info);
         initThumbnailViews(info);
-        disposables.add(showMetaInfoInTextView(info.getMetaInfo(), binding.detailMetaInfoTextView,
-                binding.detailMetaInfoSeparator));
+        showMetaInfoInTextView(info.getMetaInfo(), binding.detailMetaInfoTextView,
+                binding.detailMetaInfoSeparator, disposables);
 
         if (player == null || player.isStopped()) {
             updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnailUrl());
