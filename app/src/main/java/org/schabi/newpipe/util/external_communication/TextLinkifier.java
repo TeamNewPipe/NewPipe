@@ -11,9 +11,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 
-import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.regex.Matcher;
@@ -42,85 +43,74 @@ public final class TextLinkifier {
      * Create web links for contents with an HTML description.
      * <p>
      * This will call
-     * {@link TextLinkifier#changeIntentsOfDescriptionLinks(Context, CharSequence, TextView,
-     * StreamingService, String)}
+     * {@link TextLinkifier#changeIntentsOfDescriptionLinks(TextView, CharSequence, Info)}
      * after having linked the URLs with {@link HtmlCompat#fromHtml(String, int)}.
      *
-     * @param context          the context to use
-     * @param htmlBlock        the htmlBlock to be linked
-     * @param textView         the TextView to set the htmlBlock linked
-     * @param streamingService the {@link StreamingService} of the content
-     * @param contentUrl       the URL of the content
-     * @param htmlCompatFlag   the int flag to be set when {@link HtmlCompat#fromHtml(String, int)}
-     *                         will be called
+     * @param textView       the TextView to set the htmlBlock linked
+     * @param htmlBlock      the htmlBlock to be linked
+     * @param htmlCompatFlag the int flag to be set when {@link HtmlCompat#fromHtml(String, int)}
+     *                       will be called
+     * @param relatedInfo    if given, handle timestamps to open the stream in the popup player at
+     *                       the specific time, and hashtags to search for the term in the correct
+     *                       service
      * @return a disposable to be stored somewhere and disposed when activity/fragment is destroyed
      */
     @NonNull
-    public static Disposable createLinksFromHtmlBlock(final Context context,
+    public static Disposable createLinksFromHtmlBlock(@NonNull final TextView textView,
                                                       final String htmlBlock,
-                                                      final TextView textView,
-                                                      final StreamingService streamingService,
-                                                      final String contentUrl,
-                                                      final int htmlCompatFlag) {
-        return changeIntentsOfDescriptionLinks(context,
-                HtmlCompat.fromHtml(htmlBlock, htmlCompatFlag), textView, streamingService,
-                contentUrl);
+                                                      final int htmlCompatFlag,
+                                                      @Nullable final Info relatedInfo) {
+        return changeIntentsOfDescriptionLinks(
+                textView, HtmlCompat.fromHtml(htmlBlock, htmlCompatFlag), relatedInfo);
     }
 
     /**
      * Create web links for contents with a plain text description.
      * <p>
      * This will call
-     * {@link TextLinkifier#changeIntentsOfDescriptionLinks(Context, CharSequence, TextView,
-     * StreamingService, String)}
+     * {@link TextLinkifier#changeIntentsOfDescriptionLinks(TextView, CharSequence, Info)}
      * after having linked the URLs with {@link TextView#setAutoLinkMask(int)} and
      * {@link TextView#setText(CharSequence, TextView.BufferType)}.
      *
-     * @param context          the context to use
-     * @param plainTextBlock   the block of plain text to be linked
-     * @param textView         the TextView to set the plain text block linked
-     * @param streamingService the {@link StreamingService} of the content
-     * @param contentUrl       the URL of the content
+     * @param textView       the TextView to set the plain text block linked
+     * @param plainTextBlock the block of plain text to be linked
+     * @param relatedInfo    if given, handle timestamps to open the stream in the popup player at
+     *                       the specific time, and hashtags to search for the term in the correct
+     *                       service
      * @return a disposable to be stored somewhere and disposed when activity/fragment is destroyed
      */
     @NonNull
-    public static Disposable createLinksFromPlainText(final Context context,
+    public static Disposable createLinksFromPlainText(@NonNull final TextView textView,
                                                       final String plainTextBlock,
-                                                      @NonNull final TextView textView,
-                                                      final StreamingService streamingService,
-                                                      final String contentUrl) {
+                                                      @Nullable final Info relatedInfo) {
         textView.setAutoLinkMask(Linkify.WEB_URLS);
         textView.setText(plainTextBlock, TextView.BufferType.SPANNABLE);
-        return changeIntentsOfDescriptionLinks(context, textView.getText(), textView,
-                streamingService, contentUrl);
+        return changeIntentsOfDescriptionLinks(textView, textView.getText(), relatedInfo);
     }
 
     /**
      * Create web links for contents with a markdown description.
      * <p>
      * This will call
-     * {@link TextLinkifier#changeIntentsOfDescriptionLinks(Context, CharSequence, TextView,
-     * StreamingService, String)}
+     * {@link TextLinkifier#changeIntentsOfDescriptionLinks(TextView, CharSequence, Info)}
      * after creating an {@link Markwon} object and using
      * {@link Markwon#setMarkdown(TextView, String)}.
      *
-     * @param context          the context to use
-     * @param markdownBlock    the block of markdown text to be linked
-     * @param textView         the TextView to set the plain text block linked
-     * @param streamingService the {@link StreamingService} of the content
-     * @param contentUrl       the URL of the content
+     * @param textView      the TextView to set the plain text block linked
+     * @param markdownBlock the block of markdown text to be linked
+     * @param relatedInfo   if given, handle timestamps to open the stream in the popup player at
+     *                      the specific time, and hashtags to search for the term in the correct
+     *                      service
      * @return a disposable to be stored somewhere and disposed when activity/fragment is destroyed
      */
     @NonNull
-    public static Disposable createLinksFromMarkdownText(final Context context,
+    public static Disposable createLinksFromMarkdownText(@NonNull final TextView textView,
                                                          final String markdownBlock,
-                                                         final TextView textView,
-                                                         final StreamingService streamingService,
-                                                         final String contentUrl) {
-        final Markwon markwon = Markwon.builder(context).usePlugin(LinkifyPlugin.create()).build();
+                                                         @Nullable final Info relatedInfo) {
+        final Markwon markwon = Markwon.builder(textView.getContext())
+                .usePlugin(LinkifyPlugin.create()).build();
         markwon.setMarkdown(textView, markdownBlock);
-        return changeIntentsOfDescriptionLinks(context, textView.getText(), textView,
-                streamingService, contentUrl);
+        return changeIntentsOfDescriptionLinks(textView, textView.getText(), relatedInfo);
     }
 
     /**
@@ -134,12 +124,12 @@ public final class TextLinkifier {
      * @param context              the context to use
      * @param spannableDescription the SpannableStringBuilder with the text of the
      *                             content description
-     * @param streamingService     the {@link StreamingService} of the content
+     * @param relatedInfo          used to search for the term in the correct service
      */
     private static void addClickListenersOnHashtags(final Context context,
                                                     @NonNull final SpannableStringBuilder
                                                             spannableDescription,
-                                                    final StreamingService streamingService) {
+                                                    final Info relatedInfo) {
         final String descriptionText = spannableDescription.toString();
         final Matcher hashtagsMatches = HASHTAGS_PATTERN.matcher(descriptionText);
 
@@ -155,7 +145,7 @@ public final class TextLinkifier {
                 spannableDescription.setSpan(new ClickableSpan() {
                     @Override
                     public void onClick(@NonNull final View view) {
-                        NavigationHelper.openSearch(context, streamingService.getServiceId(),
+                        NavigationHelper.openSearch(context, relatedInfo.getServiceId(),
                                 parsedHashtag);
                     }
                 }, hashtagStart, hashtagEnd, 0);
@@ -173,14 +163,12 @@ public final class TextLinkifier {
      * @param context              the context to use
      * @param spannableDescription the SpannableStringBuilder with the text of the
      *                             content description
-     * @param contentUrl           the URL of the content
-     * @param streamingService     the {@link StreamingService} of the content
+     * @param relatedInfo          what to open in the popup player when timestamps are clicked
      */
     private static void addClickListenersOnTimestamps(final Context context,
                                                       @NonNull final SpannableStringBuilder
                                                               spannableDescription,
-                                                      final String contentUrl,
-                                                      final StreamingService streamingService) {
+                                                      final Info relatedInfo) {
         final String descriptionText = spannableDescription.toString();
         final Matcher timestampsMatches = TIMESTAMPS_PATTERN.matcher(descriptionText);
 
@@ -189,14 +177,14 @@ public final class TextLinkifier {
             final int timestampEnd = timestampsMatches.end(3);
             final String parsedTimestamp = descriptionText.substring(timestampStart, timestampEnd);
             final String[] timestampParts = parsedTimestamp.split(":");
-            final int time;
 
+            final int seconds;
             if (timestampParts.length == 3) { // timestamp format: XX:XX:XX
-                time = Integer.parseInt(timestampParts[0]) * 3600 // hours
+                seconds = Integer.parseInt(timestampParts[0]) * 3600 // hours
                         + Integer.parseInt(timestampParts[1]) * 60 // minutes
                         + Integer.parseInt(timestampParts[2]); // seconds
             } else if (timestampParts.length == 2) { // timestamp format: XX:XX
-                time = Integer.parseInt(timestampParts[0]) * 60 // minutes
+                seconds = Integer.parseInt(timestampParts[0]) * 60 // minutes
                         + Integer.parseInt(timestampParts[1]); // seconds
             } else {
                 continue;
@@ -205,8 +193,8 @@ public final class TextLinkifier {
             spannableDescription.setSpan(new ClickableSpan() {
                 @Override
                 public void onClick(@NonNull final View view) {
-                    playOnPopup(new CompositeDisposable(), context, contentUrl, streamingService,
-                            time);
+                    playOnPopup(new CompositeDisposable(), context, relatedInfo.getUrl(),
+                            relatedInfo.getService(), seconds);
                 }
             }, timestampStart, timestampEnd, 0);
         }
@@ -221,28 +209,28 @@ public final class TextLinkifier {
      * with {@link ShareUtils#openUrlInBrowser(Context, String, boolean)}.
      * This method will also add click listeners on timestamps in this description, which will play
      * the content in the popup player at the time indicated in the timestamp, by using
-     * {@link TextLinkifier#addClickListenersOnTimestamps(Context, SpannableStringBuilder, String,
-     * StreamingService)} method and click listeners on hashtags, which will open a search
-     * on the current service with the hashtag.
+     * {@link TextLinkifier#addClickListenersOnTimestamps(Context, SpannableStringBuilder, Info)}
+     * method and click listeners on hashtags, by using
+     * {@link TextLinkifier#addClickListenersOnHashtags(Context, SpannableStringBuilder, Info)},
+     * which will open a search on the current service with the hashtag.
      * <p>
      * This method is required in order to intercept links and e.g. show a confirmation dialog
      * before opening a web link.
      *
-     * @param context          the context to use
-     * @param chars            the CharSequence to be parsed
-     * @param textView         the TextView in which the converted CharSequence will be applied
-     * @param streamingService the {@link StreamingService} of the content
-     * @param contentUrl       the URL of the content
+     * @param textView    the TextView in which the converted CharSequence will be applied
+     * @param chars       the CharSequence to be parsed
+     * @param relatedInfo if given, handle timestamps to open the stream in the popup player at
+     *                    the specific time, and hashtags to search for the term in the correct
+     *                    service
      * @return a disposable to be stored somewhere and disposed when activity/fragment is destroyed
      */
     @NonNull
-    private static Disposable changeIntentsOfDescriptionLinks(final Context context,
+    private static Disposable changeIntentsOfDescriptionLinks(final TextView textView,
                                                               final CharSequence chars,
-                                                              final TextView textView,
-                                                              final StreamingService
-                                                                      streamingService,
-                                                              final String contentUrl) {
+                                                              @Nullable final Info relatedInfo) {
         return Single.fromCallable(() -> {
+            final Context context = textView.getContext();
+
             // add custom click actions on web links
             final SpannableStringBuilder textBlockLinked = new SpannableStringBuilder(chars);
             final URLSpan[] urls = textBlockLinked.getSpans(0, chars.length(), URLSpan.class);
@@ -264,11 +252,10 @@ public final class TextLinkifier {
             }
 
             // add click actions on plain text timestamps only for description of contents,
-            // unneeded for metainfo TextViews
-            if (contentUrl != null || streamingService != null) {
-                addClickListenersOnTimestamps(context, textBlockLinked, contentUrl,
-                        streamingService);
-                addClickListenersOnHashtags(context, textBlockLinked, streamingService);
+            // unneeded for meta-info or other TextViews
+            if (relatedInfo != null) {
+                addClickListenersOnTimestamps(context, textBlockLinked, relatedInfo);
+                addClickListenersOnHashtags(context, textBlockLinked, relatedInfo);
             }
 
             return textBlockLinked;

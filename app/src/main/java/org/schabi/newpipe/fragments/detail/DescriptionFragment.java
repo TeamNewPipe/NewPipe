@@ -19,7 +19,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentDescriptionBinding;
 import org.schabi.newpipe.databinding.ItemMetadataBinding;
 import org.schabi.newpipe.databinding.ItemMetadataTagsBinding;
-import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.Localization;
@@ -132,24 +131,19 @@ public class DescriptionFragment extends BaseFragment {
 
     private void loadDescriptionContent() {
         final Description description = streamInfo.getDescription();
-        final String contentUrl = streamInfo.getUrl();
-        final StreamingService service = streamInfo.getService();
-
         switch (description.getType()) {
             case Description.HTML:
-                descriptionDisposable = TextLinkifier.createLinksFromHtmlBlock(requireContext(),
-                        description.getContent(), binding.detailDescriptionView,
-                        service, contentUrl, HtmlCompat.FROM_HTML_MODE_LEGACY);
+                descriptionDisposable = TextLinkifier.createLinksFromHtmlBlock(
+                        binding.detailDescriptionView, description.getContent(),
+                        HtmlCompat.FROM_HTML_MODE_LEGACY, streamInfo);
                 break;
             case Description.MARKDOWN:
-                descriptionDisposable = TextLinkifier.createLinksFromMarkdownText(requireContext(),
-                        description.getContent(), binding.detailDescriptionView,
-                        service, contentUrl);
+                descriptionDisposable = TextLinkifier.createLinksFromMarkdownText(
+                        binding.detailDescriptionView, description.getContent(), streamInfo);
                 break;
             case Description.PLAIN_TEXT: default:
-                descriptionDisposable = TextLinkifier.createLinksFromPlainText(requireContext(),
-                        description.getContent(), binding.detailDescriptionView,
-                        service, contentUrl);
+                descriptionDisposable = TextLinkifier.createLinksFromPlainText(
+                        binding.detailDescriptionView, description.getContent(), streamInfo);
                 break;
         }
     }
@@ -204,8 +198,7 @@ public class DescriptionFragment extends BaseFragment {
         });
 
         if (linkifyContent) {
-            TextLinkifier.createLinksFromPlainText(requireContext(),
-                    content, itemBinding.metadataContentView, null, null);
+            TextLinkifier.createLinksFromPlainText(itemBinding.metadataContentView, content, null);
         } else {
             itemBinding.metadataContentView.setText(content);
         }
