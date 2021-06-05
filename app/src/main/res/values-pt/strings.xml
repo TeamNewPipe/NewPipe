@@ -621,7 +621,7 @@
     <string name="autoplay_summary">Iniciar reprodução automaticamente — %s</string>
     <string name="title_activity_play_queue">Reproduzir fila</string>
     <string name="never">Nunca</string>
-    <string name="notification_action_buffering">Processamento...</string>
+    <string name="notification_action_buffering">Processamento…</string>
     <string name="clear_queue_confirmation_description">A fila do reprodutor ativo será substituída</string>
     <string name="unsupported_url_dialog_message">URL não reconhecido. Abrir com outra aplicação\?</string>
     <string name="auto_queue_toggle">Colocar na fila automaticamente</string>

@@ -30,7 +30,7 @@
     <string name="parsing_error">Nun pudo analizase\'l sitiu web</string>
     <string name="live_streams_not_supported">Los fluxos en direuto entá nun se sofiten</string>
     <string name="could_not_get_stream">Nun pudo consiguise nengún fluxu</string>
-    <string name="sorry_string">Buff... Esto nun debió asoceder.</string>
+    <string name="sorry_string">Buff… Esto nun debió asoceder.</string>
     <string name="error_snackbar_message">Perdona mas asocedió daqué malo.</string>
     <string name="what_device_headline">Información:</string>
     <string name="error_details_headline">Detalles:</string>
@@ -107,7 +107,7 @@
     <string name="tab_licenses">Llicencies</string>
     <string name="view_on_github">Ver en GitHub</string>
     <string name="app_license_title">Llicencia de NewPipe</string>
-    <string name="contribution_encouragement">Si tienes idees, quies traducir, facer dalgún cambéu nel diseñu, acuriosar poco o muncho\'l códigu... Agradecemos l\'ayuda. ¡Cuanto más se faiga, meyor!</string>
+    <string name="contribution_encouragement">Si tienes idees, quies traducir, facer dalgún cambéu nel diseñu, acuriosar poco o muncho\'l códigu… Agradecemos l\'ayuda. ¡Cuanto más se faiga, meyor!</string>
     <string name="read_full_license">Lleer</string>
     <string name="contribution_title">Collaboración</string>
     <string name="title_activity_history">Historial</string>

@@ -76,7 +76,7 @@
     <string name="report_error">Пријавите грешку</string>
     <string name="user_report">Извештај корисника</string>
     <string name="duration_live">Уживо</string>
-    <string name="main_bg_subtitle">тапните на лупу да започнете</string>
+    <string name="main_bg_subtitle">Тапните на лупу да започнете.</string>
     <string name="autoplay_by_calling_app_title">Аутопуштање</string>
     <string name="autoplay_by_calling_app_summary">Пушта видео по позиву из друге апликације</string>
     <string name="start">Почни</string>
@@ -139,10 +139,10 @@
     <string name="subscribed_button_title">Прати се</string>
     <string name="subscribe_button_title">Прати</string>
     <string name="tab_main">Главно</string>
-    <string name="tab_subscriptions">Претплате</string>
+    <string name="tab_subscriptions">Праћења</string>
     <string name="fragment_feed_title">Шта је ново</string>
     <string name="enable_search_history_title">Историјат претраге</string>
-    <string name="enable_search_history_summary">Уписуј појмове претраге локално</string>
+    <string name="enable_search_history_summary">Појмове претраге складишти локално</string>
     <string name="enable_watch_history_title">Историја гледања</string>
     <string name="enable_watch_history_summary">Чувај историјат гледања</string>
     <string name="resume_on_audio_focus_gain_title">Настави са репродукцијом</string>
@@ -166,9 +166,9 @@
     <string name="action_history">Историјат</string>
     <string name="history_empty">Историјат је празан</string>
     <string name="history_cleared">Историјат очишћен</string>
-    <string name="resume_on_audio_focus_gain_summary">Настави репродукцију након прекида (нпр. позива)</string>
+    <string name="resume_on_audio_focus_gain_summary">Настави пуштање након прекида (нпр. позива)</string>
     <string name="settings_file_charset_title">Дозвољени знакови у називима</string>
-    <string name="charset_letters_and_digits">Слова и бројке</string>
+    <string name="charset_letters_and_digits">слова и бројке</string>
     <string name="copyright" formatted="true">© %1$s од %2$s под %3$s</string>
     <string name="error_unable_to_load_license">Не могу да учитам лиценцу</string>
     <string name="channel_unsubscribed">Одјављен са канала</string>
@@ -183,11 +183,11 @@
     <string name="notification_channel_description">Обавештења за Њупајп плејере у позадини и искачућем прозору</string>
     <string name="search_no_results">Нема резултата</string>
     <string name="empty_subscription_feed_subtitle">Нема ничега овде осим цврчака</string>
-    <string name="no_subscribers">Нема претплатника</string>
+    <string name="no_subscribers">Нема пратилаца</string>
     <plurals name="subscribers">
-        <item quantity="one">%s претплатник</item>
-        <item quantity="few">%s претплатника</item>
-        <item quantity="other">%s претплатника</item>
+        <item quantity="one">%s пратилац</item>
+        <item quantity="few">%s пратилаца</item>
+        <item quantity="other">%s пратилаца</item>
     </plurals>
     <string name="no_views">Нема прегледа</string>
     <plurals name="views">
@@ -203,7 +203,7 @@
     </plurals>
     <string name="settings_file_replacement_character_summary">Неисправни знакови биће замењени овим</string>
     <string name="settings_file_replacement_character_title">Знак за замену</string>
-    <string name="charset_most_special_characters">Посебни знакови</string>
+    <string name="charset_most_special_characters">и посебни знакови</string>
     <string name="title_licenses">Лиценце треће стране</string>
     <string name="app_license_title">Лиценца Њупајпа</string>
     <string name="contribution_encouragement">Помоћ је увек добро дошла, било да имате идеју за превод, дизајн, козметичке или озбиљне измене кôда. Што се више уради, боље је!</string>
@@ -331,23 +331,23 @@
     <string name="app_update_notification_content_text">Тапните за преузимање</string>
     <string name="app_update_notification_content_title">Доступно је ажурирање за ЊуПајп!</string>
     <string name="switch_view">Промени приказ</string>
-    <string name="auto">Аутоматски</string>
-    <string name="grid">Мрежа</string>
-    <string name="list">Листа</string>
+    <string name="auto">аутоматски</string>
+    <string name="grid">мрежа</string>
+    <string name="list">листа</string>
     <string name="list_view_mode">Режим приказа листе</string>
-    <string name="never">Никад</string>
-    <string name="wifi_only">Само на бежичној</string>
-    <string name="autoplay_summary">Покрени пуштање аутоматски — %s</string>
-    <string name="minimize_on_exit_popup_description">Умањи на искачући плејер</string>
-    <string name="minimize_on_exit_background_description">Умањи на позадински плејер</string>
+    <string name="never">никад</string>
+    <string name="wifi_only">само на бежичној</string>
+    <string name="autoplay_summary">Покрени аутоматски — %s</string>
+    <string name="minimize_on_exit_popup_description">умањи на искачући плејер</string>
+    <string name="minimize_on_exit_background_description">умањи на позадински плејер</string>
     <string name="minimize_on_exit_none_description">ништа</string>
     <string name="minimize_on_exit_summary">Радња при преласку на другу апликацију са главног видео плејера — %s</string>
     <string name="minimize_on_exit_title">Умањи при мењању апликације</string>
     <string name="updates_setting_description">Прикажи обавештење када постоји нова верзија апликације</string>
     <string name="updates_setting_title">Ажурирања</string>
-    <string name="limit_mobile_data_usage_title">Ограничи резолуцију када користим мобилне податке</string>
+    <string name="limit_mobile_data_usage_title">Ограничити резолуцију на мобилној мрежи</string>
     <string name="decline">Одбиј</string>
-    <string name="limit_data_usage_none_description">Без органичења</string>
+    <string name="limit_data_usage_none_description">без ограничења</string>
     <string name="accept">Прихвати</string>
     <string name="start_accept_privacy_policy">Да бисмо били у складу са Европском општом уредбом о заштити података („GDPR“), скрећемо вам пажњу на политику приватности апликације ЊуПајпа. Пажљиво је прочитајте.
 \nМорате је прихватити да бисте нам послали извештај о грешци.</string>
@@ -484,7 +484,7 @@
         <item quantity="other">%s гледалаца</item>
     </plurals>
     <string name="no_one_watching">Нико не гледа</string>
-    <string name="subscribers_count_not_available">Број претплатника није доступан</string>
+    <string name="subscribers_count_not_available">Број пратилаца није доступан</string>
     <string name="drawer_header_description">Мењај услугу, тренутно изабрана:</string>
     <string name="detail_drag_description">Превуците за преуређивање</string>
     <string name="description_tab_description">Опис</string>
@@ -554,7 +554,7 @@
 \n
 \nУкључите „%1$s“ у поставкама ако желите да га видите.</string>
     <string name="youtube_restricted_mode_enabled_summary">Јутјуб омогућава „Ограничени режим“ који скрива потенцијални садржај за одрасле</string>
-    <string name="youtube_restricted_mode_enabled_title">Укључите Јутјубов „Ограничени режим“</string>
+    <string name="youtube_restricted_mode_enabled_title">Укључити Јутјубов „Ограничени режим“</string>
     <string name="show_age_restricted_content_summary">Приказ садржаја који можда није прикладан за децу јер има старосну границу (попут 18+)</string>
     <string name="settings_category_notification_title">Обавештење</string>
     <string name="settings_category_updates_title">Ажурирања</string>
@@ -611,7 +611,7 @@
     <string name="download_has_started">Преузимање је започело</string>
     <string name="select_night_theme_toast">Испод можете одабрати своју омиљену ноћну тему</string>
     <string name="night_theme_summary">Изаберите своју омиљену ноћну тему — %s</string>
-    <string name="auto_device_theme_title">Аутоматски (тема уређаја)</string>
+    <string name="auto_device_theme_title">аутоматски (тема уређаја)</string>
     <string name="radio">Радио</string>
     <string name="featured">Истакнуто</string>
     <string name="paid_content">Овај садржај је доступан само корисницима који су платили, тако да га ЊуПајп не може стримовати или преузимати.</string>

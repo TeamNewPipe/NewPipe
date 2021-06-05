@@ -691,4 +691,20 @@
     <string name="show_channel_details">Подробно о канале</string>
     <string name="disable_media_tunneling_summary">Отключите туннелирование медиа, если вы видите черный экран или подёргивание при воспроизведении видео</string>
     <string name="disable_media_tunneling_title">Отключить туннелирование медиа</string>
+    <string name="description_select_note">Теперь вы можете выделить текст внутри описания. Заметьте, что страница может мигать и ссылки могут быть некликабельны в режиме выделения.</string>
+    <string name="metadata_support">Поддержка</string>
+    <string name="metadata_language">Язык</string>
+    <string name="metadata_age_limit">Возрастное ограничение</string>
+    <string name="metadata_licence">Лицензия</string>
+    <string name="metadata_tags">Тэги</string>
+    <string name="metadata_category">Категория</string>
+    <string name="description_select_disable">Отключить выделение текста в описании</string>
+    <string name="description_select_enable">Включить выделение текста в описании</string>
+    <string name="metadata_privacy_internal">Внутренняя</string>
+    <string name="metadata_privacy_private">Приватная</string>
+    <string name="metadata_privacy_unlisted">Не в списке</string>
+    <string name="metadata_privacy_public">Публичная</string>
+    <string name="metadata_thumbnail_url">URL миниатюры</string>
+    <string name="metadata_host">Сервер</string>
+    <string name="metadata_privacy">Доступность</string>
 </resources>

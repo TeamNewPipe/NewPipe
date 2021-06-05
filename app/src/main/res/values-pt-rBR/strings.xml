@@ -680,4 +680,20 @@
     <string name="show_channel_details">Mostrar detalhes do canal</string>
     <string name="disable_media_tunneling_summary">Desative o túnel de mídia se você tiver uma tela preta ou a reprodução do vídeo estiver engasgando</string>
     <string name="disable_media_tunneling_title">Desativar túnel de mídia</string>
+    <string name="metadata_privacy_internal">Interno</string>
+    <string name="metadata_privacy_private">Privado</string>
+    <string name="metadata_privacy_unlisted">Não Listado</string>
+    <string name="metadata_privacy_public">Público</string>
+    <string name="metadata_age_limit">Limite de Idade</string>
+    <string name="metadata_thumbnail_url">URL da Capa</string>
+    <string name="metadata_host">Hospedado em</string>
+    <string name="metadata_support">Suporte</string>
+    <string name="metadata_language">Idioma</string>
+    <string name="metadata_privacy">Privacidade</string>
+    <string name="metadata_licence">Licença</string>
+    <string name="metadata_tags">Tags</string>
+    <string name="metadata_category">Categoria</string>
+    <string name="description_select_disable">Desativar seleção de texto na descrição</string>
+    <string name="description_select_enable">Ativar seleção de texto na descrição</string>
+    <string name="description_select_note">Agora você pode selecionar o texto dentro da descrição. Observe que a página pode piscar e os links podem não ser clicáveis no modo de seleção.</string>
 </resources>
