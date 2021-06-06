@@ -191,7 +191,10 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         val date = SimpleDateFormat("yyyyMMddHHmm", Locale.ENGLISH).format(Date())
         val exportName = "newpipe_subscriptions_$date.json"
 
-        startActivityForResult(StoredFileHelper.getNewPicker(activity, null, exportName, "application/json"), REQUEST_EXPORT_CODE)
+        startActivityForResult(
+            StoredFileHelper.getNewPicker(activity, exportName, "application/json", null),
+            REQUEST_EXPORT_CODE
+        )
     }
 
     private fun openReorderDialog() {
@@ -283,7 +286,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     private fun showLongTapDialog(selectedItem: ChannelInfoItem) {
         val commands = arrayOf(
-            getString(R.string.share), getString(R.string.open_in_browser),
+            getString(R.string.share),
+            getString(R.string.open_in_browser),
             getString(R.string.unsubscribe)
         )
 

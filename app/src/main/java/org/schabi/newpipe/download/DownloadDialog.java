@@ -702,9 +702,9 @@ public class DownloadDialog extends DialogFragment
         }
 
         if (askForSavePath) {
-            final String startPath;
+            final Uri initialPath;
             if (NewPipeSettings.useStorageAccessFramework(context)) {
-                startPath = null;
+                initialPath = null;
             } else {
                 final File initialSavePath;
                 if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button) {
@@ -712,11 +712,11 @@ public class DownloadDialog extends DialogFragment
                 } else {
                     initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MOVIES);
                 }
-                startPath = initialSavePath.getAbsolutePath();
+                initialPath = Uri.parse(initialSavePath.getAbsolutePath());
             }
 
-            startActivityForResult(StoredFileHelper.getNewPicker(context, startPath,
-                    filenameTmp, mimeTmp), REQUEST_DOWNLOAD_SAVE_AS);
+            startActivityForResult(StoredFileHelper.getNewPicker(context,
+                    filenameTmp, mimeTmp, initialPath), REQUEST_DOWNLOAD_SAVE_AS);
 
             return;
         }

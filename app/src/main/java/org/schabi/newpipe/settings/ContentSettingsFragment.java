@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -32,18 +33,25 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
     private static final int REQUEST_IMPORT_PATH = 8945;
     private static final int REQUEST_EXPORT_PATH = 30945;
+    private static final String ZIP_MIME_TYPE = "application/zip";
+    private static final SimpleDateFormat EXPORT_DATE_FORMAT
+            = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
 
     private ContentSettingsManager manager;
 
+    private String importExportDataPathKey;
     private String thumbnailLoadToggleKey;
     private String youtubeRestrictedModeEnabledKey;
 
+    @Nullable private Uri lastImportExportDataUri = null;
     private Localization initialSelectedLocalization;
     private ContentCountry initialSelectedContentCountry;
     private String initialLanguage;
@@ -51,28 +59,34 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         final File homeDir = ContextCompat.getDataDir(requireContext());
+        Objects.requireNonNull(homeDir);
         manager = new ContentSettingsManager(new NewPipeFileLocator(homeDir));
         manager.deleteSettingsFile();
 
+        importExportDataPathKey = getString(R.string.import_export_data_path);
+        thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
+        youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
+
         addPreferencesFromResource(R.xml.content_settings);
 
-        final Preference importDataPreference = findPreference(getString(R.string.import_data));
+        final Preference importDataPreference = requirePreference(R.string.import_data);
         importDataPreference.setOnPreferenceClickListener((Preference p) -> {
-            startActivityForResult(StoredFileHelper.getPicker(getContext()), REQUEST_IMPORT_PATH);
+            startActivityForResult(
+                    StoredFileHelper.getPicker(requireContext(), getImportExportDataUri()),
+                    REQUEST_IMPORT_PATH);
             return true;
         });
 
-        final Preference exportDataPreference = findPreference(getString(R.string.export_data));
+        final Preference exportDataPreference = requirePreference(R.string.export_data);
         exportDataPreference.setOnPreferenceClickListener((final Preference p) -> {
-            final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
-            startActivityForResult(StoredFileHelper.getNewPicker(getContext(), null,
-                    "NewPipeData-" + sdf.format(new Date()) + ".zip", "application/zip"),
+
+            startActivityForResult(
+                    StoredFileHelper.getNewPicker(requireContext(),
+                            "NewPipeData-" + EXPORT_DATE_FORMAT.format(new Date()) + ".zip",
+                            ZIP_MIME_TYPE, getImportExportDataUri()),
                     REQUEST_EXPORT_PATH);
             return true;
         });
-
-        thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
-        youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
 
         initialSelectedLocalization = org.schabi.newpipe.util.Localization
                 .getPreferredLocalization(requireContext());
@@ -81,7 +95,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         initialLanguage = PreferenceManager
                 .getDefaultSharedPreferences(requireContext()).getString("app_language_key", "en");
 
-        final Preference clearCookiePref = findPreference(getString(R.string.clear_cookie_key));
+        final Preference clearCookiePref = requirePreference(R.string.clear_cookie_key);
         clearCookiePref.setOnPreferenceClickListener(preference -> {
             defaultPreferences.edit()
                     .putString(getString(R.string.recaptcha_cookies_key), "").apply();
@@ -157,8 +171,11 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         if ((requestCode == REQUEST_IMPORT_PATH || requestCode == REQUEST_EXPORT_PATH)
                 && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
-            final StoredFileHelper file = new StoredFileHelper(getContext(), data.getData(),
-                    "application/zip");
+
+            lastImportExportDataUri = data.getData(); // will be saved only on success
+
+            final StoredFileHelper file
+                    = new StoredFileHelper(getContext(), data.getData(), ZIP_MIME_TYPE);
             if (requestCode == REQUEST_EXPORT_PATH) {
                 exportDatabase(file);
             } else {
@@ -182,6 +199,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getDefaultSharedPreferences(requireContext());
             manager.exportDatabase(preferences, file);
 
+            saveLastImportExportDataUri(false); // save export path only on success
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
         } catch (final Exception e) {
             ErrorActivity.reportUiErrorInSnackbar(this, "Exporting database", e);
@@ -206,30 +224,55 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     .show();
             }
 
-            //If settings file exist, ask if it should be imported.
+            // if settings file exist, ask if it should be imported.
             if (manager.extractSettings(file)) {
                 final AlertDialog.Builder alert = new AlertDialog.Builder(requireContext());
                 alert.setTitle(R.string.import_settings);
 
                 alert.setNegativeButton(android.R.string.no, (dialog, which) -> {
                     dialog.dismiss();
-                    // restart app to properly load db
-                    System.exit(0);
+                    finishImport();
                 });
                 alert.setPositiveButton(getString(R.string.finish), (dialog, which) -> {
                     dialog.dismiss();
                     manager.loadSharedPreferences(PreferenceManager
                         .getDefaultSharedPreferences(requireContext()));
-                    // restart app to properly load db
-                    System.exit(0);
+                    finishImport();
                 });
                 alert.show();
             } else {
-                // restart app to properly load db
-                System.exit(0);
+                finishImport();
             }
         } catch (final Exception e) {
             ErrorActivity.reportUiErrorInSnackbar(this, "Importing database", e);
+        }
+    }
+
+    /**
+     * Save import path and restart system.
+     */
+    private void finishImport() {
+        // save import path only on success; save immediately because app is about to exit
+        saveLastImportExportDataUri(true);
+        // restart app to properly load db
+        System.exit(0);
+    }
+
+    private Uri getImportExportDataUri() {
+        final String path = defaultPreferences.getString(importExportDataPathKey, null);
+        return isBlank(path) ? null : Uri.parse(path);
+    }
+
+    private void saveLastImportExportDataUri(final boolean immediately) {
+        if (lastImportExportDataUri != null) {
+            final SharedPreferences.Editor editor = defaultPreferences.edit()
+                    .putString(importExportDataPathKey, lastImportExportDataUri.toString());
+            if (immediately) {
+                // noinspection ApplySharedPref
+                editor.commit(); // app about to be restarted, commit immediately
+            } else {
+                editor.apply();
+            }
         }
     }
 }
