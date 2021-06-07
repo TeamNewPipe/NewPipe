@@ -294,8 +294,10 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun showLongTapDialog(selectedItem: ChannelInfoItem) {
-        val commands = arrayOf(getString(R.string.share), getString(R.string.open_in_browser),
-                getString(R.string.unsubscribe))
+        val commands = arrayOf(
+            getString(R.string.share), getString(R.string.open_in_browser),
+            getString(R.string.unsubscribe)
+        )
 
         val actions = DialogInterface.OnClickListener { _, i ->
             when (i) {
