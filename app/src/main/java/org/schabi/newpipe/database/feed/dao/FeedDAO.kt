@@ -64,6 +64,12 @@ abstract class FeedDAO {
     )
     abstract fun getAllStreamsForGroup(groupId: Long): Flowable<List<StreamWithState>>
 
+    /**
+     * @see StreamStateEntity.isFinished()
+     * @see StreamStateEntity.PLAYBACK_FINISHED_END_MILLISECONDS
+     * @return all of the non-live, never-played and non-finished streams in the feed
+     *         (all of the cited conditions must hold for a stream to be in the returned list)
+     */
     @Query(
         """
         SELECT s.*, sst.progress_time
@@ -93,6 +99,13 @@ abstract class FeedDAO {
     )
     abstract fun getLiveOrNotPlayedStreams(): Flowable<List<StreamWithState>>
 
+    /**
+     * @see StreamStateEntity.isFinished()
+     * @see StreamStateEntity.PLAYBACK_FINISHED_END_MILLISECONDS
+     * @param groupId the group id to get streams of
+     * @return all of the non-live, never-played and non-finished streams for the given feed group
+     *         (all of the cited conditions must hold for a stream to be in the returned list)
+     */
     @Query(
         """
         SELECT s.*, sst.progress_time
@@ -113,6 +126,9 @@ abstract class FeedDAO {
         WHERE fgs.group_id = :groupId
         AND (
             sh.stream_id IS NULL
+            OR sst.stream_id IS NULL
+            OR sst.progress_time < s.duration * 1000 - ${StreamStateEntity.PLAYBACK_FINISHED_END_MILLISECONDS}
+            OR sst.progress_time < s.duration * 1000 * 3 / 4
             OR s.stream_type = 'LIVE_STREAM'
             OR s.stream_type = 'AUDIO_LIVE_STREAM'
         )
