@@ -251,7 +251,7 @@
     <string name="switch_to_background">In den Hintergrund wechseln</string>
     <string name="switch_to_popup">Zum Pop-up wechseln</string>
     <string name="switch_to_main">Zur normalen Wiedergabe wechseln</string>
-    <string name="external_player_unsupported_link_type">Externe Abspielprogramme unterstützen diese Art von Links nicht</string>
+    <string name="external_player_unsupported_link_type">Externe Player unterstützen diese Art von Links nicht</string>
     <string name="invalid_url_toast">Ungültige URL</string>
     <string name="video_streams_empty">Keine Video-Streams gefunden</string>
     <string name="audio_streams_empty">Keine Audio-Streams gefunden</string>
@@ -632,7 +632,7 @@
     <string name="notification_action_nothing">Nichts</string>
     <string name="title_activity_play_queue">Warteschlange abspielen</string>
     <string name="auto_queue_toggle">Automatische Warteschlange</string>
-    <string name="clear_queue_confirmation_summary">Der Wechsel von einem Abspielprogramm zu einem anderen kann Ihre Warteschlange überschreiben</string>
+    <string name="clear_queue_confirmation_summary">Der Wechsel von einem Player zu einem anderen kann deine Warteschlange überschreiben</string>
     <string name="clear_queue_confirmation_title">Überschreiben der Warteschlange bestätigen</string>
     <string name="clear_queue_confirmation_description">Die aktive Player-Warteschlange wird ersetzt</string>
     <string name="enqueued">Eingereiht</string>

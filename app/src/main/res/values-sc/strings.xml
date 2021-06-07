@@ -680,4 +680,20 @@
     <string name="show_channel_details">Ammustra sos detàllios de su canale</string>
     <string name="disable_media_tunneling_summary">Disabìlita sa tunnellizatzione de sos elementos multimediales si durante sa riprodutzione bi sunt ischermadas nieddas o su flussu de su vìdeu no est regulare</string>
     <string name="disable_media_tunneling_title">Disabìlita sa tunnellizatzione de sos mèdios</string>
+    <string name="metadata_privacy_internal">Internu</string>
+    <string name="metadata_privacy_unlisted">No elencadu</string>
+    <string name="metadata_privacy_private">Privadu</string>
+    <string name="metadata_privacy_public">Pùblicu</string>
+    <string name="metadata_thumbnail_url">URL de sa miniadura</string>
+    <string name="metadata_host">Istrangiadore</string>
+    <string name="metadata_support">Suportu</string>
+    <string name="metadata_language">Limba</string>
+    <string name="metadata_age_limit">Lìmite de edade</string>
+    <string name="metadata_privacy">Riservadesa</string>
+    <string name="metadata_licence">Litzèntzia</string>
+    <string name="metadata_tags">Etichetas</string>
+    <string name="metadata_category">Categoria</string>
+    <string name="description_select_disable">Disabìlita s\'ischerta de su testu in sa descritzione</string>
+    <string name="description_select_enable">Abìlita s\'ischerta de su testu in sa descritzione</string>
+    <string name="description_select_note">Como podes ischertare su testu in intro de sa descritzione. Ammenta·ti chi sa pàgina diat pòdere trèmere e sos ligàmenes si diant pòdere no abèrrere cando ses in modalidade de ischerta.</string>
 </resources>

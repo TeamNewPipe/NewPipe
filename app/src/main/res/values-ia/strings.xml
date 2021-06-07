@@ -256,4 +256,5 @@
     <string name="use_inexact_seek_title">Usar le recerca rapide e inexacte</string>
     <string name="night_theme_title">Thema nocturne</string>
     <string name="notification_action_nothing">Nihil</string>
+    <string name="show_description_title">Monstrar le description</string>
 </resources>

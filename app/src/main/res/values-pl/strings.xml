@@ -690,4 +690,18 @@
     <string name="show_channel_details">Pokaż szczegóły kanału</string>
     <string name="disable_media_tunneling_summary">Wyłącz tunelowanie multimediów jeśli zaobserwowałeś czarny ekran bądź brak płynności odtwarzania wideo</string>
     <string name="disable_media_tunneling_title">Wyłącz tunelowanie multimediów</string>
+    <string name="metadata_age_limit">Ograniczenie wieku</string>
+    <string name="description_select_disable">Wyłącz zaznaczanie tekstu w opisie</string>
+    <string name="description_select_enable">Włącz zaznaczanie tekstu w opisie</string>
+    <string name="metadata_privacy_internal">Wewnętrzny</string>
+    <string name="metadata_privacy_private">Prywatny</string>
+    <string name="metadata_privacy_public">Publiczny</string>
+    <string name="metadata_thumbnail_url">Adres URL miniatury</string>
+    <string name="metadata_host">Host</string>
+    <string name="metadata_support">Wsparcie</string>
+    <string name="metadata_language">Język</string>
+    <string name="metadata_privacy">Prywatność</string>
+    <string name="metadata_licence">Licencja</string>
+    <string name="metadata_tags">Tagi</string>
+    <string name="metadata_category">Kategoria</string>
 </resources>

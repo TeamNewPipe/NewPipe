@@ -695,5 +695,5 @@
     <string name="metadata_category">Categoria</string>
     <string name="description_select_disable">Disattiva la selezione del testo nella descrizione</string>
     <string name="description_select_enable">Attiva la selezione del testo nella descrizione</string>
-    <string name="description_select_note">Ora puoi selezionare il testo all\'interno della descrizione. Nota che la pagina potrebbe sfarfallare e i link potrebbero non essere cliccabili mentre sei in modalità di selezione.</string>
+    <string name="description_select_note">Ora puoi selezionare il testo all\'interno della descrizione. Nota che la pagina potrebbe sfarfallare e i collegamenti potrebbero non essere cliccabili mentre sei in modalità di selezione.</string>
 </resources>

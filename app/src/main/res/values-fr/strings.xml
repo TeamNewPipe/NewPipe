@@ -688,13 +688,14 @@
     <string name="metadata_privacy_private">Privé</string>
     <string name="metadata_privacy_unlisted">Non répertorié</string>
     <string name="metadata_privacy_public">Public</string>
-    <string name="metadata_thumbnail_url">URL de la vignette</string>
+    <string name="metadata_thumbnail_url">URL de la miniature</string>
     <string name="metadata_host">Hôte</string>
     <string name="metadata_support">Support</string>
     <string name="metadata_language">Langue</string>
     <string name="metadata_age_limit">Limite d\'âge</string>
-    <string name="metadata_privacy">Vie privée</string>
+    <string name="metadata_privacy">Confidentialité</string>
     <string name="metadata_licence">Licence</string>
     <string name="metadata_tags">Étiquettes</string>
     <string name="metadata_category">Catégorie</string>
+    <string name="description_select_note">Vous pouvez maintenant sélectionner du texte à l\'intérieur de la description. Notez que la page peut scintiller et que les liens peuvent ne pas être cliquables en mode sélection.</string>
 </resources>
