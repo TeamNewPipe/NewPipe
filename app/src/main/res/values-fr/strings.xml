@@ -97,7 +97,7 @@
     <string name="msg_server_unsupported">Serveur non pris en charge</string>
     <string name="msg_exists">Fichier déjà existant</string>
     <string name="msg_url_malform">Lien malformé ou accès à Internet indisponible</string>
-    <string name="msg_running">NewPipe télécharge...</string>
+    <string name="msg_running">NewPipe télécharge…</string>
     <string name="msg_running_detail">Appuyer pour plus de détails</string>
     <string name="msg_wait">Veuillez patienter…</string>
     <string name="msg_copied">Copié dans le presse-papiers</string>
@@ -682,4 +682,20 @@
     <string name="show_channel_details">Afficher les détails de la chaîne</string>
     <string name="disable_media_tunneling_summary">Désactivez le tunnelage multimédia si vous constatez un écran noir ou un bégaiement lors de la lecture d\'une vidéo</string>
     <string name="disable_media_tunneling_title">Désactiver le tunnelage média</string>
+    <string name="description_select_disable">Désactiver la sélection de texte dans la description</string>
+    <string name="description_select_enable">Permettre la sélection de texte dans la description</string>
+    <string name="metadata_privacy_internal">Interne</string>
+    <string name="metadata_privacy_private">Privé</string>
+    <string name="metadata_privacy_unlisted">Non répertorié</string>
+    <string name="metadata_privacy_public">Public</string>
+    <string name="metadata_thumbnail_url">URL de la miniature</string>
+    <string name="metadata_host">Hôte</string>
+    <string name="metadata_support">Support</string>
+    <string name="metadata_language">Langue</string>
+    <string name="metadata_age_limit">Limite d\'âge</string>
+    <string name="metadata_privacy">Confidentialité</string>
+    <string name="metadata_licence">Licence</string>
+    <string name="metadata_tags">Étiquettes</string>
+    <string name="metadata_category">Catégorie</string>
+    <string name="description_select_note">Vous pouvez maintenant sélectionner du texte à l\'intérieur de la description. Notez que la page peut scintiller et que les liens peuvent ne pas être cliquables en mode sélection.</string>
 </resources>

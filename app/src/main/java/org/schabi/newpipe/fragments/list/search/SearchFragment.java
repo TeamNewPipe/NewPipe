@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.CharacterStyle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -588,6 +589,11 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
             @Override
             public void afterTextChanged(final Editable s) {
+                // Remove rich text formatting
+                for (final CharacterStyle span : s.getSpans(0, s.length(), CharacterStyle.class)) {
+                    s.removeSpan(span);
+                }
+
                 final String newText = searchEditText.getText().toString();
                 suggestionPublisher.onNext(newText);
             }

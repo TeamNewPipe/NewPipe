@@ -670,4 +670,20 @@
     <string name="show_channel_details">顯示頻道詳細資訊</string>
     <string name="disable_media_tunneling_summary">如果您遇到黑畫面或影片播放停頓的現象，請停用媒體隧道</string>
     <string name="disable_media_tunneling_title">停用媒體隧道</string>
+    <string name="metadata_privacy_internal">內部</string>
+    <string name="metadata_privacy_private">私人</string>
+    <string name="metadata_privacy_unlisted">未列出</string>
+    <string name="metadata_privacy_public">公開</string>
+    <string name="metadata_thumbnail_url">縮圖 URL</string>
+    <string name="metadata_host">主機</string>
+    <string name="metadata_support">支援</string>
+    <string name="metadata_language">語言</string>
+    <string name="metadata_age_limit">年齡限制</string>
+    <string name="metadata_privacy">隱私</string>
+    <string name="metadata_licence">授權條款</string>
+    <string name="metadata_tags">標籤</string>
+    <string name="metadata_category">分類</string>
+    <string name="description_select_disable">停用選取描述中的文字</string>
+    <string name="description_select_enable">啟用選取描述中的文字</string>
+    <string name="description_select_note">您現在可以選取描述中的文字了。請注意，在選取模式下，頁面可能會閃爍，連結也可能無法點擊。</string>
 </resources>

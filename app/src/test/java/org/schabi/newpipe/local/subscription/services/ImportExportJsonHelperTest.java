@@ -91,7 +91,7 @@ public class ImportExportJsonHelperTest {
         final List<SubscriptionItem> itemsFromFile = ImportExportJsonHelper.readFrom(
                 inputStream, null);
 
-        if (itemsFromFile == null || itemsFromFile.isEmpty()) {
+        if (itemsFromFile.isEmpty()) {
             fail("ImportExportJsonHelper.readFrom(input) returned a null or empty list");
         }
 
@@ -116,7 +116,7 @@ public class ImportExportJsonHelperTest {
         final List<SubscriptionItem> secondReadItems = ImportExportJsonHelper.readFrom(
                 inputStream, null);
 
-        if (secondReadItems == null || secondReadItems.isEmpty()) {
+        if (secondReadItems.isEmpty()) {
             fail("second call to readFrom returned an empty list");
         }
 

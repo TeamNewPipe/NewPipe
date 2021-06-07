@@ -596,6 +596,7 @@ public final class NavigationHelper {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setPackage(context.getString(R.string.kore_package));
         intent.setData(videoURL);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 }

@@ -251,7 +251,7 @@
     <string name="switch_to_background">In den Hintergrund wechseln</string>
     <string name="switch_to_popup">Zum Pop-up wechseln</string>
     <string name="switch_to_main">Zur normalen Wiedergabe wechseln</string>
-    <string name="external_player_unsupported_link_type">Externe Abspielprogramme unterstützen diese Art von Links nicht</string>
+    <string name="external_player_unsupported_link_type">Externe Player unterstützen diese Art von Links nicht</string>
     <string name="invalid_url_toast">Ungültige URL</string>
     <string name="video_streams_empty">Keine Video-Streams gefunden</string>
     <string name="audio_streams_empty">Keine Audio-Streams gefunden</string>
@@ -632,7 +632,7 @@
     <string name="notification_action_nothing">Nichts</string>
     <string name="title_activity_play_queue">Warteschlange abspielen</string>
     <string name="auto_queue_toggle">Automatische Warteschlange</string>
-    <string name="clear_queue_confirmation_summary">Der Wechsel von einem Abspielprogramm zu einem anderen kann Ihre Warteschlange überschreiben</string>
+    <string name="clear_queue_confirmation_summary">Der Wechsel von einem Player zu einem anderen kann deine Warteschlange überschreiben</string>
     <string name="clear_queue_confirmation_title">Überschreiben der Warteschlange bestätigen</string>
     <string name="clear_queue_confirmation_description">Die aktive Player-Warteschlange wird ersetzt</string>
     <string name="enqueued">Eingereiht</string>
@@ -680,4 +680,20 @@
     <string name="show_channel_details">Kanal-Details anzeigen</string>
     <string name="disable_media_tunneling_summary">Deaktiviere das Media-Tunneling, wenn bei der Videowiedergabe ein schwarzer Bildschirm oder Stottern auftritt</string>
     <string name="disable_media_tunneling_title">Media-Tunneling deaktivieren</string>
+    <string name="metadata_privacy_internal">Intern</string>
+    <string name="metadata_privacy_private">Privat</string>
+    <string name="metadata_privacy_public">Öffentlich</string>
+    <string name="metadata_language">Sprache</string>
+    <string name="metadata_age_limit">Altersbeschränkung</string>
+    <string name="metadata_privacy">Sichtbarkeit</string>
+    <string name="metadata_licence">Lizenz</string>
+    <string name="metadata_tags">Tags</string>
+    <string name="metadata_category">Kategorie</string>
+    <string name="metadata_privacy_unlisted">Nicht gelistet</string>
+    <string name="metadata_thumbnail_url">Vorschaubild-URL</string>
+    <string name="metadata_host">Server</string>
+    <string name="metadata_support">Unterstützung</string>
+    <string name="description_select_disable">Auswählen von Text in der Beschreibung deaktivieren</string>
+    <string name="description_select_enable">Auswählen von Text in der Beschreibung aktivieren</string>
+    <string name="description_select_note">Du kannst nun Text innerhalb der Beschreibung auswählen. Beachte, dass die Seite flackern kann und Links im Auswahlmodus möglicherweise nicht anklickbar sind.</string>
 </resources>

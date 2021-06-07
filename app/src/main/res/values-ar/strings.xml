@@ -720,4 +720,20 @@
     <string name="show_channel_details">إظهار تفاصيل القناة</string>
     <string name="disable_media_tunneling_summary">تعطيل نفق الوسائط إذا واجهت شاشة سوداء أو التقطيع في تشغيل الفيديو</string>
     <string name="disable_media_tunneling_title">تعطيل نفق الوسائط</string>
+    <string name="metadata_privacy_internal">داخلي</string>
+    <string name="metadata_privacy_private">خاص</string>
+    <string name="metadata_privacy_unlisted">غير مدرج</string>
+    <string name="metadata_privacy_public">عامة</string>
+    <string name="metadata_thumbnail_url">عنوان URL للصورة المصغرة</string>
+    <string name="metadata_host">المضيف</string>
+    <string name="metadata_support">الدعم</string>
+    <string name="metadata_language">اللغة</string>
+    <string name="metadata_age_limit">الحد العمري</string>
+    <string name="metadata_privacy">الخصوصيّة</string>
+    <string name="metadata_licence">الرخصة</string>
+    <string name="metadata_tags">الفئة</string>
+    <string name="metadata_category">الصنف</string>
+    <string name="description_select_disable">تعطيل تحديد النص في الوصف</string>
+    <string name="description_select_enable">تمكين تحديد نص في الوصف</string>
+    <string name="description_select_note">يمكنك الآن تحديد نص داخل الوصف. لاحظ أن الصفحة قد تومض وقد لا تكون الروابط قابلة للنقر أثناء وضع التحديد.</string>
 </resources>

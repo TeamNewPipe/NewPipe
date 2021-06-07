@@ -346,7 +346,7 @@
     <string name="share">শেয়ার</string>
     <string name="open_in_popup_mode">পপ-আপ মোডে ওপেন করো</string>
     <string name="open_in_browser">ব্রাউজারে ওপেন করো</string>
-    <string name="cancel">বাদ দিন</string>
+    <string name="cancel">বাতিল</string>
     <string name="install">ইনস্টল</string>
     <string name="no_player_found_toast">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি (প্লে করতে VLC ইন্সটল করতে পারেন).</string>
     <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। VLC ইনস্টল করতে চাও\?</string>

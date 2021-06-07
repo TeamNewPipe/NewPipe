@@ -623,7 +623,7 @@
     <string name="clear_queue_confirmation_title">Pedir confirmação antes de limpar uma fila</string>
     <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição do popup</string>
     <string name="notification_action_nothing">Nada</string>
-    <string name="notification_action_buffering">Processamento...</string>
+    <string name="notification_action_buffering">Processamento…</string>
     <string name="notification_action_shuffle">Baralhar</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">Pode selecionar, no máximo, três ações para mostrar na notificação compacta!</string>

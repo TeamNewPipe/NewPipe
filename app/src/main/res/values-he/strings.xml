@@ -700,4 +700,20 @@
     <string name="show_channel_details">להציג את פרטי הערוץ</string>
     <string name="disable_media_tunneling_summary">כדאי להשבית תיעול מדיה אם הופיעה תופעה של מסך שחור או גמגום בנגינת וידאו</string>
     <string name="disable_media_tunneling_title">השבתת תיעול מדיה</string>
+    <string name="metadata_privacy_internal">פנימי</string>
+    <string name="metadata_privacy_private">פרטי</string>
+    <string name="metadata_privacy_unlisted">לא מופיע ברשימות</string>
+    <string name="metadata_privacy_public">ציבורי</string>
+    <string name="metadata_thumbnail_url">כתובת תמונה ממוזערת</string>
+    <string name="metadata_host">אירוח</string>
+    <string name="metadata_support">תמיכה</string>
+    <string name="metadata_language">שפה</string>
+    <string name="metadata_age_limit">הגבלת גיל</string>
+    <string name="metadata_privacy">פרטיות</string>
+    <string name="metadata_licence">רישיון</string>
+    <string name="metadata_tags">תגיות</string>
+    <string name="metadata_category">קטגוריה</string>
+    <string name="description_select_disable">השבתת בחירת טקסט בתיאור</string>
+    <string name="description_select_enable">הפעלת בחירת טקסט בתיאור</string>
+    <string name="description_select_note">מעתה ניתן לבחור טקסט בתוך התיאור. נא לשים לב שהעמוד עשוי להבהב והקישורים לא יהיו לחיצים בזמן מצב הבחירה.</string>
 </resources>

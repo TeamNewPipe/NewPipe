@@ -680,4 +680,20 @@
     <string name="show_channel_details">Mostra dettagli canale</string>
     <string name="disable_media_tunneling_summary">Disattiva il tunneling multimediale se durante la riproduzione dei video si verificano schermate nere o irregolarità nell\'audio</string>
     <string name="disable_media_tunneling_title">Disattiva tunneling multimediale</string>
+    <string name="metadata_privacy_internal">Interno</string>
+    <string name="metadata_privacy_private">Privato</string>
+    <string name="metadata_privacy_unlisted">Non elencato</string>
+    <string name="metadata_privacy_public">Pubblico</string>
+    <string name="metadata_thumbnail_url">URL miniatura</string>
+    <string name="metadata_host">Host</string>
+    <string name="metadata_support">Supporto</string>
+    <string name="metadata_language">Lingua</string>
+    <string name="metadata_age_limit">Limite di età</string>
+    <string name="metadata_privacy">Privacy</string>
+    <string name="metadata_licence">Licenza</string>
+    <string name="metadata_tags">Etichette</string>
+    <string name="metadata_category">Categoria</string>
+    <string name="description_select_disable">Disattiva la selezione del testo nella descrizione</string>
+    <string name="description_select_enable">Attiva la selezione del testo nella descrizione</string>
+    <string name="description_select_note">Ora puoi selezionare il testo all\'interno della descrizione. Nota che la pagina potrebbe sfarfallare e i collegamenti potrebbero non essere cliccabili mentre sei in modalità di selezione.</string>
 </resources>

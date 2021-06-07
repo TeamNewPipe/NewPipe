@@ -466,6 +466,11 @@ public class RouterActivity extends AppCompatActivity {
             if (capabilities.contains(AUDIO)) {
                 returnList.add(backgroundPlayer);
             }
+            // download is redundant for linkType CHANNEL AND PLAYLIST (till playlist downloading is
+            // not supported )
+            returnList.add(new AdapterChoiceItem(getString(R.string.download_key),
+                    getString(R.string.download),
+                    R.drawable.ic_file_download));
 
         } else {
             returnList.add(showInfo);
@@ -477,10 +482,6 @@ public class RouterActivity extends AppCompatActivity {
                 returnList.add(backgroundPlayer);
             }
         }
-
-        returnList.add(new AdapterChoiceItem(getString(R.string.download_key),
-                getString(R.string.download),
-                R.drawable.ic_file_download));
 
         return returnList;
     }
