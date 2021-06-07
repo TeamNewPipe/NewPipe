@@ -228,14 +228,12 @@ public class HistoryRecordManager {
                 .subscribeOn(Schedulers.io());
     }
 
-    public Completable saveStreamState(@NonNull final StreamInfo info, final long progressTime) {
+    public Completable saveStreamState(@NonNull final StreamInfo info, final long progressMillis) {
         return Completable.fromAction(() -> database.runInTransaction(() -> {
             final long streamId = streamTable.upsert(new StreamEntity(info));
-            final StreamStateEntity state = new StreamStateEntity(streamId, progressTime);
+            final StreamStateEntity state = new StreamStateEntity(streamId, progressMillis);
             if (state.isValid()) {
                 streamStateTable.upsert(state);
-            } else {
-                streamStateTable.deleteState(streamId);
             }
         })).subscribeOn(Schedulers.io());
     }

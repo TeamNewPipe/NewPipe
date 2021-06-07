@@ -29,7 +29,7 @@ data class StreamItem(
     }
 
     private val stream: StreamEntity = streamWithState.stream
-    private val stateProgressTime: Long? = streamWithState.stateProgressTime
+    private val stateProgressTime: Long? = streamWithState.stateProgressMillis
 
     override fun getId(): Long = stream.uid
 

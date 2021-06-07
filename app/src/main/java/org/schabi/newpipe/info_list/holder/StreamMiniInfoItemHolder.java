@@ -66,7 +66,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
                 itemProgressView.setVisibility(View.VISIBLE);
                 itemProgressView.setMax((int) item.getDuration());
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
-                        .toSeconds(state2.getProgressTime()));
+                        .toSeconds(state2.getProgressMillis()));
             } else {
                 itemProgressView.setVisibility(View.GONE);
             }
@@ -121,10 +121,10 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             itemProgressView.setMax((int) item.getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
                 itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS
-                        .toSeconds(state.getProgressTime()));
+                        .toSeconds(state.getProgressMillis()));
             } else {
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
-                        .toSeconds(state.getProgressTime()));
+                        .toSeconds(state.getProgressMillis()));
                 ViewUtils.animate(itemProgressView, true, 500);
             }
         } else if (itemProgressView.getVisibility() == View.VISIBLE) {

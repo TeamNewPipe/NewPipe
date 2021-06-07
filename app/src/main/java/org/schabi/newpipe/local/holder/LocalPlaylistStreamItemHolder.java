@@ -68,11 +68,11 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
 
-            if (item.getProgressTime() > 0) {
+            if (item.getProgressMillis() > 0) {
                 itemProgressView.setVisibility(View.VISIBLE);
                 itemProgressView.setMax((int) item.getStreamEntity().getDuration());
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
-                        .toSeconds(item.getProgressTime()));
+                        .toSeconds(item.getProgressMillis()));
             } else {
                 itemProgressView.setVisibility(View.GONE);
             }
@@ -109,14 +109,14 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         }
         final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
 
-        if (item.getProgressTime() > 0 && item.getStreamEntity().getDuration() > 0) {
+        if (item.getProgressMillis() > 0 && item.getStreamEntity().getDuration() > 0) {
             itemProgressView.setMax((int) item.getStreamEntity().getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
                 itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS
-                        .toSeconds(item.getProgressTime()));
+                        .toSeconds(item.getProgressMillis()));
             } else {
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
-                        .toSeconds(item.getProgressTime()));
+                        .toSeconds(item.getProgressMillis()));
                 ViewUtils.animate(itemProgressView, true, 500);
             }
         } else if (itemProgressView.getVisibility() == View.VISIBLE) {

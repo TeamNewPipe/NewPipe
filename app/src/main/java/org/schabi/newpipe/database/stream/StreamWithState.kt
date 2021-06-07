@@ -9,6 +9,6 @@ data class StreamWithState(
     @Embedded
     val stream: StreamEntity,
 
-    @ColumnInfo(name = StreamStateEntity.STREAM_PROGRESS_TIME)
-    val stateProgressTime: Long?
+    @ColumnInfo(name = StreamStateEntity.STREAM_PROGRESS_MILLIS)
+    val stateProgressMillis: Long?
 )
