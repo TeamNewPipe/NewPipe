@@ -532,6 +532,7 @@ public final class Player implements
         binding.moreOptionsButton.setOnClickListener(this);
         binding.moreOptionsButton.setOnLongClickListener(this);
         binding.share.setOnClickListener(this);
+        binding.share.setOnLongClickListener(this);
         binding.fullScreenButton.setOnClickListener(this);
         binding.screenRotationButton.setOnClickListener(this);
         binding.playWithKodi.setOnClickListener(this);
@@ -2918,6 +2919,18 @@ public final class Player implements
     }
 
     @NonNull
+    private String getVideoUrlAtCurrentTime() {
+        final int timeSeconds = binding.playbackSeekBar.getProgress() / 1000;
+        String videoUrl = getVideoUrl();
+        if (!isLive() && timeSeconds >= 0 && currentMetadata != null
+                && currentMetadata.getMetadata().getServiceId() == YouTube.getServiceId()) {
+            // Timestamp doesn't make sense in a live stream so drop it
+            videoUrl += ("&t=" + timeSeconds);
+        }
+        return videoUrl;
+    }
+
+    @NonNull
     public String getVideoTitle() {
         return currentMetadata == null
                 ? context.getString(R.string.unknown_content)
@@ -3580,7 +3593,7 @@ public final class Player implements
         } else if (v.getId() == binding.moreOptionsButton.getId()) {
             onMoreOptionsClicked();
         } else if (v.getId() == binding.share.getId()) {
-            onShareClicked();
+            ShareUtils.shareText(context, getVideoTitle(), getVideoUrlAtCurrentTime());
         } else if (v.getId() == binding.playWithKodi.getId()) {
             onPlayWithKodiClicked();
         } else if (v.getId() == binding.openInBrowser.getId()) {
@@ -3629,6 +3642,8 @@ public final class Player implements
             fragmentListener.onMoreOptionsLongClicked();
             hideControls(0, 0);
             hideSystemUIIfNeeded();
+        } else if (v.getId() == binding.share.getId()) {
+            ShareUtils.copyToClipboard(context, getVideoUrlAtCurrentTime());
         }
         return true;
     }
@@ -3698,19 +3713,6 @@ public final class Player implements
                     }
                 });
         showControls(DEFAULT_CONTROLS_DURATION);
-    }
-
-    private void onShareClicked() {
-        // share video at the current time (youtube.com/watch?v=ID&t=SECONDS)
-        // Timestamp doesn't make sense in a live stream so drop it
-
-        final int ts = binding.playbackSeekBar.getProgress() / 1000;
-        String videoUrl = getVideoUrl();
-        if (!isLive() && ts >= 0 && currentMetadata != null
-                && currentMetadata.getMetadata().getServiceId() == YouTube.getServiceId()) {
-            videoUrl += ("&t=" + ts);
-        }
-        ShareUtils.shareText(context, getVideoTitle(), videoUrl);
     }
 
     private void onPlayWithKodiClicked() {
