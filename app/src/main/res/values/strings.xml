@@ -587,6 +587,11 @@
     <string name="grid">Grid</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Switch View</string>
+    <!-- Seekbar Preview Thumbnail-->
+    <string name="seekbar_preview_thumbnail_title">Seekbar thumbnail preview</string>
+    <string name="high_quality_larger">High quality (larger)</string>
+    <string name="low_quality_smaller">Low quality (smaller)</string>
+    <string name="dont_show">Don\'t show</string>
     <!-- App update notification -->
     <string name="app_update_notification_content_title">NewPipe update is available!</string>
     <string name="app_update_notification_content_text">Tap to download</string>
