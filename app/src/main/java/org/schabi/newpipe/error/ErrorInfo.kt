@@ -6,6 +6,7 @@ import kotlinx.android.parcel.Parcelize
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Info
 import org.schabi.newpipe.extractor.NewPipe
+import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException
 import org.schabi.newpipe.extractor.exceptions.ExtractionException
@@ -95,6 +96,7 @@ class ErrorInfo(
             action: UserAction
         ): Int {
             return when {
+                throwable is AccountTerminatedException -> R.string.account_terminated
                 throwable is ContentNotAvailableException -> R.string.content_not_available
                 throwable != null && throwable.isNetworkRelated -> R.string.network_error
                 throwable is ContentNotSupportedException -> R.string.content_not_supported

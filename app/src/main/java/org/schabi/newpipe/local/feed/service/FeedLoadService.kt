@@ -48,9 +48,7 @@ import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.extractor.ListInfo
-import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
-import org.schabi.newpipe.ktx.isNetworkRelated
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ProgressEvent
@@ -58,7 +56,6 @@ import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.SuccessResul
 import org.schabi.newpipe.local.feed.service.FeedEventManager.postEvent
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.ExtractorHelper
-import java.io.IOException
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.util.concurrent.TimeUnit
@@ -162,7 +159,7 @@ class FeedLoadService : Service() {
     // Loading & Handling
     // /////////////////////////////////////////////////////////////////////////
 
-    private class RequestException(val subscriptionId: Long, message: String, cause: Throwable) : Exception(message, cause) {
+    class RequestException(val subscriptionId: Long, message: String, cause: Throwable) : Exception(message, cause) {
         companion object {
             fun wrapList(subscriptionId: Long, info: ListInfo<StreamInfoItem>): List<Throwable> {
                 val toReturn = ArrayList<Throwable>(info.errors.size)
@@ -209,28 +206,39 @@ class FeedLoadService : Service() {
             .filter { !cancelSignal.get() }
 
             .map { subscriptionEntity ->
+                var error: Throwable? = null
                 try {
                     val listInfo = if (useFeedExtractor) {
                         ExtractorHelper
                             .getFeedInfoFallbackToChannelInfo(subscriptionEntity.serviceId, subscriptionEntity.url)
+                            .onErrorReturn {
+                                error = it // store error, otherwise wrapped into RuntimeException
+                                throw it
+                            }
                             .blockingGet()
                     } else {
                         ExtractorHelper
                             .getChannelInfo(subscriptionEntity.serviceId, subscriptionEntity.url, true)
+                            .onErrorReturn {
+                                error = it // store error, otherwise wrapped into RuntimeException
+                                throw it
+                            }
                             .blockingGet()
                     } as ListInfo<StreamInfoItem>
 
                     return@map Notification.createOnNext(Pair(subscriptionEntity.uid, listInfo))
                 } catch (e: Throwable) {
+                    if (error == null) {
+                        // do this to prevent blockingGet() from wrapping into RuntimeException
+                        error = e
+                    }
+
                     val request = "${subscriptionEntity.serviceId}:${subscriptionEntity.url}"
-                    val wrapper = RequestException(subscriptionEntity.uid, request, e)
+                    val wrapper = RequestException(subscriptionEntity.uid, request, error!!)
                     return@map Notification.createOnError<Pair<Long, ListInfo<StreamInfoItem>>>(wrapper)
                 }
             }
             .sequential()
-
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext(errorHandlingConsumer)
 
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext(notificationsConsumer)
@@ -327,24 +335,6 @@ class FeedLoadService : Service() {
                             feedDatabaseManager.markAsOutdated(error.subscriptionId)
                         }
                     }
-                }
-            }
-        }
-
-    private val errorHandlingConsumer: Consumer<Notification<Pair<Long, ListInfo<StreamInfoItem>>>>
-        get() = Consumer {
-            if (it.isOnError) {
-                var error = it.error!!
-                if (error is RequestException) error = error.cause!!
-                val cause = error.cause
-
-                when {
-                    error is ReCaptchaException -> throw error
-                    cause is ReCaptchaException -> throw cause
-
-                    error is IOException -> throw error
-                    cause is IOException -> throw cause
-                    error.isNetworkRelated -> throw IOException(error)
                 }
             }
         }

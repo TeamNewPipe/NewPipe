@@ -183,7 +183,7 @@ dependencies {
 /** NewPipe libraries **/
     // You can use a local version by uncommenting a few lines in settings.gradle
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.21.4'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:d4186d100b6c6dddfcf3cf4b004f5960a8bf441d'
 
 /** Checkstyle **/
     checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
