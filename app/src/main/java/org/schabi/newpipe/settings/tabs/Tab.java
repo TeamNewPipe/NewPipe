@@ -611,7 +611,8 @@ public abstract class Tab {
                 return false;
             }
 
-            return playlistServiceId == other.playlistServiceId // Remote
+            return super.equals(obj)
+                    && playlistServiceId == other.playlistServiceId // Remote
                     && playlistId == other.playlistId // Local
                     && playlistUrl.equals(other.playlistUrl)
                     && playlistName.equals(other.playlistName)
