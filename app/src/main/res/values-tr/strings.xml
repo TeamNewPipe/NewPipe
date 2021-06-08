@@ -680,4 +680,20 @@
     <string name="show_channel_details">Kanal ayrıntılarını göster</string>
     <string name="disable_media_tunneling_summary">Ortam yürütümünde siyah ekran veya tutukluk yaşıyorsanız ortam tünellemeyi devre dışı bırakın</string>
     <string name="disable_media_tunneling_title">Ortam tünellemeyi devre dışı bırak</string>
+    <string name="metadata_privacy_internal">İç</string>
+    <string name="metadata_privacy_private">Gizli</string>
+    <string name="metadata_privacy_unlisted">Listelenmemiş</string>
+    <string name="metadata_privacy_public">Halka Açık</string>
+    <string name="metadata_thumbnail_url">Küçük Resim URL\'si</string>
+    <string name="metadata_host">Konakçı</string>
+    <string name="metadata_support">Destek</string>
+    <string name="metadata_language">Dil</string>
+    <string name="metadata_age_limit">Yaş sınırı</string>
+    <string name="metadata_privacy">Gizlilik</string>
+    <string name="metadata_licence">Lisans</string>
+    <string name="metadata_tags">Etiketler</string>
+    <string name="metadata_category">Kategori</string>
+    <string name="description_select_disable">Açıklamadaki metni seçmeyi devre dışı bırak</string>
+    <string name="description_select_enable">Açıklamadaki metni seçmeyi etkinleştir</string>
+    <string name="description_select_note">Artık, açıklamadaki metni seçebilirsiniz. Seçim kipindeyken sayfanın titreyebileceğini ve bağlantıların tıklanamayacağını unutmayın.</string>
 </resources>
