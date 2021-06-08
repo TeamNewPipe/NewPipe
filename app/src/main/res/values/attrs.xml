@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <attr name="ic_selected" format="reference" />
-
     <attr name="progress_horizontal_drawable" format="reference" />
     <!-- Can't refer to colors directly in drawable's xml-->
     <attr name="toolbar_shadow" format="reference" />
