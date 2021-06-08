@@ -362,6 +362,7 @@
     <string name="msg_wait">Please wait…</string>
     <string name="msg_copied">Copied to clipboard</string>
     <string name="no_available_dir">Please define a download folder later in settings</string>
+    <string name="no_dir_yet">No download folder set yet, choose the default download folder now</string>
     <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
     <string name="one_item_deleted">1 item deleted.</string>
     <!-- Checksum types -->
@@ -640,10 +641,12 @@
     <string name="start_downloads">Start downloads</string>
     <string name="pause_downloads">Pause downloads</string>
     <string name="downloads_storage_ask_title">Ask where to download</string>
-    <string name="downloads_storage_ask_summary">You will be asked where to save each download</string>
-    <string name="downloads_storage_ask_summary_kitkat">You will be asked where to save each download.\nChoose SAF if you want to download to an external SD card</string>
-    <string name="downloads_storage_use_saf_title">Use SAF</string>
-    <string name="downloads_storage_use_saf_summary">The \'Storage Access Framework\' allows downloads to an external SD card.\nSome devices are incompatible</string>
+    <string name="downloads_storage_ask_summary">You will be asked where to save each download.\nEnable the system folder picker (SAF) if you want to download to an external SD card</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">You will be asked where to save each download</string>
+    <string name="downloads_storage_use_saf_title">Use system folder picker (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">The \'Storage Access Framework\' allows downloads to an external SD card</string>
+    <string name="downloads_storage_use_saf_summary_api_19">The \'Storage Access Framework\' is not supported on Android KitKat and below</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Starting from Android 10 only \'Storage Access Framework\' is supported</string>
     <string name="choose_instance_prompt">Choose an instance</string>
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>

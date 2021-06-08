@@ -1,6 +1,8 @@
 package org.schabi.newpipe.settings
 
 import android.content.SharedPreferences
+import org.schabi.newpipe.streams.io.SharpOutputStream
+import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.ZipHelper
 import java.io.BufferedOutputStream
 import java.io.FileInputStream
@@ -17,8 +19,9 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
      * It also creates the file.
      */
     @Throws(Exception::class)
-    fun exportDatabase(preferences: SharedPreferences, outputPath: String) {
-        ZipOutputStream(BufferedOutputStream(FileOutputStream(outputPath)))
+    fun exportDatabase(preferences: SharedPreferences, file: StoredFileHelper) {
+        file.create()
+        ZipOutputStream(BufferedOutputStream(SharpOutputStream(file.stream)))
             .use { outZip ->
                 ZipHelper.addFileToZip(outZip, fileLocator.db.path, "newpipe.db")
 
@@ -48,8 +51,8 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
         return fileLocator.dbDir.exists() || fileLocator.dbDir.mkdir()
     }
 
-    fun extractDb(filePath: String): Boolean {
-        val success = ZipHelper.extractFileFromZip(filePath, fileLocator.db.path, "newpipe.db")
+    fun extractDb(file: StoredFileHelper): Boolean {
+        val success = ZipHelper.extractFileFromZip(file, fileLocator.db.path, "newpipe.db")
         if (success) {
             fileLocator.dbJournal.delete()
             fileLocator.dbWal.delete()
@@ -59,9 +62,8 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
         return success
     }
 
-    fun extractSettings(filePath: String): Boolean {
-        return ZipHelper
-            .extractFileFromZip(filePath, fileLocator.settings.path, "newpipe.settings")
+    fun extractSettings(file: StoredFileHelper): Boolean {
+        return ZipHelper.extractFileFromZip(file, fileLocator.settings.path, "newpipe.settings")
     }
 
     fun loadSharedPreferences(preferences: SharedPreferences) {

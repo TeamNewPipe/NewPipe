@@ -2,6 +2,7 @@ package org.schabi.newpipe.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.preference.PreferenceManager;
@@ -18,7 +19,7 @@ public final class SettingMigrations {
     /**
      * Version number for preferences. Must be incremented every time a migration is necessary.
      */
-    public static final int VERSION = 2;
+    public static final int VERSION = 3;
     private static SharedPreferences sp;
 
     public static final Migration MIGRATION_0_1 = new Migration(0, 1) {
@@ -54,6 +55,20 @@ public final class SettingMigrations {
         }
     };
 
+    public static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        @Override
+        protected void migrate(final Context context) {
+            // Storage Access Framework implementation was improved in #5415, allowing the modern
+            // and standard way to access folders and files to be used consistently everywhere.
+            // We reset the setting to its default value, i.e. "use SAF", since now there are no
+            // more issues with SAF and users should use that one instead of the old
+            // NoNonsenseFilePicker. SAF does not work on KitKat and below, though, so the setting
+            // is set to false in that case.
+            sp.edit().putBoolean(context.getString(R.string.storage_use_saf),
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP).apply();
+        }
+    };
+
     /**
      * List of all implemented migrations.
      * <p>
@@ -62,7 +77,8 @@ public final class SettingMigrations {
      */
     private static final Migration[] SETTING_MIGRATIONS = {
             MIGRATION_0_1,
-            MIGRATION_1_2
+            MIGRATION_1_2,
+            MIGRATION_2_3
     };
 
 

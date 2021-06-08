@@ -19,8 +19,8 @@ import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
 import us.shandian.giga.get.Mission;
 import us.shandian.giga.get.sqlite.FinishedMissionStore;
-import us.shandian.giga.io.StoredDirectoryHelper;
-import us.shandian.giga.io.StoredFileHelper;
+import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import us.shandian.giga.util.Utility;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
@@ -106,7 +106,8 @@ public class DownloadManager {
     }
 
     /**
-     * Loads finished missions from the data source
+     * Loads finished missions from the data source and forgets finished missions whose file does
+     * not exist anymore.
      */
     private ArrayList<FinishedMission> loadFinishedMissions() {
         ArrayList<FinishedMission> finishedMissions = mFinishedMissionStore.loadFinishedMissions();
@@ -331,14 +332,29 @@ public class DownloadManager {
     }
 
     /**
-     * Get a finished mission by its path
+     * Get the index into {@link #mMissionsFinished} of a finished mission by its path, return
+     * {@code -1} if there is no such mission. This function also checks if the matched mission's
+     * file exists, and, if it does not, the related mission is forgotten about (like in {@link
+     * #loadFinishedMissions()}) and {@code -1} is returned.
      *
-     * @param storage where the file possible is stored
+     * @param storage where the file would be stored
      * @return the mission index or -1 if no such mission exists
      */
     private int getFinishedMissionIndex(StoredFileHelper storage) {
         for (int i = 0; i < mMissionsFinished.size(); i++) {
             if (mMissionsFinished.get(i).storage.equals(storage)) {
+                // If the file does not exist the mission is not valid anymore. Also checking if
+                // length == 0 since the file picker may create an empty file before yielding it,
+                // but that does not mean the file really belonged to a previous mission.
+                if (!storage.existsAsFile() || storage.length() == 0) {
+                    if (DEBUG) {
+                        Log.d(TAG, "matched downloaded file removed: " + storage.getName());
+                    }
+
+                    mFinishedMissionStore.deleteMission(mMissionsFinished.get(i));
+                    mMissionsFinished.remove(i);
+                    return -1; // finished mission whose associated file was removed
+                }
                 return i;
             }
         }

@@ -6,11 +6,15 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import java.util.Objects;
 
 public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
@@ -36,5 +40,12 @@ public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
     public void onResume() {
         super.onResume();
         ThemeHelper.setTitleToAppCompatActivity(getActivity(), getPreferenceScreen().getTitle());
+    }
+
+    @NonNull
+    public final Preference requirePreference(@StringRes final int resId) {
+        final Preference preference = findPreference(getString(resId));
+        Objects.requireNonNull(preference);
+        return preference;
     }
 }

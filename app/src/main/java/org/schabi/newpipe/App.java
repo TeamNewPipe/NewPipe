@@ -27,7 +27,7 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.ktx.ExceptionUtils;
-import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
@@ -91,7 +91,7 @@ public class App extends MultiDexApplication {
         app = this;
 
         // Initialize settings first because others inits can use its values
-        SettingsActivity.initSettings(this);
+        NewPipeSettings.initSettings(this);
 
         NewPipe.init(getDownloader(),
             Localization.getPreferredLocalization(this),

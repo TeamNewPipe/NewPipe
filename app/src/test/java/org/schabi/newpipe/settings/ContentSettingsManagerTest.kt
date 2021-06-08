@@ -17,6 +17,8 @@ import org.mockito.Mockito.atLeastOnce
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.withSettings
 import org.mockito.junit.MockitoJUnitRunner
+import org.schabi.newpipe.streams.io.StoredFileHelper
+import us.shandian.giga.io.FileStream
 import java.io.File
 import java.io.ObjectInputStream
 import java.nio.file.Files
@@ -30,10 +32,12 @@ class ContentSettingsManagerTest {
     }
 
     private lateinit var fileLocator: NewPipeFileLocator
+    private lateinit var storedFileHelper: StoredFileHelper
 
     @Before
     fun setupFileLocator() {
         fileLocator = Mockito.mock(NewPipeFileLocator::class.java, withSettings().stubOnly())
+        storedFileHelper = Mockito.mock(StoredFileHelper::class.java, withSettings().stubOnly())
     }
 
     @Test
@@ -44,11 +48,13 @@ class ContentSettingsManagerTest {
         `when`(fileLocator.settings).thenReturn(newpipeSettings)
 
         val expectedPreferences = mapOf("such pref" to "much wow")
-        val sharedPreferences = Mockito.mock(SharedPreferences::class.java, withSettings().stubOnly())
+        val sharedPreferences =
+            Mockito.mock(SharedPreferences::class.java, withSettings().stubOnly())
         `when`(sharedPreferences.all).thenReturn(expectedPreferences)
 
         val output = File.createTempFile("newpipe_", "")
-        ContentSettingsManager(fileLocator).exportDatabase(sharedPreferences, output.absolutePath)
+        `when`(storedFileHelper.stream).thenReturn(FileStream(output))
+        ContentSettingsManager(fileLocator).exportDatabase(sharedPreferences, storedFileHelper)
 
         val zipFile = ZipFile(output)
         val entries = zipFile.entries().toList()
@@ -117,7 +123,8 @@ class ContentSettingsManagerTest {
         `when`(fileLocator.dbWal).thenReturn(dbWal)
 
         val zip = File(classloader.getResource("settings/newpipe.zip")?.file!!)
-        val success = ContentSettingsManager(fileLocator).extractDb(zip.path)
+        `when`(storedFileHelper.stream).thenReturn(FileStream(zip))
+        val success = ContentSettingsManager(fileLocator).extractDb(storedFileHelper)
 
         assertTrue(success)
         assertFalse(dbJournal.exists())
@@ -135,7 +142,8 @@ class ContentSettingsManagerTest {
         `when`(fileLocator.db).thenReturn(db)
 
         val emptyZip = File(classloader.getResource("settings/empty.zip")?.file!!)
-        val success = ContentSettingsManager(fileLocator).extractDb(emptyZip.path)
+        `when`(storedFileHelper.stream).thenReturn(FileStream(emptyZip))
+        val success = ContentSettingsManager(fileLocator).extractDb(storedFileHelper)
 
         assertFalse(success)
         assertTrue(dbJournal.exists())
@@ -150,7 +158,8 @@ class ContentSettingsManagerTest {
         `when`(fileLocator.settings).thenReturn(settings)
 
         val zip = File(classloader.getResource("settings/newpipe.zip")?.file!!)
-        val contains = ContentSettingsManager(fileLocator).extractSettings(zip.path)
+        `when`(storedFileHelper.stream).thenReturn(FileStream(zip))
+        val contains = ContentSettingsManager(fileLocator).extractSettings(storedFileHelper)
 
         assertTrue(contains)
     }
@@ -161,7 +170,8 @@ class ContentSettingsManagerTest {
         `when`(fileLocator.settings).thenReturn(settings)
 
         val emptyZip = File(classloader.getResource("settings/empty.zip")?.file!!)
-        val contains = ContentSettingsManager(fileLocator).extractSettings(emptyZip.path)
+        `when`(storedFileHelper.stream).thenReturn(FileStream(emptyZip))
+        val contains = ContentSettingsManager(fileLocator).extractSettings(storedFileHelper)
 
         assertFalse(contains)
     }

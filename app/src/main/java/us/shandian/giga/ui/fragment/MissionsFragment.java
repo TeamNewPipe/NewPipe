@@ -29,14 +29,13 @@ import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
-import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.File;
 import java.io.IOException;
 
 import us.shandian.giga.get.DownloadMission;
-import us.shandian.giga.io.StoredFileHelper;
 import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;
@@ -242,27 +241,21 @@ public class MissionsFragment extends Fragment {
     private void recoverMission(@NonNull DownloadMission mission) {
         unsafeMissionTarget = mission;
 
+        final Uri initialPath;
         if (NewPipeSettings.useStorageAccessFramework(mContext)) {
-            StoredFileHelper.requestSafWithFileCreation(
-                    MissionsFragment.this,
-                    REQUEST_DOWNLOAD_SAVE_AS,
-                    mission.storage.getName(),
-                    mission.storage.getType()
-            );
-
+            initialPath = null;
         } else {
-            File initialSavePath;
-            if (DownloadManager.TAG_VIDEO.equals(mission.storage.getType()))
-                initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MOVIES);
-            else
+            final File initialSavePath;
+            if (DownloadManager.TAG_AUDIO.equals(mission.storage.getType())) {
                 initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MUSIC);
-
-            initialSavePath = new File(initialSavePath, mission.storage.getName());
-            startActivityForResult(
-                    FilePickerActivityHelper.chooseFileToSave(mContext, initialSavePath.getAbsolutePath()),
-                    REQUEST_DOWNLOAD_SAVE_AS
-            );
+            } else {
+                initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MOVIES);
+            }
+            initialPath = Uri.parse(initialSavePath.getAbsolutePath());
         }
+
+        startActivityForResult(StoredFileHelper.getNewPicker(mContext, mission.storage.getName(),
+                mission.storage.getType(), initialPath), REQUEST_DOWNLOAD_SAVE_AS);
     }
 
     @Override

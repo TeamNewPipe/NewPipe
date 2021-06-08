@@ -49,6 +49,8 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ListHelper;
@@ -68,8 +70,6 @@ import icepick.Icepick;
 import icepick.State;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import us.shandian.giga.get.MissionRecoveryInfo;
-import us.shandian.giga.io.StoredDirectoryHelper;
-import us.shandian.giga.io.StoredFileHelper;
 import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
@@ -83,6 +83,8 @@ public class DownloadDialog extends DialogFragment
     private static final String TAG = "DialogFragment";
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final int REQUEST_DOWNLOAD_SAVE_AS = 0x1230;
+    private static final int REQUEST_DOWNLOAD_PICK_VIDEO_FOLDER = 0x789E;
+    private static final int REQUEST_DOWNLOAD_PICK_AUDIO_FOLDER = 0x789F;
 
     @State
     StreamInfo currentInfo;
@@ -115,6 +117,10 @@ public class DownloadDialog extends DialogFragment
     private DownloadDialogBinding dialogBinding;
 
     private SharedPreferences prefs;
+
+    // Variables for file name and MIME type when picking new folder because it's not set yet
+    private String filenameTmp;
+    private String mimeTmp;
 
     public static DownloadDialog newInstance(final StreamInfo info) {
         final DownloadDialog dialog = new DownloadDialog();
@@ -152,10 +158,6 @@ public class DownloadDialog extends DialogFragment
     public void setVideoStreams(final List<VideoStream> videoStreams) {
         setVideoStreams(new StreamSizeWrapper<>(videoStreams, getContext()));
     }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // LifeCycle
-    //////////////////////////////////////////////////////////////////////////*/
 
     public void setVideoStreams(final StreamSizeWrapper<VideoStream> wvs) {
         this.wrappedVideoStreams = wvs;
@@ -374,12 +376,16 @@ public class DownloadDialog extends DialogFragment
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_DOWNLOAD_SAVE_AS && resultCode == Activity.RESULT_OK) {
-            if (data.getData() == null) {
-                showFailedDialog(R.string.general_error);
-                return;
-            }
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
 
+        if (data.getData() == null) {
+            showFailedDialog(R.string.general_error);
+            return;
+        }
+
+        if (requestCode == REQUEST_DOWNLOAD_SAVE_AS) {
             if (FilePickerActivityHelper.isOwnFileUri(context, data.getData())) {
                 final File file = Utils.getFileForUri(data.getData());
                 checkSelectedDownload(null, Uri.fromFile(file), file.getName(),
@@ -396,6 +402,37 @@ public class DownloadDialog extends DialogFragment
             // check if the selected file was previously used
             checkSelectedDownload(null, data.getData(), docFile.getName(),
                     docFile.getType());
+        } else if (requestCode == REQUEST_DOWNLOAD_PICK_AUDIO_FOLDER
+                || requestCode == REQUEST_DOWNLOAD_PICK_VIDEO_FOLDER) {
+            Uri uri = data.getData();
+            if (FilePickerActivityHelper.isOwnFileUri(context, uri)) {
+                uri = Uri.fromFile(Utils.getFileForUri(uri));
+            } else {
+                context.grantUriPermission(context.getPackageName(), uri,
+                        StoredDirectoryHelper.PERMISSION_FLAGS);
+            }
+
+            final String key;
+            final String tag;
+            if (requestCode == REQUEST_DOWNLOAD_PICK_AUDIO_FOLDER) {
+                key = getString(R.string.download_path_audio_key);
+                tag = DownloadManager.TAG_AUDIO;
+            } else {
+                key = getString(R.string.download_path_video_key);
+                tag = DownloadManager.TAG_VIDEO;
+            }
+
+            PreferenceManager.getDefaultSharedPreferences(context).edit()
+                    .putString(key, uri.toString()).apply();
+
+            try {
+                final StoredDirectoryHelper mainStorage
+                        = new StoredDirectoryHelper(context, uri, tag);
+                checkSelectedDownload(mainStorage, mainStorage.findFile(filenameTmp),
+                        filenameTmp, mimeTmp);
+            } catch (final IOException e) {
+                showFailedDialog(R.string.general_error);
+            }
         }
     }
 
@@ -603,84 +640,92 @@ public class DownloadDialog extends DialogFragment
     private void prepareSelectedDownload() {
         final StoredDirectoryHelper mainStorage;
         final MediaFormat format;
-        final String mime;
         final String selectedMediaType;
 
         // first, build the filename and get the output folder (if possible)
         // later, run a very very very large file checking logic
 
-        String filename = getNameEditText().concat(".");
+        filenameTmp = getNameEditText().concat(".");
 
         switch (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()) {
             case R.id.audio_button:
                 selectedMediaType = getString(R.string.last_download_type_audio_key);
                 mainStorage = mainStorageAudio;
                 format = audioStreamsAdapter.getItem(selectedAudioIndex).getFormat();
-                switch (format) {
-                    case WEBMA_OPUS:
-                        mime = "audio/ogg";
-                        filename += "opus";
-                        break;
-                    default:
-                        mime = format.mimeType;
-                        filename += format.suffix;
-                        break;
+                if (format == MediaFormat.WEBMA_OPUS) {
+                    mimeTmp = "audio/ogg";
+                    filenameTmp += "opus";
+                } else {
+                    mimeTmp = format.mimeType;
+                    filenameTmp += format.suffix;
                 }
                 break;
             case R.id.video_button:
                 selectedMediaType = getString(R.string.last_download_type_video_key);
                 mainStorage = mainStorageVideo;
                 format = videoStreamsAdapter.getItem(selectedVideoIndex).getFormat();
-                mime = format.mimeType;
-                filename += format.suffix;
+                mimeTmp = format.mimeType;
+                filenameTmp += format.suffix;
                 break;
             case R.id.subtitle_button:
                 selectedMediaType = getString(R.string.last_download_type_subtitle_key);
                 mainStorage = mainStorageVideo; // subtitle & video files go together
                 format = subtitleStreamsAdapter.getItem(selectedSubtitleIndex).getFormat();
-                mime = format.mimeType;
-                filename += (format == MediaFormat.TTML ? MediaFormat.SRT : format).suffix;
+                mimeTmp = format.mimeType;
+                filenameTmp += (format == MediaFormat.TTML ? MediaFormat.SRT : format).suffix;
                 break;
             default:
                 throw new RuntimeException("No stream selected");
         }
 
-        if (mainStorage == null || askForSavePath) {
-            // This part is called if with SAF preferred:
-            //  * older android version running
-            //  * save path not defined (via download settings)
-            //  * the user checked the "ask where to download" option
+        if (!askForSavePath
+                && (mainStorage == null
+                || mainStorage.isDirect() == NewPipeSettings.useStorageAccessFramework(context)
+                || mainStorage.isInvalidSafStorage())) {
+            // Pick new download folder if one of:
+            // - Download folder is not set
+            // - Download folder uses SAF while SAF is disabled
+            // - Download folder doesn't use SAF while SAF is enabled
+            // - Download folder uses SAF but the user manually revoked access to it
+            Toast.makeText(context, getString(R.string.no_dir_yet),
+                    Toast.LENGTH_LONG).show();
 
-            if (!askForSavePath) {
-                Toast.makeText(context, getString(R.string.no_available_dir),
-                        Toast.LENGTH_LONG).show();
-            }
-
-            if (NewPipeSettings.useStorageAccessFramework(context)) {
-                StoredFileHelper.requestSafWithFileCreation(this, REQUEST_DOWNLOAD_SAVE_AS,
-                        filename, mime);
+            if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button) {
+                startActivityForResult(StoredDirectoryHelper.getPicker(context),
+                        REQUEST_DOWNLOAD_PICK_AUDIO_FOLDER);
             } else {
-                File initialSavePath;
-                if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button) {
-                    initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MUSIC);
-                } else {
-                    initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MOVIES);
-                }
-
-                initialSavePath = new File(initialSavePath, filename);
-                startActivityForResult(FilePickerActivityHelper.chooseFileToSave(context,
-                        initialSavePath.getAbsolutePath()), REQUEST_DOWNLOAD_SAVE_AS);
+                startActivityForResult(StoredDirectoryHelper.getPicker(context),
+                        REQUEST_DOWNLOAD_PICK_VIDEO_FOLDER);
             }
 
             return;
         }
 
+        if (askForSavePath) {
+            final Uri initialPath;
+            if (NewPipeSettings.useStorageAccessFramework(context)) {
+                initialPath = null;
+            } else {
+                final File initialSavePath;
+                if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button) {
+                    initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MUSIC);
+                } else {
+                    initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MOVIES);
+                }
+                initialPath = Uri.parse(initialSavePath.getAbsolutePath());
+            }
+
+            startActivityForResult(StoredFileHelper.getNewPicker(context,
+                    filenameTmp, mimeTmp, initialPath), REQUEST_DOWNLOAD_SAVE_AS);
+
+            return;
+        }
+
         // check for existing file with the same name
-        checkSelectedDownload(mainStorage, mainStorage.findFile(filename), filename, mime);
+        checkSelectedDownload(mainStorage, mainStorage.findFile(filenameTmp), filenameTmp, mimeTmp);
 
         // remember the last media type downloaded by the user
-        prefs.edit()
-                .putString(getString(R.string.last_used_download_type), selectedMediaType)
+        prefs.edit().putString(getString(R.string.last_used_download_type), selectedMediaType)
                 .apply();
     }
 
@@ -708,15 +753,14 @@ public class DownloadDialog extends DialogFragment
             return;
         }
 
-        // check if is our file
+        // get state of potential mission referring to the same file
         final MissionState state = downloadManager.checkForExistingMission(storage);
-        @StringRes
-        final int msgBtn;
-        @StringRes
-        final int msgBody;
+        @StringRes final int msgBtn;
+        @StringRes final int msgBody;
 
+        // this switch checks if there is already a mission referring to the same file
         switch (state) {
-            case Finished:
+            case Finished: // there is already a finished mission
                 msgBtn = R.string.overwrite;
                 msgBody = R.string.overwrite_finished_warning;
                 break;
@@ -728,7 +772,7 @@ public class DownloadDialog extends DialogFragment
                 msgBtn = R.string.generate_unique_name;
                 msgBody = R.string.download_already_running;
                 break;
-            case None:
+            case None: // there is no mission referring to the same file
                 if (mainStorage == null) {
                     // This part is called if:
                     // * using SAF on older android version
@@ -763,7 +807,7 @@ public class DownloadDialog extends DialogFragment
                 msgBody = R.string.overwrite_unrelated_warning;
                 break;
             default:
-                return;
+                return; // unreachable
         }
 
         final AlertDialog.Builder askDialog = new AlertDialog.Builder(context)
