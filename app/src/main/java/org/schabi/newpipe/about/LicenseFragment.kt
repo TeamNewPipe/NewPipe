@@ -1,10 +1,7 @@
 package org.schabi.newpipe.about
 
 import android.os.Bundle
-import android.view.ContextMenu
-import android.view.ContextMenu.ContextMenuInfo
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
@@ -14,7 +11,6 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.about.LicenseFragmentHelper.showLicense
 import org.schabi.newpipe.databinding.FragmentLicensesBinding
 import org.schabi.newpipe.databinding.ItemSoftwareComponentBinding
-import org.schabi.newpipe.util.ShareUtils
 import java.util.Arrays
 import java.util.Objects
 
@@ -73,7 +69,7 @@ class LicenseFragment : Fragment() {
             root.setOnClickListener {
                 activeLicense = component.license
                 compositeDisposable.add(
-                    showLicense(activity, component.license)
+                    showLicense(activity, component)
                 )
             }
             binding.licensesSoftwareComponents.addView(root)
@@ -85,30 +81,6 @@ class LicenseFragment : Fragment() {
             )
         }
         return binding.root
-    }
-
-    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo?) {
-        val inflater = requireActivity().menuInflater
-        val component = v.tag as SoftwareComponent
-        menu.setHeaderTitle(component.name)
-        inflater.inflate(R.menu.software_component, menu)
-        super.onCreateContextMenu(menu, v, menuInfo)
-        componentForContextMenu = component
-    }
-
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        // item.getMenuInfo() is null so we use the tag of the view
-        val component = componentForContextMenu ?: return false
-        when (item.itemId) {
-            R.id.menu_software_website -> {
-                ShareUtils.openUrlInBrowser(activity, component.link)
-                return true
-            }
-            R.id.menu_software_show_license -> compositeDisposable.add(
-                showLicense(activity, component.license)
-            )
-        }
-        return false
     }
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
