@@ -606,11 +606,6 @@ public abstract class Tab {
 
             final PlaylistTab other = (PlaylistTab) obj;
 
-            if (!(super.equals(obj))) {
-                // Base objects are different
-                return false;
-            }
-
             return super.equals(obj)
                     && playlistServiceId == other.playlistServiceId // Remote
                     && playlistId == other.playlistId // Local
