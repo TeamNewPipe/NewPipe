@@ -309,7 +309,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 listOf(
                     StreamDialogEntry.start_here_on_background,
                     StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share
+                    StreamDialogEntry.share,
+                    StreamDialogEntry.open_in_browser
                 )
             )
         } else {
@@ -318,11 +319,13 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                     StreamDialogEntry.start_here_on_background,
                     StreamDialogEntry.start_here_on_popup,
                     StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share
+                    StreamDialogEntry.share,
+                    StreamDialogEntry.open_in_browser
                 )
             )
         }
 
+        StreamDialogEntry.setEnabledEntries(entries)
         InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context)) { _, which ->
             StreamDialogEntry.clickOn(which, this, item)
         }.show()
@@ -400,7 +403,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     }
 
     private fun handleItemsErrors(errors: List<Throwable>) {
-        errors.forEachIndexed() { i, t ->
+        errors.forEachIndexed { i, t ->
             if (t is FeedLoadService.RequestException &&
                 t.cause is ContentNotAvailableException
             ) {
