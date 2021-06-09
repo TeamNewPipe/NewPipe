@@ -130,7 +130,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             Log.d(TAG, "onCreateOptionsMenu() called with: "
                     + "menu = [" + menu + "], inflater = [" + inflater + "]");
         }
-        inflater.inflate(R.menu.main_fragment_menu, menu);
+        inflater.inflate(R.menu.menu_main_fragment, menu);
 
         final ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {

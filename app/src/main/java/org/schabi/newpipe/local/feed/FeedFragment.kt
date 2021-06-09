@@ -169,13 +169,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         activity.supportActionBar?.subtitle = groupName
 
         inflater.inflate(R.menu.menu_feed_fragment, menu)
-
-        menu.findItem(R.id.menu_item_feed_toggle_played_items).apply {
-            updateTogglePlayedItemsButton(this)
-            if (useAsFrontPage) {
-                setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
-            }
-        }
+        updateTogglePlayedItemsButton(menu.findItem(R.id.menu_item_feed_toggle_played_items))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
