@@ -17,7 +17,7 @@
         android:textSize="12sp"
         tools:ignore="RtlHardcoded" />
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/autoplay_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

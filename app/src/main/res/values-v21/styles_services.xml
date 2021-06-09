@@ -3,17 +3,14 @@
     <!-- YouTube -->
     <style name="LightTheme.YouTube" parent="LightTheme">
         <item name="colorPrimaryDark">@color/light_youtube_statusbar_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <style name="DarkTheme.YouTube" parent="DarkTheme">
         <item name="colorPrimaryDark">@color/dark_youtube_statusbar_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <style name="BlackTheme.YouTube" parent="BlackTheme">
         <item name="colorPrimaryDark">@color/dark_youtube_statusbar_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <!-- SoundCloud -->
@@ -21,21 +18,18 @@
         <item name="colorPrimary">@color/light_soundcloud_primary_color</item>
         <item name="colorPrimaryDark">@color/light_soundcloud_statusbar_color</item>
         <item name="colorAccent">@color/light_soundcloud_accent_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <style name="DarkTheme.SoundCloud" parent="DarkTheme">
         <item name="colorPrimary">@color/dark_soundcloud_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_soundcloud_statusbar_color</item>
         <item name="colorAccent">@color/dark_soundcloud_accent_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <style name="BlackTheme.SoundCloud" parent="BlackTheme">
         <item name="colorPrimary">@color/dark_soundcloud_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_soundcloud_statusbar_color</item>
         <item name="colorAccent">@color/dark_soundcloud_accent_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <!-- PeerTube -->
@@ -43,21 +37,18 @@
         <item name="colorPrimary">@color/light_peertube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_peertube_statusbar_color</item>
         <item name="colorAccent">@color/light_peertube_accent_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <style name="DarkTheme.PeerTube" parent="DarkTheme">
         <item name="colorPrimary">@color/dark_peertube_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_peertube_statusbar_color</item>
         <item name="colorAccent">@color/dark_peertube_accent_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <style name="BlackTheme.PeerTube" parent="BlackTheme">
         <item name="colorPrimary">@color/dark_peertube_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_peertube_statusbar_color</item>
         <item name="colorAccent">@color/dark_peertube_accent_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <!-- media.ccc.de -->
@@ -65,21 +56,18 @@
         <item name="colorPrimary">@color/light_media_ccc_primary_color</item>
         <item name="colorPrimaryDark">@color/light_media_ccc_statusbar_color</item>
         <item name="colorAccent">@color/light_media_ccc_accent_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <style name="DarkTheme.media.ccc.de" parent="DarkTheme">
         <item name="colorPrimary">@color/dark_media_ccc_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_media_ccc_statusbar_color</item>
         <item name="colorAccent">@color/dark_media_ccc_accent_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <style name="BlackTheme.media.ccc.de" parent="BlackTheme">
         <item name="colorPrimary">@color/dark_media_ccc_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_media_ccc_statusbar_color</item>
         <item name="colorAccent">@color/dark_media_ccc_accent_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <!-- Bandcamp -->
@@ -87,21 +75,18 @@
         <item name="colorPrimary">@color/light_bandcamp_primary_color</item>
         <item name="colorPrimaryDark">@color/light_bandcamp_statusbar_color</item>
         <item name="colorAccent">@color/light_bandcamp_accent_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <style name="DarkTheme.Bandcamp" parent="DarkTheme">
         <item name="colorPrimary">@color/dark_bandcamp_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_bandcamp_statusbar_color</item>
         <item name="colorAccent">@color/dark_bandcamp_accent_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
     <style name="BlackTheme.Bandcamp" parent="BlackTheme">
         <item name="colorPrimary">@color/dark_bandcamp_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_bandcamp_statusbar_color</item>
         <item name="colorAccent">@color/dark_bandcamp_accent_color</item>
-        <item name="android:colorControlActivated">?attr/colorPrimary</item>
     </style>
 
 </resources>
