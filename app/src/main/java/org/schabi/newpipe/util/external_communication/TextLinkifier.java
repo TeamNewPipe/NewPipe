@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 
 import org.schabi.newpipe.extractor.Info;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.regex.Matcher;
@@ -258,7 +259,10 @@ public final class TextLinkifier {
             // add click actions on plain text timestamps only for description of contents,
             // unneeded for meta-info or other TextViews
             if (relatedInfo != null) {
-                addClickListenersOnTimestamps(context, textBlockLinked, relatedInfo, disposables);
+                if (relatedInfo instanceof StreamInfo) {
+                    addClickListenersOnTimestamps(context, textBlockLinked, relatedInfo,
+                            disposables);
+                }
                 addClickListenersOnHashtags(context, textBlockLinked, relatedInfo);
             }
 
