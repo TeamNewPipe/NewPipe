@@ -1,5 +1,6 @@
 package org.schabi.newpipe.settings;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -25,8 +26,8 @@ import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
-import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.FilePathUtils;
+import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.File;
@@ -181,17 +182,14 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         if ((requestCode == REQUEST_IMPORT_PATH || requestCode == REQUEST_EXPORT_PATH)
                 && resultCode == Activity.RESULT_OK && data.getData() != null) {
             final File file = Utils.getFileForUri(data.getData());
-            final String path = file.getAbsolutePath();
-            setImportExportDataPath(file);
 
             if (requestCode == REQUEST_EXPORT_PATH) {
-                final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
-                exportDatabase(path + "/NewPipeData-" + sdf.format(new Date()) + ".zip");
+                exportDatabase(file);
             } else {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
                 builder.setMessage(R.string.override_current_data)
                         .setPositiveButton(getString(R.string.finish),
-                                (d, id) -> importDatabase(path))
+                                (d, id) -> importDatabase(file))
                         .setNegativeButton(android.R.string.cancel,
                                 (d, id) -> d.cancel());
                 builder.create().show();
@@ -199,14 +197,20 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
     }
 
-    private void exportDatabase(final String path) {
+    private void exportDatabase(@NonNull final File folder) {
         try {
+            final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
+            final String path = folder.getAbsolutePath() + "/NewPipeData-"
+                    + sdf.format(new Date()) + ".zip";
+
             //checkpoint before export
             NewPipeDatabase.checkpoint();
 
             final SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(requireContext());
+                    .getDefaultSharedPreferences(requireContext());
             manager.exportDatabase(preferences, path);
+
+            setImportExportDataPath(folder, false);
 
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
         } catch (final Exception e) {
@@ -214,11 +218,13 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
     }
 
-    private void importDatabase(final String filePath) {
+    private void importDatabase(@NonNull final File file) {
+        final String filePath = file.getAbsolutePath();
+
         // check if file is supported
         if (!ZipHelper.isValidZipFile(filePath)) {
             Toast.makeText(getContext(), R.string.no_valid_zip_file, Toast.LENGTH_SHORT)
-                .show();
+                    .show();
             return;
         }
 
@@ -229,7 +235,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
             if (!manager.extractDb(filePath)) {
                 Toast.makeText(getContext(), R.string.could_not_import_all_files, Toast.LENGTH_LONG)
-                    .show();
+                        .show();
             }
 
             //If settings file exist, ask if it should be imported.
@@ -239,27 +245,40 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
                 alert.setNegativeButton(android.R.string.no, (dialog, which) -> {
                     dialog.dismiss();
-                    // restart app to properly load db
-                    System.exit(0);
+                    finishImport(file);
                 });
                 alert.setPositiveButton(getString(R.string.finish), (dialog, which) -> {
                     dialog.dismiss();
                     manager.loadSharedPreferences(PreferenceManager
-                        .getDefaultSharedPreferences(requireContext()));
-                    // restart app to properly load db
-                    System.exit(0);
+                            .getDefaultSharedPreferences(requireContext()));
+                    finishImport(file);
                 });
                 alert.show();
             } else {
-                // restart app to properly load db
-                System.exit(0);
+                finishImport(file);
             }
         } catch (final Exception e) {
             ErrorActivity.reportUiErrorInSnackbar(this, "Importing database", e);
         }
     }
 
-    private void setImportExportDataPath(final File file) {
+    /**
+     * Save import path and restart system.
+     *
+     * @param file The file of the created backup
+     */
+    private void finishImport(@NonNull final File file) {
+        if (file.getParentFile() != null) {
+            //immediately because app is about to exit
+            setImportExportDataPath(file.getParentFile(), true);
+        }
+
+        // restart app to properly load db
+        System.exit(0);
+    }
+
+    @SuppressLint("ApplySharedPref")
+    private void setImportExportDataPath(@NonNull final File file, final boolean immediately) {
         final String directoryPath;
         if (file.isDirectory()) {
             directoryPath = file.getAbsolutePath();
@@ -271,6 +290,13 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 directoryPath = "";
             }
         }
-        defaultPreferences.edit().putString(importExportDataPathKey, directoryPath).apply();
+        final SharedPreferences.Editor editor = defaultPreferences
+                .edit()
+                .putString(importExportDataPathKey, directoryPath);
+        if (immediately) {
+            editor.commit();
+        } else {
+            editor.apply();
+        }
     }
 }

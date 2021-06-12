@@ -387,7 +387,7 @@
     <string name="playback_pitch">音调</string>
     <string name="unhook_checkbox">解除音视挂钩（可能导致失真）</string>
     <string name="preferred_open_action_settings_title">首选“打开”操作</string>
-    <string name="preferred_open_action_settings_summary">打开内容时的默认操作 - %s</string>
+    <string name="preferred_open_action_settings_summary">打开内容时的默认操作 — %s</string>
     <string name="no_streams_available_download">没有可下载的串流</string>
     <string name="caption_setting_title">字幕</string>
     <string name="caption_setting_description">修改播放器字幕比例和背景样式。重启应用生效。</string>
@@ -678,4 +678,20 @@
     <string name="show_channel_details">显示频道详情</string>
     <string name="disable_media_tunneling_summary">如果遇到黑屏或视频播放卡顿的情况，请禁用媒体隧道</string>
     <string name="disable_media_tunneling_title">禁用媒体隧道</string>
+    <string name="description_select_disable">关闭简介中的文本选择功能</string>
+    <string name="metadata_privacy_internal">内部</string>
+    <string name="metadata_privacy_private">私享</string>
+    <string name="metadata_privacy_unlisted">未分类</string>
+    <string name="metadata_privacy_public">公开</string>
+    <string name="metadata_thumbnail_url">缩略图 URL</string>
+    <string name="metadata_host">所在服务器</string>
+    <string name="metadata_support">支持</string>
+    <string name="metadata_language">语言</string>
+    <string name="metadata_age_limit">年龄限制</string>
+    <string name="metadata_privacy">私有性</string>
+    <string name="metadata_licence">发行许可</string>
+    <string name="metadata_tags">标签</string>
+    <string name="metadata_category">类别</string>
+    <string name="description_select_enable">开启简介中的文本选择功能</string>
+    <string name="description_select_note">你现在可以选择简介中的文本，注意，在选择模式下，页面可能会闪烁，链接可能无法点击。</string>
 </resources>

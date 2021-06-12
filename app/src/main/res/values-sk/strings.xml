@@ -26,7 +26,7 @@
     <string name="play_with_kodi_title">Prehrať cez Kodi</string>
     <string name="kore_not_found">Nainštalovať chýbajúcu aplikáciu Kore\?</string>
     <string name="show_play_with_kodi_title">Zobraziť možnosť \"Prehrať cez Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Zobraziť možnosť \"Prehraj cez Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Zobraziť možnosť \"Prehrať cez Kodi\"</string>
     <string name="play_audio">Zvuk</string>
     <string name="default_audio_format_title">Predvolený zvukový formát</string>
     <string name="theme_title">Téma</string>
@@ -128,7 +128,7 @@
     <string name="filter">Filter</string>
     <string name="refresh">Obnoviť</string>
     <string name="clear">Vyčistiť</string>
-    <string name="use_external_video_player_summary">Neprehrá audio pri niektorých rozlíšeniach</string>
+    <string name="use_external_video_player_summary">Odstráni audio pri niektorých rozlíšeniach</string>
     <string name="popup_remember_size_pos_title">Zapamätať si parametre mini okna</string>
     <string name="popup_remember_size_pos_summary">Zapamätať si posledné nastavenie veľkosti a pozície mini okna</string>
     <string name="player_gesture_controls_title">Ovládanie prehrávača gestami</string>
@@ -313,7 +313,7 @@
     <string name="metadata_cache_wipe_summary">Odstrániť všetky údaje webových stránok vo vyrovnávacej pamäti</string>
     <string name="metadata_cache_wipe_complete_notice">Vyrovnávacia pamäť metadát bola vymazaná</string>
     <string name="auto_queue_title">Automaticky zaradiť daľší stream</string>
-    <string name="auto_queue_summary">Končiaci neopakujúci sa zoznam prehrávania bude pokračovať súvisiacim streamom</string>
+    <string name="auto_queue_summary">Končiaci (neopakujúci sa) zoznam prehrávania bude pokračovať súvisiacim streamom</string>
     <string name="settings_category_debug_title">Ladenie</string>
     <string name="file">Súbor</string>
     <string name="invalid_directory">Neplatný adresár</string>
@@ -690,4 +690,20 @@
     <string name="night_theme_title">Nočná Téma</string>
     <string name="disable_media_tunneling_summary">Ak vám video pri prehrávaní seká alebo sa zobrazuje čierna obrazovka zakážte tunelovanie médií</string>
     <string name="disable_media_tunneling_title">Zakázať tunelovanie médií</string>
+    <string name="metadata_privacy_internal">Interné</string>
+    <string name="metadata_privacy_private">Súkromné</string>
+    <string name="metadata_privacy_unlisted">Nezaradené</string>
+    <string name="metadata_thumbnail_url">URL miniatúry</string>
+    <string name="metadata_privacy_public">Verejné</string>
+    <string name="metadata_host">Hostiteľ</string>
+    <string name="metadata_support">Podpora</string>
+    <string name="metadata_language">Jazyk</string>
+    <string name="metadata_age_limit">Vekový limit</string>
+    <string name="metadata_privacy">Ochrana osobných údajov</string>
+    <string name="metadata_licence">Licencia</string>
+    <string name="metadata_tags">Tagy</string>
+    <string name="metadata_category">Kategória</string>
+    <string name="description_select_disable">Zakázať výber textu v popise</string>
+    <string name="description_select_enable">Povolenie výberu textu v popise</string>
+    <string name="description_select_note">Teraz môžete vybrať text vo vnútri popisu. Upozorňujeme, že stránka môže blikať a odkazy nemusia byť klikateľné, keď je v režime výberu.</string>
 </resources>

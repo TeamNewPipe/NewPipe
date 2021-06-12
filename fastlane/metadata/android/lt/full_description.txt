@@ -1,1 +1,1 @@
-NewPipe nenaudoja jokių Google paslaugų ar Youtube API. Jisai tiktai nuskanuoja svetaine dėl reikemos informacijos. Dėlto NewPipe nereikia įdiegtų  Google paslaugų. Ir jums nereikia Youtube paskyros norint naudoti NewPipe taip pat yra FLOSS.
+NewPipe nenaudoja jokių Google paslaugų ar Youtube API. Programa tik paima informaciją kurios jai reikia. Dėlto NewPipe nereikia įdiegtų Google paslaugų. Taipogi jums nereikia Youtube paskyros norint naudoti NewPipe, tai yra FLOSS.

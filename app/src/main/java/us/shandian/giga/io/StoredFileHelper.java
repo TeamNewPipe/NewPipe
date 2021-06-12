@@ -275,7 +275,7 @@ public class StoredFileHelper implements Serializable {
             if (!docTree.canRead() || !docTree.canWrite()) return false;
             try {
                 docFile = createSAF(context, srcType, srcName);
-                if (docFile == null || docFile.getName() == null) return false;
+                if (docFile.getName() == null) return false;
                 result = true;
             } catch (IOException e) {
                 return false;
@@ -354,7 +354,9 @@ public class StoredFileHelper implements Serializable {
         }
     }
 
-    private DocumentFile createSAF(@Nullable Context context, String mime, String filename) throws IOException {
+    @NonNull
+    private DocumentFile createSAF(@Nullable Context context, String mime, String filename)
+            throws IOException {
         DocumentFile res = StoredDirectoryHelper.findFileSAFHelper(context, docTree, filename);
 
         if (res != null && res.exists() && res.isDirectory()) {

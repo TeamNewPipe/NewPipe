@@ -319,25 +319,36 @@ public class DownloadDialog extends DialogFragment
 
     private void fetchStreamsSize() {
         disposables.clear();
-
         disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedVideoStreams)
                 .subscribe(result -> {
-            if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.video_button) {
-                setupVideoSpinner();
-            }
-        }));
+                    if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()
+                            == R.id.video_button) {
+                        setupVideoSpinner();
+                    }
+                }, throwable -> ErrorActivity.reportErrorInSnackbar(context,
+                        new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
+                                "Downloading video stream size",
+                                currentInfo.getServiceId()))));
         disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedAudioStreams)
                 .subscribe(result -> {
-            if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button) {
-                setupAudioSpinner();
-            }
-        }));
+                    if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()
+                            == R.id.audio_button) {
+                        setupAudioSpinner();
+                    }
+                }, throwable -> ErrorActivity.reportErrorInSnackbar(context,
+                        new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
+                                "Downloading audio stream size",
+                                currentInfo.getServiceId()))));
         disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedSubtitleStreams)
                 .subscribe(result -> {
-            if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.subtitle_button) {
-                setupSubtitleSpinner();
-            }
-        }));
+                    if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId()
+                            == R.id.subtitle_button) {
+                        setupSubtitleSpinner();
+                    }
+                }, throwable -> ErrorActivity.reportErrorInSnackbar(context,
+                        new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
+                                "Downloading subtitle stream size",
+                                currentInfo.getServiceId()))));
     }
 
     @Override

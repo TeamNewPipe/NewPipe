@@ -72,7 +72,7 @@
     <string name="video">Video</string>
     <string name="audio">Geluid</string>
     <string name="retry">Opnieuw proberen</string>
-    <string name="main_bg_subtitle">Druk op \"zoeken\" om te beginnen.</string>
+    <string name="main_bg_subtitle">Druk op \"Zoeken\" om te beginnen.</string>
     <string name="autoplay_by_calling_app_title">Automatisch afspelen</string>
     <string name="autoplay_by_calling_app_summary">Speelt video’s af als NewPipe vanuit een andere app wordt geopend</string>
     <string name="duration_live">Live</string>
@@ -262,8 +262,8 @@
     <string name="preferred_player_fetcher_notification_message">Bezig met laden van gevraagde inhoud</string>
     <string name="import_data_title">Databank importeren</string>
     <string name="export_data_title">Databank exporteren</string>
-    <string name="import_data_summary">Dit overschrijft je huidige geschiedenis, abonnementen, playlists en instellingen</string>
-    <string name="export_data_summary">Exporteer geschiedenis, abonnementen, playlists en instellingen</string>
+    <string name="import_data_summary">Dit overschrijft je huidige geschiedenis, abonnementen, afspeellijsten en instellingen</string>
+    <string name="export_data_summary">Exporteer geschiedenis, abonnementen, afspeellijsten en instellingen</string>
     <string name="export_complete_toast">Geëxporteerd</string>
     <string name="import_complete_toast">Geïmporteerd</string>
     <string name="no_valid_zip_file">Geen geldig ZIP-bestand</string>
@@ -599,7 +599,7 @@
 \nSchakel \"%1$s\" in bij de instellingen als u die wilt zien.</string>
     <string name="remove_watched">Verwijder bekeken</string>
     <string name="show_original_time_ago_summary">Originele teksten van services zijn zichtbaar in stream-items</string>
-    <string name="youtube_restricted_mode_enabled_title">YouTube \"beperkte modus\" aanzetten</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube \"Beperkte modus\" aanzetten</string>
     <string name="show_original_time_ago_title">Laat originele tijd geleden zien</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanaal avatar afbeelding</string>
     <string name="video_detail_by">Door %s</string>
@@ -641,7 +641,7 @@
     <string name="clear_cookie_summary">Verwijder cookies die NewPipe opslaat wanneer u een reCAPTCHA oplost</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies zijn verwijderd</string>
     <string name="clear_cookie_title">Verwijder reCAPTCHA cookies</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube biedt een \"beperkte modus\" aan; dit verbergt mogelijk materiaal voor volwassenen</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube biedt een \"Beperkte modus\" aan, dit verbergt mogelijk materiaal voor volwassenen</string>
     <string name="show_age_restricted_content_summary">Toon inhoud die mogelijk niet geschikt is voor kinderen omwille van een leeftijdslimiet (zoals 18+)</string>
     <string name="notification_colorize_summary">Laat Android de kleur van de notificatie aanpassen, op basis van de meest voorkomende kleur in de thumbnail (let op: niet beschikbaar op elk apparaat)</string>
     <string name="notification_colorize_title">Notificatie kleur aanpassen</string>
@@ -675,7 +675,25 @@
     <string name="download_has_started">Downloaden is gestart</string>
     <string name="select_night_theme_toast">Je kan je favoriete nacht thema hier beneden selecteren</string>
     <string name="night_theme_summary">Selecteer uw favoriete nacht thema — %s</string>
-    <string name="auto_device_theme_title">Automatisch (apparaat thema)</string>
+    <string name="auto_device_theme_title">Automatisch (toestel thema)</string>
     <string name="show_channel_details">Toon details van kanaal</string>
     <string name="night_theme_title">Nachtmodus</string>
+    <string name="metadata_privacy_internal">Intern</string>
+    <string name="metadata_privacy_private">Privé</string>
+    <string name="metadata_privacy_unlisted">Niet vermeld</string>
+    <string name="metadata_privacy_public">Openbaar</string>
+    <string name="metadata_thumbnail_url">Miniatuur-URL</string>
+    <string name="metadata_host">Host</string>
+    <string name="metadata_support">Ondersteuning</string>
+    <string name="metadata_language">Taal</string>
+    <string name="metadata_age_limit">Leeftijdslimiet</string>
+    <string name="metadata_privacy">Privacy</string>
+    <string name="metadata_licence">Licentie</string>
+    <string name="metadata_tags">Tags</string>
+    <string name="metadata_category">Categorie</string>
+    <string name="description_select_disable">Tekst selecteren in de beschrijving uitschakelen</string>
+    <string name="description_select_enable">Tekst selecteren in de beschrijving inschakelen</string>
+    <string name="description_select_note">U kunt nu tekst in de beschrijving selecteren. Houd er rekening mee dat de pagina kan flikkeren en dat links mogelijk niet klikbaar zijn in de selectiemodus.</string>
+    <string name="disable_media_tunneling_summary">Media tunneling uitschakelen als u een zwart scherm ervaart of video hapert bij het afspelen</string>
+    <string name="disable_media_tunneling_title">Media tunneling uitschakelen</string>
 </resources>

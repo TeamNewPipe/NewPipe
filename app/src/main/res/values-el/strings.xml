@@ -645,7 +645,7 @@
     <string name="peertube_instance_url_title">Στιγμιότυπα PeerTube</string>
     <string name="notification_colorize_title">Χρωματισμός ειδοποιήσεων</string>
     <string name="notification_colorize_summary">Επιτρέπει στο Android να τροποποιήσει το χρώμα της ειδοποίησης, σύμφωνα με το κύριο χρώμα του εικονιδίου (δεν διατίθεται σε όλες τις συσκευές)</string>
-    <string name="show_thumbnail_summary">Χρήση των εικονιδίων στην οθόνη κλειδώματοςως φόντο και στις ειδοποιήσεις</string>
+    <string name="show_thumbnail_summary">Χρήση των εικονιδίων ως φόντο στην οθόνη κλειδώματος και στις ειδοποιήσεις</string>
     <string name="show_thumbnail_title">Εμφάνιση</string>
     <string name="msg_calculating_hash">Υπολογισμός hash</string>
     <string name="hash_channel_description">Ειδοποιήσεις για πρόοδο βίντεο hashing</string>
@@ -680,4 +680,19 @@
     <string name="show_channel_details">Εμφάνιση λεπτομερειών καναλιού</string>
     <string name="disable_media_tunneling_summary">Απενεργοποιήστε το media tunneling, αν εμφανίζεται μαύρη οθόνη ή διακοπτόμενος ήχος κατά την αναπαραγωγή βίντεο</string>
     <string name="disable_media_tunneling_title">Απενεργοποίηση media tunneling</string>
+    <string name="metadata_privacy_internal">Εσωτερικό</string>
+    <string name="metadata_privacy_private">Ιδιωτικό</string>
+    <string name="metadata_privacy_unlisted">Εκτός λίστας</string>
+    <string name="metadata_privacy_public">Δημόσιο</string>
+    <string name="metadata_thumbnail_url">URL εικονιδίου</string>
+    <string name="metadata_support">Υποστήριξη</string>
+    <string name="metadata_language">Γλώσσα</string>
+    <string name="metadata_age_limit">Όριο ηλικίας</string>
+    <string name="metadata_privacy">Ιδιωτικότητα</string>
+    <string name="metadata_licence">Άδεια</string>
+    <string name="metadata_tags">Ετικέτες</string>
+    <string name="metadata_category">Κατηγορία</string>
+    <string name="description_select_disable">Απενεργοποίηση επιλογής κειμένου στην περιγραφή</string>
+    <string name="description_select_enable">Ενεργοποίηση επιλογής κειμένου στην περιγραφή</string>
+    <string name="description_select_note">Τώρα μπορείτε να επιλέξετε κείμενο εντός της περιγραφής. Σημειώστε ότι, η σελίδα μπορεί να παρουσιάζει αστάθεια κατά τη διάρκεια της κατάστασης επιλογής κειμένου.</string>
 </resources>

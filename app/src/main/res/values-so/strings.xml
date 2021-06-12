@@ -319,7 +319,7 @@
     <string name="permission_display_over_apps">U ogolow app-ka inuu dul fuulo applicationada kale</string>
     <string name="restore_defaults_confirmation">Ma rabtaa inaad sidii hore kuceliso\?</string>
     <string name="restore_defaults">Dib ugu celi sidii hore</string>
-    <string name="saved_tabs_invalid_json">Lama akhrin karo daaqadihii la kaydiyay, ...isticmaalaya kuwii app-ku kusoo baxay</string>
+    <string name="saved_tabs_invalid_json">Lama akhrin karo daaqadihii la kaydiyay, …isticmaalaya kuwii app-ku kusoo baxay</string>
     <string name="no_streams_available_download">Wax la dajiyo lama heli karo</string>
     <string name="error_occurred_detail">Khalad ayaa ka dhacay: %1$s</string>
     <string name="file_name_empty_error">Magaca shayga ma madhnaan karo</string>

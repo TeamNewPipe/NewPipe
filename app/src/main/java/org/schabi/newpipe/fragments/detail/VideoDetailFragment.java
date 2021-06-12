@@ -936,20 +936,20 @@ public final class VideoDetailFragment
 
         if (showRelatedItems && binding.relatedItemsLayout == null) {
             // temp empty fragment. will be updated in handleResult
-            pageAdapter.addFragment(new EmptyFragment(false), RELATED_TAB_TAG);
+            pageAdapter.addFragment(EmptyFragment.newInstance(false), RELATED_TAB_TAG);
             tabIcons.add(R.drawable.ic_art_track);
             tabContentDescriptions.add(R.string.related_items_tab_description);
         }
 
         if (showDescription) {
             // temp empty fragment. will be updated in handleResult
-            pageAdapter.addFragment(new EmptyFragment(false), DESCRIPTION_TAB_TAG);
+            pageAdapter.addFragment(EmptyFragment.newInstance(false), DESCRIPTION_TAB_TAG);
             tabIcons.add(R.drawable.ic_description);
             tabContentDescriptions.add(R.string.description_tab_description);
         }
 
         if (pageAdapter.getCount() == 0) {
-            pageAdapter.addFragment(new EmptyFragment(true), EMPTY_TAB_TAG);
+            pageAdapter.addFragment(EmptyFragment.newInstance(true), EMPTY_TAB_TAG);
         }
         pageAdapter.notifyDataSetUpdate();
 

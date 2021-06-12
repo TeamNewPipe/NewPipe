@@ -3143,6 +3143,7 @@ public final class Player implements
         buildSegments();
 
         binding.itemsListHeaderTitle.setVisibility(View.VISIBLE);
+        binding.itemsListHeaderDuration.setVisibility(View.GONE);
         binding.shuffleButton.setVisibility(View.GONE);
         binding.repeatButton.setVisibility(View.GONE);
 

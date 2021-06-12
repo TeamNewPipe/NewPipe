@@ -1,0 +1,7 @@
+Option "Kanaldetails" wurde zum Langdruckmenü hinzugefügt.
+Funktion zum Umbenennen des Playlist-Namens von der Playlist-Oberfläche zugefügt.
+Benutzer kann nun pausieren, während ein Video gepuffert wird.
+Weiße Thema wurde aufpoliert.
+Überlappende Schriftarten bei Verwendung einer größeren Schriftgröße behoben.
+Kein Video auf Formuler- und Zephier-Geräten behoben.
+Verschiedene Abstürze behoben.
