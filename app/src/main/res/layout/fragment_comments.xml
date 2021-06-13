@@ -49,6 +49,17 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/comments_disabled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/empty_state_view"
+        android:layout_centerHorizontal="true"
+        android:text="@string/comments_are_disabled"
+        android:textSize="20sp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
     <!--ERROR PANEL-->
     <include
         android:id="@+id/error_panel"

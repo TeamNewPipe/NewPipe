@@ -336,6 +336,7 @@
         <item quantity="other">%s videos</item>
     </plurals>
     <string name="no_comments">No comments</string>
+    <string name="comments_are_disabled">Comments are disabled</string>
     <!-- Missions -->
     <string name="start">Start</string>
     <string name="pause">Pause</string>
