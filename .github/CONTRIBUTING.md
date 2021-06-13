@@ -25,22 +25,54 @@ You'll see exactly what is sent, be able to add your comments, and then send it.
 
 ## Code contribution
 
-* If you want to help out with an existing bug report or feature request, leave a comment on that issue saying you want to try your hand at it.
-* If there is no existing issue for what you want to work on, open a new one describing your changes. This gives the team and the community a chance to give feedback before you spend time on something that is already in development, should be done differently, or should be avoided completely.
-* Stick to NewPipe's style conventions of [checkStyle](https://github.com/checkstyle/checkstyle). It runs each time you build the project.
-* Do not bring non-free software (e.g. binary blobs) into the project. Make sure you do not introduce Google
-  libraries.
+### Guidelines
+
+* Stick to NewPipe's *style conventions* of [checkStyle](https://github.com/checkstyle/checkstyle) and [ktlint](https://github.com/pinterest/ktlint). They run each time you build the project.
 * Stick to [F-Droid contribution guidelines](https://f-droid.org/wiki/page/Inclusion_Policy).
-* Make changes on a separate branch with a meaningful name, not on the _master_ branch or the _dev_ branch. This is commonly known as *feature branch workflow*. You may then send your changes as a pull request (PR) on GitHub.
-* Please test (compile and run) your code before submitting changes! Ideally, provide test feedback in the PR description. Untested code will **not** be merged!
-* Make sure your PR is up-to-date with the rest of the code. Often, a simple click on "Update branch" will do the job, but if not, you must rebase the dev branch manually and resolve the problems on your own. You can find help [on the wiki](https://github.com/TeamNewPipe/NewPipe/wiki/How-to-merge-a-PR). That makes the maintainers' jobs way easier.
-* Please show intention to maintain your features and code after you contribute a PR. Unmaintained code is a hassle for core developers. If you do not intend to maintain features you plan to contribute, please rethink your submission, or clearly state that in the PR description.
+* In particular **do not bring non-free software** (e.g. binary blobs) into the project. Make sure you do not introduce Google closed-source libraries.
+
+### Before starting development
+
+* If you want to help out with an existing bug report or feature request, **leave a comment** on that issue saying you want to try your hand at it.
+* If there is no existing issue for what you want to work on, **open a new one** describing your changes. This gives the team and the community a chance to give **feedback** before you spend time on something that is already in development, should be done differently, or should be avoided completely.
+* Please show **intention to maintain your features** and code after you contribute a PR. Unmaintained code is a hassle for core developers. If you do not intend to maintain features you plan to contribute, please rethink your submission, or clearly state that in the PR description.
+* Send PRs that **only cover one specific issue/solution/bug**. Do not send PRs that are huge and could be split into multiple independent contributions.
+
+### Creating a Pull Request (PR)
+
+* Make changes on a **separate branch** with a meaningful name, not on the _master_ branch or the _dev_ branch. This is commonly known as *feature branch workflow*. You may then send your changes as a pull request (PR) on GitHub.
+* Please **test** (compile and run) your code before submitting changes! Ideally, provide test feedback in the PR description. Untested code will **not** be merged!
 * Respond if someone requests changes or otherwise raises issues about your PRs.
-* Send PRs that only cover one specific issue/solution/bug. Do not send PRs that are huge and consist of multiple independent solutions.
 * Try to figure out yourself why builds on our CI fail.
+* Make sure your PR is **up-to-date** with the rest of the code. Often, a simple click on "Update branch" will do the job, but if not, you must *rebase* the dev branch manually and resolve the problems on your own. You can find help [on the wiki](https://github.com/TeamNewPipe/NewPipe/wiki/How-to-merge-a-PR). That makes the maintainers' jobs way easier.
+
+## Build instructions
+
+### Basic setup
+
+NewPipe is developed using [Android Studio](https://developer.android.com/studio/). The setup is fairly simple:
+- Clone the NewPipe repository with `git clone https://github.com/TeamNewPipe/NewPipe.git` (or use your fork)
+- Open the folder you just cloned with Android Studio
+- Build and run just like you would do with any other app, with the green triangle in the top bar
+
+### checkStyle setup
+
+The [checkStyle](https://github.com/checkstyle/checkstyle) plugin verifies that Java code abides by the project style. It runs automatically each time you build the project, though to be able to view errors directly in the editor, insead of having to skim through the build output, you can install an Android Studio plugin:
+- Go to `File -> Settings -> Plugins`, search for `checkstyle` and install `CheckStyle-IDEA`
+- Go to `File -> Settings -> Tools -> Checkstyle`
+- Add NewPipe's configuration file by clicking the upper `+` on the right
+- Under the "Use a local Checkstyle file" label, click on `Browse` and pick the file named `checkstyle.xml` in the project's root folder
+- Enable "Store relative to project location" so that moving the directory around does not create issues
+- Insert a description in the top bar, then click `Next`, then `Finish`
+- Activate the configuration file you just added by enabling the checkbox on the left
+- Click `Ok` and you are done
+
+### ktlint setup
+
+The [ktlint](https://github.com/pinterest/ktlint) plugin does the same job as checkStyle for Kotlin files. Installing the related plugin is as simple as going to `File -> Settings -> Plugins`, searching for `ktlint` and installing `Ktlint (unofficial)`.
 
 ## Communication
 
 * The #newpipe channel on Libera Chat (`ircs://irc.libera.chat:6697/newpipe`) has the core team and other developers in it. [Click here for webchat](https://web.libera.chat/#newpipe)!
-* You can also use a Matrix account to join the NewPipe channel at [#newpipe:libera.chat](https://matrix.to/#/#newpipe:libera.chat).
+* You can also use a Matrix account to join the NewPipe channel at [#newpipe:libera.chat](https://matrix.to/#/#newpipe:libera.chat). We suggest using [Element](https://element.io/) as a Matrix client, available both for phone and desktop.
 * Post suggestions, changes, ideas etc. on GitHub or IRC.
