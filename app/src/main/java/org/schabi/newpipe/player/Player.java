@@ -123,11 +123,11 @@ import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
-import org.schabi.newpipe.util.KoreUtil;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.SerializedCache;
-import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.ExpandableSurfaceView;
 
 import java.io.IOException;
@@ -1033,7 +1033,7 @@ public final class Player implements
         // show kodi button if it supports the current service and it is enabled in settings
         binding.playWithKodi.setVisibility(videoPlayerSelected()
                 && playQueue != null && playQueue.getItem() != null
-                && KoreUtil.shouldShowPlayWithKodi(context, playQueue.getItem().getServiceId())
+                && KoreUtils.shouldShowPlayWithKodi(context, playQueue.getItem().getServiceId())
                 ? View.VISIBLE : View.GONE);
     }
     //endregion
@@ -3593,7 +3593,8 @@ public final class Player implements
         } else if (v.getId() == binding.moreOptionsButton.getId()) {
             onMoreOptionsClicked();
         } else if (v.getId() == binding.share.getId()) {
-            ShareUtils.shareText(context, getVideoTitle(), getVideoUrlAtCurrentTime());
+            ShareUtils.shareText(context, getVideoTitle(), getVideoUrlAtCurrentTime(),
+                            currentItem.getThumbnailUrl());
         } else if (v.getId() == binding.playWithKodi.getId()) {
             onPlayWithKodiClicked();
         } else if (v.getId() == binding.openInBrowser.getId()) {
@@ -3724,7 +3725,7 @@ public final class Player implements
                 if (DEBUG) {
                     Log.i(TAG, "Failed to start kore", e);
                 }
-                KoreUtil.showInstallKoreDialog(getParentActivity());
+                KoreUtils.showInstallKoreDialog(getParentActivity());
             }
         }
     }

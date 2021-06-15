@@ -10,8 +10,8 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.R
 import org.schabi.newpipe.util.Localization
-import org.schabi.newpipe.util.ShareUtils
 import org.schabi.newpipe.util.ThemeHelper
+import org.schabi.newpipe.util.external_communication.ShareUtils
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader

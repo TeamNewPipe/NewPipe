@@ -27,7 +27,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ActivityErrorBinding;
 import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.time.LocalDateTime;
@@ -195,7 +195,8 @@ public class ErrorActivity extends AppCompatActivity {
                 onBackPressed();
                 return true;
             case R.id.menu_item_share_error:
-                ShareUtils.shareText(this, getString(R.string.error_report_title), buildJson());
+                ShareUtils.shareText(getApplicationContext(),
+                        getString(R.string.error_report_title), buildJson());
                 return true;
             default:
                 return false;
@@ -220,13 +221,10 @@ public class ErrorActivity extends AppCompatActivity {
                                         + getString(R.string.app_name) + " "
                                         + BuildConfig.VERSION_NAME)
                                 .putExtra(Intent.EXTRA_TEXT, buildJson());
-                        if (i.resolveActivity(getPackageManager()) != null) {
-                            ShareUtils.openIntentInApp(context, i);
-                        }
+                        ShareUtils.openIntentInApp(context, i, true);
                     } else if (action.equals("GITHUB")) { // open the NewPipe issue page on GitHub
                         ShareUtils.openUrlInBrowser(this, ERROR_GITHUB_ISSUE_URL, false);
                     }
-
                 })
                 .setNegativeButton(R.string.decline, (dialog, which) -> {
                     // do nothing

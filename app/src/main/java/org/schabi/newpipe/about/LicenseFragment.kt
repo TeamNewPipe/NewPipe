@@ -19,7 +19,6 @@ import java.util.Objects
  */
 class LicenseFragment : Fragment() {
     private lateinit var softwareComponents: Array<SoftwareComponent>
-    private var componentForContextMenu: SoftwareComponent? = null
     private var activeLicense: License? = null
     private val compositeDisposable = CompositeDisposable()
 

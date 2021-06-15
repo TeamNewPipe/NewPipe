@@ -12,6 +12,8 @@ import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
 import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -83,12 +85,13 @@ public enum StreamDialogEntry {
         try {
             NavigationHelper.playWithKore(fragment.requireContext(), videoUrl);
         } catch (final Exception e) {
-            KoreUtil.showInstallKoreDialog(fragment.getActivity());
+            KoreUtils.showInstallKoreDialog(fragment.getActivity());
         }
     }),
 
     share(R.string.share, (fragment, item) ->
-            ShareUtils.shareText(fragment.getContext(), item.getName(), item.getUrl())),
+            ShareUtils.shareText(fragment.getContext(), item.getName(), item.getUrl(),
+                    item.getThumbnailUrl())),
 
     open_in_browser(R.string.open_in_browser, (fragment, item) ->
             ShareUtils.openUrlInBrowser(fragment.getContext(), item.getUrl()));
