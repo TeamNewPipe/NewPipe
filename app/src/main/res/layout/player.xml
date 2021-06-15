@@ -385,7 +385,7 @@
                         android:paddingRight="5dp"
                         android:paddingBottom="2dp"
                         android:textColor="@android:color/white"
-                        android:textSize="14sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         android:visibility="gone"
                         tools:ignore="RtlHardcoded"
