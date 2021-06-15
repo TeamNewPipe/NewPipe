@@ -43,4 +43,12 @@
         android:title="@string/caption_setting_title"
         app:iconSpaceReserved="false" />
 
+    <ListPreference
+        android:defaultValue="@string/tablet_mode_auto_key"
+        android:entries="@array/tablet_mode_description"
+        android:entryValues="@array/tablet_mode_values"
+        android:key="@string/tablet_mode_key"
+        android:summary="%s"
+        android:title="@string/tablet_mode_title"
+        app:iconSpaceReserved="false" />
 </PreferenceScreen>
