@@ -27,6 +27,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
+import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.File;
@@ -255,7 +256,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         // save import path only on success; save immediately because app is about to exit
         saveLastImportExportDataUri(true);
         // restart app to properly load db
-        System.exit(0);
+        NavigationHelper.restartApp(requireActivity());
     }
 
     private Uri getImportExportDataUri() {
