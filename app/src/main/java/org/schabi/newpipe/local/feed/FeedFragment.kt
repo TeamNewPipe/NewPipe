@@ -22,6 +22,7 @@ package org.schabi.newpipe.local.feed
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Parcelable
@@ -94,6 +95,9 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private lateinit var groupAdapter: GroupAdapter<GroupieViewHolder>
     @State @JvmField var showPlayedItems: Boolean = true
 
+    private var onSettingsChangeListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
+    private var updateListViewModeOnResume = false
+
     init {
         setHasOptionsMenu(true)
     }
@@ -104,6 +108,14 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         groupId = arguments?.getLong(KEY_GROUP_ID, FeedGroupEntity.GROUP_ALL_ID)
             ?: FeedGroupEntity.GROUP_ALL_ID
         groupName = arguments?.getString(KEY_GROUP_NAME) ?: ""
+
+        onSettingsChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key.equals(getString(R.string.list_view_mode_key))) {
+                updateListViewModeOnResume = true
+            }
+        }
+        PreferenceManager.getDefaultSharedPreferences(activity)
+            .registerOnSharedPreferenceChangeListener(onSettingsChangeListener)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -122,15 +134,10 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         groupAdapter = GroupAdapter<GroupieViewHolder>().apply {
             setOnItemClickListener(listenerStreamItem)
             setOnItemLongClickListener(listenerStreamItem)
-            spanCount = if (shouldUseGridLayout()) getGridSpanCount() else 1
         }
 
-        feedBinding.itemsList.apply {
-            layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount).apply {
-                spanSizeLookup = groupAdapter.spanSizeLookup
-            }
-            adapter = groupAdapter
-        }
+        feedBinding.itemsList.adapter = groupAdapter
+        setupListViewMode()
     }
 
     override fun onPause() {
@@ -141,6 +148,23 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     override fun onResume() {
         super.onResume()
         updateRelativeTimeViews()
+
+        if (updateListViewModeOnResume) {
+            updateListViewModeOnResume = false
+
+            setupListViewMode()
+            if (viewModel.stateLiveData.value != null) {
+                handleResult(viewModel.stateLiveData.value!!)
+            }
+        }
+    }
+
+    fun setupListViewMode() {
+        // does everything needed to setup the layouts for grid or list modes
+        groupAdapter.spanCount = if (shouldUseGridLayout()) getGridSpanCount() else 1
+        feedBinding.itemsList.layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount).apply {
+            spanSizeLookup = groupAdapter.spanSizeLookup
+        }
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
@@ -210,6 +234,12 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     override fun onDestroy() {
         disposables.dispose()
+        if (onSettingsChangeListener != null) {
+            PreferenceManager.getDefaultSharedPreferences(activity)
+                .unregisterOnSharedPreferenceChangeListener(onSettingsChangeListener)
+            onSettingsChangeListener = null
+        }
+
         super.onDestroy()
         activity?.supportActionBar?.subtitle = null
     }
