@@ -66,16 +66,14 @@ public enum StreamDialogEntry {
     }), // has to be set manually
 
     append_playlist(R.string.append_playlist, (fragment, item) -> {
-        if (fragment.getFragmentManager() != null) {
-            final PlaylistAppendDialog d = PlaylistAppendDialog
-                    .fromStreamInfoItems(Collections.singletonList(item));
+        final PlaylistAppendDialog d = PlaylistAppendDialog
+                .fromStreamInfoItems(Collections.singletonList(item));
 
-            PlaylistAppendDialog.onPlaylistFound(fragment.getContext(),
-                () -> d.show(fragment.getFragmentManager(), "StreamDialogEntry@append_playlist"),
-                () -> PlaylistCreationDialog.newInstance(d)
-                        .show(fragment.getFragmentManager(), "StreamDialogEntry@create_playlist")
-            );
-        }
+        PlaylistAppendDialog.onPlaylistFound(fragment.getContext(),
+            () -> d.show(fragment.getParentFragmentManager(), "StreamDialogEntry@append_playlist"),
+            () -> PlaylistCreationDialog.newInstance(d)
+                    .show(fragment.getParentFragmentManager(), "StreamDialogEntry@create_playlist")
+        );
     }),
 
     play_with_kodi(R.string.play_with_kodi_title, (fragment, item) -> {

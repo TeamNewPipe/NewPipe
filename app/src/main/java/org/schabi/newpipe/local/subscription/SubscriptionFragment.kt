@@ -198,7 +198,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun openReorderDialog() {
-        FeedGroupReorderDialog().show(requireFragmentManager(), null)
+        FeedGroupReorderDialog().show(parentFragmentManager, null)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
