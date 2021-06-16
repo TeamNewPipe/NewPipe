@@ -2,7 +2,6 @@ package org.schabi.newpipe.settings;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -10,6 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
@@ -39,8 +41,6 @@ import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
-    private static final int REQUEST_IMPORT_PATH = 8945;
-    private static final int REQUEST_EXPORT_PATH = 30945;
     private static final String ZIP_MIME_TYPE = "application/zip";
     private static final SimpleDateFormat EXPORT_DATE_FORMAT
             = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
@@ -55,6 +55,10 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private Localization initialSelectedLocalization;
     private ContentCountry initialSelectedContentCountry;
     private String initialLanguage;
+    private final ActivityResultLauncher<Intent> requestImportPathLauncher =
+            registerForActivityResult(new StartActivityForResult(), this::requestImportPathResult);
+    private final ActivityResultLauncher<Intent> requestExportPathLauncher =
+            registerForActivityResult(new StartActivityForResult(), this::requestExportPathResult);
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
@@ -71,20 +75,18 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         final Preference importDataPreference = requirePreference(R.string.import_data);
         importDataPreference.setOnPreferenceClickListener((Preference p) -> {
-            startActivityForResult(
-                    StoredFileHelper.getPicker(requireContext(), getImportExportDataUri()),
-                    REQUEST_IMPORT_PATH);
+            requestImportPathLauncher.launch(
+                    StoredFileHelper.getPicker(requireContext(), getImportExportDataUri()));
             return true;
         });
 
         final Preference exportDataPreference = requirePreference(R.string.export_data);
         exportDataPreference.setOnPreferenceClickListener((final Preference p) -> {
 
-            startActivityForResult(
+            requestExportPathLauncher.launch(
                     StoredFileHelper.getNewPicker(requireContext(),
                             "NewPipeData-" + EXPORT_DATE_FORMAT.format(new Date()) + ".zip",
-                            ZIP_MIME_TYPE, getImportExportDataUri()),
-                    REQUEST_EXPORT_PATH);
+                            ZIP_MIME_TYPE, getImportExportDataUri()));
             return true;
         });
 
@@ -156,37 +158,34 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
     }
 
-    @Override
-    public void onActivityResult(final int requestCode,
-                                 final int resultCode,
-                                 @Nullable final Intent data) {
+    private void requestExportPathResult(final ActivityResult result) {
         assureCorrectAppLanguage(getContext());
-        super.onActivityResult(requestCode, resultCode, data);
-        if (DEBUG) {
-            Log.d(TAG, "onActivityResult() called with: "
-                    + "requestCode = [" + requestCode + "], "
-                    + "resultCode = [" + resultCode + "], "
-                    + "data = [" + data + "]");
-        }
-
-        if ((requestCode == REQUEST_IMPORT_PATH || requestCode == REQUEST_EXPORT_PATH)
-                && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
-
-            lastImportExportDataUri = data.getData(); // will be saved only on success
+        if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+            lastImportExportDataUri = result.getData().getData(); // will be saved only on success
 
             final StoredFileHelper file
-                    = new StoredFileHelper(getContext(), data.getData(), ZIP_MIME_TYPE);
-            if (requestCode == REQUEST_EXPORT_PATH) {
-                exportDatabase(file);
-            } else {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-                builder.setMessage(R.string.override_current_data)
-                        .setPositiveButton(R.string.finish,
-                                (DialogInterface d, int id) -> importDatabase(file))
-                        .setNegativeButton(R.string.cancel,
-                                (DialogInterface d, int id) -> d.cancel());
-                builder.create().show();
-            }
+                    = new StoredFileHelper(getContext(), result.getData().getData(), ZIP_MIME_TYPE);
+
+            exportDatabase(file);
+        }
+    }
+
+    private void requestImportPathResult(final ActivityResult result) {
+        assureCorrectAppLanguage(getContext());
+        if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+            lastImportExportDataUri = result.getData().getData(); // will be saved only on success
+
+            final StoredFileHelper file
+                    = new StoredFileHelper(getContext(), result.getData().getData(), ZIP_MIME_TYPE);
+
+            new AlertDialog.Builder(requireActivity())
+                    .setMessage(R.string.override_current_data)
+                    .setPositiveButton(R.string.finish, (d, id) ->
+                            importDatabase(file))
+                    .setNegativeButton(R.string.cancel, (d, id) ->
+                            d.cancel())
+                    .create()
+                    .show();
         }
     }
 
