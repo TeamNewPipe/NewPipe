@@ -107,6 +107,7 @@ public class RouterActivity extends AppCompatActivity {
     protected String currentUrl;
     private StreamingService currentService;
     private boolean selectionIsDownload = false;
+    private AlertDialog alertDialogChoice = null;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -124,6 +125,15 @@ public class RouterActivity extends AppCompatActivity {
 
         setTheme(ThemeHelper.isLightThemeSelected(this)
                 ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // we need to dismiss the dialog before leaving the activity or we get leaks
+        if (alertDialogChoice != null) {
+            alertDialogChoice.dismiss();
+        }
     }
 
     @Override
@@ -333,7 +343,7 @@ public class RouterActivity extends AppCompatActivity {
             }
         };
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(themeWrapperContext)
+        alertDialogChoice = new AlertDialog.Builder(themeWrapperContext)
                 .setTitle(R.string.preferred_open_action_share_menu_title)
                 .setView(radioGroup)
                 .setCancelable(true)
@@ -347,12 +357,12 @@ public class RouterActivity extends AppCompatActivity {
                 .create();
 
         //noinspection CodeBlock2Expr
-        alertDialog.setOnShowListener(dialog -> {
-            setDialogButtonsState(alertDialog, radioGroup.getCheckedRadioButtonId() != -1);
+        alertDialogChoice.setOnShowListener(dialog -> {
+            setDialogButtonsState(alertDialogChoice, radioGroup.getCheckedRadioButtonId() != -1);
         });
 
         radioGroup.setOnCheckedChangeListener((group, checkedId) ->
-                setDialogButtonsState(alertDialog, true));
+                setDialogButtonsState(alertDialogChoice, true));
         final View.OnClickListener radioButtonsClickListener = v -> {
             final int indexOfChild = radioGroup.indexOfChild(v);
             if (indexOfChild == -1) {
@@ -402,10 +412,10 @@ public class RouterActivity extends AppCompatActivity {
         }
         selectedPreviously = selectedRadioPosition;
 
-        alertDialog.show();
+        alertDialogChoice.show();
 
         if (DeviceUtils.isTv(this)) {
-            FocusOverlayView.setupFocusObserver(alertDialog);
+            FocusOverlayView.setupFocusObserver(alertDialogChoice);
         }
     }
 
