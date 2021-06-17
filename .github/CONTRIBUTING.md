@@ -3,9 +3,9 @@ NewPipe contribution guidelines
 
 ## Crash reporting
 
-Report crashes through the automated crash report system of NewPipe.
+Report crashes through the **automated crash report system** of NewPipe.
 This way all the data needed for debugging is included in your bugreport for GitHub.
-You'll see exactly what is sent, be able to add your comments, and then send it.
+You'll see *exactly* what is sent, be able to add **your comments**, and then send it.
 
 ## Issue reporting/feature requests
 
@@ -29,14 +29,15 @@ You'll see exactly what is sent, be able to add your comments, and then send it.
 
 * Stick to NewPipe's *style conventions* of [checkStyle](https://github.com/checkstyle/checkstyle) and [ktlint](https://github.com/pinterest/ktlint). They run each time you build the project.
 * Stick to [F-Droid contribution guidelines](https://f-droid.org/wiki/page/Inclusion_Policy).
-* In particular **do not bring non-free software** (e.g. binary blobs) into the project. Make sure you do not introduce Google closed-source libraries.
+* In particular **do not bring non-free software** (e.g. binary blobs) into the project. Make sure you do not introduce any closed-source library from Google.
 
 ### Before starting development
 
 * If you want to help out with an existing bug report or feature request, **leave a comment** on that issue saying you want to try your hand at it.
-* If there is no existing issue for what you want to work on, **open a new one** describing your changes. This gives the team and the community a chance to give **feedback** before you spend time on something that is already in development, should be done differently, or should be avoided completely.
+* If there is no existing issue for what you want to work on, **open a new one**  describing the changes you are planning to introduce. This gives the team and the community a chance to give **feedback** before you spend time on something that is already in development, should be done differently, or should be avoided completely.
 * Please show **intention to maintain your features** and code after you contribute a PR. Unmaintained code is a hassle for core developers. If you do not intend to maintain features you plan to contribute, please rethink your submission, or clearly state that in the PR description.
-* Send PRs that **only cover one specific issue/solution/bug**. Do not send PRs that are huge and could be split into multiple independent contributions.
+* Create PRs that cover only **one specific issue/solution/bug**. Do not create PRs that are huge monoliths and could have been split into multiple independent contributions.
+* NewPipe uses [NewPipeExtractor](https://github.com/TeamNewPipe/NewPipeExtractor) to fetch data from services. If you need to change something there, you then have to test your changes in NewPipe. Telling NewPipe to use your extractor version can be accomplished by editing the `app/build.gradle` file: the comments under the "NewPipe libraries" section of `dependencies` will help you out.
 
 ### Creating a Pull Request (PR)
 
@@ -44,35 +45,37 @@ You'll see exactly what is sent, be able to add your comments, and then send it.
 * Please **test** (compile and run) your code before submitting changes! Ideally, provide test feedback in the PR description. Untested code will **not** be merged!
 * Respond if someone requests changes or otherwise raises issues about your PRs.
 * Try to figure out yourself why builds on our CI fail.
-* Make sure your PR is **up-to-date** with the rest of the code. Often, a simple click on "Update branch" will do the job, but if not, you must *rebase* the dev branch manually and resolve the problems on your own. You can find help [on the wiki](https://github.com/TeamNewPipe/NewPipe/wiki/How-to-merge-a-PR). That makes the maintainers' jobs way easier.
+* Make sure your PR is **up-to-date** with the rest of the code. Often, a simple click on "Update branch" will do the job, but if not, you must *rebase* your branch on the `dev` branch manually and resolve the conflicts on your own. You can find help [on the wiki](https://github.com/TeamNewPipe/NewPipe/wiki/How-to-merge-a-PR). Doing this makes the maintainers' job way easier.
 
-## Build instructions
+## IDE setup & building the app
 
 ### Basic setup
 
-NewPipe is developed using [Android Studio](https://developer.android.com/studio/). The setup is fairly simple:
-- Clone the NewPipe repository with `git clone https://github.com/TeamNewPipe/NewPipe.git` (or use your fork)
-- Open the folder you just cloned with Android Studio
-- Build and run just like you would do with any other app, with the green triangle in the top bar
+NewPipe is developed using [Android Studio](https://developer.android.com/studio/). Learn more about how to install it and how it works in the [official documentation](https://developer.android.com/studio/intro). In particular, make sure you have accepted Android Studio's SDK licences. Once Android Studio is ready, setting up the NewPipe project is fairly simple:
+- Clone the NewPipe repository with `git clone https://github.com/TeamNewPipe/NewPipe.git` (or use use the link from your own fork, if you then want to open a PR).
+- Open the folder you just cloned with Android Studio.
+- Build and run just like you would do with any other app, with the green triangle in the top bar.
 
 ### checkStyle setup
 
-The [checkStyle](https://github.com/checkstyle/checkstyle) plugin verifies that Java code abides by the project style. It runs automatically each time you build the project, though to be able to view errors directly in the editor, insead of having to skim through the build output, you can install an Android Studio plugin:
-- Go to `File -> Settings -> Plugins`, search for `checkstyle` and install `CheckStyle-IDEA`
-- Go to `File -> Settings -> Tools -> Checkstyle`
-- Add NewPipe's configuration file by clicking the upper `+` on the right
-- Under the "Use a local Checkstyle file" label, click on `Browse` and pick the file named `checkstyle.xml` in the project's root folder
-- Enable "Store relative to project location" so that moving the directory around does not create issues
-- Insert a description in the top bar, then click `Next`, then `Finish`
-- Activate the configuration file you just added by enabling the checkbox on the left
-- Click `Ok` and you are done
+The [checkStyle](https://github.com/checkstyle/checkstyle) plugin verifies that Java code abides by the project style. It runs automatically each time you build the project, though to be able to view errors directly in the editor, instead of having to skim through the build output, you can install an Android Studio plugin:
+- Go to `File -> Settings -> Plugins`, search for `checkstyle` and install `CheckStyle-IDEA`.
+- Go to `File -> Settings -> Tools -> Checkstyle`.
+- Add NewPipe's configuration file by clicking the `+` in the right toolbar of the "Configuration File" list.
+- Under the "Use a local Checkstyle file" bullet, click on `Browse` and pick the file named `checkstyle.xml` in the project's root folder.
+- Enable "Store relative to project location" so that moving the directory around does not create issues.
+- Insert a description in the top bar, then click `Next` and then `Finish`.
+- Activate the configuration file you just added by enabling the checkbox on the left.
+- Click `Ok` and you are done.
+
+An alternative plugin you can choose for the same job is [SonarLint](https://www.sonarlint.org/intellij), which works for both Java and Kotlin.
 
 ### ktlint setup
 
-The [ktlint](https://github.com/pinterest/ktlint) plugin does the same job as checkStyle for Kotlin files. Installing the related plugin is as simple as going to `File -> Settings -> Plugins`, searching for `ktlint` and installing `Ktlint (unofficial)`.
+The [ktlint](https://github.com/pinterest/ktlint) plugin does the same job as checkStyle for Kotlin files. Installing the related plugin is as simple as going to `File -> Settings -> Plugins`, searching for `ktlint` and installing `Ktlint (unofficial)`. Again, [SonarLint](https://www.sonarlint.org/intellij) exists as an alternative.
 
 ## Communication
 
 * The #newpipe channel on Libera Chat (`ircs://irc.libera.chat:6697/newpipe`) has the core team and other developers in it. [Click here for webchat](https://web.libera.chat/#newpipe)!
-* You can also use a Matrix account to join the NewPipe channel at [#newpipe:libera.chat](https://matrix.to/#/#newpipe:libera.chat). We suggest using [Element](https://element.io/) as a Matrix client, available both for phone and desktop.
-* Post suggestions, changes, ideas etc. on GitHub or IRC.
+* You can also use a Matrix account to join the NewPipe channel at [#newpipe:libera.chat](https://matrix.to/#/#newpipe:libera.chat). Some convenient clients, available both for phone and desktop, are listed at that link.
+* You can post your suggestions, changes, ideas etc. on either GitHub or IRC.
