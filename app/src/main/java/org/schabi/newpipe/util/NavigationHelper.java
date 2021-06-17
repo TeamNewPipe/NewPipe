@@ -600,4 +600,16 @@ public final class NavigationHelper {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
+
+    /**
+     * Finish this <code>Activity</code> as well as all <code>Activities</code> running below it
+     * and then start <code>MainActivity</code>.
+     *
+     * @param activity the activity to finish
+     */
+    public static void restartApp(final Activity activity) {
+        activity.finishAffinity();
+        final Intent intent = new Intent(activity, MainActivity.class);
+        activity.startActivity(intent);
+    }
 }
