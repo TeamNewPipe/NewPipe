@@ -25,7 +25,7 @@
     <!-- Dark Theme -->
     <color name="dark_background_color">#222222</color>
     <color name="dark_dialog_background_color">#424242</color>
-    <color name="dark_settings_accent_color">#ff5252</color>
+    <color name="dark_settings_accent_color">#992722</color>
     <color name="dark_separator_color">#0affffff</color>
     <color name="dark_ripple_color">#48ffffff</color>
     <color name="dark_selected_color">#2affffff</color>
