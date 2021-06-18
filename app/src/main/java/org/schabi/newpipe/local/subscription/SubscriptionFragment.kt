@@ -15,6 +15,8 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -81,6 +83,11 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private lateinit var importExportItem: FeedImportExportItem
     private lateinit var feedGroupsSortMenuItem: HeaderWithMenuItem
     private val subscriptionsSection = Section()
+
+    private val requestExportLauncher =
+        registerForActivityResult(StartActivityForResult(), this::requestExportResult)
+    private val requestImportLauncher =
+        registerForActivityResult(StartActivityForResult(), this::requestImportResult)
 
     @State
     @JvmField
@@ -184,39 +191,39 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun onImportPreviousSelected() {
-        startActivityForResult(StoredFileHelper.getPicker(activity), REQUEST_IMPORT_CODE)
+        requestImportLauncher.launch(StoredFileHelper.getPicker(activity))
     }
 
     private fun onExportSelected() {
         val date = SimpleDateFormat("yyyyMMddHHmm", Locale.ENGLISH).format(Date())
         val exportName = "newpipe_subscriptions_$date.json"
 
-        startActivityForResult(
-            StoredFileHelper.getNewPicker(activity, exportName, "application/json", null),
-            REQUEST_EXPORT_CODE
+        requestExportLauncher.launch(
+            StoredFileHelper.getNewPicker(activity, exportName, "application/json", null)
         )
     }
 
     private fun openReorderDialog() {
-        FeedGroupReorderDialog().show(requireFragmentManager(), null)
+        FeedGroupReorderDialog().show(parentFragmentManager, null)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (data != null && data.data != null && resultCode == Activity.RESULT_OK) {
-            if (requestCode == REQUEST_EXPORT_CODE) {
-                activity.startService(
-                    Intent(activity, SubscriptionsExportService::class.java)
-                        .putExtra(SubscriptionsExportService.KEY_FILE_PATH, data.data)
-                )
-            } else if (requestCode == REQUEST_IMPORT_CODE) {
-                ImportConfirmationDialog.show(
-                    this,
-                    Intent(activity, SubscriptionsImportService::class.java)
-                        .putExtra(KEY_MODE, PREVIOUS_EXPORT_MODE)
-                        .putExtra(KEY_VALUE, data.data)
-                )
-            }
+    fun requestExportResult(result: ActivityResult) {
+        if (result.data != null && result.resultCode == Activity.RESULT_OK) {
+            activity.startService(
+                Intent(activity, SubscriptionsExportService::class.java)
+                    .putExtra(SubscriptionsExportService.KEY_FILE_PATH, result.data?.data)
+            )
+        }
+    }
+
+    fun requestImportResult(result: ActivityResult) {
+        if (result.data != null && result.resultCode == Activity.RESULT_OK) {
+            ImportConfirmationDialog.show(
+                this,
+                Intent(activity, SubscriptionsImportService::class.java)
+                    .putExtra(KEY_MODE, PREVIOUS_EXPORT_MODE)
+                    .putExtra(KEY_VALUE, result.data?.data)
+            )
         }
     }
 
@@ -436,10 +443,5 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private fun getGridSpanCount(): Int {
         val minWidth = resources.getDimensionPixelSize(R.dimen.channel_item_grid_min_width)
         return max(1, floor(resources.displayMetrics.widthPixels / minWidth.toDouble()).toInt())
-    }
-
-    companion object {
-        private const val REQUEST_EXPORT_CODE = 666
-        private const val REQUEST_IMPORT_CODE = 667
     }
 }

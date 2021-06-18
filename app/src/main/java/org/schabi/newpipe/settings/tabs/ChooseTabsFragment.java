@@ -192,13 +192,13 @@ public class ChooseTabsFragment extends Fragment {
                 final SelectKioskFragment selectKioskFragment = new SelectKioskFragment();
                 selectKioskFragment.setOnSelectedListener((serviceId, kioskId, kioskName) ->
                         addTab(new Tab.KioskTab(serviceId, kioskId)));
-                selectKioskFragment.show(requireFragmentManager(), "select_kiosk");
+                selectKioskFragment.show(getParentFragmentManager(), "select_kiosk");
                 return;
             case CHANNEL:
                 final SelectChannelFragment selectChannelFragment = new SelectChannelFragment();
                 selectChannelFragment.setOnSelectedListener((serviceId, url, name) ->
                         addTab(new Tab.ChannelTab(serviceId, url, name)));
-                selectChannelFragment.show(requireFragmentManager(), "select_channel");
+                selectChannelFragment.show(getParentFragmentManager(), "select_channel");
                 return;
             case PLAYLIST:
                 final SelectPlaylistFragment selectPlaylistFragment = new SelectPlaylistFragment();
@@ -215,7 +215,7 @@ public class ChooseTabsFragment extends Fragment {
                                 addTab(new Tab.PlaylistTab(serviceId, url, name));
                             }
                         });
-                selectPlaylistFragment.show(requireFragmentManager(), "select_playlist");
+                selectPlaylistFragment.show(getParentFragmentManager(), "select_playlist");
                 return;
             default:
                 addTab(type.getTab());
