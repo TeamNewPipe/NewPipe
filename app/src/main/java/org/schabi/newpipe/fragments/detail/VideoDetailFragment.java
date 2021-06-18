@@ -1669,7 +1669,7 @@ public final class VideoDetailFragment
                 .onErrorComplete()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(state -> {
-                    showPlaybackProgress(state.getProgressTime(), info.getDuration() * 1000);
+                    showPlaybackProgress(state.getProgressMillis(), info.getDuration() * 1000);
                     animate(binding.positionView, true, 500);
                     animate(binding.detailPositionView, true, 500);
                 }, e -> {

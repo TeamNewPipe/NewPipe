@@ -671,7 +671,11 @@ public final class Player implements
                     //.doFinally()
                     .subscribe(
                             state -> {
-                                newQueue.setRecovery(newQueue.getIndex(), state.getProgressTime());
+                                if (!state.isFinished(newQueue.getItem().getDuration())) {
+                                    // resume playback only if the stream was not played to the end
+                                    newQueue.setRecovery(newQueue.getIndex(),
+                                            state.getProgressMillis());
+                                }
                                 initPlayback(newQueue, repeatMode, playbackSpeed, playbackPitch,
                                         playbackSkipSilence, playWhenReady, isMuted);
                             },
@@ -1935,9 +1939,7 @@ public final class Player implements
                 break;
             case com.google.android.exoplayer2.Player.STATE_ENDED: // 4
                 changeState(STATE_COMPLETED);
-                if (currentMetadata != null) {
-                    resetStreamProgressState(currentMetadata.getMetadata());
-                }
+                saveStreamProgressStateCompleted();
                 isPrepared = false;
                 break;
         }
@@ -2398,7 +2400,7 @@ public final class Player implements
             case DISCONTINUITY_REASON_SEEK_ADJUSTMENT:
             case DISCONTINUITY_REASON_INTERNAL:
                 if (playQueue.getIndex() != newWindowIndex) {
-                    resetStreamProgressState(playQueue.getItem());
+                    saveStreamProgressStateCompleted(); // current stream has ended
                     playQueue.setIndex(newWindowIndex);
                 }
                 break;
@@ -2789,61 +2791,47 @@ public final class Player implements
         }
     }
 
-    private void saveStreamProgressState(final StreamInfo info, final long progress) {
-        if (info == null) {
+    private void saveStreamProgressState(final long progressMillis) {
+        if (currentMetadata == null
+                || !prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
             return;
         }
         if (DEBUG) {
-            Log.d(TAG, "saveStreamProgressState() called");
+            Log.d(TAG, "saveStreamProgressState() called with: progressMillis=" + progressMillis
+                    + ", currentMetadata=[" + currentMetadata.getMetadata().getName() + "]");
         }
-        if (prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
-            final Disposable stateSaver = recordManager.saveStreamState(info, progress)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnError((e) -> {
-                        if (DEBUG) {
-                            e.printStackTrace();
-                        }
-                    })
-                    .onErrorComplete()
-                    .subscribe();
-            databaseUpdateDisposable.add(stateSaver);
-        }
-    }
 
-    private void resetStreamProgressState(final PlayQueueItem queueItem) {
-        if (queueItem == null) {
-            return;
-        }
-        if (prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
-            final Disposable stateSaver = queueItem.getStream()
-                    .flatMapCompletable(info -> recordManager.saveStreamState(info, 0))
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnError((e) -> {
-                        if (DEBUG) {
-                            e.printStackTrace();
-                        }
-                    })
-                    .onErrorComplete()
-                    .subscribe();
-            databaseUpdateDisposable.add(stateSaver);
-        }
-    }
-
-    private void resetStreamProgressState(final StreamInfo info) {
-        saveStreamProgressState(info, 0);
+        databaseUpdateDisposable
+                .add(recordManager.saveStreamState(currentMetadata.getMetadata(), progressMillis)
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError((e) -> {
+                    if (DEBUG) {
+                        e.printStackTrace();
+                    }
+                })
+                .onErrorComplete()
+                .subscribe());
     }
 
     public void saveStreamProgressState() {
-        if (exoPlayerIsNull() || currentMetadata == null) {
+        if (exoPlayerIsNull() || currentMetadata == null || playQueue == null
+                || playQueue.getIndex() != simpleExoPlayer.getCurrentWindowIndex()) {
+            // Make sure play queue and current window index are equal, to prevent saving state for
+            // the wrong stream on discontinuity (e.g. when the stream just changed but the
+            // playQueue index and currentMetadata still haven't updated)
             return;
         }
-        final StreamInfo currentInfo = currentMetadata.getMetadata();
-        if (playQueue != null) {
-            // Save current position. It will help to restore this position once a user
-            // wants to play prev or next stream from the queue
-            playQueue.setRecovery(playQueue.getIndex(), simpleExoPlayer.getContentPosition());
+        // Save current position. It will help to restore this position once a user
+        // wants to play prev or next stream from the queue
+        playQueue.setRecovery(playQueue.getIndex(), simpleExoPlayer.getContentPosition());
+        saveStreamProgressState(simpleExoPlayer.getCurrentPosition());
+    }
+
+    public void saveStreamProgressStateCompleted() {
+        if (currentMetadata != null) {
+            // current stream has ended, so the progress is its duration (+1 to overcome rounding)
+            saveStreamProgressState((currentMetadata.getMetadata().getDuration() + 1) * 1000);
         }
-        saveStreamProgressState(currentInfo, simpleExoPlayer.getCurrentPosition());
     }
     //endregion
 

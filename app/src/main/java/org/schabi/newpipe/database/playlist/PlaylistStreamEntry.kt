@@ -12,8 +12,8 @@ data class PlaylistStreamEntry(
     @Embedded
     val streamEntity: StreamEntity,
 
-    @ColumnInfo(name = StreamStateEntity.STREAM_PROGRESS_TIME, defaultValue = "0")
-    val progressTime: Long,
+    @ColumnInfo(name = StreamStateEntity.STREAM_PROGRESS_MILLIS, defaultValue = "0")
+    val progressMillis: Long,
 
     @ColumnInfo(name = PlaylistStreamEntity.JOIN_STREAM_ID)
     val streamId: Long,
