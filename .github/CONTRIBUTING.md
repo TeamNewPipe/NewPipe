@@ -56,6 +56,8 @@ NewPipe is developed using [Android Studio](https://developer.android.com/studio
 - Open the folder you just cloned with Android Studio.
 - Build and run just like you would do with any other app, with the green triangle in the top bar.
 
+You may find [SonarLint](https://www.sonarlint.org/intellij)'s **inspections** useful in helping you to write good code and prevent bugs.
+
 ### checkStyle setup
 
 The [checkStyle](https://github.com/checkstyle/checkstyle) plugin verifies that Java code abides by the project style. It runs automatically each time you build the project, though to be able to view errors directly in the editor, instead of having to skim through the build output, you can install an Android Studio plugin:
@@ -68,11 +70,9 @@ The [checkStyle](https://github.com/checkstyle/checkstyle) plugin verifies that 
 - Activate the configuration file you just added by enabling the checkbox on the left.
 - Click `Ok` and you are done.
 
-An alternative plugin you can choose for the same job is [SonarLint](https://www.sonarlint.org/intellij), which works for both Java and Kotlin.
-
 ### ktlint setup
 
-The [ktlint](https://github.com/pinterest/ktlint) plugin does the same job as checkStyle for Kotlin files. Installing the related plugin is as simple as going to `File -> Settings -> Plugins`, searching for `ktlint` and installing `Ktlint (unofficial)`. Again, [SonarLint](https://www.sonarlint.org/intellij) exists as an alternative.
+The [ktlint](https://github.com/pinterest/ktlint) plugin does the same job as checkStyle for Kotlin files. Installing the related plugin is as simple as going to `File -> Settings -> Plugins`, searching for `ktlint` and installing `Ktlint (unofficial)`.
 
 ## Communication
 
