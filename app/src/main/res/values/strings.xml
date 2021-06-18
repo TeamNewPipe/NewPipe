@@ -702,4 +702,6 @@
     <!-- Show Channel Details -->
     <string name="error_show_channel_details">Error at Show Channel Details</string>
     <string name="loading_channel_details">Loading Channel Details…</string>
+    <string name="streams_hidden_download_not_supported_yet">Some streams were hidden because they are not supported by the downloader yet</string>
+    <string name="selected_stream_external_player_not_supported">The selected stream is not supported by external players</string>
 </resources>
