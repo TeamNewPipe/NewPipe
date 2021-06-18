@@ -316,7 +316,7 @@
     <string name="enable_disposed_exceptions_title">Звітувати про помилки життєвого циклу застосунку</string>
     <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx-винятків, які відбуваються за межами фрагменту або діяльності життєвого циклу після усунення</string>
     <string name="use_inexact_seek_title">Викор. швидкий неточний пошук</string>
-    <string name="use_inexact_seek_summary">Неточний пошук дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю.</string>
+    <string name="use_inexact_seek_summary">Неточний пошук дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю</string>
     <string name="auto_queue_title">Авто-додавати в чергу наступний запис</string>
     <string name="auto_queue_summary">Продовжити при завершені (не повторюваної) черги, додавши повʼязаний запис</string>
     <string name="file">Файл</string>
@@ -355,7 +355,7 @@
 \n
 \nБажаєте продовжити\?</string>
     <string name="download_thumbnail_title">Завантажувати ескізи</string>
-    <string name="download_thumbnail_summary">Вимкніть для запобігання завантаженню ескізів, що заощадить трафік та внутрішню пам\'ять. Зміни призведуть до очищення кешу зображень.</string>
+    <string name="download_thumbnail_summary">Вимкніть для запобігання завантаженню ескізів, що заощадить трафік та внутрішню пам\'ять. Зміни призведуть до очищення кешу зображень</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кеш зображень стерто</string>
     <string name="metadata_cache_wipe_title">Стерти кеш метаданих</string>
     <string name="metadata_cache_wipe_summary">Видалити всі кешовані дані вебсторінок</string>
@@ -368,7 +368,7 @@
     <string name="preferred_open_action_settings_title">Бажана дія при відкриванні</string>
     <string name="preferred_open_action_settings_summary">Типова дія під час відкриття вмісту — %s</string>
     <string name="caption_setting_title">Субтитри</string>
-    <string name="caption_setting_description">Зміна висоти тексту субтитрів та стилів тла. Потребує перезапуску застосунку.</string>
+    <string name="caption_setting_description">Зміна висоти тексту субтитрів та стилів тла. Потребує перезапуску застосунку</string>
     <string name="toast_no_player">Не встановлено застосунків для програвання цього файлу</string>
     <string name="clear_views_history_title">Очистити історію переглядів</string>
     <string name="clear_views_history_summary">Видаляє історію відтворень і запам\'ятованих позицій</string>
@@ -485,12 +485,12 @@
     <string name="start_downloads">Почати завантаження</string>
     <string name="pause_downloads">Призупинити завантаження</string>
     <string name="downloads_storage_ask_title">Запитувати, куди завантажувати</string>
-    <string name="downloads_storage_ask_summary">Вас питатимуть, куди зберігати кожне завантаження</string>
+    <string name="downloads_storage_ask_summary">Вас питатиме, куди зберігати кожне завантаження.
+\nУвімкніть системний вибір теки (SAF), якщо бажаєте завантажувати на зовнішню SD-картку</string>
     <string name="downloads_storage_ask_summary_kitkat">Вас питатимуть, куди зберігати кожне завантаження. 
 \nОберіть SAF, якщо бажаєте завантажувати на зовнішню SD-картку</string>
-    <string name="downloads_storage_use_saf_title">Використовувати SAF</string>
-    <string name="downloads_storage_use_saf_summary">Storage Access Framework дає можливість завантажувати на SD-карту. 
-\nДеякі пристрої є несумісними</string>
+    <string name="downloads_storage_use_saf_title">Використовувати системний вибір теки (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">Фреймворк доступу до сховища (SAF) дозволяє завантажувати на зовнішню SD-картку</string>
     <string name="clear_playback_states_title">Видалити запам\'ятовані позиції</string>
     <string name="clear_playback_states_summary">Видаляє всі запамʼятовані позиції</string>
     <string name="delete_playback_states_alert">Видалити всі запамʼятовані позиції\?</string>
@@ -576,7 +576,7 @@
 \nВибір за вами: швидкість або точність.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Звичайний режим</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Швидкий режим</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Доступно для деяких сервісів, швидке, але може повертати не весь вміст каналу і часто неповну інформацію (тривалість, тип елемента, статус трансляції).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Доступно для деяких сервісів, швидке, але може повертати не весь вміст каналу і часто неповну інформацію (тривалість, тип елемента, статус трансляції)</string>
     <string name="feed_use_dedicated_fetch_method_title">Оновлення з RSS, коли воно є</string>
     <string name="feed_update_threshold_option_always_update">Оновлювати постійно</string>
     <string name="feed_update_threshold_summary">Період актуальності підписок після поновлення - %s</string>
@@ -680,7 +680,7 @@
     <string name="restricted_video_no_stream">Це відео має вікові обмеження.
 \nЗгідно з новою політикою YouTube щодо відео з віковими обмеженнями NewPipe не може мати доступ до жодного потоку цього відео і, таким чином, не має можливості відтворити його.</string>
     <string name="show_age_restricted_content_summary">Показувати вміст, який, можливо, не підходить для дітей, бо має вікове обмеження (наприклад, 18+)</string>
-    <string name="show_meta_info_summary">Вимкніть, щоб приховати поля метаданих (автор потоку, вміст потоку або пошуковий запит).</string>
+    <string name="show_meta_info_summary">Вимкніть, щоб приховати поля метаданих (автор потоку, вміст потоку або пошуковий запит)</string>
     <string name="show_description_summary">Вимкніть, щоб приховати опис відео та додаткові відомості</string>
     <string name="clear_queue_confirmation_description">Черга активного програвача буде замінена</string>
     <string name="clear_queue_confirmation_summary">Перехід від одного програвача до іншого може замінити вашу чергу</string>
@@ -692,4 +692,28 @@
     <string name="notification_scale_to_square_image_summary">Масштабувати мініатюру відео 16: 9 до 1:1 (можливі спотворення)</string>
     <string name="disable_media_tunneling_summary">Вимкнення тунелювання медіаданих за наявності чорного екрана або гальмування під час відтворення відео</string>
     <string name="disable_media_tunneling_title">Вимкнути тунелювання медіа</string>
+    <string name="downloads_storage_use_saf_summary_api_29">\'Фреймворк доступу до сховища\' (SAF) підтримується лише починаючи з Android 10</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\'Фреймворк доступу до сховища\' (SAF) не підтримується в KitKat і нижче</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Вас питатиме, куди зберігати кожне завантаження</string>
+    <string name="no_dir_yet">Не вказано теки завантаження, оберіть типову теку завантаження зараз</string>
+    <string name="open_website_license">Відкрити вебсайт</string>
+    <string name="metadata_privacy_internal">Внутрішнє</string>
+    <string name="metadata_privacy_public">Публічне</string>
+    <string name="metadata_privacy_private">Приватне</string>
+    <string name="metadata_privacy_unlisted">Поза списком</string>
+    <string name="metadata_thumbnail_url">URL мініатюри</string>
+    <string name="metadata_host">Власник</string>
+    <string name="metadata_support">Підтримка</string>
+    <string name="metadata_language">Мова</string>
+    <string name="metadata_age_limit">Вікове обмеження</string>
+    <string name="metadata_privacy">Приватність</string>
+    <string name="metadata_licence">Ліцензія</string>
+    <string name="metadata_tags">Мітки</string>
+    <string name="metadata_category">Категорія</string>
+    <string name="description_select_disable">Заборонити виділення тексту в описі</string>
+    <string name="description_select_enable">Дозволити виділяти текст в описі</string>
+    <string name="description_select_note">Тепер можна виділяти текст в описі. Зауважте, що сторінка може мигати і посилання можуть не працювати в режимі виділення.</string>
+    <string name="service_provides_reason">%s подає таку причину:</string>
+    <string name="feed_load_error_account_info">Не можливо завантажити стрічку для \'%s\'.</string>
+    <string name="feed_load_error">Помилка завантаження стрічки</string>
 </resources>

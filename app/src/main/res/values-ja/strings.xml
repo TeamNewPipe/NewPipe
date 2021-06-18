@@ -315,8 +315,8 @@
     <string name="privacy_policy_title">NewPipe プライバシーポリシー</string>
     <string name="read_privacy_policy">プライバシーポリシーを確認</string>
     <string name="use_inexact_seek_title">おおまかなシーク</string>
-    <string name="use_inexact_seek_summary">おおまかなシークを使用することで精度が下がる代わりに高速にシークができます。5 秒、15 秒または 25 秒間隔のシークはできません。</string>
-    <string name="download_thumbnail_summary">すべてのサムネイルの読み込みと保存を無効化します。このオプションを切り替えるとメモリおよびディスク上の画像キャッシュが消去されます。</string>
+    <string name="use_inexact_seek_summary">おおまかなシークを使用することで精度が下がる代わりに高速にシークができます。5 秒、15 秒または 25 秒間隔のシークはできません</string>
+    <string name="download_thumbnail_summary">すべてのサムネイルの読み込みと保存を無効化します。このオプションを切り替えるとメモリおよびディスク上の画像キャッシュが消去されます</string>
     <string name="auto_queue_summary">キューに関連動画を追加して再生を続ける (繰り返ししない場合)</string>
     <string name="delete_view_history_alert">すべての再生履歴を削除しますか？</string>
     <string name="delete_search_history_alert">すべての検索履歴を削除しますか？</string>
@@ -349,7 +349,7 @@
     <string name="resize_fit">フィット</string>
     <string name="resize_fill">全画面</string>
     <string name="caption_auto_generated">自動生成</string>
-    <string name="caption_setting_description">プレーヤーのキャプションテキストの縮尺と背景スタイルを変更します。有効にするには、アプリの再起動が必要です。</string>
+    <string name="caption_setting_description">プレーヤーのキャプションテキストの縮尺と背景スタイルを変更します。有効にするには、アプリの再起動が必要です</string>
     <string name="empty_subscription_feed_subtitle">何もありません</string>
     <string name="import_youtube_instructions">Google takeout から YouTube の登録リストをインポート:
 \n
@@ -475,12 +475,12 @@
     <string name="start_downloads">ダウンロードの開始</string>
     <string name="pause_downloads">ダウンロードの一時停止</string>
     <string name="downloads_storage_ask_title">ダウンロード先を尋ねる</string>
-    <string name="downloads_storage_ask_summary">ダウンロードのたびに保存する場所を尋ねます</string>
+    <string name="downloads_storage_ask_summary">ダウンロードのたびに保存する場所を尋ねます。
+\nSD カードにダウンロードしたい場合はシステム フォルダ ピッカー (SAF) を有効化します</string>
     <string name="downloads_storage_ask_summary_kitkat">ダウンロードのたびに保存する場所を尋ねられます。
 \n外部 SD カードにダウンロードする場合は SAF を選択してください</string>
-    <string name="downloads_storage_use_saf_title">SAF を使用する</string>
-    <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークは、外部 SD カードへのダウンロードが可能です。 
-\n一部のデバイスは互換性がありません</string>
+    <string name="downloads_storage_use_saf_title">システム フォルダ ピッカー (SAF) を使用する</string>
+    <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークは、外部 SD カードへのダウンロードが可能です</string>
     <string name="clear_playback_states_title">再生位置の削除</string>
     <string name="clear_playback_states_summary">すべての再生位置を削除します</string>
     <string name="delete_playback_states_alert">すべての再生位置を削除しますか\?</string>
@@ -558,7 +558,7 @@
     <string name="feed_update_threshold_summary">最後の更新後、登録チャンネルを更新すべきとするまでの時間 ― %s</string>
     <string name="feed_update_threshold_option_always_update">常に更新する</string>
     <string name="feed_use_dedicated_fetch_method_title">可能ならば専用フィードから取得</string>
-    <string name="feed_use_dedicated_fetch_method_summary">いくつかのサービスで利用可能。通常よりも高速ですが制限された情報が取得され、たいていの場合不完全です (例: 再生時間、種類、ライブ ステータスなどがない)。</string>
+    <string name="feed_use_dedicated_fetch_method_summary">いくつかのサービスで利用可能。通常よりも高速ですが制限された情報が取得され、たいていの場合不完全です (例: 再生時間、種類、ライブ ステータスなどがない)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">高速モードを有効化</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">高速モードを無効化</string>
     <string name="feed_use_dedicated_fetch_method_help_text">フィードの読み込みが遅すぎると思いますか？ その場合、高速読み込みを有効化してみてください (設定、もしくは下のボタンを押して変更することができます)。
@@ -648,7 +648,7 @@
     <string name="open_with">開く</string>
     <string name="description_tab_description">説明</string>
     <string name="related_items_tab_description">関連動画</string>
-    <string name="show_meta_info_summary">動画作成者、動画コンテンツ、検索リクエストに関する追加情報を含むメタ情報ボックスを非表示にするにはオフにします。</string>
+    <string name="show_meta_info_summary">動画作成者、動画コンテンツ、検索リクエストに関する追加情報を含むメタ情報ボックスを非表示にするにはオフにします</string>
     <string name="no_app_to_open_intent">お使いのデバイス上のアプリでは、これを開くことはできません</string>
     <string name="chapters">チャプター</string>
     <string name="paid_content">このコンテンツは有料のユーザーのみが利用できるため、NewPipeでのストリーミングやダウンロードはできません。</string>
@@ -670,4 +670,32 @@
     <string name="featured">おすすめ</string>
     <string name="disable_media_tunneling_summary">ビデオ再生が止まったり出ない場合はメディアトンネリングを無効にしてください</string>
     <string name="disable_media_tunneling_title">マルチメディアトンネリングを無効にする</string>
+    <string name="metadata_privacy_public">公開</string>
+    <string name="metadata_privacy_unlisted">限定公開</string>
+    <string name="metadata_privacy_private">非公開</string>
+    <string name="metadata_privacy_internal">内部</string>
+    <string name="metadata_category">カテゴリ</string>
+    <string name="metadata_tags">タグ</string>
+    <string name="metadata_licence">ライセンス</string>
+    <string name="metadata_privacy">プライバシー</string>
+    <string name="metadata_age_limit">年齢制限</string>
+    <string name="metadata_language">言語</string>
+    <string name="metadata_support">サポート</string>
+    <string name="metadata_host">ホスト</string>
+    <string name="metadata_thumbnail_url">サムネイルの URL</string>
+    <string name="open_website_license">ウェブサイトを開く</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">ダウンロードのたびに保存する場所を尋ねます</string>
+    <string name="no_dir_yet">ダウンロードフォルダがまだ設定されていません。今すぐデフォルトのフォルダを選択してください</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Android 10 以降は \'Storage Access Framework\' のみがサポートされます</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' は Android KitKat 以下ではサポートされていません</string>
+    <string name="feed_load_error_fast_unknown">高速モードでこの情報の詳細は提供されません。</string>
+    <string name="feed_load_error_account_info">\'%s\' のフィードを読み込めませんでした。</string>
+    <string name="feed_load_error">フィードの読み込みエラー</string>
+    <string name="description_select_disable">説明文のテキストの選択を無効にする</string>
+    <string name="description_select_enable">説明文のテキストの選択を有効にする</string>
+    <string name="description_select_note">今説明文のテキストを選択できます。選択モード中はページがちらついたりリンクがクリックできなくなったりすることに注意してください。</string>
+    <string name="account_terminated">停止されたアカウント</string>
+    <string name="feed_load_error_terminated">この投稿者のアカウントは停止されています。
+\nNewPipe は将来的にこのフィードを読み込めなくなります。
+\nこのチャンネルの登録を解除しますか？</string>
 </resources>

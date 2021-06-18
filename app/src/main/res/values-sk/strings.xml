@@ -305,9 +305,9 @@
     <string name="resize_fill">Vyplniť</string>
     <string name="resize_zoom">Zväčšiť</string>
     <string name="use_inexact_seek_title">Používať rýchly posun</string>
-    <string name="use_inexact_seek_summary">Rýchly posun umožňuje prejsť na novú pozíciu rýchlejšie, ale s menšou presnosťou. Posun o 5, 15 alebo 25 sekúnd v tomto prípade nie je možný.</string>
+    <string name="use_inexact_seek_summary">Rýchly posun umožňuje prejsť na novú pozíciu rýchlejšie, ale s menšou presnosťou. Posun o 5, 15 alebo 25 sekúnd v tomto prípade nie je možný</string>
     <string name="download_thumbnail_title">Načítanie miniatúr</string>
-    <string name="download_thumbnail_summary">Vypnutím tejto funkcie sa nebudú vytvárať miniatúry a tým sa ušetrí miesto a pamäť. Zmena nastavení spôsobuje vyčistenie vyrovnávacej pamäte.</string>
+    <string name="download_thumbnail_summary">Vypnutím tejto funkcie sa nebudú vytvárať miniatúry a tým sa ušetrí miesto a pamäť. Zmena nastavení spôsobuje vyčistenie vyrovnávacej pamäte</string>
     <string name="thumbnail_cache_wipe_complete_notice">Vyrovnávacia pamäť obrázkov vymazaná</string>
     <string name="metadata_cache_wipe_title">Vymazať metadáta uložené vo vyrovnávacej pamäti</string>
     <string name="metadata_cache_wipe_summary">Odstrániť všetky údaje webových stránok vo vyrovnávacej pamäti</string>
@@ -328,7 +328,7 @@
     <string name="preferred_open_action_settings_summary">Predvolená akcia pri otváraní obsahu — %s</string>
     <string name="caption_auto_generated">Automaticky vygenerované</string>
     <string name="caption_setting_title">Titulky</string>
-    <string name="caption_setting_description">Upravte mierku textu titulkov prehrávača a štýly pozadia. Vyžaduje sa reštart aplikácie.</string>
+    <string name="caption_setting_description">Upravte mierku textu titulkov prehrávača a štýly pozadia. Vyžaduje sa reštart aplikácie</string>
     <string name="enable_leak_canary_summary">Monitorovanie pretečenia pamäte môže spôsobiť, že aplikácia nebude reagovať</string>
     <string name="enable_disposed_exceptions_title">Nahlásiť mimo-cyklické chyby</string>
     <string name="enable_disposed_exceptions_summary">Vynútiť hlásenie výnimiek nedoručiteľných Rx mimo časového cyklu fragmentov alebo aktivity po zneškodnení</string>
@@ -484,12 +484,12 @@
     <string name="start_downloads">Spustite sťahovanie</string>
     <string name="pause_downloads">Pozastaviť sťahovanie</string>
     <string name="downloads_storage_ask_title">Pýtať sa na adresár sťahovania</string>
-    <string name="downloads_storage_ask_summary">Pri každom sťahovaní súboru sa bude vyžadovať zadanie cieľového adresára</string>
+    <string name="downloads_storage_ask_summary">Pri každom sťahovaní súboru sa bude vyžadovať zadanie cieľového adresára.
+\nAk chcete súbory sťahovať na externú SD kartu povoľte možnosť výberu adresára (SAF)</string>
     <string name="downloads_storage_ask_summary_kitkat">Pri každom sťahovaní súboru sa bude vyžadovať zadanie cieľového adresára
 \nZvoľte SAF pokiaľ chcete ukladať na externé úložisko</string>
-    <string name="downloads_storage_use_saf_title">Použiť SAF</string>
-    <string name="downloads_storage_use_saf_summary">Storage Access Framework umožňuje sťahovanie na externú SD kartu. 
-\nPoznámka: Niektoré zariadenia nie sú kompatibilné</string>
+    <string name="downloads_storage_use_saf_title">Použite výber adresára (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' umožňuje sťahovanie na externú SD kartu.</string>
     <string name="clear_playback_states_title">Odstrániť pozície prehrávania</string>
     <string name="clear_playback_states_summary">Odstráni všetky pozície prehrávania</string>
     <string name="delete_playback_states_alert">Odstrániť všetky pozície prehrávania\?</string>
@@ -578,7 +578,7 @@
     <string name="feed_update_threshold_summary">Čas po ktorom sa kontrola odberu považuje za zastaralú — %s</string>
     <string name="feed_update_threshold_option_always_update">Vždy aktualizovať</string>
     <string name="feed_use_dedicated_fetch_method_title">Načítať z vyhradeného zdroja, ak je k dispozícii</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Služba je dostupná len pre určité zdroje, zvyčajne je rýchlejšia ale môže vrátiť obmedzený počet položiek alebo neúplné informácie (napr. dĺžka, typ, status).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Služba je dostupná len pre určité zdroje, zvyčajne je rýchlejšia ale môže vrátiť obmedzený počet položiek alebo neúplné informácie (napr. dĺžka, typ, status)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Povoliť rýchly režim</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Zakázať rýchly režim</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Myslíte si, že načítavanie informačného kanála je príliš pomalé\? Ak áno, skúste povoliť rýchle načítanie (môžete ho zmeniť v nastaveniach alebo stlačením tlačidla nižšie). 
@@ -661,7 +661,7 @@
     <string name="hash_channel_description">Upozornenie pri generovaní hash z názu videa</string>
     <string name="hash_channel_name">Oznámenie o hashovaní videa</string>
     <string name="recent">Nedávne</string>
-    <string name="show_meta_info_summary">Vypnite, pokiaľ nechcete zobrazovať meta informácie ako autor streamu, obsah streamu alebo vyhľadávanie.</string>
+    <string name="show_meta_info_summary">Vypnite, pokiaľ nechcete zobrazovať meta informácie ako autor streamu, obsah streamu alebo vyhľadávanie</string>
     <string name="show_meta_info_title">Zobrazovať meta informácie</string>
     <string name="chapters">Kapitoly</string>
     <string name="description_tab_description">Popis</string>
@@ -706,4 +706,17 @@
     <string name="description_select_disable">Zakázať výber textu v popise</string>
     <string name="description_select_enable">Povolenie výberu textu v popise</string>
     <string name="description_select_note">Teraz môžete vybrať text vo vnútri popisu. Upozorňujeme, že stránka môže blikať a odkazy nemusia byť klikateľné, keď je v režime výberu.</string>
+    <string name="open_website_license">Otvoriť webstránku</string>
+    <string name="service_provides_reason">%s uvádza tento dôvod:</string>
+    <string name="account_terminated">Účet bol zrušený</string>
+    <string name="feed_load_error_fast_unknown">Tento rýchly režim neposkytuje viac informácií.</string>
+    <string name="feed_load_error_terminated">Účet autora bol zrušený.
+\nPreto ho NewPipe nebude môcť v budúcnosti načítať.
+\nChcete sa odhlásiť z odberu tohto kanála\?</string>
+    <string name="feed_load_error_account_info">Nemožno načítať informačný kanál \'%s\'.</string>
+    <string name="feed_load_error">Chyba pri načítaní kanála</string>
+    <string name="downloads_storage_use_saf_summary_api_29">\'Storage Access Framework\' je podporovaný len od Androidu 10 a vyššie</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' nie je podporovaný v systéme Android KitKat a ani v starších verziách</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Pri každom sťahovaní sa zobrazí výzva kam uložiť súbor</string>
+    <string name="no_dir_yet">Nie je nastavený adresár na sťahovanie. Nastavte ho teraz.</string>
 </resources>

@@ -311,9 +311,9 @@
     <string name="enable_disposed_exceptions_title">Nahlásit mimo-cyklické chyby</string>
     <string name="enable_disposed_exceptions_summary">Vynutit hlášení nedoručitelných výjimek Rx mimo životnost fragmentu nebo aktivity po odstranění</string>
     <string name="use_inexact_seek_title">Použít rychlé nepřesné hledání</string>
-    <string name="use_inexact_seek_summary">Nepřesné hledání umožní přehrávači posouvat se rychleji, ale se sníženou přesností. Posouvání po 5, 15 nebo 25 vteřinách s tímto nefunguje.</string>
+    <string name="use_inexact_seek_summary">Nepřesné hledání umožní přehrávači posouvat se rychleji, ale se sníženou přesností. Posouvání po 5, 15 nebo 25 vteřinách s tímto nefunguje</string>
     <string name="download_thumbnail_title">Načítat náhledy</string>
-    <string name="download_thumbnail_summary">Vypnout, aby se zabránilo načítání náhledů a tím se ušetřily data a používání paměti. Změna tohoto nastavení vyčistí mezipamět obrázků v paměti i na disku.</string>
+    <string name="download_thumbnail_summary">Vypnout, aby se zabránilo načítání náhledů a tím se ušetřily data a používání paměti. Změna tohoto nastavení vyčistí mezipamět obrázků v paměti i na disku</string>
     <string name="thumbnail_cache_wipe_complete_notice">Mezipaměť obrázků vymazána</string>
     <string name="metadata_cache_wipe_title">Vymazat metadata v mezipaměti</string>
     <string name="metadata_cache_wipe_summary">Odebrat všechna data uložená v mezipaměti</string>
@@ -362,7 +362,7 @@
     <string name="preferred_open_action_settings_title">Preferovaná \'otevřít\' akce</string>
     <string name="preferred_open_action_settings_summary">Výchozí chování při otevírání obsahu — %s</string>
     <string name="caption_setting_title">Titulky</string>
-    <string name="caption_setting_description">Upravuje velikost textu titulků a styly pozadí. Změny se projeví po restartu aplikace.</string>
+    <string name="caption_setting_description">Upravuje velikost textu titulků a styly pozadí. Změny se projeví po restartu aplikace</string>
     <string name="toast_no_player">K přehrání tohoto souboru chybí vhodná aplikace</string>
     <string name="clear_views_history_title">Vymazat historii sledování</string>
     <string name="clear_views_history_summary">Vymaže historii přehraných streamů pozic playbacku</string>
@@ -481,12 +481,12 @@
     <string name="start_downloads">Začít stahování</string>
     <string name="pause_downloads">Pozastavit stahování</string>
     <string name="downloads_storage_ask_title">Zeptat se na složku pro stahování</string>
-    <string name="downloads_storage_ask_summary">Budete dotázáni, kam jednotlivé soubory stáhnout</string>
+    <string name="downloads_storage_ask_summary">Budete dotázáni, kam jednotlivé soubory uložit.
+\nAktivujte výběr systémového adresáře (SAF), chcete-li stáhnout soubor na externí SD kartu</string>
     <string name="downloads_storage_ask_summary_kitkat">Budete dotázáni, kam jednotlivé soubory stáhnout.
 \nZvolte SAF, pokud si přejete stahovat na externí SD kartu</string>
-    <string name="downloads_storage_use_saf_title">Použít SAF</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" umožňuje stahovat na externí SD kartu. 
-\nNěkterá zařízení nejsou kompatibilní</string>
+    <string name="downloads_storage_use_saf_title">Použít výběr systémového adresáře (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" umožňuje stahovat na externí SD kartu</string>
     <string name="enable_playback_state_lists_summary">Zobrazit pozici přehrávání v seznamech</string>
     <string name="watch_history_states_deleted">Pozice playbacku smazány.</string>
     <string name="error_timeout">Timeout spojení</string>
@@ -578,7 +578,7 @@
     <string name="feed_update_threshold_summary">Doba po poslední aktualizaci, po níž je odběr považován za zastaralý — %s</string>
     <string name="feed_update_threshold_option_always_update">Vždy aktualizovat</string>
     <string name="feed_use_dedicated_fetch_method_title">Dodat z vyhrazeného zdroje, je-li dostupný</string>
-    <string name="feed_use_dedicated_fetch_method_summary">K dispozici na některých zařízeních, je obvykle mnohem rychlejší, ale může vrátit omezený počet položek a často neúplné informace (např. bez trvání, typu položky, skutečného stavu).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">K dispozici na některých zařízeních, je obvykle mnohem rychlejší, ale může vrátit omezený počet položek a často neúplné informace (např. bez trvání, typu položky, skutečného stavu)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Zapnout rychlý režim</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Vypnout rychlý režim</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Zdá se vám načítání příliš pomalé\? Pokud ano, zkuste zapnout rychlé načítání (lze změnit v nastavení nebo stiskem tlačítka níže). 
@@ -661,7 +661,7 @@
     <string name="recent">Nedávné</string>
     <string name="msg_calculating_hash">Počítám haš</string>
     <string name="hash_channel_description">Oznámení o postupu hašování videa</string>
-    <string name="show_meta_info_summary">Vypnout, abyste skryli rámečky s meta informací s údaji o autorovi streamu, obsahu streamu nebo požadavků hledání.</string>
+    <string name="show_meta_info_summary">Vypnout, abyste skryli rámečky s meta informací s údaji o autorovi streamu, obsahu streamu nebo požadavků hledání</string>
     <string name="show_meta_info_title">Zobrazit meta informaci</string>
     <string name="chapters">Kapitoly</string>
     <string name="description_tab_description">Popis</string>
@@ -690,4 +690,33 @@
     <string name="night_theme_title">Noční motiv</string>
     <string name="disable_media_tunneling_summary">Vypněte media-tunelling, pokud zaznamenáte temnou obrazovku nebo zadrhávání během playbacku</string>
     <string name="disable_media_tunneling_title">Vypnout media-tunelling</string>
+    <string name="open_website_license">Přejít na website</string>
+    <string name="metadata_privacy_internal">Interní</string>
+    <string name="metadata_privacy_private">Soukromé</string>
+    <string name="metadata_privacy_unlisted">Neuvedeno v seznamu</string>
+    <string name="metadata_privacy_public">Veřejné</string>
+    <string name="metadata_thumbnail_url">URL miniatury</string>
+    <string name="metadata_host">Server</string>
+    <string name="metadata_support">Podpora</string>
+    <string name="metadata_language">Jazyk</string>
+    <string name="metadata_age_limit">Věkové omezení</string>
+    <string name="metadata_privacy">Soukromí</string>
+    <string name="metadata_licence">Licence</string>
+    <string name="metadata_tags">Štítky</string>
+    <string name="metadata_category">Kategorie</string>
+    <string name="description_select_disable">Vypnout výběr textu v popisu</string>
+    <string name="description_select_enable">Zapnout výběr textu v popisu</string>
+    <string name="description_select_note">Nyní můžete vybrat v popisu text. Pamatujte, že v režimu výběru může stránka blikat a odkazy nemusí reagovat na kliknutí.</string>
+    <string name="service_provides_reason">%s udává teno důvod:</string>
+    <string name="account_terminated">Účet uzavřen</string>
+    <string name="feed_load_error_fast_unknown">Režim rychlého feedu o tom neposkytuje více informací.</string>
+    <string name="feed_load_error_terminated">Autorův účet byl uzavřen.
+\nNewPipe nebude už moci načíst tento feed.
+\nChcete zrušit objednávku tohoto kanálu\?</string>
+    <string name="feed_load_error_account_info">Feed pro \'%s\' nemohl být načten.</string>
+    <string name="feed_load_error">Chyba při načítání feedu</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Počínaje Android 10 je podporován pouze \"Storage Access Framework\"</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\"Storage Access Framework\" není podporován na KitKat a níže</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Budete dotázáni, kde uložit každý stažený soubor</string>
+    <string name="no_dir_yet">Adresář pro stažené soubory dosud nenastaven, zvolte, prosím, výchozí adresář nyní</string>
 </resources>

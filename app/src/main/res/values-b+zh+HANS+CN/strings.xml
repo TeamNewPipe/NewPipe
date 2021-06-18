@@ -208,7 +208,7 @@
     <string name="popup_playing_toast">在悬浮窗中播放</string>
     <string name="default_popup_resolution_title">默认分辨率(悬浮窗模式)</string>
     <string name="show_higher_resolutions_title">使用更高的分辨率</string>
-    <string name="show_higher_resolutions_summary">只有某些设备支持播放 2K 或 4K 视频</string>
+    <string name="show_higher_resolutions_summary">仅部分设备支持播放 2K 或 4K 视频</string>
     <string name="clear">清除</string>
     <string name="popup_remember_size_pos_title">记住悬浮窗属性（大小与位置）</string>
     <string name="popup_remember_size_pos_summary">记住上一次使用悬浮窗的大小和位置</string>
@@ -476,17 +476,17 @@
     <string name="error_progress_lost">进度丢失，文件已被删除</string>
     <string name="error_timeout">连接超时</string>
     <string name="confirm_prompt">是否清空下载记录或删除所有下载的文件？</string>
-    <string name="enable_queue_limit">限制下载并发数</string>
+    <string name="enable_queue_limit">限制下载并行任务数</string>
     <string name="enable_queue_limit_desc">同一时间内只允许进行一个下载任务</string>
     <string name="start_downloads">开始下载</string>
     <string name="pause_downloads">暂停下载</string>
     <string name="downloads_storage_ask_title">总是询问下载位置</string>
-    <string name="downloads_storage_ask_summary">系统将询问您将每次下载的保存位置</string>
+    <string name="downloads_storage_ask_summary">系统将询问您将每次下载的保存位置。
+\n如果要下载到外部 SD 卡，请启用系统文件夹选择器 (SAF)</string>
     <string name="downloads_storage_ask_summary_kitkat">系统将询问您将每次下载的保存位置。
 \n如果要下载到外部 SD 卡，请选择 SAF</string>
-    <string name="downloads_storage_use_saf_title">使用 SAF</string>
-    <string name="downloads_storage_use_saf_summary">存储访问框架（SAF）允许下载文件到外部 SD 卡。
-\n部分设备不兼容 SAF</string>
+    <string name="downloads_storage_use_saf_title">使用系统文件夹选择器 (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">存储访问框架（SAF）允许下载文件到外部 SD 卡</string>
     <string name="clear_playback_states_title">删除播放痕迹历史</string>
     <string name="clear_playback_states_summary">删除所有播放痕迹历史</string>
     <string name="delete_playback_states_alert">是否删除全部播放痕迹历史？</string>
@@ -694,4 +694,17 @@
     <string name="metadata_category">类别</string>
     <string name="description_select_enable">开启简介中的文本选择功能</string>
     <string name="description_select_note">你现在可以选择简介中的文本，注意，在选择模式下，页面可能会闪烁，链接可能无法点击。</string>
+    <string name="open_website_license">打开网站</string>
+    <string name="service_provides_reason">%s 提供这个原因：</string>
+    <string name="account_terminated">账号被终止</string>
+    <string name="feed_load_error_fast_unknown">快速 Feed 模式不提供关于这个的更多信息。</string>
+    <string name="feed_load_error_terminated">作者账号已被终止。
+\nNewPipe 今后将无法加载此 Feed。
+\n你要退订此频道吗？</string>
+    <string name="feed_load_error_account_info">无法加载“%s”的 Feed。</string>
+    <string name="feed_load_error">加载 Feed 时出错</string>
+    <string name="downloads_storage_use_saf_summary_api_29">仅 Android 10 及以上版本支持“存储访问框架”</string>
+    <string name="downloads_storage_use_saf_summary_api_19">Android KitKat 及更低版本不支持“存储访问框架”</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">你会被问到在哪里保存每个下载</string>
+    <string name="no_dir_yet">尚未设置下载文件夹，现在选择默认下载文件夹</string>
 </resources>

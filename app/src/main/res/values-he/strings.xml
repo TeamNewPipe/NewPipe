@@ -326,9 +326,9 @@
 \n6. לחלץ את קובץ ה־‎.json מתוך ה־zip (בדרך כלל תחת „YouTube and YouTube Music/subscriptions/subscriptions.json”) ולייבא אותו כאן.</string>
     <string name="playback_tempo">קצב</string>
     <string name="use_inexact_seek_title">שימוש בחיפוש מהיר ולא מדויק</string>
-    <string name="use_inexact_seek_summary">חיפוש גס מאפשר לנגן לחפש נקודת זמן מהר יותר, ברמת דיוק נמוכה יותר. חיפוש של 5, 15 או 25 שניות לא עובד עם ההגדרה הזאת.</string>
+    <string name="use_inexact_seek_summary">חיפוש גס מאפשר לנגן לחפש נקודת זמן מהר יותר, ברמת דיוק נמוכה יותר. חיפוש של 5, 15 או 25 שניות לא עובד עם ההגדרה הזאת</string>
     <string name="download_thumbnail_title">טעינת תמונות ממוזערות</string>
-    <string name="download_thumbnail_summary">כיבוי האפשרות מונע את טעינת התמונות הממוזערות, חוסך בתקשורת נתונים ובניצולת הזיכרון. שינויים באפשרות זו מוחקים את המטמון בזיכרון ובכונן.</string>
+    <string name="download_thumbnail_summary">כיבוי האפשרות מונע את טעינת התמונות הממוזערות, חוסך בתקשורת נתונים ובניצולת הזיכרון. שינויים באפשרות זו מוחקים את המטמון בזיכרון ובכונן</string>
     <string name="metadata_cache_wipe_summary">הסרת כל נתוני העמודים שבמטמון</string>
     <string name="auto_queue_title">הוספת התזרים הבא לרשימת הנגינה אוטומטית</string>
     <string name="auto_queue_summary">להמשיך תור נגינה סופית (בלתי מחזורית) על ידי הוספת תזרים קשור</string>
@@ -369,7 +369,7 @@
     <string name="caption_none">אין כתוביות</string>
     <string name="resize_fit">התאמה</string>
     <string name="caption_setting_title">כתוביות</string>
-    <string name="caption_setting_description">שינוי גודל כותרת הנגן וסגנונות הרקע. נדרשת הפעלה מחדש כדי ששינויים אלה יכנסו לתוקף.</string>
+    <string name="caption_setting_description">שינוי גודל כותרת הנגן וסגנונות הרקע. נדרשת הפעלה מחדש כדי ששינויים אלה יכנסו לתוקף</string>
     <string name="enable_leak_canary_summary">מעקב אחר זליגת זיכרון עשויה לגרום ליישומון להיות בלתי זמין בזמן העתקת תוכן הזיכרון לקובץ</string>
     <string name="import_soundcloud_instructions_hint">המזהה שלך, soundcloud.com/המזהה שלך</string>
     <string name="import_network_expensive_warning">נא לשים לב כי פעולה זו עשויה להעמיס על תקשורת הנתונים. 
@@ -487,12 +487,12 @@
     <string name="start_downloads">התחלת הורדות</string>
     <string name="pause_downloads">השהיית הורדות</string>
     <string name="downloads_storage_ask_title">לשאול לאן להוריד</string>
-    <string name="downloads_storage_ask_summary">תופיע שאלה לאן לשמור כל הורדה</string>
+    <string name="downloads_storage_ask_summary">תופיע שאלה לאן לשמור כל הורדה.
+\nיש להפעיל את בוחר התיקיות של המערכת (SAF) כדי להוריד לכרטיס SD חיצוני</string>
     <string name="downloads_storage_ask_summary_kitkat">תוצג שאלה היכן לשמור כל הורדה. 
 \nיש להפעיל זאת אם ברצונך להוריד לכרטיס SD חיצוני</string>
-    <string name="downloads_storage_use_saf_title">שימוש ב־SAF</string>
-    <string name="downloads_storage_use_saf_summary">‚תשתית גישה לאחסון’ מאפשרת הורדות לכרטיס SD חיצוני.
-\nחלק מהמכשירים אינם נתמכים</string>
+    <string name="downloads_storage_use_saf_title">שימוש בבוחר התיקיות של המערכת (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">‚תשתית גישה לאחסון’ מאפשרת הורדות לכרטיס SD חיצוני</string>
     <string name="clear_playback_states_title">מחיקת מיקומי נגינה</string>
     <string name="clear_playback_states_summary">מחיקת כל מיקומי הנגינה</string>
     <string name="delete_playback_states_alert">למחוק את מיקומי הנגינה\?</string>
@@ -590,7 +590,7 @@
     </plurals>
     <string name="feed_update_threshold_summary">הזמן לאחר העדכון האחרון בטרם מינוי נחשב לבלתי עדכני — %s</string>
     <string name="feed_use_dedicated_fetch_method_title">לקבל מהזנה ייעודית כשניתן</string>
-    <string name="feed_use_dedicated_fetch_method_summary">זמין בחלק מהשירותים, האפשרות הזאת בדרך כלל מהירה יותר אך עשויה להחזיר כמות מוגבלת של פריטים ולעתים פרטים חלקיים (למשל: חסר משך הפרק, סוג הפריט, אין מצב חי).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">זמין בחלק מהשירותים, האפשרות הזאת בדרך כלל מהירה יותר אך עשויה להחזיר כמות מוגבלת של פריטים ולעתים פרטים חלקיים (למשל: חסר משך הפרק, סוג הפריט, אין מצב חי)</string>
     <string name="feed_use_dedicated_fetch_method_help_text">לדעתך הטעינה אטית מדי\? אם זה המצב אצלך, כדאי לנסות להפעיל טעינה מהירה (ניתן לשנות בהגדרות או על ידי לחיצה על הכפתור שלהלן).
 \n
 \nהיישומון NewPipe מציע שתי אסטרטגיות לטעינת הזנה:
@@ -671,7 +671,7 @@
     <string name="hash_channel_description">התראות על תהליכי גיבוב</string>
     <string name="hash_channel_name">התראת גיבוב סרטון</string>
     <string name="recent">לאחרונה</string>
-    <string name="show_meta_info_summary">לכבות את התיבות שמציגות את המידע על יוצרי התזרים, תוכן התזרים או בקשת חיפוש.</string>
+    <string name="show_meta_info_summary">לכבות את התיבות שמציגות את המידע על יוצרי התזרים, תוכן התזרים או בקשת חיפוש</string>
     <string name="show_meta_info_title">הצגת מידע על</string>
     <string name="chapters">פרקים</string>
     <string name="description_tab_description">תיאור</string>
@@ -716,4 +716,17 @@
     <string name="description_select_disable">השבתת בחירת טקסט בתיאור</string>
     <string name="description_select_enable">הפעלת בחירת טקסט בתיאור</string>
     <string name="description_select_note">מעתה ניתן לבחור טקסט בתוך התיאור. נא לשים לב שהעמוד עשוי להבהב והקישורים לא יהיו לחיצים בזמן מצב הבחירה.</string>
+    <string name="feed_load_error_terminated">חשבון היוצר הושמד.
+\nל־NewPipe לא תהיה אפשרות להוריד את ההזנה הזאת בעתיד.
+\nלהסיר את המינוי מהערוץ הזה\?</string>
+    <string name="open_website_license">פתיחת האתר</string>
+    <string name="service_provides_reason">%s מספק את הסיבה הבאה:</string>
+    <string name="account_terminated">החשבון הושמד</string>
+    <string name="feed_load_error_fast_unknown">מצב ההזנה המהירה לא מספק מידע נוסף על כך.</string>
+    <string name="feed_load_error_account_info">לא ניתן לטעון את ההזנה עבור ‚%s’.</string>
+    <string name="feed_load_error">שגיאה בהורדת ההזנה</string>
+    <string name="downloads_storage_use_saf_summary_api_29">התמיכה ב‚תשתית גישה לאחסון’ נתמכת מ־Android 10 בלבד</string>
+    <string name="downloads_storage_use_saf_summary_api_19">‚תשתית הגישה לאחסון’ אינה נתמכת על ידי Android KitKat ומטה</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">תופיע שאלה לאן לשמור כל הורדה</string>
+    <string name="no_dir_yet">טרם הוגדרה תיקיית הורדה, נא לבחור את תיקיית ההורדה כעת</string>
 </resources>

@@ -273,7 +273,7 @@
     <string name="tab_bookmarks">Плейлисты</string>
     <string name="controls_add_to_playlist_title">В плейлист</string>
     <string name="use_inexact_seek_title">Быстрый поиск позиции</string>
-    <string name="use_inexact_seek_summary">Выполняется быстрее, но менее точно. Не работает для перемотки на 5, 15 или 25 секунд.</string>
+    <string name="use_inexact_seek_summary">Выполняется быстрее, но менее точно. Не работает для перемотки на 5, 15 или 25 секунд</string>
     <string name="auto_queue_title">Автодополнение очереди</string>
     <string name="auto_queue_summary">Добавлять похожие потоки в очередь при воспроизведении последнего потока, если не включён повтор</string>
     <string name="settings_category_debug_title">Отладка</string>
@@ -354,7 +354,7 @@
 \n 
 \nПродолжить?</string>
     <string name="download_thumbnail_title">Загружать миниатюры</string>
-    <string name="download_thumbnail_summary">Отключите, чтобы не загружать миниатюры и сэкономить трафик и память. Изменение настройки очистит кэш изображений.</string>
+    <string name="download_thumbnail_summary">Отключите, чтобы не загружать миниатюры и сэкономить трафик и память. Изменение настройки очистит кэш изображений</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш изображений очищен</string>
     <string name="metadata_cache_wipe_title">Очистить кэш метаданных</string>
     <string name="metadata_cache_wipe_complete_notice">Кэш метаданных очищен</string>
@@ -367,7 +367,7 @@
     <string name="no_streams_available_download">Нет потоков для загрузки</string>
     <string name="caption_setting_title">Субтитры</string>
     <string name="toast_no_player">Приложение для воспроизведения этого файла не установлено</string>
-    <string name="caption_setting_description">Изменить размер текста и стиль субтитров. Нужен перезапуск.</string>
+    <string name="caption_setting_description">Изменить размер текста и стиль субтитров. Нужен перезапуск</string>
     <string name="clear_views_history_title">Очистить историю</string>
     <string name="delete_view_history_alert">Удалить всю историю просмотров\?</string>
     <string name="watch_history_deleted">История просмотров удалена.</string>
@@ -484,12 +484,12 @@
     <string name="start_downloads">Начать загрузку</string>
     <string name="pause_downloads">Приостановить загрузку</string>
     <string name="downloads_storage_ask_title">Запрашивать папку загрузки</string>
-    <string name="downloads_storage_ask_summary">Для каждой загрузки запрашивать папку для сохранения</string>
+    <string name="downloads_storage_ask_summary">Для каждой загрузки запрашивать папку для сохранения.
+\nВключите системный выбор папки (SAF), если хотите загружать на внешнюю SD-карту</string>
     <string name="downloads_storage_ask_summary_kitkat">Для каждой загрузки запрашивать папку для сохранения. 
 \nИспользуйте SAF для загрузки на SD-карту</string>
-    <string name="downloads_storage_use_saf_title">Использовать SAF</string>
-    <string name="downloads_storage_use_saf_summary">Storage Access Framework позволяет сохранять файлы на SD-карте.
-\nПоддерживается не всеми устройствами</string>
+    <string name="downloads_storage_use_saf_title">Использовать системный выбор папки (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' позволяет сохранять файлы на внешнюю SD-карту</string>
     <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>
     <string name="clear_playback_states_summary">Удалить все позиции воспроизведения</string>
     <string name="delete_playback_states_alert">Удалить все позиции воспроизведения\?</string>
@@ -591,7 +591,7 @@
 \n
 \nВыбор за вами: скорость или точность.</string>
     <string name="feed_use_dedicated_fetch_method_title">Обновление по RSS, если доступно</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, может возвращать не всё содержимое канала и не содержать часть сведений (длительность, статус трансляции).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, может возвращать не всё содержимое канала и не содержать часть сведений (длительность, статус трансляции)</string>
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
     <string name="restricted_video">Это видео имеет возрастное ограничение.
 \n
@@ -662,7 +662,7 @@
     <string name="hash_channel_name">Уведомление о хэшировании</string>
     <string name="msg_calculating_hash">Вычисляется хэш</string>
     <string name="recent">Недавнее</string>
-    <string name="show_meta_info_summary">Отключите, чтобы скрыть поля метаданных (автор потока, содержимое потока или поисковый запрос).</string>
+    <string name="show_meta_info_summary">Отключите, чтобы скрыть поля метаданных (автор потока, содержимое потока или поисковый запрос)</string>
     <string name="show_meta_info_title">Показать метаданные</string>
     <string name="related_items_tab_description">Похожие потоки</string>
     <string name="chapters">Главы</string>
@@ -676,7 +676,7 @@
     <string name="paid_content">Этот контент доступен только оплатившим его пользователям, поэтому NewPipe не может воспроизвести или загрузить его.</string>
     <string name="youtube_music_premium_content">Это видео доступно только для пользователей YouTube Music Premium, поэтому NewPipe не может воспроизвести или загрузить его.</string>
     <string name="private_content">Это частный контент, поэтому NewPipe не может воспроизвести или загрузить его.</string>
-    <string name="soundcloud_go_plus_content">Этот трэк SoundCloud Go+, по крайней мере в Вашей стране. Поэтому NewPipe не может воспроизвести или загрузить его.</string>
+    <string name="soundcloud_go_plus_content">Этот трек SoundCloud Go+, по крайней мере в Вашей стране. Поэтому NewPipe не может воспроизвести или загрузить его.</string>
     <string name="georestricted_content">Этот контент недоступен в вашей стране.</string>
     <string name="download_has_started">Загрузка началась</string>
     <string name="select_night_theme_toast">Вы можете выбрать предпочтительную ночную тему ниже</string>
@@ -707,4 +707,17 @@
     <string name="metadata_thumbnail_url">URL миниатюры</string>
     <string name="metadata_host">Сервер</string>
     <string name="metadata_privacy">Доступность</string>
+    <string name="feed_load_error_fast_unknown">Режим быстрой загрузки подписки не представляет подробной информации об этом.</string>
+    <string name="feed_load_error_terminated">Аккаунт автора заблокирован.
+\nNewPipe не сможет загружать эту подписку в будущем.
+\nЖелаете ли вы отписаться от этого канала\?</string>
+    <string name="feed_load_error_account_info">Не удалось загрузить подписку \'%s\'.</string>
+    <string name="feed_load_error">Ошибка загрузки подписки</string>
+    <string name="open_website_license">Открыть веб-сайт</string>
+    <string name="service_provides_reason">%s указывает следующую причину:</string>
+    <string name="account_terminated">Аккаунт отключён</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Начиная с Android 10 поддерживается только \'Storage Access Framework\'</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' не поддерживается на Android KitKat и ниже</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Вам будет предложено куда сохранить каждую загрузку</string>
+    <string name="no_dir_yet">Папка для загрузки ещё не выбрана, укажите папку для загрузки сейчас</string>
 </resources>

@@ -173,7 +173,7 @@
     <string name="action_history">Riwayat</string>
     <string name="history_empty">Riwayat kosong</string>
     <string name="download_thumbnail_title">Muat thumbnail</string>
-    <string name="download_thumbnail_summary">Matikan agar thumbnail tidak dimuat, menghemat penggunaan data dan memori. Perubahan menghapus cache gambar baik di memori dan disk.</string>
+    <string name="download_thumbnail_summary">Matikan agar thumbnail tidak dimuat, menghemat penggunaan data dan memori. Perubahan menghapus cache gambar baik di memori dan disk</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache gambar dihapus</string>
     <string name="metadata_cache_wipe_title">Hapus cache metadata</string>
     <string name="metadata_cache_wipe_summary">Hapus semua data cache halaman web</string>
@@ -323,13 +323,13 @@
     <string name="subscription_update_failed">Tidak bisa memperbarui langganan</string>
     <string name="tab_subscriptions">Subscription</string>
     <string name="use_inexact_seek_title">Gunakan tinjau cepat tak pasti</string>
-    <string name="use_inexact_seek_summary">Memungkinkan pengguna memilih posisi waktu video dengan cepat tetapi dengan tingkat presisi yang rendah. Mencari 5, 15 atau 25 detik tidak berhasil dengan ini.</string>
+    <string name="use_inexact_seek_summary">Memungkinkan pengguna memilih posisi waktu video dengan cepat tetapi dengan tingkat presisi yang rendah. Mencari 5, 15 atau 25 detik tidak berhasil dengan ini</string>
     <string name="app_license">NewPipe adalah perangkat lunak libre copyleft: Anda bisa menggunakannya, mempelajarinya, berbagi, dan meningkatkannya. Secara khusus Anda bisa mendistribusikan ulang dan/atau memodifikasinya dibawah syarat Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan Anda) versi yang lebih baru.</string>
     <string name="import_settings">Apakah Anda juga ingin mengimpor pengaturan\?</string>
     <string name="preferred_open_action_settings_title">Tindakan \'buka\' yang diinginkan</string>
     <string name="preferred_open_action_settings_summary">Tindakan baku ketika membuka konten — %s</string>
     <string name="caption_setting_title">Teks</string>
-    <string name="caption_setting_description">Ubah skala teks takarir pemutar dan gaya latar belakang. Perlu memulai ulang apl.</string>
+    <string name="caption_setting_description">Ubah skala teks takarir pemutar dan gaya latar belakang. Perlu memulai ulang apl</string>
     <string name="enable_leak_canary_summary">Pemantauan kebocoran memori dapat menyebabkan apl menjadi tidak responsif saat heap dumping</string>
     <string name="enable_disposed_exceptions_title">Laporkan galat out-of-lifecycle</string>
     <string name="enable_disposed_exceptions_summary">Paksa pelaporan eksepsi Rx yang tak terkirim di luar fragmen atau siklus hidup aktivitas setelah dibuang</string>
@@ -474,13 +474,13 @@
     <string name="start_downloads">Mulai unduh</string>
     <string name="pause_downloads">Jeda unduh</string>
     <string name="downloads_storage_ask_title">Tanyakan lokasi unduhan</string>
-    <string name="downloads_storage_ask_summary">Anda akan ditanya lokasi penyimpanan berkas unduhan</string>
+    <string name="downloads_storage_ask_summary">Anda akan ditanya lokasi penyimpanan berkas unduhan.
+\nAktifkan pencomot folder sistem (SAF) jika Anda ingin mengunduh ke kartu SD eksternal</string>
     <string name="downloads_storage_ask_summary_kitkat">Anda akan ditanya lokasi penyimpanan berkas unduhan.
 \nPilih SAF jika Anda ingin mengunduh ke kartu SD eksternal</string>
     <string name="error_timeout">Batas waktu koneksi</string>
-    <string name="downloads_storage_use_saf_title">Gunakan SAF</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' memungkinkan unduhan ke kartu SD eksternal.
-\nBeberapa perangkat tidak kompatibel</string>
+    <string name="downloads_storage_use_saf_title">Gunakan pencomot folder sistem (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' memungkinkan unduhan ke kartu SD eksternal</string>
     <string name="clear_playback_states_title">Hapus posisi pemutaran</string>
     <string name="clear_playback_states_summary">Hapus semua posisi pemutaran</string>
     <string name="delete_playback_states_alert">Hapus semua posisi pemutaran\?</string>
@@ -555,7 +555,7 @@
     <string name="feed_update_threshold_title">Rentang pembaruan feed</string>
     <string name="feed_update_threshold_summary">Waktu setelah pembaruan terakhir sebelum langganan dianggap kedaluwarsa — %s</string>
     <string name="feed_update_threshold_option_always_update">Selalu perbarui</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Tersedia pada beberapa layanan, biasanya lebih cepat tetapi memperbarui lebih sedikit item dan sering kali dengan informasi yang tidak lengkap (mis. tanpa durasi, tanpa tipe item, tanpa status live).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Tersedia pada beberapa layanan, biasanya lebih cepat tetapi memperbarui lebih sedikit item dan sering kali dengan informasi yang tidak lengkap (mis. tanpa durasi, tanpa tipe item, tanpa status live)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Aktifkan mode cepat</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Nonaktifkan mode cepat</string>
     <string name="infinite_videos">∞ video</string>
@@ -639,7 +639,7 @@
     <string name="show_thumbnail_title">Tampilkan thumbnail</string>
     <string name="msg_calculating_hash">Mengkalkulasi hash</string>
     <string name="recent">Baru-baru ini</string>
-    <string name="show_meta_info_summary">Nonaktifkan untuk menyembunyikan kotak info tentang informasi tambahan tentang kreator, konten stream atau pencarian.</string>
+    <string name="show_meta_info_summary">Nonaktifkan untuk menyembunyikan kotak info tentang informasi tambahan tentang kreator, konten stream atau pencarian</string>
     <string name="show_meta_info_title">Tampilkan info meta</string>
     <string name="hash_channel_description">Notifikasi untuk laju pemrosesan hash video</string>
     <string name="hash_channel_name">Notifikasi Hash Video</string>
@@ -686,4 +686,17 @@
     <string name="description_select_disable">Nonaktifkan dapat memilih teks pada deskripsi</string>
     <string name="description_select_enable">Aktifkan dapat memilih teks pada deskripsi</string>
     <string name="description_select_note">Anda sekarang dapat memilih teks di dalam deskripsi. Perhatikan bahwa halaman mungkin berkedip dan tautan tidak dapat diklik saat dalam mode pemilihan.</string>
+    <string name="open_website_license">Buka Situs Web</string>
+    <string name="service_provides_reason">%s menyediakan alasan ini:</string>
+    <string name="account_terminated">Akun dinonaktifkan</string>
+    <string name="feed_load_error_fast_unknown">Mode langganan cepat tidak menyediakan lebih banyak info tentang ini.</string>
+    <string name="feed_load_error_terminated">Akun kreator telah dinonaktifkan.
+\nNewPipe tidak akan bisa memuat langganan ini lagi.
+\nApakah Anda ingin berhenti berlangganan kanal ini\?</string>
+    <string name="feed_load_error_account_info">Tidak bisa memuat langganan untuk \'%s\'.</string>
+    <string name="feed_load_error">Galat memuat langganan</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Mulai Android 10, hanya \'Storage Access Framework\' yang didukung</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' tidak didukung pada Android KitKat dan yang lebih rendah</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Anda akan ditanya lokasi penyimpanan berkas unduhan</string>
+    <string name="no_dir_yet">Belum ada folder unduhan, pilih folder unduhan sekarang</string>
 </resources>

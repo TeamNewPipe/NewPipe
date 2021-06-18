@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">прегледа: %1$s</string>
-    <string name="upload_date_text">Објављен %1$s</string>
+    <string name="upload_date_text">Објављено %1$s</string>
     <string name="no_player_found">Нема плејера токова. Инсталирати ВЛЦ\?</string>
     <string name="install">Инсталирај</string>
     <string name="cancel">Откажи</string>
@@ -9,7 +9,7 @@
     <string name="share">Подели</string>
     <string name="download">Преузимање</string>
     <string name="search">Тражи</string>
-    <string name="settings">Поставке</string>
+    <string name="settings">Подешавања</string>
     <string name="did_you_mean">Да ли сте мислили: „%1$s“\?</string>
     <string name="share_dialog_title">Подели помоћу</string>
     <string name="choose_browser">Изабери претраживач</string>
@@ -136,7 +136,7 @@
     <string name="show_search_suggestions_title">Предлози у претрази</string>
     <string name="show_search_suggestions_summary">Приказује предлоге током претраге</string>
     <string name="settings_category_popup_title">Искачући прозор</string>
-    <string name="subscribed_button_title">Прати се</string>
+    <string name="subscribed_button_title">Пратите</string>
     <string name="subscribe_button_title">Прати</string>
     <string name="tab_main">Главно</string>
     <string name="tab_subscriptions">Праћења</string>
@@ -149,7 +149,7 @@
     <string name="best_resolution">Најбоља резолуција</string>
     <string name="settings_category_downloads_title">Преузимање</string>
     <string name="title_activity_about">О програму</string>
-    <string name="action_settings">Поставке</string>
+    <string name="action_settings">Подешавања</string>
     <string name="action_about">О програму</string>
     <string name="action_open_website">Отвори вебсајт</string>
     <string name="tab_about">О програму</string>
@@ -252,9 +252,9 @@
     <string name="hold_to_append">Задржи за стављање у ред</string>
     <string name="start_here_on_main">Пусти одавде</string>
     <string name="use_inexact_seek_title">Користи брзо, непрецизно премотавање</string>
-    <string name="use_inexact_seek_summary">Непрецизно премотавање омогућава плејеру да брже долази до позиције уз смањену прецизност. Премотавање за 5, 15 или 25 секунди са овом опцијом не ради.</string>
+    <string name="use_inexact_seek_summary">Непрецизно премотавање омогућава плејеру да брже долази до позиције уз смањену прецизност. Премотавање за 5, 15 или 25 секунди са овом опцијом не ради</string>
     <string name="download_thumbnail_title">Учитај сличице</string>
-    <string name="download_thumbnail_summary">Искључите да спречите преузимање сличица, смањујући утрошак преноса података и меморије. Изменом ће се очистити и меморијски и диск кеш.</string>
+    <string name="download_thumbnail_summary">Искључите да спречите преузимање сличица, смањујући утрошак преноса података и меморије. Изменом ће се очистити и меморијски и диск кеш</string>
     <string name="thumbnail_cache_wipe_complete_notice">Очишћен кеш са сликама</string>
     <string name="metadata_cache_wipe_title">Уклони кеширане метаподатке</string>
     <string name="metadata_cache_wipe_summary">Уклања све податке кешираних веб-страна</string>
@@ -272,12 +272,12 @@
     <string name="systems_language">Системски</string>
     <string name="app_language_title">Језик апликације</string>
     <string name="choose_instance_prompt">Изаберите инстанцу</string>
-    <string name="downloads_storage_use_saf_summary">„Storage Access Framework“ омогућава преузимање на спољну СД картицу.
-\nНеки уређаји нису компатибилни</string>
-    <string name="downloads_storage_use_saf_title">Користи „SAF“</string>
+    <string name="downloads_storage_use_saf_summary">„Storage Access Framework“ омогућава преузимање на спољну СД картицу</string>
+    <string name="downloads_storage_use_saf_title">Користи системски бирач фасцикли (SAF)</string>
     <string name="downloads_storage_ask_summary_kitkat">Питаће вас где да сачува свако преузимање.
 \nИзаберите „SAF“ ако желите да преузимате на спољну СД картицу</string>
-    <string name="downloads_storage_ask_summary">Питаће вас где да сачувате свако преузимање</string>
+    <string name="downloads_storage_ask_summary">Питаће вас где да сачувате свако преузимање.
+\nУкључите системски бирач фасцикли „SAF“ ако желите да користите спољну СД картицу</string>
     <string name="downloads_storage_ask_title">Питај где да се преузме</string>
     <string name="pause_downloads">Паузирај преузимања</string>
     <string name="start_downloads">Започни преузимања</string>
@@ -393,7 +393,7 @@
     <string name="enable_disposed_exceptions_title">Пријави грешке ван животног циклуса</string>
     <string name="show_memory_leaks">Прикажи цурење меморије</string>
     <string name="enable_leak_canary_summary">Надгледање цурења меморије може изазвати заглављивање апликација при стварању записника</string>
-    <string name="caption_setting_description">Мења величину и позадину титлова плејера. Захтева поновно покретање да би ступило на снагу.</string>
+    <string name="caption_setting_description">Мења величину и позадину титлова плејера. Захтева поновно покретање да би ступило на снагу</string>
     <string name="caption_setting_title">Титлови</string>
     <string name="caption_auto_generated">Аутоматски направљено</string>
     <string name="resize_zoom">Увеличај</string>
@@ -581,7 +581,7 @@
     <string name="auto_queue_summary">Наставите да завршавате (не понављајући) ред репродукције додавањем повезаног стрима</string>
     <string name="auto_queue_title">Аутоматски стави у ред следећи ток</string>
     <string name="metadata_cache_wipe_complete_notice">Кеш метаподатака обрисан</string>
-    <string name="show_meta_info_summary">Искључите за сакривање поља мета-података са додатним информацијама о творцу тока, садржају или захтеву за претрагу.</string>
+    <string name="show_meta_info_summary">Искључите за сакривање поља мета-података са додатним информацијама о творцу тока, садржају или захтеву за претрагу</string>
     <string name="show_meta_info_title">Прикажи мета-податке</string>
     <string name="show_description_summary">Искључите за сакривање описа видеа и додатних информација</string>
     <string name="show_description_title">Прикажи опис</string>
@@ -644,7 +644,7 @@
 \nДакле, избор се своди на оно шта желите: брзину или прецизне информације.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Искључи брзи режим</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Укључи брзи режим</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Доступно у неким услугама. Обично је много брже али може вратити мање ставки и често непотпуне информације (нпр. нема трајања, врсте предмета, нема статуса уживо).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Доступно у неким услугама. Обично је много брже али може вратити мање ставки и често непотпуне информације (нпр. нема трајања, врсте предмета, нема статуса уживо)</string>
     <string name="feed_use_dedicated_fetch_method_title">Преузми из наменског довода када је доступан</string>
     <string name="feed_update_threshold_option_always_update">Увек ажурна</string>
     <string name="feed_update_threshold_summary">Време након којег се претплата сматра застарелом — %s</string>
@@ -690,4 +690,33 @@
     <string name="related_items_tab_description">Повезани записи</string>
     <string name="disable_media_tunneling_summary">Искључите тунеловање ако имате црн екран или прекиде у репродукцији</string>
     <string name="disable_media_tunneling_title">Искључи тунеловање медија</string>
+    <string name="open_website_license">Отвори веб страну</string>
+    <string name="metadata_privacy_internal">интерно</string>
+    <string name="metadata_privacy_private">лично</string>
+    <string name="metadata_privacy_unlisted">ненаведено</string>
+    <string name="metadata_privacy_public">јавно</string>
+    <string name="metadata_thumbnail_url">УРЛ сличице</string>
+    <string name="metadata_host">Домаћин</string>
+    <string name="metadata_support">Подршка</string>
+    <string name="metadata_language">Језик</string>
+    <string name="metadata_age_limit">Старосно ограничење</string>
+    <string name="metadata_privacy">Доступност</string>
+    <string name="metadata_licence">Лиценца</string>
+    <string name="metadata_tags">Ознаке</string>
+    <string name="metadata_category">Категорија</string>
+    <string name="description_select_enable">Омогући бирање текста унутар описа</string>
+    <string name="description_select_disable">Онемогући бирање текста унутар описа</string>
+    <string name="description_select_note">Сада можете изабрати текст унутар описа. Знајте да страна може треперети а везе неће радити док сте у режиму избора.</string>
+    <string name="service_provides_reason">%s даје овај разлог:</string>
+    <string name="account_terminated">Налог укинут</string>
+    <string name="feed_load_error_fast_unknown">Режим брзог довода не даје више информација о овоме.</string>
+    <string name="feed_load_error_terminated">Налог аутора је укинут.
+\nЊуПајп убудуће неће моћи да учита овај довод.
+\nЖелите ли да прекинете праћење канала\?</string>
+    <string name="feed_load_error_account_info">Не могу да учитам довод за „%s“.</string>
+    <string name="feed_load_error">Грешка учитавања довода</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Од Андроида 10 само „Storage Access Framework“ је подржан</string>
+    <string name="downloads_storage_use_saf_summary_api_19">„Storage Access Framework“ није подржан на Андроиду 4.4 и старијим</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Питаће вас где да сачувате свако преузимање</string>
+    <string name="no_dir_yet">Фасцикла за преузимање није одређена. Изаберите подразумевану фасциклу</string>
 </resources>

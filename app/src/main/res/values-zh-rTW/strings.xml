@@ -302,7 +302,7 @@
     <string name="enable_disposed_exceptions_title">報告週期不足錯誤</string>
     <string name="enable_disposed_exceptions_summary">強制報告在處理完片段或活動週期外發生的無法傳遞的 Rx 異常</string>
     <string name="use_inexact_seek_title">使用粗略但快速的尋找</string>
-    <string name="use_inexact_seek_summary">粗略的尋找能讓播放器以降低的精確度更快找到影片的進度位置。尋找 5、15或25秒無法與其一同使用。</string>
+    <string name="use_inexact_seek_summary">粗略的尋找能讓播放器以降低的精確度更快找到影片的進度位置。尋找 5、15或25秒無法與其一同使用</string>
     <string name="auto_queue_title">自動將下一部影片新增至佇列</string>
     <string name="auto_queue_summary">透過加入相關的串流來繼續結束的（未重複）播放佇列</string>
     <string name="file">檔案</string>
@@ -340,7 +340,7 @@
 \n3. 當被提示時登入帳號 
 \n4. 複製您被重新導向到的個人設定檔網址。</string>
     <string name="download_thumbnail_title">載入縮圖</string>
-    <string name="download_thumbnail_summary">關閉以防止載入縮圖，減少數據和儲存空間的用量。改變時將清除記憶體和磁碟上的縮圖快取。</string>
+    <string name="download_thumbnail_summary">關閉以防止載入縮圖，減少數據和儲存空間的用量。改變時將清除記憶體和磁碟上的縮圖快取</string>
     <string name="thumbnail_cache_wipe_complete_notice">已清除圖片快取</string>
     <string name="metadata_cache_wipe_title">清除快取中介資料</string>
     <string name="metadata_cache_wipe_summary">移除所有網頁的快取資料</string>
@@ -353,7 +353,7 @@
     <string name="preferred_open_action_settings_summary">開啟內容時的預設動作 — %s</string>
     <string name="no_streams_available_download">沒有可供下載的串流</string>
     <string name="caption_setting_title">字幕</string>
-    <string name="caption_setting_description">調整播放器字幕文字大小與背景樣式。必須重新啟動應用程式才會生效。</string>
+    <string name="caption_setting_description">調整播放器字幕文字大小與背景樣式。必須重新啟動應用程式才會生效</string>
     <string name="toast_no_player">未安裝可播放此檔案的應用程式</string>
     <string name="clear_views_history_title">清除觀看歷史</string>
     <string name="clear_views_history_summary">刪除播放過的串流與播放位置歷史</string>
@@ -475,12 +475,12 @@
     <string name="start_downloads">開始下載</string>
     <string name="pause_downloads">暫停下載</string>
     <string name="downloads_storage_ask_title">詢問要下載到哪裡</string>
-    <string name="downloads_storage_ask_summary">每次下載都詢問要下載到哪裡</string>
+    <string name="downloads_storage_ask_summary">每次下載都會詢問您要下載到哪裡。
+\n如果您想要下載到外部的 SD 記憶卡的話，請啟用系統資料夾挑選器 (SAF)</string>
     <string name="downloads_storage_ask_summary_kitkat">每次下載您都會被詢問要下載到哪裡。
 \n如果您想要下載到外部的 SD 卡的話，請選擇 SAF</string>
-    <string name="downloads_storage_use_saf_title">使用 SAF</string>
-    <string name="downloads_storage_use_saf_summary">儲存存取框架讓您可以下載到外部的 SD 卡。 
-\n可能與某些裝置不相容</string>
+    <string name="downloads_storage_use_saf_title">使用系統資料夾挑選器 (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">「儲存存取框架」讓您可以下載到外部的 SD 記憶卡</string>
     <string name="clear_playback_states_title">刪除播放位置</string>
     <string name="clear_playback_states_summary">刪除所有播放位置</string>
     <string name="delete_playback_states_alert">刪除所有播放位置？</string>
@@ -558,7 +558,7 @@
     <string name="feed_update_threshold_summary">上次更新後，訂閱被視為過時的時間 — %s</string>
     <string name="feed_update_threshold_option_always_update">總是更新</string>
     <string name="feed_use_dedicated_fetch_method_title">在可用時從專用 feed 擷取</string>
-    <string name="feed_use_dedicated_fetch_method_summary">其在某些服務中可用，且通常較快速，但可能只會回傳有限的項目，而且資訊通常不完整（例如：沒有持續時間、項目類型、沒有即時狀態）。</string>
+    <string name="feed_use_dedicated_fetch_method_summary">其在某些服務中可用，且通常較快速，但可能只會回傳有限的項目，而且資訊通常不完整（例如：沒有持續時間、項目類型、沒有即時狀態）</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">啟用快速模式</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">停用快速模式</string>
     <string name="feed_use_dedicated_fetch_method_help_text">您覺得 feed 載入太慢了嗎？如果是的話，試著啟用快速載入（您可以在設定中變更或按下下方的按鈕）。
@@ -641,7 +641,7 @@
     <string name="hash_channel_description">影片雜湊流程通知</string>
     <string name="hash_channel_name">影片雜湊通知</string>
     <string name="recent">最近</string>
-    <string name="show_meta_info_summary">關閉以隱藏帶有關於串流建立者、串流內容或搜尋請求等額外資料的詮釋資料框。</string>
+    <string name="show_meta_info_summary">關閉以隱藏帶有關於串流建立者、串流內容或搜尋請求等額外資料的詮釋資料框</string>
     <string name="show_meta_info_title">顯示詮釋資訊</string>
     <string name="chapters">章節</string>
     <string name="description_tab_description">描述</string>
@@ -686,4 +686,17 @@
     <string name="description_select_disable">停用選取描述中的文字</string>
     <string name="description_select_enable">啟用選取描述中的文字</string>
     <string name="description_select_note">您現在可以選取描述中的文字了。請注意，在選取模式下，頁面可能會閃爍，連結也可能無法點擊。</string>
+    <string name="open_website_license">開啟網站</string>
+    <string name="service_provides_reason">%s 提供了這個理由：</string>
+    <string name="account_terminated">帳號已終止</string>
+    <string name="feed_load_error_fast_unknown">快速 feed 模式不會提供更多資訊。</string>
+    <string name="feed_load_error_terminated">作者的帳號已被終止。
+\nNewPipe 未來將無法載入此 feed。
+\n您想要取消訂閱此頻道嗎？</string>
+    <string name="feed_load_error_account_info">無法載入「%s」。</string>
+    <string name="feed_load_error">載入 feed 時發生錯誤</string>
+    <string name="downloads_storage_use_saf_summary_api_29">從 Android 10 開始僅支援「儲存存取框架」</string>
+    <string name="downloads_storage_use_saf_summary_api_19">Android KitKat 或更舊的版本不支援「儲存存取框架」</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">每次下載都會詢問您要下載到哪裡</string>
+    <string name="no_dir_yet">尚未設定下載資料夾，立刻選擇預設的下載資料夾</string>
 </resources>

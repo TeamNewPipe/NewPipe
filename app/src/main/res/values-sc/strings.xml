@@ -22,7 +22,7 @@
     <string name="enable_disposed_exceptions_summary">Fortzat sinnalatziones de etzetziones Rx non cunsinnàbiles in foras de su tziclu de bida de sos framnentos o de sas atividades a pustis de s\'ismaltimentu</string>
     <string name="enable_disposed_exceptions_title">Sinnala sos errores in foras de su tziclu de bida</string>
     <string name="enable_leak_canary_summary">Sa compidada de sa pèrdida de memòria diat pòdere causare blocos de s\'aplicatzione durante d\'iscarrigamentu de sa memòria (heap dumping)</string>
-    <string name="caption_setting_description">Muda sa mannària e sos istiles de isfundu de su testu de sos suta-tìtulos. Depes torrare a allùghere s\'aplicatzione pro chi tèngiat efetu.</string>
+    <string name="caption_setting_description">Muda sa mannària e sos istiles de isfundu de su testu de sos suta-tìtulos. Depes torrare a allùghere s\'aplicatzione pro chi tèngiat efetu</string>
     <string name="caption_setting_title">Suta-tìtulos</string>
     <string name="caption_auto_generated">Ingendradu automaticamente</string>
     <string name="resize_zoom">Ismànnia</string>
@@ -254,8 +254,7 @@
 \nYouTube est un\'esèmpiu de unu servìtziu chi frunit custu mètodu lestru cun sa fonte de cuntenutos RSS sua.
 \n
 \nDuncas s\'issèberu dipendet dae su chi preferis tue: sa lestresa o sas informatziones a sa minuda.</string>
-    <string name="downloads_storage_use_saf_summary">Sa \'Storage Access Framework\' (Istrutura de Atzessu a s\'Archiviatzione) permitet sos iscarrigamentos in un\'ischeda SD esterna.
-\nUnos cantos dispositivos non sunt cumpatìbiles</string>
+    <string name="downloads_storage_use_saf_summary">Sa \'Storage Access Framework\' (Istrutura de Atzessu a s\'Archiviatzione) permitet sos iscarrigamentos in un\'ischeda SD esterna</string>
     <string name="queued">postu in lista</string>
     <string name="updates_setting_description">Ammustra una notìfica pro cussigiare un\'agiornamentu de s\'aplicatzione cando b\'est una versione noa a disponimentu</string>
     <string name="import_soundcloud_instructions">Importa unu profilu de SoundCloud iscriende o s\'URL o su còdighe identificativu (ID) tuo:
@@ -289,7 +288,7 @@
 \n Isperamus chi at a èssere suportadu in una versione benidora.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Disabìlita sa modalidade lestra</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Abìlita sa modalidade lestra</string>
-    <string name="feed_use_dedicated_fetch_method_summary">A disponimentu in unos cantos servìtzios, de sòlitu est meda prus lestru ma diat pòdere frunire unu nùmeru limitadu de elementos e, fatu-fatu, informatziones no intreas (es. peruna longària, casta de elementu, indicadore de istadu in direta).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">A disponimentu in unos cantos servìtzios, de sòlitu est meda prus lestru ma diat pòdere frunire unu nùmeru limitadu de elementos e, fatu-fatu, informatziones no intreas (es. peruna longària, casta de elementu, indicadore de istadu in direta)</string>
     <string name="feed_use_dedicated_fetch_method_title">Recùperu dae una fonte de cuntenutos dedicada, cando est a disponimentu</string>
     <string name="feed_update_threshold_option_always_update">Agiorna semper</string>
     <string name="feed_update_threshold_summary">Tempus chi depet colare a pustis de s\'ùrtimu agiornamentu, in antis chi un\'abbonamebèngiat cunsiderada tropu betza — %s</string>
@@ -335,10 +334,11 @@
     <string name="systems_language">Predefinida de su sistema</string>
     <string name="app_language_title">Limba de s\'aplicatzione</string>
     <string name="choose_instance_prompt">Issèbera un\'istàntzia</string>
-    <string name="downloads_storage_use_saf_title">Imprea sa SAF</string>
+    <string name="downloads_storage_use_saf_title">Imprea s\'ischertadore de cartellas de sistema (SAF)</string>
     <string name="downloads_storage_ask_summary_kitkat">T\'at a bènnere pedidu in ue sarvare cada documentu.
 \n Issèbera SAF si cheres iscarrigare in un\'ischeda SD esterna</string>
-    <string name="downloads_storage_ask_summary">T\'at a bènnere pedidu in ue sarvare cada documentu</string>
+    <string name="downloads_storage_ask_summary">T\'at a bènnere pedidu in ue sarvare cada documentu.
+\nAbìlita s\'ischertadore de cartellas de sistema (SAF) si cheres iscarrigare in un\'ischeda SD esterna</string>
     <string name="downloads_storage_ask_title">Pedi in ue iscarrigare</string>
     <string name="pause_downloads">Pone in pàusa sos iscarrigamentos</string>
     <string name="start_downloads">Faghe incumintzare sos iscarrigamentos</string>
@@ -543,12 +543,12 @@
     <string name="metadata_cache_wipe_summary">Boga totu sos datos de sa pàgina web in sa memòria temporànea</string>
     <string name="metadata_cache_wipe_title">Iscantzella sos metadatos in sa memòria temporànea</string>
     <string name="thumbnail_cache_wipe_complete_notice">Memòria temporànea de sas immàgines isboidada</string>
-    <string name="download_thumbnail_summary">Istuda pro prevènnere su carrigamentu de sas miniaduras, su sarvamentu de sos datos e s\'impreu de sa memòria. Sas modìficas ant a isbodiare siat sa memòria temporànea de sa memòria siat cussa de su discu.</string>
+    <string name="download_thumbnail_summary">Istuda pro prevènnere su carrigamentu de sas miniaduras, su sarvamentu de sos datos e s\'impreu de sa memòria. Sas modìficas ant a isbodiare siat sa memòria temporànea de sa memòria siat cussa de su discu</string>
     <string name="show_comments_summary">Istuda pro cuare sos cummentos</string>
     <string name="show_comments_title">Ammustra sos cummentos</string>
     <string name="download_thumbnail_title">Càrriga sas miniaduras</string>
     <string name="seek_duration_title">Longària de s\'avantzamentu e de sa torrada in segus lestros</string>
-    <string name="use_inexact_seek_summary">Su moimentu inesatu permitit a su riproduidore de si mòere cara a una positzione in manera prus lestra ma prus pagu pretzisa. Su de si mòere de 5, 15 o 25 segundos non funtzionat, cun custa optzione.</string>
+    <string name="use_inexact_seek_summary">Su moimentu inesatu permitit a su riproduidore de si mòere cara a una positzione in manera prus lestra ma prus pagu pretzisa. Su de si mòere de 5, 15 o 25 segundos non funtzionat, cun custa optzione</string>
     <string name="use_inexact_seek_title">Imprea su moimentu inesatu lestru</string>
     <string name="popup_remember_size_pos_title">Ammenta sas propriedades de sa ventanedda</string>
     <string name="black_theme_title">Nieddu</string>
@@ -651,7 +651,7 @@
     <string name="hash_channel_description">Notìficas pro su protzessu de hashàgiu de su vìdeu</string>
     <string name="hash_channel_name">Notìfica de hash de su vìdeu</string>
     <string name="recent">Reghente</string>
-    <string name="show_meta_info_summary">Istuda·lu pro cuare sas iscatuleddas cun informatziones additzionales in subra de su creadore de su flussu, de su cuntenutu de su flussu o de una rechesta de chirca.</string>
+    <string name="show_meta_info_summary">Istuda·lu pro cuare sas iscatuleddas cun informatziones additzionales in subra de su creadore de su flussu, de su cuntenutu de su flussu o de una rechesta de chirca</string>
     <string name="show_meta_info_title">Ammustra informatziones meta</string>
     <string name="no_app_to_open_intent">Peruna aplicatzione in su dispositivu tuo podet abèrrere custu</string>
     <string name="chapters">Capìtulos</string>
@@ -696,4 +696,17 @@
     <string name="description_select_disable">Disabìlita s\'ischerta de su testu in sa descritzione</string>
     <string name="description_select_enable">Abìlita s\'ischerta de su testu in sa descritzione</string>
     <string name="description_select_note">Como podes ischertare su testu in intro de sa descritzione. Ammenta·ti chi sa pàgina diat pòdere trèmere e sos ligàmenes si diant pòdere no abèrrere cando ses in modalidade de ischerta.</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Incumintzende dae Android 10 petzi sa \'Storage Access Framework\' (Istrutura de Atzessu a s\'Archiviatzione) est suportada</string>
+    <string name="open_website_license">Aberi su situ web</string>
+    <string name="service_provides_reason">%s frunit custa resone:</string>
+    <string name="account_terminated">Contu serradu</string>
+    <string name="feed_load_error_fast_unknown">Su recùperu lestru de sos flussos non frunit àteras informatziones in subra de custu.</string>
+    <string name="feed_load_error_terminated">Su contu de s\'autore l\'ant serradu.
+\nNewPipe no at a èssere prus in gradu de carrigare custu flussu in su tempus benidore.
+\nCheres bogare s\'iscritzione a custu canale\?</string>
+    <string name="feed_load_error_account_info">Carrigamentu de su flussu pro \'%s\' fallidu.</string>
+    <string name="feed_load_error">Errore carrighende su flussu</string>
+    <string name="downloads_storage_use_saf_summary_api_19">Su \'Storage Access Framework\' no est suportadu in Android KitKat e versiones prus betzas</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">T\'at a bènnere pedidu in ue sarvare cada documentu</string>
+    <string name="no_dir_yet">Non b\'at galu peruna cartella de iscarrigamentu impostada. Issèbera como sa cartella de iscarrigamentu predefinida</string>
 </resources>

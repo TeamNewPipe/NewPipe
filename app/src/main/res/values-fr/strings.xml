@@ -299,9 +299,9 @@
     <string name="resize_fit">Ajuster</string>
     <string name="resize_zoom">Zoomer</string>
     <string name="use_inexact_seek_title">Utiliser la recherche rapide approximative</string>
-    <string name="use_inexact_seek_summary">Permet au lecteur d’accéder plus rapidement à une position au détriment de la précision. Se déplacer de 5, 15 ou 25 secondes est impossible avec cette option.</string>
+    <string name="use_inexact_seek_summary">Permet au lecteur d’accéder plus rapidement à une position au détriment de la précision. Se déplacer de 5, 15 ou 25 secondes est impossible avec cette option</string>
     <string name="download_thumbnail_title">Charger les miniatures</string>
-    <string name="download_thumbnail_summary">Désactivez pour empêcher le chargement des miniatures afin de réduire l’utilisation de la bande passante et de la mémoire. La modification de cette option vide le cache en mémoire vive et sur le disque.</string>
+    <string name="download_thumbnail_summary">Désactivez pour empêcher le chargement des miniatures afin de réduire l’utilisation de la bande passante et de la mémoire. La modification de cette option vide le cache en mémoire vive et sur le disque</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les métadonnées en cache</string>
     <string name="metadata_cache_wipe_summary">Efface toutes les données des pages Web en cache</string>
@@ -358,7 +358,7 @@
     <string name="preferred_open_action_settings_summary">Action par défaut lors de l’ouverture de contenu — %s</string>
     <string name="no_streams_available_download">Aucun flux disponible au téléchargement</string>
     <string name="caption_setting_title">Sous-titres</string>
-    <string name="caption_setting_description">Modifier la taille du texte et les styles d’arrière-plan des sous-titres du lecteur. Le redémarrage de l’application est requis pour appliquer les changements.</string>
+    <string name="caption_setting_description">Modifier la taille du texte et les styles d’arrière-plan des sous-titres du lecteur. Le redémarrage de l’application est requis pour appliquer les changements</string>
     <string name="playback_pitch">Ton</string>
     <string name="toast_no_player">Aucune application installée pour lire ce fichier</string>
     <string name="clear_views_history_title">Effacer l’historique des vues</string>
@@ -570,7 +570,7 @@
     <string name="feed_update_threshold_summary">Temps depuis la dernière mise à jour pour que le flux ne soit plus considéré comme à jour — %s</string>
     <string name="feed_update_threshold_option_always_update">Toujours mettre à jour</string>
     <string name="feed_use_dedicated_fetch_method_title">Récupérer depuis un flux dédié lorsque disponible</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Disponible dans certains services, c’est généralement beaucoup plus rapide mais cela peut renvoyer un nombre limité d’éléments et souvent avec des informations incomplètes (p. ex. aucune durée, de type d’élément ou de statut en direct).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponible dans certains services, c’est généralement beaucoup plus rapide mais cela peut renvoyer un nombre limité d’éléments et souvent avec des informations incomplètes (p. ex. aucune durée, de type d’élément ou de statut en direct)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activer le mode rapide</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Désactiver le mode rapide</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Pensez-vous que le chargement du flux est trop lent \? Si c’est le cas, essayez le chargement rapide (vous pouvez le modifier dans les paramètres ou en pressant le bouton ci-dessous).
@@ -655,7 +655,7 @@
     <string name="msg_calculating_hash">Calcul du hachage</string>
     <string name="hash_channel_description">Notifications pour la progression du hachage vidéo</string>
     <string name="hash_channel_name">Notification de hachage vidéo</string>
-    <string name="show_meta_info_summary">Désactivez cette option pour masquer les zones de méta-informations contenant des informations supplémentaires sur le créateur du flux, le contenu du flux ou une demande de recherche.</string>
+    <string name="show_meta_info_summary">Désactivez cette option pour masquer les zones de méta-informations contenant des informations supplémentaires sur le créateur du flux, le contenu du flux ou une demande de recherche</string>
     <string name="show_meta_info_title">Afficher les méta-infos</string>
     <string name="no_app_to_open_intent">Aucune application sur votre appareil ne peut ouvrir ceci</string>
     <string name="chapters">Chapitres</string>
@@ -698,4 +698,11 @@
     <string name="metadata_tags">Étiquettes</string>
     <string name="metadata_category">Catégorie</string>
     <string name="description_select_note">Vous pouvez maintenant sélectionner du texte à l\'intérieur de la description. Notez que la page peut scintiller et que les liens peuvent ne pas être cliquables en mode sélection.</string>
+    <string name="service_provides_reason">%s indique le motif :</string>
+    <string name="no_dir_yet">Aucun dossier de téléchargement n\'est défini pour le moment, sélectionnez le dossier de téléchargement par défaut.</string>
+    <string name="open_website_license">Ouvrir le site Web</string>
+    <string name="account_terminated">Compte résilié</string>
+    <string name="feed_load_error_account_info">Impossible de charger le flux \'%s\'.</string>
+    <string name="feed_load_error">Erreur lors du chargement du flux</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Il vous sera demandé où enregistrer chaque téléchargement</string>
 </resources>

@@ -110,9 +110,9 @@
     <string name="popup_remember_size_pos_title">Ενθύμιση ιδιοτήτωναναδυόμενου παραθύρου</string>
     <string name="popup_remember_size_pos_summary">Ενθύμιση του τελευταίου μεγέθους και θέσης του παραθύρου</string>
     <string name="use_inexact_seek_title">Χρήση γρήγορης ανακριβούς αναζήτησης</string>
-    <string name="use_inexact_seek_summary">Η μην ακριβής αναζήτηση επιτρέπει στην εφαρμογή να αναζητεί θέσεις στο βίντεο γρηγορότερα με μειωμένη ακρίβεια. Δε λειτουργεί για διαστήματα των 5, 15 ή 25 δευτερολέπτων.</string>
+    <string name="use_inexact_seek_summary">Η μην ακριβής αναζήτηση επιτρέπει στην εφαρμογή να αναζητεί θέσεις στο βίντεο γρηγορότερα με μειωμένη ακρίβεια. Δε λειτουργεί για διαστήματα των 5, 15 ή 25 δευτερολέπτων</string>
     <string name="download_thumbnail_title">Φόρτωση μικρογραφιών</string>
-    <string name="download_thumbnail_summary">Με την απενεργοποίηση δε φορτώνονται οι μικρογραφίες, εξοικονομώντας δεδομένα και μνήμη. Οι αλλαγές σβήνουν τις προσωρινά αποθηκευμένες εικόνες στη μνήμη και στον δίσκο.</string>
+    <string name="download_thumbnail_summary">Με την απενεργοποίηση δε φορτώνονται οι μικρογραφίες, εξοικονομώντας δεδομένα και μνήμη. Οι αλλαγές σβήνουν τις προσωρινά αποθηκευμένες εικόνες στη μνήμη και στον δίσκο</string>
     <string name="thumbnail_cache_wipe_complete_notice">Εκκαθαρίστηκε η προσωρινή μνήμη εικόνων</string>
     <string name="metadata_cache_wipe_title">Εκκαθάριση προσωρινά αποθηκευμένων μεταδεδομένων</string>
     <string name="metadata_cache_wipe_summary">Αφαίρεση όλων των προσωρινά αποθηκευμένων δεδομένων ιστοσελίδων</string>
@@ -342,7 +342,7 @@
     <string name="resize_zoom">Μεγέθυνση</string>
     <string name="caption_auto_generated">Αυτόματοι</string>
     <string name="caption_setting_title">Υπότιτλοι</string>
-    <string name="caption_setting_description">Τροποποίηση του μεγέθους και του φόντου των υπότιτλων. Απαιτεί επανεκκίνηση της εφαρμογής.</string>
+    <string name="caption_setting_description">Τροποποίηση του μεγέθους και του φόντου των υπότιτλων. Απαιτεί επανεκκίνηση της εφαρμογής</string>
     <string name="enable_leak_canary_summary">Η παρακολούθηση των διαρροών μνήμης μπορεί να προκαλέσει την διακοπή της εφαρμογής</string>
     <string name="enable_disposed_exceptions_summary">Υποχρεωτική αναφορά μη παραδοτέων Rx εξαιρέσεων έξω από το κομμάτι ή τον κύκλο δραστηριότητας μετά από απόρριψη</string>
     <string name="import_export_title">Εισαγωγή/Εξαγωγή</string>
@@ -481,12 +481,12 @@
     <string name="start_downloads">Έναρξη λήψεων</string>
     <string name="pause_downloads">Παύση λήψεων</string>
     <string name="downloads_storage_ask_title">Ερώτηση πού να γίνει η λήψη</string>
-    <string name="downloads_storage_ask_summary">Θα ερωτηθείτε πού να αποθηκεύσετε κάθε λήψη</string>
+    <string name="downloads_storage_ask_summary">Θα ερωτηθείτε πού να αποθηκεύσετε κάθε λήψη.
+\nΕνεργοποιήστε τον επιλογέα φακέλων συστήματος (SAF), αν θέλετε να κάνετε λήψεις σε εξωτερική κάρτα μνήμης</string>
     <string name="downloads_storage_ask_summary_kitkat">Θα σας ζητηθεί πού να αποθηκεύσετε κάθε λήψη.
 \nΕπιλέξτε SAF αν θέλετε να κατεβάσετε σε μια εξωτερική κάρτα SD</string>
-    <string name="downloads_storage_use_saf_title">Χρήση SAF</string>
-    <string name="downloads_storage_use_saf_summary">Το «Πλαίσιο Πρόσβασης Αποθήκευσης» (SAF) επιτρέπει λήψεις σε μια εξωτερική κάρτα SD.
-\nΟρισμένες συσκευές δεν είναι συμβατές</string>
+    <string name="downloads_storage_use_saf_title">Χρήση επιλογέα φακέλων συστήματος (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">Το «Πλαίσιο Πρόσβασης Αποθήκευσης» (SAF) επιτρέπει λήψεις σε μια εξωτερική κάρτα SD</string>
     <string name="clear_playback_states_title">Διαγραφή θέσεων αναπαραγωγής</string>
     <string name="clear_playback_states_summary">Διαγράφει όλες τις θέσεις αναπαραγωγής</string>
     <string name="delete_playback_states_alert">Να διαγραφούν όλες οι θέσεις αναπαραγωγής;</string>
@@ -523,7 +523,7 @@
     <string name="channel_created_by">Δημιουργήθηκε από %s</string>
     <string name="playlist_page_summary">Σελίδα λίστας αναπαραγωγής</string>
     <string name="video_detail_by">Από %s</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Διαθέσιμο σε ορισμένες υπηρεσίες, είναι συνήθως πολύ πιο γρήγορο, αλλά μπορεί να επιστρέψει έναν περιορισμένο αριθμό αντικειμένων και συχνά ελλειπείς πληροφορίες (π.χ. χωρίς διάρκεια, τύπο αντικειμένου).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Διαθέσιμο σε ορισμένες υπηρεσίες, είναι συνήθως πολύ πιο γρήγορο, αλλά μπορεί να επιστρέψει έναν περιορισμένο αριθμό αντικειμένων και συχνά ελλειπείς πληροφορίες (π.χ. χωρίς διάρκεια, τύπο αντικειμένου)</string>
     <string name="feed_use_dedicated_fetch_method_title">Λήψη από ειδική ροή όταν είναι διαθέσιμη</string>
     <string name="feed_update_threshold_option_always_update">Να γίνεται πάντα ενημέρωση</string>
     <string name="feed_update_threshold_summary">Χρόνος μετά την τελευταία ενημέρωση πριν μια συνδρομή θεωρηθεί ξεπερασμένη — %s</string>
@@ -651,7 +651,7 @@
     <string name="hash_channel_description">Ειδοποιήσεις για πρόοδο βίντεο hashing</string>
     <string name="hash_channel_name">Ειδοποίηση βίντεο hash</string>
     <string name="recent">Πρόσφατα</string>
-    <string name="show_meta_info_summary">Απενεργοποιήστε το για να μην εμφανίζονται μεταδεδομένα με επιπλέον πληροφορίες για το δημιουργό και το περιεχόμενο της ροής ή αίτημα αναζήτησης.</string>
+    <string name="show_meta_info_summary">Απενεργοποιήστε το για να μην εμφανίζονται μεταδεδομένα με επιπλέον πληροφορίες για το δημιουργό και το περιεχόμενο της ροής ή αίτημα αναζήτησης</string>
     <string name="show_meta_info_title">Εμφάνιση μεταδεδομένων</string>
     <string name="chapters">Κεφάλαια</string>
     <string name="description_tab_description">Περιγραφή</string>
@@ -695,4 +695,18 @@
     <string name="description_select_disable">Απενεργοποίηση επιλογής κειμένου στην περιγραφή</string>
     <string name="description_select_enable">Ενεργοποίηση επιλογής κειμένου στην περιγραφή</string>
     <string name="description_select_note">Τώρα μπορείτε να επιλέξετε κείμενο εντός της περιγραφής. Σημειώστε ότι, η σελίδα μπορεί να παρουσιάζει αστάθεια κατά τη διάρκεια της κατάστασης επιλογής κειμένου.</string>
+    <string name="open_website_license">Ανοικτή ιστοσελίδα</string>
+    <string name="service_provides_reason">Το %s παρέχει αυτή την αιτία:</string>
+    <string name="account_terminated">Ο λογαριασμός διαγράφηκε</string>
+    <string name="feed_load_error_fast_unknown">Η κατάσταση γρήγορης τροφοδοσίας δεν παρέχει περισσότερες πληροφορίες.</string>
+    <string name="feed_load_error_terminated">Ο λογαριασμός του δημιουργού έχει διαγραφεί.
+\nΤο NewPipe δε θα μπορεί να φορτώσει αυτή την τροφοδοσία στο μέλλον.
+\nΘέλετε να απεγγραφείτε από αυτό το κανάλι;</string>
+    <string name="feed_load_error_account_info">Αδυναμία φόρτωσης τροφοδοσίας για \'%s\'.</string>
+    <string name="feed_load_error">Σφάλμα φόρτωσης τροφοδοσίας</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Από το Android 10 και μετά, μόνο το SAF υποστηρίζεται</string>
+    <string name="downloads_storage_use_saf_summary_api_19">Το «Πλαίσιο Πρόσβασης Αποθήκευσης» δεν υποστηρίζεται σε Android KitKat και παλαιότερο</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Θα ερωτηθείτε πού να αποθηκεύσετε κάθε λήψη</string>
+    <string name="no_dir_yet">Δεν έχει ορισθεί φάκελος λήψεων ακόμα, eπιλέξτε τον προεπιλεγμένο φάκελο τώρα</string>
+    <string name="metadata_host">Host</string>
 </resources>
