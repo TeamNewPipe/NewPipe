@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.DeviceUtils;
 
 import java.io.File;
 import java.util.Set;
@@ -110,7 +111,7 @@ public final class NewPipeSettings {
     }
 
     public static boolean useStorageAccessFramework(final Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !DeviceUtils.isFireTv()) {
             return true;
         } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return false;
