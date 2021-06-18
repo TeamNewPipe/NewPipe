@@ -18,7 +18,7 @@
 <p align="center"><a href="https://newpipe.net">Site web</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Presse</a></p>
 <hr>
 
-*Lire ceci dans d’autres langues : [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [Français](README.fr.md).*
+*Lire ceci dans d’autres langues : [English](README.md), [Español](README.es.md), [Français](README.fr.md), [日本語](README.ja.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md).*
 
 <b>AVERTISSEMENT : C'EST UNE VERSION BÊTA, PAR CONSÉQUENT VOUS POURRIEZ RENCONTRER DES BOGUES. SI C'EST LE CAS, VEUILLEZ OUVRIR UN TICKET VIA NOTRE DÉPÔT GITHUB.</b>
 
