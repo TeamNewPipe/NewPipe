@@ -14,7 +14,7 @@
 </p>
 
 <hr>
-<p align="center"><a href="#Captures-décran">Captures d'écran</a> &bull; <a href="#description">Description</a> &bull; <a href="#fonctionnalités">Fonctionnalités</a> &bull; <a href="#mises-à-jour">Mises à jour</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donner">Donner</a> &bull; <a href="#licence">Licence</a></p>
+<p align="center"><a href="#captures-décran">Captures d'écran</a> &bull; <a href="#description">Description</a> &bull; <a href="#fonctionnalités">Fonctionnalités</a> &bull; <a href="#installation-et-mises-à-jour">Installation et mises à jour</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donner">Donner</a> &bull; <a href="#licence">Licence</a></p>
 <p align="center"><a href="https://newpipe.net">Site web</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Presse</a></p>
 <hr>
 
