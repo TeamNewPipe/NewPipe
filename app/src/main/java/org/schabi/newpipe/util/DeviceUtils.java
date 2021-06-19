@@ -41,11 +41,9 @@ public final class DeviceUtils {
             return isFireTV;
         }
 
-        final boolean isFireTv =
+        isFireTV =
                 App.getApp().getPackageManager().hasSystemFeature(AMAZON_FEATURE_FIRE_TV);
-
-        DeviceUtils.isFireTV = isFireTv;
-        return isFireTv;
+        return isFireTV;
     }
 
     public static boolean isTv(final Context context) {
