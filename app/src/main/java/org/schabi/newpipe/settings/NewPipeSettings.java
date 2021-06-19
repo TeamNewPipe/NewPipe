@@ -111,7 +111,9 @@ public final class NewPipeSettings {
     }
 
     public static boolean useStorageAccessFramework(final Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !DeviceUtils.isFireTv()) {
+        if (DeviceUtils.isFireTv()) {
+            return false;
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             return true;
         } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return false;
