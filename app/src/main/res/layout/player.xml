@@ -365,13 +365,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp">
 
                     <ImageView
                         android:id="@+id/currentSeekbarPreviewThumbnail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="3dp"
+                        android:paddingBottom="2dp"
                         android:visibility="gone"
                         app:srcCompat="@drawable/dummy_thumbnail"
                         tools:visibility="visible" />
