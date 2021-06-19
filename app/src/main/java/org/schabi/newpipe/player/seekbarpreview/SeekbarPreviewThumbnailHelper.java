@@ -89,8 +89,8 @@ public final class SeekbarPreviewThumbnailHelper {
                             // Scaling more than that factor looks really pixelated -> max
                             Math.round(srcWidth * 2.5f)
                     ),
-                    // Min width = 80dp
-                    DeviceUtils.dpToPx(80, context)
+                    // Min width = 10dp
+                    DeviceUtils.dpToPx(10, context)
             );
 
             final float scaleFactor = (float) newWidth / srcWidth;
