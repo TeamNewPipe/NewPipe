@@ -199,7 +199,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getDefaultSharedPreferences(requireContext());
             manager.exportDatabase(preferences, file);
 
-            saveLastImportExportDataUri(false); // save export path only on success
+            saveLastImportExportDataUri(); // save export path only on success
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
         } catch (final Exception e) {
             ErrorActivity.reportUiErrorInSnackbar(this, "Exporting database", e);
@@ -252,8 +252,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
      * Save import path and restart system.
      */
     private void finishImport() {
-        // save import path only on success; save immediately because app is about to exit
-        saveLastImportExportDataUri(true);
+        // save import path only on success
+        saveLastImportExportDataUri();
         // restart app to properly load db
         NavigationHelper.restartApp(requireActivity());
     }
@@ -263,16 +263,11 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         return isBlank(path) ? null : Uri.parse(path);
     }
 
-    private void saveLastImportExportDataUri(final boolean immediately) {
+    private void saveLastImportExportDataUri() {
         if (lastImportExportDataUri != null) {
             final SharedPreferences.Editor editor = defaultPreferences.edit()
                     .putString(importExportDataPathKey, lastImportExportDataUri.toString());
-            if (immediately) {
-                // noinspection ApplySharedPref
-                editor.commit(); // app about to be restarted, commit immediately
-            } else {
-                editor.apply();
-            }
+            editor.apply();
         }
     }
 }
