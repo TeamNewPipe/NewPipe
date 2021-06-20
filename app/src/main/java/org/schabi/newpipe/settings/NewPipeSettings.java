@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.DeviceUtils;
 
 import java.io.File;
 import java.util.Set;
@@ -110,10 +111,12 @@ public final class NewPipeSettings {
     }
 
     public static boolean useStorageAccessFramework(final Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            return true;
-        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+        // There's a FireOS bug which prevents SAF open/close dialogs from being confirmed with a
+        // remote (see #6455).
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP || DeviceUtils.isFireTv()) {
             return false;
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            return true;
         }
 
         final String key = context.getString(R.string.storage_use_saf);

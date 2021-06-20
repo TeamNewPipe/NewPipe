@@ -21,6 +21,7 @@ public final class DeviceUtils {
 
     private static final String AMAZON_FEATURE_FIRE_TV = "amazon.hardware.fire_tv";
     private static Boolean isTV = null;
+    private static Boolean isFireTV = null;
 
     /*
      * Devices that do not support media tunneling
@@ -35,6 +36,16 @@ public final class DeviceUtils {
     private DeviceUtils() {
     }
 
+    public static boolean isFireTv() {
+        if (isFireTV != null) {
+            return isFireTV;
+        }
+
+        isFireTV =
+                App.getApp().getPackageManager().hasSystemFeature(AMAZON_FEATURE_FIRE_TV);
+        return isFireTV;
+    }
+
     public static boolean isTv(final Context context) {
         if (isTV != null) {
             return isTV;
@@ -45,7 +56,7 @@ public final class DeviceUtils {
         // from doc: https://developer.android.com/training/tv/start/hardware.html#runtime-check
         boolean isTv = ContextCompat.getSystemService(context, UiModeManager.class)
                 .getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION
-                || pm.hasSystemFeature(AMAZON_FEATURE_FIRE_TV)
+                || isFireTv()
                 || pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION);
 
         // from https://stackoverflow.com/a/58932366
