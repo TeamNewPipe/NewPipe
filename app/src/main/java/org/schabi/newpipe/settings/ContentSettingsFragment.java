@@ -12,7 +12,6 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
@@ -54,8 +53,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private String thumbnailLoadToggleKey;
     private String youtubeRestrictedModeEnabledKey;
 
-    @Nullable
-    private Uri lastImportExportDataUri = null;
     private Localization initialSelectedLocalization;
     private ContentCountry initialSelectedContentCountry;
     private String initialLanguage;
@@ -165,19 +162,21 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private void requestExportPathResult(final ActivityResult result) {
         assureCorrectAppLanguage(getContext());
         if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-            lastImportExportDataUri = result.getData().getData(); // will be saved only on success
+            // will be saved only on success
+            final Uri lastExportDataUri = result.getData().getData();
 
             final StoredFileHelper file
                     = new StoredFileHelper(getContext(), result.getData().getData(), ZIP_MIME_TYPE);
 
-            exportDatabase(file);
+            exportDatabase(file, lastExportDataUri);
         }
     }
 
     private void requestImportPathResult(final ActivityResult result) {
         assureCorrectAppLanguage(getContext());
         if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-            lastImportExportDataUri = result.getData().getData(); // will be saved only on success
+            // will be saved only on success
+            final Uri lastImportDataUri = result.getData().getData();
 
             final StoredFileHelper file
                     = new StoredFileHelper(getContext(), result.getData().getData(), ZIP_MIME_TYPE);
@@ -185,7 +184,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             new AlertDialog.Builder(requireActivity())
                     .setMessage(R.string.override_current_data)
                     .setPositiveButton(R.string.finish, (d, id) ->
-                            importDatabase(file))
+                            importDatabase(file, lastImportDataUri))
                     .setNegativeButton(R.string.cancel, (d, id) ->
                             d.cancel())
                     .create()
@@ -193,27 +192,27 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
     }
 
-    private void exportDatabase(final StoredFileHelper file) {
+    private void exportDatabase(final StoredFileHelper file, final Uri exportDataUri) {
         try {
             //checkpoint before export
             NewPipeDatabase.checkpoint();
 
             final SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(requireContext());
+                    .getDefaultSharedPreferences(requireContext());
             manager.exportDatabase(preferences, file);
 
-            saveLastImportExportDataUri(); // save export path only on success
+            saveLastImportExportDataUri(exportDataUri); // save export path only on success
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
         } catch (final Exception e) {
             ErrorActivity.reportUiErrorInSnackbar(this, "Exporting database", e);
         }
     }
 
-    private void importDatabase(final StoredFileHelper file) {
+    private void importDatabase(final StoredFileHelper file, final Uri importDataUri) {
         // check if file is supported
         if (!ZipHelper.isValidZipFile(file)) {
             Toast.makeText(getContext(), R.string.no_valid_zip_file, Toast.LENGTH_SHORT)
-                .show();
+                    .show();
             return;
         }
 
@@ -234,17 +233,17 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
                 alert.setNegativeButton(android.R.string.no, (dialog, which) -> {
                     dialog.dismiss();
-                    finishImport();
+                    finishImport(importDataUri);
                 });
                 alert.setPositiveButton(getString(R.string.finish), (dialog, which) -> {
                     dialog.dismiss();
                     manager.loadSharedPreferences(PreferenceManager
-                        .getDefaultSharedPreferences(requireContext()));
-                    finishImport();
+                            .getDefaultSharedPreferences(requireContext()));
+                    finishImport(importDataUri);
                 });
                 alert.show();
             } else {
-                finishImport();
+                finishImport(importDataUri);
             }
         } catch (final Exception e) {
             ErrorActivity.reportUiErrorInSnackbar(this, "Importing database", e);
@@ -253,10 +252,12 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     /**
      * Save import path and restart system.
+     *
+     * @param importDataUri The import path to save
      */
-    private void finishImport() {
+    private void finishImport(final Uri importDataUri) {
         // save import path only on success
-        saveLastImportExportDataUri();
+        saveLastImportExportDataUri(importDataUri);
         // restart app to properly load db
         NavigationHelper.restartApp(requireActivity());
     }
@@ -266,11 +267,9 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         return isBlank(path) ? null : Uri.parse(path);
     }
 
-    private void saveLastImportExportDataUri() {
-        if (lastImportExportDataUri != null) {
-            final SharedPreferences.Editor editor = defaultPreferences.edit()
-                    .putString(importExportDataPathKey, lastImportExportDataUri.toString());
-            editor.apply();
-        }
+    private void saveLastImportExportDataUri(final Uri importExportDataUri) {
+        final SharedPreferences.Editor editor = defaultPreferences.edit()
+                .putString(importExportDataPathKey, importExportDataUri.toString());
+        editor.apply();
     }
 }
