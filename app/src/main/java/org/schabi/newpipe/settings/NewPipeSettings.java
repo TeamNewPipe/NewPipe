@@ -111,6 +111,8 @@ public final class NewPipeSettings {
     }
 
     public static boolean useStorageAccessFramework(final Context context) {
+        // There's a FireOS bug which prevents SAF open/close dialogs from being confirmed with a
+        // remote (see #6455).
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP || DeviceUtils.isFireTv()) {
             return false;
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
