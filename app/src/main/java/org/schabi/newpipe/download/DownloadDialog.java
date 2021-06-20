@@ -20,6 +20,9 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -82,9 +85,6 @@ public class DownloadDialog extends DialogFragment
         implements RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = "DialogFragment";
     private static final boolean DEBUG = MainActivity.DEBUG;
-    private static final int REQUEST_DOWNLOAD_SAVE_AS = 0x1230;
-    private static final int REQUEST_DOWNLOAD_PICK_VIDEO_FOLDER = 0x789E;
-    private static final int REQUEST_DOWNLOAD_PICK_AUDIO_FOLDER = 0x789F;
 
     @State
     StreamInfo currentInfo;
@@ -121,6 +121,16 @@ public class DownloadDialog extends DialogFragment
     // Variables for file name and MIME type when picking new folder because it's not set yet
     private String filenameTmp;
     private String mimeTmp;
+
+    private final ActivityResultLauncher<Intent> requestDownloadSaveAsLauncher =
+            registerForActivityResult(
+                    new StartActivityForResult(), this::requestDownloadSaveAsResult);
+    private final ActivityResultLauncher<Intent> requestDownloadPickAudioFolderLauncher =
+            registerForActivityResult(
+                    new StartActivityForResult(), this::requestDownloadPickAudioFolderResult);
+    private final ActivityResultLauncher<Intent> requestDownloadPickVideoFolderLauncher =
+            registerForActivityResult(
+                    new StartActivityForResult(), this::requestDownloadPickVideoFolderResult);
 
     public static DownloadDialog newInstance(final StreamInfo info) {
         final DownloadDialog dialog = new DownloadDialog();
@@ -372,67 +382,75 @@ public class DownloadDialog extends DialogFragment
     // Streams Spinner Listener
     //////////////////////////////////////////////////////////////////////////*/
 
-    @Override
-    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    private void requestDownloadPickAudioFolderResult(final ActivityResult result) {
+        requestDownloadPickFolderResult(
+                result, getString(R.string.download_path_audio_key), DownloadManager.TAG_AUDIO);
+    }
 
-        if (resultCode != Activity.RESULT_OK) {
+    private void requestDownloadPickVideoFolderResult(final ActivityResult result) {
+        requestDownloadPickFolderResult(
+                result, getString(R.string.download_path_video_key), DownloadManager.TAG_VIDEO);
+    }
+
+    private void requestDownloadSaveAsResult(final ActivityResult result) {
+        if (result.getResultCode() != Activity.RESULT_OK) {
             return;
         }
 
-        if (data.getData() == null) {
+        if (result.getData() == null || result.getData().getData() == null) {
             showFailedDialog(R.string.general_error);
             return;
         }
 
-        if (requestCode == REQUEST_DOWNLOAD_SAVE_AS) {
-            if (FilePickerActivityHelper.isOwnFileUri(context, data.getData())) {
-                final File file = Utils.getFileForUri(data.getData());
-                checkSelectedDownload(null, Uri.fromFile(file), file.getName(),
-                        StoredFileHelper.DEFAULT_MIME);
-                return;
-            }
+        if (FilePickerActivityHelper.isOwnFileUri(context, result.getData().getData())) {
+            final File file = Utils.getFileForUri(result.getData().getData());
+            checkSelectedDownload(null, Uri.fromFile(file), file.getName(),
+                    StoredFileHelper.DEFAULT_MIME);
+            return;
+        }
 
-            final DocumentFile docFile = DocumentFile.fromSingleUri(context, data.getData());
-            if (docFile == null) {
-                showFailedDialog(R.string.general_error);
-                return;
-            }
+        final DocumentFile docFile
+                = DocumentFile.fromSingleUri(context, result.getData().getData());
+        if (docFile == null) {
+            showFailedDialog(R.string.general_error);
+            return;
+        }
 
-            // check if the selected file was previously used
-            checkSelectedDownload(null, data.getData(), docFile.getName(),
-                    docFile.getType());
-        } else if (requestCode == REQUEST_DOWNLOAD_PICK_AUDIO_FOLDER
-                || requestCode == REQUEST_DOWNLOAD_PICK_VIDEO_FOLDER) {
-            Uri uri = data.getData();
-            if (FilePickerActivityHelper.isOwnFileUri(context, uri)) {
-                uri = Uri.fromFile(Utils.getFileForUri(uri));
-            } else {
-                context.grantUriPermission(context.getPackageName(), uri,
-                        StoredDirectoryHelper.PERMISSION_FLAGS);
-            }
+        // check if the selected file was previously used
+        checkSelectedDownload(null, result.getData().getData(), docFile.getName(),
+                docFile.getType());
+    }
 
-            final String key;
-            final String tag;
-            if (requestCode == REQUEST_DOWNLOAD_PICK_AUDIO_FOLDER) {
-                key = getString(R.string.download_path_audio_key);
-                tag = DownloadManager.TAG_AUDIO;
-            } else {
-                key = getString(R.string.download_path_video_key);
-                tag = DownloadManager.TAG_VIDEO;
-            }
+    private void requestDownloadPickFolderResult(final ActivityResult result,
+                                                 final String key,
+                                                 final String tag) {
+        if (result.getResultCode() != Activity.RESULT_OK) {
+            return;
+        }
 
-            PreferenceManager.getDefaultSharedPreferences(context).edit()
-                    .putString(key, uri.toString()).apply();
+        if (result.getData() == null || result.getData().getData() == null) {
+            showFailedDialog(R.string.general_error);
+            return;
+        }
 
-            try {
-                final StoredDirectoryHelper mainStorage
-                        = new StoredDirectoryHelper(context, uri, tag);
-                checkSelectedDownload(mainStorage, mainStorage.findFile(filenameTmp),
-                        filenameTmp, mimeTmp);
-            } catch (final IOException e) {
-                showFailedDialog(R.string.general_error);
-            }
+        Uri uri = result.getData().getData();
+        if (FilePickerActivityHelper.isOwnFileUri(context, uri)) {
+            uri = Uri.fromFile(Utils.getFileForUri(uri));
+        } else {
+            context.grantUriPermission(context.getPackageName(), uri,
+                    StoredDirectoryHelper.PERMISSION_FLAGS);
+        }
+
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString(key, uri.toString()).apply();
+
+        try {
+            final StoredDirectoryHelper mainStorage
+                    = new StoredDirectoryHelper(context, uri, tag);
+            checkSelectedDownload(mainStorage, mainStorage.findFile(filenameTmp),
+                    filenameTmp, mimeTmp);
+        } catch (final IOException e) {
+            showFailedDialog(R.string.general_error);
         }
     }
 
@@ -637,6 +655,10 @@ public class DownloadDialog extends DialogFragment
                 .show();
     }
 
+    private void launchDirectoryPicker(final ActivityResultLauncher<Intent> launcher) {
+        launcher.launch(StoredDirectoryHelper.getPicker(context));
+    }
+
     private void prepareSelectedDownload() {
         final StoredDirectoryHelper mainStorage;
         final MediaFormat format;
@@ -691,11 +713,9 @@ public class DownloadDialog extends DialogFragment
                     Toast.LENGTH_LONG).show();
 
             if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button) {
-                startActivityForResult(StoredDirectoryHelper.getPicker(context),
-                        REQUEST_DOWNLOAD_PICK_AUDIO_FOLDER);
+                launchDirectoryPicker(requestDownloadPickAudioFolderLauncher);
             } else {
-                startActivityForResult(StoredDirectoryHelper.getPicker(context),
-                        REQUEST_DOWNLOAD_PICK_VIDEO_FOLDER);
+                launchDirectoryPicker(requestDownloadPickVideoFolderLauncher);
             }
 
             return;
@@ -715,8 +735,8 @@ public class DownloadDialog extends DialogFragment
                 initialPath = Uri.parse(initialSavePath.getAbsolutePath());
             }
 
-            startActivityForResult(StoredFileHelper.getNewPicker(context,
-                    filenameTmp, mimeTmp, initialPath), REQUEST_DOWNLOAD_SAVE_AS);
+            requestDownloadSaveAsLauncher.launch(StoredFileHelper.getNewPicker(context,
+                    filenameTmp, mimeTmp, initialPath));
 
             return;
         }
