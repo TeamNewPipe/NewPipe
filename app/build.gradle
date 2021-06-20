@@ -234,8 +234,8 @@ dependencies {
     kapt "com.google.auto.service:auto-service:${googleAutoServiceVersion}"
 
     // Manager for complex RecyclerView layouts
-    implementation "com.xwray:groupie:${groupieVersion}"
-    implementation "com.xwray:groupie-viewbinding:${groupieVersion}"
+    implementation "com.github.lisawray.groupie:groupie:${groupieVersion}"
+    implementation "com.github.lisawray.groupie:groupie-viewbinding:${groupieVersion}"
 
     // Circular ImageView
     implementation "de.hdodenhof:circleimageview:3.1.0"
