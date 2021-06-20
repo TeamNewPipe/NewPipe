@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.DialogFragment;
@@ -92,7 +93,7 @@ public class SelectKioskFragment extends DialogFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCancel(final DialogInterface dialogInterface) {
+    public void onCancel(@NonNull final DialogInterface dialogInterface) {
         super.onCancel(dialogInterface);
         if (onCancelListener != null) {
             onCancelListener.onCancel();
@@ -138,6 +139,7 @@ public class SelectKioskFragment extends DialogFragment {
             return kioskList.size();
         }
 
+        @NonNull
         public SelectKioskItemHolder onCreateViewHolder(final ViewGroup parent, final int type) {
             final View item = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.select_kiosk_item, parent, false);

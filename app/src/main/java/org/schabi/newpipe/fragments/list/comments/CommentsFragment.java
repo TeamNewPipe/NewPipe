@@ -85,7 +85,8 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     public void setTitle(final String title) { }
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) { }
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) { }
 
     @Override
     protected boolean isGridLayout() {

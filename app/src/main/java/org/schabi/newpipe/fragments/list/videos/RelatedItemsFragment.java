@@ -140,7 +140,8 @@ public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
     }
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
     }
 
     private void setInitialData(final StreamInfo info) {
