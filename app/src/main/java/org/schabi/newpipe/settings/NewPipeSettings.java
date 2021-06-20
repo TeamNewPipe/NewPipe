@@ -111,12 +111,10 @@ public final class NewPipeSettings {
     }
 
     public static boolean useStorageAccessFramework(final Context context) {
-        if (DeviceUtils.isFireTv()) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP || DeviceUtils.isFireTv()) {
             return false;
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             return true;
-        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return false;
         }
 
         final String key = context.getString(R.string.storage_use_saf);
