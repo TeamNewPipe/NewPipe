@@ -33,6 +33,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -43,7 +44,8 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
     private static final String ZIP_MIME_TYPE = "application/zip";
-    private static final SimpleDateFormat EXPORT_DATE_FORMAT
+
+    private final SimpleDateFormat exportDateFormat
             = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
 
     private ContentSettingsManager manager;
@@ -52,7 +54,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private String thumbnailLoadToggleKey;
     private String youtubeRestrictedModeEnabledKey;
 
-    @Nullable private Uri lastImportExportDataUri = null;
+    @Nullable
+    private Uri lastImportExportDataUri = null;
     private Localization initialSelectedLocalization;
     private ContentCountry initialSelectedContentCountry;
     private String initialLanguage;
@@ -86,7 +89,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
             requestExportPathLauncher.launch(
                     StoredFileHelper.getNewPicker(requireContext(),
-                            "NewPipeData-" + EXPORT_DATE_FORMAT.format(new Date()) + ".zip",
+                            "NewPipeData-" + exportDateFormat.format(new Date()) + ".zip",
                             ZIP_MIME_TYPE, getImportExportDataUri()));
             return true;
         });
@@ -216,7 +219,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         try {
             if (!manager.ensureDbDirectoryExists()) {
-                throw new Exception("Could not create databases dir");
+                throw new IOException("Could not create databases dir");
             }
 
             if (!manager.extractDb(file)) {
