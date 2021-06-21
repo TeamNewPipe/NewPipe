@@ -614,8 +614,7 @@ public final class Player implements
         final PlaybackParameters savedParameters = retrievePlaybackParametersFromPrefs(this);
         final float playbackSpeed = savedParameters.speed;
         final float playbackPitch = savedParameters.pitch;
-        final boolean playbackSkipSilence = getPrefs().getBoolean(getContext().getString(
-                R.string.playback_skip_silence_key), getPlaybackSkipSilence());
+        final boolean playbackSkipSilence = savedParameters.skipSilence;
 
         final boolean samePlayQueue = playQueue != null && playQueue.equals(newQueue);
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
@@ -640,7 +639,7 @@ public final class Player implements
             // and we should retry in this case
             if (simpleExoPlayer.getPlaybackState()
                     == com.google.android.exoplayer2.Player.STATE_IDLE) {
-                simpleExoPlayer.prepare();
+                simpleExoPlayer.retry();
             }
             simpleExoPlayer.seekTo(playQueue.getIndex(), newQueue.getItem().getRecoveryPosition());
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
@@ -654,7 +653,7 @@ public final class Player implements
             // and we should retry in this case
             if (simpleExoPlayer.getPlaybackState()
                     == com.google.android.exoplayer2.Player.STATE_IDLE) {
-                simpleExoPlayer.prepare();
+                simpleExoPlayer.retry();
             }
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
 
@@ -1531,8 +1530,7 @@ public final class Player implements
     }
 
     public boolean getPlaybackSkipSilence() {
-        return !exoPlayerIsNull() && simpleExoPlayer.getAudioComponent() != null
-                && simpleExoPlayer.getAudioComponent().getSkipSilenceEnabled();
+        return getPlaybackParameters().skipSilence;
     }
 
     public PlaybackParameters getPlaybackParameters() {
@@ -1557,10 +1555,7 @@ public final class Player implements
 
         savePlaybackParametersToPrefs(this, roundedSpeed, roundedPitch, skipSilence);
         simpleExoPlayer.setPlaybackParameters(
-                new PlaybackParameters(roundedSpeed, roundedPitch));
-        if (simpleExoPlayer.getAudioComponent() != null) {
-            simpleExoPlayer.getAudioComponent().setSkipSilenceEnabled(skipSilence);
-        }
+                new PlaybackParameters(roundedSpeed, roundedPitch, skipSilence));
     }
     //endregion
 
@@ -1684,7 +1679,7 @@ public final class Player implements
 
         saveWasPlaying();
         if (isPlaying()) {
-            simpleExoPlayer.pause();
+            simpleExoPlayer.setPlayWhenReady(false);
         }
 
         showControls(0);
@@ -1700,7 +1695,7 @@ public final class Player implements
 
         seekTo(seekBar.getProgress());
         if (wasPlaying || simpleExoPlayer.getDuration() == seekBar.getProgress()) {
-            simpleExoPlayer.play();
+            simpleExoPlayer.setPlayWhenReady(true);
         }
 
         binding.playbackCurrentTime.setText(getTimeString(seekBar.getProgress()));
@@ -1943,7 +1938,7 @@ public final class Player implements
     }
 
     @Override // exoplayer listener
-    public void onIsLoadingChanged(final boolean isLoading) {
+    public void onLoadingChanged(final boolean isLoading) {
         if (DEBUG) {
             Log.d(TAG, "ExoPlayer - onLoadingChanged() called with: "
                     + "isLoading = [" + isLoading + "]");
@@ -1987,8 +1982,7 @@ public final class Player implements
         if (currentState == STATE_BLOCKED) {
             changeState(STATE_BUFFERING);
         }
-        simpleExoPlayer.setMediaSource(mediaSource);
-        simpleExoPlayer.prepare();
+        simpleExoPlayer.prepare(mediaSource);
     }
 
     public void changeState(final int state) {
@@ -2691,7 +2685,7 @@ public final class Player implements
             }
         }
 
-        simpleExoPlayer.play();
+        simpleExoPlayer.setPlayWhenReady(true);
         saveStreamProgressState();
     }
 
@@ -2704,7 +2698,7 @@ public final class Player implements
         }
 
         audioReactor.abandonAudioFocus();
-        simpleExoPlayer.pause();
+        simpleExoPlayer.setPlayWhenReady(false);
         saveStreamProgressState();
     }
 

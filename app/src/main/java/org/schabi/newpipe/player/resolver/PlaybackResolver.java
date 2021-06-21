@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.util.Util;
 
@@ -44,13 +43,13 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         switch (type) {
             case C.TYPE_SS:
                 return dataSource.getLiveSsMediaSourceFactory().setTag(metadata)
-                        .createMediaSource(MediaItem.fromUri(uri));
+                        .createMediaSource(uri);
             case C.TYPE_DASH:
                 return dataSource.getLiveDashMediaSourceFactory().setTag(metadata)
-                        .createMediaSource(MediaItem.fromUri(uri));
+                        .createMediaSource(uri);
             case C.TYPE_HLS:
                 return dataSource.getLiveHlsMediaSourceFactory().setTag(metadata)
-                        .createMediaSource(MediaItem.fromUri(uri));
+                        .createMediaSource(uri);
             default:
                 throw new IllegalStateException("Unsupported type: " + type);
         }
@@ -69,16 +68,16 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         switch (type) {
             case C.TYPE_SS:
                 return dataSource.getLiveSsMediaSourceFactory().setTag(metadata)
-                        .createMediaSource(MediaItem.fromUri(uri));
+                        .createMediaSource(uri);
             case C.TYPE_DASH:
                 return dataSource.getDashMediaSourceFactory().setTag(metadata)
-                        .createMediaSource(MediaItem.fromUri(uri));
+                        .createMediaSource(uri);
             case C.TYPE_HLS:
                 return dataSource.getHlsMediaSourceFactory().setTag(metadata)
-                        .createMediaSource(MediaItem.fromUri(uri));
+                        .createMediaSource(uri);
             case C.TYPE_OTHER:
                 return dataSource.getExtractorMediaSourceFactory(cacheKey).setTag(metadata)
-                        .createMediaSource(MediaItem.fromUri(uri));
+                        .createMediaSource(uri);
             default:
                 throw new IllegalStateException("Unsupported type: " + type);
         }

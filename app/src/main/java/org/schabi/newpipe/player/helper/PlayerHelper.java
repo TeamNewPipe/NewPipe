@@ -495,7 +495,9 @@ public final class PlayerHelper {
                 R.string.playback_speed_key), player.getPlaybackSpeed());
         final float pitch = player.getPrefs().getFloat(player.getContext().getString(
                 R.string.playback_pitch_key), player.getPlaybackPitch());
-        return new PlaybackParameters(speed, pitch);
+        final boolean skipSilence = player.getPrefs().getBoolean(player.getContext().getString(
+                R.string.playback_skip_silence_key), player.getPlaybackSkipSilence());
+        return new PlaybackParameters(speed, pitch, skipSilence);
     }
 
     public static void savePlaybackParametersToPrefs(final Player player,
