@@ -363,7 +363,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     private val listenerStreamItem = object : OnItemClickListener, OnItemLongClickListener {
         override fun onItemClick(item: Item<*>, view: View) {
-            if (item is StreamItem) {
+            if (item is StreamItem && !feedBinding.swipeRefreshLayout.isRefreshing) {
                 val stream = item.streamWithState.stream
                 NavigationHelper.openVideoDetailFragment(
                     requireContext(), fm,
@@ -373,7 +373,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
 
         override fun onItemLongClick(item: Item<*>, view: View): Boolean {
-            if (item is StreamItem) {
+            if (item is StreamItem && !feedBinding.swipeRefreshLayout.isRefreshing) {
                 showStreamDialog(item.streamWithState.stream.toStreamInfoItem())
                 return true
             }
