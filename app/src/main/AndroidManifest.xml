@@ -231,11 +231,10 @@
                 <data android:host="invidious.snopyta.org" />
                 <data android:host="yewtu.be" />
                 <data android:host="tube.connect.cafe" />
-                <data android:host="invidious.zapashcanon.fr" />
                 <data android:host="invidious.kavin.rocks" />
-                <data android:host="invidious.tube" />
+                <data android:host="invidious-us.kavin.rocks" />
+                <data android:host="piped.kavin.rocks" />
                 <data android:host="invidious.site" />
-                <data android:host="invidious.xyz" />
                 <data android:host="vid.mint.lgbt" />
                 <data android:host="invidiou.site" />
                 <data android:host="invidious.fdn.fr" />
@@ -243,6 +242,15 @@
                 <data android:host="invidious.zee.li" />
                 <data android:host="vid.puffyan.us" />
                 <data android:host="ytprivate.com" />
+                <data android:host="invidious.namazso.eu" />
+                <data android:host="invidious.silkky.cloud" />
+                <data android:host="invidious.exonip.de" />
+                <data android:host="inv.riverside.rocks" />
+                <data android:host="invidious.blamefran.net" />
+                <data android:host="invidious.moomoo.me" />
+                <data android:host="ytb.trom.tf" />
+                <data android:host="yt.cyberhost.uk" />
+                <data android:host="y.com.cm" />
                 <data android:pathPrefix="/" />
             </intent-filter>
 
