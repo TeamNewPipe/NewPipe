@@ -546,10 +546,6 @@ public final class NavigationHelper {
         return intent;
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Downloading a video without starting a player
-    //////////////////////////////////////////////////////////////////////////*/
-
     public static void openDownloadDialog (
             final AppCompatActivity activity, final StreamInfo currentInfo) {
         if (currentInfo == null) {
