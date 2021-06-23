@@ -43,32 +43,35 @@ jobs:
         with:
           name: app
           path: app/build/outputs/apk/debug/*.apk
-  test-android:
-    runs-on: macos-latest
-    strategy:
-      matrix:
-        api-level: [21, 29]
-    steps:
-      - uses: actions/checkout@v2
 
-      - name: set up JDK 8
-        uses: actions/setup-java@v2
-        with:
-          java-version: 8
-          distribution: "adopt"
+# Disabled until emulator works again. see https://github.com/TeamNewPipe/NewPipe/pull/6560
+#  test-android:
+#    runs-on: macos-latest
+#    strategy:
+#      matrix:
+#        api-level: [21, 29]
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: set up JDK 8
+#        uses: actions/setup-java@v2
+#        with:
+#          java-version: 8
+#          distribution: "adopt"
+#
+#      - name: Cache Gradle dependencies
+#        uses: actions/cache@v2
+#        with:
+#          path: ~/.gradle/caches
+#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+#          restore-keys: ${{ runner.os }}-gradle
+#
+#      - name: Run android tests
+#        uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: ${{ matrix.api-level }}
+#          script: ./gradlew connectedCheck
 
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle
-
-      - name: Run android tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: ${{ matrix.api-level }}
-          script: ./gradlew connectedCheck
 #   sonar:
 #     runs-on: ubuntu-latest
 #     steps:
