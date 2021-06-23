@@ -47,7 +47,7 @@ public enum StreamDialogEntry {
                 .subscribe(result -> {
                     if (PermissionHelper.checkStoragePermissions(fragment.getActivity(),
                             PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
-                        NavigationHelper.openDownloadDialogWithoutStartingPlayer(
+                        NavigationHelper.openDownloadDialog(
                                 (AppCompatActivity) fragment.getActivity(), result);
                     }
                 });
