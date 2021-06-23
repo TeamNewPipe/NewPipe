@@ -60,6 +60,7 @@ import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.schabi.newpipe.util.external_communication.ShareUtils.installApp;
 
@@ -554,7 +555,7 @@ public final class NavigationHelper {
 
         try {
             // Get the sortedVideoStreams and selectedVideoStreamIndex using ListHelper
-            final ArrayList<VideoStream> sortedVideoStreams = new ArrayList<>(
+            final List<VideoStream> sortedVideoStreams = new ArrayList<>(
                     ListHelper.getSortedStreamVideosList(
                             activity.getApplicationContext(),
                             currentInfo.getVideoStreams(),
