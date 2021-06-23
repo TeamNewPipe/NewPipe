@@ -359,7 +359,7 @@ public final class VideoDetailFragment
 
         // Stop the service when user leaves the app with double back press
         // if video player is selected. Otherwise unbind
-        if (activity.isFinishing() && player != null && player.videoPlayerSelected()) {
+        if (activity.isFinishing() && isPlayerAvailable() && player.videoPlayerSelected()) {
             PlayerHolder.stopService(App.getApp());
         } else {
             PlayerHolder.removeListener();
@@ -512,7 +512,7 @@ public final class VideoDetailFragment
                     openVideoPlayer();
                 }
 
-                setOverlayPlayPauseImage(player != null && player.isPlaying());
+                setOverlayPlayPauseImage(isPlayerAvailable() && player.isPlaying());
                 break;
             case R.id.overlay_close_button:
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
@@ -721,7 +721,7 @@ public final class VideoDetailFragment
 
     @Override
     public boolean onKeyDown(final int keyCode) {
-        return player != null && player.onKeyDown(keyCode);
+        return isPlayerAvailable() && player.onKeyDown(keyCode);
     }
 
     @Override
@@ -731,7 +731,7 @@ public final class VideoDetailFragment
         }
 
         // If we are in fullscreen mode just exit from it via first back press
-        if (player != null && player.isFullscreen()) {
+        if (isPlayerAvailable() && player.isFullscreen()) {
             if (!DeviceUtils.isTablet(activity)) {
                 player.pause();
             }
@@ -741,7 +741,7 @@ public final class VideoDetailFragment
         }
 
         // If we have something in history of played items we replay it here
-        if (player != null
+        if (isPlayerAvailable()
                 && player.getPlayQueue() != null
                 && player.videoPlayerSelected()
                 && player.getPlayQueue().previous()) {
@@ -778,7 +778,7 @@ public final class VideoDetailFragment
 
         final PlayQueueItem playQueueItem = item.getPlayQueue().getItem();
         // Update title, url, uploader from the last item in the stack (it's current now)
-        final boolean isPlayerStopped = player == null || player.isStopped();
+        final boolean isPlayerStopped = !isPlayerAvailable() || player.isStopped();
         if (playQueueItem != null && isPlayerStopped) {
             updateOverlayData(playQueueItem.getTitle(),
                     playQueueItem.getUploader(), playQueueItem.getThumbnailUrl());
@@ -806,7 +806,7 @@ public final class VideoDetailFragment
                                    @Nullable final String newUrl,
                                    @NonNull final String newTitle,
                                    @Nullable final PlayQueue newQueue) {
-        if (player != null && newQueue != null && playQueue != null
+        if (isPlayerAvailable() && newQueue != null && playQueue != null
                 && !Objects.equals(newQueue.getItem(), playQueue.getItem())) {
             // Preloading can be disabled since playback is surely being replaced.
             player.disablePreloadingOfCurrentTrack();
@@ -982,7 +982,7 @@ public final class VideoDetailFragment
                         .replace(R.id.relatedItemsLayout, RelatedItemsFragment.getInstance(info))
                         .commitAllowingStateLoss();
                 binding.relatedItemsLayout.setVisibility(
-                        player != null && player.isFullscreen() ? View.GONE : View.VISIBLE);
+                        isPlayerAvailable() && player.isFullscreen() ? View.GONE : View.VISIBLE);
             }
         }
 
@@ -1069,7 +1069,7 @@ public final class VideoDetailFragment
 
         //  If a user watched video inside fullscreen mode and than chose another player
         //  return to non-fullscreen mode
-        if (player != null && player.isFullscreen()) {
+        if (isPlayerAvailable() && player.isFullscreen()) {
             player.toggleFullscreen();
         }
 
@@ -1087,13 +1087,13 @@ public final class VideoDetailFragment
         }
 
         // See UI changes while remote playQueue changes
-        if (player == null) {
+        if (!isPlayerAvailable()) {
             PlayerHolder.startService(App.getApp(), false, this);
         }
 
         //  If a user watched video inside fullscreen mode and than chose another player
         //  return to non-fullscreen mode
-        if (player != null && player.isFullscreen()) {
+        if (isPlayerAvailable() && player.isFullscreen()) {
             player.toggleFullscreen();
         }
 
@@ -1117,7 +1117,7 @@ public final class VideoDetailFragment
 
     private void openNormalBackgroundPlayer(final boolean append) {
         // See UI changes while remote playQueue changes
-        if (player == null) {
+        if (!isPlayerAvailable()) {
             PlayerHolder.startService(App.getApp(), false, this);
         }
 
@@ -1131,7 +1131,7 @@ public final class VideoDetailFragment
     }
 
     private void openMainPlayer() {
-        if (playerService == null) {
+        if (!isPlayerServiceAvailable()) {
             PlayerHolder.startService(App.getApp(), autoPlayEnabled, this);
             return;
         }
@@ -1154,7 +1154,7 @@ public final class VideoDetailFragment
     }
 
     private void hideMainPlayer() {
-        if (playerService == null
+        if (!isPlayerServiceAvailable()
                 || playerService.getView() == null
                 || !player.videoPlayerSelected()) {
             return;
@@ -1211,13 +1211,13 @@ public final class VideoDetailFragment
     private boolean isAutoplayEnabled() {
         return autoPlayEnabled
                 && !isExternalPlayerEnabled()
-                && (player == null || player.videoPlayerSelected())
+                && (!isPlayerAvailable() || player.videoPlayerSelected())
                 && bottomSheetState != BottomSheetBehavior.STATE_HIDDEN
                 && PlayerHelper.isAutoplayAllowedByUser(requireContext());
     }
 
     private void addVideoPlayerView() {
-        if (player == null || getView() == null) {
+        if (!isPlayerAvailable() || getView() == null) {
             return;
         }
 
@@ -1277,7 +1277,7 @@ public final class VideoDetailFragment
         final boolean isPortrait = metrics.heightPixels > metrics.widthPixels;
         requireView().getViewTreeObserver().removeOnPreDrawListener(preDrawListener);
 
-        if (player != null && player.isFullscreen()) {
+        if (isPlayerAvailable() && player.isFullscreen()) {
             final int height = (isInMultiWindow()
                     ? requireView()
                     : activity.getWindow().getDecorView()).getHeight();
@@ -1300,7 +1300,7 @@ public final class VideoDetailFragment
                 new FrameLayout.LayoutParams(
                         RelativeLayout.LayoutParams.MATCH_PARENT, newHeight));
         binding.detailThumbnailImageView.setMinimumHeight(newHeight);
-        if (player != null) {
+        if (isPlayerAvailable()) {
             final int maxHeight = (int) (metrics.heightPixels * MAX_PLAYER_HEIGHT);
             player.getSurfaceView()
                     .setHeights(newHeight, player.isFullscreen() ? newHeight : maxHeight);
@@ -1389,11 +1389,11 @@ public final class VideoDetailFragment
     //////////////////////////////////////////////////////////////////////////*/
 
     private void restoreDefaultOrientation() {
-        if (player == null || !player.videoPlayerSelected() || activity == null) {
+        if (!isPlayerAvailable() || !player.videoPlayerSelected() || activity == null) {
             return;
         }
 
-        if (player != null && player.isFullscreen()) {
+        if (isPlayerAvailable() && player.isFullscreen()) {
             player.toggleFullscreen();
         }
         // This will show systemUI and pause the player.
@@ -1435,7 +1435,7 @@ public final class VideoDetailFragment
         if (binding.relatedItemsLayout != null) {
             if (showRelatedItems) {
                 binding.relatedItemsLayout.setVisibility(
-                        player != null && player.isFullscreen() ? View.GONE : View.INVISIBLE);
+                        isPlayerAvailable() && player.isFullscreen() ? View.GONE : View.INVISIBLE);
             } else {
                 binding.relatedItemsLayout.setVisibility(View.GONE);
             }
@@ -1549,7 +1549,7 @@ public final class VideoDetailFragment
         showMetaInfoInTextView(info.getMetaInfo(), binding.detailMetaInfoTextView,
                 binding.detailMetaInfoSeparator, disposables);
 
-        if (player == null || player.isStopped()) {
+        if (!isPlayerAvailable() || player.isStopped()) {
             updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnailUrl());
         }
 
@@ -1812,7 +1812,7 @@ public final class VideoDetailFragment
         if (error.type == ExoPlaybackException.TYPE_SOURCE
                 || error.type == ExoPlaybackException.TYPE_UNEXPECTED) {
             // Properly exit from fullscreen
-            if (playerService != null && player.isFullscreen()) {
+            if (isPlayerAndPlayerServiceAvailable() && player.isFullscreen()) {
                 player.toggleFullscreen();
             }
             hideMainPlayer();
@@ -1832,7 +1832,9 @@ public final class VideoDetailFragment
     @Override
     public void onFullscreenStateChanged(final boolean fullscreen) {
         setupBrightness();
-        if (playerService.getView() == null || player.getParentActivity() == null) {
+        if (!isPlayerAndPlayerServiceAvailable()
+                || playerService.getView() == null
+                || player.getParentActivity() == null) {
             return;
         }
 
@@ -1955,7 +1957,7 @@ public final class VideoDetailFragment
         activity.getWindow().getDecorView().setSystemUiVisibility(visibility);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                && (isInMultiWindow() || (player != null && player.isFullscreen()))) {
+                && (isInMultiWindow() || (isPlayerAvailable() && player.isFullscreen()))) {
             activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
             activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);
         }
@@ -1964,7 +1966,7 @@ public final class VideoDetailFragment
 
     // Listener implementation
     public void hideSystemUiIfNeeded() {
-        if (player != null
+        if (isPlayerAvailable()
                 && player.isFullscreen()
                 && bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
             hideSystemUi();
@@ -1972,7 +1974,7 @@ public final class VideoDetailFragment
     }
 
     private boolean playerIsNotStopped() {
-        return player != null && !player.isStopped();
+        return isPlayerAvailable() && !player.isStopped();
     }
 
     private void restoreDefaultBrightness() {
@@ -1993,7 +1995,7 @@ public final class VideoDetailFragment
         }
 
         final WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
-        if (player == null
+        if (!isPlayerAvailable()
                 || !player.videoPlayerSelected()
                 || !player.isFullscreen()
                 || bottomSheetState != BottomSheetBehavior.STATE_EXPANDED) {
@@ -2059,7 +2061,7 @@ public final class VideoDetailFragment
     }
 
     private void replaceQueueIfUserConfirms(final Runnable onAllow) {
-        @Nullable final PlayQueue activeQueue = player == null ? null : player.getPlayQueue();
+        @Nullable final PlayQueue activeQueue = isPlayerAvailable() ? player.getPlayQueue() : null;
 
         // Player will have STATE_IDLE when a user pressed back button
         if (isClearingQueueConfirmationRequired(activity)
@@ -2219,7 +2221,7 @@ public final class VideoDetailFragment
                         hideSystemUiIfNeeded();
                         // Conditions when the player should be expanded to fullscreen
                         if (isLandscape()
-                                && player != null
+                                && isPlayerAvailable()
                                 && player.isPlaying()
                                 && !player.isFullscreen()
                                 && !DeviceUtils.isTablet(activity)
@@ -2236,17 +2238,17 @@ public final class VideoDetailFragment
 
                         // Re-enable clicks
                         setOverlayElementsClickable(true);
-                        if (player != null) {
+                        if (isPlayerAvailable()) {
                             player.closeItemsList();
                         }
                         setOverlayLook(binding.appBarLayout, behavior, 0);
                         break;
                     case BottomSheetBehavior.STATE_DRAGGING:
                     case BottomSheetBehavior.STATE_SETTLING:
-                        if (player != null && player.isFullscreen()) {
+                        if (isPlayerAvailable() && player.isFullscreen()) {
                             showSystemUi();
                         }
-                        if (player != null && player.isControlsVisible()) {
+                        if (isPlayerAvailable() && player.isControlsVisible()) {
                             player.hideControls(0, 0);
                         }
                         break;
@@ -2309,5 +2311,18 @@ public final class VideoDetailFragment
         binding.overlayButtonsLayout.setClickable(enable);
         binding.overlayPlayPauseButton.setClickable(enable);
         binding.overlayCloseButton.setClickable(enable);
+    }
+
+    // helpers to check the state of player and playerService
+    boolean isPlayerAvailable() {
+        return (player != null);
+    }
+
+    boolean isPlayerServiceAvailable() {
+        return (playerService != null);
+    }
+
+    boolean isPlayerAndPlayerServiceAvailable() {
+        return (player != null && playerService != null);
     }
 }
