@@ -1059,6 +1059,14 @@ public final class VideoDetailFragment
     // Play Utils
     //////////////////////////////////////////////////////////////////////////*/
 
+    private void toggleFullscreenIfInFullscreenMode() {
+        // If a user watched video inside fullscreen mode and than chose another player
+        // return to non-fullscreen mode
+        if (isPlayerAvailable() && player.isFullscreen()) {
+            player.toggleFullscreen();
+        }
+    }
+
     private void openBackgroundPlayer(final boolean append) {
         final AudioStream audioStream = currentInfo.getAudioStreams()
                 .get(ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams()));
@@ -1067,11 +1075,7 @@ public final class VideoDetailFragment
                 .getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
 
-        //  If a user watched video inside fullscreen mode and than chose another player
-        //  return to non-fullscreen mode
-        if (isPlayerAvailable() && player.isFullscreen()) {
-            player.toggleFullscreen();
-        }
+        toggleFullscreenIfInFullscreenMode();
 
         if (!useExternalAudioPlayer) {
             openNormalBackgroundPlayer(append);
@@ -1091,11 +1095,7 @@ public final class VideoDetailFragment
             PlayerHolder.startService(App.getApp(), false, this);
         }
 
-        //  If a user watched video inside fullscreen mode and than chose another player
-        //  return to non-fullscreen mode
-        if (isPlayerAvailable() && player.isFullscreen()) {
-            player.toggleFullscreen();
-        }
+        toggleFullscreenIfInFullscreenMode();
 
         final PlayQueue queue = setupPlayQueueForIntent(append);
         if (append) {
@@ -1393,9 +1393,8 @@ public final class VideoDetailFragment
             return;
         }
 
-        if (isPlayerAvailable() && player.isFullscreen()) {
-            player.toggleFullscreen();
-        }
+        toggleFullscreenIfInFullscreenMode();
+
         // This will show systemUI and pause the player.
         // User can tap on Play button and video will be in fullscreen mode again
         // Note for tablet: trying to avoid orientation changes since it's not easy
@@ -1812,9 +1811,7 @@ public final class VideoDetailFragment
         if (error.type == ExoPlaybackException.TYPE_SOURCE
                 || error.type == ExoPlaybackException.TYPE_UNEXPECTED) {
             // Properly exit from fullscreen
-            if (isPlayerAndPlayerServiceAvailable() && player.isFullscreen()) {
-                player.toggleFullscreen();
-            }
+            toggleFullscreenIfInFullscreenMode();
             hideMainPlayer();
         }
     }
