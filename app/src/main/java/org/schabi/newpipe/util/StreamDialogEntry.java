@@ -33,6 +33,12 @@ public enum StreamDialogEntry {
                 item.getServiceId(), item.getUploaderUrl(), item.getUploaderName())
     ),
 
+    download(R.string.download, (fragment, item) -> {
+        if (PermissionHelper.checkStoragePermissions(fragment.getActivity(),
+                PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
+            // Open download dialog
+        }
+    }),
     /**
      * Enqueues the stream automatically to the current PlayerType.<br>
      * <br>
