@@ -304,7 +304,8 @@ public final class VideoDetailFragment
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_video_detail, container, false);
+        binding = FragmentVideoDetailBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
@@ -355,7 +356,6 @@ public final class VideoDetailFragment
     @Override
     public void onDestroy() {
         super.onDestroy();
-        binding = null;
 
         // Stop the service when user leaves the app with double back press
         // if video player is selected. Otherwise unbind
@@ -386,6 +386,12 @@ public final class VideoDetailFragment
             currentInfo = null;
             stack = new LinkedList<>();
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     @Override
@@ -586,10 +592,9 @@ public final class VideoDetailFragment
     // Init
     //////////////////////////////////////////////////////////////////////////*/
 
-    @Override
+    @Override // called from onViewCreated in {@link BaseFragment#onViewCreated}
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-        binding = FragmentVideoDetailBinding.bind(rootView);
 
         pageAdapter = new TabAdapter(getChildFragmentManager());
         binding.viewPager.setAdapter(pageAdapter);
