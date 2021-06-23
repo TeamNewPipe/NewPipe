@@ -26,6 +26,10 @@ import org.schabi.newpipe.RouterActivity;
 import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity;
 import org.schabi.newpipe.download.DownloadActivity;
+import org.schabi.newpipe.download.DownloadDialog;
+import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -540,6 +544,43 @@ public final class NavigationHelper {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         return intent;
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Downloading a video without starting a player
+    //////////////////////////////////////////////////////////////////////////*/
+
+    public static void openDownloadDialogWithoutStartingPlayer(
+            final AppCompatActivity activity, final StreamInfo currentInfo) {
+        if (currentInfo == null) {
+            return;
+        }
+
+        try {
+            // Get the sortedVideoStreams and selectedVideoStreamIndex using ListHelper
+            final ArrayList<VideoStream> sortedVideoStreams = new ArrayList<>(
+                    ListHelper.getSortedStreamVideosList(
+                            activity.getApplicationContext(),
+                            currentInfo.getVideoStreams(),
+                            currentInfo.getVideoOnlyStreams(),
+                            false
+                    )
+            );
+            final int selectedVideoStreamIndex = ListHelper.getDefaultResolutionIndex(
+                    activity.getApplicationContext(), sortedVideoStreams);
+
+            final DownloadDialog downloadDialog = DownloadDialog.newInstance(currentInfo);
+            downloadDialog.setVideoStreams(sortedVideoStreams);
+            downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
+            downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
+            downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
+
+            downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
+        } catch (final Exception e) {
+            ErrorActivity.reportErrorInSnackbar(activity,
+                    new ErrorInfo(e, UserAction.DOWNLOAD_OPEN_DIALOG, "Showing download dialog",
+                            currentInfo));
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
