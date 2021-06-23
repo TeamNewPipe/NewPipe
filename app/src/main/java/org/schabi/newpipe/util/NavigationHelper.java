@@ -550,7 +550,7 @@ public final class NavigationHelper {
     // Downloading a video without starting a player
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static void openDownloadDialogWithoutStartingPlayer(
+    public static void openDownloadDialog (
             final AppCompatActivity activity, final StreamInfo currentInfo) {
         if (currentInfo == null) {
             return;
