@@ -39,7 +39,7 @@ public enum StreamDialogEntry {
      * Info: Add this entry within showStreamDialog.
      */
     enqueue(R.string.enqueue_stream, (fragment, item) -> {
-        final MainPlayer.PlayerType type = PlayerHolder.getType();
+        final MainPlayer.PlayerType type = PlayerHolder.getInstance().getType();
 
         if (type == AUDIO) {
             NavigationHelper.enqueueOnBackgroundPlayer(fragment.getContext(),
