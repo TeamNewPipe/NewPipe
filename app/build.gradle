@@ -182,6 +182,9 @@ dependencies {
 
 /** NewPipe libraries **/
     // You can use a local version by uncommenting a few lines in settings.gradle
+    // Or you can use a commit you pushed to GitHub by just replacing TeamNewPipe with your GitHub
+    // name and the commit hash with the commit hash of the (pushed) commit you want to test
+    // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
     implementation 'com.github.TeamNewPipe:NewPipeExtractor:3966178979972da43f6dcbc90170058605be052b'
 
