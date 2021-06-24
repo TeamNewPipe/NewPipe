@@ -227,6 +227,25 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         initSearchListeners();
     }
 
+    private void updateService() {
+        try {
+            service = NewPipe.getService(serviceId);
+        } catch (final Exception e) {
+            ErrorActivity.reportUiErrorInSnackbar(this,
+                    "Getting service for id " + serviceId, e);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        if (DEBUG) {
+            Log.d(TAG, "onStart() called");
+        }
+        super.onStart();
+
+        updateService();
+    }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -249,13 +268,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             Log.d(TAG, "onResume() called");
         }
         super.onResume();
-
-        try {
-            service = NewPipe.getService(serviceId);
-        } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(this,
-                    "Getting service for id " + serviceId, e);
-        }
 
         if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
             initSuggestionObserver();
@@ -428,6 +440,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         int itemId = 0;
         boolean isFirstItem = true;
         final Context c = getContext();
+
+        if (service == null) {
+            Log.w(TAG, "onCreateOptionsMenu() called with null service");
+            updateService();
+        }
+
         for (final String filter : service.getSearchQHFactory().getAvailableContentFilter()) {
             if (filter.equals(YoutubeSearchQueryHandlerFactory.MUSIC_SONGS)) {
                 final MenuItem musicItem = menu.add(2,
