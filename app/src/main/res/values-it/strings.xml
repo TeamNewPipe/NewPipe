@@ -95,11 +95,11 @@
     <string name="msg_server_unsupported">Server non supportato</string>
     <string name="msg_exists">File già esistente</string>
     <string name="msg_url_malform">URL errato o errore di connessione</string>
-    <string name="msg_running">Download di NewPipe</string>
+    <string name="msg_running">NewPipe sta scaricando</string>
     <string name="msg_running_detail">Tocca per maggiori dettagli</string>
     <string name="msg_wait">Attendi…</string>
     <string name="msg_copied">Copiato negli appunti</string>
-    <string name="no_available_dir">Seleziona una cartella per i download</string>
+    <string name="no_available_dir">Seleziona una cartella per gli scaricamenti</string>
     <string name="could_not_load_image">Impossibile caricare l\'immagine</string>
     <string name="app_ui_crash">L\'app/UI si è interrotta</string>
     <string name="info_labels">Cosa:\\nRichiesta:\\nLingua Contenuti:\\nPaese Contenuti\\nLingua App:\\nServizio:\\nOrario GMT:\\nPacchetto:\\nVersione:\\nVersione SO:</string>
@@ -486,7 +486,7 @@
     <string name="enable_queue_limit">Limita coda dei download</string>
     <string name="downloads_storage_ask_summary_kitkat">Ogni volta verrà chiesta la destinazione dei file.
 \nScegli SAF se vuoi scaricare su una scheda SD esterna</string>
-    <string name="downloads_storage_use_saf_summary">Lo \"Storage Access Framework\" consente di salvare i file su una memoria esterna</string>
+    <string name="downloads_storage_use_saf_summary">Il Framework di accesso all\'archiviazione consente di salvare i file su una memoria esterna</string>
     <string name="clear_playback_states_title">Elimina le posizioni di riproduzione</string>
     <string name="clear_playback_states_summary">Elimina tutte le posizioni di riproduzione</string>
     <string name="delete_playback_states_alert">Eliminare tutte le posizioni di riproduzione\?</string>
@@ -595,7 +595,7 @@
 \nAttivare «%1$s» nelle Impostazioni per poterlo vedere.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sì, anche quelli visualizzati parzialmente</string>
     <string name="remove_watched_popup_warning">I video che sono stati visti prima e dopo essere stati aggiunti alla playlist verranno rimossi.
-\nSei sicuro\? L\'azione è irreversibile!</string>
+\nSei sicuro/a\? L\'azione è irreversibile!</string>
     <string name="remove_watched_popup_title">Rimuovere i video già visti\?</string>
     <string name="remove_watched">Rimuovi elementi visti</string>
     <string name="youtube_restricted_mode_enabled_title">Attiva la \"Modalità con restrizioni\" di YouTube</string>
@@ -696,7 +696,7 @@
     <string name="description_select_disable">Disattiva la selezione del testo nella descrizione</string>
     <string name="description_select_enable">Attiva la selezione del testo nella descrizione</string>
     <string name="description_select_note">È possibile selezionare il testo all\'interno della descrizione. In modalità selezione la pagina potrebbe sfarfallare e i collegamenti potrebbero non essere cliccabili.</string>
-    <string name="open_website_license">Visita il Sito</string>
+    <string name="open_website_license">Visita il sito</string>
     <string name="service_provides_reason">%s fornisce questa motivazione:</string>
     <string name="account_terminated">Account chiuso</string>
     <string name="feed_load_error_fast_unknown">Il recupero veloce dei feed non fornisce ulteriori informazioni al riguardo.</string>
@@ -705,8 +705,12 @@
 \nDisiscriversi dal canale\?</string>
     <string name="feed_load_error_account_info">Impossibile caricare feed per \"%s\".</string>
     <string name="feed_load_error">Errore caricamento feed</string>
-    <string name="downloads_storage_use_saf_summary_api_29">A partire da Android 10 è supportato solo lo \"Storage Access Framework\"</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Lo \"Storage Access Framework\" non è supportato su Android KitKat e versioni precedenti</string>
+    <string name="downloads_storage_use_saf_summary_api_29">A partire da Android 10 è supportato solo il Framework di accesso all\'archiviazione</string>
+    <string name="downloads_storage_use_saf_summary_api_19">Il Framework di accesso all\'archiviazione non è supportato su Android KitKat e versioni precedenti</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">È necessario specificare la destinazione di ogni dowload</string>
-    <string name="no_dir_yet">Nessuna cartella di download impostata, scegliere quella predefinita</string>
+    <string name="no_dir_yet">Nessuna cartella di scaricamento impostata, scegliere quella predefinita</string>
+    <string name="off">Disattivata</string>
+    <string name="on">Attiva</string>
+    <string name="tablet_mode_title">Modalità tablet</string>
+    <string name="feed_toggle_show_played_items">Mostra elementi riprodotti</string>
 </resources>

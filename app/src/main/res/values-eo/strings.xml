@@ -93,7 +93,7 @@
     <string name="popup_remember_size_pos_title">Memoru ŝprucfenestran grandecon kaj pozicion</string>
     <string name="popup_remember_size_pos_summary">Memoru lastan grandecon kaj pozicion de ŝprucfenestro</string>
     <string name="use_inexact_seek_title">Uzi rapide, ne precizan serĉon</string>
-    <string name="use_inexact_seek_summary">Ne preciza serĉo permesas al la ludanto serĉi poziciojn pli rapide kun malalta precizeco. Serĉi por 5, 15 kaj 25 sekundoj ne funckios kun tio opcio.</string>
+    <string name="use_inexact_seek_summary">Ne preciza serĉo permesas al la ludanto serĉi poziciojn pli rapide kun malalta precizeco. Serĉi por 5, 15 kaj 25 sekundoj ne funckios kun tio opcio</string>
     <string name="download_thumbnail_title">Ŝarĝi bildetojn</string>
     <string name="could_not_setup_download_menu">Ne povis konstrui la dosierujon de elŝuto</string>
     <string name="live_streams_not_supported">Nunaj filmetoj ne estas ankoraŭ subtenataj</string>
@@ -583,4 +583,12 @@
     <string name="notification_action_repeat">Ripeti</string>
     <string name="search_showing_result_for">Montrante rezultojn pri: %s</string>
     <string name="open_with">Malfermi per</string>
+    <string name="restricted_video">Tiu ĉi filmeto havas aĝlimon.
+\n
+\nŜalti \"%1$s\" en la agordoj, se vi volas vidi ĝin.</string>
+    <string name="settings_category_notification_title">Sciigo</string>
+    <string name="night_theme_title">Malhela etoso</string>
+    <string name="notification_colorize_title">farbi sciigon</string>
+    <string name="notification_action_buffering">Alŝuto</string>
+    <string name="notification_scale_to_square_image_title">Skali bildeton ĝis 1:1 proportio</string>
 </resources>

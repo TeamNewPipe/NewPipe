@@ -719,4 +719,8 @@
     <string name="no_dir_yet">Nie ustawiono jeszcze folderu pobierania, wybierz teraz domyślny folder pobierania</string>
     <string name="feed_load_error">Błąd podczas ładowania kanałów</string>
     <string name="metadata_privacy_unlisted">Niewypisany</string>
+    <string name="feed_toggle_show_played_items">Pokaż odtwarzane elementy</string>
+    <string name="off">Wyłączony</string>
+    <string name="on">Włączony</string>
+    <string name="tablet_mode_title">Tryb tabletu</string>
 </resources>

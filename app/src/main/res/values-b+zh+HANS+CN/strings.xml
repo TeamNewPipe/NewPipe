@@ -341,7 +341,7 @@
     <string name="enable_disposed_exceptions_title">报告『提前结束Android生命周期』错误</string>
     <string name="enable_disposed_exceptions_summary">强制报告处理后的未送达的 Activity 或 Fragment 生命周期之外的 Rx 异常</string>
     <string name="use_inexact_seek_title">使用快速寻址（不精确）</string>
-    <string name="use_inexact_seek_summary">快速寻址定位允许播放器以较低精确度为代价换取更快的寻址定位速度。此功能不适用于以 5、15 或 25 秒为隔的寻址定位。</string>
+    <string name="use_inexact_seek_summary">快速寻址定位允许播放器以较低精确度为代价换取更快的寻址定位速度。此功能不适用于以 5、15 或 25 秒为隔的寻址定位</string>
     <string name="auto_queue_title">自动将“接下来”视频加入播放列表</string>
     <string name="auto_queue_summary">播放完（非循环）列表中的最后一个视频后，自动将一个相关视频添加到当前播放列表</string>
     <string name="invalid_directory">没有该文件夹</string>
@@ -377,7 +377,7 @@
     <string name="import_network_expensive_warning">该操作消耗大量流量，
 \n
 \n你想继续吗？</string>
-    <string name="download_thumbnail_summary">关闭可禁止加载封面，节省流量和内存使用（现在更改该选项将清除内存与储存中全部缓存）</string>
+    <string name="download_thumbnail_summary">关闭可禁止加载封面，节省流量和内存使用更改该选项将清除内存与磁盘中的图片缓存</string>
     <string name="thumbnail_cache_wipe_complete_notice">清空图像缓存成功</string>
     <string name="metadata_cache_wipe_title">清空已缓存的元数据</string>
     <string name="metadata_cache_wipe_summary">清空已缓存的网页数据</string>
@@ -390,7 +390,7 @@
     <string name="preferred_open_action_settings_summary">打开内容时的默认操作 — %s</string>
     <string name="no_streams_available_download">没有可下载的串流</string>
     <string name="caption_setting_title">字幕</string>
-    <string name="caption_setting_description">修改播放器字幕比例和背景样式。重启应用生效。</string>
+    <string name="caption_setting_description">修改播放器字幕文本比例和背景样式。重启应用后生效</string>
     <string name="clear_views_history_summary">删除串流播放历史和播放痕迹记录</string>
     <string name="delete_view_history_alert">删除全部播放历史？</string>
     <string name="clear_search_history_title">清空搜索历史</string>
@@ -566,7 +566,7 @@
     <string name="feed_update_threshold_summary">上次更新后，订阅被视为过期的时间 — %s</string>
     <string name="feed_update_threshold_option_always_update">始终更新</string>
     <string name="feed_use_dedicated_fetch_method_title">可用时使用专用 feed 获取</string>
-    <string name="feed_use_dedicated_fetch_method_summary">仅在某些服务中可用，通常速度更快，但返回的视频数量可能有限，而且信息通常不完整（如无视频时长、类型，无直播状态）。</string>
+    <string name="feed_use_dedicated_fetch_method_summary">仅在某些服务中可用，通常速度更快，但返回的视频数量可能有限，而且信息通常不完整（如无视频时长、类型，无直播状态）</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">启用快速模式</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">禁用快速模式</string>
     <string name="feed_use_dedicated_fetch_method_help_text">您是否觉得 feed 加载太慢？如果是这样，请尝试启用快速加载（可在设置中修改，也可使用下面的按钮修改）
@@ -649,7 +649,7 @@
     <string name="hash_channel_description">正在计算视频哈希值时显示的通知</string>
     <string name="msg_calculating_hash">正在计算哈希值</string>
     <string name="recent">最近</string>
-    <string name="show_meta_info_summary">打开显示关于视频创建者及内容或搜索请求的额外元信息框</string>
+    <string name="show_meta_info_summary">关闭以隐藏包含有关流创建者、流内容或搜索请求的附加信息的元信息框</string>
     <string name="show_meta_info_title">显示元数据信息</string>
     <string name="show_description_title">显示简介</string>
     <string name="chapters">章节</string>
@@ -707,4 +707,9 @@
     <string name="downloads_storage_use_saf_summary_api_19">Android KitKat 及更低版本不支持“存储访问框架”</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">你会被问到在哪里保存每个下载</string>
     <string name="no_dir_yet">尚未设置下载文件夹，现在选择默认下载文件夹</string>
+    <string name="tablet_mode_title">平板模式</string>
+    <string name="feed_toggle_show_played_items">显示已播放的项目</string>
+    <string name="item_in_history">历史条目</string>
+    <string name="off">关闭</string>
+    <string name="on">开启</string>
 </resources>

@@ -97,7 +97,7 @@
     <string name="msg_server_unsupported">Serveur non pris en charge</string>
     <string name="msg_exists">Fichier déjà existant</string>
     <string name="msg_url_malform">Lien malformé ou accès à Internet indisponible</string>
-    <string name="msg_running">NewPipe télécharge…</string>
+    <string name="msg_running">NewPipe télécharge</string>
     <string name="msg_running_detail">Appuyer pour plus de détails</string>
     <string name="msg_wait">Veuillez patienter…</string>
     <string name="msg_copied">Copié dans le presse-papiers</string>
@@ -477,16 +477,16 @@
     <string name="start_downloads">Démarrer les téléchargements</string>
     <string name="pause_downloads">Mettre les téléchargements en pause</string>
     <string name="downloads_storage_ask_title">Demander où télécharger</string>
-    <string name="downloads_storage_ask_summary">Vous allez être interrogé sur l’emplacement d’enregistrement de chaque téléchargement</string>
+    <string name="downloads_storage_ask_summary">Vous allez être interrogé·e sur l’emplacement d’enregistrement de chaque téléchargement.
+\nAutorisez le sélecteur de dossier système si vous voulez télécharger vers une carte SD externe</string>
     <string name="downloads_storage_ask_summary_kitkat">Vous allez être interrogé sur l’emplacement de téléchargement de chaque téléchargement.
 \nVeuillez choisir l’IAS si vous voulez télécharger sur une carte mémoire externe</string>
     <string name="enable_playback_resume_summary">Reprend la lecture à la dernière position</string>
     <string name="enable_playback_state_lists_title">Positions dans les listes</string>
     <string name="enable_playback_state_lists_summary">Affiche les indicateurs de position de lecture dans les listes</string>
     <string name="watch_history_states_deleted">Positions de reprise de lecture supprimées.</string>
-    <string name="downloads_storage_use_saf_title">Utiliser l’IAS</string>
-    <string name="downloads_storage_use_saf_summary">L’« Infrastructure d’accès au stockage » permet de télécharger sur une carte mémoire externe.
-\nCertains appareils ne sont pas compatibles</string>
+    <string name="downloads_storage_use_saf_title">Utiliser le sélecteur de dossier système</string>
+    <string name="downloads_storage_use_saf_summary">L’« Infrastructure d’accès au stockage » permet le téléchargement sur une carte mémoire SD externe</string>
     <string name="clear_playback_states_title">Supprimer les positions de reprise de lecture</string>
     <string name="clear_playback_states_summary">Supprime toutes les positions de reprise de lecture</string>
     <string name="delete_playback_states_alert">Voulez-vous supprimer toutes les positions de reprise de lecture \?</string>
@@ -599,7 +599,7 @@
     <string name="remove_watched">Supprimer les vidéos vues</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Oui, et des vidéos partiellement regardées</string>
     <string name="remove_watched_popup_warning">Les vidéos qui ont été regardées avant et après avoir été ajoutées à la liste de lecture seront supprimées.
-\nÊtes-vous sûr \? C’est irréversible !</string>
+\nÊtes-vous sûr(e) \? C’est irréversible !</string>
     <string name="remove_watched_popup_title">Supprimer les vidéos regardées \?</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniature de l\'avatar de la chaine</string>
     <string name="video_detail_by">De %s</string>
@@ -700,9 +700,20 @@
     <string name="description_select_note">Vous pouvez maintenant sélectionner du texte à l\'intérieur de la description. Notez que la page peut scintiller et que les liens peuvent ne pas être cliquables en mode sélection.</string>
     <string name="service_provides_reason">%s indique le motif :</string>
     <string name="no_dir_yet">Aucun dossier de téléchargement n\'est défini pour le moment, sélectionnez le dossier de téléchargement par défaut.</string>
-    <string name="open_website_license">Ouvrir le site Web</string>
+    <string name="open_website_license">Ouvrir le site web</string>
     <string name="account_terminated">Compte résilié</string>
     <string name="feed_load_error_account_info">Impossible de charger le flux \'%s\'.</string>
     <string name="feed_load_error">Erreur lors du chargement du flux</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Il vous sera demandé où enregistrer chaque téléchargement</string>
+    <string name="off">Inactif</string>
+    <string name="on">Actif</string>
+    <string name="tablet_mode_title">Mode tablette</string>
+    <string name="feed_toggle_show_played_items">Afficher les éléments vus</string>
+    <string name="feed_load_error_terminated">Le compte de l\'auteur a été résilié.
+\nNewPipe ne sera plus en mesure de charger ce flux à l\'avenir.
+\nSouhaitez-vous vous désabonner de cette chaîne \?</string>
+    <string name="downloads_storage_use_saf_summary_api_29">A partir d\'Android 10, seule l’« Infrastructure d’accès au stockage » est prise en charge.</string>
+    <string name="downloads_storage_use_saf_summary_api_19">L’« Infrastructure d’accès au stockage » n\'est pas prise en charge par Android KitKat et les versions antérieures</string>
+    <string name="item_in_history">En historique</string>
+    <string name="feed_load_error_fast_unknown">Le mode d\'alimentation rapide ne fournit pas plus d\'informations à ce sujet.</string>
 </resources>

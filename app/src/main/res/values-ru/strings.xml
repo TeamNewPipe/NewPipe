@@ -83,7 +83,7 @@
     <string name="could_not_load_image">Не удалось загрузить изображение</string>
     <string name="app_ui_crash">Приложение/UI завершило работу</string>
     <string name="sorry_string">Никогда такого не было, и вот опять.</string>
-    <string name="error_report_button_text">Отправить отчёт по e-mail</string>
+    <string name="error_report_button_text">Отправить по e-mail</string>
     <string name="error_snackbar_message">Извините, что-то пошло не так.</string>
     <string name="error_snackbar_action">Отчёт</string>
     <string name="what_device_headline">Информация:</string>
@@ -118,7 +118,7 @@
     <string name="all">Всё</string>
     <string name="filter">Фильтр</string>
     <string name="add">Новая цель</string>
-    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВариант ОС:</string>
+    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия пакета:\\nВерсия ОС:</string>
     <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>
     <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
@@ -208,7 +208,8 @@
     <plurals name="videos">
         <item quantity="one">%s видео</item>
         <item quantity="few">%s видео</item>
-        <item quantity="many">%s видео</item>
+        <item quantity="many">%s видео</item>
+        <item quantity="other">%s видео</item>
     </plurals>
     <string name="item_deleted">Элемент удалён</string>
     <string name="delete_item_search_history">Удалить этот элемент из истории поиска?</string>
@@ -489,7 +490,7 @@
     <string name="downloads_storage_ask_summary_kitkat">Для каждой загрузки запрашивать папку для сохранения. 
 \nИспользуйте SAF для загрузки на SD-карту</string>
     <string name="downloads_storage_use_saf_title">Использовать системный выбор папки (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' позволяет сохранять файлы на внешнюю SD-карту</string>
+    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" позволяет сохранять файлы на внешнюю SD-карту</string>
     <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>
     <string name="clear_playback_states_summary">Удалить все позиции воспроизведения</string>
     <string name="delete_playback_states_alert">Удалить все позиции воспроизведения\?</string>
@@ -617,12 +618,12 @@
     <string name="detail_sub_channel_thumbnail_view_description">Миниатюра значка канала</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Только несгруппированные</string>
     <string name="no_playlist_bookmarked_yet">Плейлистов ещё нет</string>
-    <string name="error_report_open_github_notice">Пожалуйста, проверьте, существует ли вопрос по вашей ошибке. Создавая дубликаты, вы отнимаете у нас время, которое мы могли бы использовать на решение проблемы.</string>
+    <string name="error_report_open_github_notice">Проверьте, не зарегистрирована ли уже проблема по вашей ошибке. Дубликаты впустую тратят наше время, отвлекая от реальных задач.</string>
     <string name="search_showing_result_for">Результаты для: %s</string>
     <string name="playlist_page_summary">Страница плейлиста</string>
     <string name="select_a_playlist">Выберите плейлист</string>
     <string name="error_report_open_issue_button_text">Сообщить на GitHub</string>
-    <string name="copy_for_github">Копировать отформатированный отчёт</string>
+    <string name="copy_for_github">Копировать Markdown</string>
     <string name="never">Никогда</string>
     <string name="wifi_only">Только по Wi-Fi</string>
     <string name="autoplay_summary">Автовоспроизведение — %s</string>
@@ -676,7 +677,7 @@
     <string name="paid_content">Этот контент доступен только оплатившим его пользователям, поэтому NewPipe не может воспроизвести или загрузить его.</string>
     <string name="youtube_music_premium_content">Это видео доступно только для пользователей YouTube Music Premium, поэтому NewPipe не может воспроизвести или загрузить его.</string>
     <string name="private_content">Это частный контент, поэтому NewPipe не может воспроизвести или загрузить его.</string>
-    <string name="soundcloud_go_plus_content">Этот трек SoundCloud Go+, по крайней мере в Вашей стране. Поэтому NewPipe не может воспроизвести или загрузить его.</string>
+    <string name="soundcloud_go_plus_content">Этот трек требует SoundCloud Go+, по крайней мере в Вашей стране. Поэтому NewPipe не может воспроизвести или загрузить его.</string>
     <string name="georestricted_content">Этот контент недоступен в вашей стране.</string>
     <string name="download_has_started">Загрузка началась</string>
     <string name="select_night_theme_toast">Вы можете выбрать предпочтительную ночную тему ниже</string>
@@ -684,19 +685,19 @@
     <string name="auto_device_theme_title">Автоматическая (тема устройства)</string>
     <string name="radio">Радио</string>
     <string name="restricted_video_no_stream">Это видео имеет возрастные ограничения.
-\nСогласно новой политике YouTube в отношении видео с возрастными ограничениями NewPipe не может иметь доступ ни к одному потоку этого видео и, таким образом, не имеет возможности воспроизвести его.</string>
+\nСогласно новой политике YouTube в отношении видео с возрастными ограничениями NewPipe не может иметь доступ ни к одному потоку этого видео и, таким образом, не может воспроизвести его.</string>
     <string name="night_theme_title">Ночная тема</string>
     <string name="featured">Рекомендуемые</string>
     <string name="recaptcha_solve">Решить</string>
     <string name="show_channel_details">Подробно о канале</string>
     <string name="disable_media_tunneling_summary">Отключите туннелирование медиа, если вы видите черный экран или подёргивание при воспроизведении видео</string>
     <string name="disable_media_tunneling_title">Отключить туннелирование медиа</string>
-    <string name="description_select_note">Теперь вы можете выделить текст внутри описания. Заметьте, что страница может мерцать и ссылки могут быть некликабельными в режиме выделения.</string>
+    <string name="description_select_note">Теперь вы можете выделить текст внутри описания. В режиме выделения страница может мерцать, ссылки могут быть неактивны .</string>
     <string name="metadata_support">Поддержка</string>
     <string name="metadata_language">Язык</string>
     <string name="metadata_age_limit">Возрастное ограничение</string>
     <string name="metadata_licence">Лицензия</string>
-    <string name="metadata_tags">Тэги</string>
+    <string name="metadata_tags">Теги</string>
     <string name="metadata_category">Категория</string>
     <string name="description_select_disable">Отключить выделение текста в описании</string>
     <string name="description_select_enable">Включить выделение текста в описании</string>
@@ -707,17 +708,21 @@
     <string name="metadata_thumbnail_url">URL миниатюры</string>
     <string name="metadata_host">Сервер</string>
     <string name="metadata_privacy">Доступность</string>
-    <string name="feed_load_error_fast_unknown">Режим быстрой загрузки подписки не представляет подробной информации об этом.</string>
-    <string name="feed_load_error_terminated">Аккаунт автора заблокирован.
+    <string name="feed_load_error_fast_unknown">В быстром режиме обновления подробности об этом не предоставляются.</string>
+    <string name="feed_load_error_terminated">Аккаунт автора отключён.
 \nNewPipe не сможет загружать эту подписку в будущем.
-\nЖелаете ли вы отписаться от этого канала\?</string>
+\nОтписаться от этого канала\?</string>
     <string name="feed_load_error_account_info">Не удалось загрузить подписку \'%s\'.</string>
     <string name="feed_load_error">Ошибка загрузки подписки</string>
     <string name="open_website_license">Открыть веб-сайт</string>
     <string name="service_provides_reason">%s указывает следующую причину:</string>
     <string name="account_terminated">Аккаунт отключён</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Начиная с Android 10 поддерживается только \'Storage Access Framework\'</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' не поддерживается на Android KitKat и ниже</string>
-    <string name="downloads_storage_ask_summary_no_saf_notice">Вам будет предложено куда сохранить каждую загрузку</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Начиная с Android 10 поддерживается только \"Storage Access Framework\"</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\"Storage Access Framework\" не поддерживается на Android KitKat и ниже</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Спрашивать, куда сохранять каждую загрузку</string>
     <string name="no_dir_yet">Папка для загрузки ещё не выбрана, укажите папку для загрузки сейчас</string>
+    <string name="off">Отключить</string>
+    <string name="on">Включить</string>
+    <string name="tablet_mode_title">Режим планшета</string>
+    <string name="feed_toggle_show_played_items">Показать проигранные</string>
 </resources>

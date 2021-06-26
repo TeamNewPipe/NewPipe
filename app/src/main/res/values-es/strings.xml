@@ -97,9 +97,9 @@
     <string name="msg_exists">El archivo ya existe</string>
     <string name="msg_url_malform">URL mal escrito o Internet no disponible</string>
     <string name="msg_running">NewPipe está descargando</string>
-    <string name="msg_running_detail">Toque para ver detalles</string>
+    <string name="msg_running_detail">Toca para ver detalles</string>
     <string name="msg_wait">Espere, por favor…</string>
-    <string name="msg_copied">Copiado en el portapapeles</string>
+    <string name="msg_copied">Copiado al portapapeles</string>
     <string name="no_available_dir">Defina una carpeta de descargas más tarde en los ajustes</string>
     <string name="could_not_load_image">No se pudo cargar la imagen</string>
     <string name="app_ui_crash">La interfaz de la aplicación dejó de funcionar</string>
@@ -681,7 +681,7 @@
     <string name="auto_device_theme_title">Automático (tema del dispositivo)</string>
     <string name="show_channel_details">Mostrar detalles del canal</string>
     <string name="featured">Destacado</string>
-    <string name="open_website_license">Sitio abierto</string>
+    <string name="open_website_license">Abrir sitio web</string>
     <string name="metadata_privacy_internal">Interno</string>
     <string name="metadata_privacy_private">Privado</string>
     <string name="metadata_privacy_unlisted">No listado</string>
@@ -712,4 +712,8 @@
     <string name="disable_media_tunneling_title">Deshabilitar el túnel de medios</string>
     <string name="no_dir_yet">Aún no se ha seleccionado ninguna carpeta de descargas, elija la carpeta de descargas por defecto ahora</string>
     <string name="metadata_host">Anfitrión</string>
+    <string name="off">Apagado</string>
+    <string name="on">Encendido</string>
+    <string name="tablet_mode_title">Modo tableta</string>
+    <string name="feed_toggle_show_played_items">Mostrar elementos reproducidos</string>
 </resources>

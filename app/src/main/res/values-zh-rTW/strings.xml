@@ -699,4 +699,8 @@
     <string name="downloads_storage_use_saf_summary_api_19">Android KitKat 或更舊的版本不支援「儲存存取框架」</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">每次下載都會詢問您要下載到哪裡</string>
     <string name="no_dir_yet">尚未設定下載資料夾，立刻選擇預設的下載資料夾</string>
+    <string name="off">關閉</string>
+    <string name="on">開啟</string>
+    <string name="tablet_mode_title">平板電腦模式</string>
+    <string name="feed_toggle_show_played_items">顯示已播放的項目</string>
 </resources>

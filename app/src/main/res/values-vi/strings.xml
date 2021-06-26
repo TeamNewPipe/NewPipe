@@ -171,9 +171,9 @@
     <string name="fragment_feed_title">Có gì mới</string>
     <string name="controls_add_to_playlist_title">Thêm vào</string>
     <string name="use_inexact_seek_title">Sử dụng tìm kiếm nhanh không chính xác</string>
-    <string name="use_inexact_seek_summary">Tua không chính xác cho phép trình phát tua vị trí nhanh hơn với độ chính xác hạn chế. Tua 5, 15 hay 25 giây không dùng được chế độ này.</string>
+    <string name="use_inexact_seek_summary">Tua không chính xác cho phép trình phát tua đến các vị trí nhanh hơn với độ chính xác bị giảm. Tua 5, 15 hay 25 giây không dùng được với chế độ này</string>
     <string name="download_thumbnail_title">Tải hình thu nhỏ</string>
-    <string name="download_thumbnail_summary">Tắt để ngăn chặn việc tải các hình thu nhỏ, việc này sẽ tiết kiệm lưu lượng mạng và bộ nhớ. Các thay đổi sẽ xóa bộ nhớ đệm hình ảnh cả trong RAM và trong bộ nhớ.</string>
+    <string name="download_thumbnail_summary">Tắt để ngăn chặn việc tải các hình thu nhỏ, việc này sẽ tiết kiệm lưu lượng mạng và bộ nhớ. Các thay đổi sẽ xóa bộ nhớ đệm hình ảnh cả trong RAM và trong bộ nhớ</string>
     <string name="thumbnail_cache_wipe_complete_notice">Đã xóa bộ nhớ cache hình ảnh</string>
     <string name="metadata_cache_wipe_title">Xóa siêu dữ liệu đã lưu vào bộ nhớ cache</string>
     <string name="metadata_cache_wipe_summary">Xóa tất cả dữ liệu trang web được lưu trong bộ nhớ cache</string>
@@ -340,7 +340,7 @@
     <string name="resize_zoom">Thu phóng</string>
     <string name="caption_auto_generated">Tự động tạo ra</string>
     <string name="caption_setting_title">Phụ đề</string>
-    <string name="caption_setting_description">Sửa cỡ chữ và kiểu màu nền phụ đề. Yêu cầu khởi động lại ứng dụng để có hiệu lực.</string>
+    <string name="caption_setting_description">Sửa cỡ chữ và kiểu màu nền phụ đề. Yêu cầu khởi động lại ứng dụng để có hiệu lực</string>
     <string name="enable_leak_canary_summary">Theo dõi rò rỉ bộ nhớ có thể khiến ứng dụng trở nên không phản hồi khi đổ xô đống</string>
     <string name="enable_disposed_exceptions_title">Báo các lỗi out-of-lifecycle</string>
     <string name="enable_disposed_exceptions_summary">Buộc báo cáo ngoại lệ Rx không thể gửi được bên ngoài vòng đời của mảnh hoặc hoạt động sau khi xử lý</string>
@@ -478,7 +478,8 @@
     <string name="start_downloads">Bắt đầu tải xuống</string>
     <string name="pause_downloads">Tạm dừng tải xuống</string>
     <string name="downloads_storage_ask_title">Hỏi vị trí tải xuống</string>
-    <string name="downloads_storage_ask_summary">Bạn sẽ được hỏi vị trí lưu mỗi lần tải xuống</string>
+    <string name="downloads_storage_ask_summary">Bạn sẽ được hỏi vị trí lưu mỗi lần tải xuống.
+\nHãy bật trình chọn thư mục của hệ thống (SAF) nếu bạn muốn tải xuống vào một chiếc thẻ SD ngoài</string>
     <string name="downloads_storage_ask_summary_kitkat">Bạn sẽ được hỏi vị trí lưu mỗi lần tải xuống. 
 \nBật tính năng này nếu bạn muốn tải vào thẻ SD ngoài</string>
     <string name="clear_playback_states_title">Xóa vị trí phát</string>
@@ -511,9 +512,8 @@
     <string name="remove_watched">Xóa đã xem</string>
     <string name="systems_language">Mặt định hệ thống</string>
     <string name="app_language_title">Ngôn ngữ ứng dụng</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' cho phép tải về thẻ SD. 
-\nMột số thiết bị có thể không tương thích</string>
-    <string name="downloads_storage_use_saf_title">Dùng SAF</string>
+    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' cho phép tải về thẻ SD</string>
+    <string name="downloads_storage_use_saf_title">Sử dụng trình chọn thư mục của hệ thống (SAF)</string>
     <string name="deleted_downloads">Đã xóa %1$d file tải về</string>
     <string name="delete_downloaded_files">Xóa file đã tải về</string>
     <string name="clear_download_history">Xóa lịch sử tải về</string>
@@ -572,7 +572,7 @@
     <string name="feed_use_dedicated_fetch_method_title">Tải thông tin từ các nguồn chuyên dụng nếu có thể</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Bật chế độ tăng tốc</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Tắt chế độ tăng tốc</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Có thể được với một số dịch vụ, thường sẽ nhanh hơn nhưng có thể bị giới hạn nội dung nhận được hoặc nội dung nhận được không đầy đủ (v.d. thời lượng, trạng thái,..).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Có thể được với một số dịch vụ, thường sẽ nhanh hơn nhưng có thể bị giới hạn nội dung nhận được hoặc nội dung nhận được không đầy đủ (v.d. thời lượng, trạng thái,..)</string>
     <string name="feed_update_threshold_option_always_update">Luôn cập nhật</string>
     <string name="feed_update_threshold_summary">Khoảng thời gian kể từ lần cuối cập nhật thông tin kênh trước khi nó được coi là hết hạn — %s</string>
     <string name="feed_update_threshold_title">Ngưỡng thời gian cập nhật feed</string>
@@ -646,7 +646,7 @@
     <string name="comments_tab_description">Bình luận</string>
     <string name="hash_channel_description">Thông báo cho quá trình hash video</string>
     <string name="hash_channel_name">Thông báo hash video</string>
-    <string name="show_meta_info_summary">Tắt để ẩn các hộp thông tin meta chứa thông tin bổ sung về tác giả/nội dung của stream, hoặc yêu cầu tìm kiếm.</string>
+    <string name="show_meta_info_summary">Tắt để ẩn các hộp thông tin meta chứa thông tin bổ sung về tác giả/nội dung của stream, hoặc yêu cầu tìm kiếm</string>
     <string name="show_meta_info_title">Hiện thông tin meta</string>
     <string name="show_description_summary">Tắt để ẩn mô tả video và các thông tin bổ sung</string>
     <string name="show_description_title">Hiện mô tả</string>
@@ -670,4 +670,37 @@
     <string name="recaptcha_solve">Giải</string>
     <string name="disable_media_tunneling_summary">Tắt truyền phương tiện qua đường hầm nếu bạn gặp màn hình đen hoặc khựng khi phát video</string>
     <string name="disable_media_tunneling_title">Tắt truyền phương tiện qua đường hầm</string>
+    <string name="off">Tắt</string>
+    <string name="on">Bật</string>
+    <string name="tablet_mode_title">Chế độ máy tính bảng</string>
+    <string name="open_website_license">Mở trang web</string>
+    <string name="metadata_privacy_internal">Nội bộ</string>
+    <string name="metadata_privacy_private">Riêng tư</string>
+    <string name="metadata_privacy_unlisted">Chưa được liệt kê</string>
+    <string name="metadata_privacy_public">Công khai</string>
+    <string name="metadata_thumbnail_url">URL hình thu nhỏ</string>
+    <string name="metadata_host">Nơi chứa</string>
+    <string name="metadata_support">Hỗ trợ</string>
+    <string name="metadata_language">Ngôn ngữ</string>
+    <string name="metadata_age_limit">Giới hạn độ tuổi</string>
+    <string name="metadata_privacy">Sự riêng tư</string>
+    <string name="metadata_licence">Giấy phép</string>
+    <string name="metadata_tags">Thẻ</string>
+    <string name="metadata_category">Thể loại</string>
+    <string name="description_select_disable">Tắt chọn văn bản trong mô tả</string>
+    <string name="description_select_enable">Bật chọn văn bản trong mô tả</string>
+    <string name="description_select_note">Bây giờ bạn có thể chọn văn bản trong mô tả. Lưu ý rằng trang có thể nhấp nháy và các liên kết có thể không nhấn vào được trong khi ở chế độ chọn.</string>
+    <string name="service_provides_reason">%s cung cấp lý do này:</string>
+    <string name="account_terminated">Tài khoản bị chấm dứt</string>
+    <string name="feed_toggle_show_played_items">Hiện các mục đã phát</string>
+    <string name="feed_load_error_fast_unknown">Chế độ nguồn dữ liệu nhanh không cung cấp thêm thông tin về cái này.</string>
+    <string name="feed_load_error_terminated">Tài khoản của tác giả đã bị chấm dứt.
+\nNewPipe sẽ không thể tải nguồn dữ liệu này trong tương lai.
+\nBạn có muốn huỷ đăng ký kênh này không\?</string>
+    <string name="feed_load_error_account_info">Không thể tải nguồn dữ liệu cho \'%s\'.</string>
+    <string name="feed_load_error">Lỗi khi tải nguồn dữ liệu</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Bắt đầu từ Android 10, chỉ có \'Storage Access Framework\' được hỗ trợ</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' không được hỗ trợ trên Android KitKat và cũ hơn</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Bạn sẽ được hỏi nơi bạn muốn lưu mỗi mục tải xuống</string>
+    <string name="no_dir_yet">Chưa có thư mục tải xuống nào được đặt, hãy chọn thư mục tải xuống mặc định ngay</string>
 </resources>

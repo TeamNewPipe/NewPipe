@@ -605,7 +605,7 @@
     <string name="notification_action_0_title">Дугме прве радње</string>
     <string name="notification_scale_to_square_image_summary">мења размеру сличице видеа у обавештењима са 16:9 на 1:1 (може довести до изобличења)</string>
     <string name="download_choose_new_path">Промените фасцикле за преузимање да би дејствовало</string>
-    <string name="notification_scale_to_square_image_title">Смањите сличице на 1:1 размеру</string>
+    <string name="notification_scale_to_square_image_title">Умањени приказ размере 1:1</string>
     <string name="search_showing_result_for">Приказ резултата за: %s</string>
     <string name="open_with">Отвори помоћу</string>
     <string name="download_has_started">Преузимање је започело</string>
@@ -622,8 +622,8 @@
     <string name="no_app_to_open_intent">Нема апликације која отвара ово</string>
     <string name="chapters">Поглавља</string>
     <string name="recent">Недавни</string>
-    <string name="show_thumbnail_summary">Користите сличицу и за позадину закључаног екрана и за обавештења</string>
-    <string name="show_thumbnail_title">Прикажи сличицу</string>
+    <string name="show_thumbnail_summary">користи сличицу и за позадину закључаног екрана и за обавештења</string>
+    <string name="show_thumbnail_title">Приказ сличице</string>
     <string name="playlist_page_summary">Страница листе</string>
     <string name="video_detail_by">од %s</string>
     <string name="channel_created_by">Направи %s</string>
@@ -719,4 +719,8 @@
     <string name="downloads_storage_use_saf_summary_api_19">„Storage Access Framework“ није подржан на Андроиду 4.4 и старијим</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Питаће вас где да сачувате свако преузимање</string>
     <string name="no_dir_yet">Фасцикла за преузимање није одређена. Изаберите подразумевану фасциклу</string>
+    <string name="off">искљ</string>
+    <string name="on">укљ</string>
+    <string name="tablet_mode_title">Режим таблета</string>
+    <string name="feed_toggle_show_played_items">Прикажи пуштано</string>
 </resources>

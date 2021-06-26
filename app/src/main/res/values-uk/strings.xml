@@ -335,15 +335,14 @@
     <string name="previous_export">Попереднє експортування</string>
     <string name="subscriptions_import_unsuccessful">Не вдалося імпортувати підписки</string>
     <string name="subscriptions_export_unsuccessful">Не вдалося експортувати підписки</string>
-    <string name="import_youtube_instructions">Щоб імпортувати підписки з YouTube завантаживши файл-список:
-\n1. Перейдіть за цим посиланням: %1$s
-\n2. В разі необхідності пройдіть процедуру входу
-\n3. Повинно початися завантаження експортованого списку (у вигляді файлу) 
-\n 
-\nДля експорту ваших підписок з YouTube. 
-\n1. Перейдіть за посиланням %1$s 
-\n2. Авторизуйтесь, якщо буде потрібно. 
-\n3. Виберіть файл підписок (subscription_manager) в папці завантажень</string>
+    <string name="import_youtube_instructions">Імпортуйте підписки YouTube за допомогою Google Takeout:
+\n
+\n1. Перейдіть за посиланням: %1$s
+\n2. Авторизуйтесь, якщо буде потрібно
+\n3. Відзначте пункт \"YouTube і YouTube Music\", потім виберіть тип \"підписки\"
+\n4. Натисніть \"Далі\" і \"Створити експорт\"
+\n5. Натисніть кнопку \"Завантажити\", коли вона з\'явиться
+\n6. З завантаженого ZIP-архіву розпакуйте JSON-файл (зазвичай знаходиться за шляхом \"YouTube і YouTube Music/Підписки/subscriptions.json\") і імпортуйте його тут.</string>
     <string name="import_soundcloud_instructions">Імпортуйте профіль SoundCloud, вписавши або URL, або ваш ID:
 \n 
 \n1. Увімкніть режим \"настільний комп\'ютер\" у веб-браузері (сайт не підтримується мобільними пристроями)
@@ -531,7 +530,7 @@
     <string name="subtitle_activity_recaptcha">Натисніть \"Готово\" по закінченню</string>
     <string name="recaptcha_done_button">Готово</string>
     <string name="feed_create_new_group_button_title">Нова</string>
-    <string name="feed_group_dialog_delete_message">Ви бажаєте видалити цю групу\?</string>
+    <string name="feed_group_dialog_delete_message">Бажаєте видалити цю групу\?</string>
     <string name="feed_group_dialog_empty_selection">Підписки не вибрані</string>
     <string name="feed_groups_header_title">Групи каналів</string>
     <plurals name="days">
@@ -582,7 +581,7 @@
     <string name="feed_update_threshold_summary">Період актуальності підписок після поновлення - %s</string>
     <string name="feed_update_threshold_title">Поріг оновлення підписок</string>
     <string name="settings_category_feed_title">Підписки</string>
-    <string name="feed_group_dialog_empty_name">Введiть назву групи</string>
+    <string name="feed_group_dialog_empty_name">Порожня назва групи</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d вибрано</item>
         <item quantity="few">%d вибрано</item>
@@ -716,4 +715,13 @@
     <string name="service_provides_reason">%s подає таку причину:</string>
     <string name="feed_load_error_account_info">Не можливо завантажити стрічку для \'%s\'.</string>
     <string name="feed_load_error">Помилка завантаження стрічки</string>
+    <string name="feed_load_error_terminated">Обліковий запис автора припинено.
+\nNewPipe не зможе завантажити цей канал у майбутньому.
+\nВідписатися від цього каналу\?</string>
+    <string name="off">Вимкнути</string>
+    <string name="on">Увімкнути</string>
+    <string name="tablet_mode_title">Режим планшета</string>
+    <string name="account_terminated">Обліковий запис припинено</string>
+    <string name="feed_toggle_show_played_items">Показувати відтворювані обʼєкти</string>
+    <string name="feed_load_error_fast_unknown">Режим швидкої підписки не надає багато інформації щодо цього.</string>
 </resources>

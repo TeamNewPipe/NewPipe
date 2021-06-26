@@ -698,4 +698,7 @@
     <string name="feed_load_error_terminated">この投稿者のアカウントは停止されています。
 \nNewPipe は将来的にこのフィードを読み込めなくなります。
 \nこのチャンネルの登録を解除しますか？</string>
+    <string name="off">オフ</string>
+    <string name="on">オン</string>
+    <string name="tablet_mode_title">タブレットモード</string>
 </resources>

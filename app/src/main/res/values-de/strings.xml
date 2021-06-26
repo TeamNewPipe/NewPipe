@@ -702,11 +702,15 @@
     <string name="account_terminated">Konto geschlossen</string>
     <string name="feed_load_error_fast_unknown">Der Schnelllademodus liefert hierzu keine weiteren Informationen.</string>
     <string name="no_dir_yet">Noch kein Downloadordner festgelegt, wähle jetzt den Standard-Downloadordner</string>
-    <string name="open_website_license">Website öffnen</string>
+    <string name="open_website_license">Webseite öffnen</string>
     <string name="downloads_storage_use_saf_summary_api_29">Ab Android 10 wird nur noch „Storage Access Framework“ unterstützt</string>
     <string name="downloads_storage_use_saf_summary_api_19">Das „Storage Access Framework“ wird auf Android KitKat und niedriger nicht unterstützt</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Du wirst jedes Mal gefragt werden, wohin der Download gespeichert werden soll</string>
     <string name="feed_load_error">Fehler beim Laden des Feeds</string>
     <string name="feed_load_error_account_info">Konnte Feed für \'%s\' nicht laden.</string>
     <string name="service_provides_reason">%s gibt diesen Grund an:</string>
+    <string name="on">An</string>
+    <string name="tablet_mode_title">Tablet-Modus</string>
+    <string name="off">Aus</string>
+    <string name="feed_toggle_show_played_items">Abgespielte Elemente anzeigen</string>
 </resources>

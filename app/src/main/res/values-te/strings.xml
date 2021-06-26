@@ -5,10 +5,10 @@
     <string name="upload_date_text">%1$s ప్రచురించబడింది</string>
     <string name="install">ఇన్స్టాల్</string>
     <string name="cancel">రద్దు చేయి</string>
-    <string name="open_in_browser">బ్రౌజర్ తెరవండి</string>
-    <string name="share">ఈ వీడియోను భాగస్వామ్యం చేయండి</string>
+    <string name="open_in_browser">బ్రౌజర్ లో తెరవండి</string>
+    <string name="share">షేర్ చేయండి</string>
     <string name="download">డౌన్లోడ్</string>
-    <string name="search">శోధిచు</string>
+    <string name="search">వెతుకు</string>
     <string name="settings">సెట్టింగ్‌లు</string>
     <string name="did_you_mean">అంటే నువ్వు అనేది: %1$s\?</string>
     <string name="share_dialog_title">తో పంచు</string>
@@ -177,7 +177,7 @@
     <string name="hold_to_append">ఎన్క్యూలో పట్టుకోండి</string>
     <string name="no_player_found">మీదగార వీడియో కి కావాల్సిన ప్లేయర్ లేదు. VLC ప్లేయర్ ఇన్స్టాల్ చేసుకుంటారా\?</string>
     <string name="no_player_found_toast">మీదగార వీడియో కి కావాల్సిన ప్లేయర్ లేదు (మీరు VLC ఇసన్తాల్ చేసుకోండి )</string>
-    <string name="open_in_popup_mode">పాపప్ మోడ్ తెరవండి</string>
+    <string name="open_in_popup_mode">"పాపప్ మోడ్ లో  తెరవండి"</string>
     <string name="default_popup_resolution_title">డిఫాల్ట్ పాపప్ స్పష్టత</string>
     <string name="controls_download_desc">ప్రసార ఫైల్ను డౌన్లోడ్ చేయండి</string>
     <string name="use_external_video_player_title">బాహ్య వీడియో ప్లేయర్ని ఉపయోగించండి</string>

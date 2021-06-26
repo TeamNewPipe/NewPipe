@@ -709,4 +709,8 @@
     <string name="downloads_storage_use_saf_summary_api_19">Su \'Storage Access Framework\' no est suportadu in Android KitKat e versiones prus betzas</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">T\'at a bènnere pedidu in ue sarvare cada documentu</string>
     <string name="no_dir_yet">Non b\'at galu peruna cartella de iscarrigamentu impostada. Issèbera como sa cartella de iscarrigamentu predefinida</string>
+    <string name="off">Istudadu</string>
+    <string name="on">Allutu</string>
+    <string name="tablet_mode_title">Modalidade tauledda</string>
+    <string name="feed_toggle_show_played_items">Ammustra sos elementos riproduidos</string>
 </resources>

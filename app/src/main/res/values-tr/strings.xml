@@ -696,7 +696,7 @@
     <string name="description_select_disable">Açıklamadaki metni seçmeyi devre dışı bırak</string>
     <string name="description_select_enable">Açıklamadaki metni seçmeyi etkinleştir</string>
     <string name="description_select_note">Artık, açıklamadaki metni seçebilirsiniz. Seçim kipindeyken sayfanın titreyebileceğini ve bağlantıların tıklanamayacağını unutmayın.</string>
-    <string name="open_website_license">Web Sitesini Aç</string>
+    <string name="open_website_license">Web sitesini aç</string>
     <string name="service_provides_reason">%s şu nedeni sağlıyor:</string>
     <string name="account_terminated">Hesap sonlandırıldı</string>
     <string name="feed_load_error_fast_unknown">Hızlı besleme kipi bununla ilgili daha çok bilgi sağlamıyor.</string>
@@ -709,4 +709,8 @@
     <string name="downloads_storage_use_saf_summary_api_19">\'Depolama Erişimi Çerçevesi\' Android KitKat ve altında desteklenmez</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Her indirmede nereye kaydedileceği sorulacak</string>
     <string name="no_dir_yet">İndirme klasörü belirlenmedi, şimdi öntanımlı indirme klasörünü seçin</string>
+    <string name="off">Kapat</string>
+    <string name="on">Aç</string>
+    <string name="tablet_mode_title">Tablet kipi</string>
+    <string name="feed_toggle_show_played_items">Oynatılan ögeleri göster</string>
 </resources>
