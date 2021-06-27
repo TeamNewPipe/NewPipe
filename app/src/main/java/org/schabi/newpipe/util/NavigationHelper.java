@@ -547,7 +547,7 @@ public final class NavigationHelper {
         return intent;
     }
 
-    public static void openDownloadDialog (
+    public static void openDownloadDialog(
             final AppCompatActivity activity, final StreamInfo currentInfo) {
         if (currentInfo == null) {
             return;
