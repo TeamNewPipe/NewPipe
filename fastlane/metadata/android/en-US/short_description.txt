@@ -1,1 +1,1 @@
-A free lightweight YouTube frontend for Android.
+A free lightweight YouTube frontend for Android with SponsorBlock capabilities

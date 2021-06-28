@@ -1,1 +1,3 @@
-NewPipe does not use any Google framework libraries, or the YouTube API. It only parses the website in order to gain the information it needs. Therefore this app can be used on devices without Google Services installed. Also, you don't need a YouTube account to use NewPipe, and it's FLOSS.
+<i>NewPipe x SponsorBlock</i> is a fork of <a href='https://github.com/TeamNewPipe/NewPipe' target='_blank' rel='nofollow'>NewPipe</a> with <a href='https://sponsor.ajay.app/' target='_blank' rel='nofollow'>SponsorBlock</a> functionality – i.e. it has the ability to skip sponsor segments in YouTube videos, which is a crowd-sourced effort.
+
+<i>NewPipe</i> does not use any Google framework libraries, or the YouTube API. It only parses the website in order to gain the information it needs. Therefore this app can be used on devices without Google Services installed. Also, you don't need a YouTube account to use NewPipe, and it's FLOSS.
