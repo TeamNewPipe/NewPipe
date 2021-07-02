@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId "org.schabi.newpipe"
         resValue "string", "app_name", "NewPipe"
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 29
         versionCode 971
         versionName "0.21.5"
