@@ -2160,7 +2160,10 @@ public final class Player implements
 
     private void onCompleted() {
         if (DEBUG) {
-            Log.d(TAG, "onCompleted() called");
+            Log.d(TAG, "onCompleted() called" + (playQueue == null ? ". playQueue is null" : ""));
+        }
+        if (playQueue == null) {
+            return;
         }
 
         animate(binding.playPauseButton, false, 0, AnimationType.SCALE_AND_ALPHA, 0,
