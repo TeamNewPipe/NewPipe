@@ -71,7 +71,7 @@
     <string name="top_50">Sos mègius 50</string>
     <string name="trending">Tendèntzias</string>
     <string name="kiosk">In evidèntzia</string>
-    <string name="localization_changes_requires_app_restart">Sa limba at a mudare a pustis chi as a torrare a allùghere s\'aplicatzione.</string>
+    <string name="localization_changes_requires_app_restart">Sa limba at a mudare a pustis chi as a torrare a allùghere s\'aplicatzione</string>
     <string name="error_unable_to_load_comments">Carrigamentu de sos cummentos fallidu</string>
     <string name="import_settings">Cheres fintzas importare sas impostatziones\?</string>
     <string name="override_current_data">Custu at a subraiscrìere sas impostatziones tuas de como.</string>
@@ -268,7 +268,7 @@
 \nabèrrere sa modalidade ventanedda</string>
     <string name="info_labels">Ite:\\nRechesta:\\nLimba de su cuntenutu\\nIstadu de su cuntenutu:\\nLimba de s\'aplicatzione:\\nServìtziu:\\nOràriu GMT:\\nPachete:\\nVersione:\\nVersione SO:</string>
     <string name="error_snackbar_message">A dolu mannu b\'at àpidu carchi problema.</string>
-    <string name="search_history_deleted">Cronologia de chirca iscantzellada.</string>
+    <string name="search_history_deleted">Cronologia de chirca iscantzellada</string>
     <string name="restricted_video">Custu vìdeu tenet unu lìmite de edade.
 \n
 \nAllughe \"%1$s\" in sas impostatziones si lu cheres pompiare.</string>
@@ -435,11 +435,11 @@
     <string name="delete_search_history_alert">Cheres iscantzellare totu sa cronologia de sas chircas\?</string>
     <string name="clear_search_history_summary">Iscantzella sa cronologia de sas paràulas chircadas</string>
     <string name="clear_search_history_title">Iscantzella sa cronologia de chirca</string>
-    <string name="watch_history_states_deleted">Positziones de riprodutzione iscantzelladas.</string>
+    <string name="watch_history_states_deleted">Positziones de riprodutzione iscantzelladas</string>
     <string name="delete_playback_states_alert">Cheres iscantzellare totu sas positziones de riprodutzione\?</string>
     <string name="clear_playback_states_summary">Iscantzella totu sas positziones de riprodutzione</string>
     <string name="clear_playback_states_title">Iscantzella sas positziones de riprodutzione</string>
-    <string name="watch_history_deleted">Cronologia de sos pompiados iscantzellada.</string>
+    <string name="watch_history_deleted">Cronologia de sos pompiados iscantzellada</string>
     <string name="delete_view_history_alert">Cheres iscantzellare totu sa cronologia de sos pompiados\?</string>
     <string name="clear_views_history_summary">Iscantzellat sa cronologia de sos cuntenutos riproduidos e sas positziones de riprodutzione</string>
     <string name="clear_views_history_title">Isbòida sa cronologia de sos pompiados</string>
@@ -622,7 +622,7 @@
     <string name="clear_queue_confirmation_title">Pedi una cunfirma in antis de iscantzellare una lista</string>
     <string name="settings_category_notification_title">Notìfica</string>
     <string name="notification_action_shuffle">Òrdine casuale</string>
-    <string name="notification_actions_summary">Modìfica cada atzione de notìfica inoghe in suta incarchende·la. Ischerta·nde finas a tres de ammustrare in sa notìfica cumpata impreende sas casellas de controllu a destra.</string>
+    <string name="notification_actions_summary">Modìfica cada atzione de notìfica inoghe in suta incarchende·la. Ischerta·nde finas a tres de ammustrare in sa notìfica cumpata impreende sas casellas de controllu a destra</string>
     <string name="notification_scale_to_square_image_summary">Iscala sa miniadura ammustrada in sa notìfica dae su formadu in 16:9 a cussu 1:1 (diat pòdere causare istorchimentos)</string>
     <string name="notification_action_nothing">Nudda</string>
     <string name="notification_action_buffering">Carrighende</string>

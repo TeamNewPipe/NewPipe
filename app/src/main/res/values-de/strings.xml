@@ -366,11 +366,11 @@
     <string name="clear_views_history_title">Wiedergabeverlauf löschen</string>
     <string name="clear_views_history_summary">Den Verlauf der wiedergegebenen Streams und die Wiedergabepositionen löschen</string>
     <string name="delete_view_history_alert">Den ganzen Wiedergabeverlauf löschen\?</string>
-    <string name="watch_history_deleted">Wiedergabeverlauf gelöscht.</string>
+    <string name="watch_history_deleted">Wiedergabeverlauf gelöscht</string>
     <string name="clear_search_history_title">Suchverlauf löschen</string>
     <string name="clear_search_history_summary">Den Verlauf der Suchbegriffe löschen</string>
     <string name="delete_search_history_alert">Den gesamten Suchverlauf löschen\?</string>
-    <string name="search_history_deleted">Suchverlauf gelöscht.</string>
+    <string name="search_history_deleted">Suchverlauf gelöscht</string>
     <string name="one_item_deleted">1 Element gelöscht.</string>
     <string name="app_license">NewPipe ist freie Copyleft-Software: Du kannst sie nach Belieben benutzen, untersuchen, mit anderen teilen und verbessern. Insbesondere kannst du sie unter den von der Free Software Foundation veröffentlichten Bedingungen der GNU General Public License, in der Version 3 der Lizenz oder (nach deiner Wahl) jeder späteren Version, weitergeben und/oder verändern.</string>
     <string name="import_settings">Möchtest du auch Einstellungen importieren\?</string>
@@ -469,7 +469,7 @@
     <string name="enable_playback_state_lists_title">Positionen in Listen</string>
     <string name="enable_playback_state_lists_summary">Wiedergabepositionsanzeigen in Listen anzeigen</string>
     <string name="settings_category_clear_data_title">Daten löschen</string>
-    <string name="watch_history_states_deleted">Wiedergabeposition gelöscht.</string>
+    <string name="watch_history_states_deleted">Wiedergabeposition gelöscht</string>
     <string name="missing_file">Datei verschoben oder gelöscht</string>
     <string name="overwrite_finished_warning">Eine heruntergeladene Datei mit diesem Namen existiert bereits</string>
     <string name="overwrite_failed">Datei kann nicht überschrieben werden</string>
@@ -505,7 +505,7 @@
         <item quantity="one">%s Zuhörer</item>
         <item quantity="other">%s Zuhörer</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird.</string>
+    <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird</string>
     <string name="peertube_instance_url_title">PeerTube-Instanzen</string>
     <string name="peertube_instance_url_help">Finde auf %s die Instanzen, die dir gefallen</string>
     <string name="peertube_instance_add_title">Instanz hinzufügen</string>
@@ -616,7 +616,7 @@
     <string name="wifi_only">Nur über WLAN</string>
     <string name="never">Nie</string>
     <string name="notification_actions_at_most_three">Du kannst maximal drei Aktionen auswählen, die in der Kompaktbenachrichtigung angezeigt werden sollen!</string>
-    <string name="notification_actions_summary">Bearbeite jede Benachrichtigungsaktion unten, indem du darauf tippst. Wähle mithilfe der Kontrollkästchen rechts bis zu drei aus, die in der Kompaktbenachrichtigung angezeigt werden sollen.</string>
+    <string name="notification_actions_summary">Bearbeite jede Benachrichtigungsaktion unten, indem du darauf tippst. Wähle mithilfe der Kontrollkästchen rechts bis zu drei aus, die in der Kompaktbenachrichtigung angezeigt werden sollen</string>
     <string name="settings_category_notification_title">Benachrichtigung</string>
     <string name="unsupported_url_dialog_message">Konnte die angegebene URL nicht erkennen. Mit einer anderen Anwendung öffnen\?</string>
     <string name="notification_action_4_title">Fünfte Aktionstaste</string>

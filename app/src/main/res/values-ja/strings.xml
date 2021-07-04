@@ -302,10 +302,10 @@
     <string name="popup_playing_append">ポップアップ再生のキューに追加</string>
     <string name="clear_views_history_title">再生履歴を消去</string>
     <string name="clear_views_history_summary">再生した動画の履歴と再生位置を削除します</string>
-    <string name="watch_history_deleted">再生履歴を削除しました。</string>
+    <string name="watch_history_deleted">再生履歴を削除しました</string>
     <string name="clear_search_history_title">検索履歴を消去</string>
     <string name="clear_search_history_summary">検索キーワードの履歴を削除します</string>
-    <string name="search_history_deleted">検索履歴を削除しました。</string>
+    <string name="search_history_deleted">検索履歴を削除しました</string>
     <string name="toast_no_player">このファイルを再生するためのアプリがインストールされていません</string>
     <string name="import_settings">設定もインポートしますか？</string>
     <string name="caption_setting_title">字幕</string>
@@ -462,7 +462,7 @@
     <string name="enable_playback_state_lists_title">リスト内の位置</string>
     <string name="enable_playback_state_lists_summary">リストに再生位置インジケーターを表示します</string>
     <string name="settings_category_clear_data_title">データを削除</string>
-    <string name="watch_history_states_deleted">再生位置を削除しました。</string>
+    <string name="watch_history_states_deleted">再生位置を削除しました</string>
     <string name="missing_file">ファイルが移動または削除されました</string>
     <string name="overwrite_failed">ファイルを上書きできません</string>
     <string name="download_already_pending">この名前の保留中のダウンロードがあります</string>
@@ -498,7 +498,7 @@
     <plurals name="listening">
         <item quantity="other">%s 人が聴取中</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">アプリを再起動すると、言語が変更されます。</string>
+    <string name="localization_changes_requires_app_restart">アプリを再起動すると、言語が変更されます</string>
     <string name="seek_duration_title">高速早送り/巻き戻し時間</string>
     <string name="peertube_instance_url_title">PeerTube インスタンス</string>
     <string name="peertube_instance_url_summary">PeerTube インスタンスを選択する</string>
@@ -613,7 +613,7 @@
     <string name="unsupported_url_dialog_message">URL を認識できませんでした。他のアプリで開きますか？</string>
     <string name="notification_scale_to_square_image_summary">通知に表示される動画サムネイルを 16:9 から 1:1 のアスペクト比にスケールします (ゆがみが生じるかもしれません)</string>
     <string name="notification_scale_to_square_image_title">サムネイルを 1:1 のアスペクト比にスケールする</string>
-    <string name="notification_actions_summary">以下をタップして通知のアクションを編集します。右側にあるチェックボックスを使用してコンパクトな通知に表示するものを 3 つまで選択します。</string>
+    <string name="notification_actions_summary">以下をタップして通知のアクションを編集します。右側にあるチェックボックスを使用してコンパクトな通知に表示するものを 3 つまで選択します</string>
     <string name="notification_actions_at_most_three">コンパクトな通知に表示されるアクションは 3 つまで選ぶことができます！</string>
     <string name="notification_action_4_title">5 番目のアクションボタン</string>
     <string name="notification_action_3_title">4 番目のアクションボタン</string>

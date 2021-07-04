@@ -338,11 +338,11 @@
     <string name="clear_views_history_title">محو سجل المشاهدة</string>
     <string name="clear_views_history_summary">حذف محفوظات البثوث التي تم تشغيلها ومواقف التشغيل</string>
     <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل؟</string>
-    <string name="watch_history_deleted">تم حذف سجل المشاهدة.</string>
+    <string name="watch_history_deleted">تم حذف سجل المشاهدة</string>
     <string name="clear_search_history_title">محو سجل البحث</string>
     <string name="clear_search_history_summary">يحذف تاريخ البحث عن الكلمات الرئيسية</string>
     <string name="delete_search_history_alert">حذف سِجل البحث بالكامل؟</string>
-    <string name="search_history_deleted">تم حذف سجل البحث.</string>
+    <string name="search_history_deleted">تم حذف سجل البحث</string>
     <string name="external_player_unsupported_link_type">المشغل الخارجي لا يدعم هذه الأنواع من الروابط</string>
     <string name="invalid_source">لا يوجد مثل هذا الملف/مصدر المحتوى</string>
     <string name="invalid_file">الملف غير موجود أو الإذن بالقراءة أو الكتابة إليه غير موجود</string>
@@ -478,7 +478,7 @@
     <string name="enable_playback_state_lists_title">المواضع في القوائم</string>
     <string name="enable_playback_state_lists_summary">إظهار مؤشّرات وضع التشغيل في القوائم</string>
     <string name="settings_category_clear_data_title">امسح البيانات</string>
-    <string name="watch_history_states_deleted">تم حذف وضع التشغيل.</string>
+    <string name="watch_history_states_deleted">تم حذف وضع التشغيل</string>
     <string name="missing_file">نقل الملف أو حذفه</string>
     <string name="overwrite_unrelated_warning">يوجد ملف بهذا الاسم مسبقاً</string>
     <string name="overwrite_failed">لا يمكن الكتابة فوق الملف</string>
@@ -507,7 +507,7 @@
     <string name="default_kiosk_page_summary">الكشك الافتراضي</string>
     <string name="no_one_watching">لا توجد مشاهدة</string>
     <string name="no_one_listening">لا أحد يستمع</string>
-    <string name="localization_changes_requires_app_restart">ستتغير اللغة بمجرد إعادة تشغيل التطبيق.</string>
+    <string name="localization_changes_requires_app_restart">ستتغير اللغة بمجرد إعادة تشغيل التطبيق</string>
     <plurals name="watching">
         <item quantity="zero">%s مشاهدة</item>
         <item quantity="one">%s مشاهدة</item>
@@ -667,7 +667,7 @@
     <string name="notification_action_shuffle">خلط</string>
     <string name="notification_action_repeat">كرّر</string>
     <string name="notification_actions_at_most_three">يمكنك تحديد ثلاثة إجراءات كحد أقصى لإظهارها في الإشعار المضغوط!</string>
-    <string name="notification_actions_summary">قم بتحرير كل اشعار أدناه من خلال النقر عليه. حدد ما يصل إلى ثلاثة منها لتظهر في الإشعار المضغوط باستخدام مربعات الاختيار الموجودة على اليمين.</string>
+    <string name="notification_actions_summary">قم بتحرير كل اشعار أدناه من خلال النقر عليه. حدد ما يصل إلى ثلاثة منها لتظهر في الإشعار المضغوط باستخدام مربعات الاختيار الموجودة على اليمين</string>
     <string name="notification_action_4_title">زر الإجراء الخامس</string>
     <string name="notification_action_3_title">زر الإجراء الرابع</string>
     <string name="notification_action_2_title">زر الإجراء الثالث</string>

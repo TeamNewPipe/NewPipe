@@ -366,11 +366,11 @@
     <string name="clear_views_history_title">Vaciar historial de reproducciones</string>
     <string name="clear_views_history_summary">Borra el historial de contenido visto y posiciones de reproducción</string>
     <string name="delete_view_history_alert">¿Eliminar todo el historial de reproducciones\?</string>
-    <string name="watch_history_deleted">Historial de reproducciones borrado.</string>
+    <string name="watch_history_deleted">Historial de reproducciones borrado</string>
     <string name="clear_search_history_title">Vaciar historial de búsquedas</string>
     <string name="clear_search_history_summary">Borra el historial de búsqueda de palabras clave</string>
     <string name="delete_search_history_alert">¿Borrar todo el historial de búsqueda\?</string>
-    <string name="search_history_deleted">Historial de búsquedas borrado.</string>
+    <string name="search_history_deleted">Historial de búsquedas borrado</string>
     <string name="one_item_deleted">Se ha borrado 1 elemento.</string>
     <string name="app_license">NewPipe es un software copyleft libre: puedes usarlo, estudiarlo, compartirlo y mejorarlo a voluntad. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la licencia, o (a tu elección) cualquier versión posterior.</string>
     <string name="import_settings">¿Quieres importar también los ajustes\?</string>
@@ -492,7 +492,7 @@
     <string name="enable_playback_state_lists_title">Posiciones en listas</string>
     <string name="enable_playback_state_lists_summary">Mostrar indicador de posición en listas de reproducción</string>
     <string name="settings_category_clear_data_title">Vaciar datos</string>
-    <string name="watch_history_states_deleted">Posiciones de reproducción borradas.</string>
+    <string name="watch_history_states_deleted">Posiciones de reproducción borradas</string>
     <string name="clear_playback_states_title">Borrar posiciones de reproducción</string>
     <string name="clear_playback_states_summary">Borra todas las posiciones de reproducción</string>
     <string name="delete_playback_states_alert">¿Quieres borrar todas las posiciones de reproducción\?</string>
@@ -508,7 +508,7 @@
         <item quantity="one">%s escucha</item>
         <item quantity="other">%s escuchas</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">El idioma cambiará luego de que se reinicie la aplicación.</string>
+    <string name="localization_changes_requires_app_restart">El idioma cambiará luego de que se reinicie la aplicación</string>
     <string name="seek_duration_title">Duración de búsqueda al avanzar y/o retroceder</string>
     <string name="peertube_instance_url_title">Instancias de PeerTube</string>
     <string name="peertube_instance_url_summary">Selecciona tus instancias favoritas de PeerTube</string>
@@ -631,7 +631,7 @@
     <string name="notification_action_buffering">Almacenar en memoria (búfer)</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">¡Puedes seleccionar como máximo tres acciones para mostrar en la notificación compacta!</string>
-    <string name="notification_actions_summary">Edita cada acción de la notificación pulsando sobre ella a continuación. Selecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación a la derecha.</string>
+    <string name="notification_actions_summary">Edita cada acción de la notificación pulsando sobre ella a continuación. Selecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación a la derecha</string>
     <string name="notification_action_4_title">Botón de quinta acción</string>
     <string name="notification_action_3_title">Botón de cuarta acción</string>
     <string name="notification_action_2_title">Botón de tercera acción</string>

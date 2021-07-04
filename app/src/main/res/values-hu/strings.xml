@@ -14,7 +14,7 @@
     <string name="share_dialog_title">Megosztás ezzel</string>
     <string name="choose_browser">Válasszon böngészőt</string>
     <string name="screen_rotation">forgatás</string>
-    <string name="download_path_title">Videófájlok letöltési mappája</string>
+    <string name="download_path_title">Videofájlok letöltési mappája</string>
     <string name="download_path_summary">A letöltött videók itt lesznek tárolva</string>
     <string name="download_path_dialog_title">Válasszon letöltési mappát a videófájloknak</string>
     <string name="default_resolution_title">Alapértelmezett felbontás</string>

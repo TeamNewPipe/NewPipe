@@ -644,4 +644,11 @@
     <string name="metadata_licence">অনুমতিপত্র</string>
     <string name="metadata_tags">চিরকুট (ট্যাগ)</string>
     <string name="metadata_category">বিষয়শ্রেণি</string>
+    <string name="import_network_expensive_warning">মনে রাখবে এই ক্রিয়ার নেটওয়ার্ক খরচ বেশি হতে পারে।
+\n
+\nচালিয়ে যাবে\?</string>
+    <string name="feed_toggle_show_played_items">দেখা ভুক্তি দেখাও</string>
+    <string name="tablet_mode_title">ট্যাবলেট অবস্থা</string>
+    <string name="off">বন্ধ</string>
+    <string name="on">চালু</string>
 </resources>

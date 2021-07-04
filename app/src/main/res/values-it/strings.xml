@@ -99,7 +99,7 @@
     <string name="msg_running_detail">Tocca per maggiori dettagli</string>
     <string name="msg_wait">Attendi…</string>
     <string name="msg_copied">Copiato negli appunti</string>
-    <string name="no_available_dir">Seleziona una cartella per gli scaricamenti</string>
+    <string name="no_available_dir">Seleziona una cartella per i file scaricati</string>
     <string name="could_not_load_image">Impossibile caricare l\'immagine</string>
     <string name="app_ui_crash">L\'app/UI si è interrotta</string>
     <string name="info_labels">Cosa:\\nRichiesta:\\nLingua Contenuti:\\nPaese Contenuti\\nLingua App:\\nServizio:\\nOrario GMT:\\nPacchetto:\\nVersione:\\nVersione SO:</string>
@@ -364,11 +364,11 @@
     <string name="clear_views_history_title">Elimina la cronologia delle visualizzazioni</string>
     <string name="clear_views_history_summary">Elimina la cronologia degli elementi riprodotti e le posizioni di riproduzione</string>
     <string name="delete_view_history_alert">Eliminare la cronologia delle visualizzazioni\?</string>
-    <string name="watch_history_deleted">Cronologia delle visualizzazioni eliminata.</string>
+    <string name="watch_history_deleted">Cronologia delle visualizzazioni eliminata</string>
     <string name="clear_search_history_title">Elimina la cronologia delle ricerche</string>
     <string name="clear_search_history_summary">Elimina la cronologia dei termini di ricerca</string>
     <string name="delete_search_history_alert">Eliminare la cronologia delle ricerche\?</string>
-    <string name="search_history_deleted">Cronologia delle ricerche eliminata.</string>
+    <string name="search_history_deleted">Cronologia delle ricerche eliminata</string>
     <string name="one_item_deleted">1 elemento eliminato.</string>
     <string name="app_license">NewPipe è un software libero con licenza copyleft: si può utilizzare, studiare, condividere e migliorare a proprio piacimento. In particolare, è possibile ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License (Free Software Foundation), nella versione 3 o successiva, a propria discrezione.</string>
     <string name="import_settings">Vuoi anche importare le impostazioni?</string>
@@ -467,7 +467,7 @@
     <string name="enable_playback_state_lists_title">Posizioni nelle liste</string>
     <string name="enable_playback_state_lists_summary">Mostra gli indicatori della posizione di riproduzione nelle liste</string>
     <string name="settings_category_clear_data_title">Elimina dati</string>
-    <string name="watch_history_states_deleted">Posizione di riproduzione eliminata.</string>
+    <string name="watch_history_states_deleted">Posizione di riproduzione eliminata</string>
     <string name="missing_file">File spostato o cancellato</string>
     <string name="overwrite_unrelated_warning">Esiste già un file con questo nome</string>
     <string name="overwrite_failed">impossibile sovrascrivere il file</string>
@@ -502,7 +502,7 @@
         <item quantity="one">%s ascoltatore</item>
         <item quantity="other">%s ascoltatori</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">La lingua verrà cambiata al riavvio dell\'applicazione.</string>
+    <string name="localization_changes_requires_app_restart">La lingua verrà cambiata al riavvio dell\'applicazione</string>
     <string name="default_kiosk_page_summary">Contenuti in evidenza predefiniti</string>
     <string name="seek_duration_title">Durata avanzamento e riavvolgimento rapidi</string>
     <string name="peertube_instance_url_title">Istanze PeerTube</string>
@@ -595,7 +595,7 @@
 \nAttivare «%1$s» nelle Impostazioni per poterlo vedere.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sì, anche quelli visualizzati parzialmente</string>
     <string name="remove_watched_popup_warning">I video che sono stati visti prima e dopo essere stati aggiunti alla playlist verranno rimossi.
-\nSei sicuro/a\? L\'azione è irreversibile!</string>
+\nL\'azione è irreversibile. Procedere\?</string>
     <string name="remove_watched_popup_title">Rimuovere i video già visti\?</string>
     <string name="remove_watched">Rimuovi elementi visti</string>
     <string name="youtube_restricted_mode_enabled_title">Attiva la \"Modalità con restrizioni\" di YouTube</string>
@@ -621,7 +621,7 @@
     <string name="clear_queue_confirmation_description">La coda del lettore attivo sarà sostituita</string>
     <string name="clear_queue_confirmation_title">Chiedi prima di svuotare la coda</string>
     <string name="clear_queue_confirmation_summary">Cambiare tipo di riproduzione potrebbe sostituire gli elementi in coda</string>
-    <string name="notification_actions_summary">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Selezionane fino a 3, utilizzando le caselle di controllo sulla destra. Verranno visualizzate nella notifica compatta.</string>
+    <string name="notification_actions_summary">Le azioni dei pulsanti della notifica possono essere modificate qua sotto. Selezionane fino a 3, utilizzando le caselle di controllo sulla destra. Verranno visualizzate nella notifica compatta</string>
     <string name="notification_action_4_title">Azione pulsante 5</string>
     <string name="notification_action_3_title">Azione pulsante 4</string>
     <string name="notification_action_2_title">Azione pulsante 3</string>
@@ -708,7 +708,7 @@
     <string name="downloads_storage_use_saf_summary_api_29">A partire da Android 10 è supportato solo il Framework di accesso all\'archiviazione</string>
     <string name="downloads_storage_use_saf_summary_api_19">Il Framework di accesso all\'archiviazione non è supportato su Android KitKat e versioni precedenti</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">È necessario specificare la destinazione di ogni dowload</string>
-    <string name="no_dir_yet">Nessuna cartella di scaricamento impostata, scegliere quella predefinita</string>
+    <string name="no_dir_yet">Non è impostata alcuna cartella per i file scaricati, scegliere quella predefinita</string>
     <string name="off">Disattivata</string>
     <string name="on">Attiva</string>
     <string name="tablet_mode_title">Modalità tablet</string>

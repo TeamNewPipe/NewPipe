@@ -367,11 +367,11 @@
     <string name="clear_views_history_title">Vymazat historii sledování</string>
     <string name="clear_views_history_summary">Vymaže historii přehraných streamů pozic playbacku</string>
     <string name="delete_view_history_alert">Vymazat celkovou historii sledování\?</string>
-    <string name="watch_history_deleted">Historie sledování smazána.</string>
+    <string name="watch_history_deleted">Historie sledování smazána</string>
     <string name="clear_search_history_title">Vymazat historii vyhledávání</string>
     <string name="clear_search_history_summary">Vymaže historii vyhledávaných klíčových slov</string>
     <string name="delete_search_history_alert">Vymazat celkovou historii vyhledávání\?</string>
-    <string name="search_history_deleted">Historie vyhledávání smazána.</string>
+    <string name="search_history_deleted">Historie vyhledávání smazána</string>
     <string name="one_item_deleted">Jedna položka smazána.</string>
     <string name="app_license">NewPipe je copyleft libre software: Můžete jej používat, sdílet a vylepšovat dle vaší vůle. Redistribuovat a/nebo upravovat lze za podmínek GNU General Public Licence zveřejňované nadací Free Software Foundation, a to buď za podmínek licence verze 3 nebo (dle vaší volby) jakékoli pozdější verze.</string>
     <string name="channels">kanály</string>
@@ -488,7 +488,7 @@
     <string name="downloads_storage_use_saf_title">Použít výběr systémového adresáře (SAF)</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" umožňuje stahovat na externí SD kartu</string>
     <string name="enable_playback_state_lists_summary">Zobrazit pozici přehrávání v seznamech</string>
-    <string name="watch_history_states_deleted">Pozice playbacku smazány.</string>
+    <string name="watch_history_states_deleted">Pozice playbacku smazány</string>
     <string name="error_timeout">Timeout spojení</string>
     <string name="clear_playback_states_title">Smazat pozice playbacku</string>
     <string name="clear_playback_states_summary">Smazat všechny pozice playbacku</string>
@@ -507,7 +507,7 @@
         <item quantity="few">%s posluchači</item>
         <item quantity="other">%s posluchačů</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Ke změně jazyka dojde po restartu aplikace.</string>
+    <string name="localization_changes_requires_app_restart">Ke změně jazyka dojde po restartu aplikace</string>
     <string name="default_kiosk_page_summary">Výchozí kiosek</string>
     <string name="seek_duration_title">Délka přetočení vpřed/zpět</string>
     <string name="peertube_instance_url_title">Instance PeerTube</string>
@@ -637,7 +637,7 @@
     <string name="notification_action_shuffle">Promíchat</string>
     <string name="notification_action_repeat">Opakovat</string>
     <string name="notification_actions_at_most_three">Do kompaktního oznámení lze vybrat nejvíce tři akce!</string>
-    <string name="notification_actions_summary">Upravte každou akci oznámení níže poklepáním. Pomocí zaškrtávacích políček vpravo vyberte až tři z nich, které se mají zobrazit v kompaktním oznámení.</string>
+    <string name="notification_actions_summary">Upravte každou akci oznámení níže poklepáním. Pomocí zaškrtávacích políček vpravo vyberte až tři z nich, které se mají zobrazit v kompaktním oznámení</string>
     <string name="notification_action_4_title">Páté akční tlačítko</string>
     <string name="notification_action_3_title">Čtvrté akční tlačítko</string>
     <string name="notification_action_2_title">Třetí akční tlačítko</string>

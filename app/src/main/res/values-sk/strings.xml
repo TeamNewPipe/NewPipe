@@ -367,11 +367,11 @@
     <string name="clear_views_history_title">Vymazať históriu pozretí</string>
     <string name="clear_views_history_summary">Odstráni históriu a pozície prehrávaných streamov</string>
     <string name="delete_view_history_alert">Vymazať celú históriu pozretí\?</string>
-    <string name="watch_history_deleted">História pozretí bola vymazaná.</string>
+    <string name="watch_history_deleted">História pozretí bola vymazaná</string>
     <string name="clear_search_history_title">Vymazať históriu vyhľadávania</string>
     <string name="clear_search_history_summary">Vymaže históriu vyhľadávania kľúčových slov</string>
     <string name="delete_search_history_alert">Vymazať celú históriu vyhľadávania\?</string>
-    <string name="search_history_deleted">História vyhľadávaní bola vymazaná.</string>
+    <string name="search_history_deleted">História vyhľadávaní bola vymazaná</string>
     <string name="one_item_deleted">1 položka bola vymazaná.</string>
     <string name="app_license">NewPipe je slobodný softvér pod licenciou copyleft. Môžete ho používať, študovať a vylepšovať ako len chcete. Konkrétne ho môžete šíriť a/alebo upravovať pod podmienkami Všeobecnej verejnej licencie GNU, ako ju publikuje Free Software Foundation, buď verzia 3 licencie, alebo (podľa vašej voľby) ktorákoľvek neskoršia verzia.</string>
     <string name="privacy_policy_title">Ochrana osobných údajov v NewPipe</string>
@@ -470,7 +470,7 @@
     <string name="enable_playback_state_lists_title">Poradie v zoznamoch</string>
     <string name="enable_playback_state_lists_summary">Zobraziť indikátory polohy prehrávania v zoznamoch</string>
     <string name="settings_category_clear_data_title">Vymazať údaje</string>
-    <string name="watch_history_states_deleted">Pozície prehrávania boli odstránené.</string>
+    <string name="watch_history_states_deleted">Pozície prehrávania boli odstránené</string>
     <string name="missing_file">Súbor bol presunutý alebo odstránený</string>
     <string name="overwrite_failed">súbor nemožno prepísať</string>
     <string name="download_already_pending">Súbor s rovnakým názvom už čaká na stiahnutie</string>
@@ -508,7 +508,7 @@
         <item quantity="few">%s poslucháči</item>
         <item quantity="other">%s poslucháčov</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Zmena jazyka sa prejaví po reštarte aplikácie.</string>
+    <string name="localization_changes_requires_app_restart">Zmena jazyka sa prejaví po reštarte aplikácie</string>
     <string name="seek_duration_title">Dĺžka rýchleho pretáčania</string>
     <string name="peertube_instance_url_title">Inštancie PeerTube</string>
     <string name="peertube_instance_url_summary">Vyberte si svoje obľúbené inštancie PeerTube</string>
@@ -637,7 +637,7 @@
     <string name="notification_action_shuffle">Náhodné</string>
     <string name="notification_action_repeat">Opakovať</string>
     <string name="notification_actions_at_most_three">V kompaktnom oznámení môžete vybrať najviac tri akcie, ktoré sa majú zobraziť!</string>
-    <string name="notification_actions_summary">Všetky nasledovné upozornenia môžete upraviť poklepaním. Tri z nich môžete vybrať a tieto sa budú zobrazovať v kompaktnom oznámení.</string>
+    <string name="notification_actions_summary">Všetky nasledovné upozornenia môžete upraviť poklepaním. Tri z nich môžete vybrať a tieto sa budú zobrazovať v kompaktnom oznámení</string>
     <string name="notification_action_4_title">Akčné tlačidlo päť</string>
     <string name="notification_action_3_title">Akčné tlačidlo štyri</string>
     <string name="notification_action_2_title">Akčné tlačidlo tri</string>

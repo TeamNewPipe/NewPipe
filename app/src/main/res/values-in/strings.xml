@@ -308,11 +308,11 @@
     <string name="clear_views_history_title">Hapus riwayat tontonan</string>
     <string name="clear_views_history_summary">Hapus riwayat video yang diputar dan posisi pemutaran</string>
     <string name="delete_view_history_alert">Hapus seluruh riwayat tontonan\?</string>
-    <string name="watch_history_deleted">Riwayat tontonan dihapus.</string>
+    <string name="watch_history_deleted">Riwayat tontonan dihapus</string>
     <string name="clear_search_history_title">Hapus riwayat pencarian</string>
     <string name="clear_search_history_summary">Hapus riwayat lema pencarian</string>
     <string name="delete_search_history_alert">Hapus seluruh riwayat pencarian\?</string>
-    <string name="search_history_deleted">Riwayat pencarian dihapus.</string>
+    <string name="search_history_deleted">Riwayat pencarian dihapus</string>
     <string name="no_streams_available_download">Tidak ada video yang tersedia untuk diunduh</string>
     <string name="one_item_deleted">1 item dihapus.</string>
     <string name="toast_no_player">Tidak ada aplikasi terpasang untuk memutar berkas ini</string>
@@ -460,7 +460,7 @@
     <string name="enable_playback_state_lists_title">Posisi dalam daftar</string>
     <string name="enable_playback_state_lists_summary">Tampilkan indikator posisi pemutaran di dalam daftar</string>
     <string name="settings_category_clear_data_title">Hapus data</string>
-    <string name="watch_history_states_deleted">Posisi pemutaran dihapus.</string>
+    <string name="watch_history_states_deleted">Posisi pemutaran dihapus</string>
     <string name="missing_file">Berkas dipindah atau dihapus</string>
     <string name="overwrite_unrelated_warning">Berkas dengan nama yang sama sudah ada</string>
     <string name="overwrite_failed">tidak bisa menimpa ulang berkas</string>
@@ -497,7 +497,7 @@
     <plurals name="listening">
         <item quantity="other">%s mendengarkan</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Bahasa akan diterapkan setelah aplikasi dimulai ulang.</string>
+    <string name="localization_changes_requires_app_restart">Bahasa akan diterapkan setelah aplikasi dimulai ulang</string>
     <string name="peertube_instance_url_title">Situs PeerTube</string>
     <string name="peertube_instance_url_summary">Pilih situs PeerTube favorit Anda</string>
     <string name="peertube_instance_url_help">Temukan situs yang Anda suka di %s</string>
@@ -617,7 +617,7 @@
     <string name="notification_action_shuffle">Aduk</string>
     <string name="notification_action_repeat">Ulangi</string>
     <string name="notification_actions_at_most_three">Anda bisa memilih hingga tiga tindakan untuk ditampilkan dalam notifikasi ringkas!</string>
-    <string name="notification_actions_summary">Sentuh untuk menyunting tindakan notifikasi di bawah. Pilih hingga tiga diantaranya untuk ditampilkan dalam notifikasi ringkas dengan menggunakan kotak centang di sebelah kanan.</string>
+    <string name="notification_actions_summary">Sentuh untuk menyunting tindakan notifikasi di bawah. Pilih hingga tiga diantaranya untuk ditampilkan dalam notifikasi ringkas dengan menggunakan kotak centang di sebelah kanan</string>
     <string name="notification_action_4_title">Tombol tindakan kelima</string>
     <string name="notification_action_3_title">Tombol tindakan keempat</string>
     <string name="notification_action_2_title">Tombol tindakan ketiga</string>

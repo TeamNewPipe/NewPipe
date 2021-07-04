@@ -217,11 +217,11 @@
     <string name="clear_views_history_title">Xóa lịch sử xem</string>
     <string name="clear_views_history_summary">Xóa lịch sử các luồng đã phát và vị trí phát</string>
     <string name="delete_view_history_alert">Xóa toàn bộ lịch sử xem\?</string>
-    <string name="watch_history_deleted">Đã xóa lịch sử xem.</string>
+    <string name="watch_history_deleted">Đã xóa lịch sử xem</string>
     <string name="clear_search_history_title">Xóa lịch sử tìm kiếm</string>
     <string name="clear_search_history_summary">Xóa lịch sử của từ khóa tìm kiếm</string>
     <string name="delete_search_history_alert">Xóa toàn bộ lịch sử tìm kiếm\?</string>
-    <string name="search_history_deleted">Đã xóa lịch sử tìm kiếm.</string>
+    <string name="search_history_deleted">Đã xóa lịch sử tìm kiếm</string>
     <string name="player_stream_failure">Không thể phát luồng này</string>
     <string name="player_unrecoverable_failure">Đã xảy ra lỗi trình phát không thể khôi phục</string>
     <string name="player_recoverable_failure">Phục hồi từ lỗi trình phát</string>
@@ -463,7 +463,7 @@
     <string name="enable_playback_state_lists_title">Vị trí phát trong danh sách</string>
     <string name="enable_playback_state_lists_summary">Hiện vị trí phát lại trong danh sách</string>
     <string name="settings_category_clear_data_title">Xoá dữ liệu</string>
-    <string name="watch_history_states_deleted">Đã xoá vị trí phát lại.</string>
+    <string name="watch_history_states_deleted">Đã xoá vị trí phát lại</string>
     <string name="missing_file">Tệp đã di chuyển hoặc đã xoá</string>
     <string name="overwrite_unrelated_warning">Tên file này đã tồn tại</string>
     <string name="overwrite_failed">Không thể ghi đè lên tệp</string>
@@ -522,7 +522,7 @@
     <string name="mute">Tắt tiếng</string>
     <string name="most_liked">Yêu thích nhất</string>
     <string name="recently_added">Thêm vào gần đây</string>
-    <string name="localization_changes_requires_app_restart">Ngôn ngữ sẽ thay đổi khi ứng dụng khởi động lại.</string>
+    <string name="localization_changes_requires_app_restart">Ngôn ngữ sẽ thay đổi khi ứng dụng khởi động lại</string>
     <string name="subtitle_activity_recaptcha">Bấm \"Xong\" khi hoàn thành</string>
     <string name="recaptcha_done_button">Xong</string>
     <string name="infinite_videos">∞ video</string>
@@ -616,7 +616,7 @@
     <string name="notification_action_shuffle">Ngẫu nhiên</string>
     <string name="notification_action_repeat">Lặp lại</string>
     <string name="notification_actions_at_most_three">Bạn có thể chọn tối đa ba hành động để hiện trong thông báo thu gọn!</string>
-    <string name="notification_actions_summary">Chỉnh sửa mỗi hành động trong thông báo ở dưới bằng cách nhấn vào nó. Chọn tối đa ba hành động để hiện trong thông báo thu gọn bằng cách sử dụng các ô đánh dấu bên phải.</string>
+    <string name="notification_actions_summary">Chỉnh sửa mỗi hành động trong thông báo ở dưới bằng cách nhấn vào nó. Chọn tối đa ba hành động để hiện trong thông báo thu gọn bằng cách sử dụng các ô đánh dấu bên phải</string>
     <string name="notification_action_4_title">Nút hành động thứ năm</string>
     <string name="notification_action_3_title">Nút hành động thứ tư</string>
     <string name="notification_action_2_title">Nút hành động thứ ba</string>

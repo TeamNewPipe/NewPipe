@@ -75,7 +75,7 @@
     <string name="error_http_unsupported_range">服务器不接受多线程下载, 使用 @string/msg_threads = 1 重试</string>
     <string name="autoplay_title">自动恢复上次播放</string>
     <string name="settings_category_clear_data_title">清空数据</string>
-    <string name="watch_history_deleted">播放历史已删除。</string>
+    <string name="watch_history_deleted">播放历史已删除</string>
     <string name="detail_likes_img_view_description">喜欢</string>
     <string name="detail_dislikes_img_view_description">不喜欢</string>
     <string name="use_tor_title">使用 Tor</string>
@@ -99,7 +99,7 @@
     <string name="delete">删除</string>
     <string name="checksum">校验</string>
     <string name="add">新任务</string>
-    <string name="finish">OK</string>
+    <string name="finish">确定</string>
     <string name="msg_name">文件名</string>
     <string name="msg_threads">线程数</string>
     <string name="msg_error">错误</string>
@@ -142,7 +142,7 @@
     <string name="main_page_content_summary">自定义主页显示的标签页</string>
     <string name="list_view_mode">列表视图模式</string>
     <string name="missions_header_finished">已完成</string>
-    <string name="missions_header_pending">等待中…</string>
+    <string name="missions_header_pending">等待中</string>
     <string name="paused">已暂停</string>
     <string name="queued">已加入队列</string>
     <string name="enqueue">加入队列</string>
@@ -308,7 +308,7 @@
     <string name="export_complete_toast">导出成功</string>
     <string name="import_complete_toast">导入成功</string>
     <string name="no_valid_zip_file">没有有效的 ZIP 文件</string>
-    <string name="could_not_import_all_files">警告：无法导入所有文件</string>
+    <string name="could_not_import_all_files">警告：无法导入所有文件。</string>
     <string name="override_current_data">此操作会<b>覆盖当前设置</b>。</string>
     <string name="show_info">显示信息</string>
     <string name="tab_bookmarks">收藏</string>
@@ -328,8 +328,8 @@
     <string name="delete_playlist_prompt">是否删除此播放列表？</string>
     <string name="playlist_creation_success">新建播放列表成功</string>
     <string name="playlist_add_stream_success">加入播放列表成功</string>
-    <string name="playlist_thumbnail_change_success">播放列表封面更改成功</string>
-    <string name="playlist_delete_failure">无法删除播放列表</string>
+    <string name="playlist_thumbnail_change_success">播放列表封面已更改。</string>
+    <string name="playlist_delete_failure">无法删除播放列表。</string>
     <string name="caption_none">无字幕</string>
     <string name="resize_fit">适应屏幕</string>
     <string name="resize_fill">填充屏幕</string>
@@ -351,8 +351,8 @@
     <string name="error_occurred_detail">发生错误：%1$s</string>
     <string name="import_export_title">导入/导出</string>
     <string name="import_title">导入</string>
-    <string name="import_from">导入自…</string>
-    <string name="export_to">导出到…</string>
+    <string name="import_from">导入自</string>
+    <string name="export_to">导出到</string>
     <string name="import_ongoing">正在导入…</string>
     <string name="export_ongoing">正在导出…</string>
     <string name="import_file_title">导入文件</string>
@@ -377,7 +377,7 @@
     <string name="import_network_expensive_warning">该操作消耗大量流量，
 \n
 \n你想继续吗？</string>
-    <string name="download_thumbnail_summary">关闭可禁止加载封面，节省流量和内存使用更改该选项将清除内存与磁盘中的图片缓存</string>
+    <string name="download_thumbnail_summary">关闭可禁止加载封面，节省流量和内存使用。切换该选项将立即清除内存与存储中的图片缓存</string>
     <string name="thumbnail_cache_wipe_complete_notice">清空图像缓存成功</string>
     <string name="metadata_cache_wipe_title">清空已缓存的元数据</string>
     <string name="metadata_cache_wipe_summary">清空已缓存的网页数据</string>
@@ -396,7 +396,7 @@
     <string name="clear_search_history_title">清空搜索历史</string>
     <string name="clear_search_history_summary">清空搜索历史关键词</string>
     <string name="delete_search_history_alert">是否删除全部搜索历史？</string>
-    <string name="search_history_deleted">搜索历史已删除。</string>
+    <string name="search_history_deleted">搜索历史已删除</string>
     <string name="app_license">NewPipe 是版权自由软件：您可以随时使用、研究共享和改进它。您可以根据自由软件基金会发布的 GNU 通用公共许可证 GPLv3 或（由您选择的）任何更高版本的许可证重新分发或修改该许可证。</string>
     <string name="import_settings">是否要导入设置？</string>
     <string name="privacy_policy_title">NewPipe 隐私政策</string>
@@ -404,7 +404,7 @@
 \nNewPipe 的隐私政策详细解释了发送崩溃报告时会发送和存储的数据。</string>
     <string name="read_privacy_policy">阅读隐私政策</string>
     <string name="start_accept_privacy_policy">为了遵守欧盟的《通用数据保护条例 (GDPR)》，我们特此提醒您注意 NewPipe 的隐私政策，请您仔细阅读。
-\n您必须在同意以后才能向我们发送错误报告！</string>
+\n您必须在同意以后才能向我们发送错误报告。</string>
     <string name="accept">接受</string>
     <string name="decline">拒绝</string>
     <string name="limit_data_usage_none_description">无限制</string>
@@ -465,7 +465,7 @@
     <string name="enable_playback_resume_summary">再次打开播放过的视频时, 自动定位到上次播放时位置</string>
     <string name="enable_playback_state_lists_title">在列表中显示历史播放位置</string>
     <string name="enable_playback_state_lists_summary">在列表中，使用底端进度条显示某一视频上次播放时的播放位置</string>
-    <string name="watch_history_states_deleted">已删除播放痕迹历史。</string>
+    <string name="watch_history_states_deleted">已删除播放痕迹历史</string>
     <string name="missing_file">文件已被移动或被删除</string>
     <string name="overwrite_unrelated_warning">同名文件已存在</string>
     <string name="overwrite_finished_warning">同名的已下载文件已经存在</string>
@@ -501,7 +501,7 @@
         <item quantity="one">%s 位听众</item>
         <item quantity="other"/>
     </plurals>
-    <string name="localization_changes_requires_app_restart">语言更改将在重启应用后生效。</string>
+    <string name="localization_changes_requires_app_restart">语言更改将在重启应用后生效</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
     <string name="peertube_instance_url_summary">设置自定义 PeerTube 服务器</string>
     <string name="peertube_instance_url_help">查找你需要的服务器 %s</string>
@@ -624,7 +624,7 @@
     <string name="notification_action_shuffle">随机播放</string>
     <string name="notification_action_repeat">单曲循环</string>
     <string name="notification_actions_at_most_three">最多可以选择三个操作显示在紧凑通知中！</string>
-    <string name="notification_actions_summary">点击编辑下面的每一个通知操作。使用右方的复选框选择在紧凑通知中显示的动作，最多可以选择三个。</string>
+    <string name="notification_actions_summary">点击编辑下面的每一个通知操作。使用右方的复选框选择在紧凑通知中显示的动作，最多可以选择三个</string>
     <string name="notification_action_4_title">第五操作按钮</string>
     <string name="notification_action_3_title">第四操作按钮</string>
     <string name="notification_action_2_title">第三操作按钮</string>

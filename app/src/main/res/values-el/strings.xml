@@ -171,11 +171,11 @@
     <string name="clear_views_history_title">Εκκαθάριση ιστορικού προβολής</string>
     <string name="clear_views_history_summary">Διαγράφει το ιστορικό των αναπαραχθέντων ροών και των θέσεων αναπαραγωγής</string>
     <string name="delete_view_history_alert">Διαγραφή ολόκληρου του ιστορικού προβολής;</string>
-    <string name="watch_history_deleted">Το στορικό προβολής διαγράφηκε.</string>
+    <string name="watch_history_deleted">Το στορικό προβολής διαγράφηκε</string>
     <string name="clear_search_history_title">Διαγραφή ιστορικού αναζητήσεων</string>
     <string name="clear_search_history_summary">Διαγράφει το ιστορικό αναζητήσεών σας</string>
     <string name="delete_search_history_alert">Διαγραφή ολόκληρου του ιστορικού αναζητήσεων;</string>
-    <string name="search_history_deleted">Το ιστορικό αναζητήσεων διαγράφηκε.</string>
+    <string name="search_history_deleted">Το ιστορικό αναζητήσεων διαγράφηκε</string>
     <string name="could_not_load_thumbnails">Δεν ήταν δυνατή η φόρτωση όλων των εικονιδίων</string>
     <string name="youtube_signature_deobfuscation_error">Δεν ήταν δυνατή η αποκρυπτογράφηση της υπογραφής της URL του βίντεο</string>
     <string name="parsing_error">Δεν ήταν δυνατή η ανάλυση του ιστοτόπου</string>
@@ -467,7 +467,7 @@
     <string name="enable_playback_state_lists_title">Θέσεις στις λίστες</string>
     <string name="enable_playback_state_lists_summary">Εμφάνιση ενδείξεων θέσης αναπαραγωγής στις λίστες</string>
     <string name="settings_category_clear_data_title">Εκκαθάριση δεδομένων</string>
-    <string name="watch_history_states_deleted">Οι θέσεις αναπαραγωγής διαγράφηκαν.</string>
+    <string name="watch_history_states_deleted">Οι θέσεις αναπαραγωγής διαγράφηκαν</string>
     <string name="missing_file">Το αρχείο μετακινήθηκε ή διαγράφηκε</string>
     <string name="overwrite_failed">δεν είναι δυνατή η αντικατάσταση του αρχείου</string>
     <string name="download_already_pending">Υπάρχει μια εκκρεμής λήψη με αυτό το όνομα</string>
@@ -502,7 +502,7 @@
         <item quantity="one">%s ακροατής</item>
         <item quantity="other">%s ακροατές</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Η γλώσσα θα αλλάξει αφού επανεκκινηθεί η εφαρμογή.</string>
+    <string name="localization_changes_requires_app_restart">Η γλώσσα θα αλλάξει αφού επανεκκινηθεί η εφαρμογή</string>
     <string name="default_kiosk_page_summary">Προεπιλεγμένο περίπτερο</string>
     <string name="peertube_instance_add_https_only">Μόνο HTTPS σύνδεσμοι υποστηρίζονται</string>
     <string name="local">Τοπικά</string>
@@ -564,7 +564,7 @@
     <string name="notification_action_shuffle">Ανάμιξη</string>
     <string name="notification_action_repeat">Επανάληψη</string>
     <string name="notification_actions_at_most_three">Μπορείτε να επιλέξετε το πολύ τρεις ενέργειες για εμφάνιση στη σύντομη ειδοποίηση!</string>
-    <string name="notification_actions_summary">Επεξεργαστείτε κάθε ενέργεια ειδοποίησης παρακάτω πατώντας πάνω της. Επιλέξτε έως και τρεις από αυτές για να εμφανίζονται στη σύντομη ειδοποίηση, χρησιμοποιώντας τα πλαίσια ελέγχου στα δεξιά.</string>
+    <string name="notification_actions_summary">Επεξεργαστείτε κάθε ενέργεια ειδοποίησης παρακάτω πατώντας πάνω της. Επιλέξτε έως και τρεις από αυτές για να εμφανίζονται στη σύντομη ειδοποίηση, χρησιμοποιώντας τα πλαίσια ελέγχου στα δεξιά</string>
     <string name="notification_action_4_title">Κουμπί πέμπτης ενέργειας</string>
     <string name="notification_action_3_title">Κουμπί τέταρτης ενέργειας</string>
     <string name="notification_action_2_title">Κουμπί τρίτης ενέργειας</string>

@@ -95,7 +95,7 @@
     <string name="info_dir_created">Создана папка для загрузок \"%1$s\"</string>
     <string name="video">Видео</string>
     <string name="audio">Аудио</string>
-    <string name="retry">Повторить попытку</string>
+    <string name="retry">Повтор</string>
     <string name="storage_permission_denied">Нет доступа к накопителю</string>
     <string name="could_not_load_thumbnails">Не удалось загрузить все миниатюры</string>
     <string name="youtube_signature_deobfuscation_error">Не удалось расшифровать подпись URL у видео</string>
@@ -371,12 +371,12 @@
     <string name="caption_setting_description">Изменить размер текста и стиль субтитров. Нужен перезапуск</string>
     <string name="clear_views_history_title">Очистить историю</string>
     <string name="delete_view_history_alert">Удалить всю историю просмотров\?</string>
-    <string name="watch_history_deleted">История просмотров удалена.</string>
+    <string name="watch_history_deleted">История просмотров удалена</string>
     <string name="clear_search_history_title">Очистить запросы поиска</string>
     <string name="clear_search_history_summary">Удалить все запросы поиска</string>
     <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков и позиции воспроизведения</string>
     <string name="delete_search_history_alert">Удалить всю историю поиска\?</string>
-    <string name="search_history_deleted">История поиска удалена.</string>
+    <string name="search_history_deleted">История поиска удалена</string>
     <string name="one_item_deleted">1 элемент удалён.</string>
     <string name="app_license">NewPipe — свободное программное обеспечение: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с условиями GNU General Public License, опубликованной Free Software Foundation, либо версии 3, либо (по вашему выбору) любой более поздней версии.</string>
     <string name="preferred_open_action_settings_title">При открытии ссылки</string>
@@ -471,7 +471,7 @@
     <string name="autoplay_title">Автовоспроизведение</string>
     <string name="no_comments">Нет комментариев</string>
     <string name="error_unable_to_load_comments">Не удалось загрузить комментарии</string>
-    <string name="watch_history_states_deleted">Позиции воспроизведения удалены.</string>
+    <string name="watch_history_states_deleted">Позиции воспроизведения удалены</string>
     <string name="missing_file">Файл перемещён или удалён</string>
     <string name="overwrite_unrelated_warning">Файл с таким именем уже существует</string>
     <string name="overwrite_failed">не удаётся перезаписать файл</string>
@@ -489,7 +489,7 @@
 \nВключите системный выбор папки (SAF), если хотите загружать на внешнюю SD-карту</string>
     <string name="downloads_storage_ask_summary_kitkat">Для каждой загрузки запрашивать папку для сохранения. 
 \nИспользуйте SAF для загрузки на SD-карту</string>
-    <string name="downloads_storage_use_saf_title">Использовать системный выбор папки (SAF)</string>
+    <string name="downloads_storage_use_saf_title">Системный выбор папки (SAF)</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" позволяет сохранять файлы на внешнюю SD-карту</string>
     <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>
     <string name="clear_playback_states_summary">Удалить все позиции воспроизведения</string>
@@ -509,7 +509,7 @@
         <item quantity="few">%s слушателя</item>
         <item quantity="many">%s слушателей</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Язык будет изменён после перезапуска.</string>
+    <string name="localization_changes_requires_app_restart">Язык будет изменён после перезапуска</string>
     <string name="seek_duration_title">Шаг перемотки</string>
     <string name="peertube_instance_url_title">Серверы PeerTube</string>
     <string name="peertube_instance_url_summary">Выберите предпочтительные серверы</string>
@@ -639,7 +639,7 @@
     <string name="notification_action_shuffle">Перемешать</string>
     <string name="notification_action_repeat">Повтор</string>
     <string name="notification_actions_at_most_three">В компактном уведомлении доступно не более трёх действий!</string>
-    <string name="notification_actions_summary">Действия можно изменить, нажав на них. Отметьте не более трёх для отображения в компактном уведомлении.</string>
+    <string name="notification_actions_summary">Действия можно изменить, нажав на них. Отметьте не более трёх для отображения в компактном уведомлении</string>
     <string name="notification_action_4_title">Пятое действие</string>
     <string name="notification_action_3_title">Четвёртое действие</string>
     <string name="notification_action_2_title">Третье действие</string>
@@ -687,10 +687,10 @@
     <string name="restricted_video_no_stream">Это видео имеет возрастные ограничения.
 \nСогласно новой политике YouTube в отношении видео с возрастными ограничениями NewPipe не может иметь доступ ни к одному потоку этого видео и, таким образом, не может воспроизвести его.</string>
     <string name="night_theme_title">Ночная тема</string>
-    <string name="featured">Рекомендуемые</string>
+    <string name="featured">Популярное</string>
     <string name="recaptcha_solve">Решить</string>
     <string name="show_channel_details">Подробно о канале</string>
-    <string name="disable_media_tunneling_summary">Отключите туннелирование медиа, если вы видите черный экран или подёргивание при воспроизведении видео</string>
+    <string name="disable_media_tunneling_summary">Отключите туннелирование медиа, если видите чёрный экран или видео воспроизводится рывками</string>
     <string name="disable_media_tunneling_title">Отключить туннелирование медиа</string>
     <string name="description_select_note">Теперь вы можете выделить текст внутри описания. В режиме выделения страница может мерцать, ссылки могут быть неактивны .</string>
     <string name="metadata_support">Поддержка</string>

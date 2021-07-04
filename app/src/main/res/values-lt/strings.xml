@@ -356,13 +356,13 @@
     <string name="download_to_sdcard_error_message">Įrašyti į išorinę SD kortelę nepavyko. Atstatyti atsisiuntimo aplanką\?</string>
     <string name="download_to_sdcard_error_title">Išorinė saugykla neprieinama</string>
     <string name="help">Žinynas</string>
-    <string name="search_history_deleted">Paieškos istorija pašalinta.</string>
+    <string name="search_history_deleted">Paieškos istorija pašalinta</string>
     <string name="delete_search_history_alert">Išvalyti visą paieškos istoriją\?</string>
     <string name="clear_search_history_summary">Išvalo paieškos istoriją</string>
     <string name="clear_search_history_title">Išvalyti paieško istoriją</string>
     <string name="clear_playback_states_summary">Pašalina visas atkūrimo vietas</string>
     <string name="clear_playback_states_title">Pašalinti atkūrimo vietas</string>
-    <string name="watch_history_deleted">Žiūrėjimo istorija pašalinta.</string>
+    <string name="watch_history_deleted">Žiūrėjimo istorija pašalinta</string>
     <string name="delete_view_history_alert">Išvalyti visą žiūrėjimo istoriją\?</string>
     <string name="clear_views_history_summary">Išvalo atkurtų srautų ir atkūrimo vietos istoriją</string>
     <string name="clear_views_history_title">Išvalyti žiūrėjimo istoriją</string>
@@ -416,7 +416,7 @@
     <string name="metadata_cache_wipe_summary">Pašalinti visus išsaugotus puslapio duomenis</string>
     <string name="metadata_cache_wipe_title">Išvalyti išsaugotus metaduomenis</string>
     <string name="thumbnail_cache_wipe_complete_notice">Paveikslėlių saugykla išvalyta</string>
-    <string name="show_meta_info_summary">Norėdami paslėpti meta duomenis info langeliuose su papildoma informacija apie srauto autorius ir turinį išjunkite.</string>
+    <string name="show_meta_info_summary">Norėdami paslėpti meta duomenis info langeliuose su papildoma informacija apie srauto autorius ir turinį išjunkite</string>
     <string name="show_meta_info_title">Rodyti meta duomenis</string>
     <string name="show_description_summary">Išjunkite norėdami paslėpti video aprašymą ir papildomą informaciją</string>
     <string name="use_inexact_seek_title">Naudoti greitą netikslų prasukimą</string>
@@ -427,7 +427,7 @@
     <string name="notification_action_buffering">Kraunama</string>
     <string name="notification_action_shuffle">Maišyti</string>
     <string name="notification_actions_at_most_three">Galite pasirinkit iki trijų veiksmų kompaktiškame pranešime!</string>
-    <string name="notification_actions_summary">Norėdami pakeisti kiekvieną pranešimo veiksmą paspauskite ant jo. Pasirinkite iki trijų norėdami kompaktiškos peržiūros.</string>
+    <string name="notification_actions_summary">Norėdami pakeisti kiekvieną pranešimo veiksmą paspauskite ant jo. Pasirinkite iki trijų norėdami kompaktiškos peržiūros</string>
     <string name="notification_action_4_title">Penktas veiksmo mygtukas</string>
     <string name="notification_action_3_title">Ketvirtas veiksmo mygtukas</string>
     <string name="notification_action_2_title">Trečias veiksmo mygtukas</string>
@@ -436,20 +436,20 @@
     <string name="notification_scale_to_square_image_summary">Pakeisti video miniatiūrų rodomų pranešime kraštinių santykį iš 16:9 į 1:1 (gali būti iškraipoma)</string>
     <string name="notification_scale_to_square_image_title">Pakeisti miniatiūrų dydi 1:1 santykiu</string>
     <string name="download_choose_new_path">Pakeiskite parsiuntimo aplankus</string>
-    <string name="watch_history_states_deleted">Atkūrimo vietos pašalintos.</string>
+    <string name="watch_history_states_deleted">Atkūrimo vietos pašalintos</string>
     <string name="delete_playback_states_alert">Pašalinti visas atkūrimo vietas\?</string>
     <string name="peertube_instance_add_fail">Netinkama kopija</string>
     <string name="peertube_instance_add_help">Įveskite kopijos URL</string>
     <string name="enable_playback_resume_summary">Atstatyti paskutinį atkūrimo laiką</string>
     <string name="enable_playback_resume_title">Tęsti atkūrimą</string>
     <string name="show_description_title">Rodyti aprašymą</string>
-    <string name="download_thumbnail_summary">Norėdami taupyti duomenų srautą ir atminties naudojimą išjunkite. Pakeitimai išvalys duomenis atmintyje ir diske.</string>
+    <string name="download_thumbnail_summary">Norėdami taupyti duomenų srautą, atminties naudojimą išjunkite. Pakeitimai išvalys duomenis atmintyje ir diske</string>
     <string name="download_thumbnail_title">Įkelti miniatiūras</string>
     <string name="clear_queue_confirmation_description">Aktyvaus grotuvo eilė bus pakeista</string>
     <string name="clear_queue_confirmation_summary">Perjungiant iš vieno grotuvo į kitą gali pakeisti jūsų eilę</string>
     <string name="clear_queue_confirmation_title">Prieš išvalant eilę prašyti patvirtinimo</string>
     <string name="seek_duration_title">Greito prasukimo trukmė</string>
-    <string name="use_inexact_seek_summary">Netikslus prasukimas leidžia grotuvui greitai peršokti į kitą vietą su sumažintu tikslumu. 5,10 ar 25 sekundės to nenaudoja.</string>
+    <string name="use_inexact_seek_summary">Netikslus prasukimas leidžia grotuvui greitai peršokti į kitą vietą su sumažintu tikslumu. 5, 15 ar 25 sekundės to nenaudoja</string>
     <string name="import_youtube_instructions">Importuokite \"YouTube\" prenumeratas iš \"Google Takeout\":
 \n
 \n1. Eikite į šį URL adresą: %1$s
@@ -468,7 +468,7 @@
     <string name="paid_content">Šis turinys prieinamas tik sumokėjusiems naudotojams, todėl \"NewPipe\" negali jo transliuoti ar atsisiųsti.</string>
     <string name="youtube_music_premium_content">Šis vaizdo įrašas prieinamas tik \"YouTube Music Premium\" nariams, todėl \"NewPipe\" negali jo transliuoti ar atsisiųsti.</string>
     <string name="disable_media_tunneling_summary">Išjunkite medijos tuneliavimą, jei vaizdo įrašo atkūrimo metu atsiranda juodas ekranas arba užstrigimas</string>
-    <string name="caption_setting_description">Pakeiskite grotuvo antraštės teksto mastelį ir fono stilių. Pakeitimai įsigalios iš naujo paleidus programą.</string>
+    <string name="caption_setting_description">Pakeiskite grotuvo antraštės teksto mastelį ir fono stilių. Pakeitimai įsigalios iš naujo paleidus programą</string>
     <string name="private_content">Šis turinys yra privatus, todėl \"NewPipe\" jo negali transliuoti ar atsisiųsti.</string>
     <string name="confirm_prompt">Ar norite išvalyti atsisiuntimų istoriją ar ištrinti visus atsisiųstus failus\?</string>
     <string name="feed_update_threshold_summary">Laikas po paskutinio atnaujinimo, po kurio prenumerata laikoma pasenusia — %s</string>
@@ -517,7 +517,7 @@
     </plurals>
     <string name="systems_language">Sistemos numatytoji</string>
     <string name="app_language_title">Kalba</string>
-    <string name="downloads_storage_use_saf_title">Naudoti SAF</string>
+    <string name="downloads_storage_use_saf_title">Naudoti sistemos aplanko parinktuką (SAP)</string>
     <string name="pause_downloads">Sustabdyti siuntimus</string>
     <string name="error_http_not_found">Nerasta</string>
     <string name="download_finished">Parsiųsta</string>
@@ -569,7 +569,7 @@
     <string name="most_liked">Labiausiai patikę</string>
     <string name="recently_added">Nesenai pridėta</string>
     <string name="local">Vietinė</string>
-    <string name="localization_changes_requires_app_restart">Kalba pasikeis paleidus programą iš naujo.</string>
+    <string name="localization_changes_requires_app_restart">Kalba pasikeis paleidus programą iš naujo</string>
     <string name="error_unable_to_load_comments">Komentarų įkelti nepavyko</string>
     <string name="import_settings">Ar norite importuoti nustatymus\?</string>
     <string name="no_playlist_bookmarked_yet">Kol kas nėra grojaraščio žymų</string>
@@ -599,7 +599,7 @@
 \nTaigi pasirinkimas priklauso nuo to, ko labiau norite: greičio ar tikslios informacijos.</string>
     <string name="start_accept_privacy_policy">Siekdami laikytis Europos bendrojo duomenų apsaugos reglamento (GDPR), atkreipiame jūsų dėmesį į \"NewPipe\" privatumo politiką. Prašome atidžiai ją perskaityti.
 \nNorėdami išsiųsti mums pranešimą apie klaidą, turite su ja sutikti.</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Prieinama kai kuriose tarnybose, paprastai yra daug greitesnė, tačiau gali grąžinti ribotą kiekį elementų ir dažnai neišsamią informaciją (pvz., nėra trukmės, elemento tipo, nėra tiesioginės būsenos).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Prieinama kai kuriose tarnybose, paprastai yra daug greitesnė, tačiau gali grąžinti ribotą kiekį elementų ir dažnai neišsamią informaciją (pvz., nėra trukmės, elemento tipo, nėra tiesioginės būsenos)</string>
     <string name="remove_watched_popup_warning">Vaizdo įrašai, kurie buvo peržiūrėti prieš juos įtraukiant į grojaraštį ir po to, kai jie buvo įtraukti į grojaraštį, bus pašalinti.
 \nAr tikrai\? To negalima atšaukti!</string>
     <string name="downloads_storage_ask_summary_kitkat">Jūsų bus paklausta, kur išsaugoti kiekvieną atsisiuntimą.
@@ -608,8 +608,7 @@
     <string name="content_not_supported">Šio turinio \"NewPipe\" dar nepalaiko.
 \n
 \nTikimės, kad jis bus palaikomas būsimoje versijoje.</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" leidžia atsisiųsti duomenis į išorinę SD kortelę.
-\nKai kurie įrenginiai yra nesuderinami</string>
+    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" leidžia atsisiųsti duomenis į išorinę SD kortelę</string>
     <string name="import_network_expensive_warning">Atminkite, kad ši operacija gali brangiai kainuoti tinkle.
 \n
 \nAr norite tęsti\?</string>
@@ -618,7 +617,8 @@
     <string name="pause_downloads_on_mobile_desc">Naudinga pereinant prie mobiliųjų duomenų, nors kai kurių atsisiuntimų sustabdyti negalima</string>
     <string name="minimize_on_exit_summary">Veiksmas, kai iš pagrindinio vaizdo įrašų grotuvo pereinama į kitą programą — %s</string>
     <string name="show_original_time_ago_summary">Srauto elementuose bus matomi orginalūs tekstai iš paslaugų</string>
-    <string name="downloads_storage_ask_summary">Jūsų bus paklausta, kur išsaugoti kiekvieną atsisiuntimą</string>
+    <string name="downloads_storage_ask_summary">Jūsų bus paklausta, kur išsaugoti kiekvieną atsisiuntimą.
+\nĮgalinkite sisteminį aplanko parinktuką (SAP) jeigu norite, kad būtų atsiųsta į išorinę SD kortelę</string>
     <string name="select_night_theme_toast">Žemiau galite pasirinkti mėgstamą nakties temą</string>
     <string name="download_already_pending">Šiuo pavadinimu yra laukiama atsisiuntimo</string>
     <string name="overwrite_finished_warning">Atsisiųstas failas su šiuo pavadinimu jau egzistuoja</string>
@@ -690,4 +690,37 @@
     <string name="import_file_title">Importuoti failą</string>
     <string name="export_to">Eksportuoti į</string>
     <string name="import_from">Importuoti iš</string>
+    <string name="feed_load_error_account_info">Nepavyko įkelti duomenų \'%s\'.</string>
+    <string name="on">Įjungta</string>
+    <string name="off">Išjungta</string>
+    <string name="tablet_mode_title">Planšetės režimas</string>
+    <string name="open_website_license">Atidaryti puslapį</string>
+    <string name="metadata_privacy_internal">Vidinis</string>
+    <string name="metadata_privacy_public">Viešas</string>
+    <string name="metadata_privacy_private">Privatus</string>
+    <string name="metadata_privacy_unlisted">Neįtrauktas į sąrašą</string>
+    <string name="metadata_thumbnail_url">Paveikslėlio URL</string>
+    <string name="metadata_host">Host</string>
+    <string name="metadata_support">Pagalba</string>
+    <string name="metadata_language">Kalba</string>
+    <string name="metadata_age_limit">Amžiaus limitas</string>
+    <string name="metadata_privacy">Privatumas</string>
+    <string name="metadata_licence">Licencija</string>
+    <string name="metadata_tags">Žymos</string>
+    <string name="metadata_category">Kategorija</string>
+    <string name="description_select_enable">Įgalinti teksto pasirinkimą apraše</string>
+    <string name="description_select_disable">Neleisti pasirinkti teksto apraše</string>
+    <string name="description_select_note">Dabar apraše galite pasirinkti tekstą aprašyme. Atminkite, kad puslapis gali mirgėti, o nuorodos gali būti nespustelėjamos, kai veikia pasirinkimo režimas.</string>
+    <string name="service_provides_reason">%s pateikia šią priežastį:</string>
+    <string name="account_terminated">Paskyra anuliuota</string>
+    <string name="feed_toggle_show_played_items">Rodyti grojamus elementus</string>
+    <string name="feed_load_error_fast_unknown">Greito srauto režimas nesuteikia daugiau informacijos apie tai.</string>
+    <string name="feed_load_error_terminated">Autoriaus paskyra anuliuota.
+\n„NewPipe“ negalės įkelti šio kanalo ateityje.
+\nAr norite atsisakyti šio kanalo prenumeratos\?</string>
+    <string name="feed_load_error">Klaida įkeliant srautą</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Pradedant Android 10 palaikoma tik \'Storage Access Framework\'</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' nėra palaikomas Android KitKat ir žemesnėse versijose</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Jūsų bus paklausta, kur išsaugoti kiekvieną atsiuntimą</string>
+    <string name="no_dir_yet">Atsiuntimo aplankas dar nenustatytas, pasirinkite numatytąjį atsiuntimų aplanką dabar</string>
 </resources>

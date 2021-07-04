@@ -268,9 +268,9 @@
     <string name="metadata_cache_wipe_complete_notice">מטמון נתוני העל התרוקן</string>
     <string name="export_data_summary">ייצוא היסטוריה, מינויים, רשימות נגינה והגדרות</string>
     <string name="clear_views_history_title">מחיקת היסטוריית הצפייה</string>
-    <string name="watch_history_deleted">היסטוריית הצפייה נמחקה.</string>
+    <string name="watch_history_deleted">היסטוריית הצפייה נמחקה</string>
     <string name="clear_search_history_title">מחיקת היסטוריית החיפוש</string>
-    <string name="search_history_deleted">היסטוריית החיפוש נמחקה.</string>
+    <string name="search_history_deleted">היסטוריית החיפוש נמחקה</string>
     <string name="invalid_file">הקובץ אינו קיים או שחסרה הרשאה לקרוא אותו או לכתוב אליו</string>
     <string name="file_name_empty_error">שם הקובץ אינו יכול להיות ריק</string>
     <string name="detail_drag_description">ניתן לסדר מחדש בגרירה</string>
@@ -472,7 +472,7 @@
     <string name="enable_playback_state_lists_title">מיקומים ברשימות</string>
     <string name="enable_playback_state_lists_summary">להציג מחווני מיקומי נגינה ברשימות</string>
     <string name="settings_category_clear_data_title">לנקות את הנתונים</string>
-    <string name="watch_history_states_deleted">מיקומי הנגינה נמחקו.</string>
+    <string name="watch_history_states_deleted">מיקומי הנגינה נמחקו</string>
     <string name="missing_file">הקובץ הועבר או נמחק</string>
     <string name="overwrite_unrelated_warning">כבר קיים קובץ בשם הזה</string>
     <string name="overwrite_failed">לא ניתן לשכתב את הקובץ</string>
@@ -512,7 +512,7 @@
         <item quantity="many">%s מאזינים</item>
         <item quantity="other">%s מאזינים</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">השפה תוחלף עם הפעלת היישומון מחדש.</string>
+    <string name="localization_changes_requires_app_restart">השפה תוחלף עם הפעלת היישומון מחדש</string>
     <string name="default_kiosk_page_summary">קיוסק ברירת מחדל</string>
     <string name="seek_duration_title">משך קפיצה מהירה קדימה/אחורה</string>
     <string name="peertube_instance_url_title">מופעים של PeerTube</string>
@@ -647,7 +647,7 @@
     <string name="notification_action_shuffle">ערבוב</string>
     <string name="notification_action_repeat">חזרה</string>
     <string name="notification_actions_at_most_three">ניתן לבחור עד שלוש פעולות בלבד שתופענה בהתראות המצומצמות!</string>
-    <string name="notification_actions_summary">ניתן לערוך כל התראה להלן בלחיצה עליה. מותר לבחור עד שלוש מהן שתופענה בהתראה המצומצמת באמצעות תיבות הסימן שמשמאל.</string>
+    <string name="notification_actions_summary">ניתן לערוך כל התראה להלן בלחיצה עליה. מותר לבחור עד שלוש מהן שתופענה בהתראה המצומצמת באמצעות תיבות הסימן שמשמאל</string>
     <string name="notification_action_4_title">כפתור פעולה חמישי</string>
     <string name="notification_action_3_title">כפתור פעולה רביעי</string>
     <string name="notification_action_2_title">כפתור פעולה שלישי</string>

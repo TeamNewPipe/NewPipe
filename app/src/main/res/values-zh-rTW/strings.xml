@@ -358,11 +358,11 @@
     <string name="clear_views_history_title">清除觀看歷史</string>
     <string name="clear_views_history_summary">刪除播放過的串流與播放位置歷史</string>
     <string name="delete_view_history_alert">刪除所有觀看歷史記錄？</string>
-    <string name="watch_history_deleted">觀看歷史已刪除。</string>
+    <string name="watch_history_deleted">觀看歷史已刪除</string>
     <string name="clear_search_history_title">清除搜尋歷史</string>
     <string name="clear_search_history_summary">刪除搜尋關鍵字的歷史</string>
     <string name="delete_search_history_alert">刪除所有搜尋歷史記錄？</string>
-    <string name="search_history_deleted">搜尋歷史已刪除。</string>
+    <string name="search_history_deleted">搜尋歷史已刪除</string>
     <string name="one_item_deleted">已刪除 1 個項目。</string>
     <string name="app_license">NewPipe 是一個 Copyleft 的自由軟體：您可以隨意使用、研究、分享並改進它。在遵守由自由軟體基金會所發佈的 GNU 通用公共授權條款的狀況下，您可以自由地再散佈及／或修改它；授權條款預設使用第三版，但您也可以選擇更新的版本。</string>
     <string name="import_settings">您是否要同時匯入設定？</string>
@@ -461,7 +461,7 @@
     <string name="enable_playback_state_lists_title">清單中的位置</string>
     <string name="enable_playback_state_lists_summary">在清單中顯示播放位置指示器</string>
     <string name="settings_category_clear_data_title">清除資料</string>
-    <string name="watch_history_states_deleted">播放位置已刪除。</string>
+    <string name="watch_history_states_deleted">播放位置已刪除</string>
     <string name="missing_file">檔案已移動或已刪除</string>
     <string name="overwrite_unrelated_warning">與此同名的檔案已存在</string>
     <string name="overwrite_failed">無法覆寫檔案</string>
@@ -498,7 +498,7 @@
     <plurals name="listening">
         <item quantity="other">%s 個聽眾</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">語言將會在重新啟動應用程式後變更。</string>
+    <string name="localization_changes_requires_app_restart">語言將會在重新啟動應用程式後變更</string>
     <string name="seek_duration_title">快轉／快退搜尋持續時間</string>
     <string name="peertube_instance_url_title">PeerTube 站臺</string>
     <string name="peertube_instance_url_summary">選取您最愛的 PeerTube 站臺</string>
@@ -617,7 +617,7 @@
     <string name="notification_action_shuffle">隨機播放</string>
     <string name="notification_action_repeat">重複</string>
     <string name="notification_actions_at_most_three">您可以選取最多三個動作來顯示在簡潔通知中！</string>
-    <string name="notification_actions_summary">透過點擊下方的每一個通知來編輯它。使用右側的勾選框，最多可以選取三個在簡潔通知中顯示。</string>
+    <string name="notification_actions_summary">透過點擊下方的每一個通知來編輯它。使用右側的勾選框，最多可以選取三個在簡潔通知中顯示</string>
     <string name="notification_action_4_title">第五動作按鈕</string>
     <string name="notification_action_3_title">第四動作按鈕</string>
     <string name="notification_action_2_title">第三動作按鈕</string>

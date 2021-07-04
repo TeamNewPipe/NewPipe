@@ -66,7 +66,7 @@
     <string name="notification_action_2_title">Third action button</string>
     <string name="notification_action_3_title">Fourth action button</string>
     <string name="notification_action_4_title">Fifth action button</string>
-    <string name="notification_actions_summary">Edit each notification action below by tapping on it. Select up to three of them to be shown in the compact notification by using the checkboxes on the right.</string>
+    <string name="notification_actions_summary">Edit each notification action below by tapping on it. Select up to three of them to be shown in the compact notification by using the checkboxes on the right</string>
     <string name="notification_actions_at_most_three">You can select at most three actions to show in the compact notification!</string>
     <string name="notification_action_repeat">Repeat</string>
     <string name="notification_action_shuffle">Shuffle</string>
@@ -218,15 +218,15 @@
     <string name="clear_views_history_title">Clear watch history</string>
     <string name="clear_views_history_summary">Deletes the history of played streams and the playback positions</string>
     <string name="delete_view_history_alert">Delete entire watch history?</string>
-    <string name="watch_history_deleted">Watch history deleted.</string>
+    <string name="watch_history_deleted">Watch history deleted</string>
     <string name="clear_playback_states_title">Delete playback positions</string>
     <string name="clear_playback_states_summary">Deletes all playback positions</string>
     <string name="delete_playback_states_alert">Delete all playback positions?</string>
-    <string name="watch_history_states_deleted">Playback positions deleted.</string>
+    <string name="watch_history_states_deleted">Playback positions deleted</string>
     <string name="clear_search_history_title">Clear search history</string>
     <string name="clear_search_history_summary">Deletes history of search keywords</string>
     <string name="delete_search_history_alert">Delete entire search history?</string>
-    <string name="search_history_deleted">Search history deleted.</string>
+    <string name="search_history_deleted">Search history deleted</string>
     <string name="help">Help</string>
     <string name="item_in_history">In History</string>
     <!-- error strings -->
@@ -450,7 +450,7 @@
     <string name="override_current_data">This will override your current setup.</string>
     <string name="import_settings">Do you want to also import settings?</string>
     <string name="error_unable_to_load_comments">Could not load comments</string>
-    <string name="localization_changes_requires_app_restart">The language will change once the app is restarted.</string>
+    <string name="localization_changes_requires_app_restart">The language will change once the app is restarted</string>
     <!-- Kiosk Names -->
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trending</string>

@@ -363,11 +363,11 @@
     <string name="clear_views_history_title">Excluir histórico de vídeo</string>
     <string name="clear_views_history_summary">Exclui o histórico de vídeos e as posições de reprodução</string>
     <string name="delete_view_history_alert">Excluir todo o histórico de vídeo\?</string>
-    <string name="watch_history_deleted">Histórico de vídeo limpo.</string>
+    <string name="watch_history_deleted">Histórico de vídeo limpo</string>
     <string name="clear_search_history_title">Excluir histórico de pesquisa</string>
     <string name="clear_search_history_summary">Exclui o histórico de pesquisas feitas</string>
     <string name="delete_search_history_alert">Excluir todo o histórico de pesquisa\?</string>
-    <string name="search_history_deleted">Histórico de busca limpo.</string>
+    <string name="search_history_deleted">Histórico de busca limpo</string>
     <string name="one_item_deleted">1 item excluído.</string>
     <string name="app_license">NewPipe é um software livre copyleft: Pode usar, estudar, compartilhar e melhorar o app. Especificamente você pode redistribuir e/ou modificá-lo sob os termos da Licença Pública Geral GNU, publicada pela Fundação de Software Livre, versão 3 da Licença, ou (a seu critério) qualquer versão posterior.</string>
     <string name="import_settings">Você também quer importar as configurações?</string>
@@ -466,7 +466,7 @@
     <string name="enable_playback_state_lists_title">Posições em listas</string>
     <string name="enable_playback_state_lists_summary">Mostra indicadores de posição de reprodução em listas</string>
     <string name="settings_category_clear_data_title">Excluir dados</string>
-    <string name="watch_history_states_deleted">Posições de reprodução limpas.</string>
+    <string name="watch_history_states_deleted">Posições de reprodução limpas</string>
     <string name="missing_file">Arquivo movido ou excluído</string>
     <string name="overwrite_unrelated_warning">Já existe um arquivo com este nome</string>
     <string name="overwrite_failed">O arquivo não pôde ser sobrescrito</string>
@@ -503,7 +503,7 @@
         <item quantity="one">%s ouvinte</item>
         <item quantity="other">%s ouvintes</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">O idioma atualizará ao reiniciar o app.</string>
+    <string name="localization_changes_requires_app_restart">O idioma atualizará ao reiniciar o app</string>
     <string name="seek_duration_title">Duração do retrocesso/avanço rápido</string>
     <string name="peertube_instance_url_title">Instâncias PeerTube</string>
     <string name="peertube_instance_url_summary">Escolha suas instâncias PeerTube favoritas</string>
@@ -627,7 +627,7 @@
     <string name="notification_action_nothing">Nada</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">Selecione no máximo três botões para a notificação compacta!</string>
-    <string name="notification_actions_summary">Edite os botões de ação da notificação compacta aqui. Selecione até três deles usando as caixas de seleção à direita e toque neles para configurá-los.</string>
+    <string name="notification_actions_summary">Edite os botões de ação da notificação compacta aqui. Selecione até três deles usando as caixas de seleção à direita e toque neles para configurá-los</string>
     <string name="notification_action_4_title">Quinto botão de ação</string>
     <string name="notification_action_3_title">Quarto botão de ação</string>
     <string name="notification_action_2_title">Terceiro botão de ação</string>
@@ -696,7 +696,7 @@
     <string name="description_select_disable">Desativar seleção de texto na descrição</string>
     <string name="description_select_enable">Ativar seleção de texto na descrição</string>
     <string name="description_select_note">Agora você pode selecionar o texto dentro da descrição. Observe que a página pode piscar e os links podem não ser clicáveis no modo de seleção.</string>
-    <string name="open_website_license">Abrir Site</string>
+    <string name="open_website_license">Abrir site</string>
     <string name="service_provides_reason">%s fornece este motivo:</string>
     <string name="account_terminated">Conta encerrada</string>
     <string name="feed_load_error_fast_unknown">O modo feed rápido não fornece mais informações sobre isso.</string>
@@ -709,4 +709,8 @@
     <string name="downloads_storage_use_saf_summary_api_19">O \'Storage Access Framework\' não é compatível com Android KitKat e versões anteriores</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Você será questionado sobre onde salvar cada download</string>
     <string name="no_dir_yet">Nenhuma pasta de download definida ainda, escolha a pasta de download padrão agora</string>
+    <string name="off">Desligado</string>
+    <string name="on">Ligado</string>
+    <string name="tablet_mode_title">Modo tablet</string>
+    <string name="feed_toggle_show_played_items">Mostrar itens reproduzidos</string>
 </resources>
