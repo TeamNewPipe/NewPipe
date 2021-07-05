@@ -15,9 +15,8 @@ assignees: ''
 
 - [x] I checked, but didn't find any duplicates (open OR closed) of this issue in the repo. <!-- Seriously, check. O_O (If there's already an issue but you'd like to see if something changed, just make a comment on the issue instead of opening a new one.) -->
 - [ ] I have read the contribution guidelines given at https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md.
-- [ ] This issue contains only one question. I will open one issue for every question I want to ask.
 
-#### What's your question?
+#### What's your question(s)?
 
 
 #### Additional context
