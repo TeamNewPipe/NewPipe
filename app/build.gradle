@@ -10,7 +10,7 @@ apply plugin: 'checkstyle'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion '29.0.3'
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "org.schabi.newpipe"
@@ -121,7 +121,7 @@ configurations {
 }
 
 checkstyle {
-    configDir rootProject.file(".")
+    getConfigDirectory().set(rootProject.file("."))
     ignoreFailures false
     showViolations true
     toolVersion = checkstyleVersion
@@ -140,8 +140,8 @@ task runCheckstyle(type: Checkstyle) {
     showViolations true
 
     reports {
-        xml.enabled true
-        html.enabled true
+        xml.getRequired().set(true)
+        html.getRequired().set(true)
     }
 }
 
@@ -151,7 +151,7 @@ def inputFiles = project.fileTree(dir: "src", include: "**/*.kt")
 task runKtlint(type: JavaExec) {
     inputs.files(inputFiles)
     outputs.dir(outputDir)
-    main = "com.pinterest.ktlint.Main"
+    getMainClass().set("com.pinterest.ktlint.Main")
     classpath = configurations.ktlint
     args "src/**/*.kt"
 }
@@ -159,7 +159,7 @@ task runKtlint(type: JavaExec) {
 task formatKtlint(type: JavaExec) {
     inputs.files(inputFiles)
     outputs.dir(outputDir)
-    main = "com.pinterest.ktlint.Main"
+    getMainClass().set("com.pinterest.ktlint.Main")
     classpath = configurations.ktlint
     args "-F", "src/**/*.kt"
 }
