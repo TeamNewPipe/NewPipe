@@ -8,7 +8,10 @@ import org.junit.runner.Description
 import org.junit.runners.model.Statement
 
 /**
- * Always run on [Schedulers.trampoline]
+ * Always run on [Schedulers.trampoline].
+ * This executes the task in the current thread in FIFO manner.
+ * This ensures that tasks are run quickly inside the tests
+ * and not scheduled away to another thread for later execution
  */
 class TrampolineSchedulerRule : TestRule {
 
