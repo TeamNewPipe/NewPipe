@@ -33,7 +33,7 @@ Oh no, a bug! It happens. Thanks for reporting an issue with NewPipe. To make it
 
 
 
-### Actual behaviour
+### Actual behavior
 <!-- Tell us what happens with the steps given above. -->
 
 
