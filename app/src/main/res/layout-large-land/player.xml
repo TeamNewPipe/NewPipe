@@ -369,15 +369,6 @@
                     android:orientation="vertical"
                     android:paddingBottom="8dp">
 
-                    <ImageView
-                        android:id="@+id/currentSeekbarPreviewThumbnail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="2dp"
-                        android:visibility="gone"
-                        app:srcCompat="@drawable/dummy_thumbnail"
-                        tools:visibility="visible" />
-
                     <TextView
                         android:id="@+id/currentDisplaySeek"
                         android:layout_width="wrap_content"
@@ -392,6 +383,15 @@
                         android:visibility="gone"
                         tools:ignore="RtlHardcoded"
                         tools:text="1:06:29"
+                        tools:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/currentSeekbarPreviewThumbnail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="2dp"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/dummy_thumbnail"
                         tools:visibility="visible" />
 
                 </LinearLayout>
