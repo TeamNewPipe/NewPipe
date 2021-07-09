@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_player_found_toast">Koan Stream-Playa gfundn (Wennsd\'n VLC installiast, gähds).</string>
+    <string name="use_external_video_player_title">An andan Wideo-Playa heanehma</string>
+    <string name="screen_rotation">drahn</string>
+    <string name="choose_browser">Wähl an Browser</string>
+    <string name="share_dialog_title">Deiln mid</string>
+    <string name="search_showing_result_for">Ergebnis füa: %s</string>
+    <string name="did_you_mean">Hosd du \"%1$s\" gmoand\?</string>
+    <string name="settings">Rumdogdan</string>
+    <string name="search">Suacha</string>
+    <string name="controls_download_desc">Stream-Dotai obalon</string>
+    <string name="download">Obalon</string>
+    <string name="share">Deiln</string>
+    <string name="open_with">Aufmacha mid</string>
+    <string name="open_in_browser">Im Browser auf macha</string>
+    <string name="cancel">Weg damid</string>
+    <string name="install">Drauf doa</string>
+    <string name="no_player_found">Koan Stream-Playa gfundn! Mogsd n VLC installiean\?</string>
+    <string name="upload_date_text">Aufe glon am %1$s</string>
+</resources>

@@ -8,7 +8,7 @@
     <string name="download">Pobierz</string>
     <string name="search">Szukaj</string>
     <string name="settings">Ustawienia</string>
-    <string name="did_you_mean">Miałeś na myśli \"%1$s\"\?</string>
+    <string name="did_you_mean">Czy chodziło Ci o „%1$s”\?</string>
     <string name="share_dialog_title">Udostępnij przez</string>
     <string name="choose_browser">Wybierz przeglądarkę</string>
     <string name="screen_rotation">obrót</string>
@@ -16,7 +16,7 @@
     <string name="use_external_audio_player_title">Użyj zewnętrznego odtwarzacza audio</string>
     <string name="view_count_text">%1$s wyświetleń</string>
     <string name="upload_date_text">Opublikowano %1$s</string>
-    <string name="no_player_found">Nie znaleziono odtwarzacza strumienia. Zainstalować VLC\?</string>
+    <string name="no_player_found">Nie znaleziono odtwarzacza strumieni. Zainstalować VLC\?</string>
     <string name="download_path_title">Folder zapisywania wideo</string>
     <string name="download_path_summary">Pobrane pliki wideo są przechowywane tutaj</string>
     <string name="download_path_dialog_title">Wybierz folder pobierania plików wideo</string>
@@ -29,14 +29,14 @@
     <string name="play_with_kodi_title">Odtwórz w Kodi</string>
     <string name="kore_not_found">Zainstalować brakującą aplikację Kore\?</string>
     <string name="show_play_with_kodi_title">Pokaż opcję „Odtwórz z Kodi”</string>
-    <string name="show_play_with_kodi_summary">Wyświetl opcję odtwarzania filmów za pośrednictwem centrum multimedialnego Kodi</string>
+    <string name="show_play_with_kodi_summary">Wyświetl opcję odtwarzania wideo za pośrednictwem centrum multimedialnego Kodi</string>
     <string name="play_audio">Dźwięk</string>
     <string name="default_audio_format_title">Domyślny format dźwięku</string>
     <string name="theme_title">Motyw</string>
     <string name="dark_theme_title">Ciemny</string>
     <string name="light_theme_title">Jasny</string>
     <string name="download_dialog_title">Pobrane</string>
-    <string name="show_next_and_similar_title">Pokaż \"następne\" i \"podobne\" filmy</string>
+    <string name="show_next_and_similar_title">Pokaż następne i podobne wideo</string>
     <string name="unsupported_url">Nieobsługiwany adres URL</string>
     <string name="content_language_title">Domyślny język treści</string>
     <string name="settings_category_video_audio_title">Wideo i audio</string>
@@ -108,8 +108,8 @@
     <string name="use_external_video_player_summary">Usuwa dźwięk w niektórych rozdzielczościach</string>
     <string name="controls_background_title">Tło</string>
     <string name="default_popup_resolution_title">Domyślna rozdzielczość dla trybu okienkowego</string>
-    <string name="show_higher_resolutions_title">Pokaż wyższe rozdzielczości</string>
-    <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia mogą odtwarzać filmy 2K/4K</string>
+    <string name="show_higher_resolutions_title">Pokazuj wyższe rozdzielczości</string>
+    <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia mogą odtwarzać wideo w 2K/4K</string>
     <string name="default_video_format_title">Domyślny format filmu</string>
     <string name="black_theme_title">Czarny</string>
     <string name="popup_remember_size_pos_title">Zapamiętaj właściwości wyskakującego okienka</string>
@@ -124,7 +124,7 @@
     <string name="channel">Kanał</string>
     <string name="yes">Tak</string>
     <string name="later">Później</string>
-    <string name="disabled">Wyłączony</string>
+    <string name="disabled">Wyłączone</string>
     <string name="filter">Filtr</string>
     <string name="refresh">Odśwież</string>
     <string name="clear">Wyczyść</string>
@@ -137,16 +137,16 @@
     <string name="popup_mode_share_menu_title">Tryb okienkowy</string>
     <string name="controls_popup_title">Tryb okienkowy</string>
     <string name="best_resolution">Najlepsza rozdzielczość</string>
-    <string name="settings_category_downloads_title">Pobierz</string>
+    <string name="settings_category_downloads_title">Pobieranie</string>
     <string name="settings_file_replacement_character_summary">Niepoprawne znaki są zamienione na tę wartość</string>
     <string name="charset_letters_and_digits">Litery i cyfry</string>
     <string name="title_activity_about">O NewPipe</string>
     <string name="action_settings">Ustawienia</string>
-    <string name="action_about">O programie</string>
+    <string name="action_about">O aplikacji</string>
     <string name="title_licenses">Licencje stron trzecich</string>
     <string name="error_unable_to_load_license">Nie można załadować licencji</string>
     <string name="action_open_website">Otwórz stronę</string>
-    <string name="tab_about">O programie</string>
+    <string name="tab_about">O aplikacji</string>
     <string name="tab_licenses">Licencje</string>
     <string name="app_description">Lekkie przesyłanie strumieniowe w systemie Android.</string>
     <string name="view_on_github">Zobacz na GitHubie</string>
@@ -188,8 +188,8 @@
     <string name="undo">Cofnij</string>
     <string name="search_no_results">Brak wyników</string>
     <string name="no_views">Brak wyświetleń</string>
-    <string name="show_hold_to_append_title">Pokaż wskazówkę \"Przytrzymaj, aby dodać\"</string>
-    <string name="show_hold_to_append_summary">Pokaż wskazówkę po naciśnięciu tła lub wyskakującego w filmie przycisku „Szczegóły:”</string>
+    <string name="show_hold_to_append_title">Pokaż poradę „Przytrzymaj, aby dodać”</string>
+    <string name="show_hold_to_append_summary">Pokaż wskazówkę po naciśnięciu tła lub wyskakującego przycisku „Szczegóły” w odtwarzaczu</string>
     <string name="background_player_append">W kolejce odtwarzania w tle</string>
     <string name="popup_playing_append">W kolejce odtwarzania okienkowego</string>
     <string name="play_all">Odtwórz wszystkie</string>
@@ -243,7 +243,7 @@
     <string name="start_here_on_main">Zacznij odtwarzać tutaj</string>
     <string name="start_here_on_background">Zacznij odtwarzać w tle</string>
     <string name="start_here_on_popup">Zacznij odtwarzać w wyskakującym okienku</string>
-    <string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieniowego (żeby odtworzyć, możesz zainstalować VLC).</string>
+    <string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieni (żeby odtworzyć, możesz zainstalować VLC).</string>
     <string name="default_content_country_title">Domyślny kraj treści</string>
     <string name="service_title">Usługa</string>
     <string name="always">Zawsze</string>
@@ -312,8 +312,8 @@
     <string name="enable_disposed_exceptions_summary">Wymusza raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności</string>
     <string name="use_inexact_seek_title">Użyj szybkiego niedokładnego wyszukiwania</string>
     <string name="use_inexact_seek_summary">Niedokładne wyszukiwanie pozwala szybciej szukać pozycji z mniejszą precyzją. Szukanie przez 5, 15 lub 25 sekund nie działa w tym przypadku</string>
-    <string name="download_thumbnail_title">Załaduj miniatury</string>
-    <string name="download_thumbnail_summary">Wyłącz, aby nie ładować miniaturek, oszczędzając dane i zużycie pamięci. Zmienia wyczyszczenie pamięci podręcznej obrazów zarówno w pamięci, jak i na dysku</string>
+    <string name="download_thumbnail_title">Wczytuj miniatury</string>
+    <string name="download_thumbnail_summary">Wyłącz, aby nie wczytywać miniatur, oszczędzając dane i zużycie pamięci. Zmiana tej opcji czyści pamięć podręczną obrazów</string>
     <string name="thumbnail_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną miniatur</string>
     <string name="metadata_cache_wipe_title">Wyczyść pamięć podręczną metadanych</string>
     <string name="metadata_cache_wipe_summary">Wyczyść pamięć podręczną stron</string>
@@ -326,8 +326,8 @@
     <string name="invalid_file">Plik nie istnieje lub brakuje mu uprawnień do odczytu lub zapisu</string>
     <string name="file_name_empty_error">Nazwa pliku nie może być pusta</string>
     <string name="error_occurred_detail">Wystąpił błąd: %1$s</string>
-    <string name="import_export_title">Import/eksport</string>
-    <string name="import_title">Import</string>
+    <string name="import_export_title">Importuj/eksportuj</string>
+    <string name="import_title">Importuj</string>
     <string name="import_from">Importuj z</string>
     <string name="export_to">Eksportuj do</string>
     <string name="import_ongoing">Importowanie…</string>
@@ -338,28 +338,28 @@
     <string name="subscriptions_export_unsuccessful">Eksport subskrypcji nie powiódł się</string>
     <string name="import_youtube_instructions">Importowanie subskrypcji YouTube z Google Takeout:
 \n
-\n1. Przejdź do tego adresu URL: %1$s
-\n2. Zaloguj się, gdy zostaniesz o to poproszony
-\n3. Kliknij na \"Wybrałeś wszystkie dane z Youtube\", a następnie na \"Odznacz wszystkie\", potem wybierz tylko \"subskrypcje\" i kliknij \"OK\"
-\n4. Kliknij na \"Następny krok\", a następnie na \"Utwórz eksport\"
-\n5. Kliknij przycisk \"Pobierz\", gdy się pojawi i
-\n6. Z pobranego archiwum zip wyodrębnij plik .json (zazwyczaj pod ścieżką \"YouTube i YouTube Music/subskrypcje/subskrypcje.json\") i zaimportuj go tutaj.</string>
+\n1. Przejdź do tego adresu URL: %1$s.
+\n2. Zaloguj się, gdy zostaniesz o to poproszony.
+\n3. Kliknij „Wybrano wszystkie dane z YouTube”, następnie „Odznacz wszystkie”, potem zaznacz tylko „subskrypcje” i kliknij „OK”.
+\n4. Kliknij „Następny krok”, a następnie na „Utwórz eksport”.
+\n5. Kliknij przycisk „Pobierz”, gdy się pojawi.
+\n6. Z pobranego archiwum ZIP wypakuj plik subskrypcje.json (powinien on znajdować się w katalogu „YouTube i YouTube Music/subskrypcje”) i zaimportuj go tutaj.</string>
     <string name="import_network_expensive_warning">Ta operacja może wygenerować duże użycie danych.
 \n
 \nCzy chcesz kontynuować?</string>
     <string name="playback_speed_control">Kontrola prędkości odtwarzania</string>
-    <string name="playback_tempo">Czas</string>
+    <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Wysokość dźwięku</string>
     <string name="import_soundcloud_instructions_hint">twojeID, soundcloud.com/yourid</string>
-    <string name="unhook_checkbox">Odłącz (może powodować zniekształcenia)</string>
-    <string name="import_soundcloud_instructions">Zaimportuj profil SoundCloud, wpisując adres URL lub identyfikator:
+    <string name="unhook_checkbox">Rozłącz (może powodować zniekształcenia)</string>
+    <string name="import_soundcloud_instructions">Zaimportuj profil SoundCloud, wpisując adres URL lub swój identyfikator:
 \n
-\n1. Włącz „tryb pulpitu” w przeglądarce internetowej (strona nie jest dostępna dla urządzeń mobilnych)
-\n2. Przejdź do tego adresu URL: %1$s
-\n3. Zaloguj się, gdy zostaniesz o to poproszony
+\n1. Włącz opcję „Wersja na komputery” w przeglądarce internetowej (strona nie jest dostępna dla urządzeń mobilnych).
+\n2. Przejdź do tego adresu URL: %1$s.
+\n3. Zaloguj się, gdy zostaniesz o to poproszony.
 \n4. Skopiuj adres URL profilu, na który zostałeś przekierowany.</string>
-    <string name="no_streams_available_download">Brak źródeł do pobrania</string>
-    <string name="preferred_open_action_settings_title">Preferowana akcja \"otwórz\"</string>
+    <string name="no_streams_available_download">Brak strumieni do pobrania</string>
+    <string name="preferred_open_action_settings_title">Preferowana akcja „otwórz”</string>
     <string name="preferred_open_action_settings_summary">Domyślna akcja podczas otwierania zawartości - %s</string>
     <string name="caption_setting_title">Napisy</string>
     <string name="caption_setting_description">Zmodyfikuj skalę tekstu napisów i style tła. Wymaga ponownego uruchomienia aplikacji</string>
@@ -383,26 +383,26 @@
 \nMusisz ją zaakceptować, aby przesyłać raporty o błędach.</string>
     <string name="accept">Akceptuj</string>
     <string name="decline">Odrzuć</string>
-    <string name="limit_data_usage_none_description">Brak limitu</string>
+    <string name="limit_data_usage_none_description">Bez limitu</string>
     <string name="limit_mobile_data_usage_title">Limit przy użyciu danych mobilnych</string>
     <string name="channels">Kanały</string>
     <string name="playlists">Playlisty</string>
     <string name="tracks">Utwory</string>
     <string name="users">Użytkownicy</string>
-    <string name="skip_silence_checkbox">Przewiń w przód podczas ciszy</string>
+    <string name="skip_silence_checkbox">Przewiń do przodu podczas ciszy</string>
     <string name="playback_step">Krok</string>
     <string name="playback_reset">Zresetuj</string>
     <string name="minimize_on_exit_title">Zminimalizuj podczas przełączenia aplikacji</string>
     <string name="minimize_on_exit_summary">Akcja po przejściu do innej aplikacji z głównego odtwarzacza wideo — %s</string>
-    <string name="minimize_on_exit_none_description">Zminimalizuj</string>
+    <string name="minimize_on_exit_none_description">Brak</string>
     <string name="minimize_on_exit_background_description">Zminimalizuj do odtwarzania w tle</string>
     <string name="minimize_on_exit_popup_description">Zminimalizuj do odtwarzania w okienku</string>
-    <string name="unsubscribe">Zrezygnuj z subskrypcji</string>
+    <string name="unsubscribe">Odsubskrybuj</string>
     <string name="tab_new">Nowa karta</string>
     <string name="tab_choose">Wybierz kartę</string>
-    <string name="volume_gesture_control_title">Kontrola gestów głośności</string>
-    <string name="volume_gesture_control_summary">Użyj gestów do sterowania głośnośnością odtwarzacza</string>
-    <string name="brightness_gesture_control_title">Kontrola gestów jasności</string>
+    <string name="volume_gesture_control_title">Kontrola głośności gestami</string>
+    <string name="volume_gesture_control_summary">Użyj gestów do sterowania głośnością odtwarzacza</string>
+    <string name="brightness_gesture_control_title">Kontrola jasności gestami</string>
     <string name="brightness_gesture_control_summary">Użyj gestów do sterowania jasnością odtwarzacza</string>
     <string name="settings_category_updates_title">Aktualizacje</string>
     <string name="file_deleted">Plik został usunięty</string>
@@ -421,7 +421,7 @@
     <string name="list_view_mode">Tryb widoku listy</string>
     <string name="list">Lista</string>
     <string name="grid">Siatka</string>
-    <string name="auto">Automatycznie</string>
+    <string name="auto">Automatyczny</string>
     <string name="switch_view">Przełącz widok</string>
     <string name="app_update_notification_content_title">Dostępna jest aktualizacja NewPipe!</string>
     <string name="app_update_notification_content_text">Stuknij, aby pobrać</string>
@@ -464,7 +464,7 @@
     <string name="no_comments">Brak komentarzy</string>
     <string name="error_unable_to_load_comments">Nie można załadować komentarzy</string>
     <string name="close">Zamknij</string>
-    <string name="enable_playback_resume_title">Wznów odtwarzanie</string>
+    <string name="enable_playback_resume_title">Wznawiaj odtwarzanie</string>
     <string name="enable_playback_resume_summary">Przywróć ostatnią odtwarzaną pozycję</string>
     <string name="enable_playback_state_lists_title">Pozycje na listach</string>
     <string name="enable_playback_state_lists_summary">Pokaż wskaźniki pozycji odtwarzania na listach</string>
@@ -482,18 +482,18 @@
     <string name="enable_queue_limit_desc">Tylko jedno pobieranie będzie realizowane jednocześnie</string>
     <string name="start_downloads">Rozpocznij pobieranie</string>
     <string name="pause_downloads">Wstrzymaj pobieranie</string>
-    <string name="downloads_storage_ask_title">Zapytaj gdzie pobrać</string>
+    <string name="downloads_storage_ask_title">Pytaj, gdzie pobrać</string>
     <string name="downloads_storage_ask_summary">Zostaniesz zapytany, gdzie zapisać każdy pobrany plik.
-\nWłącz systemowy selektor folderów (SAF), jeśli chcesz pobrać pliki na zewnętrzną kartę SD</string>
+\nWłącz systemowy selektor folderów (SAF), jeśli chcesz pobierać pliki na kartę SD</string>
     <string name="error_timeout">Połączenie uległo przedawnieniu</string>
     <string name="downloads_storage_ask_summary_kitkat">Zostaniesz zapytany, gdzie zapisać każde pobranie.
 \nWybierz SAF, jeśli chcesz pobrać na zewnętrzną kartę SD</string>
     <string name="downloads_storage_use_saf_title">Użyj systemowego selektora folderów (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">\"Framework dostępu do pamięci masowej\" umożliwia pobieranie danych na zewnętrzną kartę SD</string>
+    <string name="downloads_storage_use_saf_summary">Systemowy selektor folderów (SAF) umożliwia pobieranie na kartę SD</string>
     <string name="clear_playback_states_title">Usuń pozycje odtwarzania</string>
     <string name="clear_playback_states_summary">Usuwa wszystkie pozycje odtwarzania</string>
     <string name="delete_playback_states_alert">Usunąć wszystkie pozycje odtwarzania\?</string>
-    <string name="download_choose_new_path">Zmień foldey pobierania, aby zostały uwzględnione</string>
+    <string name="download_choose_new_path">Zmień foldery pobierania, aby zmiany zostały uwzględnione</string>
     <string name="drawer_header_description">Przełączanie usługi, aktualnie wybranej:</string>
     <string name="default_kiosk_page_summary">Domyślny Kiosk</string>
     <string name="no_one_watching">Nikt nie ogląda</string>
@@ -555,7 +555,7 @@
 \nTak więc wybór sprowadza się do tego, co wolisz: prędkości lub precyzyjne informacje.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Wyłącz tryb szybki</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Włącz tryb szybki</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Dostępne w niektórych usługach jest zwykle znacznie szybsze, ale może zwrócić ograniczoną liczbę pozycji i często niekompletne informacje (np. Brak czasu trwania, typ pozycji, brak statusu na żywo)</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Dostępne w niektórych usługach. Jest zwykle znacznie szybsze, ale może zwrócić ograniczoną liczbę pozycji i często niekompletne informacje (np. brak czasu trwania, typu pozycji, statusu na żywo)</string>
     <string name="feed_use_dedicated_fetch_method_title">Pobierz z dedykowanego kanału, jeśli jest dostępny</string>
     <string name="feed_update_threshold_option_always_update">Zawsze aktualizuj</string>
     <string name="feed_update_threshold_summary">Czas po ostatniej aktualizacji, zanim subskrypcja zostanie uznana za nieaktualną — %s</string>
@@ -608,7 +608,7 @@
 \nJesteś pewien\? Tego nie da się cofnąć!</string>
     <string name="remove_watched_popup_title">Usunąć oglądane filmy\?</string>
     <string name="remove_watched">Usuń oglądane</string>
-    <string name="show_original_time_ago_summary">Oryginalne teksty z usług będą widoczne w elementach strumienia</string>
+    <string name="show_original_time_ago_summary">Oryginalne teksty z usług będą widoczne w strumieniowanych pozycjach</string>
     <string name="show_original_time_ago_title">Pokaż oryginalny czas</string>
     <string name="youtube_restricted_mode_enabled_title">Włącz tryb ograniczonego dostępu YouTube\'a</string>
     <string name="video_detail_by">Przez %s</string>
@@ -619,7 +619,7 @@
     <string name="no_playlist_bookmarked_yet">Nie ma jeszcze zakładek do playlist</string>
     <string name="select_a_playlist">Wybierz playlistę</string>
     <string name="error_report_open_github_notice">Sprawdź, czy problem dotyczący Twojej awarii już istnieje. Tworząc zduplikowane wpisy, zajmujesz nam czas, który możemy poświęcić na naprawienie rzeczywistego błędu.</string>
-    <string name="error_report_open_issue_button_text">Zgłoś na GitHub</string>
+    <string name="error_report_open_issue_button_text">Zgłoś na GitHubie</string>
     <string name="copy_for_github">Skopiuj sformatowany raport</string>
     <string name="search_showing_result_for">Wyświetlono wyniki dla: %s</string>
     <string name="never">Nigdy</string>
@@ -634,7 +634,7 @@
     <string name="settings_category_notification_title">Powiadomienia</string>
     <string name="notification_action_nothing">Nic</string>
     <string name="notification_action_buffering">Buforowanie</string>
-    <string name="notification_action_shuffle">Losowo</string>
+    <string name="notification_action_shuffle">Losuj</string>
     <string name="notification_action_repeat">Powtórz</string>
     <string name="notification_actions_at_most_three">Możesz wybrać co najwyżej trzy akcje, które mają być wyświetlane w kompaktowym powiadomieniu!</string>
     <string name="notification_actions_summary">Edytuj każdą poniższą akcję powiadomienia, dotykając jej. Zaznacz maksymalnie trzy z nich, które mają być wyświetlane w powiadomieniu kompaktowym, korzystając z pól wyboru po prawej stronie</string>
@@ -643,7 +643,7 @@
     <string name="notification_action_2_title">Przycisk trzeciej akcji</string>
     <string name="notification_action_1_title">Przycisk drugiej akcji</string>
     <string name="notification_action_0_title">Przycisk pierwszej akcji</string>
-    <string name="notification_scale_to_square_image_summary">Skaluj miniaturę wideo wyświetlaną w powiadomieniu z proporcji 16: 9 do 1: 1 (może powodować zniekształcenia)</string>
+    <string name="notification_scale_to_square_image_summary">Skaluj miniatury wideo wyświetlane w powiadomieniach z proporcji 16:9 do 1:1 (może powodować zniekształcenia)</string>
     <string name="notification_scale_to_square_image_title">Skaluj miniatury do proporcji 1:1</string>
     <string name="enqueued">Dodane do kolejki</string>
     <string name="enqueue_stream">Dodaj do kolejki</string>
@@ -651,26 +651,26 @@
     <string name="clear_cookie_summary">Wyczyść ciasteczka, które NewPipe przechowuje po rozwiązaniu reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Ciasteczka reCAPTCHA zostały wyczyszczone</string>
     <string name="clear_cookie_title">Wyczyść ciasteczka reCAPTCHA</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube udostępnia \"Tryb ograniczonego dostępu\", który ukrywa treści potencjalnie dla dorosłych</string>
-    <string name="show_age_restricted_content_summary">Pokaż treści nieodpowiednie dla dzieci, ponieważ mają ograniczenia wiekowe (np. 18+)</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube udostępnia „Tryb ograniczonego dostępu”, który ukrywa potencjalne treści dla dorosłych</string>
+    <string name="show_age_restricted_content_summary">Pokazuj treści nieodpowiednie dla dzieci ze względu na ograniczenia wiekowe (np. 18+)</string>
     <string name="notification_colorize_summary">Niech Android dostosuje kolor powiadomienia zgodnie z głównym kolorem na miniaturze (nie jest to dostępne na wszystkich urządzeniach)</string>
-    <string name="notification_colorize_title">Pokolorowanie powiadomienia</string>
+    <string name="notification_colorize_title">Zabarwiaj powiadomienia</string>
     <string name="show_thumbnail_summary">Używaj miniatury zarówno jako tła ekranu blokady, jak i powiadomień</string>
-    <string name="show_thumbnail_title">Pokazuj miniaturę</string>
+    <string name="show_thumbnail_title">Pokaż miniaturę</string>
     <string name="recent">Ostatnie</string>
     <string name="msg_calculating_hash">Obliczanie skrótu</string>
     <string name="hash_channel_description">Powiadomienia o postępie tworzenia skrótów wideo</string>
     <string name="hash_channel_name">Powiadomienie o obliczaniu skrótu wideo</string>
     <string name="show_meta_info_summary">Wyłącz, aby ukryć pola z dodatkowymi informacjami o twórcy strumienia, zawartości strumienia lub żądaniu wyszukiwania</string>
-    <string name="show_meta_info_title">Pokaż metainformacje</string>
+    <string name="show_meta_info_title">Pokaż metadane</string>
     <string name="chapters">Rozdziały</string>
     <string name="description_tab_description">Opis</string>
     <string name="comments_tab_description">Komentarze</string>
-    <string name="show_description_summary">Wyłącz, aby ukryć opis filmu i informacje dodatkowe</string>
+    <string name="show_description_summary">Wyłącz, aby ukryć opis wideo i dodatkowe informacje</string>
     <string name="show_description_title">Pokaż opis</string>
     <string name="open_with">Otwórz za pomocą</string>
     <string name="no_app_to_open_intent">Żadna aplikacja na Twoim urządzeniu nie może tego otworzyć</string>
-    <string name="related_items_tab_description">Powiązane strumienie</string>
+    <string name="related_items_tab_description">Powiązane pozycje</string>
     <string name="crash_the_app">Awaria aplikacji</string>
     <string name="paid_content">Ta zawartość jest płatna, więc jest dostępna tylko dla użytkowników, którzy za nią zapłacili, dlatego nie może być przesyłana strumieniowo lub pobierana przez NewPipe.</string>
     <string name="youtube_music_premium_content">Ten film jest dostępny tylko dla subskrybentów YouTube Music Premium, więc nie może być przesyłany strumieniowo ani pobierany przez NewPipe.</string>
@@ -709,17 +709,17 @@
     <string name="service_provides_reason">%s podaje ten powód:</string>
     <string name="account_terminated">Konto zamknięte</string>
     <string name="feed_load_error_fast_unknown">Tryb szybkiego kanału informacyjnego nie zawiera więcej informacji na ten temat.</string>
-    <string name="feed_load_error_terminated">Konto autora zostało zlikwidowane.
+    <string name="feed_load_error_terminated">Konto autora zostało zawieszone.
 \nNewPipe nie będzie w stanie załadować tego kanału w przyszłości.
-\nCzy chcesz wypisać się z tego kanału\?</string>
+\nCzy chcesz anulować subskrypcję tego kanału\?</string>
     <string name="feed_load_error_account_info">Nie można załadować danych dla\' %s\'.</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Począwszy od Systemu Android 10 obsługiwany jest tylko \"Framework dostępu do pamięci masowej\"</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\"Framework dostępu do pamięci masowej\" nie jest obsługiwany przez system Android KitKat i niższy</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Począwszy od systemu Android 10, obsługiwany jest tylko systemowy selektor folderów (SAF)</string>
+    <string name="downloads_storage_use_saf_summary_api_19">Systemowy selektor folderów (SAF) nie jest obsługiwany przez system Android KitKat i niższy</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Zostaniesz zapytany, gdzie zapisać każde pobieranie</string>
     <string name="no_dir_yet">Nie ustawiono jeszcze folderu pobierania, wybierz teraz domyślny folder pobierania</string>
     <string name="feed_load_error">Błąd podczas ładowania kanałów</string>
-    <string name="metadata_privacy_unlisted">Niewypisany</string>
-    <string name="feed_toggle_show_played_items">Pokaż odtwarzane elementy</string>
+    <string name="metadata_privacy_unlisted">Niepubliczny</string>
+    <string name="feed_toggle_show_played_items">Pokaż odtwarzane pozycje</string>
     <string name="off">Wyłączony</string>
     <string name="on">Włączony</string>
     <string name="tablet_mode_title">Tryb tabletu</string>

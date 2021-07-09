@@ -692,7 +692,7 @@
     <string name="show_channel_details">Подробно о канале</string>
     <string name="disable_media_tunneling_summary">Отключите туннелирование медиа, если видите чёрный экран или видео воспроизводится рывками</string>
     <string name="disable_media_tunneling_title">Отключить туннелирование медиа</string>
-    <string name="description_select_note">Теперь вы можете выделить текст внутри описания. В режиме выделения страница может мерцать, ссылки могут быть неактивны .</string>
+    <string name="description_select_note">Теперь вы можете выделить текст внутри описания. В режиме выделения страница может мерцать, ссылки могут быть неактивны.</string>
     <string name="metadata_support">Поддержка</string>
     <string name="metadata_language">Язык</string>
     <string name="metadata_age_limit">Возрастное ограничение</string>

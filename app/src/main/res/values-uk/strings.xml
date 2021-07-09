@@ -210,7 +210,7 @@
     <string name="preferred_player_fetcher_notification_message">Завантаження запитаного контенту</string>
     <string name="controls_download_desc">Завантажити потоковий файл</string>
     <string name="show_info">Показати інформацію</string>
-    <string name="tab_bookmarks">Закладені списки відтворення</string>
+    <string name="tab_bookmarks">Закладки відтворення</string>
     <string name="controls_add_to_playlist_title">Додати до</string>
     <string name="show_hold_to_append_summary">Показати підказку при натисканні на фон або на спливну кнопку «Деталі:» у відео</string>
     <string name="toggle_orientation">Перемкнути орієнтацію</string>

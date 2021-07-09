@@ -308,7 +308,7 @@
     <string name="enable_disposed_exceptions_title">Out-of-lifecycle-fouten melden</string>
     <string name="enable_disposed_exceptions_summary">Forceer het melden van niet-bezorgbare Rx-uitzonderingen buiten fragment of activiteitscyclus</string>
     <string name="use_inexact_seek_title">Snelle, minder exact spoelen gebruiken</string>
-    <string name="use_inexact_seek_summary">Minder exact spoelen laat de speler sneller posities zoeken met verminderde precisie. 5, 15 en 25 seconden werken niet.</string>
+    <string name="use_inexact_seek_summary">Minder exact spoelen laat de speler sneller posities zoeken met verminderde precisie. 5, 15 en 25 seconden werken niet</string>
     <string name="auto_queue_title">Volgende stream automatisch in wachtrij plaatsen</string>
     <string name="auto_queue_summary">Automatisch een gerelateerde stream toekennen bij het afspelen van de laatste stream in een niet-herhalende afspeelwachtlijst</string>
     <string name="file">Bestand</string>
@@ -346,7 +346,7 @@
 \n 
 \nWil je doorgaan?</string>
     <string name="download_thumbnail_title">Miniatuurvoorbeelden laden</string>
-    <string name="download_thumbnail_summary">Schakel dit uit om het laden van miniatuurvoorbeelden te verhinderen; dit bespaart mobiele data en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache.</string>
+    <string name="download_thumbnail_summary">Schakel dit uit om het laden van miniatuurvoorbeelden te verhinderen; dit bespaart mobiele data en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache</string>
     <string name="thumbnail_cache_wipe_complete_notice">Afbeeldingscache gewist</string>
     <string name="metadata_cache_wipe_title">Gecachete metagegevens wissen</string>
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
@@ -359,16 +359,16 @@
     <string name="preferred_open_action_settings_summary">Standaardactie bij openen van inhoud — %s</string>
     <string name="no_streams_available_download">Geen streams beschikbaar voor downloaden</string>
     <string name="caption_setting_title">Bijschriften</string>
-    <string name="caption_setting_description">Bijschriftgrootte en -achtergrondstijlen wijzigen. Vereist een herstart van de app.</string>
+    <string name="caption_setting_description">Bijschriftgrootte en -achtergrondstijlen wijzigen. Vereist een herstart van de app</string>
     <string name="toast_no_player">Er is geen app geïnstalleerd die dit bestand kan afspelen</string>
     <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
     <string name="clear_views_history_summary">Verwijdert de geschiedenis van bekeken video\'s en afspeelposities</string>
     <string name="delete_view_history_alert">De gehele kijkgeschiedenis wissen\?</string>
-    <string name="watch_history_deleted">Kijkgeschiedenis gewist.</string>
+    <string name="watch_history_deleted">Kijkgeschiedenis gewist</string>
     <string name="clear_search_history_title">Zoekgeschiedenis wissen</string>
     <string name="clear_search_history_summary">Verwijdert de gebruikte zoektermen</string>
     <string name="delete_search_history_alert">De gehele zoekgeschiedenis wissen\?</string>
-    <string name="search_history_deleted">Zoekgeschiedenis gewist.</string>
+    <string name="search_history_deleted">Zoekgeschiedenis gewist</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
     <string name="app_license">NewPipe is vrije software: je kan het gebruiken, bestuderen, delen en verbeteren zoveel je maar wil. Je kan het opnieuw uitgeven en/of aanpassen volgens de voorwaarden van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) om het even welke latere versie.</string>
     <string name="import_settings">Wil je ook de instellingen importeren?</string>
@@ -462,15 +462,14 @@
     <string name="no_comments">Geen reacties</string>
     <string name="error_unable_to_load_comments">Kan reacties niet laden</string>
     <string name="close">Sluiten</string>
-    <string name="downloads_storage_use_saf_summary">Het \'Storage Access Framework\' laat downloads naar een externe SD kaart toe.
-\nNiet alle toestellen zijn compatibel</string>
+    <string name="downloads_storage_use_saf_summary">Het \'Storage Access Framework\' staat downloads naar een externe SD kaart toe</string>
     <string name="settings_category_clear_data_title">Wis data</string>
     <string name="download_choose_new_path">Verander de downloadmappen om effect te bekomen</string>
     <string name="enable_playback_resume_title">Afspelen hervatten</string>
     <string name="enable_playback_resume_summary">Verder afspelen vanaf laatste positie</string>
     <string name="enable_playback_state_lists_title">Posities in lijst</string>
     <string name="enable_playback_state_lists_summary">Laat afspeeltijd in afspeellijst zien</string>
-    <string name="watch_history_states_deleted">Afspeelposities verwijderd.</string>
+    <string name="watch_history_states_deleted">Afspeelposities verwijderd</string>
     <string name="missing_file">Bestand verplaatst of verwijderd</string>
     <string name="overwrite_unrelated_warning">Een bestand met dezelfde naam bestaat al</string>
     <string name="overwrite_failed">Kan bestand niet overschrijven</string>
@@ -483,10 +482,11 @@
     <string name="start_downloads">Downloads starten</string>
     <string name="pause_downloads">Downloads pauzeren</string>
     <string name="downloads_storage_ask_title">Vraag waar bestanden gedownload worden</string>
-    <string name="downloads_storage_ask_summary">U wordt gevraagd waar het bestand wordt opgeslagen</string>
+    <string name="downloads_storage_ask_summary">U wordt gevraagd waar elk bestand wordt opgeslagen.
+\nSchakel de systeem map kiezer (SAF) in als u naar een externe SD-kaart wilt downloaden</string>
     <string name="downloads_storage_ask_summary_kitkat">Je zal gevraagd worden waar elke download op te slaan.
 \nKies SAF als je wilt downloaden naar een externe SD-kaart</string>
-    <string name="downloads_storage_use_saf_title">Gebruik SAF</string>
+    <string name="downloads_storage_use_saf_title">Gebruik de systeem map kiezer (SAF)</string>
     <string name="clear_playback_states_title">Verwijder afspeelposities</string>
     <string name="clear_playback_states_summary">Verwijdert alle afspeelposities</string>
     <string name="delete_playback_states_alert">Alle afspeelposities verwijderen\?</string>
@@ -500,7 +500,7 @@
         <item quantity="one">%s luisteraar</item>
         <item quantity="other">%s luisteraars</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">De taal zal veranderen zodra de app opnieuw is opgestart.</string>
+    <string name="localization_changes_requires_app_restart">De taal zal veranderen zodra de app opnieuw is opgestart</string>
     <string name="default_kiosk_page_summary">Standaard kiosk</string>
     <string name="seek_duration_title">Duur voor-/achteruit spoelen</string>
     <string name="peertube_instance_url_title">PeerTube kanaal</string>
@@ -565,7 +565,7 @@
     <string name="feed_update_threshold_summary">Tijd na de laatste update voordat een abonnement als verouderd wordt beschouwd — %s</string>
     <string name="feed_update_threshold_option_always_update">Altijd updaten</string>
     <string name="feed_use_dedicated_fetch_method_title">Uit speciale feed ophalen indien beschikbaar</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Beschikbaar in sommige services, het is meestal veel sneller, maar kan een beperkte hoeveelheid items en vaak onvolledige informatie (bijv. geen duur, itemtype, of livestatus) bevatten.</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Beschikbaar in sommige services, het is meestal veel sneller, maar kan een beperkte hoeveelheid items en vaak onvolledige informatie (bijv. geen duur, itemtype, of livestatus) bevatten</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Snelle modus inschakelen</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Snelle modus uitschakelen</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Denk je dat het laden van de feed te sloom is\? Zo ja, probeer snel laden in te schakelen (in de instellingen of door op onderstaande knop te drukken).
@@ -589,8 +589,8 @@
 \n
 \nHopelijk zal dit bij een toekomstige versie ondersteund worden.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, en deels bekeken video\'s</string>
-    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na, ze werden toegevoegd aan de afspeellijst worden verwijderd.
-\nBent u zeker\? Dit kan niet ongedaan gemaakt worden!</string>
+    <string name="remove_watched_popup_warning">Video\'s die zijn bekeken voor, en na ze werden toegevoegd aan de afspeellijst worden verwijderd.
+\nWeet u dit zeker\? Deze actie kan niet ongedaan gemaakt worden!</string>
     <string name="remove_watched_popup_title">Verwijder bekeken video\'s\?</string>
     <string name="infinite_videos">∞ video\'s</string>
     <string name="more_than_100_videos">100+ video\'s</string>
@@ -626,7 +626,7 @@
     <string name="notification_action_shuffle">Shuffle</string>
     <string name="notification_action_repeat">Herhaal</string>
     <string name="notification_actions_at_most_three">Je kan maximaal drie acties selecteren om te tonen in de compacte notificatie!</string>
-    <string name="notification_actions_summary">Pas elke notificatieactie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte notificatie door gebruik te maken van de selectievakjes aan de rechterkant.</string>
+    <string name="notification_actions_summary">Pas elke notificatieactie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte notificatie door gebruik te maken van de selectievakjes aan de rechterkant</string>
     <string name="notification_action_4_title">Vijfde actieknop</string>
     <string name="notification_action_3_title">Vierde actieknop</string>
     <string name="notification_action_2_title">Derde actieknop</string>
@@ -651,7 +651,7 @@
     <string name="msg_calculating_hash">Hash berekenen</string>
     <string name="hash_channel_description">Meldingen over de voortgang van video hashing</string>
     <string name="hash_channel_name">Video Hash Melding</string>
-    <string name="show_meta_info_summary">Schakel dit uit om metainformatie vakken te verbergen met aanvullende informatie over de maker van de stream, streaminhoud of een zoekopdracht.</string>
+    <string name="show_meta_info_summary">Schakel dit uit om meta-informatie vakken te verbergen met aanvullende informatie over de maker van de stream, streaminhoud of een zoekopdracht</string>
     <string name="show_meta_info_title">Toon meta informatie</string>
     <string name="description_tab_description">Beschrijving</string>
     <string name="show_description_title">Toon beschrijving</string>
@@ -696,4 +696,21 @@
     <string name="description_select_note">U kunt nu tekst in de beschrijving selecteren. Houd er rekening mee dat de pagina kan flikkeren en dat links mogelijk niet klikbaar zijn in de selectiemodus.</string>
     <string name="disable_media_tunneling_summary">Media tunneling uitschakelen als u een zwart scherm ervaart of video hapert bij het afspelen</string>
     <string name="disable_media_tunneling_title">Media tunneling uitschakelen</string>
+    <string name="off">Uit</string>
+    <string name="on">Aan</string>
+    <string name="tablet_mode_title">Tablet mode</string>
+    <string name="open_website_license">Open website</string>
+    <string name="service_provides_reason">%s geeft de volgende reden:</string>
+    <string name="account_terminated">Account getermineerd</string>
+    <string name="feed_toggle_show_played_items">Toon gespeelde items</string>
+    <string name="feed_load_error_fast_unknown">De snelle feed mode levert hierover niet meer informatie.</string>
+    <string name="feed_load_error_terminated">De account van de auteur is getermineerd.
+\nNewPipe zal niet in staat zijn deze feed in de toekomst te laden.
+\nWeet u zeker dat u wilt unsubscriben van dit kanaal\?</string>
+    <string name="feed_load_error_account_info">Kan geen feed laden voor \'%s\'.</string>
+    <string name="feed_load_error">Error bij het inladen van de feed</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Vanaf Android 10 is enkel \'Storage Access Framework\' ondersteund</string>
+    <string name="downloads_storage_use_saf_summary_api_19">Het \'Storage Access Framework\' is niet ondersteund op Android KitKat en lager</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">U wordt gevraagd waar elk bestand wordt opgeslagen</string>
+    <string name="no_dir_yet">Nog geen downloadfolder gekozen, kies de standaard downloadfolder</string>
 </resources>
