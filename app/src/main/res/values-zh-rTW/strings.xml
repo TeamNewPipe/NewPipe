@@ -477,8 +477,6 @@
     <string name="downloads_storage_ask_title">詢問要下載到哪裡</string>
     <string name="downloads_storage_ask_summary">每次下載都會詢問您要下載到哪裡。
 \n如果您想要下載到外部的 SD 記憶卡的話，請啟用系統資料夾挑選器 (SAF)</string>
-    <string name="downloads_storage_ask_summary_kitkat">每次下載您都會被詢問要下載到哪裡。
-\n如果您想要下載到外部的 SD 卡的話，請選擇 SAF</string>
     <string name="downloads_storage_use_saf_title">使用系統資料夾挑選器 (SAF)</string>
     <string name="downloads_storage_use_saf_summary">「儲存存取框架」讓您可以下載到外部的 SD 記憶卡</string>
     <string name="clear_playback_states_title">刪除播放位置</string>

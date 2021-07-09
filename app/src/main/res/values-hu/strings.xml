@@ -521,8 +521,6 @@
     <string name="autoplay_summary">Lejátszás automatikus indítása — %s</string>
     <string name="playback_speed_control">Lejátszás sebességének beállítása</string>
     <string name="clear_queue_confirmation_summary">Lejátszó váltása törölheti a lejátszási sort</string>
-    <string name="downloads_storage_ask_summary_kitkat">Meg lesz kérdezve, hogy hova kerüljenek a letöltések mentésre.
-\nVálaszd a \'SAF\' opciót, ha külső SD-kártyára szeretnél menteni</string>
     <string name="wifi_only">Csak Wi-Fi-hálózaton</string>
     <string name="downloads_storage_use_saf_title">SAF használata</string>
     <string name="downloads_storage_use_saf_summary">A \'Storage Access Framework\' lehetővé teszi a letöltések külső SD-kártyára történő mentését.

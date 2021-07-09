@@ -469,8 +469,6 @@
     <string name="pause_downloads">مکث بارگیری‌ها</string>
     <string name="downloads_storage_ask_title">محل بارگیری را سوال کن</string>
     <string name="downloads_storage_ask_summary">برای هر بارگیری از شما پرسیده خواهد شد که کجا ذخیره شود</string>
-    <string name="downloads_storage_ask_summary_kitkat">از شما پرسیده خواهد شد که هر بارگیری کجا ذخیره شود.
-\nاگر می‌خواهید بارگیری در کارت SD خارجی ذخیره شود، گزینه SAF را انتخاب کنید</string>
     <string name="downloads_storage_use_saf_title">استفاده از SAF</string>
     <string name="downloads_storage_use_saf_summary">«چارچوب دسترسی حافظه» اجازه دخیره بارگیری‌ها در کارت SD خارجی را می‌دهد. 
 \nبرخی دستگاه‌ها با این قابلیت سازگاری ندارند</string>

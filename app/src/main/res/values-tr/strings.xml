@@ -479,8 +479,6 @@
     <string name="downloads_storage_ask_title">Nereye indirileceğini sor</string>
     <string name="downloads_storage_ask_summary">Her indirmede nereye kaydedileceği sorulacak.
 \nDış SD karta indirmek istiyorsanız sistem klasör seçiciyi (SAF) etkinleştirin</string>
-    <string name="downloads_storage_ask_summary_kitkat">Her indirme için nereye kaydedileceği sorulacak. 
-\nEğer harici SD karta indirmek istiyorsanız DEÇ\'i seçin</string>
     <string name="downloads_storage_use_saf_title">Sistem klasör seçiciyi (SAF) kullan</string>
     <string name="downloads_storage_use_saf_summary">\'Depolama Erişimi Çerçevesi\' dış SD karta indirmeyi sağlar</string>
     <string name="clear_playback_states_title">Oynatım konumlarını sil</string>

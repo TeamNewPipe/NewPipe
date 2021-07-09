@@ -476,8 +476,6 @@
     <string name="downloads_storage_ask_title">Tanyakan lokasi unduhan</string>
     <string name="downloads_storage_ask_summary">Anda akan ditanya lokasi penyimpanan berkas unduhan.
 \nAktifkan pencomot folder sistem (SAF) jika Anda ingin mengunduh ke kartu SD eksternal</string>
-    <string name="downloads_storage_ask_summary_kitkat">Anda akan ditanya lokasi penyimpanan berkas unduhan.
-\nPilih SAF jika Anda ingin mengunduh ke kartu SD eksternal</string>
     <string name="error_timeout">Batas waktu koneksi</string>
     <string name="downloads_storage_use_saf_title">Gunakan pencomot folder sistem (SAF)</string>
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' memungkinkan unduhan ke kartu SD eksternal</string>

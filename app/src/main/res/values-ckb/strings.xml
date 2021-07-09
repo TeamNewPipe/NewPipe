@@ -351,8 +351,6 @@
     <string name="auto">خۆکاری</string>
     <string name="could_not_load_image">ناتوانرێ وێنە باربکرێ</string>
     <string name="audio">دەنگ</string>
-    <string name="downloads_storage_ask_summary_kitkat">پرسیارت لێ دەکرێت بۆ شوێنی داگرتنی هەر پەڕگەیەک 
-\nدەتوانیت SAF بەکاربهێنیت گەر دەتەوێ لە بیرگەی دەرەکیدا پەڕگەکان دابگریت</string>
     <string name="export_ongoing">هەناردەدەکرێت…</string>
     <string name="error_details_headline">وردەکارییەکان:</string>
     <string name="no_streams_available_download">هیچ پەخشێک نییە بۆ داگرتن</string>

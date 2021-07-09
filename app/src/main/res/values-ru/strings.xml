@@ -487,8 +487,6 @@
     <string name="downloads_storage_ask_title">Запрашивать папку загрузки</string>
     <string name="downloads_storage_ask_summary">Для каждой загрузки запрашивать папку для сохранения.
 \nВключите системный выбор папки (SAF), если хотите загружать на внешнюю SD-карту</string>
-    <string name="downloads_storage_ask_summary_kitkat">Для каждой загрузки запрашивать папку для сохранения. 
-\nИспользуйте SAF для загрузки на SD-карту</string>
     <string name="downloads_storage_use_saf_title">Системный выбор папки (SAF)</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" позволяет сохранять файлы на внешнюю SD-карту</string>
     <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>

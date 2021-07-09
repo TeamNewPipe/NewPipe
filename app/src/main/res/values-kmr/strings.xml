@@ -434,8 +434,6 @@
     <string name="downloads_storage_use_saf_summary">\'Çarçoveya Gihîştina Storage\' daxistinan li qertek SD ya derveyî dihêle.
 \nHin cîhaz lihevnehatî ne</string>
     <string name="downloads_storage_use_saf_title">SAF bikar bînin</string>
-    <string name="downloads_storage_ask_summary_kitkat">Dê ji we were pirsîn ka hûn ê her dakêşanê li ku derê hilanînê.
-\nHeke hûn dixwazin li karta SD ya derveyî dakêşînin SAFE hilbijêrin</string>
     <string name="downloads_storage_ask_summary">Dê ji we were pirsîn ka hûn ê her dakêşanê li ku derê hilanînê</string>
     <string name="downloads_storage_ask_title">Li ku derê dakêşin bipirsin</string>
     <string name="pause_downloads">Dakêşan rawestînin</string>

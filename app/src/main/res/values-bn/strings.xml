@@ -607,8 +607,6 @@
     <string name="delete_all_history_prompt">ইতিহাসের সব ভুক্তি কি আসলেই মুছতে চাও\?</string>
     <string name="download_to_sdcard_error_message">এসডি কার্ডে নামানো যাচ্ছে না। ডাউনলোড স্থান ফিরাবে বা পাল্টাবে\?</string>
     <string name="show_thumbnail_summary">বন্ধ পর্দার পটভূমি ও বিজ্ঞপ্তির পটভূমি উভয় জায়গায় এই প্রতিচ্ছবি ব্যবহার করো</string>
-    <string name="downloads_storage_ask_summary_kitkat">কোথায় প্রত্যেক ডাউনলোড সংরক্ষণ করা হবে তা জিজ্ঞেস করা হবে।
-\nএসডি কার্ডে নামাতে চাইলে স্যাফ(SAF) নির্বাচন করো</string>
     <string name="privacy_policy_encouragement">নিউপাইপ প্রকল্প তোমার গোপনীয়তা গুরুত্বের সাথে নেয়। তাই এই অ্যাপ তোমার অনুমতি ছাড়া কোনো তথ্য পাঠায় না।
 \nনিউপাইপের গোপনীয়তা নীতিমালা কোন তথ্য পাঠানো হয় ও সংরক্ষণ হয় তা ব্যাখ্যা করে।</string>
     <string name="clear_cookie_summary">রিক্যাপচা পূরণ করলে নিউপাইপ যেসব কুকি রাখে তা মুছো</string>

@@ -484,8 +484,6 @@
     <string name="downloads_storage_ask_title">Vraag waar bestanden gedownload worden</string>
     <string name="downloads_storage_ask_summary">U wordt gevraagd waar elk bestand wordt opgeslagen.
 \nSchakel de systeem map kiezer (SAF) in als u naar een externe SD-kaart wilt downloaden</string>
-    <string name="downloads_storage_ask_summary_kitkat">Je zal gevraagd worden waar elke download op te slaan.
-\nKies SAF als je wilt downloaden naar een externe SD-kaart</string>
     <string name="downloads_storage_use_saf_title">Gebruik de systeem map kiezer (SAF)</string>
     <string name="clear_playback_states_title">Verwijder afspeelposities</string>
     <string name="clear_playback_states_summary">Verwijdert alle afspeelposities</string>

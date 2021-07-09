@@ -480,8 +480,6 @@
     <string name="downloads_storage_ask_title">Hỏi vị trí tải xuống</string>
     <string name="downloads_storage_ask_summary">Bạn sẽ được hỏi vị trí lưu mỗi lần tải xuống.
 \nHãy bật trình chọn thư mục của hệ thống (SAF) nếu bạn muốn tải xuống vào một chiếc thẻ SD ngoài</string>
-    <string name="downloads_storage_ask_summary_kitkat">Bạn sẽ được hỏi vị trí lưu mỗi lần tải xuống. 
-\nBật tính năng này nếu bạn muốn tải vào thẻ SD ngoài</string>
     <string name="clear_playback_states_title">Xóa vị trí phát</string>
     <string name="clear_playback_states_summary">Xóa toàn bộ vị trí phát</string>
     <string name="delete_playback_states_alert">Xác nhận xóa toàn bộ vị trí phát\?</string>

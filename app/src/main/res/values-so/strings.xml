@@ -584,8 +584,6 @@
     <string name="choose_instance_prompt">Dooro qayb</string>
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' loosoo gaabiyo SAF wuxuu suurto galiyaa in mimoriga wax lagu dajiyo</string>
     <string name="downloads_storage_use_saf_title">Maamulaha faylasha ee aallada (SAF)</string>
-    <string name="downloads_storage_ask_summary_kitkat">Shay walba meesha lagu kaydin doono ayaa lagu waydiin.
-\nDooro SAF hadaad rabto inaad wax ku dajiso mimoriga (SD-kaarka)</string>
     <string name="downloads_storage_ask_summary">Shay walba meesha lagu kaydin doono ayaa lagu waydiin.
 \nSoo fur maamulaha faylasha aallada (SAF) hadaad rabto inaad ku dajiso mimoriga</string>
     <string name="downloads_storage_ask_title">Waydii meesha lagu dajinayo</string>

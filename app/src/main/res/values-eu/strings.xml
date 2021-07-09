@@ -483,8 +483,6 @@
     <string name="downloads_storage_ask_title">Galdetu non deskargatu</string>
     <string name="downloads_storage_ask_summary">Non gorde galdetuko zaizu deskarga bakoitzean.
 \nGaitu sistemaren karpeta hautatzailea (SAF) kanpoko SD txartel batera deskargatu nahi baduzu</string>
-    <string name="downloads_storage_ask_summary_kitkat">Non gorde galdetuko zaizu deskarga bakoitzean. 
-\nHautatu SAF kanpo SD txartelean gorde nahi baduzu</string>
     <string name="download_choose_new_path">Aldatu deskargen karpetak indarrean jartzeko</string>
     <string name="no_one_watching">Ez dago inor ikusten</string>
     <plurals name="watching">

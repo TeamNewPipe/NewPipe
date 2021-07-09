@@ -495,8 +495,6 @@
     <string name="downloads_storage_ask_title">اسأل عن مكان التنزيل</string>
     <string name="downloads_storage_ask_summary">سيتم سؤالك عن مكان حفظ كل تنزيل.
 \nتمكين منتقي مجلد النظام (SAF) إذا كنت تريد التنزيل إلى بطاقة SD خارجية</string>
-    <string name="downloads_storage_ask_summary_kitkat">سيطلب منك مكان حفظ كل تنزيل.
-\nاختر SAF إذا كنت تريد التنزيل على بطاقة SD خارجية</string>
     <string name="downloads_storage_use_saf_title">استخدام منتقي مجلد النظام (SAF)</string>
     <string name="downloads_storage_use_saf_summary">يسمح \"Storage Access Framework\" بالتنزيل على بطاقة SD خارجية</string>
     <string name="clear_playback_states_title">حذف مواقف التشغيل</string>

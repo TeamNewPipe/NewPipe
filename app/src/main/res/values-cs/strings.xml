@@ -483,8 +483,6 @@
     <string name="downloads_storage_ask_title">Zeptat se na složku pro stahování</string>
     <string name="downloads_storage_ask_summary">Budete dotázáni, kam jednotlivé soubory uložit.
 \nAktivujte výběr systémového adresáře (SAF), chcete-li stáhnout soubor na externí SD kartu</string>
-    <string name="downloads_storage_ask_summary_kitkat">Budete dotázáni, kam jednotlivé soubory stáhnout.
-\nZvolte SAF, pokud si přejete stahovat na externí SD kartu</string>
     <string name="downloads_storage_use_saf_title">Použít výběr systémového adresáře (SAF)</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" umožňuje stahovat na externí SD kartu</string>
     <string name="enable_playback_state_lists_summary">Zobrazit pozici přehrávání v seznamech</string>

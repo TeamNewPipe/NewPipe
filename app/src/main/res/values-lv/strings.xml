@@ -407,8 +407,6 @@
     <string name="systems_language">System default</string>
     <string name="app_language_title">Lietotnes valoda</string>
     <string name="choose_instance_prompt">Izvēlieties instanci</string>
-    <string name="downloads_storage_ask_summary_kitkat">Jums tiks jautāts, kur saglabāt katru lejupielādi.
-\nIzvēlieties KPS, ja vēlaties lejupielādēt ārējā SD kartē</string>
     <string name="downloads_storage_use_saf_title">Izmantojiet KPS</string>
     <string name="downloads_storage_use_saf_summary">“Krātuves Piekļuves Sistēma” ļauj lejupielādēt ārējā SD kartē.
 \nAr dažām ierīcēm nestrādā</string>

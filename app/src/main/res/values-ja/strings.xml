@@ -477,8 +477,6 @@
     <string name="downloads_storage_ask_title">ダウンロード先を尋ねる</string>
     <string name="downloads_storage_ask_summary">ダウンロードのたびに保存する場所を尋ねます。
 \nSD カードにダウンロードしたい場合はシステム フォルダ ピッカー (SAF) を有効化します</string>
-    <string name="downloads_storage_ask_summary_kitkat">ダウンロードのたびに保存する場所を尋ねられます。
-\n外部 SD カードにダウンロードする場合は SAF を選択してください</string>
     <string name="downloads_storage_use_saf_title">システム フォルダ ピッカー (SAF) を使用する</string>
     <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークは、外部 SD カードへのダウンロードが可能です</string>
     <string name="clear_playback_states_title">再生位置の削除</string>

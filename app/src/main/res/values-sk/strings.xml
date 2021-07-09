@@ -486,8 +486,6 @@
     <string name="downloads_storage_ask_title">Pýtať sa na adresár sťahovania</string>
     <string name="downloads_storage_ask_summary">Pri každom sťahovaní súboru sa bude vyžadovať zadanie cieľového adresára.
 \nAk chcete súbory sťahovať na externú SD kartu povoľte možnosť výberu adresára (SAF)</string>
-    <string name="downloads_storage_ask_summary_kitkat">Pri každom sťahovaní súboru sa bude vyžadovať zadanie cieľového adresára
-\nZvoľte SAF pokiaľ chcete ukladať na externé úložisko</string>
     <string name="downloads_storage_use_saf_title">Použite výber adresára (SAF)</string>
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' umožňuje sťahovanie na externú SD kartu.</string>
     <string name="clear_playback_states_title">Odstrániť pozície prehrávania</string>

@@ -450,8 +450,6 @@
     <string name="downloads_storage_ask_title">Preguntar dónde descargar</string>
     <string name="downloads_storage_ask_summary">Se le preguntará dónde guardar cada descarga.
 \nHabilite Elegir carpetas del sistema (SAF) si desea guardar las descargas en una tarjeta SD externa</string>
-    <string name="downloads_storage_ask_summary_kitkat">Se te preguntará dónde guardar cada descarga.
-\nActiva esta opción junto con SAF si quiere descargar en la tarjeta SD</string>
     <string name="downloads_storage_use_saf_title">Usar Elegir carpetas del sistema (SAF)</string>
     <string name="downloads_storage_use_saf_summary">El \'Sistema de Acceso al Almacenamiento\' permite descargar en una tarjeta SD externa</string>
     <string name="unsubscribe">Desuscribirse</string>

@@ -479,8 +479,6 @@
     <string name="downloads_storage_ask_title">Demander où télécharger</string>
     <string name="downloads_storage_ask_summary">Vous allez être interrogé·e sur l’emplacement d’enregistrement de chaque téléchargement.
 \nAutorisez le sélecteur de dossier système si vous voulez télécharger vers une carte SD externe</string>
-    <string name="downloads_storage_ask_summary_kitkat">Vous allez être interrogé sur l’emplacement de téléchargement de chaque téléchargement.
-\nVeuillez choisir l’IAS si vous voulez télécharger sur une carte mémoire externe</string>
     <string name="enable_playback_resume_summary">Reprend la lecture à la dernière position</string>
     <string name="enable_playback_state_lists_title">Positions dans les listes</string>
     <string name="enable_playback_state_lists_summary">Affiche les indicateurs de position de lecture dans les listes</string>

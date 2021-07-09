@@ -486,8 +486,6 @@
     <string name="downloads_storage_ask_summary">Zostaniesz zapytany, gdzie zapisać każdy pobrany plik.
 \nWłącz systemowy selektor folderów (SAF), jeśli chcesz pobierać pliki na kartę SD</string>
     <string name="error_timeout">Połączenie uległo przedawnieniu</string>
-    <string name="downloads_storage_ask_summary_kitkat">Zostaniesz zapytany, gdzie zapisać każde pobranie.
-\nWybierz SAF, jeśli chcesz pobrać na zewnętrzną kartę SD</string>
     <string name="downloads_storage_use_saf_title">Użyj systemowego selektora folderów (SAF)</string>
     <string name="downloads_storage_use_saf_summary">Systemowy selektor folderów (SAF) umożliwia pobieranie na kartę SD</string>
     <string name="clear_playback_states_title">Usuń pozycje odtwarzania</string>

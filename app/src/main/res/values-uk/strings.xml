@@ -486,8 +486,6 @@
     <string name="downloads_storage_ask_title">Запитувати, куди завантажувати</string>
     <string name="downloads_storage_ask_summary">Вас питатиме, куди зберігати кожне завантаження.
 \nУвімкніть системний вибір теки (SAF), якщо бажаєте завантажувати на зовнішню SD-картку</string>
-    <string name="downloads_storage_ask_summary_kitkat">Вас питатимуть, куди зберігати кожне завантаження. 
-\nОберіть SAF, якщо бажаєте завантажувати на зовнішню SD-картку</string>
     <string name="downloads_storage_use_saf_title">Використовувати системний вибір теки (SAF)</string>
     <string name="downloads_storage_use_saf_summary">Фреймворк доступу до сховища (SAF) дозволяє завантажувати на зовнішню SD-картку</string>
     <string name="clear_playback_states_title">Видалити позиції відтворення</string>

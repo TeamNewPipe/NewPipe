@@ -479,8 +479,6 @@
     <string name="downloads_storage_ask_title">ਪੁੱਛੋ ਕਿੱਥੇ ਡਾਊਨਲੋਡ ਕਰਨਾ ਹੈ</string>
     <string name="downloads_storage_ask_summary">ਤੁਹਾਨੂੰ ਹਰ ਵਾਰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਕਿ ਡਾਊਨਲੋਡ ਨੂੰ ਕਿੱਥੇ ਸਾਂਭਣਾ ਹੈ।
 \nਜੇ ਤੁਸੀਂ ਡਾਊਨਲੋਡ ਨੂੰ ਕਿਸੇ ਬਾਹਰੀ SD ਕਾਰਡ ਤੇ ਸਾਂਭਣਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਸਿਸਟਮ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ ਚੋਣਕਾਰ (SAF) ਚਾਲੂ ਕਰੋ</string>
-    <string name="downloads_storage_ask_summary_kitkat">ਤੁਹਾਨੂੰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਕਿ ਹਰ ਡਾਉਨਲੋਡ ਨੂੰ ਕਿੱਥੇ save ਕਰਨਾ ਹੈ. 
-\nਜੇ ਤੁਸੀਂ ਬਾਹਰੀ SD ਕਾਰਡ ਤੇ ਡਾਊਨਲੋਡ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਇਸ ਨੂੰ ਚਾਲੂ ਕਰੋ</string>
     <string name="downloads_storage_use_saf_title">ਸਿਸਟਮ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ ਚੋਣਕਾਰ (SAF) ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="downloads_storage_use_saf_summary">\'ਸਟੋਰੇਜ ਐਕਸੈਸ ਫ਼ਰੇਮਵਰਕ\' ਬਾਹਰੀ SD ਕਾਰਡ ਵਿੱਚ ਡਾਊਨਲੋਡ ਕਰਨ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ।</string>
     <string name="notification_scale_to_square_image_title">ਥਮਨੇਲ ਨੂੰ 1:1 ਮਾਪ ਦਾ ਕਰੋ</string>

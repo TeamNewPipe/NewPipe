@@ -483,8 +483,6 @@
     <string name="downloads_storage_ask_title">Ερώτηση πού να γίνει η λήψη</string>
     <string name="downloads_storage_ask_summary">Θα ερωτηθείτε πού να αποθηκεύσετε κάθε λήψη.
 \nΕνεργοποιήστε τον επιλογέα φακέλων συστήματος (SAF), αν θέλετε να κάνετε λήψεις σε εξωτερική κάρτα μνήμης</string>
-    <string name="downloads_storage_ask_summary_kitkat">Θα σας ζητηθεί πού να αποθηκεύσετε κάθε λήψη.
-\nΕπιλέξτε SAF αν θέλετε να κατεβάσετε σε μια εξωτερική κάρτα SD</string>
     <string name="downloads_storage_use_saf_title">Χρήση επιλογέα φακέλων συστήματος (SAF)</string>
     <string name="downloads_storage_use_saf_summary">Το «Πλαίσιο Πρόσβασης Αποθήκευσης» (SAF) επιτρέπει λήψεις σε μια εξωτερική κάρτα SD</string>
     <string name="clear_playback_states_title">Διαγραφή θέσεων αναπαραγωγής</string>

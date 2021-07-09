@@ -335,8 +335,6 @@
     <string name="app_language_title">Limba de s\'aplicatzione</string>
     <string name="choose_instance_prompt">Issèbera un\'istàntzia</string>
     <string name="downloads_storage_use_saf_title">Imprea s\'ischertadore de cartellas de sistema (SAF)</string>
-    <string name="downloads_storage_ask_summary_kitkat">T\'at a bènnere pedidu in ue sarvare cada documentu.
-\n Issèbera SAF si cheres iscarrigare in un\'ischeda SD esterna</string>
     <string name="downloads_storage_ask_summary">T\'at a bènnere pedidu in ue sarvare cada documentu.
 \nAbìlita s\'ischertadore de cartellas de sistema (SAF) si cheres iscarrigare in un\'ischeda SD esterna</string>
     <string name="downloads_storage_ask_title">Pedi in ue iscarrigare</string>

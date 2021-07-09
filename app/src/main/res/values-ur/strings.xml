@@ -478,8 +478,6 @@
     <string name="pause_downloads">ڈاؤن لوڈ روکیں</string>
     <string name="downloads_storage_ask_title">ڈاؤن لوڈ کہاں کریں، پوچھیں</string>
     <string name="downloads_storage_ask_summary">ہر ڈاؤن لوڈ کو کہاں محفوظ کرنا ہے آپ سے پوچھا جائے گا</string>
-    <string name="downloads_storage_ask_summary_kitkat">آپ سے پوچھا جائے گا کہ ہر ڈاؤن لوڈ کو کہاں محفوظ کرنا ہے۔
-\nاگر آپ کسی بیرونی SD کارڈ پر ڈاؤن لوڈ کرنا چاہتے ہیں تو SAF کا انتخاب کریں</string>
     <string name="downloads_storage_use_saf_title">SAF استعمال کریں</string>
     <string name="downloads_storage_use_saf_summary">اسٹوریج ایکسیس فریم ورک ایک بیرونی SD کارڈ میں ڈاؤن لوڈ کی اجازت دیتا ہے۔
 \nنوٹ: کچھ آلات مطابقت نہیں رکھتے ہیں</string>

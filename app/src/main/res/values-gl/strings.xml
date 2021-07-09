@@ -464,8 +464,6 @@
     <string name="downloads_storage_use_saf_summary">O \'Framework Access Framework\' permite a descarga a unha tarxeta SD externa.
 \nAlgúns dispositivos son incompatibles</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
-    <string name="downloads_storage_ask_summary_kitkat">Preguntaralle onde gardar cada descarga.
-\nEscolla SAF se o desexa descargar nunha tarxeta SD externa</string>
     <string name="downloads_storage_ask_summary">Preguntaralle onde gardar cada descarga</string>
     <string name="downloads_storage_ask_title">Pregunta onde se descarga</string>
     <string name="pause_downloads">Parar as descagas</string>

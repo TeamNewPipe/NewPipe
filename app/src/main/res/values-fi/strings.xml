@@ -544,8 +544,6 @@
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' sallii lataukset ulkoiselle SD-kortille.
 \nJotkin laitteet eivät ole yhteensopivia</string>
     <string name="downloads_storage_use_saf_title">Ota SAF käyttöön</string>
-    <string name="downloads_storage_ask_summary_kitkat">Jokaisen latauksen kohde kysytään.
-\nValitse SAF, jos haluat ladata ulkoiselle SD-kortille</string>
     <string name="downloads_storage_ask_summary">Jokaisen latauksen kohde kysytään</string>
     <string name="downloads_storage_ask_title">Kysy mihin ladataan</string>
     <string name="start_downloads">Aloita lataukset</string>

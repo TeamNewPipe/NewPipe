@@ -483,8 +483,6 @@
     <string name="downloads_storage_ask_title">Perguntar onde salvar o arquivo</string>
     <string name="downloads_storage_ask_summary">Será questionado onde salvar cada download.
 \nAtive o seletor de pasta do sistema (SAF) se você quiser fazer o download para um cartão SD externo</string>
-    <string name="downloads_storage_ask_summary_kitkat">Será questionado onde salvar cada download.
-\nEscolha SAF se deseja baixar para um cartão SD externo</string>
     <string name="downloads_storage_use_saf_title">Usar selecionador de pasta do sistema (SAF)</string>
     <string name="downloads_storage_use_saf_summary">O \'Storage Access Framework\' permite baixar para um cartão SD externo</string>
     <string name="clear_playback_states_title">Excluir posição das reproduções</string>

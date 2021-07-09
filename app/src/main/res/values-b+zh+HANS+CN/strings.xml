@@ -481,8 +481,6 @@
     <string name="downloads_storage_ask_title">总是询问下载位置</string>
     <string name="downloads_storage_ask_summary">系统将询问您将每次下载的保存位置。
 \n如果要下载到外部 SD 卡，请启用系统文件夹选择器 (SAF)</string>
-    <string name="downloads_storage_ask_summary_kitkat">系统将询问您将每次下载的保存位置。
-\n如果要下载到外部 SD 卡，请选择 SAF</string>
     <string name="downloads_storage_use_saf_title">使用系统文件夹选择器 (SAF)</string>
     <string name="downloads_storage_use_saf_summary">存储访问框架（SAF）允许下载文件到外部 SD 卡</string>
     <string name="clear_playback_states_title">删除播放痕迹历史</string>

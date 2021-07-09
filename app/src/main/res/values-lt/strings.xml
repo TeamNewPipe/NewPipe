@@ -602,8 +602,6 @@
     <string name="feed_use_dedicated_fetch_method_summary">Prieinama kai kuriose tarnybose, paprastai yra daug greitesnė, tačiau gali grąžinti ribotą kiekį elementų ir dažnai neišsamią informaciją (pvz., nėra trukmės, elemento tipo, nėra tiesioginės būsenos)</string>
     <string name="remove_watched_popup_warning">Vaizdo įrašai, kurie buvo peržiūrėti prieš juos įtraukiant į grojaraštį ir po to, kai jie buvo įtraukti į grojaraštį, bus pašalinti.
 \nAr tikrai\? To negalima atšaukti!</string>
-    <string name="downloads_storage_ask_summary_kitkat">Jūsų bus paklausta, kur išsaugoti kiekvieną atsisiuntimą.
-\nPasirinkite SAF, jei norite atsisiųsti į išorinę SD kortelę</string>
     <string name="soundcloud_go_plus_content">Tai \"SoundCloud Go+\" kūrinys, bent jau jūsų šalyje, todėl jo negalima transliuoti ar atsisiųsti per \"NewPipe\".</string>
     <string name="content_not_supported">Šio turinio \"NewPipe\" dar nepalaiko.
 \n

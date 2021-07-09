@@ -274,8 +274,6 @@
     <string name="choose_instance_prompt">Изаберите инстанцу</string>
     <string name="downloads_storage_use_saf_summary">„Storage Access Framework“ омогућава преузимање на спољну СД картицу</string>
     <string name="downloads_storage_use_saf_title">Користи системски бирач фасцикли (SAF)</string>
-    <string name="downloads_storage_ask_summary_kitkat">Питаће вас где да сачува свако преузимање.
-\nИзаберите „SAF“ ако желите да преузимате на спољну СД картицу</string>
     <string name="downloads_storage_ask_summary">Питаће вас где да сачувате свако преузимање.
 \nУкључите системски бирач фасцикли „SAF“ ако желите да користите спољну СД картицу</string>
     <string name="downloads_storage_ask_title">Питај где да се преузме</string>

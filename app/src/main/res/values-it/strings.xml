@@ -484,8 +484,6 @@
 \nPer salvare i file su una scheda esterna è necessario attivare il selettore di cartelle di sistema (SAF)</string>
     <string name="downloads_storage_use_saf_title">Usa il selettore di cartelle di sistema (SAF)</string>
     <string name="enable_queue_limit">Limita coda dei download</string>
-    <string name="downloads_storage_ask_summary_kitkat">Ogni volta verrà chiesta la destinazione dei file.
-\nScegli SAF se vuoi scaricare su una scheda SD esterna</string>
     <string name="downloads_storage_use_saf_summary">Il Framework di accesso all\'archiviazione consente di salvare i file su una memoria esterna</string>
     <string name="clear_playback_states_title">Elimina le posizioni di riproduzione</string>
     <string name="clear_playback_states_summary">Elimina tutte le posizioni di riproduzione</string>

@@ -278,8 +278,6 @@
     <string name="pause_downloads">Paŭzigi elŝutojn</string>
     <string name="downloads_storage_ask_title">Peti kie elŝuti</string>
     <string name="downloads_storage_ask_summary">Oni petos vin kie konservi ĉion elŝuton</string>
-    <string name="downloads_storage_ask_summary_kitkat">Oni petos vin kie konservi ĉion elŝutaĵon.
-\nElektu AFM se vi volas elŝuti al ekstera SD-karto</string>
     <string name="downloads_storage_use_saf_title">Uzu AFM</string>
     <string name="downloads_storage_use_saf_summary">La \"Atinga Framo al la Memoro\" ebligas elŝuti al ekstera SD-karto</string>
     <string name="clear_playback_states_title">Forviŝi ludajn poziciojn</string>
