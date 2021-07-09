@@ -710,5 +710,4 @@
     <string name="disable_media_tunneling_summary">Iska xidh kala-leexinta muuqaalada/dhagaysiga hadaad lakulanto shaashad madow ama muuqaalka oo isistaaga</string>
     <string name="disable_media_tunneling_title">Xidh kala-leexinta</string>
     <string name="no_dir_yet">Wali lama fadhiisin khaanadii dajinta, dooro khaanada wax lagu dajin doono hadda</string>
-    <string name="use_inexact_seek_summary">Raadinta dagdaga ah waxay ogolaanaysaa in si dagdag ah balse aan 100% saxnayn wax loo raadiyo. Nidaamkan 5, 15 ama 25 ilbiriqsi wax uma dhaafin kartid</string>
 </resources>
