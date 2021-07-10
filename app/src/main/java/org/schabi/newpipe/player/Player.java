@@ -27,7 +27,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
-import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -55,6 +54,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.DisplayCutoutCompat;
+import androidx.core.view.GestureDetectorCompat;
 import androidx.core.view.ViewCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -123,10 +123,10 @@ import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
-import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.SerializedCache;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.ExpandableSurfaceView;
 
@@ -353,7 +353,7 @@ public final class Player implements
     private static final float MAX_GESTURE_LENGTH = 0.75f;
 
     private int maxGestureLength; // scaled
-    private GestureDetector gestureDetector;
+    private GestureDetectorCompat gestureDetector;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Listeners and disposables
@@ -517,7 +517,7 @@ public final class Player implements
         binding.playbackLiveSync.setOnClickListener(this);
 
         final PlayerGestureListener listener = new PlayerGestureListener(this, service);
-        gestureDetector = new GestureDetector(context, listener);
+        gestureDetector = new GestureDetectorCompat(context, listener);
         binding.getRoot().setOnTouchListener(listener);
 
         binding.queueButton.setOnClickListener(this);
@@ -4125,7 +4125,7 @@ public final class Player implements
         return audioReactor;
     }
 
-    public GestureDetector getGestureDetector() {
+    public GestureDetectorCompat getGestureDetector() {
         return gestureDetector;
     }
 
