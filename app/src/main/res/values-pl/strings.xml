@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Dotknij lupę, aby rozpocząć.</string>
+    <string name="main_bg_subtitle">Naciśnij lupkę, aby rozpocząć.</string>
     <string name="install">Zainstaluj</string>
     <string name="cancel">Anuluj</string>
     <string name="open_in_browser">Otwórz w przeglądarce</string>
@@ -95,7 +95,7 @@
     <string name="msg_exists">Plik już istnieje</string>
     <string name="msg_url_malform">Nieprawidłowo utworzony adres URL lub Internet nie jest dostępny</string>
     <string name="msg_running">Pobieranie NewPipe</string>
-    <string name="msg_running_detail">Dotknij, aby zobaczyć szczegóły</string>
+    <string name="msg_running_detail">Naciśnij, aby zobaczyć szczegóły</string>
     <string name="msg_wait">Proszę czekać…</string>
     <string name="msg_copied">Skopiowano do schowka</string>
     <string name="no_available_dir">Proszę później zdefiniować katalog pobierania w ustawieniach</string>
@@ -106,7 +106,7 @@
     <string name="title_activity_recaptcha">Wyzwanie reCAPTCHA</string>
     <string name="recaptcha_request_toast">Wymagane wyzwanie dotyczące reCAPTCHA</string>
     <string name="use_external_video_player_summary">Usuwa dźwięk w niektórych rozdzielczościach</string>
-    <string name="controls_background_title">Tło</string>
+    <string name="controls_background_title">W tle</string>
     <string name="default_popup_resolution_title">Domyślna rozdzielczość dla trybu okienkowego</string>
     <string name="show_higher_resolutions_title">Pokazuj wyższe rozdzielczości</string>
     <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia mogą odtwarzać wideo w 2K/4K</string>
@@ -202,12 +202,14 @@
     <plurals name="subscribers">
         <item quantity="one">%s subskrybent</item>
         <item quantity="few">%s subskrybentów</item>
-        <item quantity="many">%s subskrybenci</item>
+        <item quantity="many">%s subskrybentów</item>
+        <item quantity="other">%s subskrybentów</item>
     </plurals>
     <plurals name="views">
-        <item quantity="one">%s odtworzenie</item>
-        <item quantity="few">%s odtworzenia</item>
-        <item quantity="many">%s odtworzeń</item>
+        <item quantity="one">%s wyświetlenie</item>
+        <item quantity="few">%s wyświetlenia</item>
+        <item quantity="many">%s wyświetleń</item>
+        <item quantity="other">%s wyświetleń</item>
     </plurals>
     <string name="no_videos">Brak filmów</string>
     <plurals name="videos">
@@ -424,7 +426,7 @@
     <string name="auto">Automatyczny</string>
     <string name="switch_view">Przełącz widok</string>
     <string name="app_update_notification_content_title">Dostępna jest aktualizacja NewPipe!</string>
-    <string name="app_update_notification_content_text">Stuknij, aby pobrać</string>
+    <string name="app_update_notification_content_text">Naciśnij, aby pobrać</string>
     <string name="missions_header_finished">Gotowe</string>
     <string name="paused">wstrzymane</string>
     <string name="queued">w kolejce</string>
@@ -634,8 +636,8 @@
     <string name="notification_action_buffering">Buforowanie</string>
     <string name="notification_action_shuffle">Losuj</string>
     <string name="notification_action_repeat">Powtórz</string>
-    <string name="notification_actions_at_most_three">Możesz wybrać co najwyżej trzy akcje, które mają być wyświetlane w kompaktowym powiadomieniu!</string>
-    <string name="notification_actions_summary">Edytuj każdą poniższą akcję powiadomienia, dotykając jej. Zaznacz maksymalnie trzy z nich, które mają być wyświetlane w powiadomieniu kompaktowym, korzystając z pól wyboru po prawej stronie</string>
+    <string name="notification_actions_at_most_three">Możesz wybrać co najwyżej trzy akcje do wyświetlania w kompaktowym powiadomieniu!</string>
+    <string name="notification_actions_summary">Edytuj każdą poniższą akcję powiadomienia, naciskając ją. Wybierz do trzech z nich, które mają być wyświetlane w kompaktowym powiadomieniu, korzystając z pól wyboru po prawej stronie</string>
     <string name="notification_action_4_title">Przycisk piątej akcji</string>
     <string name="notification_action_3_title">Przycisk czwartej akcji</string>
     <string name="notification_action_2_title">Przycisk trzeciej akcji</string>

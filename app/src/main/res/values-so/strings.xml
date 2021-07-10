@@ -71,7 +71,7 @@
     <string name="view_count_text">%1$s ayaa lafuray</string>
     <string name="no_player_found">Wax fura lama helin shaygan. Ku shubo VLC\?</string>
     <string name="upload_date_text">Lasoo galiyay: %1$s</string>
-    <string name="main_bg_subtitle">Ku dhufo waynaysada 🔍 si aad wax uraadiso</string>
+    <string name="main_bg_subtitle">Ku dhufo waynaysada 🔍 si aad wax uraadiso.</string>
     <string name="overwrite_unrelated_warning">Shay magacan leh ayaa horay ujiray</string>
     <string name="overwrite">Ku badal</string>
     <string name="generate_unique_name">Usamee magac gaar ah</string>
@@ -710,4 +710,5 @@
     <string name="disable_media_tunneling_summary">Iska xidh kala-leexinta muuqaalada/dhagaysiga hadaad lakulanto shaashad madow ama muuqaalka oo isistaaga</string>
     <string name="disable_media_tunneling_title">Xidh kala-leexinta</string>
     <string name="no_dir_yet">Wali lama fadhiisin khaanadii dajinta, dooro khaanada wax lagu dajin doono hadda</string>
+    <string name="use_inexact_seek_summary">Dhaaf-dhaafinta dagdaga ah ee waxa daaran, si buuxda oo sax ah wax uma dhaafiso balse waxay u sahashaa muuqaal daareha inuu u dhaaf dhaafiyo si dagdag ah. Nidaamkan 5, 15 ama 25 ilbiriqsi wax looma dhaafin karo</string>
 </resources>
