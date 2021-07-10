@@ -21,6 +21,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.RouterActivity;
 import org.schabi.newpipe.about.AboutActivity;
@@ -608,6 +609,7 @@ public final class NavigationHelper {
      * @param activity the activity to finish
      */
     public static void restartApp(final Activity activity) {
+        NewPipeDatabase.close();
         activity.finishAffinity();
         final Intent intent = new Intent(activity, MainActivity.class);
         activity.startActivity(intent);
