@@ -609,7 +609,7 @@ public final class NavigationHelper {
      * @param activity the activity to finish
      */
     public static void restartApp(final Activity activity) {
-        NewPipeDatabase.getInstance(activity).close();
+        NewPipeDatabase.close();
         activity.finishAffinity();
         final Intent intent = new Intent(activity, MainActivity.class);
         activity.startActivity(intent);
