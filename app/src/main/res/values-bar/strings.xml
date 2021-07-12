@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_player_found_toast">Koan Stream-Playa gfundn (Wennsd\'n VLC installiast, gähds).</string>
+    <string name="use_external_video_player_title">An andan Wideo-Playa heanehma</string>
+    <string name="screen_rotation">drahn</string>
+    <string name="choose_browser">Wähl an Browser</string>
+    <string name="share_dialog_title">Deiln mid</string>
+    <string name="search_showing_result_for">Ergebnis füa: %s</string>
+    <string name="did_you_mean">Hosd du \"%1$s\" gmoand\?</string>
+    <string name="settings">Rumdogdan</string>
+    <string name="search">Suacha</string>
+    <string name="controls_download_desc">Stream-Dotai obalon</string>
+    <string name="download">Obalon</string>
+    <string name="share">Deiln</string>
+    <string name="open_with">Aufmacha mid</string>
+    <string name="open_in_browser">Im Browser auf macha</string>
+    <string name="cancel">Weg damid</string>
+    <string name="install">Drauf doa</string>
+    <string name="no_player_found">Koan Stream-Playa gfundn! Mogsd n VLC installiean\?</string>
+    <string name="upload_date_text">Aufe glon am %1$s</string>
+    <string name="autoplay_by_calling_app_title">automadisch waida</string>
+    <string name="download_path_audio_summary">do wean obaglone Audios gspaichad</string>
+    <string name="download_path_audio_title">Oadna für obaglone Audios</string>
+    <string name="download_path_summary">do wean obaglone Videos gspaichad</string>
+    <string name="download_path_title">Oadna für obaglone Videos</string>
+    <string name="controls_add_to_playlist_title">Dazua doa</string>
+    <string name="tab_main">Dahoam</string>
+    <string name="show_info">zoag d\'Info</string>
+    <string name="popup_mode_share_menu_title">Pop-up Modus</string>
+    <string name="use_external_audio_player_title">Nim an andan Player her</string>
+    <string name="use_external_video_player_summary">Duad bei manchen Auflösungen d\'Tonspur weggad</string>
+    <string name="open_in_popup_mode">Im Pop-up Modus aufmacha</string>
+    <string name="view_count_text">%1$s Aufruaf</string>
+    <string name="main_bg_subtitle">Drug auf\'d Lubn zum ofanga.</string>
+</resources>

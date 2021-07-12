@@ -349,7 +349,7 @@
     <string name="cancel">বাতিল</string>
     <string name="install">ইনস্টল</string>
     <string name="no_player_found_toast">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি (প্লে করতে VLC ইন্সটল করতে পারেন).</string>
-    <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। VLC ইনস্টল করতে চাও\?</string>
+    <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। VLC ইনস্টল করতে চান\?</string>
     <string name="upload_date_text">প্রকাশকাল %1$s</string>
     <string name="view_count_text">%1$s জন দেখেছে</string>
     <string name="main_bg_subtitle">\"অনুসন্ধান\" এ চাপ দিয়ে শুরু করুন</string>
@@ -607,8 +607,6 @@
     <string name="delete_all_history_prompt">ইতিহাসের সব ভুক্তি কি আসলেই মুছতে চাও\?</string>
     <string name="download_to_sdcard_error_message">এসডি কার্ডে নামানো যাচ্ছে না। ডাউনলোড স্থান ফিরাবে বা পাল্টাবে\?</string>
     <string name="show_thumbnail_summary">বন্ধ পর্দার পটভূমি ও বিজ্ঞপ্তির পটভূমি উভয় জায়গায় এই প্রতিচ্ছবি ব্যবহার করো</string>
-    <string name="downloads_storage_ask_summary_kitkat">কোথায় প্রত্যেক ডাউনলোড সংরক্ষণ করা হবে তা জিজ্ঞেস করা হবে।
-\nএসডি কার্ডে নামাতে চাইলে স্যাফ(SAF) নির্বাচন করো</string>
     <string name="privacy_policy_encouragement">নিউপাইপ প্রকল্প তোমার গোপনীয়তা গুরুত্বের সাথে নেয়। তাই এই অ্যাপ তোমার অনুমতি ছাড়া কোনো তথ্য পাঠায় না।
 \nনিউপাইপের গোপনীয়তা নীতিমালা কোন তথ্য পাঠানো হয় ও সংরক্ষণ হয় তা ব্যাখ্যা করে।</string>
     <string name="clear_cookie_summary">রিক্যাপচা পূরণ করলে নিউপাইপ যেসব কুকি রাখে তা মুছো</string>
@@ -619,4 +617,36 @@
     <string name="download_already_running">এই নামের একটি ডাউনলোড চলমান</string>
     <string name="localization_changes_requires_app_restart">অ্যাপ আবার শুরু হলে ভাষা পাল্টাবে।</string>
     <string name="disable_media_tunneling_title">মিডিয়া সুরঙ্গকরণ অক্ষম</string>
+    <string name="feed_load_error_fast_unknown">দ্রুত ফিড অবস্থা এ বিষয়ে এর বেশি তথ্য দেয় না।</string>
+    <string name="no_dir_yet">কোনো ডাউনলোড ফোল্ডার নির্দিষ্ট করা হয়নি, এখনই একটা সহজাত ডাউনলোড ফোল্ডার নির্বাচন করো</string>
+    <string name="downloads_storage_use_saf_summary">\'স্টোরেজ অনুমোদন অবকাঠামো\' বাইরের এসডি কার্ডে ডাউনলোডের অনুমোদন দেয়</string>
+    <string name="downloads_storage_use_saf_summary_api_29">অ্যান্ড্রয়েড ১০ থেকে শুরু করে শুধু \'স্টোরেজ অনুমোদন অবকাঠামো\' সমর্থিত</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">প্রত্যেকটা ডাউনলোড কোথায় রাখা হবে তা তোমাকে জিজ্ঞেস করা হবে</string>
+    <string name="feed_load_error_account_info">\'%s\' এর জন্য ফিড প্রক্রিয়া করা যাচ্ছে না।</string>
+    <string name="description_select_disable">বর্ণনার লেখা নির্বাচন করা নিষ্ক্রিয় করো</string>
+    <string name="description_select_enable">বর্ণনার লেখা নির্বাচন করা সক্ষম করো</string>
+    <string name="service_provides_reason">%s এই কারণ বলছে:</string>
+    <string name="feed_load_error">প্রক্রিয়াকরণ ফিডে ত্রুটি</string>
+    <string name="open_website_license">মুক্ত ওয়েবসাইট</string>
+    <string name="account_terminated">অ্যাকাউন্ট ধ্বংসকৃত</string>
+    <string name="metadata_thumbnail_url">প্রতিচ্ছবি সংযোগ</string>
+    <string name="metadata_age_limit">বয়সসীমা</string>
+    <string name="metadata_privacy_internal">অভ্যন্তরীণ</string>
+    <string name="metadata_privacy_private">ব্যক্তিগত</string>
+    <string name="metadata_privacy_unlisted">অতালিকাভুক্ত</string>
+    <string name="metadata_privacy_public">সর্বজনীন</string>
+    <string name="metadata_host">উপস্থাপক</string>
+    <string name="metadata_support">সহায়তা</string>
+    <string name="metadata_language">ভাষা</string>
+    <string name="metadata_privacy">গোপনীয়তা</string>
+    <string name="metadata_licence">অনুমতিপত্র</string>
+    <string name="metadata_tags">চিরকুট (ট্যাগ)</string>
+    <string name="metadata_category">বিষয়শ্রেণি</string>
+    <string name="import_network_expensive_warning">মনে রাখবে এই ক্রিয়ার নেটওয়ার্ক খরচ বেশি হতে পারে।
+\n
+\nচালিয়ে যাবে\?</string>
+    <string name="feed_toggle_show_played_items">দেখা ভুক্তি দেখাও</string>
+    <string name="tablet_mode_title">ট্যাবলেট অবস্থা</string>
+    <string name="off">বন্ধ</string>
+    <string name="on">চালু</string>
 </resources>

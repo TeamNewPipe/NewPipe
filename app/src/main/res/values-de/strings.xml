@@ -95,7 +95,7 @@
     <string name="msg_exists">Datei existiert bereits</string>
     <string name="msg_wait">Bitte warten …</string>
     <string name="msg_copied">In Zwischenablage kopiert</string>
-    <string name="no_available_dir">Bitte gib später in den Einstellungen ein Downloadverzeichnis an</string>
+    <string name="no_available_dir">Bitte gib später in den Einstellungen einen Downloadordner an</string>
     <string name="start">Starten</string>
     <string name="pause">Pause</string>
     <string name="view">Abspielen</string>
@@ -243,7 +243,7 @@
     <string name="website_encouragement">Besuche die NewPipe Website für weitere Informationen und Neuigkeiten.</string>
     <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür verwenden, dir die beste Nutzererfahrung zu bieten. Gib etwas zurück, indem du den Entwicklern hilfst, NewPipe noch weiter zu verbessern, während sie sich an einer Tasse Kaffee erfreuen.</string>
     <string name="service_title">Service</string>
-    <string name="no_player_found_toast">Keinen Streamplayer gefunden (du kannst VLC installieren, um den Stream abzuspielen).</string>
+    <string name="no_player_found_toast">Kein Stream-Player gefunden (du kannst VLC installieren, um den Stream abzuspielen).</string>
     <string name="default_content_country_title">Bevorzugtes Land des Inhalts</string>
     <string name="always">Immer</string>
     <string name="just_once">Nur einmal</string>
@@ -297,7 +297,7 @@
     <string name="dismiss">Abbrechen</string>
     <string name="controls_download_desc">Stream-Datei herunterladen</string>
     <string name="use_inexact_seek_title">Schnelle, ungenaue Suche verwenden</string>
-    <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die ungefähre Abspielposition schneller erreicht werden. Das Spulen um 5, 15 oder 25 Sekunden funktioniert damit nicht.</string>
+    <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die ungefähre Abspielposition schneller erreicht werden. Das Spulen um 5, 15 oder 25 Sekunden funktioniert damit nicht</string>
     <string name="file">Datei</string>
     <string name="invalid_directory">Ordner existiert nicht</string>
     <string name="invalid_file">Die Datei existiert nicht oder die Rechte zum Lesen oder Schreiben fehlen</string>
@@ -331,7 +331,7 @@
     <string name="playback_tempo">Geschwindigkeit</string>
     <string name="playback_pitch">Tonhöhe</string>
     <string name="unhook_checkbox">Entkoppeln (kann zu Verzerrungen führen)</string>
-    <string name="download_thumbnail_summary">Deaktiviere diese Option, um das Laden von Vorschaubildern zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher.</string>
+    <string name="download_thumbnail_summary">Deaktiviere diese Option, um das Laden von Vorschaubildern zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
     <string name="auto_queue_summary">Wiedergabe durch Anhängen eines verwandten Streams an die Warteschlange (ohne Wiederholungsschleife) fortsetzen</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
@@ -361,16 +361,16 @@
     <string name="preferred_open_action_settings_title">Bevorzugte „Öffnen“-Aktion</string>
     <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten — %s</string>
     <string name="caption_setting_title">Untertitel</string>
-    <string name="caption_setting_description">Textgröße und Hintergrund der Untertitel im Player anpassen. Erfordert Neustart der App.</string>
+    <string name="caption_setting_description">Textgröße und Hintergrund der Untertitel im Player anpassen. Erfordert Neustart der App</string>
     <string name="toast_no_player">Keine App zum Abspielen dieser Datei installiert</string>
     <string name="clear_views_history_title">Wiedergabeverlauf löschen</string>
     <string name="clear_views_history_summary">Den Verlauf der wiedergegebenen Streams und die Wiedergabepositionen löschen</string>
     <string name="delete_view_history_alert">Den ganzen Wiedergabeverlauf löschen\?</string>
-    <string name="watch_history_deleted">Wiedergabeverlauf gelöscht.</string>
+    <string name="watch_history_deleted">Wiedergabeverlauf gelöscht</string>
     <string name="clear_search_history_title">Suchverlauf löschen</string>
     <string name="clear_search_history_summary">Den Verlauf der Suchbegriffe löschen</string>
     <string name="delete_search_history_alert">Den gesamten Suchverlauf löschen\?</string>
-    <string name="search_history_deleted">Suchverlauf gelöscht.</string>
+    <string name="search_history_deleted">Suchverlauf gelöscht</string>
     <string name="one_item_deleted">1 Element gelöscht.</string>
     <string name="app_license">NewPipe ist freie Copyleft-Software: Du kannst sie nach Belieben benutzen, untersuchen, mit anderen teilen und verbessern. Insbesondere kannst du sie unter den von der Free Software Foundation veröffentlichten Bedingungen der GNU General Public License, in der Version 3 der Lizenz oder (nach deiner Wahl) jeder späteren Version, weitergeben und/oder verändern.</string>
     <string name="import_settings">Möchtest du auch Einstellungen importieren\?</string>
@@ -441,7 +441,7 @@
     <string name="show_error">Fehler anzeigen</string>
     <string name="label_code">Code</string>
     <string name="error_file_creation">Die Datei kann nicht erstellt werden</string>
-    <string name="error_path_creation">Das Zielverzeichnis kann nicht erstellt werden</string>
+    <string name="error_path_creation">Der Zielordner kann nicht erstellt werden</string>
     <string name="error_permission_denied">System verweigert den Zugriff</string>
     <string name="error_ssl_exception">Aufbau einer sicheren Verbindung nicht möglich</string>
     <string name="error_unknown_host">Server konnte nicht gefunden werden</string>
@@ -469,7 +469,7 @@
     <string name="enable_playback_state_lists_title">Positionen in Listen</string>
     <string name="enable_playback_state_lists_summary">Wiedergabepositionsanzeigen in Listen anzeigen</string>
     <string name="settings_category_clear_data_title">Daten löschen</string>
-    <string name="watch_history_states_deleted">Wiedergabeposition gelöscht.</string>
+    <string name="watch_history_states_deleted">Wiedergabepositionen gelöscht</string>
     <string name="missing_file">Datei verschoben oder gelöscht</string>
     <string name="overwrite_finished_warning">Eine heruntergeladene Datei mit diesem Namen existiert bereits</string>
     <string name="overwrite_failed">Datei kann nicht überschrieben werden</string>
@@ -483,12 +483,10 @@
     <string name="start_downloads">Downloads starten</string>
     <string name="pause_downloads">Downloads anhalten</string>
     <string name="downloads_storage_ask_title">Downloadziel abfragen</string>
-    <string name="downloads_storage_ask_summary">Du wirst gefragt, wo jede heruntergeladene Datei gespeichert werden soll</string>
-    <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin du jede heruntergeladene Datei speichern willst.
-\nAktiviere diese Option, wenn du auf die externe SD-Karte herunterladen möchtest</string>
-    <string name="downloads_storage_use_saf_title">SAF verwenden</string>
-    <string name="downloads_storage_use_saf_summary">Das „Storage Access Framework“ ermöglicht das Herunterladen auf eine externe SD-Karte.
-\nManche Geräte sind nicht kompatibel</string>
+    <string name="downloads_storage_ask_summary">Du wirst gefragt, wo jede heruntergeladene Datei gespeichert werden soll.
+\nAktiviere die Systemordnerauswahl (SAF), wenn du auf eine externe SD-Karte herunterladen möchtest</string>
+    <string name="downloads_storage_use_saf_title">Systemordnerauswahl verwenden (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">Das „Storage Access Framework“ ermöglicht das Herunterladen auf eine externe SD-Karte</string>
     <string name="clear_playback_states_title">Wiedergabepositionen löschen</string>
     <string name="clear_playback_states_summary">Alle Wiedergabepositionen löschen</string>
     <string name="delete_playback_states_alert">Alle Wiedergabepositionen löschen\?</string>
@@ -505,7 +503,7 @@
         <item quantity="one">%s Zuhörer</item>
         <item quantity="other">%s Zuhörer</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird.</string>
+    <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird</string>
     <string name="peertube_instance_url_title">PeerTube-Instanzen</string>
     <string name="peertube_instance_url_help">Finde auf %s die Instanzen, die dir gefallen</string>
     <string name="peertube_instance_add_title">Instanz hinzufügen</string>
@@ -515,7 +513,7 @@
     <string name="local">Lokal</string>
     <string name="recently_added">Kürzlich hinzugefügt</string>
     <string name="playlist_no_uploader">Auto-generiert (kein Autor gefunden)</string>
-    <string name="choose_instance_prompt">Wähle eine Instanz</string>
+    <string name="choose_instance_prompt">Eine Instanz wählen</string>
     <string name="peertube_instance_url_summary">Bevorzugte Peertube-Instanzen auswählen</string>
     <string name="peertube_instance_add_https_only">Es werden nur HTTPS-Adressen unterstützt</string>
     <string name="seek_duration_title">Dauer der Suche bei schnellem Vor-/Zurückspulen</string>
@@ -572,7 +570,7 @@
     <string name="feed_oldest_subscription_update">Abos zuletzt aktualisiert: %s</string>
     <string name="feed_update_threshold_title">Grenzwert für Feed-Aktualisierung</string>
     <string name="feed_use_dedicated_fetch_method_title">Aus fest zugeordnetem Feed abholen wenn verfügbar</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Steht in manchen Diensten zur Verfügung, ist meist viel schneller, liefert aber eventuell eine eingeschränkte Anzahl an Elementen und oft unvollständige Informationen (z. B. keine Videolänge, keinen Elementtyp, keinen Live-Status).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Steht in manchen Diensten zur Verfügung, ist meist viel schneller, liefert aber eventuell eine eingeschränkte Anzahl an Elementen und oft unvollständige Informationen (z. B. keine Videolänge, keinen Elementtyp, keinen Live-Status)</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Glaubst du, dass das Laden von Feeds zu langsam ist\? Wenn ja, versuche den Schnelllademodus einzuschalten (du kannst ihn in den Einstellungen oder über die Schaltfläche unten ändern).
 \n
 \nNewPipe bietet zwei Feed-Ladestrategien:
@@ -616,7 +614,7 @@
     <string name="wifi_only">Nur über WLAN</string>
     <string name="never">Nie</string>
     <string name="notification_actions_at_most_three">Du kannst maximal drei Aktionen auswählen, die in der Kompaktbenachrichtigung angezeigt werden sollen!</string>
-    <string name="notification_actions_summary">Bearbeite jede Benachrichtigungsaktion unten, indem du darauf tippst. Wähle mithilfe der Kontrollkästchen rechts bis zu drei aus, die in der Kompaktbenachrichtigung angezeigt werden sollen.</string>
+    <string name="notification_actions_summary">Bearbeite jede Benachrichtigungsaktion unten, indem du darauf tippst. Wähle mithilfe der Kontrollkästchen rechts bis zu drei aus, die in der Kompaktbenachrichtigung angezeigt werden sollen</string>
     <string name="settings_category_notification_title">Benachrichtigung</string>
     <string name="unsupported_url_dialog_message">Konnte die angegebene URL nicht erkennen. Mit einer anderen Anwendung öffnen\?</string>
     <string name="notification_action_4_title">Fünfte Aktionstaste</string>
@@ -652,7 +650,7 @@
     <string name="hash_channel_name">Video Hash Benachrichtigung</string>
     <string name="recent">Letzte</string>
     <string name="show_meta_info_title">Metadaten anzeigen</string>
-    <string name="show_meta_info_summary">Deaktiviere diese Option, um Meta-Infofelder mit zusätzlichen Informationen zum Stream-Ersteller, zum Stream-Inhalt oder zu einer Suchanforderung auszublenden.</string>
+    <string name="show_meta_info_summary">Deaktiviere diese Option, um Meta-Infofelder mit zusätzlichen Informationen zum Stream-Ersteller, zum Stream-Inhalt oder zu einer Suchanforderung auszublenden</string>
     <string name="chapters">Kapitel</string>
     <string name="description_tab_description">Beschreibung</string>
     <string name="related_items_tab_description">Verwandte Streams</string>
@@ -696,4 +694,21 @@
     <string name="description_select_disable">Auswählen von Text in der Beschreibung deaktivieren</string>
     <string name="description_select_enable">Auswählen von Text in der Beschreibung aktivieren</string>
     <string name="description_select_note">Du kannst nun Text innerhalb der Beschreibung auswählen. Beachte, dass die Seite flackern kann und Links im Auswahlmodus möglicherweise nicht anklickbar sind.</string>
+    <string name="feed_load_error_terminated">Das Konto des Autors wurde geschlossen.
+\nNewPipe wird diesen Feed in Zukunft nicht mehr laden können.
+\nMöchtest du dich von diesem Kanal abmelden\?</string>
+    <string name="account_terminated">Konto geschlossen</string>
+    <string name="feed_load_error_fast_unknown">Der Schnelllademodus liefert hierzu keine weiteren Informationen.</string>
+    <string name="no_dir_yet">Noch kein Downloadordner festgelegt, wähle jetzt den Standard-Downloadordner</string>
+    <string name="open_website_license">Webseite öffnen</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Ab Android 10 wird nur noch „Storage Access Framework“ unterstützt</string>
+    <string name="downloads_storage_use_saf_summary_api_19">Das „Storage Access Framework“ wird auf Android KitKat und niedriger nicht unterstützt</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Du wirst jedes Mal gefragt werden, wohin der Download gespeichert werden soll</string>
+    <string name="feed_load_error">Fehler beim Laden des Feeds</string>
+    <string name="feed_load_error_account_info">Konnte Feed für \'%s\' nicht laden.</string>
+    <string name="service_provides_reason">%s gibt diesen Grund an:</string>
+    <string name="on">An</string>
+    <string name="tablet_mode_title">Tablet-Modus</string>
+    <string name="off">Aus</string>
+    <string name="feed_toggle_show_played_items">Abgespielte Elemente anzeigen</string>
 </resources>

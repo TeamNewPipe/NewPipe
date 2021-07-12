@@ -589,8 +589,6 @@
     <string name="feed_groups_header_title">Grupe kanala</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Da, i djelomično pogledane videozapise</string>
     <string name="choose_instance_prompt">Odaberi primjerak</string>
-    <string name="downloads_storage_ask_summary_kitkat">Program će te pitati kamo spremati preuzimanja.
-\nOdaberi SAF, ako želiš preuzeti na vanjsku SD karticu</string>
     <string name="downloads_storage_ask_summary">Program će te pitati kamo spremati preuzimanja</string>
     <string name="error_download_resource_gone">Nije moguće obnoviti ovo preuzimanje</string>
     <string name="error_progress_lost">Napredak je izgubljen, jer je datoteka izbrisana</string>

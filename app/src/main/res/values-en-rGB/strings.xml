@@ -70,8 +70,6 @@
 \n
 \nSo the choice boils down to what you prefer: speed or complete information.</string>
     <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited number of items and often incomplete information (e.g. no duration, item type, no live status).</string>
-    <string name="downloads_storage_ask_summary_kitkat">You will be asked where to save each download.
-\nChoose SAF if you want to download to an SD card</string>
     <string name="max_retry_desc">Maximum number of attempts before cancelling the download</string>
     <string name="read_full_license">Read licence</string>
     <string name="app_license">NewPipe is copyleft libre software: You can use, study share and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public Licence as published by the Free Software Foundation, either version 3 of the Licence, or (at your option) any later version.</string>

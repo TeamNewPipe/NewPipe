@@ -17,31 +17,31 @@ import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.RE
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_URL;
 
 @Dao
-public abstract class PlaylistRemoteDAO implements BasicDAO<PlaylistRemoteEntity> {
+public interface PlaylistRemoteDAO extends BasicDAO<PlaylistRemoteEntity> {
     @Override
     @Query("SELECT * FROM " + REMOTE_PLAYLIST_TABLE)
-    public abstract Flowable<List<PlaylistRemoteEntity>> getAll();
+    Flowable<List<PlaylistRemoteEntity>> getAll();
 
     @Override
     @Query("DELETE FROM " + REMOTE_PLAYLIST_TABLE)
-    public abstract int deleteAll();
+    int deleteAll();
 
     @Override
     @Query("SELECT * FROM " + REMOTE_PLAYLIST_TABLE
             + " WHERE " + REMOTE_PLAYLIST_SERVICE_ID + " = :serviceId")
-    public abstract Flowable<List<PlaylistRemoteEntity>> listByService(int serviceId);
+    Flowable<List<PlaylistRemoteEntity>> listByService(int serviceId);
 
     @Query("SELECT * FROM " + REMOTE_PLAYLIST_TABLE + " WHERE "
             + REMOTE_PLAYLIST_URL + " = :url AND " + REMOTE_PLAYLIST_SERVICE_ID + " = :serviceId")
-    public abstract Flowable<List<PlaylistRemoteEntity>> getPlaylist(long serviceId, String url);
+    Flowable<List<PlaylistRemoteEntity>> getPlaylist(long serviceId, String url);
 
     @Query("SELECT " + REMOTE_PLAYLIST_ID + " FROM " + REMOTE_PLAYLIST_TABLE
             + " WHERE " + REMOTE_PLAYLIST_URL + " = :url "
             + "AND " + REMOTE_PLAYLIST_SERVICE_ID + " = :serviceId")
-    abstract Long getPlaylistIdInternal(long serviceId, String url);
+    Long getPlaylistIdInternal(long serviceId, String url);
 
     @Transaction
-    public long upsert(final PlaylistRemoteEntity playlist) {
+    default long upsert(final PlaylistRemoteEntity playlist) {
         final Long playlistId = getPlaylistIdInternal(playlist.getServiceId(), playlist.getUrl());
 
         if (playlistId == null) {
@@ -55,5 +55,5 @@ public abstract class PlaylistRemoteDAO implements BasicDAO<PlaylistRemoteEntity
 
     @Query("DELETE FROM " + REMOTE_PLAYLIST_TABLE
             + " WHERE " + REMOTE_PLAYLIST_ID + " = :playlistId")
-    public abstract int deletePlaylist(long playlistId);
+    int deletePlaylist(long playlistId);
 }

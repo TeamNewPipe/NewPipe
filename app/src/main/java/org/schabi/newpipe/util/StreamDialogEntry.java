@@ -12,6 +12,8 @@ import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
 import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -66,16 +68,14 @@ public enum StreamDialogEntry {
     }), // has to be set manually
 
     append_playlist(R.string.append_playlist, (fragment, item) -> {
-        if (fragment.getFragmentManager() != null) {
-            final PlaylistAppendDialog d = PlaylistAppendDialog
-                    .fromStreamInfoItems(Collections.singletonList(item));
+        final PlaylistAppendDialog d = PlaylistAppendDialog
+                .fromStreamInfoItems(Collections.singletonList(item));
 
-            PlaylistAppendDialog.onPlaylistFound(fragment.getContext(),
-                () -> d.show(fragment.getFragmentManager(), "StreamDialogEntry@append_playlist"),
-                () -> PlaylistCreationDialog.newInstance(d)
-                        .show(fragment.getFragmentManager(), "StreamDialogEntry@create_playlist")
-            );
-        }
+        PlaylistAppendDialog.onPlaylistFound(fragment.getContext(),
+            () -> d.show(fragment.getParentFragmentManager(), "StreamDialogEntry@append_playlist"),
+            () -> PlaylistCreationDialog.newInstance(d)
+                    .show(fragment.getParentFragmentManager(), "StreamDialogEntry@create_playlist")
+        );
     }),
 
     play_with_kodi(R.string.play_with_kodi_title, (fragment, item) -> {
@@ -83,12 +83,13 @@ public enum StreamDialogEntry {
         try {
             NavigationHelper.playWithKore(fragment.requireContext(), videoUrl);
         } catch (final Exception e) {
-            KoreUtil.showInstallKoreDialog(fragment.getActivity());
+            KoreUtils.showInstallKoreDialog(fragment.getActivity());
         }
     }),
 
     share(R.string.share, (fragment, item) ->
-            ShareUtils.shareText(fragment.getContext(), item.getName(), item.getUrl())),
+            ShareUtils.shareText(fragment.getContext(), item.getName(), item.getUrl(),
+                    item.getThumbnailUrl())),
 
     open_in_browser(R.string.open_in_browser, (fragment, item) ->
             ShareUtils.openUrlInBrowser(fragment.getContext(), item.getUrl()));

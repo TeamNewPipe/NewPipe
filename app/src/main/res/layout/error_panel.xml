@@ -15,7 +15,29 @@
         android:text="@string/general_error"
         android:textSize="16sp"
         android:textStyle="bold"
-        tools:text="Network error" />
+        tools:text="Account terminated" />
+
+    <TextView
+        android:id="@+id/error_message_service_info_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="6dp"
+        android:text="@string/general_error"
+        android:textSize="16sp"
+        tools:text="YouTube provides this reason:" />
+
+    <TextView
+        android:id="@+id/error_message_service_explenation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        android:text="@string/general_error"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        tools:text="This account has been terminated because we received multiple third-party claims of copyright infringement regarding material that the user posted." />
+
 
     <Button
         android:id="@+id/error_button_action"

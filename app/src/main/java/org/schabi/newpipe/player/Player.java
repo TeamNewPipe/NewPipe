@@ -123,11 +123,11 @@ import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
-import org.schabi.newpipe.util.KoreUtil;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.SerializedCache;
-import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.ExpandableSurfaceView;
 
 import java.io.IOException;
@@ -532,6 +532,7 @@ public final class Player implements
         binding.moreOptionsButton.setOnClickListener(this);
         binding.moreOptionsButton.setOnLongClickListener(this);
         binding.share.setOnClickListener(this);
+        binding.share.setOnLongClickListener(this);
         binding.fullScreenButton.setOnClickListener(this);
         binding.screenRotationButton.setOnClickListener(this);
         binding.playWithKodi.setOnClickListener(this);
@@ -670,7 +671,11 @@ public final class Player implements
                     //.doFinally()
                     .subscribe(
                             state -> {
-                                newQueue.setRecovery(newQueue.getIndex(), state.getProgressTime());
+                                if (!state.isFinished(newQueue.getItem().getDuration())) {
+                                    // resume playback only if the stream was not played to the end
+                                    newQueue.setRecovery(newQueue.getIndex(),
+                                            state.getProgressMillis());
+                                }
                                 initPlayback(newQueue, repeatMode, playbackSpeed, playbackPitch,
                                         playbackSkipSilence, playWhenReady, isMuted);
                             },
@@ -1032,7 +1037,7 @@ public final class Player implements
         // show kodi button if it supports the current service and it is enabled in settings
         binding.playWithKodi.setVisibility(videoPlayerSelected()
                 && playQueue != null && playQueue.getItem() != null
-                && KoreUtil.shouldShowPlayWithKodi(context, playQueue.getItem().getServiceId())
+                && KoreUtils.shouldShowPlayWithKodi(context, playQueue.getItem().getServiceId())
                 ? View.VISIBLE : View.GONE);
     }
     //endregion
@@ -1934,9 +1939,7 @@ public final class Player implements
                 break;
             case com.google.android.exoplayer2.Player.STATE_ENDED: // 4
                 changeState(STATE_COMPLETED);
-                if (currentMetadata != null) {
-                    resetStreamProgressState(currentMetadata.getMetadata());
-                }
+                saveStreamProgressStateCompleted();
                 isPrepared = false;
                 break;
         }
@@ -2157,7 +2160,10 @@ public final class Player implements
 
     private void onCompleted() {
         if (DEBUG) {
-            Log.d(TAG, "onCompleted() called");
+            Log.d(TAG, "onCompleted() called" + (playQueue == null ? ". playQueue is null" : ""));
+        }
+        if (playQueue == null) {
+            return;
         }
 
         animate(binding.playPauseButton, false, 0, AnimationType.SCALE_AND_ALPHA, 0,
@@ -2397,7 +2403,7 @@ public final class Player implements
             case DISCONTINUITY_REASON_SEEK_ADJUSTMENT:
             case DISCONTINUITY_REASON_INTERNAL:
                 if (playQueue.getIndex() != newWindowIndex) {
-                    resetStreamProgressState(playQueue.getItem());
+                    saveStreamProgressStateCompleted(); // current stream has ended
                     playQueue.setIndex(newWindowIndex);
                 }
                 break;
@@ -2788,61 +2794,47 @@ public final class Player implements
         }
     }
 
-    private void saveStreamProgressState(final StreamInfo info, final long progress) {
-        if (info == null) {
+    private void saveStreamProgressState(final long progressMillis) {
+        if (currentMetadata == null
+                || !prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
             return;
         }
         if (DEBUG) {
-            Log.d(TAG, "saveStreamProgressState() called");
+            Log.d(TAG, "saveStreamProgressState() called with: progressMillis=" + progressMillis
+                    + ", currentMetadata=[" + currentMetadata.getMetadata().getName() + "]");
         }
-        if (prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
-            final Disposable stateSaver = recordManager.saveStreamState(info, progress)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnError((e) -> {
-                        if (DEBUG) {
-                            e.printStackTrace();
-                        }
-                    })
-                    .onErrorComplete()
-                    .subscribe();
-            databaseUpdateDisposable.add(stateSaver);
-        }
-    }
 
-    private void resetStreamProgressState(final PlayQueueItem queueItem) {
-        if (queueItem == null) {
-            return;
-        }
-        if (prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
-            final Disposable stateSaver = queueItem.getStream()
-                    .flatMapCompletable(info -> recordManager.saveStreamState(info, 0))
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnError((e) -> {
-                        if (DEBUG) {
-                            e.printStackTrace();
-                        }
-                    })
-                    .onErrorComplete()
-                    .subscribe();
-            databaseUpdateDisposable.add(stateSaver);
-        }
-    }
-
-    private void resetStreamProgressState(final StreamInfo info) {
-        saveStreamProgressState(info, 0);
+        databaseUpdateDisposable
+                .add(recordManager.saveStreamState(currentMetadata.getMetadata(), progressMillis)
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError((e) -> {
+                    if (DEBUG) {
+                        e.printStackTrace();
+                    }
+                })
+                .onErrorComplete()
+                .subscribe());
     }
 
     public void saveStreamProgressState() {
-        if (exoPlayerIsNull() || currentMetadata == null) {
+        if (exoPlayerIsNull() || currentMetadata == null || playQueue == null
+                || playQueue.getIndex() != simpleExoPlayer.getCurrentWindowIndex()) {
+            // Make sure play queue and current window index are equal, to prevent saving state for
+            // the wrong stream on discontinuity (e.g. when the stream just changed but the
+            // playQueue index and currentMetadata still haven't updated)
             return;
         }
-        final StreamInfo currentInfo = currentMetadata.getMetadata();
-        if (playQueue != null) {
-            // Save current position. It will help to restore this position once a user
-            // wants to play prev or next stream from the queue
-            playQueue.setRecovery(playQueue.getIndex(), simpleExoPlayer.getContentPosition());
+        // Save current position. It will help to restore this position once a user
+        // wants to play prev or next stream from the queue
+        playQueue.setRecovery(playQueue.getIndex(), simpleExoPlayer.getContentPosition());
+        saveStreamProgressState(simpleExoPlayer.getCurrentPosition());
+    }
+
+    public void saveStreamProgressStateCompleted() {
+        if (currentMetadata != null) {
+            // current stream has ended, so the progress is its duration (+1 to overcome rounding)
+            saveStreamProgressState((currentMetadata.getMetadata().getDuration() + 1) * 1000);
         }
-        saveStreamProgressState(currentInfo, simpleExoPlayer.getCurrentPosition());
     }
     //endregion
 
@@ -2915,6 +2907,18 @@ public final class Player implements
         return currentMetadata == null
                 ? context.getString(R.string.unknown_content)
                 : currentMetadata.getMetadata().getUrl();
+    }
+
+    @NonNull
+    private String getVideoUrlAtCurrentTime() {
+        final int timeSeconds = binding.playbackSeekBar.getProgress() / 1000;
+        String videoUrl = getVideoUrl();
+        if (!isLive() && timeSeconds >= 0 && currentMetadata != null
+                && currentMetadata.getMetadata().getServiceId() == YouTube.getServiceId()) {
+            // Timestamp doesn't make sense in a live stream so drop it
+            videoUrl += ("&t=" + timeSeconds);
+        }
+        return videoUrl;
     }
 
     @NonNull
@@ -3580,7 +3584,8 @@ public final class Player implements
         } else if (v.getId() == binding.moreOptionsButton.getId()) {
             onMoreOptionsClicked();
         } else if (v.getId() == binding.share.getId()) {
-            onShareClicked();
+            ShareUtils.shareText(context, getVideoTitle(), getVideoUrlAtCurrentTime(),
+                            currentItem.getThumbnailUrl());
         } else if (v.getId() == binding.playWithKodi.getId()) {
             onPlayWithKodiClicked();
         } else if (v.getId() == binding.openInBrowser.getId()) {
@@ -3629,6 +3634,8 @@ public final class Player implements
             fragmentListener.onMoreOptionsLongClicked();
             hideControls(0, 0);
             hideSystemUIIfNeeded();
+        } else if (v.getId() == binding.share.getId()) {
+            ShareUtils.copyToClipboard(context, getVideoUrlAtCurrentTime());
         }
         return true;
     }
@@ -3700,19 +3707,6 @@ public final class Player implements
         showControls(DEFAULT_CONTROLS_DURATION);
     }
 
-    private void onShareClicked() {
-        // share video at the current time (youtube.com/watch?v=ID&t=SECONDS)
-        // Timestamp doesn't make sense in a live stream so drop it
-
-        final int ts = binding.playbackSeekBar.getProgress() / 1000;
-        String videoUrl = getVideoUrl();
-        if (!isLive() && ts >= 0 && currentMetadata != null
-                && currentMetadata.getMetadata().getServiceId() == YouTube.getServiceId()) {
-            videoUrl += ("&t=" + ts);
-        }
-        ShareUtils.shareText(context, getVideoTitle(), videoUrl);
-    }
-
     private void onPlayWithKodiClicked() {
         if (currentMetadata != null) {
             pause();
@@ -3722,7 +3716,7 @@ public final class Player implements
                 if (DEBUG) {
                     Log.i(TAG, "Failed to start kore", e);
                 }
-                KoreUtil.showInstallKoreDialog(getParentActivity());
+                KoreUtils.showInstallKoreDialog(getParentActivity());
             }
         }
     }

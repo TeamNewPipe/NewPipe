@@ -129,13 +129,8 @@ public final class CheckForNewAppVersion {
 
         if (BuildConfig.VERSION_CODE < versionCode) {
             // A pending intent to open the apk location url in the browser.
-            final Intent viewIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
-
-            final Intent intent = new Intent(Intent.ACTION_CHOOSER);
-            intent.putExtra(Intent.EXTRA_INTENT, viewIntent);
-            intent.putExtra(Intent.EXTRA_TITLE, R.string.open_with);
+            final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
             final PendingIntent pendingIntent
                     = PendingIntent.getActivity(application, 0, intent, 0);
 

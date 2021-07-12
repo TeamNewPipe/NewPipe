@@ -1,0 +1,12 @@
+#Nouveautés :
+-Reconnaissance des dates et tags dans la description
+-Ajout des paramètres manuel du mode tablette
+-Ajout de la possibilitée de cacher l'élément en cours dans le flux
+
+#Améliorations :
+-Supporte correctement l'infrastructure logicielle
+-Meilleur manibilité des erreurs de chaînes non disponibles ou supprimées
+-La fenètre de partage d'Android pour les utilisateur d'Android 10+ montre maintenant le titre
+-Mise à jour d'instances et support de liens de Pipe.
+
+#Et quelques corrections…

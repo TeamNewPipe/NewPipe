@@ -23,15 +23,15 @@ import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.ShareUtils;
-import org.schabi.newpipe.util.TextLinkifier;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.external_communication.TextLinkifier;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import icepick.State;
-import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 import static android.text.TextUtils.isEmpty;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
@@ -41,8 +41,7 @@ public class DescriptionFragment extends BaseFragment {
 
     @State
     StreamInfo streamInfo = null;
-    @Nullable
-    Disposable descriptionDisposable = null;
+    final CompositeDisposable descriptionDisposables = new CompositeDisposable();
     FragmentDescriptionBinding binding;
 
     public DescriptionFragment() {
@@ -67,10 +66,8 @@ public class DescriptionFragment extends BaseFragment {
 
     @Override
     public void onDestroy() {
+        descriptionDisposables.clear();
         super.onDestroy();
-        if (descriptionDisposable != null) {
-            descriptionDisposable.dispose();
-        }
     }
 
 
@@ -133,17 +130,17 @@ public class DescriptionFragment extends BaseFragment {
         final Description description = streamInfo.getDescription();
         switch (description.getType()) {
             case Description.HTML:
-                descriptionDisposable = TextLinkifier.createLinksFromHtmlBlock(requireContext(),
-                        description.getContent(), binding.detailDescriptionView,
-                        HtmlCompat.FROM_HTML_MODE_LEGACY);
+                TextLinkifier.createLinksFromHtmlBlock(binding.detailDescriptionView,
+                        description.getContent(), HtmlCompat.FROM_HTML_MODE_LEGACY, streamInfo,
+                        descriptionDisposables);
                 break;
             case Description.MARKDOWN:
-                descriptionDisposable = TextLinkifier.createLinksFromMarkdownText(requireContext(),
-                        description.getContent(), binding.detailDescriptionView);
+                TextLinkifier.createLinksFromMarkdownText(binding.detailDescriptionView,
+                        description.getContent(), streamInfo, descriptionDisposables);
                 break;
             case Description.PLAIN_TEXT: default:
-                descriptionDisposable = TextLinkifier.createLinksFromPlainText(requireContext(),
-                        description.getContent(), binding.detailDescriptionView);
+                TextLinkifier.createLinksFromPlainText(binding.detailDescriptionView,
+                        description.getContent(), streamInfo, descriptionDisposables);
                 break;
         }
     }
@@ -198,8 +195,8 @@ public class DescriptionFragment extends BaseFragment {
         });
 
         if (linkifyContent) {
-            TextLinkifier.createLinksFromPlainText(requireContext(),
-                    content, itemBinding.metadataContentView);
+            TextLinkifier.createLinksFromPlainText(itemBinding.metadataContentView, content, null,
+                    descriptionDisposables);
         } else {
             itemBinding.metadataContentView.setText(content);
         }

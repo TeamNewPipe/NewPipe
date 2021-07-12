@@ -361,8 +361,6 @@
     <string name="downloads_storage_use_saf_summary">El «Storage Access Framework» permite les descargues nuna tarxeta SD esterna.
 \nDalgunos preseos son incompatibles</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
-    <string name="downloads_storage_ask_summary_kitkat">Va pidísete l\'allugamientu onde guardar les descargues con cauna.
-\nEscueyi SAF si quies guardar les descargues na tarxeta SD esterna</string>
     <string name="downloads_storage_ask_summary">Va pidísete l\'allugamientu onde guardar les descargues con cauna</string>
     <string name="pause_downloads">Posar les descargues</string>
     <string name="start_downloads">Aniciar les descargues</string>

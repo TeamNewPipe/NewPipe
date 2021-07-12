@@ -8,7 +8,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
 import android.os.Bundle
-import android.os.Environment
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.Menu
@@ -16,12 +15,13 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
-import com.nononsenseapps.filepicker.Utils
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
@@ -52,17 +52,15 @@ import org.schabi.newpipe.local.subscription.item.HeaderWithMenuItem
 import org.schabi.newpipe.local.subscription.item.HeaderWithMenuItem.Companion.PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService.EXPORT_COMPLETE_ACTION
-import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService.KEY_FILE_PATH
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.IMPORT_COMPLETE_ACTION
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.PREVIOUS_EXPORT_MODE
-import org.schabi.newpipe.util.FilePickerActivityHelper
+import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
-import org.schabi.newpipe.util.ShareUtils
-import java.io.File
+import org.schabi.newpipe.util.external_communication.ShareUtils
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -85,6 +83,11 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private lateinit var importExportItem: FeedImportExportItem
     private lateinit var feedGroupsSortMenuItem: HeaderWithMenuItem
     private val subscriptionsSection = Section()
+
+    private val requestExportLauncher =
+        registerForActivityResult(StartActivityForResult(), this::requestExportResult)
+    private val requestImportLauncher =
+        registerForActivityResult(StartActivityForResult(), this::requestImportResult)
 
     @State
     @JvmField
@@ -188,44 +191,39 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun onImportPreviousSelected() {
-        startActivityForResult(FilePickerActivityHelper.chooseSingleFile(activity), REQUEST_IMPORT_CODE)
+        requestImportLauncher.launch(StoredFileHelper.getPicker(activity))
     }
 
     private fun onExportSelected() {
         val date = SimpleDateFormat("yyyyMMddHHmm", Locale.ENGLISH).format(Date())
         val exportName = "newpipe_subscriptions_$date.json"
-        val exportFile = File(Environment.getExternalStorageDirectory(), exportName)
 
-        startActivityForResult(FilePickerActivityHelper.chooseFileToSave(activity, exportFile.absolutePath), REQUEST_EXPORT_CODE)
+        requestExportLauncher.launch(
+            StoredFileHelper.getNewPicker(activity, exportName, "application/json", null)
+        )
     }
 
     private fun openReorderDialog() {
-        FeedGroupReorderDialog().show(requireFragmentManager(), null)
+        FeedGroupReorderDialog().show(parentFragmentManager, null)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (data != null && data.data != null && resultCode == Activity.RESULT_OK) {
-            if (requestCode == REQUEST_EXPORT_CODE) {
-                val exportFile = Utils.getFileForUri(data.data!!)
-                val parentFile = exportFile.parentFile!!
-                if (!parentFile.canWrite() || !parentFile.canRead()) {
-                    Toast.makeText(activity, R.string.invalid_directory, Toast.LENGTH_SHORT).show()
-                } else {
-                    activity.startService(
-                        Intent(activity, SubscriptionsExportService::class.java)
-                            .putExtra(KEY_FILE_PATH, exportFile.absolutePath)
-                    )
-                }
-            } else if (requestCode == REQUEST_IMPORT_CODE) {
-                val path = Utils.getFileForUri(data.data!!).absolutePath
-                ImportConfirmationDialog.show(
-                    this,
-                    Intent(activity, SubscriptionsImportService::class.java)
-                        .putExtra(KEY_MODE, PREVIOUS_EXPORT_MODE)
-                        .putExtra(KEY_VALUE, path)
-                )
-            }
+    fun requestExportResult(result: ActivityResult) {
+        if (result.data != null && result.resultCode == Activity.RESULT_OK) {
+            activity.startService(
+                Intent(activity, SubscriptionsExportService::class.java)
+                    .putExtra(SubscriptionsExportService.KEY_FILE_PATH, result.data?.data)
+            )
+        }
+    }
+
+    fun requestImportResult(result: ActivityResult) {
+        if (result.data != null && result.resultCode == Activity.RESULT_OK) {
+            ImportConfirmationDialog.show(
+                this,
+                Intent(activity, SubscriptionsImportService::class.java)
+                    .putExtra(KEY_MODE, PREVIOUS_EXPORT_MODE)
+                    .putExtra(KEY_VALUE, result.data?.data)
+            )
         }
     }
 
@@ -295,13 +293,17 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     private fun showLongTapDialog(selectedItem: ChannelInfoItem) {
         val commands = arrayOf(
-            getString(R.string.share), getString(R.string.open_in_browser),
+            getString(R.string.share),
+            getString(R.string.open_in_browser),
             getString(R.string.unsubscribe)
         )
 
         val actions = DialogInterface.OnClickListener { _, i ->
             when (i) {
-                0 -> ShareUtils.shareText(requireContext(), selectedItem.name, selectedItem.url)
+                0 -> ShareUtils.shareText(
+                    requireContext(), selectedItem.name, selectedItem.url,
+                    selectedItem.thumbnailUrl
+                )
                 1 -> ShareUtils.openUrlInBrowser(requireContext(), selectedItem.url)
                 2 -> deleteChannel(selectedItem)
             }
@@ -443,10 +445,5 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private fun getGridSpanCount(): Int {
         val minWidth = resources.getDimensionPixelSize(R.dimen.channel_item_grid_min_width)
         return max(1, floor(resources.displayMetrics.widthPixels / minWidth.toDouble()).toInt())
-    }
-
-    companion object {
-        private const val REQUEST_EXPORT_CODE = 666
-        private const val REQUEST_IMPORT_CODE = 667
     }
 }

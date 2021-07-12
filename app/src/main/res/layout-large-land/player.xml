@@ -531,7 +531,7 @@
                 app:tint="@color/white"
                 app:srcCompat="@drawable/ic_close" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/repeatButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

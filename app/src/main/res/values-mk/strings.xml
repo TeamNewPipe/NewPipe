@@ -464,8 +464,6 @@
     <string name="start_downloads">Започи со преземања</string>
     <string name="pause_downloads">Паузирај преземања</string>
     <string name="downloads_storage_ask_summary">Вие ќе добиете прашање каде да го зачувате секое преземање</string>
-    <string name="downloads_storage_ask_summary_kitkat">Вие ќе добиете прашање каде да го зачувате секое преземање
-\nИзберете SAF ако сакате да преземете во надворешна SD картичка</string>
     <string name="downloads_storage_use_saf_title">Користи SAF</string>
     <string name="downloads_storage_use_saf_summary">Рамката за пристап до складирање овозможува преземања во надворешна SD-картичка.
 \nЗабелешка: некои уреди не се поддржани.</string>

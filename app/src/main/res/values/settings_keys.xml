@@ -1220,5 +1220,22 @@
         <item>@string/grid</item>
     </string-array>
 
+    <string name="tablet_mode_key" translatable="false">tablet_mode</string>
+    <string name="tablet_mode_value" translatable="false">@string/tablet_mode_auto_key</string>
+
+    <string name="tablet_mode_auto_key" translatable="false">auto</string>
+    <string name="tablet_mode_on_key" translatable="false">on</string>
+    <string name="tablet_mode_off_key" translatable="false">off</string>
+    <string-array name="tablet_mode_values" translatable="false">
+        <item>@string/tablet_mode_auto_key</item>
+        <item>@string/tablet_mode_on_key</item>
+        <item>@string/tablet_mode_off_key</item>
+    </string-array>
+    <string-array name="tablet_mode_description" translatable="false">
+        <item>@string/auto</item>
+        <item>@string/on</item>
+        <item>@string/off</item>
+    </string-array>
+
     <string name="recaptcha_cookies_key" translatable="false">recaptcha_cookies_key</string>
 </resources>

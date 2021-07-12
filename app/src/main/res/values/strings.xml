@@ -66,7 +66,7 @@
     <string name="notification_action_2_title">Third action button</string>
     <string name="notification_action_3_title">Fourth action button</string>
     <string name="notification_action_4_title">Fifth action button</string>
-    <string name="notification_actions_summary">Edit each notification action below by tapping on it. Select up to three of them to be shown in the compact notification by using the checkboxes on the right.</string>
+    <string name="notification_actions_summary">Edit each notification action below by tapping on it. Select up to three of them to be shown in the compact notification by using the checkboxes on the right</string>
     <string name="notification_actions_at_most_three">You can select at most three actions to show in the compact notification!</string>
     <string name="notification_action_repeat">Repeat</string>
     <string name="notification_action_shuffle">Shuffle</string>
@@ -85,20 +85,20 @@
     <string name="popup_remember_size_pos_title">Remember popup properties</string>
     <string name="popup_remember_size_pos_summary">Remember last size and position of popup</string>
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
-    <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision. Seeking for 5, 15 or 25 seconds doesn\'t work with this.</string>
+    <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision. Seeking for 5, 15 or 25 seconds doesn\'t work with this</string>
     <string name="seek_duration_title">Fast-forward/-rewind seek duration</string>
     <string name="clear_queue_confirmation_title">Ask for confirmation before clearing a queue</string>
     <string name="clear_queue_confirmation_summary">Switching from one player to another may replace your queue</string>
     <string name="clear_queue_confirmation_description">The active player queue will be replaced</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
-    <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disk image cache.</string>
+    <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disk image cache</string>
     <string name="show_comments_title">Show comments</string>
     <string name="show_comments_summary">Turn off to hide comments</string>
     <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
     <string name="show_description_title">Show description</string>
     <string name="show_description_summary">Turn off to hide video description and additional information</string>
     <string name="show_meta_info_title">Show meta info</string>
-    <string name="show_meta_info_summary">Turn off to hide meta info boxes with additional information about the stream creator, stream content or a search request.</string>
+    <string name="show_meta_info_summary">Turn off to hide meta info boxes with additional information about the stream creator, stream content or a search request</string>
     <string name="thumbnail_cache_wipe_complete_notice">Image cache wiped</string>
     <string name="metadata_cache_wipe_title">Wipe cached metadata</string>
     <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
@@ -218,16 +218,17 @@
     <string name="clear_views_history_title">Clear watch history</string>
     <string name="clear_views_history_summary">Deletes the history of played streams and the playback positions</string>
     <string name="delete_view_history_alert">Delete entire watch history?</string>
-    <string name="watch_history_deleted">Watch history deleted.</string>
+    <string name="watch_history_deleted">Watch history deleted</string>
     <string name="clear_playback_states_title">Delete playback positions</string>
     <string name="clear_playback_states_summary">Deletes all playback positions</string>
     <string name="delete_playback_states_alert">Delete all playback positions?</string>
-    <string name="watch_history_states_deleted">Playback positions deleted.</string>
+    <string name="watch_history_states_deleted">Playback positions deleted</string>
     <string name="clear_search_history_title">Clear search history</string>
     <string name="clear_search_history_summary">Deletes history of search keywords</string>
     <string name="delete_search_history_alert">Delete entire search history?</string>
-    <string name="search_history_deleted">Search history deleted.</string>
+    <string name="search_history_deleted">Search history deleted</string>
     <string name="help">Help</string>
+    <string name="item_in_history">In History</string>
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="download_to_sdcard_error_title">External storage unavailable</string>
@@ -362,6 +363,7 @@
     <string name="msg_wait">Please wait…</string>
     <string name="msg_copied">Copied to clipboard</string>
     <string name="no_available_dir">Please define a download folder later in settings</string>
+    <string name="no_dir_yet">No download folder set yet, choose the default download folder now</string>
     <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
     <string name="one_item_deleted">1 item deleted.</string>
     <!-- Checksum types -->
@@ -448,7 +450,7 @@
     <string name="override_current_data">This will override your current setup.</string>
     <string name="import_settings">Do you want to also import settings?</string>
     <string name="error_unable_to_load_comments">Could not load comments</string>
-    <string name="localization_changes_requires_app_restart">The language will change once the app is restarted.</string>
+    <string name="localization_changes_requires_app_restart">The language will change once the app is restarted</string>
     <!-- Kiosk Names -->
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trending</string>
@@ -512,7 +514,7 @@
     <string name="caption_auto_generated">Auto-generated</string>
     <!-- Caption Settings -->
     <string name="caption_setting_title">Captions</string>
-    <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect.</string>
+    <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect</string>
     <!-- Debug Settings -->
     <string name="leakcanary" translatable="false">LeakCanary</string>
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
@@ -640,10 +642,12 @@
     <string name="start_downloads">Start downloads</string>
     <string name="pause_downloads">Pause downloads</string>
     <string name="downloads_storage_ask_title">Ask where to download</string>
-    <string name="downloads_storage_ask_summary">You will be asked where to save each download</string>
-    <string name="downloads_storage_ask_summary_kitkat">You will be asked where to save each download.\nChoose SAF if you want to download to an external SD card</string>
-    <string name="downloads_storage_use_saf_title">Use SAF</string>
-    <string name="downloads_storage_use_saf_summary">The \'Storage Access Framework\' allows downloads to an external SD card.\nSome devices are incompatible</string>
+    <string name="downloads_storage_ask_summary">You will be asked where to save each download.\nEnable the system folder picker (SAF) if you want to download to an external SD card</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">You will be asked where to save each download</string>
+    <string name="downloads_storage_use_saf_title">Use system folder picker (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">The \'Storage Access Framework\' allows downloads to an external SD card</string>
+    <string name="downloads_storage_use_saf_summary_api_19">The \'Storage Access Framework\' is not supported on Android KitKat and below</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Starting from Android 10 only \'Storage Access Framework\' is supported</string>
     <string name="choose_instance_prompt">Choose an instance</string>
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
@@ -690,11 +694,16 @@
     <string name="feed_update_threshold_title">Feed update threshold</string>
     <string name="feed_update_threshold_summary">Time after last update before a subscription is considered outdated — %s</string>
     <string name="feed_update_threshold_option_always_update">Always update</string>
+    <string name="feed_load_error">Error loading feed</string>
+    <string name="feed_load_error_account_info">Could not load feed for \'%s\'.</string>
+    <string name="feed_load_error_terminated">The author\'s account has been terminated.\nNewPipe will not be able to load this feed in the future.\nDo you want to unsubscribe from this channel?</string>
+    <string name="feed_load_error_fast_unknown">The fast feed mode does not provide more info on this.</string>
     <string name="feed_use_dedicated_fetch_method_title">Fetch from dedicated feed when available</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited amount of items and often incomplete information (e.g. no duration, item type, no live status).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited amount of items and often incomplete information (e.g. no duration, item type, no live status)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Enable fast mode</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Disable fast mode</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Do you think feed loading is too slow? If so, try enabling fast loading (you can change it in settings or by pressing the button below).\n\nNewPipe offers two feed loading strategies:\n• Fetching the whole subscription channel, which is slow but complete.\n• Using a dedicated service endpoint, which is fast but usually not complete.\n\nThe difference between the two is that the fast one usually lacks some information, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return less items.\n\nYouTube is an example of a service that offers this fast method with its RSS feed.\n\nSo the choice boils down to what you prefer: speed or precise information.</string>
+    <string name="feed_toggle_show_played_items">Show played items</string>
     <string name="content_not_supported">This content is not yet supported by NewPipe.\n\nIt will hopefully be supported in a future version.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
     <string name="channel_created_by">Created by %s</string>
@@ -709,6 +718,8 @@
     <string name="soundcloud_go_plus_content">This is a SoundCloud Go+ track, at least in your country, so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="private_content">This content is private, so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="youtube_music_premium_content">This video is available only to YouTube Music Premium members, so it cannot be streamed or downloaded by NewPipe.</string>
+    <string name="account_terminated">Account terminated</string>
+    <string name="service_provides_reason">%s provides this reason:</string>
     <string name="paid_content">This content is only available to users who have paid, so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="featured">Featured</string>
     <string name="radio">Radio</string>
@@ -732,4 +743,8 @@
     <string name="metadata_privacy_unlisted">Unlisted</string>
     <string name="metadata_privacy_private">Private</string>
     <string name="metadata_privacy_internal">Internal</string>
+    <string name="open_website_license">Open website</string>
+    <string name="tablet_mode_title">Tablet mode</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
 </resources>

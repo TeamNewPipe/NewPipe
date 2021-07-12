@@ -1,21 +1,23 @@
 package org.schabi.newpipe.settings;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
-import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.DownloaderImpl;
@@ -26,73 +28,68 @@ import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
-import org.schabi.newpipe.util.FilePathUtils;
-import org.schabi.newpipe.util.FilePickerActivityHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
+import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
-    private static final int REQUEST_IMPORT_PATH = 8945;
-    private static final int REQUEST_EXPORT_PATH = 30945;
+    private static final String ZIP_MIME_TYPE = "application/zip";
+    private static final SimpleDateFormat EXPORT_DATE_FORMAT
+            = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
 
     private ContentSettingsManager manager;
 
     private String importExportDataPathKey;
-
     private String thumbnailLoadToggleKey;
     private String youtubeRestrictedModeEnabledKey;
 
+    @Nullable private Uri lastImportExportDataUri = null;
     private Localization initialSelectedLocalization;
     private ContentCountry initialSelectedContentCountry;
     private String initialLanguage;
+    private final ActivityResultLauncher<Intent> requestImportPathLauncher =
+            registerForActivityResult(new StartActivityForResult(), this::requestImportPathResult);
+    private final ActivityResultLauncher<Intent> requestExportPathLauncher =
+            registerForActivityResult(new StartActivityForResult(), this::requestExportPathResult);
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         final File homeDir = ContextCompat.getDataDir(requireContext());
+        Objects.requireNonNull(homeDir);
         manager = new ContentSettingsManager(new NewPipeFileLocator(homeDir));
         manager.deleteSettingsFile();
 
-        addPreferencesFromResource(R.xml.content_settings);
-
         importExportDataPathKey = getString(R.string.import_export_data_path);
-        final Preference importDataPreference = findPreference(getString(R.string.import_data));
-        importDataPreference.setOnPreferenceClickListener(p -> {
-            final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
-                            FilePickerActivityHelper.MODE_FILE);
-            final String path = defaultPreferences.getString(importExportDataPathKey, "");
-            if (FilePathUtils.isValidDirectoryPath(path)) {
-                i.putExtra(FilePickerActivityHelper.EXTRA_START_PATH, path);
-            }
-            startActivityForResult(i, REQUEST_IMPORT_PATH);
-            return true;
-        });
-
-        final Preference exportDataPreference = findPreference(getString(R.string.export_data));
-        exportDataPreference.setOnPreferenceClickListener(p -> {
-            final Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
-                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
-                            FilePickerActivityHelper.MODE_DIR);
-            final String path = defaultPreferences.getString(importExportDataPathKey, "");
-            if (FilePathUtils.isValidDirectoryPath(path)) {
-                i.putExtra(FilePickerActivityHelper.EXTRA_START_PATH, path);
-            }
-            startActivityForResult(i, REQUEST_EXPORT_PATH);
-            return true;
-        });
-
         thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
         youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
+
+        addPreferencesFromResource(R.xml.content_settings);
+
+        final Preference importDataPreference = requirePreference(R.string.import_data);
+        importDataPreference.setOnPreferenceClickListener((Preference p) -> {
+            requestImportPathLauncher.launch(
+                    StoredFileHelper.getPicker(requireContext(), getImportExportDataUri()));
+            return true;
+        });
+
+        final Preference exportDataPreference = requirePreference(R.string.export_data);
+        exportDataPreference.setOnPreferenceClickListener((final Preference p) -> {
+
+            requestExportPathLauncher.launch(
+                    StoredFileHelper.getNewPicker(requireContext(),
+                            "NewPipeData-" + EXPORT_DATE_FORMAT.format(new Date()) + ".zip",
+                            ZIP_MIME_TYPE, getImportExportDataUri()));
+            return true;
+        });
 
         initialSelectedLocalization = org.schabi.newpipe.util.Localization
                 .getPreferredLocalization(requireContext());
@@ -101,8 +98,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         initialLanguage = PreferenceManager
                 .getDefaultSharedPreferences(requireContext()).getString("app_language_key", "en");
 
-        final Preference clearCookiePref = findPreference(getString(R.string.clear_cookie_key));
-
+        final Preference clearCookiePref = requirePreference(R.string.clear_cookie_key);
         clearCookiePref.setOnPreferenceClickListener(preference -> {
             defaultPreferences.edit()
                     .putString(getString(R.string.recaptcha_cookies_key), "").apply();
@@ -163,64 +159,58 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
     }
 
-    @Override
-    public void onActivityResult(final int requestCode, final int resultCode,
-                                 @NonNull final Intent data) {
+    private void requestExportPathResult(final ActivityResult result) {
         assureCorrectAppLanguage(getContext());
-        super.onActivityResult(requestCode, resultCode, data);
-        if (DEBUG) {
-            Log.d(TAG, "onActivityResult() called with: "
-                    + "requestCode = [" + requestCode + "], "
-                    + "resultCode = [" + resultCode + "], "
-                    + "data = [" + data + "]");
-        }
+        if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+            lastImportExportDataUri = result.getData().getData(); // will be saved only on success
 
-        if ((requestCode == REQUEST_IMPORT_PATH || requestCode == REQUEST_EXPORT_PATH)
-                && resultCode == Activity.RESULT_OK && data.getData() != null) {
-            final File file = Utils.getFileForUri(data.getData());
+            final StoredFileHelper file
+                    = new StoredFileHelper(getContext(), result.getData().getData(), ZIP_MIME_TYPE);
 
-            if (requestCode == REQUEST_EXPORT_PATH) {
-                exportDatabase(file);
-            } else {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-                builder.setMessage(R.string.override_current_data)
-                        .setPositiveButton(getString(R.string.finish),
-                                (d, id) -> importDatabase(file))
-                        .setNegativeButton(android.R.string.cancel,
-                                (d, id) -> d.cancel());
-                builder.create().show();
-            }
+            exportDatabase(file);
         }
     }
 
-    private void exportDatabase(@NonNull final File folder) {
-        try {
-            final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
-            final String path = folder.getAbsolutePath() + "/NewPipeData-"
-                    + sdf.format(new Date()) + ".zip";
+    private void requestImportPathResult(final ActivityResult result) {
+        assureCorrectAppLanguage(getContext());
+        if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+            lastImportExportDataUri = result.getData().getData(); // will be saved only on success
 
+            final StoredFileHelper file
+                    = new StoredFileHelper(getContext(), result.getData().getData(), ZIP_MIME_TYPE);
+
+            new AlertDialog.Builder(requireActivity())
+                    .setMessage(R.string.override_current_data)
+                    .setPositiveButton(R.string.finish, (d, id) ->
+                            importDatabase(file))
+                    .setNegativeButton(R.string.cancel, (d, id) ->
+                            d.cancel())
+                    .create()
+                    .show();
+        }
+    }
+
+    private void exportDatabase(final StoredFileHelper file) {
+        try {
             //checkpoint before export
             NewPipeDatabase.checkpoint();
 
             final SharedPreferences preferences = PreferenceManager
-                    .getDefaultSharedPreferences(requireContext());
-            manager.exportDatabase(preferences, path);
+                .getDefaultSharedPreferences(requireContext());
+            manager.exportDatabase(preferences, file);
 
-            setImportExportDataPath(folder, false);
-
+            saveLastImportExportDataUri(false); // save export path only on success
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
         } catch (final Exception e) {
             ErrorActivity.reportUiErrorInSnackbar(this, "Exporting database", e);
         }
     }
 
-    private void importDatabase(@NonNull final File file) {
-        final String filePath = file.getAbsolutePath();
-
+    private void importDatabase(final StoredFileHelper file) {
         // check if file is supported
-        if (!ZipHelper.isValidZipFile(filePath)) {
+        if (!ZipHelper.isValidZipFile(file)) {
             Toast.makeText(getContext(), R.string.no_valid_zip_file, Toast.LENGTH_SHORT)
-                    .show();
+                .show();
             return;
         }
 
@@ -229,29 +219,29 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 throw new Exception("Could not create databases dir");
             }
 
-            if (!manager.extractDb(filePath)) {
+            if (!manager.extractDb(file)) {
                 Toast.makeText(getContext(), R.string.could_not_import_all_files, Toast.LENGTH_LONG)
-                        .show();
+                    .show();
             }
 
-            //If settings file exist, ask if it should be imported.
-            if (manager.extractSettings(filePath)) {
+            // if settings file exist, ask if it should be imported.
+            if (manager.extractSettings(file)) {
                 final AlertDialog.Builder alert = new AlertDialog.Builder(requireContext());
                 alert.setTitle(R.string.import_settings);
 
                 alert.setNegativeButton(android.R.string.no, (dialog, which) -> {
                     dialog.dismiss();
-                    finishImport(file);
+                    finishImport();
                 });
                 alert.setPositiveButton(getString(R.string.finish), (dialog, which) -> {
                     dialog.dismiss();
                     manager.loadSharedPreferences(PreferenceManager
-                            .getDefaultSharedPreferences(requireContext()));
-                    finishImport(file);
+                        .getDefaultSharedPreferences(requireContext()));
+                    finishImport();
                 });
                 alert.show();
             } else {
-                finishImport(file);
+                finishImport();
             }
         } catch (final Exception e) {
             ErrorActivity.reportUiErrorInSnackbar(this, "Importing database", e);
@@ -260,39 +250,29 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     /**
      * Save import path and restart system.
-     *
-     * @param file The file of the created backup
      */
-    private void finishImport(@NonNull final File file) {
-        if (file.getParentFile() != null) {
-            //immediately because app is about to exit
-            setImportExportDataPath(file.getParentFile(), true);
-        }
-
+    private void finishImport() {
+        // save import path only on success; save immediately because app is about to exit
+        saveLastImportExportDataUri(true);
         // restart app to properly load db
-        System.exit(0);
+        NavigationHelper.restartApp(requireActivity());
     }
 
-    @SuppressLint("ApplySharedPref")
-    private void setImportExportDataPath(@NonNull final File file, final boolean immediately) {
-        final String directoryPath;
-        if (file.isDirectory()) {
-            directoryPath = file.getAbsolutePath();
-        } else {
-            final File parentFile = file.getParentFile();
-            if (parentFile != null) {
-                directoryPath = parentFile.getAbsolutePath();
+    private Uri getImportExportDataUri() {
+        final String path = defaultPreferences.getString(importExportDataPathKey, null);
+        return isBlank(path) ? null : Uri.parse(path);
+    }
+
+    private void saveLastImportExportDataUri(final boolean immediately) {
+        if (lastImportExportDataUri != null) {
+            final SharedPreferences.Editor editor = defaultPreferences.edit()
+                    .putString(importExportDataPathKey, lastImportExportDataUri.toString());
+            if (immediately) {
+                // noinspection ApplySharedPref
+                editor.commit(); // app about to be restarted, commit immediately
             } else {
-                directoryPath = "";
+                editor.apply();
             }
-        }
-        final SharedPreferences.Editor editor = defaultPreferences
-                .edit()
-                .putString(importExportDataPathKey, directoryPath);
-        if (immediately) {
-            editor.commit();
-        } else {
-            editor.apply();
         }
     }
 }

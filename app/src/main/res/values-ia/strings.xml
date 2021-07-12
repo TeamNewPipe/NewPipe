@@ -4,7 +4,7 @@
     <string name="open_in_browser">Aperir in le navigator</string>
     <string name="share">Compartir</string>
     <string name="download">Discargar</string>
-    <string name="search">Cercar</string>
+    <string name="search">Cerca</string>
     <string name="settings">Configurationes</string>
     <string name="share_dialog_title">Compartir con</string>
     <string name="choose_browser">Seliger un navigator</string>
@@ -86,7 +86,7 @@
     <string name="background_player_playing_toast">Es reproduce in fundo</string>
     <string name="popup_playing_toast">Es reproduce in modo emergente</string>
     <string name="content">Contento</string>
-    <string name="show_age_restricted_content_title">Contento restricte per etate</string>
+    <string name="show_age_restricted_content_title">Monstrar contento restricte per etate</string>
     <string name="duration_live">In directe</string>
     <string name="downloads">Discargamentos</string>
     <string name="downloads_title">Discargamentos</string>
@@ -193,16 +193,16 @@
     <string name="clear_search_history_summary">Dele le chronologia de parolas clave de cerca</string>
     <string name="delete_search_history_alert">Deler omne chronologia de cerca\?</string>
     <string name="search_history_deleted">Chronologia de cerca delite.</string>
-    <string name="export_data_summary">Exportar le chronologia, subscriptiones e listas de reproduction</string>
-    <string name="import_data_summary">Reimplaciar tu chronologia e subscriptiones currente</string>
+    <string name="export_data_summary">Exportar le chronologia, subscriptiones, listas de reproduction e configurationes</string>
+    <string name="import_data_summary">Reimplaciar tu chronologia, subscriptiones e (optionalmente) configurationes currente</string>
     <string name="remove_watched_popup_warning">Le videos jam observate ante e post de esser addite al lista de reproduction essera removite.
 \nSecur que tu vole\? Isto non pote disfacer se!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Si, e le videos partialmente observate</string>
     <string name="remove_watched_popup_title">Deler le videos observate\?</string>
     <string name="remove_watched">Deler le videos observate</string>
     <plurals name="watching">
-        <item quantity="one">%s observante</item>
-        <item quantity="other">%s observante</item>
+        <item quantity="one">%s visualisation</item>
+        <item quantity="other">%s visualisationes</item>
     </plurals>
     <string name="no_one_watching">Nemo is observante</string>
     <string name="watch_history_deleted">Chronologia de reproductiones vacuate.</string>
@@ -257,4 +257,8 @@
     <string name="night_theme_title">Thema nocturne</string>
     <string name="notification_action_nothing">Nihil</string>
     <string name="show_description_title">Monstrar le description</string>
+    <string name="metadata_language">Lingua</string>
+    <string name="metadata_support">Supporto</string>
+    <string name="recent">Recente</string>
+    <string name="metadata_privacy_internal">Interne</string>
 </resources>

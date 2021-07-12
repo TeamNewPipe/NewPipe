@@ -227,6 +227,25 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         initSearchListeners();
     }
 
+    private void updateService() {
+        try {
+            service = NewPipe.getService(serviceId);
+        } catch (final Exception e) {
+            ErrorActivity.reportUiErrorInSnackbar(this,
+                    "Getting service for id " + serviceId, e);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        if (DEBUG) {
+            Log.d(TAG, "onStart() called");
+        }
+        super.onStart();
+
+        updateService();
+    }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -250,13 +269,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
         super.onResume();
 
-        try {
-            service = NewPipe.getService(serviceId);
-        } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(this,
-                    "Getting service for id " + serviceId, e);
-        }
-
         if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
             initSuggestionObserver();
         }
@@ -278,8 +290,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
         handleSearchSuggestion();
 
-        disposables.add(showMetaInfoInTextView(metaInfo == null ? null : Arrays.asList(metaInfo),
-                    searchBinding.searchMetaInfoTextView, searchBinding.searchMetaInfoSeparator));
+        showMetaInfoInTextView(metaInfo == null ? null : Arrays.asList(metaInfo),
+                searchBinding.searchMetaInfoTextView, searchBinding.searchMetaInfoSeparator,
+                disposables);
 
         if (TextUtils.isEmpty(searchString) || wasSearchFocused) {
             showKeyboardSearch();
@@ -412,7 +425,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
         final ActionBar supportActionBar = activity.getSupportActionBar();
@@ -426,6 +440,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         int itemId = 0;
         boolean isFirstItem = true;
         final Context c = getContext();
+
+        if (service == null) {
+            Log.w(TAG, "onCreateOptionsMenu() called with null service");
+            updateService();
+        }
+
         for (final String filter : service.getSearchQHFactory().getAvailableContentFilter()) {
             if (filter.equals(YoutubeSearchQueryHandlerFactory.MUSIC_SONGS)) {
                 final MenuItem musicItem = menu.add(2,
@@ -841,7 +861,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         infoListAdapter.clearStreamItemList();
         hideSuggestionsPanel();
         showMetaInfoInTextView(null, searchBinding.searchMetaInfoTextView,
-                searchBinding.searchMetaInfoSeparator);
+                searchBinding.searchMetaInfoSeparator, disposables);
         hideKeyboardSearch();
 
         disposables.add(historyRecordManager.onSearched(serviceId, theSearchString)
@@ -986,8 +1006,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         // List<MetaInfo> cannot be bundled without creating some containers
         metaInfo = new MetaInfo[result.getMetaInfo().size()];
         metaInfo = result.getMetaInfo().toArray(metaInfo);
-        disposables.add(showMetaInfoInTextView(result.getMetaInfo(),
-                searchBinding.searchMetaInfoTextView, searchBinding.searchMetaInfoSeparator));
+        showMetaInfoInTextView(result.getMetaInfo(), searchBinding.searchMetaInfoTextView,
+                searchBinding.searchMetaInfoSeparator, disposables);
 
         handleSearchSuggestion();
 

@@ -12,13 +12,16 @@ import android.view.KeyEvent;
 import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.App;
+import org.schabi.newpipe.R;
 
 public final class DeviceUtils {
 
     private static final String AMAZON_FEATURE_FIRE_TV = "amazon.hardware.fire_tv";
     private static Boolean isTV = null;
+    private static Boolean isFireTV = null;
 
     /*
      * Devices that do not support media tunneling
@@ -33,6 +36,16 @@ public final class DeviceUtils {
     private DeviceUtils() {
     }
 
+    public static boolean isFireTv() {
+        if (isFireTV != null) {
+            return isFireTV;
+        }
+
+        isFireTV =
+                App.getApp().getPackageManager().hasSystemFeature(AMAZON_FEATURE_FIRE_TV);
+        return isFireTV;
+    }
+
     public static boolean isTv(final Context context) {
         if (isTV != null) {
             return isTV;
@@ -43,7 +56,7 @@ public final class DeviceUtils {
         // from doc: https://developer.android.com/training/tv/start/hardware.html#runtime-check
         boolean isTv = ContextCompat.getSystemService(context, UiModeManager.class)
                 .getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION
-                || pm.hasSystemFeature(AMAZON_FEATURE_FIRE_TV)
+                || isFireTv()
                 || pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION);
 
         // from https://stackoverflow.com/a/58932366
@@ -65,10 +78,18 @@ public final class DeviceUtils {
     }
 
     public static boolean isTablet(@NonNull final Context context) {
-        return (context
-                .getResources()
-                .getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
-                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+        final String tabletModeSetting = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.tablet_mode_key), "");
+
+        if (tabletModeSetting.equals(context.getString(R.string.tablet_mode_on_key))) {
+            return true;
+        } else if (tabletModeSetting.equals(context.getString(R.string.tablet_mode_off_key))) {
+            return false;
+        }
+
+        // else automatically determine whether we are in a tablet or not
+        return (context.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
     public static boolean isConfirmKey(final int keyCode) {

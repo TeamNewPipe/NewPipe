@@ -33,7 +33,7 @@
     <string name="fragment_feed_title">Mis on uut</string>
     <string name="controls_background_title">Taust</string>
     <string name="controls_popup_title">Hüpikaken</string>
-    <string name="controls_add_to_playlist_title">Lisa</string>
+    <string name="controls_add_to_playlist_title">Lisa esitusloendisse</string>
     <string name="download_path_title">Video allalaadimise kaust</string>
     <string name="download_path_summary">Alla laetud videos salvestatakse siia</string>
     <string name="download_path_dialog_title">Vali alla laaditud videofailide kaust</string>
@@ -60,9 +60,9 @@
     <string name="popup_remember_size_pos_title">Pea hüpikakna suurus ja asukoht meeles</string>
     <string name="popup_remember_size_pos_summary">Pea hüpikakna viimane suurus ja asukoht meeles</string>
     <string name="use_inexact_seek_title">Kasuta ebatäpset kerimist</string>
-    <string name="use_inexact_seek_summary">Ebatäpne kerimine lubab pleieril otsida asukohta kiiremini täpsuse arvel. Sellega ei tööta 5, 15 või 25 sekundi kaupa kerimine.</string>
+    <string name="use_inexact_seek_summary">Ebatäpne kerimine lubab meediamängijal otsida asukohta kiiremini täpsuse arvel. Sellega ei tööta 5, 15 või 25 sekundi kaupa kerimine</string>
     <string name="download_thumbnail_title">Laadi pisipildid</string>
-    <string name="download_thumbnail_summary">Lülita välja, et keelata pisipiltide laadimist, andmete salvestamist ja mälu kasutust. Muutmine puhastab vahemälu nii kettal kui ka mälus.</string>
+    <string name="download_thumbnail_summary">Lülita välja, et keelata pisipiltide laadimist, andmete salvestamist ja mälukasutust. Muutmine puhastab vahemälu nii kettal kui ka mälus</string>
     <string name="thumbnail_cache_wipe_complete_notice">Pildid kustutati vahemälust</string>
     <string name="metadata_cache_wipe_title">Kustuta metaandmed vahemälust</string>
     <string name="metadata_cache_wipe_summary">Kustuta veebilehtede andmed vahemälust</string>
@@ -107,7 +107,7 @@
     <string name="error_report_title">Vea teatamine</string>
     <string name="all">Kõik</string>
     <string name="channel">Kanal</string>
-    <string name="playlist">Pleilist</string>
+    <string name="playlist">Esitusloend</string>
     <string name="yes">Jah</string>
     <string name="later">Hiljem</string>
     <string name="disabled">Keelatud</string>
@@ -309,26 +309,26 @@
     <string name="always_ask_open_action">Küsi alati</string>
     <string name="preferred_player_fetcher_notification_title">Info hankimine…</string>
     <string name="preferred_player_fetcher_notification_message">Soovitud sisu laadimine</string>
-    <string name="create_playlist">Uus pleilist</string>
+    <string name="create_playlist">Uus esitusloend</string>
     <string name="delete_playlist">Kustuta</string>
     <string name="rename_playlist">Nimeta ümber</string>
     <string name="name">Nimi</string>
     <string name="append_playlist">Lisa esitusloendisse</string>
     <string name="set_as_playlist_thumbnail">Määra esitusloendi pisipildiks</string>
-    <string name="bookmark_playlist">Lisa pleilist järjehoidjaks</string>
+    <string name="bookmark_playlist">Lisa esitusloend järjehoidjaks</string>
     <string name="unbookmark_playlist">Eemalda järjehoidja</string>
-    <string name="delete_playlist_prompt">Kas kustutada see pleilist?</string>
-    <string name="playlist_creation_success">Pleilist loodud</string>
-    <string name="playlist_add_stream_success">Lisati pleilisti</string>
-    <string name="playlist_thumbnail_change_success">Pleilisti pisipilt muudetud.</string>
-    <string name="playlist_delete_failure">Pleilisti kustutamine nurjus.</string>
+    <string name="delete_playlist_prompt">Kas kustutame selle esitusloendi\?</string>
+    <string name="playlist_creation_success">Esitusloend loodud</string>
+    <string name="playlist_add_stream_success">Lisasime esitusloendisse</string>
+    <string name="playlist_thumbnail_change_success">Esitusloendi pisipilt on muudetud.</string>
+    <string name="playlist_delete_failure">Esitusloendi kustutamine ei õnnestunud.</string>
     <string name="caption_none">Subtiitriteta</string>
     <string name="resize_fit">Mahuta</string>
     <string name="resize_fill">Täida</string>
     <string name="resize_zoom">Suumi</string>
     <string name="caption_auto_generated">Automaatselt loodud</string>
     <string name="caption_setting_title">Subtiitrid</string>
-    <string name="caption_setting_description">Kohanda pleieri subtiitrite teksti suurust ja tausta. Jõustamiseks tuleb rakendus taaskäivitada.</string>
+    <string name="caption_setting_description">Kohanda subtiitrite teksti suurust ja tausta meediamängijas. Jõustamiseks taaskäivita rakendus</string>
     <string name="enable_leak_canary_summary">Mälulekke seire võib põhjustada rakenduse hangumise</string>
     <string name="import_export_title">Import/eksport</string>
     <string name="import_title">Import</string>
@@ -359,7 +359,7 @@
     <string name="limit_mobile_data_usage_title">Piira lahutust mobiilse andmeside kasutamisel</string>
     <string name="tab_main">Peamine</string>
     <string name="channels">Kanalid</string>
-    <string name="playlists">Pleilistid</string>
+    <string name="playlists">Esitusloendid</string>
     <string name="tracks">Lood</string>
     <string name="users">Kasutajad</string>
     <string name="switch_to_main">Lülitu peamisele</string>
@@ -471,7 +471,7 @@
     <string name="enable_playback_resume_summary">Taasa viimane esituskoht</string>
     <string name="enable_playback_resume_title">Jätka mängimisega</string>
     <string name="auto_queue_toggle">Lisa automaatselt esitusloendisse</string>
-    <string name="show_meta_info_summary">Lülita välja, et peita metateabe kastid lisateabega voo looja, sisu või otsingu päringuga.</string>
+    <string name="show_meta_info_summary">Lülita välja, et peita metateabe kastid lisateabega voo looja, sisu või otsingu päringuga</string>
     <string name="show_meta_info_title">Kuva metateave</string>
     <string name="show_description_summary">Lülita välja, et peita video kirjeldus ja lisateave</string>
     <string name="show_description_title">Kuva kirjeldus</string>
@@ -560,7 +560,7 @@
     <string name="wifi_only">Vaid Wi-Fi võrgus</string>
     <string name="autoplay_summary">Alusta esitamist automaatselt — %s</string>
     <string name="show_memory_leaks">Näita mälulekkeid</string>
-    <string name="playlist_no_uploader">Automaatselt loodud (üleslaadita ei leidu)</string>
+    <string name="playlist_no_uploader">Automaatselt loodud (üleslaadijat ei leidu)</string>
     <string name="unmute">Lõpeta summutamine</string>
     <string name="mute">Summuta</string>
     <string name="enqueued">Esitusjärjekorda lisatud</string>
@@ -618,13 +618,14 @@
         <item quantity="other">%d sekundit</item>
     </plurals>
     <string name="remove_watched_popup_warning">Sellega eemaldame vaadatud videod ja esitusloendisse lisatud videod.
-\nKas sa oled kindel\? Seda tegevuste ei saa hiljem tagasi pöörata!</string>
+\nKas sa oled kindel\? Seda tegevust ei saa hiljem tagasi pöörata!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Jah, sealhulgas videod, mille vaatmine jäi pooleli</string>
     <string name="remove_watched_popup_title">Kas eemaldame vaadatud videod\?</string>
     <string name="remove_watched">Eemalda vaadatud videod</string>
     <string name="systems_language">Kasuta süsteemi keelt</string>
     <string name="app_language_title">Rakenduse keel</string>
-    <string name="downloads_storage_ask_summary">Alati küsime kuhu kausta soovid faile alla laadida</string>
+    <string name="downloads_storage_ask_summary">Alati küsime kuhu kausta soovid faile alla laadida.
+\nKui soovid salvestada välisele SD kaardile, siis võta kasutusele süsteemi kaustavalija (system folder picker ehk SAF)</string>
     <string name="downloads_storage_ask_title">Küsi allalaaditavate failide salvestamise kausta</string>
     <string name="pause_downloads">Peata allalaadimised</string>
     <string name="start_downloads">Alusta allalaadimistega</string>
@@ -640,4 +641,36 @@
     <string name="disable_media_tunneling_summary">Lülita meedia tunneldamine välja juhul, kui esitamisel tekib must ekraan või pildi kuvamine on katkendlik</string>
     <string name="disable_media_tunneling_title">Lülita meedia tunneldamine välja</string>
     <string name="drawer_header_description">Vaheta teenust, hetkel on kasutusel:</string>
+    <string name="content_not_supported">NewPipe hetkel sellist võimaluist ei toeta.
+\n
+\nAga loodetavasti jõuame sellise võimaluse tulevasse versiooni lisada.</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Kanali tunnuspilt</string>
+    <string name="channel_created_by">Looja: %s</string>
+    <string name="show_thumbnail_title">Näita pisipilte</string>
+    <string name="show_thumbnail_summary">Kasuta pisipilti nii lukustusvaate kui teavituste taustana</string>
+    <string name="account_terminated">Kasutajakonto on suletud</string>
+    <string name="service_provides_reason">%s toob põhjuseks:</string>
+    <string name="description_select_enable">Võimalda valida kirjelduse teksti</string>
+    <string name="description_select_disable">Ära võimalda valida kirjelduse teksti</string>
+    <string name="metadata_category">Kategooria</string>
+    <string name="metadata_tags">Sildid</string>
+    <string name="metadata_licence">Litsents</string>
+    <string name="metadata_host">Host</string>
+    <string name="metadata_privacy_unlisted">Määratlemata</string>
+    <string name="off">Väljalülitatatud</string>
+    <string name="on">Kasutusel</string>
+    <string name="tablet_mode_title">Vaade tahvelarvuti jaoks</string>
+    <string name="open_website_license">Vaata veebis</string>
+    <string name="metadata_privacy_internal">Sisemine</string>
+    <string name="metadata_privacy_private">Privaatne</string>
+    <string name="metadata_privacy_public">Avalik</string>
+    <string name="metadata_thumbnail_url">Pisipildi URL</string>
+    <string name="metadata_support">Kasutajatugi</string>
+    <string name="metadata_language">Keel</string>
+    <string name="metadata_age_limit">Vanusepiir</string>
+    <string name="metadata_privacy">Privaatsus</string>
+    <string name="no_dir_yet">Allalaadimiste kaust on veel valimata - palun vali see nüüd</string>
+    <string name="playlist_page_summary">Esitusloendite vaade</string>
+    <string name="downloads_storage_use_saf_summary">„Storage Access Framework“-i ehk süsteemse kaustavalija kasutamisel saad andmeid salvestada ka välisele SD-kaardile</string>
+    <string name="downloads_storage_use_saf_title">Kasuta süsteemset kaustavalijat (SAF)</string>
 </resources>

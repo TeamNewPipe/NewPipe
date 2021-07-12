@@ -47,7 +47,7 @@ import java.util.List;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-import static org.schabi.newpipe.util.ShareUtils.shareText;
+import static org.schabi.newpipe.util.external_communication.ShareUtils.shareText;
 
 public final class PlayQueueActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,
@@ -313,7 +313,8 @@ public final class PlayQueueActivity extends AppCompatActivity
         final MenuItem share = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 3,
                 Menu.NONE, R.string.share);
         share.setOnMenuItemClickListener(menuItem -> {
-            shareText(getApplicationContext(), item.getTitle(), item.getUrl());
+            shareText(getApplicationContext(), item.getTitle(), item.getUrl(),
+                    item.getThumbnailUrl());
             return true;
         });
 
