@@ -602,8 +602,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.9"
-        android:background="?attr/windowBackground"
-        android:theme="@style/ContrastTintTheme">
+        android:background="?attr/windowBackground">
 
         <ImageButton
             android:id="@+id/overlay_thumbnail"
@@ -628,6 +627,7 @@
             android:focusable="true"
             android:gravity="center_vertical"
             android:orientation="vertical"
+            android:theme="@style/ContrastTintTheme"
             tools:ignore="RtlHardcoded">
 
             <TextView
@@ -667,6 +667,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/video_item_search_padding"
             android:paddingRight="@dimen/video_item_search_padding"
+            android:theme="@style/ContrastTintTheme"
             tools:ignore="RtlHardcoded">
 
             <ImageButton
