@@ -40,7 +40,6 @@ You'll see *exactly* what is sent, be able to add **your comments**, and then se
 * NewPipe uses [NewPipeExtractor](https://github.com/TeamNewPipe/NewPipeExtractor) to fetch data from services. If you need to change something there, you must test your changes in NewPipe. Telling NewPipe to use your extractor version can be accomplished by editing the `app/build.gradle` file: the comments under the "NewPipe libraries" section of `dependencies` will help you out.
 
 ### Kotlin in NewPipe
-* NewPipeExtractor shall remain Java only
 * NewPipe will remain mostly Java for time being
 * Contributions containing a simple conversion from Java to Kotlin should be avoided. Conversions to Kotlin should only be done if Kotlin actually brings improvements like bug fixes or better performance which are not, or only with much more effort, implementable in Java. The core team sees Java as an easier to learn and generally well adopted programming language.
 
