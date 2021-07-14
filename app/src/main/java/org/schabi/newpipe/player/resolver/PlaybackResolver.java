@@ -15,7 +15,6 @@ import com.google.android.exoplayer2.util.Util;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
-import org.schabi.newpipe.util.StreamTypeUtil;
 
 public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
 
@@ -23,7 +22,10 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
     default MediaSource maybeBuildLiveMediaSource(@NonNull final PlayerDataSource dataSource,
                                                   @NonNull final StreamInfo info) {
         final StreamType streamType = info.getStreamType();
-        if (!StreamTypeUtil.isLiveStream(streamType)) {
+        if (!(streamType == StreamType.AUDIO_LIVE_STREAM
+                || streamType == StreamType.LIVE_STREAM
+                || streamType == StreamType.POST_LIVE_AUDIO_STREAM
+                || streamType == StreamType.POST_LIVE_STREAM)) {
             return null;
         }
 
