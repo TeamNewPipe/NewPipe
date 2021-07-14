@@ -857,7 +857,7 @@ public final class Player implements
             Log.d(TAG, "onPlaybackShutdown() called");
         }
         // destroys the service, which in turn will destroy the player
-        service.onDestroy();
+        service.stopService();
     }
 
     public void smoothStopPlayer() {
@@ -1097,7 +1097,7 @@ public final class Player implements
                 pause();
                 break;
             case ACTION_CLOSE:
-                service.onDestroy();
+                service.stopService();
                 break;
             case ACTION_PLAY_PAUSE:
                 playPause();
@@ -1498,7 +1498,7 @@ public final class Player implements
                         Objects.requireNonNull(windowManager)
                                 .removeView(closeOverlayBinding.getRoot());
                         closeOverlayBinding = null;
-                        service.onDestroy();
+                        service.stopService();
                     }
                 }).start();
     }
