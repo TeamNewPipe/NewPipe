@@ -167,14 +167,6 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-
-        if (!isVisibleToUser && view != null) {
-            updateRelativeTimeViews()
-        }
-    }
-
     override fun initListeners() {
         super.initListeners()
         feedBinding.refreshRootView.setOnClickListener { reloadContent() }
