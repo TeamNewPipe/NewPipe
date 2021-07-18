@@ -132,6 +132,11 @@ public class DownloadDialog extends DialogFragment
             registerForActivityResult(
                     new StartActivityForResult(), this::requestDownloadPickVideoFolderResult);
 
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Instance creation
+    //////////////////////////////////////////////////////////////////////////*/
+
     public static DownloadDialog newInstance(final StreamInfo info) {
         final DownloadDialog dialog = new DownloadDialog();
         dialog.setInfo(info);
@@ -152,6 +157,11 @@ public class DownloadDialog extends DialogFragment
 
         return instance;
     }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Setters
+    //////////////////////////////////////////////////////////////////////////*/
 
     private void setInfo(final StreamInfo info) {
         this.currentInfo = info;
@@ -193,6 +203,11 @@ public class DownloadDialog extends DialogFragment
     public void setSelectedSubtitleStream(final int ssi) {
         this.selectedSubtitleIndex = ssi;
     }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Android lifecycle
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -263,10 +278,6 @@ public class DownloadDialog extends DialogFragment
         }, Context.BIND_AUTO_CREATE);
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Inits
-    //////////////////////////////////////////////////////////////////////////*/
-
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
@@ -322,6 +333,55 @@ public class DownloadDialog extends DialogFragment
         fetchStreamsSize();
     }
 
+    private void initToolbar(final Toolbar toolbar) {
+        if (DEBUG) {
+            Log.d(TAG, "initToolbar() called with: toolbar = [" + toolbar + "]");
+        }
+
+        toolbar.setTitle(R.string.download_dialog_title);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.inflateMenu(R.menu.dialog_url);
+        toolbar.setNavigationOnClickListener(v -> requireDialog().dismiss());
+        toolbar.setNavigationContentDescription(R.string.cancel);
+
+        okButton = toolbar.findViewById(R.id.okay);
+        okButton.setEnabled(false); // disable until the download service connection is done
+
+        toolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.okay) {
+                prepareSelectedDownload();
+                if (getActivity() instanceof RouterActivity) {
+                    getActivity().finish();
+                }
+                return true;
+            }
+            return false;
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        disposables.clear();
+    }
+
+    @Override
+    public void onDestroyView() {
+        dialogBinding = null;
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull final Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Icepick.saveInstanceState(this, outState);
+    }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Video, audio and subtitle spinners
+    //////////////////////////////////////////////////////////////////////////*/
+
     private void fetchStreamsSize() {
         disposables.clear();
         disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedVideoStreams)
@@ -356,30 +416,39 @@ public class DownloadDialog extends DialogFragment
                                 currentInfo.getServiceId()))));
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        disposables.clear();
+    private void setupAudioSpinner() {
+        if (getContext() == null) {
+            return;
+        }
+
+        dialogBinding.qualitySpinner.setAdapter(audioStreamsAdapter);
+        dialogBinding.qualitySpinner.setSelection(selectedAudioIndex);
+        setRadioButtonsState(true);
     }
 
-    @Override
-    public void onDestroyView() {
-        dialogBinding = null;
-        super.onDestroyView();
+    private void setupVideoSpinner() {
+        if (getContext() == null) {
+            return;
+        }
+
+        dialogBinding.qualitySpinner.setAdapter(videoStreamsAdapter);
+        dialogBinding.qualitySpinner.setSelection(selectedVideoIndex);
+        setRadioButtonsState(true);
     }
+
+    private void setupSubtitleSpinner() {
+        if (getContext() == null) {
+            return;
+        }
+
+        dialogBinding.qualitySpinner.setAdapter(subtitleStreamsAdapter);
+        dialogBinding.qualitySpinner.setSelection(selectedSubtitleIndex);
+        setRadioButtonsState(true);
+    }
+
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Radio group Video&Audio options - Listener
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onSaveInstanceState(@NonNull final Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Icepick.saveInstanceState(this, outState);
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Streams Spinner Listener
+    // Activity results
     //////////////////////////////////////////////////////////////////////////*/
 
     private void requestDownloadPickAudioFolderResult(final ActivityResult result) {
@@ -454,65 +523,10 @@ public class DownloadDialog extends DialogFragment
         }
     }
 
-    private void initToolbar(final Toolbar toolbar) {
-        if (DEBUG) {
-            Log.d(TAG, "initToolbar() called with: toolbar = [" + toolbar + "]");
-        }
-
-        toolbar.setTitle(R.string.download_dialog_title);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        toolbar.inflateMenu(R.menu.dialog_url);
-        toolbar.setNavigationOnClickListener(v -> requireDialog().dismiss());
-        toolbar.setNavigationContentDescription(R.string.cancel);
-
-        okButton = toolbar.findViewById(R.id.okay);
-        okButton.setEnabled(false); // disable until the download service connection is done
-
-        toolbar.setOnMenuItemClickListener(item -> {
-            if (item.getItemId() == R.id.okay) {
-                prepareSelectedDownload();
-                if (getActivity() instanceof RouterActivity) {
-                    getActivity().finish();
-                }
-                return true;
-            }
-            return false;
-        });
-    }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Utils
+    // Listeners
     //////////////////////////////////////////////////////////////////////////*/
-
-    private void setupAudioSpinner() {
-        if (getContext() == null) {
-            return;
-        }
-
-        dialogBinding.qualitySpinner.setAdapter(audioStreamsAdapter);
-        dialogBinding.qualitySpinner.setSelection(selectedAudioIndex);
-        setRadioButtonsState(true);
-    }
-
-    private void setupVideoSpinner() {
-        if (getContext() == null) {
-            return;
-        }
-
-        dialogBinding.qualitySpinner.setAdapter(videoStreamsAdapter);
-        dialogBinding.qualitySpinner.setSelection(selectedVideoIndex);
-        setRadioButtonsState(true);
-    }
-
-    private void setupSubtitleSpinner() {
-        if (getContext() == null) {
-            return;
-        }
-
-        dialogBinding.qualitySpinner.setAdapter(subtitleStreamsAdapter);
-        dialogBinding.qualitySpinner.setSelection(selectedSubtitleIndex);
-        setRadioButtonsState(true);
-    }
 
     @Override
     public void onCheckedChanged(final RadioGroup group, @IdRes final int checkedId) {
@@ -563,6 +577,11 @@ public class DownloadDialog extends DialogFragment
     public void onNothingSelected(final AdapterView<?> parent) {
     }
 
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Download
+    //////////////////////////////////////////////////////////////////////////*/
+
     protected void setupDownloadOptions() {
         setRadioButtonsState(false);
 
@@ -575,7 +594,7 @@ public class DownloadDialog extends DialogFragment
         dialogBinding.subtitleButton.setVisibility(isSubtitleStreamsAvailable
                 ? View.VISIBLE : View.GONE);
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
         final String defaultMedia = prefs.getString(getString(R.string.last_used_download_type),
                     getString(R.string.last_download_type_video_key));
 
