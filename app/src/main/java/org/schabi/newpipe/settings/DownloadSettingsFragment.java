@@ -9,6 +9,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
@@ -18,6 +21,7 @@ import androidx.preference.SwitchPreferenceCompat;
 import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 
 import java.io.File;
@@ -27,14 +31,10 @@ import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
-import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
-
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class DownloadSettingsFragment extends BasePreferenceFragment {
     public static final boolean IGNORE_RELEASE_ON_OLD_PATH = true;
-    private static final int REQUEST_DOWNLOAD_VIDEO_PATH = 0x1235;
-    private static final int REQUEST_DOWNLOAD_AUDIO_PATH = 0x1236;
     private String downloadPathVideoPreference;
     private String downloadPathAudioPreference;
     private String storageUseSafPreference;
@@ -44,6 +44,12 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     private Preference prefStorageAsk;
 
     private Context ctx;
+    private final ActivityResultLauncher<Intent> requestDownloadVideoPathLauncher =
+            registerForActivityResult(
+                    new StartActivityForResult(), this::requestDownloadVideoPathResult);
+    private final ActivityResultLauncher<Intent> requestDownloadAudioPathLauncher =
+            registerForActivityResult(
+                    new StartActivityForResult(), this::requestDownloadAudioPathResult);
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
@@ -185,7 +191,6 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         }
 
         final String key = preference.getKey();
-        final int request;
 
         if (key.equals(storageUseSafPreference)) {
             if (!NewPipeSettings.useStorageAccessFramework(ctx)) {
@@ -198,43 +203,39 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             updatePreferencesSummary();
             return true;
         } else if (key.equals(downloadPathVideoPreference)) {
-            request = REQUEST_DOWNLOAD_VIDEO_PATH;
+            launchDirectoryPicker(requestDownloadVideoPathLauncher);
         } else if (key.equals(downloadPathAudioPreference)) {
-            request = REQUEST_DOWNLOAD_AUDIO_PATH;
+            launchDirectoryPicker(requestDownloadAudioPathLauncher);
         } else {
             return super.onPreferenceTreeClick(preference);
         }
 
-        startActivityForResult(StoredDirectoryHelper.getPicker(ctx), request);
-
         return true;
     }
 
-    @Override
-    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+    private void launchDirectoryPicker(final ActivityResultLauncher<Intent> launcher) {
+        launcher.launch(StoredDirectoryHelper.getPicker(ctx));
+    }
+
+    private void requestDownloadVideoPathResult(final ActivityResult result) {
+        requestDownloadPathResult(result, downloadPathVideoPreference);
+    }
+
+    private void requestDownloadAudioPathResult(final ActivityResult result) {
+        requestDownloadPathResult(result, downloadPathAudioPreference);
+    }
+
+    private void requestDownloadPathResult(final ActivityResult result, final String key) {
         assureCorrectAppLanguage(getContext());
-        super.onActivityResult(requestCode, resultCode, data);
-        if (DEBUG) {
-            Log.d(TAG, "onActivityResult() called with: "
-                    + "requestCode = [" + requestCode + "], "
-                    + "resultCode = [" + resultCode + "], data = [" + data + "]"
-            );
-        }
 
-        if (resultCode != Activity.RESULT_OK) {
+        if (result.getResultCode() != Activity.RESULT_OK) {
             return;
         }
 
-        final String key;
-        if (requestCode == REQUEST_DOWNLOAD_VIDEO_PATH) {
-            key = downloadPathVideoPreference;
-        } else if (requestCode == REQUEST_DOWNLOAD_AUDIO_PATH) {
-            key = downloadPathAudioPreference;
-        } else {
-            return;
+        Uri uri = null;
+        if (result.getData() != null) {
+            uri = result.getData().getData();
         }
-
-        Uri uri = data.getData();
         if (uri == null) {
             showMessageDialog(R.string.general_error, R.string.invalid_directory);
             return;
