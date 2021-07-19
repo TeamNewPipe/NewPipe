@@ -3,6 +3,8 @@ package org.schabi.newpipe.download;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
@@ -38,7 +40,6 @@ import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.RouterActivity;
 import org.schabi.newpipe.databinding.DownloadDialogBinding;
 import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -100,6 +101,9 @@ public class DownloadDialog extends DialogFragment
     int selectedAudioIndex = 0;
     @State
     int selectedSubtitleIndex = 0;
+
+    @Nullable
+    private OnDismissListener onDismissListener = null;
 
     private StoredDirectoryHelper mainStorageAudio = null;
     private StoredDirectoryHelper mainStorageVideo = null;
@@ -204,6 +208,9 @@ public class DownloadDialog extends DialogFragment
         this.selectedSubtitleIndex = ssi;
     }
 
+    public void setOnDismissListener(@Nullable final OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
+    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Android lifecycle
@@ -219,7 +226,7 @@ public class DownloadDialog extends DialogFragment
 
         if (!PermissionHelper.checkStoragePermissions(getActivity(),
                 PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
-            getDialog().dismiss();
+            dismiss();
             return;
         }
 
@@ -341,7 +348,7 @@ public class DownloadDialog extends DialogFragment
         toolbar.setTitle(R.string.download_dialog_title);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         toolbar.inflateMenu(R.menu.dialog_url);
-        toolbar.setNavigationOnClickListener(v -> requireDialog().dismiss());
+        toolbar.setNavigationOnClickListener(v -> dismiss());
         toolbar.setNavigationContentDescription(R.string.cancel);
 
         okButton = toolbar.findViewById(R.id.okay);
@@ -350,13 +357,18 @@ public class DownloadDialog extends DialogFragment
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.okay) {
                 prepareSelectedDownload();
-                if (getActivity() instanceof RouterActivity) {
-                    getActivity().finish();
-                }
                 return true;
             }
             return false;
         });
+    }
+
+    @Override
+    public void onDismiss(@NonNull final DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (onDismissListener != null) {
+            onDismissListener.onDismiss(dialog);
+        }
     }
 
     @Override
@@ -622,7 +634,7 @@ public class DownloadDialog extends DialogFragment
         } else {
             Toast.makeText(getContext(), R.string.no_streams_available_download,
                     Toast.LENGTH_SHORT).show();
-            getDialog().dismiss();
+            dismiss();
         }
     }
 
