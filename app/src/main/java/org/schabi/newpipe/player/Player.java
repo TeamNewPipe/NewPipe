@@ -27,6 +27,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -123,6 +124,8 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
+import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper;
+import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHolder;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.ListHelper;
@@ -379,6 +382,8 @@ public final class Player implements
     @NonNull private final SharedPreferences prefs;
     @NonNull private final HistoryRecordManager recordManager;
 
+    @NonNull private final SeekbarPreviewThumbnailHolder seekbarPreviewThumbnailHolder =
+            new SeekbarPreviewThumbnailHolder();
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1676,12 +1681,67 @@ public final class Player implements
     @Override // seekbar listener
     public void onProgressChanged(final SeekBar seekBar, final int progress,
                                   final boolean fromUser) {
-        if (DEBUG && fromUser) {
+        // Currently we don't need method execution when fromUser is false
+        if (!fromUser) {
+            return;
+        }
+        if (DEBUG) {
             Log.d(TAG, "onProgressChanged() called with: "
                     + "seekBar = [" + seekBar + "], progress = [" + progress + "]");
         }
-        if (fromUser) {
-            binding.currentDisplaySeek.setText(getTimeString(progress));
+
+        binding.currentDisplaySeek.setText(getTimeString(progress));
+
+        // Seekbar Preview Thumbnail
+        SeekbarPreviewThumbnailHelper
+                .tryResizeAndSetSeekbarPreviewThumbnail(
+                        getContext(),
+                        seekbarPreviewThumbnailHolder.getBitmapAt(progress),
+                        binding.currentSeekbarPreviewThumbnail,
+                        binding.subtitleView::getWidth);
+
+        adjustSeekbarPreviewContainer();
+    }
+
+    private void adjustSeekbarPreviewContainer() {
+        try {
+            // Should only be required when an error occurred before
+            // and the layout was positioned in the center
+            binding.bottomSeekbarPreviewLayout.setGravity(Gravity.NO_GRAVITY);
+
+            // Calculate the current left position of seekbar progress in px
+            // More info: https://stackoverflow.com/q/20493577
+            final int currentSeekbarLeft =
+                    binding.playbackSeekBar.getLeft()
+                            + binding.playbackSeekBar.getPaddingLeft()
+                            + binding.playbackSeekBar.getThumb().getBounds().left;
+
+            // Calculate the (unchecked) left position of the container
+            final int uncheckedContainerLeft =
+                    currentSeekbarLeft - (binding.seekbarPreviewContainer.getWidth() / 2);
+
+            // Fix the position so it's within the boundaries
+            final int checkedContainerLeft =
+                    Math.max(
+                            Math.min(
+                                    uncheckedContainerLeft,
+                                    // Max left
+                                    binding.playbackWindowRoot.getWidth()
+                                            - binding.seekbarPreviewContainer.getWidth()
+                            ),
+                            0 // Min left
+                    );
+
+            // See also: https://stackoverflow.com/a/23249734
+            final LinearLayout.LayoutParams params =
+                    new LinearLayout.LayoutParams(
+                            binding.seekbarPreviewContainer.getLayoutParams());
+            params.setMarginStart(checkedContainerLeft);
+            binding.seekbarPreviewContainer.setLayoutParams(params);
+        } catch (final Exception ex) {
+            Log.e(TAG, "Failed to adjust seekbarPreviewContainer", ex);
+            // Fallback - position in the middle
+            binding.bottomSeekbarPreviewLayout.setGravity(Gravity.CENTER);
         }
     }
 
@@ -1702,6 +1762,8 @@ public final class Player implements
         showControls(0);
         animate(binding.currentDisplaySeek, true, DEFAULT_CONTROLS_DURATION,
                 AnimationType.SCALE_AND_ALPHA);
+        animate(binding.currentSeekbarPreviewThumbnail, true, DEFAULT_CONTROLS_DURATION,
+                AnimationType.SCALE_AND_ALPHA);
     }
 
     @Override // seekbar listener
@@ -1717,6 +1779,7 @@ public final class Player implements
 
         binding.playbackCurrentTime.setText(getTimeString(seekBar.getProgress()));
         animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
+        animate(binding.currentSeekbarPreviewThumbnail, false, 200, AnimationType.SCALE_AND_ALPHA);
 
         if (currentState == STATE_PAUSED_SEEK) {
             changeState(STATE_BUFFERING);
@@ -2865,6 +2928,10 @@ public final class Player implements
 
         binding.titleTextView.setText(tag.getMetadata().getName());
         binding.channelTextView.setText(tag.getMetadata().getUploaderName());
+
+        this.seekbarPreviewThumbnailHolder.resetFrom(
+                this.getContext(),
+                tag.getMetadata().getPreviewFrames());
 
         NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
         notifyMetadataUpdateToListeners();

@@ -422,6 +422,10 @@
     <string name="grid">Raster</string>
     <string name="auto">Automatisch</string>
     <string name="switch_view">Ansicht wechseln</string>
+    <string name="seekbar_preview_thumbnail_title">Vorschaubild der Suchleiste</string>
+    <string name="high_quality_larger">Hohe Qualität (größer)</string>
+    <string name="low_quality_smaller">Niedrige Qualität (kleiner)</string>
+    <string name="dont_show">Nicht anzeigen</string>
     <string name="app_update_notification_content_title">Eine NewPipe-Aktualisierung ist verfügbar!</string>
     <string name="app_update_notification_content_text">Zum Herunterladen antippen</string>
     <string name="missions_header_finished">Fertig</string>
