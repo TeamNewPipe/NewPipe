@@ -23,7 +23,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -74,10 +73,10 @@ import org.schabi.newpipe.player.helper.PlayerHolder
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.StreamDialogEntry
+import org.schabi.newpipe.util.ThemeHelper.getGridSpanCount
+import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import java.time.OffsetDateTime
 import java.util.ArrayList
-import kotlin.math.floor
-import kotlin.math.max
 
 class FeedFragment : BaseStateFragment<FeedState>() {
     private var _feedBinding: FragmentFeedBinding? = null
@@ -161,7 +160,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     fun setupListViewMode() {
         // does everything needed to setup the layouts for grid or list modes
-        groupAdapter.spanCount = if (shouldUseGridLayout()) getGridSpanCount() else 1
+        groupAdapter.spanCount = if (shouldUseGridLayout(context)) getGridSpanCount(context) else 1
         feedBinding.itemsList.layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount).apply {
             spanSizeLookup = groupAdapter.spanSizeLookup
         }
@@ -376,7 +375,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     @SuppressLint("StringFormatMatches")
     private fun handleLoadedState(loadedState: FeedState.LoadedState) {
 
-        val itemVersion = if (shouldUseGridLayout()) {
+        val itemVersion = if (shouldUseGridLayout(context)) {
             StreamItem.ItemVersion.GRID
         } else {
             StreamItem.ItemVersion.NORMAL
@@ -518,35 +517,6 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             }
         )
         listState = null
-    }
-
-    // /////////////////////////////////////////////////////////////////////////
-    // Grid Mode
-    // /////////////////////////////////////////////////////////////////////////
-
-    // TODO: Move these out of this class, as it can be reused
-
-    private fun shouldUseGridLayout(): Boolean {
-        val listMode = PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .getString(getString(R.string.list_view_mode_key), getString(R.string.list_view_mode_value))
-
-        return when (listMode) {
-            getString(R.string.list_view_mode_auto_key) -> {
-                val configuration = resources.configuration
-
-                (
-                    configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
-                        configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE)
-                    )
-            }
-            getString(R.string.list_view_mode_grid_key) -> true
-            else -> false
-        }
-    }
-
-    private fun getGridSpanCount(): Int {
-        val minWidth = resources.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width)
-        return max(1, floor(resources.displayMetrics.widthPixels / minWidth.toDouble()).toInt())
     }
 
     companion object {

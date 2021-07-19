@@ -68,6 +68,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> {
     // Save the list 10 seconds after the last change occurred
@@ -678,7 +679,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
         int directions = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        if (isGridLayout()) {
+        if (shouldUseGridLayout(requireContext())) {
             directions |= ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
         }
         return new ItemTouchHelper.SimpleCallback(directions,

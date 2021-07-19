@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -20,7 +19,6 @@ import androidx.activity.result.contract.ActivityResultContracts.StartActivityFo
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
@@ -60,12 +58,12 @@ import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
+import org.schabi.newpipe.util.ThemeHelper.getGridSpanCount
+import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import org.schabi.newpipe.util.external_communication.ShareUtils
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import kotlin.math.floor
-import kotlin.math.max
 
 class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private var _binding: FragmentSubscriptionBinding? = null
@@ -269,8 +267,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         super.initViews(rootView, savedInstanceState)
         _binding = FragmentSubscriptionBinding.bind(rootView)
 
-        val shouldUseGridLayout = shouldUseGridLayout()
-        groupAdapter.spanCount = if (shouldUseGridLayout) getGridSpanCount() else 1
+        groupAdapter.spanCount = if (shouldUseGridLayout(context)) getGridSpanCount(context) else 1
         binding.itemsList.layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount).apply {
             spanSizeLookup = groupAdapter.spanSizeLookup
         }
@@ -349,7 +346,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     override fun handleResult(result: SubscriptionState) {
         super.handleResult(result)
 
-        val shouldUseGridLayout = shouldUseGridLayout()
+        val shouldUseGridLayout = shouldUseGridLayout(context)
         when (result) {
             is SubscriptionState.LoadedState -> {
                 result.subscriptions.forEach {
@@ -409,31 +406,5 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     override fun hideLoading() {
         super.hideLoading()
         binding.itemsList.animate(true, 200)
-    }
-
-    // /////////////////////////////////////////////////////////////////////////
-    // Grid Mode
-    // /////////////////////////////////////////////////////////////////////////
-
-    // TODO: Move these out of this class, as it can be reused
-
-    private fun shouldUseGridLayout(): Boolean {
-        val listMode = PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .getString(getString(R.string.list_view_mode_key), getString(R.string.list_view_mode_value))
-
-        return when (listMode) {
-            getString(R.string.list_view_mode_auto_key) -> {
-                val configuration = resources.configuration
-                configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
-                    configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE)
-            }
-            getString(R.string.list_view_mode_grid_key) -> true
-            else -> false
-        }
-    }
-
-    private fun getGridSpanCount(): Int {
-        val minWidth = resources.getDimensionPixelSize(R.dimen.channel_item_grid_min_width)
-        return max(1, floor(resources.displayMetrics.widthPixels / minWidth.toDouble()).toInt())
     }
 }
