@@ -298,4 +298,43 @@ public final class ThemeHelper {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         }
     }
+
+
+    /**
+     * Returns whether the grid layout or the list layout should be used. If the user set "auto"
+     * mode in settings, decides based on screen orientation (landscape) and size.
+     *
+     * @param context the context to use
+     * @return true:use grid layout, false:use list layout
+     */
+    public static boolean shouldUseGridLayout(final Context context) {
+        final String listMode = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.list_view_mode_key),
+                        context.getString(R.string.list_view_mode_value));
+
+        if (listMode.equals(context.getString(R.string.list_view_mode_list_key))) {
+            return false;
+        } else if (listMode.equals(context.getString(R.string.list_view_mode_grid_key))) {
+            return true;
+        } else {
+            final Configuration configuration = context.getResources().getConfiguration();
+            return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+                    && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
+        }
+    }
+
+    /**
+     * Calculates the number of grid items that can fit horizontally on the screen. The width of a
+     * grid item is obtained from the thumbnail width plus the right and left paddings.
+     *
+     * @param context the context to use
+     * @return the span count of grid list items
+     */
+    public static int getGridSpanCount(final Context context) {
+        final Resources res = context.getResources();
+        final int minWidth
+                = res.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width)
+                + res.getDimensionPixelSize(R.dimen.video_item_search_padding) * 2;
+        return Math.max(1, res.getDisplayMetrics().widthPixels / minWidth);
+    }
 }
