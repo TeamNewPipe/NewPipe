@@ -112,13 +112,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         setupInitialLayout()
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        if (activity != null && isVisibleToUser) {
-            setTitle(activity.getString(R.string.tab_subscriptions))
-        }
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         subscriptionManager = SubscriptionManager(requireContext())
@@ -156,11 +149,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
-        val supportActionBar = activity.supportActionBar
-        if (supportActionBar != null) {
-            supportActionBar.setDisplayShowTitleEnabled(true)
-            setTitle(getString(R.string.tab_subscriptions))
-        }
+        activity.supportActionBar?.setDisplayShowTitleEnabled(true)
+        activity.supportActionBar?.setTitle(R.string.tab_subscriptions)
     }
 
     private fun setupBroadcastReceiver() {
