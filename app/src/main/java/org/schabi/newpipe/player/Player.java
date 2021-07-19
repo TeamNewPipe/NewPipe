@@ -55,9 +55,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.content.ContextCompat;
-import androidx.core.view.DisplayCutoutCompat;
+import androidx.core.graphics.Insets;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -560,10 +561,9 @@ public final class Player implements
         binding.getRoot().addOnLayoutChangeListener(this::onLayoutChange);
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.itemsListPanel, (view, windowInsets) -> {
-            final DisplayCutoutCompat cutout = windowInsets.getDisplayCutout();
-            if (cutout != null) {
-                view.setPadding(cutout.getSafeInsetLeft(), cutout.getSafeInsetTop(),
-                        cutout.getSafeInsetRight(), cutout.getSafeInsetBottom());
+            final Insets cutout = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout());
+            if (!cutout.equals(Insets.NONE)) {
+                view.setPadding(cutout.left, cutout.top, cutout.right, cutout.bottom);
             }
             return windowInsets;
         });
