@@ -6,6 +6,7 @@ import androidx.preference.Preference;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
 
 import leakcanary.LeakCanary;
 
@@ -20,10 +21,13 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
                 = findPreference(getString(R.string.show_image_indicators_key));
         final Preference crashTheAppPreference
                 = findPreference(getString(R.string.crash_the_app_key));
+        final Preference checkNewStreamsPreference
+                = findPreference(getString(R.string.check_new_streams_key));
 
         assert showMemoryLeaksPreference != null;
         assert showImageIndicatorsPreference != null;
         assert crashTheAppPreference != null;
+        assert checkNewStreamsPreference != null;
 
         showMemoryLeaksPreference.setOnPreferenceClickListener(preference -> {
             startActivity(LeakCanary.INSTANCE.newLeakDisplayActivityIntent());
@@ -37,6 +41,11 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
 
         crashTheAppPreference.setOnPreferenceClickListener(preference -> {
             throw new RuntimeException();
+        });
+
+        checkNewStreamsPreference.setOnPreferenceClickListener(preference -> {
+            NotificationWorker.runNow(preference.getContext());
+            return true;
         });
     }
 }

@@ -481,6 +481,7 @@
     <string name="show_image_indicators_title">Show image indicators</string>
     <string name="show_image_indicators_summary">Show Picasso colored ribbons on top of images indicating their source: red for network, blue for disk and green for memory</string>
     <string name="crash_the_app">Crash the app</string>
+    <string name="check_new_streams">Run check for new streams</string>
     <!-- Subscriptions import/export -->
     <string name="import_title">Import</string>
     <string name="import_from">Import from</string>

@@ -1,7 +1,5 @@
 package org.schabi.newpipe;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -250,18 +248,15 @@ public class App extends MultiDexApplication {
                 .setDescription(getString(R.string.hash_channel_description))
                 .build();
 
-        final NotificationChannel newStreamsChannel = new NotificationChannel(
-                getString(R.string.streams_notification_channel_id),
-                getString(R.string.streams_notification_channel_name),
-                NotificationManager.IMPORTANCE_DEFAULT
-        );
-        newStreamsChannel.setDescription(
-                getString(R.string.streams_notification_channel_description)
-        );
-        newStreamsChannel.enableVibration(false);
+        final NotificationChannelCompat newStreamsChannel = new NotificationChannelCompat
+                .Builder(getString(R.string.streams_notification_channel_id),
+                NotificationManagerCompat.IMPORTANCE_DEFAULT)
+                .setName(getString(R.string.streams_notification_channel_name))
+                .setDescription(getString(R.string.streams_notification_channel_description))
+                .build();
 
         final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.createNotificationChannels(
+        notificationManager.createNotificationChannelsCompat(
                 Arrays.asList(mainChannel, appUpdateChannel, hashChannel, newStreamsChannel)
         );
     }

@@ -44,7 +44,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
-import org.schabi.newpipe.notifications.NotificationHelper;
+import org.schabi.newpipe.local.feed.notifications.NotificationHelper;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -252,13 +252,13 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                 .map(List::isEmpty)
                 .distinctUntilChanged()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((Boolean isEmpty) -> updateSubscribeButton(!isEmpty), onError));
+                .subscribe(isEmpty -> updateSubscribeButton(!isEmpty), onError));
 
         disposables.add(observable
                 .map(List::isEmpty)
-                .filter(x -> NotificationHelper.isNewStreamsNotificationsEnabled(requireContext()))
                 .distinctUntilChanged()
-                .skip(1)
+                .skip(1) // channel has just been opened
+                .filter(x -> NotificationHelper.isNewStreamsNotificationsEnabled(requireContext()))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(isEmpty -> {
                     if (!isEmpty) {
