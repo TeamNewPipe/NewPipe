@@ -17,6 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
@@ -44,7 +47,6 @@ import us.shandian.giga.ui.adapter.MissionAdapter;
 public class MissionsFragment extends Fragment {
 
     private static final int SPAN_SIZE = 2;
-    private static final int REQUEST_DOWNLOAD_SAVE_AS = 0x1230;
 
     private SharedPreferences mPrefs;
     private boolean mLinear;
@@ -64,7 +66,8 @@ public class MissionsFragment extends Fragment {
     private boolean mForceUpdate;
 
     private DownloadMission unsafeMissionTarget = null;
-
+    private final ActivityResultLauncher<Intent> requestDownloadSaveAsLauncher =
+            registerForActivityResult(new StartActivityForResult(), this::requestDownloadSaveAsResult);
     private final ServiceConnection mConnection = new ServiceConnection() {
 
         @Override
@@ -254,8 +257,9 @@ public class MissionsFragment extends Fragment {
             initialPath = Uri.parse(initialSavePath.getAbsolutePath());
         }
 
-        startActivityForResult(StoredFileHelper.getNewPicker(mContext, mission.storage.getName(),
-                mission.storage.getType(), initialPath), REQUEST_DOWNLOAD_SAVE_AS);
+        requestDownloadSaveAsLauncher.launch(
+                StoredFileHelper.getNewPicker(mContext, mission.storage.getName(),
+                        mission.storage.getType(), initialPath));
     }
 
     @Override
@@ -289,18 +293,17 @@ public class MissionsFragment extends Fragment {
         if (mBinder != null) mBinder.enableNotifications(true);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    private void requestDownloadSaveAsResult(final ActivityResult result) {
+        if (result.getResultCode() != Activity.RESULT_OK) {
+            return;
+        }
 
-        if (requestCode != REQUEST_DOWNLOAD_SAVE_AS || resultCode != Activity.RESULT_OK) return;
-
-        if (unsafeMissionTarget == null || data.getData() == null) {
+        if (unsafeMissionTarget == null || result.getData() == null) {
             return;
         }
 
         try {
-            Uri fileUri = data.getData();
+            Uri fileUri = result.getData().getData();
             if (fileUri.getAuthority() != null && FilePickerActivityHelper.isOwnFileUri(mContext, fileUri)) {
                 fileUri = Uri.fromFile(Utils.getFileForUri(fileUri));
             }

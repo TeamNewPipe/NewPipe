@@ -1,7 +1,6 @@
 package org.schabi.newpipe.local;
 
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +25,7 @@ import org.schabi.newpipe.fragments.list.ListViewContract;
 
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
+import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 /**
  * This fragment is design to be used with persistent data such as
@@ -77,7 +77,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         super.onResume();
         if (updateFlags != 0) {
             if ((updateFlags & LIST_MODE_UPDATE_FLAG) != 0) {
-                final boolean useGrid = isGridLayout();
+                final boolean useGrid = shouldUseGridLayout(requireContext());
                 itemsList.setLayoutManager(
                         useGrid ? getGridLayoutManager() : getListLayoutManager());
                 itemListAdapter.setUseGridVariant(useGrid);
@@ -121,7 +121,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
 
         itemListAdapter = new LocalItemListAdapter(activity);
 
-        final boolean useGrid = isGridLayout();
+        final boolean useGrid = shouldUseGridLayout(requireContext());
         itemsList = rootView.findViewById(R.id.items_list);
         itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
 
@@ -258,19 +258,6 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
                                           final String key) {
         if (key.equals(getString(R.string.list_view_mode_key))) {
             updateFlags |= LIST_MODE_UPDATE_FLAG;
-        }
-    }
-
-    protected boolean isGridLayout() {
-        final String listMode = PreferenceManager.getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.list_view_mode_key),
-                        getString(R.string.list_view_mode_value));
-        if ("auto".equals(listMode)) {
-            final Configuration configuration = getResources().getConfiguration();
-            return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-                    && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
-        } else {
-            return "grid".equals(listMode);
         }
     }
 }

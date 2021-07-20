@@ -589,9 +589,9 @@ public class RouterActivity extends AppCompatActivity {
                     downloadDialog.setVideoStreams(sortedVideoStreams);
                     downloadDialog.setAudioStreams(result.getAudioStreams());
                     downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
+                    downloadDialog.setOnDismissListener(dialog -> finish());
                     downloadDialog.show(fm, "downloadDialog");
                     fm.executePendingTransactions();
-                    downloadDialog.requireDialog().setOnDismissListener(dialog -> finish());
                 }, throwable ->
                         showUnsupportedUrlDialog(currentUrl)));
     }
