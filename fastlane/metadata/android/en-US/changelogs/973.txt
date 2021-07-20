@@ -1,0 +1,4 @@
+Hotfix
+• Fix thumbnails and titles being trimmed in grid layout, due to a wrong calculation of how many videos can fit in one row
+• Fix download dialog disappearing without doing anything if opened from the share menu
+• Update a library related to opening external activities such as the Storage Access Framework file picker
