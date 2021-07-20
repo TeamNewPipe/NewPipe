@@ -49,9 +49,8 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        # api-level 19 is min sdk, but throws errors related to desugaring
-        # api-level 29 currently not working https://github.com/ReactiveCircus/android-emulator-runner/issues/168 
-        api-level: [ 21 ]
+        # api-level 19 is min sdk, but throws errors related to desugaring 
+        api-level: [ 21, 29 ]
     steps:
       - uses: actions/checkout@v2
 
