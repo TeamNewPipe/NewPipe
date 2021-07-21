@@ -149,7 +149,7 @@ public class DownloadManager {
             if (sub.getName().equals(".tmp")) continue;
 
             DownloadMission mis = Utility.readFromFile(sub);
-            if (mis == null || mis.isFinished()) {
+            if (mis == null || mis.isFinished() || mis.hasInvalidStorage()) {
                 //noinspection ResultOfMethodCallIgnored
                 sub.delete();
                 continue;
