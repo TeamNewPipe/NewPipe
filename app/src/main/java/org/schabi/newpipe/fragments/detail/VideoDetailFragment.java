@@ -813,7 +813,7 @@ public final class VideoDetailFragment
                                    @NonNull final String newTitle,
                                    @Nullable final PlayQueue newQueue) {
         if (isPlayerAvailable() && newQueue != null && playQueue != null
-                && !Objects.equals(newQueue.getItem(), playQueue.getItem())) {
+                && playQueue.getItem() != null && !playQueue.getItem().getUrl().equals(newUrl)) {
             // Preloading can be disabled since playback is surely being replaced.
             player.disablePreloadingOfCurrentTrack();
         }
