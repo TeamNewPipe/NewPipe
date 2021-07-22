@@ -163,7 +163,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
         }
 
         // Navigate to blank page (unloads youtube to prevent background playback)
-        recaptchaBinding.reCaptchaWebView.loadData("", "text/html", null);
+        recaptchaBinding.reCaptchaWebView.loadUrl("about:blank");
 
         final Intent intent = new Intent(this, org.schabi.newpipe.MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
