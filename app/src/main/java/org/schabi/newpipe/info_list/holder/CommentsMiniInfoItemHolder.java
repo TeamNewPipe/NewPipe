@@ -82,7 +82,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemDislikesCountView = itemView.findViewById(R.id.detail_thumbs_down_count_view);
         itemPublishedTime = itemView.findViewById(R.id.itemPublishedTime);
         itemContentView = itemView.findViewById(R.id.itemCommentContentView);
-        itemHeartView = itemView.findViewById(R.id.detail_heart_img_view);
+        itemHeartView = itemView.findViewById(R.id.detail_heart_image_view);
 
         downloadThumbnailKey = infoItemBuilder.getContext().
                 getString(R.string.download_thumbnail_key);
@@ -157,6 +157,8 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
         if (item.isHeartedByUploader()) {
             itemHeartView.setVisibility(View.VISIBLE);
+        } else {
+            itemHeartView.setVisibility(View.GONE);
         }
 
         itemView.setOnClickListener(view -> {
