@@ -91,12 +91,12 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
-import org.schabi.newpipe.util.KoreUtil;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
-import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.SponsorBlockUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -461,8 +461,8 @@ public final class VideoDetailFragment
                 break;
             case R.id.detail_controls_share:
                 if (currentInfo != null) {
-                    ShareUtils.shareText(requireContext(),
-                            currentInfo.getName(), currentInfo.getUrl());
+                    ShareUtils.shareText(requireContext(), currentInfo.getName(),
+                            currentInfo.getUrl(), currentInfo.getThumbnailUrl());
                 }
                 break;
             case R.id.detail_controls_open_in_browser:
@@ -479,7 +479,7 @@ public final class VideoDetailFragment
                         if (DEBUG) {
                             Log.i(TAG, "Failed to start kore", e);
                         }
-                        KoreUtil.showInstallKoreDialog(requireContext());
+                        KoreUtils.showInstallKoreDialog(requireContext());
                     }
                 }
                 break;
@@ -638,7 +638,7 @@ public final class VideoDetailFragment
         binding.detailControlsShare.setOnClickListener(this);
         binding.detailControlsOpenInBrowser.setOnClickListener(this);
         binding.detailControlsPlayWithKodi.setOnClickListener(this);
-        binding.detailControlsPlayWithKodi.setVisibility(KoreUtil.shouldShowPlayWithKodi(
+        binding.detailControlsPlayWithKodi.setVisibility(KoreUtils.shouldShowPlayWithKodi(
                 requireContext(), serviceId) ? View.VISIBLE : View.GONE);
 
         binding.overlayThumbnail.setOnClickListener(this);
@@ -1553,8 +1553,8 @@ public final class VideoDetailFragment
                 .getDefaultResolutionIndex(activity, sortedVideoStreams);
         updateProgressInfo(info);
         initThumbnailViews(info);
-        disposables.add(showMetaInfoInTextView(info.getMetaInfo(), binding.detailMetaInfoTextView,
-                binding.detailMetaInfoSeparator));
+        showMetaInfoInTextView(info.getMetaInfo(), binding.detailMetaInfoTextView,
+                binding.detailMetaInfoSeparator, disposables);
 
         if (player == null || player.isStopped()) {
             updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnailUrl());
@@ -1689,7 +1689,7 @@ public final class VideoDetailFragment
                 .onErrorComplete()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(state -> {
-                    showPlaybackProgress(state.getProgressTime(), info.getDuration() * 1000);
+                    showPlaybackProgress(state.getProgressMillis(), info.getDuration() * 1000);
                     animate(binding.positionView, true, 500);
                     animate(binding.detailPositionView, true, 500);
                 }, e -> {

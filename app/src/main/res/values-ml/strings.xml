@@ -551,8 +551,6 @@
     <string name="downloads_storage_use_saf_summary">സ്റ്റോറേജ് ആക്സസ് ഫ്രെയിംവർക്ക്\' ഒരു ബാഹ്യ SD കാർഡിലേക്ക് ഡൗൺലോഡുകൾ അനുവദിക്കുന്നു.
 \nചില ഉപകരണങ്ങൾ പൊരുത്തപ്പെടുന്നില്ല</string>
     <string name="downloads_storage_use_saf_title">SAF ഉപയോഗിക്കുക</string>
-    <string name="downloads_storage_ask_summary_kitkat">ഓരോ ഡൗൺ‌ലോഡും എവിടെ സംരക്ഷിക്കണമെന്ന് നിങ്ങളോട് ചോദിക്കും.
-\nനിങ്ങൾക്ക് ഒരു ബാഹ്യ SD കാർഡിലേക്ക് ഡൗൺലോഡ് ചെയ്യണമെങ്കിൽ SAF തിരഞ്ഞെടുക്കുക</string>
     <string name="downloads_storage_ask_summary">ഓരോ ഡൗൺ‌ലോഡും എവിടെ സംരക്ഷിക്കണമെന്ന് നിങ്ങളോട് ചോദിക്കും</string>
     <string name="downloads_storage_ask_title">എവിടെ നിന്ന് ഡൗൺലോഡ് ചെയ്യണമെന്ന് ചോദിക്കുക</string>
     <string name="pause_downloads">ഡൗൺലോഡുകൾ താൽക്കാലികമായി നിർത്തുക</string>

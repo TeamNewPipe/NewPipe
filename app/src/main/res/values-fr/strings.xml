@@ -97,7 +97,7 @@
     <string name="msg_server_unsupported">Serveur non pris en charge</string>
     <string name="msg_exists">Fichier déjà existant</string>
     <string name="msg_url_malform">Lien malformé ou accès à Internet indisponible</string>
-    <string name="msg_running">NewPipe télécharge…</string>
+    <string name="msg_running">NewPipe télécharge</string>
     <string name="msg_running_detail">Appuyer pour plus de détails</string>
     <string name="msg_wait">Veuillez patienter…</string>
     <string name="msg_copied">Copié dans le presse-papiers</string>
@@ -299,9 +299,9 @@
     <string name="resize_fit">Ajuster</string>
     <string name="resize_zoom">Zoomer</string>
     <string name="use_inexact_seek_title">Utiliser la recherche rapide approximative</string>
-    <string name="use_inexact_seek_summary">Permet au lecteur d’accéder plus rapidement à une position au détriment de la précision. Se déplacer de 5, 15 ou 25 secondes est impossible avec cette option.</string>
+    <string name="use_inexact_seek_summary">Permet au lecteur d’accéder plus rapidement à une position au détriment de la précision. Se déplacer de 5, 15 ou 25 secondes est impossible avec cette option</string>
     <string name="download_thumbnail_title">Charger les miniatures</string>
-    <string name="download_thumbnail_summary">Désactivez pour empêcher le chargement des miniatures afin de réduire l’utilisation de la bande passante et de la mémoire. La modification de cette option vide le cache en mémoire vive et sur le disque.</string>
+    <string name="download_thumbnail_summary">Désactivez pour empêcher le chargement des miniatures afin de réduire l’utilisation de la bande passante et de la mémoire. La modification de cette option vide le cache en mémoire vive et sur le disque</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les métadonnées en cache</string>
     <string name="metadata_cache_wipe_summary">Efface toutes les données des pages Web en cache</string>
@@ -358,17 +358,17 @@
     <string name="preferred_open_action_settings_summary">Action par défaut lors de l’ouverture de contenu — %s</string>
     <string name="no_streams_available_download">Aucun flux disponible au téléchargement</string>
     <string name="caption_setting_title">Sous-titres</string>
-    <string name="caption_setting_description">Modifier la taille du texte et les styles d’arrière-plan des sous-titres du lecteur. Le redémarrage de l’application est requis pour appliquer les changements.</string>
+    <string name="caption_setting_description">Modifier la taille du texte et les styles d’arrière-plan des sous-titres du lecteur. Le redémarrage de l’application est requis pour appliquer les changements</string>
     <string name="playback_pitch">Ton</string>
     <string name="toast_no_player">Aucune application installée pour lire ce fichier</string>
     <string name="clear_views_history_title">Effacer l’historique des vues</string>
     <string name="clear_views_history_summary">Supprime l’historique des flux lus et des positions de reprise de lecture</string>
     <string name="delete_view_history_alert">Voulez-vous supprimer entièrement l’historique des vues \?</string>
-    <string name="watch_history_deleted">Historique des vues supprimé.</string>
+    <string name="watch_history_deleted">Historique des vues supprimé</string>
     <string name="clear_search_history_title">Supprimer l’historique de recherche</string>
     <string name="clear_search_history_summary">Supprime l’historique des mots-clés de recherche</string>
     <string name="delete_search_history_alert">Voulez-vous supprimer entièrement l’historique de recherche \?</string>
-    <string name="search_history_deleted">Historique de recherche supprimé.</string>
+    <string name="search_history_deleted">Historique de recherche supprimé</string>
     <string name="one_item_deleted">1 élément supprimé.</string>
     <string name="app_license">NewPipe est un logiciel sous licence libre copyleft : vous pouvez l’utiliser, l’étudier, le partager et l’améliorer comme bon vous semble. Plus précisément, vous pouvez le redistribuer ou le modifier sous les termes de la licence générale publique GNU, comme publiée par la Free Software Foundation, dans sa version 3, ou, à votre convenance, dans une quelconque version ultérieure.</string>
     <string name="privacy_policy_title">Politique de confidentialité de NewPipe</string>
@@ -477,16 +477,14 @@
     <string name="start_downloads">Démarrer les téléchargements</string>
     <string name="pause_downloads">Mettre les téléchargements en pause</string>
     <string name="downloads_storage_ask_title">Demander où télécharger</string>
-    <string name="downloads_storage_ask_summary">Vous allez être interrogé sur l’emplacement d’enregistrement de chaque téléchargement</string>
-    <string name="downloads_storage_ask_summary_kitkat">Vous allez être interrogé sur l’emplacement de téléchargement de chaque téléchargement.
-\nVeuillez choisir l’IAS si vous voulez télécharger sur une carte mémoire externe</string>
+    <string name="downloads_storage_ask_summary">Vous allez être interrogé·e sur l’emplacement d’enregistrement de chaque téléchargement.
+\nAutorisez le sélecteur de dossier système si vous voulez télécharger vers une carte SD externe</string>
     <string name="enable_playback_resume_summary">Reprend la lecture à la dernière position</string>
     <string name="enable_playback_state_lists_title">Positions dans les listes</string>
     <string name="enable_playback_state_lists_summary">Affiche les indicateurs de position de lecture dans les listes</string>
-    <string name="watch_history_states_deleted">Positions de reprise de lecture supprimées.</string>
-    <string name="downloads_storage_use_saf_title">Utiliser l’IAS</string>
-    <string name="downloads_storage_use_saf_summary">L’« Infrastructure d’accès au stockage » permet de télécharger sur une carte mémoire externe.
-\nCertains appareils ne sont pas compatibles</string>
+    <string name="watch_history_states_deleted">Positions de reprise de lecture supprimées</string>
+    <string name="downloads_storage_use_saf_title">Utiliser le sélecteur de dossier système</string>
+    <string name="downloads_storage_use_saf_summary">L’« Infrastructure d’accès au stockage » permet le téléchargement sur une carte mémoire SD externe</string>
     <string name="clear_playback_states_title">Supprimer les positions de reprise de lecture</string>
     <string name="clear_playback_states_summary">Supprime toutes les positions de reprise de lecture</string>
     <string name="delete_playback_states_alert">Voulez-vous supprimer toutes les positions de reprise de lecture \?</string>
@@ -503,7 +501,7 @@
         <item quantity="one">%s auditeur</item>
         <item quantity="other">%s auditeurs</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">La langue changera une fois que l’application aura redémarré.</string>
+    <string name="localization_changes_requires_app_restart">La langue changera une fois que l’application aura redémarré</string>
     <string name="seek_duration_title">Durée de l’avance et retour rapide</string>
     <string name="peertube_instance_url_title">Instances PeerTube</string>
     <string name="peertube_instance_url_summary">Veuillez choisir vos instances PeerTube préférées</string>
@@ -570,7 +568,7 @@
     <string name="feed_update_threshold_summary">Temps depuis la dernière mise à jour pour que le flux ne soit plus considéré comme à jour — %s</string>
     <string name="feed_update_threshold_option_always_update">Toujours mettre à jour</string>
     <string name="feed_use_dedicated_fetch_method_title">Récupérer depuis un flux dédié lorsque disponible</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Disponible dans certains services, c’est généralement beaucoup plus rapide mais cela peut renvoyer un nombre limité d’éléments et souvent avec des informations incomplètes (p. ex. aucune durée, de type d’élément ou de statut en direct).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponible dans certains services, c’est généralement beaucoup plus rapide mais cela peut renvoyer un nombre limité d’éléments et souvent avec des informations incomplètes (p. ex. aucune durée, de type d’élément ou de statut en direct)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activer le mode rapide</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Désactiver le mode rapide</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Pensez-vous que le chargement du flux est trop lent \? Si c’est le cas, essayez le chargement rapide (vous pouvez le modifier dans les paramètres ou en pressant le bouton ci-dessous).
@@ -599,7 +597,7 @@
     <string name="remove_watched">Supprimer les vidéos vues</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Oui, et des vidéos partiellement regardées</string>
     <string name="remove_watched_popup_warning">Les vidéos qui ont été regardées avant et après avoir été ajoutées à la liste de lecture seront supprimées.
-\nÊtes-vous sûr \? C’est irréversible !</string>
+\nÊtes-vous sûr(e) \? C’est irréversible !</string>
     <string name="remove_watched_popup_title">Supprimer les vidéos regardées \?</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniature de l\'avatar de la chaine</string>
     <string name="video_detail_by">De %s</string>
@@ -630,7 +628,7 @@
     <string name="notification_action_shuffle">Lire aléatoirement</string>
     <string name="notification_action_repeat">Répéter</string>
     <string name="notification_actions_at_most_three">Vous pouvez sélectionner au maximum trois actions à faire figurer dans la notification compacte !</string>
-    <string name="notification_actions_summary">Modifiez chaque action de notification ci-dessous en appuyant dessus. Sélectionnez jusqu’à trois d’entre elles pour les faire apparaitre dans la notification compacte en utilisant les cases à cocher à droite.</string>
+    <string name="notification_actions_summary">Modifiez chaque action de notification ci-dessous en appuyant dessus. Sélectionnez jusqu’à trois d’entre elles pour les faire apparaitre dans la notification compacte en utilisant les cases à cocher à droite</string>
     <string name="notification_action_4_title">Cinquième bouton d’action</string>
     <string name="notification_action_3_title">Quatrième bouton d’action</string>
     <string name="notification_action_2_title">Troisième bouton d’action</string>
@@ -655,7 +653,7 @@
     <string name="msg_calculating_hash">Calcul du hachage</string>
     <string name="hash_channel_description">Notifications pour la progression du hachage vidéo</string>
     <string name="hash_channel_name">Notification de hachage vidéo</string>
-    <string name="show_meta_info_summary">Désactivez cette option pour masquer les zones de méta-informations contenant des informations supplémentaires sur le créateur du flux, le contenu du flux ou une demande de recherche.</string>
+    <string name="show_meta_info_summary">Désactivez cette option pour masquer les zones de méta-informations contenant des informations supplémentaires sur le créateur du flux, le contenu du flux ou une demande de recherche</string>
     <string name="show_meta_info_title">Afficher les méta-infos</string>
     <string name="no_app_to_open_intent">Aucune application sur votre appareil ne peut ouvrir ceci</string>
     <string name="chapters">Chapitres</string>
@@ -698,4 +696,22 @@
     <string name="metadata_tags">Étiquettes</string>
     <string name="metadata_category">Catégorie</string>
     <string name="description_select_note">Vous pouvez maintenant sélectionner du texte à l\'intérieur de la description. Notez que la page peut scintiller et que les liens peuvent ne pas être cliquables en mode sélection.</string>
+    <string name="service_provides_reason">%s indique le motif :</string>
+    <string name="no_dir_yet">Aucun dossier de téléchargement n\'est défini pour le moment, sélectionnez le dossier de téléchargement par défaut.</string>
+    <string name="open_website_license">Ouvrir le site web</string>
+    <string name="account_terminated">Compte résilié</string>
+    <string name="feed_load_error_account_info">Impossible de charger le flux \'%s\'.</string>
+    <string name="feed_load_error">Erreur lors du chargement du flux</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Il vous sera demandé où enregistrer chaque téléchargement</string>
+    <string name="off">Inactif</string>
+    <string name="on">Actif</string>
+    <string name="tablet_mode_title">Mode tablette</string>
+    <string name="feed_toggle_show_played_items">Afficher les éléments vus</string>
+    <string name="feed_load_error_terminated">Le compte de l\'auteur a été résilié.
+\nNewPipe ne sera plus en mesure de charger ce flux à l\'avenir.
+\nSouhaitez-vous vous désabonner de cette chaîne \?</string>
+    <string name="downloads_storage_use_saf_summary_api_29">A partir d\'Android 10, seule l’« Infrastructure d’accès au stockage » est prise en charge.</string>
+    <string name="downloads_storage_use_saf_summary_api_19">L’« Infrastructure d’accès au stockage » n\'est pas prise en charge par Android KitKat et les versions antérieures</string>
+    <string name="item_in_history">En historique</string>
+    <string name="feed_load_error_fast_unknown">Le mode d\'alimentation rapide ne fournit pas plus d\'informations à ce sujet.</string>
 </resources>

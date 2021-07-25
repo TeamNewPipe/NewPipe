@@ -42,10 +42,10 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
-import org.schabi.newpipe.util.KoreUtil;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.StreamDialogEntry;
 
 import java.util.ArrayList;
@@ -162,7 +162,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
             ));
         }
         entries.add(StreamDialogEntry.open_in_browser);
-        if (KoreUtil.shouldShowPlayWithKodi(context, item.getServiceId())) {
+        if (KoreUtils.shouldShowPlayWithKodi(context, item.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
         }
 
@@ -181,7 +181,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     }
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
         if (DEBUG) {
             Log.d(TAG, "onCreateOptionsMenu() called with: "
                     + "menu = [" + menu + "], inflater = [" + inflater + "]");
@@ -251,7 +252,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 ShareUtils.openUrlInBrowser(requireContext(), url);
                 break;
             case R.id.menu_item_share:
-                ShareUtils.shareText(requireContext(), name, url);
+                ShareUtils.shareText(requireContext(), name, url, currentInfo.getThumbnailUrl());
                 break;
             case R.id.menu_item_bookmark:
                 onBookmarkClicked();

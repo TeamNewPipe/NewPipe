@@ -469,8 +469,6 @@
     <string name="pause_downloads">مکث بارگیری‌ها</string>
     <string name="downloads_storage_ask_title">محل بارگیری را سوال کن</string>
     <string name="downloads_storage_ask_summary">برای هر بارگیری از شما پرسیده خواهد شد که کجا ذخیره شود</string>
-    <string name="downloads_storage_ask_summary_kitkat">از شما پرسیده خواهد شد که هر بارگیری کجا ذخیره شود.
-\nاگر می‌خواهید بارگیری در کارت SD خارجی ذخیره شود، گزینه SAF را انتخاب کنید</string>
     <string name="downloads_storage_use_saf_title">استفاده از SAF</string>
     <string name="downloads_storage_use_saf_summary">«چارچوب دسترسی حافظه» اجازه دخیره بارگیری‌ها در کارت SD خارجی را می‌دهد. 
 \nبرخی دستگاه‌ها با این قابلیت سازگاری ندارند</string>
@@ -485,9 +483,6 @@
     <string name="minimize_on_exit_summary">عملکرد هنگام تغییر به برنامه دیگر از پخش‌کننده اصلی فیلم — %s</string>
     <string name="tracks">آهنگ‌ها</string>
     <string name="videos_string">ویدئوها</string>
-    <string name="restricted_video">این ویدئو دارای محدودیت سنی است.
-\n
-\nاگر می‌خواهید آن را ببینید، گزینه «محتوای دارای محدودیت سنی» را در تنظیمات فعال کنید.</string>
     <string name="peertube_instance_add_exists">این نمونه قبلا وجود دارد</string>
     <string name="peertube_instance_add_https_only">تنها نشانی‌های دارای http پشتیبانی می‌شوند</string>
     <string name="peertube_instance_add_fail">ناتوانی در اعتبارسنجی نشانی نمونه</string>

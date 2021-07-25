@@ -483,8 +483,6 @@
     <string name="watch_history_states_deleted">S\'ha suprimit les posicions de reproducció.</string>
     <string name="missing_file">El fitxer s\'ha mogut o suprimit</string>
     <string name="enable_queue_limit_desc">Només una baixada alhora</string>
-    <string name="downloads_storage_ask_summary_kitkat">Si us demanarà la ubicació de cada baixada.
-\nTrieu SAF si voleu desar el contingut en una memòria externa</string>
     <string name="downloads_storage_use_saf_title">Utilitza SAF</string>
     <string name="downloads_storage_use_saf_summary">El SAF (Storage Access Framework; estructura d\'accés a l\'emmagatzematge) us permet realitzar baixades a una memòria externa com una targeta SD.
 \nAlguns dispositius no en són compatibles</string>

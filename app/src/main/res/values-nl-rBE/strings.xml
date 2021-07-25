@@ -531,8 +531,6 @@
     <string name="downloads_storage_use_saf_summary">Het \'Storage Access Framework\' laat downloads naar een externe SD kaart toe.
 \nNiet alle toestellen zijn compatibel</string>
     <string name="downloads_storage_use_saf_title">Gebruik SAF</string>
-    <string name="downloads_storage_ask_summary_kitkat">Je zal gevraagd worden waar elke download op te slaan.
-\nKies SAF als je wilt downloaden naar een externe SD-kaart</string>
     <string name="downloads_storage_ask_title">Vraag waar te downloaden</string>
     <string name="downloads_storage_ask_summary">U wordt gevraagd waar elk bestand wordt opgeslagen</string>
     <string name="pause_downloads">Pauzeer downloads</string>

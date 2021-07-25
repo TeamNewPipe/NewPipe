@@ -15,14 +15,14 @@
     <string name="share_dialog_title">Şununla paylaş</string>
     <string name="choose_browser">Tarayıcı seçin</string>
     <string name="screen_rotation">döndürme</string>
-    <string name="use_external_video_player_title">Harici video oynatıcı kullan</string>
-    <string name="use_external_audio_player_title">Harici ses oynatıcı kullanın</string>
-    <string name="download_path_title">Video indirme dizini</string>
+    <string name="use_external_video_player_title">Dış video oynatıcı kullan</string>
+    <string name="use_external_audio_player_title">Dış ses oynatıcı kullanın</string>
+    <string name="download_path_title">Video indirme klasörü</string>
     <string name="download_path_summary">İndirilen video dosyaları burada depolanır</string>
-    <string name="download_path_dialog_title">Video dosyaları için indirme dizinini seçin</string>
-    <string name="download_path_audio_title">Ses indirme dizini</string>
+    <string name="download_path_dialog_title">Video dosyaları için indirme klasörünü seç</string>
+    <string name="download_path_audio_title">Ses indirme klasörü</string>
     <string name="download_path_audio_summary">İndirilen ses dosyaları burada depolanır</string>
-    <string name="download_path_audio_dialog_title">Ses dosyaları için indirme dizinini seçin</string>
+    <string name="download_path_audio_dialog_title">Ses dosyaları için indirme klasörünü seç</string>
     <string name="autoplay_by_calling_app_title">Kendiliğinden oynat</string>
     <string name="autoplay_by_calling_app_summary">NewPipe başka uygulamadan çağrıldığında video oynatır</string>
     <string name="default_resolution_title">Varsayılan çözünürlük</string>
@@ -75,8 +75,8 @@
     <string name="use_tor_summary">(Deneysel) Artırılmış gizlilik için indirme trafiğini Tor\'dan geçmesi için zorlayın (video yayımlama henüz desteklenmemektedir).</string>
     <string name="report_error">Hata bildir</string>
     <string name="user_report">Kullanıcı raporu</string>
-    <string name="err_dir_create">İndirme dizini \'%1$s\' oluşturulamıyor</string>
-    <string name="info_dir_created">İndirme dizini \'%1$s\' oluşturuldu</string>
+    <string name="err_dir_create">İndirme klasörü \'%1$s\' oluşturulamıyor</string>
+    <string name="info_dir_created">İndirme klasörü \'%1$s\' oluşturuldu</string>
     <string name="video">Video</string>
     <string name="audio">Ses</string>
     <string name="retry">Yeniden dene</string>
@@ -98,7 +98,7 @@
     <string name="msg_running_detail">Ayrıntılar için dokunun</string>
     <string name="msg_wait">Lütfen bekleyin…</string>
     <string name="msg_copied">Panoya kopyalandı</string>
-    <string name="no_available_dir">Lütfen daha sonra ayarlardan uygun bir indirme dizini belirleyin</string>
+    <string name="no_available_dir">Lütfen daha sonra ayarlardan uygun indirme klasörü belirleyin</string>
     <string name="could_not_setup_download_menu">İndirme menüsü ayarlanamadı</string>
     <string name="open_in_popup_mode">Açılır pencere kipinde aç</string>
     <string name="popup_mode_share_menu_title">Açılır pencere kipi</string>
@@ -247,7 +247,7 @@
     <string name="no_player_found_toast">Akış oynatıcı bulunamadı (Oynatmak için VLC yükleyebilirsiniz).</string>
     <string name="always">Her Zaman</string>
     <string name="just_once">Yalnızca Bir Kez</string>
-    <string name="external_player_unsupported_link_type">Harici oynatıcılar bu tür bağlantıları desteklemez</string>
+    <string name="external_player_unsupported_link_type">Dış oynatıcılar bu tür bağlantıları desteklemez</string>
     <string name="invalid_url_toast">Geçersiz URL</string>
     <string name="video_streams_empty">Video akışı bulunamadı</string>
     <string name="audio_streams_empty">Ses akışı bulunamadı</string>
@@ -304,11 +304,11 @@
     <string name="enable_disposed_exceptions_title">Yaşam döngüsü dışı hatalarını bildir</string>
     <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsündeki teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
     <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
-    <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının daha düşük hassasiyetle daha hızlı konumlamasını sağlar. 5, 15 veya 25 saniyeye konumlama bununla birlikte çalışmamaktadır.</string>
+    <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının daha düşük hassasiyetle daha hızlı konumlamasını sağlar. 5, 15 veya 25 saniyeye konumlama bununla birlikte çalışmamaktadır</string>
     <string name="auto_queue_title">Sonraki akışı kuyruğa kendiliğinden ekle</string>
     <string name="auto_queue_summary">İlgili bir akış ekleyerek sonlanacak (yinelemeyen) oynatma sırasını sürdür</string>
     <string name="file">Dosya</string>
-    <string name="invalid_directory">Böyle bir dizin yok</string>
+    <string name="invalid_directory">Böylesi klasör yok</string>
     <string name="invalid_source">Böyle bir dosya/içerik kaynağı yok</string>
     <string name="invalid_file">Dosya yok ya da okuma veya yazma izni bulunmuyor</string>
     <string name="file_name_empty_error">Dosya adı boş olamaz</string>
@@ -342,7 +342,7 @@
 \n
 \nSürdürmek istiyor musunuz\?</string>
     <string name="download_thumbnail_title">Küçük resimleri yükle</string>
-    <string name="download_thumbnail_summary">Küçük resimlerin yüklenmesini önlemek, veri ve hafıza kullanımından tasarruf etmek için kapatın. Değişiklikler, hem bellek içi hem de diskteki görüntü önbelleğini temizler.</string>
+    <string name="download_thumbnail_summary">Küçük resimlerin yüklenmesini önlemek, veri ve hafıza kullanımından tasarruf etmek için kapatın. Değişiklikler, hem bellek içi hem de diskteki görüntü önbelleğini temizler</string>
     <string name="thumbnail_cache_wipe_complete_notice">Görüntü önbelleği silindi</string>
     <string name="metadata_cache_wipe_title">Önbelleğe alınmış üstverileri temizle</string>
     <string name="metadata_cache_wipe_summary">Önbelleğe alınmış tüm web sayfası verilerini kaldır</string>
@@ -355,16 +355,16 @@
     <string name="preferred_open_action_settings_title">Yeğlenen \'aç\' eylemi</string>
     <string name="preferred_open_action_settings_summary">İçerik açılırken varsayılan eylem — %s</string>
     <string name="caption_setting_title">Alt yazılar</string>
-    <string name="caption_setting_description">Oynatıcı alt yazı metin ölçeğini ve arka plan biçimini değiştirin. Etkili olması için uygulamayı yeniden başlatma gerektirir.</string>
+    <string name="caption_setting_description">Oynatıcı alt yazı metin ölçeğini ve arka plan biçimini değiştirin. Etkili olması için uygulamayı yeniden başlatma gerektirir</string>
     <string name="toast_no_player">Bu dosyayı oynatmak için herhangi bir uygulama yüklü değil</string>
     <string name="clear_views_history_title">İzleme geçmişini temizle</string>
     <string name="clear_views_history_summary">Oynatılan akışların geçmişini ve kalınan oynatım konumlarını siler</string>
     <string name="delete_view_history_alert">İzleme geçmişinin tamamı silinsin mi\?</string>
-    <string name="watch_history_deleted">İzleme geçmişi silindi.</string>
+    <string name="watch_history_deleted">İzleme geçmişi silindi</string>
     <string name="clear_search_history_title">Arama geçmişini temizle</string>
     <string name="clear_search_history_summary">Aramada kullanılan anahtar kelimelerin geçmişini siler</string>
     <string name="delete_search_history_alert">Tüm arama geçmişi silinsin mi\?</string>
-    <string name="search_history_deleted">Arama geçmişi silindi.</string>
+    <string name="search_history_deleted">Arama geçmişi silindi</string>
     <string name="one_item_deleted">1 öge silindi.</string>
     <string name="app_license">NewPipe, telif müsaadeli özgür yazılımdır: İstediğiniz gibi kullanabilir, öğrenebilir, paylaşabilir ve geliştirebilirsiniz. Özellikle, Özgür Yazılım Vakfı tarafından yayımlanan GNU Genel Kamu Lisansı 3. sürümü veya (isterseniz) daha sonraki sürümleri koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.</string>
     <string name="import_settings">Ayarları da içe aktarmak istiyor musunuz?</string>
@@ -401,8 +401,8 @@
     <string name="file_deleted">Dosya silindi</string>
     <string name="app_update_notification_channel_name">Uygulama Güncelleme Bildirimi</string>
     <string name="app_update_notification_channel_description">Yeni NewPipe sürümü için bildirimler</string>
-    <string name="download_to_sdcard_error_title">Harici depolama kullanılamıyor</string>
-    <string name="download_to_sdcard_error_message">Harici SD karta indirmek mümkün değil. İndirme dizini konumu sıfırlansın mı\?</string>
+    <string name="download_to_sdcard_error_title">Dış depolama kullanılamıyor</string>
+    <string name="download_to_sdcard_error_message">Dış SD karta indirilemiyor. İndirme klasörü konumu sıfırlansın mı\?</string>
     <string name="saved_tabs_invalid_json">Kayıtlı sekmeler okunamadı, bu nedenle varsayılanlar kullanılıyor</string>
     <string name="restore_defaults">Varsayılanları geri yükle</string>
     <string name="restore_defaults_confirmation">Varsayılanları geri yüklemek istiyor musunuz\?</string>
@@ -434,7 +434,7 @@
     <string name="show_error">Hatayı göster</string>
     <string name="label_code">Kod</string>
     <string name="error_file_creation">Dosya oluşturulamıyor</string>
-    <string name="error_path_creation">Hedef dizin oluşturulamıyor</string>
+    <string name="error_path_creation">Hedef klasör oluşturulamıyor</string>
     <string name="error_permission_denied">İzin sistem tarafından reddedildi</string>
     <string name="error_ssl_exception">Güvenli bağlantı kurulamadı</string>
     <string name="error_unknown_host">Sunucu bulunamadı</string>
@@ -462,7 +462,7 @@
     <string name="enable_playback_state_lists_title">Oynatma listelerindeki konumlar</string>
     <string name="enable_playback_state_lists_summary">Oynatma listelerinde oynatım konumlarını göster</string>
     <string name="settings_category_clear_data_title">Veri temizleme</string>
-    <string name="watch_history_states_deleted">Oynatım konumları silindi.</string>
+    <string name="watch_history_states_deleted">Oynatım konumları silindi</string>
     <string name="missing_file">Dosya taşındı veya silindi</string>
     <string name="overwrite_unrelated_warning">Bu isimde bir dosya zaten bulunuyor</string>
     <string name="overwrite_failed">dosyanın üzerine yazılamaz</string>
@@ -477,16 +477,14 @@
     <string name="start_downloads">İndirmeleri başlat</string>
     <string name="pause_downloads">İndirmeleri duraklat</string>
     <string name="downloads_storage_ask_title">Nereye indirileceğini sor</string>
-    <string name="downloads_storage_ask_summary">Her indirmede nereye kaydedileceği sorulacak</string>
-    <string name="downloads_storage_ask_summary_kitkat">Her indirme için nereye kaydedileceği sorulacak. 
-\nEğer harici SD karta indirmek istiyorsanız DEÇ\'i seçin</string>
-    <string name="downloads_storage_use_saf_title">DEÇ\'i kullan</string>
-    <string name="downloads_storage_use_saf_summary">\'Depolama Erişimi Çerçevesi\' harici SD karta indirmelere izin verir. 
-\nNot: Bazı aygıtlar uyumlu değildir</string>
+    <string name="downloads_storage_ask_summary">Her indirmede nereye kaydedileceği sorulacak.
+\nDış SD karta indirmek istiyorsanız sistem klasör seçiciyi (SAF) etkinleştirin</string>
+    <string name="downloads_storage_use_saf_title">Sistem klasör seçiciyi (SAF) kullan</string>
+    <string name="downloads_storage_use_saf_summary">\'Depolama Erişimi Çerçevesi\' dış SD karta indirmeyi sağlar</string>
     <string name="clear_playback_states_title">Oynatım konumlarını sil</string>
     <string name="clear_playback_states_summary">Tüm oynatım konumlarını siler</string>
     <string name="delete_playback_states_alert">Tüm oynatım konumları silinsin mi\?</string>
-    <string name="download_choose_new_path">Etkili olması için indirme dizinlerini değiştirin</string>
+    <string name="download_choose_new_path">Etkili olması için indirme klasörlerini değiştir</string>
     <string name="drawer_header_description">Hizmeti değiştir, şu anda seçili olan:</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>
@@ -503,7 +501,7 @@
         <item quantity="one">%s dinleyici</item>
         <item quantity="other">%s dinleyici</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Uygulama yeniden başlatıldıktan sonra dil değişecektir.</string>
+    <string name="localization_changes_requires_app_restart">Uygulama yeniden başlatıldıktan sonra dil değişecektir</string>
     <string name="seek_duration_title">Hızlı ileri/geri konumlama süresi</string>
     <string name="peertube_instance_url_title">PeerTube örnekleri</string>
     <string name="peertube_instance_url_summary">Favori PeerTube örneklerinizi seçin</string>
@@ -568,7 +566,7 @@
     <string name="feed_update_threshold_summary">Bir aboneliğin eski sayılmadan önce son güncellemeden sonra geçen zaman — %s</string>
     <string name="feed_update_threshold_option_always_update">Her zaman güncelle</string>
     <string name="feed_use_dedicated_fetch_method_title">Uygunken özel akıştan edinin</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Bazı servislerde kullanılabilir, genellikle daha hızlıdır ancak kısıtlı sayıda öge ve eksik bilgi (örn. süre, öge türü, canlı durumu olmaksızın) getirilebilir.</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Bazı servislerde kullanılabilir, genellikle daha hızlıdır ancak kısıtlı sayıda öge ve eksik bilgi (örn. süre, öge türü, canlı durumu olmaksızın) getirilebilir</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Hızlı kipi etkinleştir</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Hızlı kipi devre dışı bırak</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Akışın çok yavaş yüklendiğini mi düşünüyorsunuz\? Öyleyse, hızlı yüklemeyi etkinleştirin (ayarlardan değiştirebilir veya aşağıdaki düğmeye dokunabilirsiniz).
@@ -627,7 +625,7 @@
     <string name="notification_action_shuffle">Karıştır</string>
     <string name="notification_action_repeat">Tekrarla</string>
     <string name="notification_actions_at_most_three">Bildirim sekmesinde gösterilecek en fazla üç eylem seçebilirsiniz!</string>
-    <string name="notification_actions_summary">Aşağıdaki her bildirim eylemini üzerine dokunarak düzenleyin. Sağdaki onay kutularını kullanarak bildirim sekmesinde gösterilmek üzere en fazla üç tanesini seçin.</string>
+    <string name="notification_actions_summary">Aşağıdaki bildirim eyleminlerini üzerine dokunarak düzenleyin. Sağdaki onay kutularını kullanarak sıkışık bildirimde gösterilecek üç eylemi seçin</string>
     <string name="notification_action_4_title">Beşinci eylem düğmesi</string>
     <string name="notification_action_3_title">Dördüncü eylem düğmesi</string>
     <string name="notification_action_2_title">Üçüncü eylem düğmesi</string>
@@ -651,7 +649,7 @@
     <string name="hash_channel_description">Video dosya özetleme süreci için bildirimler</string>
     <string name="hash_channel_name">Video Dosya Özeti Bildirimi</string>
     <string name="recent">En Son</string>
-    <string name="show_meta_info_summary">Akış oluşturucu, akış içeriği veya bir arama isteği hakkında ek bilgiler içeren meta bilgi kutularını gizlemek için kapatın.</string>
+    <string name="show_meta_info_summary">Akış oluşturucu, akış içeriği veya bir arama isteği hakkında ek bilgiler içeren meta bilgi kutularını gizlemek için kapatın</string>
     <string name="show_meta_info_title">Üst bilgiyi göster</string>
     <string name="chapters">Bölümler</string>
     <string name="description_tab_description">Açıklama</string>
@@ -680,4 +678,37 @@
     <string name="show_channel_details">Kanal ayrıntılarını göster</string>
     <string name="disable_media_tunneling_summary">Ortam yürütümünde siyah ekran veya tutukluk yaşıyorsanız ortam tünellemeyi devre dışı bırakın</string>
     <string name="disable_media_tunneling_title">Ortam tünellemeyi devre dışı bırak</string>
+    <string name="metadata_privacy_internal">İç</string>
+    <string name="metadata_privacy_private">Gizli</string>
+    <string name="metadata_privacy_unlisted">Listelenmemiş</string>
+    <string name="metadata_privacy_public">Halka Açık</string>
+    <string name="metadata_thumbnail_url">Küçük Resim URL\'si</string>
+    <string name="metadata_host">Konakçı</string>
+    <string name="metadata_support">Destek</string>
+    <string name="metadata_language">Dil</string>
+    <string name="metadata_age_limit">Yaş sınırı</string>
+    <string name="metadata_privacy">Gizlilik</string>
+    <string name="metadata_licence">Lisans</string>
+    <string name="metadata_tags">Etiketler</string>
+    <string name="metadata_category">Kategori</string>
+    <string name="description_select_disable">Açıklamadaki metni seçmeyi devre dışı bırak</string>
+    <string name="description_select_enable">Açıklamadaki metni seçmeyi etkinleştir</string>
+    <string name="description_select_note">Artık, açıklamadaki metni seçebilirsiniz. Seçim kipindeyken sayfanın titreyebileceğini ve bağlantıların tıklanamayacağını unutmayın.</string>
+    <string name="open_website_license">Web sitesini aç</string>
+    <string name="service_provides_reason">%s şu nedeni sağlıyor:</string>
+    <string name="account_terminated">Hesap sonlandırıldı</string>
+    <string name="feed_load_error_fast_unknown">Hızlı besleme kipi bununla ilgili daha çok bilgi sağlamıyor.</string>
+    <string name="feed_load_error_terminated">Yazarın hesabı sonlandırılmış.
+\nNewPipe, bu beslemeyi gelecekte yükleyemeyecek.
+\nBu kanalın aboneliğinden çıkmak ister misiniz\?</string>
+    <string name="feed_load_error_account_info">\'%s\' için besleme yüklenemedi.</string>
+    <string name="feed_load_error">Besleme yüklenirken hata</string>
+    <string name="downloads_storage_use_saf_summary_api_29">\'Depolama Erişimi Çerçevesi\' yalnızca Android 10\'dan başlayarak desteklenmektedir</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\'Depolama Erişimi Çerçevesi\' Android KitKat ve altında desteklenmez</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Her indirmede nereye kaydedileceği sorulacak</string>
+    <string name="no_dir_yet">İndirme klasörü belirlenmedi, şimdi öntanımlı indirme klasörünü seçin</string>
+    <string name="off">Kapat</string>
+    <string name="on">Aç</string>
+    <string name="tablet_mode_title">Tablet kipi</string>
+    <string name="feed_toggle_show_played_items">Oynatılan ögeleri göster</string>
 </resources>

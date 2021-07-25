@@ -1,6 +1,7 @@
-• Nowa obsługa aplikacji: odtwarzanie na stronie ze szczegółami, przesuń w dół aby zminimalizować. 
-• Powiadomienia Media Style: Personalizacja zachowań powiadomień, poprawki wydajności
-• Prosta zmiana rozmiaru kiedy używasz trybu komputera (Dex itd)
-• Nowe menu z opcjami w przypadku nie obsługiwanego adresu
-• Poprawa sugerowanych wyników wyszukiwania w przypadku gdyby nie dało się ich pobrać z serwera. 
-• Podniesiona domyślna rozdzielczość: 720p60 w aplikacji, 480p w pływającym odtwarzaczu
+• nowa obsługa aplikacji: odtwarzanie na stronie ze szczegółami, przesuń w dół aby zminimalizować. 
+• powiadomienia Media Style: Personalizacja zachowań powiadomień, poprawki wydajności
+• zmiana rozmiaru kiedy używasz 
+ NewPipe w wersji na komputer
+• menu z opcjami w przypadku nie obsługiwanego adresu URL
+• poprawa sugerowanych wyników wyszukiwania w przypadku gdyby nie można ich sprawdzić. 
+• podniesiona domyślna rozdzielczość: 720p60 (w aplikacji), 480p (w wersji okienkowej)

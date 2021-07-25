@@ -51,4 +51,15 @@ public final class NewPipeDatabase {
             throw new RuntimeException("Checkpoint was blocked from completing");
         }
     }
+
+    public static void close() {
+        if (databaseInstance != null) {
+            synchronized (NewPipeDatabase.class) {
+                if (databaseInstance != null) {
+                    databaseInstance.close();
+                    databaseInstance = null;
+                }
+            }
+        }
+    }
 }

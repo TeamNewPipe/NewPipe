@@ -20,6 +20,7 @@
     <dimen name="video_item_search_uploader_text_size">11sp</dimen>
     <dimen name="video_item_search_upload_date_text_size">12sp</dimen>
     <dimen name="header_footer_text_size">16sp</dimen>
+    <dimen name="item_in_history_indicator_text_size">12sp</dimen>
     <!-- Elements Size -->
     <!-- 16 / 9 ratio-->
     <dimen name="video_item_search_thumbnail_image_width">124dp</dimen>
@@ -52,6 +53,8 @@
     <dimen name="player_main_buttons_min_width">40dp</dimen>
     <dimen name="player_notification_thumbnail_width">200dp</dimen>
 
+    <dimen name="item_in_history_indicator_vertical_margin">2dp</dimen>
+    <dimen name="item_in_history_indicator_horizontal_margin">8dp</dimen>
     <!-- Miscellaneous -->
     <dimen name="popup_default_width">180dp</dimen>
     <dimen name="popup_minimum_width">150dp</dimen>
@@ -114,9 +117,9 @@
     <dimen name="playlist_detail_uploader_image_size">24dp</dimen>
     <dimen name="playlist_detail_uploader_layout_height">28dp</dimen>
 
-    <!-- Play Queue View Dimensions -->
+    <!-- Play queue thumbnail view dimensions (16:9) -->
     <dimen name="play_queue_thumbnail_width">62dp</dimen>
-    <dimen name="play_queue_thumbnail_height">40dp</dimen>
+    <dimen name="play_queue_thumbnail_height">35dp</dimen>
 
     <!-- Kiosk view Dimensions-->
     <dimen name="kiosk_title_text_size">30sp</dimen>

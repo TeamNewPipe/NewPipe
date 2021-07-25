@@ -97,9 +97,9 @@
     <string name="msg_exists">El archivo ya existe</string>
     <string name="msg_url_malform">URL mal escrito o Internet no disponible</string>
     <string name="msg_running">NewPipe está descargando</string>
-    <string name="msg_running_detail">Toque para ver detalles</string>
+    <string name="msg_running_detail">Toca para ver detalles</string>
     <string name="msg_wait">Espere, por favor…</string>
-    <string name="msg_copied">Copiado en el portapapeles</string>
+    <string name="msg_copied">Copiado al portapapeles</string>
     <string name="no_available_dir">Defina una carpeta de descargas más tarde en los ajustes</string>
     <string name="could_not_load_image">No se pudo cargar la imagen</string>
     <string name="app_ui_crash">La interfaz de la aplicación dejó de funcionar</string>
@@ -309,7 +309,7 @@
     <string name="enable_disposed_exceptions_title">Informar errores fuera del ciclo de duración</string>
     <string name="enable_disposed_exceptions_summary">Forzar informe de excepciones no entregables de RX fuera del fragmento o del ciclo de actividad después del descarte</string>
     <string name="use_inexact_seek_title">Usar búsqueda rápida e inexacta</string>
-    <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión. Buscar de a 5, 15 o 25 segundos no funciona.</string>
+    <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión. Buscar de a 5, 15 o 25 segundos no funciona</string>
     <string name="auto_queue_title">Poner en cola vídeo relacionado siguiente</string>
     <string name="auto_queue_summary">Continuar reproducción sin repetir al añadir de forma automática un vídeo relacionado con el último visto</string>
     <string name="file">Archivo</string>
@@ -348,7 +348,7 @@
 \n
 \n¿Quieres continuar\?</string>
     <string name="download_thumbnail_title">Cargar miniaturas</string>
-    <string name="download_thumbnail_summary">Desactivar para evitar la carga de miniaturas y ahorrar datos y memoria. Se vaciará la caché de imágenes en la memoria volátil y en el disco.</string>
+    <string name="download_thumbnail_summary">Desactivar para evitar la carga de miniaturas y ahorrar datos y memoria. Se vaciará la caché de imágenes en la memoria volátil y en el disco</string>
     <string name="thumbnail_cache_wipe_complete_notice">Se vació la caché de imágenes</string>
     <string name="metadata_cache_wipe_title">Vaciar metadatos en memoria caché</string>
     <string name="metadata_cache_wipe_summary">Quitar todos los datos guardados de páginas web</string>
@@ -362,15 +362,15 @@
     <string name="preferred_open_action_settings_summary">Acción predefinida al abrir contenido: %s</string>
     <string name="toast_no_player">No se encontró ninguna aplicación que reproduzca este archivo</string>
     <string name="caption_setting_title">Subtítulos</string>
-    <string name="caption_setting_description">Modificar la escala de texto de los subtítulos y los estilos de fondo. Requiere reiniciar la aplicación para que surta efecto.</string>
+    <string name="caption_setting_description">Modificar la escala de texto de los subtítulos y los estilos de fondo. Requiere reiniciar la aplicación para que surta efecto</string>
     <string name="clear_views_history_title">Vaciar historial de reproducciones</string>
     <string name="clear_views_history_summary">Borra el historial de contenido visto y posiciones de reproducción</string>
     <string name="delete_view_history_alert">¿Eliminar todo el historial de reproducciones\?</string>
-    <string name="watch_history_deleted">Historial de reproducciones borrado.</string>
+    <string name="watch_history_deleted">Historial de reproducciones borrado</string>
     <string name="clear_search_history_title">Vaciar historial de búsquedas</string>
     <string name="clear_search_history_summary">Borra el historial de búsqueda de palabras clave</string>
     <string name="delete_search_history_alert">¿Borrar todo el historial de búsqueda\?</string>
-    <string name="search_history_deleted">Historial de búsquedas borrado.</string>
+    <string name="search_history_deleted">Historial de búsquedas borrado</string>
     <string name="one_item_deleted">Se ha borrado 1 elemento.</string>
     <string name="app_license">NewPipe es un software copyleft libre: puedes usarlo, estudiarlo, compartirlo y mejorarlo a voluntad. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la licencia, o (a tu elección) cualquier versión posterior.</string>
     <string name="import_settings">¿Quieres importar también los ajustes\?</string>
@@ -448,12 +448,10 @@
     <string name="error_timeout">Tiempo de espera excedido</string>
     <string name="error_download_resource_gone">No se puede recuperar esta descarga</string>
     <string name="downloads_storage_ask_title">Preguntar dónde descargar</string>
-    <string name="downloads_storage_ask_summary">Se preguntará dónde guardar cada descarga</string>
-    <string name="downloads_storage_ask_summary_kitkat">Se te preguntará dónde guardar cada descarga.
-\nActiva esta opción junto con SAF si quiere descargar en la tarjeta SD</string>
-    <string name="downloads_storage_use_saf_title">Usar SAF</string>
-    <string name="downloads_storage_use_saf_summary">El \'Framework de Acceso al Almacenamiento\' permite descargar en una tarjeta SD externa. 
-\nAlgunos dispositivos no son compatibles</string>
+    <string name="downloads_storage_ask_summary">Se le preguntará dónde guardar cada descarga.
+\nHabilite Elegir carpetas del sistema (SAF) si desea guardar las descargas en una tarjeta SD externa</string>
+    <string name="downloads_storage_use_saf_title">Usar Elegir carpetas del sistema (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">El \'Sistema de Acceso al Almacenamiento\' permite descargar en una tarjeta SD externa</string>
     <string name="unsubscribe">Desuscribirse</string>
     <string name="tab_new">Pestaña nueva</string>
     <string name="tab_choose">Elija la pestaña</string>
@@ -492,7 +490,7 @@
     <string name="enable_playback_state_lists_title">Posiciones en listas</string>
     <string name="enable_playback_state_lists_summary">Mostrar indicador de posición en listas de reproducción</string>
     <string name="settings_category_clear_data_title">Vaciar datos</string>
-    <string name="watch_history_states_deleted">Posiciones de reproducción borradas.</string>
+    <string name="watch_history_states_deleted">Posiciones de reproducción borradas</string>
     <string name="clear_playback_states_title">Borrar posiciones de reproducción</string>
     <string name="clear_playback_states_summary">Borra todas las posiciones de reproducción</string>
     <string name="delete_playback_states_alert">¿Quieres borrar todas las posiciones de reproducción\?</string>
@@ -508,7 +506,7 @@
         <item quantity="one">%s escucha</item>
         <item quantity="other">%s escuchas</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">El idioma cambiará luego de que se reinicie la aplicación.</string>
+    <string name="localization_changes_requires_app_restart">El idioma cambiará luego de que se reinicie la aplicación</string>
     <string name="seek_duration_title">Duración de búsqueda al avanzar y/o retroceder</string>
     <string name="peertube_instance_url_title">Instancias de PeerTube</string>
     <string name="peertube_instance_url_summary">Selecciona tus instancias favoritas de PeerTube</string>
@@ -571,7 +569,7 @@
     <string name="feed_update_threshold_summary">Tiempo para que una suscripción se considere desactualizada — %s</string>
     <string name="feed_update_threshold_option_always_update">Actualizar siempre</string>
     <string name="feed_use_dedicated_fetch_method_title">Extraer desde feed dedicado cuando esté disponible</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Disponible para algunos servicios, suele ser más rápido pero puede mostrar una cantidad limitada de ítems y a menudo información incompleta (por ejemplo falta de duración, tipo de ítem o estado).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponible para algunos servicios, suele ser más rápido pero puede mostrar una cantidad limitada de ítems y a menudo información incompleta (por ejemplo falta de duración, tipo de ítem o estado)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activar modo rápido</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desactivar modo rápido</string>
     <string name="feed_use_dedicated_fetch_method_help_text">¿Piensas que la carga de contenidos es muy lenta\? Entonces intenta habilitar la carga rápida (puedes cambiarlo en los ajustes o pulsando el botón debajo).
@@ -631,7 +629,7 @@
     <string name="notification_action_buffering">Almacenar en memoria (búfer)</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">¡Puedes seleccionar como máximo tres acciones para mostrar en la notificación compacta!</string>
-    <string name="notification_actions_summary">Edita cada acción de la notificación pulsando sobre ella a continuación. Selecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación a la derecha.</string>
+    <string name="notification_actions_summary">Edita cada acción de la notificación pulsando sobre ella a continuación. Selecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación a la derecha</string>
     <string name="notification_action_4_title">Botón de quinta acción</string>
     <string name="notification_action_3_title">Botón de cuarta acción</string>
     <string name="notification_action_2_title">Botón de tercera acción</string>
@@ -650,7 +648,7 @@
     <string name="notification_colorize_summary">Permitir a Android personalizar el color de la notificación con el color principal de la imagen (ten en cuenta que esta opción no funciona en todos los dispositivos)</string>
     <string name="show_thumbnail_summary">Usar miniatura como fondo de pantalla de bloqueo y notificaciones</string>
     <string name="show_thumbnail_title">Mostrar vista previa</string>
-    <string name="show_meta_info_summary">Desactivar para ocultar información adicional sobre el creador o contenido de la transmisión.</string>
+    <string name="show_meta_info_summary">Desactivar para ocultar información adicional sobre el creador o contenido de la transmisión</string>
     <string name="show_description_summary">Desactivar para ocultar la descripción del vídeo y la información adicional</string>
     <string name="no_app_to_open_intent">Ninguna aplicación en tu dispositivo puede abrir esto</string>
     <string name="chapters">Capítulos</string>
@@ -681,4 +679,39 @@
     <string name="auto_device_theme_title">Automático (tema del dispositivo)</string>
     <string name="show_channel_details">Mostrar detalles del canal</string>
     <string name="featured">Destacado</string>
+    <string name="open_website_license">Abrir sitio web</string>
+    <string name="metadata_privacy_internal">Interno</string>
+    <string name="metadata_privacy_private">Privado</string>
+    <string name="metadata_privacy_unlisted">No listado</string>
+    <string name="metadata_privacy_public">Público</string>
+    <string name="metadata_thumbnail_url">URL de la miniatura</string>
+    <string name="metadata_support">Soporte</string>
+    <string name="metadata_language">Lenguaje</string>
+    <string name="metadata_age_limit">Límite de edad</string>
+    <string name="metadata_privacy">Privacidad</string>
+    <string name="metadata_licence">Licencia</string>
+    <string name="metadata_tags">Etiquetas</string>
+    <string name="metadata_category">Categoría</string>
+    <string name="description_select_disable">Inhabilitar la selección de texto de la descripción</string>
+    <string name="description_select_enable">Habilitar la selección de texto de la descripción</string>
+    <string name="description_select_note">Ahora puede seleccionar el texto dentro de la descripción. Note que la página puede parpadear y los links no serán cliqueables mientras está en el modo de selección.</string>
+    <string name="service_provides_reason">%s da esta razón:</string>
+    <string name="feed_load_error_account_info">No fue posible cargar el muro por \'%s\'.</string>
+    <string name="account_terminated">Cuenta cancelada</string>
+    <string name="feed_load_error_fast_unknown">El modo de muro rápido no arroja más información sobre esto.</string>
+    <string name="feed_load_error_terminated">La cuenta del autor ha sido cancelada.
+\nNewPipe no podrá acceder a ella en el futuro.
+\n¿Desea desuscribirse de este canal\?</string>
+    <string name="feed_load_error">Error al cargar el muro</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Desde Android 10 solo el \'Sistema de Acceso al Almacenamiento\' es soportado</string>
+    <string name="downloads_storage_use_saf_summary_api_19">El \'Sistema de Acceso al Almacenamiento\' no es sorportado en Android KitKat o versiones anteriores</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Se le preguntará dónde guardar cada descarga</string>
+    <string name="disable_media_tunneling_summary">Deshabilitar el túnel de medios si experimenta una pantalla negra o interrupciones en la reproduccción de videos</string>
+    <string name="disable_media_tunneling_title">Deshabilitar el túnel de medios</string>
+    <string name="no_dir_yet">Aún no se ha seleccionado ninguna carpeta de descargas, elija la carpeta de descargas por defecto ahora</string>
+    <string name="metadata_host">Anfitrión</string>
+    <string name="off">Apagado</string>
+    <string name="on">Encendido</string>
+    <string name="tablet_mode_title">Modo tableta</string>
+    <string name="feed_toggle_show_played_items">Mostrar elementos reproducidos</string>
 </resources>

@@ -36,7 +36,7 @@ import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.settings.HistorySettingsFragment;
-import org.schabi.newpipe.util.KoreUtil;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StreamDialogEntry;
@@ -111,7 +111,8 @@ public class StatisticsPlaylistFragment
     }
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_history, menu);
     }
@@ -359,7 +360,7 @@ public class StatisticsPlaylistFragment
             ));
         }
         entries.add(StreamDialogEntry.open_in_browser);
-        if (KoreUtil.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
+        if (KoreUtils.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
         }
 

@@ -476,8 +476,6 @@
     <string name="pause_downloads">暂停下载</string>
     <string name="downloads_storage_ask_title">询问下载位置</string>
     <string name="downloads_storage_ask_summary">系统将询问您将每次下载的保存位置</string>
-    <string name="downloads_storage_ask_summary_kitkat">系统将询问您将每次下载的保存位置。
-\n（如果要下载到外部 SD 卡，请选择 SAF）</string>
     <string name="downloads_storage_use_saf_title">使用 SAF</string>
     <string name="downloads_storage_use_saf_summary">存储访问框架(SAF)允许下载文件到外部SD卡。
 \n注：一些设备不兼容SAF</string>

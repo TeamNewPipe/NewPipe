@@ -12,13 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.text.util.LinkifyCompat;
-
-import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
@@ -29,8 +30,8 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Constants;
-import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 
 import java.util.Collections;
@@ -45,8 +46,6 @@ import static org.schabi.newpipe.local.subscription.services.SubscriptionsImport
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE;
 
 public class SubscriptionsImportFragment extends BaseFragment {
-    private static final int REQUEST_IMPORT_FILE_CODE = 666;
-
     @State
     int currentServiceId = Constants.NO_SERVICE_ID;
 
@@ -63,6 +62,9 @@ public class SubscriptionsImportFragment extends BaseFragment {
     private TextView infoTextView;
     private EditText inputText;
     private Button inputButton;
+
+    private final ActivityResultLauncher<Intent> requestImportFileLauncher =
+            registerForActivityResult(new StartActivityForResult(), this::requestImportFileResult);
 
     public static SubscriptionsImportFragment getInstance(final int serviceId) {
         final SubscriptionsImportFragment instance = new SubscriptionsImportFragment();
@@ -175,23 +177,19 @@ public class SubscriptionsImportFragment extends BaseFragment {
     }
 
     public void onImportFile() {
-        startActivityForResult(FilePickerActivityHelper.chooseSingleFile(activity),
-                REQUEST_IMPORT_FILE_CODE);
+        requestImportFileLauncher.launch(StoredFileHelper.getPicker(activity));
     }
 
-    @Override
-    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (data == null) {
+    private void requestImportFileResult(final ActivityResult result) {
+        if (result.getData() == null) {
             return;
         }
 
-        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_IMPORT_FILE_CODE
-                && data.getData() != null) {
-            final String path = Utils.getFileForUri(data.getData()).getAbsolutePath();
+        if (result.getResultCode() == Activity.RESULT_OK && result.getData().getData() != null) {
             ImportConfirmationDialog.show(this,
                     new Intent(activity, SubscriptionsImportService.class)
-                            .putExtra(KEY_MODE, INPUT_STREAM_MODE).putExtra(KEY_VALUE, path)
+                            .putExtra(KEY_MODE, INPUT_STREAM_MODE)
+                            .putExtra(KEY_VALUE, result.getData().getData())
                             .putExtra(Constants.KEY_SERVICE_ID, currentServiceId));
         }
     }

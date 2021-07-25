@@ -521,8 +521,6 @@
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" permite descărcări pe un card SD extern.
 \nUnele dispozitive sunt incompatibile</string>
     <string name="downloads_storage_use_saf_title">Folosiți SAF</string>
-    <string name="downloads_storage_ask_summary_kitkat">Veți fi întrebat unde pentru a salva fiecare descărcare.
-\nAlegeți SAF dacă doriți să descărcați pe un card SD extern</string>
     <string name="downloads_storage_ask_summary">Veți fi întrebat unde să salvați fiecare descărcare</string>
     <string name="downloads_storage_ask_title">Întrebați unde să descărcați</string>
     <string name="pause_downloads">Întrerupeți descărcările</string>

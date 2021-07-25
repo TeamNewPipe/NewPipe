@@ -23,13 +23,9 @@ public class ImportConfirmationDialog extends DialogFragment {
 
     public static void show(@NonNull final Fragment fragment,
                             @NonNull final Intent resultServiceIntent) {
-        if (fragment.getFragmentManager() == null) {
-            return;
-        }
-
         final ImportConfirmationDialog confirmationDialog = new ImportConfirmationDialog();
         confirmationDialog.setResultServiceIntent(resultServiceIntent);
-        confirmationDialog.show(fragment.getFragmentManager(), null);
+        confirmationDialog.show(fragment.getParentFragmentManager(), null);
     }
 
     public void setResultServiceIntent(final Intent resultServiceIntent) {

@@ -17,7 +17,7 @@ import java.util.Objects;
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
 import us.shandian.giga.get.Mission;
-import us.shandian.giga.io.StoredFileHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 
 /**
  * SQLite helper to store finished {@link us.shandian.giga.get.FinishedMission}'s

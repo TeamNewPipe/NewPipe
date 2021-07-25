@@ -33,7 +33,7 @@ import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.player.helper.PlayerHolder;
-import org.schabi.newpipe.util.KoreUtil;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
@@ -371,7 +371,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             ));
         }
         entries.add(StreamDialogEntry.open_in_browser);
-        if (KoreUtil.shouldShowPlayWithKodi(context, item.getServiceId())) {
+        if (KoreUtils.shouldShowPlayWithKodi(context, item.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
         }
         if (!isNullOrEmpty(item.getUploaderUrl())) {
@@ -389,7 +389,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
         if (DEBUG) {
             Log.d(TAG, "onCreateOptionsMenu() called with: "
                     + "menu = [" + menu + "], inflater = [" + inflater + "]");

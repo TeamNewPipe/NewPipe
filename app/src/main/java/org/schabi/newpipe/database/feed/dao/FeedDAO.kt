@@ -9,7 +9,8 @@ import androidx.room.Update
 import io.reactivex.rxjava3.core.Flowable
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
-import org.schabi.newpipe.database.stream.model.StreamEntity
+import org.schabi.newpipe.database.stream.StreamWithState
+import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import java.time.OffsetDateTime
 
@@ -20,21 +21,34 @@ abstract class FeedDAO {
 
     @Query(
         """
-        SELECT s.* FROM streams s
+        SELECT s.*, sst.progress_time
+        FROM streams s
+
+        LEFT JOIN stream_state sst
+        ON s.uid = sst.stream_id
+
+        LEFT JOIN stream_history sh
+        ON s.uid = sh.stream_id
 
         INNER JOIN feed f
         ON s.uid = f.stream_id
 
         ORDER BY s.upload_date IS NULL DESC, s.upload_date DESC, s.uploader ASC
-
         LIMIT 500
         """
     )
-    abstract fun getAllStreams(): Flowable<List<StreamEntity>>
+    abstract fun getAllStreams(): Flowable<List<StreamWithState>>
 
     @Query(
         """
-        SELECT s.* FROM streams s
+        SELECT s.*, sst.progress_time
+        FROM streams s
+
+        LEFT JOIN stream_state sst
+        ON s.uid = sst.stream_id
+
+        LEFT JOIN stream_history sh
+        ON s.uid = sh.stream_id
 
         INNER JOIN feed f
         ON s.uid = f.stream_id
@@ -42,16 +56,88 @@ abstract class FeedDAO {
         INNER JOIN feed_group_subscription_join fgs
         ON fgs.subscription_id = f.subscription_id
 
-        INNER JOIN feed_group fg
-        ON fg.uid = fgs.group_id
-
         WHERE fgs.group_id = :groupId
 
         ORDER BY s.upload_date IS NULL DESC, s.upload_date DESC, s.uploader ASC
         LIMIT 500
         """
     )
-    abstract fun getAllStreamsFromGroup(groupId: Long): Flowable<List<StreamEntity>>
+    abstract fun getAllStreamsForGroup(groupId: Long): Flowable<List<StreamWithState>>
+
+    /**
+     * @see StreamStateEntity.isFinished()
+     * @see StreamStateEntity.PLAYBACK_FINISHED_END_MILLISECONDS
+     * @return all of the non-live, never-played and non-finished streams in the feed
+     *         (all of the cited conditions must hold for a stream to be in the returned list)
+     */
+    @Query(
+        """
+        SELECT s.*, sst.progress_time
+        FROM streams s
+
+        LEFT JOIN stream_state sst
+        ON s.uid = sst.stream_id
+
+        LEFT JOIN stream_history sh
+        ON s.uid = sh.stream_id    
+            
+        INNER JOIN feed f
+        ON s.uid = f.stream_id
+
+        WHERE (
+            sh.stream_id IS NULL
+            OR sst.stream_id IS NULL
+            OR sst.progress_time < s.duration * 1000 - ${StreamStateEntity.PLAYBACK_FINISHED_END_MILLISECONDS}
+            OR sst.progress_time < s.duration * 1000 * 3 / 4
+            OR s.stream_type = 'LIVE_STREAM'
+            OR s.stream_type = 'AUDIO_LIVE_STREAM'
+        )
+
+        ORDER BY s.upload_date IS NULL DESC, s.upload_date DESC, s.uploader ASC
+        LIMIT 500
+        """
+    )
+    abstract fun getLiveOrNotPlayedStreams(): Flowable<List<StreamWithState>>
+
+    /**
+     * @see StreamStateEntity.isFinished()
+     * @see StreamStateEntity.PLAYBACK_FINISHED_END_MILLISECONDS
+     * @param groupId the group id to get streams of
+     * @return all of the non-live, never-played and non-finished streams for the given feed group
+     *         (all of the cited conditions must hold for a stream to be in the returned list)
+     */
+    @Query(
+        """
+        SELECT s.*, sst.progress_time
+        FROM streams s
+
+        LEFT JOIN stream_state sst
+        ON s.uid = sst.stream_id
+        
+        LEFT JOIN stream_history sh
+        ON s.uid = sh.stream_id
+        
+        INNER JOIN feed f
+        ON s.uid = f.stream_id
+
+        INNER JOIN feed_group_subscription_join fgs
+        ON fgs.subscription_id = f.subscription_id
+
+        WHERE fgs.group_id = :groupId
+        AND (
+            sh.stream_id IS NULL
+            OR sst.stream_id IS NULL
+            OR sst.progress_time < s.duration * 1000 - ${StreamStateEntity.PLAYBACK_FINISHED_END_MILLISECONDS}
+            OR sst.progress_time < s.duration * 1000 * 3 / 4
+            OR s.stream_type = 'LIVE_STREAM'
+            OR s.stream_type = 'AUDIO_LIVE_STREAM'
+        )
+
+        ORDER BY s.upload_date IS NULL DESC, s.upload_date DESC, s.uploader ASC
+        LIMIT 500
+        """
+    )
+    abstract fun getLiveOrNotPlayedStreamsForGroup(groupId: Long): Flowable<List<StreamWithState>>
 
     @Query(
         """

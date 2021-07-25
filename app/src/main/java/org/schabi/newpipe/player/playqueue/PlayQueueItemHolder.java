@@ -37,7 +37,6 @@ public class PlayQueueItemHolder extends RecyclerView.ViewHolder {
     public final TextView itemDurationView;
     final TextView itemAdditionalDetailsView;
 
-    final ImageView itemSelected;
     public final ImageView itemThumbnailView;
     final ImageView itemHandle;
 
@@ -49,7 +48,6 @@ public class PlayQueueItemHolder extends RecyclerView.ViewHolder {
         itemVideoTitleView = v.findViewById(R.id.itemVideoTitleView);
         itemDurationView = v.findViewById(R.id.itemDurationView);
         itemAdditionalDetailsView = v.findViewById(R.id.itemAdditionalDetails);
-        itemSelected = v.findViewById(R.id.itemSelected);
         itemThumbnailView = v.findViewById(R.id.itemThumbnailView);
         itemHandle = v.findViewById(R.id.itemHandle);
     }
