@@ -98,9 +98,9 @@ public enum StreamDialogEntry {
             ShareUtils.openUrlInBrowser(fragment.getContext(), item.getUrl())),
 
 
-    mark_as_played(R.string.mark_as_played, (fragment, item) -> {
+    mark_as_watched(R.string.mark_as_watched, (fragment, item) -> {
         new HistoryRecordManager(fragment.getContext())
-                .markAsPlayed(item)
+                .markAsWatched(item)
                 .onErrorComplete()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();

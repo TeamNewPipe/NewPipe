@@ -332,7 +332,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share,
                     StreamDialogEntry.open_in_browser,
-                    StreamDialogEntry.mark_as_played
+                    StreamDialogEntry.mark_as_watched
                 )
             )
         } else {
@@ -343,7 +343,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share,
                     StreamDialogEntry.open_in_browser,
-                    StreamDialogEntry.mark_as_played
+                    StreamDialogEntry.mark_as_watched
                 )
             )
         }

@@ -82,7 +82,7 @@ public class HistoryRecordManager {
     // Watch History
     ///////////////////////////////////////////////////////
 
-    public Maybe<Long> markAsPlayed(final StreamInfoItem info) {
+    public Maybe<Long> markAsWatched(final StreamInfoItem info) {
         if (!isStreamHistoryEnabled()) {
             return Maybe.empty();
         }
