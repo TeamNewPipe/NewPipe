@@ -1109,6 +1109,14 @@ public final class VideoDetailFragment
                 && PlayerHelper.isStartMainPlayerFullscreenEnabled(requireContext())
                 && !DeviceUtils.isLandscape(requireContext())
                 && PlayerHelper.globalScreenOrientationLocked(requireContext())) {
+            // Make sure the bottom sheet turns out expanded. When this code kicks in the bottom
+            // sheet could not have fully expanded yet, and thus be in the STATE_SETTLING state.
+            // When the activity is rotated, and its state is saved and then restored, the bottom
+            // sheet would forget what it was doing, since even if STATE_SETTLING is restored, it
+            // doesn't tell which state it was settling to, and thus the bottom sheet settles to
+            // STATE_COLLAPSED. This can be solved by manually setting the state that will be
+            // restored (i.e. bottomSheetState) to STATE_EXPANDED.
+            bottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
             // toggle landscape in order to open directly in fullscreen
             onScreenRotationButtonClicked();
         }
