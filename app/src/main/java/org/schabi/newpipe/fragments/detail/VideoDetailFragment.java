@@ -241,7 +241,7 @@ public final class VideoDetailFragment
                 && isAutoplayEnabled()
                 && player.getParentActivity() == null)) {
             autoPlayEnabled = true; // forcefully start playing
-            openVideoPlayer(true);
+            openVideoPlayerAutoFullscreen();
         }
     }
 
@@ -499,7 +499,7 @@ public final class VideoDetailFragment
                 break;
             case R.id.detail_thumbnail_root_layout:
                 autoPlayEnabled = true; // forcefully start playing
-                openVideoPlayer(true);
+                openVideoPlayerAutoFullscreen();
                 break;
             case R.id.detail_title_root_layout:
                 toggleTitleAndSecondaryControls();
@@ -899,7 +899,7 @@ public final class VideoDetailFragment
                         }
 
                         if (isAutoplayEnabled()) {
-                            openVideoPlayer(true);
+                            openVideoPlayerAutoFullscreen();
                         }
                     }
                 }, throwable -> showError(new ErrorInfo(throwable, UserAction.REQUESTED_STREAM,
@@ -1105,8 +1105,9 @@ public final class VideoDetailFragment
     }
 
     public void openVideoPlayer(final boolean directlyFullscreenIfApplicable) {
+        // Toggle to landscape orientation (which will then cause fullscreen mode) if we are not
+        // already in landscape and screen orientation is locked.
         if (directlyFullscreenIfApplicable
-                && PlayerHelper.isStartMainPlayerFullscreenEnabled(requireContext())
                 && !DeviceUtils.isLandscape(requireContext())
                 && PlayerHelper.globalScreenOrientationLocked(requireContext())) {
             // Make sure the bottom sheet turns out expanded. When this code kicks in the bottom
@@ -1127,6 +1128,12 @@ public final class VideoDetailFragment
         } else {
             replaceQueueIfUserConfirms(this::openMainPlayer);
         }
+    }
+
+    public void openVideoPlayerAutoFullscreen() {
+        // if the option to start directly fullscreen is enabled, openVideoPlayer will be called
+        // with directlyFullscreenIfApplicable=true and therefore open fullscreen if applicable
+        openVideoPlayer(PlayerHelper.isStartMainPlayerFullscreenEnabled(requireContext()));
     }
 
     private void openNormalBackgroundPlayer(final boolean append) {
