@@ -9,6 +9,7 @@
     <string name="cancel">Cancel</string>
     <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
+    <string name="mark_as_played">Mark as played</string>
     <string name="open_in_popup_mode">Open in popup mode</string>
     <string name="open_with">Open with</string>
     <string name="share">Share</string>

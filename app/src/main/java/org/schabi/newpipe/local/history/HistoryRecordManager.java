@@ -42,6 +42,7 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
 import java.time.OffsetDateTime;
@@ -80,6 +81,41 @@ public class HistoryRecordManager {
     ///////////////////////////////////////////////////////
     // Watch History
     ///////////////////////////////////////////////////////
+
+    public Maybe<Long> markAsPlayed(final StreamInfoItem info) {
+        if (!isStreamHistoryEnabled()) {
+            return Maybe.empty();
+        }
+
+        final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
+        return Maybe.fromCallable(() -> database.runInTransaction(() -> {
+            final long streamId = streamTable.upsert(new StreamEntity(info));
+
+            final List<StreamStateEntity> states = streamStateTable.getState(streamId)
+                    .blockingFirst();
+            if (!states.isEmpty()) {
+                final StreamStateEntity entity = states.get(0);
+                entity.setProgressMillis(info.getDuration() * 1000);
+                streamStateTable.update(entity);
+            } else {
+                final StreamStateEntity entity = new StreamStateEntity(
+                        streamId,
+                        info.getDuration() * 1000
+                );
+                streamStateTable.insert(entity);
+            }
+
+            final StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry(streamId);
+            if (latestEntry != null) {
+                streamHistoryTable.delete(latestEntry);
+                latestEntry.setAccessDate(currentTime);
+                latestEntry.setRepeatCount(latestEntry.getRepeatCount() + 1);
+                return streamHistoryTable.insert(latestEntry);
+            } else {
+                return streamHistoryTable.insert(new StreamHistoryEntity(streamId, currentTime));
+            }
+        })).subscribeOn(Schedulers.io());
+    }
 
     public Maybe<Long> onViewed(final StreamInfo info) {
         if (!isStreamHistoryEnabled()) {

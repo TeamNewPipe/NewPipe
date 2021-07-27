@@ -9,6 +9,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
@@ -17,6 +18,8 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.Collections;
 import java.util.List;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 import static org.schabi.newpipe.player.MainPlayer.PlayerType.AUDIO;
 import static org.schabi.newpipe.player.MainPlayer.PlayerType.POPUP;
@@ -92,8 +95,16 @@ public enum StreamDialogEntry {
                     item.getThumbnailUrl())),
 
     open_in_browser(R.string.open_in_browser, (fragment, item) ->
-            ShareUtils.openUrlInBrowser(fragment.getContext(), item.getUrl()));
+            ShareUtils.openUrlInBrowser(fragment.getContext(), item.getUrl())),
 
+
+    mark_as_played(R.string.mark_as_played, (fragment, item) -> {
+        new HistoryRecordManager(fragment.getContext())
+                .markAsPlayed(item)
+                .onErrorComplete()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+    });
 
     ///////////////
     // variables //
