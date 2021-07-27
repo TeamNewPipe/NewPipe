@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,7 @@ import androidx.documentfile.provider.DocumentFile;
 
 import com.nononsenseapps.filepicker.Utils;
 
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 
@@ -27,6 +29,9 @@ import us.shandian.giga.io.FileStream;
 import us.shandian.giga.io.FileStreamSAF;
 
 public class StoredFileHelper implements Serializable {
+    private static final boolean DEBUG = MainActivity.DEBUG;
+    private static final String TAG = StoredFileHelper.class.getSimpleName();
+
     private static final long serialVersionUID = 0L;
     public static final String DEFAULT_MIME = "application/octet-stream";
 
@@ -286,6 +291,12 @@ public class StoredFileHelper implements Serializable {
 
     public boolean existsAsFile() {
         if (source == null || (docFile == null && ioFile == null)) {
+            if (DEBUG) {
+                Log.d(TAG, "existsAsFile called but something is null: source = ["
+                        + (source == null ? "null => storage is invalid" : source)
+                        + "], docFile = [" + (docFile == null ? "null" : docFile)
+                        + "], ioFile = [" + (ioFile == null ? "null" : ioFile) + "]");
+            }
             return false;
         }
 
