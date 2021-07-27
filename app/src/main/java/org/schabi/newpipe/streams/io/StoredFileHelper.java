@@ -285,7 +285,7 @@ public class StoredFileHelper implements Serializable {
     }
 
     public boolean existsAsFile() {
-        if (source == null) {
+        if (source == null || (docFile == null && ioFile == null)) {
             return false;
         }
 

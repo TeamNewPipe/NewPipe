@@ -664,7 +664,7 @@ public class DownloadMission extends Mission {
      * @return {@code true}, if storage is invalid and cannot be used
      */
     public boolean hasInvalidStorage() {
-        return errCode == ERROR_PROGRESS_LOST || storage == null || storage.isInvalid() || !storage.existsAsFile();
+        return errCode == ERROR_PROGRESS_LOST || storage == null || !storage.existsAsFile();
     }
 
     /**
