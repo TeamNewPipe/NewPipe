@@ -69,7 +69,6 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -83,6 +82,8 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;
 import us.shandian.giga.service.MissionState;
 
+import static org.schabi.newpipe.util.ListHelper.checkIfWasSomeStreamedRemoved;
+import static org.schabi.newpipe.util.ListHelper.removeDeliveryDistinctStreams;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class DownloadDialog extends DialogFragment
@@ -139,13 +140,12 @@ public class DownloadDialog extends DialogFragment
             registerForActivityResult(
                     new StartActivityForResult(), this::requestDownloadPickVideoFolderResult);
 
+    private Toast removedStreamToast = null;
+    private boolean nonProgressiveStreamsRemoved = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Instance creation
     //////////////////////////////////////////////////////////////////////////*/
-
-    private Toast removedStreamToast = null;
-    boolean wasSomeStreamRemoved = false;
 
     @NonNull
     public static DownloadDialog newInstance(final StreamInfo info) {
@@ -157,16 +157,42 @@ public class DownloadDialog extends DialogFragment
     @NonNull
     public static DownloadDialog newInstance(final Context context,
                                              @NonNull final StreamInfo info) {
-        final ArrayList<VideoStream> streamsList = new ArrayList<>(ListHelper
-                .getSortedStreamVideosList(context, info.getVideoStreams(),
-                        info.getVideoOnlyStreams(), false));
-        final int selectedStreamIndex = ListHelper.getDefaultResolutionIndex(context, streamsList);
+        // TODO: Adapt this code when the downloader support other types of stream deliveries
+        final List<VideoStream> videoStreams = info.getVideoStreams();
+        final List<VideoStream> progressiveHttpVideoStreams =
+                removeDeliveryDistinctStreams(videoStreams, DeliveryMethod.PROGRESSIVE_HTTP);
+
+        final List<VideoStream> videoOnlyStreams = info.getVideoOnlyStreams();
+        final List<VideoStream> progressiveHttpVideoOnlyStreams =
+                removeDeliveryDistinctStreams(videoOnlyStreams, DeliveryMethod.PROGRESSIVE_HTTP);
+
+        final List<AudioStream> audioStreams = info.getAudioStreams();
+        final List<AudioStream> progressiveHttpAudioStreams =
+                removeDeliveryDistinctStreams(audioStreams, DeliveryMethod.PROGRESSIVE_HTTP);
+
+        final List<SubtitlesStream> subtitlesStreams = info.getSubtitles();
+        final List<SubtitlesStream> progressiveHttpSubtitlesStreams =
+                removeDeliveryDistinctStreams(subtitlesStreams, DeliveryMethod.PROGRESSIVE_HTTP);
+
+        final ArrayList<VideoStream> videoStreamsList = new ArrayList<>(
+                ListHelper.getSortedStreamVideosList(
+                        context, progressiveHttpVideoStreams,
+                        progressiveHttpVideoOnlyStreams, false));
 
         final DownloadDialog instance = newInstance(info);
-        instance.setVideoStreams(streamsList);
-        instance.setSelectedVideoStream(selectedStreamIndex);
-        instance.setAudioStreams(info.getAudioStreams());
-        instance.setSubtitleStreams(info.getSubtitles());
+        instance.setVideoStreams(videoStreamsList);
+        instance.setAudioStreams(progressiveHttpAudioStreams);
+        instance.setSubtitleStreams(progressiveHttpSubtitlesStreams);
+        if (checkIfWasSomeStreamedRemoved(videoStreams,
+                videoOnlyStreams,
+                audioStreams,
+                subtitlesStreams,
+                progressiveHttpVideoStreams,
+                progressiveHttpVideoOnlyStreams,
+                progressiveHttpAudioStreams,
+                progressiveHttpSubtitlesStreams)) {
+            instance.setNonProgressiveStreamsRemoved();
+        }
 
         return instance;
     }
@@ -181,7 +207,7 @@ public class DownloadDialog extends DialogFragment
     }
 
     public void setAudioStreams(final List<AudioStream> audioStreams) {
-        removeNonProgressiveStreams(audioStreams);
+        removeDeliveryDistinctStreams(audioStreams, DeliveryMethod.PROGRESSIVE_HTTP);
         setAudioStreams(new StreamSizeWrapper<>(audioStreams, getContext()));
     }
 
@@ -190,7 +216,7 @@ public class DownloadDialog extends DialogFragment
     }
 
     public void setVideoStreams(@NonNull final List<VideoStream> videoStreams) {
-        removeNonProgressiveStreams(videoStreams);
+        removeDeliveryDistinctStreams(videoStreams, DeliveryMethod.PROGRESSIVE_HTTP);
         setVideoStreams(new StreamSizeWrapper<>(videoStreams, getContext()));
     }
 
@@ -199,7 +225,7 @@ public class DownloadDialog extends DialogFragment
     }
 
     public void setSubtitleStreams(@NonNull final List<SubtitlesStream> subtitleStreams) {
-        removeNonProgressiveStreams(subtitleStreams);
+        removeDeliveryDistinctStreams(subtitleStreams, DeliveryMethod.PROGRESSIVE_HTTP);
         setSubtitleStreams(new StreamSizeWrapper<>(subtitleStreams, getContext()));
     }
 
@@ -208,7 +234,7 @@ public class DownloadDialog extends DialogFragment
     }
 
     private void showIfStreamsWereRemovedMessage() {
-        if (wasSomeStreamRemoved && removedStreamToast == null) {
+        if (this.nonProgressiveStreamsRemoved && removedStreamToast == null) {
             removedStreamToast = Toast.makeText(
                     requireContext(),
                     R.string.streams_hidden_download_not_supported_yet,
@@ -218,31 +244,35 @@ public class DownloadDialog extends DialogFragment
         }
     }
 
-    // TODO: Remove this when the downloader support other types of stream deliveries
-    private void removeNonProgressiveStreams(
-            @NonNull final List<? extends Stream> streamList) {
-        if (streamList.isEmpty()) {
-            return;
-        }
-        final Iterator<? extends Stream> streamIterator = streamList.iterator();
-        while (streamIterator.hasNext()) {
-            final Stream stream = streamIterator.next();
-            if (stream.getDeliveryMethod() != DeliveryMethod.PROGRESSIVE_HTTP) {
-                streamIterator.remove();
-            }
+    public void setNonProgressiveStreamsRemoved() {
+        if (!this.nonProgressiveStreamsRemoved) {
+            this.nonProgressiveStreamsRemoved = true;
         }
     }
 
     public void setSelectedVideoStream(final int svi) {
-        this.selectedVideoIndex = svi;
+        if (selectedStreamIsInBoundsOfWrappedStreams(svi, this.wrappedVideoStreams)) {
+            this.selectedVideoIndex = svi;
+        }
     }
 
     public void setSelectedAudioStream(final int sai) {
-        this.selectedAudioIndex = sai;
+        if (selectedStreamIsInBoundsOfWrappedStreams(sai, this.wrappedAudioStreams)) {
+            this.selectedAudioIndex = sai;
+        }
     }
 
     public void setSelectedSubtitleStream(final int ssi) {
-        this.selectedSubtitleIndex = ssi;
+        if (selectedStreamIsInBoundsOfWrappedStreams(ssi, this.wrappedSubtitleStreams)) {
+            this.selectedSubtitleIndex = ssi;
+        }
+    }
+
+    private boolean selectedStreamIsInBoundsOfWrappedStreams(
+            final int selectedIndexStream,
+            final StreamSizeWrapper<? extends Stream> wrappedStreams) {
+        return selectedIndexStream > 0
+                && selectedIndexStream < wrappedStreams.getStreamsList().size();
     }
 
     public void setOnDismissListener(@Nullable final OnDismissListener onDismissListener) {
@@ -343,7 +373,7 @@ public class DownloadDialog extends DialogFragment
         dialogBinding.fileName.setText(FilenameUtils.createFilename(getContext(),
                 currentInfo.getName()));
         selectedAudioIndex = ListHelper
-                .getDefaultAudioFormat(getContext(), currentInfo.getAudioStreams());
+                .getDefaultAudioFormat(getContext(), wrappedAudioStreams.getStreamsList());
 
         selectedSubtitleIndex = getSubtitleIndexBy(subtitleStreamsAdapter.getAll());
 

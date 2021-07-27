@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
@@ -12,6 +13,9 @@ import androidx.preference.PreferenceManager;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.DeliveryMethod;
+import org.schabi.newpipe.extractor.stream.Stream;
+import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 
 import java.util.ArrayList;
@@ -102,6 +106,63 @@ public final class ListHelper {
         } else {
             return getHighestQualityAudioIndex(defaultFormat, audioStreams);
         }
+    }
+
+    /**
+     * Return a {@link Stream} list which uses the given delivery method from a {@link Stream}
+     * list.
+     *
+     * @param streamList     the original stream list
+     * @param deliveryMethod the delivery method
+     * @param <S>            the item type's class that extends {@link Stream}
+     * @return a stream list which uses the given delivery method
+     */
+    @NonNull
+    public static <S extends Stream> List<S> removeDeliveryDistinctStreams(
+            @NonNull final List<S> streamList,
+            final DeliveryMethod deliveryMethod) {
+        if (streamList.isEmpty()) {
+            return Collections.emptyList();
+        }
+        final List<S> deliveryStreamList = new ArrayList<>();
+        for (final S stream : streamList) {
+            if (stream.getDeliveryMethod() == deliveryMethod) {
+                deliveryStreamList.add(stream);
+            }
+        }
+        return deliveryStreamList;
+    }
+
+    /**
+     * Check if a stream was removed among downloadable streams.
+     *
+     * @param videoStreams                 the list of video streams gotten from the extractor
+     * @param videoOnlyStreams             the list of video only streams gotten from the extractor
+     * @param audioStreams                 the list of audio streams gotten from the extractor
+     * @param subtitlesStreams             the list of subtitles streams gotten from the extractor
+     * @param downloadableVideoStreams     the list of video streams which will be passed to
+     *                                     the downloader
+     * @param downloadableVideoOnlyStreams the list of video only streams which will be passed to
+     *                                     the downloader
+     * @param downloadableAudioStreams     the list of audio streams which will be passed to
+     *                                     the downloader
+     * @param downloadableSubtitlesStreams the list of subtitles streams which will be passed to
+     *                                     the downloader
+     * @return true if a stream was removed, false otherwise
+     */
+    public static boolean checkIfWasSomeStreamedRemoved(
+            @NonNull final List<VideoStream> videoStreams,
+            @NonNull final List<VideoStream> videoOnlyStreams,
+            @NonNull final List<AudioStream> audioStreams,
+            @NonNull final List<SubtitlesStream> subtitlesStreams,
+            @NonNull final List<VideoStream> downloadableVideoStreams,
+            @NonNull final List<VideoStream> downloadableVideoOnlyStreams,
+            @NonNull final List<AudioStream> downloadableAudioStreams,
+            @NonNull final List<SubtitlesStream> downloadableSubtitlesStreams) {
+        return (videoStreams.size() != downloadableVideoStreams.size())
+                || (videoOnlyStreams.size() != downloadableVideoOnlyStreams.size())
+                || (audioStreams.size() != downloadableAudioStreams.size())
+                || (subtitlesStreams.size() != downloadableSubtitlesStreams.size());
     }
 
     /**
