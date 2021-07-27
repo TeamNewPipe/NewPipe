@@ -44,6 +44,7 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.util.ExtractorHelper;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -91,16 +92,27 @@ public class HistoryRecordManager {
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
             final long streamId = streamTable.upsert(new StreamEntity(info));
 
+            long duration = info.getDuration();
+            if (duration < 0) {
+                duration = ExtractorHelper.getStreamInfo(
+                        info.getServiceId(),
+                        info.getUrl(),
+                        false)
+                        .subscribeOn(Schedulers.io())
+                        .blockingGet()
+                        .getDuration();
+            }
+
             final List<StreamStateEntity> states = streamStateTable.getState(streamId)
                     .blockingFirst();
             if (!states.isEmpty()) {
                 final StreamStateEntity entity = states.get(0);
-                entity.setProgressMillis(info.getDuration() * 1000);
+                entity.setProgressMillis(duration * 1000);
                 streamStateTable.update(entity);
             } else {
                 final StreamStateEntity entity = new StreamStateEntity(
                         streamId,
-                        info.getDuration() * 1000
+                        duration * 1000
                 );
                 streamStateTable.insert(entity);
             }
