@@ -331,8 +331,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                     StreamDialogEntry.start_here_on_background,
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share,
-                    StreamDialogEntry.open_in_browser,
-                    StreamDialogEntry.mark_as_watched
+                    StreamDialogEntry.open_in_browser
                 )
             )
         } else {
@@ -342,9 +341,13 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                     StreamDialogEntry.start_here_on_popup,
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share,
-                    StreamDialogEntry.open_in_browser,
-                    StreamDialogEntry.mark_as_watched
+                    StreamDialogEntry.open_in_browser
                 )
+            )
+        }
+        if (item.streamType != StreamType.AUDIO_LIVE_STREAM && item.streamType != StreamType.LIVE_STREAM) {
+            entries.add(
+                StreamDialogEntry.mark_as_watched
             )
         }
 
