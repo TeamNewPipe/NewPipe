@@ -7,7 +7,6 @@ import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -46,7 +45,6 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private final TextView itemContentView;
     private final TextView itemLikesCountView;
     private final TextView itemDislikesCountView;
-    private final ImageView itemHeartView;
     private final TextView itemPublishedTime;
 
     private String commentText;
@@ -82,7 +80,6 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemDislikesCountView = itemView.findViewById(R.id.detail_thumbs_down_count_view);
         itemPublishedTime = itemView.findViewById(R.id.itemPublishedTime);
         itemContentView = itemView.findViewById(R.id.itemCommentContentView);
-        itemHeartView = itemView.findViewById(R.id.detail_heart_image_view);
 
         downloadThumbnailKey = infoItemBuilder.getContext().
                 getString(R.string.download_thumbnail_key);
@@ -153,12 +150,6 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                     .offsetDateTime()));
         } else {
             itemPublishedTime.setText(item.getTextualUploadDate());
-        }
-
-        if (item.isHeartedByUploader()) {
-            itemHeartView.setVisibility(View.VISIBLE);
-        } else {
-            itemHeartView.setVisibility(View.GONE);
         }
 
         itemView.setOnClickListener(view -> {

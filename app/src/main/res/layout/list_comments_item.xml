@@ -80,6 +80,7 @@
         android:layout_toRightOf="@+id/detail_thumbs_up_count_view"
         android:contentDescription="@string/detail_heart_img_view_description"
         android:visibility="gone"
+        tools:visibility="visible"
         app:srcCompat="@drawable/ic_heart" />
 
 
