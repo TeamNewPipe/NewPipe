@@ -7,12 +7,16 @@ on:
       - master
     paths-ignore:
       - 'README*.md'
+      - 'fastlane/**'
+      - 'assets/**'
   push:
     branches:
       - dev
       - master
     paths-ignore:
       - 'README*.md'
+      - 'fastlane/**'
+      - 'assets/**'
 
 jobs:
   build-and-test-jvm:
