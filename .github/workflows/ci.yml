@@ -5,10 +5,14 @@ on:
     branches:
       - dev
       - master
+    paths-ignore:
+      - 'README*.md'
   push:
     branches:
       - dev
       - master
+    paths-ignore:
+      - 'README*.md'
 
 jobs:
   build-and-test-jvm:
