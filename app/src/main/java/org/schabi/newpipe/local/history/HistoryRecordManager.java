@@ -28,6 +28,7 @@ import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.feed.dao.FeedDAO;
 import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
 import org.schabi.newpipe.database.history.dao.StreamHistoryDAO;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
@@ -43,6 +44,7 @@ import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.local.feed.FeedViewModel;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.ExtractorHelper;
 
@@ -83,6 +85,15 @@ public class HistoryRecordManager {
     // Watch History
     ///////////////////////////////////////////////////////
 
+    /**
+     * Marks a stream item as watched such that it is hidden from the feed if watched videos are
+     * hidden. Adds a history entry and updates the stream progress to 100%.
+     *
+     * @see FeedDAO#getLiveOrNotPlayedStreams
+     * @see FeedViewModel#togglePlayedItems
+     * @param info the item to mark as watched
+     * @return a Maybe containing the ID of the item if successful
+     */
     public Maybe<Long> markAsWatched(final StreamInfoItem info) {
         if (!isStreamHistoryEnabled()) {
             return Maybe.empty();
@@ -93,6 +104,7 @@ public class HistoryRecordManager {
             final long streamId = streamTable.upsert(new StreamEntity(info));
 
             long duration = info.getDuration();
+            // Duration will not exist if the item was loaded with fast mode, so fetch it if empty
             if (duration < 0) {
                 duration = ExtractorHelper.getStreamInfo(
                         info.getServiceId(),
@@ -103,6 +115,7 @@ public class HistoryRecordManager {
                         .getDuration();
             }
 
+            // Update the stream progress to the full duration of the video
             final List<StreamStateEntity> states = streamStateTable.getState(streamId)
                     .blockingFirst();
             if (!states.isEmpty()) {
@@ -117,6 +130,7 @@ public class HistoryRecordManager {
                 streamStateTable.insert(entity);
             }
 
+            // Add a history entry
             final StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry(streamId);
             if (latestEntry != null) {
                 streamHistoryTable.delete(latestEntry);
