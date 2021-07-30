@@ -101,31 +101,31 @@ public class HistoryRecordManager {
 
         final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
-            final long streamId = streamTable.upsert(new StreamEntity(info));
-
-            long duration = info.getDuration();
             // Duration will not exist if the item was loaded with fast mode, so fetch it if empty
-            if (duration < 0) {
-                duration = ExtractorHelper.getStreamInfo(
+            if (info.getDuration() < 0) {
+                final long duration = ExtractorHelper.getStreamInfo(
                         info.getServiceId(),
                         info.getUrl(),
                         false)
                         .subscribeOn(Schedulers.io())
                         .blockingGet()
                         .getDuration();
+                info.setDuration(duration);
             }
+            // Upsert to get a stream ID and update durations if we fetched one
+            final long streamId = streamTable.upsert(new StreamEntity(info));
 
             // Update the stream progress to the full duration of the video
             final List<StreamStateEntity> states = streamStateTable.getState(streamId)
                     .blockingFirst();
             if (!states.isEmpty()) {
                 final StreamStateEntity entity = states.get(0);
-                entity.setProgressMillis(duration * 1000);
+                entity.setProgressMillis(info.getDuration() * 1000);
                 streamStateTable.update(entity);
             } else {
                 final StreamStateEntity entity = new StreamStateEntity(
                         streamId,
-                        duration * 1000
+                        info.getDuration() * 1000
                 );
                 streamStateTable.insert(entity);
             }
