@@ -101,31 +101,35 @@ public class HistoryRecordManager {
 
         final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
+            final long streamId;
+            final long duration;
             // Duration will not exist if the item was loaded with fast mode, so fetch it if empty
             if (info.getDuration() < 0) {
-                final long duration = ExtractorHelper.getStreamInfo(
+                final StreamInfo completeInfo = ExtractorHelper.getStreamInfo(
                         info.getServiceId(),
                         info.getUrl(),
-                        false)
+                        false
+                )
                         .subscribeOn(Schedulers.io())
-                        .blockingGet()
-                        .getDuration();
-                info.setDuration(duration);
+                        .blockingGet();
+                duration = completeInfo.getDuration();
+                streamId = streamTable.upsert(new StreamEntity(completeInfo));
+            } else {
+                duration = info.getDuration();
+                streamId = streamTable.upsert(new StreamEntity(info));
             }
-            // Upsert to get a stream ID and update durations if we fetched one
-            final long streamId = streamTable.upsert(new StreamEntity(info));
 
             // Update the stream progress to the full duration of the video
             final List<StreamStateEntity> states = streamStateTable.getState(streamId)
                     .blockingFirst();
             if (!states.isEmpty()) {
                 final StreamStateEntity entity = states.get(0);
-                entity.setProgressMillis(info.getDuration() * 1000);
+                entity.setProgressMillis(duration * 1000);
                 streamStateTable.update(entity);
             } else {
                 final StreamStateEntity entity = new StreamStateEntity(
                         streamId,
-                        info.getDuration() * 1000
+                        duration * 1000
                 );
                 streamStateTable.insert(entity);
             }
