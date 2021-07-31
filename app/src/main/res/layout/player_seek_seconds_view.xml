@@ -15,21 +15,21 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/icon_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_play_seek_triangle"
             tools:alpha="0.18" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/icon_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_play_seek_triangle"
             tools:alpha="0.5" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/icon_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
