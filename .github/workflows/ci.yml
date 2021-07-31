@@ -9,8 +9,7 @@ on:
       - 'README*.md'
       - 'fastlane/**'
       - 'assets/**'
-      - .github/PULL_REQUEST_TEMPLATE.md
-      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/**/*.md'
   push:
     branches:
       - dev
@@ -19,8 +18,7 @@ on:
       - 'README*.md'
       - 'fastlane/**'
       - 'assets/**'
-      - .github/PULL_REQUEST_TEMPLATE.md
-      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/**/*.md'
 
 jobs:
   build-and-test-jvm:
