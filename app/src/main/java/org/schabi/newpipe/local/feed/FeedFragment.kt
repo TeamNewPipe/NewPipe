@@ -73,7 +73,7 @@ import org.schabi.newpipe.player.helper.PlayerHolder
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.StreamDialogEntry
-import org.schabi.newpipe.util.ThemeHelper.getGridSpanCount
+import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountStreams
 import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import java.time.OffsetDateTime
 import java.util.ArrayList
@@ -160,7 +160,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     fun setupListViewMode() {
         // does everything needed to setup the layouts for grid or list modes
-        groupAdapter.spanCount = if (shouldUseGridLayout(context)) getGridSpanCount(context) else 1
+        groupAdapter.spanCount = if (shouldUseGridLayout(context)) getGridSpanCountStreams(context) else 1
         feedBinding.itemsList.layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount).apply {
             spanSizeLookup = groupAdapter.spanSizeLookup
         }
