@@ -77,7 +77,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         final Preference importDataPreference = requirePreference(R.string.import_data);
         importDataPreference.setOnPreferenceClickListener((Preference p) -> {
             requestImportPathLauncher.launch(
-                    StoredFileHelper.getPicker(requireContext(), getImportExportDataUri()));
+                    StoredFileHelper.getPicker(requireContext(),
+                            ZIP_MIME_TYPE, getImportExportDataUri()));
             return true;
         });
 
