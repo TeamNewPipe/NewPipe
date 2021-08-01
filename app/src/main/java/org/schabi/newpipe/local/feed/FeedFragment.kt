@@ -345,6 +345,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 )
             )
         }
+        if (item.streamType != StreamType.AUDIO_LIVE_STREAM && item.streamType != StreamType.LIVE_STREAM) {
+            entries.add(
+                StreamDialogEntry.mark_as_watched
+            )
+        }
 
         StreamDialogEntry.setEnabledEntries(entries)
         InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context)) { _, which ->
