@@ -5,10 +5,20 @@ on:
     branches:
       - dev
       - master
+    paths-ignore:
+      - 'README*.md'
+      - 'fastlane/**'
+      - 'assets/**'
+      - '.github/**/*.md'
   push:
     branches:
       - dev
       - master
+    paths-ignore:
+      - 'README*.md'
+      - 'fastlane/**'
+      - 'assets/**'
+      - '.github/**/*.md'
 
 jobs:
   build-and-test-jvm:
