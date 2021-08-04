@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -32,6 +33,8 @@ import java.util.regex.Pattern;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CommentsMiniInfoItemHolder extends InfoItemHolder {
+    private static final String TAG = "CommentsMiniIIHolder";
+
     private static final int COMMENT_DEFAULT_LINES = 2;
     private static final int COMMENT_EXPANDED_LINES = 1000;
     private static final Pattern PATTERN = Pattern.compile("(\\d+:)?(\\d+)?:(\\d+)");
@@ -53,20 +56,25 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private final Linkify.TransformFilter timestampLink = new Linkify.TransformFilter() {
         @Override
         public String transformUrl(final Matcher match, final String url) {
-            int timestamp = 0;
-            final String hours = match.group(1);
-            final String minutes = match.group(2);
-            final String seconds = match.group(3);
-            if (hours != null) {
-                timestamp += (Integer.parseInt(hours.replace(":", "")) * 3600);
+            try {
+                int timestamp = 0;
+                final String hours = match.group(1);
+                final String minutes = match.group(2);
+                final String seconds = match.group(3);
+                if (hours != null) {
+                    timestamp += (Integer.parseInt(hours.replace(":", "")) * 3600);
+                }
+                if (minutes != null) {
+                    timestamp += (Integer.parseInt(minutes.replace(":", "")) * 60);
+                }
+                if (seconds != null) {
+                    timestamp += (Integer.parseInt(seconds));
+                }
+                return streamUrl + url.replace(match.group(0), "#timestamp=" + timestamp);
+            } catch (final Exception ex) {
+                Log.d(TAG, "Unable to process url='" + url + "' as timestampLink", ex);
+                return url;
             }
-            if (minutes != null) {
-                timestamp += (Integer.parseInt(minutes.replace(":", "")) * 60);
-            }
-            if (seconds != null) {
-                timestamp += (Integer.parseInt(seconds));
-            }
-            return streamUrl + url.replace(match.group(0), "#timestamp=" + timestamp);
         }
     };
 
