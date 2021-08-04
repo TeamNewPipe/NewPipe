@@ -13,6 +13,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
+import org.schabi.newpipe.extractor.NewPipe
+import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
 import org.schabi.newpipe.extractor.exceptions.AgeRestrictedContentException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException
@@ -22,9 +24,11 @@ import org.schabi.newpipe.extractor.exceptions.PrivateContentException
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.extractor.exceptions.SoundCloudGoPlusContentException
 import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentException
+import org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.isInterruptedCaused
 import org.schabi.newpipe.ktx.isNetworkRelated
+import org.schabi.newpipe.util.ServiceHelper
 import java.util.concurrent.TimeUnit
 
 class ErrorPanelHelper(
@@ -35,6 +39,8 @@ class ErrorPanelHelper(
     private val context: Context = rootView.context!!
     private val errorPanelRoot: View = rootView.findViewById(R.id.error_panel)
     private val errorTextView: TextView = errorPanelRoot.findViewById(R.id.error_message_view)
+    private val errorServiceInfoTextView: TextView = errorPanelRoot.findViewById(R.id.error_message_service_info_view)
+    private val errorServiceExplenationTextView: TextView = errorPanelRoot.findViewById(R.id.error_message_service_explenation_view)
     private val errorButtonAction: Button = errorPanelRoot.findViewById(R.id.error_button_action)
     private val errorButtonRetry: Button = errorPanelRoot.findViewById(R.id.error_button_retry)
 
@@ -70,12 +76,39 @@ class ErrorPanelHelper(
                 errorButtonAction.setOnClickListener(null)
             }
             errorTextView.setText(R.string.recaptcha_request_toast)
+            // additional info is only provided by AccountTerminatedException
+            errorServiceInfoTextView.isVisible = false
+            errorServiceExplenationTextView.isVisible = false
             errorButtonRetry.isVisible = true
+        } else if (errorInfo.throwable is AccountTerminatedException) {
+            errorButtonRetry.isVisible = false
+            errorButtonAction.isVisible = false
+            errorTextView.setText(R.string.account_terminated)
+            if (!isNullOrEmpty((errorInfo.throwable as AccountTerminatedException).message)) {
+                errorServiceInfoTextView.setText(
+                    context.resources.getString(
+                        R.string.service_provides_reason,
+                        NewPipe.getNameOfService(ServiceHelper.getSelectedServiceId(context))
+                    )
+                )
+                errorServiceExplenationTextView.setText(
+                    (errorInfo.throwable as AccountTerminatedException).message
+                )
+                errorServiceInfoTextView.isVisible = true
+                errorServiceExplenationTextView.isVisible = true
+            } else {
+                errorServiceInfoTextView.isVisible = false
+                errorServiceExplenationTextView.isVisible = false
+            }
         } else {
             errorButtonAction.setText(R.string.error_snackbar_action)
             errorButtonAction.setOnClickListener {
                 ErrorActivity.reportError(context, errorInfo)
             }
+
+            // additional info is only provided by AccountTerminatedException
+            errorServiceInfoTextView.isVisible = false
+            errorServiceExplenationTextView.isVisible = false
 
             // hide retry button by default, then show only if not unavailable/unsupported content
             errorButtonRetry.isVisible = false

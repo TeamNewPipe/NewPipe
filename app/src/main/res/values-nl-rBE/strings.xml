@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Tik op \"Zoeken\" om te beginnen
-\n</string>
+    <string name="main_bg_subtitle">Tik op het loepje om te beginnen.</string>
     <string name="view_count_text">%1$s keer bekeken</string>
     <string name="upload_date_text">Gepubliceerd op %1$s</string>
     <string name="no_player_found">Er is geen stream videospeler gevonden. Wilt u VLC installeren\?</string>
@@ -532,8 +531,6 @@
     <string name="downloads_storage_use_saf_summary">Het \'Storage Access Framework\' laat downloads naar een externe SD kaart toe.
 \nNiet alle toestellen zijn compatibel</string>
     <string name="downloads_storage_use_saf_title">Gebruik SAF</string>
-    <string name="downloads_storage_ask_summary_kitkat">Je zal gevraagd worden waar elke download op te slaan.
-\nKies SAF als je wilt downloaden naar een externe SD-kaart</string>
     <string name="downloads_storage_ask_title">Vraag waar te downloaden</string>
     <string name="downloads_storage_ask_summary">U wordt gevraagd waar elk bestand wordt opgeslagen</string>
     <string name="pause_downloads">Pauzeer downloads</string>
@@ -654,4 +651,31 @@
     <string name="hash_channel_name">Video Hash Melding</string>
     <string name="show_meta_info_summary">Zet uit om metadata pop-ups te verbergen met extra informatie over de stream auteur, stream inhoud of een zoekaanvraag.</string>
     <string name="show_meta_info_title">Toon metadata</string>
+    <string name="disable_media_tunneling_title">Media vertunneling uitschakelen</string>
+    <string name="show_channel_details">Toon kanaal details</string>
+    <string name="recaptcha_solve">Los op</string>
+    <string name="description_tab_description">Beschrijving</string>
+    <string name="related_items_tab_description">Gerelateerde items</string>
+    <string name="comments_tab_description">Reacties</string>
+    <string name="restricted_video_no_stream">Deze video heeft een leeftijdsbeperking.
+\nAls gevolg van het nieuwe YouTube-beleid met video\'s met leeftijdsbeperkingen heeft NewPipe geen toegang tot deze videostreams en kan deze dus niet afspelen.</string>
+    <string name="show_description_summary">Zet uit om videobeschrijving en extra informatie te verbergen</string>
+    <string name="show_description_title">Toon beschrijving</string>
+    <string name="night_theme_title">Nacht Thema</string>
+    <string name="open_with">Open met</string>
+    <string name="featured">Featured</string>
+    <string name="private_content">Deze inhoud is privé, waardoor het niet kan worden gestreamd of gedownload door NewPipe.</string>
+    <string name="crash_the_app">Laat de app crashen</string>
+    <string name="disable_media_tunneling_summary">Schakel media tunneling uit indien u een zwart scherm of haperingen vaststelt bij het afspelen van video\'s</string>
+    <string name="download_has_started">De download is begonnen</string>
+    <string name="select_night_theme_toast">U kunt uw favoriete nachtthema hieronder kiezen</string>
+    <string name="night_theme_summary">Kies uw favoriete nachtthema - %s</string>
+    <string name="auto_device_theme_title">Automatisch (thema van de telefoon)</string>
+    <string name="radio">Radio</string>
+    <string name="paid_content">Deze inhoud is enkel toegankelijk voor betalende gebruikers, waardoor het niet kan worden gestreamd of gedownload door NewPipe.</string>
+    <string name="youtube_music_premium_content">Deze video is enkel toegankelijk voor YouTube Music Premium leden, waardoor het niet kan worden gestreamd of gedownload door NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Dit is (tenminste in uw land) een SoundCloud Go+ titel, waardoor het niet kan worden gestreamd of gedownload door NewPipe.</string>
+    <string name="georestricted_content">Deze inhoud is niet toegankelijk in uw land.</string>
+    <string name="no_app_to_open_intent">Geen app beschikbaar om dit te openen</string>
+    <string name="chapters">Hoofdstukken</string>
 </resources>

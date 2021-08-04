@@ -2,7 +2,6 @@ package us.shandian.giga.ui.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -45,7 +44,7 @@ import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.io.File;
 import java.net.URI;
@@ -61,7 +60,7 @@ import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
 import us.shandian.giga.get.Mission;
 import us.shandian.giga.get.MissionRecoveryInfo;
-import us.shandian.giga.io.StoredFileHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.common.Deleter;
@@ -348,10 +347,8 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         if (BuildConfig.DEBUG)
             Log.v(TAG, "Mime: " + mimeType + " package: " + BuildConfig.APPLICATION_ID + ".provider");
 
-        final Uri uri = resolveShareableUri(mission);
-
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(uri, mimeType);
+        intent.setDataAndType(resolveShareableUri(mission), mimeType);
         intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -361,10 +358,8 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
         }
 
-        //mContext.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
         if (intent.resolveActivity(mContext.getPackageManager()) != null) {
-            ShareUtils.openIntentInApp(mContext, intent);
+            ShareUtils.openIntentInApp(mContext, intent, false);
         } else {
             Toast.makeText(mContext, R.string.toast_no_player, Toast.LENGTH_LONG).show();
         }
@@ -377,19 +372,18 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         shareIntent.setType(resolveMimeType(mission));
         shareIntent.putExtra(Intent.EXTRA_STREAM, resolveShareableUri(mission));
         shareIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
+
         final Intent intent = new Intent(Intent.ACTION_CHOOSER);
         intent.putExtra(Intent.EXTRA_INTENT, shareIntent);
-        intent.putExtra(Intent.EXTRA_TITLE, mContext.getString(R.string.share_dialog_title));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        try {
-            intent.setPackage("android");
-            mContext.startActivity(intent);
-        } catch (final ActivityNotFoundException e) {
-            // falling back to OEM chooser if Android's system chooser was removed by the OEM
-            intent.setPackage(null);
-            mContext.startActivity(intent);
+        // unneeded to set a title to the chooser on Android P and higher because the system
+        // ignores this title on these versions
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
+            intent.putExtra(Intent.EXTRA_TITLE, mContext.getString(R.string.share_dialog_title));
         }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
+
+        mContext.startActivity(intent);
     }
 
     /**

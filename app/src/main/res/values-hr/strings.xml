@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Za početak dodirnite \"Pretraži\"
-\n</string>
+    <string name="main_bg_subtitle">Za početak dodirnite \"Lupo\"</string>
     <string name="view_count_text">%1$s pregleda</string>
     <string name="upload_date_text">Objavljeno %1$s</string>
     <string name="no_player_found">Reproduktor za stream nije pronađen. Instalirati VLC\?</string>
@@ -32,7 +31,7 @@
     <string name="controls_background_title">Pozadina</string>
     <string name="controls_popup_title">Skočni prozor</string>
     <string name="download_path_title">Mapa za preuzimanje videozapisa</string>
-    <string name="download_path_summary">Preuzete video datoteke se spremaju ovdje</string>
+    <string name="download_path_summary">Ovdje se spremaju preuzete video datoteke</string>
     <string name="download_path_dialog_title">Odaberi mapu za preuzimanje video datoteka</string>
     <string name="download_path_audio_title">Mapa za preuzimanje zvuka</string>
     <string name="download_path_audio_summary">Preuzete audio datoteke se spremaju ovdje</string>
@@ -263,8 +262,8 @@
     <string name="playlist_add_stream_success">Dodano kao playlistu</string>
     <string name="playlist_thumbnail_change_success">Minijatura playliste se promijenila.</string>
     <string name="playlist_delete_failure">Greška prilikom brisanja playliste.</string>
-    <string name="caption_none">Bez naslova</string>
-    <string name="resize_fit">Podesno</string>
+    <string name="caption_none">Bez titlova</string>
+    <string name="resize_fit">Popuni</string>
     <string name="resize_fill">Ispuniti</string>
     <string name="resize_zoom">Povećaj</string>
     <string name="caption_auto_generated">Auto generirano</string>
@@ -287,8 +286,8 @@
     <string name="switch_to_background">Prijeđi na pozadinu</string>
     <string name="switch_to_popup">Prijeđi na skočni prozor</string>
     <string name="switch_to_main">Prijeđi na glavni</string>
-    <string name="import_data_title">Uvoz baze podataka</string>
-    <string name="export_data_title">Izvoz baze podataka</string>
+    <string name="import_data_title">Uvezi bazu podataka</string>
+    <string name="export_data_title">Izvezi bazu podataka</string>
     <string name="import_data_summary">Poništava vašu trenutačnu povijest, pretplate, playliste i (opcionalno) postavke</string>
     <string name="export_data_summary">Izvezi povijest, pretplate, playliste i postavke</string>
     <string name="clear_views_history_title">Izbriši povijest gledanja</string>
@@ -318,8 +317,8 @@
     <string name="delete_all_history_prompt">Jeste li sigurni da želite izbrisati sve stavke iz povijesti?</string>
     <string name="title_last_played">Zadnje svirano</string>
     <string name="title_most_played">Najviše svirano</string>
-    <string name="export_complete_toast">Izvoz završen</string>
-    <string name="import_complete_toast">Uvoz završen</string>
+    <string name="export_complete_toast">Izvezeno</string>
+    <string name="import_complete_toast">Uvezeno</string>
     <string name="no_valid_zip_file">Nema važeće ZIP datoteke</string>
     <string name="could_not_import_all_files">Upozorenje: Nije moguće uvesti sve datoteke.</string>
     <string name="override_current_data">Ovo će poništiti vaše trenutne postavke.</string>
@@ -331,9 +330,9 @@
     <string name="import_ongoing">Uvoz…</string>
     <string name="export_ongoing">Izvoz…</string>
     <string name="import_file_title">Uvoz datoteke</string>
-    <string name="previous_export">Prethodni izvozi</string>
-    <string name="subscriptions_import_unsuccessful">Nije moguće uvesti pretplatnike</string>
-    <string name="subscriptions_export_unsuccessful">Nije moguće izvesti pretplatnike</string>
+    <string name="previous_export">Prethodni izvoz</string>
+    <string name="subscriptions_import_unsuccessful">Nije bilo moguće uvesti pretplate</string>
+    <string name="subscriptions_export_unsuccessful">Nije bilo moguće izvesti pretplate</string>
     <string name="import_youtube_instructions">Uvezite YouTube pretplatnike preuzimanjem izvozne datoteke Google-a:
 \n
 \n1. Idite na ovaj URL: %1$s
@@ -390,7 +389,7 @@
     <string name="default_content_country_title">Zadana zemlja sadržaja</string>
     <string name="settings_category_debug_title">Otkrivanje grešaka</string>
     <string name="app_update_notification_channel_name">Obavijest o ažuriranju aplikacije</string>
-    <string name="toggle_orientation">Uključite ili isključite orijentaciju</string>
+    <string name="toggle_orientation">Uklj/isklj orijentaciju</string>
     <string name="download_to_sdcard_error_message">Preuzimanje na vanjsku SD karticu nije moguće. Ponovo postaviti lokaciju mape za preuzimanje\?</string>
     <string name="external_player_unsupported_link_type">Vanjski playeri ne podržavaju ove vrste veza</string>
     <string name="video_streams_empty">Nije pronađen nijedan videozapis</string>
@@ -408,7 +407,7 @@
     <string name="conferences">Konferencije</string>
     <string name="preferred_open_action_settings_title">Preferirana \'otvori\' akcija</string>
     <string name="preferred_open_action_settings_summary">Zadana radnja pri otvaranju sadržaja — %s</string>
-    <string name="caption_setting_title">Podnaslovi</string>
+    <string name="caption_setting_title">Titlovi</string>
     <string name="caption_setting_description">Izmijenite skalu teksta naslova player-a i pozadinske stilove. Potrebno je ponovno pokretanje aplikacije kako bi stupilo na snagu.</string>
     <string name="enable_disposed_exceptions_summary">Prisilno izvješćivanje o greškama Rx-a koje se ne mogu isporučiti izvan \'fragmenta\' ili životnog ciklusa aktivnosti nakon odlaganja</string>
     <string name="import_soundcloud_instructions">Uvezite SoundCloud profil tako da upišete URL ili svoj ID:
@@ -440,8 +439,8 @@
     <string name="overwrite_finished_warning">Preuzeta datoteka s tim nazivom već postoji</string>
     <string name="download_already_running">Datoteka s ovim nazivom se već preuzima</string>
     <string name="label_code">Kod</string>
-    <string name="error_path_creation">Odredišnu mapu nije moguće stvoriti</string>
-    <string name="error_file_creation">Datoteku nije moguće stvoriti</string>
+    <string name="error_path_creation">Nije moguće stvoriti odredišnu mapu</string>
+    <string name="error_file_creation">Datoteka se ne može stvoriti</string>
     <string name="error_permission_denied">Sustav je odbio dozvolu</string>
     <string name="error_ssl_exception">Nije moguće uspostaviti sigurnu vezu</string>
     <string name="error_unknown_host">Nije moguće pronaći server</string>
@@ -590,8 +589,6 @@
     <string name="feed_groups_header_title">Grupe kanala</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Da, i djelomično pogledane videozapise</string>
     <string name="choose_instance_prompt">Odaberi primjerak</string>
-    <string name="downloads_storage_ask_summary_kitkat">Program će te pitati kamo spremati preuzimanja.
-\nOdaberi SAF, ako želiš preuzeti na vanjsku SD karticu</string>
     <string name="downloads_storage_ask_summary">Program će te pitati kamo spremati preuzimanja</string>
     <string name="error_download_resource_gone">Nije moguće obnoviti ovo preuzimanje</string>
     <string name="error_progress_lost">Napredak je izgubljen, jer je datoteka izbrisana</string>
@@ -612,7 +609,7 @@
     </plurals>
     <string name="drawer_header_description">Uklj/Isklj uslugu, trenutačno odabrana:</string>
     <string name="copy_for_github">Kopiraj formatirani izveštaj</string>
-    <string name="clear_cookie_summary">Izbriši riješene reCAPTCHA kolačiće koje NewPipe sprema</string>
+    <string name="clear_cookie_summary">Izbriši kolačiće koje NewPipe sprema nakon rješavanja reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA kolačići su izbrisani</string>
     <string name="clear_cookie_title">Izbriši reCAPTCHA kolačiće</string>
     <string name="restricted_video">Ovaj video je dobno ograničen.
@@ -688,4 +685,7 @@
     <string name="crash_the_app">Prekini program</string>
     <string name="recaptcha_solve">Riješi</string>
     <string name="night_theme_title">Noćna tema</string>
+    <string name="show_channel_details">Prikaži detalje kanala</string>
+    <string name="disable_media_tunneling_summary">Iskljuci medija tuneling ako dobivate crni ekran kada gledate video</string>
+    <string name="disable_media_tunneling_title">Iskljuci medija tuneling</string>
 </resources>

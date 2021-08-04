@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Shtyp \"Kërko\" për të filluar
-\n</string>
+    <string name="main_bg_subtitle">Shtyp \"Kërko\" për të filluar</string>
     <string name="view_count_text">%1$s shikime</string>
     <string name="upload_date_text">Publikuar më %1$s</string>
     <string name="install">Instalo</string>
@@ -75,8 +74,6 @@
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' lejon shkarkime në një kartë SD të jashtme.
 \nDisa pajisje janë të papajtueshme</string>
     <string name="downloads_storage_use_saf_title">Përdor SAF</string>
-    <string name="downloads_storage_ask_summary_kitkat">Ju do të pyeteni se ku duhet ruajtur çdo shkarkim.
-\nZgjidhni SAF nëse doni të shkarkoni në një kartë SD të jashtme</string>
     <string name="downloads_storage_ask_summary">Ju do të pyeteni se ku duhet ruajtur çdo shkarkim</string>
     <string name="downloads_storage_ask_title">Pyet se ku duhet shkarkuar</string>
     <string name="pause_downloads">Ndërprit shkarkimet</string>

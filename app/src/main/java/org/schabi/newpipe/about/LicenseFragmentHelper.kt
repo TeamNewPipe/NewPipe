@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.R
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.ThemeHelper
+import org.schabi.newpipe.util.external_communication.ShareUtils
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -109,6 +110,36 @@ object LicenseFragmentHelper {
                     alert.setNegativeButton(
                         context.getString(R.string.finish)
                     ) { dialog, _ -> dialog.dismiss() }
+                    alert.show()
+                }
+        }
+    }
+    @JvmStatic
+    fun showLicense(context: Context?, component: SoftwareComponent): Disposable {
+        return if (context == null) {
+            Disposable.empty()
+        } else {
+            Observable.fromCallable { getFormattedLicense(context, component.license) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { formattedLicense: String ->
+                    val webViewData = Base64.encodeToString(
+                        formattedLicense
+                            .toByteArray(StandardCharsets.UTF_8),
+                        Base64.NO_PADDING
+                    )
+                    val webView = WebView(context)
+                    webView.loadData(webViewData, "text/html; charset=UTF-8", "base64")
+                    val alert = AlertDialog.Builder(context)
+                    alert.setTitle(component.license.name)
+                    alert.setView(webView)
+                    Localization.assureCorrectAppLanguage(context)
+                    alert.setPositiveButton(
+                        R.string.dismiss
+                    ) { dialog, _ -> dialog.dismiss() }
+                    alert.setNeutralButton(R.string.open_website_license) { _, _ ->
+                        ShareUtils.openUrlInBrowser(context, component.link)
+                    }
                     alert.show()
                 }
         }

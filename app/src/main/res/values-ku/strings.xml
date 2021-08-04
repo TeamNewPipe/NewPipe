@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">کرتە له‌ ”گه‌ڕان” بكه‌ بۆ ده‌ستپێكردن
-\n</string>
+    <string name="main_bg_subtitle">کرتە له‌ ”گه‌ڕان” بكه‌ بۆ ده‌ستپێكردن</string>
     <string name="view_count_text">%1$s بینراو</string>
     <string name="upload_date_text">بڵاوكراوه‌ته‌وه‌ له‌ %1$s</string>
     <string name="no_player_found">هیچ لێدەرێکی ڤیدیۆیی نه‌دۆزرایه‌وه‌. ده‌ته‌وێت VLC دابمەزرێنیت؟</string>
@@ -509,8 +508,6 @@
     <string name="pause_downloads">ڕاگرتنی دابەزاندنەکان</string>
     <string name="downloads_storage_ask_title">پرسیاربکرێ لەکوێ دابەزێنرێت</string>
     <string name="downloads_storage_ask_summary">پرسیارت لێ دەکرێت بۆ شوێنی دابەزاندنی هەر پەڕگەیەک</string>
-    <string name="downloads_storage_ask_summary_kitkat">پرسیارت لێ دەکرێت بۆ شوێنی دابەزاندنی هەر پەڕگەیەک
-\nدەتوانیت SAF بەکاربهێنیت گەر دەتەوێ لە بیرگەی دەرەکیدا پەڕگەکان دابەزێنرێت</string>
     <string name="downloads_storage_use_saf_title">بەکارهێنانی SAF</string>
     <string name="downloads_storage_use_saf_summary">چوارچێوەی گەیشتن بە بیرگە ڕێگەدەدات بە دابەزاندنی پەڕگەکان لە بیرگەی دەرەکیدا.
 \nتێبینی: هەندێ لە مۆبایلەکان پشتگیری ناکرێن</string>

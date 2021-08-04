@@ -21,7 +21,7 @@ import static org.schabi.newpipe.database.stream.StreamStatisticsEntry.STREAM_WA
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_ID;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_TABLE;
 import static org.schabi.newpipe.database.stream.model.StreamStateEntity.JOIN_STREAM_ID_ALIAS;
-import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_PROGRESS_TIME;
+import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_PROGRESS_MILLIS;
 import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_STATE_TABLE;
 
 @Dao
@@ -80,7 +80,7 @@ public abstract class StreamHistoryDAO implements HistoryDAO<StreamHistoryEntity
 
             + " LEFT JOIN "
             + "(SELECT " + JOIN_STREAM_ID + " AS " + JOIN_STREAM_ID_ALIAS + ", "
-            +  STREAM_PROGRESS_TIME
+            + STREAM_PROGRESS_MILLIS
             + " FROM " + STREAM_STATE_TABLE + " )"
             + " ON " + STREAM_ID + " = " + JOIN_STREAM_ID_ALIAS)
     public abstract Flowable<List<StreamStatisticsEntry>> getStatistics();

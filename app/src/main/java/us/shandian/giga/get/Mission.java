@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import java.io.Serializable;
 import java.util.Calendar;
 
-import us.shandian.giga.io.StoredFileHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 
 public abstract class Mission implements Serializable {
     private static final long serialVersionUID = 1L;// last bump: 27 march 2019
@@ -25,6 +25,10 @@ public abstract class Mission implements Serializable {
      */
     public long timestamp;
 
+    public long getTimestamp() {
+        return timestamp;
+    }
+
     /**
      * pre-defined content type
      */
@@ -34,10 +38,6 @@ public abstract class Mission implements Serializable {
      * The downloaded file
      */
     public StoredFileHelper storage;
-
-    public long getTimestamp() {
-        return timestamp;
-    }
 
     /**
      * Delete the downloaded file
@@ -57,7 +57,7 @@ public abstract class Mission implements Serializable {
     @NonNull
     @Override
     public String toString() {
-        Calendar calendar = Calendar.getInstance();
+        final Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(timestamp);
         return "[" + calendar.getTime().toString() + "] " + (storage.isInvalid() ? storage.getName() : storage.getUri());
     }

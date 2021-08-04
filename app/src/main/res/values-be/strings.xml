@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Націсніце \"Пошук\", каб пачаць
-\n</string>
+    <string name="main_bg_subtitle">Націсніце \"Пошук\", каб пачаць</string>
     <string name="view_count_text">%1$s праглядаў</string>
     <string name="upload_date_text">Апублікавана %1$s</string>
     <string name="no_player_found">Патокавы плэер не знойдзены. Усталяваць VLC?</string>
@@ -483,8 +482,6 @@
     <string name="pause_downloads">Прыпыніць загрузку</string>
     <string name="downloads_storage_ask_title">Запытваць тэчку загрузкі</string>
     <string name="downloads_storage_ask_summary">Для кожнай загрузкі запытваць тэчку для захавання</string>
-    <string name="downloads_storage_ask_summary_kitkat">Для кожнай загрузкі запытваць тэчку для захавання.
-\nВыкарыстоўвайце SAF для загрузкі на знешні назапашвальнік</string>
     <string name="downloads_storage_use_saf_title">Выкарыстоўваць SAF</string>
     <string name="downloads_storage_use_saf_summary">Storage Framework Access дазваляе захоўваць файлы на вонкавым назапашвальніку.
 \nПадтрымліваецца не ўсімі прыладамі</string>

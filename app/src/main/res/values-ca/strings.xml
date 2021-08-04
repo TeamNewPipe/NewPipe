@@ -267,8 +267,7 @@
     <string name="playback_speed_control">Controls de la velocitat de reproducció</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">To</string>
-    <string name="main_bg_subtitle">Toca \"Cerca\" per començar
-\n</string>
+    <string name="main_bg_subtitle">Toca \"Cerca\" per començar</string>
     <string name="use_external_video_player_summary">Elimina l\'àudio en algunes resolucions</string>
     <string name="use_external_audio_player_title">Reproductor d\'àudio extern</string>
     <string name="download_thumbnail_summary">Desactiveu-ho per no generar miniatures i estalviar dades i memòria. Canviant aquesta opció, s\'eliminarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge.</string>
@@ -484,8 +483,6 @@
     <string name="watch_history_states_deleted">S\'ha suprimit les posicions de reproducció.</string>
     <string name="missing_file">El fitxer s\'ha mogut o suprimit</string>
     <string name="enable_queue_limit_desc">Només una baixada alhora</string>
-    <string name="downloads_storage_ask_summary_kitkat">Si us demanarà la ubicació de cada baixada.
-\nTrieu SAF si voleu desar el contingut en una memòria externa</string>
     <string name="downloads_storage_use_saf_title">Utilitza SAF</string>
     <string name="downloads_storage_use_saf_summary">El SAF (Storage Access Framework; estructura d\'accés a l\'emmagatzematge) us permet realitzar baixades a una memòria externa com una targeta SD.
 \nAlguns dispositius no en són compatibles</string>
@@ -554,7 +551,7 @@
 \nEn definitiva, l\'elecció depèn de si preferiu rapidesa a assegurar-vos que l\'informació és precisa.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desactiva el mode ràpid</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activa el mode ràpid</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Disponible en alguns serveis, normalment és més ràpid, però podria només incloure un nombre limitat de contingut i sovint informació incomplerta (per exemple, sense durada, tipus...).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponible en alguns serveis, normalment és més ràpid, però podria només incloure un nombre limitat de contingut i sovint informació incomplerta (per exemple, sense durada, tipus…).</string>
     <string name="feed_use_dedicated_fetch_method_title">Recupera des d\'un feed dedicat si és possible</string>
     <string name="feed_update_threshold_option_always_update">Actualitza sempre</string>
     <string name="feed_update_threshold_summary">Temps que ha de passar perquè una subscripció es consideri obsoleta — %s</string>

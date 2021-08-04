@@ -1,0 +1,8 @@
+### Miglioramenti
+- Aggiunta la possibilità di limitare la qualità del video se si utilizzano dati mobili. # 1339
+- Ricorda la luminosità per la sessione # 1442
+- Migliorate le prestazioni di download per le CPU più deboli # 1431
+- Aggiunto il supporto (funzionante) per la sessione multimediale # 1433
+
+### Correzioni
+- Risolto il crash all'apertura dei download (correzione ora disponibile per le build di rilascio) # 1441

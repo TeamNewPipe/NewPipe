@@ -28,8 +28,7 @@
     <string name="show_hold_to_append_title">Show ‘Hold to append’ tip</string>
     <string name="show_play_with_kodi_title">Show ‘Play with Kodi’ option</string>
     <string name="did_you_mean">Did you mean ‘%1$s’\?</string>
-    <string name="main_bg_subtitle">Tap ‘Search’ to get started
-\n</string>
+    <string name="main_bg_subtitle">Tap the magnifying glass to get started.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel’s avatar thumbnail</string>
     <string name="feed_update_threshold_summary">Time after last update before a subscription is considered outdated – %s</string>
     <string name="autoplay_summary">Start playback automatically – %s</string>
@@ -71,8 +70,6 @@
 \n
 \nSo the choice boils down to what you prefer: speed or complete information.</string>
     <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited number of items and often incomplete information (e.g. no duration, item type, no live status).</string>
-    <string name="downloads_storage_ask_summary_kitkat">You will be asked where to save each download.
-\nChoose SAF if you want to download to an SD card</string>
     <string name="max_retry_desc">Maximum number of attempts before cancelling the download</string>
     <string name="read_full_license">Read licence</string>
     <string name="app_license">NewPipe is copyleft libre software: You can use, study share and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public Licence as published by the Free Software Foundation, either version 3 of the Licence, or (at your option) any later version.</string>
@@ -88,4 +85,5 @@
     <string name="upload_date_text">Published on %1$s</string>
     <string name="view_count_text">%1$s views</string>
     <string name="error_report_button_text">Report this error via e-mail</string>
+    <string name="night_theme_summary">Select your favorite night theme – %s</string>
 </resources>

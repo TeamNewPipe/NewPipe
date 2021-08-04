@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Toque en \"Buscar\" para comezar
-\n</string>
+    <string name="main_bg_subtitle">Toque en \"Buscar\" para comezar</string>
     <string name="view_count_text">%1$s visualizacións</string>
     <string name="upload_date_text">Publicado o día %1$s</string>
     <string name="no_player_found">Non foi encontrado ningún reprodutor. Quere instalar o VLC\?</string>
@@ -465,8 +464,6 @@
     <string name="downloads_storage_use_saf_summary">O \'Framework Access Framework\' permite a descarga a unha tarxeta SD externa.
 \nAlgúns dispositivos son incompatibles</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
-    <string name="downloads_storage_ask_summary_kitkat">Preguntaralle onde gardar cada descarga.
-\nEscolla SAF se o desexa descargar nunha tarxeta SD externa</string>
     <string name="downloads_storage_ask_summary">Preguntaralle onde gardar cada descarga</string>
     <string name="downloads_storage_ask_title">Pregunta onde se descarga</string>
     <string name="pause_downloads">Parar as descagas</string>
@@ -586,7 +583,7 @@
     <string name="videos_string">Vídeos</string>
     <string name="restricted_video">Este vídeo está restrinxido por idade.
 \n
-\nSe desexa visualizalo, habilite \"Contido restrinxido por idade\" nos axustes.</string>
+\nSe desexa visualizalo, habilite \"%1$s\" nos axustes.</string>
     <string name="youtube_restricted_mode_enabled_title">Modo restrinxido de YouTube</string>
     <string name="settings_category_updates_title">Actualizacións</string>
     <string name="peertube_instance_add_exists">A instancia xa existe</string>
@@ -620,4 +617,57 @@
     <string name="notification_action_4_title">Quinto botón de acción</string>
     <string name="notification_scale_to_square_image_summary">Escalar a miniatura do vídeo amosado na notificación da relación de aspecto 16:9 a 1:1 (pode intruducir distorsións)</string>
     <string name="notification_scale_to_square_image_title">Escala miniatura á relación de aspecto 1:1</string>
+    <string name="off">Apagado</string>
+    <string name="tablet_mode_title">Modo tableta</string>
+    <string name="open_website_license">Abrir sitio Web</string>
+    <string name="metadata_privacy_internal">Interno</string>
+    <string name="metadata_privacy_private">Privado</string>
+    <string name="metadata_privacy_public">Público</string>
+    <string name="metadata_thumbnail_url">URL da miniatura</string>
+    <string name="metadata_support">Soporte</string>
+    <string name="metadata_language">Idioma</string>
+    <string name="metadata_age_limit">Límite de idade</string>
+    <string name="metadata_privacy">Privacidade</string>
+    <string name="metadata_licence">Licenza</string>
+    <string name="metadata_tags">Etiquetas</string>
+    <string name="metadata_category">Categoría</string>
+    <string name="description_select_disable">Desabilitar a selección do texto da descripción</string>
+    <string name="description_select_enable">Habilitar a selección do texto na descripción</string>
+    <string name="description_select_note">Agora podes seleccionar o texto na descripción. Teña en conta que a páxina pode cintilar e as ligazóns poden non ser clicábeis no modo selección.</string>
+    <string name="auto_device_theme_title">Automático (Tema do dispositivo)</string>
+    <string name="radio">Radio</string>
+    <string name="service_provides_reason">%s dá este motivo:</string>
+    <string name="georestricted_content">Este contido non está dispoñíbel no seu país.</string>
+    <string name="chapters">Capítulos</string>
+    <string name="recent">Recentes</string>
+    <string name="show_thumbnail_title">Mostrar miniatura</string>
+    <string name="feed_load_error_terminated">A conta do autor foi eliminada.
+\nNewPipe non poderá acceder a ela no futuro.
+\nQueres desubscribirte da canle\?</string>
+    <string name="never">Nunca</string>
+    <string name="wifi_only">Só con Wi-Fi</string>
+    <string name="autoplay_summary">Iniciar reprodución automaticamente — %s</string>
+    <string name="crash_the_app">A aplicación deixou de funcionar</string>
+    <string name="enqueue_stream">Pór na cola</string>
+    <string name="show_channel_details">Mostrar detalles da canle</string>
+    <string name="title_activity_play_queue">Reproducir cola</string>
+    <string name="recaptcha_solve">Resolver</string>
+    <string name="description_tab_description">Descripción</string>
+    <string name="comments_tab_description">Comentarios</string>
+    <string name="clear_cookie_summary">Borrar as cookies que NewPipe garda cando resolve un reCAPTCHA</string>
+    <string name="recaptcha_cookies_cleared">As cookies reCAPTCHA foron borradas</string>
+    <string name="clear_cookie_title">Limpar cookies reCAPTCHA</string>
+    <string name="hash_channel_name">Notificación do \"hash\" do vídeo</string>
+    <string name="restricted_video_no_stream">Este vídeo ten restrición de idade.
+\nDebido ás novas políticas de Youtube cos vídeos con restrición de idade, NewPipe non pode acceder ás transmisións do vídeo, polo que non pode reproducilo.</string>
+    <string name="youtube_restricted_mode_enabled_summary">Youtube ten un \"Modo Restrinxido\" que oculta contido potencialmente só para adultos</string>
+    <string name="settings_category_notification_title">Notificación</string>
+    <string name="unsupported_url_dialog_message">URL non recoñecido. Abrir con outra aplicación\?</string>
+    <string name="show_meta_info_title">Mostrar metainformación</string>
+    <string name="show_description_summary">Desactíveo para ocultar a descripción do vídeo e a información adicional</string>
+    <string name="show_description_title">Ver descripción</string>
+    <string name="clear_queue_confirmation_title">Pedir confirmación antes de baleirar unha cola</string>
+    <string name="night_theme_title">Tema Escuro</string>
+    <string name="notification_action_nothing">Nada</string>
+    <string name="open_with">Abrir con</string>
 </resources>

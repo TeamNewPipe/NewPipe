@@ -1,0 +1,6 @@
+Ajout d'une option de détails sur les chaînes dans le menu de pression longue.
+Ajout d'une fonctionnalité permettant de renommer le nom de la liste de lecture à partir de l'interface de la liste de lecture.
+Permet à l'utilisateur de faire une pause pendant la mise en mémoire tampon d'une vidéo.
+Le thème blanc a été amélioré.
+Correction du chevauchement des polices lors de l'utilisation d'une taille de police plus grande.
+Correction de l'absence de vidéo sur les appareils Formuler et Zephier.

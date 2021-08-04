@@ -19,8 +19,7 @@
     <string name="no_player_found">Hech qanday translatsiya pleyeri topilmadi. VLC o\'rnatilsinmi\?</string>
     <string name="upload_date_text">%1$s tomonidan e‘lon qilingan</string>
     <string name="view_count_text">%1$s marta ko‘rilgan</string>
-    <string name="main_bg_subtitle">Boshlash uchun \"Izlash\" tugmasini bosing
-\n</string>
+    <string name="main_bg_subtitle">Boshlash uchun \"Izlash\" tugmasini bosing</string>
     <string name="player_gesture_controls_summary">Player yorqinligini va ovoz balandligini boshqarish uchun imo-ishoralardan foydalanish</string>
     <string name="player_gesture_controls_title">Player imo-ishoralarini boshqarish</string>
     <string name="volume_gesture_control_summary">Player tovushini boshqarish uchun imo-ishoralardan foydalanish</string>
@@ -468,8 +467,6 @@
     <string name="downloads_storage_use_saf_summary">\"Saqlash uchun kirish doirasi\" tashqi SD-kartaga yuklab olishga imkon beradi.
 \nBa\'zi qurilmalar mos kelmaydi</string>
     <string name="downloads_storage_use_saf_title">SAFdan foydalalnish</string>
-    <string name="downloads_storage_ask_summary_kitkat">Sizdan har bir yuklab olishni qayerda saqlashingiz so\'raladi.
-\nTashqi SD-kartaga yuklab olishni istasangiz, SAF-ni tanlang</string>
     <string name="downloads_storage_ask_summary">Sizdan har bir yuklab olishni qayerda saqlashingiz so\'raladi</string>
     <string name="downloads_storage_ask_title">Qayerdan yuklab olishni so\'rang</string>
     <string name="pause_downloads">Yuklashlarni to\'xtatib turish</string>

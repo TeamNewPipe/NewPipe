@@ -200,7 +200,6 @@
     <string name="title_activity_history">Dîrok</string>
     <string name="read_full_license">Destûrê bixwînin</string>
     <string name="app_license">NewPipe nermalava kopîleft libre ye: Hûn dikarin li gorî kêfa xwe bikar bînin, parve bikin û baştir bikin. Bi taybetî hûn dikarin wê di bin mercên Lîsansa Giştî ya GNU ya Giştî ya ku ji hêla Weqfa Nermalava Azad ve hatî weşandin de, an guhertoya 3 ya Lîsansê, an jî (li gorî vebijarka we) guhertoyek paşîn ji nû ve belav bikin û / an biguherînin.</string>
-    <string name="popup_resizing_indicator_title">Mezinahî kirin</string>
     <string name="clear">Zelal</string>
     <string name="refresh">Hênikkirin</string>
     <string name="filter">Parzûn</string>
@@ -384,8 +383,7 @@
     <string name="no_player_found">Lîstikvanek herikê nehat dîtin. VLC saz bikin\?</string>
     <string name="upload_date_text">Li ser hate weşandin %1$s</string>
     <string name="view_count_text">%1$s dîtinan</string>
-    <string name="main_bg_subtitle">Ji bo destpêkirinê \"Lêgerîn\" bitikînin
-\n</string>
+    <string name="main_bg_subtitle">Ji bo destpêkirinê \"Lêgerîn\" bitikînin</string>
     <string name="feed_use_dedicated_fetch_method_summary">Di hin karûbaran de heye, ew bi gelemperî pir zûtir e lê dibe ku hejmarek bi sînor a tiştan vegerîne û bi gelemperî agahdariya bêkêmasî vebigere (mînakî bê domdanî, celebek tişt, bê statûya zindî).</string>
     <string name="feed_use_dedicated_fetch_method_title">Dema ku hebe ji xwarina fedakar bistînin</string>
     <string name="feed_update_threshold_option_always_update">Her dem nûve bikin</string>
@@ -436,8 +434,6 @@
     <string name="downloads_storage_use_saf_summary">\'Çarçoveya Gihîştina Storage\' daxistinan li qertek SD ya derveyî dihêle.
 \nHin cîhaz lihevnehatî ne</string>
     <string name="downloads_storage_use_saf_title">SAF bikar bînin</string>
-    <string name="downloads_storage_ask_summary_kitkat">Dê ji we were pirsîn ka hûn ê her dakêşanê li ku derê hilanînê.
-\nHeke hûn dixwazin li karta SD ya derveyî dakêşînin SAFE hilbijêrin</string>
     <string name="downloads_storage_ask_summary">Dê ji we were pirsîn ka hûn ê her dakêşanê li ku derê hilanînê</string>
     <string name="downloads_storage_ask_title">Li ku derê dakêşin bipirsin</string>
     <string name="pause_downloads">Dakêşan rawestînin</string>

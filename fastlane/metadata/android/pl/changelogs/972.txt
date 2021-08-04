@@ -1,0 +1,14 @@
+Nowości
+Rozpoznawanie znaczników czasu i hashtagów w opisie
+Dodano ręczne ustawienie trybu tabletu
+Dodano możliwość ukrywania odtworzonych elementów w kanale
+
+Ulepszone
+Prawidłowe wsparcie Storage Access Framework
+Lepsza obsługa błędów w kanałach
+Panel udostępniania w Androidzie 10+ teraz wyświetla tytuł zawartości.
+Zaktualizowano instancje Invidious i wsparcie dla linków Piped
+
+Naprawione
+[YouTube] Treść z ograniczeniem wiekowym
+Zapobieganie wyjątkowi wycieku okna podczas otwierania okna wyboru

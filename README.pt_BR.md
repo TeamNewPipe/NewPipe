@@ -10,7 +10,7 @@
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Build Status"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
-<a href="https://webchat.freenode.net/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
+<a href="https://web.libera.chat/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
@@ -18,7 +18,7 @@
 <p align="center"><a href="https://newpipe.net">Site</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
 <hr>
 
-*Read this in other languages: [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md).*
+*Read this in other languages: [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md).*
 
 <b>AVISO: ESTA É UMA VERSÃO BETA, PORTANTO, VOCÊ PODE ENCONTRAR BUGS. ENCONTROU ALGUM, ABRA UM ISSUE ATRAVÉS DO NOSSO REPOSITÓRIO GITHUB.</b>
 
@@ -93,7 +93,7 @@ Quando uma alteração no código NewPipe (devido à adição de recursos ou fix
 Recomendamos o método 2 para a maioria dos usuários. Os APKs instalados usando o método 2 ou 3 são compatíveis entre si, mas não com aqueles instalados usando o método 4. Isso se deve à mesma chave de assinatura (nossa) sendo usada para 2 e 3, mas uma chave de assinatura diferente (F-Droid's) está sendo usada para 4. Construir um APK depuração usando o método 1 exclui totalmente uma chave. Assinar chaves ajudam a garantir que um usuário não seja enganado para instalar uma atualização maliciosa em um aplicativo.
 
 Enquanto isso, se você quiser trocar de fontes por algum motivo (por exemplo, a funcionalidade principal do NewPipe foi quebrada e o F-Droid ainda não tem a atualização), recomendamos seguir este procedimento:
-1. Back up your data via Settings > Content > Export Database so you keep your history, subscriptions, and playlistsFaça backup de seus dados através de Configurações > Conteúdo > Exportar Base de Dados para que você mantenha seu histórico, inscrições e playlists
+1. Faça backup de seus dados através de Configurações > Conteúdo > Exportar Base de Dados para que você mantenha seu histórico, inscrições e playlists
 2. Desinstale o NewPipe
 3. Baixe o APK da nova fonte e instale-o
 4. Importe os dados da etapa 1 via Configurações > Conteúdo > Inportar Banco de Dados

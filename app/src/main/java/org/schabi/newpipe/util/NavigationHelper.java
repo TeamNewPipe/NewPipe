@@ -21,6 +21,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.RouterActivity;
 import org.schabi.newpipe.about.AboutActivity;
@@ -53,10 +54,11 @@ import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.ArrayList;
 
-import static org.schabi.newpipe.util.ShareUtils.installApp;
+import static org.schabi.newpipe.util.external_communication.ShareUtils.installApp;
 
 public final class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
@@ -252,7 +254,7 @@ public final class NavigationHelper {
 
     public static void resolveActivityOrAskToInstall(final Context context, final Intent intent) {
         if (intent.resolveActivity(context.getPackageManager()) != null) {
-            ShareUtils.openIntentInApp(context, intent);
+            ShareUtils.openIntentInApp(context, intent, false);
         } else {
             if (context instanceof Activity) {
                 new AlertDialog.Builder(context)
@@ -348,13 +350,13 @@ public final class NavigationHelper {
                                                final boolean switchingPlayers) {
 
         final boolean autoPlay;
-        @Nullable final MainPlayer.PlayerType playerType = PlayerHolder.getType();
+        @Nullable final MainPlayer.PlayerType playerType = PlayerHolder.getInstance().getType();
         if (playerType == null) {
             // no player open
             autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);
         } else if (switchingPlayers) {
             // switching player to main player
-            autoPlay = PlayerHolder.isPlaying(); // keep play/pause state
+            autoPlay = PlayerHolder.getInstance().isPlaying(); // keep play/pause state
         } else if (playerType == MainPlayer.PlayerType.VIDEO) {
             // opening new stream while already playing in main player
             autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);
@@ -596,6 +598,20 @@ public final class NavigationHelper {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setPackage(context.getString(R.string.kore_package));
         intent.setData(videoURL);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+    }
+
+    /**
+     * Finish this <code>Activity</code> as well as all <code>Activities</code> running below it
+     * and then start <code>MainActivity</code>.
+     *
+     * @param activity the activity to finish
+     */
+    public static void restartApp(final Activity activity) {
+        NewPipeDatabase.close();
+        activity.finishAffinity();
+        final Intent intent = new Intent(activity, MainActivity.class);
+        activity.startActivity(intent);
     }
 }

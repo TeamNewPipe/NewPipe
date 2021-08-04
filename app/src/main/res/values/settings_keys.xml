@@ -89,6 +89,21 @@
         <item>@string/never</item>
     </string-array>
 
+    <string name="seekbar_preview_thumbnail_key" translatable="false">seekbar_preview_thumbnail_key</string>
+    <string name="seekbar_preview_thumbnail_high_quality" translatable="false">seekbar_preview_thumbnail_high_quality</string>
+    <string name="seekbar_preview_thumbnail_low_quality" translatable="false">seekbar_preview_thumbnail_low_quality</string>
+    <string name="seekbar_preview_thumbnail_none" translatable="false">seekbar_preview_thumbnail_none</string>
+    <string-array name="seekbar_preview_thumbnail_type_key" translatable="false">
+        <item>@string/seekbar_preview_thumbnail_high_quality</item>
+        <item>@string/seekbar_preview_thumbnail_low_quality</item>
+        <item>@string/seekbar_preview_thumbnail_none</item>
+    </string-array>
+    <string-array name="seekbar_preview_thumbnail_type_description" translatable="false">
+        <item>@string/high_quality_larger</item>
+        <item>@string/low_quality_smaller</item>
+        <item>@string/dont_show</item>
+    </string-array>
+
     <string name="default_resolution_key" translatable="false">default_resolution</string>
     <string name="default_resolution_value" translatable="false">720p60</string>
     <string name="show_higher_resolutions_key" translatable="false">show_higher_resolutions</string>
@@ -171,7 +186,8 @@
     <string name="allow_heap_dumping_key" translatable="false">allow_heap_dumping_key</string>
     <string name="show_memory_leaks_key" translatable="false">show_memory_leaks_key</string>
     <string name="allow_disposed_exceptions_key" translatable="false">allow_disposed_exceptions_key</string>
-    <string name="show_original_time_ago_key" translatable="false">show_original_time_ago_text_key</string>
+    <string name="show_original_time_ago_key" translatable="false">show_original_time_ago_key</string>
+    <string name="disable_media_tunneling_key" translatable="false">disable_media_tunneling_key</string>
     <string name="crash_the_app_key" translatable="false">crash_the_app_key</string>
 
     <!-- THEMES -->
@@ -264,6 +280,7 @@
     </string-array>
     <string name="feed_use_dedicated_fetch_method_key" translatable="false">feed_use_dedicated_fetch_method</string>
 
+    <string name="import_export_data_path" translatable="false">import_export_data_path</string>
     <string name="import_data" translatable="false">import_data</string>
     <string name="export_data" translatable="false">export_data</string>
 
@@ -1216,6 +1233,23 @@
         <item>@string/auto</item>
         <item>@string/list</item>
         <item>@string/grid</item>
+    </string-array>
+
+    <string name="tablet_mode_key" translatable="false">tablet_mode</string>
+    <string name="tablet_mode_value" translatable="false">@string/tablet_mode_auto_key</string>
+
+    <string name="tablet_mode_auto_key" translatable="false">auto</string>
+    <string name="tablet_mode_on_key" translatable="false">on</string>
+    <string name="tablet_mode_off_key" translatable="false">off</string>
+    <string-array name="tablet_mode_values" translatable="false">
+        <item>@string/tablet_mode_auto_key</item>
+        <item>@string/tablet_mode_on_key</item>
+        <item>@string/tablet_mode_off_key</item>
+    </string-array>
+    <string-array name="tablet_mode_description" translatable="false">
+        <item>@string/auto</item>
+        <item>@string/on</item>
+        <item>@string/off</item>
     </string-array>
 
     <string name="recaptcha_cookies_key" translatable="false">recaptcha_cookies_key</string>

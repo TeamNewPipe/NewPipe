@@ -24,7 +24,7 @@ import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -137,7 +137,10 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         }
 
         if (item.getLikeCount() >= 0) {
-            itemLikesCountView.setText(String.valueOf(item.getLikeCount()));
+            itemLikesCountView.setText(
+                    Localization.shortCount(
+                            itemBuilder.getContext(),
+                            item.getLikeCount()));
         } else {
             itemLikesCountView.setText("-");
         }

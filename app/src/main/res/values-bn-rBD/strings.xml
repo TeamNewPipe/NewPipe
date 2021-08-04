@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন
-\n</string>
+    <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন</string>
     <string name="view_count_text">%1$s জন দেখছে</string>
     <string name="upload_date_text">প্রকাশকাল %1$s</string>
     <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। VLC ইনস্টল করতে চাও\?</string>
@@ -320,7 +319,7 @@
     <string name="recaptcha_done_button">হয়েছে</string>
     <string name="events">ইভেন্টগুলো</string>
     <string name="settings_category_updates_title">আপডেট</string>
-    <string name="minimize_on_exit_none_description">কোনটি না</string>
+    <string name="minimize_on_exit_none_description">কোনোটি না</string>
     <string name="accept">স্বীকার করো</string>
     <string name="decline">অস্বীকার করো</string>
     <string name="caption_setting_title">ক্যাপশন</string>
@@ -362,7 +361,7 @@
     <string name="notification_scale_to_square_image_title">থাম্বনেলে ১:১ অনুপাতে করো</string>
     <string name="import_export_title">আমদানি/রপ্তানি</string>
     <string name="systems_language">সিস্টেম ডিফল্ট</string>
-    <string name="toast_no_player">এ ফাইলটি চালানোর জন্য কোন অ্য়াপ ইন্সটল নেই</string>
+    <string name="toast_no_player">এ ফাইলটি চালানোর জন্য কোন অ্যাপ ইন্সটলকৃত নেই</string>
     <string name="bookmark_playlist">প্লেলিস্ট বুকমার্ক করুন</string>
     <string name="feed_page_summary">ফিড পৃষ্ঠা</string>
     <string name="feed_use_dedicated_fetch_method_title">"যখন পর্যাপ্ত  নিবেদিত ফিড থেকে ডাটা সংগ্রহ করুন"</string>
@@ -396,4 +395,6 @@
         <item quantity="other">%d মিনিট</item>
     </plurals>
     <string name="website_encouragement">আরও তথ্য এবং খবরের জন্য নিউপাইপ ওয়েবসাইট দেখো।</string>
+    <string name="open_with">দিয়ে খুলো</string>
+    <string name="comments_tab_description">মতামত</string>
 </resources>

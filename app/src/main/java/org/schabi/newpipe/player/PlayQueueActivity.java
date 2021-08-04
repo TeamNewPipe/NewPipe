@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.SeekBar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,7 +47,7 @@ import java.util.List;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-import static org.schabi.newpipe.util.ShareUtils.shareText;
+import static org.schabi.newpipe.util.external_communication.ShareUtils.shareText;
 
 public final class PlayQueueActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,
@@ -312,7 +313,8 @@ public final class PlayQueueActivity extends AppCompatActivity
         final MenuItem share = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 3,
                 Menu.NONE, R.string.share);
         share.setOnMenuItemClickListener(menuItem -> {
-            shareText(getApplicationContext(), item.getTitle(), item.getUrl());
+            shareText(getApplicationContext(), item.getTitle(), item.getUrl(),
+                    item.getThumbnailUrl());
             return true;
         });
 
@@ -456,6 +458,7 @@ public final class PlayQueueActivity extends AppCompatActivity
                                            final boolean playbackSkipSilence) {
         if (player != null) {
             player.setPlaybackParameters(playbackTempo, playbackPitch, playbackSkipSilence);
+            onPlaybackParameterChanged(player.getPlaybackParameters());
         }
     }
 
@@ -639,7 +642,7 @@ public final class PlayQueueActivity extends AppCompatActivity
         queueControlBinding.controlShuffle.setImageAlpha(shuffleAlpha);
     }
 
-    private void onPlaybackParameterChanged(final PlaybackParameters parameters) {
+    private void onPlaybackParameterChanged(@Nullable final PlaybackParameters parameters) {
         if (parameters != null) {
             if (menu != null && player != null) {
                 final MenuItem item = menu.findItem(R.id.action_playback_speed);

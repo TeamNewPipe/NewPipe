@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">شروع کرنے کے لیے \"تلاش\" پر ٹیپ کریں
-\n</string>
+    <string name="main_bg_subtitle">شروع کرنے کے لیے \"تلاش\" پر ٹیپ کریں</string>
     <string name="view_count_text">%1$s ملاحظات</string>
     <string name="upload_date_text">%1$s کو شائع ہوا</string>
     <string name="install">انسٹال</string>
@@ -479,8 +478,6 @@
     <string name="pause_downloads">ڈاؤن لوڈ روکیں</string>
     <string name="downloads_storage_ask_title">ڈاؤن لوڈ کہاں کریں، پوچھیں</string>
     <string name="downloads_storage_ask_summary">ہر ڈاؤن لوڈ کو کہاں محفوظ کرنا ہے آپ سے پوچھا جائے گا</string>
-    <string name="downloads_storage_ask_summary_kitkat">آپ سے پوچھا جائے گا کہ ہر ڈاؤن لوڈ کو کہاں محفوظ کرنا ہے۔
-\nاگر آپ کسی بیرونی SD کارڈ پر ڈاؤن لوڈ کرنا چاہتے ہیں تو SAF کا انتخاب کریں</string>
     <string name="downloads_storage_use_saf_title">SAF استعمال کریں</string>
     <string name="downloads_storage_use_saf_summary">اسٹوریج ایکسیس فریم ورک ایک بیرونی SD کارڈ میں ڈاؤن لوڈ کی اجازت دیتا ہے۔
 \nنوٹ: کچھ آلات مطابقت نہیں رکھتے ہیں</string>

@@ -1,1 +1,1 @@
-[YouTube] Naprawiono awarię podczas ładowania dowolnego filmu
+[YouTube] Naprawiono błąd występujący podczas ładowania innego materiału wideo

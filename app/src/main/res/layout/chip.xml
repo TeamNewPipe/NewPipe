@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This is used to inflate a chip with a Material theme, otherwise it would crash -->
+<!-- Theme.MaterialComponents.DayNight is used to guarantee auto day/night switching -->
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:theme="@style/Theme.MaterialComponents.DayNight.Bridge"
+    app:chipMinTouchTargetSize="40dp"
+    tools:text="I'm a correctly themed chip!" />

@@ -61,8 +61,7 @@
     <string name="show_age_restricted_content_title">Zobrazit věkově omezený obsah</string>
     <string name="duration_live">Živě</string>
     <string name="light_parsing_error">Nebylo možné kompletně analyzovat stránku</string>
-    <string name="main_bg_subtitle">Začít klepnutím na \"Hledat\"
-\n</string>
+    <string name="main_bg_subtitle">Začněte klepnutím na lupu.</string>
     <string name="msg_copied">Zkopírováno do schránky</string>
     <string name="msg_wait">Počkejte prosím…</string>
     <string name="msg_running">NewPipe stahuje</string>
@@ -294,7 +293,7 @@
     <string name="rename_playlist">Přejmenovat</string>
     <string name="name">Jméno</string>
     <string name="append_playlist">Přidat do playlistu</string>
-    <string name="set_as_playlist_thumbnail">Nastavit jako náhled playlistu</string>
+    <string name="set_as_playlist_thumbnail">Nastavit jako miniaturu playlistu</string>
     <string name="bookmark_playlist">Přidat playlist do záložek</string>
     <string name="unbookmark_playlist">Smazat záložku</string>
     <string name="delete_playlist_prompt">Smazat tento playlist\?</string>
@@ -312,9 +311,9 @@
     <string name="enable_disposed_exceptions_title">Nahlásit mimo-cyklické chyby</string>
     <string name="enable_disposed_exceptions_summary">Vynutit hlášení nedoručitelných výjimek Rx mimo životnost fragmentu nebo aktivity po odstranění</string>
     <string name="use_inexact_seek_title">Použít rychlé nepřesné hledání</string>
-    <string name="use_inexact_seek_summary">Nepřesné hledání umožní přehrávači posouvat se rychleji, ale se sníženou přesností. Posouvání po 5, 15 nebo 25 vteřinách s tímto nefunguje.</string>
+    <string name="use_inexact_seek_summary">Nepřesné hledání umožní přehrávači posouvat se rychleji, ale se sníženou přesností. Posouvání po 5, 15 nebo 25 vteřinách s tímto nefunguje</string>
     <string name="download_thumbnail_title">Načítat náhledy</string>
-    <string name="download_thumbnail_summary">Vypnout, aby se zabránilo načítání náhledů a tím se ušetřily data a používání paměti. Změna tohoto nastavení vyčistí mezipamět obrázků v paměti i na disku.</string>
+    <string name="download_thumbnail_summary">Vypnout, aby se zabránilo načítání náhledů a tím se ušetřily data a používání paměti. Změna tohoto nastavení vyčistí mezipamět obrázků v paměti i na disku</string>
     <string name="thumbnail_cache_wipe_complete_notice">Mezipaměť obrázků vymazána</string>
     <string name="metadata_cache_wipe_title">Vymazat metadata v mezipaměti</string>
     <string name="metadata_cache_wipe_summary">Odebrat všechna data uložená v mezipaměti</string>
@@ -363,16 +362,16 @@
     <string name="preferred_open_action_settings_title">Preferovaná \'otevřít\' akce</string>
     <string name="preferred_open_action_settings_summary">Výchozí chování při otevírání obsahu — %s</string>
     <string name="caption_setting_title">Titulky</string>
-    <string name="caption_setting_description">Upravuje velikost textu titulků a styly pozadí. Změny se projeví po restartu aplikace.</string>
+    <string name="caption_setting_description">Upravuje velikost textu titulků a styly pozadí. Změny se projeví po restartu aplikace</string>
     <string name="toast_no_player">K přehrání tohoto souboru chybí vhodná aplikace</string>
     <string name="clear_views_history_title">Vymazat historii sledování</string>
     <string name="clear_views_history_summary">Vymaže historii přehraných streamů pozic playbacku</string>
     <string name="delete_view_history_alert">Vymazat celkovou historii sledování\?</string>
-    <string name="watch_history_deleted">Historie sledování smazána.</string>
+    <string name="watch_history_deleted">Historie sledování smazána</string>
     <string name="clear_search_history_title">Vymazat historii vyhledávání</string>
     <string name="clear_search_history_summary">Vymaže historii vyhledávaných klíčových slov</string>
     <string name="delete_search_history_alert">Vymazat celkovou historii vyhledávání\?</string>
-    <string name="search_history_deleted">Historie vyhledávání smazána.</string>
+    <string name="search_history_deleted">Historie vyhledávání smazána</string>
     <string name="one_item_deleted">Jedna položka smazána.</string>
     <string name="app_license">NewPipe je copyleft libre software: Můžete jej používat, sdílet a vylepšovat dle vaší vůle. Redistribuovat a/nebo upravovat lze za podmínek GNU General Public Licence zveřejňované nadací Free Software Foundation, a to buď za podmínek licence verze 3 nebo (dle vaší volby) jakékoli pozdější verze.</string>
     <string name="channels">kanály</string>
@@ -482,14 +481,12 @@
     <string name="start_downloads">Začít stahování</string>
     <string name="pause_downloads">Pozastavit stahování</string>
     <string name="downloads_storage_ask_title">Zeptat se na složku pro stahování</string>
-    <string name="downloads_storage_ask_summary">Budete dotázáni, kam jednotlivé soubory stáhnout</string>
-    <string name="downloads_storage_ask_summary_kitkat">Budete dotázáni, kam jednotlivé soubory stáhnout.
-\nZvolte SAF, pokud si přejete stahovat na externí SD kartu</string>
-    <string name="downloads_storage_use_saf_title">Použít SAF</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" umožňuje stahovat na externí SD kartu. 
-\nNěkterá zařízení nejsou kompatibilní</string>
+    <string name="downloads_storage_ask_summary">Budete dotázáni, kam jednotlivé soubory uložit.
+\nAktivujte výběr systémového adresáře (SAF), chcete-li stáhnout soubor na externí SD kartu</string>
+    <string name="downloads_storage_use_saf_title">Použít výběr systémového adresáře (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" umožňuje stahovat na externí SD kartu</string>
     <string name="enable_playback_state_lists_summary">Zobrazit pozici přehrávání v seznamech</string>
-    <string name="watch_history_states_deleted">Pozice playbacku smazány.</string>
+    <string name="watch_history_states_deleted">Pozice playbacku smazány</string>
     <string name="error_timeout">Timeout spojení</string>
     <string name="clear_playback_states_title">Smazat pozice playbacku</string>
     <string name="clear_playback_states_summary">Smazat všechny pozice playbacku</string>
@@ -508,7 +505,7 @@
         <item quantity="few">%s posluchači</item>
         <item quantity="other">%s posluchačů</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Ke změně jazyka dojde po restartu aplikace.</string>
+    <string name="localization_changes_requires_app_restart">Ke změně jazyka dojde po restartu aplikace</string>
     <string name="default_kiosk_page_summary">Výchozí kiosek</string>
     <string name="seek_duration_title">Délka přetočení vpřed/zpět</string>
     <string name="peertube_instance_url_title">Instance PeerTube</string>
@@ -579,7 +576,7 @@
     <string name="feed_update_threshold_summary">Doba po poslední aktualizaci, po níž je odběr považován za zastaralý — %s</string>
     <string name="feed_update_threshold_option_always_update">Vždy aktualizovat</string>
     <string name="feed_use_dedicated_fetch_method_title">Dodat z vyhrazeného zdroje, je-li dostupný</string>
-    <string name="feed_use_dedicated_fetch_method_summary">K dispozici na některých zařízeních, je obvykle mnohem rychlejší, ale může vrátit omezený počet položek a často neúplné informace (např. bez trvání, typu položky, skutečného stavu).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">K dispozici na některých zařízeních, je obvykle mnohem rychlejší, ale může vrátit omezený počet položek a často neúplné informace (např. bez trvání, typu položky, skutečného stavu)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Zapnout rychlý režim</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Vypnout rychlý režim</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Zdá se vám načítání příliš pomalé\? Pokud ano, zkuste zapnout rychlé načítání (lze změnit v nastavení nebo stiskem tlačítka níže). 
@@ -638,7 +635,7 @@
     <string name="notification_action_shuffle">Promíchat</string>
     <string name="notification_action_repeat">Opakovat</string>
     <string name="notification_actions_at_most_three">Do kompaktního oznámení lze vybrat nejvíce tři akce!</string>
-    <string name="notification_actions_summary">Upravte každou akci oznámení níže poklepáním. Pomocí zaškrtávacích políček vpravo vyberte až tři z nich, které se mají zobrazit v kompaktním oznámení.</string>
+    <string name="notification_actions_summary">Upravte každou akci oznámení níže poklepáním. Pomocí zaškrtávacích políček vpravo vyberte až tři z nich, které se mají zobrazit v kompaktním oznámení</string>
     <string name="notification_action_4_title">Páté akční tlačítko</string>
     <string name="notification_action_3_title">Čtvrté akční tlačítko</string>
     <string name="notification_action_2_title">Třetí akční tlačítko</string>
@@ -662,7 +659,7 @@
     <string name="recent">Nedávné</string>
     <string name="msg_calculating_hash">Počítám haš</string>
     <string name="hash_channel_description">Oznámení o postupu hašování videa</string>
-    <string name="show_meta_info_summary">Vypnout, abyste skryli rámečky s meta informací s údaji o autorovi streamu, obsahu streamu nebo požadavků hledání.</string>
+    <string name="show_meta_info_summary">Vypnout, abyste skryli rámečky s meta informací s údaji o autorovi streamu, obsahu streamu nebo požadavků hledání</string>
     <string name="show_meta_info_title">Zobrazit meta informaci</string>
     <string name="chapters">Kapitoly</string>
     <string name="description_tab_description">Popis</string>
@@ -673,4 +670,55 @@
     <string name="related_items_tab_description">Podobné strýmy</string>
     <string name="show_description_summary">Vypnout pro skrytí popisu videa a doplňkové informace</string>
     <string name="crash_the_app">Zbořit aplikaci</string>
+    <string name="download_has_started">Stahování bylo zahájeno</string>
+    <string name="select_night_theme_toast">Můžete si zvolit svůj oblíbený motiv níže</string>
+    <string name="night_theme_summary">Zvolte si svůj oblíbený noční motiv -- %s</string>
+    <string name="auto_device_theme_title">Automatický (motiv zařízení)</string>
+    <string name="radio">Radio</string>
+    <string name="featured">Představujeme</string>
+    <string name="paid_content">Tento obsah je dostupný jen platícím uživatelům, a tak jej NewPipe nemůže stáhnout ani přehrát.</string>
+    <string name="youtube_music_premium_content">Toto video je dostupné jen členům YouTube Music Premium, a tak je NewPipe nemůže stáhnout ani přehrát.</string>
+    <string name="private_content">Tento obsah je soukromý, a tak jej NewPipe nemůže stáhnout ani přehrát.</string>
+    <string name="soundcloud_go_plus_content">Toto je stopa SoundCloud Go+, přinejmenším ve Vaší zemi, a tak ji NewPipe nemůže stáhnout ani přehrát.</string>
+    <string name="georestricted_content">Tento obsah není ve Vaší zemi k dispozici.</string>
+    <string name="show_channel_details">Zobrazit podrobnosti kanálu</string>
+    <string name="recaptcha_solve">Vyřešit</string>
+    <string name="restricted_video_no_stream">Toto video je věkově omezeno.
+\nKvůli novým pravidlům YouTube ohledně věkově omezených videí nemůže NewPipe získat přístup na streamy videa, a tak je nemůže přehrát.</string>
+    <string name="night_theme_title">Noční motiv</string>
+    <string name="disable_media_tunneling_summary">Vypněte media-tunelling, pokud zaznamenáte temnou obrazovku nebo zadrhávání během playbacku</string>
+    <string name="disable_media_tunneling_title">Vypnout media-tunelling</string>
+    <string name="open_website_license">Přejít na website</string>
+    <string name="metadata_privacy_internal">Interní</string>
+    <string name="metadata_privacy_private">Soukromé</string>
+    <string name="metadata_privacy_unlisted">Neuvedeno v seznamu</string>
+    <string name="metadata_privacy_public">Veřejné</string>
+    <string name="metadata_thumbnail_url">URL miniatury</string>
+    <string name="metadata_host">Server</string>
+    <string name="metadata_support">Podpora</string>
+    <string name="metadata_language">Jazyk</string>
+    <string name="metadata_age_limit">Věkové omezení</string>
+    <string name="metadata_privacy">Soukromí</string>
+    <string name="metadata_licence">Licence</string>
+    <string name="metadata_tags">Štítky</string>
+    <string name="metadata_category">Kategorie</string>
+    <string name="description_select_disable">Vypnout výběr textu v popisu</string>
+    <string name="description_select_enable">Zapnout výběr textu v popisu</string>
+    <string name="description_select_note">Nyní můžete vybrat v popisu text. Pamatujte, že v režimu výběru může stránka blikat a odkazy nemusí reagovat na kliknutí.</string>
+    <string name="service_provides_reason">%s udává teno důvod:</string>
+    <string name="account_terminated">Účet uzavřen</string>
+    <string name="feed_load_error_fast_unknown">Režim rychlého feedu o tom neposkytuje více informací.</string>
+    <string name="feed_load_error_terminated">Autorův účet byl uzavřen.
+\nNewPipe nebude už moci načíst tento feed.
+\nChcete zrušit objednávku tohoto kanálu\?</string>
+    <string name="feed_load_error_account_info">Feed pro \'%s\' nemohl být načten.</string>
+    <string name="feed_load_error">Chyba při načítání feedu</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Počínaje Android 10 je podporován pouze \"Storage Access Framework\"</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\"Storage Access Framework\" není podporován na KitKat a níže</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Budete dotázáni, kde uložit každý stažený soubor</string>
+    <string name="no_dir_yet">Adresář pro stažené soubory dosud nenastaven, zvolte, prosím, výchozí adresář nyní</string>
+    <string name="off">Vypnuto</string>
+    <string name="on">Zapnuto</string>
+    <string name="tablet_mode_title">Režim tabletu</string>
+    <string name="feed_toggle_show_played_items">Ukázat přehrané položky</string>
 </resources>

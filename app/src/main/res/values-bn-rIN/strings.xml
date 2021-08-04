@@ -89,7 +89,7 @@
     <string name="settings_category_other_title">অন্যান্য</string>
     <string name="settings_category_appearance_title">অ্যাপিয়ারেন্স</string>
     <string name="settings_category_popup_title">পপআপ</string>
-    <string name="settings_category_history_title">ইতিহাস</string>
+    <string name="settings_category_history_title">ইতিহাস ও ক্যচ</string>
     <string name="settings_category_video_audio_title">ভিডিও এবং অডিও</string>
     <string name="settings_category_player_behavior_title">ব্যাবহার</string>
     <string name="settings_category_player_title">প্লেয়ার</string>
@@ -178,8 +178,7 @@
     <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। VLC ইনস্টল করতে চান\?</string>
     <string name="upload_date_text">প্রকাশকাল %1$s</string>
     <string name="view_count_text">%1$s জন দেখেছে</string>
-    <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন
-\n</string>
+    <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন</string>
     <string name="feed_create_new_group_button_title">নতুন</string>
     <string name="fragment_feed_title">নতুন কি</string>
     <string name="app_language_title">অ্যাপ এর ভাষা</string>
@@ -277,7 +276,7 @@
     <string name="undo">ফিরে যান</string>
     <string name="artists">শিল্পীরা</string>
     <string name="events">ইভেন্টগুলি</string>
-    <string name="youtube_restricted_mode_enabled_title">YouTube নিষিদ্ধ মোড</string>
+    <string name="youtube_restricted_mode_enabled_title">YouTube নিষিদ্ধ মোড চালু করুন</string>
     <string name="peertube_instance_add_https_only">শুধুমাত্র HTTPS URL গুলি সাপোর্ট করে</string>
     <string name="close">বন্ধ করুন</string>
     <string name="limit_data_usage_none_description">কোন সীমা নেই</string>
@@ -334,4 +333,16 @@
     <string name="search_showing_result_for">রেজাল্ট দেখান হচ্ছেঃ %s</string>
     <string name="clear_queue_confirmation_title">কিউ মোছার আগে নিশ্চিত করুন</string>
     <string name="notification_action_repeat">পুনরায়</string>
+    <string name="website_encouragement">নিউ পাইপ ওয়েব সাইট এ যান বিস্তারিত বিবরণ ও খবর এর জন্য</string>
+    <string name="more_than_100_videos">১০০+ ভিডিও</string>
+    <plurals name="listening">
+        <item quantity="one">"%s  শ্রোতা"</item>
+        <item quantity="other">%s শ্রোতা গন</item>
+    </plurals>
+    <string name="description_tab_description">বিবরণ</string>
+    <string name="comments_tab_description">মন্তব্য</string>
+    <string name="settings_category_notification_title">নোটিফিকেশন</string>
+    <string name="show_meta_info_title">মেটা ইনফো দেখান</string>
+    <string name="show_description_title">বিবরণ দেখান</string>
+    <string name="night_theme_title">রাত্রি থিম</string>
 </resources>

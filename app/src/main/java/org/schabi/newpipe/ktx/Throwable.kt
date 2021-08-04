@@ -58,10 +58,8 @@ tailrec fun Throwable?.hasCause(checkSubtypes: Boolean, vararg causesToCheck: Cl
             if (causeClass.isAssignableFrom(this.javaClass)) {
                 return true
             }
-        } else {
-            if (causeClass == this.javaClass) {
-                return true
-            }
+        } else if (causeClass == this.javaClass) {
+            return true
         }
     }
 

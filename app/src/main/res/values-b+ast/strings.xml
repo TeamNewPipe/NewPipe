@@ -30,7 +30,7 @@
     <string name="parsing_error">Nun pudo analizase\'l sitiu web</string>
     <string name="live_streams_not_supported">Los fluxos en direuto entá nun se sofiten</string>
     <string name="could_not_get_stream">Nun pudo consiguise nengún fluxu</string>
-    <string name="sorry_string">Buff... Esto nun debió asoceder.</string>
+    <string name="sorry_string">Buff… Esto nun debió asoceder.</string>
     <string name="error_snackbar_message">Perdona mas asocedió daqué malo.</string>
     <string name="what_device_headline">Información:</string>
     <string name="error_details_headline">Detalles:</string>
@@ -107,7 +107,7 @@
     <string name="tab_licenses">Llicencies</string>
     <string name="view_on_github">Ver en GitHub</string>
     <string name="app_license_title">Llicencia de NewPipe</string>
-    <string name="contribution_encouragement">Si tienes idees, quies traducir, facer dalgún cambéu nel diseñu, acuriosar poco o muncho\'l códigu... Agradecemos l\'ayuda. ¡Cuanto más se faiga, meyor!</string>
+    <string name="contribution_encouragement">Si tienes idees, quies traducir, facer dalgún cambéu nel diseñu, acuriosar poco o muncho\'l códigu… Agradecemos l\'ayuda. ¡Cuanto más se faiga, meyor!</string>
     <string name="read_full_license">Lleer</string>
     <string name="contribution_title">Collaboración</string>
     <string name="title_activity_history">Historial</string>
@@ -361,8 +361,6 @@
     <string name="downloads_storage_use_saf_summary">El «Storage Access Framework» permite les descargues nuna tarxeta SD esterna.
 \nDalgunos preseos son incompatibles</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
-    <string name="downloads_storage_ask_summary_kitkat">Va pidísete l\'allugamientu onde guardar les descargues con cauna.
-\nEscueyi SAF si quies guardar les descargues na tarxeta SD esterna</string>
     <string name="downloads_storage_ask_summary">Va pidísete l\'allugamientu onde guardar les descargues con cauna</string>
     <string name="pause_downloads">Posar les descargues</string>
     <string name="start_downloads">Aniciar les descargues</string>
@@ -646,6 +644,5 @@
     <string name="open_in_popup_mode">Abrir nel mou ventanu</string>
     <string name="install">Instalar</string>
     <string name="no_player_found">Nun s\'atopó nengún reproductor de fluxos. ¿Instalar VLC\?</string>
-    <string name="main_bg_subtitle">Toca «Buscar» pa entamar
-\n</string>
+    <string name="main_bg_subtitle">Toca «Buscar» pa entamar</string>
 </resources>
