@@ -635,6 +635,7 @@ public final class Player implements
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
         final boolean playWhenReady = intent.getBooleanExtra(PLAY_WHEN_READY, true);
         final boolean isMuted = intent.getBooleanExtra(IS_MUTED, isMuted());
+        final boolean shuffleMode = false; //Set the default shuffle mode to disabled
 
         /*
          * There are 3 situations when playback shouldn't be started from scratch (zero timestamp):
@@ -691,7 +692,7 @@ public final class Player implements
                                             state.getProgressMillis());
                                 }
                                 initPlayback(newQueue, repeatMode, playbackSpeed, playbackPitch,
-                                        playbackSkipSilence, playWhenReady, isMuted);
+                                        playbackSkipSilence, playWhenReady, isMuted, shuffleMode);
                             },
                             error -> {
                                 if (DEBUG) {
@@ -699,19 +700,19 @@ public final class Player implements
                                 }
                                 // In case any error we can start playback without history
                                 initPlayback(newQueue, repeatMode, playbackSpeed, playbackPitch,
-                                        playbackSkipSilence, playWhenReady, isMuted);
+                                        playbackSkipSilence, playWhenReady, isMuted, shuffleMode);
                             },
                             () -> {
                                 // Completed but not found in history
                                 initPlayback(newQueue, repeatMode, playbackSpeed, playbackPitch,
-                                        playbackSkipSilence, playWhenReady, isMuted);
+                                        playbackSkipSilence, playWhenReady, isMuted, shuffleMode);
                             }
                     ));
         } else {
             // Good to go...
             // In a case of equal PlayQueues we can re-init old one but only when it is disposed
             initPlayback(samePlayQueue ? playQueue : newQueue, repeatMode, playbackSpeed,
-                    playbackPitch, playbackSkipSilence, playWhenReady, isMuted);
+                    playbackPitch, playbackSkipSilence, playWhenReady, isMuted, shuffleMode);
         }
 
         if (oldPlayerType != playerType && playQueue != null) {
@@ -770,10 +771,12 @@ public final class Player implements
                               final float playbackPitch,
                               final boolean playbackSkipSilence,
                               final boolean playOnReady,
-                              final boolean isMuted) {
+                              final boolean isMuted,
+                              final boolean shuffleEnabled) {
         destroyPlayer();
         initPlayer(playOnReady);
         setRepeatMode(repeatMode);
+        onShuffleModeEnabledChanged(shuffleEnabled);
         setPlaybackParameters(playbackSpeed, playbackPitch, playbackSkipSilence);
 
         playQueue = queue;
