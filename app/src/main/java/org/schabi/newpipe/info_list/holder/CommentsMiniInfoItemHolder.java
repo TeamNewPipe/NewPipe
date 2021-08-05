@@ -72,7 +72,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                 }
                 return streamUrl + url.replace(match.group(0), "#timestamp=" + timestamp);
             } catch (final Exception ex) {
-                Log.d(TAG, "Unable to process url='" + url + "' as timestampLink", ex);
+                Log.e(TAG, "Unable to process url='" + url + "' as timestampLink", ex);
                 return url;
             }
         }
