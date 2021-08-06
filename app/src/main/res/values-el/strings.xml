@@ -711,5 +711,4 @@
     <string name="on">Ενεργό</string>
     <string name="tablet_mode_title">Κατάσταση tablet</string>
     <string name="feed_toggle_show_played_items">Εμφάνιση αναπαραχθέντων</string>
-    <string name="item_in_history">Στο Ιστορικό</string>
 </resources>
