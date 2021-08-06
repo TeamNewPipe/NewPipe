@@ -165,7 +165,10 @@ task formatKtlint(type: JavaExec) {
 }
 
 afterEvaluate {
-    preDebugBuild.dependsOn formatKtlint, runCheckstyle, runKtlint
+    if (!System.properties.containsKey('skipFormatKtlint')) {
+        preDebugBuild.dependsOn formatKtlint
+    }
+    preDebugBuild.dependsOn runCheckstyle, runKtlint
 }
 
 sonarqube {
