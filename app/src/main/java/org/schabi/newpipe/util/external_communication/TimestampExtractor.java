@@ -18,7 +18,8 @@ public final class TimestampExtractor {
      * Get's a single timestamp from a matcher.
      *
      * @param timestampMatches The matcher which was created using {@link #TIMESTAMPS_PATTERN}
-     * @param baseText         The text where the pattern was applied to / where the matcher is based upon
+     * @param baseText         The text where the pattern was applied to /
+     *                         where the matcher is based upon
      * @return If a match occurred: a {@link TimestampMatchDTO} filled with information.<br/>
      * If not <code>null</code>.
      */
