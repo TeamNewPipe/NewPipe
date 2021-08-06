@@ -47,7 +47,6 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     public final CircleImageView itemThumbnailView;
     private final TextView itemContentView;
     private final TextView itemLikesCountView;
-    private final TextView itemDislikesCountView;
     private final TextView itemPublishedTime;
 
     private String commentText;
@@ -81,7 +80,6 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemRoot = itemView.findViewById(R.id.itemRoot);
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
-        itemDislikesCountView = itemView.findViewById(R.id.detail_thumbs_down_count_view);
         itemPublishedTime = itemView.findViewById(R.id.itemPublishedTime);
         itemContentView = itemView.findViewById(R.id.itemCommentContentView);
 
