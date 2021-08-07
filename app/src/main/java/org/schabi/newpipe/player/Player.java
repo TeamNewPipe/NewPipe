@@ -608,13 +608,28 @@ public final class Player implements
         }
 
         // Resolve append intents
-        if (intent.getBooleanExtra(APPEND_ONLY, false) && playQueue != null) {
+        if (intent.getBooleanExtra(APPEND_ONLY, false) && playQueue != null) { /* Append Only = true && playQueue not empty*/
             final int sizeBeforeAppend = playQueue.size();
             playQueue.append(newQueue.getStreams());
 
+
             if ((intent.getBooleanExtra(SELECT_ON_APPEND, false)
                     || currentState == STATE_COMPLETED) && newQueue.getStreams().size() > 0) {
-                playQueue.setIndex(sizeBeforeAppend);
+                playQueue.setIndex(sizeBeforeAppend); // zero index => play appended
+            }
+
+            return;
+//TODO reduce code duplication
+        } else if (!(intent.getBooleanExtra(APPEND_ONLY, false)) && playQueue != null) { /* Append Only = false && playQueue not empty*/
+
+            final int currentIndex = playQueue.getIndex();
+            Log.e(TAG, "handleIntent: PLAYING NEXT" + currentIndex, null); //DEBUG
+            playQueue.append(newQueue.getStreams());
+            playQueue.move(playQueue.size() - 1, currentIndex + 1);
+
+            if ((intent.getBooleanExtra(SELECT_ON_APPEND, false)
+                    || currentState == STATE_COMPLETED) && newQueue.getStreams().size() > 0) {
+                playQueue.setIndex(currentIndex + 1); // play the nexted
             }
 
             return;

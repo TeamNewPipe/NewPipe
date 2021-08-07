@@ -111,6 +111,17 @@ public final class NavigationHelper {
                 .putExtra(Player.SELECT_ON_APPEND, selectOnAppend);
     }
 
+    @NonNull
+    public static <T> Intent getPlayerNextIntent(@NonNull final Context context,
+                                                    @NonNull final Class<T> targetClazz,
+                                                    @Nullable final PlayQueue playQueue,
+                                                    final boolean selectOnAppend,
+                                                    final boolean resumePlayback) {
+        return getPlayerIntent(context, targetClazz, playQueue, resumePlayback)
+                .putExtra(Player.APPEND_ONLY, false)
+                .putExtra(Player.SELECT_ON_APPEND, selectOnAppend);
+    }
+
     public static void playOnMainPlayer(final AppCompatActivity activity,
                                         @NonNull final PlayQueue playQueue) {
         final PlayQueueItem item = playQueue.getItem();
@@ -209,6 +220,73 @@ public final class NavigationHelper {
         ContextCompat.startForegroundService(context, intent);
     }
 
+//    TODO reduce code duplication
+    /**
+     * @param context          Context
+     * @param queue            a single video
+     * @param resumePlayback   ?
+     */
+    public static void nextOnVideoPlayer(final Context context,
+                                         final PlayQueue queue,
+                                         final boolean resumePlayback) {
+        nextOnVideoPlayer(context, queue, false, resumePlayback);
+    }
+
+    /**
+     * @param context          Context
+     * @param queue            a single video
+     * @param selectOnAppend   play when video is "play nexted"
+     * @param resumePlayback   ?
+     */
+    public static void nextOnVideoPlayer(final Context context,
+                                         final PlayQueue queue,
+                                         final boolean selectOnAppend,
+                                         final boolean resumePlayback) {
+        Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show(); //Toast
+        final Intent intent = getPlayerNextIntent(
+                context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
+
+        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.VIDEO.ordinal());
+        ContextCompat.startForegroundService(context, intent);
+    }
+
+    public static void nextOnPopupPlayer(final Context context,
+                                         final PlayQueue queue,
+                                         final boolean resumePlayback) {
+        nextOnPopupPlayer(context, queue, false, resumePlayback);
+    }
+
+    public static void nextOnPopupPlayer(final Context context,
+                                         final PlayQueue queue,
+                                         final boolean selectOnAppend,
+                                         final boolean resumePlayback) {
+        if (!PermissionHelper.isPopupEnabled(context)) {
+            PermissionHelper.showPopupEnablementToast(context);
+            return;
+        }
+        Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show();
+        final Intent intent = getPlayerNextIntent(
+                context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
+        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.POPUP.ordinal());
+        ContextCompat.startForegroundService(context, intent);
+    }
+
+    public static void nextOnBackgroundPlayer(final Context context,
+                                              final PlayQueue queue,
+                                              final boolean resumePlayback) {
+        nextOnBackgroundPlayer(context, queue, false, resumePlayback);
+    }
+
+    public static void nextOnBackgroundPlayer(final Context context,
+                                              final PlayQueue queue,
+                                              final boolean selectOnAppend,
+                                              final boolean resumePlayback) {
+        Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show();
+        final Intent intent = getPlayerNextIntent(
+                context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
+        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.AUDIO.ordinal());
+        ContextCompat.startForegroundService(context, intent);
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // External Players
     //////////////////////////////////////////////////////////////////////////*/
