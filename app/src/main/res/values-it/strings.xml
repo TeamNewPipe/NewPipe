@@ -420,6 +420,11 @@
     <string name="grid">Griglia</string>
     <string name="auto">Automatica</string>
     <string name="switch_view">Cambia visualizzazione</string>
+    <!-- Seekbar Preview Thumbnail-->
+    <string name="seekbar_preview_thumbnail_title">Anteprima delle miniature della barra di avanzamento del video</string>
+    <string name="high_quality_larger">Alta qualità (più grande)</string>
+    <string name="low_quality_smaller">Bassa qualità (più piccola)</string>
+    <string name="dont_show">Non mostrare</string>
     <string name="app_update_notification_content_title">Aggiornamento di NewPipe disponibile!</string>
     <string name="app_update_notification_content_text">Premi per scaricare</string>
     <string name="missions_header_finished">Completati</string>
