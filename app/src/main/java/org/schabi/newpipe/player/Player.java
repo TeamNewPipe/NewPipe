@@ -608,7 +608,8 @@ public final class Player implements
         }
 
         // Resolve append intents
-        if (intent.getBooleanExtra(APPEND_ONLY, false) && playQueue != null) { /* Append Only = true && playQueue not empty*/
+        if (intent.getBooleanExtra(APPEND_ONLY, false)
+                && playQueue != null) { /* Append Only = true && playQueue not empty*/
             final int sizeBeforeAppend = playQueue.size();
             playQueue.append(newQueue.getStreams());
 
@@ -620,7 +621,8 @@ public final class Player implements
 
             return;
 //TODO reduce code duplication
-        } else if (!(intent.getBooleanExtra(APPEND_ONLY, false)) && playQueue != null) { /* Append Only = false && playQueue not empty*/
+        } else if (!(intent.getBooleanExtra(APPEND_ONLY, false))
+                && playQueue != null) { /* Append Only = false && playQueue not empty*/
 
             final int currentIndex = playQueue.getIndex();
             Log.e(TAG, "handleIntent: PLAYING NEXT" + currentIndex, null); //DEBUG
