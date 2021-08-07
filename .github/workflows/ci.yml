@@ -46,11 +46,8 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
           
-      - name: Check if kotlin files are formatted correctly
-        run: ./gradlew runKtlint
-
       - name: Build debug APK and run jvm tests
-        run: ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace
+        run: ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
 
       - name: Upload APK
         uses: actions/upload-artifact@v2
