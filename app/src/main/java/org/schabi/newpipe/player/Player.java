@@ -606,13 +606,12 @@ public final class Player implements
         if (intent.hasExtra(PLAYBACK_QUALITY)) {
             setPlaybackQuality(intent.getStringExtra(PLAYBACK_QUALITY));
         }
-
+//TODO reduce code duplication
         // Resolve append intents
         if (intent.getBooleanExtra(APPEND_ONLY, false)
                 && playQueue != null) { /* Append Only = true && playQueue not empty*/
             final int sizeBeforeAppend = playQueue.size();
             playQueue.append(newQueue.getStreams());
-
 
             if ((intent.getBooleanExtra(SELECT_ON_APPEND, false)
                     || currentState == STATE_COMPLETED) && newQueue.getStreams().size() > 0) {
@@ -620,12 +619,10 @@ public final class Player implements
             }
 
             return;
-//TODO reduce code duplication
+        // Resolve not append (play next) intents
         } else if (!(intent.getBooleanExtra(APPEND_ONLY, false))
                 && playQueue != null) { /* Append Only = false && playQueue not empty*/
-
             final int currentIndex = playQueue.getIndex();
-            Log.e(TAG, "handleIntent: PLAYING NEXT" + currentIndex, null); //DEBUG
             playQueue.append(newQueue.getStreams());
             playQueue.move(playQueue.size() - 1, currentIndex + 1);
 

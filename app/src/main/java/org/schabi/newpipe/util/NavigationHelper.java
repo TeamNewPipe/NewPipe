@@ -267,6 +267,7 @@ public final class NavigationHelper {
         Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerNextIntent(
                 context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
+
         intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.POPUP.ordinal());
         ContextCompat.startForegroundService(context, intent);
     }
@@ -284,6 +285,7 @@ public final class NavigationHelper {
         Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerNextIntent(
                 context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
+
         intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.AUDIO.ordinal());
         ContextCompat.startForegroundService(context, intent);
     }
