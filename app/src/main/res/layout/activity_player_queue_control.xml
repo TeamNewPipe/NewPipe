@@ -31,84 +31,69 @@
         android:id="@+id/play_queue"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/progress_bar"
+        android:layout_above="@id/metadata"
         android:layout_below="@id/appbar"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/play_queue_item" />
 
-
-
-    <RelativeLayout
-        android:id="@+id/seek_bar_layout"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/seek_display"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/center">
-        <TextView
-            android:id="@+id/seek_display"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="#c0000000"
-            android:paddingLeft="30dp"
-            android:paddingTop="5dp"
-            android:paddingRight="30dp"
-            android:paddingBottom="5dp"
-            android:textColor="@android:color/white"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            tools:ignore="RtlHardcoded"
-            tools:text="1:06:29"
-            tools:visibility="visible" />
-    </RelativeLayout>
+        android:layout_centerInParent="true"
+        android:layout_above="@id/metadata"
+        android:background="#c0000000"
+        android:paddingLeft="30dp"
+        android:paddingTop="5dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="5dp"
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:ignore="RtlHardcoded"
+        tools:text="1:06:29"
+        tools:visibility="visible" />
 
-    <RelativeLayout
-        android:id="@+id/center"
+    <LinearLayout
+        android:id="@+id/metadata"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/progress_bar"
-        android:gravity="center">
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:ignore="RtlHardcoded,RtlSymmetry">
 
-        <LinearLayout
-            android:id="@+id/metadata"
+        <TextView
+            android:id="@+id/song_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical"
-            android:padding="8dp"
-            tools:ignore="RtlHardcoded,RtlSymmetry">
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="14sp"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta." />
 
-            <TextView
-                android:id="@+id/song_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="marquee"
-                android:fadingEdge="horizontal"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="14sp"
-                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta." />
-
-            <TextView
-                android:id="@+id/artist_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="marquee"
-                android:fadingEdge="horizontal"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="12sp"
-                tools:text="Duis posuere arcu condimentum lobortis mattis." />
-        </LinearLayout>
-
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/artist_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="12sp"
+            tools:text="Duis posuere arcu condimentum lobortis mattis." />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/progress_bar"
@@ -167,7 +152,6 @@
             android:textColor="?attr/colorAccent"
             android:visibility="gone" />
     </LinearLayout>
-
 
     <RelativeLayout
         android:id="@+id/playback_controls"
@@ -305,7 +289,4 @@
             tools:ignore="ContentDescription" />
 
     </RelativeLayout>
-
-
-
 </RelativeLayout>
