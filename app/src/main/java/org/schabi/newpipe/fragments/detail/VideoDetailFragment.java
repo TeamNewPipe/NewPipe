@@ -121,6 +121,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientat
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
+import static org.schabi.newpipe.util.ListHelper.removeNonUrlStreams;
 
 public final class VideoDetailFragment
         extends BaseStateFragment<StreamInfo>
@@ -186,8 +187,8 @@ public final class VideoDetailFragment
     @Nullable
     private Disposable positionSubscriber = null;
 
-    private List<VideoStream> sortedVideoStreams;
     private int selectedVideoStreamIndex = -1;
+
     private BottomSheetBehavior<FrameLayout> bottomSheetBehavior;
     private BroadcastReceiver broadcastReceiver;
 
@@ -1093,8 +1094,9 @@ public final class VideoDetailFragment
     }
 
     private void openBackgroundPlayer(final boolean append) {
-        final AudioStream audioStream = currentInfo.getAudioStreams()
-                .get(ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams()));
+        if (currentInfo == null) {
+            return;
+        }
 
         final boolean useExternalAudioPlayer = PreferenceManager
                 .getDefaultSharedPreferences(activity)
@@ -1110,7 +1112,11 @@ public final class VideoDetailFragment
         if (!useExternalAudioPlayer) {
             openNormalBackgroundPlayer(append);
         } else {
-            startOnExternalPlayer(activity, currentInfo, audioStream);
+            final List<AudioStream> urlAudioStreams = removeNonUrlStreams(currentInfo
+                    .getAudioStreams());
+            final AudioStream urlAudioStream = urlAudioStreams.get(ListHelper
+                    .getDefaultAudioFormat(activity, urlAudioStreams));
+            startOnExternalPlayer(activity, currentInfo, urlAudioStream);
         }
     }
 
@@ -1613,11 +1619,8 @@ public final class VideoDetailFragment
         binding.detailToggleSecondaryControlsView.setVisibility(View.VISIBLE);
         binding.detailSecondaryControlPanel.setVisibility(View.GONE);
 
-        sortedVideoStreams = ListHelper.getSortedStreamVideosList(
-                activity,
-                info.getVideoStreams(),
-                info.getVideoOnlyStreams(),
-                false);
+        final List<VideoStream> sortedVideoStreams = ListHelper.getSortedStreamVideosList(
+                activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false);
         selectedVideoStreamIndex = ListHelper
                 .getDefaultResolutionIndex(activity, sortedVideoStreams);
         updateProgressInfo(info);
@@ -2149,12 +2152,21 @@ public final class VideoDetailFragment
     }
 
     private void showExternalPlaybackDialog() {
-        if (sortedVideoStreams == null) {
+        if (currentInfo == null) {
             return;
         }
-        final CharSequence[] resolutions = new CharSequence[sortedVideoStreams.size()];
-        for (int i = 0; i < sortedVideoStreams.size(); i++) {
-            resolutions[i] = sortedVideoStreams.get(i).getResolution();
+        final List<VideoStream> urlVideoStreams = removeNonUrlStreams(
+                currentInfo.getVideoStreams());
+        final List<VideoStream> urlVideoOnlyStreams = removeNonUrlStreams(
+                currentInfo.getVideoOnlyStreams());
+        final List<VideoStream> sortedUrlVideoStreams = ListHelper.getSortedStreamVideosList(
+                activity, urlVideoStreams, urlVideoOnlyStreams, false);
+        final int selectedVideoStreamIndexForExternalPlayers = ListHelper
+                    .getDefaultResolutionIndex(activity, sortedUrlVideoStreams);
+        final CharSequence[] resolutions = new CharSequence[sortedUrlVideoStreams
+                .size()];
+        for (int i = 0; i < sortedUrlVideoStreams.size(); i++) {
+            resolutions[i] = sortedUrlVideoStreams.get(i).getResolution();
         }
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity)
                 .setNegativeButton(R.string.cancel, null)
@@ -2163,9 +2175,10 @@ public final class VideoDetailFragment
                 );
         // Maybe there are no video streams available, show just `open in browser` button
         if (resolutions.length > 0) {
-            builder.setSingleChoiceItems(resolutions, selectedVideoStreamIndex, (dialog, i) -> {
+            builder.setSingleChoiceItems(resolutions, selectedVideoStreamIndexForExternalPlayers,
+                    (dialog, i) -> {
                         dialog.dismiss();
-                        startOnExternalPlayer(activity, currentInfo, sortedVideoStreams.get(i));
+                        startOnExternalPlayer(activity, currentInfo, sortedUrlVideoStreams.get(i));
                     }
             );
         }

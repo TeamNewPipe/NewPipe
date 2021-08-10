@@ -134,6 +134,28 @@ public final class ListHelper {
     }
 
     /**
+     * Return a {@link Stream} list which only contains streams which are URLs.
+     *
+     * @param streamList     the original stream list
+     * @param <S>            the item type's class that extends {@link Stream}
+     * @return a stream list which only contains streams which are URLs
+     */
+    @NonNull
+    public static <S extends Stream> List<S> removeNonUrlStreams(
+            @NonNull final List<S> streamList) {
+        if (streamList.isEmpty()) {
+            return Collections.emptyList();
+        }
+        final List<S> deliveryStreamList = new ArrayList<>();
+        for (final S stream : streamList) {
+            if (stream.isUrl()) {
+                deliveryStreamList.add(stream);
+            }
+        }
+        return deliveryStreamList;
+    }
+
+    /**
      * Check if a stream was removed among downloadable streams.
      *
      * @param videoStreams                 the list of video streams gotten from the extractor

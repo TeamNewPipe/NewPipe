@@ -56,8 +56,9 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import static org.schabi.newpipe.util.ListHelper.removeNonUrlStreams;
 import static org.schabi.newpipe.util.external_communication.ShareUtils.installApp;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
@@ -215,21 +216,24 @@ public final class NavigationHelper {
     // External Players
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static void playOnExternalAudioPlayer(final Context context, final StreamInfo info) {
-        final int index = ListHelper.getDefaultAudioFormat(context, info.getAudioStreams());
+    public static void playOnExternalAudioPlayer(final Context context,
+                                                 @NonNull final StreamInfo info) {
+        final List<AudioStream> urlAudioStreams = removeNonUrlStreams(info.getAudioStreams());
+        final int index = ListHelper.getDefaultAudioFormat(context, urlAudioStreams);
 
         if (index == -1) {
             Toast.makeText(context, R.string.audio_streams_empty, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        final AudioStream audioStream = info.getAudioStreams().get(index);
+        final AudioStream audioStream = urlAudioStreams.get(index);
         playOnExternalPlayer(context, info.getName(), info.getUploaderName(), audioStream);
     }
 
-    public static void playOnExternalVideoPlayer(final Context context, final StreamInfo info) {
-        final ArrayList<VideoStream> videoStreamsList = new ArrayList<>(
-                ListHelper.getSortedStreamVideosList(context, info.getVideoStreams(), null, false));
+    public static void playOnExternalVideoPlayer(final Context context,
+                                                 @NonNull final StreamInfo info) {
+        final List<VideoStream> videoStreamsList = ListHelper.getSortedStreamVideosList(context,
+                removeNonUrlStreams(info.getVideoStreams()), null, false);
         final int index = ListHelper.getDefaultResolutionIndex(context, videoStreamsList);
 
         if (index == -1) {
@@ -241,17 +245,30 @@ public final class NavigationHelper {
         playOnExternalPlayer(context, info.getName(), info.getUploaderName(), videoStream);
     }
 
-    public static void playOnExternalPlayer(final Context context, final String name,
-                                            final String artist, final Stream stream) {
+    public static void playOnExternalPlayer(final Context context,
+                                            final String name,
+                                            final String artist,
+                                            @NonNull final Stream stream) {
         final DeliveryMethod deliveryMethod = stream.getDeliveryMethod();
-        if (deliveryMethod != DeliveryMethod.PROGRESSIVE_HTTP && !stream.isUrl()) {
-            Toast.makeText(context, R.string.selected_stream_external_player_not_supported,
-                    Toast.LENGTH_SHORT).show();
-            return;
+        final String mimeType;
+        if (deliveryMethod != DeliveryMethod.PROGRESSIVE_HTTP) {
+            if (!stream.isUrl() || deliveryMethod == DeliveryMethod.TORRENT) {
+                Toast.makeText(context, R.string.selected_stream_external_player_not_supported,
+                        Toast.LENGTH_SHORT).show();
+                return;
+            } else {
+                if (deliveryMethod == DeliveryMethod.HLS) {
+                    mimeType = "application/x-mpegURL";
+                } else { // DASH delivery method
+                    mimeType = "application/dash+xml";
+                }
+            }
+        } else {
+            mimeType = stream.getFormat().getMimeType();
         }
         final Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.parse(stream.getContent()), stream.getFormat().getMimeType());
+        intent.setDataAndType(Uri.parse(stream.getContent()), mimeType);
         intent.putExtra(Intent.EXTRA_TITLE, name);
         intent.putExtra("title", name);
         intent.putExtra("artist", artist);
