@@ -144,6 +144,7 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamSegment;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -1721,10 +1722,14 @@ public final class Player implements
         // TODO: revert #6307 when introducing proper HLS support
         final int duration;
         if (currentItem != null
-                && !StreamTypeUtil.isLiveStream(currentItem.getStreamType())
-        ) {
-            // convert seconds to milliseconds
-            duration = (int) (currentItem.getDuration() * 1000);
+                && currentItem.getStreamType() != StreamType.AUDIO_LIVE_STREAM
+                && currentItem.getStreamType() != StreamType.LIVE_STREAM
+                // The duration returned in the player response of YouTube for post live streams
+                // is sometimes wrong, so use the duration from ExoPlayer for this stream type
+                && currentItem.getStreamType() != StreamType.POST_LIVE_AUDIO_STREAM
+                && currentItem.getStreamType() != StreamType.POST_LIVE_STREAM) {
+            // Convert seconds to milliseconds
+            duration =  (int) (currentItem.getDuration() * 1000);
         } else {
             duration = (int) simpleExoPlayer.getDuration();
         }
@@ -3320,6 +3325,7 @@ public final class Player implements
 
         switch (info.getStreamType()) {
             case AUDIO_STREAM:
+            case POST_LIVE_AUDIO_STREAM:
                 binding.surfaceView.setVisibility(View.GONE);
                 binding.endScreen.setVisibility(View.VISIBLE);
                 binding.playbackEndTime.setVisibility(View.VISIBLE);
@@ -3338,6 +3344,7 @@ public final class Player implements
                 break;
 
             case VIDEO_STREAM:
+            case POST_LIVE_STREAM:
                 if (info.getVideoStreams().size() + info.getVideoOnlyStreams().size() == 0) {
                     break;
                 }
