@@ -566,11 +566,18 @@ public final class ListHelper {
     }
 
     private static int compareVideoStreamResolution(final String r1, final String r2) {
-        final int res1 = Integer.parseInt(r1.replaceAll("0p\\d+$", "1")
-                .replaceAll("[^\\d.]", ""));
-        final int res2 = Integer.parseInt(r2.replaceAll("0p\\d+$", "1")
-                .replaceAll("[^\\d.]", ""));
-        return res1 - res2;
+        try {
+            final int res1 = Integer.parseInt(r1.replaceAll("0p\\d+$", "1")
+                    .replaceAll("[^\\d.]", ""));
+            final int res2 = Integer.parseInt(r2.replaceAll("0p\\d+$", "1")
+                    .replaceAll("[^\\d.]", ""));
+            return res1 - res2;
+        } catch (final NumberFormatException e) {
+            // Return 1 because we don't know if the two streams are different or not (a
+            // NumberFormatException was thrown so we don't know the resolution of one stream or
+            // of all streams)
+            return 1;
+        }
     }
 
     // Compares the quality of two video streams.
