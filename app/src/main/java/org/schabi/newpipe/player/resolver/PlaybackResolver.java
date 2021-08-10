@@ -23,9 +23,7 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                                                   @NonNull final StreamInfo info) {
         final StreamType streamType = info.getStreamType();
         if (!(streamType == StreamType.AUDIO_LIVE_STREAM
-                || streamType == StreamType.LIVE_STREAM
-                || streamType == StreamType.POST_LIVE_AUDIO_STREAM
-                || streamType == StreamType.POST_LIVE_STREAM)) {
+                || streamType == StreamType.LIVE_STREAM)) {
             return null;
         }
 
