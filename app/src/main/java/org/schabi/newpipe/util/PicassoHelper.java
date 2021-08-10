@@ -157,9 +157,15 @@ public final class PicassoHelper {
 
 
     private static RequestCreator loadImageDefault(final String url, final int placeholderResId) {
-        return picassoInstance
-                .load((!shouldLoadImages || isBlank(url)) ? null : url)
-                .placeholder(placeholderResId)
-                .error(placeholderResId);
+        if (!shouldLoadImages || isBlank(url)) {
+            return picassoInstance
+                    .load((String) null)
+                    .placeholder(placeholderResId) // show placeholder when no image should load
+                    .error(placeholderResId);
+        } else {
+            return picassoInstance
+                    .load(url)
+                    .error(placeholderResId); // don't show placeholder while loading, only on error
+        }
     }
 }
