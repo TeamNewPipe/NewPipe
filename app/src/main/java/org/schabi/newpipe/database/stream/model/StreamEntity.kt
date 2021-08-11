@@ -12,6 +12,7 @@ import org.schabi.newpipe.extractor.localization.DateWrapper
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
+import org.schabi.newpipe.extractor.utils.Utils.EMPTY_STRING
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
 import java.io.Serializable
 import java.time.OffsetDateTime
@@ -45,6 +46,9 @@ data class StreamEntity(
     @ColumnInfo(name = STREAM_UPLOADER)
     var uploader: String,
 
+    @ColumnInfo(name = STREAM_UPLOADER_URL)
+    var uploaderUrl: String,
+
     @ColumnInfo(name = STREAM_THUMBNAIL_URL)
     var thumbnailUrl: String? = null,
 
@@ -64,7 +68,7 @@ data class StreamEntity(
     constructor(item: StreamInfoItem) : this(
         serviceId = item.serviceId, url = item.url, title = item.name,
         streamType = item.streamType, duration = item.duration, uploader = item.uploaderName,
-        thumbnailUrl = item.thumbnailUrl, viewCount = item.viewCount,
+        uploaderUrl = item.uploaderUrl, thumbnailUrl = item.thumbnailUrl, viewCount = item.viewCount,
         textualUploadDate = item.textualUploadDate, uploadDate = item.uploadDate?.offsetDateTime(),
         isUploadDateApproximation = item.uploadDate?.isApproximation
     )
@@ -73,7 +77,7 @@ data class StreamEntity(
     constructor(info: StreamInfo) : this(
         serviceId = info.serviceId, url = info.url, title = info.name,
         streamType = info.streamType, duration = info.duration, uploader = info.uploaderName,
-        thumbnailUrl = info.thumbnailUrl, viewCount = info.viewCount,
+        uploaderUrl = info.uploaderUrl, thumbnailUrl = info.thumbnailUrl, viewCount = info.viewCount,
         textualUploadDate = info.textualUploadDate, uploadDate = info.uploadDate?.offsetDateTime(),
         isUploadDateApproximation = info.uploadDate?.isApproximation
     )
@@ -82,7 +86,7 @@ data class StreamEntity(
     constructor(item: PlayQueueItem) : this(
         serviceId = item.serviceId, url = item.url, title = item.title,
         streamType = item.streamType, duration = item.duration, uploader = item.uploader,
-        thumbnailUrl = item.thumbnailUrl
+        uploaderUrl = EMPTY_STRING, thumbnailUrl = item.thumbnailUrl
     )
 
     fun toStreamInfoItem(): StreamInfoItem {
@@ -109,6 +113,7 @@ data class StreamEntity(
         const val STREAM_TYPE = "stream_type"
         const val STREAM_DURATION = "duration"
         const val STREAM_UPLOADER = "uploader"
+        const val STREAM_UPLOADER_URL = "uploader_url"
         const val STREAM_THUMBNAIL_URL = "thumbnail_url"
 
         const val STREAM_VIEWS = "view_count"
