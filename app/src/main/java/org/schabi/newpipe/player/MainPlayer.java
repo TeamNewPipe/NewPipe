@@ -178,7 +178,10 @@ public final class MainPlayer extends Service {
         if (DEBUG) {
             Log.d(TAG, "destroy() called");
         }
+        cleanup();
+    }
 
+    private void cleanup() {
         if (player != null) {
             // Exit from fullscreen when user closes the player via notification
             if (player.isFullscreen()) {
@@ -191,9 +194,14 @@ public final class MainPlayer extends Service {
             player.stopActivityBinding();
             player.removePopupFromView();
             player.destroy();
-        }
 
+            player = null;
+        }
+    }
+
+    public void stopService() {
         NotificationUtil.getInstance().cancelNotificationAndStopForeground(this);
+        cleanup();
         stopSelf();
     }
 

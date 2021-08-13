@@ -23,7 +23,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.util.TypedValue;
 
 import androidx.annotation.AttrRes;
@@ -31,6 +30,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
@@ -47,6 +47,9 @@ public final class ThemeHelper {
      * Apply the selected theme (on NewPipe settings) in the context
      * with the default style (see {@link #setTheme(Context, int)}).
      *
+     * ThemeHelper.setDayNightMode should be called before
+     * the applying theme for the first time in session
+     *
      * @param context context that the theme will be applied
      */
     public static void setTheme(final Context context) {
@@ -56,6 +59,9 @@ public final class ThemeHelper {
     /**
      * Apply the selected theme (on NewPipe settings) in the context,
      * themed according with the styles defined for the service .
+     *
+     * ThemeHelper.setDayNightMode should be called before
+     * the applying theme for the first time in session
      *
      * @param context   context that the theme will be applied
      * @param serviceId the theme will be styled to the service with this id,
@@ -119,6 +125,7 @@ public final class ThemeHelper {
         final String automaticDeviceThemeKey = res.getString(R.string.auto_device_theme_key);
 
         final String selectedThemeKey = getSelectedThemeKey(context);
+
 
         int baseTheme = R.style.DarkTheme; // default to dark theme
         if (selectedThemeKey.equals(lightThemeKey)) {
@@ -203,20 +210,6 @@ public final class ThemeHelper {
     }
 
     /**
-     * Get a resource id from a resource styled according to the context's theme.
-     *
-     * @param context Android app context
-     * @param attr    attribute reference of the resource
-     * @return resource ID
-     */
-    public static int resolveResourceIdFromAttr(final Context context, @AttrRes final int attr) {
-        final TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr});
-        final int attributeResourceId = a.getResourceId(0, 0);
-        a.recycle();
-        return attributeResourceId;
-    }
-
-    /**
      * Get a color from an attr styled according to the context's theme.
      *
      * @param context   Android app context
@@ -287,5 +280,61 @@ public final class ThemeHelper {
             default:
                 return false;
         }
+    }
+
+    public static void setDayNightMode(final Context context) {
+        setDayNightMode(context, ThemeHelper.getSelectedThemeKey(context));
+    }
+
+    public static void setDayNightMode(final Context context, final String selectedThemeKey) {
+        final Resources res = context.getResources();
+
+        if (selectedThemeKey.equals(res.getString(R.string.light_theme_key))) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else if (selectedThemeKey.equals(res.getString(R.string.dark_theme_key))
+                || selectedThemeKey.equals(res.getString(R.string.black_theme_key))) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        }
+    }
+
+
+    /**
+     * Returns whether the grid layout or the list layout should be used. If the user set "auto"
+     * mode in settings, decides based on screen orientation (landscape) and size.
+     *
+     * @param context the context to use
+     * @return true:use grid layout, false:use list layout
+     */
+    public static boolean shouldUseGridLayout(final Context context) {
+        final String listMode = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.list_view_mode_key),
+                        context.getString(R.string.list_view_mode_value));
+
+        if (listMode.equals(context.getString(R.string.list_view_mode_list_key))) {
+            return false;
+        } else if (listMode.equals(context.getString(R.string.list_view_mode_grid_key))) {
+            return true;
+        } else {
+            final Configuration configuration = context.getResources().getConfiguration();
+            return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+                    && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
+        }
+    }
+
+    /**
+     * Calculates the number of grid items that can fit horizontally on the screen. The width of a
+     * grid item is obtained from the thumbnail width plus the right and left paddings.
+     *
+     * @param context the context to use
+     * @return the span count of grid list items
+     */
+    public static int getGridSpanCount(final Context context) {
+        final Resources res = context.getResources();
+        final int minWidth
+                = res.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width)
+                + res.getDimensionPixelSize(R.dimen.video_item_search_padding) * 2;
+        return Math.max(1, res.getDisplayMetrics().widthPixels / minWidth);
     }
 }

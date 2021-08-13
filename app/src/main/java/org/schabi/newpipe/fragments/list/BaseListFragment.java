@@ -33,7 +33,7 @@ import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.player.helper.PlayerHolder;
-import org.schabi.newpipe.util.KoreUtil;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
@@ -45,6 +45,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Queue;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 
@@ -124,8 +125,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     /**
      * If the default implementation of {@link StateSaver.WriteRead} should be used.
      *
-     * @see StateSaver
      * @param useDefaultStateSaving Whether the default implementation should be used
+     * @see StateSaver
      */
     public void setUseDefaultStateSaving(final boolean useDefaultStateSaving) {
         this.useDefaultStateSaving = useDefaultStateSaving;
@@ -350,9 +351,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             return;
         }
 
-        final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
+        final List<StreamDialogEntry> entries = new ArrayList<>();
 
-        if (PlayerHolder.getType() != null) {
+        if (PlayerHolder.getInstance().getType() != null) {
             entries.add(StreamDialogEntry.enqueue);
         }
         if (item.getStreamType() == StreamType.AUDIO_STREAM) {
@@ -361,7 +362,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share
             ));
-        } else  {
+        } else {
             entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,
                     StreamDialogEntry.start_here_on_popup,
@@ -369,9 +370,14 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                     StreamDialogEntry.share
             ));
         }
-        if (KoreUtil.shouldShowPlayWithKodi(context, item.getServiceId())) {
+        entries.add(StreamDialogEntry.open_in_browser);
+        if (KoreUtils.shouldShowPlayWithKodi(context, item.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
         }
+        if (!isNullOrEmpty(item.getUploaderUrl())) {
+            entries.add(StreamDialogEntry.show_channel_details);
+        }
+
         StreamDialogEntry.setEnabledEntries(entries);
 
         new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context),
@@ -383,7 +389,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
         if (DEBUG) {
             Log.d(TAG, "onCreateOptionsMenu() called with: "
                     + "menu = [" + menu + "], inflater = [" + inflater + "]");

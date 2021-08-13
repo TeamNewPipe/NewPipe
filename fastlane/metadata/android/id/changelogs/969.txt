@@ -1,0 +1,8 @@
+• Izinkan instalasi pada penyimpanan eksternal
+• [Bandcamp] Penambahan dukungan untuk menampilkan tiga komentar pertama pada stream
+• Hanya Tampilkan toast 'Unduh telah dimulai' saat mengunduh dimulai
+• Jangan mengatur cookie reCaptcha ketika tidak ada cookie yang disimpan
+• [Pemutar] Peningkatan kinerja cache
+• [Pemutar] Tidak memutar secara otomatis
+• Abaikan Snackbars sebelumnya saat menghapus unduhan
+• Perbaikan mencoba menghapus objek tidak dalam daftar

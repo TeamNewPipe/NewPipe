@@ -40,29 +40,25 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject;
  */
 public abstract class PlayQueue implements Serializable {
     public static final boolean DEBUG = MainActivity.DEBUG;
-
-    private ArrayList<PlayQueueItem> backup;
-    private ArrayList<PlayQueueItem> streams;
-
     @NonNull
     private final AtomicInteger queueIndex;
-    private final ArrayList<PlayQueueItem> history;
+    private final List<PlayQueueItem> history = new ArrayList<>();
+
+    private List<PlayQueueItem> backup;
+    private List<PlayQueueItem> streams;
 
     private transient BehaviorSubject<PlayQueueEvent> eventBroadcast;
     private transient Flowable<PlayQueueEvent> broadcastReceiver;
-
-    private transient boolean disposed;
+    private transient boolean disposed = false;
 
     PlayQueue(final int index, final List<PlayQueueItem> startWith) {
-        streams = new ArrayList<>();
-        streams.addAll(startWith);
-        history = new ArrayList<>();
+        streams = new ArrayList<>(startWith);
+
         if (streams.size() > index) {
             history.add(streams.get(index));
         }
 
         queueIndex = new AtomicInteger(index);
-        disposed = false;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -137,18 +133,36 @@ public abstract class PlayQueue implements Serializable {
     public synchronized void setIndex(final int index) {
         final int oldIndex = getIndex();
 
-        int newIndex = index;
+        final int newIndex;
+
         if (index < 0) {
             newIndex = 0;
+        } else if (index < streams.size()) {
+            // Regular assignment for index in bounds
+            newIndex = index;
+        } else if (streams.isEmpty()) {
+            // Out of bounds from here on
+            // Need to check if stream is empty to prevent arithmetic error and negative index
+            newIndex = 0;
+        } else if (isComplete()) {
+            // Circular indexing
+            newIndex = index % streams.size();
+        } else {
+            // Index of last element
+            newIndex = streams.size() - 1;
         }
-        if (index >= streams.size()) {
-            newIndex = isComplete() ? index % streams.size() : streams.size() - 1;
-        }
+
+        queueIndex.set(newIndex);
+
         if (oldIndex != newIndex) {
             history.add(streams.get(newIndex));
         }
 
-        queueIndex.set(newIndex);
+        /*
+        TODO: Documentation states that a SelectEvent will only be emitted if the new index is...
+        different from the old one but this is emitted regardless? Not sure what this what it does
+        exactly so I won't touch it
+         */
         broadcast(new SelectEvent(oldIndex, newIndex));
     }
 
@@ -180,8 +194,6 @@ public abstract class PlayQueue implements Serializable {
      * @return the index of the given item
      */
     public int indexOf(@NonNull final PlayQueueItem item) {
-        // referential equality, can't think of a better way to do this
-        // todo: better than this
         return streams.indexOf(item);
     }
 
@@ -410,34 +422,42 @@ public abstract class PlayQueue implements Serializable {
     }
 
     /**
-     * Shuffles the current play queue.
+     * Shuffles the current play queue
      * <p>
-     * This method first backs up the existing play queue and item being played.
-     * Then a newly shuffled play queue will be generated along with currently
-     * playing item placed at the beginning of the queue.
+     * This method first backs up the existing play queue and item being played. Then a newly
+     * shuffled play queue will be generated along with currently playing item placed at the
+     * beginning of the queue. This item will also be added to the history.
      * </p>
      * <p>
-     * Will emit a {@link ReorderEvent} in any context.
+     * Will emit a {@link ReorderEvent} if shuffled.
      * </p>
+     *
+     * @implNote Does nothing if the queue has a size <= 2 (the currently playing video must stay on
+     * top, so shuffling a size-2 list does nothing)
      */
     public synchronized void shuffle() {
+        // Can't shuffle an list that's empty or only has one element
+        if (size() <= 2) {
+            return;
+        }
+        // Create a backup if it doesn't already exist
         if (backup == null) {
             backup = new ArrayList<>(streams);
         }
-        final int originIndex = getIndex();
-        final PlayQueueItem current = getItem();
+
+        final int originalIndex = getIndex();
+        final PlayQueueItem currentItem = getItem();
+
         Collections.shuffle(streams);
 
-        final int newIndex = streams.indexOf(current);
-        if (newIndex != -1) {
-            streams.add(0, streams.remove(newIndex));
-        }
+        // Move currentItem to the head of the queue
+        streams.remove(currentItem);
+        streams.add(0, currentItem);
         queueIndex.set(0);
-        if (streams.size() > 0) {
-            history.add(streams.get(0));
-        }
 
-        broadcast(new ReorderEvent(originIndex, queueIndex.get()));
+        history.add(currentItem);
+
+        broadcast(new ReorderEvent(originalIndex, 0));
     }
 
     /**
@@ -457,7 +477,6 @@ public abstract class PlayQueue implements Serializable {
         final int originIndex = getIndex();
         final PlayQueueItem current = getItem();
 
-        streams.clear();
         streams = backup;
         backup = null;
 
@@ -500,22 +519,19 @@ public abstract class PlayQueue implements Serializable {
      * we don't have to do anything with new queue.
      * This method also gives a chance to track history of items in a queue in
      * VideoDetailFragment without duplicating items from two identical queues
-     * */
+     */
     @Override
     public boolean equals(@Nullable final Object obj) {
-        if (!(obj instanceof PlayQueue)
-                || getStreams().size() != ((PlayQueue) obj).getStreams().size()) {
+        if (!(obj instanceof PlayQueue)) {
             return false;
         }
-
         final PlayQueue other = (PlayQueue) obj;
-        for (int i = 0; i < getStreams().size(); i++) {
-            if (!getItem(i).getUrl().equals(other.getItem(i).getUrl())) {
-                return false;
-            }
-        }
+        return streams.equals(other.streams);
+    }
 
-        return true;
+    @Override
+    public int hashCode() {
+        return streams.hashCode();
     }
 
     public boolean isDisposed() {

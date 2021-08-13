@@ -11,8 +11,7 @@
     <string name="cancel">ᱵᱟᱹᱰᱨᱟᱹ</string>
     <string name="install">ᱵᱚᱦᱟᱞ</string>
     <string name="view_count_text">%1$s ᱧᱮᱞᱠᱚ</string>
-    <string name="main_bg_subtitle">ᱮᱦᱲᱵ ᱞᱟᱹᱜᱤᱫ \"ᱥᱮᱸᱫᱽᱨᱟ\" ᱨᱮ ᱚᱛᱟᱭ ᱢᱮ
-\n</string>
+    <string name="main_bg_subtitle">ᱮᱦᱚᱵ ᱞᱟᱹᱜᱤᱫ ᱢᱮᱜᱽᱱᱤᱯᱷᱟᱭᱤᱝ ᱜᱽᱞᱟᱥ ᱨᱮ ᱚᱛᱟᱭ ᱢᱮ ᱾</string>
     <string name="use_external_video_player_title">ᱵᱟᱦᱨᱮ ᱣᱤᱰᱤᱭᱚ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱮᱵᱷᱟᱨ ᱢᱮ</string>
     <string name="search_showing_result_for">ᱛᱮᱞᱟ ᱫᱮᱠᱷᱟᱣᱜᱽ ᱠᱟᱱᱟᱺ%s</string>
     <string name="did_you_mean">ᱟᱢᱟᱜ ᱚᱨᱛᱷᱚ \"%1$s\" ᱥᱮ\?</string>
@@ -57,4 +56,17 @@
     <string name="kore_not_found">Kore ᱮᱯ ᱵᱟᱭ ᱧᱟᱢ ᱞᱮᱱᱟ, ᱵᱚᱦᱟᱞ ᱟ ᱥᱮ\?</string>
     <string name="show_play_with_kodi_summary">Kodi ᱢᱮᱰᱤᱭᱟ ᱯᱞᱮᱭᱟᱹᱨ ᱛᱮ ᱣᱤᱰᱤᱭᱚ ᱯᱞᱮ ᱨᱮᱭᱟᱜ ᱚᱯᱥᱚᱱ ᱫᱮᱠᱷᱟᱣᱢᱮ</string>
     <string name="show_play_with_kodi_title">\"Kodi ᱛᱮ ᱪᱟᱹᱞᱩ\" ᱚᱯᱥᱚᱱ ᱫᱮᱠᱷᱟᱣᱢᱮ</string>
+    <string name="notification_colorize_title">ᱱᱚᱴᱤᱯᱷᱤᱠᱮᱥᱚᱱ ᱠᱚᱞᱚᱨ ᱠᱟᱜ ᱢᱮ</string>
+    <string name="notification_action_nothing">ᱪᱮᱫ ᱦᱚᱸ ᱵᱟᱝ</string>
+    <string name="notification_action_buffering">ᱵᱟᱹᱯᱷᱨᱤᱝ</string>
+    <string name="notification_action_shuffle">ᱥᱚᱯᱷᱚᱞ</string>
+    <string name="notification_action_repeat">ᱨᱤᱯᱤᱴ</string>
+    <string name="notification_actions_at_most_three">ᱠᱚᱢᱯᱮᱠᱼᱴ ᱱᱚᱴᱤᱯᱷᱤᱠᱮᱥᱚᱱ ᱨᱮ ᱫᱮᱠᱷᱟᱣ ᱪᱷᱚ ᱞᱟᱹᱜᱤᱫ ᱟᱢ ᱯᱮ ᱠᱟᱹᱢᱤ ᱦᱟᱹᱵᱤᱡ ᱮᱢ ᱵᱟᱪᱷᱟᱣ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ!</string>
+    <string name="notification_actions_summary">ᱡᱷᱚᱛᱚ ᱱᱚᱴᱤᱯᱷᱤᱠᱮᱥᱚᱱ ᱪᱮᱛᱟᱱ ᱨᱮ ᱥᱟᱯᱲᱟᱣ ᱮᱢ ᱞᱟᱹᱜᱤᱫ ᱚᱱᱟ ᱨᱮ ᱚᱛᱟᱭ ᱢᱮ ᱾ ᱠᱚᱢᱯᱮᱠᱼᱴ ᱱᱚᱴᱤᱯᱷᱤᱠᱮᱥᱚᱱ ᱨᱮ ᱡᱚᱡᱚᱢ ᱛᱤ ᱯᱟᱦᱴᱟ ᱨᱮ ᱪᱮᱠᱵᱟᱠᱚᱥ ᱨᱮ ᱫᱮᱠᱷᱟᱣ ᱪᱷᱚ ᱞᱟᱹᱜᱤᱫ ᱯᱮ ᱠᱷᱚᱱ ᱡᱟᱹᱥᱛᱤ ᱵᱟᱪᱷᱟᱣ ᱛᱟᱭ ᱫᱚᱨᱠᱟᱨ ᱾</string>
+    <string name="notification_action_4_title">ᱢᱚᱬᱮᱤᱭᱟᱹ ᱠᱟᱹᱢᱤ ᱵᱩᱛᱟᱹᱢ</string>
+    <string name="notification_action_3_title">ᱚᱱᱟ ᱛᱮᱥᱟᱨ ᱠᱟᱹᱢᱤ ᱵᱩᱛᱟᱹᱢ</string>
+    <string name="notification_action_2_title">ᱛᱮᱥᱟᱨ ᱠᱟᱹᱢᱤ ᱵᱩᱛᱟᱹᱢ</string>
+    <string name="notification_action_1_title">ᱫᱚᱥᱟᱨ ᱠᱟᱹᱢᱤ ᱵᱩᱛᱟᱹᱢ</string>
+    <string name="notification_action_0_title">ᱢᱟᱲᱟᱝ ᱠᱟᱹᱢᱤ ᱵᱩᱛᱟᱹᱢ</string>
+    <string name="notification_scale_to_square_image_title">ᱛᱷᱟᱹᱢᱵᱽᱱᱮᱞ ᱫᱚ ᱑:᱑ ᱮᱥᱯᱮᱠᱼᱴ ᱨᱮᱥᱤᱭᱚ ᱨᱮ ᱢᱟᱯ ᱢᱮ</string>
 </resources>

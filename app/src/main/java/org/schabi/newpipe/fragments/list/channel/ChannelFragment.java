@@ -43,7 +43,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
@@ -164,7 +164,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         final ActionBar supportActionBar = activity.getSupportActionBar();
         if (useAsFrontPage && supportActionBar != null) {
@@ -203,7 +204,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                 break;
             case R.id.menu_item_share:
                 if (currentInfo != null) {
-                    ShareUtils.shareText(requireContext(), name, currentInfo.getOriginalUrl());
+                    ShareUtils.shareText(requireContext(), name, currentInfo.getOriginalUrl(),
+                            currentInfo.getAvatarUrl());
                 }
                 break;
             default:
@@ -449,8 +451,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
         if (!TextUtils.isEmpty(currentInfo.getParentChannelName())) {
             headerBinding.subChannelTitleView.setText(String.format(
-                            getString(R.string.channel_created_by),
-                            currentInfo.getParentChannelName())
+                    getString(R.string.channel_created_by),
+                    currentInfo.getParentChannelName())
             );
             headerBinding.subChannelTitleView.setVisibility(View.VISIBLE);
             headerBinding.subChannelAvatarView.setVisibility(View.VISIBLE);
@@ -462,7 +464,13 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
             menuRssButton.setVisible(!TextUtils.isEmpty(result.getFeedUrl()));
         }
 
-        playlistControlBinding.getRoot().setVisibility(View.VISIBLE);
+        // PlaylistControls should be visible only if there is some item in
+        // infoListAdapter other than header
+        if (infoListAdapter.getItemCount() != 1) {
+            playlistControlBinding.getRoot().setVisibility(View.VISIBLE);
+        } else {
+            playlistControlBinding.getRoot().setVisibility(View.GONE);
+        }
 
         for (final Throwable throwable : result.getErrors()) {
             if (throwable instanceof ContentNotSupportedException) {

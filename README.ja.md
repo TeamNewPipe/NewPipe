@@ -9,7 +9,7 @@
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="ライセンス: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="ビルド状態"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="翻訳状態"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
-<a href="http://webchat.freenode.net/?channels=%23newpipe" alt="IRC チャンネル: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
+<a href="https://web.libera.chat/#newpipe" alt="IRC チャンネル: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource 寄付"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
@@ -17,7 +17,7 @@
 <p align="center"><a href="https://newpipe.net">ウェブサイト</a> &bull; <a href="https://newpipe.net/blog/">ブログ</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">ニュース</a></p>
 <hr>
 
-*他の言語で読む: [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt.br.md), [日本語](README.ja.md), [Română](README.ro.md) 。*
+*他の言語で読む: [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt.br.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md)。*
 
 <b>注意: これはベータ版のため、バグが発生する可能性があります。もしバグが発生した場合、GitHub のリポジトリで Issue を開いてください。</b>
 
@@ -143,7 +143,7 @@ NewPipe プロジェクトはメディアウェブサービスを使用する上
 
 <span id="license"></span>
 ## ライセンス
-[![GNU GPLv3 のロゴ](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
+[![GNU GPLv3 のロゴ](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
 NewPipe はフリーソフトウェアなので、あなたはあなたの望むように使用、習得、共有、改善を行えます。
 具体的には、フリーソフトウェア財団により公開された [GNU General Public License](https://www.gnu.org/licenses/gpl.html) のバージョン3のライセンスもしくは、(あなたの選択で) いずれかの後継バージョンの規約の元で配布または改変を行うことができます。

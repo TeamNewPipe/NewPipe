@@ -73,8 +73,7 @@
     <string name="audio">Áudio</string>
     <string name="retry">Tentar novamente</string>
     <string name="storage_permission_denied">Deve conceder acesso ao armazenamento</string>
-    <string name="main_bg_subtitle">Toque \"Pesquisar\" para iniciar
-\n</string>
+    <string name="main_bg_subtitle">Toque na lupa para começar.</string>
     <string name="autoplay_by_calling_app_title">Reprodução automática</string>
     <string name="autoplay_by_calling_app_summary">Reproduzir vídeo se NewPipe for invocado por outra aplicação</string>
     <string name="duration_live">Em direto</string>
@@ -123,7 +122,7 @@
     <string name="disabled">Desativado</string>
     <string name="default_popup_resolution_title">Resolução padrão para janela popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
-    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos conseguem reproduzir vídeos em 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Apenas alguns aparelhos conseguem reproduzir vídeos em 2K/4K</string>
     <string name="controls_popup_title">Popup</string>
     <string name="popup_remember_size_pos_title">Lembrar propriedades de popup</string>
     <string name="settings_category_popup_title">Popup</string>
@@ -256,9 +255,9 @@
     <string name="controls_download_desc">Descarregar ficheiro de vídeo</string>
     <string name="controls_add_to_playlist_title">Adicionar a</string>
     <string name="use_inexact_seek_title">Utilizar pesquisa rápida</string>
-    <string name="use_inexact_seek_summary">A pesquisa inexata permite que esta seja mais rápida mas reduz a precisão. Procurar por 5, 15 ou 25 segundos não funciona corretamente.</string>
+    <string name="use_inexact_seek_summary">A pesquisa inexata permite que esta seja mais rápida, mas reduz a precisão. Procurar por 5, 15 ou 25 segundos não funciona corretamente</string>
     <string name="download_thumbnail_title">Carregar miniaturas</string>
-    <string name="download_thumbnail_summary">Desative para parar o carregamento de miniaturas, poupar dados e utilização da memória. As alterações limpam a cache de imagens do disco e da memória.</string>
+    <string name="download_thumbnail_summary">Desative para parar o carregamento de miniaturas, poupar dados e utilização da memória. As alterações limpam a cache de imagens do disco e da memória</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache de imagens limpa</string>
     <string name="default_content_country_title">País padrão para conteúdo</string>
     <string name="settings_category_debug_title">Depuração</string>
@@ -332,7 +331,7 @@
 \n6. A partir do zip descarregado extraia o ficheiro .json (normalmente em \"YouTube e YouTube Music/subscriptions/subscriptions.json\") e importe-o aqui.</string>
     <string name="import_soundcloud_instructions">Importe o seu perfil SoundCloud digitando o URL ou a ID.:
 \n
-\n1. Ative o modo desktop do seu navegador web (o site não está disponível para dispositivos móveis)
+\n1. Ative o modo desktop do seu navegador web (o site não está disponível para aparelhos móveis)
 \n2. Aceda a este URL: %1$s
 \n3. Inicie a sessão
 \n4. Copie o URL do seu perfil.</string>
@@ -359,7 +358,7 @@
     <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que utilizam o seu tempo livre para nos proporcionar a melhor experiência. Retribua para ajudar os programadores a tornarem NewPipe ainda melhor.</string>
     <string name="give_back">Contribuir</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
-    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, não recolhe quaisquer dados sem o seu consentimento.
+    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Por isso, não recolhe nenhum dado sem o seu consentimento.
 \nA polícia de privacidade do NewPipe explica, em detalhe, os tipos de dados enviados sempre que submete um relatório de erro.</string>
     <string name="read_privacy_policy">Ver política de privacidade</string>
     <string name="auto_queue_title">Colocar vídeo seguinte na fila</string>
@@ -372,7 +371,7 @@
     <string name="playlist_delete_failure">Não foi possível eliminar a lista de reprodução.</string>
     <string name="resize_fit">Ajustar</string>
     <string name="resize_fill">Preencher</string>
-    <string name="caption_setting_description">Modificar escala de legendas e estilo de fundo. Tem que reiniciar a aplicação para aplicar as alterações.</string>
+    <string name="caption_setting_description">Modificar escala de legendas e estilo de fundo. Tem que reiniciar a aplicação para aplicar as alterações</string>
     <string name="enable_leak_canary_summary">A monitorização de memória pode tornar a aplicação instável</string>
     <string name="enable_disposed_exceptions_title">Reportar erros \'out-of-lifecycle\'</string>
     <string name="enable_disposed_exceptions_summary">Forçar reporte de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após eliminação</string>
@@ -473,7 +472,7 @@
     <string name="overwrite_failed">não é possível sobrescrever o ficheiro</string>
     <string name="download_already_pending">Existe uma descarga pendente com este nome</string>
     <string name="error_postprocessing_stopped">NewPipe foi fechado enquanto trabalhava no ficheiro</string>
-    <string name="error_insufficient_storage">Não há espaço livre no dispositivo</string>
+    <string name="error_insufficient_storage">Não há espaço livre no aparelho</string>
     <string name="error_progress_lost">Progresso perdido, o ficheiro foi eliminado</string>
     <string name="error_timeout">Ligação expirada</string>
     <string name="confirm_prompt">Deseja limpar o histórico de descargas ou remover todos os ficheiros descarregados\?</string>
@@ -482,12 +481,10 @@
     <string name="start_downloads">Iniciar descarga</string>
     <string name="pause_downloads">Pausa nas descargas</string>
     <string name="downloads_storage_ask_title">Perguntar localização</string>
-    <string name="downloads_storage_ask_summary">Sempre que descarregar um ficheiro, terá que indicar o local para o guardar</string>
-    <string name="downloads_storage_ask_summary_kitkat">Sempre que descarregar um ficheiro, terá que indicar o local.
-\nEscolha SAF se quiser descarregar para o cartão SD externo</string>
-    <string name="downloads_storage_use_saf_title">Utilizar SAF</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' permite descargas para um cartão SD externo.
-\nAlguns dipositivos não são compatíveis</string>
+    <string name="downloads_storage_ask_summary">Ser-lhe-á perguntado onde guardar cada descarga.
+\nAtive o seletor de pastas do sistema (SAF) se quiser descarregar para um cartão SD externo</string>
+    <string name="downloads_storage_use_saf_title">Usar o seletor de pastas do sistema (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' permite descargas para um cartão SD externo</string>
     <string name="clear_playback_states_title">Remover posições de reprodução</string>
     <string name="clear_playback_states_summary">Remove todas as posições de reprodução</string>
     <string name="delete_playback_states_alert">Remover todas as posições de reprodução\?</string>
@@ -542,7 +539,7 @@
 \nAssim, a escolha resume-se ao que prefere: velocidade ou informação precisa.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desativar modo rápido</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Ativar modo rápido</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Disponível em alguns serviços, é geralmente muito mais rápido, mas pode devolver uma quantidade limitada de itens e muitas vezes informações incompletas (por exemplo, sem duração, tipo de item, sem estado ativo).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponível em alguns serviços, é geralmente muito mais rápido, mas pode devolver uma quantidade limitada de itens e muitas vezes informações incompletas (por exemplo, sem duração, tipo de item, sem estado ativo)</string>
     <string name="feed_use_dedicated_fetch_method_title">Se possível, obter de uma fonte dedicada</string>
     <string name="feed_update_threshold_option_always_update">Atualizar sempre</string>
     <string name="feed_update_threshold_summary">Tempo após a última atualização antes de a subscrição ser considerada desatualizada - %s</string>
@@ -622,7 +619,7 @@
     <string name="autoplay_summary">Iniciar reprodução automaticamente — %s</string>
     <string name="title_activity_play_queue">Reproduzir fila</string>
     <string name="never">Nunca</string>
-    <string name="notification_action_buffering">Processamento...</string>
+    <string name="notification_action_buffering">Processamento…</string>
     <string name="clear_queue_confirmation_description">A fila do reprodutor ativo será substituída</string>
     <string name="unsupported_url_dialog_message">URL não reconhecido. Abrir com outra aplicação\?</string>
     <string name="auto_queue_toggle">Colocar na fila automaticamente</string>
@@ -644,7 +641,7 @@
     <string name="clear_cookie_title">Limpar cookies reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">O YouTube fornece um \"Modo restrito\" que oculta o conteúdo destinado a adultos</string>
     <string name="show_age_restricted_content_summary">Mostrar conteúdo possivelmente impróprio para crianças porque tem um limite de idade (como 18+)</string>
-    <string name="notification_colorize_summary">Fazer com que o Android personalize a cor da notificação de acordo com a cor principal na miniatura (esta opção não está disponível em todos os dispositivos)</string>
+    <string name="notification_colorize_summary">Fazer com que o Android personalize a cor da notificação conforme a cor principal na miniatura (esta opção não está disponível em todos os aparelhos)</string>
     <string name="notification_colorize_title">Colorir notificação</string>
     <string name="show_thumbnail_summary">Usar miniaturas no fundo do ecrã de bloqueio e em notificações</string>
     <string name="show_thumbnail_title">Mostrar miniatura</string>
@@ -652,12 +649,12 @@
     <string name="hash_channel_description">Notificar sobre o progresso das \'hash\' de vídeos</string>
     <string name="hash_channel_name">Notificação \'hash\' do vídeo</string>
     <string name="recent">Recentes</string>
-    <string name="show_meta_info_summary">Desative para ocultar as caixas com informações adicionais acerca do criador, do conteúdo ou de um pedido de pesquisa.</string>
+    <string name="show_meta_info_summary">Desative para ocultar as caixas com informações adicionais acerca do criador, do conteúdo ou de um pedido de pesquisa</string>
     <string name="show_meta_info_title">Mostrar meta-informação</string>
     <string name="no_app_to_open_intent">Não possui qualquer aplicação para abrir este ficheiro</string>
     <string name="chapters">Capítulos</string>
     <string name="description_tab_description">Descrição</string>
-    <string name="related_streams_tab_description">Emissões relacionadas</string>
+    <string name="related_items_tab_description">Emissões relacionadas</string>
     <string name="comments_tab_description">Comentários</string>
     <string name="show_description_summary">Desative para ocultar a descrição do vídeo e informações adicionais</string>
     <string name="show_description_title">Mostrar descrição</string>
@@ -673,4 +670,25 @@
     <string name="radio">Rádio</string>
     <string name="featured">Destaques</string>
     <string name="recaptcha_solve">Resolver</string>
+    <string name="night_theme_summary">Escolha o seu tema escuro favorito — %s</string>
+    <string name="download_has_started">Descarga iniciada</string>
+    <string name="select_night_theme_toast">Pode escolher o seu tema escuro favorito abaixo</string>
+    <string name="auto_device_theme_title">Automático (Tema do aparelho)</string>
+    <string name="night_theme_title">Tema Escuro</string>
+    <string name="show_channel_details">Mostrar detalhes do canal</string>
+    <string name="disable_media_tunneling_summary">Desative esta opção se estiverem a ocorrer erros de ecrã escuro ou paragens durante a reprodução</string>
+    <string name="disable_media_tunneling_title">Desativar túnel multimédia</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Sempre que descarregar um ficheiro, terá que indicar o local para o guardar</string>
+    <string name="no_dir_yet">Ainda sem pasta de descarregas definida, escolha agora a pasta de descarregas padrão</string>
+    <string name="service_provides_reason">%s fornece este motivo:</string>
+    <string name="account_terminated">Conta encerrada</string>
+    <string name="feed_toggle_show_played_items">Mostrar itens reproduzidos</string>
+    <string name="feed_load_error_fast_unknown">O modo de feed rápido não fornece mais informações sobre isto.</string>
+    <string name="feed_load_error_terminated">A conta do autor foi encerrada.
+\nNewPipe não será capaz de carregar este feed no futuro.
+\nQuer cancelar a inscrição deste canal\?</string>
+    <string name="feed_load_error_account_info">Não foi possível carregar o feed para \'%s\'.</string>
+    <string name="feed_load_error">Erro ao carregar o feed</string>
+    <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, apenas o \'Storage Access Framework\' é compatível</string>
+    <string name="downloads_storage_use_saf_summary_api_19">O \'Storage Access Framework\' não é compatível com Android KitKat e versões anteriores</string>
 </resources>

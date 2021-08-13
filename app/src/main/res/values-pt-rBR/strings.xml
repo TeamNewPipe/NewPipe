@@ -88,8 +88,7 @@
     <string name="light_parsing_error">O site não pôde ser analisado totalmente</string>
     <string name="list_thumbnail_view_description">Miniatura de visualização do vídeo</string>
     <string name="live_streams_not_supported">Transmissões ao vivo ainda não são suportadas</string>
-    <string name="main_bg_subtitle">Toque em \"Pesquisar\" para começar
-\n</string>
+    <string name="main_bg_subtitle">Toque na lupa para começar.</string>
     <string name="msg_exists">Arquivo já existe</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_url_malform">Link inválido ou internet indisponível</string>
@@ -106,7 +105,7 @@
     <string name="use_tor_title">Usar Tor</string>
     <string name="user_report">Relatório do usuário</string>
     <string name="show_play_with_kodi_title">Mostrar \"Reproduzir com Kodi\"</string>
-    <string name="info_labels">Ocorrido:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo:\\nIdioma do app:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão da SO:</string>
+    <string name="info_labels">Ocorrido:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo:\\nIdioma do app:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do Sistema Operacional:</string>
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="default_popup_resolution_title">Resolução padrão do popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções maiores</string>
@@ -287,8 +286,8 @@
     <string name="delete_playlist">Excluir</string>
     <string name="rename_playlist">Renomear</string>
     <string name="name">Nome</string>
-    <string name="append_playlist">Adicionar à playlist</string>
-    <string name="set_as_playlist_thumbnail">Definir como capa da playlist</string>
+    <string name="append_playlist">Adicionar à Playlist</string>
+    <string name="set_as_playlist_thumbnail">Definir Como Capa da Playlist</string>
     <string name="bookmark_playlist">Favoritar playlist</string>
     <string name="unbookmark_playlist">Desfavoritar</string>
     <string name="delete_playlist_prompt">Excluir esta playlist\?</string>
@@ -306,7 +305,7 @@
     <string name="enable_disposed_exceptions_title">Reportar erros fora do ciclo de vida</string>
     <string name="enable_disposed_exceptions_summary">Força relatório de exceções Rx não entregues fora do ciclo de vida do fragmento ou atividade após o descarte</string>
     <string name="use_inexact_seek_title">Usar busca de posição rápida (inexata)</string>
-    <string name="use_inexact_seek_summary">Busca inexata permite que o reprodutor ache posições mais rápido, reduzindo a precisão. Não funciona para voltar ou avançar 5, 15 ou 25 segundos.</string>
+    <string name="use_inexact_seek_summary">Busca inexata permite que o reprodutor ache posições mais rápido, reduzindo a precisão. Não funciona para voltar ou avançar 5, 15 ou 25 segundos</string>
     <string name="auto_queue_title">Pôr próximo vídeo na fila automaticamente</string>
     <string name="auto_queue_summary">Continua fila (sem loop) anexando vídeos similares</string>
     <string name="file">Arquivo</string>
@@ -350,7 +349,7 @@
     <string name="metadata_cache_wipe_complete_notice">Cache de metadados limpo</string>
     <string name="playback_speed_control">Controles de velocidade de reprodução</string>
     <string name="playback_tempo">Ritmo</string>
-    <string name="download_thumbnail_summary">Desative para não carregar miniaturas e economizar em uso de dados e memória. A alteração limpa todo o cache de imagens.</string>
+    <string name="download_thumbnail_summary">Desative para não carregar miniaturas e economizar em uso de dados e memória. A alteração limpa todo o cache de imagens</string>
     <string name="playback_pitch">Altura</string>
     <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
     <string name="preferred_open_action_settings_title">Ação de \'abrir\' preferida</string>
@@ -359,16 +358,16 @@
     <string name="drawer_open">Abrir gaveta</string>
     <string name="drawer_close">Fechar gaveta</string>
     <string name="caption_setting_title">Legendas</string>
-    <string name="caption_setting_description">Mudar tamanho da legenda e estilos de fundo. Requer reiniciar o app para ter efeito.</string>
+    <string name="caption_setting_description">Mudar tamanho da legenda e estilos de fundo. Requer reiniciar o app para ter efeito</string>
     <string name="toast_no_player">Sem app instalado para reproduzir este arquivo</string>
     <string name="clear_views_history_title">Excluir histórico de vídeo</string>
     <string name="clear_views_history_summary">Exclui o histórico de vídeos e as posições de reprodução</string>
     <string name="delete_view_history_alert">Excluir todo o histórico de vídeo\?</string>
-    <string name="watch_history_deleted">Histórico de vídeo limpo.</string>
+    <string name="watch_history_deleted">Histórico de vídeo limpo</string>
     <string name="clear_search_history_title">Excluir histórico de pesquisa</string>
     <string name="clear_search_history_summary">Exclui o histórico de pesquisas feitas</string>
     <string name="delete_search_history_alert">Excluir todo o histórico de pesquisa\?</string>
-    <string name="search_history_deleted">Histórico de busca limpo.</string>
+    <string name="search_history_deleted">Histórico de busca limpo</string>
     <string name="one_item_deleted">1 item excluído.</string>
     <string name="app_license">NewPipe é um software livre copyleft: Pode usar, estudar, compartilhar e melhorar o app. Especificamente você pode redistribuir e/ou modificá-lo sob os termos da Licença Pública Geral GNU, publicada pela Fundação de Software Livre, versão 3 da Licença, ou (a seu critério) qualquer versão posterior.</string>
     <string name="import_settings">Você também quer importar as configurações?</string>
@@ -467,7 +466,7 @@
     <string name="enable_playback_state_lists_title">Posições em listas</string>
     <string name="enable_playback_state_lists_summary">Mostra indicadores de posição de reprodução em listas</string>
     <string name="settings_category_clear_data_title">Excluir dados</string>
-    <string name="watch_history_states_deleted">Posições de reprodução limpas.</string>
+    <string name="watch_history_states_deleted">Posições de reprodução limpas</string>
     <string name="missing_file">Arquivo movido ou excluído</string>
     <string name="overwrite_unrelated_warning">Já existe um arquivo com este nome</string>
     <string name="overwrite_failed">O arquivo não pôde ser sobrescrito</string>
@@ -482,12 +481,10 @@
     <string name="start_downloads">Iniciar downloads</string>
     <string name="pause_downloads">Pausar downloads</string>
     <string name="downloads_storage_ask_title">Perguntar onde salvar o arquivo</string>
-    <string name="downloads_storage_ask_summary">Será questionado onde salvar cada download</string>
-    <string name="downloads_storage_ask_summary_kitkat">Será questionado onde salvar cada download.
-\nEscolha SAF se deseja baixar para um cartão SD externo</string>
-    <string name="downloads_storage_use_saf_title">Usar SAF</string>
-    <string name="downloads_storage_use_saf_summary">O \'Storage Access Framework\' permite baixar para um cartão SD externo. 
-\nAlguns aparelhos são incompatíveis</string>
+    <string name="downloads_storage_ask_summary">Será questionado onde salvar cada download.
+\nAtive o seletor de pasta do sistema (SAF) se você quiser fazer o download para um cartão SD externo</string>
+    <string name="downloads_storage_use_saf_title">Usar selecionador de pasta do sistema (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">O \'Storage Access Framework\' permite baixar para um cartão SD externo</string>
     <string name="clear_playback_states_title">Excluir posição das reproduções</string>
     <string name="clear_playback_states_summary">Exclui toda as posições de reprodução</string>
     <string name="delete_playback_states_alert">Excluir todas as posições de reprodução\?</string>
@@ -504,7 +501,7 @@
         <item quantity="one">%s ouvinte</item>
         <item quantity="other">%s ouvintes</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">O idioma atualizará ao reiniciar o app.</string>
+    <string name="localization_changes_requires_app_restart">O idioma atualizará ao reiniciar o app</string>
     <string name="seek_duration_title">Duração do retrocesso/avanço rápido</string>
     <string name="peertube_instance_url_title">Instâncias PeerTube</string>
     <string name="peertube_instance_url_summary">Escolha suas instâncias PeerTube favoritas</string>
@@ -569,7 +566,7 @@
     <string name="feed_update_threshold_summary">Período para que uma inscrição seja considerada desatualizada — %s</string>
     <string name="feed_update_threshold_option_always_update">Atualizar sempre</string>
     <string name="feed_use_dedicated_fetch_method_title">Buscar do feed dedicado, se disponível</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Disponível em alguns serviços, é mais rápido,mas pode devolver informações limitadas ou incompletas (ex. sem duração, tipo de item, ou status ativo).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponível em alguns serviços, é mais rápido,mas pode devolver informações limitadas ou incompletas (ex. sem duração, tipo de item, ou status ativo)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Ativar modo rápido</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desativar modo rápido</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Acha o carregamento do feed lento\? Se sim, tente ativar o modo rápido (pode mudar nas configurações ou tocando no botão abaixo). 
@@ -628,7 +625,7 @@
     <string name="notification_action_nothing">Nada</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">Selecione no máximo três botões para a notificação compacta!</string>
-    <string name="notification_actions_summary">Edite os botões de ação da notificação compacta aqui. Selecione até três deles usando as caixas de seleção à direita e toque neles para configurá-los.</string>
+    <string name="notification_actions_summary">Edite os botões de ação da notificação compacta aqui. Selecione até três deles usando as caixas de seleção à direita e toque neles para configurá-los</string>
     <string name="notification_action_4_title">Quinto botão de ação</string>
     <string name="notification_action_3_title">Quarto botão de ação</string>
     <string name="notification_action_2_title">Terceiro botão de ação</string>
@@ -651,12 +648,12 @@
     <string name="msg_calculating_hash">Calculando hash</string>
     <string name="hash_channel_description">Notificações para o progresso do hash do vídeo</string>
     <string name="hash_channel_name">Notificação de Hash do Vídeo</string>
-    <string name="show_meta_info_summary">Desative para ocultar as caixas de informações meta com informações adicionais sobre o criador, conteúdo do stream ou uma solicitação de pesquisa.</string>
+    <string name="show_meta_info_summary">Desative para ocultar as caixas de informações meta com informações adicionais sobre o criador, conteúdo do stream ou uma solicitação de pesquisa</string>
     <string name="show_meta_info_title">Mostrar informação meta</string>
     <string name="recent">Recentes</string>
     <string name="chapters">Capítulos</string>
     <string name="description_tab_description">Descrição</string>
-    <string name="related_streams_tab_description">Transmissões relacionadas</string>
+    <string name="related_items_tab_description">Transmissões relacionadas</string>
     <string name="comments_tab_description">Comentários</string>
     <string name="show_description_summary">Desative para ocultar a descrição do vídeo e informações adicionais</string>
     <string name="show_description_title">Mostrar descrição</string>
@@ -673,4 +670,45 @@
     <string name="radio">Rádio</string>
     <string name="featured">Destaque</string>
     <string name="recaptcha_solve">Resolvido</string>
+    <string name="download_has_started">O download foi iniciado</string>
+    <string name="select_night_theme_toast">Você pode selecionar seu tema noturno favorito abaixo</string>
+    <string name="night_theme_summary">Selecione seu tema noturno favorito — %s</string>
+    <string name="auto_device_theme_title">Automático (tema do dispositivo)</string>
+    <string name="night_theme_title">Tema Noturno</string>
+    <string name="show_channel_details">Mostrar detalhes do canal</string>
+    <string name="disable_media_tunneling_summary">Desative o túnel de mídia se você tiver uma tela preta ou a reprodução do vídeo estiver engasgando</string>
+    <string name="disable_media_tunneling_title">Desativar túnel de mídia</string>
+    <string name="metadata_privacy_internal">Interno</string>
+    <string name="metadata_privacy_private">Privado</string>
+    <string name="metadata_privacy_unlisted">Não Listado</string>
+    <string name="metadata_privacy_public">Público</string>
+    <string name="metadata_age_limit">Limite de Idade</string>
+    <string name="metadata_thumbnail_url">URL da Capa</string>
+    <string name="metadata_host">Hospedado em</string>
+    <string name="metadata_support">Suporte</string>
+    <string name="metadata_language">Idioma</string>
+    <string name="metadata_privacy">Privacidade</string>
+    <string name="metadata_licence">Licença</string>
+    <string name="metadata_tags">Tags</string>
+    <string name="metadata_category">Categoria</string>
+    <string name="description_select_disable">Desativar seleção de texto na descrição</string>
+    <string name="description_select_enable">Ativar seleção de texto na descrição</string>
+    <string name="description_select_note">Agora você pode selecionar o texto dentro da descrição. Observe que a página pode piscar e os links podem não ser clicáveis no modo de seleção.</string>
+    <string name="open_website_license">Abrir site</string>
+    <string name="service_provides_reason">%s fornece este motivo:</string>
+    <string name="account_terminated">Conta encerrada</string>
+    <string name="feed_load_error_fast_unknown">O modo feed rápido não fornece mais informações sobre isso.</string>
+    <string name="feed_load_error_terminated">A conta do autor foi encerrada.
+\nNewPipe não poderá carregar este feed no futuro.
+\nQuer cancelar a inscrição neste canal\?</string>
+    <string name="feed_load_error_account_info">Não foi possível carregar o feed para \'%s\'.</string>
+    <string name="feed_load_error">Erro ao carregar feed</string>
+    <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, apenas o \'Storage Access Framework\' é compatível</string>
+    <string name="downloads_storage_use_saf_summary_api_19">O \'Storage Access Framework\' não é compatível com Android KitKat e versões anteriores</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Você será questionado sobre onde salvar cada download</string>
+    <string name="no_dir_yet">Nenhuma pasta de download definida ainda, escolha a pasta de download padrão agora</string>
+    <string name="off">Desligado</string>
+    <string name="on">Ligado</string>
+    <string name="tablet_mode_title">Modo tablet</string>
+    <string name="feed_toggle_show_played_items">Mostrar itens reproduzidos</string>
 </resources>

@@ -9,7 +9,7 @@
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Build Status"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/newpipe/-/svg-badge.svg"></a>
-<a href="http://webchat.freenode.net/?channels=%23newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
+<a href="https://web.libera.chat/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg"></a>
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
@@ -17,7 +17,7 @@
 <p align="center"><a href="https://newpipe.net">Website</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
 <hr>
 
-*Read this in other languages: [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md).*
+*Read this in other languages: [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md).*
 
 <b>경고: 이 버전은 베타 버전이므로, 버그가 발생할 수도 있습니다. 만약 버그가 발생하였다면, 우리의 GITHUB 저장소에서 ISSUE를 열람하여 주십시오.</b>
 
@@ -139,7 +139,7 @@ NewPipe 프로젝트는 미디어 웹 서비스를 사용하는 것에 대한 �
 그러므로, 앱은 당신의 동의 없이 어떤 데이터도 수집하지 않습니다. NewPipe의 개인정보보호정책은 당신이 충돌 리포트를 보내거나, 또는 우리의 블로그에 글을 남길 때 어떤 데이터가 보내지고 저장되는지에 대해 상세히 설명합니다. 이 문서는 [여기](https://newpipe.net/legal/privacy/)에서 확인할 수 있습니다.
 
 ## License
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
 NewPipe는 자유 소프트웨어입니다: 당신의 마음대로 이것을 사용하고, 연구하고, 공유하고, 개선할 수 있습니다. 
 구체적으로 당신은 자유 소프트웨어 재단에서 발행되는, 버전 3 또는 (당신의 선택에 따라)이후 버전의,

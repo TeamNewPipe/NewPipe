@@ -26,7 +26,7 @@ import java.util.Objects;
 
 import javax.net.ssl.SSLException;
 
-import us.shandian.giga.io.StoredFileHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.util.Utility;
@@ -664,7 +664,7 @@ public class DownloadMission extends Mission {
      * @return {@code true}, if storage is invalid and cannot be used
      */
     public boolean hasInvalidStorage() {
-        return errCode == ERROR_PROGRESS_LOST || storage == null || storage.isInvalid() || !storage.existsAsFile();
+        return errCode == ERROR_PROGRESS_LOST || storage == null || !storage.existsAsFile();
     }
 
     /**

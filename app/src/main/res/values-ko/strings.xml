@@ -50,8 +50,7 @@
     <string name="use_tor_summary">(실험적) 향상된 프라이버시를 위해 다운로드 트래픽을 강제로 Tor를 통해 전송 (스트리밍 비디오는 아직 지원되지 않습니다).</string>
     <string name="err_dir_create">다운로드 디렉토리를 만들 수 없습니다 \'%1$s\'</string>
     <string name="info_dir_created">다운로드 디렉토리를 만들었습니다 \'%1$s\'</string>
-    <string name="main_bg_subtitle">\"검색\" 버튼을 눌러서 시작하세요
-\n</string>
+    <string name="main_bg_subtitle">\"검색\" 버튼을 눌러서 시작하세요</string>
     <string name="autoplay_by_calling_app_title">자동재생</string>
     <string name="autoplay_by_calling_app_summary">NewPipe가 다른 앱에서 호출되었을 때 동영상을 재생합니다</string>
     <string name="content">컨텐츠</string>
@@ -483,8 +482,6 @@
     <string name="clear_playback_states_title">재생 위치 삭제</string>
     <string name="clear_playback_states_summary">모든 재생 위치를 삭제</string>
     <string name="delete_playback_states_alert">모든 재생 위치를 삭제하시겠습니까\?</string>
-    <string name="downloads_storage_ask_summary_kitkat">매 다운로드 마다 저장경로를 묻습니다.
-\n외장 SD카드에 다운로드 하고자 한다면 SAF를 선택하십시오</string>
     <plurals name="videos">
         <item quantity="other">%s 동영상</item>
     </plurals>
@@ -542,7 +539,7 @@
     <string name="songs">노래</string>
     <string name="restricted_video">이 비디오는 연령제한이 있습니다.
 \n
-\n만약, 시청을 원한다면 설정에 \"연령 제한 컨텐츠\"를 활성화 하세요.</string>
+\n만약, 시청을 원한다면 설정에 \"%1$s\"를 활성화 하세요.</string>
     <string name="recaptcha_done_button">완료</string>
     <string name="artists">아티스트</string>
     <string name="albums">앨범</string>

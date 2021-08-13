@@ -30,6 +30,7 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.external_communication.TextLinkifier;
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor.InfoItemsPage;
@@ -54,7 +55,7 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
@@ -268,18 +269,19 @@ public final class ExtractorHelper {
      * @param metaInfos a list of meta information, can be null or empty
      * @param metaInfoTextView the text view in which to show the formatted HTML
      * @param metaInfoSeparator another view to be shown or hidden accordingly to the text view
-     * @return a disposable to be stored somewhere and disposed when activity/fragment is destroyed
+     * @param disposables disposables created by the method are added here and their lifecycle
+     *                    should be handled by the calling class
      */
-    public static Disposable showMetaInfoInTextView(@Nullable final List<MetaInfo> metaInfos,
-                                                    final TextView metaInfoTextView,
-                                                    final View metaInfoSeparator) {
+    public static void showMetaInfoInTextView(@Nullable final List<MetaInfo> metaInfos,
+                                              final TextView metaInfoTextView,
+                                              final View metaInfoSeparator,
+                                              final CompositeDisposable disposables) {
         final Context context = metaInfoTextView.getContext();
         if (metaInfos == null || metaInfos.isEmpty()
                 || !PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                         context.getString(R.string.show_meta_info_key), true)) {
             metaInfoTextView.setVisibility(View.GONE);
             metaInfoSeparator.setVisibility(View.GONE);
-            return Disposable.empty();
 
         } else {
             final StringBuilder stringBuilder = new StringBuilder();
@@ -310,8 +312,8 @@ public final class ExtractorHelper {
             }
 
             metaInfoSeparator.setVisibility(View.VISIBLE);
-            return TextLinkifier.createLinksFromHtmlBlock(context, stringBuilder.toString(),
-                    metaInfoTextView, HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING);
+            TextLinkifier.createLinksFromHtmlBlock(metaInfoTextView, stringBuilder.toString(),
+                    HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING, null, disposables);
         }
     }
 

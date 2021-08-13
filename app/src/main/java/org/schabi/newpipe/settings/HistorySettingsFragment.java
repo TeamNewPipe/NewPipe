@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
@@ -29,19 +28,15 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
     private CompositeDisposable disposables;
 
     @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
+        addPreferencesFromResource(R.xml.history_settings);
+
         cacheWipeKey = getString(R.string.metadata_cache_wipe_key);
         viewsHistoryClearKey = getString(R.string.clear_views_history_key);
         playbackStatesClearKey = getString(R.string.clear_playback_states_key);
         searchHistoryClearKey = getString(R.string.clear_search_history_key);
         recordManager = new HistoryRecordManager(getActivity());
         disposables = new CompositeDisposable();
-    }
-
-    @Override
-    public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.history_settings);
     }
 
     @Override

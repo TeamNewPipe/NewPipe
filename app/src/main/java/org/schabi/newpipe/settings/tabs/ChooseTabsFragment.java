@@ -106,16 +106,15 @@ public class ChooseTabsFragment extends Fragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
         final MenuItem restoreItem = menu.add(Menu.NONE, MENU_ITEM_RESTORE_ID, Menu.NONE,
                 R.string.restore_defaults);
         restoreItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
-        final int restoreIcon = ThemeHelper.resolveResourceIdFromAttr(requireContext(),
-                R.attr.ic_restore_defaults);
-        restoreItem.setIcon(AppCompatResources.getDrawable(requireContext(), restoreIcon));
+        restoreItem.setIcon(AppCompatResources.getDrawable(requireContext(),
+                R.drawable.ic_settings_backup_restore));
     }
 
     @Override
@@ -142,7 +141,7 @@ public class ChooseTabsFragment extends Fragment {
     }
 
     private void restoreDefaults() {
-        new AlertDialog.Builder(requireContext(), ThemeHelper.getDialogTheme(requireContext()))
+        new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.restore_defaults)
                 .setMessage(R.string.restore_defaults_confirmation)
                 .setNegativeButton(R.string.cancel, null)
@@ -194,13 +193,13 @@ public class ChooseTabsFragment extends Fragment {
                 final SelectKioskFragment selectKioskFragment = new SelectKioskFragment();
                 selectKioskFragment.setOnSelectedListener((serviceId, kioskId, kioskName) ->
                         addTab(new Tab.KioskTab(serviceId, kioskId)));
-                selectKioskFragment.show(requireFragmentManager(), "select_kiosk");
+                selectKioskFragment.show(getParentFragmentManager(), "select_kiosk");
                 return;
             case CHANNEL:
                 final SelectChannelFragment selectChannelFragment = new SelectChannelFragment();
                 selectChannelFragment.setOnSelectedListener((serviceId, url, name) ->
                         addTab(new Tab.ChannelTab(serviceId, url, name)));
-                selectChannelFragment.show(requireFragmentManager(), "select_channel");
+                selectChannelFragment.show(getParentFragmentManager(), "select_channel");
                 return;
             case PLAYLIST:
                 final SelectPlaylistFragment selectPlaylistFragment = new SelectPlaylistFragment();
@@ -217,7 +216,7 @@ public class ChooseTabsFragment extends Fragment {
                                 addTab(new Tab.PlaylistTab(serviceId, url, name));
                             }
                         });
-                selectPlaylistFragment.show(requireFragmentManager(), "select_playlist");
+                selectPlaylistFragment.show(getParentFragmentManager(), "select_playlist");
                 return;
             default:
                 addTab(type.getTab());
@@ -241,7 +240,7 @@ public class ChooseTabsFragment extends Fragment {
                 case KIOSK:
                     returnList.add(new ChooseTabListItem(tab.getTabId(),
                             getString(R.string.kiosk_page_summary),
-                            ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_kiosk_hot)));
+                            R.drawable.ic_whatshot));
                     break;
                 case CHANNEL:
                     returnList.add(new ChooseTabListItem(tab.getTabId(),
@@ -252,8 +251,7 @@ public class ChooseTabsFragment extends Fragment {
                     if (!tabList.contains(tab)) {
                         returnList.add(new ChooseTabListItem(tab.getTabId(),
                                 getString(R.string.default_kiosk_page_summary),
-                                ThemeHelper.resolveResourceIdFromAttr(context,
-                                        R.attr.ic_kiosk_hot)));
+                                R.drawable.ic_whatshot));
                     }
                     break;
                 case PLAYLIST:
@@ -280,7 +278,7 @@ public class ChooseTabsFragment extends Fragment {
         return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                 ItemTouchHelper.START | ItemTouchHelper.END) {
             @Override
-            public int interpolateOutOfBoundsScroll(final RecyclerView recyclerView,
+            public int interpolateOutOfBoundsScroll(@NonNull final RecyclerView recyclerView,
                                                     final int viewSize,
                                                     final int viewSizeOutOfBounds,
                                                     final int totalSize,
@@ -293,9 +291,9 @@ public class ChooseTabsFragment extends Fragment {
             }
 
             @Override
-            public boolean onMove(final RecyclerView recyclerView,
-                                  final RecyclerView.ViewHolder source,
-                                  final RecyclerView.ViewHolder target) {
+            public boolean onMove(@NonNull final RecyclerView recyclerView,
+                                  @NonNull final RecyclerView.ViewHolder source,
+                                  @NonNull final RecyclerView.ViewHolder target) {
                 if (source.getItemViewType() != target.getItemViewType()
                         || selectedTabsAdapter == null) {
                     return false;
@@ -318,7 +316,8 @@ public class ChooseTabsFragment extends Fragment {
             }
 
             @Override
-            public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int swipeDir) {
+            public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder,
+                                 final int swipeDir) {
                 final int position = viewHolder.getAdapterPosition();
                 tabList.remove(position);
                 selectedTabsAdapter.notifyItemRemoved(position);

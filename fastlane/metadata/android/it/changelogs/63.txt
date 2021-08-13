@@ -1,0 +1,8 @@
+### Miglioramenti
+- Impostazioni di importazione / esportazione # 1333
+- Ridotto l'overdraw (miglioramento delle prestazioni) # 1371
+- Piccoli miglioramenti al codice # 1375
+- Aggiunto tutto ciò che riguarda il GDPR # 1420
+
+### Risolto
+- Downloader: risolto il crash durante il caricamento di download incompleti dai file .giga # 1407

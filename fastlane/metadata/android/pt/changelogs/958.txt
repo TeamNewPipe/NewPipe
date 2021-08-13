@@ -1,10 +1,10 @@
 Novo e melhorado:
-- Opção reajustada para esconder a miniatura na tela de bloqueio
+- Opção reajustada para esconder a miniatura no ecrã de bloqueio
 - Puxar para atualizar o feed
 - Melhor desempenho na busca de listas locais
 
 Corrigido:
-- Falha ao iniciar o NewPipe depois de ter sido removido da RAM
+- Falha ao iniciar o NewPipe após ter sido removido da RAM
 - Falha na inicialização quando não há conexão à Internet
 - Respeitando as configurações de luminosidade e de volume
 - Listas de reprodução longas

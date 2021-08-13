@@ -69,7 +69,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
-import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.urlfinder.UrlFinder;
 import org.schabi.newpipe.views.FocusOverlayView;
@@ -91,7 +91,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.AUDIO;
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.VIDEO;
-import static org.schabi.newpipe.util.ThemeHelper.resolveResourceIdFromAttr;
 
 /**
  * Get the url from the intent and open it in the chosen preferred player.
@@ -108,6 +107,7 @@ public class RouterActivity extends AppCompatActivity {
     protected String currentUrl;
     private StreamingService currentService;
     private boolean selectionIsDownload = false;
+    private AlertDialog alertDialogChoice = null;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -125,6 +125,15 @@ public class RouterActivity extends AppCompatActivity {
 
         setTheme(ThemeHelper.isLightThemeSelected(this)
                 ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // we need to dismiss the dialog before leaving the activity or we get leaks
+        if (alertDialogChoice != null) {
+            alertDialogChoice.dismiss();
+        }
     }
 
     @Override
@@ -231,7 +240,7 @@ public class RouterActivity extends AppCompatActivity {
         new AlertDialog.Builder(context)
                 .setTitle(R.string.unsupported_url)
                 .setMessage(R.string.unsupported_url_dialog_message)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_share))
+                .setIcon(R.drawable.ic_share)
                 .setPositiveButton(R.string.open_in_browser,
                         (dialog, which) -> ShareUtils.openUrlInBrowser(this, url))
                 .setNegativeButton(R.string.share,
@@ -334,7 +343,7 @@ public class RouterActivity extends AppCompatActivity {
             }
         };
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(themeWrapperContext)
+        alertDialogChoice = new AlertDialog.Builder(themeWrapperContext)
                 .setTitle(R.string.preferred_open_action_share_menu_title)
                 .setView(radioGroup)
                 .setCancelable(true)
@@ -348,12 +357,12 @@ public class RouterActivity extends AppCompatActivity {
                 .create();
 
         //noinspection CodeBlock2Expr
-        alertDialog.setOnShowListener(dialog -> {
-            setDialogButtonsState(alertDialog, radioGroup.getCheckedRadioButtonId() != -1);
+        alertDialogChoice.setOnShowListener(dialog -> {
+            setDialogButtonsState(alertDialogChoice, radioGroup.getCheckedRadioButtonId() != -1);
         });
 
         radioGroup.setOnCheckedChangeListener((group, checkedId) ->
-                setDialogButtonsState(alertDialog, true));
+                setDialogButtonsState(alertDialogChoice, true));
         final View.OnClickListener radioButtonsClickListener = v -> {
             final int indexOfChild = radioGroup.indexOfChild(v);
             if (indexOfChild == -1) {
@@ -373,7 +382,7 @@ public class RouterActivity extends AppCompatActivity {
             final RadioButton radioButton = ListRadioIconItemBinding.inflate(inflater).getRoot();
             radioButton.setText(item.description);
             TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(radioButton,
-                    AppCompatResources.getDrawable(getApplicationContext(), item.icon),
+                    AppCompatResources.getDrawable(themeWrapperContext, item.icon),
                     null, null, null);
             radioButton.setChecked(false);
             radioButton.setId(id++);
@@ -403,10 +412,10 @@ public class RouterActivity extends AppCompatActivity {
         }
         selectedPreviously = selectedRadioPosition;
 
-        alertDialog.show();
+        alertDialogChoice.show();
 
         if (DeviceUtils.isTv(this)) {
-            FocusOverlayView.setupFocusObserver(alertDialog);
+            FocusOverlayView.setupFocusObserver(alertDialogChoice);
         }
     }
 
@@ -427,16 +436,16 @@ public class RouterActivity extends AppCompatActivity {
 
         final AdapterChoiceItem videoPlayer = new AdapterChoiceItem(
                 getString(R.string.video_player_key), getString(R.string.video_player),
-                resolveResourceIdFromAttr(context, R.attr.ic_play_arrow));
+                R.drawable.ic_play_arrow);
         final AdapterChoiceItem showInfo = new AdapterChoiceItem(
                 getString(R.string.show_info_key), getString(R.string.show_info),
-                resolveResourceIdFromAttr(context, R.attr.ic_info_outline));
+                R.drawable.ic_info_outline);
         final AdapterChoiceItem popupPlayer = new AdapterChoiceItem(
                 getString(R.string.popup_player_key), getString(R.string.popup_player),
-                resolveResourceIdFromAttr(context, R.attr.ic_popup));
+                R.drawable.ic_picture_in_picture);
         final AdapterChoiceItem backgroundPlayer = new AdapterChoiceItem(
                 getString(R.string.background_player_key), getString(R.string.background_player),
-                resolveResourceIdFromAttr(context, R.attr.ic_headset));
+                R.drawable.ic_headset);
 
         if (linkType == LinkType.STREAM) {
             if (isExtVideoEnabled) {
@@ -444,7 +453,7 @@ public class RouterActivity extends AppCompatActivity {
                 returnList.add(showInfo);
                 returnList.add(videoPlayer);
             } else {
-                final MainPlayer.PlayerType playerType = PlayerHolder.getType();
+                final MainPlayer.PlayerType playerType = PlayerHolder.getInstance().getType();
                 if (capabilities.contains(VIDEO)
                         && PlayerHelper.isAutoplayAllowedByUser(context)
                         && playerType == null || playerType == MainPlayer.PlayerType.VIDEO) {
@@ -467,6 +476,11 @@ public class RouterActivity extends AppCompatActivity {
             if (capabilities.contains(AUDIO)) {
                 returnList.add(backgroundPlayer);
             }
+            // download is redundant for linkType CHANNEL AND PLAYLIST (till playlist downloading is
+            // not supported )
+            returnList.add(new AdapterChoiceItem(getString(R.string.download_key),
+                    getString(R.string.download),
+                    R.drawable.ic_file_download));
 
         } else {
             returnList.add(showInfo);
@@ -478,10 +492,6 @@ public class RouterActivity extends AppCompatActivity {
                 returnList.add(backgroundPlayer);
             }
         }
-
-        returnList.add(new AdapterChoiceItem(getString(R.string.download_key),
-                getString(R.string.download),
-                resolveResourceIdFromAttr(context, R.attr.ic_file_download)));
 
         return returnList;
     }
@@ -579,9 +589,9 @@ public class RouterActivity extends AppCompatActivity {
                     downloadDialog.setVideoStreams(sortedVideoStreams);
                     downloadDialog.setAudioStreams(result.getAudioStreams());
                     downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
+                    downloadDialog.setOnDismissListener(dialog -> finish());
                     downloadDialog.show(fm, "downloadDialog");
                     fm.executePendingTransactions();
-                    downloadDialog.requireDialog().setOnDismissListener(dialog -> finish());
                 }, throwable ->
                         showUnsupportedUrlDialog(currentUrl)));
     }
@@ -590,6 +600,7 @@ public class RouterActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(final int requestCode,
                                            @NonNull final String[] permissions,
                                            @NonNull final int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         for (final int i : grantResults) {
             if (i == PackageManager.PERMISSION_DENIED) {
                 finish();

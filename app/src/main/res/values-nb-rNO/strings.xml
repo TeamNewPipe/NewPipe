@@ -50,8 +50,7 @@
     <string name="use_tor_summary">(Eksperimentelt) Tving nedlasting av trafikk gjennom Tor for forbedret personvern (strømming av videoer støttes ikke enda).</string>
     <string name="err_dir_create">Kan ikke opprette nedlastingsmappe \'%1$s\'</string>
     <string name="info_dir_created">Opprettet nedlastingsmappen \'%1$s\'</string>
-    <string name="main_bg_subtitle">Trykk «Søk» for å komme i gang
-\n</string>
+    <string name="main_bg_subtitle">Trykk forstørrelsesglasset for å begynne</string>
     <string name="autoplay_by_calling_app_title">Automatisk avspilling</string>
     <string name="autoplay_by_calling_app_summary">Spiller en video når NewPipe blir forespurt av et annet program</string>
     <string name="content">Innhold</string>
@@ -458,7 +457,7 @@
     <string name="show_comments_title">Vis kommentarer</string>
     <string name="show_comments_summary">Skru av for å skjule kommentarer</string>
     <string name="autoplay_title">Spill av automatisk</string>
-    <string name="no_comments">Ingen kommenterer</string>
+    <string name="no_comments">Ingen kommentarer</string>
     <string name="error_unable_to_load_comments">Kunne ikke laste inn kommentarer</string>
     <string name="close">Lukk</string>
     <string name="missions_header_pending">Venter</string>
@@ -483,8 +482,6 @@
     <string name="pause_downloads">Sett nedlastinger på pause</string>
     <string name="downloads_storage_ask_title">Spør om hvor ting skal lastes ned til</string>
     <string name="downloads_storage_ask_summary">Du vil bli spurt om hvor hver nedlasting skal plasseres</string>
-    <string name="downloads_storage_ask_summary_kitkat">Du vil bli spurt om hvor hver nedlasting skal plasseres.
-\nSkru på SAF hvis du vil laste ned til eksternt SD-kort</string>
     <string name="downloads_storage_use_saf_title">Bruk SAF</string>
     <string name="downloads_storage_use_saf_summary">\"Lagringstilgangsrammeverk\" (SAF) tillater nedlasting til eksternt SD-kort.
 \nMerk: Noen enheter er ikke kompatible</string>
@@ -605,7 +602,7 @@
 \n
 \nValget koker ned til det du foretrekker: hastighet eller presis info.</string>
     <string name="show_original_time_ago_summary">Originaltekster fra tjenester vil vises for elementer i strømmen</string>
-    <string name="error_report_open_github_notice">Sjekk om det allerede eksisterer et problem som diskuterer krasj. Når du oppretter duplikatbilletter, tar du deg tid fra oss som vi kan bruke på å fikse den faktiske feilen.</string>
+    <string name="error_report_open_github_notice">Sjekk om det allerede eksisterer et problem som diskuterer ditt krasj. Når du oppretter duplikatbilletter, tar du tid fra oss som vi kan bruke på å fikse den faktiske feilen.</string>
     <string name="notification_actions_at_most_three">Du kan maksimalt velge tre handlinger som skal vises i kompaktvarselet!</string>
     <string name="notification_actions_summary">Rediger hver varslingshandling nedenfor ved å trykke på den. Velg opptil tre av dem som skal vises i det kompakte varselet ved å bruke avmerkingsboksene til høyre.</string>
     <string name="notification_scale_to_square_image_summary">Skaler videominiatyrbildet som vises i varselet fra 16:9 til 1:1 sideforhold (kan føre til forvrengninger)</string>
@@ -657,7 +654,7 @@
     <string name="no_app_to_open_intent">Ingen programmer på enheten din kan åpne dette</string>
     <string name="chapters">Kapitler</string>
     <string name="description_tab_description">Beskrivelse</string>
-    <string name="related_streams_tab_description">Relaterte strømmer</string>
+    <string name="related_items_tab_description">Relaterte strømmer</string>
     <string name="comments_tab_description">Kommentarer</string>
     <string name="show_description_summary">Skru av for å skjule videobeskrivelse og ytterligere info</string>
     <string name="show_description_title">Vis beskrivelse</string>
@@ -678,4 +675,7 @@
     <string name="featured">Framhevet</string>
     <string name="recaptcha_solve">Løs</string>
     <string name="night_theme_title">Nattdrakt</string>
+    <string name="show_channel_details">Vis kanaldetaljer</string>
+    <string name="disable_media_tunneling_summary">Skru av media-tunnelering hvis du opplever svart skjerm eller videohakking</string>
+    <string name="disable_media_tunneling_title">Skru av media-tunnelering</string>
 </resources>

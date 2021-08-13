@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Tryck på \"Sök\" för att komma igång</string>
+    <string name="main_bg_subtitle">Tryck på förstoringsglaset för att komma igång</string>
     <string name="upload_date_text">Publicerad den %1$s</string>
     <string name="no_player_found">Ingen strömspelare hittades. Vill du installera VLC?</string>
     <string name="install">Installera</string>
@@ -473,7 +473,7 @@
     <string name="songs">Låtar</string>
     <string name="restricted_video">Denna video är åldersbegränsad.
 \n
-\nOm du vill visa den aktiverar du \"Åldersbegränsat innehåll\" i inställningarna.</string>
+\nOm du vill visa den aktiverar du \"%1$s\" i inställningarna.</string>
     <string name="no_comments">Inga kommentarer</string>
     <string name="subtitle_activity_recaptcha">Tryck på \"Klar\" när det är löst</string>
     <string name="infinite_videos">∞ videos</string>
@@ -561,8 +561,6 @@
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" tillåter nedladdningar till ett externt SD-kort.
 \nVissa enheter är inkompatibla</string>
     <string name="downloads_storage_use_saf_title">Använd SAF</string>
-    <string name="downloads_storage_ask_summary_kitkat">Du blir frågad var du vill spara varje nedladdning.
-\nVälj SAF om du vill ladda ner till ett externt SD-kort</string>
     <string name="downloads_storage_ask_summary">Du blir frågad var du vill spara varje nedladdning</string>
     <string name="downloads_storage_ask_title">Fråga var du ska ladda ner</string>
     <string name="pause_downloads">Pausa nedladdningar</string>

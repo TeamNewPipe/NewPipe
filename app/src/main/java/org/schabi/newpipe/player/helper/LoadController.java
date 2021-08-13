@@ -32,8 +32,9 @@ public class LoadController implements LoadControl {
 
         final DefaultLoadControl.Builder builder = new DefaultLoadControl.Builder();
         builder.setBufferDurationsMs(minimumPlaybackBufferMs, optimalPlaybackBufferMs,
-                initialPlaybackBufferMs, initialPlaybackBufferMs);
-        internalLoadControl = builder.createDefaultLoadControl();
+                initialPlaybackBufferMs,
+                DefaultLoadControl.DEFAULT_BUFFER_FOR_PLAYBACK_AFTER_REBUFFER_MS);
+        internalLoadControl = builder.build();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -47,9 +48,9 @@ public class LoadController implements LoadControl {
     }
 
     @Override
-    public void onTracksSelected(final Renderer[] renderers, final TrackGroupArray trackGroupArray,
-                                 final TrackSelectionArray trackSelectionArray) {
-        internalLoadControl.onTracksSelected(renderers, trackGroupArray, trackSelectionArray);
+    public void onTracksSelected(final Renderer[] renderers, final TrackGroupArray trackGroups,
+                                 final TrackSelectionArray trackSelections) {
+        internalLoadControl.onTracksSelected(renderers, trackGroups, trackSelections);
     }
 
     @Override

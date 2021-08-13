@@ -22,7 +22,7 @@
     <string name="enable_disposed_exceptions_summary">Fortzat sinnalatziones de etzetziones Rx non cunsinnàbiles in foras de su tziclu de bida de sos framnentos o de sas atividades a pustis de s\'ismaltimentu</string>
     <string name="enable_disposed_exceptions_title">Sinnala sos errores in foras de su tziclu de bida</string>
     <string name="enable_leak_canary_summary">Sa compidada de sa pèrdida de memòria diat pòdere causare blocos de s\'aplicatzione durante d\'iscarrigamentu de sa memòria (heap dumping)</string>
-    <string name="caption_setting_description">Muda sa mannària e sos istiles de isfundu de su testu de sos suta-tìtulos. Depes torrare a allùghere s\'aplicatzione pro chi tèngiat efetu.</string>
+    <string name="caption_setting_description">Muda sa mannària e sos istiles de isfundu de su testu de sos suta-tìtulos. Depes torrare a allùghere s\'aplicatzione pro chi tèngiat efetu</string>
     <string name="caption_setting_title">Suta-tìtulos</string>
     <string name="caption_auto_generated">Ingendradu automaticamente</string>
     <string name="resize_zoom">Ismànnia</string>
@@ -71,7 +71,7 @@
     <string name="top_50">Sos mègius 50</string>
     <string name="trending">Tendèntzias</string>
     <string name="kiosk">In evidèntzia</string>
-    <string name="localization_changes_requires_app_restart">Sa limba at a mudare a pustis chi as a torrare a allùghere s\'aplicatzione.</string>
+    <string name="localization_changes_requires_app_restart">Sa limba at a mudare a pustis chi as a torrare a allùghere s\'aplicatzione</string>
     <string name="error_unable_to_load_comments">Carrigamentu de sos cummentos fallidu</string>
     <string name="import_settings">Cheres fintzas importare sas impostatziones\?</string>
     <string name="override_current_data">Custu at a subraiscrìere sas impostatziones tuas de como.</string>
@@ -254,8 +254,7 @@
 \nYouTube est un\'esèmpiu de unu servìtziu chi frunit custu mètodu lestru cun sa fonte de cuntenutos RSS sua.
 \n
 \nDuncas s\'issèberu dipendet dae su chi preferis tue: sa lestresa o sas informatziones a sa minuda.</string>
-    <string name="downloads_storage_use_saf_summary">Sa \'Storage Access Framework\' (Istrutura de Atzessu a s\'Archiviatzione) permitet sos iscarrigamentos in un\'ischeda SD esterna.
-\nUnos cantos dispositivos non sunt cumpatìbiles</string>
+    <string name="downloads_storage_use_saf_summary">Sa \'Storage Access Framework\' (Istrutura de Atzessu a s\'Archiviatzione) permitet sos iscarrigamentos in un\'ischeda SD esterna</string>
     <string name="queued">postu in lista</string>
     <string name="updates_setting_description">Ammustra una notìfica pro cussigiare un\'agiornamentu de s\'aplicatzione cando b\'est una versione noa a disponimentu</string>
     <string name="import_soundcloud_instructions">Importa unu profilu de SoundCloud iscriende o s\'URL o su còdighe identificativu (ID) tuo:
@@ -269,7 +268,7 @@
 \nabèrrere sa modalidade ventanedda</string>
     <string name="info_labels">Ite:\\nRechesta:\\nLimba de su cuntenutu\\nIstadu de su cuntenutu:\\nLimba de s\'aplicatzione:\\nServìtziu:\\nOràriu GMT:\\nPachete:\\nVersione:\\nVersione SO:</string>
     <string name="error_snackbar_message">A dolu mannu b\'at àpidu carchi problema.</string>
-    <string name="search_history_deleted">Cronologia de chirca iscantzellada.</string>
+    <string name="search_history_deleted">Cronologia de chirca iscantzellada</string>
     <string name="restricted_video">Custu vìdeu tenet unu lìmite de edade.
 \n
 \nAllughe \"%1$s\" in sas impostatziones si lu cheres pompiare.</string>
@@ -289,7 +288,7 @@
 \n Isperamus chi at a èssere suportadu in una versione benidora.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Disabìlita sa modalidade lestra</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Abìlita sa modalidade lestra</string>
-    <string name="feed_use_dedicated_fetch_method_summary">A disponimentu in unos cantos servìtzios, de sòlitu est meda prus lestru ma diat pòdere frunire unu nùmeru limitadu de elementos e, fatu-fatu, informatziones no intreas (es. peruna longària, casta de elementu, indicadore de istadu in direta).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">A disponimentu in unos cantos servìtzios, de sòlitu est meda prus lestru ma diat pòdere frunire unu nùmeru limitadu de elementos e, fatu-fatu, informatziones no intreas (es. peruna longària, casta de elementu, indicadore de istadu in direta)</string>
     <string name="feed_use_dedicated_fetch_method_title">Recùperu dae una fonte de cuntenutos dedicada, cando est a disponimentu</string>
     <string name="feed_update_threshold_option_always_update">Agiorna semper</string>
     <string name="feed_update_threshold_summary">Tempus chi depet colare a pustis de s\'ùrtimu agiornamentu, in antis chi un\'abbonamebèngiat cunsiderada tropu betza — %s</string>
@@ -335,10 +334,9 @@
     <string name="systems_language">Predefinida de su sistema</string>
     <string name="app_language_title">Limba de s\'aplicatzione</string>
     <string name="choose_instance_prompt">Issèbera un\'istàntzia</string>
-    <string name="downloads_storage_use_saf_title">Imprea sa SAF</string>
-    <string name="downloads_storage_ask_summary_kitkat">T\'at a bènnere pedidu in ue sarvare cada documentu.
-\n Issèbera SAF si cheres iscarrigare in un\'ischeda SD esterna</string>
-    <string name="downloads_storage_ask_summary">T\'at a bènnere pedidu in ue sarvare cada documentu</string>
+    <string name="downloads_storage_use_saf_title">Imprea s\'ischertadore de cartellas de sistema (SAF)</string>
+    <string name="downloads_storage_ask_summary">T\'at a bènnere pedidu in ue sarvare cada documentu.
+\nAbìlita s\'ischertadore de cartellas de sistema (SAF) si cheres iscarrigare in un\'ischeda SD esterna</string>
     <string name="downloads_storage_ask_title">Pedi in ue iscarrigare</string>
     <string name="pause_downloads">Pone in pàusa sos iscarrigamentos</string>
     <string name="start_downloads">Faghe incumintzare sos iscarrigamentos</string>
@@ -435,11 +433,11 @@
     <string name="delete_search_history_alert">Cheres iscantzellare totu sa cronologia de sas chircas\?</string>
     <string name="clear_search_history_summary">Iscantzella sa cronologia de sas paràulas chircadas</string>
     <string name="clear_search_history_title">Iscantzella sa cronologia de chirca</string>
-    <string name="watch_history_states_deleted">Positziones de riprodutzione iscantzelladas.</string>
+    <string name="watch_history_states_deleted">Positziones de riprodutzione iscantzelladas</string>
     <string name="delete_playback_states_alert">Cheres iscantzellare totu sas positziones de riprodutzione\?</string>
     <string name="clear_playback_states_summary">Iscantzella totu sas positziones de riprodutzione</string>
     <string name="clear_playback_states_title">Iscantzella sas positziones de riprodutzione</string>
-    <string name="watch_history_deleted">Cronologia de sos pompiados iscantzellada.</string>
+    <string name="watch_history_deleted">Cronologia de sos pompiados iscantzellada</string>
     <string name="delete_view_history_alert">Cheres iscantzellare totu sa cronologia de sos pompiados\?</string>
     <string name="clear_views_history_summary">Iscantzellat sa cronologia de sos cuntenutos riproduidos e sas positziones de riprodutzione</string>
     <string name="clear_views_history_title">Isbòida sa cronologia de sos pompiados</string>
@@ -543,12 +541,12 @@
     <string name="metadata_cache_wipe_summary">Boga totu sos datos de sa pàgina web in sa memòria temporànea</string>
     <string name="metadata_cache_wipe_title">Iscantzella sos metadatos in sa memòria temporànea</string>
     <string name="thumbnail_cache_wipe_complete_notice">Memòria temporànea de sas immàgines isboidada</string>
-    <string name="download_thumbnail_summary">Istuda pro prevènnere su carrigamentu de sas miniaduras, su sarvamentu de sos datos e s\'impreu de sa memòria. Sas modìficas ant a isbodiare siat sa memòria temporànea de sa memòria siat cussa de su discu.</string>
+    <string name="download_thumbnail_summary">Istuda pro prevènnere su carrigamentu de sas miniaduras, su sarvamentu de sos datos e s\'impreu de sa memòria. Sas modìficas ant a isbodiare siat sa memòria temporànea de sa memòria siat cussa de su discu</string>
     <string name="show_comments_summary">Istuda pro cuare sos cummentos</string>
     <string name="show_comments_title">Ammustra sos cummentos</string>
     <string name="download_thumbnail_title">Càrriga sas miniaduras</string>
     <string name="seek_duration_title">Longària de s\'avantzamentu e de sa torrada in segus lestros</string>
-    <string name="use_inexact_seek_summary">Su moimentu inesatu permitit a su riproduidore de si mòere cara a una positzione in manera prus lestra ma prus pagu pretzisa. Su de si mòere de 5, 15 o 25 segundos non funtzionat, cun custa optzione.</string>
+    <string name="use_inexact_seek_summary">Su moimentu inesatu permitit a su riproduidore de si mòere cara a una positzione in manera prus lestra ma prus pagu pretzisa. Su de si mòere de 5, 15 o 25 segundos non funtzionat, cun custa optzione</string>
     <string name="use_inexact_seek_title">Imprea su moimentu inesatu lestru</string>
     <string name="popup_remember_size_pos_title">Ammenta sas propriedades de sa ventanedda</string>
     <string name="black_theme_title">Nieddu</string>
@@ -610,8 +608,7 @@
     <string name="no_player_found">Perunu riproduidore de flussos agatadu. Cheres installare VLC\?</string>
     <string name="upload_date_text">Publicadu su %1$s</string>
     <string name="view_count_text">%1$s visualizatziones</string>
-    <string name="main_bg_subtitle">Toca \"Chirca\" pro incumintzare
-\n</string>
+    <string name="main_bg_subtitle">Toca sa lente de ismanniamentu pro incumintzare.</string>
     <string name="never">Mai</string>
     <string name="wifi_only">Cun su Wi-Fi ebbia</string>
     <string name="autoplay_summary">Incumintza cun sa riprodutzione automaticamente — %s</string>
@@ -623,7 +620,7 @@
     <string name="clear_queue_confirmation_title">Pedi una cunfirma in antis de iscantzellare una lista</string>
     <string name="settings_category_notification_title">Notìfica</string>
     <string name="notification_action_shuffle">Òrdine casuale</string>
-    <string name="notification_actions_summary">Modìfica cada atzione de notìfica inoghe in suta incarchende·la. Ischerta·nde finas a tres de ammustrare in sa notìfica cumpata impreende sas casellas de controllu a destra.</string>
+    <string name="notification_actions_summary">Modìfica cada atzione de notìfica inoghe in suta incarchende·la. Ischerta·nde finas a tres de ammustrare in sa notìfica cumpata impreende sas casellas de controllu a destra</string>
     <string name="notification_scale_to_square_image_summary">Iscala sa miniadura ammustrada in sa notìfica dae su formadu in 16:9 a cussu 1:1 (diat pòdere causare istorchimentos)</string>
     <string name="notification_action_nothing">Nudda</string>
     <string name="notification_action_buffering">Carrighende</string>
@@ -652,12 +649,12 @@
     <string name="hash_channel_description">Notìficas pro su protzessu de hashàgiu de su vìdeu</string>
     <string name="hash_channel_name">Notìfica de hash de su vìdeu</string>
     <string name="recent">Reghente</string>
-    <string name="show_meta_info_summary">Istuda·lu pro cuare sas iscatuleddas cun informatziones additzionales in subra de su creadore de su flussu, de su cuntenutu de su flussu o de una rechesta de chirca.</string>
+    <string name="show_meta_info_summary">Istuda·lu pro cuare sas iscatuleddas cun informatziones additzionales in subra de su creadore de su flussu, de su cuntenutu de su flussu o de una rechesta de chirca</string>
     <string name="show_meta_info_title">Ammustra informatziones meta</string>
     <string name="no_app_to_open_intent">Peruna aplicatzione in su dispositivu tuo podet abèrrere custu</string>
     <string name="chapters">Capìtulos</string>
     <string name="description_tab_description">Descritzione</string>
-    <string name="related_streams_tab_description">Flussos ligados</string>
+    <string name="related_items_tab_description">Flussos ligados</string>
     <string name="comments_tab_description">Cummentos</string>
     <string name="show_description_summary">Istuda pro cuare sa descritzione de su vìdeu e sas informatziones additzionales</string>
     <string name="show_description_title">Ammustra sa descritzione</string>
@@ -673,4 +670,45 @@
     <string name="radio">Ràdiu</string>
     <string name="featured">In evidèntzia</string>
     <string name="recaptcha_solve">Risolve</string>
+    <string name="download_has_started">S\'iscarrigamentu est incumintzadu</string>
+    <string name="select_night_theme_toast">Podes ischertare su tema pro sa note preferidu tuo inoghe in suta</string>
+    <string name="night_theme_summary">Ischerta su tema pro sa note preferidu tuo — %s</string>
+    <string name="auto_device_theme_title">Automàticu (tema de su dispositivu)</string>
+    <string name="night_theme_title">Tema pro sa note</string>
+    <string name="show_channel_details">Ammustra sos detàllios de su canale</string>
+    <string name="disable_media_tunneling_summary">Disabìlita sa tunnellizatzione de sos elementos multimediales si durante sa riprodutzione bi sunt ischermadas nieddas o su flussu de su vìdeu no est regulare</string>
+    <string name="disable_media_tunneling_title">Disabìlita sa tunnellizatzione de sos mèdios</string>
+    <string name="metadata_privacy_internal">Internu</string>
+    <string name="metadata_privacy_unlisted">No elencadu</string>
+    <string name="metadata_privacy_private">Privadu</string>
+    <string name="metadata_privacy_public">Pùblicu</string>
+    <string name="metadata_thumbnail_url">URL de sa miniadura</string>
+    <string name="metadata_host">Istrangiadore</string>
+    <string name="metadata_support">Suportu</string>
+    <string name="metadata_language">Limba</string>
+    <string name="metadata_age_limit">Lìmite de edade</string>
+    <string name="metadata_privacy">Riservadesa</string>
+    <string name="metadata_licence">Litzèntzia</string>
+    <string name="metadata_tags">Etichetas</string>
+    <string name="metadata_category">Categoria</string>
+    <string name="description_select_disable">Disabìlita s\'ischerta de su testu in sa descritzione</string>
+    <string name="description_select_enable">Abìlita s\'ischerta de su testu in sa descritzione</string>
+    <string name="description_select_note">Como podes ischertare su testu in intro de sa descritzione. Ammenta·ti chi sa pàgina diat pòdere trèmere e sos ligàmenes si diant pòdere no abèrrere cando ses in modalidade de ischerta.</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Incumintzende dae Android 10 petzi sa \'Storage Access Framework\' (Istrutura de Atzessu a s\'Archiviatzione) est suportada</string>
+    <string name="open_website_license">Aberi su situ web</string>
+    <string name="service_provides_reason">%s frunit custa resone:</string>
+    <string name="account_terminated">Contu serradu</string>
+    <string name="feed_load_error_fast_unknown">Su recùperu lestru de sos flussos non frunit àteras informatziones in subra de custu.</string>
+    <string name="feed_load_error_terminated">Su contu de s\'autore l\'ant serradu.
+\nNewPipe no at a èssere prus in gradu de carrigare custu flussu in su tempus benidore.
+\nCheres bogare s\'iscritzione a custu canale\?</string>
+    <string name="feed_load_error_account_info">Carrigamentu de su flussu pro \'%s\' fallidu.</string>
+    <string name="feed_load_error">Errore carrighende su flussu</string>
+    <string name="downloads_storage_use_saf_summary_api_19">Su \'Storage Access Framework\' no est suportadu in Android KitKat e versiones prus betzas</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">T\'at a bènnere pedidu in ue sarvare cada documentu</string>
+    <string name="no_dir_yet">Non b\'at galu peruna cartella de iscarrigamentu impostada. Issèbera como sa cartella de iscarrigamentu predefinida</string>
+    <string name="off">Istudadu</string>
+    <string name="on">Allutu</string>
+    <string name="tablet_mode_title">Modalidade tauledda</string>
+    <string name="feed_toggle_show_played_items">Ammustra sos elementos riproduidos</string>
 </resources>

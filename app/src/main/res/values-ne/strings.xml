@@ -477,8 +477,6 @@
     <string name="pause_downloads">डाउनलोडहरु पज</string>
     <string name="downloads_storage_ask_title">डाउनलोड कहाँ गर्ने सोध</string>
     <string name="downloads_storage_ask_summary">प्रत्येक डाउनलोड कहाँ सेव गर्ने भनि आग्रह गरिनेछ</string>
-    <string name="downloads_storage_ask_summary_kitkat">प्रत्येक डाउनलोड कहाँ बचत गर्न आग्रह गरिने छ।
-\nतपाईं बाहिरको एसडी कार्डमा डाउनलोड गर्न चाहनुहुन्छ भने SAF चयन गर्नुहोस्</string>
     <string name="downloads_storage_use_saf_title">साफ (SAF) प्रयोग</string>
     <string name="downloads_storage_use_saf_summary">\'भण्डारण पहुँच फ्रेमवर्क\' बाह्य एसडी कार्डमा डाउनलोड गर्न अनुमति दिन्छ।
 \nकेहि उपकरणहरू असंगत छन्</string>
@@ -594,7 +592,7 @@
     <string name="songs">गित</string>
     <string name="restricted_video">यो भिडियो उमेर प्रतिबन्धित छ।…
 \n…
-\nएदी तपैंलाई हेर्न परेमा, सेटिंगमा गई “उमेर प्रतिबन्धित समाग्री” सक्षम गर्नुहोस्।</string>
+\nएदी तपैंलाई हेर्न परेमा, सेटिंगमा गई “%1$s” सक्षम गर्नुहोस्।</string>
     <string name="youtube_restricted_mode_enabled_title">यूट्यूब प्रतिबन्धित मोड</string>
     <string name="video_detail_by">%s द्वारा</string>
     <string name="channel_created_by">%s द्वारा सिर्जना गरिएको</string>

@@ -38,7 +38,7 @@
     <string name="use_external_audio_player_title">Externen Audio-Player verwenden</string>
     <string name="background_player_playing_toast">Im Hintergrund abspielen</string>
     <string name="use_tor_title">Tor benutzen</string>
-    <string name="use_tor_summary">(Experimentell) Herunterladen über Tor zur Verbesserung des Datenschutzes erzwingen (Videostreaming wird noch nicht unterstützt).</string>
+    <string name="use_tor_summary">(Experimentell) Download über Tor zur Verbesserung des Datenschutzes erzwingen (Videostreaming wird noch nicht unterstützt).</string>
     <string name="network_error">Netzwerkfehler</string>
     <string name="download_path_audio_title">Downloadordner für Audiodateien</string>
     <string name="download_path_audio_summary">Heruntergeladene Audiodateien werden hier gespeichert</string>
@@ -81,8 +81,7 @@
     <string name="report_error">Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
     <string name="duration_live">Live</string>
-    <string name="main_bg_subtitle">„Suchen“ antippen, um zu beginnen
-\n</string>
+    <string name="main_bg_subtitle">Tippe auf die Lupe, um zu beginnen.</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Fehlerbericht</string>
@@ -96,7 +95,7 @@
     <string name="msg_exists">Datei existiert bereits</string>
     <string name="msg_wait">Bitte warten …</string>
     <string name="msg_copied">In Zwischenablage kopiert</string>
-    <string name="no_available_dir">Bitte gib später in den Einstellungen ein Downloadverzeichnis an</string>
+    <string name="no_available_dir">Bitte gib später in den Einstellungen einen Downloadordner an</string>
     <string name="start">Starten</string>
     <string name="pause">Pause</string>
     <string name="view">Abspielen</string>
@@ -244,7 +243,7 @@
     <string name="website_encouragement">Besuche die NewPipe Website für weitere Informationen und Neuigkeiten.</string>
     <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür verwenden, dir die beste Nutzererfahrung zu bieten. Gib etwas zurück, indem du den Entwicklern hilfst, NewPipe noch weiter zu verbessern, während sie sich an einer Tasse Kaffee erfreuen.</string>
     <string name="service_title">Service</string>
-    <string name="no_player_found_toast">Keinen Streamplayer gefunden (du kannst VLC installieren, um den Stream abzuspielen).</string>
+    <string name="no_player_found_toast">Kein Stream-Player gefunden (du kannst VLC installieren, um den Stream abzuspielen).</string>
     <string name="default_content_country_title">Bevorzugtes Land des Inhalts</string>
     <string name="always">Immer</string>
     <string name="just_once">Nur einmal</string>
@@ -252,7 +251,7 @@
     <string name="switch_to_background">In den Hintergrund wechseln</string>
     <string name="switch_to_popup">Zum Pop-up wechseln</string>
     <string name="switch_to_main">Zur normalen Wiedergabe wechseln</string>
-    <string name="external_player_unsupported_link_type">Externe Abspielprogramme unterstützen diese Art von Links nicht</string>
+    <string name="external_player_unsupported_link_type">Externe Player unterstützen diese Art von Links nicht</string>
     <string name="invalid_url_toast">Ungültige URL</string>
     <string name="video_streams_empty">Keine Video-Streams gefunden</string>
     <string name="audio_streams_empty">Keine Audio-Streams gefunden</string>
@@ -271,7 +270,7 @@
     <string name="could_not_import_all_files">Warnung: Nicht alle Dateien konnten importiert werden.</string>
     <string name="override_current_data">Dies wird deine aktuellen Einstellungen überschreiben.</string>
     <string name="show_info">Infos anzeigen</string>
-    <string name="tab_bookmarks">Lesezeichen für Wiedergabelisten</string>
+    <string name="tab_bookmarks">Eigene Wiedergabelisten</string>
     <string name="controls_add_to_playlist_title">Hinzufügen</string>
     <string name="detail_drag_description">Zum Neuordnen ziehen</string>
     <string name="create">Erstellen</string>
@@ -298,7 +297,7 @@
     <string name="dismiss">Abbrechen</string>
     <string name="controls_download_desc">Stream-Datei herunterladen</string>
     <string name="use_inexact_seek_title">Schnelle, ungenaue Suche verwenden</string>
-    <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die ungefähre Abspielposition schneller erreicht werden. Das Spulen um 5, 15 oder 25 Sekunden funktioniert damit nicht.</string>
+    <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die ungefähre Abspielposition schneller erreicht werden. Das Spulen um 5, 15 oder 25 Sekunden funktioniert damit nicht</string>
     <string name="file">Datei</string>
     <string name="invalid_directory">Ordner existiert nicht</string>
     <string name="invalid_file">Die Datei existiert nicht oder die Rechte zum Lesen oder Schreiben fehlen</string>
@@ -332,7 +331,7 @@
     <string name="playback_tempo">Geschwindigkeit</string>
     <string name="playback_pitch">Tonhöhe</string>
     <string name="unhook_checkbox">Entkoppeln (kann zu Verzerrungen führen)</string>
-    <string name="download_thumbnail_summary">Deaktiviere diese Option, um das Laden von Vorschaubildern zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher.</string>
+    <string name="download_thumbnail_summary">Deaktiviere diese Option, um das Laden von Vorschaubildern zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
     <string name="auto_queue_summary">Wiedergabe durch Anhängen eines verwandten Streams an die Warteschlange (ohne Wiederholungsschleife) fortsetzen</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
@@ -358,20 +357,20 @@
 \n3. Melde dich an, falls du dazu aufgefordert wirst
 \n4. Kopiere die Profil-URL, zu der du weitergeleitet wurdest.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
-    <string name="no_streams_available_download">Keine Streams zum Herunterladen verfügbar</string>
+    <string name="no_streams_available_download">Keine Streams zum Download verfügbar</string>
     <string name="preferred_open_action_settings_title">Bevorzugte „Öffnen“-Aktion</string>
     <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten — %s</string>
     <string name="caption_setting_title">Untertitel</string>
-    <string name="caption_setting_description">Textgröße und Hintergrund der Untertitel im Player anpassen. Wird erst nach Neustart der App wirksam.</string>
+    <string name="caption_setting_description">Textgröße und Hintergrund der Untertitel im Player anpassen. Erfordert Neustart der App</string>
     <string name="toast_no_player">Keine App zum Abspielen dieser Datei installiert</string>
     <string name="clear_views_history_title">Wiedergabeverlauf löschen</string>
     <string name="clear_views_history_summary">Den Verlauf der wiedergegebenen Streams und die Wiedergabepositionen löschen</string>
     <string name="delete_view_history_alert">Den ganzen Wiedergabeverlauf löschen\?</string>
-    <string name="watch_history_deleted">Wiedergabeverlauf gelöscht.</string>
+    <string name="watch_history_deleted">Wiedergabeverlauf gelöscht</string>
     <string name="clear_search_history_title">Suchverlauf löschen</string>
     <string name="clear_search_history_summary">Den Verlauf der Suchbegriffe löschen</string>
     <string name="delete_search_history_alert">Den gesamten Suchverlauf löschen\?</string>
-    <string name="search_history_deleted">Suchverlauf gelöscht.</string>
+    <string name="search_history_deleted">Suchverlauf gelöscht</string>
     <string name="one_item_deleted">1 Element gelöscht.</string>
     <string name="app_license">NewPipe ist freie Copyleft-Software: Du kannst sie nach Belieben benutzen, untersuchen, mit anderen teilen und verbessern. Insbesondere kannst du sie unter den von der Free Software Foundation veröffentlichten Bedingungen der GNU General Public License, in der Version 3 der Lizenz oder (nach deiner Wahl) jeder späteren Version, weitergeben und/oder verändern.</string>
     <string name="import_settings">Möchtest du auch Einstellungen importieren\?</string>
@@ -398,8 +397,8 @@
     <string name="tracks">Titel</string>
     <string name="users">Benutzer</string>
     <string name="unsubscribe">Deabonnieren</string>
-    <string name="tab_new">Neue Registerkarte</string>
-    <string name="tab_choose">Registerkarte wählen</string>
+    <string name="tab_new">Neuer Tab</string>
+    <string name="tab_choose">Tab wählen</string>
     <string name="volume_gesture_control_title">Gestensteuerung für Lautstärke</string>
     <string name="volume_gesture_control_summary">Gesten verwenden, um die Lautstärke einzustellen</string>
     <string name="brightness_gesture_control_title">Gestensteuerung für Helligkeit</string>
@@ -410,19 +409,23 @@
     <string name="app_update_notification_channel_description">Benachrichtigung bei neuer NewPipe-Version</string>
     <string name="download_to_sdcard_error_title">Kein externer Speicher verfügbar</string>
     <string name="download_to_sdcard_error_message">Herunterladen auf externe SD-Karte ist nicht möglich. Downloadordner zurücksetzen\?</string>
-    <string name="saved_tabs_invalid_json">Fehler beim Lesen der gespeicherten Registerkarten – es werden die Voreinstellungen benutzt</string>
+    <string name="saved_tabs_invalid_json">Konnte gespeicherte Tabs nicht lesen, daher werden die Voreinstellungen genutzt</string>
     <string name="restore_defaults">Standardwerte wiederherstellen</string>
-    <string name="restore_defaults_confirmation">Möchtest Du die Standardwerte wiederherstellen\?</string>
+    <string name="restore_defaults_confirmation">Möchtest du die Standardwerte wiederherstellen\?</string>
     <string name="subscribers_count_not_available">Abonnentenzahl nicht abrufbar</string>
-    <string name="main_page_content_summary">Welche Rigisterkarten auf der Hauptseite angezeigt werden</string>
+    <string name="main_page_content_summary">Welche Tabs auf der Hauptseite angezeigt werden</string>
     <string name="selection">Auswahl</string>
     <string name="updates_setting_title">Aktualisierungen</string>
     <string name="updates_setting_description">Per Benachrichtigung zur Aktualisierung der App auffordern, wenn eine neue Version verfügbar ist</string>
     <string name="list_view_mode">Art der Ansicht</string>
     <string name="list">Liste</string>
-    <string name="grid">Gitter</string>
-    <string name="auto">Auto</string>
+    <string name="grid">Raster</string>
+    <string name="auto">Automatisch</string>
     <string name="switch_view">Ansicht wechseln</string>
+    <string name="seekbar_preview_thumbnail_title">Vorschaubild der Suchleiste</string>
+    <string name="high_quality_larger">Hohe Qualität (größer)</string>
+    <string name="low_quality_smaller">Niedrige Qualität (kleiner)</string>
+    <string name="dont_show">Nicht anzeigen</string>
     <string name="app_update_notification_content_title">Eine NewPipe-Aktualisierung ist verfügbar!</string>
     <string name="app_update_notification_content_text">Zum Herunterladen antippen</string>
     <string name="missions_header_finished">Fertig</string>
@@ -442,7 +445,7 @@
     <string name="show_error">Fehler anzeigen</string>
     <string name="label_code">Code</string>
     <string name="error_file_creation">Die Datei kann nicht erstellt werden</string>
-    <string name="error_path_creation">Das Zielverzeichnis kann nicht erstellt werden</string>
+    <string name="error_path_creation">Der Zielordner kann nicht erstellt werden</string>
     <string name="error_permission_denied">System verweigert den Zugriff</string>
     <string name="error_ssl_exception">Aufbau einer sicheren Verbindung nicht möglich</string>
     <string name="error_unknown_host">Server konnte nicht gefunden werden</string>
@@ -463,6 +466,7 @@
     <string name="show_comments_summary">Ausschalten, um Kommentare auszublenden</string>
     <string name="autoplay_title">Automatische Wiedergabe</string>
     <string name="no_comments">Keine Kommentare</string>
+    <string name="comments_are_disabled">Kommentare sind deaktiviert</string>
     <string name="error_unable_to_load_comments">Kommentare konnten nicht geladen werden</string>
     <string name="close">Schließen</string>
     <string name="enable_playback_resume_title">Wiedergabe fortsetzen</string>
@@ -470,7 +474,7 @@
     <string name="enable_playback_state_lists_title">Positionen in Listen</string>
     <string name="enable_playback_state_lists_summary">Wiedergabepositionsanzeigen in Listen anzeigen</string>
     <string name="settings_category_clear_data_title">Daten löschen</string>
-    <string name="watch_history_states_deleted">Wiedergabeposition gelöscht.</string>
+    <string name="watch_history_states_deleted">Wiedergabepositionen gelöscht</string>
     <string name="missing_file">Datei verschoben oder gelöscht</string>
     <string name="overwrite_finished_warning">Eine heruntergeladene Datei mit diesem Namen existiert bereits</string>
     <string name="overwrite_failed">Datei kann nicht überschrieben werden</string>
@@ -484,12 +488,10 @@
     <string name="start_downloads">Downloads starten</string>
     <string name="pause_downloads">Downloads anhalten</string>
     <string name="downloads_storage_ask_title">Downloadziel abfragen</string>
-    <string name="downloads_storage_ask_summary">Du wirst gefragt, wo jede heruntergeladene Datei gespeichert werden soll</string>
-    <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin du jede heruntergeladene Datei speichern willst.
-\nAktiviere diese Option, wenn du auf die externe SD-Karte herunterladen möchtest</string>
-    <string name="downloads_storage_use_saf_title">SAF verwenden</string>
-    <string name="downloads_storage_use_saf_summary">Das „Storage Access Framework“ ermöglicht das Herunterladen auf eine externe SD-Karte.
-\nManche Geräte sind nicht kompatibel</string>
+    <string name="downloads_storage_ask_summary">Du wirst gefragt, wo jede heruntergeladene Datei gespeichert werden soll.
+\nAktiviere die Systemordnerauswahl (SAF), wenn du auf eine externe SD-Karte herunterladen möchtest</string>
+    <string name="downloads_storage_use_saf_title">Systemordnerauswahl verwenden (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">Das „Storage Access Framework“ ermöglicht das Herunterladen auf eine externe SD-Karte</string>
     <string name="clear_playback_states_title">Wiedergabepositionen löschen</string>
     <string name="clear_playback_states_summary">Alle Wiedergabepositionen löschen</string>
     <string name="delete_playback_states_alert">Alle Wiedergabepositionen löschen\?</string>
@@ -506,7 +508,7 @@
         <item quantity="one">%s Zuhörer</item>
         <item quantity="other">%s Zuhörer</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird.</string>
+    <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird</string>
     <string name="peertube_instance_url_title">PeerTube-Instanzen</string>
     <string name="peertube_instance_url_help">Finde auf %s die Instanzen, die dir gefallen</string>
     <string name="peertube_instance_add_title">Instanz hinzufügen</string>
@@ -516,7 +518,7 @@
     <string name="local">Lokal</string>
     <string name="recently_added">Kürzlich hinzugefügt</string>
     <string name="playlist_no_uploader">Auto-generiert (kein Autor gefunden)</string>
-    <string name="choose_instance_prompt">Wähle eine Instanz</string>
+    <string name="choose_instance_prompt">Eine Instanz wählen</string>
     <string name="peertube_instance_url_summary">Bevorzugte Peertube-Instanzen auswählen</string>
     <string name="peertube_instance_add_https_only">Es werden nur HTTPS-Adressen unterstützt</string>
     <string name="seek_duration_title">Dauer der Suche bei schnellem Vor-/Zurückspulen</string>
@@ -573,7 +575,7 @@
     <string name="feed_oldest_subscription_update">Abos zuletzt aktualisiert: %s</string>
     <string name="feed_update_threshold_title">Grenzwert für Feed-Aktualisierung</string>
     <string name="feed_use_dedicated_fetch_method_title">Aus fest zugeordnetem Feed abholen wenn verfügbar</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Steht in manchen Diensten zur Verfügung, ist meist viel schneller, liefert aber eventuell eine eingeschränkte Anzahl an Elementen und oft unvollständige Informationen (z. B. keine Videolänge, keinen Elementtyp, keinen Live-Status).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Steht in manchen Diensten zur Verfügung, ist meist viel schneller, liefert aber eventuell eine eingeschränkte Anzahl an Elementen und oft unvollständige Informationen (z. B. keine Videolänge, keinen Elementtyp, keinen Live-Status)</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Glaubst du, dass das Laden von Feeds zu langsam ist\? Wenn ja, versuche den Schnelllademodus einzuschalten (du kannst ihn in den Einstellungen oder über die Schaltfläche unten ändern).
 \n
 \nNewPipe bietet zwei Feed-Ladestrategien:
@@ -617,7 +619,7 @@
     <string name="wifi_only">Nur über WLAN</string>
     <string name="never">Nie</string>
     <string name="notification_actions_at_most_three">Du kannst maximal drei Aktionen auswählen, die in der Kompaktbenachrichtigung angezeigt werden sollen!</string>
-    <string name="notification_actions_summary">Bearbeite jede Benachrichtigungsaktion unten, indem du darauf tippst. Wähle mithilfe der Kontrollkästchen rechts bis zu drei aus, die in der Kompaktbenachrichtigung angezeigt werden sollen.</string>
+    <string name="notification_actions_summary">Bearbeite jede Benachrichtigungsaktion unten, indem du darauf tippst. Wähle mithilfe der Kontrollkästchen rechts bis zu drei aus, die in der Kompaktbenachrichtigung angezeigt werden sollen</string>
     <string name="settings_category_notification_title">Benachrichtigung</string>
     <string name="unsupported_url_dialog_message">Konnte die angegebene URL nicht erkennen. Mit einer anderen Anwendung öffnen\?</string>
     <string name="notification_action_4_title">Fünfte Aktionstaste</string>
@@ -633,8 +635,8 @@
     <string name="notification_action_nothing">Nichts</string>
     <string name="title_activity_play_queue">Warteschlange abspielen</string>
     <string name="auto_queue_toggle">Automatische Warteschlange</string>
-    <string name="clear_queue_confirmation_summary">Der Wechsel von einem Abspielprogramm zu einem anderen kann Ihre Warteschlange überschreiben</string>
-    <string name="clear_queue_confirmation_title">Nach einer Bestätigung fragen, bevor eine Warteschlange zu säubern</string>
+    <string name="clear_queue_confirmation_summary">Der Wechsel von einem Player zu einem anderen kann deine Warteschlange überschreiben</string>
+    <string name="clear_queue_confirmation_title">Überschreiben der Warteschlange bestätigen</string>
     <string name="clear_queue_confirmation_description">Die aktive Player-Warteschlange wird ersetzt</string>
     <string name="enqueued">Eingereiht</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube bietet einen „Eingeschränkten Modus“, der potenzielle Inhalte für Erwachsene ausblendet</string>
@@ -653,10 +655,10 @@
     <string name="hash_channel_name">Video Hash Benachrichtigung</string>
     <string name="recent">Letzte</string>
     <string name="show_meta_info_title">Metadaten anzeigen</string>
-    <string name="show_meta_info_summary">Deaktiviere diese Option, um Meta-Infofelder mit zusätzlichen Informationen zum Stream-Ersteller, zum Stream-Inhalt oder zu einer Suchanforderung auszublenden.</string>
+    <string name="show_meta_info_summary">Deaktiviere diese Option, um Meta-Infofelder mit zusätzlichen Informationen zum Stream-Ersteller, zum Stream-Inhalt oder zu einer Suchanforderung auszublenden</string>
     <string name="chapters">Kapitel</string>
     <string name="description_tab_description">Beschreibung</string>
-    <string name="related_streams_tab_description">Verwandte Streams</string>
+    <string name="related_items_tab_description">Verwandte Streams</string>
     <string name="comments_tab_description">Kommentare</string>
     <string name="show_description_summary">Ausschalten, um Videobeschreibung und Zusatzinformationen auszublenden</string>
     <string name="show_description_title">Beschreibung anzeigen</string>
@@ -665,7 +667,7 @@
     <string name="private_content">Dieser Inhalt ist privat, kann also nicht von NewPipe gestreamt oder heruntergeladen werden.</string>
     <string name="paid_content">Diese Inhalte sind nur für Benutzer verfügbar, die bezahlt haben, können also nicht von NewPipe gestreamt oder heruntergeladen werden.</string>
     <string name="youtube_music_premium_content">Dieses Video ist nur für YouTube Music Premium-Mitglieder verfügbar und kann daher nicht von NewPipe gestreamt oder heruntergeladen werden.</string>
-    <string name="soundcloud_go_plus_content">Dies ist ein SoundCloud Go+ Track, zumindest in deinem Land, kann er nicht gestreamt oder von NewPipe heruntergeladen werden.</string>
+    <string name="soundcloud_go_plus_content">Dies ist ein SoundCloud Go+ Track, zumindest in deinem Land, kann er von NewPipe nicht gestreamt oder heruntergeladen werden.</string>
     <string name="georestricted_content">Dieser Inhalt ist in deinem Land nicht verfügbar.</string>
     <string name="crash_the_app">Absturz der App</string>
     <string name="restricted_video_no_stream">Dieses Video ist altersbeschränkt.
@@ -675,7 +677,43 @@
     <string name="recaptcha_solve">Lösen</string>
     <string name="download_has_started">Download hat begonnen</string>
     <string name="select_night_theme_toast">Du kannst dein bevorzugtes Nachtdesign unten auswählen</string>
-    <string name="night_theme_summary">Wähle dein bevorzugtes Nachtdesign — %s</string>
+    <string name="night_theme_summary">Wähle dein bevorzugtes Nachtdesign – %s</string>
     <string name="auto_device_theme_title">Automatisch (Gerätedesign)</string>
     <string name="night_theme_title">Nachtdesign</string>
+    <string name="show_channel_details">Kanal-Details anzeigen</string>
+    <string name="disable_media_tunneling_summary">Deaktiviere das Media-Tunneling, wenn bei der Videowiedergabe ein schwarzer Bildschirm oder Stottern auftritt</string>
+    <string name="disable_media_tunneling_title">Media-Tunneling deaktivieren</string>
+    <string name="metadata_privacy_internal">Intern</string>
+    <string name="metadata_privacy_private">Privat</string>
+    <string name="metadata_privacy_public">Öffentlich</string>
+    <string name="metadata_language">Sprache</string>
+    <string name="metadata_age_limit">Altersbeschränkung</string>
+    <string name="metadata_privacy">Sichtbarkeit</string>
+    <string name="metadata_licence">Lizenz</string>
+    <string name="metadata_tags">Tags</string>
+    <string name="metadata_category">Kategorie</string>
+    <string name="metadata_privacy_unlisted">Nicht gelistet</string>
+    <string name="metadata_thumbnail_url">Vorschaubild-URL</string>
+    <string name="metadata_host">Server</string>
+    <string name="metadata_support">Unterstützung</string>
+    <string name="description_select_disable">Auswählen von Text in der Beschreibung deaktivieren</string>
+    <string name="description_select_enable">Auswählen von Text in der Beschreibung aktivieren</string>
+    <string name="description_select_note">Du kannst nun Text innerhalb der Beschreibung auswählen. Beachte, dass die Seite flackern kann und Links im Auswahlmodus möglicherweise nicht anklickbar sind.</string>
+    <string name="feed_load_error_terminated">Das Konto des Autors wurde geschlossen.
+\nNewPipe wird diesen Feed in Zukunft nicht mehr laden können.
+\nMöchtest du dich von diesem Kanal abmelden\?</string>
+    <string name="account_terminated">Konto geschlossen</string>
+    <string name="feed_load_error_fast_unknown">Der Schnelllademodus liefert hierzu keine weiteren Informationen.</string>
+    <string name="no_dir_yet">Noch kein Downloadordner festgelegt, wähle jetzt den Standard-Downloadordner</string>
+    <string name="open_website_license">Webseite öffnen</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Ab Android 10 wird nur noch „Storage Access Framework“ unterstützt</string>
+    <string name="downloads_storage_use_saf_summary_api_19">Das „Storage Access Framework“ wird auf Android KitKat und niedriger nicht unterstützt</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Du wirst jedes Mal gefragt werden, wohin der Download gespeichert werden soll</string>
+    <string name="feed_load_error">Fehler beim Laden des Feeds</string>
+    <string name="feed_load_error_account_info">Konnte Feed für \'%s\' nicht laden.</string>
+    <string name="service_provides_reason">%s gibt diesen Grund an:</string>
+    <string name="on">An</string>
+    <string name="tablet_mode_title">Tablet-Modus</string>
+    <string name="off">Aus</string>
+    <string name="feed_toggle_show_played_items">Abgespielte Elemente anzeigen</string>
 </resources>

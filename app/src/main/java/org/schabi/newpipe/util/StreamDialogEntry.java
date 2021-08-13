@@ -9,12 +9,17 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.Collections;
 import java.util.List;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 import static org.schabi.newpipe.player.MainPlayer.PlayerType.AUDIO;
 import static org.schabi.newpipe.player.MainPlayer.PlayerType.POPUP;
@@ -24,13 +29,20 @@ public enum StreamDialogEntry {
     // enum values with DEFAULT actions //
     //////////////////////////////////////
 
+    show_channel_details(R.string.show_channel_details, (fragment, item) ->
+        // For some reason `getParentFragmentManager()` doesn't work, but this does.
+        NavigationHelper.openChannelFragment(
+                fragment.requireActivity().getSupportFragmentManager(),
+                item.getServiceId(), item.getUploaderUrl(), item.getUploaderName())
+    ),
+
     /**
      * Enqueues the stream automatically to the current PlayerType.<br>
      * <br>
      * Info: Add this entry within showStreamDialog.
      */
     enqueue(R.string.enqueue_stream, (fragment, item) -> {
-        final MainPlayer.PlayerType type = PlayerHolder.getType();
+        final MainPlayer.PlayerType type = PlayerHolder.getInstance().getType();
 
         if (type == AUDIO) {
             NavigationHelper.enqueueOnBackgroundPlayer(fragment.getContext(),
@@ -59,30 +71,40 @@ public enum StreamDialogEntry {
     }), // has to be set manually
 
     append_playlist(R.string.append_playlist, (fragment, item) -> {
-        if (fragment.getFragmentManager() != null) {
-            final PlaylistAppendDialog d = PlaylistAppendDialog
-                    .fromStreamInfoItems(Collections.singletonList(item));
+        final PlaylistAppendDialog d = PlaylistAppendDialog
+                .fromStreamInfoItems(Collections.singletonList(item));
 
-            PlaylistAppendDialog.onPlaylistFound(fragment.getContext(),
-                () -> d.show(fragment.getFragmentManager(), "StreamDialogEntry@append_playlist"),
-                () -> PlaylistCreationDialog.newInstance(d)
-                        .show(fragment.getFragmentManager(), "StreamDialogEntry@create_playlist")
-            );
-        }
+        PlaylistAppendDialog.onPlaylistFound(fragment.getContext(),
+            () -> d.show(fragment.getParentFragmentManager(), "StreamDialogEntry@append_playlist"),
+            () -> PlaylistCreationDialog.newInstance(d)
+                    .show(fragment.getParentFragmentManager(), "StreamDialogEntry@create_playlist")
+        );
     }),
 
     play_with_kodi(R.string.play_with_kodi_title, (fragment, item) -> {
         final Uri videoUrl = Uri.parse(item.getUrl());
         try {
-            NavigationHelper.playWithKore(fragment.getContext(), videoUrl);
+            NavigationHelper.playWithKore(fragment.requireContext(), videoUrl);
         } catch (final Exception e) {
-            KoreUtil.showInstallKoreDialog(fragment.getActivity());
+            KoreUtils.showInstallKoreDialog(fragment.getActivity());
         }
     }),
 
     share(R.string.share, (fragment, item) ->
-            ShareUtils.shareText(fragment.getContext(), item.getName(), item.getUrl()));
+            ShareUtils.shareText(fragment.getContext(), item.getName(), item.getUrl(),
+                    item.getThumbnailUrl())),
 
+    open_in_browser(R.string.open_in_browser, (fragment, item) ->
+            ShareUtils.openUrlInBrowser(fragment.getContext(), item.getUrl())),
+
+
+    mark_as_watched(R.string.mark_as_watched, (fragment, item) -> {
+        new HistoryRecordManager(fragment.getContext())
+                .markAsWatched(item)
+                .onErrorComplete()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+    });
 
     ///////////////
     // variables //

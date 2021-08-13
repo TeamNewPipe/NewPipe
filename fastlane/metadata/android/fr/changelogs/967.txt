@@ -1,0 +1,1 @@
+La réparation du flux YouTube ne fonctionnait pas correctement dans l'UE. Cela était dû à un nouveau système de cookies et de consentement à la confidentialité qui exige que NewPipe définisse un cookie CONSENT.

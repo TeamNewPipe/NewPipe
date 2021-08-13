@@ -4,7 +4,7 @@
     <string name="open_in_browser">Aperir in le navigator</string>
     <string name="share">Compartir</string>
     <string name="download">Discargar</string>
-    <string name="search">Cercar</string>
+    <string name="search">Cerca</string>
     <string name="settings">Configurationes</string>
     <string name="share_dialog_title">Compartir con</string>
     <string name="choose_browser">Seliger un navigator</string>
@@ -54,7 +54,7 @@
     <string name="enable_search_history_title">Chronologia de cerca</string>
     <string name="enable_search_history_summary">Immagazinar le cercas localmente</string>
     <string name="enable_watch_history_title">Chronologia de reproductiones</string>
-    <string name="enable_playback_resume_title">We</string>
+    <string name="enable_playback_resume_title">Resumer le reproduction</string>
     <string name="enable_playback_resume_summary">Restaurar le ultime position del reproduction</string>
     <string name="enable_playback_state_lists_title">Positiones in le listas</string>
     <string name="enable_playback_state_lists_summary">Monstrar le indicatores de position in listas</string>
@@ -86,7 +86,7 @@
     <string name="background_player_playing_toast">Es reproduce in fundo</string>
     <string name="popup_playing_toast">Es reproduce in modo emergente</string>
     <string name="content">Contento</string>
-    <string name="show_age_restricted_content_title">Contento restricte per etate</string>
+    <string name="show_age_restricted_content_title">Monstrar contento restricte per etate</string>
     <string name="duration_live">In directe</string>
     <string name="downloads">Discargamentos</string>
     <string name="downloads_title">Discargamentos</string>
@@ -151,7 +151,7 @@
     <string name="action_settings">Configurationes</string>
     <string name="action_about">A proposito de</string>
     <string name="copyright" formatted="true">© %1$s per %2$s sub %3$s</string>
-    <string name="action_open_website">Aperir sito web</string>
+    <string name="action_open_website">Aperir le sito web</string>
     <string name="tab_about">A proposito de</string>
     <string name="tab_licenses">Licentias</string>
     <string name="contribution_title">Contribuer</string>
@@ -193,18 +193,72 @@
     <string name="clear_search_history_summary">Dele le chronologia de parolas clave de cerca</string>
     <string name="delete_search_history_alert">Deler omne chronologia de cerca\?</string>
     <string name="search_history_deleted">Chronologia de cerca delite.</string>
-    <string name="export_data_summary">Exportar le chronologia, subscriptiones e listas de reproduction</string>
-    <string name="import_data_summary">Reimplaciar tu chronologia e subscriptiones currente</string>
+    <string name="export_data_summary">Exportar le chronologia, subscriptiones, listas de reproduction e configurationes</string>
+    <string name="import_data_summary">Reimplaciar tu chronologia, subscriptiones e (optionalmente) configurationes currente</string>
     <string name="remove_watched_popup_warning">Le videos jam observate ante e post de esser addite al lista de reproduction essera removite.
 \nSecur que tu vole\? Isto non pote disfacer se!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Si, e le videos partialmente observate</string>
     <string name="remove_watched_popup_title">Deler le videos observate\?</string>
     <string name="remove_watched">Deler le videos observate</string>
     <plurals name="watching">
-        <item quantity="one">%s observante</item>
-        <item quantity="other">%s observante</item>
+        <item quantity="one">%s visualisation</item>
+        <item quantity="other">%s visualisationes</item>
     </plurals>
     <string name="no_one_watching">Nemo is observante</string>
     <string name="watch_history_deleted">Chronologia de reproductiones vacuate.</string>
     <string name="delete_view_history_alert">Deler omne chronologia de reproductiones\?</string>
+    <string name="error_snackbar_message">Pardono, qualcosa vadeva incorrecte.</string>
+    <string name="sorry_string">Pardono, illo non deberea haber ocurrite.</string>
+    <string name="clear_playback_states_title">Deler le positiones de reproduction</string>
+    <string name="songs">Cantos</string>
+    <string name="playlists">Listas de reproduction</string>
+    <string name="playlist">Lista de reproduction</string>
+    <string name="error_report_title">Reporto de error</string>
+    <string name="youtube_restricted_mode_enabled_title">Activar el \"Modo restricte\" de YouTube</string>
+    <string name="more_than_100_videos">Plus de 100 videos</string>
+    <string name="no_one_listening">Nemo es ascoltante</string>
+    <plurals name="views">
+        <item quantity="one">%s reproduction</item>
+        <item quantity="other">%s reproductiones</item>
+    </plurals>
+    <string name="subscribers_count_not_available">Le numero de subscriptores non es disponibile</string>
+    <plurals name="subscribers">
+        <item quantity="one">%s subscriptor</item>
+        <item quantity="other">%s subscriptores</item>
+    </plurals>
+    <string name="no_subscribers">Nulle subscriptores</string>
+    <string name="audio">Audio</string>
+    <string name="video">Video</string>
+    <string name="empty_subscription_feed_subtitle">Nihil contentos ci</string>
+    <string name="search_no_results">Nulle resultatos</string>
+    <string name="user_report">Reporto de usator</string>
+    <string name="report_error">Reportar un error</string>
+    <string name="description_tab_description">Description</string>
+    <string name="related_items_tab_description">Fluxos associate</string>
+    <string name="detail_dislikes_img_view_description">Non me place</string>
+    <string name="comments_tab_description">Commentos</string>
+    <string name="detail_likes_img_view_description">Me place</string>
+    <string name="error_snackbar_action">Reportar</string>
+    <string name="error_report_open_issue_button_text">Reportar in GitHub</string>
+    <string name="permission_display_over_apps">Permitter monstrar supra altere applicationes</string>
+    <string name="restore_defaults_confirmation">Esque tu vole reinitialisar le valores predefinite\?</string>
+    <string name="restore_defaults">Reinitialisar le valores predefinite</string>
+    <string name="no_streams_available_download">Nulle fluxos disponibile pro discargar</string>
+    <string name="error_occurred_detail">Ocurreva un error: %1$s</string>
+    <string name="missing_file">File displaciate o delite</string>
+    <string name="app_ui_crash">Falleva le interfacie del application</string>
+    <string name="download_to_sdcard_error_message">Le discarga al carta SD non es possibile. Reinitialisar le location del dossier de discargas\?</string>
+    <string name="download_to_sdcard_error_title">Immagazinage externe non disponibile</string>
+    <string name="general_error">Error</string>
+    <string name="help">Adjuta</string>
+    <string name="delete_playback_states_alert">Esque tu vole deler tote le positiones de reproduction\?</string>
+    <string name="clear_playback_states_summary">Dele tote le positiones de reproduction</string>
+    <string name="use_inexact_seek_title">Usar le recerca rapide e inexacte</string>
+    <string name="night_theme_title">Thema nocturne</string>
+    <string name="notification_action_nothing">Nihil</string>
+    <string name="show_description_title">Monstrar le description</string>
+    <string name="metadata_language">Lingua</string>
+    <string name="metadata_support">Supporto</string>
+    <string name="recent">Recente</string>
+    <string name="metadata_privacy_internal">Interne</string>
 </resources>

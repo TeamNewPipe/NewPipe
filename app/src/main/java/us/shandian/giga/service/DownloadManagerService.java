@@ -47,8 +47,8 @@ import java.util.ArrayList;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.MissionRecoveryInfo;
-import us.shandian.giga.io.StoredDirectoryHelper;
-import us.shandian.giga.io.StoredFileHelper;
+import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManager.NetworkState;
 

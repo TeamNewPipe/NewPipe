@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="view_count_text">%1$s ଭିଉଜ、</string>
+    <string name="main_bg_subtitle">ଆରମ୍ଭ କରିବା ପାଇଁ \"ସର୍ଚ୍ଚ\" ବଟନ କୁ ଦବାନ୍ତୁ</string>
+</resources>

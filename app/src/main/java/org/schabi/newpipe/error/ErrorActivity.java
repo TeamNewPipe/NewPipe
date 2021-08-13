@@ -1,7 +1,6 @@
 package org.schabi.newpipe.error;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,6 +15,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -27,7 +27,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ActivityErrorBinding;
 import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.time.LocalDateTime;
@@ -137,6 +137,8 @@ public class ErrorActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
+
+        ThemeHelper.setDayNightMode(this);
         ThemeHelper.setTheme(this);
 
         activityErrorBinding = ActivityErrorBinding.inflate(getLayoutInflater());
@@ -188,15 +190,17 @@ public class ErrorActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        final int id = item.getItemId();
-        if (id == android.R.id.home) {
-            onBackPressed();
-        } else if (id == R.id.menu_item_share_error) {
-            ShareUtils.shareText(this, getString(R.string.error_report_title), buildJson());
-        } else {
-            return false;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            case R.id.menu_item_share_error:
+                ShareUtils.shareText(getApplicationContext(),
+                        getString(R.string.error_report_title), buildJson());
+                return true;
+            default:
+                return false;
         }
-        return true;
     }
 
     private void openPrivacyPolicyDialog(final Context context, final String action) {
@@ -217,13 +221,10 @@ public class ErrorActivity extends AppCompatActivity {
                                         + getString(R.string.app_name) + " "
                                         + BuildConfig.VERSION_NAME)
                                 .putExtra(Intent.EXTRA_TEXT, buildJson());
-                        if (i.resolveActivity(getPackageManager()) != null) {
-                            ShareUtils.openIntentInApp(context, i);
-                        }
+                        ShareUtils.openIntentInApp(context, i, true);
                     } else if (action.equals("GITHUB")) { // open the NewPipe issue page on GitHub
                         ShareUtils.openUrlInBrowser(this, ERROR_GITHUB_ISSUE_URL, false);
                     }
-
                 })
                 .setNegativeButton(R.string.decline, (dialog, which) -> {
                     // do nothing

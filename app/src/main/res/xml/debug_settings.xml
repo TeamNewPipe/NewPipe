@@ -30,6 +30,13 @@
         android:title="@string/show_original_time_ago_title"
         app:iconSpaceReserved="false" />
 
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/disable_media_tunneling_key"
+        android:summary="@string/disable_media_tunneling_summary"
+        android:title="@string/disable_media_tunneling_title"
+        app:iconSpaceReserved="false" />
+
     <Preference
         android:key="@string/crash_the_app_key"
         android:title="@string/crash_the_app"

@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingStart="@dimen/activity_horizontal_margin"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
     tools:context=".fragments.detail.VideoDetailFragment">
 
     <TextView
@@ -13,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif-condensed"
         android:text="@string/app_name"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -20,9 +23,10 @@
 
     <TextView
         android:id="@+id/mainBGSubtitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:gravity="center"
         android:text="@string/main_bg_subtitle"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 

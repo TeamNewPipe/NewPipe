@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +14,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +32,7 @@ import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
+import org.schabi.newpipe.databinding.DialogEditTextBinding;
 import org.schabi.newpipe.databinding.LocalPlaylistHeaderBinding;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -44,7 +45,7 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
-import org.schabi.newpipe.util.KoreUtil;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -66,13 +67,14 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> {
     // Save the list 10 seconds after the last change occurred
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
-
     @State
     protected Long playlistId;
     @State
@@ -248,7 +250,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
         if (DEBUG) {
             Log.d(TAG, "onCreateOptionsMenu() called with: "
                     + "menu = [" + menu + "], inflater = [" + inflater + "]");
@@ -340,7 +343,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             }
 
             @Override
-            public void onComplete() { }
+            public void onComplete() {
+            }
         };
     }
 
@@ -361,6 +365,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                         .create()
                         .show();
             }
+        } else if (item.getItemId() == R.id.menu_item_rename_playlist) {
+            createRenameDialog();
         } else {
             return super.onOptionsItemSelected(item);
         }
@@ -420,7 +426,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                                     playlistItem.getStreamId());
 
                             final boolean hasState = streamStatesIter.next() != null;
-                            if (indexInHistory < 0 ||  hasState) {
+                            if (indexInHistory < 0 || hasState) {
                                 notWatchedItems.add(playlistItem);
                             } else if (!thumbnailVideoRemoved
                                     && playlistManager.getPlaylistThumbnail(playlistId)
@@ -521,18 +527,20 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             return;
         }
 
-        final View dialogView = View.inflate(getContext(), R.layout.dialog_playlist_name, null);
-        final EditText nameEdit = dialogView.findViewById(R.id.playlist_name);
-        nameEdit.setText(name);
-        nameEdit.setSelection(nameEdit.getText().length());
+        final DialogEditTextBinding dialogBinding
+                = DialogEditTextBinding.inflate(getLayoutInflater());
+        dialogBinding.dialogEditText.setHint(R.string.name);
+        dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+        dialogBinding.dialogEditText.setSelection(dialogBinding.dialogEditText.getText().length());
+        dialogBinding.dialogEditText.setText(name);
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext())
                 .setTitle(R.string.rename_playlist)
-                .setView(dialogView)
+                .setView(dialogBinding.getRoot())
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.rename, (dialogInterface, i) ->
-                        changePlaylistName(nameEdit.getText().toString()));
+                        changePlaylistName(dialogBinding.dialogEditText.getText().toString()));
 
         dialogBuilder.show();
     }
@@ -674,7 +682,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
         int directions = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        if (isGridLayout()) {
+        if (shouldUseGridLayout(requireContext())) {
             directions |= ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
         }
         return new ItemTouchHelper.SimpleCallback(directions,
@@ -722,7 +730,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
             @Override
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder,
-                                 final int swipeDir) { }
+                                 final int swipeDir) {
+            }
         };
     }
 
@@ -744,7 +753,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
 
-        if (PlayerHolder.getType() != null) {
+        if (PlayerHolder.getInstance().getType() != null) {
             entries.add(StreamDialogEntry.enqueue);
         }
         if (infoItem.getStreamType() == StreamType.AUDIO_STREAM) {
@@ -755,7 +764,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share
             ));
-        } else  {
+        } else {
             entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,
                     StreamDialogEntry.start_here_on_popup,
@@ -765,9 +774,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     StreamDialogEntry.share
             ));
         }
-        if (KoreUtil.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
+        entries.add(StreamDialogEntry.open_in_browser);
+        if (KoreUtils.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
         }
+
+        if (!isNullOrEmpty(infoItem.getUploaderUrl())) {
+            entries.add(StreamDialogEntry.show_channel_details);
+        }
+
         StreamDialogEntry.setEnabledEntries(entries);
 
         StreamDialogEntry.start_here_on_background.setCustomAction((fragment, infoItemDuplicate) ->

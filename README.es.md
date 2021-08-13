@@ -9,7 +9,7 @@
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/Licencia-GPL%20v3-blue.svg"></a>
 <a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Build Status"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
 <a href="https://hosted.weblate.org/engage/newpipe/es/" alt="Estado de la traducción"><img src="https://hosted.weblate.org/widgets/newpipe/es/svg-badge.svg"></a>
-<a href="http://webchat.freenode.net/?channels=%23newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/Canal%20de%20IRC%20-%23newpipe-brightgreen.svg"></a>
+<a href="https://web.libera.chat/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/Canal%20de%20IRC%20-%23newpipe-brightgreen.svg"></a>
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
@@ -18,7 +18,7 @@
 <p align="center"><a href="https://newpipe.net">Sitio web</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">Preguntas Frecuentes</a> &bull; <a href="https://newpipe.net/press/">Prensa</a></p>
 <hr>
 
-*Lea esto en otros idiomas: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md) .*
+*Lea esto en otros idiomas: [English](README.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md).*
 
 <b>AVISO: ESTA ES UNA VERSIÓN BETA, POR LO TANTO, PUEDE ENCONTRAR BUGS (ERRORES). SI ENCUENTRA UNO, ABRA UN ISSUE A TRAVÉS DE NUESTRO REPOSITORIO GITHUB.</b>
 
@@ -85,7 +85,7 @@ NewPipe apoya varios servicios. Nuestras [documentaciones](https://teamnewpipe.g
 
 ## Installación y actualizaciones
 Se puede instalar NewPipe usando uno de los métodos siguientes:
- 1. Agregar nuestro repositorio personalizado a F-Droid e instalarlo desde allí. Las instrucciones están aquí: https://newpipe.schabi.org/FAQ/tutorials/install-add-fdroid-repo/
+ 1. Agregar nuestro repositorio personalizado a F-Droid e instalarlo desde allí. Las instrucciones están aquí: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
  2. Descargar el archivo APK del enlace [Github Releases](https://github.com/TeamNewPipe/NewPipe/releases) e instalarlo.
  3. Actualizar a través de F-Droid. Este es el método más lento para obtener la actualización, como F-Droid debe reconocer cambios, construir el APK aparte, firmarlo con una clave, y finalmente empujar la actualización a los usuarios.
  4. Construir un APK de depuración por si mismo. Este es el modo más rápido para realizar nuevas características en su dispositivo, pero es mucho más complicado, asi que recomendamos uno de los otros métodos.
@@ -135,6 +135,6 @@ El proyecto NewPipe tiene como objetivo proveer una experience privada y anónim
 Por lo tanto, la app no colecciona ningunos datos sin su consentimiento. La politica de privacidad de NewPipe explica en detalle los datos enviados y almacenados cuando envia un informe de error, o comentario en nuestro blog. Puede encontrar el documento [aqui](https://newpipe.net/legal/privacy/).
 
 ## Licencia
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
 NewPipe es Software Libre: Puede usar, estudiar, compartir, y mejorarlo a su voluntad. Especificamente puede redistribuir y/o modificarlo bajo los términos de la [GNU General Public License](https://www.gnu.org/licenses/gpl.html) como publicado por la Free Software Foundation, o versión 3 de la licencia, o (en su opción) cualquier versión posterior.

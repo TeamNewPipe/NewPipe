@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Başlamaq üçün \"Axtarış\" bölməsinə toxunun
-\n</string>
+    <string name="main_bg_subtitle">Başlamaq üçün \"Axtarış\" bölməsinə toxunun</string>
     <string name="view_count_text">%1$s baxış</string>
     <string name="upload_date_text">%1$s tarixində yayımlanıb</string>
     <string name="no_player_found">Axın pleyeri tapılmadı. \"VLC\" yüklənilsin\?</string>

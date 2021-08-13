@@ -3,16 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings_category_downloads_title">
 
-
-    <CheckBoxPreference
+    <SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="@string/downloads_storage_ask"
-        android:summary="@string/downloads_storage_ask_summary_kitkat"
+        android:summary="@string/downloads_storage_ask_summary"
         android:title="@string/downloads_storage_ask_title"
         app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
-        android:defaultValue="false"
         android:key="@string/storage_use_saf"
         android:summary="@string/downloads_storage_use_saf_summary"
         android:title="@string/downloads_storage_use_saf_title"

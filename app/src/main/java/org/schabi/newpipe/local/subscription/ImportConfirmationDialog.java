@@ -1,17 +1,16 @@
 package org.schabi.newpipe.local.subscription;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.util.ThemeHelper;
 
 import icepick.Icepick;
 import icepick.State;
@@ -24,13 +23,9 @@ public class ImportConfirmationDialog extends DialogFragment {
 
     public static void show(@NonNull final Fragment fragment,
                             @NonNull final Intent resultServiceIntent) {
-        if (fragment.getFragmentManager() == null) {
-            return;
-        }
-
         final ImportConfirmationDialog confirmationDialog = new ImportConfirmationDialog();
         confirmationDialog.setResultServiceIntent(resultServiceIntent);
-        confirmationDialog.show(fragment.getFragmentManager(), null);
+        confirmationDialog.show(fragment.getParentFragmentManager(), null);
     }
 
     public void setResultServiceIntent(final Intent resultServiceIntent) {
@@ -41,7 +36,7 @@ public class ImportConfirmationDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
         assureCorrectAppLanguage(getContext());
-        return new AlertDialog.Builder(getContext(), ThemeHelper.getDialogTheme(getContext()))
+        return new AlertDialog.Builder(requireContext())
                 .setMessage(R.string.import_network_expensive_warning)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)

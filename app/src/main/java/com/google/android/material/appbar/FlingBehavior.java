@@ -63,8 +63,9 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
         return consumed == dy;
     }
 
-    public boolean onInterceptTouchEvent(final CoordinatorLayout parent, final AppBarLayout child,
-                                         final MotionEvent ev) {
+    public boolean onInterceptTouchEvent(@NonNull final CoordinatorLayout parent,
+                                         @NonNull final AppBarLayout child,
+                                         @NonNull final MotionEvent ev) {
         for (final Integer element : skipInterceptionOfElements) {
             final View view = child.findViewById(element);
             if (view != null) {
