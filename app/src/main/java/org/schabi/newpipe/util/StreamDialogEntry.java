@@ -5,6 +5,7 @@ import android.net.Uri;
 
 import androidx.fragment.app.Fragment;
 
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
@@ -20,7 +21,9 @@ import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.player.MainPlayer.PlayerType.AUDIO;
 import static org.schabi.newpipe.player.MainPlayer.PlayerType.POPUP;
 
@@ -29,12 +32,29 @@ public enum StreamDialogEntry {
     // enum values with DEFAULT actions //
     //////////////////////////////////////
 
-    show_channel_details(R.string.show_channel_details, (fragment, item) ->
-        // For some reason `getParentFragmentManager()` doesn't work, but this does.
-        NavigationHelper.openChannelFragment(
-                fragment.requireActivity().getSupportFragmentManager(),
-                item.getServiceId(), item.getUploaderUrl(), item.getUploaderName())
-    ),
+    show_channel_details(R.string.show_channel_details, (fragment, item) -> {
+        if (isNullOrEmpty(item.getUploaderUrl())) {
+            final int serviceId = item.getServiceId();
+            final String url = item.getUrl();
+            // TODO: Some visual loading indicator
+            final String uploaderUrl = ExtractorHelper.getStreamInfo(serviceId, url, false)
+                    .subscribeOn(Schedulers.io())
+                    .blockingGet()
+                    .getUploaderUrl();
+            NewPipeDatabase.getInstance(fragment.getContext()).streamDAO()
+                    .setUploaderUrl(serviceId, url, uploaderUrl)
+                    .subscribeOn(Schedulers.io()).subscribe();
+            // For some reason `getParentFragmentManager()` doesn't work, but this does.
+            NavigationHelper.openChannelFragment(
+                    fragment.requireActivity().getSupportFragmentManager(),
+                    item.getServiceId(), uploaderUrl, item.getUploaderName());
+        } else {
+            // For some reason `getParentFragmentManager()` doesn't work, but this does.
+            NavigationHelper.openChannelFragment(
+                    fragment.requireActivity().getSupportFragmentManager(),
+                    item.getServiceId(), item.getUploaderUrl(), item.getUploaderName());
+        }
+    }),
 
     /**
      * Enqueues the stream automatically to the current PlayerType.<br>
