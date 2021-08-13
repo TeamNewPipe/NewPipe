@@ -3,6 +3,7 @@ package org.schabi.newpipe.util;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,6 +19,9 @@ import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.views.MarkableSeekBar;
+import org.schabi.newpipe.views.SeekBarMarker;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -194,5 +198,116 @@ public final class SponsorBlockUtils {
             Log.e("SPONSOR_BLOCK", "Error getting video ID hash.", e);
             return null;
         }
+    }
+
+    static Integer parseSegmentCategory(
+            final String category,
+            final Context context,
+            final SharedPreferences prefs
+    ) {
+        String key;
+        final String colorStr;
+        switch (category) {
+            case "sponsor":
+                key = context.getString(R.string.sponsor_block_category_sponsor_key);
+                if (prefs.getBoolean(key, false)) {
+                    key = context.getString(R.string.sponsor_block_category_sponsor_color_key);
+                    colorStr = prefs.getString(key, null);
+                    return colorStr == null
+                            ? context.getResources().getColor(R.color.sponsor_segment)
+                            : Color.parseColor(colorStr);
+                }
+                break;
+            case "intro":
+                key = context.getString(R.string.sponsor_block_category_intro_key);
+                if (prefs.getBoolean(key, false)) {
+                    key = context.getString(R.string.sponsor_block_category_intro_color_key);
+                    colorStr = prefs.getString(key, null);
+                    return colorStr == null
+                            ? context.getResources().getColor(R.color.intro_segment)
+                            : Color.parseColor(colorStr);
+                }
+                break;
+            case "outro":
+                key = context.getString(R.string.sponsor_block_category_outro_key);
+                if (prefs.getBoolean(key, false)) {
+                    key = context.getString(R.string.sponsor_block_category_outro_color_key);
+                    colorStr = prefs.getString(key, null);
+                    return colorStr == null
+                            ? context.getResources().getColor(R.color.outro_segment)
+                            : Color.parseColor(colorStr);
+                }
+                break;
+            case "interaction":
+                key = context.getString(R.string.sponsor_block_category_interaction_key);
+                if (prefs.getBoolean(key, false)) {
+                    key = context.getString(R.string.sponsor_block_category_interaction_color_key);
+                    colorStr = prefs.getString(key, null);
+                    return colorStr == null
+                            ? context.getResources().getColor(R.color.interaction_segment)
+                            : Color.parseColor(colorStr);
+                }
+                break;
+            case "selfpromo":
+                key = context.getString(R.string.sponsor_block_category_self_promo_key);
+                if (prefs.getBoolean(key, false)) {
+                    key = context.getString(R.string.sponsor_block_category_self_promo_color_key);
+                    colorStr = prefs.getString(key, null);
+                    return colorStr == null
+                            ? context.getResources().getColor(R.color.self_promo_segment)
+                            : Color.parseColor(colorStr);
+                }
+                break;
+            case "music_offtopic":
+                key = context.getString(R.string.sponsor_block_category_non_music_key);
+                if (prefs.getBoolean(key, false)) {
+                    key = context.getString(R.string.sponsor_block_category_non_music_color_key);
+                    colorStr = prefs.getString(key, null);
+                    return colorStr == null
+                            ? context.getResources().getColor(R.color.non_music_segment)
+                            : Color.parseColor(colorStr);
+                }
+                break;
+        }
+
+        return null;
+    }
+
+    public static void markSegments(
+            final PlayQueueItem currentItem,
+            final MarkableSeekBar seekBar,
+            final Context context,
+            final SharedPreferences prefs
+    ) {
+        seekBar.clearMarkers();
+
+        if (currentItem == null) {
+            return;
+        }
+
+        final VideoSegment[] segments = currentItem.getVideoSegments();
+
+        if (segments == null || segments.length == 0) {
+            return;
+        }
+
+        for (final VideoSegment segment : segments) {
+            final Integer color = parseSegmentCategory(segment.category, context, prefs);
+
+            // if null, then this category should not be marked
+            if (color == null) {
+                continue;
+            }
+
+            // Duration is in seconds, we need millis
+            final int length = (int) currentItem.getDuration() * 1000;
+
+            final SeekBarMarker seekBarMarker =
+                    new SeekBarMarker(segment.startTime, segment.endTime,
+                            length, color);
+            seekBar.seekBarMarkers.add(seekBarMarker);
+        }
+
+        seekBar.drawMarkers();
     }
 }
