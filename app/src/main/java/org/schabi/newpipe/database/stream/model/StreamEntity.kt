@@ -93,6 +93,7 @@ data class StreamEntity(
         val item = StreamInfoItem(serviceId, url, title, streamType)
         item.duration = duration
         item.uploaderName = uploader
+        item.uploaderUrl = uploaderUrl
         item.thumbnailUrl = thumbnailUrl
 
         if (viewCount != null) item.viewCount = viewCount as Long

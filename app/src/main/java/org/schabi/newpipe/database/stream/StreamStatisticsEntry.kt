@@ -29,6 +29,7 @@ class StreamStatisticsEntry(
         val item = StreamInfoItem(streamEntity.serviceId, streamEntity.url, streamEntity.title, streamEntity.streamType)
         item.duration = streamEntity.duration
         item.uploaderName = streamEntity.uploader
+        item.uploaderUrl = streamEntity.uploaderUrl
         item.thumbnailUrl = streamEntity.thumbnailUrl
 
         return item
