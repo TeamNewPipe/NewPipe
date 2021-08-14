@@ -755,4 +755,5 @@
     <string name="tablet_mode_title">Tablet mode</string>
     <string name="on">On</string>
     <string name="off">Off</string>
+    <string name="error_show_channel_details">Error at Show Channel Details</string>
 </resources>

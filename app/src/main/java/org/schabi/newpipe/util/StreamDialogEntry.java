@@ -52,7 +52,7 @@ public enum StreamDialogEntry {
                                 item.getUploaderName());
                     }, throwable -> Toast.makeText(
                             fragment.getContext(),
-                            "Error at Show Channel Details",
+                            R.string.error_show_channel_details,
                             Toast.LENGTH_SHORT
                     ).show());
         } else {
