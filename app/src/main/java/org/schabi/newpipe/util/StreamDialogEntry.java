@@ -45,21 +45,14 @@ public enum StreamDialogEntry {
                         NewPipeDatabase.getInstance(fragment.getContext()).streamDAO()
                                 .setUploaderUrl(serviceId, url, result.getUploaderUrl())
                                 .subscribeOn(Schedulers.io()).subscribe();
-                        // For some reason `getParentFragmentManager()` doesn't work, but this does.
-                        NavigationHelper.openChannelFragment(
-                                fragment.requireActivity().getSupportFragmentManager(),
-                                item.getServiceId(), result.getUploaderUrl(),
-                                item.getUploaderName());
+                        openChannelFragment(fragment, item, result.getUploaderUrl());
                     }, throwable -> Toast.makeText(
                             fragment.getContext(),
                             R.string.error_show_channel_details,
                             Toast.LENGTH_SHORT
                     ).show());
         } else {
-            // For some reason `getParentFragmentManager()` doesn't work, but this does.
-            NavigationHelper.openChannelFragment(
-                    fragment.requireActivity().getSupportFragmentManager(),
-                    item.getServiceId(), item.getUploaderUrl(), item.getUploaderName());
+            openChannelFragment(fragment, item, item.getUploaderUrl());
         }
     }),
 
@@ -205,5 +198,18 @@ public enum StreamDialogEntry {
 
     public interface StreamDialogEntryAction {
         void onClick(Fragment fragment, StreamInfoItem infoItem);
+    }
+
+    /////////////////////////////////////////////
+    // private method to open channel fragment //
+    /////////////////////////////////////////////
+
+    private static void openChannelFragment(final Fragment fragment,
+                                            final StreamInfoItem item,
+                                            final String uploaderUrl) {
+        // For some reason `getParentFragmentManager()` doesn't work, but this does.
+        NavigationHelper.openChannelFragment(
+                fragment.requireActivity().getSupportFragmentManager(),
+                item.getServiceId(), uploaderUrl, item.getUploaderName());
     }
 }
