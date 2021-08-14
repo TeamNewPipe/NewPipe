@@ -2,6 +2,7 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.net.Uri;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -37,17 +38,23 @@ public enum StreamDialogEntry {
             final int serviceId = item.getServiceId();
             final String url = item.getUrl();
             // TODO: Some visual loading indicator
-            final String uploaderUrl = ExtractorHelper.getStreamInfo(serviceId, url, false)
+            ExtractorHelper.getStreamInfo(serviceId, url, false)
                     .subscribeOn(Schedulers.io())
-                    .blockingGet()
-                    .getUploaderUrl();
-            NewPipeDatabase.getInstance(fragment.getContext()).streamDAO()
-                    .setUploaderUrl(serviceId, url, uploaderUrl)
-                    .subscribeOn(Schedulers.io()).subscribe();
-            // For some reason `getParentFragmentManager()` doesn't work, but this does.
-            NavigationHelper.openChannelFragment(
-                    fragment.requireActivity().getSupportFragmentManager(),
-                    item.getServiceId(), uploaderUrl, item.getUploaderName());
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(result -> {
+                        NewPipeDatabase.getInstance(fragment.getContext()).streamDAO()
+                                .setUploaderUrl(serviceId, url, result.getUploaderUrl())
+                                .subscribeOn(Schedulers.io()).subscribe();
+                        // For some reason `getParentFragmentManager()` doesn't work, but this does.
+                        NavigationHelper.openChannelFragment(
+                                fragment.requireActivity().getSupportFragmentManager(),
+                                item.getServiceId(), result.getUploaderUrl(),
+                                item.getUploaderName());
+                    }, throwable -> Toast.makeText(
+                            fragment.getContext(),
+                            "Error at Show Channel Details",
+                            Toast.LENGTH_SHORT
+                    ).show());
         } else {
             // For some reason `getParentFragmentManager()` doesn't work, but this does.
             NavigationHelper.openChannelFragment(
