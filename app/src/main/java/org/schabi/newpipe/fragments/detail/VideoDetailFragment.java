@@ -1554,11 +1554,13 @@ public final class VideoDetailFragment
         binding.detailSubChannelThumbnailView.setImageDrawable(buddyDrawable);
         binding.detailUploaderThumbnailView.setImageDrawable(buddyDrawable);
 
+        final StreamType streamType = info.getStreamType();
+
         if (info.getViewCount() >= 0) {
-            if (info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
+            if (streamType.equals(StreamType.AUDIO_LIVE_STREAM)) {
                 binding.detailViewCountView.setText(Localization.listeningCount(activity,
                         info.getViewCount()));
-            } else if (info.getStreamType().equals(StreamType.LIVE_STREAM)) {
+            } else if (streamType.equals(StreamType.LIVE_STREAM)) {
                 binding.detailViewCountView.setText(Localization
                         .localizeWatchingCount(activity, info.getViewCount()));
             } else {
@@ -1605,7 +1607,7 @@ public final class VideoDetailFragment
             binding.detailDurationView.setBackgroundColor(
                     ContextCompat.getColor(activity, R.color.duration_background_color));
             animate(binding.detailDurationView, true, 100);
-        } else if (info.getStreamType() == StreamType.LIVE_STREAM) {
+        } else if (streamType.equals(StreamType.LIVE_STREAM)) {
             binding.detailDurationView.setText(R.string.duration_live);
             binding.detailDurationView.setBackgroundColor(
                     ContextCompat.getColor(activity, R.color.live_duration_background_color));
@@ -1648,8 +1650,11 @@ public final class VideoDetailFragment
             }
         }
 
-        binding.detailControlsDownload.setVisibility(info.getStreamType() == StreamType.LIVE_STREAM
-                || info.getStreamType() == StreamType.AUDIO_LIVE_STREAM ? View.GONE : View.VISIBLE);
+        binding.detailControlsDownload.setVisibility(streamType.equals(StreamType.LIVE_STREAM)
+                || streamType.equals(StreamType.AUDIO_LIVE_STREAM)
+                || streamType.equals(StreamType.POST_LIVE_STREAM)
+                || streamType.equals(StreamType.POST_LIVE_AUDIO_STREAM)
+                ? View.GONE : View.VISIBLE);
         binding.detailControlsBackground.setVisibility(info.getAudioStreams().isEmpty()
                 ? View.GONE : View.VISIBLE);
 
@@ -1722,8 +1727,11 @@ public final class VideoDetailFragment
                 binding.detailPositionView.setVisibility(View.GONE);
                 // TODO: Remove this check when separation of concerns is done.
                 //  (live streams weren't getting updated because they are mixed)
-                if (!info.getStreamType().equals(StreamType.LIVE_STREAM)
-                        && !info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
+                final StreamType streamType = info.getStreamType();
+                if (!streamType.equals(StreamType.LIVE_STREAM)
+                        && !streamType.equals(StreamType.AUDIO_LIVE_STREAM)
+                        && !streamType.equals(StreamType.POST_LIVE_STREAM)
+                        && !streamType.equals(StreamType.POST_LIVE_AUDIO_STREAM)) {
                     return;
                 }
             } else {
