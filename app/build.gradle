@@ -215,7 +215,7 @@ dependencies {
     implementation "androidx.room:room-runtime:${androidxRoomVersion}"
     implementation "androidx.room:room-rxjava3:${androidxRoomVersion}"
 
-    // Apple Sillicon Mac workaround (https://issuetracker.google.com/issues/174695268#comment9)
+    // Apple Silicon Mac workaround (https://issuetracker.google.com/issues/174695268#comment9)
     kapt "org.xerial:sqlite-jdbc:3.34.0"
 
     kapt "androidx.room:room-compiler:${androidxRoomVersion}"
