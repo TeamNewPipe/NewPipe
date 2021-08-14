@@ -47,7 +47,7 @@ data class StreamEntity(
     var uploader: String,
 
     @ColumnInfo(name = STREAM_UPLOADER_URL)
-    var uploaderUrl: String,
+    var uploaderUrl: String? = null,
 
     @ColumnInfo(name = STREAM_THUMBNAIL_URL)
     var thumbnailUrl: String? = null,

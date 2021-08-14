@@ -165,7 +165,7 @@ public final class Migrations {
         @Override
         public void migrate(@NonNull final SupportSQLiteDatabase database) {
             database.execSQL(
-                    "ALTER TABLE streams ADD COLUMN uploader_url TEXT NOT NULL default ''"
+                    "ALTER TABLE streams ADD COLUMN uploader_url TEXT"
             );
         }
     };
