@@ -74,7 +74,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
 
         if (video != null) {
             try {
-                final MediaSource streamSource = buildMediaSource(dataSource, video,
+                final MediaSource streamSource = buildMediaSource(dataSource, video, info,
                         PlayerHelper.cacheKeyOf(info, video), tag);
                 mediaSources.add(streamSource);
             } catch (final IOException e) {
@@ -92,7 +92,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         // merge with audio stream in case if video does not contain audio
         if (audio != null && (video == null || video.isVideoOnly())) {
             try {
-                final MediaSource audioSource = buildMediaSource(dataSource, audio,
+                final MediaSource audioSource = buildMediaSource(dataSource, audio, info,
                         PlayerHelper.cacheKeyOf(info, audio), tag);
                 mediaSources.add(audioSource);
             } catch (final IOException e) {

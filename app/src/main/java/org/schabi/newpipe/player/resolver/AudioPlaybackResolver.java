@@ -49,8 +49,8 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         final MediaSourceTag tag = new MediaSourceTag(info);
         MediaSource mediaSource = null;
         try {
-            mediaSource = buildMediaSource(dataSource, audio, PlayerHelper.cacheKeyOf(info, audio),
-                    tag);
+            mediaSource = buildMediaSource(dataSource, audio, info, PlayerHelper.cacheKeyOf(info,
+                    audio), tag);
         } catch (final IOException ignored) {
         }
         return mediaSource;
