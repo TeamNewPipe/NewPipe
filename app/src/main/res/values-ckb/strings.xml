@@ -204,7 +204,6 @@
     <string name="list">لیست</string>
     <string name="start_downloads">دەستپێکردنەوەی داگرتنەکان</string>
     <string name="caption_none">هیچ ژێرنووسێک نییە</string>
-    <string name="download_finished_more">%s داگرتن تەواوبوون</string>
     <string name="popup_playing_toast">کارپێکردن لە پەنجەرەی بچووک</string>
     <string name="later">دواتر</string>
     <string name="no_views">هیچ بینراوێک نییە</string>
@@ -266,7 +265,6 @@
     <string name="error_http_no_content">ڕاژەکە هیچ داتایەک نانێرێت</string>
     <string name="watch_history_states_deleted">شوێنی کارپێکراوەکان سڕانەوە.</string>
     <string name="app_update_notification_channel_description">ئاگانامەکانی وەشانی نوێی داوانامە</string>
-    <string name="download_finished">داگرتن تەواوبوو</string>
     <string name="show_higher_resolutions_summary">تەنها چەند مۆبایلێک پشتگیری کارپێکردنی ڤیدیۆی 2K/4K دەکەن</string>
     <string name="notification_channel_description">ئاگانامەکانی داوانامە بۆ پاشبنەما و کارپێکردنەکانی پەنجەرەی بچووک</string>
     <string name="feed_use_dedicated_fetch_method_summary">لەهەندێ خزمەتگوزاریدا بەردەستە، هەمیشە خێرایە بەڵام ڕەنگە هەندێ لە بابەتەکان زانیارییەکانیان ناتەواو بێت (وەک نەبوونی ماوە، جۆری بابەت ، نەبوونی پەخش).</string>
@@ -501,7 +499,6 @@
     <string name="share">هاوبه‌شپێكردن</string>
     <string name="download_choose_new_path">بوخچەی داگرتن بگۆڕە بۆ ئەنجامدانی کاریگەری</string>
     <string name="show_hold_to_append_summary">پیشاندانی ڕێنمایی کاتێ لە پاشبنەما یاخوود پەنجەرەی بچووکدا گرتە دەکرێ لەسەر” وردەکاری:” ڤیدیۆیەک</string>
-    <string name="deleted_downloads">%1$d لە داگرتنەکان سڕانەوە</string>
     <string name="audio_streams_empty">پەخشی هیچ دەنگێک نەدۆزرایەوە</string>
     <string name="artists">هونەرمەندەکان</string>
     <string name="no_one_watching">هیچ کەسێک تەماشای ناکات</string>

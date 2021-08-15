@@ -430,8 +430,6 @@
     <string name="enqueue">Accoda</string>
     <string name="permission_denied">Azione negata dal sistema</string>
     <string name="download_failed">Download fallito</string>
-    <string name="download_finished">Download terminato</string>
-    <string name="download_finished_more">%s download terminati</string>
     <string name="generate_unique_name">Genera nome univoco</string>
     <string name="overwrite">Sovrascrivi</string>
     <string name="overwrite_finished_warning">Esiste già un file scaricato con lo stesso nome</string>
@@ -520,7 +518,6 @@
     <string name="choose_instance_prompt">Scegli un\'istanza</string>
     <string name="clear_download_history">Elimina la cronologia dei download</string>
     <string name="delete_downloaded_files">Elimina file scaricati</string>
-    <string name="deleted_downloads">%1$d download eliminati</string>
     <string name="permission_display_over_apps">Consentire la visualizzazione sopra altre applicazioni</string>
     <string name="app_language_title">Lingua dell\'applicazione</string>
     <string name="systems_language">Predefinita di sistema</string>

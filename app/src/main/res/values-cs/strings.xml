@@ -434,8 +434,6 @@
     <string name="enqueue">Fronta</string>
     <string name="permission_denied">Akce odmítnuta systémem</string>
     <string name="download_failed">Stahování se nezdařilo</string>
-    <string name="download_finished">Stahování dokončeno</string>
-    <string name="download_finished_more">%s stahování dokončeno</string>
     <string name="generate_unique_name">Vytvořit jedinečný název</string>
     <string name="overwrite">Přepsat</string>
     <string name="overwrite_unrelated_warning">Stažený soubor s tímto názvem již existuje</string>
@@ -525,7 +523,6 @@
     <string name="choose_instance_prompt">Vyberte instanci</string>
     <string name="clear_download_history">Smazat historii stahování</string>
     <string name="delete_downloaded_files">Smazat stažené soubory</string>
-    <string name="deleted_downloads">Smazat %1$d stahování</string>
     <string name="permission_display_over_apps">Souhlasit se zobrazením přes jiné aplikace</string>
     <string name="app_language_title">Jazyk aplikace</string>
     <string name="systems_language">Jazyk systému</string>

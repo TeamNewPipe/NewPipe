@@ -436,8 +436,6 @@
     <string name="enqueue">Черга</string>
     <string name="permission_denied">Дію заборонено системою</string>
     <string name="download_failed">Помилка завантаження</string>
-    <string name="download_finished">Завантаження завершено</string>
-    <string name="download_finished_more">%s завантажень завершено</string>
     <string name="generate_unique_name">Згенерувати унікальну назву</string>
     <string name="overwrite">Перезаписати</string>
     <string name="overwrite_unrelated_warning">Файл з такою назвою вже існує</string>
@@ -606,7 +604,6 @@
     <string name="restricted_video">Це відео з віковим обмеженням.
 \n
 \nЩоб побачити його ввімкніть «%1$s» в налаштуваннях.</string>
-    <string name="deleted_downloads">Видалено %1$d завантажень</string>
     <string name="detail_sub_channel_thumbnail_view_description">Ескіз аватара каналу</string>
     <string name="show_original_time_ago_summary">Оригінальні тексти сервісів будуть видимі в потокових елементах</string>
     <string name="youtube_restricted_mode_enabled_title">Увімкнути «Обмежений режим» YouTube</string>

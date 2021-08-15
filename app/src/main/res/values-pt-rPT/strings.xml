@@ -13,7 +13,6 @@
     <string name="settings_file_replacement_character_summary">Os carateres inválidos são substituídos por este valor</string>
     <string name="download">Descarregar</string>
     <string name="use_external_video_player_summary">Remove o áudio em algumas resoluções</string>
-    <string name="download_finished_more">%s descargas concluídas</string>
     <string name="systems_language">Predefinição do sistema</string>
     <string name="minimize_on_exit_title">Minimizar ao trocar de aplicação</string>
     <string name="unmute">Ativar som</string>
@@ -177,7 +176,6 @@
     <string name="content">Conteúdo</string>
     <string name="show_original_time_ago_summary">Os textos originais dos serviços serão visíveis nos itens de fluxo</string>
     <string name="upload_date_text">Publicado em %1$s</string>
-    <string name="download_finished">Descarga concluída</string>
     <string name="skip_silence_checkbox">Avanço rápido durante silêncio</string>
     <string name="audio_streams_empty">Não foram encontradas emissões de áudio</string>
     <string name="error_postprocessing_stopped">NewPipe foi fechado enquanto trabalhava no ficheiro</string>
@@ -565,7 +563,6 @@
     <string name="use_inexact_seek_title">Utilizar pesquisa rápida</string>
     <string name="override_current_data">Está prestes a substituir a configuração atual.</string>
     <string name="switch_to_popup">Mudar para popup</string>
-    <string name="deleted_downloads">%1$d descargas removidas</string>
     <string name="append_playlist">Adicionar à lista de reprodução</string>
     <string name="popup_playing_toast">Reproduzir no modo poppup</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Acha que a fonte demora muito tempo a carregar\? Se sim, tente ativar o carregamento rápido (pode alterar a opção nas definições ou no botão abaixo).

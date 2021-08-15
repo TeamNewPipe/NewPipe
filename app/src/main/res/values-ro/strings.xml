@@ -544,7 +544,6 @@
     <string name="pause_downloads_on_mobile">Întrerupeți pe rețelele măsurate</string>
     <string name="max_retry_desc">Numărul maxim de încercări înainte de anularea descărcării</string>
     <string name="stop">Oprește</string>
-    <string name="deleted_downloads">Au fost șterse %1$d descărcări</string>
     <string name="delete_downloaded_files">Ștergeți fișierele descărcate</string>
     <string name="confirm_prompt">Doriți să ștergeți istoricul descărcărilor sau să ștergeți toate fișierele descărcate\?</string>
     <string name="clear_download_history">Șterge istoricul descărcărilor</string>
@@ -572,8 +571,6 @@
     <string name="overwrite_unrelated_warning">Există deja un fișier cu acest nume</string>
     <string name="overwrite">Suprascrieți</string>
     <string name="generate_unique_name">Generați un nume unic</string>
-    <string name="download_finished_more">%s descărcări terminate</string>
-    <string name="download_finished">Descărcare terminată</string>
     <string name="download_failed">Descărcare eșuată</string>
     <string name="permission_denied">Acțiune refuzată de sistem</string>
     <string name="enqueue">Fila de așteptare</string>

@@ -431,8 +431,6 @@
     <string name="enqueue">Kø</string>
     <string name="permission_denied">Handling avvist av systemet</string>
     <string name="download_failed">Nedlasting mislyktes</string>
-    <string name="download_finished">Nedlasting fullført</string>
-    <string name="download_finished_more">%s nedlastinger fullført</string>
     <string name="generate_unique_name">Generer unikt navn</string>
     <string name="overwrite">Overskriv</string>
     <string name="overwrite_finished_warning">Nedlastet fil ved dette navnet finnes allerede</string>
@@ -509,7 +507,6 @@
     <string name="choose_instance_prompt">Velg en instans</string>
     <string name="clear_download_history">Tøm nedlastingshistorikk</string>
     <string name="delete_downloaded_files">Slett nedlastede filer</string>
-    <string name="deleted_downloads">Slettet %1$d nedlastninger</string>
     <string name="peertube_instance_url_summary">Velg dine favoritter blant PeerTube-instansene</string>
     <string name="peertube_instance_url_help">Finn instansene du liker på %s</string>
     <string name="peertube_instance_add_title">Legg til instans</string>

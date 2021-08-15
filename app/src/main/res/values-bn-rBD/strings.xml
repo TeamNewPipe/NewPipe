@@ -215,7 +215,6 @@
     <string name="error_http_not_found">পাওয়া যায় নি</string>
     <string name="error_unknown_host">সার্ভার পাওয়া যায় নি</string>
     <string name="show_error">এরর দেখান</string>
-    <string name="download_finished">ডাউন লোড শেষ হয়েছে</string>
     <string name="download_failed">ডাউন লোড হয় নি</string>
     <string name="paused">পজ হয়েছে</string>
     <string name="app_update_notification_content_text">ডাউন লোড করার জন্য চাপ দিন</string>

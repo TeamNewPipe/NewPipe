@@ -318,7 +318,6 @@
     <string name="missions_header_pending">در انتظار</string>
     <string name="enqueue">صف</string>
     <string name="download_failed">بارگیری ناموفق بود</string>
-    <string name="download_finished">بارگیری پایان یافت</string>
     <string name="error_http_not_found">یافت نشد</string>
     <string name="error_postprocessing_failed">شکست در پساپردازش</string>
     <string name="max_retry_desc">بیشینه تعداد تلاش‌ها پیش از لغو بارگیری</string>
@@ -433,7 +432,6 @@
     <string name="queued">در صف</string>
     <string name="post_processing">در حال پساپردازش</string>
     <string name="permission_denied">این کنش توسط سیستم متوقف شد</string>
-    <string name="download_finished_more">%s بارگیری پایان یافت</string>
     <string name="generate_unique_name">تولید نام یگانه</string>
     <string name="overwrite">بازنویسی</string>
     <string name="download_already_running">یک بارگیری دیگر با همین نام در جریان است</string>
@@ -533,7 +531,6 @@
     <string name="systems_language">پیش‌فرض دستگاه</string>
     <string name="app_language_title">زبان برنامه</string>
     <string name="choose_instance_prompt">نمونه‌ای را انتخاب کنید</string>
-    <string name="deleted_downloads">تعداد %1$d بارگیری، پاک شد</string>
     <string name="delete_downloaded_files">پاک کردن پرونده‌های بارگیری شده</string>
     <string name="clear_download_history">پاک کردن تاریخچه بارگیری</string>
     <string name="error_download_resource_gone">ناتوانی در بازیابی این بارگیری</string>

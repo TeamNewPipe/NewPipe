@@ -407,8 +407,6 @@
     <string name="file_deleted">Archivo borrado</string>
     <!-- download notifications -->
     <string name="download_failed">Descarga fallida</string>
-    <string name="download_finished">Descarga finalizada</string>
-    <string name="download_finished_more">%s descargas finalizadas</string>
     <!-- dialog about existing downloads -->
     <string name="generate_unique_name">Generar nombre único</string>
     <string name="overwrite">Sobrescribir</string>
@@ -523,7 +521,6 @@
     <string name="choose_instance_prompt">Elige una instancia</string>
     <string name="clear_download_history">Limpiar historial de descargas</string>
     <string name="delete_downloaded_files">Borrar archivos descargados</string>
-    <string name="deleted_downloads">Borradas %1$d descargas</string>
     <string name="permission_display_over_apps">Permitir mostrar sobre otras aplicaciones</string>
     <string name="app_language_title">Idioma de aplicación</string>
     <string name="systems_language">Predefinido del sistema</string>

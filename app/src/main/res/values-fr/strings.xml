@@ -428,8 +428,6 @@
     <string name="download_failed">Téléchargement échoué</string>
     <string name="error_timeout">Délai de connexion expiré</string>
     <string name="conferences">Conférences</string>
-    <string name="download_finished">Téléchargement terminé</string>
-    <string name="download_finished_more">%s téléchargements terminés</string>
     <string name="queued">ajouté à la liste de lecture</string>
     <string name="generate_unique_name">Générer un nom unique</string>
     <string name="overwrite">Écraser</string>
@@ -520,7 +518,6 @@
     <string name="playlist_no_uploader">Généré automatiquement (pas de téléverseur trouvé)</string>
     <string name="clear_download_history">Effacer l’historique de téléchargement</string>
     <string name="delete_downloaded_files">Supprimer les fichiers téléchargés</string>
-    <string name="deleted_downloads">%1$d téléchargements supprimés</string>
     <string name="permission_display_over_apps">Autoriser l’affichage au-dessus d’autres applications</string>
     <string name="app_language_title">Langue de l’application</string>
     <string name="systems_language">Prédéfini par le système</string>

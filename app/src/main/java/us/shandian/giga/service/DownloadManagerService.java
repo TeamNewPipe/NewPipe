@@ -49,6 +49,8 @@ import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.MissionRecoveryInfo;
 import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
+import org.schabi.newpipe.util.Localization;
+
 import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManager.NetworkState;
 
@@ -476,9 +478,9 @@ public class DownloadManagerService extends Service {
                 downloadDoneNotification.setContentTitle(null);
             }
 
-            downloadDoneNotification.setContentText(getString(R.string.download_finished));
+            downloadDoneNotification.setContentText(Localization.downloadCount(this, downloadDoneCount));
             downloadDoneNotification.setStyle(new NotificationCompat.BigTextStyle()
-                    .setBigContentTitle(getString(R.string.download_finished))
+                    .setBigContentTitle(Localization.downloadCount(this, downloadDoneCount))
                     .bigText(name)
             );
         } else {
@@ -486,7 +488,7 @@ public class DownloadManagerService extends Service {
             downloadDoneList.append(name);
 
             downloadDoneNotification.setStyle(new NotificationCompat.BigTextStyle().bigText(downloadDoneList));
-            downloadDoneNotification.setContentTitle(getString(R.string.download_finished_more, String.valueOf(downloadDoneCount + 1)));
+            downloadDoneNotification.setContentTitle(Localization.downloadCount(this, downloadDoneCount));
             downloadDoneNotification.setContentText(downloadDoneList);
         }
 

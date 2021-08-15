@@ -423,8 +423,6 @@
     <string name="enqueue">Kö</string>
     <string name="permission_denied">Åtgärd som nekas av systemet</string>
     <string name="download_failed">Nedladdningen misslyckades</string>
-    <string name="download_finished">Nedladdningen är färdig</string>
-    <string name="download_finished_more">%s nedladdningar är färdiga</string>
     <string name="generate_unique_name">Generera unikt namn</string>
     <string name="overwrite">Skriv över</string>
     <string name="download_already_running">Det finns en pågående nedladdning med det här namnet</string>
@@ -570,7 +568,6 @@
     <string name="close">Stäng ner</string>
     <string name="pause_downloads_on_mobile_desc">Användbart när du byter till mobildata, även om vissa nedladdningar inte kan avbrytas</string>
     <string name="pause_downloads_on_mobile">Avbryt i en uppmätt nätverk</string>
-    <string name="deleted_downloads">Rensa %1$d nedladdningarna</string>
     <string name="delete_downloaded_files">Radera nedladdade filer</string>
     <string name="confirm_prompt">Vill du rensa din nedladdningshistorik eller radera alla nerladdade filer\?</string>
     <string name="clear_download_history">Rensa nedladdningshistorik</string>

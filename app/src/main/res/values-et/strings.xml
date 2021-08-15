@@ -432,8 +432,6 @@
     <string name="enqueue">Järjekord</string>
     <string name="permission_denied">Tegevus keelati süsteemi poolt</string>
     <string name="download_failed">Allalaadimine nurjus</string>
-    <string name="download_finished">Allalaadimine lõpetatud</string>
-    <string name="download_finished_more">%s allalaadimist lõppenud</string>
     <string name="generate_unique_name">Loo kordumatu nimi</string>
     <string name="overwrite">Kirjuta üle</string>
     <string name="overwrite_unrelated_warning">Sellise nimega fail on juba olemas</string>
@@ -580,7 +578,6 @@
     <string name="infinite_videos">∞ videot</string>
     <string name="more_than_100_videos">100+ videot</string>
     <string name="close">Sulge</string>
-    <string name="deleted_downloads">Kustutasin %1$d allalaaditud faili</string>
     <string name="delete_downloaded_files">Kustuta allalaaditud failid</string>
     <string name="confirm_prompt">Kas sa soovid kustutada allalaadimiste ajaloo või allalaaditud failid\?</string>
     <string name="clear_download_history">Kustuta allalaadimiste ajalugu</string>

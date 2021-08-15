@@ -430,8 +430,6 @@
     <string name="enqueue">Wachtrij</string>
     <string name="permission_denied">Actie door het systeem geweigerd</string>
     <string name="download_failed">Downloaden mislukt</string>
-    <string name="download_finished">Downloaden voltooid</string>
-    <string name="download_finished_more">%s downloads voltooid</string>
     <string name="generate_unique_name">Genereer een unieke naam</string>
     <string name="overwrite">Overschrijven</string>
     <string name="overwrite_finished_warning">Er bestaat al een gedownload bestand met deze naam</string>
@@ -517,7 +515,6 @@
     <string name="choose_instance_prompt">Kies een instantie</string>
     <string name="clear_download_history">Download geschiedenis verwijderen</string>
     <string name="delete_downloaded_files">Verwijder gedownloade bestanden</string>
-    <string name="deleted_downloads">%1$d downloads verwijderd</string>
     <string name="permission_display_over_apps">Geef toestemming voor weergave over andere apps</string>
     <string name="app_language_title">App taal</string>
     <string name="systems_language">Systeem taal gebruiken</string>

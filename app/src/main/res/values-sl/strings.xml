@@ -278,8 +278,6 @@
     <string name="overwrite_finished_warning">Prenesena datoteka s tem imenom že obstaja</string>
     <string name="overwrite_unrelated_warning">Datoteka s tem imenom že obstaja</string>
     <string name="generate_unique_name">Ustvari edinstveno ime</string>
-    <string name="download_finished_more">%s prenosom je končanih</string>
-    <string name="download_finished">Prenos končan</string>
     <string name="download_failed">Prenos spodletel</string>
     <string name="paused">Pavza</string>
     <string name="missions_header_finished">Končano</string>

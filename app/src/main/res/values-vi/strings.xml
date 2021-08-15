@@ -427,8 +427,6 @@
     <string name="enqueue">Hàng chờ</string>
     <string name="permission_denied">Thao tác bị từ chối bởi hệ thống</string>
     <string name="download_failed">Tải về không thành công</string>
-    <string name="download_finished">Đã tải về</string>
-    <string name="download_finished_more">%s tải về đã xong</string>
     <string name="generate_unique_name">Tạo tên riêng biệt</string>
     <string name="overwrite">Ghi đè</string>
     <string name="overwrite_finished_warning">Có một tệp đã tải về trùng tên</string>
@@ -512,7 +510,6 @@
     <string name="app_language_title">Ngôn ngữ ứng dụng</string>
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' cho phép tải về thẻ SD</string>
     <string name="downloads_storage_use_saf_title">Sử dụng trình chọn thư mục của hệ thống (SAF)</string>
-    <string name="deleted_downloads">Đã xóa %1$d file tải về</string>
     <string name="delete_downloaded_files">Xóa file đã tải về</string>
     <string name="clear_download_history">Xóa lịch sử tải về</string>
     <string name="error_download_resource_gone">Không thể khôi phục bản download này</string>
