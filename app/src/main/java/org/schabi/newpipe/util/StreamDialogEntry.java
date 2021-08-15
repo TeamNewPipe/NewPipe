@@ -41,24 +41,14 @@ public enum StreamDialogEntry {
      * <br>
      * Info: Add this entry within showStreamDialog.
      */
-    enqueue(R.string.enqueue_stream, (fragment, item) -> {
-        final MainPlayer.PlayerType type = PlayerHolder.getInstance().getType();
-
-        if (type == AUDIO) {
-            NavigationHelper.enqueueOnBackgroundPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), false);
-        } else if (type == POPUP) {
-            NavigationHelper.enqueueOnPopupPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), false);
-        } else /* type == VIDEO */ {
-            NavigationHelper.enqueueOnVideoPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), false);
-        }
-    }),
     //TODO reduce duplication
+    enqueue(R.string.enqueue_stream, (fragment, item) -> {
+        NavigationHelper.enqueueOnPlayer(fragment.getContext(),
+                new SinglePlayQueue(item));
+    }),
     next(R.string.play_next_stream, (fragment, item) -> {
-        NavigationHelper.nextOnVideoPlayer(fragment.getContext(),
-                new SinglePlayQueue(item), false);
+        NavigationHelper.enqueueNextOnPlayer(fragment.getContext(),
+                new SinglePlayQueue(item));
     }),
 
     start_here_on_background(R.string.start_here_on_background, (fragment, item) ->
