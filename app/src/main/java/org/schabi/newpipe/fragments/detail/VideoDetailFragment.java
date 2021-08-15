@@ -1105,7 +1105,7 @@ public final class VideoDetailFragment
 
         final PlayQueue queue = setupPlayQueueForIntent(append);
         if (append) {
-            NavigationHelper.enqueueOnPopupPlayer(activity, queue, false);
+            NavigationHelper.enqueueOnPlayer(activity, queue); //resumePlayback: false
         } else {
             replaceQueueIfUserConfirms(() -> NavigationHelper
                     .playOnPopupPlayer(activity, queue, true));
@@ -1129,7 +1129,7 @@ public final class VideoDetailFragment
 
         final PlayQueue queue = setupPlayQueueForIntent(append);
         if (append) {
-            NavigationHelper.enqueueOnBackgroundPlayer(activity, queue, false);
+            NavigationHelper.enqueueOnPlayer(activity, queue);
         } else {
             replaceQueueIfUserConfirms(() -> NavigationHelper
                     .playOnBackgroundPlayer(activity, queue, true));
@@ -1155,7 +1155,7 @@ public final class VideoDetailFragment
         addVideoPlayerView();
 
         final Intent playerIntent = NavigationHelper
-                .getPlayerIntent(requireContext(), MainPlayer.class, queue, true, autoPlayEnabled);
+                .getPlayerIntent(requireContext(), MainPlayer.class, queue, autoPlayEnabled);
         ContextCompat.startForegroundService(activity, playerIntent);
     }
 

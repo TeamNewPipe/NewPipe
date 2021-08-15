@@ -10,8 +10,6 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.player.MainPlayer;
-import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
@@ -21,8 +19,6 @@ import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
-import static org.schabi.newpipe.player.MainPlayer.PlayerType.AUDIO;
-import static org.schabi.newpipe.player.MainPlayer.PlayerType.POPUP;
 
 public enum StreamDialogEntry {
     //////////////////////////////////////
@@ -41,7 +37,6 @@ public enum StreamDialogEntry {
      * <br>
      * Info: Add this entry within showStreamDialog.
      */
-    //TODO reduce duplication
     enqueue(R.string.enqueue_stream, (fragment, item) -> {
         NavigationHelper.enqueueOnPlayer(fragment.getContext(),
                 new SinglePlayQueue(item));

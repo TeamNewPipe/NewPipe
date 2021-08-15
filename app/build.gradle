@@ -168,7 +168,7 @@ afterEvaluate {
     if (!System.properties.containsKey('skipFormatKtlint')) {
         preDebugBuild.dependsOn formatKtlint
     }
-//    preDebugBuild.dependsOn runCheckstyle, runKtlint //TODO enable again
+    preDebugBuild.dependsOn runCheckstyle, runKtlint
 }
 
 sonarqube {

@@ -225,10 +225,10 @@ public final class Player implements
     public static final String REPEAT_MODE = "repeat_mode";
     public static final String PLAYBACK_QUALITY = "playback_quality";
     public static final String PLAY_QUEUE_KEY = "play_queue_key";
-    public static final String APPEND_ONLY = "append_only";
+    public static final String ENQUEUE = "enqueue";
+    public static final String ENQUEUE_NEXT = "enqueue_next";
     public static final String RESUME_PLAYBACK = "resume_playback";
     public static final String PLAY_WHEN_READY = "play_when_ready";
-    public static final String SELECT_ON_APPEND = "select_on_append";
     public static final String PLAYER_TYPE = "player_type";
     public static final String IS_MUTED = "is_muted";
 
@@ -606,30 +606,19 @@ public final class Player implements
         if (intent.hasExtra(PLAYBACK_QUALITY)) {
             setPlaybackQuality(intent.getStringExtra(PLAYBACK_QUALITY));
         }
-//TODO reduce code duplication
-        // Resolve append intents
-        if (intent.getBooleanExtra(APPEND_ONLY, false)
-                && playQueue != null) { /* Append Only = true && playQueue not empty*/
+        // Resolve enqueue intents
+        if (intent.getBooleanExtra(ENQUEUE, false)
+                && playQueue != null) { /* Enqueue = true && playQueue not empty*/
             final int sizeBeforeAppend = playQueue.size();
             playQueue.append(newQueue.getStreams());
 
-            if ((intent.getBooleanExtra(SELECT_ON_APPEND, false)
-                    || currentState == STATE_COMPLETED) && newQueue.getStreams().size() > 0) {
-                playQueue.setIndex(sizeBeforeAppend); // zero index => play appended
-            }
-
             return;
-        // Resolve not append (play next) intents
-        } else if (!(intent.getBooleanExtra(APPEND_ONLY, false))
-                && playQueue != null) { /* Append Only = false && playQueue not empty*/
+        // Resolve enqueue next intents
+        } else if (intent.getBooleanExtra(ENQUEUE_NEXT, false)
+                && playQueue != null) { /* Enqueue next = true && playQueue not empty*/
             final int currentIndex = playQueue.getIndex();
             playQueue.append(newQueue.getStreams());
             playQueue.move(playQueue.size() - 1, currentIndex + 1);
-
-            if ((intent.getBooleanExtra(SELECT_ON_APPEND, false)
-                    || currentState == STATE_COMPLETED) && newQueue.getStreams().size() > 0) {
-                playQueue.setIndex(currentIndex + 1); // play the nexted
-            }
 
             return;
         }

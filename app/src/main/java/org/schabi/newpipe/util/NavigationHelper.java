@@ -102,7 +102,7 @@ public final class NavigationHelper {
                                                     @NonNull final Class<T> targetClazz,
                                                     @Nullable final PlayQueue playQueue) {
         return getPlayerIntent(context, targetClazz, playQueue)
-                .putExtra(Player.APPEND_ONLY, true);
+                .putExtra(Player.ENQUEUE, true);
     }
 
     @NonNull
@@ -110,7 +110,7 @@ public final class NavigationHelper {
                                                  @NonNull final Class<T> targetClazz,
                                                  @Nullable final PlayQueue playQueue) {
         return getPlayerIntent(context, targetClazz, playQueue)
-                .putExtra(Player.APPEND_ONLY, false);
+                .putExtra(Player.ENQUEUE_NEXT, true);
     }
 
     /* PLAY */
@@ -159,13 +159,6 @@ public final class NavigationHelper {
         ContextCompat.startForegroundService(context, intent);
     }
     /* ENQUEUE */
-    /**
-     * no resume on playback
-     * no select on append
-     * unified for all player types using
-     * @param context
-     * @param queue
-     */
     public static void enqueueOnPlayer(final Context context, final PlayQueue queue) {
         Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueIntent(context, MainPlayer.class, queue);
@@ -174,19 +167,12 @@ public final class NavigationHelper {
         ContextCompat.startForegroundService(context, intent);
     }
     /* NEXT */
-    /**
-     * no resume on playback
-     * no select on append
-     * unified for all player types using
-     * @param context
-     * @param queue
-     */
     public static void enqueueNextOnPlayer(final Context context, final PlayQueue queue) {
         Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueNextIntent(context, MainPlayer.class, queue);
 
-        intent.putExtra(Player.PLAYER_TYPE, PlayerHolder.getInstance().getType().ordinal()); // It is really needed unfortunately, although it doesn't make much sense.
-        // intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.POPUP.ordinal()); PlayerHolder.getInstance().getType().ordinal() = MainPlayer.PlayerType.POPUP.ordinal()
+        intent.putExtra(Player.PLAYER_TYPE, PlayerHolder.getInstance().getType().ordinal());
+        // It is really needed unfortunately, although it doesn't make much sense.
         ContextCompat.startForegroundService(context, intent);
     }
 
