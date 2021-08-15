@@ -41,6 +41,7 @@ public enum StreamDialogEntry {
         NavigationHelper.enqueueOnPlayer(fragment.getContext(),
                 new SinglePlayQueue(item));
     }),
+
     next(R.string.play_next_stream, (fragment, item) -> {
         NavigationHelper.enqueueNextOnPlayer(fragment.getContext(),
                 new SinglePlayQueue(item));
