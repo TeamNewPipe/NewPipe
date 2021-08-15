@@ -57,18 +57,8 @@ public enum StreamDialogEntry {
     }),
     //TODO reduce duplication
     next(R.string.play_next_stream, (fragment, item) -> {
-        final MainPlayer.PlayerType type = PlayerHolder.getInstance().getType();
-
-        if (type == AUDIO) {
-            NavigationHelper.nextOnVideoPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), false);
-        } else if (type == POPUP) {
-            NavigationHelper.nextOnPopupPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), false);
-        } else /* type == VIDEO */ {
-            NavigationHelper.nextOnVideoPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), false);
-        }
+        NavigationHelper.nextOnVideoPlayer(fragment.getContext(),
+                new SinglePlayQueue(item), false);
     }),
 
     start_here_on_background(R.string.start_here_on_background, (fragment, item) ->
