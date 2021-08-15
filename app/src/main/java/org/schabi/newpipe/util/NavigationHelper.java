@@ -160,7 +160,7 @@ public final class NavigationHelper {
     }
     /* ENQUEUE */
     public static void enqueueOnPlayer(final Context context, final PlayQueue queue) {
-        Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueIntent(context, MainPlayer.class, queue);
 
         int playerType = MainPlayer.PlayerType.AUDIO.ordinal();
@@ -172,7 +172,7 @@ public final class NavigationHelper {
     }
     /* NEXT */
     public static void enqueueNextOnPlayer(final Context context, final PlayQueue queue) {
-        Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.enqueued_next, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueNextIntent(context, MainPlayer.class, queue);
 
         int playerType = MainPlayer.PlayerType.AUDIO.ordinal();
