@@ -163,7 +163,11 @@ public final class NavigationHelper {
         Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueIntent(context, MainPlayer.class, queue);
 
-        intent.putExtra(Player.PLAYER_TYPE, PlayerHolder.getInstance().getType().ordinal());
+        int playerType = MainPlayer.PlayerType.AUDIO.ordinal();
+        if (PlayerHolder.getInstance().getType() != null) {
+            playerType = PlayerHolder.getInstance().getType().ordinal();
+        }
+        intent.putExtra(Player.PLAYER_TYPE, playerType);
         ContextCompat.startForegroundService(context, intent);
     }
     /* NEXT */
@@ -171,7 +175,11 @@ public final class NavigationHelper {
         Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueNextIntent(context, MainPlayer.class, queue);
 
-        intent.putExtra(Player.PLAYER_TYPE, PlayerHolder.getInstance().getType().ordinal());
+        int playerType = MainPlayer.PlayerType.AUDIO.ordinal();
+        if (PlayerHolder.getInstance().getType() != null) {
+            playerType = PlayerHolder.getInstance().getType().ordinal();
+        }
+        intent.putExtra(Player.PLAYER_TYPE, playerType);
         // It is really needed unfortunately, although it doesn't make much sense.
         ContextCompat.startForegroundService(context, intent);
     }
