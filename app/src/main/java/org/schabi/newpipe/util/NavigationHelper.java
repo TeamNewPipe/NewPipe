@@ -87,34 +87,6 @@ public final class NavigationHelper {
 
         return intent;
     }
-    /**
-     *
-     * @param context
-     * @param targetClazz
-     * @param playQueue
-     * @param resumePlayback is also unused when enqueueing or enqueueing next
-     * @param <T>
-     * @return
-     */
-    @NonNull
-    @Deprecated
-    public static <T> Intent getPlayerIntent(@NonNull final Context context,
-                                             @NonNull final Class<T> targetClazz,
-                                             @Nullable final PlayQueue playQueue,
-                                             final boolean resumePlayback) {
-        final Intent intent = new Intent(context, targetClazz);
-
-        if (playQueue != null) {
-            final String cacheKey = SerializedCache.getInstance().put(playQueue, PlayQueue.class);
-            if (cacheKey != null) {
-                intent.putExtra(Player.PLAY_QUEUE_KEY, cacheKey);
-            }
-        }
-        intent.putExtra(Player.RESUME_PLAYBACK, resumePlayback);
-        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.VIDEO.ordinal());
-
-        return intent;
-    }
 
     @NonNull
     public static <T> Intent getPlayerIntent(@NonNull final Context context,
@@ -125,25 +97,6 @@ public final class NavigationHelper {
                 .putExtra(Player.PLAY_WHEN_READY, playWhenReady);
     }
 
-    /**
-     * @param context
-     * @param targetClazz
-     * @param playQueue
-     * @param resumePlayback is also unused when enqueueing or enqueueing next
-     * @param playWhenReady
-     * @param <T>
-     * @return
-     */
-    @NonNull
-    @Deprecated
-    public static <T> Intent getPlayerIntent(@NonNull final Context context,
-                                             @NonNull final Class<T> targetClazz,
-                                             @Nullable final PlayQueue playQueue,
-                                             final boolean resumePlayback,
-                                             final boolean playWhenReady) {
-        return getPlayerIntent(context, targetClazz, playQueue, resumePlayback)
-                .putExtra(Player.PLAY_WHEN_READY, playWhenReady);
-    }
     @NonNull
     public static <T> Intent getPlayerEnqueueIntent(@NonNull final Context context,
                                                     @NonNull final Class<T> targetClazz,
@@ -152,27 +105,6 @@ public final class NavigationHelper {
                 .putExtra(Player.APPEND_ONLY, true);
     }
 
-    /**
-     *
-     * @param context
-     * @param targetClazz
-     * @param playQueue
-     * @param selectOnAppend parameter is always false
-     * @param resumePlayback is also unused when enqueueing or enqueueing next
-     * @param <T>
-     * @return
-     */
-    @NonNull
-    @Deprecated
-    public static <T> Intent getPlayerEnqueueIntent(@NonNull final Context context,
-                                                    @NonNull final Class<T> targetClazz,
-                                                    @Nullable final PlayQueue playQueue,
-                                                    final boolean selectOnAppend,
-                                                    final boolean resumePlayback) {
-        return getPlayerIntent(context, targetClazz, playQueue, resumePlayback)
-                .putExtra(Player.APPEND_ONLY, true)
-                .putExtra(Player.SELECT_ON_APPEND, selectOnAppend);
-    }
     @NonNull
     public static <T> Intent getPlayerEnqueueNextIntent(@NonNull final Context context,
                                                  @NonNull final Class<T> targetClazz,
@@ -180,26 +112,7 @@ public final class NavigationHelper {
         return getPlayerIntent(context, targetClazz, playQueue)
                 .putExtra(Player.APPEND_ONLY, false);
     }
-    /**
-     * @param context
-     * @param targetClazz
-     * @param playQueue
-     * @param selectOnAppend parameter is always false
-     * @param resumePlayback is also unused when enqueueing or enqueueing next
-     * @param <T>
-     * @return
-     */
-    @NonNull
-    @Deprecated
-    public static <T> Intent getPlayerNextIntent(@NonNull final Context context,
-                                                    @NonNull final Class<T> targetClazz,
-                                                    @Nullable final PlayQueue playQueue,
-                                                    final boolean selectOnAppend,
-                                                    final boolean resumePlayback) {
-        return getPlayerIntent(context, targetClazz, playQueue, resumePlayback)
-                .putExtra(Player.APPEND_ONLY, false)
-                .putExtra(Player.SELECT_ON_APPEND, selectOnAppend);
-    }
+
     /* PLAY */
     public static void playOnMainPlayer(final AppCompatActivity activity,
                                         @NonNull final PlayQueue playQueue) {
@@ -246,6 +159,13 @@ public final class NavigationHelper {
         ContextCompat.startForegroundService(context, intent);
     }
     /* ENQUEUE */
+    /**
+     * no resume on playback
+     * no select on append
+     * unified for all player types using
+     * @param context
+     * @param queue
+     */
     public static void enqueueOnPlayer(final Context context, final PlayQueue queue) {
         Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueIntent(context, MainPlayer.class, queue);
@@ -253,62 +173,7 @@ public final class NavigationHelper {
         intent.putExtra(Player.PLAYER_TYPE, PlayerHolder.getInstance().getType().ordinal());
         ContextCompat.startForegroundService(context, intent);
     }
-    @Deprecated
-    public static void enqueueOnVideoPlayer(final Context context, final PlayQueue queue,
-                                            final boolean resumePlayback) {
-        enqueueOnVideoPlayer(context, queue, false, resumePlayback);
-    }
-    @Deprecated
-    public static void enqueueOnVideoPlayer(final Context context, final PlayQueue queue,
-                                            final boolean selectOnAppend,
-                                            final boolean resumePlayback) {
-
-        Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
-        final Intent intent = getPlayerEnqueueIntent(
-                context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
-
-        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.VIDEO.ordinal());
-        ContextCompat.startForegroundService(context, intent);
-    }
-    @Deprecated
-    public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue,
-                                            final boolean resumePlayback) {
-        enqueueOnPopupPlayer(context, queue, false, resumePlayback);
-    }
-    @Deprecated
-    public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue,
-                                            final boolean selectOnAppend,
-                                            final boolean resumePlayback) {
-        if (!PermissionHelper.isPopupEnabled(context)) {
-            PermissionHelper.showPopupEnablementToast(context);
-            return;
-        }
-
-        Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
-        final Intent intent = getPlayerEnqueueIntent(
-                context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
-        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.POPUP.ordinal());
-        ContextCompat.startForegroundService(context, intent);
-    }
-    @Deprecated
-    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue,
-                                                 final boolean resumePlayback) {
-        enqueueOnBackgroundPlayer(context, queue, false, resumePlayback);
-    }
-    @Deprecated
-    public static void enqueueOnBackgroundPlayer(final Context context,
-                                                 final PlayQueue queue,
-                                                 final boolean selectOnAppend,
-                                                 final boolean resumePlayback) {
-        Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
-        final Intent intent = getPlayerEnqueueIntent(
-                context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
-        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.AUDIO.ordinal());
-        ContextCompat.startForegroundService(context, intent);
-    }
-
     /* NEXT */
-
     /**
      * no resume on playback
      * no select on append
@@ -324,93 +189,7 @@ public final class NavigationHelper {
         // intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.POPUP.ordinal()); PlayerHolder.getInstance().getType().ordinal() = MainPlayer.PlayerType.POPUP.ordinal()
         ContextCompat.startForegroundService(context, intent);
     }
-    /**
-     * @param context          Context
-     * @param queue            a single video
-     * @param resumePlayback   remove; unused
-     */
-    @Deprecated
-    public static void nextOnVideoPlayer(final Context context,
-                                         final PlayQueue queue,
-                                         final boolean resumePlayback) {
-        nextOnVideoPlayer(context, queue, false, resumePlayback);
-    }
 
-    /**
-     * only used in this class
-     * @param context          Context
-     * @param queue            a single video
-     * @param selectOnAppend   remove; always false
-     * @param resumePlayback   remove; unused
-     */
-    @Deprecated
-    public static void nextOnVideoPlayer(final Context context,
-                                         final PlayQueue queue,
-                                         final boolean selectOnAppend,
-                                         final boolean resumePlayback) {
-        Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show(); //Toast
-        final Intent intent = getPlayerNextIntent(
-                context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
-
-        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.VIDEO.ordinal());
-        ContextCompat.startForegroundService(context, intent);
-    }
-    @Deprecated
-    public static void nextOnPopupPlayer(final Context context,
-                                         final PlayQueue queue,
-                                         final boolean resumePlayback) {
-        nextOnPopupPlayer(context, queue, false, resumePlayback);
-    }
-
-    /**
-     * only used in this class
-     * @param context
-     * @param queue
-     * @param selectOnAppend   remove; always false
-     * @param resumePlayback   remove; unused
-     */
-    @Deprecated
-    public static void nextOnPopupPlayer(final Context context,
-                                         final PlayQueue queue,
-                                         final boolean selectOnAppend,
-                                         final boolean resumePlayback) {
-        if (!PermissionHelper.isPopupEnabled(context)) {
-            PermissionHelper.showPopupEnablementToast(context);
-            return;
-        }
-        Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show();
-        final Intent intent = getPlayerNextIntent(
-                context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
-
-        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.POPUP.ordinal());
-        ContextCompat.startForegroundService(context, intent);
-    }
-    @Deprecated
-    public static void nextOnBackgroundPlayer(final Context context,
-                                              final PlayQueue queue,
-                                              final boolean resumePlayback) {
-        nextOnBackgroundPlayer(context, queue, false, resumePlayback);
-    }
-
-    /**
-     * only used in this class
-     * @param context
-     * @param queue
-     * @param selectOnAppend
-     * @param resumePlayback
-     */
-    @Deprecated
-    public static void nextOnBackgroundPlayer(final Context context,
-                                              final PlayQueue queue,
-                                              final boolean selectOnAppend,
-                                              final boolean resumePlayback) {
-        Toast.makeText(context, R.string.playing_next, Toast.LENGTH_SHORT).show();
-        final Intent intent = getPlayerNextIntent(
-                context, MainPlayer.class, queue, selectOnAppend, resumePlayback);
-
-        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.AUDIO.ordinal());
-        ContextCompat.startForegroundService(context, intent);
-    }
     /*//////////////////////////////////////////////////////////////////////////
     // External Players
     //////////////////////////////////////////////////////////////////////////*/
