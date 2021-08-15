@@ -354,9 +354,13 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
 
         if (PlayerHolder.getInstance().getType() != null) {
             entries.addAll(Arrays.asList(
-                    StreamDialogEntry.enqueue,
-                    StreamDialogEntry.next
+                    StreamDialogEntry.enqueue
             ));
+        }
+        if (PlayerHolder.getInstance().isPlayerOpen()) {
+            if (PlayerHolder.getInstance().getQueueSize() > 1) {
+                entries.add(StreamDialogEntry.next);
+            }
         }
         if (item.getStreamType() == StreamType.AUDIO_STREAM) {
             entries.addAll(Arrays.asList(

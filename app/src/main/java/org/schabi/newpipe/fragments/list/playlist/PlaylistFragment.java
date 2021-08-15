@@ -145,11 +145,15 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
 
         if (PlayerHolder.getInstance().getType() != null) {
-            entries.addAll(Arrays.asList(
-                    StreamDialogEntry.enqueue,
-                    StreamDialogEntry.next
-            ));
+            entries.add(StreamDialogEntry.enqueue);
         }
+
+        if (PlayerHolder.getInstance().isPlayerOpen()) {
+            if (PlayerHolder.getInstance().getQueueSize() > 1) {
+                entries.add(StreamDialogEntry.next);
+            }
+        }
+
         if (item.getStreamType() == StreamType.AUDIO_STREAM) {
             entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,
