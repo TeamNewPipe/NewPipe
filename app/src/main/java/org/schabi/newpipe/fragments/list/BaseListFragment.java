@@ -357,11 +357,11 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                     StreamDialogEntry.enqueue
             ));
         }
-        if (PlayerHolder.getInstance().isPlayerOpen()) {
-            if (PlayerHolder.getInstance().getQueueSize() > 1) {
-                entries.add(StreamDialogEntry.next);
-            }
+
+        if (PlayerHolder.getInstance().getQueueSize() > 1) {
+            entries.add(StreamDialogEntry.next);
         }
+
         if (item.getStreamType() == StreamType.AUDIO_STREAM) {
             entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,
