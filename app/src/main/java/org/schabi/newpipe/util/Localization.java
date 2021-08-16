@@ -227,9 +227,8 @@ public final class Localization {
     }
 
     public static String downloadCount(final Context context, final int downloadCount) {
-        final int properCount = downloadCount + 1;
         return getQuantity(context, R.plurals.download_finished_notification, 0,
-                properCount, shortCount(context, properCount));
+                downloadCount, shortCount(context, downloadCount));
     }
 
     public static String deletedDownloadCount(final Context context, final int deletedCount) {

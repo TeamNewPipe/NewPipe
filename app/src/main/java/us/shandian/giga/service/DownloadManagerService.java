@@ -469,7 +469,8 @@ public class DownloadManagerService extends Service {
                     .setContentIntent(makePendingIntent(ACTION_OPEN_DOWNLOADS_FINISHED));
         }
 
-        if (downloadDoneCount < 1) {
+        downloadDoneCount++;
+        if (downloadDoneCount == 1) {
             downloadDoneList.append(name);
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -493,7 +494,6 @@ public class DownloadManagerService extends Service {
         }
 
         mNotificationManager.notify(DOWNLOADS_NOTIFICATION_ID, downloadDoneNotification.build());
-        downloadDoneCount++;
     }
 
     public void notifyFailedDownload(DownloadMission mission) {
