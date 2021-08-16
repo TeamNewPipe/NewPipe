@@ -24,10 +24,6 @@ class AppDatabaseTest {
         private val DEFAULT_TYPE = StreamType.VIDEO_STREAM
         private const val DEFAULT_DURATION = 480L
         private const val DEFAULT_UPLOADER_NAME = "Uploader Test"
-        private const val DEFAULT_THUMBNAIL = "https://example.com/example.jpg"
-
-        private const val DEFAULT_SECOND_SERVICE_ID = 0
-        private const val DEFAULT_SECOND_URL = "https://www.youtube.com/watch?v=ncQU6iBn5Fc"
     }
 
     @get:Rule
@@ -37,10 +33,10 @@ class AppDatabaseTest {
     )
 
     @Test
-    fun migrateDatabaseFrom2to3() {
-        val databaseInV2 = testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_2)
+    fun migrateDatabaseFrom3to4() {
+        val databaseInV3 = testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_3)
 
-        databaseInV2.run {
+        databaseInV3.run {
             insert(
                 "streams", SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
@@ -51,75 +47,23 @@ class AppDatabaseTest {
                     put("stream_type", DEFAULT_TYPE.name)
                     put("duration", DEFAULT_DURATION)
                     put("uploader", DEFAULT_UPLOADER_NAME)
-                    put("thumbnail_url", DEFAULT_THUMBNAIL)
-                }
-            )
-            insert(
-                "streams", SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    // put("uid", null)
-                    put("service_id", DEFAULT_SECOND_SERVICE_ID)
-                    put("url", DEFAULT_SECOND_URL)
-                    // put("title", null)
-                    // put("stream_type", null)
-                    // put("duration", null)
-                    // put("uploader", null)
-                    // put("thumbnail_url", null)
-                }
-            )
-            insert(
-                "streams", SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    // put("uid", null)
-                    put("service_id", DEFAULT_SERVICE_ID)
-                    // put("url", null)
-                    // put("title", null)
-                    // put("stream_type", null)
-                    // put("duration", null)
-                    // put("uploader", null)
-                    // put("thumbnail_url", null)
                 }
             )
             close()
         }
 
         testHelper.runMigrationsAndValidate(
-            AppDatabase.DATABASE_NAME, Migrations.DB_VER_3,
-            true, Migrations.MIGRATION_2_3
+            AppDatabase.DATABASE_NAME, Migrations.DB_VER_4,
+            true, Migrations.MIGRATION_3_4
         )
 
-        val migratedDatabaseV3 = getMigratedDatabase()
-        val listFromDB = migratedDatabaseV3.streamDAO().all.blockingFirst()
+        val migratedDatabaseV4 = getMigratedDatabase()
+        val listFromDB = migratedDatabaseV4.streamDAO().all.blockingFirst()
 
-        // Only expect 2, the one with the null url will be ignored
-        assertEquals(2, listFromDB.size)
+        assertEquals(1, listFromDB.size)
 
         val streamFromMigratedDatabase = listFromDB[0]
-        assertEquals(DEFAULT_SERVICE_ID, streamFromMigratedDatabase.serviceId)
-        assertEquals(DEFAULT_URL, streamFromMigratedDatabase.url)
-        assertEquals(DEFAULT_TITLE, streamFromMigratedDatabase.title)
-        assertEquals(DEFAULT_TYPE, streamFromMigratedDatabase.streamType)
-        assertEquals(DEFAULT_DURATION, streamFromMigratedDatabase.duration)
-        assertEquals(DEFAULT_UPLOADER_NAME, streamFromMigratedDatabase.uploader)
-        assertEquals(DEFAULT_THUMBNAIL, streamFromMigratedDatabase.thumbnailUrl)
-        assertNull(streamFromMigratedDatabase.viewCount)
-        assertNull(streamFromMigratedDatabase.textualUploadDate)
-        assertNull(streamFromMigratedDatabase.uploadDate)
-        assertNull(streamFromMigratedDatabase.isUploadDateApproximation)
-
-        val secondStreamFromMigratedDatabase = listFromDB[1]
-        assertEquals(DEFAULT_SECOND_SERVICE_ID, secondStreamFromMigratedDatabase.serviceId)
-        assertEquals(DEFAULT_SECOND_URL, secondStreamFromMigratedDatabase.url)
-        assertEquals("", secondStreamFromMigratedDatabase.title)
-        // Should fallback to VIDEO_STREAM
-        assertEquals(StreamType.VIDEO_STREAM, secondStreamFromMigratedDatabase.streamType)
-        assertEquals(0, secondStreamFromMigratedDatabase.duration)
-        assertEquals("", secondStreamFromMigratedDatabase.uploader)
-        assertEquals("", secondStreamFromMigratedDatabase.thumbnailUrl)
-        assertNull(secondStreamFromMigratedDatabase.viewCount)
-        assertNull(secondStreamFromMigratedDatabase.textualUploadDate)
-        assertNull(secondStreamFromMigratedDatabase.uploadDate)
-        assertNull(secondStreamFromMigratedDatabase.isUploadDateApproximation)
+        assertNull(streamFromMigratedDatabase.uploaderUrl)
     }
 
     private fun getMigratedDatabase(): AppDatabase {
