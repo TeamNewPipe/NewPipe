@@ -12,7 +12,6 @@ import org.schabi.newpipe.extractor.localization.DateWrapper
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
-import org.schabi.newpipe.extractor.utils.Utils.EMPTY_STRING
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
 import java.io.Serializable
 import java.time.OffsetDateTime
@@ -86,7 +85,7 @@ data class StreamEntity(
     constructor(item: PlayQueueItem) : this(
         serviceId = item.serviceId, url = item.url, title = item.title,
         streamType = item.streamType, duration = item.duration, uploader = item.uploader,
-        uploaderUrl = EMPTY_STRING, thumbnailUrl = item.thumbnailUrl
+        uploaderUrl = item.uploaderUrl, thumbnailUrl = item.thumbnailUrl
     )
 
     fun toStreamInfoItem(): StreamInfoItem {
