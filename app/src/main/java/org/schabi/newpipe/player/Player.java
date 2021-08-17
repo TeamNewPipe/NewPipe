@@ -609,14 +609,14 @@ public final class Player implements
 
         // Resolve enqueue intents
         if (intent.getBooleanExtra(ENQUEUE, false)
-                && playQueue != null) { /* Enqueue = true && playQueue exists */
-            final int sizeBeforeAppend = playQueue.size();
+                && playQueue != null) {
             playQueue.append(newQueue.getStreams());
 
             return;
+
         // Resolve enqueue next intents
         } else if (intent.getBooleanExtra(ENQUEUE_NEXT, false)
-                && playQueue != null) { /* Enqueue next = true && playQueue exists */
+                && playQueue != null) {
             final int currentIndex = playQueue.getIndex();
             playQueue.append(newQueue.getStreams());
             playQueue.move(playQueue.size() - 1, currentIndex + 1);
