@@ -606,6 +606,7 @@ public final class Player implements
         if (intent.hasExtra(PLAYBACK_QUALITY)) {
             setPlaybackQuality(intent.getStringExtra(PLAYBACK_QUALITY));
         }
+
         // Resolve enqueue intents
         if (intent.getBooleanExtra(ENQUEUE, false)
                 && playQueue != null) { /* Enqueue = true && playQueue not empty*/
