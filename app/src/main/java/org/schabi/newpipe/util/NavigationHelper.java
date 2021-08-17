@@ -47,6 +47,8 @@ import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
 import org.schabi.newpipe.player.MainPlayer;
+import org.schabi.newpipe.player.MainPlayer.PlayerType;
+import org.schabi.newpipe.player.NotificationUtil;
 import org.schabi.newpipe.player.PlayQueueActivity;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -63,6 +65,7 @@ import static org.schabi.newpipe.util.external_communication.ShareUtils.installA
 public final class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
     public static final String SEARCH_FRAGMENT_TAG = "search_fragment_tag";
+    private static final String TAG = NotificationUtil.class.getSimpleName();
 
     private NavigationHelper() {
     }
@@ -158,6 +161,7 @@ public final class NavigationHelper {
         intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.AUDIO.ordinal());
         ContextCompat.startForegroundService(context, intent);
     }
+
     /* ENQUEUE */
     public static void enqueueOnPlayer(final Context context, final PlayQueue queue) {
         Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();

@@ -608,14 +608,14 @@ public final class Player implements
         }
         // Resolve enqueue intents
         if (intent.getBooleanExtra(ENQUEUE, false)
-                && playQueue != null) { /* Enqueue = true && playQueue not empty*/
+                && playQueue != null) { /* Enqueue = true && playQueue exists */
             final int sizeBeforeAppend = playQueue.size();
             playQueue.append(newQueue.getStreams());
 
             return;
         // Resolve enqueue next intents
         } else if (intent.getBooleanExtra(ENQUEUE_NEXT, false)
-                && playQueue != null) { /* Enqueue next = true && playQueue not empty*/
+                && playQueue != null) { /* Enqueue next = true && playQueue exists */
             final int currentIndex = playQueue.getIndex();
             playQueue.append(newQueue.getStreams());
             playQueue.move(playQueue.size() - 1, currentIndex + 1);
