@@ -163,18 +163,25 @@ public final class NavigationHelper {
     }
 
     /* ENQUEUE */
-    public static void enqueueOnPlayer(final Context context, final PlayQueue queue) {
+    public static void enqueueOnPlayer(final Context context, final PlayQueue queue, final PlayerType playerType) {
         Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueIntent(context, MainPlayer.class, queue);
 
-        int playerType = MainPlayer.PlayerType.AUDIO.ordinal();
-        if (PlayerHolder.getInstance().getType() != null) {
-            playerType = PlayerHolder.getInstance().getType().ordinal();
-        }
-        intent.putExtra(Player.PLAYER_TYPE, playerType);
+        intent.putExtra(Player.PLAYER_TYPE, playerType.ordinal());
         ContextCompat.startForegroundService(context, intent);
     }
-    /* NEXT */
+
+    public static void enqueueOnPlayer(final Context context, final PlayQueue queue) {
+        PlayerType playerType = PlayerHolder.getInstance().getType();
+        if (playerType == null) {
+            Log.e(TAG, "Enqueueing when no player is open, defaulting to background player");
+            playerType = MainPlayer.PlayerType.AUDIO;
+        }
+
+        enqueueOnPlayer(context, queue, playerType);
+    }
+
+    /* ENQUEUE NEXT */
     public static void enqueueNextOnPlayer(final Context context, final PlayQueue queue) {
         Toast.makeText(context, R.string.enqueued_next, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueNextIntent(context, MainPlayer.class, queue);
