@@ -163,7 +163,9 @@ public final class NavigationHelper {
     }
 
     /* ENQUEUE */
-    public static void enqueueOnPlayer(final Context context, final PlayQueue queue, final PlayerType playerType) {
+    public static void enqueueOnPlayer(final Context context,
+                                       final PlayQueue queue,
+                                       final PlayerType playerType) {
         Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
         final Intent intent = getPlayerEnqueueIntent(context, MainPlayer.class, queue);
 
