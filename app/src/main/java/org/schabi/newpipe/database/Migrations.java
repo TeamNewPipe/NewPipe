@@ -9,6 +9,15 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import org.schabi.newpipe.MainActivity;
 
 public final class Migrations {
+
+    /////////////////////////////////////////////////////////////////////////////
+    //  Test new migrations manually by importing a database from daily usage  //
+    //  and checking if the migration works (Use the Database Inspector        //
+    //  https://developer.android.com/studio/inspect/database).                //
+    //  If you add a migration point it out in the pull request, so that       //
+    //  others remember to test it themselves.                                 //
+    /////////////////////////////////////////////////////////////////////////////
+
     public static final int DB_VER_1 = 1;
     public static final int DB_VER_2 = 2;
     public static final int DB_VER_3 = 3;
