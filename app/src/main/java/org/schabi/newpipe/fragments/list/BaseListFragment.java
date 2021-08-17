@@ -353,9 +353,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         final List<StreamDialogEntry> entries = new ArrayList<>();
 
         if (PlayerHolder.getInstance().getType() != null) {
-            entries.addAll(Arrays.asList(
-                    StreamDialogEntry.enqueue
-            ));
+            entries.add(StreamDialogEntry.enqueue);
         }
 
         if (PlayerHolder.getInstance().getQueueSize() > 1) {
