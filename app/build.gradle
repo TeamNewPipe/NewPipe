@@ -283,7 +283,7 @@ dependencies {
 
     androidTestImplementation "androidx.test.ext:junit:1.1.2"
     androidTestImplementation "androidx.room:room-testing:${androidxRoomVersion}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0", {
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0", {
         exclude module: 'support-annotations'
     }
 }
