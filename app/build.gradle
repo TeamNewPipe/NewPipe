@@ -112,7 +112,7 @@ ext {
 
     leakCanaryVersion = '2.5'
     stethoVersion = '1.6.0'
-    mockitoVersion = '3.6.0'
+    mockitoVersion = '3.11.2'
 }
 
 configurations {
