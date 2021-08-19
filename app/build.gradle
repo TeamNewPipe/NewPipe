@@ -259,7 +259,7 @@ dependencies {
     implementation "ch.acra:acra-core:5.8.4"
 
     // Reactive extensions for Java VM
-    implementation "io.reactivex.rxjava3:rxjava:3.0.7"
+    implementation "io.reactivex.rxjava3:rxjava:3.1.0"
     implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
     // RxJava binding APIs for Android UI widgets
     implementation "com.jakewharton.rxbinding4:rxbinding:4.0.0"
