@@ -110,7 +110,7 @@ ext {
     groupieVersion = '2.9.0'
     markwonVersion = '4.6.2'
 
-    leakCanaryVersion = '2.5'
+    leakCanaryVersion = '2.7'
     stethoVersion = '1.6.0'
     mockitoVersion = '3.11.2'
 }
