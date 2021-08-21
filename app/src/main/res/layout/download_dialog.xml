@@ -106,4 +106,16 @@
             android:max="31"
             android:progress="3" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/streams_hidden"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/threads_layout"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="6dp"
+        android:textAlignment="textEnd"
+        android:text="@string/some_streams_hidden_not_supported_yet" />
+
 </RelativeLayout>

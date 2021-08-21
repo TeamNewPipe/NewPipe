@@ -140,7 +140,6 @@ public class DownloadDialog extends DialogFragment
             registerForActivityResult(
                     new StartActivityForResult(), this::requestDownloadPickVideoFolderResult);
 
-    private Toast removedStreamToast = null;
     private boolean nonProgressiveStreamsRemoved = false;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -234,14 +233,8 @@ public class DownloadDialog extends DialogFragment
     }
 
     private void showIfStreamsWereRemovedMessage() {
-        if (this.nonProgressiveStreamsRemoved && removedStreamToast == null) {
-            removedStreamToast = Toast.makeText(
-                    requireContext(),
-                    R.string.streams_hidden_download_not_supported_yet,
-                    Toast.LENGTH_LONG
-            );
-            removedStreamToast.show();
-        }
+        dialogBinding.streamsHidden.setVisibility(this.nonProgressiveStreamsRemoved ? View.VISIBLE
+                : View.GONE);
     }
 
     public void setNonProgressiveStreamsRemoved() {
@@ -298,7 +291,6 @@ public class DownloadDialog extends DialogFragment
         }
 
         context = getContext();
-        showIfStreamsWereRemovedMessage();
 
         setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(context));
         Icepick.restoreInstanceState(this, savedInstanceState);
@@ -383,6 +375,7 @@ public class DownloadDialog extends DialogFragment
 
         initToolbar(dialogBinding.toolbarLayout.toolbar);
         setupDownloadOptions();
+        showIfStreamsWereRemovedMessage();
 
         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
 
