@@ -37,7 +37,8 @@ public enum StreamDialogEntry {
         if (isNullOrEmpty(item.getUploaderUrl())) {
             final int serviceId = item.getServiceId();
             final String url = item.getUrl();
-            // TODO: Some visual loading indicator
+            Toast.makeText(fragment.getContext(), R.string.loading_channel_details,
+                    Toast.LENGTH_SHORT).show();
             ExtractorHelper.getStreamInfo(serviceId, url, false)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -46,7 +47,7 @@ public enum StreamDialogEntry {
                                 .setUploaderUrl(serviceId, url, result.getUploaderUrl())
                                 .subscribeOn(Schedulers.io()).subscribe();
                         openChannelFragment(fragment, item, result.getUploaderUrl());
-                    }, throwable -> Toast.makeText(
+                    }, throwable -> Toast.makeText( // TODO: Open the Error Activity
                             fragment.getContext(),
                             R.string.error_show_channel_details,
                             Toast.LENGTH_SHORT
