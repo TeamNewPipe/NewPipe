@@ -59,6 +59,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 import java.util.List;
 
 import static org.schabi.newpipe.util.ListHelper.removeNonUrlStreams;
+import static org.schabi.newpipe.util.ListHelper.removeTorrentStreams;
 import static org.schabi.newpipe.util.external_communication.ShareUtils.installApp;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
@@ -219,21 +220,26 @@ public final class NavigationHelper {
     public static void playOnExternalAudioPlayer(final Context context,
                                                  @NonNull final StreamInfo info) {
         final List<AudioStream> urlAudioStreams = removeNonUrlStreams(info.getAudioStreams());
-        final int index = ListHelper.getDefaultAudioFormat(context, urlAudioStreams);
+        final List<AudioStream> audioStreams = removeTorrentStreams(urlAudioStreams);
+        final int index = ListHelper.getDefaultAudioFormat(context, audioStreams);
 
         if (index == -1) {
             Toast.makeText(context, R.string.audio_streams_empty, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        final AudioStream audioStream = urlAudioStreams.get(index);
+        final AudioStream audioStream = audioStreams.get(index);
         playOnExternalPlayer(context, info.getName(), info.getUploaderName(), audioStream);
     }
 
     public static void playOnExternalVideoPlayer(final Context context,
                                                  @NonNull final StreamInfo info) {
-        final List<VideoStream> videoStreamsList = ListHelper.getSortedStreamVideosList(context,
-                removeNonUrlStreams(info.getVideoStreams()), null, false);
+        final List<VideoStream> videoStreams = removeNonUrlStreams(info.getVideoStreams());
+        final List<VideoStream> videoStreamsList = ListHelper.getSortedStreamVideosList(
+                context,
+                removeTorrentStreams(videoStreams),
+                null,
+                false);
         final int index = ListHelper.getDefaultResolutionIndex(context, videoStreamsList);
 
         if (index == -1) {

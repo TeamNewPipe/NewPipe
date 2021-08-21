@@ -156,6 +156,28 @@ public final class ListHelper {
     }
 
     /**
+     * Return a {@link Stream} list which only contains non torrent streams.
+     *
+     * @param streamList     the original stream list
+     * @param <S>            the item type's class that extends {@link Stream}
+     * @return a stream list which only contains non torrent streams
+     */
+    @NonNull
+    public static <S extends Stream> List<S> removeTorrentStreams(
+            @NonNull final List<S> streamList) {
+        if (streamList.isEmpty()) {
+            return Collections.emptyList();
+        }
+        final List<S> nonTorrentStreamList = new ArrayList<>();
+        for (final S stream : streamList) {
+            if (stream.getDeliveryMethod() != DeliveryMethod.TORRENT) {
+                nonTorrentStreamList.add(stream);
+            }
+        }
+        return nonTorrentStreamList;
+    }
+
+    /**
      * Check if a stream was removed among downloadable streams.
      *
      * @param videoStreams                 the list of video streams gotten from the extractor

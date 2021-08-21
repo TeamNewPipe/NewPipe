@@ -122,6 +122,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfi
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 import static org.schabi.newpipe.util.ListHelper.removeNonUrlStreams;
+import static org.schabi.newpipe.util.ListHelper.removeTorrentStreams;
 
 public final class VideoDetailFragment
         extends BaseStateFragment<StreamInfo>
@@ -2165,10 +2166,12 @@ public final class VideoDetailFragment
         }
         final List<VideoStream> urlVideoStreams = removeNonUrlStreams(
                 currentInfo.getVideoStreams());
+        final List<VideoStream> videoStreams = removeTorrentStreams(urlVideoStreams);
         final List<VideoStream> urlVideoOnlyStreams = removeNonUrlStreams(
                 currentInfo.getVideoOnlyStreams());
+        final List<VideoStream> videoOnlyStreams = removeTorrentStreams(urlVideoOnlyStreams);
         final List<VideoStream> sortedUrlVideoStreams = ListHelper.getSortedStreamVideosList(
-                activity, urlVideoStreams, urlVideoOnlyStreams, false);
+                activity, videoStreams, videoOnlyStreams, false);
         final int selectedVideoStreamIndexForExternalPlayers = ListHelper
                     .getDefaultResolutionIndex(activity, sortedUrlVideoStreams);
         final CharSequence[] resolutions = new CharSequence[sortedUrlVideoStreams
