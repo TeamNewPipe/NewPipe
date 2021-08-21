@@ -9,6 +9,7 @@
         android:key="@string/allow_heap_dumping_key"
         android:summary="@string/enable_leak_canary_summary"
         android:title="@string/leakcanary"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <Preference
@@ -21,6 +22,7 @@
         android:key="@string/allow_disposed_exceptions_key"
         android:summary="@string/enable_disposed_exceptions_summary"
         android:title="@string/enable_disposed_exceptions_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
@@ -28,6 +30,7 @@
         android:key="@string/show_original_time_ago_key"
         android:summary="@string/show_original_time_ago_summary"
         android:title="@string/show_original_time_ago_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
@@ -35,6 +38,7 @@
         android:key="@string/disable_media_tunneling_key"
         android:summary="@string/disable_media_tunneling_summary"
         android:title="@string/disable_media_tunneling_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <Preference

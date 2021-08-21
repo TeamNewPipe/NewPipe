@@ -26,6 +26,7 @@
         android:key="@string/show_hold_to_append_key"
         android:summary="@string/show_hold_to_append_summary"
         android:title="@string/show_hold_to_append_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <ListPreference

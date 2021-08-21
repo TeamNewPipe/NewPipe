@@ -8,12 +8,14 @@
         android:key="@string/downloads_storage_ask"
         android:summary="@string/downloads_storage_ask_summary"
         android:title="@string/downloads_storage_ask_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
         android:key="@string/storage_use_saf"
         android:summary="@string/downloads_storage_use_saf_summary"
         android:title="@string/downloads_storage_use_saf_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <Preference
@@ -60,6 +62,7 @@
         android:key="@string/downloads_cross_network"
         android:summary="@string/pause_downloads_on_mobile_desc"
         android:title="@string/pause_downloads_on_mobile"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
@@ -67,6 +70,7 @@
         android:key="@string/downloads_queue_limit"
         android:summary="@string/enable_queue_limit_desc"
         android:title="@string/enable_queue_limit"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
 </PreferenceScreen>
