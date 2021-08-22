@@ -133,11 +133,11 @@
     <string name="clear_views_history_title">Puhasta vaatamiste ajalugu</string>
     <string name="clear_views_history_summary">Kustutab vaadatud voogude ajaloo ja taasesituse asukohad</string>
     <string name="delete_view_history_alert">Kas kustutada kogu vaatamiste ajalugu\?</string>
-    <string name="watch_history_deleted">Vaatamiste ajalugu kustutati.</string>
+    <string name="watch_history_deleted">Vaatamiste ajalugu kustutati</string>
     <string name="clear_search_history_title">Kustuta otsinguajalugu</string>
     <string name="clear_search_history_summary">Kustutab otsisõnade ajaloo</string>
     <string name="delete_search_history_alert">Kas kustutada kogu otsinguajalugu\?</string>
-    <string name="search_history_deleted">Otsinguajalugu kustutati.</string>
+    <string name="search_history_deleted">Otsinguajalugu kustutati</string>
     <string name="general_error">Viga</string>
     <string name="network_error">Võrgu viga</string>
     <string name="could_not_load_thumbnails">Kõiki pisipilte ei õnnestunud laadida</string>
@@ -488,7 +488,7 @@
     <string name="notification_action_shuffle">Aja segi</string>
     <string name="notification_action_repeat">Korda</string>
     <string name="notification_actions_at_most_three">Sa saad valida kuni kolm tegevust, mida kuvatakse lühiteavituses!</string>
-    <string name="notification_actions_summary">Muuda iga teavituse tegevusi sellel toksates. Kuni kolm, mida kuvatakse lühiteavituses, saad valida märkekastidega paremalt.</string>
+    <string name="notification_actions_summary">Muuda iga teavituse tegevusi sellel toksates. Vali märkekastides paremal kuni kolm teavitust, mida kuvada lühiteates</string>
     <string name="notification_action_4_title">Viies tegevusnupp</string>
     <string name="notification_action_3_title">Neljas tegevusnupp</string>
     <string name="notification_action_2_title">Kolmas tegevusnupp</string>
@@ -533,7 +533,7 @@
     <string name="hash_channel_description">Teavitused video räsimise edenemise kohta</string>
     <string name="youtube_restricted_mode_enabled_title">Võta kasutusele YouTube\'i „Piiratud režiim“</string>
     <string name="missing_file">Faili asukoht on muutunud või on ta kustutatud</string>
-    <string name="watch_history_states_deleted">Taasesituste asukohad on kustutatud.</string>
+    <string name="watch_history_states_deleted">Taasesituste asukohad on kustutatud</string>
     <string name="help">Abiteave</string>
     <string name="delete_playback_states_alert">Kas kustutame kõik taasesituste asukohad\?</string>
     <string name="clear_playback_states_summary">Kustutab kõik taasesituse käigus salvestatud asukohad</string>
@@ -569,7 +569,7 @@
     <string name="enqueue_stream">Lisa esitusjärjekorda</string>
     <string name="recently_added">Hiljuti lisatud</string>
     <string name="local">Kohalikud</string>
-    <string name="localization_changes_requires_app_restart">Keele muutus jõustub rakenduse uuesti käivitamisel.</string>
+    <string name="localization_changes_requires_app_restart">Keele muutus jõustub rakenduse uuesti käivitamisel</string>
     <string name="error_unable_to_load_comments">Kommentaaride laadimine ei õnnestunud</string>
     <string name="no_playlist_bookmarked_yet">Esitusloendi järjehoidjaid veel pole</string>
     <string name="select_a_playlist">Vali esitusloend</string>
@@ -673,4 +673,49 @@
     <string name="playlist_page_summary">Esitusloendite vaade</string>
     <string name="downloads_storage_use_saf_summary">„Storage Access Framework“-i ehk süsteemse kaustavalija kasutamisel saad andmeid salvestada ka välisele SD-kaardile</string>
     <string name="downloads_storage_use_saf_title">Kasuta süsteemset kaustavalijat (SAF)</string>
+    <string name="recovering">taastatakse</string>
+    <string name="dont_show">Ära kuva</string>
+    <string name="low_quality_smaller">Madalam kvaliteet (väiksem)</string>
+    <string name="high_quality_larger">Parem kvaliteet (suurem)</string>
+    <string name="seekbar_preview_thumbnail_title">Otsinguriba pisipildivaates</string>
+    <string name="show_original_time_ago_summary">Teenuste algne tekstid on nähtavad voo elementides</string>
+    <string name="show_original_time_ago_title">Kuva elementide algupärane aeg</string>
+    <string name="comments_are_disabled">Kommentaarid on välja lülitatud</string>
+    <string name="error_report_open_github_notice">Palun kontrolli kas sinu kogetud krahhi käsitlev vearaport on juba olemas. Luues korduvraporteid võtad meilt aega, mida saaksime kulutada tegelike vigade parandamiseks.</string>
+    <string name="peertube_instance_add_exists">Instants on juba olemas</string>
+    <string name="peertube_instance_add_fail">Instantsi valideerimine nurjus</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Saadaval mõnedes teenustes. See on tavaliselt palju kiirem, kuid võib tagastada piiratud koguse elemente ja sageli osalise informatsiooni (nt. puudub kestus, elemendi tüüp, laiv olek)</string>
+    <string name="description_select_note">Sa saad nüüd valida kirjelduse tekstist. Pane tähele, et valikurežiimis võib leht vilkuda ja lingid ei pruugi olla klõpsatavd.</string>
+    <string name="video_detail_by">Autor: %s</string>
+    <string name="feed_toggle_show_played_items">Kuva vaadatud üksused</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Keela kiire režiim</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Luba kiire režiim</string>
+    <string name="feed_use_dedicated_fetch_method_title">Hangi võimalusel spetsiaalsest voost</string>
+    <string name="feed_load_error_fast_unknown">Kiirvoo režiim ei paku selle kohta täiendavat teavet.</string>
+    <string name="feed_load_error_terminated">Autori konto on lõpetatud.
+\nTulevikus ei saa NewPipe seda voogu laadida.
+\nKas soovid tühistada selle kanali tellimuse\?</string>
+    <string name="feed_load_error_account_info">Voo \'%s\' laadimine nurjus.</string>
+    <string name="feed_load_error">Via voo laadimisel</string>
+    <string name="feed_update_threshold_option_always_update">Värskenda alati</string>
+    <string name="feed_update_threshold_summary">Aeg pärast viimast värskendust, mille möödudes loetakse tellimus aegunuks — %s</string>
+    <string name="feed_update_threshold_title">Voo värskendamise künnis</string>
+    <string name="settings_category_feed_title">Voog</string>
+    <string name="choose_instance_prompt">Vali eksemplar</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Android 10st alates on toetatud ainult salvestusjuurdepääsu raamistik \'Storage Access Framework\'</string>
+    <string name="downloads_storage_use_saf_summary_api_19">Android KitKat ja vanemad versioonid ei toeta salvestusjuurdepääsu raamistikku \'Storage Access Framework\'</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Sinult küsitakse iga kord, kuhu alla laadimine salvestada</string>
+    <string name="detail_heart_img_view_description">Südamlik autor</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Kas sinu meelest on voo laadimine aeglane\? Sel juhul proovi lubada kiire laadimine (seda saad muuta seadetes või vajutades allolevat nuppu).
+\n
+\nNewPipe pakub kahte voo laadimise strateegiat:
+\n• Tellitud kanali täielik, kuid aeglane hankimine.
+\n• Teenuse spetsiaalse lõpp-punkti kasutamine, mis on kiire, kuid tavaliselt mittetäielik.
+\n
+\nErinevus nende kahe vahel seisneb selles, et kiirel puudub tavaliselt teave, näiteks üksuse pikkus või tüüp (ei saa eristada reaalajas videoid tavalistest) ja see võib tagastada vähem üksusi.
+\n
+\nYouTube on näide teenusest, mis pakub seda kiirmeetodit oma RSS-vooga.
+\n
+\nNii et valik taandub sellele, mida eelistad: kiirus või täpne teave.</string>
+    <string name="mark_as_watched">Märgi vaadatuks</string>
 </resources>

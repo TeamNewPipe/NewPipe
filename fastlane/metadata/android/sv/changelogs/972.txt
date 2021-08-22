@@ -1,0 +1,14 @@
+Nytt
+Känner igen tidsstämplar och hashtaggar i beskrivningar
+La till manuell inställning för surfplatteläge
+La till möjlighet att dölja spelade objekt flöde
+
+Förbättrat
+Korrekt stöd för Storage Access Framework
+Bättre felhantering av otillgängliga och avslutade kanaler
+Android share sheet för Android 10+-användare visar nu innehållets titel
+Uppdaterade Invidious-instanser och stöd för Piped-länkar
+
+Fixat
+[YouTube] Innehåll med åldersgräns
+Förhindrar leaked window Exception när valdialog öppnas

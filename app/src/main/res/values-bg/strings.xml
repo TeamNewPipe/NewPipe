@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Докоснете търсачката, за да започнете</string>
+    <string name="main_bg_subtitle">Докоснете лупата, за да започнете</string>
     <string name="view_count_text">%1$s гледания</string>
     <string name="upload_date_text">Публикувано на %1$s</string>
-    <string name="no_player_found">Не е намерен стрийм плейър. Желаете ли да инсталирате VLC?</string>
-    <string name="install">Инсталирай</string>
-    <string name="cancel">Отмени</string>
-    <string name="open_in_browser">Отвори в браузър</string>
-    <string name="open_in_popup_mode">Отвори в прозорец</string>
-    <string name="share">Сподели</string>
-    <string name="download">Изтегли</string>
-    <string name="search">Търси</string>
+    <string name="no_player_found">Не е намерен стрийм плейър. Инсталиране на VLC\?</string>
+    <string name="install">Инсталиране</string>
+    <string name="cancel">Отмяна</string>
+    <string name="open_in_browser">Отваряне в браузър</string>
+    <string name="open_in_popup_mode">Отваряне в прозорец</string>
+    <string name="share">Споделяне</string>
+    <string name="download">Изтегляне</string>
+    <string name="search">Търсене</string>
     <string name="settings">Настройки</string>
     <string name="did_you_mean">Може би имахте предвид „%1$s“\?</string>
-    <string name="share_dialog_title">Сподели с</string>
-    <string name="choose_browser">Избери браузър</string>
+    <string name="share_dialog_title">Споделяне с</string>
+    <string name="choose_browser">Избиране на браузър</string>
     <string name="screen_rotation">ориентация</string>
-    <string name="use_external_video_player_title">Използвай външен видео плейър</string>
+    <string name="use_external_video_player_title">Използване на външен видео плейър</string>
     <string name="use_external_video_player_summary">Премахва аудиото при някои резолюции</string>
-    <string name="use_external_audio_player_title">Използвай външен аудио плейър</string>
-    <string name="popup_mode_share_menu_title">NewPipe в прозорец</string>
+    <string name="use_external_audio_player_title">Използване на външен аудио плейър</string>
+    <string name="popup_mode_share_menu_title">Режим на прозорец</string>
     <string name="subscribe_button_title">Абониране</string>
     <string name="subscribed_button_title">Абониран</string>
     <string name="channel_unsubscribed">Премахнат абонамент за канала</string>
@@ -27,11 +27,11 @@
     <string name="subscription_update_failed">Неуспешно обновление на абонамента</string>
     <string name="tab_subscriptions">Абонаменти</string>
     <string name="fragment_feed_title">Обновления</string>
-    <string name="controls_background_title">Във фонов режим</string>
+    <string name="controls_background_title">Фонов режим</string>
     <string name="controls_popup_title">В прозорец</string>
     <string name="download_path_title">Директория за изтегляне на видео</string>
-    <string name="download_path_summary">Папка за съхранение на изтеглените видеота</string>
-    <string name="download_path_dialog_title">Въведете път за съхранение на изтеглените видеота</string>
+    <string name="download_path_summary">Папка за съхранение на изтеглените клипове</string>
+    <string name="download_path_dialog_title">Въведете път за съхранение на изтеглените клипове</string>
     <string name="download_path_audio_title">Директория за изтегляне на аудио</string>
     <string name="download_path_audio_summary">Папка за съхранение на изтеглено аудио</string>
     <string name="download_path_audio_dialog_title">Въведете папка за изтегляния на аудио файлове</string>
@@ -42,7 +42,7 @@
     <string name="show_higher_resolutions_title">Покажи по-високи резолюции</string>
     <string name="show_higher_resolutions_summary">Само някои устройства могат да възпроизвеждат 2K/4K видео</string>
     <string name="play_with_kodi_title">Въпроизвеждане с Kodi</string>
-    <string name="kore_not_found">Приложението „Kore“ не е намерено. Желаете ли да го инсталирате?</string>
+    <string name="kore_not_found">Инсталиране на липсващото приложение \"Kore\"\?</string>
     <string name="show_play_with_kodi_title">Покажи „Възпроизвеждане с Kodi“</string>
     <string name="show_play_with_kodi_summary">Показване на опция за възпроизвеждане на видео чрез „Kodi media center“</string>
     <string name="play_audio">Аудио</string>
@@ -62,7 +62,7 @@
     <string name="enable_search_history_summary">Съхранявай заявките за търсене локално</string>
     <string name="enable_watch_history_title">История на гледане</string>
     <string name="enable_watch_history_summary">Запаметявай кои видеота са гледани</string>
-    <string name="resume_on_audio_focus_gain_title">Възобнови при връщане на фокус</string>
+    <string name="resume_on_audio_focus_gain_title">Възобновяване</string>
     <string name="resume_on_audio_focus_gain_summary">Продължавай възпроизвеждането след прекъсване (например телефонно обаждане)</string>
     <string name="download_dialog_title">Изтегли</string>
     <string name="show_next_and_similar_title">Показвай „следващ“ и „подобни“</string>
@@ -182,11 +182,11 @@
     <string name="tab_licenses">Лицензи</string>
     <string name="app_description">Безплатно и леко поточно предаване за Android.</string>
     <string name="view_on_github">Виж в GitHub</string>
-    <string name="controls_download_desc">Изтегли стрийм файл</string>
+    <string name="controls_download_desc">Изтегляне на стрийм файл</string>
     <string name="show_info">Покажи инфо</string>
-    <string name="tab_main">Главен</string>
+    <string name="tab_main">Главна</string>
     <string name="tab_bookmarks">Отметнати плейлисти</string>
-    <string name="controls_add_to_playlist_title">Добави към</string>
+    <string name="controls_add_to_playlist_title">Добавяне към</string>
     <string name="use_inexact_seek_title">Използвай бързо, но неточно превъртане</string>
     <string name="use_inexact_seek_summary">Неточното превъртане позволява на плейъра да превърта кадри по-бързо, с намалена прецизност</string>
     <string name="download_thumbnail_title">Зареждай миниатюри</string>
@@ -399,7 +399,7 @@
     <string name="file_deleted">Файлът е изтрит</string>
     <string name="events">Събития</string>
     <string name="show_comments_title">Показвай коментари</string>
-    <string name="show_comments_summary">Деактивиране за скриване на коментарите</string>
+    <string name="show_comments_summary">Изключване за скриване на коментарите</string>
     <string name="autoplay_title">Автоматично пускане</string>
     <string name="tab_new">Нов раздел</string>
     <string name="tab_choose">Избери раздел</string>
@@ -419,4 +419,14 @@
     </plurals>
     <string name="no_one_watching">Няма зрители</string>
     <string name="clear_playback_states_summary">Изтрива всички позиции на възпроизвеждане</string>
+    <string name="unsupported_url_dialog_message">URL адресът не можа да бъде разпознат. Да се отвори ли с друго приложение\?</string>
+    <string name="show_description_title">Показване на описание</string>
+    <string name="night_theme_title">Нощна тема</string>
+    <string name="notification_colorize_title">Оцветяване на известие</string>
+    <string name="notification_action_nothing">Нищо</string>
+    <string name="notification_action_shuffle">Разбъркване</string>
+    <string name="notification_action_repeat">Повторение</string>
+    <string name="open_with">Отваряне с</string>
+    <string name="notification_scale_to_square_image_title">Миниатюра 1:1</string>
+    <string name="download_choose_new_path">Променете папките за изтегляне за да има резултат</string>
 </resources>

@@ -108,7 +108,7 @@
     <string name="error_connect_host">Não foi possível ligar ao servidor</string>
     <string name="show_play_with_kodi_summary">Mostrar uma opção para reproduzir o vídeo no Kodi</string>
     <string name="list_view_mode">Modo de exibição</string>
-    <string name="use_inexact_seek_summary">A pesquisa inexata permite que esta seja mais rápida mas reduz a precisão. Procurar por 5, 15 ou 25 segundos não funciona corretamente.</string>
+    <string name="use_inexact_seek_summary">A pesquisa inexata permite que esta seja mais rápida mas reduz a precisão. Procurar por 5, 15 ou 25 segundos não funciona corretamente</string>
     <string name="permission_display_over_apps">Permitir sobreposição a outras aplicações</string>
     <string name="autoplay_by_calling_app_title">Reprodução automática</string>
     <string name="export_to">Exportar para</string>
@@ -155,7 +155,7 @@
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
     <string name="no_subscribers">Sem subscritores</string>
     <string name="use_external_audio_player_title">Utilizar reprodutor de áudio externo</string>
-    <string name="download_thumbnail_summary">Desative para parar o carregamento de miniaturas, poupar dados e utilização da memória. As alterações limpam a cache de imagens do disco e da memória.</string>
+    <string name="download_thumbnail_summary">Desative para parar o carregamento de miniaturas, poupar dados e utilização da memória. As alterações limpam a cache de imagens do disco e da memória</string>
     <string name="did_you_mean">Será que queria dizer \"%1$s\"\?</string>
     <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da aplicação se existir uma nova versão</string>
     <string name="enqueue">Fila</string>
@@ -296,8 +296,7 @@
     <string name="restore_defaults_confirmation">Deseja repor as predefinições\?</string>
     <string name="external_player_unsupported_link_type">Os reprodutores externos não suportam este tipo de hiperligações</string>
     <string name="rename">Mudar nome</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' permite descargas para um cartão SD externo.
-\nAlguns dipositivos não são compatíveis</string>
+    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' permite descargas para um cartão SD externo</string>
     <string name="seek_duration_title">Duração da pesquisa de avanço/recuo rápido</string>
     <string name="channel">Canal</string>
     <string name="missing_file">Ficheiro movido ou eliminado</string>
@@ -326,7 +325,7 @@
         <item quantity="other">%d minutos</item>
     </plurals>
     <string name="missions_header_finished">Terminada</string>
-    <string name="watch_history_deleted">Histórico de vídeos apagado.</string>
+    <string name="watch_history_deleted">Histórico de vídeos apagado</string>
     <string name="no_player_found">Não tem um reprodutor de vídeo. Instalar VLC\?</string>
     <string name="show_comments_summary">Desative para ocultar comentários</string>
     <string name="limit_mobile_data_usage_title">Limitar resolução se em dados móveis</string>
@@ -417,7 +416,7 @@
     <string name="export_ongoing">A exportar…</string>
     <string name="most_liked">Mais apreciados</string>
     <string name="title_history_view">Visualizado</string>
-    <string name="downloads_storage_use_saf_title">Utilizar SAF</string>
+    <string name="downloads_storage_use_saf_title">Utilizar a escolha de pastas do sistema (SAF)</string>
     <string name="play_queue_stream_detail">Detalhes</string>
     <string name="network_error">Erro de rede</string>
     <string name="enable_search_history_title">Histórico de pesquisa</string>
@@ -447,7 +446,7 @@
     <string name="rename_playlist">Mudar nome</string>
     <string name="feed_group_dialog_empty_selection">Nenhuma subscrição selecionada</string>
     <string name="enable_watch_history_summary">Manter histórico dos vídeos visualizados</string>
-    <string name="search_history_deleted">Histórico de pesquisa removido.</string>
+    <string name="search_history_deleted">Histórico de pesquisa removido</string>
     <string name="clear_search_history_title">Limpar histórico de pesquisas</string>
     <string name="msg_error">Erro</string>
     <string name="popup_remember_size_pos_title">Lembrar propriedades de popup</string>
@@ -509,8 +508,8 @@
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura do avatar do canal</string>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="popup_player">Reprodutor \'popup\'</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Disponível em alguns serviços, é geralmente muito mais rápido, mas pode devolver uma quantidade limitada de itens e muitas vezes informações incompletas (por exemplo, sem duração, tipo de item, sem estado ativo).</string>
-    <string name="watch_history_states_deleted">Posições de reprodução removidas.</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponível em alguns serviços, é geralmente muito mais rápido, mas pode devolver uma quantidade limitada de itens e muitas vezes informações incompletas (por exemplo, sem duração, tipo de item, sem estado ativo)</string>
+    <string name="watch_history_states_deleted">Posições de reprodução removidas</string>
     <string name="downloads_storage_ask_title">Perguntar localização</string>
     <string name="report_error">Reportar um erro</string>
     <string name="show_info">Mostrar informação</string>
@@ -541,7 +540,8 @@
     <string name="metadata_cache_wipe_complete_notice">Meta-dados em cache limpos</string>
     <string name="show_hold_to_append_summary">Mostrar dica ao premir em segundo plano ou no botão \"Detalhes:\" da janela popup</string>
     <string name="no_player_found_toast">Não foi encontrado um reprodutor (pode instalar VLC para reproduzir).</string>
-    <string name="downloads_storage_ask_summary">Sempre que descarregar um ficheiro, terá que indicar o local para o guardar</string>
+    <string name="downloads_storage_ask_summary">Ser-lhe-á perguntado onde guardar cada descarga.
+\nAtive o seletor de pastas do sistema (SAF) se quiser descarregar para um cartão SD externo</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir no Kodi\"</string>
     <string name="delete_playlist">Eliminar</string>
     <string name="search_no_results">Sem resultados</string>
@@ -592,12 +592,12 @@
     <string name="background_player">Reprodutor em segundo plano</string>
     <string name="view">Reproduzir</string>
     <string name="show_error">Mostrar erro</string>
-    <string name="caption_setting_description">Modificar escala de legendas e estilo de fundo. Tem que reiniciar a aplicação para aplicar as alterações.</string>
+    <string name="caption_setting_description">Modificar escala de legendas e estilo de fundo. Tem que reiniciar a aplicação para aplicar as alterações</string>
     <string name="permission_denied">Ação recusada pelo sistema</string>
     <string name="songs">Músicas</string>
     <string name="action_about">Acerca</string>
     <string name="background_player_append">Na fila do reprodutor em segundo plano</string>
-    <string name="localization_changes_requires_app_restart">O idioma será alterado assim que reiniciar a aplicação.</string>
+    <string name="localization_changes_requires_app_restart">O idioma será alterado assim que reiniciar a aplicação</string>
     <string name="peertube_instance_add_title">Adicionar instância</string>
     <string name="tracks">Faixas</string>
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>
@@ -621,11 +621,11 @@
     <string name="clear_queue_confirmation_title">Pedir confirmação antes de limpar uma fila</string>
     <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição do popup</string>
     <string name="notification_action_nothing">Nada</string>
-    <string name="notification_action_buffering">Processamento…</string>
+    <string name="notification_action_buffering">A carregar</string>
     <string name="notification_action_shuffle">Baralhar</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">Pode selecionar, no máximo, três ações para mostrar na notificação compacta!</string>
-    <string name="notification_actions_summary">Edite cada ação de notificação abaixo tocando nela. Selecione até três delas para serem mostrados na notificação compacta usando as caixas de seleção à direita.</string>
+    <string name="notification_actions_summary">Edite cada ação de notificação abaixo tocando nela. Selecione até três delas para serem mostrados na notificação compacta usando as caixas de seleção à direita</string>
     <string name="notification_action_4_title">Quinto botão de ação</string>
     <string name="notification_action_3_title">Quarto botão de ação</string>
     <string name="notification_action_2_title">Terceiro botão de ação</string>
@@ -649,7 +649,7 @@
     <string name="msg_calculating_hash">A calcular \'hash\'</string>
     <string name="hash_channel_description">Notificar sobre o progresso das \'hash\' de vídeos</string>
     <string name="hash_channel_name">Notificação \'hash\' do vídeo</string>
-    <string name="show_meta_info_summary">Desative para ocultar as caixas com informações adicionais acerca do criador, do conteúdo ou de um pedido de pesquisa.</string>
+    <string name="show_meta_info_summary">Desative para ocultar as caixas com informações adicionais acerca do criador, do conteúdo ou de um pedido de pesquisa</string>
     <string name="show_meta_info_title">Mostrar meta-informação</string>
     <string name="no_app_to_open_intent">Não possui qualquer aplicação para abrir este ficheiro</string>
     <string name="chapters">Capítulos</string>
@@ -678,4 +678,44 @@
     <string name="show_channel_details">Mostrar detalhes do canal</string>
     <string name="disable_media_tunneling_summary">Desative esta opção se estiverem a ocorrer erros de ecrã escuro ou paragens durante a reprodução</string>
     <string name="disable_media_tunneling_title">Desativar túnel multimédia</string>
+    <string name="off">Desligado</string>
+    <string name="on">Ligado</string>
+    <string name="tablet_mode_title">Modo tablet</string>
+    <string name="open_website_license">Abrir site de web</string>
+    <string name="detail_heart_img_view_description">Entusiasmado pelo criador</string>
+    <string name="metadata_privacy_internal">Interno</string>
+    <string name="metadata_privacy_private">Privado</string>
+    <string name="metadata_privacy_unlisted">Não listado</string>
+    <string name="metadata_privacy_public">Público</string>
+    <string name="metadata_thumbnail_url">URL da miniatura</string>
+    <string name="metadata_host">Servidor</string>
+    <string name="metadata_support">Apoio</string>
+    <string name="metadata_language">Idioma</string>
+    <string name="metadata_age_limit">Limite de idade</string>
+    <string name="metadata_privacy">Privacidade</string>
+    <string name="metadata_licence">Licença</string>
+    <string name="metadata_tags">Marcadores</string>
+    <string name="metadata_category">Categoria</string>
+    <string name="description_select_disable">Desativar seleção de texto na descrição</string>
+    <string name="description_select_enable">Ativar seleção de texto na descrição</string>
+    <string name="description_select_note">Agora pode selecionar o texto na descrição. Note que a página pode cintilar e as ligações podem não ser clicáveis enquanto estiver no modo de seleção.</string>
+    <string name="service_provides_reason">%s fornece este motivo:</string>
+    <string name="account_terminated">Conta encerrada</string>
+    <string name="feed_toggle_show_played_items">Mostrar itens vistos</string>
+    <string name="feed_load_error_fast_unknown">O modo de feed rápido não fornece mais informações sobre isto.</string>
+    <string name="feed_load_error_terminated">A conta do autor foi encerrada.
+\nNewPipe não será capaz de carregar este feed no futuro.
+\nQuer cancelar a inscrição deste canal\?</string>
+    <string name="feed_load_error_account_info">Não foi possível carregar o feed para \'%s\'.</string>
+    <string name="feed_load_error">Erro ao carregar o feed</string>
+    <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, apenas o \'Storage Access Framework\' é compatível</string>
+    <string name="downloads_storage_use_saf_summary_api_19">O \'Storage Access Framework\' não é compatível com Android KitKat e versões anteriores</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Sempre que descarregar um ficheiro, terá que indicar o local para o guardar</string>
+    <string name="dont_show">Não mostrar</string>
+    <string name="low_quality_smaller">Baixa qualidade (menor)</string>
+    <string name="high_quality_larger">Alta qualidade (maior)</string>
+    <string name="seekbar_preview_thumbnail_title">Pré visualização da miniatura da barra de busca</string>
+    <string name="no_dir_yet">Ainda sem pasta de descarregas definida, escolha agora a pasta de descarregas padrão</string>
+    <string name="comments_are_disabled">Comentários estão desativados</string>
+    <string name="mark_as_watched">Marcar como visto</string>
 </resources>

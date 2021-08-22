@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Shtyp \"Kërko\" për të filluar</string>
+    <string name="main_bg_subtitle">Shtyp mbi lupën zmadhuese për të filluar.</string>
     <string name="view_count_text">%1$s shikime</string>
     <string name="upload_date_text">Publikuar më %1$s</string>
     <string name="install">Instalo</string>
@@ -71,10 +71,10 @@
     <string name="systems_language">E parazgjedhura e sistemit</string>
     <string name="app_language_title">Gjuha e aplikacionit</string>
     <string name="choose_instance_prompt">Zgjidhni një instancë</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' lejon shkarkime në një kartë SD të jashtme.
-\nDisa pajisje janë të papajtueshme</string>
-    <string name="downloads_storage_use_saf_title">Përdor SAF</string>
-    <string name="downloads_storage_ask_summary">Ju do të pyeteni se ku duhet ruajtur çdo shkarkim</string>
+    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' lejon shkarkime në një kartë SD të jashtme</string>
+    <string name="downloads_storage_use_saf_title">Përdor zgjedhësin e direktorisë së sistemit (SAF)</string>
+    <string name="downloads_storage_ask_summary">Ju do të pyeteni se ku duhet ruajtur çdo shkarkim
+\nAktivizoni zgjedhësin e direktorisë së sistemit (SAF) nëse doni t\'i shkarkoni në një kartë SD të jashtme</string>
     <string name="downloads_storage_ask_title">Pyet se ku duhet shkarkuar</string>
     <string name="pause_downloads">Ndërprit shkarkimet</string>
     <string name="start_downloads">Nis shkarkimet</string>
@@ -161,11 +161,14 @@
 \n2. Shkoni tek kjo URL: %1$s
 \n3. Hyni kur t\'ju kërkohet
 \n4. Kopjoni URL e profilit drejt të cilit u ridrejtuat.</string>
-    <string name="import_youtube_instructions">Importoni abonimet nga YouTube duke shkarkuar skedarin e importuar: 
-\n 
-\n1. Shkoni tek kjo URL: %1$s 
-\n2. Hyni kur t\'ju kërkohet 
-\n3. Një shkarkim duhet të nisë (ky është skedari i eksportuar)</string>
+    <string name="import_youtube_instructions">Importoni abonimet nga YouTube përmes Google Takeout:
+\n
+\n1. Shkoni tek kjo URL: %1$s
+\n2. Hyni kur t\'ju kërkohet
+\n3. Klikoni në \"All data included\", më pas në \"Deselect all\", dhe më pas zgjidhni vetëm \"subscriptions\" dhe klikoni \"OK\"
+\n4. Klikoni në \"Next step\" dhe më pas në \"Create export\"
+\n5. Klikoni në butonin \"Download\" pasi të shfaqet dhe
+\n6. Nga skedari zip i shkarkuar, ekstraktoni skedarin .json (zakonisht ndodhet tek \"YouTube and YouTube Music/subscriptions/subscriptions.json\") dhe importojeni atë këtu.</string>
     <string name="subscriptions_export_unsuccessful">Nuk arritën të eksportohen abonimet</string>
     <string name="subscriptions_import_unsuccessful">Nuk arritën të importohen abonimet</string>
     <string name="previous_export">Eksportimi i kaluar</string>
@@ -178,7 +181,7 @@
     <string name="import_export_title">Importo/eksporto</string>
     <string name="enable_disposed_exceptions_title">Raporto gabimet e jashtë-ciklit-të-jetës</string>
     <string name="enable_leak_canary_summary">Monitorimi i rrjedhjeve të memorjes mund të bëjë aplikacionin të mos reagojë kur bëhet zbrazja e memorjes heap</string>
-    <string name="caption_setting_description">Modifikoni shkallën e tekstit të titrave dhe llojet e sfondeve të luajtësit. Kërkon një rinisje të aplikacionit që të aplikohen ndryshimet.</string>
+    <string name="caption_setting_description">Modifikoni shkallën e tekstit të titrave dhe llojet e sfondeve të luajtësit. Kërkon një rinisje të aplikacionit që të aplikohen ndryshimet</string>
     <string name="caption_setting_title">Titrat</string>
     <string name="caption_auto_generated">E gjeneruar automatikisht</string>
     <string name="resize_zoom">Afroje</string>
@@ -193,10 +196,10 @@
     <string name="delete_playlist_prompt">Të fshihet kjo listë luajtjeje\?</string>
     <string name="unbookmark_playlist">Hiq Shenjuesin</string>
     <string name="bookmark_playlist">Shenjoje Listën e Luajtjes</string>
-    <string name="set_as_playlist_thumbnail">Vendose si Pamjen Statike të Listës së Luajtjes</string>
+    <string name="set_as_playlist_thumbnail">Vendose si pamjen statike të listës së luajtjes</string>
     <string name="unmute">Me zë</string>
     <string name="mute">Pa zë</string>
-    <string name="append_playlist">Shto në Listën e Luajtjes</string>
+    <string name="append_playlist">Shto në listën e luajtjes</string>
     <string name="name">Emri</string>
     <string name="rename_playlist">Riemërto</string>
     <string name="delete_playlist">Fshij</string>
@@ -227,7 +230,7 @@
     <string name="top_50">Top 50</string>
     <string name="trending">E trendit</string>
     <string name="kiosk">Kioskë</string>
-    <string name="localization_changes_requires_app_restart">Gjuha do të ndryshojë sapo aplikacioni të riniset.</string>
+    <string name="localization_changes_requires_app_restart">Gjuha do të ndryshojë sapo aplikacioni të riniset</string>
     <string name="error_unable_to_load_comments">Nuk mundën të ngarkohen komentet</string>
     <string name="import_settings">A dëshironi që të importoni dhe aranzhimet gjithashtu\?</string>
     <string name="override_current_data">Kjo do të mbishkruajë strukturimin tuaj të tanishëm.</string>
@@ -416,7 +419,7 @@
         <item quantity="other">%s dëgjues</item>
     </plurals>
     <plurals name="watching">
-        <item quantity="one">%s duke parë</item>
+        <item quantity="one">%s duke e parë</item>
         <item quantity="other">%s duke parë</item>
     </plurals>
     <string name="settings_category_popup_title">Popup</string>
@@ -440,7 +443,7 @@
 \nShpresojmë se do të mbështetet në një version të ardhshëm.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Çaktivizo</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Aktivizo modalitetin e shpejtë</string>
-    <string name="feed_use_dedicated_fetch_method_summary">E disponueshme në disa shërbime, zakonisht është shumë më e shpejtë por mund të kthejë një numër të limituar objektesh dhe shpesh informacion të paplotë (psh. pa kohëzgjatje, lloj objekti, status në kohë reale).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">E disponueshme në disa shërbime, zakonisht është shumë më e shpejtë por mund të kthejë një numër të limituar objektesh dhe shpesh informacion të paplotë (psh. pa kohëzgjatje, lloj objekti, status në kohë reale)</string>
     <string name="feed_use_dedicated_fetch_method_title">Merr nga një listë e dedikuar kur është e mundur</string>
     <string name="feed_update_threshold_option_always_update">Përditëso gjithnjë</string>
     <string name="feed_update_threshold_summary">Koha pas një përditësimi të fundit para se një abonim të konsiderohet i vjetëruar — %s</string>
@@ -470,20 +473,20 @@
     <string name="download_to_sdcard_error_title">Magazina e jashtme u padisponueshme</string>
     <string name="general_error">Gabim</string>
     <string name="help">Ndihmë</string>
-    <string name="search_history_deleted">Historiku i kërkimeve u fshi.</string>
+    <string name="search_history_deleted">Historiku i kërkimeve u fshi</string>
     <string name="delete_search_history_alert">Doni të fshini të gjithë historikun e kërkimeve\?</string>
     <string name="clear_search_history_summary">Fshin historikun e fjalëve kyçe të kërkuara</string>
     <string name="clear_search_history_title">Fshini historikun e kërkimeve</string>
-    <string name="watch_history_states_deleted">Pozicionet e luajtjeve u fshinë.</string>
+    <string name="watch_history_states_deleted">Pozicionet e luajtjeve u fshinë</string>
     <string name="delete_playback_states_alert">Doni të fshini të gjitha pozicionet e luajtjeve\?</string>
     <string name="clear_playback_states_summary">Fshini të gjitha pozicionet e luajtjeve</string>
     <string name="clear_playback_states_title">Fshini pozicionin e luajtjes</string>
-    <string name="watch_history_deleted">Historiku i videove të luajtura u fshi.</string>
+    <string name="watch_history_deleted">Historiku i videove të luajtura u fshi</string>
     <string name="delete_view_history_alert">Doni të fshini të gjithë historikun e videove të luajtura\?</string>
     <string name="clear_views_history_summary">Fshin historikun e stream-ave të luajtura dhe pozicioneve të luajtjes</string>
     <string name="clear_views_history_title">Pastro historinë e videove të luajtura</string>
-    <string name="export_data_summary">Eksporto historikun, abonimet dhe listat e videove</string>
-    <string name="import_data_summary">Mbishkruan historinë dhe abonimet tuaja të tanishme</string>
+    <string name="export_data_summary">Eksporto historikun, abonimet, listat e luajtjes dhe mundësimet</string>
+    <string name="import_data_summary">Mbishkruan historinë, abonimet tuaja të tanishme, listat e luajtjes dhe mundësimet (opsionale)</string>
     <string name="export_data_title">Eksporto databazën</string>
     <string name="import_data_title">Importo databazën</string>
     <string name="switch_to_main">Kaloje në Qendrore</string>
@@ -560,12 +563,12 @@
     <string name="metadata_cache_wipe_complete_notice">Depoja e të dhënave meta u boshatis</string>
     <string name="metadata_cache_wipe_summary">Boshatis depon e të gjitha të dhënave të faqeve të internetit</string>
     <string name="metadata_cache_wipe_title">Boshatis depon e të dhënave meta</string>
-    <string name="download_thumbnail_summary">Fikeni për të ndaluar shfaqjen e pamjeve statike, duke kursyer internet dhe memorje. Ndryshimet boshatisin depon e imazheve në memorje dhe në disk.</string>
+    <string name="download_thumbnail_summary">Fikeni për të ndaluar shfaqjen e pamjeve statike, duke kursyer internet dhe memorje. Ndryshimet boshatisin depon e imazheve në memorje dhe në disk</string>
     <string name="thumbnail_cache_wipe_complete_notice">Depoja e imazheve u boshatis</string>
     <string name="show_comments_summary">Fikeni për të fshehur komentet</string>
     <string name="show_comments_title">Shfaq komentet</string>
     <string name="seek_duration_title">Kohëzgjatja e kërkimit me shtytje-përpara/-pas</string>
-    <string name="use_inexact_seek_summary">Kërkuesi i pasaktë e lejon luajtësin që të kërkojë pozicionet më shpejt më saktësi të reduktuar. Kërkimi për 5, 15 ose 25 sekonda nuk punon me këtë.</string>
+    <string name="use_inexact_seek_summary">Kërkuesi i pasaktë e lejon luajtësin që të kërkojë pozicionet më shpejt më saktësi të reduktuar. Kërkimi për 5, 15 ose 25 sekonda nuk punon me këtë</string>
     <string name="use_inexact_seek_title">Përdor kërkuesin e pasaktë por të shpejtë</string>
     <string name="popup_remember_size_pos_summary">Mbaj mend madhësinë e fundit dhe pozicionin e popup</string>
     <string name="popup_remember_size_pos_title">Mbaj mend popup</string>
@@ -608,7 +611,7 @@
     <string name="copy_for_github">Kopjo raportin e formatuar</string>
     <string name="search_showing_result_for">Duke shfaqur rezultatet për: %s</string>
     <string name="wifi_only">Vetëm në Wi-Fi</string>
-    <string name="notification_actions_summary">Redakto çdo veprim njoftimi më poshtë duke shtypur mbi të. Zgjidhni deri në tre prej tyre që të shfaqen në njoftimin kompakt duke përdorur kutitë në të djathtë.</string>
+    <string name="notification_actions_summary">Redakto çdo veprim njoftimi më poshtë duke shtypur mbi të. Zgjidhni deri në tre prej tyre që të shfaqen në njoftimin kompakt duke përdorur kutitë në të djathtë</string>
     <string name="never">Kurrë</string>
     <string name="autoplay_summary">Nise luajtjen automatikisht — %s</string>
     <string name="title_activity_play_queue">Lista e luajtjes</string>
@@ -649,4 +652,70 @@
     <string name="show_description_title">Shfaq përshkrimin</string>
     <string name="notification_colorize_summary">Lejoje Android që të modifikojë ngjyrën e njoftimit bazuar tek ngjyra kryesore në pamjen miniaturë (mbani mend që kjo nuk është e disponueshme në të gjitha pajisjet)</string>
     <string name="open_with">Hape me</string>
+    <string name="clear_cookie_summary">Pastroni biskotat që NewPipe ruan kur zgjidhni një reCAPTCHA</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube ofron një \"Modalitet të Kufizuar\" që fsheh përmbajtje vetëm për të rritur</string>
+    <string name="show_age_restricted_content_summary">Shfaq përmbajtje ndoshta të papërshtatshme për fëmijë sepse ka një kufi moshe (si 18+)</string>
+    <string name="featured">E përzgjedhur</string>
+    <string name="paid_content">Kjo përmbajtje është e disponueshme vetëm për përdoruesit që kanë paguar, kështu që nuk mund të luhet apo shkarkohet nga NewPipe.</string>
+    <string name="youtube_music_premium_content">Kjo video është e disponueshme vetëm për anëtarët e YouTube Music Premium, kështu që nuk mund të luhet apo shkarkohet nga NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Ky është një skedar SoundCloud Go+, të paktën në shtetin tuaj, kështu që nuk mund të luhet apo shkarkohet nga NewPipe.</string>
+    <string name="show_meta_info_summary">Fikeni për të fshehur kutitë e të dhënave meta me information ekstra rreth krijuesit të stream, përmbajtjen e stream dhe kërkimit</string>
+    <string name="off">Fikur</string>
+    <string name="on">Ndezur</string>
+    <string name="tablet_mode_title">Modaliteti tablet</string>
+    <string name="open_website_license">Hap faqen e internetit</string>
+    <string name="metadata_privacy_internal">E brendshme</string>
+    <string name="metadata_privacy_private">Private</string>
+    <string name="metadata_privacy_unlisted">E palistuar</string>
+    <string name="metadata_privacy_public">Publike</string>
+    <string name="metadata_thumbnail_url">URL e pamjes statike</string>
+    <string name="metadata_host">Mundësuesi</string>
+    <string name="metadata_support">Mbështetje</string>
+    <string name="metadata_language">Gjuha</string>
+    <string name="metadata_age_limit">Limiti i moshës</string>
+    <string name="metadata_privacy">Privatësia</string>
+    <string name="metadata_licence">Licensa</string>
+    <string name="metadata_tags">Etiketat</string>
+    <string name="metadata_category">Kategoria</string>
+    <string name="description_select_disable">Ç\'aktivizo selektimin e tekstit në përshkrim</string>
+    <string name="description_select_enable">Aktivizo selektimin e tekstit në përshkrim</string>
+    <string name="description_select_note">Ju tani mund të selektoni tekst brenda përshkrimit. Faqja mund të dridhet dhe ndërlidhjet mund të mos jenë të klikueshme në modalitetin e selektimit.</string>
+    <string name="download_has_started">Shkarkimi ka filluar</string>
+    <string name="select_night_theme_toast">Ju mund të zgjidhni temën tuaj të preferuar të natës më poshtë</string>
+    <string name="night_theme_summary">Zgjidhni temën tuaj të preferuar të natës - %s</string>
+    <string name="auto_device_theme_title">Automatike (tema e pajisjes)</string>
+    <string name="radio">Radio</string>
+    <string name="service_provides_reason">%s e jep këtë arsye:</string>
+    <string name="account_terminated">Llogaria është mbyllur</string>
+    <string name="private_content">Kjo përmbajtje është private, kështu që nuk mund të luhet apo shkarkohet nga NewPipe.</string>
+    <string name="georestricted_content">Kjo përmbajtje nuk është e disponueshme në shtetin tuaj.</string>
+    <string name="show_thumbnail_summary">Përdor pamje statike për sfondin e ekranit të kyçur si dhe për njoftimet</string>
+    <string name="feed_toggle_show_played_items">Shfaq objektet e para</string>
+    <string name="feed_load_error_fast_unknown">Modaliteti i feed-it të shpejtë nuk mundëson më tepër informacion mbi këtë.</string>
+    <string name="feed_load_error_terminated">Llogaria e autorit është bllokuar.
+\nNewPipe nuk do mund ta ngarkojë këtë feed në të ardhmen.
+\nA doni të ç\'abonoheni nga ky kanal\?</string>
+    <string name="feed_load_error_account_info">Nuk u arrit të ngarkohej feed-i për \'%s\'.</string>
+    <string name="feed_load_error">Gabim gjatë ngarkimit të feed-it</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Duke nisur nga Android 10 vetëm \'Storage Access Framework\' është i mbështetur</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' nuk është e mbështetur në Android KitKat dhe më poshtë</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Ju do të pyeteni se ku doni të ruani çdo shkarkim</string>
+    <string name="crash_the_app">Rrëzoje aplikacionin manualisht</string>
+    <string name="disable_media_tunneling_summary">Ç\'aktivizo tunelin e medias nëse po hasni një ekran të zi apo ngecje gjatë luajtjes së një videoje</string>
+    <string name="disable_media_tunneling_title">Ç\'aktivizo tunelin e medias</string>
+    <string name="enqueued">E futur në radhë</string>
+    <string name="enqueue_stream">Fute në radhë</string>
+    <string name="show_channel_details">Shfaq detajet e kanalit</string>
+    <string name="recaptcha_solve">Zgjidh</string>
+    <string name="no_dir_yet">Nuk ka ende një skedar të zgjedhur të shkarkimeve, zgjidheni skedarin e paravendosur tani</string>
+    <string name="restricted_video_no_stream">Kjo video është e kufizuar në moshë.
+\nPër shkak të politikave të reja të YouTube në lidhje me videot e kufizuara në moshë, NewPipe nuk mund të aksesojë asnjë nga videot dhe nuk mund t\'i luajë ato.</string>
+    <string name="night_theme_title">Tema e natës</string>
+    <string name="detail_heart_img_view_description">E pëlqyer nga krijuesi</string>
+    <string name="dont_show">Mos shfaq</string>
+    <string name="low_quality_smaller">Cilësi e ulët (më e vogël)</string>
+    <string name="high_quality_larger">Cilësi e lartë (më e madhe)</string>
+    <string name="seekbar_preview_thumbnail_title">Parapamje e pamjes miniaturë të lëvizësit të kohës</string>
+    <string name="comments_are_disabled">Komentet janë të ç\'aktivizuara</string>
+    <string name="mark_as_watched">Shëno si të parë</string>
 </resources>

@@ -680,7 +680,7 @@
     <string name="youtube_music_premium_content">Toto video je dostupné jen členům YouTube Music Premium, a tak je NewPipe nemůže stáhnout ani přehrát.</string>
     <string name="private_content">Tento obsah je soukromý, a tak jej NewPipe nemůže stáhnout ani přehrát.</string>
     <string name="soundcloud_go_plus_content">Toto je stopa SoundCloud Go+, přinejmenším ve Vaší zemi, a tak ji NewPipe nemůže stáhnout ani přehrát.</string>
-    <string name="georestricted_content">Tento obsah není ve Vaší zemi k dispozici.</string>
+    <string name="georestricted_content">Tento obsah není ve vaší zemi dostupný.</string>
     <string name="show_channel_details">Zobrazit podrobnosti kanálu</string>
     <string name="recaptcha_solve">Vyřešit</string>
     <string name="restricted_video_no_stream">Toto video je věkově omezeno.
@@ -721,4 +721,11 @@
     <string name="on">Zapnuto</string>
     <string name="tablet_mode_title">Režim tabletu</string>
     <string name="feed_toggle_show_played_items">Ukázat přehrané položky</string>
+    <string name="dont_show">Nezobrazovat</string>
+    <string name="low_quality_smaller">Nízká kvalita (menší)</string>
+    <string name="high_quality_larger">Vysoká kvalita (větší)</string>
+    <string name="seekbar_preview_thumbnail_title">Náhled miniatur na vyhledávací liště</string>
+    <string name="comments_are_disabled">Komentáře jsou vypnuty</string>
+    <string name="detail_heart_img_view_description">Srdíčko od tvůrce</string>
+    <string name="mark_as_watched">Označit jako zhlédnuté</string>
 </resources>

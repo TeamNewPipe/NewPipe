@@ -51,7 +51,7 @@
     <string name="item_deleted">Item हटा दिया गया है</string>
     <string name="trending">फ़िलहाल चर्चा में है</string>
     <string name="play_queue_audio_settings">ऑडियो सेटिंग</string>
-    <string name="main_bg_subtitle">शुरू करने के लिए \"सर्च\" बटन दबाएं</string>
+    <string name="main_bg_subtitle">आरंभ करने के लिए आवर्धक कांच पर टैप करें।</string>
     <string name="cancel">कैंसल करे</string>
     <string name="did_you_mean">क्या आप का मतलब \"%1$s\" था\?</string>
     <string name="share_dialog_title">के साथ शेयर करे</string>
@@ -539,14 +539,14 @@
     <string name="auto_queue_toggle">ऑटोमैटिकली कतार करे</string>
     <string name="clear_queue_confirmation_title">कतार को मिटाने से पहले सत्यापन के लिए पूछें</string>
     <string name="seek_duration_title">तलाश अवधि फास्ट-फ़ॉरवर्ड /- रिवाइंड करे</string>
-    <string name="notification_colorize_summary">एंड्रॉइड को थंबनेल में मुख्य रंग के अनुसार अधिसूचना के रंग को अनुकूलित करने दें (ध्यान दें कि यह सभी फोन पर उपलब्ध नहीं है)</string>
+    <string name="notification_colorize_summary">एंड्रॉइड को थंबनेल में मुख्य रंग के अनुसार अधिसूचना रंग को अनुकूलित करें (ध्यान दें कि यह सभी उपकरणों पर उपलब्ध नहीं है)</string>
     <string name="notification_colorize_title">नोटीफिकेशन को रंगीन करें</string>
     <string name="notification_action_nothing">कुछ नहीं</string>
     <string name="notification_action_buffering">बफरिंग</string>
     <string name="notification_action_shuffle">Shuffle करे</string>
     <string name="notification_action_repeat">दोहराएं</string>
     <string name="notification_actions_at_most_three">आप कॉम्पैक्ट नोटिफिकेशन में दिखाए जाने वाले ऑप्शन्स में से अधिकतम 3 को चुन सकते है !</string>
-    <string name="notification_actions_summary">प्रत्येक नोटिफिकेशन को संपादित करने के लिए उस पर क्लिक करें। दाईं तरफ के चेकबॉक्स का इस्तेमाल करके नोटिफिकेशन में दिखाए जाने वाले अधिकतम 3 ऑप्शंस को चुना जा सकता है।</string>
+    <string name="notification_actions_summary">नीचे दी गई प्रत्येक अधिसूचना क्रिया को उस पर टैप करके संपादित करें। दाईं ओर चेकबॉक्स का उपयोग करके उनमें से अधिकतम तीन का चयन करें जिन्हें कॉम्पैक्ट अधिसूचना में दिखाया जाना है</string>
     <string name="notification_action_4_title">पांचवा एक्शन बटन</string>
     <string name="notification_action_3_title">चौथा एक्शन बटन</string>
     <string name="notification_action_2_title">तीसरा एक्शन बटन</string>
@@ -615,4 +615,13 @@
     <string name="peertube_instance_url_title">पियरट्यूब उदाहरण</string>
     <string name="featured">विशेष रुप से प्रदर्शित</string>
     <string name="night_theme_title">रात्रि थीम</string>
+    <string name="msg_calculating_hash">हैश की गणना</string>
+    <string name="copy_for_github">स्वरूपित रिपोर्ट कॉपी करें</string>
+    <string name="clear_cookie_summary">कुकी साफ़ करें जिसे न्यूपाइप आपके द्वारा रीकैप्चा हल करने पर संग्रहीत करता है</string>
+    <string name="peertube_instance_add_exists">उदाहरण पहले से मौजूद है</string>
+    <string name="peertube_instance_add_fail">उदाहरण मान्य नहीं किया जा सका</string>
+    <string name="peertube_instance_add_help">उदाहरण URL दर्ज करें</string>
+    <string name="peertube_instance_add_title">उदाहरण जोड़ें</string>
+    <string name="peertube_instance_url_help">%s . पर अपनी पसंद के उदाहरण ढूँढ़ें</string>
+    <string name="peertube_instance_url_summary">अपने पसंदीदा PeerTube उदाहरण चुनें</string>
 </resources>
