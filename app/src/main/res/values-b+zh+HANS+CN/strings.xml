@@ -37,7 +37,8 @@
     <string name="later">稍后</string>
     <string name="network_error">网络错误</string>
     <plurals name="videos">
-        <item quantity="other">%s 部视频</item>
+        <item quantity="one">%s 个视频</item>
+        <item quantity="other"/>
     </plurals>
     <string name="disabled">禁用</string>
     <string name="controls_background_title">后台播放</string>
@@ -106,7 +107,7 @@
     <string name="msg_exists">文件已存在</string>
     <string name="msg_running_detail">点击了解详情</string>
     <string name="msg_wait">请稍候…</string>
-    <string name="msg_copied">复制至剪贴板</string>
+    <string name="msg_copied">已复制到剪贴板</string>
     <string name="controls_popup_title">悬浮窗播放</string>
     <string name="title_activity_about">关于 NewPipe</string>
     <string name="action_settings">设置</string>
@@ -126,7 +127,8 @@
     <string name="search_no_results">没有结果</string>
     <string name="no_subscribers">无人订阅</string>
     <plurals name="subscribers">
-        <item quantity="other">%s 人订阅</item>
+        <item quantity="one">%s 位订阅者</item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_videos">无视频</string>
     <string name="detail_drag_description">拖动以重新排序</string>
@@ -259,20 +261,20 @@
     <string name="no_channel_subscribed_yet">尚未订阅频道</string>
     <string name="select_a_kiosk">选择一个时下流行页</string>
     <string name="kiosk">『时下流行』</string>
-    <string name="trending">趋势</string>
+    <string name="trending">时下流行</string>
     <string name="top_50">前 50</string>
     <string name="new_and_hot">最新与热门</string>
     <string name="show_hold_to_append_title">显示“长按添加”说明</string>
-    <string name="show_hold_to_append_summary">在视频详情页中，长按背景播放或悬浮窗播放按钮时显示提示</string>
-    <string name="background_player_append">已加入后台播放播放列表</string>
-    <string name="popup_playing_append">已加入悬浮窗播放列表</string>
+    <string name="show_hold_to_append_summary">在视频详情页中，长按后台播放或悬浮窗播放按钮时显示提示</string>
+    <string name="background_player_append">已加入后台播放播放队列</string>
+    <string name="popup_playing_append">已加入悬浮窗播放队列</string>
     <string name="player_stream_failure">无法播放此串流</string>
     <string name="player_unrecoverable_failure">发生无法处理的播放器错误</string>
     <string name="player_recoverable_failure">播放器错误 自动恢复</string>
     <string name="play_queue_remove">移除</string>
     <string name="play_queue_stream_detail">详情</string>
     <string name="play_queue_audio_settings">音频设置</string>
-    <string name="hold_to_append">长按加入播放列表</string>
+    <string name="hold_to_append">长按加入播放队列</string>
     <string name="unknown_content">[未知]</string>
     <string name="start_here_on_main">开始在此处开始播放</string>
     <string name="start_here_on_background">开始后台播放</string>
@@ -340,8 +342,8 @@
     <string name="enable_disposed_exceptions_summary">强制报告处理后的未送达的 Activity 或 Fragment 生命周期之外的 Rx 异常</string>
     <string name="use_inexact_seek_title">使用快速寻址（不精确）</string>
     <string name="use_inexact_seek_summary">快速寻址定位允许播放器以较低精确度为代价换取更快的寻址定位速度。此功能不适用于以 5、15 或 25 秒为隔的寻址定位</string>
-    <string name="auto_queue_title">自动将“接下来”视频加入播放列表</string>
-    <string name="auto_queue_summary">播放完（非循环）列表中的最后一个视频后，自动将一个相关视频添加到当前播放列表</string>
+    <string name="auto_queue_title">自动将“接下来”视频加入播放队列</string>
+    <string name="auto_queue_summary">播放完（非循环）队列中的最后一个视频后，自动将一个相关视频添加到当前播放队列</string>
     <string name="invalid_directory">没有该文件夹</string>
     <string name="invalid_source">无相似文件/内容源</string>
     <string name="invalid_file">文件不存在，或缺少读写文件权限</string>
@@ -603,12 +605,12 @@
     <string name="never">从不</string>
     <string name="wifi_only">仅在 Wi-Fi 下</string>
     <string name="autoplay_summary">视频开始播放后，自动定位到上次播放时的位置 — %s</string>
-    <string name="title_activity_play_queue">播放列表</string>
+    <string name="title_activity_play_queue">播放队列</string>
     <string name="unsupported_url_dialog_message">无法识别此 URL。是否用其他应用打开\?</string>
-    <string name="auto_queue_toggle">自动加入播放列表</string>
-    <string name="clear_queue_confirmation_description">当前播放列表将被替换</string>
-    <string name="clear_queue_confirmation_summary">从一个播放器切换到另一个播放器后，你的播放列表可能会被替换</string>
-    <string name="clear_queue_confirmation_title">清空播放列表前再次确认</string>
+    <string name="auto_queue_toggle">自动加入播放队列</string>
+    <string name="clear_queue_confirmation_description">当前播放队列将被替换</string>
+    <string name="clear_queue_confirmation_summary">从一个播放器切换到另一个播放器后，你的播放队列可能会被替换</string>
+    <string name="clear_queue_confirmation_title">清空播放队列前再次确认</string>
     <string name="notification_action_nothing">无</string>
     <string name="notification_action_buffering">正在缓冲</string>
     <string name="notification_action_shuffle">随机播放</string>
@@ -624,8 +626,8 @@
     <string name="notification_scale_to_square_image_title">强制缩放缩略图至 1:1 比例</string>
     <string name="settings_category_notification_title">通知</string>
     <string name="show_memory_leaks">显示内存泄漏</string>
-    <string name="enqueued">已加入队列</string>
-    <string name="enqueue_stream">加入队列</string>
+    <string name="enqueued">已加入播放队列</string>
+    <string name="enqueue_stream">加入播放队列</string>
     <string name="clear_cookie_summary">清空与本地存储的 reCAPTCHA 验证码有关的 cookie</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookie 已被清空</string>
     <string name="clear_cookie_title">清空 reCAPTCHA cookie</string>
@@ -698,8 +700,15 @@
     <string name="downloads_storage_ask_summary_no_saf_notice">你会被问到在哪里保存每个下载</string>
     <string name="no_dir_yet">尚未设置下载文件夹，现在选择默认下载文件夹</string>
     <string name="tablet_mode_title">平板模式</string>
-    <string name="feed_toggle_show_played_items">显示已播放的项目</string>
+    <string name="feed_toggle_show_played_items">显示已观看的项目</string>
     <string name="item_in_history">历史条目</string>
     <string name="off">关闭</string>
     <string name="on">开启</string>
+    <string name="comments_are_disabled">评论功能已禁用</string>
+    <string name="seekbar_preview_thumbnail_title">进度条缩略图预览</string>
+    <string name="dont_show">不显示</string>
+    <string name="low_quality_smaller">低品质（较小）</string>
+    <string name="high_quality_larger">高品质（较大）</string>
+    <string name="detail_heart_img_view_description">被创作者喜爱</string>
+    <string name="mark_as_watched">标记为已观看</string>
 </resources>

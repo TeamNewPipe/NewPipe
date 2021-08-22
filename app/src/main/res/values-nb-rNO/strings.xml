@@ -678,4 +678,42 @@
     <string name="show_channel_details">Vis kanaldetaljer</string>
     <string name="disable_media_tunneling_summary">Skru av media-tunnelering hvis du opplever svart skjerm eller videohakking</string>
     <string name="disable_media_tunneling_title">Skru av media-tunnelering</string>
+    <string name="description_select_note">Du kan nå velge tekst inne i beskrivelsen. Merk at siden kan flimre og lenker er kanskje ikke klikkbare i utvalgsmodus.</string>
+    <string name="feed_load_error_fast_unknown">Raskt modus for informasjonskanal tilbyr ikke mer info om dette.</string>
+    <string name="feed_load_error_terminated">Skaperens konto har blitt terminert.
+\nNewPipe vil ikke kunne laste inn denne informasjonskanalen i fremtiden.
+\nØnsker du å oppheve ditt abonnement på denne kanalen\?</string>
+    <string name="description_select_disable">Skru av valgt av tekst i beskrivelsen</string>
+    <string name="description_select_enable">Skru på valg av tekst i beskrivelsen</string>
+    <string name="service_provides_reason">%s oppgav denne grunnen:</string>
+    <string name="account_terminated">Konto terminert</string>
+    <string name="feed_toggle_show_played_items">Vis avspilte elementer</string>
+    <string name="feed_load_error_account_info">Kunne ikke laste inn informasjonskanal for «%s».</string>
+    <string name="feed_load_error">Kunne ikke laste inn informasjonskanal</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Fra Android 10 er kun «lagringstilgangsrammeverk» støttet</string>
+    <string name="downloads_storage_use_saf_summary_api_19">«Lagringstilgangsrammeverket» støttes ikke på Android KitKat og tidligere.</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Du vil bli spurt om hvor du vil lagre hver nedlastning</string>
+    <string name="seekbar_preview_thumbnail_title">Miniatyrbildeforhåndsvisning</string>
+    <string name="no_dir_yet">Ingen nedlastingsmappe valgt. Velg forvalgt nedlastingsmappe nå.</string>
+    <string name="off">Av</string>
+    <string name="on">På</string>
+    <string name="tablet_mode_title">Nettbrett-modus</string>
+    <string name="open_website_license">Åpne nettside</string>
+    <string name="metadata_privacy_internal">Intern</string>
+    <string name="metadata_privacy_private">Privat</string>
+    <string name="metadata_privacy_unlisted">Ulistet</string>
+    <string name="metadata_privacy_public">Offentlig</string>
+    <string name="metadata_thumbnail_url">Miniatyrbilde-nettadresse</string>
+    <string name="metadata_host">Tjener</string>
+    <string name="metadata_support">Støtte</string>
+    <string name="metadata_language">Språk</string>
+    <string name="metadata_age_limit">Aldersgrense</string>
+    <string name="metadata_privacy">Personvern</string>
+    <string name="metadata_licence">Lisens</string>
+    <string name="metadata_tags">Etiketter</string>
+    <string name="metadata_category">Kategori</string>
+    <string name="dont_show">Ikke vis</string>
+    <string name="low_quality_smaller">Lav kvalitet (mindre)</string>
+    <string name="high_quality_larger">Høy kvalitet (større)</string>
+    <string name="comments_are_disabled">Kommentarer er avskrudd</string>
 </resources>

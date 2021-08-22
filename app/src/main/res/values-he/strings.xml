@@ -730,5 +730,12 @@
     <string name="off">כבוי</string>
     <string name="on">פעיל</string>
     <string name="tablet_mode_title">מצב מחשב לוח</string>
-    <string name="feed_toggle_show_played_items">הצגת פריטים שנוגנו</string>
+    <string name="feed_toggle_show_played_items">הצגת פריטים שנצפו</string>
+    <string name="comments_are_disabled">תגובות מושבתות</string>
+    <string name="dont_show">לא להציג</string>
+    <string name="low_quality_smaller">איכות נמוכה (קטן יותר)</string>
+    <string name="high_quality_larger">איכות גבוהה (גדול יותר)</string>
+    <string name="seekbar_preview_thumbnail_title">תמונה מוקטנת בסרגל הנגינה</string>
+    <string name="detail_heart_img_view_description">סומן בלב על ידי היוצר</string>
+    <string name="mark_as_watched">סימון כנצפה</string>
 </resources>

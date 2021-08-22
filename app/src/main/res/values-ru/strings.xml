@@ -723,4 +723,11 @@
     <string name="on">Включить</string>
     <string name="tablet_mode_title">Режим планшета</string>
     <string name="feed_toggle_show_played_items">Показать проигранные</string>
+    <string name="comments_are_disabled">Комментарии отключены</string>
+    <string name="dont_show">Не показывать</string>
+    <string name="low_quality_smaller">Низкое качество (меньше)</string>
+    <string name="high_quality_larger">Высокое качество (крупнее)</string>
+    <string name="seekbar_preview_thumbnail_title">Миниатюра над полосой прокрутки</string>
+    <string name="detail_heart_img_view_description">Автору видео понравилось это</string>
+    <string name="mark_as_watched">Пометить как проигранные</string>
 </resources>

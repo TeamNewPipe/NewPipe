@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Napauta hakua aloittaaksesi</string>
+    <string name="main_bg_subtitle">Napauta suurennuslasia aloittaaksesi.</string>
     <string name="view_count_text">%1$s näyttökertaa</string>
     <string name="upload_date_text">Julkaistu %1$s</string>
     <string name="no_player_found">Ei löytynyt suoratoistosoitinta. Asennetaanko VLC\?</string>
@@ -246,9 +246,9 @@
     <string name="tab_bookmarks">Soittolistakirjanmerkit</string>
     <string name="controls_add_to_playlist_title">Lisää soittolistaan</string>
     <string name="use_inexact_seek_title">Käytä nopeampaa epätarkkaa pikakelausta</string>
-    <string name="use_inexact_seek_summary">Epätarkka kelaus mahdollistaa videon kelauksen nopeammin huonommalla tarkkuudella. Kelaaminen 5, 15 tai 25 sekuntia ei toimi tämän kanssa.</string>
+    <string name="use_inexact_seek_summary">Epätarkka kelaus mahdollistaa videon kelauksen nopeammin huonommalla tarkkuudella. Kelaaminen 5, 15 tai 25 sekunnin erissä ei toimi tämän kanssa.</string>
     <string name="download_thumbnail_title">Lataa esikatselukuvat</string>
-    <string name="download_thumbnail_summary">Poista käytöstä estääksesi esikatselukuvien lataus säästääksesi dataa ja muistinkäyttöä. Asetuksen muuttaminen poistaa sekä muistissa että levyllä olevan kuvavälimuistin.</string>
+    <string name="download_thumbnail_summary">Poista käytöstä estääksesi esikatselukuvien lataus. Tämä säästää dataa ja vähentää muistin käyttöä. Asetuksen muuttaminen poistaa muistissa ja levyllä olevan kuvavälimuistin.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Kuvavälimuisti tyhjennetty</string>
     <string name="metadata_cache_wipe_title">Poista tallennettu metatieto</string>
     <string name="metadata_cache_wipe_summary">Poista kaikki tallennettu sivutieto</string>
@@ -275,11 +275,11 @@
     <string name="clear_views_history_title">Poista katseluhistoria</string>
     <string name="clear_views_history_summary">Poistaa toistohistorian ja toistokohdat</string>
     <string name="delete_view_history_alert">Poista koko katseluhistoria\?</string>
-    <string name="watch_history_deleted">Katseluhistoria onnistuneesti poistettu.</string>
+    <string name="watch_history_deleted">Katseluhistoria poistettu.</string>
     <string name="clear_search_history_title">Poista hakuhistoria</string>
     <string name="clear_search_history_summary">Poistaa historian haetuista videoista</string>
     <string name="delete_search_history_alert">Poista koko hakuhistoria\?</string>
-    <string name="search_history_deleted">Hakuhistoria onnistuneesti poistettu.</string>
+    <string name="search_history_deleted">Hakuhistoria poistettu</string>
     <string name="external_player_unsupported_link_type">Ulkoiset soittimet eivät tue tämänkaltaisia linkkejä</string>
     <string name="invalid_url_toast">Viallinen osoite</string>
     <string name="video_streams_empty">Suoratoistovideoita ei löytynyt</string>
@@ -403,7 +403,7 @@
     <string name="recently_added">Hiljattain lisätyt</string>
     <string name="local">Paikalliset</string>
     <string name="most_liked">Pidetyimmät</string>
-    <string name="localization_changes_requires_app_restart">Kieli vaihtuu, kun sovellus uudelleenkäynnistetään.</string>
+    <string name="localization_changes_requires_app_restart">Kieli vaihtuu, kun sovellus uudelleenkäynnistetään</string>
     <string name="error_unable_to_load_comments">Kommentteja ei voitu ladata</string>
     <string name="selection">Valinta</string>
     <string name="main_page_content_summary">Mitkä välilehdet näytetään pääsivulla</string>
@@ -462,7 +462,7 @@
     <string name="volume_gesture_control_summary">Käytä eleitä ohjataksesi soittimen äänenvoimakkuutta</string>
     <string name="volume_gesture_control_title">Äänenvoimakkuuden eleohjaus</string>
     <string name="show_comments_summary">Poista käytöstä piilottaaksesi kommentit</string>
-    <string name="watch_history_states_deleted">Toistokohdat poistettu.</string>
+    <string name="watch_history_states_deleted">Toistokohdat poistettu</string>
     <string name="delete_playback_states_alert">Poistetaanko kaikki toistokohdat\?</string>
     <string name="clear_playback_states_summary">Poistaa kaikki toistokohdat</string>
     <string name="clear_playback_states_title">Poista toistokohdat</string>
@@ -541,10 +541,10 @@
     <string name="systems_language">Järjestelmän oletus</string>
     <string name="app_language_title">Sovelluksen kieli</string>
     <string name="choose_instance_prompt">Valitse instanssi</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' sallii lataukset ulkoiselle SD-kortille.
-\nJotkin laitteet eivät ole yhteensopivia</string>
+    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' sallii lataukset ulkoiselle SD-kortille.</string>
     <string name="downloads_storage_use_saf_title">Ota SAF käyttöön</string>
-    <string name="downloads_storage_ask_summary">Jokaisen latauksen kohde kysytään</string>
+    <string name="downloads_storage_ask_summary">Jokaisen latauksen kohde kysytään.
+\nSalli SAF, jos haluat ladata ulkoiselle SD-kortille.</string>
     <string name="downloads_storage_ask_title">Kysy mihin ladataan</string>
     <string name="start_downloads">Aloita lataukset</string>
     <string name="enable_queue_limit_desc">Salli vain yksi lataus kerrallaan</string>
@@ -646,7 +646,7 @@
     <string name="show_thumbnail_summary">Käytä esikatselukuvaa lukitusruudun ja ilmoitusten taustakuvana</string>
     <string name="show_thumbnail_title">Näytä esikatselukuva</string>
     <string name="msg_calculating_hash">Lasketaan</string>
-    <string name="show_meta_info_summary">Poista käytöstä piilotakseen metatiedot suoratoiston luojasta, sen sisällöstä tai hakupyynnöstä.</string>
+    <string name="show_meta_info_summary">Poista käytöstä piilottaaksesi metatiedot suoratoiston luojasta, sisällöstä tai hakupyynnöstä.</string>
     <string name="show_meta_info_title">Näytä metatieto</string>
     <string name="recent">Viimeisimmät</string>
     <string name="show_description_title">Näytä kuvaus</string>
@@ -675,4 +675,47 @@
     <string name="restricted_video_no_stream">Tämä video on ikärajoitettu.
 \nYouTuben uusien ikärajoitusperiaatteiden mukaisesti NewPipella ei ole pääsyä videoon eikä sitä voida toistaa.</string>
     <string name="night_theme_title">Yöteema</string>
+    <string name="metadata_thumbnail_url">Pienoiskuvakkeen osoite</string>
+    <string name="description_select_disable">Poista käytöstä tekstinvalinta kuvauskentän sisältä</string>
+    <string name="description_select_note">Voit nyt valita tekstin kuvauskentän sisältä. Huomioithan, että valintatilan aikana sivu voi vilkkua ja linkit eivät ehkä ole klikattavia.</string>
+    <string name="service_provides_reason">%s tuo tämän syyn:</string>
+    <string name="seekbar_preview_thumbnail_title">Säätövivun kuvakkeen esikatselu</string>
+    <string name="disable_media_tunneling_summary">Poista median tunnelointi käytöstä, jos havaitset mustan näyttöruudun tai änkytystä videon toistossa</string>
+    <string name="disable_media_tunneling_title">Poista median tunnelointi käytöstä</string>
+    <string name="feed_load_error_fast_unknown">Nopea syötetila ei tarjoa enempää tietoa tästä.</string>
+    <string name="downloads_storage_use_saf_summary_api_29">\'Storage Access Framework\' on tuettu vain Android 10:stä alkaen.</string>
+    <string name="off">Pois päältä</string>
+    <string name="on">Päällä</string>
+    <string name="tablet_mode_title">Tablettitila</string>
+    <string name="open_website_license">Avaa verkkosivu</string>
+    <string name="detail_heart_img_view_description">Tekijän tykkäämä</string>
+    <string name="metadata_privacy_internal">Sisäinen</string>
+    <string name="metadata_privacy_private">Yksityinen</string>
+    <string name="metadata_privacy_unlisted">Listaamaton</string>
+    <string name="metadata_privacy_public">Julkinen</string>
+    <string name="metadata_host">Ylläpitäjä</string>
+    <string name="metadata_support">Tuki</string>
+    <string name="metadata_language">Kieli</string>
+    <string name="metadata_age_limit">Ikäraja</string>
+    <string name="metadata_privacy">Julkisuusaste</string>
+    <string name="metadata_licence">Lisenssi</string>
+    <string name="metadata_tags">Avainsanat</string>
+    <string name="metadata_category">Kategoria</string>
+    <string name="description_select_enable">Salli tekstin valinta kuvauksessa</string>
+    <string name="account_terminated">Tili suljettu</string>
+    <string name="feed_toggle_show_played_items">Näytä katsotut kohteet</string>
+    <string name="feed_load_error_terminated">Tekijän käyttäjätili on suljettu.
+\nNewPipe ei pysty lataamaan tätä syötettä tulevaisuudessa.
+\nHaluatko poistaa kanavan tilauksesta\?</string>
+    <string name="feed_load_error_account_info">Ei voitu ladata syötettä hakusanalle \'%s\'.</string>
+    <string name="feed_load_error">Virhe syötteen lataamisessa</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' ei ole tuettu Android KitKatissa tai vanhemmissa versioissa</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Sinulta kysytään joka kerta, minne tiedosto ladataan.</string>
+    <string name="dont_show">Älä näytä</string>
+    <string name="low_quality_smaller">Matala laatu (pienempi)</string>
+    <string name="high_quality_larger">Korkea laatu (suurempi)</string>
+    <string name="show_channel_details">Näytä kanavan lisätiedot</string>
+    <string name="no_dir_yet">Latauskansiota ei vielä asetettu, valitse ensin oletuslatauskansio</string>
+    <string name="comments_are_disabled">Kommentit poistettu käytöstä</string>
+    <string name="mark_as_watched">Merkitse katsotuksi</string>
 </resources>
