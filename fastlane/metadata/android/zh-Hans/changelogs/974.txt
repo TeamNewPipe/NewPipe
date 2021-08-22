@@ -1,0 +1,5 @@
+热修复
+- 修复 由YouTube节流引起的视频缓冲问题
+- 修复 YouTube评论提取和禁用评论而导致崩溃
+- 修复 YouTube 音乐搜索
+- 修复 PeerTube 直播

@@ -79,6 +79,16 @@
             android:summary="@string/show_play_with_kodi_summary"
             android:title="@string/show_play_with_kodi_title"
             app:iconSpaceReserved="false" />
+        <ListPreference
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="seekbar_preview_thumbnail_high_quality"
+            android:entries="@array/seekbar_preview_thumbnail_type_description"
+            android:entryValues="@array/seekbar_preview_thumbnail_type_key"
+            android:key="@string/seekbar_preview_thumbnail_key"
+            android:summary="%s"
+            android:title="@string/seekbar_preview_thumbnail_title"
+            app:iconSpaceReserved="false" />
 
     </PreferenceCategory>
 

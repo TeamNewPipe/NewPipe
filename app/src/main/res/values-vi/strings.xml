@@ -690,7 +690,7 @@
     <string name="description_select_note">Bây giờ bạn có thể chọn văn bản trong mô tả. Lưu ý rằng trang có thể nhấp nháy và các liên kết có thể không nhấn vào được trong khi ở chế độ chọn.</string>
     <string name="service_provides_reason">%s cung cấp lý do này:</string>
     <string name="account_terminated">Tài khoản bị chấm dứt</string>
-    <string name="feed_toggle_show_played_items">Hiện các mục đã phát</string>
+    <string name="feed_toggle_show_played_items">Hiện các mục đã xem</string>
     <string name="feed_load_error_fast_unknown">Chế độ nguồn dữ liệu nhanh không cung cấp thêm thông tin về cái này.</string>
     <string name="feed_load_error_terminated">Tài khoản của tác giả đã bị chấm dứt.
 \nNewPipe sẽ không thể tải nguồn dữ liệu này trong tương lai.
@@ -701,4 +701,11 @@
     <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' không được hỗ trợ trên Android KitKat và cũ hơn</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Bạn sẽ được hỏi nơi bạn muốn lưu mỗi mục tải xuống</string>
     <string name="no_dir_yet">Chưa có thư mục tải xuống nào được đặt, hãy chọn thư mục tải xuống mặc định ngay</string>
+    <string name="dont_show">Không hiện</string>
+    <string name="low_quality_smaller">Chất lượng thấp (nhỏ hơn)</string>
+    <string name="high_quality_larger">Chất lượng cao (lớn hơn)</string>
+    <string name="seekbar_preview_thumbnail_title">Xem trước hình thu nhỏ trên thanh tua</string>
+    <string name="comments_are_disabled">Bình luận đang bị tắt</string>
+    <string name="detail_heart_img_view_description">Đã được người tạo gắn tim</string>
+    <string name="mark_as_watched">Đánh dấu là đã xem</string>
 </resources>

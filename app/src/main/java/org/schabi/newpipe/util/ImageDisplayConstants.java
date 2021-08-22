@@ -56,5 +56,10 @@ public final class ImageDisplayConstants {
                     .showImageOnFail(R.drawable.dummy_thumbnail_playlist)
                     .build();
 
+    public static final DisplayImageOptions DISPLAY_SEEKBAR_PREVIEW_OPTIONS =
+            new DisplayImageOptions.Builder()
+                    .cloneFrom(BASE_DISPLAY_IMAGE_OPTIONS)
+                    .build();
+
     private ImageDisplayConstants() { }
 }

@@ -27,12 +27,13 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
-import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -54,8 +55,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.content.ContextCompat;
-import androidx.core.view.DisplayCutoutCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.GestureDetectorCompat;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -112,6 +115,7 @@ import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.player.playback.PlayerMediaSession;
+import org.schabi.newpipe.player.playback.SurfaceHolderCallback;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueAdapter;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
@@ -121,12 +125,14 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
+import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper;
+import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHolder;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
-import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.SerializedCache;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.ExpandableSurfaceView;
 
@@ -267,6 +273,7 @@ public final class Player implements
     private SimpleExoPlayer simpleExoPlayer;
     private AudioReactor audioReactor;
     private MediaSessionManager mediaSessionManager;
+    @Nullable private SurfaceHolderCallback surfaceHolderCallback;
 
     @NonNull private final CustomTrackSelector trackSelector;
     @NonNull private final LoadController loadController;
@@ -353,7 +360,7 @@ public final class Player implements
     private static final float MAX_GESTURE_LENGTH = 0.75f;
 
     private int maxGestureLength; // scaled
-    private GestureDetector gestureDetector;
+    private GestureDetectorCompat gestureDetector;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Listeners and disposables
@@ -376,6 +383,8 @@ public final class Player implements
     @NonNull private final SharedPreferences prefs;
     @NonNull private final HistoryRecordManager recordManager;
 
+    @NonNull private final SeekbarPreviewThumbnailHolder seekbarPreviewThumbnailHolder =
+            new SeekbarPreviewThumbnailHolder();
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -489,7 +498,7 @@ public final class Player implements
         registerBroadcastReceiver();
 
         // Setup video view
-        simpleExoPlayer.setVideoSurfaceView(binding.surfaceView);
+        setupVideoSurface();
         simpleExoPlayer.addVideoListener(this);
 
         // Setup subtitle view
@@ -517,7 +526,7 @@ public final class Player implements
         binding.playbackLiveSync.setOnClickListener(this);
 
         final PlayerGestureListener listener = new PlayerGestureListener(this, service);
-        gestureDetector = new GestureDetector(context, listener);
+        gestureDetector = new GestureDetectorCompat(context, listener);
         binding.getRoot().setOnTouchListener(listener);
 
         binding.queueButton.setOnClickListener(this);
@@ -552,10 +561,9 @@ public final class Player implements
         binding.getRoot().addOnLayoutChangeListener(this::onLayoutChange);
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.itemsListPanel, (view, windowInsets) -> {
-            final DisplayCutoutCompat cutout = windowInsets.getDisplayCutout();
-            if (cutout != null) {
-                view.setPadding(cutout.getSafeInsetLeft(), cutout.getSafeInsetTop(),
-                        cutout.getSafeInsetRight(), cutout.getSafeInsetBottom());
+            final Insets cutout = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout());
+            if (!cutout.equals(Insets.NONE)) {
+                view.setPadding(cutout.left, cutout.top, cutout.right, cutout.bottom);
             }
             return windowInsets;
         });
@@ -772,8 +780,12 @@ public final class Player implements
         if (DEBUG) {
             Log.d(TAG, "destroyPlayer() called");
         }
+
+        cleanupVideoSurface();
+
         if (!exoPlayerIsNull()) {
             simpleExoPlayer.removeListener(this);
+            simpleExoPlayer.removeVideoListener(this);
             simpleExoPlayer.stop();
             simpleExoPlayer.release();
         }
@@ -857,7 +869,7 @@ public final class Player implements
             Log.d(TAG, "onPlaybackShutdown() called");
         }
         // destroys the service, which in turn will destroy the player
-        service.onDestroy();
+        service.stopService();
     }
 
     public void smoothStopPlayer() {
@@ -1097,7 +1109,7 @@ public final class Player implements
                 pause();
                 break;
             case ACTION_CLOSE:
-                service.onDestroy();
+                service.stopService();
                 break;
             case ACTION_PLAY_PAUSE:
                 playPause();
@@ -1498,7 +1510,7 @@ public final class Player implements
                         Objects.requireNonNull(windowManager)
                                 .removeView(closeOverlayBinding.getRoot());
                         closeOverlayBinding = null;
-                        service.onDestroy();
+                        service.stopService();
                     }
                 }).start();
     }
@@ -1669,12 +1681,67 @@ public final class Player implements
     @Override // seekbar listener
     public void onProgressChanged(final SeekBar seekBar, final int progress,
                                   final boolean fromUser) {
-        if (DEBUG && fromUser) {
+        // Currently we don't need method execution when fromUser is false
+        if (!fromUser) {
+            return;
+        }
+        if (DEBUG) {
             Log.d(TAG, "onProgressChanged() called with: "
                     + "seekBar = [" + seekBar + "], progress = [" + progress + "]");
         }
-        if (fromUser) {
-            binding.currentDisplaySeek.setText(getTimeString(progress));
+
+        binding.currentDisplaySeek.setText(getTimeString(progress));
+
+        // Seekbar Preview Thumbnail
+        SeekbarPreviewThumbnailHelper
+                .tryResizeAndSetSeekbarPreviewThumbnail(
+                        getContext(),
+                        seekbarPreviewThumbnailHolder.getBitmapAt(progress),
+                        binding.currentSeekbarPreviewThumbnail,
+                        binding.subtitleView::getWidth);
+
+        adjustSeekbarPreviewContainer();
+    }
+
+    private void adjustSeekbarPreviewContainer() {
+        try {
+            // Should only be required when an error occurred before
+            // and the layout was positioned in the center
+            binding.bottomSeekbarPreviewLayout.setGravity(Gravity.NO_GRAVITY);
+
+            // Calculate the current left position of seekbar progress in px
+            // More info: https://stackoverflow.com/q/20493577
+            final int currentSeekbarLeft =
+                    binding.playbackSeekBar.getLeft()
+                            + binding.playbackSeekBar.getPaddingLeft()
+                            + binding.playbackSeekBar.getThumb().getBounds().left;
+
+            // Calculate the (unchecked) left position of the container
+            final int uncheckedContainerLeft =
+                    currentSeekbarLeft - (binding.seekbarPreviewContainer.getWidth() / 2);
+
+            // Fix the position so it's within the boundaries
+            final int checkedContainerLeft =
+                    Math.max(
+                            Math.min(
+                                    uncheckedContainerLeft,
+                                    // Max left
+                                    binding.playbackWindowRoot.getWidth()
+                                            - binding.seekbarPreviewContainer.getWidth()
+                            ),
+                            0 // Min left
+                    );
+
+            // See also: https://stackoverflow.com/a/23249734
+            final LinearLayout.LayoutParams params =
+                    new LinearLayout.LayoutParams(
+                            binding.seekbarPreviewContainer.getLayoutParams());
+            params.setMarginStart(checkedContainerLeft);
+            binding.seekbarPreviewContainer.setLayoutParams(params);
+        } catch (final Exception ex) {
+            Log.e(TAG, "Failed to adjust seekbarPreviewContainer", ex);
+            // Fallback - position in the middle
+            binding.bottomSeekbarPreviewLayout.setGravity(Gravity.CENTER);
         }
     }
 
@@ -1695,6 +1762,8 @@ public final class Player implements
         showControls(0);
         animate(binding.currentDisplaySeek, true, DEFAULT_CONTROLS_DURATION,
                 AnimationType.SCALE_AND_ALPHA);
+        animate(binding.currentSeekbarPreviewThumbnail, true, DEFAULT_CONTROLS_DURATION,
+                AnimationType.SCALE_AND_ALPHA);
     }
 
     @Override // seekbar listener
@@ -1710,6 +1779,7 @@ public final class Player implements
 
         binding.playbackCurrentTime.setText(getTimeString(seekBar.getProgress()));
         animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
+        animate(binding.currentSeekbarPreviewThumbnail, false, 200, AnimationType.SCALE_AND_ALPHA);
 
         if (currentState == STATE_PAUSED_SEEK) {
             changeState(STATE_BUFFERING);
@@ -2858,6 +2928,10 @@ public final class Player implements
 
         binding.titleTextView.setText(tag.getMetadata().getName());
         binding.channelTextView.setText(tag.getMetadata().getUploaderName());
+
+        this.seekbarPreviewThumbnailHolder.resetFrom(
+                this.getContext(),
+                tag.getMetadata().getPreviewFrames());
 
         NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
         notifyMetadataUpdateToListeners();
@@ -4125,7 +4199,7 @@ public final class Player implements
         return audioReactor;
     }
 
-    public GestureDetector getGestureDetector() {
+    public GestureDetectorCompat getGestureDetector() {
         return gestureDetector;
     }
 
@@ -4223,6 +4297,39 @@ public final class Player implements
     public PlayQueueAdapter getPlayQueueAdapter() {
         return playQueueAdapter;
     }
-
     //endregion
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // SurfaceHolderCallback helpers
+    //////////////////////////////////////////////////////////////////////////*/
+    //region SurfaceHolderCallback helpers
+    private void setupVideoSurface() {
+        // make sure there is nothing left over from previous calls
+        cleanupVideoSurface();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // >=API23
+            surfaceHolderCallback = new SurfaceHolderCallback(context, simpleExoPlayer);
+            binding.surfaceView.getHolder().addCallback(surfaceHolderCallback);
+            final Surface surface = binding.surfaceView.getHolder().getSurface();
+            // initially set the surface manually otherwise
+            // onRenderedFirstFrame() will not be called
+            simpleExoPlayer.setVideoSurface(surface);
+        } else {
+            simpleExoPlayer.setVideoSurfaceView(binding.surfaceView);
+        }
+    }
+
+    private void cleanupVideoSurface() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // >=API23
+            if (surfaceHolderCallback != null) {
+                if (binding != null) {
+                    binding.surfaceView.getHolder().removeCallback(surfaceHolderCallback);
+                }
+                surfaceHolderCallback.release();
+                surfaceHolderCallback = null;
+            }
+        }
+    }
+    //endregion SurfaceHolderCallback helpers
 }

@@ -629,7 +629,7 @@
     <string name="notification_action_buffering">Almacenar en memoria (búfer)</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">¡Puedes seleccionar como máximo tres acciones para mostrar en la notificación compacta!</string>
-    <string name="notification_actions_summary">Edita cada acción de la notificación pulsando sobre ella a continuación. Selecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación a la derecha</string>
+    <string name="notification_actions_summary">Edita cada acción de la notificación pulsando sobre ella. Selecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación a la derecha</string>
     <string name="notification_action_4_title">Botón de quinta acción</string>
     <string name="notification_action_3_title">Botón de cuarta acción</string>
     <string name="notification_action_2_title">Botón de tercera acción</string>
@@ -649,7 +649,7 @@
     <string name="show_thumbnail_summary">Usar miniatura como fondo de pantalla de bloqueo y notificaciones</string>
     <string name="show_thumbnail_title">Mostrar vista previa</string>
     <string name="show_meta_info_summary">Desactivar para ocultar información adicional sobre el creador o contenido de la transmisión</string>
-    <string name="show_description_summary">Desactivar para ocultar la descripción del vídeo y la información adicional</string>
+    <string name="show_description_summary">Desactivar para ocultar la descripción del vídeo e información adicional</string>
     <string name="no_app_to_open_intent">Ninguna aplicación en tu dispositivo puede abrir esto</string>
     <string name="chapters">Capítulos</string>
     <string name="recent">Recientes</string>
@@ -674,7 +674,7 @@
     <string name="download_has_started">La descarga ha comenzado</string>
     <string name="recaptcha_solve">Resolver</string>
     <string name="select_night_theme_toast">Puedes seleccionar tu tema nocturno favorito a continuación</string>
-    <string name="night_theme_title">Tema nocturno</string>
+    <string name="night_theme_title">Tema de Noche</string>
     <string name="night_theme_summary">Selecciona tu tema nocturno favorito — %s</string>
     <string name="auto_device_theme_title">Automático (tema del dispositivo)</string>
     <string name="show_channel_details">Mostrar detalles del canal</string>
@@ -713,5 +713,12 @@
     <string name="off">Apagado</string>
     <string name="on">Encendido</string>
     <string name="tablet_mode_title">Modo tableta</string>
-    <string name="feed_toggle_show_played_items">Mostrar elementos reproducidos</string>
+    <string name="feed_toggle_show_played_items">Mostrar elementos vistos</string>
+    <string name="dont_show">No mostrar</string>
+    <string name="low_quality_smaller">Baja calidad (más pequeño)</string>
+    <string name="high_quality_larger">Alta calidad (más grande)</string>
+    <string name="seekbar_preview_thumbnail_title">Miniatura en barra de desplazamiento</string>
+    <string name="comments_are_disabled">Los comentarios están deshabilitados</string>
+    <string name="detail_heart_img_view_description">Valorado por el creador</string>
+    <string name="mark_as_watched">Marcar como visto</string>
 </resources>

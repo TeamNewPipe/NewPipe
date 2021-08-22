@@ -172,14 +172,14 @@
     <string name="enable_watch_history_title">Voir l’historique</string>
     <string name="title_activity_history">Historique</string>
     <string name="title_history_search">Recherché</string>
-    <string name="title_history_view">Vue</string>
+    <string name="title_history_view">Visionnées</string>
     <string name="history_disabled">L’historique est désactivé</string>
     <string name="action_history">Historique</string>
     <string name="history_empty">L’historique est vide</string>
     <string name="history_cleared">Historique supprimé</string>
     <string name="notification_channel_name">Notification NewPipe</string>
     <string name="undo">Annuler</string>
-    <string name="enable_watch_history_summary">Garde un suivi des vidéos vues</string>
+    <string name="enable_watch_history_summary">Historiser les vidéos visionnées</string>
     <string name="resume_on_audio_focus_gain_title">Reprendre la lecture</string>
     <string name="settings_category_player_title">Lecteur</string>
     <string name="settings_category_player_behavior_title">Comportement</string>
@@ -594,11 +594,11 @@
     <string name="restricted_video">Cette vidéo dispose d’une limite d’âge.
 \n
 \nActivez « %1$s » dans les paramètres si vous voulez la voir.</string>
-    <string name="remove_watched">Supprimer les vidéos vues</string>
-    <string name="remove_watched_popup_yes_and_partially_watched_videos">Oui, et des vidéos partiellement regardées</string>
-    <string name="remove_watched_popup_warning">Les vidéos qui ont été regardées avant et après avoir été ajoutées à la liste de lecture seront supprimées.
-\nÊtes-vous sûr(e) \? C’est irréversible !</string>
-    <string name="remove_watched_popup_title">Supprimer les vidéos regardées \?</string>
+    <string name="remove_watched">Supprimer les vidéos visionnées</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Oui ainsi que les vidéos partiellement visionnées</string>
+    <string name="remove_watched_popup_warning">Les vidéos qui ont été visionnées avant et après avoir été ajoutées à la liste de lecture seront supprimées.
+\nÊtes-vous certain(e)  \? Cette action est irréversible !</string>
+    <string name="remove_watched_popup_title">Supprimer les vidéos visionnées \?</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniature de l\'avatar de la chaine</string>
     <string name="video_detail_by">De %s</string>
     <string name="channel_created_by">Créé par %s</string>
@@ -697,7 +697,7 @@
     <string name="metadata_category">Catégorie</string>
     <string name="description_select_note">Vous pouvez maintenant sélectionner du texte à l\'intérieur de la description. Notez que la page peut scintiller et que les liens peuvent ne pas être cliquables en mode sélection.</string>
     <string name="service_provides_reason">%s indique le motif :</string>
-    <string name="no_dir_yet">Aucun dossier de téléchargement n\'est défini pour le moment, sélectionnez le dossier de téléchargement par défaut.</string>
+    <string name="no_dir_yet">Aucun dossier de téléchargement n\'est défini pour le moment, sélectionnez le dossier de téléchargement par défaut</string>
     <string name="open_website_license">Ouvrir le site web</string>
     <string name="account_terminated">Compte résilié</string>
     <string name="feed_load_error_account_info">Impossible de charger le flux \'%s\'.</string>
@@ -706,12 +706,18 @@
     <string name="off">Inactif</string>
     <string name="on">Actif</string>
     <string name="tablet_mode_title">Mode tablette</string>
-    <string name="feed_toggle_show_played_items">Afficher les éléments vus</string>
+    <string name="feed_toggle_show_played_items">Afficher les éléments visionnés</string>
     <string name="feed_load_error_terminated">Le compte de l\'auteur a été résilié.
 \nNewPipe ne sera plus en mesure de charger ce flux à l\'avenir.
 \nSouhaitez-vous vous désabonner de cette chaîne \?</string>
-    <string name="downloads_storage_use_saf_summary_api_29">A partir d\'Android 10, seule l’« Infrastructure d’accès au stockage » est prise en charge.</string>
+    <string name="downloads_storage_use_saf_summary_api_29">A partir d\'Android 10, seule « l\'Infrastructure d’accès au stockage  » est prise en charge</string>
     <string name="downloads_storage_use_saf_summary_api_19">L’« Infrastructure d’accès au stockage » n\'est pas prise en charge par Android KitKat et les versions antérieures</string>
-    <string name="item_in_history">En historique</string>
     <string name="feed_load_error_fast_unknown">Le mode d\'alimentation rapide ne fournit pas plus d\'informations à ce sujet.</string>
+    <string name="comments_are_disabled">Les commentaires sont désactivés</string>
+    <string name="dont_show">Ne pas afficher</string>
+    <string name="low_quality_smaller">Faible qualité (plus petit)</string>
+    <string name="high_quality_larger">Haute qualité (plus grand)</string>
+    <string name="seekbar_preview_thumbnail_title">Prévisualisation de la barre de progression sur la miniature</string>
+    <string name="mark_as_watched">Marquer comme visionné</string>
+    <string name="detail_heart_img_view_description">Apprécié par le créateur</string>
 </resources>

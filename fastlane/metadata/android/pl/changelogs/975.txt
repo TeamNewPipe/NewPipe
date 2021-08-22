@@ -1,0 +1,17 @@
+Nowe
+• Podgląd miniatury podczas przewijania
+• Wykrywanie wyłączonych komentarzy
+• Oznaczanie elementu kanału jako obejrzany
+• Serduszka w komentarzach
+
+Ulepszono
+• Układ metadanych i tagów
+• Zastosowano kolor usługi do komponentów interfejsu
+
+Naprawiono
+• Miniatury w mini odtwarzaczu
+• Niekończące się buforowanie na zduplikowanych elementach kolejki
+• W odtwarzaczu: obracanie i szybsze zamykanie
+• Ładowanie ReCAPTCHA w tle
+• Wyłączono naciśnięcia podczas odświeżania kanału
+• Awarie downloadera

@@ -9,6 +9,7 @@
     <string name="cancel">Cancel</string>
     <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
+    <string name="mark_as_watched">Mark as watched</string>
     <string name="open_in_popup_mode">Open in popup mode</string>
     <string name="open_with">Open with</string>
     <string name="share">Share</string>
@@ -228,7 +229,6 @@
     <string name="delete_search_history_alert">Delete entire search history?</string>
     <string name="search_history_deleted">Search history deleted</string>
     <string name="help">Help</string>
-    <string name="item_in_history">In History</string>
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="download_to_sdcard_error_title">External storage unavailable</string>
@@ -336,6 +336,7 @@
         <item quantity="other">%s videos</item>
     </plurals>
     <string name="no_comments">No comments</string>
+    <string name="comments_are_disabled">Comments are disabled</string>
     <!-- Missions -->
     <string name="start">Start</string>
     <string name="pause">Pause</string>
@@ -586,6 +587,11 @@
     <string name="grid">Grid</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Switch View</string>
+    <!-- Seekbar Preview Thumbnail-->
+    <string name="seekbar_preview_thumbnail_title">Seekbar thumbnail preview</string>
+    <string name="high_quality_larger">High quality (larger)</string>
+    <string name="low_quality_smaller">Low quality (smaller)</string>
+    <string name="dont_show">Don\'t show</string>
     <!-- App update notification -->
     <string name="app_update_notification_content_title">NewPipe update is available!</string>
     <string name="app_update_notification_content_text">Tap to download</string>
@@ -703,7 +709,7 @@
     <string name="feed_use_dedicated_fetch_method_enable_button">Enable fast mode</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Disable fast mode</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Do you think feed loading is too slow? If so, try enabling fast loading (you can change it in settings or by pressing the button below).\n\nNewPipe offers two feed loading strategies:\n• Fetching the whole subscription channel, which is slow but complete.\n• Using a dedicated service endpoint, which is fast but usually not complete.\n\nThe difference between the two is that the fast one usually lacks some information, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return less items.\n\nYouTube is an example of a service that offers this fast method with its RSS feed.\n\nSo the choice boils down to what you prefer: speed or precise information.</string>
-    <string name="feed_toggle_show_played_items">Show played items</string>
+    <string name="feed_toggle_show_played_items">Show watched items</string>
     <string name="content_not_supported">This content is not yet supported by NewPipe.\n\nIt will hopefully be supported in a future version.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
     <string name="channel_created_by">Created by %s</string>
@@ -743,6 +749,7 @@
     <string name="metadata_privacy_unlisted">Unlisted</string>
     <string name="metadata_privacy_private">Private</string>
     <string name="metadata_privacy_internal">Internal</string>
+    <string name="detail_heart_img_view_description">Hearted by creator</string>
     <string name="open_website_license">Open website</string>
     <string name="tablet_mode_title">Tablet mode</string>
     <string name="on">On</string>

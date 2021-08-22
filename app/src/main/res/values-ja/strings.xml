@@ -699,4 +699,12 @@
     <string name="off">オフ</string>
     <string name="on">オン</string>
     <string name="tablet_mode_title">タブレットモード</string>
+    <string name="service_provides_reason">%s がこの理由を提示:</string>
+    <string name="feed_toggle_show_played_items">視聴したアイテムを表示</string>
+    <string name="dont_show">表示しない</string>
+    <string name="low_quality_smaller">低品質 (小)</string>
+    <string name="high_quality_larger">高品質 (大)</string>
+    <string name="seekbar_preview_thumbnail_title">シークバーのサムネイルプレビュー</string>
+    <string name="comments_are_disabled">コメントは無効です</string>
+    <string name="mark_as_watched">視聴済みとしてマーク</string>
 </resources>

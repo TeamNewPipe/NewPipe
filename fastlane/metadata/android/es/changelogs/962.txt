@@ -1,0 +1,2 @@
+Se han añadido vídeos "recientes" a media.ccc.de.service
+Añadidas las transmisiones en directo a media.ccc.de.service y también la compatibilidad con las transmisiones en directo.
