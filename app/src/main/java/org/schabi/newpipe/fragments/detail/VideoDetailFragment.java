@@ -31,6 +31,7 @@ import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
@@ -1115,9 +1116,15 @@ public final class VideoDetailFragment
         } else {
             final List<AudioStream> urlAudioStreams = removeNonUrlStreams(currentInfo
                     .getAudioStreams());
-            final AudioStream urlAudioStream = urlAudioStreams.get(ListHelper
-                    .getDefaultAudioFormat(activity, urlAudioStreams));
-            startOnExternalPlayer(activity, currentInfo, urlAudioStream);
+            final List<AudioStream> audioStreams = removeTorrentStreams(urlAudioStreams);
+            if (audioStreams.isEmpty()) {
+                Toast.makeText(activity, R.string.no_audio_streams_available_for_external_players,
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+            final AudioStream audioStream = audioStreams.get(ListHelper
+                    .getDefaultAudioFormat(activity, audioStreams));
+            startOnExternalPlayer(activity, currentInfo, audioStream);
         }
     }
 
@@ -2170,28 +2177,29 @@ public final class VideoDetailFragment
         final List<VideoStream> urlVideoOnlyStreams = removeNonUrlStreams(
                 currentInfo.getVideoOnlyStreams());
         final List<VideoStream> videoOnlyStreams = removeTorrentStreams(urlVideoOnlyStreams);
-        final List<VideoStream> sortedUrlVideoStreams = ListHelper.getSortedStreamVideosList(
+        final List<VideoStream> sortedVideoStreams = ListHelper.getSortedStreamVideosList(
                 activity, videoStreams, videoOnlyStreams, false);
-        final int selectedVideoStreamIndexForExternalPlayers = ListHelper
-                    .getDefaultResolutionIndex(activity, sortedUrlVideoStreams);
-        final CharSequence[] resolutions = new CharSequence[sortedUrlVideoStreams
-                .size()];
-        for (int i = 0; i < sortedUrlVideoStreams.size(); i++) {
-            resolutions[i] = sortedUrlVideoStreams.get(i).getResolution();
-        }
-        final AlertDialog.Builder builder = new AlertDialog.Builder(activity)
-                .setNegativeButton(R.string.cancel, null)
-                .setNeutralButton(R.string.open_in_browser, (dialog, i) ->
-                        ShareUtils.openUrlInBrowser(requireActivity(), url)
-                );
-        // Maybe there are no video streams available, show just `open in browser` button
-        if (resolutions.length > 0) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle(R.string.select_quality_external_player);
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.setNeutralButton(R.string.open_in_browser, (dialog, i) ->
+                ShareUtils.openUrlInBrowser(requireActivity(), url));
+        if (!sortedVideoStreams.isEmpty()) {
+            final int selectedVideoStreamIndexForExternalPlayers = ListHelper
+                    .getDefaultResolutionIndex(activity, sortedVideoStreams);
+            final CharSequence[] resolutions = new CharSequence[sortedVideoStreams
+                    .size()];
+            for (int i = 0; i < sortedVideoStreams.size(); i++) {
+                resolutions[i] = sortedVideoStreams.get(i).getResolution();
+            }
             builder.setSingleChoiceItems(resolutions, selectedVideoStreamIndexForExternalPlayers,
                     (dialog, i) -> {
                         dialog.dismiss();
-                        startOnExternalPlayer(activity, currentInfo, sortedUrlVideoStreams.get(i));
+                        startOnExternalPlayer(activity, currentInfo, sortedVideoStreams.get(i));
                     }
             );
+        } else {
+            builder.setMessage(R.string.no_video_streams_available_for_external_players);
         }
         builder.show();
     }

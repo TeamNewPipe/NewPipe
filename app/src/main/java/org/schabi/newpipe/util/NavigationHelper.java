@@ -219,35 +219,49 @@ public final class NavigationHelper {
 
     public static void playOnExternalAudioPlayer(final Context context,
                                                  @NonNull final StreamInfo info) {
-        final List<AudioStream> urlAudioStreams = removeNonUrlStreams(info.getAudioStreams());
-        final List<AudioStream> audioStreams = removeTorrentStreams(urlAudioStreams);
-        final int index = ListHelper.getDefaultAudioFormat(context, audioStreams);
-
-        if (index == -1) {
+        final List<AudioStream> audioStreams = info.getAudioStreams();
+        if (audioStreams.isEmpty()) {
             Toast.makeText(context, R.string.audio_streams_empty, Toast.LENGTH_SHORT).show();
             return;
         }
+        final List<AudioStream> urlAudioStreams = removeNonUrlStreams(audioStreams);
+        final List<AudioStream> audioStreamsForExternalPlayers = removeTorrentStreams(
+                urlAudioStreams);
+        if (audioStreamsForExternalPlayers.isEmpty()) {
+            Toast.makeText(context, R.string.no_audio_streams_available_for_external_players,
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        final int index = ListHelper.getDefaultAudioFormat(context,
+                audioStreamsForExternalPlayers);
 
-        final AudioStream audioStream = audioStreams.get(index);
+        final AudioStream audioStream = audioStreamsForExternalPlayers.get(index);
         playOnExternalPlayer(context, info.getName(), info.getUploaderName(), audioStream);
     }
 
     public static void playOnExternalVideoPlayer(final Context context,
                                                  @NonNull final StreamInfo info) {
-        final List<VideoStream> videoStreams = removeNonUrlStreams(info.getVideoStreams());
-        final List<VideoStream> videoStreamsList = ListHelper.getSortedStreamVideosList(
-                context,
-                removeTorrentStreams(videoStreams),
-                null,
-                false);
-        final int index = ListHelper.getDefaultResolutionIndex(context, videoStreamsList);
-
-        if (index == -1) {
+        final List<VideoStream> videoStreams = info.getVideoStreams();
+        if (videoStreams.isEmpty()) {
             Toast.makeText(context, R.string.video_streams_empty, Toast.LENGTH_SHORT).show();
             return;
         }
+        final List<VideoStream> urlVideoStreams = removeNonUrlStreams(videoStreams);
+        final List<VideoStream> videoStreamsForExternalPlayers = ListHelper
+                .getSortedStreamVideosList(
+                        context,
+                        removeTorrentStreams(urlVideoStreams),
+                        null,
+                        false);
+        if (videoStreamsForExternalPlayers.isEmpty()) {
+            Toast.makeText(context, R.string.no_video_streams_available_for_external_players,
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        final int index = ListHelper.getDefaultResolutionIndex(context,
+                videoStreamsForExternalPlayers);
 
-        final VideoStream videoStream = videoStreamsList.get(index);
+        final VideoStream videoStream = videoStreamsForExternalPlayers.get(index);
         playOnExternalPlayer(context, info.getName(), info.getUploaderName(), videoStream);
     }
 
