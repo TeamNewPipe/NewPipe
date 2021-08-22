@@ -699,7 +699,6 @@
     <string name="no_dir_yet">尚未设置下载文件夹，现在选择默认下载文件夹</string>
     <string name="tablet_mode_title">平板模式</string>
     <string name="feed_toggle_show_played_items">显示已观看的项目</string>
-    <string name="item_in_history">历史条目</string>
     <string name="off">关闭</string>
     <string name="on">开启</string>
     <string name="comments_are_disabled">评论功能已禁用</string>

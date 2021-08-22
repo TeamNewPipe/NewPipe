@@ -711,7 +711,6 @@
     <string name="on">Ενεργό</string>
     <string name="tablet_mode_title">Κατάσταση tablet</string>
     <string name="feed_toggle_show_played_items">Εμφάνιση αναπαραχθέντων</string>
-    <string name="item_in_history">Στο Ιστορικό</string>
     <string name="comments_are_disabled">Τα σχόλια είναι απενεργοποιημένα</string>
     <string name="dont_show">Απόκρυψη</string>
     <string name="low_quality_smaller">Χαμηλή ποιότητα (μικρότερο)</string>
