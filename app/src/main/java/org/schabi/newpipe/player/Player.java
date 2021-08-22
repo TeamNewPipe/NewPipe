@@ -100,6 +100,8 @@ import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.info_list.StreamSegmentAdapter;
 import org.schabi.newpipe.ktx.AnimationType;
+import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
+import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainPlayer.PlayerType;
 import org.schabi.newpipe.player.event.PlayerEventListener;
@@ -138,6 +140,7 @@ import org.schabi.newpipe.views.ExpandableSurfaceView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -193,6 +196,7 @@ import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
 import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static org.schabi.newpipe.util.Localization.containsCaseInsensitive;
+import static org.schabi.newpipe.util.external_communication.ShareUtils.shareText;
 
 public final class Player implements
         EventListener,
@@ -3032,6 +3036,45 @@ public final class Player implements
         playQueue.setIndex(index);
     }
 
+    private void heldQueueItem(final PlayQueueItem item, final View view) {
+        final Context themeWrapper =
+                new ContextThemeWrapper(context, R.style.DarkPopupMenu);
+
+        final PopupMenu popupMenu = new PopupMenu(themeWrapper, view);
+        popupMenu.inflate(R.menu.menu_play_queue_item);
+
+        popupMenu.setOnMenuItemClickListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.menu_item_remove:
+                    final int index = playQueue.indexOf(item);
+                    playQueue.remove(index);
+                    return true;
+                case R.id.menu_item_details:
+                    // playQueue is null since we don't want any queue change
+                    NavigationHelper.openVideoDetail(context, item.getServiceId(),
+                            item.getUrl(), item.getTitle(), null,
+                            false);
+                    return true;
+                case R.id.menu_item_append_playlist:
+                    final PlaylistAppendDialog d = PlaylistAppendDialog.fromPlayQueueItems(
+                            Collections.singletonList(item)
+                    );
+                    PlaylistAppendDialog.onPlaylistFound(context,
+                            () -> d.show(getParentActivity().getSupportFragmentManager(), TAG),
+                            () -> PlaylistCreationDialog.newInstance(d)
+                                    .show(getParentActivity().getSupportFragmentManager(), TAG));
+                    return true;
+                case R.id.menu_item_share:
+                    shareText(context, item.getTitle(), item.getUrl(),
+                            item.getThumbnailUrl());
+                    return true;
+            }
+            return false;
+        });
+
+        popupMenu.show();
+    }
+
     @Override
     public void onPlayQueueEdited() {
         notifyPlaybackUpdateToListeners();
@@ -3198,9 +3241,8 @@ public final class Player implements
 
             @Override
             public void held(final PlayQueueItem item, final View view) {
-                final int index = playQueue.indexOf(item);
-                if (index != -1) {
-                    playQueue.remove(index);
+                if (playQueue.indexOf(item) != -1) {
+                    heldQueueItem(item, view);
                 }
             }
 

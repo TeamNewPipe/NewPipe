@@ -281,42 +281,29 @@ public final class PlayQueueActivity extends AppCompatActivity
 
     private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
         final PopupMenu popupMenu = new PopupMenu(this, view);
-        final MenuItem remove = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 0,
-                Menu.NONE, R.string.play_queue_remove);
-        remove.setOnMenuItemClickListener(menuItem -> {
-            if (player == null) {
-                return false;
+        popupMenu.inflate(R.menu.menu_play_queue_item);
+
+        popupMenu.setOnMenuItemClickListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.menu_item_remove:
+                    final int index = player.getPlayQueue().indexOf(item);
+                    player.getPlayQueue().remove(index);
+                    return true;
+                case R.id.menu_item_details:
+                    // playQueue is null since we don't want any queue change
+                    NavigationHelper.openVideoDetail(this, item.getServiceId(),
+                            item.getUrl(), item.getTitle(), null,
+                            false);
+                    return true;
+                case R.id.menu_item_append_playlist:
+                    openPlaylistAppendDialog(Collections.singletonList(item));
+                    return true;
+                case R.id.menu_item_share:
+                    shareText(this, item.getTitle(), item.getUrl(),
+                            item.getThumbnailUrl());
+                    return true;
             }
-
-            final int index = player.getPlayQueue().indexOf(item);
-            if (index != -1) {
-                player.getPlayQueue().remove(index);
-            }
-            return true;
-        });
-
-        final MenuItem detail = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 1,
-                Menu.NONE, R.string.play_queue_stream_detail);
-        detail.setOnMenuItemClickListener(menuItem -> {
-            // playQueue is null since we don't want any queue change
-            NavigationHelper.openVideoDetail(this, item.getServiceId(), item.getUrl(),
-                    item.getTitle(), null, false);
-            return true;
-        });
-
-        final MenuItem append = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 2,
-                Menu.NONE, R.string.append_playlist);
-        append.setOnMenuItemClickListener(menuItem -> {
-            openPlaylistAppendDialog(Collections.singletonList(item));
-            return true;
-        });
-
-        final MenuItem share = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 3,
-                Menu.NONE, R.string.share);
-        share.setOnMenuItemClickListener(menuItem -> {
-            shareText(getApplicationContext(), item.getTitle(), item.getUrl(),
-                    item.getThumbnailUrl());
-            return true;
+            return false;
         });
 
         popupMenu.show();
