@@ -2080,7 +2080,7 @@ public final class VideoDetailFragment
     private void showClearingQueueConfirmation(final Runnable onAllow) {
         new AlertDialog.Builder(activity)
                 .setTitle(R.string.clear_queue_confirmation_description)
-                .setNegativeButton(android.R.string.cancel, null)
+                .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(android.R.string.yes, (dialog, which) -> {
                     onAllow.run();
                     dialog.dismiss();
@@ -2096,7 +2096,7 @@ public final class VideoDetailFragment
             resolutions[i] = sortedVideoStreams.get(i).getResolution();
         }
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity)
-                .setNegativeButton(android.R.string.cancel, null)
+                .setNegativeButton(R.string.cancel, null)
                 .setNeutralButton(R.string.open_in_browser, (dialog, i) ->
                         ShareUtils.openUrlInBrowser(requireActivity(), url)
                 );

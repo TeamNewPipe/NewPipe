@@ -205,7 +205,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/confirm_button"
-            android:text="@android:string/cancel" />
+            android:text="@string/cancel" />
 
         <Button
             android:id="@+id/confirm_button"
