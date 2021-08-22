@@ -37,8 +37,7 @@
     <string name="later">稍后</string>
     <string name="network_error">网络错误</string>
     <plurals name="videos">
-        <item quantity="one">%s 个视频</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 个视频</item>
     </plurals>
     <string name="disabled">禁用</string>
     <string name="controls_background_title">后台播放</string>
@@ -127,8 +126,7 @@
     <string name="search_no_results">没有结果</string>
     <string name="no_subscribers">无人订阅</string>
     <plurals name="subscribers">
-        <item quantity="one">%s 位订阅者</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 位订阅者</item>
     </plurals>
     <string name="no_videos">无视频</string>
     <string name="detail_drag_description">拖动以重新排序</string>
