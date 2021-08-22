@@ -712,7 +712,6 @@
 \nSouhaitez-vous vous désabonner de cette chaîne \?</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partir d\'Android 10, seule « l\'Infrastructure d’accès au stockage  » est prise en charge</string>
     <string name="downloads_storage_use_saf_summary_api_19">L’« Infrastructure d’accès au stockage » n\'est pas prise en charge par Android KitKat et les versions antérieures</string>
-    <string name="item_in_history">En historique</string>
     <string name="feed_load_error_fast_unknown">Le mode d\'alimentation rapide ne fournit pas plus d\'informations à ce sujet.</string>
     <string name="comments_are_disabled">Les commentaires sont désactivés</string>
     <string name="dont_show">Ne pas afficher</string>
