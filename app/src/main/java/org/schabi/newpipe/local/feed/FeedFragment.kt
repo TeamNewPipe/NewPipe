@@ -349,7 +349,15 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 )
             )
         }
-        if (item.streamType != StreamType.AUDIO_LIVE_STREAM && item.streamType != StreamType.LIVE_STREAM) {
+
+        // show "mark as watched" only when watch history is enabled
+        val isWatchHistoryEnabled = PreferenceManager
+            .getDefaultSharedPreferences(context)
+            .getBoolean(getString(R.string.enable_watch_history_key), false)
+        if (item.streamType != StreamType.AUDIO_LIVE_STREAM &&
+            item.streamType != StreamType.LIVE_STREAM &&
+            isWatchHistoryEnabled
+        ) {
             entries.add(
                 StreamDialogEntry.mark_as_watched
             )
