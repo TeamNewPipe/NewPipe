@@ -176,7 +176,7 @@
     </plurals>
     <plurals name="videos">
         <item quantity="one">காணொளிகள்</item>
-        <item quantity="other"/>
+        <item quantity="other">காணொளிகள்</item>
     </plurals>
     <string name="switch_to_main">முதற்பக்கத்துக்கு மாற்று</string>
     <string name="invalid_url_toast">சரியில்லாத URL</string>
