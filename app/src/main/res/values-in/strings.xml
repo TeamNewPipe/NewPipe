@@ -700,6 +700,11 @@
     <string name="off">Nonaktif</string>
     <string name="on">Aktif</string>
     <string name="tablet_mode_title">Mode tablet</string>
-    <string name="feed_toggle_show_played_items">Tampilkan item yang telah diputar</string>
-    <string name="item_in_history">Dalam Riwayat</string>
+    <string name="feed_toggle_show_played_items">Tampilkan item yang sudah ditonton</string>
+    <string name="dont_show">Jangan tampilkan</string>
+    <string name="low_quality_smaller">Kualitas rendah (lebih kecil)</string>
+    <string name="high_quality_larger">Kualitas tinggi (lebih besar)</string>
+    <string name="comments_are_disabled">Komentar dinonaktifkan</string>
+    <string name="seekbar_preview_thumbnail_title">Pratinjau thumbnail bilah laju</string>
+    <string name="mark_as_watched">Tandai ditonton</string>
 </resources>

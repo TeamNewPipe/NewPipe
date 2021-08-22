@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s Aufrufe</string>
     <string name="upload_date_text">Veröffentlicht am %1$s</string>
-    <string name="no_player_found">Kein Stream-Player gefunden. VLC installieren\?</string>
+    <string name="no_player_found">Kein Stream-Player gefunden. Möchtest du VLC installieren\?</string>
     <string name="install">Installieren</string>
     <string name="cancel">Abbrechen</string>
     <string name="open_in_browser">Im Browser öffnen</string>
@@ -690,7 +690,7 @@
     <string name="metadata_age_limit">Altersbeschränkung</string>
     <string name="metadata_privacy">Sichtbarkeit</string>
     <string name="metadata_licence">Lizenz</string>
-    <string name="metadata_tags">Tags</string>
+    <string name="metadata_tags">Schlagwörter</string>
     <string name="metadata_category">Kategorie</string>
     <string name="metadata_privacy_unlisted">Nicht gelistet</string>
     <string name="metadata_thumbnail_url">Vorschaubild-URL</string>
@@ -715,5 +715,7 @@
     <string name="on">An</string>
     <string name="tablet_mode_title">Tablet-Modus</string>
     <string name="off">Aus</string>
-    <string name="feed_toggle_show_played_items">Abgespielte Elemente anzeigen</string>
+    <string name="feed_toggle_show_played_items">Angesehene Elemente anzeigen</string>
+    <string name="mark_as_watched">Als gesehen markieren</string>
+    <string name="detail_heart_img_view_description"></string>
 </resources>

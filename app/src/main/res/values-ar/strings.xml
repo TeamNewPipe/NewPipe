@@ -55,7 +55,7 @@
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذر تحليل الموقع</string>
     <string name="youtube_signature_deobfuscation_error">تعذر فك تشفير توقيع رابط الفيديو</string>
-    <string name="main_bg_subtitle">اضغط على ايقونة البحث للبدء.</string>
+    <string name="main_bg_subtitle">اضغط على عدسة المكبرة للبدء.</string>
     <string name="subscribe_button_title">اشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_main">الرئيسية</string>
@@ -750,5 +750,12 @@
     <string name="off">إيقاف</string>
     <string name="on">تشغيل</string>
     <string name="tablet_mode_title">وضع الجهاز اللوحي</string>
-    <string name="feed_toggle_show_played_items">إظهار العناصر التي تم تشغيلها</string>
+    <string name="feed_toggle_show_played_items">إظهار العناصر التي تمت مشاهدتها</string>
+    <string name="comments_are_disabled">تم تعطيل التعليقات</string>
+    <string name="dont_show">لا تظهر</string>
+    <string name="low_quality_smaller">جودة منخفضة (أصغر)</string>
+    <string name="high_quality_larger">جودة عالية (أكبر)</string>
+    <string name="seekbar_preview_thumbnail_title">معاينة مصغرة على شريط التمرير</string>
+    <string name="mark_as_watched">علّمه كفيديو تمت مشاهدته</string>
+    <string name="detail_heart_img_view_description">اعجب بها منشئ المحتوى</string>
 </resources>

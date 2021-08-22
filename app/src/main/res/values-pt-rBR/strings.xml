@@ -710,5 +710,12 @@
     <string name="off">Desligado</string>
     <string name="on">Ligado</string>
     <string name="tablet_mode_title">Modo tablet</string>
-    <string name="feed_toggle_show_played_items">Mostrar itens reproduzidos</string>
+    <string name="feed_toggle_show_played_items">Mostrar itens vistos</string>
+    <string name="dont_show">Não mostrar</string>
+    <string name="low_quality_smaller">Baixa qualidade (menor)</string>
+    <string name="high_quality_larger">Alta qualidade (maior)</string>
+    <string name="seekbar_preview_thumbnail_title">Pré visualização da miniatura da barra de busca</string>
+    <string name="comments_are_disabled">Comentários estão desabilitados</string>
+    <string name="mark_as_watched">Marcar como visto</string>
+    <string name="detail_heart_img_view_description">Curtido pelo criador</string>
 </resources>

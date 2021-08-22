@@ -1,0 +1,4 @@
+Poprawki
+- Naprawa przycinania miniaturek i tytułów w układzie siatki z powodu błędnego obliczenia liczby filmów mieszczących się w jednym rzędzie
+- Naprawiono znikanie okna dialogowego pobierania bez wykonywania żadnych działań, jeśli zostało otwarte z menu udostępniania
+- Aktualizacja biblioteki związanej z otwieraniem zewnętrznych działań, takich jak narzędzie do wybierania plików Storage Access Framework

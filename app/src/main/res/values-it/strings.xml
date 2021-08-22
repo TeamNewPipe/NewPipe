@@ -102,7 +102,7 @@
     <string name="no_available_dir">Seleziona una cartella per i file scaricati</string>
     <string name="could_not_load_image">Impossibile caricare l\'immagine</string>
     <string name="app_ui_crash">L\'app/UI si è interrotta</string>
-    <string name="info_labels">Cosa:\\nRichiesta:\\nLingua Contenuti:\\nPaese Contenuti\\nLingua App:\\nServizio:\\nOrario GMT:\\nPacchetto:\\nVersione:\\nVersione SO:</string>
+    <string name="info_labels">Cosa:\\nRichiesta:\\nLingua contenuti:\\nPaese contenuti\\nLingua app:\\nServizio:\\nOrario GMT:\\nPacchetto:\\nVersione:\\nVersione SO:</string>
     <string name="title_activity_recaptcha">Risoluzione reCAPTCHA</string>
     <string name="black_theme_title">Nero</string>
     <string name="all">Tutto</string>
@@ -383,7 +383,7 @@
     <string name="limit_data_usage_none_description">Nessun limite</string>
     <string name="limit_mobile_data_usage_title">Limita risoluzione su reti mobili</string>
     <string name="skip_silence_checkbox">Avanzamento veloce durante il silenzio</string>
-    <string name="playback_step">Step</string>
+    <string name="playback_step">Passo</string>
     <string name="playback_reset">Reset</string>
     <string name="minimize_on_exit_title">Comportamento al cambio di app</string>
     <string name="minimize_on_exit_summary">Azione da eseguire cambiando app dal lettore video principale — %s</string>
@@ -593,7 +593,7 @@
 \nAttivare «%1$s» nelle Impostazioni per poterlo vedere.</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Sì, anche quelli visualizzati parzialmente</string>
     <string name="remove_watched_popup_warning">I video che sono stati visti prima e dopo essere stati aggiunti alla playlist verranno rimossi.
-\nL\'azione è irreversibile. Procedere\?</string>
+\nProcedere\? L\'azione è irreversibile!</string>
     <string name="remove_watched_popup_title">Rimuovere i video già visti\?</string>
     <string name="remove_watched">Rimuovi elementi visti</string>
     <string name="youtube_restricted_mode_enabled_title">Attiva la \"Modalità con restrizioni\" di YouTube</string>
@@ -625,7 +625,7 @@
     <string name="notification_action_2_title">Azione pulsante 3</string>
     <string name="notification_action_1_title">Azione pulsante 2</string>
     <string name="notification_action_0_title">Azione pulsante 1</string>
-    <string name="notification_action_buffering">Buffering</string>
+    <string name="notification_action_buffering">Buffer in corso</string>
     <string name="notification_actions_at_most_three">Nella notifica compatta è possibile visualizzare al massimo 3 azioni!</string>
     <string name="notification_action_shuffle">Casuale</string>
     <string name="settings_category_notification_title">Notifica</string>
@@ -649,7 +649,7 @@
     <string name="hash_channel_name">Notifica Hash Video</string>
     <string name="hash_channel_description">Notifiche per lo stato di avanzamento dell\'hashing video</string>
     <string name="recent">Recente</string>
-    <string name="show_meta_info_summary">Disattiva per nascondere i riquadri con informazioni aggiuntive sul contenuto, sul suo creatore o su una richiesta di ricerca</string>
+    <string name="show_meta_info_summary">Disattiva per nascondere i riquadri con informazioni aggiuntive sul contenuto, sul suo autore o su una richiesta di ricerca</string>
     <string name="show_meta_info_title">Mostra meta-informazioni</string>
     <string name="related_items_tab_description">Contenuti correlati</string>
     <string name="chapters">Capitoli</string>
@@ -710,5 +710,12 @@
     <string name="off">Disattivata</string>
     <string name="on">Attiva</string>
     <string name="tablet_mode_title">Modalità tablet</string>
-    <string name="feed_toggle_show_played_items">Mostra elementi riprodotti</string>
+    <string name="feed_toggle_show_played_items">Mostra elementi visti</string>
+    <string name="dont_show">Non mostrare</string>
+    <string name="low_quality_smaller">Qualità bassa (più piccola)</string>
+    <string name="high_quality_larger">Qualità alta (più grande)</string>
+    <string name="seekbar_preview_thumbnail_title">Anteprima sulla barra di avanzamento</string>
+    <string name="comments_are_disabled">Commenti disattivati</string>
+    <string name="detail_heart_img_view_description">Apprezzato dall\'autore</string>
+    <string name="mark_as_watched">Segna come visto</string>
 </resources>

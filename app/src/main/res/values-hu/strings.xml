@@ -41,7 +41,7 @@
     <string name="dark_theme_title">Sötét</string>
     <string name="light_theme_title">Világos</string>
     <string name="theme_title">Téma</string>
-    <string name="download_path_audio_title">Hangfájlok letöltési helye</string>
+    <string name="download_path_audio_title">Hangfájlok letöltési mappája</string>
     <string name="download_path_audio_summary">A letöltött hangfájlok itt találhatóak</string>
     <string name="detail_likes_img_view_description">Tetszik</string>
     <string name="detail_dislikes_img_view_description">Nem tetszik</string>
@@ -75,7 +75,7 @@
     <string name="user_report">Felhasználói jelentés</string>
     <string name="video">Videó</string>
     <string name="audio">Audio</string>
-    <string name="main_bg_subtitle">A kezdéshez koppints a \"Keresés\"-re</string>
+    <string name="main_bg_subtitle">A kezdéshez koppints a \"Keresés\"-re.</string>
     <string name="could_not_load_thumbnails">Nem sikerült az összes előnézeti kép betöltése</string>
     <string name="parsing_error">Nem sikerült a weblap betöltése</string>
     <string name="light_parsing_error">Nem sikerült a weblap teljes betöltése</string>
@@ -155,7 +155,7 @@
     <string name="unknown_content">[Ismeretlen]</string>
     <string name="import_data_title">Adatbázis importálása</string>
     <string name="export_data_title">Adatbázis exportálása</string>
-    <string name="import_data_summary">Felülírja a jelenlegi előzményeket, feliratkozásokat, lejátszási listákat és (opcionálisan) a beállításokat</string>
+    <string name="import_data_summary">Felülírja a jelenlegi előzményeket, feliratkozásokat, lejátszási listákat és (választható) beállításokat</string>
     <string name="export_data_summary">Előzmények, feliratkozások, lejátszási listák és beállítások exportálása</string>
     <string name="could_not_load_image">Kép betöltése sikertelen</string>
     <string name="app_ui_crash">Alkalmazás/Kezelő felület összeomlott</string>
@@ -187,7 +187,7 @@
     <string name="switch_to_background">Folytatás a háttérben</string>
     <string name="switch_to_popup">Folytatás felugró ablakban</string>
     <string name="clear_views_history_title">Megtekintési előzmények törlése</string>
-    <string name="clear_views_history_summary">Eltávolítja a megtekintési előzményeket és a visszajátszás helyét</string>
+    <string name="clear_views_history_summary">Eltávolítja a megtekintési előzményeket és a lejátszási pozíciókat</string>
     <string name="delete_view_history_alert">Törlöd az összes megtekintési előzményt\?</string>
     <string name="watch_history_deleted">Megtekintési előzmények törölve.</string>
     <string name="clear_search_history_title">Keresési előzmények törlése</string>
@@ -332,11 +332,14 @@
     <string name="previous_export">Előző exportálás</string>
     <string name="subscriptions_import_unsuccessful">Sikertelen a feliratkozások importálása</string>
     <string name="subscriptions_export_unsuccessful">Sikertelen a feliratkozások exportálása</string>
-    <string name="import_youtube_instructions">Importálja YouTube feliratkozásait az export fájl letöltésével:
+    <string name="import_youtube_instructions">YouTube feliratkozások importálása Google takeout-ból:
 \n
-\n1. Navigáljon erre az oldalra: %1$s
-\n2. Jelentkezzen be
-\n3. Ekkor az export fájl letöltése megkezdődik</string>
+\n1. Navigálj erre az oldalra: %1$s
+\n2. Jelentkezz be
+\n3. Kattints a \"All data included/Minden adat\"-ra, majd a \"Deselect all/MInden kijelölés megszüntetése\" gombra, majd válaszd ki a \"subscriptions/feliratkozások\" és kattints az \"OK\"-ra
+\n4. Kattints a \"Next step/Következő lépés\", majd az \"Create export/Export létrehozása\" gombra
+\n5. Kattints a \"Download/Letöltés\" gombra, mikor megjelenik, majd
+\n6. A letöltött zip fájlból csomagold ki a .json fájlt (általában: \"YouTube and YouTube Music/subscriptions/subscriptions.json\"), majd importáld itt.</string>
     <string name="import_soundcloud_instructions">Importálja SoundCloud profilját az URL vagy az azonosítójának begépelésével:
 \n
 \n1. Az oldal mobileszközökön nem elérhető, így „asztali böngésző mód” szükséges
@@ -363,7 +366,7 @@
     <string name="resume_on_audio_focus_gain_title">Lejátszás folytatása</string>
     <string name="show_hold_to_append_title">Mutassa a \"Tartsa lenyomva a hozzáadáshoz\" tippet</string>
     <string name="background_player_append">Várólistához adva a háttérben</string>
-    <string name="toggle_orientation">Elforgatás</string>
+    <string name="toggle_orientation">Kijelzőforgatás állítása</string>
     <string name="unsubscribe">Leiratkozás</string>
     <string name="tab_new">Új fül</string>
     <string name="tab_choose">Válassz fület</string>
@@ -377,9 +380,9 @@
     <string name="enqueue">Sor</string>
     <string name="overwrite_failed">a fájl nem írható felül</string>
     <string name="seek_duration_title">Az előre- és visszatekerés időtartama</string>
-    <string name="enable_playback_resume_summary">Legutóbbi lejátszási pozíció visszaállítása</string>
+    <string name="enable_playback_resume_summary">Utolsó lejátszási pozíció visszaállítása</string>
     <string name="enable_playback_resume_title">Lejátszás folytatása</string>
-    <string name="download_choose_new_path">Változtasd meg a letöltési helyet, hogy érvénybe lépjen</string>
+    <string name="download_choose_new_path">Az érvénybe lépéshez változtassa meg a letöltési helyet</string>
     <string name="app_update_notification_channel_description">Jelentés új NewPipe verzióról</string>
     <string name="app_update_notification_channel_name">Alkalmazás-frissítés jelzése</string>
     <string name="file_deleted">File törölve</string>
@@ -467,7 +470,7 @@
     <string name="open_with">Megnyitás ezzel</string>
     <string name="unsupported_url_dialog_message">Az URL-t nem lehetett felismerni. Megnyitás másik alkalmazással\?</string>
     <string name="auto_queue_toggle">Automatikus sorba állítás</string>
-    <string name="show_description_summary">Kapcsold ki a videó leírásának és további adatainak elrejtéséhez</string>
+    <string name="show_description_summary">"Kikapcsolása elrejti a videó leírását  és a kapcsolódó információt"</string>
     <string name="restore_defaults_confirmation">Vissza akarod állítani az alapértelmezéseket\?</string>
     <string name="restricted_video_no_stream">Ez a videó korhatáros.
 \nÚj, korhatáros videókkal kapcsolatos YouTube irányelvek miatt a NewPipe nem férhet hozzá a videóhoz, így nem tudja lejátszani.</string>
@@ -555,7 +558,7 @@
     <string name="clear_queue_confirmation_description">A jelenleg aktív lejátszási sor le lesz cserélve</string>
     <string name="clear_queue_confirmation_title">Kérjen megerősítést a lejátszási sor törlése előtt</string>
     <string name="night_theme_title">Éjszakai téma</string>
-    <string name="updates_setting_description">Értesítsen, ha egy új verziója érhető el az alkalmazásnak</string>
+    <string name="updates_setting_description">Értesítés az alkalmazás frissítéséhez, amikor egy új verzió érhető el</string>
     <string name="updates_setting_title">Frissítések</string>
     <string name="notification_colorize_summary">Az Android igazítsa az értesítés színét a bélyegkép meghatározó színéhez (nem minden eszközön elérhető)</string>
     <string name="notification_actions_at_most_three">Legfeljebb három választható művelet jeleníthető meg a kompakt értesítésben!</string>
@@ -632,4 +635,5 @@
     <string name="msg_calculating_hash">Hash számítása</string>
     <string name="related_items_tab_description">Összefüggő elemek</string>
     <string name="error_report_open_github_notice">Kérlek ellenőrizd, hogy egy hiba, ami az összeomlásodat írja le, létezik-e már. Ha duplikált jegyet adsz be, időt veszel el tőlünk amit arra tudnánk fordítani, hogy kijavítsuk magát a bugot.</string>
+    <string name="minimize_on_exit_title">Lekicsinyítés alkalmazás váltáskor</string>
 </resources>

@@ -1,0 +1,1 @@
+Se ha corregido la migración de la base de datos que impedía que NewPipe se iniciara en algunos casos raros.
