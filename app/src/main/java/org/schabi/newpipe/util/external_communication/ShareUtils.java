@@ -245,9 +245,10 @@ public final class ShareUtils {
                                  final String imagePreviewUrl) {
         final Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, title + System.lineSeparator() + content);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, content);
         if (!title.isEmpty()) {
             shareIntent.putExtra(Intent.EXTRA_TITLE, title);
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, title);
         }
 
         /* TODO: add the image of the content to Android share sheet with setClipData after
