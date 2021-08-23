@@ -3037,7 +3037,7 @@ public final class Player implements
     }
 
     private void heldQueueItem(final PlayQueueItem item, final View view) {
-        final Context themeWrapper =
+        final ContextThemeWrapper themeWrapper =
                 new ContextThemeWrapper(context, R.style.DarkPopupMenu);
 
         final PopupMenu popupMenu = new PopupMenu(themeWrapper, view);
