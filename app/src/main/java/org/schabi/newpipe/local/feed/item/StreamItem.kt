@@ -5,7 +5,6 @@ import android.text.TextUtils
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
-import com.nostra13.universalimageloader.core.ImageLoader
 import com.xwray.groupie.viewbinding.BindableItem
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
@@ -16,8 +15,8 @@ import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_LIVE_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.LIVE_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.VIDEO_STREAM
-import org.schabi.newpipe.util.ImageDisplayConstants
 import org.schabi.newpipe.util.Localization
+import org.schabi.newpipe.util.PicassoHelper
 import java.util.concurrent.TimeUnit
 
 data class StreamItem(
@@ -93,10 +92,7 @@ data class StreamItem(
             viewBinding.itemProgressView.visibility = View.GONE
         }
 
-        ImageLoader.getInstance().displayImage(
-            stream.thumbnailUrl, viewBinding.itemThumbnailView,
-            ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS
-        )
+        PicassoHelper.loadThumbnail(stream.thumbnailUrl).into(viewBinding.itemThumbnailView)
 
         if (itemVersion != ItemVersion.MINI) {
             viewBinding.itemAdditionalDetails.text =

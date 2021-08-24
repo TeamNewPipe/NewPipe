@@ -17,8 +17,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 974
-        versionName "0.21.8"
+        versionCode 975
+        versionName "0.21.9"
 
         multiDexEnabled true
 
@@ -189,7 +189,7 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.21.8'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.21.9'
 
 /** Checkstyle **/
     checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
@@ -246,7 +246,8 @@ dependencies {
     // Circular ImageView
     implementation "de.hdodenhof:circleimageview:3.1.0"
     // Image loading
-    implementation "com.nostra13.universalimageloader:universal-image-loader:1.9.5"
+    //noinspection GradleDependency --> 2.8 is the last version, not 2.71828!
+    implementation "com.squareup.picasso:picasso:2.8"
 
     // Markdown library for Android
     implementation "io.noties.markwon:core:${markwonVersion}"

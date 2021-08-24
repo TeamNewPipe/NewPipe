@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources translatable="false">
+<resources xmlns:tools="http://schemas.android.com/tools" translatable="false">
     <!-- App versioning -->
     <string name="last_used_version" translatable="false">last_used_version</string>
     <string name="last_used_preferences_version" translatable="false">last_used_preferences_version</string>
@@ -139,13 +139,13 @@
     <string name="scale_to_square_image_in_notifications_key" translatable="false">scale_to_square_image_in_notifications</string>
 
     <string name="notification_slot_0_key" translatable="false">notification_slot_0_key</string>
-    <string name="notification_slot_1_key" translatable="false">notification_slot_1_key</string>
+    <string name="notification_slot_1_key" translatable="false" tools:ignore="Typos">notification_slot_1_key</string>
     <string name="notification_slot_2_key" translatable="false">notification_slot_2_key</string>
     <string name="notification_slot_3_key" translatable="false">notification_slot_3_key</string>
     <string name="notification_slot_4_key" translatable="false">notification_slot_4_key</string>
 
     <string name="notification_slot_compact_0_key" translatable="false">notification_slot_compact_0_key</string>
-    <string name="notification_slot_compact_1_key" translatable="false">notification_slot_compact_1_key</string>
+    <string name="notification_slot_compact_1_key" translatable="false" tools:ignore="Typos">notification_slot_compact_1_key</string>
     <string name="notification_slot_compact_2_key" translatable="false">notification_slot_compact_2_key</string>
 
     <string name="notification_colorize_key" translatable="false">notification_colorize_key</string>
@@ -189,6 +189,7 @@
     <string name="show_original_time_ago_key" translatable="false">show_original_time_ago_key</string>
     <string name="disable_media_tunneling_key" translatable="false">disable_media_tunneling_key</string>
     <string name="crash_the_app_key" translatable="false">crash_the_app_key</string>
+    <string name="show_image_indicators_key" translatable="false">show_image_indicators_key</string>
 
     <!-- THEMES -->
     <string name="theme_key" translatable="false">theme</string>
@@ -226,6 +227,16 @@
 
     <!-- Content & History -->
     <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
+    <string name="show_local_search_suggestions_key" translatable="false">show_local_search_suggestions</string>
+    <string name="show_remote_search_suggestions_key" translatable="false">show_remote_search_suggestions</string>
+    <string-array name="show_search_suggestions_value_list" translatable="false">
+        <item>@string/show_local_search_suggestions_key</item>
+        <item>@string/show_remote_search_suggestions_key</item>
+    </string-array>
+    <string-array name="show_search_suggestions_description_list" translatable="false">
+        <item>@string/local_search_suggestions</item>
+        <item>@string/remote_search_suggestions</item>
+    </string-array>
     <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
     <string name="show_comments_key" translatable="false">show_comments</string>
     <string name="show_next_video_key" translatable="false">show_next_video</string>

@@ -176,7 +176,7 @@
     </plurals>
     <plurals name="videos">
         <item quantity="one">காணொளிகள்</item>
-        <item quantity="other"/>
+        <item quantity="other">காணொளிகள்</item>
     </plurals>
     <string name="switch_to_main">முதற்பக்கத்துக்கு மாற்று</string>
     <string name="invalid_url_toast">சரியில்லாத URL</string>
@@ -254,4 +254,10 @@
     <string name="action_about">பற்றி</string>
     <string name="title_activity_about">நியூபைப் பற்றி</string>
     <string name="trending">நடப்பு</string>
+    <string name="download_finished_more">%s பதிவிறக்கம் முடிந்தது</string>
+    <string name="download_finished">பதிவிறக்கம் முடிவடைந்தது</string>
+    <string name="download_failed">பதிவிறக்கம் தோல்வியடைந்தது</string>
+    <string name="low_quality_smaller">குறைந்த தரம்</string>
+    <string name="limit_mobile_data_usage_title">மொபைல் தரவைப் பயன்படுத்தும் போது வீடியோ தரத்தைக் கட்டுப்படுத்துங்கள்</string>
+    <string name="limit_data_usage_none_description">வரம்பற்ற</string>
 </resources>

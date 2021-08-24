@@ -1,0 +1,4 @@
+Cambios en 0.17.2
+
+Corregido
+- Corregido no hay vídeo estaba disponible

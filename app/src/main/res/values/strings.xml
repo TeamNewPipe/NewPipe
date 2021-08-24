@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools"
+        tools:ignore="MissingTranslation">
+
     <string name="main_bg_subtitle">Tap the magnifying glass to get started.</string>
     <string name="view_count_text">%1$s views</string>
     <string name="upload_date_text">Published on %1$s</string>
@@ -114,7 +116,9 @@
     <string name="player_gesture_controls_title">Player gesture controls</string>
     <string name="player_gesture_controls_summary">Use gestures to control player brightness and volume</string>
     <string name="show_search_suggestions_title">Search suggestions</string>
-    <string name="show_search_suggestions_summary">Show suggestions when searching</string>
+    <string name="show_search_suggestions_summary">Choose the suggestions to show when searching</string>
+    <string name="local_search_suggestions">Local search suggestions</string>
+    <string name="remote_search_suggestions">Remote search suggestions</string>
     <string name="enable_search_history_title">Search history</string>
     <string name="enable_search_history_summary">Store search queries locally</string>
     <string name="enable_watch_history_title">Watch history</string>
@@ -229,7 +233,6 @@
     <string name="delete_search_history_alert">Delete entire search history?</string>
     <string name="search_history_deleted">Search history deleted</string>
     <string name="help">Help</string>
-    <string name="item_in_history">In History</string>
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="download_to_sdcard_error_title">External storage unavailable</string>
@@ -527,6 +530,8 @@
     <string name="show_original_time_ago_summary">Original texts from services will be visible in stream items</string>
     <string name="disable_media_tunneling_title">Disable media tunneling</string>
     <string name="disable_media_tunneling_summary">Disable media tunneling if you experience a black screen or stuttering on video playback</string>
+    <string name="show_image_indicators_title">Show image indicators</string>
+    <string name="show_image_indicators_summary">Show Picasso colored ribbons on top of images indicating their source: red for network, blue for disk and green for memory</string>
     <string name="crash_the_app">Crash the app</string>
     <!-- Subscriptions import/export -->
     <string name="import_export_title">Import/export</string>
@@ -760,4 +765,7 @@
     <string name="tablet_mode_title">Tablet mode</string>
     <string name="on">On</string>
     <string name="off">Off</string>
+    <!-- Show Channel Details -->
+    <string name="error_show_channel_details">Error at Show Channel Details</string>
+    <string name="loading_channel_details">Loading Channel Details…</string>
 </resources>
