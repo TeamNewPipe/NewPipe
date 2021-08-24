@@ -453,7 +453,7 @@ public class RouterActivity extends AppCompatActivity {
                 returnList.add(showInfo);
                 returnList.add(videoPlayer);
             } else {
-                final MainPlayer.PlayerType playerType = PlayerHolder.getType();
+                final MainPlayer.PlayerType playerType = PlayerHolder.getInstance().getType();
                 if (capabilities.contains(VIDEO)
                         && PlayerHelper.isAutoplayAllowedByUser(context)
                         && playerType == null || playerType == MainPlayer.PlayerType.VIDEO) {

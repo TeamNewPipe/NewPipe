@@ -690,7 +690,7 @@
     <string name="metadata_category">Kategoria</string>
     <string name="description_select_disable">Desgaitu bideo deskripzioaren testua hautatzea</string>
     <string name="description_select_enable">Bideo deskripzioaren testua hautatzea gaitu</string>
-    <string name="description_select_note">Orian bideo deskripzioaren barruan testua hautatu dezakezu. Agian hautatzen duzun bitartean, horrialdea keinu egin dezake eta linkak klikatzeko aukera galdu daiteke.</string>
+    <string name="description_select_note">Orain, testua aukeratu dezakezu deskribapenaren barruan. Kontuan izan orriak begiak kliskatu ditzakeela eta estekak ez direla klikagarriak izango hautaketa moduan dagoen bitartean.</string>
     <string name="feed_load_error_terminated">Egilearen kontua itxi da.
 \nNewPipe-k ezingo du etorkizunean jario hau kargatu.
 \nKanal honetatik harpidetza kendu nahi duzu\?</string>
@@ -711,4 +711,9 @@
     <string name="metadata_privacy_unlisted">Zerrendatu gabea</string>
     <string name="metadata_host">Ostalaria</string>
     <string name="metadata_support">Laguntza</string>
+    <string name="dont_show">Ez da agertzen</string>
+    <string name="low_quality_smaller">Kalitate txikia (txikiagoa)</string>
+    <string name="high_quality_larger">Kalitate handia (handiagoa)</string>
+    <string name="seekbar_preview_thumbnail_title">Seekbarren miniaturen aurrebista</string>
+    <string name="comments_are_disabled">Iruzkinak desaktibatuta daude</string>
 </resources>

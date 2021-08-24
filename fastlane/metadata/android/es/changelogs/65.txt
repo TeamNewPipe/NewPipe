@@ -1,0 +1,7 @@
+### Mejoras
+
+- Desactivar la animación del icono del burgermenu #1486 
+- Deshacer la eliminación de descargas #1472 
+- Opción de descarga en el menú de compartir #1498
+- Añadida la opción de compartir en el menú de pulsación larga #1454 
+- Minimizar el reproductor principal al salir #1354

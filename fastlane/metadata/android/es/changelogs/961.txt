@@ -1,0 +1,12 @@
+- [YouTube] Apoyo a la mezcla
+- [YouTube] Mostrar información sobre las emisoras públicas y Covid-19
+- [media.ccc.de] Añadidos vídeos recientes
+- Añadida la traducción al somalí
+
+- Muchas mejoras internas
+
+- Se ha corregido la posibilidad de compartir vídeos desde el reproductor
+- Corregida la vista web de ReCaptcha en blanco
+- Corregido el fallo que se producía al eliminar un stream de una lista
+- PeerTube] Corregidos los flujos relacionados
+- YouTube] Corregida la búsqueda de música en YouTube

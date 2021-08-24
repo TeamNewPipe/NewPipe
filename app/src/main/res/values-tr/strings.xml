@@ -681,7 +681,7 @@
     <string name="metadata_privacy_internal">İç</string>
     <string name="metadata_privacy_private">Gizli</string>
     <string name="metadata_privacy_unlisted">Listelenmemiş</string>
-    <string name="metadata_privacy_public">Halka Açık</string>
+    <string name="metadata_privacy_public">Herkese Açık</string>
     <string name="metadata_thumbnail_url">Küçük Resim URL\'si</string>
     <string name="metadata_host">Konakçı</string>
     <string name="metadata_support">Destek</string>
@@ -710,5 +710,12 @@
     <string name="off">Kapat</string>
     <string name="on">Aç</string>
     <string name="tablet_mode_title">Tablet kipi</string>
-    <string name="feed_toggle_show_played_items">Oynatılan ögeleri göster</string>
+    <string name="feed_toggle_show_played_items">İzlenen ögeleri göster</string>
+    <string name="seekbar_preview_thumbnail_title">Konum çubuğu küçük resim ön izlemesi</string>
+    <string name="dont_show">Gösterme</string>
+    <string name="low_quality_smaller">Düşük nitelik (küçük)</string>
+    <string name="high_quality_larger">Yüksek nitelik (geniş)</string>
+    <string name="comments_are_disabled">Yorumlar devre dışı</string>
+    <string name="detail_heart_img_view_description">Yaratıcısınca kalplendi</string>
+    <string name="mark_as_watched">İzlendi olarak imle</string>
 </resources>

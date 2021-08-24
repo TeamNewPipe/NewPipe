@@ -61,9 +61,9 @@
     <string name="popup_remember_size_pos_title">Lembrar o tamaño e a posición do «popup»</string>
     <string name="popup_remember_size_pos_summary">Lembrar o tamaño e a posición anteriores do «popup»</string>
     <string name="use_inexact_seek_title">Usar un salto inexacto mais inexacto</string>
-    <string name="use_inexact_seek_summary">Busca incorrecta permite ao xogador buscar posicións máis rápidas con precisión reducida. A busca de 5, 15 ou 25 segundos non funciona con isto.</string>
+    <string name="use_inexact_seek_summary">A busca inexacta permite ao reprodutor procurar posicións máis rápidas con precisión reducida. A busca de 5, 15 ou 25 segundos non funciona con isto</string>
     <string name="download_thumbnail_title">Carregar miniaturas</string>
-    <string name="download_thumbnail_summary">Desactíveo para evitar a carga de miniaturas e poupar datos e memoria. Modificar esta opción limpa a caché de imaxes da memoria e do disco.</string>
+    <string name="download_thumbnail_summary">Desactíveo para evitar a carga de miniaturas e poupar datos e memoria. Modificar esta opción limpa a caché de imaxes da memoria e do disco</string>
     <string name="thumbnail_cache_wipe_complete_notice">A caché de imaxes foi limpada</string>
     <string name="metadata_cache_wipe_title">Os metadatos da caché foron eliminados</string>
     <string name="metadata_cache_wipe_summary">Eliminar todos os datos de páxinas en caché</string>
@@ -138,11 +138,11 @@
     <string name="clear_views_history_title">Limpar historial de reproducións</string>
     <string name="clear_views_history_summary">Elimina o historial de transmisións reproducidas e as posicións da reprodución</string>
     <string name="delete_view_history_alert">Eliminar todo o historial de reproducións\?</string>
-    <string name="watch_history_deleted">O historial de reproducións foi eliminado.</string>
+    <string name="watch_history_deleted">O historial de reproducións foi eliminado</string>
     <string name="clear_search_history_title">Limpar o historial de procura</string>
     <string name="clear_search_history_summary">Elimina o historial de termos procurados</string>
     <string name="delete_search_history_alert">Eliminar todo o historial de procura\?</string>
-    <string name="search_history_deleted">O historial de procuras foi eliminado.</string>
+    <string name="search_history_deleted">O historial de procuras foi eliminado</string>
     <string name="general_error">Erro</string>
     <string name="network_error">Erro de rede</string>
     <string name="could_not_load_thumbnails">Non foi posíbel carregar todas as miniaturas</string>
@@ -343,7 +343,7 @@
     <string name="resize_zoom">Zoom</string>
     <string name="caption_auto_generated">Xerado automaticamente</string>
     <string name="caption_setting_title">Lenda</string>
-    <string name="caption_setting_description">Modificar a escala de texto da lenda e os estilos de segundo plano do reprodutor. Para ter efecto, é preciso reiniciar o aplicativo.</string>
+    <string name="caption_setting_description">Modificar a escala de texto da lenda e os estilos de segundo plano do reprodutor. Para ter efecto, é preciso reiniciar o aplicativo</string>
     <string name="enable_leak_canary_summary">A monitorización de fugas de memoria pode facer que o aplicativo deixe de responder cando hai vertedura da pila</string>
     <string name="enable_disposed_exceptions_title">Informar de erros fóra do ciclo de vida</string>
     <string name="enable_disposed_exceptions_summary">Forzar a comunicación de excepcións Rx non entregábeis fóra do ciclo de vida do fragmento ou actividade após o descarte</string>
@@ -357,11 +357,14 @@
     <string name="previous_export">Exportación anterior</string>
     <string name="subscriptions_import_unsuccessful">Non foi posíbel importar as subscricións</string>
     <string name="subscriptions_export_unsuccessful">Non foi posíbel exportar as subscricións</string>
-    <string name="import_youtube_instructions">Pode importar as súas subscricións de YouTube descarregando o ficheiro de exportacións:
+    <string name="import_youtube_instructions">Pode importar as súas subscricións de YouTube do Google takeout:
 \n
 \n1. Acceda ao URL %1$s
 \n2. Inicie a sesión cando lle for solicitado
-\n3. Ha comezar unha descarga (a do ficheiro de exportación)</string>
+\n3. Faga click en \"Todos os datos incluídos\", logo en \"Desmarcar todo\", escolla só \"subscricións\", e prema \"OK\"
+\n4. Pulse en \"Próximo paso\" e escolla \"Crear exportación\"
+\n5. Faga click no botón de \"Decarregar\" despois de que apareza e
+\n6. Do arquivo zip decarregado extraia o .json (normalmente en \"YouTube e YouTube Music/subscricións/subscricións.json\") e impórteo aquí.</string>
     <string name="import_soundcloud_instructions">Pode importar un perfil do SoundCloud escribindo o URL ou o seu ID:
 \n
 \n1. Active o «modo desktop» nun navegador da Internet (o sitio non está dispoñíbel para dispositivos móbiles)
@@ -415,7 +418,7 @@
 \nDe modo que a elección redúcese ao que prefires: velocidade ou información precisa.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desactivar o modo rápido</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activa o modo rápido</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Dispoñible nalgúns servizos, normalmente é moito máis rápido pero pode devolver unha cantidade limitada de elementos e moitas veces información incompleta (por exemplo, sen duración, tipo de elemento, sen estado en directo).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Dispoñible nalgúns servizos, normalmente é moito máis rápido pero pode devolver unha cantidade limitada de elementos e moitas veces información incompleta (por exemplo, sen duración, tipo de elemento, sen estado en directo)</string>
     <string name="feed_use_dedicated_fetch_method_title">Obtén unha transmisión dedicada cando estea dispoñible</string>
     <string name="feed_update_threshold_option_always_update">Sempre actualizado</string>
     <string name="feed_update_threshold_summary">Tempo despois da última actualización antes de que se subscriba unha subscrición - %s</string>
@@ -461,10 +464,10 @@
     <string name="systems_language">Sistema predeterminado</string>
     <string name="app_language_title">Lingua do aplicativo</string>
     <string name="choose_instance_prompt">Elixir unha instancia</string>
-    <string name="downloads_storage_use_saf_summary">O \'Framework Access Framework\' permite a descarga a unha tarxeta SD externa.
-\nAlgúns dispositivos son incompatibles</string>
+    <string name="downloads_storage_use_saf_summary">O \'Framework Access Framework\' permite a descarga a unha tarxeta SD externa</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
-    <string name="downloads_storage_ask_summary">Preguntaralle onde gardar cada descarga</string>
+    <string name="downloads_storage_ask_summary">Preguntaralle onde gardar cada descarga.
+\nPermita o Sistema de Escolla de Cartafois (SAF) se desexar descarregar para un SD externo</string>
     <string name="downloads_storage_ask_title">Pregunta onde se descarga</string>
     <string name="pause_downloads">Parar as descagas</string>
     <string name="start_downloads">Comezar as descargas</string>
@@ -534,7 +537,7 @@
     <string name="conferences">Conferencias</string>
     <string name="most_liked">O que ten mais gústames</string>
     <string name="recently_added">Engadiuse recentemente</string>
-    <string name="localization_changes_requires_app_restart">O idioma cambiará unha vez que se reinicie o aplicativo.</string>
+    <string name="localization_changes_requires_app_restart">O idioma cambiará unha vez que se reinicie o aplicativo</string>
     <string name="error_unable_to_load_comments">Non se puideron cargar os comentarios</string>
     <string name="no_playlist_bookmarked_yet">Aínda non hai marcadores nesta lista de reprodución</string>
     <string name="select_a_playlist">Seleccionar unha lista de reprodución</string>
@@ -569,7 +572,7 @@
     <string name="download_to_sdcard_error_message">Non é posible descargar na tarxeta SD externa. Restaurar a localización do cartafol de descarga\?</string>
     <string name="download_to_sdcard_error_title">Non hai dispoñible almacenamento externo</string>
     <string name="help">Axuda</string>
-    <string name="watch_history_states_deleted">Elimináronse as posicións de reprodución.</string>
+    <string name="watch_history_states_deleted">Elimináronse as posicións de reprodución</string>
     <string name="delete_playback_states_alert">Eliminas todas as posicións de reprodución\?</string>
     <string name="clear_playback_states_summary">Elimina todas as posicións de reprodución</string>
     <string name="clear_playback_states_title">Elimina as posicións de reprodución</string>
@@ -631,9 +634,9 @@
     <string name="metadata_licence">Licenza</string>
     <string name="metadata_tags">Etiquetas</string>
     <string name="metadata_category">Categoría</string>
-    <string name="description_select_disable">Desabilitar a selección do texto da descripción</string>
-    <string name="description_select_enable">Habilitar a selección do texto na descripción</string>
-    <string name="description_select_note">Agora podes seleccionar o texto na descripción. Teña en conta que a páxina pode cintilar e as ligazóns poden non ser clicábeis no modo selección.</string>
+    <string name="description_select_disable">Deshabilitar a selección do texto da descrición</string>
+    <string name="description_select_enable">Habilitar a selección do texto na descrición</string>
+    <string name="description_select_note">Agora podes seleccionar o texto na descrición. Teña en conta que a páxina pode cintilar e as ligazóns poden non ser clicábeis no modo selección.</string>
     <string name="auto_device_theme_title">Automático (Tema do dispositivo)</string>
     <string name="radio">Radio</string>
     <string name="service_provides_reason">%s dá este motivo:</string>
@@ -652,7 +655,7 @@
     <string name="show_channel_details">Mostrar detalles da canle</string>
     <string name="title_activity_play_queue">Reproducir cola</string>
     <string name="recaptcha_solve">Resolver</string>
-    <string name="description_tab_description">Descripción</string>
+    <string name="description_tab_description">Descrición</string>
     <string name="comments_tab_description">Comentarios</string>
     <string name="clear_cookie_summary">Borrar as cookies que NewPipe garda cando resolve un reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">As cookies reCAPTCHA foron borradas</string>
@@ -664,10 +667,33 @@
     <string name="settings_category_notification_title">Notificación</string>
     <string name="unsupported_url_dialog_message">URL non recoñecido. Abrir con outra aplicación\?</string>
     <string name="show_meta_info_title">Mostrar metainformación</string>
-    <string name="show_description_summary">Desactíveo para ocultar a descripción do vídeo e a información adicional</string>
-    <string name="show_description_title">Ver descripción</string>
+    <string name="show_description_summary">Desactíveo para ocultar a descrición do vídeo e a información adicional</string>
+    <string name="show_description_title">Ver descrición</string>
     <string name="clear_queue_confirmation_title">Pedir confirmación antes de baleirar unha cola</string>
     <string name="night_theme_title">Tema Escuro</string>
     <string name="notification_action_nothing">Nada</string>
     <string name="open_with">Abrir con</string>
+    <string name="metadata_privacy_unlisted">Non listado</string>
+    <string name="select_night_theme_toast">Pode seleccionar o seu tema escuro favorito abaixo</string>
+    <string name="night_theme_summary">Seleccione o seu tema escuro favorito — %s</string>
+    <string name="youtube_music_premium_content">Este vídeo só está disponíbel para membros de YouTube Music Premium, polo que non pode ser transmitido nin descarregado polo NewPipe.</string>
+    <string name="private_content">Este contido é privado, polo que non pode ser transmitido nin descarregado polo NewPipe.</string>
+    <string name="no_app_to_open_intent">Non posúe ningunha aplicación para abrir isto</string>
+    <string name="show_thumbnail_summary">Usar miniaturas para a pantalla de bloqueo e para as notificacións</string>
+    <string name="feed_toggle_show_played_items">Mostrar elementos reproducidos</string>
+    <string name="comments_are_disabled">Os comentarios está desactivados</string>
+    <string name="show_age_restricted_content_summary">Mostrar contido potencialmente non apto para menores porque ten unha limitación de idade (como +18)</string>
+    <string name="notification_colorize_title">Definir cor da notificación</string>
+    <string name="on">Prendido</string>
+    <string name="metadata_host">Provedor</string>
+    <string name="featured">Destacado</string>
+    <string name="paid_content">Este contido só está dispoñíbel para usuarios que pagaran por el, así que non pode ser transmitido ou decarregado por NewPipe.</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Será preguntado onde desexa gardar cada descarga</string>
+    <string name="dont_show">Non mostrar</string>
+    <string name="low_quality_smaller">Baixa calidade (máis pequeno)</string>
+    <string name="high_quality_larger">Alta calidade (maior)</string>
+    <string name="show_memory_leaks">Mostrar perdas de memoria</string>
+    <string name="show_meta_info_summary">Desactivar para ocultar información adicional sobre o creador da emisión, do contido, ou da petición de procura</string>
+    <string name="notification_colorize_summary">Permitir a Android personalizar a cor da notificación conforme a cor principal da miniatura (esta opción non está dispoñíbel en todos os dispositivos)</string>
+    <string name="mark_as_watched">Marcar como visto</string>
 </resources>

@@ -11,8 +11,6 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.about.LicenseFragmentHelper.showLicense
 import org.schabi.newpipe.databinding.FragmentLicensesBinding
 import org.schabi.newpipe.databinding.ItemSoftwareComponentBinding
-import java.util.Arrays
-import java.util.Objects
 
 /**
  * Fragment containing the software licenses.
@@ -24,16 +22,10 @@ class LicenseFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        softwareComponents =
-            arguments?.getParcelableArray(ARG_COMPONENTS) as Array<SoftwareComponent>
-        if (savedInstanceState != null) {
-            val license = savedInstanceState.getSerializable(LICENSE_KEY)
-            if (license != null) {
-                activeLicense = license as License?
-            }
-        }
+        softwareComponents = arguments?.getParcelableArray(ARG_COMPONENTS) as Array<SoftwareComponent>
+        activeLicense = savedInstanceState?.getSerializable(LICENSE_KEY) as? License
         // Sort components by name
-        Arrays.sort(softwareComponents, Comparator.comparing(SoftwareComponent::name))
+        softwareComponents.sortBy { it.name }
     }
 
     override fun onDestroy() {
@@ -74,19 +66,13 @@ class LicenseFragment : Fragment() {
             binding.licensesSoftwareComponents.addView(root)
             registerForContextMenu(root)
         }
-        if (activeLicense != null) {
-            compositeDisposable.add(
-                showLicense(activity, activeLicense!!)
-            )
-        }
+        activeLicense?.let { compositeDisposable.add(showLicense(activity, it)) }
         return binding.root
     }
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
-        if (activeLicense != null) {
-            savedInstanceState.putSerializable(LICENSE_KEY, activeLicense)
-        }
+        activeLicense?.let { savedInstanceState.putSerializable(LICENSE_KEY, it) }
     }
 
     companion object {
@@ -94,8 +80,7 @@ class LicenseFragment : Fragment() {
         private const val LICENSE_KEY = "ACTIVE_LICENSE"
         fun newInstance(softwareComponents: Array<SoftwareComponent>): LicenseFragment {
             val fragment = LicenseFragment()
-            fragment.arguments =
-                bundleOf(ARG_COMPONENTS to Objects.requireNonNull(softwareComponents))
+            fragment.arguments = bundleOf(ARG_COMPONENTS to softwareComponents)
             return fragment
         }
     }

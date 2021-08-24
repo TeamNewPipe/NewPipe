@@ -402,7 +402,7 @@ public class MainActivity extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).postDelayed(() -> {
                     getSupportFragmentManager().popBackStack(null,
                             FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    recreate();
+                    ActivityCompat.recreate(MainActivity.this);
                 }, 300);
             }
 
@@ -823,7 +823,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        if (PlayerHolder.isPlayerOpen()) {
+        if (PlayerHolder.getInstance().isPlayerOpen()) {
             // if the player is already open, no need for a broadcast receiver
             openMiniPlayerIfMissing();
         } else {

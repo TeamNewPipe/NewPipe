@@ -350,13 +350,13 @@ public final class NavigationHelper {
                                                final boolean switchingPlayers) {
 
         final boolean autoPlay;
-        @Nullable final MainPlayer.PlayerType playerType = PlayerHolder.getType();
+        @Nullable final MainPlayer.PlayerType playerType = PlayerHolder.getInstance().getType();
         if (playerType == null) {
             // no player open
             autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);
         } else if (switchingPlayers) {
             // switching player to main player
-            autoPlay = PlayerHolder.isPlaying(); // keep play/pause state
+            autoPlay = PlayerHolder.getInstance().isPlaying(); // keep play/pause state
         } else if (playerType == MainPlayer.PlayerType.VIDEO) {
             // opening new stream while already playing in main player
             autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);

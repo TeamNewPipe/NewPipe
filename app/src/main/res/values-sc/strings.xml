@@ -710,5 +710,12 @@
     <string name="off">Istudadu</string>
     <string name="on">Allutu</string>
     <string name="tablet_mode_title">Modalidade tauledda</string>
-    <string name="feed_toggle_show_played_items">Ammustra sos elementos riproduidos</string>
+    <string name="feed_toggle_show_played_items">Ammustra sos elementos pompiados</string>
+    <string name="dont_show">No ammustres</string>
+    <string name="low_quality_smaller">Calidade bassa (prus minore)</string>
+    <string name="high_quality_larger">Calidade arta (prus manna)</string>
+    <string name="seekbar_preview_thumbnail_title">Antiprima in sa barra de avantzamentu</string>
+    <string name="comments_are_disabled">Sos cummentos sunt disabilitados</string>
+    <string name="detail_heart_img_view_description">Su creadore b\'at postu unu coro</string>
+    <string name="mark_as_watched">Marca comente pompiadu</string>
 </resources>

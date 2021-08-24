@@ -1,0 +1,8 @@
+### Parannukset
+- Tuonti-/vientiasetukset #1333
+- Vähennetty ylipiirtoa (suorituskyvyn parannus) #1371
+- Pieniä koodiparannuksia #1375
+- Lisätty kaikkea yleiseen tietosuoja-asetukseen (GDPR) liittyen #1420
+
+### Korjattu
+- Lataaja: Korjattu kaatuminen ladattaessa keskeneräisiä tallennuksia .-giga-tiedostoista #1407

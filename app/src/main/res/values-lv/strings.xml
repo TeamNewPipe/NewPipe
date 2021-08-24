@@ -613,7 +613,7 @@
     <string name="no_player_found">Netika atrasts video atskaņotājs. Instalēt VLC\?</string>
     <string name="upload_date_text">Publicēts %1$s</string>
     <string name="view_count_text">%1$s skatījumi</string>
-    <string name="main_bg_subtitle">Nospiediet \"Meklēt\", lai sāktu</string>
+    <string name="main_bg_subtitle">Nospiediet \"Meklēt\", lai sāktu.</string>
     <string name="notification_colorize_title">Iekrāsot notifikāciju</string>
     <string name="notification_action_nothing">Nekas</string>
     <string name="notification_action_buffering">Lādējas</string>
@@ -686,4 +686,18 @@
     <string name="restricted_video_no_stream">Šis video ir ierobežots ar vecumu.
 \nŅemot vērā jauno YouTube politiku ar vecuma ierobežotiem videoklipiem, Newpipe nevar piekļūt šim videoklipam.</string>
     <string name="night_theme_title">Nakts Motīvs</string>
+    <string name="off">Izslēgts</string>
+    <string name="on">Ieslēgts</string>
+    <string name="metadata_privacy_private">Privāts</string>
+    <string name="metadata_privacy_public">Publisks</string>
+    <string name="metadata_support">Atbalsts</string>
+    <string name="metadata_language">Valoda</string>
+    <string name="metadata_age_limit">Vecuma ierobežojums</string>
+    <string name="metadata_licence">Licence</string>
+    <string name="metadata_tags">Tagi</string>
+    <string name="metadata_category">Kategorija</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Jums tiks jautāts, kur saglabāt katru lejupielādi</string>
+    <string name="dont_show">Nerādīt</string>
+    <string name="account_terminated">Konts ir pārtraukts</string>
+    <string name="comments_are_disabled">Komentāri ir atspējoti</string>
 </resources>

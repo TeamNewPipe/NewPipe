@@ -1,0 +1,5 @@
+Poprawka
+- Naprawiono problemy z buforowaniem spowodowane przez dławienie YouTube
+- Naprawiono usuwanie komentarzy z YouTube i awarie z wyłączonymi komentarzami
+- Naprawiono wyszukiwanie muzyki w YouTube
+- Naprawiono transmisje na żywo w PeerTube

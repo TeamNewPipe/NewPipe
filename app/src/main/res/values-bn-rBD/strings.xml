@@ -397,4 +397,16 @@
     <string name="website_encouragement">আরও তথ্য এবং খবরের জন্য নিউপাইপ ওয়েবসাইট দেখো।</string>
     <string name="open_with">দিয়ে খুলো</string>
     <string name="comments_tab_description">মতামত</string>
+    <string name="off">বন্ধ</string>
+    <string name="on">চালু</string>
+    <string name="tablet_mode_title">ট্যাবলেট মোড</string>
+    <string name="open_website_license">সক্রিয় ওয়েবসাইট</string>
+    <string name="metadata_privacy_private">গোপন</string>
+    <string name="metadata_privacy_unlisted">নথিভুক্ত নয়</string>
+    <string name="metadata_support">সহায়তা</string>
+    <string name="metadata_category">প্রকারভেদ</string>
+    <string name="metadata_privacy_internal">অভ্যন্তরীন</string>
+    <string name="metadata_language">ভাষা</string>
+    <string name="metadata_age_limit">বয়স সীমা</string>
+    <string name="main_page_content">প্রধান পাতার উপাদান সমূহ</string>
 </resources>
