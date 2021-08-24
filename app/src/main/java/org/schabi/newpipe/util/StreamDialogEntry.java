@@ -47,7 +47,8 @@ public enum StreamDialogEntry {
                                 .setUploaderUrl(serviceId, url, result.getUploaderUrl())
                                 .subscribeOn(Schedulers.io()).subscribe();
                         openChannelFragment(fragment, item, result.getUploaderUrl());
-                    }, throwable -> Toast.makeText( // TODO: Open the Error Activity
+                    }, throwable -> Toast.makeText(
+                            // TODO: Open the Error Activity
                             fragment.getContext(),
                             R.string.error_show_channel_details,
                             Toast.LENGTH_SHORT
