@@ -362,6 +362,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 StreamDialogEntry.mark_as_watched
             )
         }
+        entries.add(StreamDialogEntry.show_channel_details)
 
         StreamDialogEntry.setEnabledEntries(entries)
         InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context)) { _, which ->

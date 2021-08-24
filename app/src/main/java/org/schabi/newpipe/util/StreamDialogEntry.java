@@ -2,9 +2,11 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.net.Uri;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
@@ -20,7 +22,9 @@ import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.player.MainPlayer.PlayerType.AUDIO;
 import static org.schabi.newpipe.player.MainPlayer.PlayerType.POPUP;
 
@@ -29,12 +33,30 @@ public enum StreamDialogEntry {
     // enum values with DEFAULT actions //
     //////////////////////////////////////
 
-    show_channel_details(R.string.show_channel_details, (fragment, item) ->
-        // For some reason `getParentFragmentManager()` doesn't work, but this does.
-        NavigationHelper.openChannelFragment(
-                fragment.requireActivity().getSupportFragmentManager(),
-                item.getServiceId(), item.getUploaderUrl(), item.getUploaderName())
-    ),
+    show_channel_details(R.string.show_channel_details, (fragment, item) -> {
+        if (isNullOrEmpty(item.getUploaderUrl())) {
+            final int serviceId = item.getServiceId();
+            final String url = item.getUrl();
+            Toast.makeText(fragment.getContext(), R.string.loading_channel_details,
+                    Toast.LENGTH_SHORT).show();
+            ExtractorHelper.getStreamInfo(serviceId, url, false)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(result -> {
+                        NewPipeDatabase.getInstance(fragment.getContext()).streamDAO()
+                                .setUploaderUrl(serviceId, url, result.getUploaderUrl())
+                                .subscribeOn(Schedulers.io()).subscribe();
+                        openChannelFragment(fragment, item, result.getUploaderUrl());
+                    }, throwable -> Toast.makeText(
+                            // TODO: Open the Error Activity
+                            fragment.getContext(),
+                            R.string.error_show_channel_details,
+                            Toast.LENGTH_SHORT
+                    ).show());
+        } else {
+            openChannelFragment(fragment, item, item.getUploaderUrl());
+        }
+    }),
 
     /**
      * Enqueues the stream automatically to the current PlayerType.<br>
@@ -178,5 +200,18 @@ public enum StreamDialogEntry {
 
     public interface StreamDialogEntryAction {
         void onClick(Fragment fragment, StreamInfoItem infoItem);
+    }
+
+    /////////////////////////////////////////////
+    // private method to open channel fragment //
+    /////////////////////////////////////////////
+
+    private static void openChannelFragment(final Fragment fragment,
+                                            final StreamInfoItem item,
+                                            final String uploaderUrl) {
+        // For some reason `getParentFragmentManager()` doesn't work, but this does.
+        NavigationHelper.openChannelFragment(
+                fragment.requireActivity().getSupportFragmentManager(),
+                item.getServiceId(), uploaderUrl, item.getUploaderName());
     }
 }
