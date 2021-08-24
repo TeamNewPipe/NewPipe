@@ -201,10 +201,6 @@
     <string name="feed_oldest_subscription_update">دواین نوێکردنەوەی فیید: %s</string>
     <string name="selection">دیاریکردن</string>
     <string name="stop">ڕاگرتن</string>
-    <string name="list">لیست</string>
-    <string name="start_downloads">دەستپێکردنەوەی داگرتنەکان</string>
-    <string name="caption_none">هیچ ژێرنووسێک نییە</string>
-    <string name="popup_playing_toast">کارپێکردن لە پەنجەرەی بچووک</string>
     <string name="list">خشته‌یی</string>
     <string name="start_downloads">دەستپێکردنەوەی دابەزاندنەکان</string>
     <string name="caption_none">ژێرنووس نییە</string>
@@ -501,11 +497,6 @@
     <string name="enable_search_history_summary">مێژووی گه‌ڕانه‌كان له‌ بیرگه‌دا كۆگا ده‌كرێن</string>
     <string name="settings_category_video_audio_title">ڤیدیۆ و دەنگ</string>
     <string name="share">هاوبه‌شپێكردن</string>
-    <string name="download_choose_new_path">بوخچەی داگرتن بگۆڕە بۆ ئەنجامدانی کاریگەری</string>
-    <string name="show_hold_to_append_summary">پیشاندانی ڕێنمایی کاتێ لە پاشبنەما یاخوود پەنجەرەی بچووکدا گرتە دەکرێ لەسەر” وردەکاری:” ڤیدیۆیەک</string>
-    <string name="download_choose_new_path">فۆڵده‌ری دابه‌زاندن بگۆڕە بۆ ئەنجامدانی کاریگەری</string>
-    <string name="show_hold_to_append_summary">ڕێنمایی پیشان بدرێت کاتێک لە پاشبنەما یاخوود لە پەنجەرەدا کرتە دەکرێت لەسەر \"وردەکارییەکان\"ی ڤیدیۆیەک:</string>
-
     <string name="audio_streams_empty">پەخشی هیچ دەنگێک نەدۆزرایەوە</string>
     <string name="artists">هونەرمەندەکان</string>
     <string name="no_one_watching">کەس سه‌یری ناکات</string>
