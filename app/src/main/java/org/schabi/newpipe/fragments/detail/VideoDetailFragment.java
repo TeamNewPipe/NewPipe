@@ -2328,4 +2328,19 @@ public final class VideoDetailFragment
     boolean isPlayerAndPlayerServiceAvailable() {
         return (player != null && playerService != null);
     }
+
+   @Override
+    public boolean onKeyDown(int keyCode, KeyEvent keyEvent) {
+        boolean musicPlaying = audioManager.isMusicActive();
+        if((musicPlaying || prefNoMedia) && (prefScreenOn)) {
+            if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && keyEvent.getRepeatCount() > 1) {
+                int event = (keyCode == KEYCODE_VOLUME_UP) ? KEYCODE_MEDIA_NEXT : KEYCODE_MEDIA_PREVIOUS;
+                KeyEvent skipEvent = new KeyEvent(keyEvent.getAction(), event);
+                audioManager.dispatchMediaKeyEvent(skipEvent);
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
