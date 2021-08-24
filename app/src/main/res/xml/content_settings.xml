@@ -65,11 +65,13 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
-    <SwitchPreferenceCompat
-        android:defaultValue="true"
+    <MultiSelectListPreference
         android:key="@string/show_search_suggestions_key"
         android:summary="@string/show_search_suggestions_summary"
         android:title="@string/show_search_suggestions_title"
+        android:entries="@array/show_search_suggestions_description_list"
+        android:entryValues="@array/show_search_suggestions_value_list"
+        android:defaultValue="@array/show_search_suggestions_value_list"
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
