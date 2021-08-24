@@ -432,7 +432,7 @@
     <!-- Content -->
     <string name="main_page_content">Content of main page</string>
     <string name="main_page_content_summary">What tabs are shown on the main page</string>
-    <string name="main_page_content_how_to_remove">Swipe left or right to remove item</string>
+    <string name="main_page_content_swipe_remove">Swipe items to remove them</string>
     <string name="selection">Selection</string>
     <string name="blank_page_summary">Blank Page</string>
     <string name="kiosk_page_summary">Kiosk Page</string>
