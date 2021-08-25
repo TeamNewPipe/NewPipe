@@ -1,9 +1,5 @@
 package org.schabi.newpipe.player;
 
-import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-import static org.schabi.newpipe.util.external_communication.ShareUtils.shareText;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.PopupMenu;
 import android.widget.SeekBar;
 
 import androidx.annotation.Nullable;
@@ -47,8 +42,11 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import java.util.Collections;
 import java.util.List;
+
+import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
+import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public final class PlayQueueActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,
@@ -56,7 +54,6 @@ public final class PlayQueueActivity extends AppCompatActivity
 
     private static final String TAG = PlayQueueActivity.class.getSimpleName();
 
-    private static final int RECYCLER_ITEM_POPUP_MENU_GROUP_ID = 47;
     private static final int SMOOTH_SCROLL_MAXIMUM_DISTANCE = 80;
 
     protected Player player;
@@ -280,33 +277,8 @@ public final class PlayQueueActivity extends AppCompatActivity
     }
 
     private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
-        final PopupMenu popupMenu = new PopupMenu(this, view);
-        popupMenu.inflate(R.menu.menu_play_queue_item);
-
-        popupMenu.setOnMenuItemClickListener(menuItem -> {
-            switch (menuItem.getItemId()) {
-                case R.id.menu_item_remove:
-                    final int index = player.getPlayQueue().indexOf(item);
-                    player.getPlayQueue().remove(index);
-                    return true;
-                case R.id.menu_item_details:
-                    // playQueue is null since we don't want any queue change
-                    NavigationHelper.openVideoDetail(this, item.getServiceId(),
-                            item.getUrl(), item.getTitle(), null,
-                            false);
-                    return true;
-                case R.id.menu_item_append_playlist:
-                    openPlaylistAppendDialog(Collections.singletonList(item));
-                    return true;
-                case R.id.menu_item_share:
-                    shareText(this, item.getTitle(), item.getUrl(),
-                            item.getThumbnailUrl());
-                    return true;
-            }
-            return false;
-        });
-
-        popupMenu.show();
+        openPopupMenu(player.getPlayQueue(), item, view, false,
+                getSupportFragmentManager(), this, TAG);
     }
 
     ////////////////////////////////////////////////////////////////////////////
