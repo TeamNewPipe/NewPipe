@@ -23,8 +23,7 @@ public final class QueueItemMenuUtil {
                                      final View view,
                                      final boolean hideDetails,
                                      final FragmentManager fragmentManager,
-                                     final Context context,
-                                     final String tag) {
+                                     final Context context) {
         final ContextThemeWrapper themeWrapper =
                 new ContextThemeWrapper(context, R.style.DarkPopupMenu);
 
@@ -52,9 +51,9 @@ public final class QueueItemMenuUtil {
                             Collections.singletonList(item)
                     );
                     PlaylistAppendDialog.onPlaylistFound(context,
-                            () -> d.show(fragmentManager, tag),
+                            () -> d.show(fragmentManager, "QueueItemMenuUtil@append_playlist"),
                             () -> PlaylistCreationDialog.newInstance(d)
-                                    .show(fragmentManager, tag));
+                                    .show(fragmentManager, "QueueItemMenuUtil@append_playlist"));
                     return true;
                 case R.id.menu_item_share:
                     shareText(context, item.getTitle(), item.getUrl(),

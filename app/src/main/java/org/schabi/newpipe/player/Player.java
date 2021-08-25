@@ -3033,11 +3033,6 @@ public final class Player implements
         playQueue.setIndex(index);
     }
 
-    private void heldQueueItem(final PlayQueueItem item, final View view) {
-        openPopupMenu(playQueue, item, view, true,
-                getParentActivity().getSupportFragmentManager(), context, TAG);
-    }
-
     @Override
     public void onPlayQueueEdited() {
         notifyPlaybackUpdateToListeners();
@@ -3205,7 +3200,8 @@ public final class Player implements
             @Override
             public void held(final PlayQueueItem item, final View view) {
                 if (playQueue.indexOf(item) != -1) {
-                    heldQueueItem(item, view);
+                    openPopupMenu(playQueue, item, view, true,
+                            getParentActivity().getSupportFragmentManager(), context);
                 }
             }
 

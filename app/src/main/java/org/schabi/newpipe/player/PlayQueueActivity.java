@@ -276,11 +276,6 @@ public final class PlayQueueActivity extends AppCompatActivity
         queueControlBinding.controlShuffle.setOnClickListener(this);
     }
 
-    private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
-        openPopupMenu(player.getPlayQueue(), item, view, false,
-                getSupportFragmentManager(), this, TAG);
-    }
-
     ////////////////////////////////////////////////////////////////////////////
     // Component Helpers
     ////////////////////////////////////////////////////////////////////////////
@@ -328,13 +323,9 @@ public final class PlayQueueActivity extends AppCompatActivity
 
             @Override
             public void held(final PlayQueueItem item, final View view) {
-                if (player == null) {
-                    return;
-                }
-
-                final int index = player.getPlayQueue().indexOf(item);
-                if (index != -1) {
-                    buildItemPopupMenu(item, view);
+                if (player != null && player.getPlayQueue().indexOf(item) != -1) {
+                    openPopupMenu(player.getPlayQueue(), item, view, false,
+                            getSupportFragmentManager(), PlayQueueActivity.this);
                 }
             }
 
