@@ -38,13 +38,7 @@ jobs:
         with:
           java-version: 8
           distribution: "temurin"
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle
+          cache: 'gradle'
           
       - name: Build debug APK and run jvm tests
         run: ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
@@ -70,13 +64,7 @@ jobs:
         with:
           java-version: 8
           distribution: "temurin"
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle
+          cache: 'gradle'
 
       - name: Run android tests
         uses: reactivecircus/android-emulator-runner@v2
@@ -98,6 +86,7 @@ jobs:
 #         with:
 #           java-version: 11 # Sonar requires JDK 11
 #           distribution: "temurin"
+#           cache: 'gradle'
 
 #       - name: Cache SonarCloud packages
 #         uses: actions/cache@v2
@@ -105,13 +94,6 @@ jobs:
 #           path: ~/.sonar/cache
 #           key: ${{ runner.os }}-sonar
 #           restore-keys: ${{ runner.os }}-sonar
-
-#       - name: Cache Gradle packages
-#         uses: actions/cache@v2
-#         with:
-#           path: ~/.gradle/caches
-#           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-#           restore-keys: ${{ runner.os }}-gradle
 
 #       - name: Build and analyze
 #         env:
