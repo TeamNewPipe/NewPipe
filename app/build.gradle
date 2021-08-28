@@ -105,7 +105,7 @@ ext {
     androidxRoomVersion = '2.3.0'
 
     icepickVersion = '3.2.0'
-    exoPlayerVersion = '2.12.3'
+    exoPlayerVersion = '2.14.2'
     googleAutoServiceVersion = '1.0'
     groupieVersion = '2.10.0'
     markwonVersion = '4.6.2'

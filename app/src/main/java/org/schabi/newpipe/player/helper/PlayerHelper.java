@@ -21,11 +21,11 @@ import androidx.preference.PreferenceManager;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.RepeatMode;
 import com.google.android.exoplayer2.SeekParameters;
-import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.trackselection.TrackSelection;
+import com.google.android.exoplayer2.trackselection.ExoTrackSelection;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout.ResizeMode;
+import com.google.android.exoplayer2.ui.CaptionStyleCompat;
 import com.google.android.exoplayer2.util.MimeTypes;
 
 import org.schabi.newpipe.R;

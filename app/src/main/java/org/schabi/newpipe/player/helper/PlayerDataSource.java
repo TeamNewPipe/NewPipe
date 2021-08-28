@@ -19,7 +19,7 @@ import com.google.android.exoplayer2.upstream.TransferListener;
 public class PlayerDataSource {
     private static final int MANIFEST_MINIMUM_RETRY = 5;
     private static final int EXTRACTOR_MINIMUM_RETRY = Integer.MAX_VALUE;
-    private static final int LIVE_STREAM_EDGE_GAP_MILLIS = 10000;
+    public static final int LIVE_STREAM_EDGE_GAP_MILLIS = 10000;
 
     private final DataSource.Factory cacheDataSourceFactory;
     private final DataSource.Factory cachelessDataSourceFactory;
@@ -50,8 +50,7 @@ public class PlayerDataSource {
         return new DashMediaSource.Factory(new DefaultDashChunkSource.Factory(
                 cachelessDataSourceFactory), cachelessDataSourceFactory)
                 .setLoadErrorHandlingPolicy(
-                        new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY))
-                .setLivePresentationDelayMs(LIVE_STREAM_EDGE_GAP_MILLIS, true);
+                        new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY));
     }
 
     public SsMediaSource.Factory getSsMediaSourceFactory() {
@@ -72,11 +71,6 @@ public class PlayerDataSource {
         return new ProgressiveMediaSource.Factory(cacheDataSourceFactory)
                 .setLoadErrorHandlingPolicy(
                         new DefaultLoadErrorHandlingPolicy(EXTRACTOR_MINIMUM_RETRY));
-    }
-
-    public ProgressiveMediaSource.Factory getExtractorMediaSourceFactory(
-            @NonNull final String key) {
-        return getExtractorMediaSourceFactory().setCustomCacheKey(key);
     }
 
     public SingleSampleMediaSource.Factory getSampleMediaSourceFactory() {

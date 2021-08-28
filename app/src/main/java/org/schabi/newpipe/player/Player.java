@@ -1,12 +1,13 @@
 package org.schabi.newpipe.player;
 
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_AD_INSERTION;
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_AUTO_TRANSITION;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_INTERNAL;
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_PERIOD_TRANSITION;
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_REMOVE;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJUSTMENT;
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SKIP;
 import static com.google.android.exoplayer2.Player.DiscontinuityReason;
-import static com.google.android.exoplayer2.Player.EventListener;
+import static com.google.android.exoplayer2.Player.Listener;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
@@ -116,6 +117,7 @@ import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
+import com.google.android.exoplayer2.Player.PositionInfo;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
@@ -123,13 +125,14 @@ import com.google.android.exoplayer2.source.BehindLiveWindowException;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.text.CaptionStyleCompat;
+import com.google.android.exoplayer2.text.Cue;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.ui.CaptionStyleCompat;
 import com.google.android.exoplayer2.ui.SubtitleView;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.util.Util;
-import com.google.android.exoplayer2.video.VideoListener;
+import com.google.android.exoplayer2.video.VideoSize;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -197,9 +200,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.disposables.SerialDisposable;
 
 public final class Player implements
-        EventListener,
         PlaybackListener,
-        VideoListener,
+        Listener,
         SeekBar.OnSeekBarChangeListener,
         View.OnClickListener,
         PopupMenu.OnMenuItemClickListener,
@@ -501,10 +503,6 @@ public final class Player implements
 
         // Setup video view
         setupVideoSurface();
-        simpleExoPlayer.addVideoListener(this);
-
-        // Setup subtitle view
-        simpleExoPlayer.addTextOutput(binding.subtitleView);
 
         // enable media tunneling
         if (DEBUG && PreferenceManager.getDefaultSharedPreferences(context)
@@ -513,7 +511,7 @@ public final class Player implements
                     + "media tunneling disabled in debug preferences");
         } else if (DeviceUtils.shouldSupportMediaTunneling()) {
             trackSelector.setParameters(trackSelector.buildUponParameters()
-                    .setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context)));
+                    .setTunnelingEnabled(true));
         } else if (DEBUG) {
             Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] does not support media tunneling");
         }
@@ -809,7 +807,6 @@ public final class Player implements
 
         if (!exoPlayerIsNull()) {
             simpleExoPlayer.removeListener(this);
-            simpleExoPlayer.removeVideoListener(this);
             simpleExoPlayer.stop();
             simpleExoPlayer.release();
         }
@@ -898,7 +895,7 @@ public final class Player implements
 
     public void smoothStopPlayer() {
         // Pausing would make transition from one stream to a new stream not smooth, so only stop
-        simpleExoPlayer.stop(false);
+        simpleExoPlayer.stop();
     }
     //endregion
 
@@ -2437,7 +2434,9 @@ public final class Player implements
     }
 
     @Override
-    public void onPositionDiscontinuity(@DiscontinuityReason final int discontinuityReason) {
+    public void onPositionDiscontinuity(
+            final PositionInfo oldPosition, final PositionInfo newPosition,
+            @DiscontinuityReason final int discontinuityReason) {
         if (DEBUG) {
             Log.d(TAG, "ExoPlayer - onPositionDiscontinuity() called with "
                     + "discontinuityReason = [" + discontinuityReason + "]");
@@ -2449,7 +2448,7 @@ public final class Player implements
         // Refresh the playback if there is a transition to the next video
         final int newWindowIndex = simpleExoPlayer.getCurrentWindowIndex();
         switch (discontinuityReason) {
-            case DISCONTINUITY_REASON_PERIOD_TRANSITION:
+            case DISCONTINUITY_REASON_REMOVE:
                 // When player is in single repeat mode and a period transition occurs,
                 // we need to register a view count here since no metadata has changed
                 if (getRepeatMode() == REPEAT_MODE_ONE && newWindowIndex == playQueue.getIndex()) {
@@ -2470,7 +2469,8 @@ public final class Player implements
                     playQueue.setIndex(newWindowIndex);
                 }
                 break;
-            case DISCONTINUITY_REASON_AD_INSERTION:
+            case DISCONTINUITY_REASON_SKIP:
+            case DISCONTINUITY_REASON_AUTO_TRANSITION:
                 break; // only makes Android Studio linter happy, as there are no ads
         }
 
@@ -2481,6 +2481,11 @@ public final class Player implements
     public void onRenderedFirstFrame() {
         //TODO check if this causes black screen when switching to fullscreen
         animate(binding.surfaceForeground, false, DEFAULT_CONTROLS_DURATION);
+    }
+
+    @Override
+    public void onCues(final List<Cue> cues) {
+        binding.subtitleView.onCues(cues);
     }
     //endregion
 
@@ -2503,7 +2508,7 @@ public final class Player implements
      * </ul>
      *
      * @see #processSourceError(IOException)
-     * @see com.google.android.exoplayer2.Player.EventListener#onPlayerError(ExoPlaybackException)
+     * @see com.google.android.exoplayer2.Player.Listener#onPlayerError(ExoPlaybackException)
      */
     @Override
     public void onPlayerError(@NonNull final ExoPlaybackException error) {
@@ -3867,19 +3872,17 @@ public final class Player implements
     }
 
     @Override // exoplayer listener
-    public void onVideoSizeChanged(final int width, final int height,
-                                   final int unappliedRotationDegrees,
-                                   final float pixelWidthHeightRatio) {
+    public void onVideoSizeChanged(final VideoSize videoSize) {
         if (DEBUG) {
             Log.d(TAG, "onVideoSizeChanged() called with: "
-                    + "width / height = [" + width + " / " + height
-                    + " = " + (((float) width) / height) + "], "
-                    + "unappliedRotationDegrees = [" + unappliedRotationDegrees + "], "
-                    + "pixelWidthHeightRatio = [" + pixelWidthHeightRatio + "]");
+                    + "width / height = [" + videoSize.width + " / " + videoSize.height
+                    + " = " + (((float) videoSize.width) / videoSize.height) + "], "
+                    + "unappliedRotationDegrees = [" + videoSize.unappliedRotationDegrees + "], "
+                    + "pixelWidthHeightRatio = [" + videoSize.pixelWidthHeightRatio + "]");
         }
 
-        binding.surfaceView.setAspectRatio(((float) width) / height);
-        isVerticalVideo = width < height;
+        binding.surfaceView.setAspectRatio(((float) videoSize.width) / videoSize.height);
+        isVerticalVideo = videoSize.width < videoSize.height;
 
         if (globalScreenOrientationLocked(context)
                 && isFullscreen

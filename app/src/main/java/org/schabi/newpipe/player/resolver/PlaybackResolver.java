@@ -35,7 +35,7 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
 
         return null;
     }
-
+0
     @NonNull
     default MediaSource buildLiveMediaSource(@NonNull final PlayerDataSource dataSource,
                                              @NonNull final String sourceUrl,
@@ -48,7 +48,12 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                         .createMediaSource(MediaItem.fromUri(uri));
             case C.TYPE_DASH:
                 return dataSource.getLiveDashMediaSourceFactory().setTag(metadata)
-                        .createMediaSource(MediaItem.fromUri(uri));
+                        .createMediaSource(
+                                new MediaItem.Builder()
+                                        .setUri(uri)
+                                        .setLiveTargetOffsetMs(
+                                                PlayerDataSource.LIVE_STREAM_EDGE_GAP_MILLIS)
+                                        .build());
             case C.TYPE_HLS:
                 return dataSource.getLiveHlsMediaSourceFactory().setTag(metadata)
                         .createMediaSource(MediaItem.fromUri(uri));
@@ -78,8 +83,12 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                 return dataSource.getHlsMediaSourceFactory().setTag(metadata)
                         .createMediaSource(MediaItem.fromUri(uri));
             case C.TYPE_OTHER:
-                return dataSource.getExtractorMediaSourceFactory(cacheKey).setTag(metadata)
-                        .createMediaSource(MediaItem.fromUri(uri));
+                return dataSource.getExtractorMediaSourceFactory().setTag(metadata)
+                        .createMediaSource(
+                                new MediaItem.Builder()
+                                        .setUri(uri)
+                                        .setCustomCacheKey(cacheKey)
+                                        .build());
             default:
                 throw new IllegalStateException("Unsupported type: " + type);
         }
