@@ -177,7 +177,8 @@ public class SubscriptionsImportFragment extends BaseFragment {
     }
 
     public void onImportFile() {
-        requestImportFileLauncher.launch(StoredFileHelper.getPicker(activity));
+        // leave */* mime type to support all services with different mime types and file extensions
+        requestImportFileLauncher.launch(StoredFileHelper.getPicker(activity, "*/*"));
     }
 
     private void requestImportFileResult(final ActivityResult result) {

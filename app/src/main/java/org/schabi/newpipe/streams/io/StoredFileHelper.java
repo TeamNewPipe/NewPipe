@@ -459,11 +459,12 @@ public class StoredFileHelper implements Serializable {
         return !str1.equals(str2);
     }
 
-    public static Intent getPicker(@NonNull final Context ctx) {
+    public static Intent getPicker(@NonNull final Context ctx,
+                                   @NonNull final String mimeType) {
         if (NewPipeSettings.useStorageAccessFramework(ctx)) {
             return new Intent(Intent.ACTION_OPEN_DOCUMENT)
                     .putExtra("android.content.extra.SHOW_ADVANCED", true)
-                    .setType("*/*")
+                    .setType(mimeType)
                     .addCategory(Intent.CATEGORY_OPENABLE)
                     .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
                             | StoredDirectoryHelper.PERMISSION_FLAGS);
@@ -477,8 +478,10 @@ public class StoredFileHelper implements Serializable {
         }
     }
 
-    public static Intent getPicker(@NonNull final Context ctx, @Nullable final Uri initialPath) {
-        return applyInitialPathToPickerIntent(ctx, getPicker(ctx), initialPath, null);
+    public static Intent getPicker(@NonNull final Context ctx,
+                                   @NonNull final String mimeType,
+                                   @Nullable final Uri initialPath) {
+        return applyInitialPathToPickerIntent(ctx, getPicker(ctx, mimeType), initialPath, null);
     }
 
     public static Intent getNewPicker(@NonNull final Context ctx,
