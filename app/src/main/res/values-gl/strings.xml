@@ -479,7 +479,6 @@
     <string name="max_retry_desc">Número máximo de intentos antes de cancelar a descarga</string>
     <string name="max_retry_msg">Reintento máximo</string>
     <string name="stop">Parar</string>
-    <string name="deleted_downloads">Eliminar %1$d descargas</string>
     <string name="delete_downloaded_files">Eliminar os ficheiros descargados</string>
     <string name="confirm_prompt">Quere limpar o seu historial de descargas ou eliminar todos os ficheiros descargados\?</string>
     <string name="clear_download_history">Borrar o historial de descargas</string>
@@ -507,8 +506,6 @@
     <string name="overwrite_unrelated_warning">Xa existe un ficheiro con este nome</string>
     <string name="overwrite">Sobreescribir</string>
     <string name="generate_unique_name">Xera un nome único</string>
-    <string name="download_finished_more">rematáronse %s descargas</string>
-    <string name="download_finished">Rematou a descarga</string>
     <string name="download_failed">Fallou a descarga</string>
     <string name="permission_denied">Acción denegada polo sistema</string>
     <string name="enqueue">En cola</string>

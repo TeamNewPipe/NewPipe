@@ -432,8 +432,6 @@
     <string name="enqueue">Ουρά</string>
     <string name="permission_denied">Η ενέργεια απορρίφθηκε από το σύστημα</string>
     <string name="download_failed">Η λήψη απέτυχε</string>
-    <string name="download_finished">Η λήψη ολοκληρώθηκε</string>
-    <string name="download_finished_more">%s λήψεις ολοκληρώθηκαν</string>
     <string name="generate_unique_name">Δημιουργία μοναδικού ονόματος</string>
     <string name="overwrite">Αντικατάσταση</string>
     <string name="overwrite_unrelated_warning">Ένα αρχείο με αυτό το όνομα υπάρχει ήδη</string>
@@ -615,7 +613,6 @@
     <string name="remove_watched">Απομάκρυνση όσων θεάθησαν</string>
     <string name="app_language_title">Γλώσσα εφαρμογής</string>
     <string name="choose_instance_prompt">Επιλογή μιας instance</string>
-    <string name="deleted_downloads">Διαγράφηκαν %1$d λήψεις</string>
     <string name="delete_downloaded_files">Διαγραφή ληφθέντων αρχείων</string>
     <string name="clear_download_history">Εκκαθάριση ιστορικού λήψεων</string>
     <string name="never">Ποτέ</string>

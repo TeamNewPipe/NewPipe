@@ -520,7 +520,6 @@
     <string name="downloads_storage_use_saf_title">Naudoti sistemos aplanko parinktuką (SAP)</string>
     <string name="pause_downloads">Sustabdyti siuntimus</string>
     <string name="error_http_not_found">Nerasta</string>
-    <string name="download_finished">Parsiųsta</string>
     <string name="switch_view">Perjungti rodinį</string>
     <string name="radio">Radijo</string>
     <string name="featured">Siūloma</string>
@@ -651,11 +650,9 @@
     <string name="feed_update_threshold_title">Kanalo atnaujinimo slenkstis</string>
     <string name="feed_group_dialog_empty_name">Tuščias grupės pavadinimas</string>
     <string name="feed_group_dialog_empty_selection">Nepasirinkta jokia prenumerata</string>
-    <string name="deleted_downloads">Pašalinta %1$d parsiuntimai</string>
     <string name="delete_downloaded_files">Pašalinti parsiųstus failus</string>
     <string name="choose_instance_prompt">Pasirinkite kopiją</string>
     <string name="enable_queue_limit">Riboti parsiuntimų eilę</string>
-    <string name="download_finished_more">%s parsiuntimai baigti</string>
     <string name="app_update_notification_content_text">Paspauskite parsiuntimui</string>
     <string name="list_view_mode">Sąrašo rodinio režimas</string>
     <string name="skip_silence_checkbox">Prasukti kai nieko negroja</string>

@@ -75,8 +75,6 @@
     <string name="overwrite_unrelated_warning">Shay magacan leh ayaa horay ujiray</string>
     <string name="overwrite">Ku badal</string>
     <string name="generate_unique_name">Usamee magac gaar ah</string>
-    <string name="download_finished_more">%s dajin ayaa dhamaystirantay</string>
-    <string name="download_finished">Dajintii way dhamaystirantay</string>
     <string name="download_failed">Dajintii ma guulaysan</string>
     <string name="permission_denied">Hawshan waxaa diiday aalada</string>
     <string name="recovering">kasoo kabanaya</string>
@@ -594,7 +592,6 @@
     <string name="pause_downloads_on_mobile_desc">Tani waxay muhiim tahay marka khadka la isticmaalayo midka SIM-ka loo baddalo ayadoo la qabanayo dajinta socota inkastooo soodajimaha qaar aan lajoojin karin</string>
     <string name="pause_downloads_on_mobile">Dhabqinta dajinta (khadka xadidan)</string>
     <string name="max_retry_msg">Xadka dib-isugudayida</string>
-    <string name="deleted_downloads">Waxaa la saaray %1$d shay</string>
     <string name="delete_downloaded_files">Saar dajinta</string>
     <string name="confirm_prompt">Ma waxaad rabtaa inaad nadiifiso kaydka wixii lasoo dajiyay (tani ma tirtirto wixii lasoo dajiyay) mise inaad saarto dhammaan wixii lasoo dajiyay\?</string>
     <string name="clear_download_history">Nadiifi dajinta</string>

@@ -428,8 +428,6 @@
     <string name="enqueue">Kö</string>
     <string name="permission_denied">Åtgärden nekas av systemet</string>
     <string name="download_failed">Hämtningen misslyckades</string>
-    <string name="download_finished">Hämtningen är färdig</string>
-    <string name="download_finished_more">%s hämtningar är färdiga</string>
     <string name="generate_unique_name">Generera unikt namn</string>
     <string name="overwrite">Skriv över</string>
     <string name="download_already_running">Det finns en pågående hämtning med det här namnet</string>
@@ -575,7 +573,6 @@
     <string name="close">Stäng ner</string>
     <string name="pause_downloads_on_mobile_desc">Användbart vid byte till mobildata, även om vissa hämtningar inte kan avbrytas</string>
     <string name="pause_downloads_on_mobile">Avbryt på uppmätta nätverk</string>
-    <string name="deleted_downloads">Tog bort %1$d hämtningar</string>
     <string name="delete_downloaded_files">Ta bort hämtade filer</string>
     <string name="confirm_prompt">Vill du rensa din hämtningshistorik eller ta bort alla hämtade filer\?</string>
     <string name="clear_download_history">Rensa hämtningshistorik</string>

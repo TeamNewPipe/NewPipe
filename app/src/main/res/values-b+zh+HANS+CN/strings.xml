@@ -146,8 +146,6 @@
     <string name="enqueue">加入队列</string>
     <string name="permission_denied">操作已被系统拒绝</string>
     <string name="download_failed">下载失败</string>
-    <string name="download_finished">下载完成</string>
-    <string name="download_finished_more">%s 个下载已完成</string>
     <string name="no_comments">没有评论</string>
     <string name="drawer_header_description">切换服务，当前选择：</string>
     <string name="no_player_found">找不到串流播放器。是否安装 VLC？</string>
@@ -515,7 +513,6 @@
     <string name="seek_duration_title">快进 / 快退的寻址定位时间间隔</string>
     <string name="clear_download_history">清空下载记录</string>
     <string name="delete_downloaded_files">删除下载文件</string>
-    <string name="deleted_downloads">已删除 %1$d 个下载</string>
     <string name="permission_display_over_apps">授予在其他应用上层显示的权限</string>
     <string name="app_language_title">应用语言</string>
     <string name="systems_language">系统默认</string>

@@ -453,8 +453,6 @@
     <string name="conferences">Конференции</string>
     <string name="post_processing">пост-обработка</string>
     <string name="missions_header_pending">В очереди</string>
-    <string name="download_finished">Загрузка завершена</string>
-    <string name="download_finished_more">%s загрузок завершено</string>
     <string name="generate_unique_name">Создать уникальное имя</string>
     <string name="max_retry_msg">Максимум попыток</string>
     <string name="max_retry_desc">Количество попыток перед отменой загрузки</string>
@@ -526,7 +524,6 @@
     <string name="choose_instance_prompt">Выберите сервер</string>
     <string name="clear_download_history">Очистить историю загрузок</string>
     <string name="delete_downloaded_files">Удаление загруженных файлов</string>
-    <string name="deleted_downloads">Удалено загрузок: %1$d</string>
     <string name="permission_display_over_apps">Разрешите отображение поверх приложений</string>
     <string name="app_language_title">Язык интерфейса</string>
     <string name="systems_language">Как в системе</string>

@@ -422,8 +422,6 @@
     <string name="enqueue">Beratur</string>
     <string name="permission_denied">Tindakan ditolak oleh sistem</string>
     <string name="download_failed">Muat turun gagal</string>
-    <string name="download_finished">Muat turun selesai</string>
-    <string name="download_finished_more">%s muat turun selesai</string>
     <string name="generate_unique_name">Menjana nama yang unik</string>
     <string name="overwrite">Timpa</string>
     <string name="overwrite_finished_warning">Fail yang dimuat turun dengan nama ini sudah wujud</string>

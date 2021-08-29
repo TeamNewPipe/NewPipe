@@ -429,8 +429,6 @@
     <string name="enqueue">Fila</string>
     <string name="permission_denied">Ação recusada pelo sistema</string>
     <string name="download_failed">Falha ao descarregar</string>
-    <string name="download_finished">Descarga concluída</string>
-    <string name="download_finished_more">%s transferências concluídas</string>
     <string name="generate_unique_name">Gerar nome único</string>
     <string name="overwrite">Sobrescrever</string>
     <string name="overwrite_finished_warning">Já existe um ficheiro descarregado com este nome</string>
@@ -520,7 +518,6 @@
     <string name="choose_instance_prompt">Escolha uma instância</string>
     <string name="clear_download_history">Limpar histórico de descargas</string>
     <string name="delete_downloaded_files">Remover ficheiros descarregados</string>
-    <string name="deleted_downloads">%1$d transferências removidas</string>
     <string name="permission_display_over_apps">Permitir sobreposição a outras aplicações</string>
     <string name="app_language_title">Idioma da aplicação</string>
     <string name="systems_language">Predefinição do sistema</string>

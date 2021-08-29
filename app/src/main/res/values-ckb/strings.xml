@@ -204,7 +204,6 @@
     <string name="list">خشته‌یی</string>
     <string name="start_downloads">دەستپێکردنەوەی دابەزاندنەکان</string>
     <string name="caption_none">ژێرنووس نییە</string>
-    <string name="download_finished_more">%s بابه‌ت دابه‌زێنراون</string>
     <string name="popup_playing_toast">لێدان لە پەنجەرە</string>
     <string name="later">دواتر</string>
     <string name="no_views">بینراو نییە</string>
@@ -266,7 +265,6 @@
     <string name="error_http_no_content">ڕاژەکە هیچ داتایەک نانێرێت</string>
     <string name="watch_history_states_deleted">شوێنی کارپێکراوەکان سڕانەوە</string>
     <string name="app_update_notification_channel_description">ئاگانامەکانی وەشانی نوێی نیوپایپ</string>
-    <string name="download_finished">دابه‌زێنرا</string>
     <string name="show_higher_resolutions_summary">تەنها چەند مۆبایلێک پشتگیری لێدانی ڤیدیۆی 2K/4K دەکەن</string>
     <string name="notification_channel_description">ئاگانامەکانی پاشبنەمای نیوپایپ و لێدانه‌كانی پەنجەرە</string>
     <string name="feed_use_dedicated_fetch_method_summary">لەهەندێ خزمەتگوزاریدا بەردەستە، بەزۆری خێراترینە بەڵام ڕەنگە هەندێک لە بابەتەکان زانیارییەکانیان ناتەواو بێت (وەک نەبوونی ماوە، جۆری بابەت ، نەبوونی پەخش)</string>
@@ -499,9 +497,6 @@
     <string name="enable_search_history_summary">مێژووی گه‌ڕانه‌كان له‌ بیرگه‌دا كۆگا ده‌كرێن</string>
     <string name="settings_category_video_audio_title">ڤیدیۆ و دەنگ</string>
     <string name="share">هاوبه‌شپێكردن</string>
-    <string name="download_choose_new_path">فۆڵده‌ری دابه‌زاندن بگۆڕە بۆ ئەنجامدانی کاریگەری</string>
-    <string name="show_hold_to_append_summary">ڕێنمایی پیشان بدرێت کاتێک لە پاشبنەما یاخوود لە پەنجەرەدا کرتە دەکرێت لەسەر \"وردەکارییەکان\"ی ڤیدیۆیەک:</string>
-    <string name="deleted_downloads">%1$d لە دابەزێنراوەکان سڕانەوە</string>
     <string name="audio_streams_empty">پەخشی هیچ دەنگێک نەدۆزرایەوە</string>
     <string name="artists">هونەرمەندەکان</string>
     <string name="no_one_watching">کەس سه‌یری ناکات</string>

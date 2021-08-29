@@ -444,8 +444,6 @@
     <string name="enqueue">طابور</string>
     <string name="permission_denied">تم رفضها من قبل النظام</string>
     <string name="download_failed">فشل التنزيل</string>
-    <string name="download_finished">تم الانتهاء من التحميل</string>
-    <string name="download_finished_more">%s أنتهى التحميل</string>
     <string name="generate_unique_name">إنشاء اسم فريد</string>
     <string name="overwrite">الكتابة فوق</string>
     <string name="overwrite_finished_warning">يوجد ملف تحميل بهذا الاسم موجود مسبقاً</string>
@@ -540,7 +538,6 @@
     <string name="peertube_instance_url_help">ابحث عن مثيلات الخوادم التي تناسبك على %s</string>
     <string name="clear_download_history">تنظيف تاريخ التحميل</string>
     <string name="delete_downloaded_files">حذف الملفات المحملة</string>
-    <string name="deleted_downloads">تم حذف %1$d من التحميلات</string>
     <string name="permission_display_over_apps">امنح الإذن بالعرض فوق التطبيقات الأخرى</string>
     <string name="app_language_title">لغة التطبيق</string>
     <string name="systems_language">النظام الافتراضي</string>

@@ -435,8 +435,6 @@
     <string name="enqueue">Kolejka</string>
     <string name="permission_denied">Akcja odrzucona przez system</string>
     <string name="download_failed">Pobieranie nie powiodło się</string>
-    <string name="download_finished">Pobieranie zakończone</string>
-    <string name="download_finished_more">%s ukończonych pobrań</string>
     <string name="generate_unique_name">Wygeneruj unikalną nazwę</string>
     <string name="overwrite">Nadpisz</string>
     <string name="overwrite_finished_warning">Pobrany plik o tej nazwie już istnieje</string>
@@ -529,7 +527,6 @@
     <string name="choose_instance_prompt">Wybierz serwer</string>
     <string name="clear_download_history">Wyczyść historię pobierania</string>
     <string name="delete_downloaded_files">Usuń pobrane pliki</string>
-    <string name="deleted_downloads">Usunięte %1$d pobrania</string>
     <string name="permission_display_over_apps">Udziel uprawnienia do wyświetlania nad innymi aplikacjami</string>
     <string name="app_language_title">Język aplikacji</string>
     <string name="systems_language">Domyślny systemowy</string>

@@ -412,8 +412,6 @@
     <string name="post_processing">प्रक्रिया के बाद</string>
     <string name="permission_denied">कार्य सिस्टम द्वारा अस्वीकार</string>
     <string name="download_failed">डाउनलोड विफल रहा</string>
-    <string name="download_finished">डाउनलोड समाप्त</string>
-    <string name="download_finished_more">%s डाउनलोड समाप्त</string>
     <string name="generate_unique_name">अनोखा नाम बनाये</string>
     <string name="overwrite">ऊपर लिखना</string>
     <string name="download_already_running">इस नाम का एक डाउनलोड चालू है</string>
@@ -566,7 +564,6 @@
     <string name="remove_watched">देखे गए को हटा दें</string>
     <string name="systems_language">सिस्टम डिफ़ॉल्ट</string>
     <string name="app_language_title">ऐप भाषा</string>
-    <string name="deleted_downloads">%1$d डाउनलोड को हटा दिया गया</string>
     <string name="delete_downloaded_files">डाउनलोड की गई फ़ाइलें हटाएं</string>
     <string name="clear_download_history">डाउनलोड इतिहास हटायें</string>
     <string name="wifi_only">केवल वाईफाई पर</string>

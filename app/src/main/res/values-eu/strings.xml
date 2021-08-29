@@ -432,8 +432,6 @@
     <string name="enqueue">Gehitu ilarara</string>
     <string name="permission_denied">Ekintza sistemak ukatu du</string>
     <string name="download_failed">Deskargak huts egin du</string>
-    <string name="download_finished">Deskarga amaitu da</string>
-    <string name="download_finished_more">%s deskarga amaituta</string>
     <string name="generate_unique_name">Sortu izen bakana</string>
     <string name="overwrite">Gainidatzi</string>
     <string name="overwrite_finished_warning">Badago izen bera duen deskargatutako fitxategi bat</string>
@@ -520,7 +518,6 @@
     <string name="choose_instance_prompt">Aukeratu instantzia</string>
     <string name="clear_download_history">Garbitu deskargen historiala</string>
     <string name="delete_downloaded_files">Ezabatu deskargatutako fitxategiak</string>
-    <string name="deleted_downloads">%1$d deskarga ezabatuta</string>
     <string name="permission_display_over_apps">Baimena eman beste aplikazioen gainetik erakusteko</string>
     <string name="app_language_title">Aplikazioaren hizkuntza</string>
     <string name="systems_language">Sistemaren lehenetsia</string>

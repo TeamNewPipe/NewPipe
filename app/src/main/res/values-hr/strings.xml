@@ -375,7 +375,6 @@
     <string name="app_update_notification_content_title">Dostupna je nova verzija za NewPipe!</string>
     <string name="app_update_notification_content_text">Dodirnite za preuzimanje</string>
     <string name="download_failed">Preuzimanje nije uspjelo</string>
-    <string name="download_finished">Preuzimanje je gotovo</string>
     <string name="show_error">Prikaži pogrešku</string>
     <string name="download_thumbnail_summary">Isključi za sprječavanje učitavanja sličica, čime se štede podatci i memorija. Promjena postavke čisti predmemoriju u radnoj memoriji i u pohrani</string>
     <string name="metadata_cache_wipe_summary">Izbriši sve podatke web-stranica iz predmemorije</string>
@@ -432,7 +431,6 @@
     <string name="post_processing">naknadna obrada</string>
     <string name="enqueue">Popis izvođenja</string>
     <string name="permission_denied">Sustav je odbio radnju</string>
-    <string name="download_finished_more">%s preuzimanja dovršeno</string>
     <string name="generate_unique_name">Generirajte jedinstveni naziv</string>
     <string name="overwrite">Prepiši</string>
     <string name="overwrite_unrelated_warning">Datoteka s tim nazivom već postoji</string>
@@ -491,7 +489,6 @@
     <string name="playlist_no_uploader">Autogenerirano (prenositelj nedefiniran)</string>
     <string name="clear_download_history">Očisti povijest preuzimanja</string>
     <string name="delete_downloaded_files">Izbriši preuzete datoteke</string>
-    <string name="deleted_downloads">Obrisano %1$d preuzimanja</string>
     <string name="permission_display_over_apps">Dajte dopuštenje za prikazivanje na vrhu</string>
     <string name="app_language_title">Jezik aplikacije</string>
     <string name="systems_language">Zadani sustav</string>

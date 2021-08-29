@@ -424,8 +424,6 @@
     <string name="enqueue">佇列</string>
     <string name="permission_denied">動作被系統拒絕</string>
     <string name="download_failed">下載失敗</string>
-    <string name="download_finished">下載已完成</string>
-    <string name="download_finished_more">%s 個下載已完成</string>
     <string name="generate_unique_name">生成獨特的名稱</string>
     <string name="overwrite">覆寫</string>
     <string name="overwrite_finished_warning">已有此名稱的已下載檔案</string>
@@ -515,7 +513,6 @@
     <string name="choose_instance_prompt">選擇一個站臺</string>
     <string name="clear_download_history">清除下載歷史紀錄</string>
     <string name="delete_downloaded_files">刪除已下載的檔案</string>
-    <string name="deleted_downloads">已刪除 %1$d 個下載</string>
     <string name="permission_display_over_apps">給予顯示在其他應用程式上層的權限</string>
     <string name="app_language_title">應用程式語言</string>
     <string name="systems_language">系統預設值</string>
