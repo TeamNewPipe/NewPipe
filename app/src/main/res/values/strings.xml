@@ -76,7 +76,7 @@
     <string name="notification_action_buffering">Buffering</string>
     <string name="notification_action_nothing">Nothing</string>
     <string name="notification_colorize_title">Colorize notification</string>
-    <string name="notification_colorize_summary">Have Android customize the notification\'s color according to the main color in the thumbnail (note that this is not available on all devices)</string>
+    <string name="notification_colorize_summary">Color notification\'s using the main thumbnail color (not available on all devices)</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>
@@ -188,7 +188,7 @@
     <string name="artists">Artists</string>
     <string name="yes">Yes</string>
     <string name="later">Later</string>
-    <string name="disabled">Disabled</string>
+    <string name="disabled">Off</string>
     <string name="filter">Filter</string>
     <string name="refresh">Refresh</string>
     <string name="clear">Clear</string>
@@ -264,7 +264,7 @@
     <string name="no_streams_available_download">No streams available to download</string>
     <string name="saved_tabs_invalid_json">Could not read saved tabs, so using default ones</string>
     <string name="restore_defaults">Restore defaults</string>
-    <string name="restore_defaults_confirmation">Do you want to restore defaults?</string>
+    <string name="restore_defaults_confirmation">Restore defaults?</string>
     <string name="permission_display_over_apps">Give permission to display over other apps</string>
     <!-- error activity -->
     <string name="sorry_string">Sorry, that should not have happened.</string>
@@ -340,7 +340,7 @@
         <item quantity="other">%s videos</item>
     </plurals>
     <string name="no_comments">No comments</string>
-    <string name="comments_are_disabled">Comments are disabled</string>
+    <string name="comments_are_disabled">Comments are turned off</string>
     <!-- Missions -->
     <string name="start">Start</string>
     <string name="pause">Pause</string>
@@ -388,14 +388,14 @@
     <string name="settings_file_replacement_character_title">Replacement character</string>
     <string name="charset_letters_and_digits">Letters and digits</string>
     <string name="charset_most_special_characters">Most special characters</string>
-    <string name="toast_no_player">No app installed to play this file</string>
+    <string name="toast_no_player">No apps could play this file</string>
     <!-- About -->
     <string name="title_activity_about">About NewPipe</string>
     <string name="action_settings">Settings</string>
     <string name="action_about">About</string>
     <string name="title_licenses">Third-party Licenses</string>
     <string name="copyright">© %1$s by %2$s under %3$s</string>
-    <string name="error_unable_to_load_license">Could not load license</string>
+    <string name="error_unable_to_load_license">Could not load the GPLv3+ license</string>
     <string name="action_open_website">Open website</string>
     <string name="tab_about">About</string>
     <string name="tab_contributors">Contributors</string>
@@ -417,7 +417,7 @@
     <string name="privacy_policy_url" translatable="false">https://newpipe.net/legal/privacy/</string>
     <string name="read_privacy_policy">Read privacy policy</string>
     <string name="app_license_title">NewPipe\'s License</string>
-    <string name="app_license">NewPipe is copyleft libre software: You can use, study share and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
+    <string name="app_license">NewPipe is copylefted libre software: Use, study and share; with all — specifically under the terms of the GPLv3 or later, as published by the FSF.</string>
     <string name="read_full_license">Read license</string>
     <!-- History -->
     <string name="title_activity_history">History</string>
@@ -428,9 +428,9 @@
     <string name="history_empty">The history is empty</string>
     <string name="history_cleared">History cleared</string>
     <string name="item_deleted">Item deleted</string>
-    <string name="delete_item_search_history">Do you want to delete this item from search history?</string>
-    <string name="delete_stream_history_prompt">Do you want to delete this item from watch history?</string>
-    <string name="delete_all_history_prompt">Are you sure you want to delete all items from history?</string>
+    <string name="delete_item_search_history">Delete this item from search history?</string>
+    <string name="delete_stream_history_prompt">Delete this item from watch history?</string>
+    <string name="delete_all_history_prompt">Delete all history?</string>
     <string name="title_last_played">Last Played</string>
     <string name="title_most_played">Most Played</string>
     <!-- Content -->
@@ -453,9 +453,9 @@
     <string name="no_valid_zip_file">No valid ZIP file</string>
     <string name="could_not_import_all_files">Warning: Could not import all files.</string>
     <string name="override_current_data">This will override your current setup.</string>
-    <string name="import_settings">Do you want to also import settings?</string>
+    <string name="import_settings">Import settings too?</string>
     <string name="error_unable_to_load_comments">Could not load comments</string>
-    <string name="localization_changes_requires_app_restart">The language will change once the app is restarted</string>
+    <string name="localization_changes_requires_app_restart">Restart the app to change language</string>
     <!-- Kiosk Names -->
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trending</string>
@@ -528,10 +528,10 @@
     <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal</string>
     <string name="show_original_time_ago_title">Show original time ago on items</string>
     <string name="show_original_time_ago_summary">Original texts from services will be visible in stream items</string>
-    <string name="disable_media_tunneling_title">Disable media tunneling</string>
-    <string name="disable_media_tunneling_summary">Disable media tunneling if you experience a black screen or stuttering on video playback</string>
+    <string name="disable_media_tunneling_title">No media tunneling</string>
+    <string name="disable_media_tunneling_summary">Turn off media tunneling if you experience a black screen or stuttering video playback</string>
     <string name="show_image_indicators_title">Show image indicators</string>
-    <string name="show_image_indicators_summary">Show Picasso colored ribbons on top of images indicating their source: red for network, blue for disk and green for memory</string>
+    <string name="show_image_indicators_summary">Show Picasso-colored ribbons on top of images indicating their source: red for network, blue for disk and green for memory</string>
     <string name="crash_the_app">Crash the app</string>
     <!-- Subscriptions import/export -->
     <string name="import_export_title">Import/export</string>
@@ -547,9 +547,9 @@
     <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout:\n\n1. Go to this URL: %1$s\n2. Log in when asked\n3. Click on \"All data included\", then on \"Deselect all\", then select only \"subscriptions\" and click \"OK\"\n4. Click on \"Next step\" and then on \"Create export\"\n5. Click on the \"Download\" button after it appears and \n6. From the downloaded takeout zip extract the .json file (usually under \"YouTube and YouTube Music/subscriptions/subscriptions.json\") and import it here.</string>
     <string name="import_soundcloud_instructions">Import a SoundCloud profile by typing either the URL or your ID:\n\n1. Enable \"desktop mode\" in a web-browser (the site is not available for mobile devices)\n2. Go to this URL: %1$s\n3. Log in when asked\n4. Copy the profile URL you were redirected to.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
-    <string name="import_network_expensive_warning">Keep in mind this operation can be network expensive.\n\nDo you want to continue?</string>
+    <string name="import_network_expensive_warning">Keep in mind this can use a lot of data.\n\nContinue?</string>
     <!-- Playback Parameters -->
-    <string name="playback_speed_control">Playback Speed Controls</string>
+    <string name="playback_speed_control">Playback-speed controls</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Pitch</string>
     <string name="unhook_checkbox">Unhook (may cause distortion)</string>
@@ -557,7 +557,7 @@
     <string name="playback_step">Step</string>
     <string name="playback_reset">Reset</string>
     <!-- GDPR dialog -->
-    <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to NewPipe\'s privacy policy. Please read it carefully.\nYou must accept it to send us the bug report.</string>
+    <string name="start_accept_privacy_policy">NewPipe\'s privacy policy complies with the European General Data Protection Regulation (GDPR).\nPlease read and accept it to send us the bug report.</string>
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
     <!-- Limit mobile data usage  -->
@@ -576,8 +576,8 @@
         <item>144p</item>
     </string-array>
     <!-- Updates Settings -->
-    <string name="updates_setting_title">Updates</string>
-    <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>
+    <string name="updates_setting_title">Upgrades</string>
+    <string name="updates_setting_description">Ask to install new versions</string>
     <!-- Minimize to exit action -->
     <string name="minimize_on_exit_title">Minimize on app switch</string>
     <string name="minimize_on_exit_summary">Action when switching to other app from main video player — %s</string>
@@ -594,7 +594,7 @@
     <string name="auto">Auto</string>
     <string name="switch_view">Switch View</string>
     <!-- Seekbar Preview Thumbnail-->
-    <string name="seekbar_preview_thumbnail_title">Seekbar thumbnail preview</string>
+    <string name="seekbar_preview_thumbnail_title">Seekbar-thumbnail preview</string>
     <string name="high_quality_larger">High quality (larger)</string>
     <string name="low_quality_smaller">Low quality (smaller)</string>
     <string name="dont_show">Don\'t show</string>
@@ -621,12 +621,12 @@
     <string name="overwrite_unrelated_warning">A file with this name already exists</string>
     <string name="overwrite_finished_warning">A downloaded file with this name already exists</string>
     <string name="overwrite_failed">cannot overwrite the file</string>
-    <string name="download_already_running">There is a download in progress with this name</string>
-    <string name="download_already_pending">There is a pending download with this name</string>
+    <string name="download_already_running">Downloading something with this name</string>
+    <string name="download_already_pending">Waiting to download something with this name</string>
     <!-- message dialog about download error -->
     <string name="show_error">Show error</string>
     <string name="label_code">Code</string>
-    <string name="error_file_creation">The file can not be created</string>
+    <string name="error_file_creation">Could not create the file</string>
     <string name="error_path_creation">The destination folder can not be created</string>
     <string name="error_permission_denied">Permission denied by the system</string>
     <string name="error_ssl_exception">Could not establish a secure connection</string>
@@ -642,7 +642,7 @@
     <string name="error_timeout">Connection timeout</string>
     <string name="error_download_resource_gone">Cannot recover this download</string>
     <string name="clear_download_history">Clear download history</string>
-    <string name="confirm_prompt">Do you want to clear your download history or delete all downloaded files?</string>
+    <string name="confirm_prompt">Clear your download history or delete all downloaded files?</string>
     <string name="delete_downloaded_files">Delete downloaded files</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Deleted %1$s download</item>
@@ -650,7 +650,7 @@
     </plurals>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum retries</string>
-    <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
+    <string name="max_retry_desc">Maximum number of attempts before cancelling the download</string>
     <string name="pause_downloads_on_mobile">Interrupt on metered networks</string>
     <string name="pause_downloads_on_mobile_desc">Useful when switching to mobile data, although some downloads cannot be suspended</string>
     <string name="close">Close</string>
@@ -659,18 +659,18 @@
     <string name="start_downloads">Start downloads</string>
     <string name="pause_downloads">Pause downloads</string>
     <string name="downloads_storage_ask_title">Ask where to download</string>
-    <string name="downloads_storage_ask_summary">You will be asked where to save each download.\nEnable the system folder picker (SAF) if you want to download to an external SD card</string>
+    <string name="downloads_storage_ask_summary">You will be asked where to save each download.\nTurn on \'Use system folder picker (SAF)\' to download to an external SD card</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">You will be asked where to save each download</string>
     <string name="downloads_storage_use_saf_title">Use system folder picker (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">The \'Storage Access Framework\' allows downloads to an external SD card</string>
-    <string name="downloads_storage_use_saf_summary_api_19">The \'Storage Access Framework\' is not supported on Android KitKat and below</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Starting from Android 10 only \'Storage Access Framework\' is supported</string>
-    <string name="choose_instance_prompt">Choose an instance</string>
+    <string name="downloads_storage_use_saf_summary">The \'Storage Access Framework\' allows downloading to an external SD card</string>
+    <string name="downloads_storage_use_saf_summary_api_19">The \'Storage Access Framework\' is not supported on Android 4.4 (KitKat) and below</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Starting from Android 10, only \'Storage Access Framework\' is supported</string>
+    <string name="choose_instance_prompt">Choose instance</string>
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
     <string name="remove_watched">Remove watched</string>
     <string name="remove_watched_popup_title">Remove watched videos?</string>
-    <string name="remove_watched_popup_warning">Videos that have been watched before and after being added to the playlist will be removed.\nAre you sure? This cannot be undone!</string>
+    <string name="remove_watched_popup_warning">Remove videos watched before and after being added to the playlist?\nThis cannot be undone!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Yes, and partially watched videos</string>
     <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %d seconds</string>
     <!-- Time duration plurals -->
@@ -704,24 +704,24 @@
         <item quantity="other">%d selected</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Empty group name</string>
-    <string name="feed_group_dialog_delete_message">Do you want to delete this group?</string>
+    <string name="feed_group_dialog_delete_message">Delete this group?</string>
     <string name="feed_create_new_group_button_title">New</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Show only ungrouped subscriptions</string>
     <string name="settings_category_feed_title">Feed</string>
     <string name="feed_update_threshold_title">Feed update threshold</string>
     <string name="feed_update_threshold_summary">Time after last update before a subscription is considered outdated — %s</string>
     <string name="feed_update_threshold_option_always_update">Always update</string>
-    <string name="feed_load_error">Error loading feed</string>
+    <string name="feed_load_error">Could not load feed</string>
     <string name="feed_load_error_account_info">Could not load feed for \'%s\'.</string>
-    <string name="feed_load_error_terminated">The author\'s account has been terminated.\nNewPipe will not be able to load this feed in the future.\nDo you want to unsubscribe from this channel?</string>
+    <string name="feed_load_error_terminated">The author\'s account has been terminated.\nNewPipe will not be able to load this feed in the future.\nUnsubscribe from this channel?</string>
     <string name="feed_load_error_fast_unknown">The fast feed mode does not provide more info on this.</string>
     <string name="feed_use_dedicated_fetch_method_title">Fetch from dedicated feed when available</string>
     <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited amount of items and often incomplete information (e.g. no duration, item type, no live status)</string>
-    <string name="feed_use_dedicated_fetch_method_enable_button">Enable fast mode</string>
-    <string name="feed_use_dedicated_fetch_method_disable_button">Disable fast mode</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Do you think feed loading is too slow? If so, try enabling fast loading (you can change it in settings or by pressing the button below).\n\nNewPipe offers two feed loading strategies:\n• Fetching the whole subscription channel, which is slow but complete.\n• Using a dedicated service endpoint, which is fast but usually not complete.\n\nThe difference between the two is that the fast one usually lacks some information, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return less items.\n\nYouTube is an example of a service that offers this fast method with its RSS feed.\n\nSo the choice boils down to what you prefer: speed or precise information.</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Fast mode</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">No fast mode</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Loading too slow? Try turning on fast loading (you can change it in settings or by pressing the button below).\n\nNewPipe offers two feed loading strategies:\n• Fetching the whole subscription channel, which is slow but complete.\n• Using a dedicated service endpoint, which is fast but usually not complete.\n\nThe difference between the two is that the fast one usually lacks some information, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return less items.\n\nYouTube is an example of a service that offers this fast method with its RSS feed.\n\nSo the choice boils down to what you prefer: speed or precise information.</string>
     <string name="feed_toggle_show_played_items">Show watched items</string>
-    <string name="content_not_supported">This content is not yet supported by NewPipe.\n\nIt will hopefully be supported in a future version.</string>
+    <string name="content_not_supported">This content is not yet supported by NewPipe.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
     <string name="channel_created_by">Created by %s</string>
     <string name="video_detail_by">By %s</string>
@@ -730,23 +730,23 @@
     <string name="show_thumbnail_summary">Use thumbnail for both lock screen background and notifications</string>
     <string name="recent">Recent</string>
     <string name="chapters">Chapters</string>
-    <string name="no_app_to_open_intent">No app on your device can open this</string>
+    <string name="no_app_to_open_intent">No apps could open this</string>
     <string name="georestricted_content">This content is not available in your country.</string>
-    <string name="soundcloud_go_plus_content">This is a SoundCloud Go+ track, at least in your country, so it cannot be streamed or downloaded by NewPipe.</string>
+    <string name="soundcloud_go_plus_content">This is a SoundCloud Go+ track (at least in your country), so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="private_content">This content is private, so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="youtube_music_premium_content">This video is available only to YouTube Music Premium members, so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="account_terminated">Account terminated</string>
     <string name="service_provides_reason">%s provides this reason:</string>
-    <string name="paid_content">This content is only available to users who have paid, so it cannot be streamed or downloaded by NewPipe.</string>
+    <string name="paid_content">This content is only available to paying users, so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="featured">Featured</string>
     <string name="radio">Radio</string>
-    <string name="auto_device_theme_title">Automatic (device theme)</string>
+    <string name="auto_device_theme_title">Auto (device theme)</string>
     <string name="night_theme_summary">Select your favorite night theme — %s</string>
     <string name="select_night_theme_toast">You can select your favorite night theme below</string>
     <string name="download_has_started">Download has started</string>
-    <string name="description_select_note">You can now select text inside the description. Note that the page may flicker and links may not be clickable while in selection mode.</string>
-    <string name="description_select_enable">Enable selecting text in the description</string>
-    <string name="description_select_disable">Disable selecting text in the description</string>
+    <string name="description_select_note">You can now select text inside the description. The page may flicker and links may be unclickable in selection mode.</string>
+    <string name="description_select_enable">Allow selecting description text</string>
+    <string name="description_select_disable">Prevent selecting description text</string>
     <string name="metadata_category">Category</string>
     <string name="metadata_tags">Tags</string>
     <string name="metadata_licence">Licence</string>
@@ -766,6 +766,6 @@
     <string name="on">On</string>
     <string name="off">Off</string>
     <!-- Show Channel Details -->
-    <string name="error_show_channel_details">Error at Show Channel Details</string>
-    <string name="loading_channel_details">Loading Channel Details…</string>
+    <string name="error_show_channel_details">Could not show channel details</string>
+    <string name="loading_channel_details">Loading channel details…</string>
 </resources>
