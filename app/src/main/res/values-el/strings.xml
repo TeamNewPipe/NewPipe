@@ -121,7 +121,7 @@
     <string name="auto_queue_summary">Συνέχεια της τρέχουσας (μη επαναλαμβανόμενης) ουράς μετά τη λήξη της, με την προσθήκη μιας σχετικής ροής</string>
     <string name="player_gesture_controls_title">Έλεγχος αναπαραγωγής με χειρονομίες</string>
     <string name="player_gesture_controls_summary">Χρήση χειρονομιών για τον έλεγχο της φωτεινότητας και της έντασης ήχου</string>
-    <string name="show_search_suggestions_summary">Εμφάνιση προτάσεων ενώ κάνετε αναζήτηση</string>
+    <string name="show_search_suggestions_summary">Επιλογή των προτάσεων που εμφανίζονται κατά την αναζήτηση</string>
     <string name="enable_search_history_summary">Αποθήκευση αναζητήσεων στη συσκευή</string>
     <string name="enable_watch_history_title">Προβολή Ιστορικού</string>
     <string name="enable_watch_history_summary">Κρατήστε ιστορικό των αναπαραχθέντων βίντεο</string>
@@ -718,4 +718,10 @@
     <string name="seekbar_preview_thumbnail_title">Προεπισκόπηση στην μπάρα αναζήτησης</string>
     <string name="mark_as_watched">Σήμανση ως αναπαραχθέν</string>
     <string name="detail_heart_img_view_description">Επισημάνθηκε από τον δημιουργό</string>
+    <string name="loading_channel_details">Φόρτωση λεπτομερειών καναλιού…</string>
+    <string name="error_show_channel_details">Σφάλμα στην εμφάνιση λεπτομερειών καναλιού</string>
+    <string name="show_image_indicators_summary">Εμφάνιση χρωματιστής κορδέλας πάνω στις εικόνες, που δείχνει την πηγή τους: κόκκινη για δίκτυο, μπλε για δίσκο και πράσινο για μνήμη</string>
+    <string name="show_image_indicators_title">Εμφάνιση δεικτών εικόνων</string>
+    <string name="remote_search_suggestions">Προτάσεις απομακρυσμένης αναζήτησης</string>
+    <string name="local_search_suggestions">Προτάσεις τοπικής αναζήτησης</string>
 </resources>

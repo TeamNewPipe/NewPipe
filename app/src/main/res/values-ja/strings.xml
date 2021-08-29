@@ -135,7 +135,7 @@
     <string name="player_gesture_controls_title">プレイヤーのジェスチャー制御</string>
     <string name="player_gesture_controls_summary">ジェスチャーを使用してプレイヤーの明るさと音量を制御する</string>
     <string name="show_search_suggestions_title">検索候補の表示</string>
-    <string name="show_search_suggestions_summary">検索時に候補を表示します</string>
+    <string name="show_search_suggestions_summary">検索時に表示する候補を選択します</string>
     <string name="best_resolution">最高の解像度</string>
     <string name="title_activity_about">NewPipe について</string>
     <string name="action_settings">設定</string>
@@ -707,4 +707,8 @@
     <string name="seekbar_preview_thumbnail_title">シークバーのサムネイルプレビュー</string>
     <string name="comments_are_disabled">コメントは無効です</string>
     <string name="mark_as_watched">視聴済みとしてマーク</string>
+    <string name="error_show_channel_details">チャンネルの詳細の表示でエラー</string>
+    <string name="loading_channel_details">チャンネルの詳細を読み込み中…</string>
+    <string name="remote_search_suggestions">リモート検索候補</string>
+    <string name="local_search_suggestions">ローカル検索候補</string>
 </resources>

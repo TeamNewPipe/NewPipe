@@ -50,7 +50,7 @@
     <string name="player_gesture_controls_title">Grotuvo valdymas gestais</string>
     <string name="player_gesture_controls_summary">Naudokite gestus valdyti grotuvo ryškumą ir garsumą</string>
     <string name="show_search_suggestions_title">Paieškos nuspėjimai</string>
-    <string name="show_search_suggestions_summary">Rodyti nuspėjimus, kai ieškoma</string>
+    <string name="show_search_suggestions_summary">Pasirinkite pasiūlymus, kurie bus rodomi ieškant</string>
     <string name="download_dialog_title">Atsisiųsti</string>
     <string name="show_next_and_similar_title">Rodyti „kitus” ir „panašius” vaizdo įrašus</string>
     <string name="unsupported_url">URL nepalaikoma</string>
@@ -127,11 +127,11 @@
     <string name="checksum">Kontrolinė suma</string>
     <string name="add">Nauja užduotis</string>
     <string name="finish">Gerai</string>
-    <string name="msg_name">Bylos pavadinimas</string>
+    <string name="msg_name">Failo pavadinimas</string>
     <string name="msg_threads">Gijos</string>
     <string name="msg_error">Klaida</string>
     <string name="msg_server_unsupported">Tarnybinė stotis nepalaikoma</string>
-    <string name="msg_exists">Byla jau egzistuoja</string>
+    <string name="msg_exists">Failas jau egzistuoja</string>
     <string name="msg_url_malform">Neteisingas adresas arba negalimas internetas</string>
     <string name="msg_running">NewPipe Atsiunčiama</string>
     <string name="msg_running_detail">Palieskite, kad peržiūrėtumėte detales</string>
@@ -188,7 +188,7 @@
     <string name="no_videos">Nėra vaizdo įrašų</string>
     <string name="view">Groti</string>
     <string name="settings_category_downloads_title">Parsisiuntimai</string>
-    <string name="settings_file_charset_title">Leidžiami simboliai bylų varduose</string>
+    <string name="settings_file_charset_title">Leidžiami simboliai failų varduose</string>
     <string name="settings_file_replacement_character_summary">Neleistini simboliai yra pakeičiami šia reikšme</string>
     <string name="settings_file_replacement_character_title">Pakaitinis simbolis</string>
     <string name="charset_letters_and_digits">Raidės ir skaičiai</string>
@@ -728,4 +728,10 @@
     <string name="dont_show">Nerodyti</string>
     <string name="detail_heart_img_view_description">Širdelė nuo kurėjo</string>
     <string name="mark_as_watched">Pažymėti kaip peržiūrėtą</string>
+    <string name="loading_channel_details">Įkeliama kanalo informacija…</string>
+    <string name="error_show_channel_details">Klaida rodant kanalo informaciją</string>
+    <string name="show_image_indicators_summary">Rodyti „Picasso“ spalvotas juosteles ant vaizdų, nurodančių jų šaltinį: raudona tinklui, mėlyna diskui ir žalia atmintis</string>
+    <string name="show_image_indicators_title">Rodyti vaizdo indikatorius</string>
+    <string name="remote_search_suggestions">Nuotolinės paieškos pasiūlymai</string>
+    <string name="local_search_suggestions">Vietinės paieškos pasiūlymai</string>
 </resources>

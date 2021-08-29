@@ -10,7 +10,7 @@
     <string name="download">다운로드</string>
     <string name="search">검색</string>
     <string name="settings">설정</string>
-    <string name="did_you_mean">%1$s를 찾으셨나요\?</string>
+    <string name="did_you_mean">\"%1$s\"를 찾으셨나요\?</string>
     <string name="share_dialog_title">다음으로 공유</string>
     <string name="choose_browser">브라우저 선택</string>
     <string name="screen_rotation">회전</string>
@@ -581,4 +581,6 @@
     <string name="show_meta_info_title">메타 정보 표시</string>
     <string name="notification_colorize_title">색상화된 알림</string>
     <string name="clear_queue_confirmation_description">활성화된 플레이어 대기열이 교체됩니다.</string>
+    <string name="open_with">으로(로) 열기</string>
+    <string name="mark_as_watched">시청한 것으로 처리</string>
 </resources>

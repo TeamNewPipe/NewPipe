@@ -41,7 +41,7 @@
     <string name="use_tor_title">Utiliser Tor</string>
     <string name="use_tor_summary">(Expérimental) Forcer la redirection du trafic de téléchargement via Tor pour plus de confidentialité (les flux vidéos ne sont pas encore pris en charge).</string>
     <string name="theme_title">Thème</string>
-    <string name="night_theme_title">Thème nuit</string>
+    <string name="night_theme_title">Thème de nuit</string>
     <string name="dark_theme_title">Sombre</string>
     <string name="light_theme_title">Clair</string>
     <string name="black_theme_title">Noir</string>
@@ -135,7 +135,7 @@
     <string name="use_external_video_player_summary">Le son peut être absent à certaines définitions</string>
     <string name="player_gesture_controls_summary">Utiliser des gestes pour contrôler la luminosité et le volume du lecteur</string>
     <string name="show_search_suggestions_title">Suggestions de recherche</string>
-    <string name="show_search_suggestions_summary">Affiche les suggestions lors d’une recherche</string>
+    <string name="show_search_suggestions_summary">Sélectionner les suggestions à afficher lors d’une recherche</string>
     <string name="player_gesture_controls_title">Contrôles gestuels de la lecture</string>
     <string name="best_resolution">Meilleure définition</string>
     <string name="subscribe_button_title">S’abonner</string>
@@ -662,24 +662,24 @@
     <string name="comments_tab_description">Commentaires</string>
     <string name="show_description_summary">Désactiver pour masquer la description de la vidéo et les informations supplémentaires</string>
     <string name="show_description_title">Afficher la description</string>
-    <string name="crash_the_app">Faire planter l\'application</string>
-    <string name="georestricted_content">Ce contenu n\'est pas disponible dans votre pays.</string>
+    <string name="crash_the_app">Planter l’application</string>
+    <string name="georestricted_content">Ce contenu n’est pas disponible dans votre pays.</string>
     <string name="paid_content">Ce contenu est uniquement disponible pour les utilisateurs qui ont payé, il ne peut donc pas être diffusé en continu ni téléchargé par NewPipe.</string>
-    <string name="youtube_music_premium_content">Cette vidéo n\'est disponible que pour les membres de YouTube Music Premium, elle ne peut donc pas être diffusée en continu ni téléchargée par NewPipe.</string>
+    <string name="youtube_music_premium_content">Cette vidéo n’est disponible que pour les membres de YouTube Music Premium, elle ne peut donc pas être diffusée en continu ni téléchargée par NewPipe.</string>
     <string name="private_content">Ce contenu est privé, il ne peut donc pas être diffusé en continu ni téléchargé par NewPipe.</string>
     <string name="soundcloud_go_plus_content">Ceci est une piste SoundCloud Go+, au moins dans votre pays, elle ne peut donc pas être diffusée ou téléchargée par NewPipe.</string>
-    <string name="restricted_video_no_stream">Cette vidéo est soumise à une limite d\'âge.
-\nEn raison des nouvelles politiques de YouTube concernant les vidéos soumises à une limite d\'âge, NewPipe ne peut accéder à aucun de ses flux vidéo et ne peut donc pas les lire.</string>
+    <string name="restricted_video_no_stream">Cette vidéo est soumise à une limite d’âge.
+\nEn raison des nouvelles politiques de YouTube concernant les vidéos soumises à une limite d’âge, NewPipe ne peut accéder à aucun de ses flux vidéo et ne peut donc pas les lire.</string>
     <string name="radio">Radio</string>
     <string name="featured">Tendances</string>
     <string name="recaptcha_solve">Résoudre</string>
-    <string name="auto_device_theme_title">Automatique (thème de l\'appareil)</string>
-    <string name="night_theme_summary">Choisissez votre thème nuit favori — %s</string>
-    <string name="select_night_theme_toast">Vous pouvez choisir votre thème nuit favori</string>
+    <string name="auto_device_theme_title">Automatique (thème de l’appareil)</string>
+    <string name="night_theme_summary">Sélectionne votre thème de nuit favori — %s</string>
+    <string name="select_night_theme_toast">Vous pouvez sélectionner votre thème de nuit favori ci-dessous</string>
     <string name="download_has_started">Le téléchargement a démarré</string>
     <string name="show_channel_details">Afficher les détails de la chaîne</string>
-    <string name="disable_media_tunneling_summary">Désactivez le tunnelage multimédia si vous constatez un écran noir ou un bégaiement lors de la lecture d\'une vidéo</string>
-    <string name="disable_media_tunneling_title">Désactiver le tunnelage média</string>
+    <string name="disable_media_tunneling_summary">Désactivez la tunnelisation multimédia si vous constatez un écran noir ou un bégaiement lors de la lecture d’une vidéo</string>
+    <string name="disable_media_tunneling_title">Désactiver la tunnelisation média</string>
     <string name="description_select_disable">Désactiver la sélection de texte dans la description</string>
     <string name="description_select_enable">Permettre la sélection de texte dans la description</string>
     <string name="metadata_privacy_internal">Interne</string>
@@ -690,14 +690,14 @@
     <string name="metadata_host">Hôte</string>
     <string name="metadata_support">Support</string>
     <string name="metadata_language">Langue</string>
-    <string name="metadata_age_limit">Limite d\'âge</string>
+    <string name="metadata_age_limit">Limite d’âge</string>
     <string name="metadata_privacy">Confidentialité</string>
     <string name="metadata_licence">Licence</string>
     <string name="metadata_tags">Étiquettes</string>
     <string name="metadata_category">Catégorie</string>
-    <string name="description_select_note">Vous pouvez maintenant sélectionner du texte à l\'intérieur de la description. Notez que la page peut scintiller et que les liens peuvent ne pas être cliquables en mode sélection.</string>
+    <string name="description_select_note">Vous pouvez maintenant sélectionner du texte à l’intérieur de la description. Notez que la page peut scintiller et que les liens peuvent ne pas être cliquables en mode sélection.</string>
     <string name="service_provides_reason">%s indique le motif :</string>
-    <string name="no_dir_yet">Aucun dossier de téléchargement n\'est défini pour le moment, sélectionnez le dossier de téléchargement par défaut</string>
+    <string name="no_dir_yet">Aucun dossier de téléchargement n’est défini pour le moment, sélectionnez le dossier de téléchargement par défaut</string>
     <string name="open_website_license">Ouvrir le site web</string>
     <string name="account_terminated">Compte résilié</string>
     <string name="feed_load_error_account_info">Impossible de charger le flux \'%s\'.</string>
@@ -707,12 +707,12 @@
     <string name="on">Actif</string>
     <string name="tablet_mode_title">Mode tablette</string>
     <string name="feed_toggle_show_played_items">Afficher les éléments visionnés</string>
-    <string name="feed_load_error_terminated">Le compte de l\'auteur a été résilié.
-\nNewPipe ne sera plus en mesure de charger ce flux à l\'avenir.
-\nSouhaitez-vous vous désabonner de cette chaîne \?</string>
-    <string name="downloads_storage_use_saf_summary_api_29">A partir d\'Android 10, seule « l\'Infrastructure d’accès au stockage  » est prise en charge</string>
-    <string name="downloads_storage_use_saf_summary_api_19">L’« Infrastructure d’accès au stockage » n\'est pas prise en charge par Android KitKat et les versions antérieures</string>
-    <string name="feed_load_error_fast_unknown">Le mode d\'alimentation rapide ne fournit pas plus d\'informations à ce sujet.</string>
+    <string name="feed_load_error_terminated">Le compte de l’auteur a été résilié.
+\nNewPipe ne sera plus en mesure de charger ce flux à l’avenir.
+\nSouhaitez-vous vous désabonner de cette chaîne \?</string>
+    <string name="downloads_storage_use_saf_summary_api_29">À partir d’Android 10, seule « l’Infrastructure d’accès au stockage  » est prise en charge</string>
+    <string name="downloads_storage_use_saf_summary_api_19">L’« Infrastructure d’accès au stockage » n’est pas prise en charge par Android KitKat et les versions antérieures</string>
+    <string name="feed_load_error_fast_unknown">Le mode flux rapide ne fournit pas plus d’info à ce sujet.</string>
     <string name="comments_are_disabled">Les commentaires sont désactivés</string>
     <string name="dont_show">Ne pas afficher</string>
     <string name="low_quality_smaller">Faible qualité (plus petit)</string>
@@ -720,4 +720,10 @@
     <string name="seekbar_preview_thumbnail_title">Prévisualisation de la barre de progression sur la miniature</string>
     <string name="mark_as_watched">Marquer comme visionné</string>
     <string name="detail_heart_img_view_description">Apprécié par le créateur</string>
+    <string name="loading_channel_details">Chargement des détails du canal…</string>
+    <string name="error_show_channel_details">Erreur lors de l’affichage des détails du canal</string>
+    <string name="show_image_indicators_title">Afficher les indicateurs d’image</string>
+    <string name="remote_search_suggestions">Suggestions de recherche distante</string>
+    <string name="local_search_suggestions">Suggestions de recherche locale</string>
+    <string name="show_image_indicators_summary">Affiche les rubans colorés de Picasso au-dessus des images indiquant leur source : rouge pour le réseau, bleu pour le disque et vert pour la mémoire</string>
 </resources>

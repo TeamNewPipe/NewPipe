@@ -48,7 +48,7 @@
     <string name="player_gesture_controls_title">Gestkontroller för spelare</string>
     <string name="player_gesture_controls_summary">Använd gester för att kontrollera spelarens ljusstyrka och volym</string>
     <string name="show_search_suggestions_title">Sökförslag</string>
-    <string name="show_search_suggestions_summary">Visa förslag i samband med sökning</string>
+    <string name="show_search_suggestions_summary">Välj förslag att visa i samband med sökning</string>
     <string name="download_dialog_title">Hämta</string>
     <string name="show_next_and_similar_title">Visa \'Nästa\' och \'Liknande\' videor</string>
     <string name="unsupported_url">Webbadressen stöds inte</string>
@@ -717,4 +717,7 @@
     <string name="select_night_theme_toast">Du kan välja det natt-tema du föredrar nedan</string>
     <string name="night_theme_summary">Välj det natt-tema du föredrar — %s</string>
     <string name="seekbar_preview_thumbnail_title">Sökradens förhandsvisningsminiatyr</string>
+    <string name="loading_channel_details">Laddar kanaldetaljer…</string>
+    <string name="show_image_indicators_title">Visa bildindikatorer</string>
+    <string name="local_search_suggestions">Lokala sökningsförslag</string>
 </resources>

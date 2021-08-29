@@ -72,7 +72,7 @@
     <string name="player_gesture_controls_title">Pleieri juhtimine viibetega</string>
     <string name="player_gesture_controls_summary">Kasuta viipeid helitugevuse ja heleduse reguleerimiseks</string>
     <string name="show_search_suggestions_title">Kuva soovitused</string>
-    <string name="show_search_suggestions_summary">Kuva otsingu ajal soovitusi</string>
+    <string name="show_search_suggestions_summary">Vali otsingu ajal kuvatavad soovitused</string>
     <string name="enable_search_history_title">Otsinguajalugu</string>
     <string name="enable_search_history_summary">Salvesta otsinguajalugu kohalikult</string>
     <string name="enable_watch_history_title">Vaatamiste ajalugu</string>
@@ -718,4 +718,10 @@
 \n
 \nNii et valik taandub sellele, mida eelistad: kiirus või täpne teave.</string>
     <string name="mark_as_watched">Märgi vaadatuks</string>
+    <string name="loading_channel_details">Laadin kanali andmeid…</string>
+    <string name="error_show_channel_details">Viga kanali lisateabe kuvamisel</string>
+    <string name="show_image_indicators_summary">Näita piltide kohal Picasso värvides riba, mis märgib pildi allikat: punane tähistab võrku, sinine kohalikku andmekandjat ja roheline kohalikku mälu</string>
+    <string name="show_image_indicators_title">Näita piltide allikat</string>
+    <string name="remote_search_suggestions">Kaugotsingu soovitused</string>
+    <string name="local_search_suggestions">Kohaliku otsingu soovitused</string>
 </resources>

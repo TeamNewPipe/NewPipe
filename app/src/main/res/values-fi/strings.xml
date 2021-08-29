@@ -58,7 +58,7 @@
     <string name="player_gesture_controls_title">Soittimen eleohjaus</string>
     <string name="player_gesture_controls_summary">Käytä eleitä ohjataksesi soittimen kirkkautta ja äänentasoa</string>
     <string name="show_search_suggestions_title">Hakuehdotukset</string>
-    <string name="show_search_suggestions_summary">Näytä ehdotuksia hakiessa</string>
+    <string name="show_search_suggestions_summary">Valitse ehdotuksia, jotka näkyvät hakiessa</string>
     <string name="enable_search_history_title">Hakuhistoria</string>
     <string name="enable_search_history_summary">Tallentaa hakutietokannan paikallisesti</string>
     <string name="enable_watch_history_title">Katseluhistoria</string>
@@ -246,9 +246,9 @@
     <string name="tab_bookmarks">Soittolistakirjanmerkit</string>
     <string name="controls_add_to_playlist_title">Lisää soittolistaan</string>
     <string name="use_inexact_seek_title">Käytä nopeampaa epätarkkaa pikakelausta</string>
-    <string name="use_inexact_seek_summary">Epätarkka kelaus mahdollistaa videon kelauksen nopeammin huonommalla tarkkuudella. Kelaaminen 5, 15 tai 25 sekunnin erissä ei toimi tämän kanssa.</string>
+    <string name="use_inexact_seek_summary">Epätarkka kelaus mahdollistaa videon kelauksen nopeammin huonommalla tarkkuudella. Kelaaminen 5, 15 tai 25 sekunnin erissä ei toimi tämän kanssa</string>
     <string name="download_thumbnail_title">Lataa esikatselukuvat</string>
-    <string name="download_thumbnail_summary">Poista käytöstä estääksesi esikatselukuvien lataus. Tämä säästää dataa ja vähentää muistin käyttöä. Asetuksen muuttaminen poistaa muistissa ja levyllä olevan kuvavälimuistin.</string>
+    <string name="download_thumbnail_summary">Poista käytöstä estääksesi esikatselukuvien lataus. Tämä säästää dataa ja vähentää muistin käyttöä. Asetuksen muuttaminen poistaa muistissa ja levyllä olevan kuvavälimuistin</string>
     <string name="thumbnail_cache_wipe_complete_notice">Kuvavälimuisti tyhjennetty</string>
     <string name="metadata_cache_wipe_title">Poista tallennettu metatieto</string>
     <string name="metadata_cache_wipe_summary">Poista kaikki tallennettu sivutieto</string>
@@ -275,7 +275,7 @@
     <string name="clear_views_history_title">Poista katseluhistoria</string>
     <string name="clear_views_history_summary">Poistaa toistohistorian ja toistokohdat</string>
     <string name="delete_view_history_alert">Poista koko katseluhistoria\?</string>
-    <string name="watch_history_deleted">Katseluhistoria poistettu.</string>
+    <string name="watch_history_deleted">Katseluhistoria poistettu</string>
     <string name="clear_search_history_title">Poista hakuhistoria</string>
     <string name="clear_search_history_summary">Poistaa historian haetuista videoista</string>
     <string name="delete_search_history_alert">Poista koko hakuhistoria\?</string>
@@ -344,7 +344,7 @@
     <string name="resize_zoom">Suurenna</string>
     <string name="caption_auto_generated">Automaattisesti luotu</string>
     <string name="caption_setting_title">Tekstitykset</string>
-    <string name="caption_setting_description">Muokkaa soittimen tekstitysten kokoa ja taustatyylejä. Asetusten käyttöönotto vaatii uudelleenkäynnistyksen.</string>
+    <string name="caption_setting_description">Muokkaa soittimen tekstitysten kokoa ja taustatyylejä. Asetusten käyttöönotto vaatii uudelleenkäynnistyksen</string>
     <string name="enable_leak_canary_summary">Muistivuotojen valvonta voi aiheuttaa ohjelman hidastumisen virhetilanteissa</string>
     <string name="enable_disposed_exceptions_title">Raportoi yhteensopivuusvirheitä, jotka aiheutuvat vanhoista ohjelmista</string>
     <string name="enable_disposed_exceptions_summary">Pakota raportointi toimituskelvottomille Rx-poikkeuksille, jotka ovat poiston jälkeen muistisirpaleiden tai aktiviteettielämänkaaren ulkopuolella</string>
@@ -365,7 +365,7 @@
 \n3. Klikkaa \"Kaikki Youtube-data valittuna\", sitten \"Poista kaikki valinnat\", sitten ainoastaan \"tilaukset\" ja klikkaa \"OK\"
 \n4. Klikkaa \"Seuraava vaihe\" ja \"Luo vienti\"
 \n5. Klikkaa \"Lataa\" tämän ilmestyessä
-\n6. Ladatusta takeoutin zip-tiedostosta pura json-tiedosto (yleensä sijainnissa \"Youtube ja Youtube Musiikki/tilaukset/tilaukset.json\" ja tuo se tänne</string>
+\n6. Ladatusta zip-tiedostosta pura .json-tiedosto (yleensä sijainnissa \"Youtube ja Youtube Musiikki/tilaukset/tilaukset.json\") ja tuo se tänne.</string>
     <string name="import_soundcloud_instructions">Tuo SoundCloud-profiili kirjoittamalla joko osoite tai ID:si:
 \n
 \n1. Laita päälle työpöytämoodi selaimessasi (tai käytä tietokonetta, tämä sivu ei toimi mobiilisivuna)
@@ -377,7 +377,7 @@
 \n
 \nHaluatko jatkaa\?</string>
     <string name="playback_speed_control">Toistonopeuden säätimet</string>
-    <string name="playback_tempo">Tempo</string>
+    <string name="playback_tempo">Nopeus</string>
     <string name="playback_pitch">Sävelkorkeus</string>
     <string name="unhook_checkbox">Irrota toisistaan (saattaa aiheuttaa säröytymistä)</string>
     <string name="skip_silence_checkbox">Kelaa eteenpäin hiljaisissa kohdissa</string>
@@ -500,7 +500,7 @@
 \nToivottavasti sitä tuetaan myöhemmässä versiossa.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Poista nopea tila käytöstä</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Ota nopea tila käyttöön</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Saatavilla joissakin palveluissa, on yleensä paljon nopeampi, mutta voi palauttaa rajallisen määrän sisältöä ja usein epätäydelliset tiedot (esim. ei kestoa, ei sisällön tyyppiä, ei livestatusta).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Saatavilla joissakin palveluissa, on yleensä paljon nopeampi, mutta voi palauttaa rajallisen määrän sisältöä ja usein epätäydelliset tiedot (esim. ei kestoa, ei sisällön tyyppiä, ei livestatusta)</string>
     <string name="feed_use_dedicated_fetch_method_title">Hae erityisestä syötteestä, kun sellainen on saatavilla</string>
     <string name="feed_update_threshold_option_always_update">Päivitä aina</string>
     <string name="feed_update_threshold_summary">Edellisestä päivityksestä kulunut aika, jonka jälkeen tilaus katsotaan vanhentuneeksi—%s</string>
@@ -511,7 +511,7 @@
     <string name="feed_group_dialog_empty_name">Tyhjä ryhmän nimi</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d valittu</item>
-        <item quantity="other">%d valittu</item>
+        <item quantity="other">%d valittua</item>
     </plurals>
     <string name="feed_group_dialog_empty_selection">Tilausta ei valittuna</string>
     <string name="feed_group_dialog_select_subscriptions">Valitse tilaukset</string>
@@ -541,10 +541,10 @@
     <string name="systems_language">Järjestelmän oletus</string>
     <string name="app_language_title">Sovelluksen kieli</string>
     <string name="choose_instance_prompt">Valitse instanssi</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' sallii lataukset ulkoiselle SD-kortille.</string>
+    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' sallii lataukset ulkoiselle SD-kortille</string>
     <string name="downloads_storage_use_saf_title">Ota SAF käyttöön</string>
     <string name="downloads_storage_ask_summary">Jokaisen latauksen kohde kysytään.
-\nSalli SAF, jos haluat ladata ulkoiselle SD-kortille.</string>
+\nSalli SAF, jos haluat tallentaa ulkoiselle SD-kortille</string>
     <string name="downloads_storage_ask_title">Kysy mihin ladataan</string>
     <string name="start_downloads">Aloita lataukset</string>
     <string name="enable_queue_limit_desc">Salli vain yksi lataus kerrallaan</string>
@@ -625,7 +625,7 @@
     <string name="notification_action_shuffle">Sekoita</string>
     <string name="notification_action_repeat">Toista uudelleen</string>
     <string name="notification_actions_at_most_three">Voit valita enintään kolme toimintoa ilmoituksessa näytettäväksi!</string>
-    <string name="notification_actions_summary">Muokkaa ilmoitustoimintoja näpäyttämällä niitä. Valitse ilmoituksessa näytettäväksi enintään kolme käyttämällä oikealla olevia valintaruutuja.</string>
+    <string name="notification_actions_summary">Muokkaa ilmoitustoimintoja näpäyttämällä niitä. Valitse ilmoituksessa näytettäväksi enintään kolme käyttämällä oikealla olevia valintaruutuja</string>
     <string name="notification_action_4_title">Viides toimintopainike</string>
     <string name="notification_action_3_title">Neljäs toimintopainike</string>
     <string name="notification_action_2_title">Kolmas toimintopainike</string>
@@ -646,7 +646,7 @@
     <string name="show_thumbnail_summary">Käytä esikatselukuvaa lukitusruudun ja ilmoitusten taustakuvana</string>
     <string name="show_thumbnail_title">Näytä esikatselukuva</string>
     <string name="msg_calculating_hash">Lasketaan</string>
-    <string name="show_meta_info_summary">Poista käytöstä piilottaaksesi metatiedot suoratoiston luojasta, sisällöstä tai hakupyynnöstä.</string>
+    <string name="show_meta_info_summary">Poista käytöstä piilottaaksesi metatiedot suoratoiston luojasta, sisällöstä tai hakupyynnöstä</string>
     <string name="show_meta_info_title">Näytä metatieto</string>
     <string name="recent">Viimeisimmät</string>
     <string name="show_description_title">Näytä kuvaus</string>
@@ -683,7 +683,7 @@
     <string name="disable_media_tunneling_summary">Poista median tunnelointi käytöstä, jos havaitset mustan näyttöruudun tai änkytystä videon toistossa</string>
     <string name="disable_media_tunneling_title">Poista median tunnelointi käytöstä</string>
     <string name="feed_load_error_fast_unknown">Nopea syötetila ei tarjoa enempää tietoa tästä.</string>
-    <string name="downloads_storage_use_saf_summary_api_29">\'Storage Access Framework\' on tuettu vain Android 10:stä alkaen.</string>
+    <string name="downloads_storage_use_saf_summary_api_29">\'Storage Access Framework\' on tuettu vain Android 10:stä alkaen</string>
     <string name="off">Pois päältä</string>
     <string name="on">Päällä</string>
     <string name="tablet_mode_title">Tablettitila</string>
@@ -710,7 +710,7 @@
     <string name="feed_load_error_account_info">Ei voitu ladata syötettä hakusanalle \'%s\'.</string>
     <string name="feed_load_error">Virhe syötteen lataamisessa</string>
     <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' ei ole tuettu Android KitKatissa tai vanhemmissa versioissa</string>
-    <string name="downloads_storage_ask_summary_no_saf_notice">Sinulta kysytään joka kerta, minne tiedosto ladataan.</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Sinulta kysytään joka kerta, minne tiedosto ladataan</string>
     <string name="dont_show">Älä näytä</string>
     <string name="low_quality_smaller">Matala laatu (pienempi)</string>
     <string name="high_quality_larger">Korkea laatu (suurempi)</string>
@@ -718,4 +718,10 @@
     <string name="no_dir_yet">Latauskansiota ei vielä asetettu, valitse ensin oletuslatauskansio</string>
     <string name="comments_are_disabled">Kommentit poistettu käytöstä</string>
     <string name="mark_as_watched">Merkitse katsotuksi</string>
+    <string name="loading_channel_details">Ladataan kanavan tietoja…</string>
+    <string name="error_show_channel_details">Virhe kanavan lisätietojen näyttämisessä</string>
+    <string name="show_image_indicators_summary">Näytä Picasso-värjätyt nauhat kuvien päällä osoittaakseen lähteen: punainen tarkoittaa verkkoa, sininen tarkoittaa levytilaa ja vihreä tarkoittaa muistia</string>
+    <string name="show_image_indicators_title">Näytä kuvailmaisimet</string>
+    <string name="remote_search_suggestions">Etähakuehdotukset</string>
+    <string name="local_search_suggestions">Paikalliset hakuehdotukset</string>
 </resources>

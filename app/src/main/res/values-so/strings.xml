@@ -459,7 +459,7 @@
     <string name="enable_watch_history_title">Wixii la daawaday</string>
     <string name="enable_search_history_summary">Ku kaydi wixii la raadiyay aallada</string>
     <string name="enable_search_history_title">Wixii laraadiyay</string>
-    <string name="show_search_suggestions_summary">Tus soojeedino marka wax la raadinayo</string>
+    <string name="show_search_suggestions_summary">Dooro soojeedinada lasoo bandhigo marka wax la raadinayo</string>
     <string name="show_search_suggestions_title">Soojeedinada raadinta</string>
     <string name="player_gesture_controls_summary">Isticmaal fartaada si aad umaamusho iftiinka iyo codka</string>
     <string name="player_gesture_controls_title">Ku maamulista daareha fartaada</string>
@@ -717,5 +717,11 @@
     <string name="seekbar_preview_thumbnail_title">Tusmada dhaafdhaafinta</string>
     <string name="comments_are_disabled">Fallooyinka waa laxidhay</string>
     <string name="detail_heart_img_view_description">Kahelay soosaaraha</string>
-    <string name="mark_as_watched">Ucalaamadi in ladaawaday</string>
+    <string name="mark_as_watched">Waan daawaday</string>
+    <string name="error_show_channel_details">Khalad ayaa ka dhacay Faahfaahinta Kanaalka</string>
+    <string name="loading_channel_details">Soo kicinaya faahfaahinta Kanaalka…</string>
+    <string name="show_image_indicators_summary">Soo bandhig shaambado midabka Picasso leh sawirrada dushooda oo tilmaamaya isha laga keenay: guduud waa khadka, buluug waa kaydka gudaha, cagaar waa kaydka K/G</string>
+    <string name="show_image_indicators_title">Tus tilmaamayaasha sawirka</string>
+    <string name="remote_search_suggestions">Soojeedinada raadinta banaanka</string>
+    <string name="local_search_suggestions">Soojeedinada raadinta gudaha</string>
 </resources>

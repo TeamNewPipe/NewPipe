@@ -79,8 +79,8 @@
     <string name="duration_live">Em direto</string>
     <string name="report_error">Reportar um erro</string>
     <string name="user_report">Relatório</string>
-    <string name="downloads">Descargas</string>
-    <string name="downloads_title">Descargas</string>
+    <string name="downloads">Transferências</string>
+    <string name="downloads_title">Transferências</string>
     <string name="error_report_title">Relatório de erro</string>
     <string name="start">Iniciar</string>
     <string name="pause">Pausa</string>
@@ -135,7 +135,7 @@
     <string name="player_gesture_controls_title">Controlo de reprodução por gestos</string>
     <string name="player_gesture_controls_summary">Utilizar gestos para controlar o brilho e o volume do reprodutor</string>
     <string name="show_search_suggestions_title">Sugestões de pesquisa</string>
-    <string name="show_search_suggestions_summary">Mostrar sugestões ao pesquisar</string>
+    <string name="show_search_suggestions_summary">Escolha as sugestões a mostrar ao pesquisar</string>
     <string name="best_resolution">Melhor resolução</string>
     <string name="title_activity_about">Acerca de NewPipe</string>
     <string name="action_settings">Definições</string>
@@ -191,7 +191,7 @@
         <item quantity="one">%s vídeo</item>
         <item quantity="other">%s vídeos</item>
     </plurals>
-    <string name="settings_category_downloads_title">Descargas</string>
+    <string name="settings_category_downloads_title">Transferências</string>
     <string name="settings_file_charset_title">Carateres permitidos no nome dos ficheiros</string>
     <string name="settings_file_replacement_character_summary">Os carateres inválidos são substituídos por este valor</string>
     <string name="settings_file_replacement_character_title">Carácter de substituição</string>
@@ -430,7 +430,7 @@
     <string name="permission_denied">Ação recusada pelo sistema</string>
     <string name="download_failed">Falha ao descarregar</string>
     <string name="download_finished">Descarga concluída</string>
-    <string name="download_finished_more">%s descargas concluídas</string>
+    <string name="download_finished_more">%s transferências concluídas</string>
     <string name="generate_unique_name">Gerar nome único</string>
     <string name="overwrite">Sobrescrever</string>
     <string name="overwrite_finished_warning">Já existe um ficheiro descarregado com este nome</string>
@@ -444,14 +444,14 @@
     <string name="error_unknown_host">Não foi possível encontrar o servidor</string>
     <string name="error_connect_host">Não foi possível ligar ao servidor</string>
     <string name="error_http_no_content">O servidor não envia dados</string>
-    <string name="error_http_unsupported_range">O servidor não aceita descargas multi-processo, tente novamente com @string/msg_threads = 1</string>
+    <string name="error_http_unsupported_range">O servidor não aceita transferências multi-processo, tente novamente com @string/msg_threads = 1</string>
     <string name="error_http_not_found">Não encontrado</string>
     <string name="error_postprocessing_failed">Falha pós-processamento</string>
     <string name="stop">Parar</string>
     <string name="max_retry_msg">Tentativas máximas</string>
     <string name="max_retry_desc">Número máximo de tentativas antes de cancelar a descarga</string>
     <string name="pause_downloads_on_mobile">Interromper em redes limitadas</string>
-    <string name="pause_downloads_on_mobile_desc">Útil ao trocar para dados móveis, mas algumas descargas não podem ser suspensas</string>
+    <string name="pause_downloads_on_mobile_desc">Útil ao trocar para dados móveis, mas algumas transferências não podem ser suspensas</string>
     <string name="events">Eventos</string>
     <string name="conferences">Conferências</string>
     <string name="missions_header_pending">Pendente</string>
@@ -478,13 +478,13 @@
     <string name="confirm_prompt">Deseja limpar o histórico de descargas ou remover todos os ficheiros descarregados\?</string>
     <string name="enable_queue_limit">Limitar fila de descargas</string>
     <string name="enable_queue_limit_desc">Uma descarga será executada ao mesmo tempo</string>
-    <string name="start_downloads">Iniciar descarga</string>
-    <string name="pause_downloads">Pausa nas descargas</string>
-    <string name="downloads_storage_ask_title">Perguntar localização</string>
-    <string name="downloads_storage_ask_summary">Ser-lhe-á perguntado onde guardar cada descarga.
-\nAtive o seletor de pastas do sistema (SAF) se quiser descarregar para um cartão SD externo</string>
+    <string name="start_downloads">Iniciar transferências</string>
+    <string name="pause_downloads">Pausa nas transferências</string>
+    <string name="downloads_storage_ask_title">Perguntar para onde transferir</string>
+    <string name="downloads_storage_ask_summary">Ser-lhe-á perguntado onde guardar cada transferência.
+\nAtive o seletor de pastas do sistema (SAF) se quiser transferir para um cartão SD externo</string>
     <string name="downloads_storage_use_saf_title">Usar o seletor de pastas do sistema (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' permite descargas para um cartão SD externo</string>
+    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' permite transferências para um cartão SD externo</string>
     <string name="clear_playback_states_title">Remover posições de reprodução</string>
     <string name="clear_playback_states_summary">Remove todas as posições de reprodução</string>
     <string name="delete_playback_states_alert">Remover todas as posições de reprodução\?</string>
@@ -520,7 +520,7 @@
     <string name="choose_instance_prompt">Escolha uma instância</string>
     <string name="clear_download_history">Limpar histórico de descargas</string>
     <string name="delete_downloaded_files">Remover ficheiros descarregados</string>
-    <string name="deleted_downloads">%1$d descargas removidas</string>
+    <string name="deleted_downloads">%1$d transferências removidas</string>
     <string name="permission_display_over_apps">Permitir sobreposição a outras aplicações</string>
     <string name="app_language_title">Idioma da aplicação</string>
     <string name="systems_language">Predefinição do sistema</string>
@@ -678,7 +678,7 @@
     <string name="show_channel_details">Mostrar detalhes do canal</string>
     <string name="disable_media_tunneling_summary">Desative esta opção se estiverem a ocorrer erros de ecrã escuro ou paragens durante a reprodução</string>
     <string name="disable_media_tunneling_title">Desativar túnel multimédia</string>
-    <string name="downloads_storage_ask_summary_no_saf_notice">Sempre que descarregar um ficheiro, terá que indicar o local para o guardar</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Sempre que transferir um ficheiro, terá que indicar o local para o guardar</string>
     <string name="no_dir_yet">Ainda sem pasta de descarregas definida, escolha agora a pasta de descarregas padrão</string>
     <string name="service_provides_reason">%s fornece este motivo:</string>
     <string name="account_terminated">Conta encerrada</string>
@@ -718,4 +718,10 @@
     <string name="low_quality_smaller">Baixa qualidade (menor)</string>
     <string name="high_quality_larger">Alta qualidade (maior)</string>
     <string name="comments_are_disabled">Comentários estão desativados</string>
+    <string name="loading_channel_details">A carregar detalhes do canal…</string>
+    <string name="error_show_channel_details">Erro em Mostrar detalhes do canal</string>
+    <string name="show_image_indicators_summary">Mostrar fitas coloridas de Picasso em cima das imagens que indicam a sua fonte: vermelho para rede, azul para disco e verde para memória</string>
+    <string name="show_image_indicators_title">Mostrar indicadores de imagem</string>
+    <string name="remote_search_suggestions">Sugestões de pesquisa remotas</string>
+    <string name="local_search_suggestions">Sugestões de pesquisa locais</string>
 </resources>

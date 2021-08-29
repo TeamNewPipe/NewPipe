@@ -233,7 +233,7 @@
     <string name="filter">پاڵاوتن</string>
     <string name="drawer_open">کردنەوەی پلیکانە</string>
     <string name="light_theme_title">ڕووناك</string>
-    <string name="show_search_suggestions_summary">پیشاندانی پێشنیارەکان لەکاتی گەڕان</string>
+    <string name="show_search_suggestions_summary">ئەو پێشنیازکراوانە هەڵبژێرە کە پیشان دەدرێن لەکاتی گەڕاندا</string>
     <string name="error_progress_lost">کردارەکە هه‌ره‌سی هێنا, چونکە ئەو فایله‌ سڕاوەتەوە</string>
     <string name="controls_add_to_playlist_title">زیادکردن بۆ</string>
     <string name="no_subscribers">به‌ژداری نییه‌</string>
@@ -694,7 +694,7 @@
     <string name="recent">دواین</string>
     <string name="show_thumbnail_summary">وێنۆچكه‌كه‌ بۆ پاشبنه‌مای ڕوونماداخراو و ئاگانامه‌كان به‌كاربهێنرێن</string>
     <string name="show_thumbnail_title">پیشاندانی وێنۆچكه‌</string>
-    <string name="feed_toggle_show_played_items">بابه‌ته‌ لێدراوه‌كان پیشان بدرێن</string>
+    <string name="feed_toggle_show_played_items">تەماشاکراوەکان پیشان بدرێن</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">بۆ دابه‌زاندنی هه‌ر بابه‌تێك پرست پێ ده‌كرێت له‌باره‌ی شوێنی دابه‌زاندنیان</string>
     <string name="disable_media_tunneling_title">ناكاراكردنی تونێلكردنی میدیا</string>
     <string name="show_age_restricted_content_summary">ئه‌و بابه‌تانه‌ی نه‌گونجاون بۆ منداڵان پیشان بدرێن كه‌ سنووری ته‌مه‌ن ده‌یانگرێته‌وه‌ (وه‌ك +18)</string>
@@ -712,4 +712,16 @@
     <string name="on">کارا</string>
     <string name="tablet_mode_title">دۆخی تابلێت</string>
     <string name="open_website_license">کردنەوەی ماڵپەڕ</string>
+    <string name="seekbar_preview_thumbnail_title">پێشبینینی سەروێنەی گەڕان</string>
+    <string name="loading_channel_details">وردەکارییەکانی کەناڵەکە بار دەکرێن…</string>
+    <string name="error_show_channel_details">هەڵە ڕوویدا لە پیشاندانی وردەکارییەکانی کەناڵ</string>
+    <string name="detail_heart_img_view_description">بەدڵکراوە لەلایەن بڵاوکەرەوە</string>
+    <string name="dont_show">پیشان نەدرێت</string>
+    <string name="low_quality_smaller">کواڵێتی نزم (بچووکتر)</string>
+    <string name="high_quality_larger">کواڵێتی بەرز (گەورەتر)</string>
+    <string name="show_image_indicators_summary">پیشاندانی شریتە ڕەنگکراوەکانی پیکاسۆ لەسەرووی وێنەکانەوە بۆ بەدیار خستنی سەرچاوەکانیان : سوور بۆ تۆڕ ، شین بۆ دیسک و سەوز بۆ بیرگە</string>
+    <string name="show_image_indicators_title">پیشاندانی دیارخەرەکانی وێنە</string>
+    <string name="remote_search_suggestions">پێشنیازکراوەکانی گەڕانی ڕیمۆت</string>
+    <string name="local_search_suggestions">پێشنیازکراوەکانی گەڕانی نێوخۆیی</string>
+    <string name="mark_as_watched">دیارکردن وەک بینراو</string>
 </resources>

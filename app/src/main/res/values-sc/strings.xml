@@ -527,7 +527,7 @@
     <string name="enable_watch_history_title">Cronologia de sos pompiados</string>
     <string name="enable_search_history_summary">Sarva sas chircas in locale</string>
     <string name="enable_search_history_title">Cronologia de sas chircas</string>
-    <string name="show_search_suggestions_summary">Ammustra sos consìgios in sas chircas</string>
+    <string name="show_search_suggestions_summary">Issèbera sos consìgios de ammustrare in sas chircas</string>
     <string name="show_search_suggestions_title">Cussìgios de chirca</string>
     <string name="player_gesture_controls_summary">Imprea sos gestos pro controllare sa luminosidade e su volume de su riproduidore</string>
     <string name="player_gesture_controls_title">Gestos de controllu de su riproduidore</string>
@@ -718,4 +718,10 @@
     <string name="comments_are_disabled">Sos cummentos sunt disabilitados</string>
     <string name="detail_heart_img_view_description">Su creadore b\'at postu unu coro</string>
     <string name="mark_as_watched">Marca comente pompiadu</string>
+    <string name="loading_channel_details">Carrighende sos detàllios de su canale…</string>
+    <string name="error_show_channel_details">Errore in sa visualizatzione de sos detàllios de su canale</string>
+    <string name="show_image_indicators_summary">Ammustra sos listrones colorados de Picasso in subra de sas immàgines chi indicant sa fonte issoro: ruja pro sa retze, biaita pro su discu e birde pro sa memòria</string>
+    <string name="show_image_indicators_title">Ammustra sos indicadores de immàgines</string>
+    <string name="remote_search_suggestions">Impòsitos de chirca remota</string>
+    <string name="local_search_suggestions">Impòsitos de chirca locales</string>
 </resources>

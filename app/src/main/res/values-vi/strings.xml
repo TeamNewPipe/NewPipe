@@ -49,7 +49,7 @@
     <string name="player_gesture_controls_title">Điều khiển cử chỉ trình phát</string>
     <string name="player_gesture_controls_summary">Sử dụng cử chỉ để điều chỉnh độ sáng và âm lượng</string>
     <string name="show_search_suggestions_title">Đề xuất tìm kiếm</string>
-    <string name="show_search_suggestions_summary">Hiển thị các đề xuất khi tìm kiếm</string>
+    <string name="show_search_suggestions_summary">Chọn các đề xuất để hiển thị khi tìm kiếm</string>
     <string name="download_dialog_title">Tải về</string>
     <string name="show_next_and_similar_title">Hiển thị video \"Tiếp theo\" và \"Tương tự\"</string>
     <string name="unsupported_url">URL không được hỗ trợ</string>
@@ -665,7 +665,7 @@
     <string name="night_theme_title">Chủ đề ban đêm</string>
     <string name="featured">Nổi bật</string>
     <string name="show_channel_details">Hiện chi tiết kênh</string>
-    <string name="recaptcha_solve">Giải</string>
+    <string name="recaptcha_solve">Hoàn thành</string>
     <string name="disable_media_tunneling_summary">Tắt truyền phương tiện qua đường hầm nếu bạn gặp màn hình đen hoặc khựng khi phát video</string>
     <string name="disable_media_tunneling_title">Tắt truyền phương tiện qua đường hầm</string>
     <string name="off">Tắt</string>
@@ -708,4 +708,10 @@
     <string name="comments_are_disabled">Bình luận đang bị tắt</string>
     <string name="detail_heart_img_view_description">Đã được người tạo gắn tim</string>
     <string name="mark_as_watched">Đánh dấu là đã xem</string>
+    <string name="loading_channel_details">Đang tải chi tiết kênh…</string>
+    <string name="error_show_channel_details">Lỗi tại Hiện chi tiết kênh</string>
+    <string name="show_image_indicators_summary">Hiện ruy băng được tô màu Picasso ở trên cùng các hình ảnh và chỉ ra nguồn của chúng: đỏ đối với mạng, xanh lam đối với ổ đĩa và xanh lá đối với bộ nhớ</string>
+    <string name="show_image_indicators_title">Hiện dấu chỉ hình ảnh</string>
+    <string name="remote_search_suggestions">Đề xuất tìm kiếm trên mạng</string>
+    <string name="local_search_suggestions">Đề xuất tìm kiếm cục bộ</string>
 </resources>

@@ -136,7 +136,7 @@
     <string name="player_gesture_controls_title">Controles del reproductor por gestos</string>
     <string name="player_gesture_controls_summary">Usar gestos para controlar el brillo y volumen del reproductor</string>
     <string name="show_search_suggestions_title">Sugerencias de búsqueda</string>
-    <string name="show_search_suggestions_summary">Mostrar sugerencias al buscar</string>
+    <string name="show_search_suggestions_summary">Elegir las sugerencias a mostrar al buscar</string>
     <string name="best_resolution">Mejor resolución</string>
     <string name="title_activity_about">Acerca de NewPipe</string>
     <string name="action_settings">Ajustes</string>
@@ -721,4 +721,10 @@
     <string name="comments_are_disabled">Los comentarios están deshabilitados</string>
     <string name="detail_heart_img_view_description">Valorado por el creador</string>
     <string name="mark_as_watched">Marcar como visto</string>
+    <string name="show_image_indicators_summary">Mostrar cintas de colores Picasso encima de las imágenes indicando su origen: rojo para la red, azul para el disco y verde para la memoria</string>
+    <string name="loading_channel_details">Cargando detalles del canal…</string>
+    <string name="error_show_channel_details">Error en Mostrar detalles del canal</string>
+    <string name="show_image_indicators_title">Mostrar indicadores de imagen</string>
+    <string name="remote_search_suggestions">Sugerencias de búsqueda remota</string>
+    <string name="local_search_suggestions">Sugerencias de búsqueda local</string>
 </resources>
