@@ -172,7 +172,7 @@
     <string name="msg_error">പിശക്</string>
     <string name="msg_threads">ത്രെഡുകൾ</string>
     <string name="msg_name">ഫയൽനാമം</string>
-    <string name="finish">ഓകെ</string>
+    <string name="ok">ഓകെ</string>
     <string name="add">പുതിയ ദൗത്യം</string>
     <string name="rename">പേരുമാറ്റുക</string>
     <string name="dismiss">പുറത്തള്ളുക</string>

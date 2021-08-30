@@ -88,7 +88,7 @@
     <string name="view">Spill</string>
     <string name="delete">Slett</string>
     <string name="checksum">Sjekksum</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">Filnavn</string>
     <string name="msg_threads">Tråder</string>
     <string name="msg_error">Feil</string>

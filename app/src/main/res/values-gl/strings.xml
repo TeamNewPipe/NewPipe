@@ -224,7 +224,7 @@
     <string name="dismiss">Descartar</string>
     <string name="rename">Renomear</string>
     <string name="add">Nova misión</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">Nome do ficheiro</string>
     <string name="msg_threads">Fios</string>
     <string name="msg_error">Erro</string>

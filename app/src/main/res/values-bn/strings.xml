@@ -110,7 +110,7 @@
     <string name="msg_error">ত্রুটি</string>
     <string name="msg_threads">থ্রেড</string>
     <string name="msg_name">ফাইলের নাম</string>
-    <string name="finish">ঠিক আছে</string>
+    <string name="ok">ঠিক আছে</string>
     <string name="add">নতুন মিশন</string>
     <string name="rename">নাম পরিবর্তন করুন</string>
     <string name="dismiss">সরাও</string>

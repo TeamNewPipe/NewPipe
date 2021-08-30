@@ -174,7 +174,7 @@
     <string name="delete">מחיקה</string>
     <string name="checksum">גיבוב לאימות</string>
     <string name="add">משימה חדשה</string>
-    <string name="finish">אישור</string>
+    <string name="ok">אישור</string>
     <string name="msg_name">שם קובץ</string>
     <string name="msg_threads">תת־דיונים</string>
     <string name="msg_error">שגיאה</string>

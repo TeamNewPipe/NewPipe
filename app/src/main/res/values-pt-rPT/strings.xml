@@ -253,7 +253,7 @@
     <string name="settings_category_other_title">Outros</string>
     <string name="duration_live">Em direto</string>
     <string name="feed_update_threshold_title">Limite de atualização da fonte</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="could_not_get_stream">Não foi possível obter a emissão</string>
     <string name="subscription_update_failed">Não foi possível atualizar a subscrição</string>
     <string name="toast_no_player">Não existe uma aplicação para reproduzir este ficheiro</string>

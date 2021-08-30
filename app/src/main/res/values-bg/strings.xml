@@ -156,7 +156,7 @@
     <string name="view">Начало</string>
     <string name="delete">Изтрий</string>
     <string name="checksum">Контролна сума</string>
-    <string name="finish">ОК</string>
+    <string name="ok">ОК</string>
     <string name="msg_name">Име на файла</string>
     <string name="msg_threads">Нишки</string>
     <string name="msg_error">Грешка</string>

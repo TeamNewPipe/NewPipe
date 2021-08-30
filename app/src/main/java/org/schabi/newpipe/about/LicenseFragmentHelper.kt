@@ -108,7 +108,7 @@ object LicenseFragmentHelper {
                     alert.setView(webView)
                     Localization.assureCorrectAppLanguage(context)
                     alert.setNegativeButton(
-                        context.getString(R.string.finish)
+                        context.getString(R.string.ok)
                     ) { dialog, _ -> dialog.dismiss() }
                     alert.show()
                 }

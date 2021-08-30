@@ -189,7 +189,7 @@
     <string name="delete">मिटाएँ</string>
     <string name="checksum">checksum</string>
     <string name="add">नया मिशन</string>
-    <string name="finish">ठीक है</string>
+    <string name="ok">ठीक है</string>
     <string name="msg_name">फाइल का नाम</string>
     <string name="msg_threads">मेसेज के thread</string>
     <string name="msg_error">त्रुटी</string>

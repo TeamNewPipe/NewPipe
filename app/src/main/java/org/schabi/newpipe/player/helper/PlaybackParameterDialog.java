@@ -164,7 +164,7 @@ public class PlaybackParameterDialog extends DialogFragment {
                         setPlaybackParameters(initialTempo, initialPitch, initialSkipSilence))
                 .setNeutralButton(R.string.playback_reset, (dialogInterface, i) ->
                         setPlaybackParameters(DEFAULT_TEMPO, DEFAULT_PITCH, DEFAULT_SKIP_SILENCE))
-                .setPositiveButton(R.string.finish, (dialogInterface, i) ->
+                .setPositiveButton(R.string.ok, (dialogInterface, i) ->
                         setCurrentPlaybackParameters());
 
         return dialogBuilder.create();

@@ -126,7 +126,7 @@
     <string name="delete">Ištrinti</string>
     <string name="checksum">Kontrolinė suma</string>
     <string name="add">Nauja užduotis</string>
-    <string name="finish">Gerai</string>
+    <string name="ok">Gerai</string>
     <string name="msg_name">Failo pavadinimas</string>
     <string name="msg_threads">Gijos</string>
     <string name="msg_error">Klaida</string>

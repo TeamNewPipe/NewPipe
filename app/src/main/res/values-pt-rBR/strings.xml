@@ -33,7 +33,7 @@
     <string name="error_report_title">Relatório de erro</string>
     <string name="error_snackbar_action">Relatório</string>
     <string name="error_snackbar_message">Desculpe, algo deu errado.</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="general_error">Erro</string>
     <string name="info_dir_created">Pasta de download criada \'%1$s\'</string>
     <string name="install">Instalar</string>

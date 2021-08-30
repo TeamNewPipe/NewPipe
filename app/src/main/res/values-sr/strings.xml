@@ -85,7 +85,7 @@
     <string name="delete">Обриши</string>
     <string name="checksum">Контролна сума</string>
     <string name="add">Нова мисија</string>
-    <string name="finish">У реду</string>
+    <string name="ok">У реду</string>
     <string name="msg_name">Назив фајла</string>
     <string name="msg_threads">Нити</string>
     <string name="msg_error">Грешка</string>

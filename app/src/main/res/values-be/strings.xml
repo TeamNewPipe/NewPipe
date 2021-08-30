@@ -228,7 +228,7 @@
     <string name="dismiss">Адхіліць</string>
     <string name="rename">Перайменаваць</string>
     <string name="add">Новая мэта</string>
-    <string name="finish">ОК</string>
+    <string name="ok">ОК</string>
     <string name="msg_name">Імя файла</string>
     <string name="msg_threads">Патокі</string>
     <string name="msg_error">Памылка</string>

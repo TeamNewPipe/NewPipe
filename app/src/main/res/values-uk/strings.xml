@@ -94,7 +94,7 @@
     <string name="view">Відтворити</string>
     <string name="delete">Видалити</string>
     <string name="checksum">Контрольна сума</string>
-    <string name="finish">Гаразд</string>
+    <string name="ok">Гаразд</string>
     <string name="msg_name">Назва файлу</string>
     <string name="msg_threads">Потоки</string>
     <string name="msg_error">Помилка</string>

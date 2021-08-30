@@ -299,7 +299,7 @@
     </plurals>
     <string name="rename_playlist">ناولێنانه‌وه‌</string>
     <string name="download">دابه‌زاندن</string>
-    <string name="finish">باشە</string>
+    <string name="ok">باشە</string>
     <string name="metadata_cache_wipe_title">سڕینه‌وه‌ی پاشماوەی مێتاداتا</string>
     <string name="error_download_resource_gone">ناتوانرێت ئەمه‌ داببه‌زێنرێته‌وه‌</string>
     <string name="unsubscribe">بەژدارنەبوون</string>

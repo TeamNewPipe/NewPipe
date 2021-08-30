@@ -354,7 +354,7 @@
     <string name="rename">Rename</string>
     <!-- Fragment -->
     <string name="add">New mission</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <!-- Msg -->
     <string name="msg_name">Filename</string>
     <string name="msg_threads">Threads</string>

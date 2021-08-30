@@ -119,7 +119,7 @@
     <string name="delete">刪除</string>
     <string name="checksum">檢查碼</string>
     <string name="add">新任務</string>
-    <string name="finish">確定</string>
+    <string name="ok">確定</string>
     <string name="msg_name">檔案名稱</string>
     <string name="msg_threads">執行緒數目</string>
     <string name="msg_error">錯誤</string>

@@ -51,7 +51,7 @@
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
     <string name="msg_threads">Потоки</string>
-    <string name="finish">ОК</string>
+    <string name="ok">ОК</string>
     <string name="start">Начать</string>
     <string name="pause">Пауза</string>
     <string name="delete">Удалить</string>
