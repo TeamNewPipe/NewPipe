@@ -122,8 +122,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientat
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
-import static org.schabi.newpipe.util.ListHelper.removeNonUrlStreams;
-import static org.schabi.newpipe.util.ListHelper.removeTorrentStreams;
+import static org.schabi.newpipe.util.ListHelper.removeNonUrlAndTorrentStreams;
 
 public final class VideoDetailFragment
         extends BaseStateFragment<StreamInfo>
@@ -1114,9 +1113,8 @@ public final class VideoDetailFragment
         if (!useExternalAudioPlayer) {
             openNormalBackgroundPlayer(append);
         } else {
-            final List<AudioStream> urlAudioStreams = removeNonUrlStreams(currentInfo
+            final List<AudioStream> audioStreams = removeNonUrlAndTorrentStreams(currentInfo
                     .getAudioStreams());
-            final List<AudioStream> audioStreams = removeTorrentStreams(urlAudioStreams);
             if (audioStreams.isEmpty()) {
                 Toast.makeText(activity, R.string.no_audio_streams_available_for_external_players,
                         Toast.LENGTH_LONG).show();
@@ -2171,12 +2169,10 @@ public final class VideoDetailFragment
         if (currentInfo == null) {
             return;
         }
-        final List<VideoStream> urlVideoStreams = removeNonUrlStreams(
+        final List<VideoStream> videoStreams = removeNonUrlAndTorrentStreams(
                 currentInfo.getVideoStreams());
-        final List<VideoStream> videoStreams = removeTorrentStreams(urlVideoStreams);
-        final List<VideoStream> urlVideoOnlyStreams = removeNonUrlStreams(
+        final List<VideoStream> videoOnlyStreams = removeNonUrlAndTorrentStreams(
                 currentInfo.getVideoOnlyStreams());
-        final List<VideoStream> videoOnlyStreams = removeTorrentStreams(urlVideoOnlyStreams);
         final List<VideoStream> sortedVideoStreams = ListHelper.getSortedStreamVideosList(
                 activity, videoStreams, videoOnlyStreams, false);
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);

@@ -58,8 +58,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.List;
 
-import static org.schabi.newpipe.util.ListHelper.removeNonUrlStreams;
-import static org.schabi.newpipe.util.ListHelper.removeTorrentStreams;
+import static org.schabi.newpipe.util.ListHelper.removeNonUrlAndTorrentStreams;
 import static org.schabi.newpipe.util.external_communication.ShareUtils.installApp;
 
 import com.jakewharton.processphoenix.ProcessPhoenix;
@@ -224,9 +223,8 @@ public final class NavigationHelper {
             Toast.makeText(context, R.string.audio_streams_empty, Toast.LENGTH_SHORT).show();
             return;
         }
-        final List<AudioStream> urlAudioStreams = removeNonUrlStreams(audioStreams);
-        final List<AudioStream> audioStreamsForExternalPlayers = removeTorrentStreams(
-                urlAudioStreams);
+        final List<AudioStream> audioStreamsForExternalPlayers = removeNonUrlAndTorrentStreams(
+                audioStreams);
         if (audioStreamsForExternalPlayers.isEmpty()) {
             Toast.makeText(context, R.string.no_audio_streams_available_for_external_players,
                     Toast.LENGTH_SHORT).show();
@@ -246,11 +244,10 @@ public final class NavigationHelper {
             Toast.makeText(context, R.string.video_streams_empty, Toast.LENGTH_SHORT).show();
             return;
         }
-        final List<VideoStream> urlVideoStreams = removeNonUrlStreams(videoStreams);
         final List<VideoStream> videoStreamsForExternalPlayers = ListHelper
                 .getSortedStreamVideosList(
                         context,
-                        removeTorrentStreams(urlVideoStreams),
+                        removeNonUrlAndTorrentStreams(videoStreams),
                         null,
                         false);
         if (videoStreamsForExternalPlayers.isEmpty()) {
@@ -284,7 +281,19 @@ public final class NavigationHelper {
                 }
             }
         } else {
-            mimeType = stream.getFormat().getMimeType();
+            if (stream.getFormat() != null) {
+                mimeType = stream.getFormat().getMimeType();
+            } else {
+                if (stream.getClass() == AudioStream.class) {
+                    mimeType = "audio/*";
+                } else if (stream.getClass() == VideoStream.class) {
+                    mimeType = "video/*";
+                } else {
+                    // This should never be reached, because subtitles are not opened in external
+                    // players
+                    return;
+                }
+            }
         }
         final Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);

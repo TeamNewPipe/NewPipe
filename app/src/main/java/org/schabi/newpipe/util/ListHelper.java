@@ -134,47 +134,25 @@ public final class ListHelper {
     }
 
     /**
-     * Return a {@link Stream} list which only contains streams which are URLs.
+     * Return a {@link Stream} list which only contains URL streams and non-torrent streams.
      *
      * @param streamList     the original stream list
      * @param <S>            the item type's class that extends {@link Stream}
-     * @return a stream list which only contains streams which are URLs
+     * @return a stream list which only contains URL streams and non-torrent streams
      */
     @NonNull
-    public static <S extends Stream> List<S> removeNonUrlStreams(
+    public static <S extends Stream> List<S> removeNonUrlAndTorrentStreams(
             @NonNull final List<S> streamList) {
         if (streamList.isEmpty()) {
             return Collections.emptyList();
         }
         final List<S> deliveryStreamList = new ArrayList<>();
         for (final S stream : streamList) {
-            if (stream.isUrl()) {
+            if (stream.isUrl() && stream.getDeliveryMethod() != DeliveryMethod.TORRENT) {
                 deliveryStreamList.add(stream);
             }
         }
         return deliveryStreamList;
-    }
-
-    /**
-     * Return a {@link Stream} list which only contains non torrent streams.
-     *
-     * @param streamList     the original stream list
-     * @param <S>            the item type's class that extends {@link Stream}
-     * @return a stream list which only contains non torrent streams
-     */
-    @NonNull
-    public static <S extends Stream> List<S> removeTorrentStreams(
-            @NonNull final List<S> streamList) {
-        if (streamList.isEmpty()) {
-            return Collections.emptyList();
-        }
-        final List<S> nonTorrentStreamList = new ArrayList<>();
-        for (final S stream : streamList) {
-            if (stream.getDeliveryMethod() != DeliveryMethod.TORRENT) {
-                nonTorrentStreamList.add(stream);
-            }
-        }
-        return nonTorrentStreamList;
     }
 
     /**
