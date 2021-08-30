@@ -260,7 +260,6 @@
     <string name="start">Начало</string>
     <string name="delete_one">Изтрий един</string>
     <string name="rename">Преименувай</string>
-    <string name="add">Нова цел</string>
     <string name="no_available_dir">Моля, изберете достъпна папка за изтегляния</string>
     <string name="msg_popup_permission">Това разрешение се изисква за
 \nвъзпроизвеждане в отделен прозорец</string>

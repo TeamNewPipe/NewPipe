@@ -161,7 +161,6 @@
     </plurals>
     <string name="no_videos">비디오 없음</string>
     <string name="view">재생</string>
-    <string name="add">새로운 미션</string>
     <string name="ok">OK</string>
     <string name="msg_name">파일명</string>
     <string name="msg_threads">쓰레드</string>

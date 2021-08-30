@@ -87,7 +87,6 @@
     <string name="view">Reproduzir</string>
     <string name="delete">Eliminar</string>
     <string name="checksum">Checksum</string>
-    <string name="add">Nova missão</string>
     <string name="msg_name">Nome do ficheiro</string>
     <string name="msg_error">Erro</string>
     <string name="msg_server_unsupported">Servidor não suportado</string>

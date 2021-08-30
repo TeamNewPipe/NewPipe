@@ -97,7 +97,6 @@
     <string name="view">播放</string>
     <string name="delete">删除</string>
     <string name="checksum">校验</string>
-    <string name="add">新任务</string>
     <string name="ok">OK</string>
     <string name="msg_name">文件名</string>
     <string name="msg_threads">线程数</string>

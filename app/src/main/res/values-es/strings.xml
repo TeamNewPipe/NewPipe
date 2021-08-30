@@ -88,7 +88,6 @@
     <string name="view">Reproducir</string>
     <string name="delete">Borrar</string>
     <string name="checksum">Suma de comprobación</string>
-    <string name="add">Misión nueva</string>
     <string name="ok">Aceptar</string>
     <string name="msg_name">Nombre del archivo</string>
     <string name="msg_threads">Subprocesos</string>

@@ -155,7 +155,6 @@
     <string name="view">Toista</string>
     <string name="delete">Poista</string>
     <string name="checksum">Tarkistussumma</string>
-    <string name="add">Uusi tehtävä</string>
     <string name="ok">OK</string>
     <string name="msg_name">Tiedostonimi</string>
     <string name="msg_threads">Säikeet</string>

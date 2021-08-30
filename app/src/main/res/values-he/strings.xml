@@ -173,7 +173,6 @@
     <string name="view">נגינה</string>
     <string name="delete">מחיקה</string>
     <string name="checksum">גיבוב לאימות</string>
-    <string name="add">משימה חדשה</string>
     <string name="ok">אישור</string>
     <string name="msg_name">שם קובץ</string>
     <string name="msg_threads">תת־דיונים</string>

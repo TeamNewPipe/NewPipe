@@ -100,7 +100,6 @@
     <string name="msg_copied">Kopiert til utklippstavle</string>
     <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nInnholdsland:\\nProgramspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOS-versjon:</string>
     <string name="start">Start</string>
-    <string name="add">Nytt mål</string>
     <string name="msg_url_malform">Feilaktig nettadresse eller manglende internettilknytning</string>
     <string name="no_available_dir">Definer en nedlastingsmappe senere i innstillingene</string>
     <string name="title_activity_recaptcha">reCAPTCHA-oppgave</string>

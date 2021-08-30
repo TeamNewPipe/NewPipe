@@ -84,7 +84,6 @@
     <string name="view">再生</string>
     <string name="delete">削除</string>
     <string name="checksum">チェックサム</string>
-    <string name="add">新しいミッション</string>
     <string name="ok">OK</string>
     <string name="msg_name">ファイル名</string>
     <string name="msg_threads">同時接続数</string>

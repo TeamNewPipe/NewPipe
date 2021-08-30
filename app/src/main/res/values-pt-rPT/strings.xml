@@ -274,7 +274,6 @@
     <string name="download_path_audio_dialog_title">Escolha a pasta para colocar os ficheiros de áudio</string>
     <string name="app_update_notification_content_title">Atualização NewPipe disponível!</string>
     <string name="events">Eventos</string>
-    <string name="add">Nova missão</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
     <string name="could_not_load_thumbnails">Não foi possível carregar todas as miniaturas</string>
     <string name="audio">Áudio</string>

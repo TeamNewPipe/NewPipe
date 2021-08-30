@@ -99,7 +99,6 @@
     <string name="start">Starten</string>
     <string name="pause">Pause</string>
     <string name="view">Abspielen</string>
-    <string name="add">Neue Mission</string>
     <string name="ok">OK</string>
     <string name="msg_server_unsupported">Nicht unterstützter Server</string>
     <string name="could_not_load_image">Konnte Bild nicht laden</string>

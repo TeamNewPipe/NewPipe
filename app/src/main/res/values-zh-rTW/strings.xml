@@ -118,7 +118,6 @@
     <string name="view">播放</string>
     <string name="delete">刪除</string>
     <string name="checksum">檢查碼</string>
-    <string name="add">新任務</string>
     <string name="ok">確定</string>
     <string name="msg_name">檔案名稱</string>
     <string name="msg_threads">執行緒數目</string>

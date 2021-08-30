@@ -168,7 +168,6 @@
     <string name="view">شغل</string>
     <string name="delete">حذف</string>
     <string name="checksum">التوقيع</string>
-    <string name="add">مهمة جديدة</string>
     <string name="ok">حسناً</string>
     <string name="msg_name">اسم الملف</string>
     <string name="msg_threads">التقسيم</string>

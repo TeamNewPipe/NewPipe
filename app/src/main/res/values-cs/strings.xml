@@ -97,7 +97,6 @@
     <string name="your_comment">Vaše poznámky (anglicky):</string>
     <string name="storage_permission_denied">Nejdříve udělit oprávnění přístupu k úložišti</string>
     <string name="view">Přehrát</string>
-    <string name="add">Nová mise</string>
     <string name="ok">OK</string>
     <string name="title_activity_recaptcha">Výzva reCAPTCHA</string>
     <string name="recaptcha_request_toast">Požadována výzva reCAPTCHA</string>
