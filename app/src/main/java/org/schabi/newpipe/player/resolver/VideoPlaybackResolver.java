@@ -10,6 +10,7 @@ import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
 
+import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
@@ -112,7 +113,13 @@ public class VideoPlaybackResolver implements PlaybackResolver {
             // Torrent and non URL subtitles are not supported by ExoPlayer
             removeTorrentAndNonUrlStreams(subtitlesStreams);
             for (final SubtitlesStream subtitle : subtitlesStreams) {
-                final String mimeType = PlayerHelper.subtitleMimeTypesOf(subtitle.getFormat());
+                final MediaFormat mediaFormat = subtitle.getFormat();
+                final String mimeType;
+                if (mediaFormat != null) {
+                    mimeType = PlayerHelper.subtitleMimeTypesOf(subtitle.getFormat());
+                } else {
+                    continue;
+                }
                 if (mimeType == null) {
                     continue;
                 }
