@@ -1572,8 +1572,7 @@ public final class Player implements
         }
 
         if (duration != binding.playbackSeekBar.getMax()) {
-            binding.playbackEndTime.setText(getTimeString(duration));
-            binding.playbackSeekBar.setMax(duration);
+            setVideoDurationToControls(duration);
         }
         if (currentState != STATE_PAUSED) {
             if (currentState != STATE_PAUSED_SEEK) {
@@ -2073,8 +2072,8 @@ public final class Player implements
             Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
         }
 
-        binding.playbackSeekBar.setMax((int) simpleExoPlayer.getDuration());
-        binding.playbackEndTime.setText(getTimeString((int) simpleExoPlayer.getDuration()));
+        setVideoDurationToControls((int) simpleExoPlayer.getDuration());
+
         binding.playbackSpeed.setText(formatSpeed(getPlaybackSpeed()));
 
         if (playWhenReady) {
@@ -2715,6 +2714,20 @@ public final class Player implements
         if (!exoPlayerIsNull()) {
             simpleExoPlayer.seekToDefaultPosition();
         }
+    }
+
+    /**
+     * Sets the video duration time into all control components (e.g. seekbar).
+     * @param duration
+     */
+    private void setVideoDurationToControls(final int duration) {
+        binding.playbackEndTime.setText(getTimeString(duration));
+
+        binding.playbackSeekBar.setMax(duration);
+        // This is important for Android TVs otherwise it would apply the default from
+        // setMax/Min methods which is (max - min) / 20
+        binding.playbackSeekBar.setKeyProgressIncrement(
+                PlayerHelper.retrieveSeekDurationFromPreferences(this));
     }
     //endregion
 
