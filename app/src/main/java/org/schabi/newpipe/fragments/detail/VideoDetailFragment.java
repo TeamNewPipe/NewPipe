@@ -2071,7 +2071,7 @@ public final class VideoDetailFragment
         new AlertDialog.Builder(activity)
                 .setTitle(R.string.clear_queue_confirmation_description)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
                     onAllow.run();
                     dialog.dismiss();
                 }).show();

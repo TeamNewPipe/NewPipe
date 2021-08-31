@@ -63,7 +63,7 @@
         <item quantity="one">%s subscriptor</item>
         <item quantity="other">%s subscriptors</item>
     </plurals>
-    <string name="finish">D\'acord</string>
+    <string name="ok">D\'acord</string>
     <string name="msg_name">Nom de fitxer</string>
     <string name="msg_error">Error</string>
     <string name="settings_category_downloads_title">Baixades</string>
@@ -292,7 +292,6 @@
     <string name="short_million">milions</string>
     <string name="short_billion">mil milions</string>
     <string name="start">Inicia</string>
-    <string name="add">Nova missió</string>
     <string name="msg_url_malform">L\'URL té un format no vàlid o no hi ha connexió a Internet</string>
     <string name="msg_running_detail">Feu un toc aquí per a més detalls</string>
     <string name="no_available_dir">Defineix una carpeta de baixades més endavant als paràmetres</string>

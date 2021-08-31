@@ -184,7 +184,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
             new AlertDialog.Builder(requireActivity())
                     .setMessage(R.string.override_current_data)
-                    .setPositiveButton(R.string.finish, (d, id) ->
+                    .setPositiveButton(R.string.ok, (d, id) ->
                             importDatabase(file, lastImportDataUri))
                     .setNegativeButton(R.string.cancel, (d, id) ->
                             d.cancel())
@@ -232,11 +232,11 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 final AlertDialog.Builder alert = new AlertDialog.Builder(requireContext());
                 alert.setTitle(R.string.import_settings);
 
-                alert.setNegativeButton(android.R.string.no, (dialog, which) -> {
+                alert.setNegativeButton(R.string.cancel, (dialog, which) -> {
                     dialog.dismiss();
                     finishImport(importDataUri);
                 });
-                alert.setPositiveButton(getString(R.string.finish), (dialog, which) -> {
+                alert.setPositiveButton(R.string.ok, (dialog, which) -> {
                     dialog.dismiss();
                     manager.loadSharedPreferences(PreferenceManager
                             .getDefaultSharedPreferences(requireContext()));

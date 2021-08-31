@@ -32,7 +32,6 @@
     <string name="start">Bdu</string>
     <string name="pause">Seṛǧu</string>
     <string name="view">ɣer</string>
-    <string name="add">Tuɣdaṭ tamaynut</string>
     <string name="more_than_100_videos">100+Tividyutin</string>
     <string name="subscribe_button_title">Jerred</string>
     <string name="export_to">Sifeḍ ɣer</string>
@@ -101,7 +100,7 @@
     <string name="dismiss">Ttu</string>
     <string name="short_million">A</string>
     <string name="import_title">Kter</string>
-    <string name="finish">Ih</string>
+    <string name="ok">Ih</string>
     <string name="delete_all">Kkes akk</string>
     <string name="action_history">Amazray</string>
     <string name="list">Liste</string>

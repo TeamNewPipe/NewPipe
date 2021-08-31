@@ -218,8 +218,7 @@
     <string name="checksum">ਚੈੱਕ-ਸਮ</string>
     <string name="dismiss">ਬਰਖਾਸਤ ਕਰੋ</string>
     <string name="rename">ਨਾਮ ਬਦਲੋ</string>
-    <string name="add">ਨਵਾਂ ਮਿਸ਼ਨ</string>
-    <string name="finish">ਠੀਕ ਹੈ</string>
+    <string name="ok">ਠੀਕ ਹੈ</string>
     <string name="msg_name">ਫਾਈਲ ਦਾ ਨਾਮ</string>
     <string name="msg_threads">threads</string>
     <string name="msg_error">ERROR</string>

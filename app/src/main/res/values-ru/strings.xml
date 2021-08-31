@@ -51,7 +51,7 @@
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
     <string name="msg_threads">Потоки</string>
-    <string name="finish">ОК</string>
+    <string name="ok">ОК</string>
     <string name="start">Начать</string>
     <string name="pause">Пауза</string>
     <string name="delete">Удалить</string>
@@ -117,7 +117,6 @@
     <string name="player_gesture_controls_title">Управление жестами</string>
     <string name="all">Всё</string>
     <string name="filter">Фильтр</string>
-    <string name="add">Новая цель</string>
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия пакета:\\nВерсия ОС:</string>
     <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>

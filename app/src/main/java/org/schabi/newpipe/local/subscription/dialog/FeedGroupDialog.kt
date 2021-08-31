@@ -143,21 +143,15 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         ).get(FeedGroupDialogViewModel::class.java)
 
         viewModel.groupLiveData.observe(viewLifecycleOwner, Observer(::handleGroup))
-        viewModel.subscriptionsLiveData.observe(
-            viewLifecycleOwner,
-            Observer {
-                setupSubscriptionPicker(it.first, it.second)
+        viewModel.subscriptionsLiveData.observe(viewLifecycleOwner) {
+            setupSubscriptionPicker(it.first, it.second)
+        }
+        viewModel.dialogEventLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                ProcessingEvent -> disableInput()
+                SuccessEvent -> dismiss()
             }
-        )
-        viewModel.dialogEventLiveData.observe(
-            viewLifecycleOwner,
-            Observer {
-                when (it) {
-                    ProcessingEvent -> disableInput()
-                    SuccessEvent -> dismiss()
-                }
-            }
-        )
+        }
 
         subscriptionGroupAdapter = GroupAdapter<GroupieViewHolder>().apply {
             add(subscriptionMainSection)
@@ -437,7 +431,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         feedGroupCreateBinding.confirmButton.setText(
             when {
                 currentScreen == InitialScreen && groupId == NO_GROUP_SELECTED -> R.string.create
-                else -> android.R.string.ok
+                else -> R.string.ok
             }
         )
 

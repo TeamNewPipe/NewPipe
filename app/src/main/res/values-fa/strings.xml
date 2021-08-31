@@ -87,8 +87,7 @@
     <string name="view">پخش</string>
     <string name="delete">حذف</string>
     <string name="checksum">مجموع مقابله‌ای</string>
-    <string name="add">مآموریت جدید</string>
-    <string name="finish">قبول</string>
+    <string name="ok">قبول</string>
     <string name="msg_name">نام پرونده</string>
     <string name="msg_threads">رشته‌ها</string>
     <string name="msg_error">خطا</string>

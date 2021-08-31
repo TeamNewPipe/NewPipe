@@ -84,8 +84,7 @@
     <string name="view">Prehrať</string>
     <string name="delete">Zmazať</string>
     <string name="checksum">Kontrolný súčet</string>
-    <string name="add">Nová misia</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">Názov súboru</string>
     <string name="msg_threads">Vlákna</string>
     <string name="msg_error">Chyba</string>

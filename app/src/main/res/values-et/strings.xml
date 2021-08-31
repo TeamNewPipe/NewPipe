@@ -218,8 +218,7 @@
     <string name="checksum">Kontrollsumma</string>
     <string name="dismiss">Loobu</string>
     <string name="rename">Nimeta ümber</string>
-    <string name="add">Uus ülesanne</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">Faili nimi</string>
     <string name="msg_threads">Lõimed</string>
     <string name="msg_error">Viga</string>

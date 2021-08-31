@@ -9,6 +9,7 @@
     <string name="no_player_found_toast">No stream player found (you can install VLC to play it).</string>
     <string name="install">Install</string>
     <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
     <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="mark_as_watched">Mark as watched</string>
@@ -352,9 +353,6 @@
     <string name="checksum">Checksum</string>
     <string name="dismiss">Dismiss</string>
     <string name="rename">Rename</string>
-    <!-- Fragment -->
-    <string name="add">New mission</string>
-    <string name="finish">OK</string>
     <!-- Msg -->
     <string name="msg_name">Filename</string>
     <string name="msg_threads">Threads</string>

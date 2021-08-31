@@ -134,8 +134,7 @@
     <string name="view">Reproduciraj</string>
     <string name="delete">Izbriši</string>
     <string name="checksum">Kontrolna suma</string>
-    <string name="add">Novi zadatak</string>
-    <string name="finish">U redu</string>
+    <string name="ok">U redu</string>
     <string name="msg_name">Naziv datoteke</string>
     <string name="msg_threads">Niti</string>
     <string name="msg_error">Greška</string>

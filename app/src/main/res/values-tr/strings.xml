@@ -86,8 +86,7 @@
     <string name="view">Oynat</string>
     <string name="delete">Sil</string>
     <string name="checksum">Doğrulama</string>
-    <string name="add">Yeni görev</string>
-    <string name="finish">Tamam</string>
+    <string name="ok">Tamam</string>
     <string name="msg_name">Dosya adı</string>
     <string name="msg_threads">İş parçacığı</string>
     <string name="msg_error">Hata</string>

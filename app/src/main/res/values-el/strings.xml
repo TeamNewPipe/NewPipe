@@ -234,8 +234,7 @@
     <string name="checksum">Άθροισμα ελέγχου</string>
     <string name="dismiss">Αγνόηση</string>
     <string name="rename">Μετονομασία</string>
-    <string name="add">Νέα αποστολή</string>
-    <string name="finish">Εντάξει</string>
+    <string name="ok">Εντάξει</string>
     <string name="msg_name">Όνομα αρχείου</string>
     <string name="msg_threads">Νήματα</string>
     <string name="msg_server_unsupported">Ο εξυπηρετητής δεν υποστηρίζεται</string>

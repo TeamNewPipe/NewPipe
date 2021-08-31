@@ -310,8 +310,7 @@
     <string name="msg_error">Gabim</string>
     <string name="msg_threads">Veprimet paralele</string>
     <string name="msg_name">Emri i skedarit</string>
-    <string name="finish">OK</string>
-    <string name="add">Mision i ri</string>
+    <string name="ok">OK</string>
     <string name="rename">Riemërto</string>
     <string name="dismiss">Hiqe</string>
     <string name="checksum">Kodi verifikues</string>

@@ -218,7 +218,7 @@ public class PeertubeInstanceListFragment extends Fragment {
                 .setIcon(R.drawable.place_holder_peertube)
                 .setView(dialogBinding.getRoot())
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.finish, (dialog1, which) -> {
+                .setPositiveButton(R.string.ok, (dialog1, which) -> {
                     final String url = dialogBinding.dialogEditText.getText().toString();
                     addInstance(url);
                 })

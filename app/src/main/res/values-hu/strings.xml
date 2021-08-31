@@ -87,7 +87,7 @@
     <string name="view">Lejátszás</string>
     <string name="delete">Törlés</string>
     <string name="checksum">Ellenőrző összeg</string>
-    <string name="finish">Rendben</string>
+    <string name="ok">Rendben</string>
     <string name="msg_name">Fájlnév</string>
     <string name="msg_threads">Threadek</string>
     <string name="msg_error">Hiba</string>
@@ -99,7 +99,6 @@
     <string name="msg_copied">Vágólapra másolva</string>
     <string name="no_available_dir">Kérlek adj meg egy letöltés könyvtárat a beállításokban</string>
     <string name="msg_server_unsupported">Nem támogatott szerver</string>
-    <string name="add">Új küldetés</string>
     <string name="channel_unsubscribed">Csatornáról leiratkozva</string>
     <string name="subscription_change_failed">Nem sikerült megváltoztatni a feliratkozást</string>
     <string name="subscription_update_failed">Nem sikerült frissíteni a feliratkozást</string>

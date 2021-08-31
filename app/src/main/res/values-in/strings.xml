@@ -83,8 +83,7 @@
     <string name="start">Mulai</string>
     <string name="pause">Jeda</string>
     <string name="checksum">Ceksum</string>
-    <string name="add">Misi baru</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">Nama berkas</string>
     <string name="msg_error">Galat</string>
     <string name="msg_server_unsupported">Server tidak didukung</string>

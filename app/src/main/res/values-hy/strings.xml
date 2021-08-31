@@ -14,7 +14,7 @@
     <string name="msg_exists">Ֆայլ արդեն կա</string>
     <string name="msg_error">Սխալ</string>
     <string name="msg_name">ֆայլի անուն</string>
-    <string name="finish">Լավ</string>
+    <string name="ok">Լավ</string>
     <string name="delete">Ջնջել</string>
     <string name="start">Սկսել</string>
     <string name="detail_likes_img_view_description">Հավանում եմ</string>

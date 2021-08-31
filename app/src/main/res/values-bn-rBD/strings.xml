@@ -118,8 +118,7 @@
     <string name="delete">ডিলেট</string>
     <string name="checksum">চেকসাম</string>
     <!-- Fragment -->
-    <string name="add">নতুন মিশন</string>
-    <string name="finish">ঠিক আছে</string>
+    <string name="ok">ঠিক আছে</string>
     <!-- Msg -->
     <string name="msg_name">ফাইলের নাম</string>
     <string name="msg_threads">থ্রেড</string>

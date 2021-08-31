@@ -95,8 +95,7 @@
     <string name="msg_wait">Počakajte …</string>
     <string name="msg_copied">Kopirano v odložišče.</string>
     <string name="no_available_dir">Izberite mapo za prejem</string>
-    <string name="add">Nova naloga</string>
-    <string name="finish">V redu</string>
+    <string name="ok">V redu</string>
     <string name="downloads">Prejemi</string>
     <string name="downloads_title">Prejemi</string>
     <string name="error_report_title">Poročilo o napaki</string>

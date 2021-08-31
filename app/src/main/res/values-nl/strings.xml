@@ -90,8 +90,7 @@
     <string name="view">Afspelen</string>
     <string name="delete">Verwijderen</string>
     <string name="checksum">Controlesom</string>
-    <string name="add">Nieuwe missie</string>
-    <string name="finish">Oké</string>
+    <string name="ok">Oké</string>
     <string name="msg_name">Bestandsnaam</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_error">Fout</string>

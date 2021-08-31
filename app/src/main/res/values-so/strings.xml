@@ -239,8 +239,7 @@
     <string name="msg_error">Khalad</string>
     <string name="msg_threads">Qaybaha</string>
     <string name="msg_name">Magaca shayga</string>
-    <string name="finish">Hagaag</string>
-    <string name="add">Hawl cusub</string>
+    <string name="ok">Hagaag</string>
     <string name="rename">Magaca ka baddal</string>
     <string name="dismiss">Iska dhaaf</string>
     <string name="checksum">Xaqiijiyaha</string>

@@ -253,7 +253,7 @@
     <string name="settings_category_other_title">Outros</string>
     <string name="duration_live">Em direto</string>
     <string name="feed_update_threshold_title">Limite de atualização da fonte</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="could_not_get_stream">Não foi possível obter a emissão</string>
     <string name="subscription_update_failed">Não foi possível atualizar a subscrição</string>
     <string name="toast_no_player">Não existe uma aplicação para reproduzir este ficheiro</string>
@@ -274,7 +274,6 @@
     <string name="download_path_audio_dialog_title">Escolha a pasta para colocar os ficheiros de áudio</string>
     <string name="app_update_notification_content_title">Atualização NewPipe disponível!</string>
     <string name="events">Eventos</string>
-    <string name="add">Nova missão</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
     <string name="could_not_load_thumbnails">Não foi possível carregar todas as miniaturas</string>
     <string name="audio">Áudio</string>

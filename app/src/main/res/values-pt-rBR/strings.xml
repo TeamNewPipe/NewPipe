@@ -33,7 +33,7 @@
     <string name="error_report_title">Relatório de erro</string>
     <string name="error_snackbar_action">Relatório</string>
     <string name="error_snackbar_message">Desculpe, algo deu errado.</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="general_error">Erro</string>
     <string name="info_dir_created">Pasta de download criada \'%1$s\'</string>
     <string name="install">Instalar</string>
@@ -72,7 +72,6 @@
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="did_you_mean">Você quis dizer \"%1$s\"\?</string>
-    <string name="add">Nova missão</string>
     <string name="app_ui_crash">App/IU parou</string>
     <string name="background_player_playing_toast">Reproduzindo em segundo plano</string>
     <string name="could_not_setup_download_menu">O menu de download não pôde ser configurado</string>

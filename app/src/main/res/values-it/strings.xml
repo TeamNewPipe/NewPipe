@@ -87,8 +87,7 @@
     <string name="view">Riproduci</string>
     <string name="delete">Elimina</string>
     <string name="checksum">Checksum</string>
-    <string name="add">Nuovo obiettivo</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">Nome del file</string>
     <string name="msg_threads">Thread</string>
     <string name="msg_error">Errore</string>

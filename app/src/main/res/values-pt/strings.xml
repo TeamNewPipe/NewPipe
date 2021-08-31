@@ -87,7 +87,6 @@
     <string name="view">Reproduzir</string>
     <string name="delete">Eliminar</string>
     <string name="checksum">Checksum</string>
-    <string name="add">Nova missão</string>
     <string name="msg_name">Nome do ficheiro</string>
     <string name="msg_error">Erro</string>
     <string name="msg_server_unsupported">Servidor não suportado</string>
@@ -97,7 +96,7 @@
     <string name="msg_wait">Por favor aguarde…</string>
     <string name="msg_copied">Copiado para a área de transferência</string>
     <string name="no_available_dir">Tem que definir, nas definições, uma pasta para as descargas</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_threads">Processos</string>
     <string name="msg_running">Descarga NewPipe</string>
     <string name="could_not_load_image">Não foi possível carregar a imagem</string>

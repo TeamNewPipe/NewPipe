@@ -70,7 +70,6 @@
     </plurals>
     <string name="delete_one">سڕینەوەی یەک</string>
     <string name="show_higher_resolutions_title">پیشاندانی قه‌باره‌ی به‌رزتر</string>
-    <string name="add">ئەرکی نوێ</string>
     <string name="queued">نۆبه‌تكراو</string>
     <string name="generate_unique_name">دانانی ناوی نوێ</string>
     <string name="import_data_summary">ده‌چه‌سپێت لەسەر مێژووی ئێستات، بەژدارییه‌كانت، خشته‌لێدانه‌كانت و ڕێكخستنه‌كانت</string>
@@ -299,7 +298,7 @@
     </plurals>
     <string name="rename_playlist">ناولێنانه‌وه‌</string>
     <string name="download">دابه‌زاندن</string>
-    <string name="finish">باشە</string>
+    <string name="ok">باشە</string>
     <string name="metadata_cache_wipe_title">سڕینه‌وه‌ی پاشماوەی مێتاداتا</string>
     <string name="error_download_resource_gone">ناتوانرێت ئەمه‌ داببه‌زێنرێته‌وه‌</string>
     <string name="unsubscribe">بەژدارنەبوون</string>

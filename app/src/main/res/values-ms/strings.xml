@@ -236,8 +236,7 @@
     <string name="checksum">Ceksum</string>
     <string name="dismiss">Buangkan</string>
     <string name="rename">Namakan semula</string>
-    <string name="add">Misi baru</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">Nama fail</string>
     <string name="msg_threads">Thread</string>
     <string name="msg_error">Ralat</string>
