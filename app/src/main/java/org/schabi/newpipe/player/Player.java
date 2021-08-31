@@ -747,16 +747,18 @@ public final class Player implements
         NavigationHelper.sendPlayerStartedEvent(context);
     }
 
+    /**
+     * Open fullscreen on tablets where the option to have the main player start automatically in
+     * fullscreen mode is on. Rotating the device to landscape is already done in {@link
+     * VideoDetailFragment#openVideoPlayer(boolean)} when the thumbnail is clicked, and that's
+     * enough for phones, but not for tablets since the mini player can be also shown in landscape.
+     */
     private void directlyOpenFullscreenIfNeeded() {
         if (fragmentListener != null
                 && PlayerHelper.isStartMainPlayerFullscreenEnabled(service)
                 && DeviceUtils.isTablet(service)
                 && videoPlayerSelected()
                 && PlayerHelper.globalScreenOrientationLocked(service)) {
-            // Open fullscreen on tablets where the option to have the main player start
-            // automatically in fullscreen mode is on. Rotating the device to landscape is already
-            // done in VideoDetailFragment when the thumbnail is clicked, and that's enough for
-            // phones, but not for tablets since the mini player can be also shown in landscape.
             fragmentListener.onScreenRotationButtonClicked();
         }
     }

@@ -1104,9 +1104,14 @@ public final class VideoDetailFragment
         }
     }
 
+    /**
+     * Opens the video player, in fullscreen if needed. In order to open fullscreen, the activity
+     * is toggled to landscape orientation (which will then cause fullscreen mode).
+     *
+     * @param directlyFullscreenIfApplicable whether to open fullscreen if we are not already
+     *                                       in landscape and screen orientation is locked
+     */
     public void openVideoPlayer(final boolean directlyFullscreenIfApplicable) {
-        // Toggle to landscape orientation (which will then cause fullscreen mode) if we are not
-        // already in landscape and screen orientation is locked.
         if (directlyFullscreenIfApplicable
                 && !DeviceUtils.isLandscape(requireContext())
                 && PlayerHelper.globalScreenOrientationLocked(requireContext())) {
@@ -1130,9 +1135,15 @@ public final class VideoDetailFragment
         }
     }
 
+    /**
+     * If the option to start directly fullscreen is enabled, calls
+     * {@link #openVideoPlayer(boolean)} with {@code directlyFullscreenIfApplicable = true}, so that
+     * if the user is not already in landscape and he has screen orientation locked the activity
+     * rotates and fullscreen starts. Otherwise, if the option to start directly fullscreen is
+     * disabled, calls {@link #openVideoPlayer(boolean)} with {@code directlyFullscreenIfApplicable
+     * = false}, hence preventing it from going directly fullscreen.
+     */
     public void openVideoPlayerAutoFullscreen() {
-        // if the option to start directly fullscreen is enabled, openVideoPlayer will be called
-        // with directlyFullscreenIfApplicable=true and therefore open fullscreen if applicable
         openVideoPlayer(PlayerHelper.isStartMainPlayerFullscreenEnabled(requireContext()));
     }
 
