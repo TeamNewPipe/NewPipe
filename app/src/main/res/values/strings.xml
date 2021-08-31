@@ -76,7 +76,7 @@
     <string name="notification_action_buffering">Buffering</string>
     <string name="notification_action_nothing">Nothing</string>
     <string name="notification_colorize_title">Colorize notification</string>
-    <string name="notification_colorize_summary">Color notification\'s using the main thumbnail color (not available on all devices)</string>
+    <string name="notification_colorize_summary">Use main thumbnail color for notifications about it (not available on all devices)</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>
@@ -388,14 +388,14 @@
     <string name="settings_file_replacement_character_title">Replacement character</string>
     <string name="charset_letters_and_digits">Letters and digits</string>
     <string name="charset_most_special_characters">Most special characters</string>
-    <string name="toast_no_player">No apps could play this file</string>
+    <string name="toast_no_player">Install an app that can play the file first</string>
     <!-- About -->
     <string name="title_activity_about">About NewPipe</string>
     <string name="action_settings">Settings</string>
     <string name="action_about">About</string>
     <string name="title_licenses">Third-party Licenses</string>
     <string name="copyright">© %1$s by %2$s under %3$s</string>
-    <string name="error_unable_to_load_license">Could not load the GPLv3+ license</string>
+    <string name="error_unable_to_load_license">One or more licenses could not be loaded</string>
     <string name="action_open_website">Open website</string>
     <string name="tab_about">About</string>
     <string name="tab_contributors">Contributors</string>
@@ -547,9 +547,9 @@
     <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout:\n\n1. Go to this URL: %1$s\n2. Log in when asked\n3. Click on \"All data included\", then on \"Deselect all\", then select only \"subscriptions\" and click \"OK\"\n4. Click on \"Next step\" and then on \"Create export\"\n5. Click on the \"Download\" button after it appears and \n6. From the downloaded takeout zip extract the .json file (usually under \"YouTube and YouTube Music/subscriptions/subscriptions.json\") and import it here.</string>
     <string name="import_soundcloud_instructions">Import a SoundCloud profile by typing either the URL or your ID:\n\n1. Enable \"desktop mode\" in a web-browser (the site is not available for mobile devices)\n2. Go to this URL: %1$s\n3. Log in when asked\n4. Copy the profile URL you were redirected to.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
-    <string name="import_network_expensive_warning">Keep in mind this can use a lot of data.\n\nContinue?</string>
+    <string name="import_network_expensive_warning">Continue even though it may use a lot of network data?</string>
     <!-- Playback Parameters -->
-    <string name="playback_speed_control">Playback-speed controls</string>
+    <string name="playback_speed_control">Controls for speed</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Pitch</string>
     <string name="unhook_checkbox">Unhook (may cause distortion)</string>
@@ -621,7 +621,7 @@
     <string name="overwrite_unrelated_warning">A file with this name already exists</string>
     <string name="overwrite_finished_warning">A downloaded file with this name already exists</string>
     <string name="overwrite_failed">cannot overwrite the file</string>
-    <string name="download_already_running">Downloading something with this name</string>
+    <string name="download_already_running">Already downloading something with this name…</string>
     <string name="download_already_pending">Waiting to download something with this name</string>
     <!-- message dialog about download error -->
     <string name="show_error">Show error</string>
@@ -670,7 +670,7 @@
     <string name="systems_language">System default</string>
     <string name="remove_watched">Remove watched</string>
     <string name="remove_watched_popup_title">Remove watched videos?</string>
-    <string name="remove_watched_popup_warning">Remove videos watched before and after being added to the playlist?\nThis cannot be undone!</string>
+    <string name="remove_watched_popup_warning">Remove watched videos in this playlist?\nThis cannot be undone!</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Yes, and partially watched videos</string>
     <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %d seconds</string>
     <!-- Time duration plurals -->
@@ -717,9 +717,9 @@
     <string name="feed_load_error_fast_unknown">The fast feed mode does not provide more info on this.</string>
     <string name="feed_use_dedicated_fetch_method_title">Fetch from dedicated feed when available</string>
     <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited amount of items and often incomplete information (e.g. no duration, item type, no live status)</string>
-    <string name="feed_use_dedicated_fetch_method_enable_button">Fast mode</string>
-    <string name="feed_use_dedicated_fetch_method_disable_button">No fast mode</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Loading too slow? Try turning on fast loading (you can change it in settings or by pressing the button below).\n\nNewPipe offers two feed loading strategies:\n• Fetching the whole subscription channel, which is slow but complete.\n• Using a dedicated service endpoint, which is fast but usually not complete.\n\nThe difference between the two is that the fast one usually lacks some information, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return less items.\n\nYouTube is an example of a service that offers this fast method with its RSS feed.\n\nSo the choice boils down to what you prefer: speed or precise information.</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Fast loading</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Full loading</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Loading too slow? Try turning on \'Fast loading\' (in the settings, or by pressing the button below).\nThis skips downloading the entire channel, but may be imprecise.</string>
     <string name="feed_toggle_show_played_items">Show watched items</string>
     <string name="content_not_supported">This content is not yet supported by NewPipe.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
@@ -730,7 +730,7 @@
     <string name="show_thumbnail_summary">Use thumbnail for both lock screen background and notifications</string>
     <string name="recent">Recent</string>
     <string name="chapters">Chapters</string>
-    <string name="no_app_to_open_intent">No apps could open this</string>
+    <string name="no_app_to_open_intent">Install an app that can open the file first</string>
     <string name="georestricted_content">This content is not available in your country.</string>
     <string name="soundcloud_go_plus_content">This is a SoundCloud Go+ track (at least in your country), so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="private_content">This content is private, so it cannot be streamed or downloaded by NewPipe.</string>
