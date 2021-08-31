@@ -675,6 +675,7 @@ public final class Player implements
                 && isPlaybackResumeEnabled(this)
                 && !samePlayQueue
                 && !newQueue.isEmpty()
+                && newQueue.getItem() != null
                 && newQueue.getItem().getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
             databaseUpdateDisposable.add(recordManager.loadStreamState(newQueue.getItem())
                     .observeOn(AndroidSchedulers.mainThread())
