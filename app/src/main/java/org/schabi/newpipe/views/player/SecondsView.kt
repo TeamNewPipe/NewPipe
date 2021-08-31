@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DrawableRes
-import kotlinx.android.synthetic.main.player_seek_seconds_view.view.*
 import org.schabi.newpipe.R
+import org.schabi.newpipe.databinding.PlayerSeekSecondsViewBinding
 
 class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context, attrs) {
 
@@ -29,7 +29,7 @@ class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context
 
     var seconds: Int = 0
         set(value) {
-            tv_seconds.text = context.resources.getQuantityString(
+            binding.tvSeconds.text = context.resources.getQuantityString(
                 R.plurals.seconds, value, value
             )
             field = value
@@ -37,26 +37,27 @@ class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context
 
     var isForward: Boolean = true
         set(value) {
-            triangle_container.rotation = if (value) 0f else 180f
+            binding.triangleContainer.rotation = if (value) 0f else 180f
             field = value
         }
 
+    val binding = PlayerSeekSecondsViewBinding.inflate(LayoutInflater.from(context), this)
+
     val textView: TextView
-        get() = tv_seconds
+        get() = binding.tvSeconds
 
     @DrawableRes
     var icon: Int = R.drawable.ic_play_seek_triangle
         set(value) {
             if (value > 0) {
-                icon_1.setImageResource(value)
-                icon_2.setImageResource(value)
-                icon_3.setImageResource(value)
+                binding.icon1.setImageResource(value)
+                binding.icon2.setImageResource(value)
+                binding.icon3.setImageResource(value)
             }
             field = value
         }
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.player_seek_seconds_view, this, true)
         orientation = VERTICAL
         layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
     }
@@ -77,19 +78,19 @@ class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context
     }
 
     private fun reset() {
-        icon_1.alpha = 0f
-        icon_2.alpha = 0f
-        icon_3.alpha = 0f
+        binding.icon1.alpha = 0f
+        binding.icon2.alpha = 0f
+        binding.icon3.alpha = 0f
     }
 
     private val firstAnimator: ValueAnimator = CustomValueAnimator(
         {
-            icon_1.alpha = 0f
-            icon_2.alpha = 0f
-            icon_3.alpha = 0f
+            binding.icon1.alpha = 0f
+            binding.icon2.alpha = 0f
+            binding.icon3.alpha = 0f
         },
         {
-            icon_1.alpha = it
+            binding.icon1.alpha = it
         },
         {
             secondAnimator.start()
@@ -98,12 +99,12 @@ class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context
 
     private val secondAnimator: ValueAnimator = CustomValueAnimator(
         {
-            icon_1.alpha = 1f
-            icon_2.alpha = 0f
-            icon_3.alpha = 0f
+            binding.icon1.alpha = 1f
+            binding.icon2.alpha = 0f
+            binding.icon3.alpha = 0f
         },
         {
-            icon_2.alpha = it
+            binding.icon2.alpha = it
         },
         {
             thirdAnimator.start()
@@ -112,13 +113,13 @@ class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context
 
     private val thirdAnimator: ValueAnimator = CustomValueAnimator(
         {
-            icon_1.alpha = 1f
-            icon_2.alpha = 1f
-            icon_3.alpha = 0f
+            binding.icon1.alpha = 1f
+            binding.icon2.alpha = 1f
+            binding.icon3.alpha = 0f
         },
         {
-            icon_1.alpha = 1f - icon_3.alpha
-            icon_3.alpha = it
+            binding.icon1.alpha = 1f - binding.icon3.alpha
+            binding.icon3.alpha = it
         },
         {
             fourthAnimator.start()
@@ -127,12 +128,12 @@ class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context
 
     private val fourthAnimator: ValueAnimator = CustomValueAnimator(
         {
-            icon_1.alpha = 0f
-            icon_2.alpha = 1f
-            icon_3.alpha = 1f
+            binding.icon1.alpha = 0f
+            binding.icon2.alpha = 1f
+            binding.icon3.alpha = 1f
         },
         {
-            icon_2.alpha = 1f - it
+            binding.icon2.alpha = 1f - it
         },
         {
             fifthAnimator.start()
@@ -141,12 +142,12 @@ class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context
 
     private val fifthAnimator: ValueAnimator = CustomValueAnimator(
         {
-            icon_1.alpha = 0f
-            icon_2.alpha = 0f
-            icon_3.alpha = 1f
+            binding.icon1.alpha = 0f
+            binding.icon2.alpha = 0f
+            binding.icon3.alpha = 1f
         },
         {
-            icon_3.alpha = 1f - it
+            binding.icon3.alpha = 1f - it
         },
         {
             firstAnimator.start()
