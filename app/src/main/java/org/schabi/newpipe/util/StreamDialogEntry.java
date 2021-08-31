@@ -2,6 +2,7 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
@@ -60,11 +62,15 @@ public enum StreamDialogEntry {
      * Info: Add this entry within showStreamDialog.
      */
     enqueue(R.string.enqueue_stream, (fragment, item) -> {
-        NavigationHelper.enqueueOnPlayer(fragment.getContext(), new SinglePlayQueue(item));
+        fetchItemInfoIfSparse(item,
+                fullItem -> NavigationHelper.enqueueOnPlayer(fragment.getContext(), fullItem)
+        );
     }),
 
     enqueue_next(R.string.enqueue_next_stream, (fragment, item) -> {
-        NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), new SinglePlayQueue(item));
+        fetchItemInfoIfSparse(item,
+                fullItem -> NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), fullItem)
+        );
     }),
 
     start_here_on_background(R.string.start_here_on_background, (fragment, item) ->
@@ -202,5 +208,32 @@ public enum StreamDialogEntry {
         NavigationHelper.openChannelFragment(
                 fragment.requireActivity().getSupportFragmentManager(),
                 item.getServiceId(), uploaderUrl, item.getUploaderName());
+    }
+
+    /////////////////////////////////////////////
+    // helper functions                        //
+    /////////////////////////////////////////////
+
+    private interface InfoCallback {
+        void onInfo(SinglePlayQueue item);
+    }
+
+    private static void fetchItemInfoIfSparse(final StreamInfoItem item,
+                                              final InfoCallback callback) {
+        if (item.getDuration() < 0) {
+            // Sparse item: fetched by fast fetch
+            final Disposable currentWorker = ExtractorHelper.getStreamInfo(
+                    item.getServiceId(),
+                    item.getUrl(),
+                    false
+            )
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(result -> {
+                        callback.onInfo(new SinglePlayQueue(result));
+                    }, throwable -> Log.e("StreamDialogEntry", throwable.toString()));
+        } else {
+            callback.onInfo(new SinglePlayQueue(item));
+        }
     }
 }
