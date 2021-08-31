@@ -159,6 +159,7 @@ import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static com.google.android.exoplayer2.Player.RepeatMode;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
@@ -3213,9 +3214,9 @@ public final class Player implements
 
             @Override
             public void held(final PlayQueueItem item, final View view) {
-                final int index = playQueue.indexOf(item);
-                if (index != -1) {
-                    playQueue.remove(index);
+                if (playQueue.indexOf(item) != -1) {
+                    openPopupMenu(playQueue, item, view, true,
+                            getParentActivity().getSupportFragmentManager(), context);
                 }
             }
 
