@@ -133,32 +133,29 @@ public final class MainPlayer extends Service {
         return START_NOT_STICKY;
     }
 
-    public void stop(final boolean autoplayEnabled) {
+    public void stopForImmediateReusing() {
         if (DEBUG) {
-            Log.d(TAG, "stop() called");
+            Log.d(TAG, "stopForImmediateReusing() called");
         }
 
         if (!player.exoPlayerIsNull()) {
             player.saveWasPlaying();
+
             // Releases wifi & cpu, disables keepScreenOn, etc.
-            if (!autoplayEnabled) {
-                player.pause();
-            }
             // We can't just pause the player here because it will make transition
             // from one stream to a new stream not smooth
             player.smoothStopPlayer();
             player.setRecovery();
+
             // Android TV will handle back button in case controls will be visible
             // (one more additional unneeded click while the player is hidden)
             player.hideControls(0, 0);
             player.closeItemsList();
+
             // Notification shows information about old stream but if a user selects
             // a stream from backStack it's not actual anymore
             // So we should hide the notification at all.
             // When autoplay enabled such notification flashing is annoying so skip this case
-            if (!autoplayEnabled) {
-                NotificationUtil.getInstance().cancelNotificationAndStopForeground(this);
-            }
         }
     }
 

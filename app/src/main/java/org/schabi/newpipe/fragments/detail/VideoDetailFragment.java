@@ -201,7 +201,7 @@ public final class VideoDetailFragment
     @Nullable
     private MainPlayer playerService;
     private Player player;
-    private PlayerHolder playerHolder = PlayerHolder.getInstance();
+    private final PlayerHolder playerHolder = PlayerHolder.getInstance();
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service management
@@ -762,7 +762,7 @@ public final class VideoDetailFragment
 
     private void setupFromHistoryItem(final StackItem item) {
         setAutoPlay(false);
-        hideMainPlayer();
+        hideMainPlayerOnLoadingNewStream();
 
         setInitialData(item.getServiceId(), item.getUrl(),
                 item.getTitle() == null ? "" : item.getTitle(), item.getPlayQueue());
@@ -882,7 +882,7 @@ public final class VideoDetailFragment
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
                     isLoading.set(false);
-                    hideMainPlayer();
+                    hideMainPlayerOnLoadingNewStream();
                     if (result.getAgeLimit() != NO_AGE_LIMIT && !prefs.getBoolean(
                             getString(R.string.show_age_restricted_content), false)) {
                         hideAgeRestrictedContent();
@@ -1174,7 +1174,14 @@ public final class VideoDetailFragment
         ContextCompat.startForegroundService(activity, playerIntent);
     }
 
-    private void hideMainPlayer() {
+    /**
+     * When the video detail fragment is already showing details for a video and the user opens a
+     * new one, the video detail fragment changes all of its old data to the new stream, so if there
+     * is a video player currently open it should be hidden. This method does exactly that. If
+     * autoplay is enabled, the underlying player is not stopped completely, since it is going to
+     * be reused in a few milliseconds and the flickering would be annoying.
+     */
+    private void hideMainPlayerOnLoadingNewStream() {
         if (!isPlayerServiceAvailable()
                 || playerService.getView() == null
                 || !player.videoPlayerSelected()) {
@@ -1182,8 +1189,12 @@ public final class VideoDetailFragment
         }
 
         removeVideoPlayerView();
-        playerService.stop(isAutoplayEnabled());
-        playerService.getView().setVisibility(View.GONE);
+        if (isAutoplayEnabled()) {
+            playerService.stopForImmediateReusing();
+            playerService.getView().setVisibility(View.GONE);
+        } else {
+            playerHolder.stopService();
+        }
     }
 
     private PlayQueue setupPlayQueueForIntent(final boolean append) {
@@ -1832,7 +1843,7 @@ public final class VideoDetailFragment
                 || error.type == ExoPlaybackException.TYPE_UNEXPECTED) {
             // Properly exit from fullscreen
             toggleFullscreenIfInFullscreenMode();
-            hideMainPlayer();
+            hideMainPlayerOnLoadingNewStream();
         }
     }
 
