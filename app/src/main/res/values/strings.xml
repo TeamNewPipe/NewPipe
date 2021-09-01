@@ -576,8 +576,8 @@
         <item>144p</item>
     </string-array>
     <!-- Updates Settings -->
-    <string name="updates_setting_title">Upgrades</string>
-    <string name="updates_setting_description">Ask to install new versions</string>
+    <string name="updates_setting_title">New versions</string>
+    <string name="updates_setting_description">Ask to install new versions of NewPipe</string>
     <!-- Minimize to exit action -->
     <string name="minimize_on_exit_title">Minimize on app switch</string>
     <string name="minimize_on_exit_summary">Action when switching to other app from main video player — %s</string>
@@ -622,7 +622,7 @@
     <string name="overwrite_finished_warning">A downloaded file with this name already exists</string>
     <string name="overwrite_failed">cannot overwrite the file</string>
     <string name="download_already_running">Already downloading something with this name…</string>
-    <string name="download_already_pending">Waiting to download something with this name</string>
+    <string name="download_already_pending">Waiting to download something with this name…</string>
     <!-- message dialog about download error -->
     <string name="show_error">Show error</string>
     <string name="label_code">Code</string>
@@ -642,7 +642,7 @@
     <string name="error_timeout">Connection timeout</string>
     <string name="error_download_resource_gone">Cannot recover this download</string>
     <string name="clear_download_history">Clear download history</string>
-    <string name="confirm_prompt">Clear your download history or delete all downloaded files?</string>
+    <string name="confirm_prompt">Clear your download history, or delete all downloaded files?</string>
     <string name="delete_downloaded_files">Delete downloaded files</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Deleted %1$s download</item>
