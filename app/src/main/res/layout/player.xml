@@ -765,7 +765,7 @@
         android:id="@+id/seekOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:alpha="0" /> <!-- Required for the first appearance fading corectly -->
+        android:alpha="0"
+        android:visibility="invisible" /> <!-- Required for the first appearance fading correctly -->
 
 </RelativeLayout>

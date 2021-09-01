@@ -533,6 +533,7 @@ public final class Player implements
 
         playerGestureListener = new PlayerGestureListener(this, service);
         gestureDetector = new GestureDetectorCompat(context, playerGestureListener);
+        //noinspection ClickableViewAccessibility
         binding.getRoot().setOnTouchListener(playerGestureListener);
         setupPlayerSeekOverlay();
 
