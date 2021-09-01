@@ -621,6 +621,9 @@ public final class Player implements
             return;
         }
 
+        // needed for tablets, check the function for a better explanation
+        directlyOpenFullscreenIfNeeded();
+
         final PlaybackParameters savedParameters = retrievePlaybackParametersFromPrefs(this);
         final float playbackSpeed = savedParameters.speed;
         final float playbackPitch = savedParameters.pitch;
@@ -672,6 +675,7 @@ public final class Player implements
                 && isPlaybackResumeEnabled(this)
                 && !samePlayQueue
                 && !newQueue.isEmpty()
+                && newQueue.getItem() != null
                 && newQueue.getItem().getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
             databaseUpdateDisposable.add(recordManager.loadStreamState(newQueue.getItem())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -741,6 +745,22 @@ public final class Player implements
             }
         }
         NavigationHelper.sendPlayerStartedEvent(context);
+    }
+
+    /**
+     * Open fullscreen on tablets where the option to have the main player start automatically in
+     * fullscreen mode is on. Rotating the device to landscape is already done in {@link
+     * VideoDetailFragment#openVideoPlayer(boolean)} when the thumbnail is clicked, and that's
+     * enough for phones, but not for tablets since the mini player can be also shown in landscape.
+     */
+    private void directlyOpenFullscreenIfNeeded() {
+        if (fragmentListener != null
+                && PlayerHelper.isStartMainPlayerFullscreenEnabled(service)
+                && DeviceUtils.isTablet(service)
+                && videoPlayerSelected()
+                && PlayerHelper.globalScreenOrientationLocked(service)) {
+            fragmentListener.onScreenRotationButtonClicked();
+        }
     }
 
     private void initPlayback(@NonNull final PlayQueue queue,
@@ -3855,11 +3875,9 @@ public final class Player implements
         if (DEBUG) {
             Log.d(TAG, "toggleFullscreen() called");
         }
-        if (popupPlayerSelected() || exoPlayerIsNull() || currentMetadata == null
-                || fragmentListener == null) {
+        if (popupPlayerSelected() || exoPlayerIsNull() || fragmentListener == null) {
             return;
         }
-        //changeState(STATE_BLOCKED); TODO check what this does
 
         isFullscreen = !isFullscreen;
         if (!isFullscreen) {

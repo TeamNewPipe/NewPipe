@@ -73,6 +73,8 @@
         <item>@string/minimize_on_exit_popup_description</item>
     </string-array>
 
+    <string name="start_main_player_fullscreen_key" translatable="false">start_main_player_fullscreen_key</string>
+
     <string name="autoplay_key" translatable="false">autoplay_key</string>
     <string name="autoplay_value" translatable="false">@string/autoplay_wifi_key</string>
     <string name="autoplay_always_key" translatable="false">autoplay_always_key</string>
