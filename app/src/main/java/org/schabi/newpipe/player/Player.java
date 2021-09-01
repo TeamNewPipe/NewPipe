@@ -2186,8 +2186,8 @@ public final class Player implements
             startProgressLoop();
         }
 
-        controlsVisibilityHandler.removeCallbacksAndMessages(null);
-        animate(binding.playbackControlRoot, false, DEFAULT_CONTROLS_DURATION);
+        // if we are e.g. switching players, hide controls
+        hideControls(DEFAULT_CONTROLS_DURATION, 0);
 
         binding.playbackSeekBar.setEnabled(false);
         binding.playbackSeekBar.getThumb()
