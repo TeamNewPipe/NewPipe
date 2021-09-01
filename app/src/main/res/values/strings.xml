@@ -549,7 +549,7 @@
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">Continue even though it may use a lot of network data?</string>
     <!-- Playback Parameters -->
-    <string name="playback_speed_control">Controls for speed</string>
+    <string name="playback_speed_control">Playback Speed Controls</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Pitch</string>
     <string name="unhook_checkbox">Unhook (may cause distortion)</string>
@@ -730,7 +730,7 @@
     <string name="show_thumbnail_summary">Use thumbnail for both lock screen background and notifications</string>
     <string name="recent">Recent</string>
     <string name="chapters">Chapters</string>
-    <string name="no_app_to_open_intent">Install an app that can open the file first</string>
+    <string name="no_app_to_open_intent">Install an app that can open this first</string>
     <string name="georestricted_content">This content is not available in your country.</string>
     <string name="soundcloud_go_plus_content">This is a SoundCloud Go+ track (at least in your country), so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="private_content">This content is private, so it cannot be streamed or downloaded by NewPipe.</string>
