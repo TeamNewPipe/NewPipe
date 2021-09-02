@@ -52,7 +52,6 @@
                 tools:text="-5%" />
 
             <RelativeLayout
-                android:id="@+id/tempoDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
@@ -178,7 +177,6 @@
                 tools:text="-5%" />
 
             <RelativeLayout
-                android:id="@+id/pitchDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
@@ -275,7 +273,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/stepSizeText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

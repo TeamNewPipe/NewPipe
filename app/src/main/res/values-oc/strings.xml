@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="view_count_text">%1$s vistas</string>
     <string name="upload_date_text">Publicat lo %1$s</string>
     <string name="no_player_found">Cap de legidor de flus trobat. Volètz installar VLC\?</string>
     <string name="no_player_found_toast">Cap de legidor de flus trobat (podètz installar VLC per lo legir).</string>
@@ -15,24 +14,19 @@
     <string name="settings">Paramètres</string>
     <string name="did_you_mean">Voliatz dire: %1$s\?</string>
     <string name="share_dialog_title">Partejar amb</string>
-    <string name="choose_browser">Causir un navegador</string>
-    <string name="screen_rotation">rotacion</string>
     <string name="use_external_video_player_title">Utilizar un legidor de vidèo extèrne</string>
-    <string name="popup_mode_share_menu_title">Mòde fenestron de NewPipe</string>
     <string name="subscribe_button_title">S\'abonar</string>
     <string name="subscribed_button_title">Abonat</string>
     <string name="unsubscribe">Anullar abonament</string>
     <string name="subscription_change_failed">Impossible de cambiar l\'abonament</string>
     <string name="subscription_update_failed">Impossible d\'actualizar l\'abonament</string>
     <string name="show_info">Afichar las informacions</string>
-    <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Abonaments</string>
     <string name="main_bg_subtitle">Clicatz sul boton de recèrca per començar</string>
     <string name="use_external_video_player_summary">Lèva l\'àudio per CÈRTAS resolucions</string>
     <string name="use_external_audio_player_title">Utilizar lo legidor àudio extèrne</string>
     <string name="channel_unsubscribed">Abonament a la cadena anullat</string>
     <string name="tab_bookmarks">Listas de lectura enregistradas</string>
-    <string name="tab_new">Onglet novèl</string>
     <string name="tab_choose">Causir un onglet</string>
     <string name="fragment_feed_title">Çò novèl</string>
     <string name="controls_background_title">Rèireplan</string>
@@ -44,9 +38,6 @@
     <string name="download_path_audio_title">Dorsièr de telecargament dels àudios</string>
     <string name="download_path_audio_summary">Los fichièrs àudio telecargats son estremats aicí</string>
     <string name="download_path_audio_dialog_title">Causissètz lo dorsièr de telecargament pels àudios</string>
-    <string name="download_choose_new_path">Cambiatz los dorsièrs de telecargament per venga efectiu</string>
-    <string name="autoplay_by_calling_app_title">Lectura automatica</string>
-    <string name="autoplay_by_calling_app_summary">Legís una vidèo quand NewPIpe es apelat dempuèi una autra aplicacion</string>
     <string name="default_resolution_title">Resolucion per defaut</string>
     <string name="default_popup_resolution_title">Resolucion per defaut dels fenestrons</string>
     <string name="show_higher_resolutions_title">Afichar de resolucions mai nautas</string>

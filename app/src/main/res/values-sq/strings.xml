@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Shtyp mbi lupën zmadhuese për të filluar.</string>
-    <string name="view_count_text">%1$s shikime</string>
     <string name="upload_date_text">Publikuar më %1$s</string>
     <string name="install">Instalo</string>
     <string name="cancel">Anulo</string>
@@ -13,10 +12,8 @@
     <string name="did_you_mean">A po mendonit \"%1$s\"\?</string>
     <string name="share_dialog_title">Shpërndaje me</string>
     <string name="show_info">Shfaq informatat</string>
-    <string name="tab_main">Menyja kryesore</string>
     <string name="fragment_feed_title">Të rejat</string>
     <string name="controls_add_to_playlist_title">Shto në</string>
-    <string name="autoplay_by_calling_app_title">Luaj automatikisht</string>
     <string name="default_resolution_title">Rezolucioni i parazgjedhur</string>
     <string name="play_with_kodi_title">Luaj me Kodi</string>
     <string name="play_audio">Audio</string>
@@ -26,23 +23,18 @@
     <string name="enable_watch_history_title">Të shikuarat</string>
     <string name="enable_watch_history_summary">Ruaji videot e shikuara</string>
     <string name="download_dialog_title">Shkarko</string>
-    <string name="service_title">Shërbimi</string>
     <string name="content_language_title">Gjuha e dëshiruar e përmbajtjeve</string>
     <string name="settings_category_player_title">Luajtësi</string>
     <string name="settings_category_player_behavior_title">Sjellja</string>
     <string name="settings_category_video_audio_title">Video dhe audio</string>
     <string name="settings_category_history_title">Historia dhe depoja</string>
     <string name="settings_category_appearance_title">Pamja</string>
-    <string name="settings_category_other_title">Të tjera</string>
     <string name="content">Përmbajtja</string>
     <string name="downloads">Shkarkimet</string>
     <string name="downloads_title">Shkarkimet</string>
     <string name="error_report_title">Raporti i gabimit</string>
     <string name="all">Të gjitha</string>
-    <string name="channel">Kanali</string>
-    <string name="playlist">Listë video</string>
     <string name="yes">Po</string>
-    <string name="later">Më vonë</string>
     <string name="missions_header_pending">Në pritje</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d i zgjedhur</item>
@@ -101,10 +93,8 @@
     <string name="error_connect_host">Nuk mund të lidhet me serverin</string>
     <string name="error_unknown_host">Nuk u arrit të gjendej serveri</string>
     <string name="error_ssl_exception">Nuk u arrit të vendosej një lidhje e sigurtë</string>
-    <string name="error_permission_denied">Leja është e mohuar nga sistemi</string>
     <string name="error_path_creation">Dosja destinacion nuk mund të krijohet</string>
     <string name="error_file_creation">Skedari nuk mund të krijohet</string>
-    <string name="label_code">Kodi</string>
     <string name="show_error">Shfaq problemin</string>
     <string name="download_already_pending">Ka një shkarkim në pritje me këtë emër</string>
     <string name="download_already_running">Ka një shkarkim në progres me këtë emër</string>
@@ -123,7 +113,6 @@
     <string name="missions_header_finished">Përfunduar</string>
     <string name="app_update_notification_content_text">Shtyp për të shkarkuar</string>
     <string name="app_update_notification_content_title">Përditësim i ri i NewPipe është i disponueshëm!</string>
-    <string name="switch_view">Ndrysho Pamjen</string>
     <string name="auto">Automatike</string>
     <string name="list">Listë</string>
     <string name="list_view_mode">Pamja e listës</string>
@@ -175,7 +164,6 @@
     <string name="export_to">Eksporto në</string>
     <string name="import_from">Importo nga</string>
     <string name="import_title">Importo</string>
-    <string name="import_export_title">Importo/eksporto</string>
     <string name="enable_disposed_exceptions_title">Raporto gabimet e jashtë-ciklit-të-jetës</string>
     <string name="enable_leak_canary_summary">Monitorimi i rrjedhjeve të memorjes mund të bëjë aplikacionin të mos reagojë kur bëhet zbrazja e memorjes heap</string>
     <string name="caption_setting_description">Modifikoni shkallën e tekstit të titrave dhe llojet e sfondeve të luajtësit. Kërkon një rinisje të aplikacionit që të aplikohen ndryshimet</string>
@@ -186,7 +174,6 @@
     <string name="resize_fit">Përshtat me ekranin</string>
     <string name="caption_none">Pa Titra</string>
     <string name="playlist_no_uploader">E gjeneruar automatikisht (nuk u gjet ngarkues)</string>
-    <string name="playlist_delete_failure">Nuk u arrit të fshihej lista e luajtjes.</string>
     <string name="playlist_thumbnail_change_success">Pamja statike e listës së luajtjes u ndryshua.</string>
     <string name="playlist_add_stream_success">E shtuar në listën e luajtjes</string>
     <string name="playlist_creation_success">Lista e luajtjes u krijua</string>
@@ -199,7 +186,6 @@
     <string name="append_playlist">Shto në listën e luajtjes</string>
     <string name="name">Emri</string>
     <string name="rename_playlist">Riemërto</string>
-    <string name="delete_playlist">Fshij</string>
     <string name="create_playlist">Listë Luajtje e Re</string>
     <string name="preferred_player_fetcher_notification_message">Duke ngarkuar përmbajtjen e kërkuar</string>
     <string name="preferred_player_fetcher_notification_title">Duke marrë informacion…</string>
@@ -209,12 +195,10 @@
     <string name="video_player">Luajtësi video</string>
     <string name="preferred_open_action_settings_summary">Veprimi i parazgjedhur kur hapet përmbajtja — %s</string>
     <string name="preferred_open_action_settings_title">Veprimi i preferuar për \'hapjen\'</string>
-    <string name="drawer_header_action_paceholder_text">Diçka do të shfaqet këtu së shpejti ;D</string>
     <string name="drawer_close">Mbyll Sirtarin</string>
     <string name="drawer_open">Hap Sirtarin</string>
     <string name="start_here_on_popup">Nis luajtjen në një popup të ri</string>
     <string name="start_here_on_background">Nis luajtjen në sfond</string>
-    <string name="start_here_on_main">Nis luajtjen këtu</string>
     <string name="hold_to_append">Mbaj shtypur për të shtuar në radhë</string>
     <string name="play_queue_audio_settings">Aranzhimet Audio</string>
     <string name="play_queue_stream_detail">Detaje</string>
@@ -226,7 +210,6 @@
     <string name="new_and_hot">Të rejat dhe të nxehtat</string>
     <string name="top_50">Top 50</string>
     <string name="trending">E trendit</string>
-    <string name="kiosk">Kioskë</string>
     <string name="localization_changes_requires_app_restart">Gjuha do të ndryshojë sapo aplikacioni të riniset</string>
     <string name="error_unable_to_load_comments">Nuk mundën të ngarkohen komentet</string>
     <string name="import_settings">A dëshironi që të importoni dhe aranzhimet gjithashtu\?</string>
@@ -239,27 +222,16 @@
     <string name="no_channel_subscribed_yet">Nuk ka ende kanale të abonuara</string>
     <string name="select_a_channel">Zgjidhni një kanal</string>
     <string name="channel_page_summary">Faqja e Kanaleve</string>
-    <string name="feed_page_summary">Faqja e Videove të Reja</string>
-    <string name="subscription_page_summary">Faqja e Abonimeve</string>
     <string name="default_kiosk_page_summary">Kioska e Parazgjedhur</string>
     <string name="kiosk_page_summary">Faqja Kioskë</string>
     <string name="blank_page_summary">Faqe Bosh</string>
-    <string name="selection">Përzgjedhja</string>
     <string name="main_page_content_summary">Cilat tab-e shfaqen në faqen kryesore</string>
     <string name="main_page_content">Përmbajtja e faqes kryesore</string>
     <string name="title_most_played">Më të Luajturat</string>
     <string name="title_last_played">Luajtur së Fundmi</string>
-    <string name="delete_all_history_prompt">Jeni i sigurt që doni t\'i fshini të gjitha objektet nga historiku\?</string>
-    <string name="delete_stream_history_prompt">Doni ta fshini këtë objekt nga historiku i videove të para\?</string>
     <string name="delete_item_search_history">Doni ta fshini këtë objekt nga historiku i kërkimeve\?</string>
-    <string name="history_cleared">U pastrua historiku</string>
-    <string name="item_deleted">Objekti u fshi</string>
-    <string name="history_empty">Historiku është bosh</string>
     <string name="title_activity_history">Historiku</string>
-    <string name="history_disabled">Historiku është i fikur</string>
     <string name="action_history">Historiku</string>
-    <string name="title_history_view">Parë</string>
-    <string name="title_history_search">Kërkuar</string>
     <string name="read_full_license">Lexo licensën</string>
     <string name="app_license_title">Licensa e NewPipe</string>
     <string name="read_privacy_policy">Lexoni politikën e privatësisë</string>
@@ -276,14 +248,9 @@
     <string name="contribution_title">Kontribuo</string>
     <string name="app_description">Luajtës i lehtë dhe libre në Android.</string>
     <string name="tab_licenses">Licensat</string>
-    <string name="tab_contributors">Kontribuesit</string>
     <string name="tab_about">Rreth</string>
-    <string name="action_open_website">Hap faqen e internetit</string>
-    <string name="error_unable_to_load_license">Nuk arriti të ngarkohej licensa</string>
     <string name="copyright" formatted="true">© %1$s nga %2$s nën %3$s</string>
     <string name="title_licenses">Licensat e palëve të treta</string>
-    <string name="action_about">Rreth</string>
-    <string name="action_settings">Aranzhimet</string>
     <string name="title_activity_about">Rreth NewPipe</string>
     <string name="toast_no_player">Nuk ka aplikacion të instaluar që mund ta luajë këtë skedar</string>
     <string name="charset_most_special_characters">Shumica e karaktereve speciale</string>
@@ -304,9 +271,6 @@
     <string name="msg_wait">Ju lutem prisni…</string>
     <string name="msg_running_detail">Shtyp për detajet</string>
     <string name="msg_running">NewPipe duke shkarkuar</string>
-    <string name="msg_url_malform">URL e keqformuar ose nuk ka Internet</string>
-    <string name="msg_exists">Skedari ekziston tashmë</string>
-    <string name="msg_server_unsupported">Server i pambështetur</string>
     <string name="msg_error">Gabim</string>
     <string name="msg_threads">Veprimet paralele</string>
     <string name="msg_name">Emri i skedarit</string>
@@ -314,11 +278,8 @@
     <string name="rename">Riemërto</string>
     <string name="dismiss">Hiqe</string>
     <string name="checksum">Kodi verifikues</string>
-    <string name="delete_all">Fshiji të Gjitha</string>
-    <string name="delete_one">Fshij Një</string>
     <string name="delete">Fshij</string>
     <string name="create">Krijo</string>
-    <string name="view">Luaj</string>
     <string name="pause">Ndaloje</string>
     <string name="start">Nis</string>
     <string name="no_comments">Nuk ka komente</string>
@@ -342,19 +303,12 @@
     <string name="short_billion">B</string>
     <string name="short_million">M</string>
     <string name="short_thousand">k</string>
-    <string name="storage_permission_denied">Lejo aksesin tek magazina fillimisht</string>
     <string name="retry">Riprovo</string>
     <string name="audio">Audio</string>
     <string name="video">Video</string>
-    <string name="info_dir_created">U krijua dosja e shkarkimeve \'%1$s\'</string>
-    <string name="err_dir_create">Nuk u arrit të krijohej dosja e shkarkimeve \'%1$s\'</string>
     <string name="detail_drag_description">Tërhiqe për të ri-radhitur</string>
-    <string name="use_tor_summary">(Eksperimentale) Detyroje trafikun e shkarkimeve që të kalojë përmes Tor për të rritur privatësinë (videot stream nuk janë ende të mbështetura).</string>
     <string name="empty_subscription_feed_subtitle">Nuk ka asgjë këtu përveç bulkthave</string>
     <string name="search_no_results">Nuk ka rezultate</string>
-    <string name="user_report">Raporti i përdoruesit</string>
-    <string name="report_error">Raporto problemin</string>
-    <string name="use_tor_title">Përdor Tor</string>
     <string name="detail_dislikes_img_view_description">Mospëlqimet</string>
     <string name="detail_likes_img_view_description">Pëlqimet</string>
     <string name="detail_uploader_thumbnail_view_description">Pamja statike e fotos së ngarkuesit</string>
@@ -386,19 +340,15 @@
     <string name="download_path_title">Dosja e videove të shkarkuara</string>
     <string name="controls_background_title">Në sfond</string>
     <string name="tab_choose">Zgjidh Tabin</string>
-    <string name="tab_new">Tab i Ri</string>
     <string name="tab_bookmarks">Listat e Ruajtura</string>
     <string name="subscription_update_failed">Nuk mund të përditësohej abonimi</string>
     <string name="subscription_change_failed">Nuk mund të ndryshohej abonimi</string>
     <string name="channel_unsubscribed">Kanali u ç\'abonua</string>
     <string name="unsubscribe">Ç\'abonohu</string>
     <string name="subscribed_button_title">I abonuar</string>
-    <string name="popup_mode_share_menu_title">Modaliteti popup</string>
     <string name="use_external_audio_player_title">Përdor lexues të jashtëm audio</string>
     <string name="use_external_video_player_summary">Heq audio për disa rezolucione</string>
     <string name="use_external_video_player_title">Përdorni lexues video të jashtëm</string>
-    <string name="screen_rotation">rrotullimi</string>
-    <string name="choose_browser">Zgjidhni shfletuesin</string>
     <string name="controls_download_desc">Shkarko skedarin stream</string>
     <string name="open_in_popup_mode">Hape në modalitetin popup</string>
     <string name="no_player_found">Nuk u gjend lexues për stream. Instalo VLC\?</string>
@@ -418,7 +368,6 @@
         <item quantity="one">%s duke e parë</item>
         <item quantity="other">%s duke parë</item>
     </plurals>
-    <string name="settings_category_popup_title">Popup</string>
     <string name="controls_popup_title">Popup</string>
     <string name="tracks">Pistë</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Mendoni se lista po ngarkohet shumë ngadalë\? Nëse po, provoni të aktivizoni ngarkimin e shpejtë (ju mund ta ndryshoni tek aranzhimet ose duke shtypur butonin më poshtë). 
@@ -449,18 +398,13 @@
     <string name="feed_group_dialog_delete_message">A doni ta fshini këtë grup\?</string>
     <string name="feed_group_dialog_empty_name">Emër bosh i grupit</string>
     <string name="video_streams_empty">Nuk u gjendën stream për video</string>
-    <string name="invalid_url_toast">URL e pasaktë</string>
     <string name="external_player_unsupported_link_type">Luajtësit e jashtëm nuk i mbështesin këto lloje ndërlidhjesh</string>
     <string name="player_recoverable_failure">Duke rikuperuar nga problemi i luajtësit</string>
     <string name="player_unrecoverable_failure">Ndodhi një problem i parikuperueshëm i luajtësit</string>
     <string name="player_stream_failure">Nuk u arrit të luhej ky stream</string>
     <string name="app_ui_crash">Aplikacioni/UI u prish</string>
-    <string name="could_not_load_image">Nuk u arrit të ngarkohej imazhi</string>
-    <string name="could_not_get_stream">Nuk u arrit të gjendej asnjë stream</string>
-    <string name="live_streams_not_supported">Stream-et në kohë reale nuk janë të mbështetura ende</string>
     <string name="could_not_setup_download_menu">Nuk u arrit të vendosej menuja e shkarkimeve</string>
     <string name="content_not_available">Përmbajtja e padisponueshme</string>
-    <string name="light_parsing_error">Nuk u arrit të analizohej plotësisht faqja</string>
     <string name="parsing_error">Nuk u arrit të analizohej faqja</string>
     <string name="youtube_signature_deobfuscation_error">Nuk u arrit të dekriptohej firma e URL së videos</string>
     <string name="could_not_load_thumbnails">Nuk u mundën të ngarkoheshin të gjitha pamjet statike</string>
@@ -488,7 +432,6 @@
     <string name="switch_to_main">Kaloje në Qendrore</string>
     <string name="switch_to_popup">Kaloje në Popup</string>
     <string name="switch_to_background">Kaloje në Sfond</string>
-    <string name="toggle_orientation">Ndrysho Orientimin</string>
     <string name="unknown_content">[E panjohur]</string>
     <string name="app_update_notification_channel_description">Njoftimet për versionet e reja të NewPipe</string>
     <string name="app_update_notification_channel_name">Njoftimi për Përditësime të Aplikacionit</string>
@@ -502,8 +445,6 @@
     <string name="undo">Zhbëj</string>
     <string name="best_resolution">Rezolucioni më i mirë</string>
     <string name="clear">Pastro</string>
-    <string name="refresh">Rifresko</string>
-    <string name="filter">Filtër</string>
     <string name="disabled">E çaktivizuar</string>
     <string name="artists">Artistët</string>
     <string name="albums">Albumet</string>
@@ -518,8 +459,6 @@
 \n
 \nAktivizoni \"%1$s\" tek aranzhimet nëse doni ta shihni.</string>
     <string name="show_age_restricted_content_title">Shfaq përmbajtjet me moshë të kufizuar</string>
-    <string name="popup_playing_append">U radhit në luajtësin popup</string>
-    <string name="background_player_append">U radhit në luajtësin në sfond</string>
     <string name="popup_playing_toast">Duke luajtur në modalitetin popup</string>
     <string name="background_player_playing_toast">Duke luajtur në sfond</string>
     <string name="settings_category_updates_title">Përditësimet</string>
@@ -548,8 +487,6 @@
     <string name="enable_search_history_summary">Ruani frazat e kërkuara lokalisht</string>
     <string name="enable_search_history_title">Historia e kërkimit</string>
     <string name="show_search_suggestions_summary">Shfaq sugjerime kur jeni duke kërkuar</string>
-    <string name="player_gesture_controls_summary">Përdorni gjestet për të kontrolluar ndriçimin dhe volumin e luajtësit</string>
-    <string name="player_gesture_controls_title">Kontrolli i gjesteve të luajtësit</string>
     <string name="brightness_gesture_control_summary">Përdorni gjestet për të kontrolluar ndriçimin e luajtësit</string>
     <string name="brightness_gesture_control_title">Kontrolli i gjesteve të ndriçimit</string>
     <string name="volume_gesture_control_summary">Përdorni gjeste për të kontrolluar volumin e luajtësit</string>
@@ -579,8 +516,6 @@
     <string name="show_higher_resolutions_summary">Vetëm disa pajisje mund të luajnë video 2K/4K</string>
     <string name="show_higher_resolutions_title">Shfaq rezolucione më të larta</string>
     <string name="default_popup_resolution_title">Rezolucioni i parazgjedhur i popup</string>
-    <string name="autoplay_by_calling_app_summary">Luan një video kur NewPipe thirret nga një aplikacion tjetër</string>
-    <string name="download_choose_new_path">Ndryshoni dosjet e shkarkimeve për të patur efekt</string>
     <string name="download_path_audio_dialog_title">Zgjidhni dosjen e shkarkimit për skedarët audio</string>
     <string name="download_path_audio_summary">Skedarët audio të shkarkuara ruhen lëtu</string>
     <string name="download_path_audio_title">Dosja e shkarkimeve audio</string>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Tryk søg for at komme i gang</string>
-    <string name="view_count_text">%1$s visninger</string>
     <string name="upload_date_text">Udgivet %1$s</string>
     <string name="no_player_found">Ingen streamafspiller blev fundet. Vil du installere VLC\?</string>
     <string name="no_player_found_toast">Ingen streamafspiller fundet (du kan installere VLC for at afspille den).</string>
@@ -16,12 +15,9 @@
     <string name="settings">Indstillinger</string>
     <string name="did_you_mean">Mente du: %1$s\?</string>
     <string name="share_dialog_title">Del med</string>
-    <string name="choose_browser">Vælg browser</string>
-    <string name="screen_rotation">rotation</string>
     <string name="use_external_video_player_title">Benyt ekstern videoafspiller</string>
     <string name="use_external_video_player_summary">Fjerner lyd ved NOGLE opløsninger</string>
     <string name="use_external_audio_player_title">Brug ekstern lydafspiller</string>
-    <string name="popup_mode_share_menu_title">NewPipe pop op-tilstand</string>
     <string name="subscribe_button_title">Abonner</string>
     <string name="subscribed_button_title">Abonneret</string>
     <string name="unsubscribe">Afmeld abonnement</string>
@@ -29,10 +25,8 @@
     <string name="subscription_change_failed">Kunne ikke ændre abonnement</string>
     <string name="subscription_update_failed">Kunne ikke opdatere abonnement</string>
     <string name="show_info">Vis info</string>
-    <string name="tab_main">Primær</string>
     <string name="tab_subscriptions">Abonnementer</string>
     <string name="tab_bookmarks">Gemte spillelister</string>
-    <string name="tab_new">Ny fane</string>
     <string name="tab_choose">Vælg fane</string>
     <string name="fragment_feed_title">Nyheder</string>
     <string name="controls_background_title">Baggrund</string>
@@ -44,8 +38,6 @@
     <string name="download_path_audio_title">Downloadmappe for lydfiler</string>
     <string name="download_path_audio_summary">Downloadede lydfiler bliver gemt her</string>
     <string name="download_path_audio_dialog_title">Angiv downloadmappe for lydfiler</string>
-    <string name="autoplay_by_calling_app_title">Afspil automatisk</string>
-    <string name="autoplay_by_calling_app_summary">Afspiller video automatisk når NewPipe bliver åbnet fra en anden app</string>
     <string name="default_resolution_title">Standardopløsning</string>
     <string name="default_popup_resolution_title">Standardopløsning for pop op</string>
     <string name="show_higher_resolutions_title">Vis højere opløsninger</string>
@@ -77,8 +69,6 @@
     <string name="volume_gesture_control_summary">Brug fingerbevægelser til at kontrollere lydstyrke</string>
     <string name="brightness_gesture_control_title">Styr lysstyrken med fingerbevægelser</string>
     <string name="brightness_gesture_control_summary">Brug fingerbevægelser til at justere afspillerens lysstyrke</string>
-    <string name="player_gesture_controls_title">Fingerbevægelsesstyring af afspiller</string>
-    <string name="player_gesture_controls_summary">Brug fingerbevægelser til at justere lysstyrke og lydstyrke</string>
     <string name="show_search_suggestions_title">Søgeforslag</string>
     <string name="show_search_suggestions_summary">Vis forslag når der søges</string>
     <string name="enable_search_history_title">Søgehistorik</string>
@@ -93,21 +83,16 @@
     <string name="show_hold_to_append_summary">Vis et tip når der trykkes på baggrunds- eller pop op-knappen på siden med videodetaljer</string>
     <string name="unsupported_url">Denne webadresse er ikke understøttet</string>
     <string name="default_content_country_title">Standardland for indhold</string>
-    <string name="service_title">Tjeneste</string>
     <string name="content_language_title">Standardsprog for indhold</string>
     <string name="settings_category_player_title">Afspiller</string>
     <string name="settings_category_player_behavior_title">Opførsel</string>
     <string name="settings_category_video_audio_title">Video og lyd</string>
     <string name="settings_category_history_title">Historik og cache</string>
-    <string name="settings_category_popup_title">Pop op</string>
     <string name="settings_category_appearance_title">Udseende</string>
-    <string name="settings_category_other_title">Andet</string>
     <string name="settings_category_debug_title">Fejlretning</string>
     <string name="settings_category_updates_title">Opdateringer</string>
     <string name="background_player_playing_toast">Afspiller i baggrunden</string>
     <string name="popup_playing_toast">Afspiller i pop op-tilstand</string>
-    <string name="background_player_append">Føjet til køen i baggrundsafspilleren</string>
-    <string name="popup_playing_append">Føjet til pop op-afspilningskøen</string>
     <string name="content">Indhold</string>
     <string name="show_age_restricted_content_title">Aldersbegrænset indhold</string>
     <string name="duration_live">LIVE</string>
@@ -115,9 +100,7 @@
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Fejlrapport</string>
     <string name="all">Alle</string>
-    <string name="channel">Kanal</string>
     <string name="channels">Kanaler</string>
-    <string name="playlist">Playliste</string>
     <string name="playlists">Playlister</string>
     <plurals name="videos">
         <item quantity="one">Én video</item>
@@ -126,10 +109,7 @@
     <string name="tracks">Numre</string>
     <string name="users">Brugere</string>
     <string name="yes">Ja</string>
-    <string name="later">Senere</string>
     <string name="disabled">Slået fra</string>
-    <string name="filter">Filtrer</string>
-    <string name="refresh">Genindlæs</string>
     <string name="clear">Slet</string>
     <string name="best_resolution">Bedste opløsning</string>
     <string name="undo">Fortryd</string>
@@ -143,7 +123,6 @@
     <string name="app_update_notification_channel_name">Notifikation om opdatering af app</string>
     <string name="app_update_notification_channel_description">Notifikationer for nye NewPipe-versioner</string>
     <string name="unknown_content">[Ukendt]</string>
-    <string name="toggle_orientation">Skift skærmretning</string>
     <string name="switch_to_background">Skift til baggrund</string>
     <string name="switch_to_popup">Skift til pop op</string>
     <string name="switch_to_main">Skift til hovedafspiller</string>
@@ -166,18 +145,13 @@
     <string name="could_not_load_thumbnails">Kunne ikke indlæse alle miniaturebilleder</string>
     <string name="youtube_signature_deobfuscation_error">Kunne ikke dekryptere URL-signatur for video</string>
     <string name="parsing_error">Kunne ikke analysere websted</string>
-    <string name="light_parsing_error">Kunne ikke analysere webstedet fuldstændig</string>
     <string name="content_not_available">Indhold ikke tilgængeligt</string>
     <string name="could_not_setup_download_menu">Kunne ikke oprette downloadmenu</string>
-    <string name="live_streams_not_supported">Livestreams er endnu ikke understøttet</string>
-    <string name="could_not_get_stream">Kunne ikke hente nogen stream</string>
-    <string name="could_not_load_image">Kunne ikke indlæse billede</string>
     <string name="app_ui_crash">App/brugergrænseflade gik ned</string>
     <string name="player_stream_failure">Kunne ikke afspille denne stream</string>
     <string name="player_unrecoverable_failure">Uoprettelig afspillerfejl opstod</string>
     <string name="player_recoverable_failure">Prøver at genoprette efter afspillerfejl</string>
     <string name="external_player_unsupported_link_type">Eksterne afspillere understøtter ikke disse typer af links</string>
-    <string name="invalid_url_toast">Ugyldig adresse</string>
     <string name="video_streams_empty">Ingen videostreams fundet</string>
     <string name="audio_streams_empty">Ingen lydstreams fundet</string>
     <string name="invalid_directory">Mappen findes ikke</string>
@@ -202,17 +176,11 @@
     <string name="detail_uploader_thumbnail_view_description">Uploaders profilbillede</string>
     <string name="detail_likes_img_view_description">Synes godt om</string>
     <string name="detail_dislikes_img_view_description">Kan ikke lide</string>
-    <string name="use_tor_title">Brug Tor</string>
-    <string name="use_tor_summary">(Eksperimentelt) Send downloadtrafik gennem Tor for øget privatliv (videostreaming endnu ikke understøttet).</string>
-    <string name="report_error">Rapporter en fejl</string>
     <string name="search_no_results">Ingen resultater</string>
     <string name="detail_drag_description">Træk for at omarrangere</string>
-    <string name="err_dir_create">Kan ikke oprette downloadmappe \'%1$s\'</string>
-    <string name="info_dir_created">Oprettede downloadmappe \'%1$s\'</string>
     <string name="video">Video</string>
     <string name="audio">Lyd</string>
     <string name="retry">Prøv igen</string>
-    <string name="storage_permission_denied">Adgang til lager nægtet</string>
     <string name="no_subscribers">Ingen abonnenter</string>
     <string name="subscribers_count_not_available">Antallet af abonnenter er ikke tilgængeligt</string>
     <string name="no_views">Ingen visninger</string>
@@ -222,11 +190,8 @@
     </plurals>
     <string name="no_videos">Ingen videoer</string>
     <string name="start">Start</string>
-    <string name="view">Afspil</string>
     <string name="create">Opret</string>
     <string name="delete">Slet</string>
-    <string name="delete_one">Slet én</string>
-    <string name="delete_all">Slet alle</string>
     <string name="checksum">Kontrolsum</string>
     <string name="dismiss">Afvis</string>
     <string name="rename">Omdøb</string>
@@ -234,9 +199,6 @@
     <string name="msg_name">Filnavn</string>
     <string name="msg_threads">Tråde</string>
     <string name="msg_error">Fejl</string>
-    <string name="msg_server_unsupported">Server ikke understøttet</string>
-    <string name="msg_exists">Filen eksisterer allerede</string>
-    <string name="msg_url_malform">Ugyldig webadresse eller manglende internetforbindelse</string>
     <string name="msg_running">NewPiper downloader</string>
     <string name="msg_running_detail">Tryk for detaljer</string>
     <string name="msg_wait">Vent venligst…</string>
@@ -254,14 +216,9 @@
     <string name="charset_most_special_characters">De fleste specialtegn</string>
     <string name="toast_no_player">Der ingen app installeret der kan afspille denne fil</string>
     <string name="title_activity_about">Om NewPipe</string>
-    <string name="action_settings">Indstillinger</string>
-    <string name="action_about">Om</string>
     <string name="title_licenses">Tredjepartslicenser</string>
     <string name="copyright" formatted="true">© %1$s af %2$s under %3$s</string>
-    <string name="error_unable_to_load_license">Kunne ikke indlæse licens</string>
-    <string name="action_open_website">Åbn websted</string>
     <string name="tab_about">Om</string>
-    <string name="tab_contributors">Bidragsydere</string>
     <string name="tab_licenses">Licenser</string>
     <string name="app_description">Åben letvægtsstreaming på Android.</string>
     <string name="contribution_title">Bidrag til projektet</string>
@@ -278,24 +235,14 @@
     <string name="app_license">NewPipe er copyleft, fri software: Du kan bruge, studere, dele og forbedre den som du vil. Specifikt kan du redistribuere og/eller ændre den under betingelserne i GNU General Public License som udgivet af Free Software Foundation, enten version 3 af licensen eller (efter dit ønske) en vilkårlig senere version.</string>
     <string name="read_full_license">Læs licens</string>
     <string name="title_activity_history">Historik</string>
-    <string name="title_history_search">Søgte</string>
-    <string name="title_history_view">Sete</string>
-    <string name="history_disabled">Historik er slået fra</string>
     <string name="action_history">Historik</string>
-    <string name="history_empty">Historikken er tom</string>
-    <string name="history_cleared">Historik slettet</string>
-    <string name="item_deleted">Element slettet</string>
     <string name="delete_item_search_history">Vil du slette dette element fra søgehistorikken\?</string>
-    <string name="delete_stream_history_prompt">Vil du slette dette element fra visningshistorikken\?</string>
-    <string name="delete_all_history_prompt">Er du sikker på at vil slette alle elementer i historikken\?</string>
     <string name="title_last_played">Sidst afspillet</string>
     <string name="title_most_played">Mest spillede</string>
     <string name="main_page_content">Indhold af hovedsiden</string>
     <string name="main_page_content_summary">Hvilke faner vises på hovedsiden</string>
-    <string name="selection">Udvalg</string>
     <string name="blank_page_summary">Tom side</string>
     <string name="kiosk_page_summary">Kioskside</string>
-    <string name="subscription_page_summary">Abonnementsside</string>
     <string name="channel_page_summary">Kanalside</string>
     <string name="select_a_channel">Vælg en kanal</string>
     <string name="no_channel_subscribed_yet">Ingen kanalabonnementer endnu</string>
@@ -306,7 +253,6 @@
     <string name="could_not_import_all_files">Advarsel: Kunne ikke importere alle filer.</string>
     <string name="override_current_data">Dette vil overskrive dine nuværende indstillinger.</string>
     <string name="import_settings">Vil du også importere indstillinger\?</string>
-    <string name="kiosk">Kiosk</string>
     <string name="trending">Populært lige nu</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nyt og populært</string>
@@ -314,8 +260,6 @@
     <string name="play_queue_stream_detail">Detaljer</string>
     <string name="play_queue_audio_settings">Lydindstillinger</string>
     <string name="hold_to_append">Hold for at føje til kø</string>
-    <string name="start_here_on_main">Start afspilning her</string>
-    <string name="drawer_header_action_paceholder_text">Noget vil dukke op her snart ;D</string>
     <string name="preferred_open_action_settings_title">Foretrukket \'åbn\'-handling</string>
     <string name="video_player">Videoafspiller</string>
     <string name="background_player">Baggrundsafspiller</string>
@@ -324,7 +268,6 @@
     <string name="preferred_player_fetcher_notification_title">Henter info …</string>
     <string name="preferred_player_fetcher_notification_message">Indlæser det ønskede indhold</string>
     <string name="create_playlist">Ny spilleliste</string>
-    <string name="delete_playlist">Slet</string>
     <string name="rename_playlist">Omdøb</string>
     <string name="name">Navn</string>
     <string name="append_playlist">Føj til spilleliste</string>
@@ -360,10 +303,8 @@
     <string name="overwrite_finished_warning">En downloadet fil med dette navn eksisterer allerede</string>
     <string name="download_already_running">Der er en download i gang med dette navn</string>
     <string name="show_error">Vis fejl</string>
-    <string name="label_code">Kode</string>
     <string name="error_file_creation">Filen kan ikke oprettes</string>
     <string name="error_path_creation">Destinationsmappen kan ikke oprettes</string>
-    <string name="error_permission_denied">Adgang nægtet af systemet</string>
     <string name="error_ssl_exception">Sikker forbindelse fejlede</string>
     <string name="error_unknown_host">Kunne ikke finde serveren</string>
     <string name="error_connect_host">Kan ikke forbinde til serveren</string>
@@ -382,10 +323,8 @@
         <item quantity="other">%s abonnenter</item>
     </plurals>
     <string name="pause">Pause</string>
-    <string name="feed_page_summary">Feed-side</string>
     <string name="subscriptions_import_unsuccessful">Kunne ikke importere abonnementer</string>
     <string name="subscriptions_export_unsuccessful">Kunne ikke eksportere abonnementer</string>
-    <string name="user_report">Brugerrapport</string>
     <string name="conferences">Konferencer</string>
     <string name="start_here_on_background">Start her når i baggrunden</string>
     <string name="start_here_on_popup">Start her ved ny pop op</string>
@@ -398,11 +337,9 @@
     <string name="unbookmark_playlist">Fjern bogmærke</string>
     <string name="playlist_add_stream_success">Føjet til spillelisten</string>
     <string name="playlist_thumbnail_change_success">Miniaturebillede for spilleliste ændret.</string>
-    <string name="playlist_delete_failure">Kunne ikke slette spilleliste.</string>
     <string name="caption_setting_description">Ændr undertekststørrelse og baggrundsstil. Kræver genstart af appen for at træde i kraft.</string>
     <string name="enable_leak_canary_summary">Monitorering for hukommelseslækager kan få appen til ikke at svare under heap dumping</string>
     <string name="enable_disposed_exceptions_title">Rapporter out-of-lifecycle-fejl</string>
-    <string name="import_export_title">Importer/eksporter</string>
     <string name="import_title">Importer</string>
     <string name="import_from">Importer fra</string>
     <string name="import_ongoing">Importerer …</string>
@@ -429,7 +366,6 @@
     <string name="minimize_on_exit_none_description">Ingen</string>
     <string name="minimize_on_exit_background_description">Minimer til baggrundsafspiller</string>
     <string name="minimize_on_exit_popup_description">Minimer til pop op-afspiller</string>
-    <string name="switch_view">Skift visning</string>
     <string name="app_update_notification_content_title">NewPipe-opdatering tilgængelig!</string>
     <string name="paused">sat på pause</string>
     <string name="queued">sat i kø</string>
