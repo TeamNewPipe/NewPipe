@@ -745,4 +745,6 @@
         <item quantity="other">%s завантажень завершено</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Проведіть пальцем по елементах, щоб вилучити їх</string>
+    <string name="start_main_player_fullscreen_summary">Не запускати відео в мініпрогравачі, а перемикати в повноекранний режим безпосередньо, якщо автообертання заблоковано. Ви все одно можете отримати доступ до мініпрогравача, вийшовши з повноекранного режиму.</string>
+    <string name="start_main_player_fullscreen_title">Запустити основний програвач у повноекранному режимі</string>
 </resources>
