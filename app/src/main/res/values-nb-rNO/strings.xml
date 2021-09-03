@@ -723,4 +723,11 @@
     <string name="remote_search_suggestions">Søkeforslag annensteds fra</string>
     <string name="local_search_suggestions">Lokale søkeforslag</string>
     <string name="mark_as_watched">Marker som sett</string>
+    <string name="start_main_player_fullscreen_summary">Ikke start videoer i minispilleren, men gå til fullskjermsmodus direkte, hvis auto-rotering er låst. Du har fremdeles tilgang til minispilleren ved å avslutte fullskjermsvisning.</string>
+    <string name="show_image_indicators_summary">Vis Picasso-fargede bånd på toppen av bilder for å indikere kilde: Rød for nettverk, blå for disk, og grønn for minne</string>
+    <string name="detail_heart_img_view_description">Hjertemerket av skaper</string>
+    <string name="error_show_channel_details">Kunne ikke vise kanaldetaljer</string>
+    <string name="show_image_indicators_title">Vis bildeindikatorer</string>
+    <string name="main_page_content_swipe_remove">Dra elementer for å fjerne dem</string>
+    <string name="start_main_player_fullscreen_title">Start hovedspiller i fullskjerm</string>
 </resources>
