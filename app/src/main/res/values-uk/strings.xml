@@ -341,7 +341,8 @@
 \n3. Позначте пункт «YouTube і YouTube Music», потім виберіть тип «підписки»
 \n4. Натисніть «Наступний крок» і «Експортувати дані»
 \n5. Натисніть кнопку «Завантажити», коли вона з\'явиться
-\n6. З завантаженого ZIP-архіву розпакуйте JSON-файл (зазвичай знаходиться за шляхом «YouTube і YouTube Music/Підписки/subscriptions.json\") і імпортуйте його сюди.</string>
+\n6. Натисніть на ІМПОРТУВАТИ ФАЙЛ нижче і виберіть завантажений zip-файл
+\n7. [Якщо не вдалося імпортувати zip] Видобудьте файл .csv (зазвичай у розділі «YouTube і YouTube Music/Підписки/subscriptions.csv»), натисніть ІМПОРТУВАТИ ФАЙЛ нижче та виберіть видобутий файл csv</string>
     <string name="import_soundcloud_instructions">Імпортуйте профіль SoundCloud, вписавши або URL, або ваш ID:
 \n
 \n1. Увімкніть режим «режим комп\'ютера» у браузері (сайт не підтримується мобільними пристроями)
@@ -731,4 +732,17 @@
     <string name="show_image_indicators_title">Показати індикатори зображень</string>
     <string name="remote_search_suggestions">Віддалені пропозиції пошуку</string>
     <string name="local_search_suggestions">Локальні пошукові пропозиції</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Видалено %1$s завантаження</item>
+        <item quantity="few">Видалено %1$s завантаження</item>
+        <item quantity="many">Видалено %1$s завантажень</item>
+        <item quantity="other">Видалено %1$s завантажень</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Завантаження завершено</item>
+        <item quantity="few">%s завантаження завершено</item>
+        <item quantity="many">%s завантажень завершено</item>
+        <item quantity="other">%s завантажень завершено</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">Проведіть пальцем по елементах, щоб вилучити їх</string>
 </resources>

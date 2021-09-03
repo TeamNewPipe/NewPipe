@@ -300,7 +300,7 @@
     <string name="resize_fit">Tilpass</string>
     <string name="resize_fill">Fyll</string>
     <string name="resize_zoom">Forstørr</string>
-    <string name="use_inexact_seek_title">Bruk raskt unøyaktig blafring</string>
+    <string name="use_inexact_seek_title">Bruk rask unøyaktig blafring</string>
     <string name="settings_category_debug_title">Feilretting</string>
     <string name="file">Fil</string>
     <string name="invalid_directory">Ingen slik mappe</string>
@@ -479,9 +479,8 @@
     <string name="pause_downloads">Sett nedlastinger på pause</string>
     <string name="downloads_storage_ask_title">Spør om hvor ting skal lastes ned til</string>
     <string name="downloads_storage_ask_summary">Du vil bli spurt om hvor hver nedlasting skal plasseres</string>
-    <string name="downloads_storage_use_saf_title">Bruk SAF</string>
-    <string name="downloads_storage_use_saf_summary">\"Lagringstilgangsrammeverk\" (SAF) tillater nedlasting til eksternt SD-kort.
-\nMerk: Noen enheter er ikke kompatible</string>
+    <string name="downloads_storage_use_saf_title">Bruk systemmappevelger (SAF)</string>
+    <string name="downloads_storage_use_saf_summary">«Lagringstilgangsrammeverk» (SAF) tillater nedlasting til eksternt SD-kort.</string>
     <string name="clear_playback_states_title">Slett avspillingsposisjoner</string>
     <string name="clear_playback_states_summary">Sletter alle avspillingsposisjoner</string>
     <string name="delete_playback_states_alert">Slett alle avspillingsposisjoner\?</string>
@@ -712,4 +711,16 @@
     <string name="low_quality_smaller">Lav kvalitet (mindre)</string>
     <string name="high_quality_larger">Høy kvalitet (større)</string>
     <string name="comments_are_disabled">Kommentarer er avskrudd</string>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Nedlasting fullført</item>
+        <item quantity="other">%s nedlastinger fullført</item>
+    </plurals>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Slettet én nedlastning</item>
+        <item quantity="other">Slettet %1$s nedlastninger</item>
+    </plurals>
+    <string name="loading_channel_details">Laster inn kanaldetaljer …</string>
+    <string name="remote_search_suggestions">Søkeforslag annensteds fra</string>
+    <string name="local_search_suggestions">Lokale søkeforslag</string>
+    <string name="mark_as_watched">Marker som sett</string>
 </resources>

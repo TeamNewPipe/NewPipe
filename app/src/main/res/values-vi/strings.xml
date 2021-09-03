@@ -710,4 +710,10 @@
     <string name="show_image_indicators_title">Hiện dấu chỉ hình ảnh</string>
     <string name="remote_search_suggestions">Đề xuất tìm kiếm trên mạng</string>
     <string name="local_search_suggestions">Đề xuất tìm kiếm cục bộ</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="other">Đã xóa %1$s lượt tải xuống</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="other">%s lượt tải xuống đã hoàn tất</item>
+    </plurals>
 </resources>

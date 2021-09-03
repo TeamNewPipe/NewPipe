@@ -2,12 +2,13 @@
 <resources>
     <string name="import_youtube_instructions">Importa sas iscritziones dae Google takeout:
 \n
-\n 1. Bae a custu URL: %1$s
-\n 2. Intra cando ti l\'ant a pedire
-\n 3. Incarca in \"Totu sos datos incluidos\", a pustis in \"Boga sa seletzione a totus\" e a pustis galu ischerta petzi \"iscritziones\" e incarca \"AB\"
+\n1. Bae a custu URL: %1$s
+\n2. Intra cando ti l\'ant a pedire
+\n3. Incarca in \"Totu sos datos incluidos\", a pustis in \"Boga sa seletzione a totus\" e a pustis galu ischerta petzi \"iscritziones\" e incarca \"AB\"
 \n4. Incarca in \"Passu imbeniente\" e a pustis in \"Crea un\'esportatzione\"
-\n5. Cando aparit, incarca in su butone \"Iscarrigamentu\" e
-\n6. Dae s\'archìviu zip iscarrigadu estrai su documentu .json (de sòlitu tenet su nùmene\"\"YouTube and YouTube Music/subscriptions/subscriptions.json\") e importa·lu inoghe.</string>
+\n5. Cando aparit, incarca in su butone \"Iscarrigamentu\"
+\n6. Incarca in IMPORTA SU DOCUMENTU in suta e ischerta su documentu zip iscarrigadu
+\n6. [Si s\'importatzione fallit] Estrae su documentu .csv (de sòlitu tenet su nùmene\"\"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), incarca in IMPORTA SU DOCUMENTU in suta e ischerta su documentu csv estratu</string>
     <string name="subscriptions_export_unsuccessful">Esportatzione de s\'iscritzione fallida</string>
     <string name="subscriptions_import_unsuccessful">Importatzione de s\'iscritzione fallida</string>
     <string name="previous_export">Esportatzione anteposta</string>
@@ -720,4 +721,13 @@
     <string name="show_image_indicators_title">Ammustra sos indicadores de immàgines</string>
     <string name="remote_search_suggestions">Impòsitos de chirca remota</string>
     <string name="local_search_suggestions">Impòsitos de chirca locales</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s iscarrigamentu iscantzelladu</item>
+        <item quantity="other">%1$s iscarrigamentos iscantzellados</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Iscarrigamentu acabadu</item>
+        <item quantity="other">%s iscarrigamentos acabados</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">Trìsina sos elementos pro los bogare</string>
 </resources>

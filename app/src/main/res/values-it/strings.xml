@@ -333,7 +333,8 @@
 \n3. Premi \"Tutti i dati inclusi\", \"Deseleziona tutto\", seleziona solo \"iscrizioni\" e premi \"OK\"
 \n4. Premi \"Passaggio successivo\" e poi \"Crea esportazione\"
 \n5. Premi il pulsante \"Scarica\" quando compare
-\n6. Dall\'archivio ZIP scaricato, estrai il file JSON (solitamente in \"YouTube and YouTube Music/subscriptions/subscriptions.json\") e importalo qui.</string>
+\n6. Premi IMPORTA FILE qui sotto e seleziona il file ZIP scaricato
+\n7. [Se l\'importazione fallisce] Estrai il file CSV (solitamente in \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), premi IMPORTA FILE qui sotto e seleziona il file CSV estratto</string>
     <string name="import_soundcloud_instructions">Importa un profilo SoundCloud inserendo l\'URL o il tuo ID:
 \n
 \n1. Abilitare la «modalità desktop» del browser (il sito non è disponibile per i dispositivi mobili)
@@ -720,4 +721,13 @@
     <string name="show_image_indicators_title">Mostra indicatori immagine</string>
     <string name="remote_search_suggestions">Suggerimenti di ricerca remoti</string>
     <string name="local_search_suggestions">Suggerimenti di ricerca locali</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s download eliminato</item>
+        <item quantity="other">%1$s download eliminati</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Download completato</item>
+        <item quantity="other">%s download completati</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">Scorri gli elementi per rimuoverli</string>
 </resources>

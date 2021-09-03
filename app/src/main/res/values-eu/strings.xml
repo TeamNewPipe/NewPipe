@@ -64,7 +64,7 @@
     <string name="player_gesture_controls_title">Erreproduzigailuaren keinu bidezko kontrola</string>
     <string name="player_gesture_controls_summary">Erabili keinuak erreproduzigailuaren distira eta bolumena kontrolatzeko</string>
     <string name="show_search_suggestions_title">Bilaketa-iradokizunak</string>
-    <string name="show_search_suggestions_summary">Erakutsi iradokizunak bilatzean</string>
+    <string name="show_search_suggestions_summary">Bilatzean erakutsi beharreko iradokizunak aukeratu</string>
     <string name="settings_category_popup_title">Laster-leihoa</string>
     <string name="settings_category_other_title">Besteak</string>
     <string name="popup_playing_toast">Laster-leiho moduan erreproduzitzen</string>
@@ -492,7 +492,7 @@
         <item quantity="other">%s entzule</item>
     </plurals>
     <string name="downloads_storage_use_saf_title">Erabili sistemaren karpeta hautatzailea (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">\'Biltegiaren Sarrera Framework\'ak kanpoko SD txartel betera deskargatzea ahalbidetzen du.</string>
+    <string name="downloads_storage_use_saf_summary">\'Biltegiaren Sarrera Framework\'ak kanpoko SD txartel betera deskargatzea ahalbidetzen du</string>
     <string name="clear_playback_states_title">Ezabatu erreprodukziorako kokapenak</string>
     <string name="clear_playback_states_summary">Erreprodukziorako kokapen guztiak ezabatzen ditu</string>
     <string name="delete_playback_states_alert">Ezabatu erreprodukziorako kokapen guztiak\?</string>
@@ -699,7 +699,7 @@
     <string name="metadata_privacy">Pribatutasuna</string>
     <string name="service_provides_reason">%s arrazoi hau ematen du:</string>
     <string name="account_terminated">Kontua ezabatu da</string>
-    <string name="feed_toggle_show_played_items">Erreproduzitutako elementuak erakutsi</string>
+    <string name="feed_toggle_show_played_items">Bistako elementuak erakustea</string>
     <string name="feed_load_error_fast_unknown">Jario azkarrak ez du honi buruz informazio gehiagorik ematen.</string>
     <string name="metadata_age_limit">Adin muga</string>
     <string name="metadata_thumbnail_url">Miniaturaren URL-a</string>
@@ -712,4 +712,20 @@
     <string name="high_quality_larger">Kalitate handia (handiagoa)</string>
     <string name="seekbar_preview_thumbnail_title">Seekbarren miniaturen aurrebista</string>
     <string name="comments_are_disabled">Iruzkinak desaktibatuta daude</string>
+    <string name="loading_channel_details">Kanalaren xehetasunak kargatzen…</string>
+    <string name="error_show_channel_details">Errorea kanalaren xehetasunak erakustean</string>
+    <string name="detail_heart_img_view_description">Sortzaileak baloratua</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Deskarga %1$s ezabatuta</item>
+        <item quantity="other">%1$s deskarga ezabatuak</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Deskarga amaituta</item>
+        <item quantity="other">%s Deskarga amaituta</item>
+    </plurals>
+    <string name="show_image_indicators_summary">Irudien gainean Picasso koloretako zintak erakutsi, jatorria adieraziz: gorria sarerako, urdina diskorako eta berdea memoriarako</string>
+    <string name="show_image_indicators_title">Erakutsi irudi-adierazleak</string>
+    <string name="remote_search_suggestions">Urruneko bilaketaren iradokizunak</string>
+    <string name="local_search_suggestions">Tokiko bilaketa-iradokizunak</string>
+    <string name="mark_as_watched">Ikusi gisa markatu</string>
 </resources>

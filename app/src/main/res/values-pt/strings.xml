@@ -320,14 +320,15 @@
     <string name="previous_export">Exportação anterior</string>
     <string name="subscriptions_import_unsuccessful">Não foi possível importar as subscrições</string>
     <string name="subscriptions_export_unsuccessful">Não foi possível exportar as subscrições</string>
-    <string name="import_youtube_instructions">Importar subscrições YouTube do Google Takeout:
+    <string name="import_youtube_instructions">Importar subscrições do YouTube do Google Takeout:
 \n
-\n1. Aceda a este URL: %1$s
-\n2. Inicie a sessão
-\n3. Clique em \"Todos os dados incluídos\", depois em \"Desmarcar tudo\", selecione \"Subscrições\" e clique em \"OK\".
+\n1. Vá para este URL: %1$s
+\n2. Faça o login quando solicitado
+\n3. Clique em \"Todos os dados incluídos\", depois em \"Desmarcar todos\", depois selecione apenas \"subscrições\" e clique em \"OK\".
 \n4. Clique em \"Próximo passo\" e depois em \"Criar exportação\".
-\n5. Clique no botão \"Descarregar\"
-\n6. A partir do zip descarregado extraia o ficheiro .json (normalmente em \"YouTube e YouTube Music/subscriptions/subscriptions.json\") e importe-o aqui.</string>
+\n5. Clique no botão \"Descarregar\" após aparecer
+\n6. Clique em IMPORT FILE abaixo e selecione o ficheiro zip baixado
+\n7. [Se a importação do zip falhar] Extraia o ficheiro .csv (geralmente em \"YouTube e YouTube Music/subscriptions/subscriptions.csv\"), clique em IMPORT FILE abaixo e selecione o ficheiro csv extraído</string>
     <string name="import_soundcloud_instructions">Importe o seu perfil SoundCloud digitando o URL ou a ID.:
 \n
 \n1. Ative o modo desktop do seu navegador web (o site não está disponível para aparelhos móveis)
@@ -720,4 +721,13 @@
     <string name="show_image_indicators_title">Mostrar indicadores de imagem</string>
     <string name="remote_search_suggestions">Sugestões de pesquisa remotas</string>
     <string name="local_search_suggestions">Sugestões de pesquisa locais</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s descarga apagada</item>
+        <item quantity="other">%1$s descargas apagadas</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Descarga concluída</item>
+        <item quantity="other">%s descargas concluídas</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">Deslizar itens para removê-los</string>
 </resources>

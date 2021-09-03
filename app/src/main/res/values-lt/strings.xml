@@ -730,4 +730,15 @@
     <string name="show_image_indicators_title">Rodyti vaizdo indikatorius</string>
     <string name="remote_search_suggestions">Nuotolinės paieškos pasiūlymai</string>
     <string name="local_search_suggestions">Vietinės paieškos pasiūlymai</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Ištrintas %1$s atsiuntimas</item>
+        <item quantity="few">Ištrinti %1$s atsiuntimai</item>
+        <item quantity="other">Ištrinta %1$s atsiuntimų</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Atsiuntimas baigtas</item>
+        <item quantity="few">%s atsiuntimai baigti</item>
+        <item quantity="other">%s atsiuntimų baigta</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">Perbraukite elementus, kad juos pašalintumėte</string>
 </resources>

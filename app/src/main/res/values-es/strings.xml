@@ -328,14 +328,15 @@
     <string name="previous_export">Exportación anterior</string>
     <string name="subscriptions_import_unsuccessful">No se pudo importar suscripciones</string>
     <string name="subscriptions_export_unsuccessful">No se pudo exportar suscripciones</string>
-    <string name="import_youtube_instructions">Importe suscripciones de YouTube descargando el archivo de exportación:
+    <string name="import_youtube_instructions">Importe sus suscripciones de YouTube desde Google Takeout
 \n
 \n1. Vaya a esta URL: %1$s
-\n2. Inicie sesión cuando se le pida
-\n3. Haga click en \"Todos los datos inlcluídos\", después en \"Deseleccionar todo\", solamente elija \"Subscripciones\" y pulse \"OK\"
-\n4. Clickee en \"Siguiente\" y después en \"Crear exportación\"
-\n5. Clickee en el botón \"Descargar\" cuando aparezca
-\n6. Del archivo .zip descargado extraiga el .json (normalmente debajo de \"Youtube y Youtube Music/subscriptions/subscriptions.json\")e importelo aquí.</string>
+\n2. Inicie sesión si es requerido
+\n3. Haga clic en \"Se incluyeron todos los datos de Youtube\", después en \"Desmarcar todo\", luego seleccione solamente \"suscripciones\" y haga clic en \"Aceptar\"
+\n4. Haga clic en \"Paso siguiente\" y luego en \"Crear exportación\"
+\n5. Haga clic en el botón de \"Descargar\" una vez que aparezca
+\n6. Haga clic en el botón IMPORTAR ARCHIVO que se muestra abajo y seleccione el archivo zip descargado
+\n7. [En caso de que la importación falle] Extraiga el archivo .csv (generalmente dentro de \"Youtube y Youtube Music/suscripciones/suscripciones.csv\"), haga clic en IMPORTAR ARCHIVO y seleccione el archivo csv extraído anteriormente</string>
     <string name="import_soundcloud_instructions">Importe un perfil de SoundCloud escribiendo la URL o su ID:
 \n
 \n1. Active el «modo escritorio» en un navegador web (el sitio no está disponible para dispositivos móviles)
@@ -723,4 +724,13 @@
     <string name="show_image_indicators_title">Mostrar indicadores de imagen</string>
     <string name="remote_search_suggestions">Sugerencias de búsqueda remota</string>
     <string name="local_search_suggestions">Sugerencias de búsqueda local</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Descarga %1$s eliminada</item>
+        <item quantity="other">Descargas %1$s eliminadas</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Descarga finalizada</item>
+        <item quantity="other">%s descargas finalizadas</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">Desliza los elementos para removerlos</string>
 </resources>

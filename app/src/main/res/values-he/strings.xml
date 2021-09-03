@@ -321,8 +321,9 @@
 \n2. להיכנס אם נתבקשת
 \n3. ללחוץ על „All data included”, ואז על „Deselect all”, לאחר מכן לבחור רק את „subscriptions” וללחוץ על „OK”
 \n4. ללחוץ על „Next step” ואז על „Create export”
-\n5. ללחוץ על כפתור ה־„Download” כשהוא מופיע ואז
-\n6. לחלץ את קובץ ה־‎.json מתוך ה־zip (בדרך כלל תחת „YouTube and YouTube Music/subscriptions/subscriptions.json”) ולייבא אותו כאן.</string>
+\n5. ללחוץ על כפתור ה־„Download” כשהוא מופיע
+\n6. ללחוץ על „ייבוא קובץ” להלן ולבחור בקובץ ה־zip שהורדת
+\n7. (אם ייבוא ה־zip נכשל) יש לחלץ את קובץ ה־‎.csv (בדרך כלל תחת „YouTube and YouTube Music/subscriptions/subscriptions.csv”), ללחוץ על „ייבוא קובץ” להלן וללחוץ על קובץ ה־csv שחולץ</string>
     <string name="playback_tempo">קצב</string>
     <string name="use_inexact_seek_title">שימוש בחיפוש מהיר ולא מדויק</string>
     <string name="use_inexact_seek_summary">חיפוש גס מאפשר לנגן לחפש נקודת זמן מהר יותר, ברמת דיוק נמוכה יותר. חיפוש של 5, 15 או 25 שניות לא עובד עם ההגדרה הזאת</string>
@@ -740,4 +741,17 @@
     <string name="show_image_indicators_title">הצגת מחווני תמונות</string>
     <string name="remote_search_suggestions">הצעות חיפוש מרוחקות</string>
     <string name="local_search_suggestions">הצעות חיפוש מקומיות</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">הורדה אחת נמחקה</item>
+        <item quantity="two">%1$s הורדות נמחקו</item>
+        <item quantity="many">%1$s הורדות נמחקו</item>
+        <item quantity="other">%1$s הורדות נמחקו</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">הורדה הסתיימה</item>
+        <item quantity="two">%s הורדות הסתיימו</item>
+        <item quantity="many">%s הורדות הסתיימו</item>
+        <item quantity="other">%s הורדות הסתיימו</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">ניתן להחליק פריטים להסרתם</string>
 </resources>

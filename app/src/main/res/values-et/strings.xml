@@ -265,10 +265,10 @@
     <string name="action_history">Ajalugu</string>
     <string name="history_empty">Ajalugu on tühi</string>
     <string name="history_cleared">Ajalugu kustutati</string>
-    <string name="item_deleted">Element kustutati</string>
-    <string name="delete_item_search_history">Kas kustutada see kirje otsinguajaloost?</string>
-    <string name="delete_stream_history_prompt">Kas kustutada see kirje vaatamiste ajaloost?</string>
-    <string name="delete_all_history_prompt">Kas kustutada kõik kirjed ajaloost?</string>
+    <string name="item_deleted">Element on kustutatud</string>
+    <string name="delete_item_search_history">Kas kustutame selle kirje otsinguajaloost\?</string>
+    <string name="delete_stream_history_prompt">Kas kustutame selle kirje vaatamiste ajaloost\?</string>
+    <string name="delete_all_history_prompt">Kas sa oled kindel, et soovid kustutada ajaloost kõik kirjed\?</string>
     <string name="title_last_played">Viimati esitatud</string>
     <string name="title_most_played">Enim esitatud</string>
     <string name="main_page_content">Avalehe sisu</string>
@@ -346,7 +346,8 @@
 \n3. Klõpsa \"Kõigi andmetega\", vali \"Tühista kõik\", vali ainult \"Tellimused\" ja klõpsa \"OK\".
 \n4. Klõpsa \"Järgmine samm\" ja seejärel \"Loo eksport\".
 \n5. Klõpsa nupul \"Laadi alla\" siis, kui ta ilmub.
-\n6. Alla laaditud väljavõtte ZIP failist paki lahti JSON fail (tavaliselt on see fail \"YouTube ja YouTube Muusika/tellimused/tellimused.json\" või \"YouTube and YouTube Music/subscriptions/subscriptions.json\") ja impordi see siia.</string>
+\n6. Klõpsi siitsamast \"Impordi fail\" linki ning vali allalaaditud zip fail.
+\n7. Kui zip faili importimine ei toimi, siis paki .csv fail lahti (tavaliselt on see fail \"YouTube ja YouTube Muusika/tellimused/tellimused\" või \"YouTube and YouTube Music/subscriptions/subscriptions\") ja klõpsi siitsamast \"Impordi fail\" linki ning vali lahtipakitud csv fail.</string>
     <string name="import_network_expensive_warning">See toiming võib põhjustada suurt võrguliiklust.
 \n
 \nKas jätkata?</string>
@@ -720,4 +721,13 @@
     <string name="show_image_indicators_title">Näita piltide allikat</string>
     <string name="remote_search_suggestions">Kaugotsingu soovitused</string>
     <string name="local_search_suggestions">Kohaliku otsingu soovitused</string>
+    <string name="main_page_content_swipe_remove">Kirje eemaldamiseks viipa</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Kustutasin %1$s allalaadimise</item>
+        <item quantity="other">Kustutasin %1$s allalaadimist</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Allalaadimine lõppes</item>
+        <item quantity="other">%s allalaadimist lõppesid</item>
+    </plurals>
 </resources>

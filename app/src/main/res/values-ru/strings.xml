@@ -342,7 +342,8 @@
 \n3. Отметьте пункт \"YouTube и YouTube Music\", затем выберите тип \"подписки\"
 \n4. Нажмите \"Далее\" и \"Создать экспорт\"
 \n5. Нажмите кнопку \"Скачать\", когда она появится
-\n6. Из скачанного ZIP-архива распакуйте JSON-файл (обычно находится по пути \"YouTube и YouTube Music/подписки/подписки.json\") и импортируйте его здесь.</string>
+\n6. Нажмите ИМПОРТ ФАЙЛА внизу и выберите скачанный ZIP-архив
+\n7. [Если импортировать ZIP-файл не удалось] Из скачанного ZIP-архива распакуйте CSV-файл (обычно это \"YouTube и YouTube Music/подписки/подписки.csv\"), нажмите ИМПОРТ ФАЙЛА и выберите этот CSV-файл</string>
     <string name="import_soundcloud_instructions">Импортируйте профиль SoundCloud, введя его URL или ID: 
 \n 
 \n1. Включите режим \"Полная версия сайта\" в браузере.
@@ -732,4 +733,17 @@
     <string name="show_image_indicators_title">Цветные метки на изображениях</string>
     <string name="remote_search_suggestions">Серверные предложения поиска</string>
     <string name="local_search_suggestions">Локальные предложения поиска</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Удалена %1$s загрузка</item>
+        <item quantity="few">Удалено %1$s загрузки</item>
+        <item quantity="many">Удалено %1$s загрузок</item>
+        <item quantity="other">Удалено %1$s загрузок</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">%s загрузка завершено</item>
+        <item quantity="few">%s загрузки завершено</item>
+        <item quantity="many">%s загрузок завершено</item>
+        <item quantity="other">%s загрузок завершено</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">Удалять элементы смахиванием</string>
 </resources>

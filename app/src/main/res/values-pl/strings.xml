@@ -12,8 +12,8 @@
     <string name="share_dialog_title">Udostępnij</string>
     <string name="choose_browser">Wybierz przeglądarkę</string>
     <string name="screen_rotation">obrót</string>
-    <string name="use_external_video_player_title">Użyj zewnętrznego odtwarzacza wideo</string>
-    <string name="use_external_audio_player_title">Użyj zewnętrznego odtwarzacza audio</string>
+    <string name="use_external_video_player_title">Używaj zewnętrznego odtwarzacza wideo</string>
+    <string name="use_external_audio_player_title">Używaj zewnętrznego odtwarzacza audio</string>
     <string name="view_count_text">%1$s wyświetleń</string>
     <string name="upload_date_text">Opublikowano %1$s</string>
     <string name="no_player_found">Nie znaleziono odtwarzacza strumieni. Zainstalować VLC\?</string>
@@ -137,7 +137,7 @@
     <string name="controls_popup_title">Tryb okienkowy</string>
     <string name="best_resolution">Najlepsza rozdzielczość</string>
     <string name="settings_category_downloads_title">Pobieranie</string>
-    <string name="settings_file_replacement_character_summary">Niepoprawne znaki są zamienione na tę wartość</string>
+    <string name="settings_file_replacement_character_summary">Nieprawidłowe znaki są zastępowane tą wartością</string>
     <string name="charset_letters_and_digits">Litery i cyfry</string>
     <string name="title_activity_about">O NewPipe</string>
     <string name="action_settings">Ustawienia</string>
@@ -312,7 +312,7 @@
     <string name="enable_leak_canary_summary">Monitorowanie wycieków pamięci może powodować niestabilność aplikacji podczas zrzutu pamięci</string>
     <string name="enable_disposed_exceptions_title">Zgłoś błędy spoza cyklu życia</string>
     <string name="enable_disposed_exceptions_summary">Wymuś raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności</string>
-    <string name="use_inexact_seek_title">Użyj szybkiego, niedokładnego przewijania</string>
+    <string name="use_inexact_seek_title">Używaj szybkiego, niedokładnego przewijania</string>
     <string name="use_inexact_seek_summary">Niedokładne przewijanie umożliwia szybsze przewijanie ze zmniejszoną dokładnością. Przewijanie o 5, 15 lub 25 sekund nie działa w tym przypadku</string>
     <string name="download_thumbnail_title">Wczytuj miniatury</string>
     <string name="download_thumbnail_summary">Wyłącz, aby nie wczytywać miniatur, oszczędzając dane i zużycie pamięci. Zmiana tej opcji czyści pamięć podręczną obrazów</string>
@@ -334,7 +334,7 @@
     <string name="export_to">Eksportuj do</string>
     <string name="import_ongoing">Importowanie…</string>
     <string name="export_ongoing">Eksportowanie…</string>
-    <string name="import_file_title">Importuj z pliku</string>
+    <string name="import_file_title">Importuj plik</string>
     <string name="previous_export">Poprzedni eksport</string>
     <string name="subscriptions_import_unsuccessful">Nie udało się zaimportować subskrypcji</string>
     <string name="subscriptions_export_unsuccessful">Nie udało się wyeksportować subskrypcji</string>
@@ -345,7 +345,8 @@
 \n3. Naciśnij „Wybrano wszystkie dane z YouTube”, następnie „Odznacz wszystkie”, potem zaznacz tylko „subskrypcje” i naciśnij „OK”.
 \n4. Naciśnij „Następny krok”, a następnie „Utwórz eksport”.
 \n5. Naciśnij przycisk „Pobierz”, gdy się pojawi.
-\n6. Z pobranego archiwum ZIP wypakuj plik subskrypcje.json (powinien on znajdować się w katalogu „YouTube i YouTube Music/subskrypcje”) i zaimportuj go tutaj.</string>
+\n6. Naciśnij IMPORTUJ PLIK poniżej i wybierz pobrany plik ZIP.
+\n7. [Jeśli importowanie pliku ZIP nie powiedzie się] Wypakuj plik subskrypcje.csv (powinien on znajdować się w katalogu „YouTube i YouTube Music/subskrypcje.csv”), naciśnij IMPORTUJ PLIK poniżej i wybierz wypakowany plik CSV.</string>
     <string name="import_network_expensive_warning">Ta operacja może wygenerować duże użycie danych.
 \n
 \nCzy chcesz kontynuować?</string>
@@ -386,12 +387,12 @@
     <string name="accept">Akceptuj</string>
     <string name="decline">Odrzuć</string>
     <string name="limit_data_usage_none_description">Bez limitu</string>
-    <string name="limit_mobile_data_usage_title">Ogranicz rozdzielczość podczas korzystania z danych mobilnych</string>
+    <string name="limit_mobile_data_usage_title">Ograniczaj rozdzielczość podczas korzystania z danych mobilnych</string>
     <string name="channels">Kanały</string>
     <string name="playlists">Playlisty</string>
     <string name="tracks">Utwory</string>
     <string name="users">Użytkownicy</string>
-    <string name="skip_silence_checkbox">Przewiń do przodu podczas ciszy</string>
+    <string name="skip_silence_checkbox">Przewijaj do przodu podczas ciszy</string>
     <string name="playback_step">Krok</string>
     <string name="playback_reset">Zresetuj</string>
     <string name="minimize_on_exit_title">Minimalizuj przy przełączaniu aplikacji</string>
@@ -735,4 +736,17 @@
     <string name="show_image_indicators_title">Pokaż wskaźniki obrazu</string>
     <string name="remote_search_suggestions">Zdalne podpowiedzi wyszukiwania</string>
     <string name="local_search_suggestions">Lokalne podpowiedzi wyszukiwania</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Usunięto %1$s pobranie</item>
+        <item quantity="few">Usunięto %1$s pobrania</item>
+        <item quantity="many">Usunięto %1$s pobrań</item>
+        <item quantity="other">Usunięto %1$s pobrań</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Pobieranie ukończone</item>
+        <item quantity="few">%s ukończone pobrania</item>
+        <item quantity="many">%s ukończonych pobrań</item>
+        <item quantity="other">%s ukończonych pobrań</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">Przesuń w bok elementy, aby je usunąć</string>
 </resources>

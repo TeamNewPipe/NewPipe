@@ -135,7 +135,7 @@
     <string name="player_gesture_controls_title">Ovládání přehrávače gesty</string>
     <string name="player_gesture_controls_summary">Používat gesta pro ovládání jasu a hlasitosti přehrávače</string>
     <string name="show_search_suggestions_title">Návrhy vyhledávání</string>
-    <string name="show_search_suggestions_summary">Zobrazovat návrhy při vyhledávání</string>
+    <string name="show_search_suggestions_summary">Zvolit návrhy k zobrazení při vyhledávání</string>
     <string name="enable_search_history_title">Historie vyhledávání</string>
     <string name="enable_search_history_summary">Hledané výrazy lokálně uchovávat</string>
     <string name="enable_watch_history_title">Historie sledování</string>
@@ -724,4 +724,20 @@
     <string name="comments_are_disabled">Komentáře jsou vypnuty</string>
     <string name="detail_heart_img_view_description">Srdíčko od tvůrce</string>
     <string name="mark_as_watched">Označit jako zhlédnuté</string>
+    <string name="loading_channel_details">Načítám podrobnosti kanálu…</string>
+    <string name="error_show_channel_details">Chyba při zobrazení prodrobností kanálu</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s stažení smazáno</item>
+        <item quantity="few">%1$s stažení smazána</item>
+        <item quantity="other">%1$s staženích smazáno</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Stahování dokončeno</item>
+        <item quantity="few">%s stahování dokončena</item>
+        <item quantity="other">%s stahováních dokončeno</item>
+    </plurals>
+    <string name="show_image_indicators_summary">Ukázat zabarvené stužky Picasso na obrázcích k indikaci zdroje: červená indikuje síť, modrá disk a zelená paměť</string>
+    <string name="show_image_indicators_title">Ukázat indikátory obrázků</string>
+    <string name="remote_search_suggestions">Vzdálené návrhy vyhledávání</string>
+    <string name="local_search_suggestions">Lokální návrhy vyhledávání</string>
 </resources>

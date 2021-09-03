@@ -677,7 +677,7 @@
     <string name="no_app_to_open_intent">Non posúe ningunha aplicación para abrir isto</string>
     <string name="show_thumbnail_summary">Usar miniaturas para a pantalla de bloqueo e para as notificacións</string>
     <string name="feed_toggle_show_played_items">Mostrar elementos reproducidos</string>
-    <string name="comments_are_disabled">Os comentarios está desactivados</string>
+    <string name="comments_are_disabled">Os comentarios están desactivados</string>
     <string name="show_age_restricted_content_summary">Mostrar contido potencialmente non apto para menores porque ten unha limitación de idade (como +18)</string>
     <string name="notification_colorize_title">Definir cor da notificación</string>
     <string name="on">Prendido</string>
@@ -692,4 +692,34 @@
     <string name="show_meta_info_summary">Desactivar para ocultar información adicional sobre o creador da emisión, do contido, ou da petición de procura</string>
     <string name="notification_colorize_summary">Permitir a Android personalizar a cor da notificación conforme a cor principal da miniatura (esta opción non está dispoñíbel en todos os dispositivos)</string>
     <string name="mark_as_watched">Marcar como visto</string>
+    <string name="loading_channel_details">A carregar detalles da canle…</string>
+    <string name="error_show_channel_details">Erro en Mostrar detalles da canle</string>
+    <string name="download_has_started">Descarga inciada</string>
+    <string name="account_terminated">Conta cancelada</string>
+    <string name="feed_load_error_fast_unknown">O modo feed rápido non prové máis información sobre isto.</string>
+    <string name="feed_load_error_account_info">Non foi posíbel carregar o feed para \'%s\'.</string>
+    <string name="feed_load_error">Erro ao carregar o feed</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Descarga %1$s eliminada</item>
+        <item quantity="other">Descargas %1$s eliminadas</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Descarga finalizada</item>
+        <item quantity="other">%s descargas finalizadas</item>
+    </plurals>
+    <string name="seekbar_preview_thumbnail_title">Miniatura na barra de busca</string>
+    <string name="show_image_indicators_title">Mostrar indicadores de imaxe</string>
+    <string name="disable_media_tunneling_summary">Desactive o túnel multimedia se experimentaren unha pantalla en negro ou interrupcións na reprodución</string>
+    <string name="disable_media_tunneling_title">Desactivar túnel multimedia</string>
+    <string name="enqueued">Engadido á cola</string>
+    <string name="no_dir_yet">Cartafol de descarga aínda non definido, escolla o cartafol agora</string>
+    <string name="msg_calculating_hash">A calcular hash</string>
+    <string name="related_items_tab_description">Emisións relacionadas</string>
+    <string name="hash_channel_description">Notificacións sobre o progreso do hashing do vídeo</string>
+    <string name="local_search_suggestions">Suxestións de procura locais</string>
+    <string name="remote_search_suggestions">Suxestións de procura remotas</string>
+    <string name="clear_queue_confirmation_description">A cola de reprodución activa será substituída</string>
+    <string name="clear_queue_confirmation_summary">Cambiar dun reprodutor a outro pode substituír a súa cola</string>
+    <string name="notification_action_shuffle">Barallar</string>
+    <string name="notification_actions_summary">Edite cada acción da notificación premendo nela. Seleccione ata tres delas para seren mostradas na notificación compacta usando as checkboxes da dereita</string>
 </resources>

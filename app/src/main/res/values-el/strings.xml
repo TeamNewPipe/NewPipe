@@ -720,4 +720,13 @@
     <string name="show_image_indicators_title">Εμφάνιση δεικτών εικόνων</string>
     <string name="remote_search_suggestions">Προτάσεις απομακρυσμένης αναζήτησης</string>
     <string name="local_search_suggestions">Προτάσεις τοπικής αναζήτησης</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s λήψη διαγράφηκε</item>
+        <item quantity="other">%1$s λήψεις διαγράφηκαν</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Η λήψη ολοκληρώθηκε</item>
+        <item quantity="other">%s λήψεις ολοκληρώθηκαν</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">Απομάκρυνση αντικειμένων με σύρσιμο</string>
 </resources>

@@ -347,8 +347,9 @@
 \n2. Melde dich an, falls du dazu aufgefordert wirst
 \n3. Klicke auf „Alle Daten enthalten“, dann auf „Alle abwählen“, wähle dann nur „Abonnements“ und klicke auf „OK“
 \n4. Klicke auf „Nächster Schritt“ und dann auf „Export erstellen“
-\n5. Klicke auf die Schaltfläche „Download“, nachdem sie erscheint und
-\n6. Entpacke aus dem heruntergeladenen Takeout-Zip die .json-Datei (normalerweise unter „YouTube und YouTube Music/subscriptions/subscriptions.json“) und importiere sie hier.</string>
+\n5. Klicke auf die Schaltfläche „Download“, nachdem sie erscheint
+\n6. Klicke unten auf \"Datei importieren\" und wähle die heruntergeladene Zip-Datei aus
+\n7. [Wenn der Zip-Import fehlschlägt] Entpacke die csv-Datei (normalerweise unter „YouTube und YouTube Music/subscriptions/subscriptions.json“), klicke auf \"Datei importieren\" und wähle die extrahierte csv-Datei aus</string>
     <string name="import_soundcloud_instructions">Importiere ein SoundCloud-Profil, indem die URL oder deine ID eingegeben wird:
 \n
 \n1. Aktiviere den Desktop-Modus in einem Web-Browser (die Seite ist für mobile Geräte nicht verfügbar)
@@ -720,4 +721,13 @@
     <string name="show_image_indicators_title">Bildindikatoren anzeigen</string>
     <string name="remote_search_suggestions">Entfernte Suchvorschläge</string>
     <string name="local_search_suggestions">Lokale Suchvorschläge</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s Download gelöscht</item>
+        <item quantity="other">%1$s Downloads gelöscht</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Download abgeschlossen</item>
+        <item quantity="other">%s Downloads abgeschlossen</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">Wische über Elemente, um sie zu entfernen</string>
 </resources>

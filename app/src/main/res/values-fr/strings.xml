@@ -338,8 +338,9 @@
 \n2. Connectez-vous à votre compte
 \n3. Cliquez sur « Toutes les données YouTube sont incluses », puis sur « Tout désélectionner », puis sélectionnez uniquement « abonnements » et cliquez sur « OK »
 \n4. Cliquez sur « Étape suivante » et ensuite sur « Créer une exportation »
-\n5. Cliquez sur le bouton « Télécharger » après qu’il apparaisse et
-\n6. À partir du fichier ZIP téléchargé, extrayez le fichier JSON (généralement sous « YouTube et YouTube Music/subscriptions/subscriptions.json ») et importez-le ici.</string>
+\n5. Cliquez sur le bouton « Télécharger » après qu’il soit apparut
+\n6.Cliquez sur IMPORTER LE FICHIER en dessous et sélectionnez le fichier zip téléchargé
+\n7. [Si l\'importation à échoué] Extrayez le fichier .csv (généralement sous « YouTube and YouTube Music/subscriptions/subscriptions.csv »), cliquez sur IMPORTER LE FICHIER en dessous et sélectionnez le ficher csv extrait</string>
     <string name="import_soundcloud_instructions">Veuillez importer un profil SoundCloud en saisissant l’URL de votre profil ou votre identifiant.
 \n 
 \n1. Activez le « mode bureau » dans votre navigateur Web (le site n’est pas disponible pour les appareils mobiles).
@@ -722,4 +723,13 @@
     <string name="remote_search_suggestions">Suggestions de recherche distante</string>
     <string name="local_search_suggestions">Suggestions de recherche locale</string>
     <string name="show_image_indicators_summary">Affiche les rubans colorés de Picasso au-dessus des images indiquant leur source : rouge pour le réseau, bleu pour le disque et vert pour la mémoire</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s téléchargement supprimé</item>
+        <item quantity="other">%1$s téléchargements supprimés</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Téléchargement terminé</item>
+        <item quantity="other">%s téléchargements terminés</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">Balayez un élément pour le supprimer</string>
 </resources>

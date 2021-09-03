@@ -356,12 +356,13 @@
     <string name="subscriptions_export_unsuccessful">无法导出订阅</string>
     <string name="import_youtube_instructions">从 Google takeout 导入 YouTube 订阅：
 \n
-\n1. 打开这个网页：%1$s；
-\n2. 登录谷歌帐号；
-\n3. 选择“YouTube 和 YouTube Music”，然后点击“已包含所有 YouTube 数据”，然后取消全选，仅选择“订阅内容”，然后点击“确定”；
-\n4. 点击“下一步”，可以保持默认，然后点击“创建导出作业”；
-\n5. 通过所指定的方式，下载 takeout 数据；
-\n6. 从下载的 takeout 压缩包提取 .json 文件（通常位于“YouTube and YouTube Music/subscriptions/subscriptions.json”）然后在此导入。</string>
+\n1. 打开这个网址：%1$s
+\n2. 登录谷歌账号
+\n3. 单击“包含所有数据”，然后单击“取消全选”，然后仅选择“订阅”并单击“确定”
+\n4. 点击“下一步”，然后点击“创建导出作业”
+\n5. 出现“下载”按钮后点击它
+\n6. 单击下面的导入文件并选择下载的 zip 文件
+\n7.【如果 zip 导入失败】解压 .csv文件（通常在“YouTube和YouTube Music/subscriptions/subscriptions.csv”下），点击下方的导入文件，选择解压出来的 csv 文件</string>
     <string name="import_soundcloud_instructions">通过输入网址或你的 ID 导入 SoundCloud 配置文件：
 \n
 \n1. 在浏览器中启用“电脑模式“（该网站未适配移动设备）；
@@ -710,4 +711,13 @@
     <string name="show_image_indicators_title">显示图像指示器</string>
     <string name="remote_search_suggestions">远程搜索建议</string>
     <string name="local_search_suggestions">本地搜索建议</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">删除了 %1$s 个下载</item>
+        <item quantity="other"/>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">完成了 %s 个下载</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="main_page_content_swipe_remove">滑动项目以删除它们</string>
 </resources>

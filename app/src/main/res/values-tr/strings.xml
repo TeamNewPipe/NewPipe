@@ -720,4 +720,12 @@
     <string name="show_image_indicators_title">Resim göstergelerini göster</string>
     <string name="remote_search_suggestions">Uzak arama önerileri</string>
     <string name="local_search_suggestions">Yerel arama önerileri</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s indirme silindi</item>
+        <item quantity="other">%1$s indirme silindi</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">İndirme tamamlandı</item>
+        <item quantity="other">%s indirme tamamlandı</item>
+    </plurals>
 </resources>

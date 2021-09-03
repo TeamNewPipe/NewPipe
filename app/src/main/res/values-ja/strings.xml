@@ -707,4 +707,5 @@
     <string name="loading_channel_details">チャンネルの詳細を読み込み中…</string>
     <string name="remote_search_suggestions">リモート検索候補</string>
     <string name="local_search_suggestions">ローカル検索候補</string>
+    <string name="main_page_content_swipe_remove">アイテムをスワイプして削除</string>
 </resources>

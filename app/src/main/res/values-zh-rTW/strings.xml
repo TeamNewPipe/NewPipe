@@ -326,8 +326,9 @@
 \n2. 當被提示時登入帳號
 \n3. 點擊「包含所有資料」，然後「取消選取全部」，然後僅選取「訂閱」並點擊「確定」
 \n4. 點擊「下一步」然後「建立匯出」
-\n5. 在「下載」按鈕出現後點擊它；然後
-\n6. 從已下載的 takeout zip 解壓縮 .json 檔（通常會在「YouTube 與 YouTube Music/subscriptions/subscriptions.json」）然後匯入它。</string>
+\n5. 在「下載」按鈕出現後點擊它
+\n6. 點擊下方的「匯入檔案」並選取已下載的 zip 檔案
+\n7. [若 zip 匯入失敗] 擷取 .csv 檔案（通常位於「YouTube 與 YouTube Music/訂閱/訂閱.csv」），點擊下方的「匯入檔案」並選取擷取的 csv 檔案</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">請記住，此操作可造成昂貴網路花費。 
 \n 
@@ -710,4 +711,11 @@
     <string name="show_image_indicators_title">顯示圖片指示器</string>
     <string name="remote_search_suggestions">遠端搜尋建議</string>
     <string name="local_search_suggestions">本機搜尋建議</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="other">已刪除 %1$s 下載</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="other">%s 下載已完成</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">滑動項目以刪除它們</string>
 </resources>
