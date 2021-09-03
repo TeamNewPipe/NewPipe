@@ -304,7 +304,7 @@ fun View.slideUp(
     delay: Long,
     @FloatRange(from = 0.0, to = 1.0) translationPercent: Float
 ) {
-    slideUp(duration, delay, translationPercent)
+    slideUp(duration, delay, translationPercent, null)
 }
 
 fun View.slideUp(
