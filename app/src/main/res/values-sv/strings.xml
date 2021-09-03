@@ -363,8 +363,9 @@
 \n2. Logga in när du blir tillfrågad
 \n3. Klicka på \"All YouTube-data tas med\", sen på \"Avmarkera alla\", välj sen bara \"prenumerationer\" och klicka på \"OK\"
 \n4. Klicka på \"Nästa steg\" och sen på \"Skapa export\"
-\n5. Klicka på \"Hämta\"-knappen när den kommer fram och
-\n6. Från den nedladdade takeout-zip-filen, packa upp .json-filen (vanligtvis under \"YouTube och YouTube Musik/prenumerationer/prenumerationer.json\") och importera den hit.</string>
+\n5. Klicka på \"Hämta\"-knappen när den kommer fram
+\n6. Klicka på IMPORTERA FIL nedan och välj den nedladdade zip-filen
+\n7. [Om zip-importen misslyckas] Packa upp .csv-filen (vanligtvis under \"YouTube och YouTube Musik/prenumerationer/prenumerationer.csv\"), klicka på IMPORTERA FIL nedan och välj den uppackade csv-filen</string>
     <string name="import_soundcloud_instructions">Importera en SoundCloud-profil genom att skriva in webbadressen eller ditt ID:
 \n
 \n1. Aktivera \"skrivbordsläge\" i en webbläsare (sidan är inte tillgänglig för mobila enheter)
@@ -716,4 +717,13 @@
     <string name="loading_channel_details">Laddar kanaldetaljer…</string>
     <string name="show_image_indicators_title">Visa bildindikatorer</string>
     <string name="local_search_suggestions">Lokala sökningsförslag</string>
+    <string name="error_show_channel_details">Kunde inte visa kanaldetaljer</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Tog bort %1$s nedladdning</item>
+        <item quantity="other">Tog bort %1$s nedladdningar</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Nedladdning slutförd</item>
+        <item quantity="other">%s nedladdningar slutförda</item>
+    </plurals>
 </resources>
