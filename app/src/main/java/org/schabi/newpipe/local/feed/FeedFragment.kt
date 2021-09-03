@@ -40,8 +40,10 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
-import com.xwray.groupie.GroupieAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
+import com.xwray.groupie.OnAsyncUpdateListener
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.OnItemLongClickListener
 import icepick.State
@@ -65,6 +67,7 @@ import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.info_list.InfoItemDialog
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.animateHideRecyclerViewAllowingScrolling
+import org.schabi.newpipe.ktx.slideUp
 import org.schabi.newpipe.local.feed.item.StreamItem
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.local.subscription.SubscriptionManager
@@ -76,6 +79,7 @@ import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountStreams
 import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import java.time.OffsetDateTime
 import java.util.ArrayList
+import java.util.function.Consumer
 
 class FeedFragment : BaseStateFragment<FeedState>() {
     private var _feedBinding: FragmentFeedBinding? = null
@@ -96,6 +100,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private var onSettingsChangeListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
     private var updateListViewModeOnResume = false
     private var isRefreshing = false
+
+    private var lastNewItemsCount = 0
 
     init {
         setHasOptionsMenu(true)
@@ -136,6 +142,20 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             setOnItemLongClickListener(listenerStreamItem)
         }
 
+        feedBinding.itemsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                // Check if we scrolled to the top
+                if (newState == RecyclerView.SCROLL_STATE_IDLE &&
+                    !recyclerView.canScrollVertically(-1)
+                ) {
+
+                    if (feedBinding.newItemsLoadedLayout.isVisible) {
+                        hideNewItemsLoaded(true)
+                    }
+                }
+            }
+        })
+
         feedBinding.itemsList.adapter = groupAdapter
         setupListViewMode()
     }
@@ -171,6 +191,10 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         super.initListeners()
         feedBinding.refreshRootView.setOnClickListener { reloadContent() }
         feedBinding.swipeRefreshLayout.setOnRefreshListener { reloadContent() }
+        feedBinding.newItemsLoadedButton.setOnClickListener {
+            hideNewItemsLoaded(true)
+            feedBinding.itemsList.scrollToPosition(0)
+        }
     }
 
     // /////////////////////////////////////////////////////////////////////////
@@ -400,7 +424,17 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
         loadedState.items.forEach { it.itemVersion = itemVersion }
 
-        groupAdapter.updateAsync(loadedState.items, false, null)
+        // This need to be saved in a variable as the update occurs async
+        val oldOldestSubscriptionUpdate = oldestSubscriptionUpdate
+
+        groupAdapter.updateAsync(
+            loadedState.items, false,
+            OnAsyncUpdateListener {
+                oldOldestSubscriptionUpdate?.run {
+                    highlightNewItemsAfter(oldOldestSubscriptionUpdate)
+                }
+            }
+        )
 
         listState?.run {
             feedBinding.itemsList.layoutManager?.onRestoreInstanceState(listState)
@@ -522,6 +556,94 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         )
     }
 
+    /**
+     * Highlights all items that are after the specified time
+     */
+    private fun highlightNewItemsAfter(updateTime: OffsetDateTime) {
+        var highlightCount = 0
+
+        var doCheck = true
+
+        for (i in 0 until groupAdapter.itemCount) {
+            val item = groupAdapter.getItem(i) as StreamItem
+
+            var resid = R.attr.selectableItemBackground
+            if (doCheck) {
+                if (item.streamWithState.stream.uploadDate?.isAfter(updateTime) != false) {
+                    resid = R.attr.dashed_border
+                    highlightCount++
+                } else {
+                    // Increases execution time due to the order of the items (newest always on top)
+                    // Once a item is is before the updateTime we can skip all following items
+                    doCheck = false
+                }
+            }
+
+            // The highlighter has to be always set
+            // When it's only set on items that are highlighted it will highlight all items
+            // due to the fact that itemRoot is getting recycled
+            item.execBindEnd = Consumer { viewBinding ->
+                val context = viewBinding.itemRoot.context
+                viewBinding.itemRoot.background =
+                    androidx.core.content.ContextCompat.getDrawable(
+                        context,
+                        android.util.TypedValue().apply {
+                            context.theme.resolveAttribute(
+                                resid,
+                                this,
+                                true
+                            )
+                        }.resourceId
+                    )
+            }
+        }
+
+        // Force updates all items so that the highlighting is correct
+        // If this isn't done visible items that are already highlighted will stay in a highlighted
+        // state until the user scrolls them out of the visible area which causes a update/bind-call
+        groupAdapter.notifyItemRangeChanged(
+            0,
+            groupAdapter.itemCount.coerceAtMost(highlightCount.coerceAtLeast(lastNewItemsCount))
+        )
+
+        if (highlightCount > 0) {
+            showNewItemsLoaded()
+        }
+
+        lastNewItemsCount = highlightCount
+    }
+
+    private fun showNewItemsLoaded() {
+        feedBinding.newItemsLoadedLayout.clearAnimation()
+        feedBinding.newItemsLoadedLayout
+            .slideUp(
+                250L,
+                delay = 100,
+                execOnEnd = {
+                    // Hide the new items-"popup" after 10s
+                    hideNewItemsLoaded(true, 10000)
+                }
+            )
+    }
+
+    private fun hideNewItemsLoaded(animate: Boolean, delay: Long = 0) {
+        feedBinding.newItemsLoadedLayout.clearAnimation()
+        if (animate) {
+            feedBinding.newItemsLoadedLayout.animate(
+                false,
+                200,
+                delay = delay,
+                execOnEnd = {
+                    // Make the layout invisible so that the onScroll toTop method
+                    // only does necessary work
+                    feedBinding.newItemsLoadedLayout.isVisible = false
+                }
+            )
+        } else {
+            feedBinding.newItemsLoadedLayout.isVisible = false
+        }
+    }
+
     // /////////////////////////////////////////////////////////////////////////
     // Load Service Handling
     // /////////////////////////////////////////////////////////////////////////
@@ -529,6 +651,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     override fun doInitialLoadLogic() {}
 
     override fun reloadContent() {
+        hideNewItemsLoaded(false)
+
         getActivity()?.startService(
             Intent(requireContext(), FeedLoadService::class.java).apply {
                 putExtra(FeedLoadService.EXTRA_GROUP_ID, groupId)

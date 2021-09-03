@@ -636,6 +636,7 @@
     <string name="feed_subscription_not_loaded_count">Not loaded: %d</string>
     <string name="feed_notification_loading">Loading feed…</string>
     <string name="feed_processing_message">Processing feed…</string>
+    <string name="feed_new_items">New feed items</string>
     <string name="feed_group_dialog_select_subscriptions">Select subscriptions</string>
     <string name="feed_group_dialog_empty_selection">No subscription selected</string>
     <plurals name="feed_group_dialog_selection_count">

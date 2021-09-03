@@ -300,18 +300,18 @@ private fun View.animateLightSlideAndAlpha(enterOrExit: Boolean, duration: Long,
 }
 
 fun View.slideUp(
-        duration: Long,
-        delay: Long,
-        @FloatRange(from = 0.0, to = 1.0) translationPercent: Float
+    duration: Long,
+    delay: Long,
+    @FloatRange(from = 0.0, to = 1.0) translationPercent: Float
 ) {
     slideUp(duration, delay, translationPercent)
 }
 
 fun View.slideUp(
-        duration: Long,
-        delay: Long = 0L,
-        @FloatRange(from = 0.0, to = 1.0) translationPercent: Float = 1.0F,
-        execOnEnd: Runnable? = null
+    duration: Long,
+    delay: Long = 0L,
+    @FloatRange(from = 0.0, to = 1.0) translationPercent: Float = 1.0F,
+    execOnEnd: Runnable? = null
 ) {
     val newTranslationY = (resources.displayMetrics.heightPixels * translationPercent).toInt()
     animate().setListener(null).cancel()

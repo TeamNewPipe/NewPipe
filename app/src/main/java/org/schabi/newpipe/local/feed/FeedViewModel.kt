@@ -43,7 +43,7 @@ class FeedViewModel(
     private var combineDisposable = Flowable
         .combineLatest(
             FeedEventManager.events(),
-                toggleShowPlayedItemsFlowable,
+            toggleShowPlayedItemsFlowable,
             feedDatabaseManager.notLoadedCount(groupId),
             feedDatabaseManager.oldestSubscriptionUpdate(groupId),
 
@@ -58,8 +58,8 @@ class FeedViewModel(
         .map { (event, showPlayedItems, notLoadedCount, oldestUpdate) ->
             var streamItems = if (event is SuccessResultEvent || event is IdleEvent)
                 feedDatabaseManager
-                        .getStreams(groupId, showPlayedItems)
-                        .blockingGet(arrayListOf())
+                    .getStreams(groupId, showPlayedItems)
+                    .blockingGet(arrayListOf())
             else
                 arrayListOf()
 
@@ -87,16 +87,18 @@ class FeedViewModel(
     }
 
     private data class CombineResultEventHolder(
-            val t1: FeedEventManager.Event,
-            val t2: Boolean,
-            val t3: Long,
-            val t4: OffsetDateTime?)
+        val t1: FeedEventManager.Event,
+        val t2: Boolean,
+        val t3: Long,
+        val t4: OffsetDateTime?
+    )
 
     private data class CombineResultDataHolder(
-            val t1: FeedEventManager.Event,
-            val t2: List<StreamWithState>,
-            val t3: Long,
-            val t4: OffsetDateTime?)
+        val t1: FeedEventManager.Event,
+        val t2: List<StreamWithState>,
+        val t3: Long,
+        val t4: OffsetDateTime?
+    )
 
     fun togglePlayedItems(showPlayedItems: Boolean) {
         toggleShowPlayedItems.onNext(showPlayedItems)
