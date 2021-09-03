@@ -84,8 +84,7 @@
     <string name="view">再生</string>
     <string name="delete">削除</string>
     <string name="checksum">チェックサム</string>
-    <string name="add">新しいミッション</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">ファイル名</string>
     <string name="msg_threads">同時接続数</string>
     <string name="msg_error">エラー</string>
@@ -135,7 +134,7 @@
     <string name="player_gesture_controls_title">プレイヤーのジェスチャー制御</string>
     <string name="player_gesture_controls_summary">ジェスチャーを使用してプレイヤーの明るさと音量を制御する</string>
     <string name="show_search_suggestions_title">検索候補の表示</string>
-    <string name="show_search_suggestions_summary">検索時に候補を表示します</string>
+    <string name="show_search_suggestions_summary">検索時に表示する候補を選択します</string>
     <string name="best_resolution">最高の解像度</string>
     <string name="title_activity_about">NewPipe について</string>
     <string name="action_settings">設定</string>
@@ -416,8 +415,6 @@
     <string name="enqueue">順番に処理する</string>
     <string name="permission_denied">操作がシステムによって拒否されました</string>
     <string name="download_failed">ダウンロードに失敗しました</string>
-    <string name="download_finished">ダウンロードが完了しました</string>
-    <string name="download_finished_more">%s件のダウンロード終了</string>
     <string name="generate_unique_name">一意の名前を生成します</string>
     <string name="overwrite">上書き</string>
     <string name="overwrite_unrelated_warning">この名前のファイルは既に存在します</string>
@@ -514,7 +511,6 @@
     <string name="choose_instance_prompt">インスタンスを選択</string>
     <string name="clear_download_history">ダウンロード履歴を消去</string>
     <string name="delete_downloaded_files">ダウンロードしたファイルを消去</string>
-    <string name="deleted_downloads">%1$d 個削除しました</string>
     <string name="playlist_no_uploader">自動生成 (アップローダーが見つかりません)</string>
     <string name="permission_display_over_apps">他のアプリの上に表示する権限を与えてください</string>
     <string name="app_language_title">アプリの言語</string>
@@ -707,4 +703,8 @@
     <string name="seekbar_preview_thumbnail_title">シークバーのサムネイルプレビュー</string>
     <string name="comments_are_disabled">コメントは無効です</string>
     <string name="mark_as_watched">視聴済みとしてマーク</string>
+    <string name="error_show_channel_details">チャンネルの詳細の表示でエラー</string>
+    <string name="loading_channel_details">チャンネルの詳細を読み込み中…</string>
+    <string name="remote_search_suggestions">リモート検索候補</string>
+    <string name="local_search_suggestions">ローカル検索候補</string>
 </resources>

@@ -218,8 +218,7 @@
     <string name="checksum">ਚੈੱਕ-ਸਮ</string>
     <string name="dismiss">ਬਰਖਾਸਤ ਕਰੋ</string>
     <string name="rename">ਨਾਮ ਬਦਲੋ</string>
-    <string name="add">ਨਵਾਂ ਮਿਸ਼ਨ</string>
-    <string name="finish">ਠੀਕ ਹੈ</string>
+    <string name="ok">ਠੀਕ ਹੈ</string>
     <string name="msg_name">ਫਾਈਲ ਦਾ ਨਾਮ</string>
     <string name="msg_threads">threads</string>
     <string name="msg_error">ERROR</string>
@@ -425,8 +424,6 @@
     <string name="enqueue">ਕਤਾਰ</string>
     <string name="permission_denied">ਸਿਸਟਮ ਦੁਆਰਾ ਕਾਰਵਾਈ ਤੋਂ ਇਨਕਾਰ ਕੀਤਾ ਗਿਆ</string>
     <string name="download_failed">ਡਾਊਨਲੋਡ ਫੇਲ੍ਹ</string>
-    <string name="download_finished">ਡਾਊਨਲੋਡ ਮੁਕੰਮਲ</string>
-    <string name="download_finished_more">%s ਡਾਊਨਲੋਡ ਮੁਕੰਮਲ</string>
     <string name="generate_unique_name">ਵਿਲੱਖਣ ਨਾਮ Generate ਕਰੋ</string>
     <string name="overwrite">overwrite</string>
     <string name="download_already_running">ਇਸ ਨਾਮ ਦੇ ਨਾਲ ਇੱਕ ਡਾਊਨਲੋਡ ਪਹਿਲਾਂ ਤੋਂ ਜਾਰੀ ਹੈ</string>
@@ -601,7 +598,6 @@
     <string name="downloads_storage_use_saf_summary_api_29">\'ਸਟੋਰੇਜ ਐਕਸੈੱਸ ਫ਼ਰੇਮਵਰਕ\' ਐਂਡਰਾਇਡ 10 ਤੋਂ ਕੰਮ ਕਰਨਾ ਸ਼ੁਰੂ ਕਰਦਾ ਹੈ</string>
     <string name="downloads_storage_use_saf_summary_api_19">\'ਸਟੋਰੇਜ ਐਕਸੈੱਸ ਫ਼ਰੇਮਵਰਕ\' ਐਂਡਰਾਇਡ ਕਿਟਕੈਟ ਅਤੇ ਇਸਤੋਂ ਹੇਠਾਂ ਦੇ ਵਰਜਨਾਂ \'ਤੇ ਕੰਮ ਨਹੀਂ ਕਰਦਾ</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">ਤੁਹਾਨੂੰ ਹਰ ਵਾਰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਕਿ ਡਾਊਨਲੋਡ ਨੂੰ ਕਿੱਥੇ ਸਾਂਭਣਾ ਹੈ</string>
-    <string name="deleted_downloads">ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ %1$d ਫ਼ਾਈਲਾਂ ਮਿਟਾਈਆਂ ਗਾਈਆਂ</string>
     <string name="delete_downloaded_files">ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਫ਼ਾਈਲਾਂ ਮਿਟਾਓ</string>
     <string name="clear_download_history">ਡਾਊਨਲੋਡ ਇਤਿਹਾਸ ਸਾਫ਼ ਕਰੋ</string>
     <string name="never">ਕਦੇ ਵੀ ਨਹੀਂ</string>

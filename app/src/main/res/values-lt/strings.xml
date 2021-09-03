@@ -50,7 +50,7 @@
     <string name="player_gesture_controls_title">Grotuvo valdymas gestais</string>
     <string name="player_gesture_controls_summary">Naudokite gestus valdyti grotuvo ryškumą ir garsumą</string>
     <string name="show_search_suggestions_title">Paieškos nuspėjimai</string>
-    <string name="show_search_suggestions_summary">Rodyti nuspėjimus, kai ieškoma</string>
+    <string name="show_search_suggestions_summary">Pasirinkite pasiūlymus, kurie bus rodomi ieškant</string>
     <string name="download_dialog_title">Atsisiųsti</string>
     <string name="show_next_and_similar_title">Rodyti „kitus” ir „panašius” vaizdo įrašus</string>
     <string name="unsupported_url">URL nepalaikoma</string>
@@ -125,13 +125,12 @@
     <string name="pause">Pauzė</string>
     <string name="delete">Ištrinti</string>
     <string name="checksum">Kontrolinė suma</string>
-    <string name="add">Nauja užduotis</string>
-    <string name="finish">Gerai</string>
-    <string name="msg_name">Bylos pavadinimas</string>
+    <string name="ok">Gerai</string>
+    <string name="msg_name">Failo pavadinimas</string>
     <string name="msg_threads">Gijos</string>
     <string name="msg_error">Klaida</string>
     <string name="msg_server_unsupported">Tarnybinė stotis nepalaikoma</string>
-    <string name="msg_exists">Byla jau egzistuoja</string>
+    <string name="msg_exists">Failas jau egzistuoja</string>
     <string name="msg_url_malform">Neteisingas adresas arba negalimas internetas</string>
     <string name="msg_running">NewPipe Atsiunčiama</string>
     <string name="msg_running_detail">Palieskite, kad peržiūrėtumėte detales</string>
@@ -188,7 +187,7 @@
     <string name="no_videos">Nėra vaizdo įrašų</string>
     <string name="view">Groti</string>
     <string name="settings_category_downloads_title">Parsisiuntimai</string>
-    <string name="settings_file_charset_title">Leidžiami simboliai bylų varduose</string>
+    <string name="settings_file_charset_title">Leidžiami simboliai failų varduose</string>
     <string name="settings_file_replacement_character_summary">Neleistini simboliai yra pakeičiami šia reikšme</string>
     <string name="settings_file_replacement_character_title">Pakaitinis simbolis</string>
     <string name="charset_letters_and_digits">Raidės ir skaičiai</string>
@@ -520,7 +519,6 @@
     <string name="downloads_storage_use_saf_title">Naudoti sistemos aplanko parinktuką (SAP)</string>
     <string name="pause_downloads">Sustabdyti siuntimus</string>
     <string name="error_http_not_found">Nerasta</string>
-    <string name="download_finished">Parsiųsta</string>
     <string name="switch_view">Perjungti rodinį</string>
     <string name="radio">Radijo</string>
     <string name="featured">Siūloma</string>
@@ -651,11 +649,9 @@
     <string name="feed_update_threshold_title">Kanalo atnaujinimo slenkstis</string>
     <string name="feed_group_dialog_empty_name">Tuščias grupės pavadinimas</string>
     <string name="feed_group_dialog_empty_selection">Nepasirinkta jokia prenumerata</string>
-    <string name="deleted_downloads">Pašalinta %1$d parsiuntimai</string>
     <string name="delete_downloaded_files">Pašalinti parsiųstus failus</string>
     <string name="choose_instance_prompt">Pasirinkite kopiją</string>
     <string name="enable_queue_limit">Riboti parsiuntimų eilę</string>
-    <string name="download_finished_more">%s parsiuntimai baigti</string>
     <string name="app_update_notification_content_text">Paspauskite parsiuntimui</string>
     <string name="list_view_mode">Sąrašo rodinio režimas</string>
     <string name="skip_silence_checkbox">Prasukti kai nieko negroja</string>
@@ -728,4 +724,10 @@
     <string name="dont_show">Nerodyti</string>
     <string name="detail_heart_img_view_description">Širdelė nuo kurėjo</string>
     <string name="mark_as_watched">Pažymėti kaip peržiūrėtą</string>
+    <string name="loading_channel_details">Įkeliama kanalo informacija…</string>
+    <string name="error_show_channel_details">Klaida rodant kanalo informaciją</string>
+    <string name="show_image_indicators_summary">Rodyti „Picasso“ spalvotas juosteles ant vaizdų, nurodančių jų šaltinį: raudona tinklui, mėlyna diskui ir žalia atmintis</string>
+    <string name="show_image_indicators_title">Rodyti vaizdo indikatorius</string>
+    <string name="remote_search_suggestions">Nuotolinės paieškos pasiūlymai</string>
+    <string name="local_search_suggestions">Vietinės paieškos pasiūlymai</string>
 </resources>

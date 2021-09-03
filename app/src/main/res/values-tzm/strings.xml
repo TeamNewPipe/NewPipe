@@ -29,7 +29,6 @@
     <string name="downloads_storage_use_saf_title">Semres SAF</string>
     <string name="download_path_audio_title">Asdaw n wagam n imesli</string>
     <string name="clear_download_history">Sfeḍ amzruy n wagam</string>
-    <string name="deleted_downloads">%1$d n wagamen ittwakksen</string>
     <string name="downloads_storage_ask_title">Seqsa mani ɣa tagemd</string>
     <string name="clear_views_history_title">Sfeḍ amzruy n wannay</string>
     <string name="settings_category_history_title">Amzruy d uffiren</string>
@@ -64,7 +63,6 @@
     <string name="app_language_title">Tutlayt n tsensi</string>
     <string name="start_downloads">Senti agamen</string>
     <string name="close">Rgel</string>
-    <string name="download_finished_more">%s wagamen isalan</string>
     <string name="wifi_only">Γas s uwifi</string>
     <string name="resize_zoom">Semɣeṛ</string>
     <string name="video_player">Ameɣri n uvidyu</string>
@@ -124,7 +122,7 @@
     <string name="action_settings">Tisɣal</string>
     <string name="settings_category_downloads_title">Agam</string>
     <string name="msg_name">Isem n ufaylu</string>
-    <string name="finish">WAXXA</string>
+    <string name="ok">WAXXA</string>
     <string name="delete">Kkes</string>
     <string name="create">Senulfu</string>
     <string name="view">Γer</string>

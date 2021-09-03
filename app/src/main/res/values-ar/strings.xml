@@ -94,7 +94,7 @@
     <string name="player_gesture_controls_title">إعدادات إيماءة المشغّل</string>
     <string name="player_gesture_controls_summary">استخدم الإيماءات للتحكم بسطوع ومستوى صوت المشغّل</string>
     <string name="show_search_suggestions_title">اقتراحات البحث</string>
-    <string name="show_search_suggestions_summary">عرض الاقتراحات عند البحث</string>
+    <string name="show_search_suggestions_summary">اختر الاقتراحات التي تريد إظهارها عند البحث</string>
     <string name="enable_search_history_title">سجل البحث</string>
     <string name="enable_search_history_summary">تخزين طلبات البحث محليًّا</string>
     <string name="enable_watch_history_summary">تتبّع مقاطع الفيديو التي تمّت مشاهدتها</string>
@@ -168,8 +168,7 @@
     <string name="view">شغل</string>
     <string name="delete">حذف</string>
     <string name="checksum">التوقيع</string>
-    <string name="add">مهمة جديدة</string>
-    <string name="finish">حسناً</string>
+    <string name="ok">حسناً</string>
     <string name="msg_name">اسم الملف</string>
     <string name="msg_threads">التقسيم</string>
     <string name="msg_error">الخطأ</string>
@@ -444,8 +443,6 @@
     <string name="enqueue">طابور</string>
     <string name="permission_denied">تم رفضها من قبل النظام</string>
     <string name="download_failed">فشل التنزيل</string>
-    <string name="download_finished">تم الانتهاء من التحميل</string>
-    <string name="download_finished_more">%s أنتهى التحميل</string>
     <string name="generate_unique_name">إنشاء اسم فريد</string>
     <string name="overwrite">الكتابة فوق</string>
     <string name="overwrite_finished_warning">يوجد ملف تحميل بهذا الاسم موجود مسبقاً</string>
@@ -540,7 +537,6 @@
     <string name="peertube_instance_url_help">ابحث عن مثيلات الخوادم التي تناسبك على %s</string>
     <string name="clear_download_history">تنظيف تاريخ التحميل</string>
     <string name="delete_downloaded_files">حذف الملفات المحملة</string>
-    <string name="deleted_downloads">تم حذف %1$d من التحميلات</string>
     <string name="permission_display_over_apps">امنح الإذن بالعرض فوق التطبيقات الأخرى</string>
     <string name="app_language_title">لغة التطبيق</string>
     <string name="systems_language">النظام الافتراضي</string>
@@ -758,4 +754,10 @@
     <string name="seekbar_preview_thumbnail_title">معاينة مصغرة على شريط التمرير</string>
     <string name="mark_as_watched">علّمه كفيديو تمت مشاهدته</string>
     <string name="detail_heart_img_view_description">اعجب بها منشئ المحتوى</string>
+    <string name="loading_channel_details">جاري تحميل تفاصيل القناة…</string>
+    <string name="error_show_channel_details">خطأ في عرض تفاصيل القناة</string>
+    <string name="show_image_indicators_summary">أظهر أشرطة ملونة لبيكاسو أعلى الصور تشير إلى مصدرها: الأحمر للشبكة والأزرق للقرص والأخضر للذاكرة</string>
+    <string name="show_image_indicators_title">إظهار مؤشرات الصور</string>
+    <string name="remote_search_suggestions">اقتراحات البحث عن بعد</string>
+    <string name="local_search_suggestions">اقتراحات البحث المحلية</string>
 </resources>

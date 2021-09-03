@@ -129,6 +129,14 @@
             app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/start_main_player_fullscreen_key"
+            android:summary="@string/start_main_player_fullscreen_summary"
+            android:title="@string/start_main_player_fullscreen_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
         <ListPreference
             android:defaultValue="@string/autoplay_value"
             android:entries="@array/autoplay_type_description"

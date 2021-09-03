@@ -49,7 +49,7 @@
     <string name="player_gesture_controls_title">Điều khiển cử chỉ trình phát</string>
     <string name="player_gesture_controls_summary">Sử dụng cử chỉ để điều chỉnh độ sáng và âm lượng</string>
     <string name="show_search_suggestions_title">Đề xuất tìm kiếm</string>
-    <string name="show_search_suggestions_summary">Hiển thị các đề xuất khi tìm kiếm</string>
+    <string name="show_search_suggestions_summary">Chọn các đề xuất để hiển thị khi tìm kiếm</string>
     <string name="download_dialog_title">Tải về</string>
     <string name="show_next_and_similar_title">Hiển thị video \"Tiếp theo\" và \"Tương tự\"</string>
     <string name="unsupported_url">URL không được hỗ trợ</string>
@@ -116,8 +116,7 @@
     <string name="view">Chơi</string>
     <string name="delete">Xóa</string>
     <string name="checksum">Mã tổng kiểm (checksum)</string>
-    <string name="add">Nhiệm vụ mới</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">Tên file</string>
     <string name="msg_threads">Chủ đề</string>
     <string name="msg_error">Lỗi</string>
@@ -427,8 +426,6 @@
     <string name="enqueue">Hàng chờ</string>
     <string name="permission_denied">Thao tác bị từ chối bởi hệ thống</string>
     <string name="download_failed">Tải về không thành công</string>
-    <string name="download_finished">Đã tải về</string>
-    <string name="download_finished_more">%s tải về đã xong</string>
     <string name="generate_unique_name">Tạo tên riêng biệt</string>
     <string name="overwrite">Ghi đè</string>
     <string name="overwrite_finished_warning">Có một tệp đã tải về trùng tên</string>
@@ -512,7 +509,6 @@
     <string name="app_language_title">Ngôn ngữ ứng dụng</string>
     <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' cho phép tải về thẻ SD</string>
     <string name="downloads_storage_use_saf_title">Sử dụng trình chọn thư mục của hệ thống (SAF)</string>
-    <string name="deleted_downloads">Đã xóa %1$d file tải về</string>
     <string name="delete_downloaded_files">Xóa file đã tải về</string>
     <string name="clear_download_history">Xóa lịch sử tải về</string>
     <string name="error_download_resource_gone">Không thể khôi phục bản download này</string>
@@ -665,7 +661,7 @@
     <string name="night_theme_title">Chủ đề ban đêm</string>
     <string name="featured">Nổi bật</string>
     <string name="show_channel_details">Hiện chi tiết kênh</string>
-    <string name="recaptcha_solve">Giải</string>
+    <string name="recaptcha_solve">Hoàn thành</string>
     <string name="disable_media_tunneling_summary">Tắt truyền phương tiện qua đường hầm nếu bạn gặp màn hình đen hoặc khựng khi phát video</string>
     <string name="disable_media_tunneling_title">Tắt truyền phương tiện qua đường hầm</string>
     <string name="off">Tắt</string>
@@ -708,4 +704,10 @@
     <string name="comments_are_disabled">Bình luận đang bị tắt</string>
     <string name="detail_heart_img_view_description">Đã được người tạo gắn tim</string>
     <string name="mark_as_watched">Đánh dấu là đã xem</string>
+    <string name="loading_channel_details">Đang tải chi tiết kênh…</string>
+    <string name="error_show_channel_details">Lỗi tại Hiện chi tiết kênh</string>
+    <string name="show_image_indicators_summary">Hiện ruy băng được tô màu Picasso ở trên cùng các hình ảnh và chỉ ra nguồn của chúng: đỏ đối với mạng, xanh lam đối với ổ đĩa và xanh lá đối với bộ nhớ</string>
+    <string name="show_image_indicators_title">Hiện dấu chỉ hình ảnh</string>
+    <string name="remote_search_suggestions">Đề xuất tìm kiếm trên mạng</string>
+    <string name="local_search_suggestions">Đề xuất tìm kiếm cục bộ</string>
 </resources>

@@ -50,7 +50,7 @@
     <string name="player_gesture_controls_title">מחוות מגע לשליטה בנגן</string>
     <string name="player_gesture_controls_summary">שימוש במחוות כדי לשלוט בבהירות ובעצמת השמע של הנגן</string>
     <string name="show_search_suggestions_title">הצעות חיפוש</string>
-    <string name="show_search_suggestions_summary">הצגת הצעות בעת החיפוש</string>
+    <string name="show_search_suggestions_summary">נא לבחור את ההצעות להצגה בזמן החיפוש</string>
     <string name="download_dialog_title">הורדה</string>
     <string name="show_next_and_similar_title">להציג סרטונים דומים והבאים בתור</string>
     <string name="unsupported_url">כתובת לא נתמכת</string>
@@ -173,8 +173,7 @@
     <string name="view">נגינה</string>
     <string name="delete">מחיקה</string>
     <string name="checksum">גיבוב לאימות</string>
-    <string name="add">משימה חדשה</string>
-    <string name="finish">אישור</string>
+    <string name="ok">אישור</string>
     <string name="msg_name">שם קובץ</string>
     <string name="msg_threads">תת־דיונים</string>
     <string name="msg_error">שגיאה</string>
@@ -437,8 +436,6 @@
     <string name="enqueue">תור</string>
     <string name="permission_denied">הפעולה נדחתה על ידי המערכת</string>
     <string name="download_failed">ההורדה נכשלה</string>
-    <string name="download_finished">ההורדה הסתיימה</string>
-    <string name="download_finished_more">%s הורדות הסתיימו</string>
     <string name="generate_unique_name">יצירת שם ייחודי</string>
     <string name="overwrite">שכתוב</string>
     <string name="overwrite_finished_warning">כבר קיים קובץ בשם הזה</string>
@@ -530,7 +527,6 @@
     <string name="choose_instance_prompt">נא לבחור מופע</string>
     <string name="clear_download_history">מחיקת היסטוריית ההורדות</string>
     <string name="delete_downloaded_files">למחוק את הקבצים שהורדתי</string>
-    <string name="deleted_downloads">נמחקו %1$d הורדות</string>
     <string name="permission_display_over_apps">יש להעניק הרשאה להציג על גבי יישומונים אחרים</string>
     <string name="app_language_title">שפת היישומון</string>
     <string name="systems_language">ברירת המחדל של המערכת</string>
@@ -738,4 +734,10 @@
     <string name="seekbar_preview_thumbnail_title">תמונה מוקטנת בסרגל הנגינה</string>
     <string name="detail_heart_img_view_description">סומן בלב על ידי היוצר</string>
     <string name="mark_as_watched">סימון כנצפה</string>
+    <string name="loading_channel_details">פרטי הערוץ נטענים…</string>
+    <string name="error_show_channel_details">שגיאה בהצגת פרטי הערוץ</string>
+    <string name="show_image_indicators_summary">הצגת סרטים בסגנון פיקאסו בראש התמונות לציון המקור שלהם: אדום זה מהרשת, כחול מהכונן וירוק מהזיכרון</string>
+    <string name="show_image_indicators_title">הצגת מחווני תמונות</string>
+    <string name="remote_search_suggestions">הצעות חיפוש מרוחקות</string>
+    <string name="local_search_suggestions">הצעות חיפוש מקומיות</string>
 </resources>

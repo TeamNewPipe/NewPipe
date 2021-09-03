@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.Nullable
+import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.jakewharton.rxbinding4.view.clicks
@@ -37,20 +39,37 @@ class ErrorPanelHelper(
     onRetry: Runnable
 ) {
     private val context: Context = rootView.context!!
+
     private val errorPanelRoot: View = rootView.findViewById(R.id.error_panel)
-    private val errorTextView: TextView = errorPanelRoot.findViewById(R.id.error_message_view)
-    private val errorServiceInfoTextView: TextView = errorPanelRoot.findViewById(R.id.error_message_service_info_view)
-    private val errorServiceExplenationTextView: TextView = errorPanelRoot.findViewById(R.id.error_message_service_explenation_view)
-    private val errorButtonAction: Button = errorPanelRoot.findViewById(R.id.error_button_action)
-    private val errorButtonRetry: Button = errorPanelRoot.findViewById(R.id.error_button_retry)
+
+    // the only element that is visible by default
+    private val errorTextView: TextView =
+        errorPanelRoot.findViewById(R.id.error_message_view)
+    private val errorServiceInfoTextView: TextView =
+        errorPanelRoot.findViewById(R.id.error_message_service_info_view)
+    private val errorServiceExplanationTextView: TextView =
+        errorPanelRoot.findViewById(R.id.error_message_service_explanation_view)
+    private val errorActionButton: Button =
+        errorPanelRoot.findViewById(R.id.error_action_button)
+    private val errorRetryButton: Button =
+        errorPanelRoot.findViewById(R.id.error_retry_button)
 
     private var errorDisposable: Disposable? = null
 
     init {
-        errorDisposable = errorButtonRetry.clicks()
+        errorDisposable = errorRetryButton.clicks()
             .debounce(300, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { onRetry.run() }
+    }
+
+    private fun ensureDefaultVisibility() {
+        errorTextView.isVisible = true
+
+        errorServiceInfoTextView.isVisible = false
+        errorServiceExplanationTextView.isVisible = false
+        errorActionButton.isVisible = false
+        errorRetryButton.isVisible = false
     }
 
     fun showError(errorInfo: ErrorInfo) {
@@ -62,10 +81,14 @@ class ErrorPanelHelper(
             return
         }
 
-        errorButtonAction.isVisible = true
+        ensureDefaultVisibility()
+
         if (errorInfo.throwable is ReCaptchaException) {
-            errorButtonAction.setText(R.string.recaptcha_solve)
-            errorButtonAction.setOnClickListener {
+            errorTextView.setText(R.string.recaptcha_request_toast)
+
+            showAndSetErrorButtonAction(
+                R.string.recaptcha_solve
+            ) {
                 // Starting ReCaptcha Challenge Activity
                 val intent = Intent(context, ReCaptchaActivity::class.java)
                 intent.putExtra(
@@ -73,45 +96,31 @@ class ErrorPanelHelper(
                     (errorInfo.throwable as ReCaptchaException).url
                 )
                 fragment.startActivityForResult(intent, ReCaptchaActivity.RECAPTCHA_REQUEST)
-                errorButtonAction.setOnClickListener(null)
+                errorActionButton.setOnClickListener(null)
             }
-            errorTextView.setText(R.string.recaptcha_request_toast)
-            // additional info is only provided by AccountTerminatedException
-            errorServiceInfoTextView.isVisible = false
-            errorServiceExplenationTextView.isVisible = false
-            errorButtonRetry.isVisible = true
+
+            errorRetryButton.isVisible = true
         } else if (errorInfo.throwable is AccountTerminatedException) {
-            errorButtonRetry.isVisible = false
-            errorButtonAction.isVisible = false
             errorTextView.setText(R.string.account_terminated)
+
             if (!isNullOrEmpty((errorInfo.throwable as AccountTerminatedException).message)) {
-                errorServiceInfoTextView.setText(
-                    context.resources.getString(
-                        R.string.service_provides_reason,
-                        NewPipe.getNameOfService(ServiceHelper.getSelectedServiceId(context))
-                    )
-                )
-                errorServiceExplenationTextView.setText(
-                    (errorInfo.throwable as AccountTerminatedException).message
+                errorServiceInfoTextView.text = context.resources.getString(
+                    R.string.service_provides_reason,
+                    NewPipe.getNameOfService(ServiceHelper.getSelectedServiceId(context))
                 )
                 errorServiceInfoTextView.isVisible = true
-                errorServiceExplenationTextView.isVisible = true
-            } else {
-                errorServiceInfoTextView.isVisible = false
-                errorServiceExplenationTextView.isVisible = false
+
+                errorServiceExplanationTextView.text =
+                    (errorInfo.throwable as AccountTerminatedException).message
+                errorServiceExplanationTextView.isVisible = true
             }
         } else {
-            errorButtonAction.setText(R.string.error_snackbar_action)
-            errorButtonAction.setOnClickListener {
+            showAndSetErrorButtonAction(
+                R.string.error_snackbar_action
+            ) {
                 ErrorActivity.reportError(context, errorInfo)
             }
 
-            // additional info is only provided by AccountTerminatedException
-            errorServiceInfoTextView.isVisible = false
-            errorServiceExplenationTextView.isVisible = false
-
-            // hide retry button by default, then show only if not unavailable/unsupported content
-            errorButtonRetry.isVisible = false
             errorTextView.setText(
                 when (errorInfo.throwable) {
                     is AgeRestrictedContentException -> R.string.restricted_video_no_stream
@@ -124,7 +133,7 @@ class ErrorPanelHelper(
                     is ContentNotSupportedException -> R.string.content_not_supported
                     else -> {
                         // show retry button only for content which is not unavailable or unsupported
-                        errorButtonRetry.isVisible = true
+                        errorRetryButton.isVisible = true
                         if (errorInfo.throwable != null && errorInfo.throwable!!.isNetworkRelated) {
                             R.string.network_error
                         } else {
@@ -134,17 +143,36 @@ class ErrorPanelHelper(
                 }
             )
         }
-        errorPanelRoot.animate(true, 300)
+
+        setRootVisible()
+    }
+
+    /**
+     * Shows the errorButtonAction, sets a text into it and sets the click listener.
+     */
+    private fun showAndSetErrorButtonAction(
+        @StringRes resid: Int,
+        @Nullable listener: View.OnClickListener
+    ) {
+        errorActionButton.isVisible = true
+        errorActionButton.setText(resid)
+        errorActionButton.setOnClickListener(listener)
     }
 
     fun showTextError(errorString: String) {
-        errorButtonAction.isVisible = false
-        errorButtonRetry.isVisible = false
+        ensureDefaultVisibility()
+
         errorTextView.text = errorString
+
+        setRootVisible()
+    }
+
+    private fun setRootVisible() {
+        errorPanelRoot.animate(true, 300)
     }
 
     fun hide() {
-        errorButtonAction.setOnClickListener(null)
+        errorActionButton.setOnClickListener(null)
         errorPanelRoot.animate(false, 150)
     }
 
@@ -153,8 +181,8 @@ class ErrorPanelHelper(
     }
 
     fun dispose() {
-        errorButtonAction.setOnClickListener(null)
-        errorButtonRetry.setOnClickListener(null)
+        errorActionButton.setOnClickListener(null)
+        errorRetryButton.setOnClickListener(null)
         errorDisposable?.dispose()
     }
 

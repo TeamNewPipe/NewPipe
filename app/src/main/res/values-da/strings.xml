@@ -230,8 +230,7 @@
     <string name="checksum">Kontrolsum</string>
     <string name="dismiss">Afvis</string>
     <string name="rename">Omdøb</string>
-    <string name="add">Ny mission</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">Filnavn</string>
     <string name="msg_threads">Tråde</string>
     <string name="msg_error">Fejl</string>
@@ -355,8 +354,6 @@
     <string name="enqueue">Kø</string>
     <string name="permission_denied">Handling afvist af systemet</string>
     <string name="download_failed">Download fejlede</string>
-    <string name="download_finished">Download færdig</string>
-    <string name="download_finished_more">%s downloads færdige</string>
     <string name="generate_unique_name">Generer unikt navn</string>
     <string name="overwrite">Overskriv</string>
     <string name="overwrite_unrelated_warning">En fil med dette navn eksisterer allerede</string>

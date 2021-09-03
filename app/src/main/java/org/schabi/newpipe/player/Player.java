@@ -159,6 +159,7 @@ import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static com.google.android.exoplayer2.Player.RepeatMode;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
@@ -620,6 +621,9 @@ public final class Player implements
             return;
         }
 
+        // needed for tablets, check the function for a better explanation
+        directlyOpenFullscreenIfNeeded();
+
         final PlaybackParameters savedParameters = retrievePlaybackParametersFromPrefs(this);
         final float playbackSpeed = savedParameters.speed;
         final float playbackPitch = savedParameters.pitch;
@@ -671,6 +675,7 @@ public final class Player implements
                 && isPlaybackResumeEnabled(this)
                 && !samePlayQueue
                 && !newQueue.isEmpty()
+                && newQueue.getItem() != null
                 && newQueue.getItem().getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
             databaseUpdateDisposable.add(recordManager.loadStreamState(newQueue.getItem())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -740,6 +745,22 @@ public final class Player implements
             }
         }
         NavigationHelper.sendPlayerStartedEvent(context);
+    }
+
+    /**
+     * Open fullscreen on tablets where the option to have the main player start automatically in
+     * fullscreen mode is on. Rotating the device to landscape is already done in {@link
+     * VideoDetailFragment#openVideoPlayer(boolean)} when the thumbnail is clicked, and that's
+     * enough for phones, but not for tablets since the mini player can be also shown in landscape.
+     */
+    private void directlyOpenFullscreenIfNeeded() {
+        if (fragmentListener != null
+                && PlayerHelper.isStartMainPlayerFullscreenEnabled(service)
+                && DeviceUtils.isTablet(service)
+                && videoPlayerSelected()
+                && PlayerHelper.globalScreenOrientationLocked(service)) {
+            fragmentListener.onScreenRotationButtonClicked();
+        }
     }
 
     private void initPlayback(@NonNull final PlayQueue queue,
@@ -1572,8 +1593,7 @@ public final class Player implements
         }
 
         if (duration != binding.playbackSeekBar.getMax()) {
-            binding.playbackEndTime.setText(getTimeString(duration));
-            binding.playbackSeekBar.setMax(duration);
+            setVideoDurationToControls(duration);
         }
         if (currentState != STATE_PAUSED) {
             if (currentState != STATE_PAUSED_SEEK) {
@@ -2073,8 +2093,8 @@ public final class Player implements
             Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
         }
 
-        binding.playbackSeekBar.setMax((int) simpleExoPlayer.getDuration());
-        binding.playbackEndTime.setText(getTimeString((int) simpleExoPlayer.getDuration()));
+        setVideoDurationToControls((int) simpleExoPlayer.getDuration());
+
         binding.playbackSpeed.setText(formatSpeed(getPlaybackSpeed()));
 
         if (playWhenReady) {
@@ -2716,6 +2736,20 @@ public final class Player implements
             simpleExoPlayer.seekToDefaultPosition();
         }
     }
+
+    /**
+     * Sets the video duration time into all control components (e.g. seekbar).
+     * @param duration
+     */
+    private void setVideoDurationToControls(final int duration) {
+        binding.playbackEndTime.setText(getTimeString(duration));
+
+        binding.playbackSeekBar.setMax(duration);
+        // This is important for Android TVs otherwise it would apply the default from
+        // setMax/Min methods which is (max - min) / 20
+        binding.playbackSeekBar.setKeyProgressIncrement(
+                PlayerHelper.retrieveSeekDurationFromPreferences(this));
+    }
     //endregion
 
 
@@ -2765,7 +2799,9 @@ public final class Player implements
             Log.d(TAG, "onPlayPause() called");
         }
 
-        if (getPlayWhenReady()) {
+        if (getPlayWhenReady()
+                // When state is completed (replay button is shown) then (re)play and do not pause
+                && currentState != STATE_COMPLETED) {
             pause();
         } else {
             play();
@@ -3198,9 +3234,9 @@ public final class Player implements
 
             @Override
             public void held(final PlayQueueItem item, final View view) {
-                final int index = playQueue.indexOf(item);
-                if (index != -1) {
-                    playQueue.remove(index);
+                if (playQueue.indexOf(item) != -1) {
+                    openPopupMenu(playQueue, item, view, true,
+                            getParentActivity().getSupportFragmentManager(), context);
                 }
             }
 
@@ -3839,11 +3875,9 @@ public final class Player implements
         if (DEBUG) {
             Log.d(TAG, "toggleFullscreen() called");
         }
-        if (popupPlayerSelected() || exoPlayerIsNull() || currentMetadata == null
-                || fragmentListener == null) {
+        if (popupPlayerSelected() || exoPlayerIsNull() || fragmentListener == null) {
             return;
         }
-        //changeState(STATE_BLOCKED); TODO check what this does
 
         isFullscreen = !isFullscreen;
         if (!isFullscreen) {

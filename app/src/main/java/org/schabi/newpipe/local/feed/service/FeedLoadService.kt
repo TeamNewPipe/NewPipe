@@ -300,6 +300,12 @@ class FeedLoadService : Service() {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe { _, throwable ->
+                            // There seems to be a bug in the kotlin plugin as it tells you when
+                            // building that this can't be null:
+                            // "Condition 'throwable != null' is always 'true'"
+                            // However it can indeed be null
+                            // The suppression may be removed in further versions
+                            @Suppress("SENSELESS_COMPARISON")
                             if (throwable != null) {
                                 Log.e(TAG, "Error while storing result", throwable)
                                 handleError(throwable)

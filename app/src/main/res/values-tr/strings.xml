@@ -58,7 +58,7 @@
     <string name="content_not_available">İçerik kullanılamıyor</string>
     <string name="live_streams_not_supported">Canlı akışlar henüz desteklenmiyor</string>
     <string name="could_not_get_stream">Herhangi bir akış alınamadı</string>
-    <string name="could_not_load_image">Görüntü yüklenemedi</string>
+    <string name="could_not_load_image">Resim yüklenemedi</string>
     <string name="app_ui_crash">Uygulama/kullanıcı arayüzü çöktü</string>
     <string name="sorry_string">Üzgünüz, bu olmamalıydı.</string>
     <string name="error_report_button_text">Bu hatayı e-posta aracılığıyla bildir</string>
@@ -86,8 +86,7 @@
     <string name="view">Oynat</string>
     <string name="delete">Sil</string>
     <string name="checksum">Doğrulama</string>
-    <string name="add">Yeni görev</string>
-    <string name="finish">Tamam</string>
+    <string name="ok">Tamam</string>
     <string name="msg_name">Dosya adı</string>
     <string name="msg_threads">İş parçacığı</string>
     <string name="msg_error">Hata</string>
@@ -135,7 +134,7 @@
     <string name="player_gesture_controls_summary">Oynatıcının parlaklığını ve sesini denetlemek için hareketleri kullan</string>
     <string name="player_gesture_controls_title">Hareketli oynatıcı denetimi</string>
     <string name="show_search_suggestions_title">Arama önerileri</string>
-    <string name="show_search_suggestions_summary">Arama yaparken önerileri göster</string>
+    <string name="show_search_suggestions_summary">Ararken gösterilecek önerileri seçin</string>
     <string name="best_resolution">En iyi çözünürlük</string>
     <string name="title_activity_about">NewPipe Hakkında</string>
     <string name="action_settings">Ayarlar</string>
@@ -342,8 +341,8 @@
 \n
 \nSürdürmek istiyor musunuz\?</string>
     <string name="download_thumbnail_title">Küçük resimleri yükle</string>
-    <string name="download_thumbnail_summary">Küçük resimlerin yüklenmesini önlemek, veri ve hafıza kullanımından tasarruf etmek için kapatın. Değişiklikler, hem bellek içi hem de diskteki görüntü önbelleğini temizler</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Görüntü önbelleği silindi</string>
+    <string name="download_thumbnail_summary">Küçük resimlerin yüklenmesini önleyerek veri ve hafıza kullanımından tasarruf etmek için kapatın. Değişiklikler, hem bellek içi hem de diskteki resim önbelleğini temizler</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği silindi</string>
     <string name="metadata_cache_wipe_title">Önbelleğe alınmış üstverileri temizle</string>
     <string name="metadata_cache_wipe_summary">Önbelleğe alınmış tüm web sayfası verilerini kaldır</string>
     <string name="metadata_cache_wipe_complete_notice">Üstveri önbelleği temizlendi</string>
@@ -425,8 +424,6 @@
     <string name="enqueue">Sıra</string>
     <string name="permission_denied">İşlem sistem tarafından reddedildi</string>
     <string name="download_failed">İndirme başarısız</string>
-    <string name="download_finished">İndirme bitti</string>
-    <string name="download_finished_more">%s indirme bitti</string>
     <string name="generate_unique_name">Benzersiz ad oluştur</string>
     <string name="overwrite">Üzerine yaz</string>
     <string name="overwrite_finished_warning">Bu isme sahip indirilen bir dosya zaten var</string>
@@ -520,7 +517,6 @@
     <string name="choose_instance_prompt">Oluşum seçin</string>
     <string name="clear_download_history">İndirme geçmişini temizle</string>
     <string name="delete_downloaded_files">İndirilen dosyaları sil</string>
-    <string name="deleted_downloads">%1$d indirme silindi</string>
     <string name="permission_display_over_apps">Diğer uygulamaların üzerinde görüntüleme izni ver</string>
     <string name="app_language_title">Uygulama dili</string>
     <string name="systems_language">Sistem varsayılanı</string>
@@ -718,4 +714,10 @@
     <string name="comments_are_disabled">Yorumlar devre dışı</string>
     <string name="detail_heart_img_view_description">Yaratıcısınca kalplendi</string>
     <string name="mark_as_watched">İzlendi olarak imle</string>
+    <string name="loading_channel_details">Kanal Ayrıntıları Yükleniyor…</string>
+    <string name="error_show_channel_details">Kanal Ayrıntılarını Göstermede Hata</string>
+    <string name="show_image_indicators_summary">Resimlerin üzerinde kaynaklarını gösteren Picasso renkli şeritler göster: ağ için kırmızı, disk için mavi ve bellek için yeşil</string>
+    <string name="show_image_indicators_title">Resim göstergelerini göster</string>
+    <string name="remote_search_suggestions">Uzak arama önerileri</string>
+    <string name="local_search_suggestions">Yerel arama önerileri</string>
 </resources>

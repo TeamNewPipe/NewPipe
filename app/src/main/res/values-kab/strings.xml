@@ -8,7 +8,6 @@
     <string name="all">Akk</string>
     <string name="kore_not_found">Sbedd asnas n Kore yexxuṣen\?</string>
     <string name="install">Sbedd</string>
-    <string name="download_finished_more">%s n isidar id yeffuken</string>
     <string name="settings_category_downloads_title">Asider</string>
     <string name="downloads_title">Isidar</string>
     <string name="downloads">Isidar</string>
@@ -33,12 +32,10 @@
     <string name="start">Bdu</string>
     <string name="pause">Seṛǧu</string>
     <string name="view">ɣer</string>
-    <string name="add">Tuɣdaṭ tamaynut</string>
     <string name="more_than_100_videos">100+Tividyutin</string>
     <string name="subscribe_button_title">Jerred</string>
     <string name="export_to">Sifeḍ ɣer</string>
     <string name="controls_add_to_playlist_title">Rnu ɣer</string>
-    <string name="download_finished">Azdam immed</string>
     <string name="choose_browser">Fren iminig</string>
     <string name="playback_step">Amecwaṛ</string>
     <string name="yes">Ih</string>
@@ -103,7 +100,7 @@
     <string name="dismiss">Ttu</string>
     <string name="short_million">A</string>
     <string name="import_title">Kter</string>
-    <string name="finish">Ih</string>
+    <string name="ok">Ih</string>
     <string name="delete_all">Kkes akk</string>
     <string name="action_history">Amazray</string>
     <string name="list">Liste</string>

@@ -87,8 +87,7 @@
     <string name="view">Riproduci</string>
     <string name="delete">Elimina</string>
     <string name="checksum">Checksum</string>
-    <string name="add">Nuovo obiettivo</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">Nome del file</string>
     <string name="msg_threads">Thread</string>
     <string name="msg_error">Errore</string>
@@ -129,7 +128,7 @@
     <string name="player_gesture_controls_title">Controllo gesti lettore multimediale</string>
     <string name="player_gesture_controls_summary">Usa i gesti per controllare luminosità e volume del lettore multimediale</string>
     <string name="show_search_suggestions_title">Suggerimenti di ricerca</string>
-    <string name="show_search_suggestions_summary">Mostra suggerimenti durante la ricerca</string>
+    <string name="show_search_suggestions_summary">Scegli suggerimenti di ricerca</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="filter">Filtra i risultati</string>
     <string name="refresh">Ricarica</string>
@@ -430,8 +429,6 @@
     <string name="enqueue">Accoda</string>
     <string name="permission_denied">Azione negata dal sistema</string>
     <string name="download_failed">Download fallito</string>
-    <string name="download_finished">Download terminato</string>
-    <string name="download_finished_more">%s download terminati</string>
     <string name="generate_unique_name">Genera nome univoco</string>
     <string name="overwrite">Sovrascrivi</string>
     <string name="overwrite_finished_warning">Esiste già un file scaricato con lo stesso nome</string>
@@ -520,7 +517,6 @@
     <string name="choose_instance_prompt">Scegli un\'istanza</string>
     <string name="clear_download_history">Elimina la cronologia dei download</string>
     <string name="delete_downloaded_files">Elimina file scaricati</string>
-    <string name="deleted_downloads">%1$d download eliminati</string>
     <string name="permission_display_over_apps">Consentire la visualizzazione sopra altre applicazioni</string>
     <string name="app_language_title">Lingua dell\'applicazione</string>
     <string name="systems_language">Predefinita di sistema</string>
@@ -718,4 +714,10 @@
     <string name="comments_are_disabled">Commenti disattivati</string>
     <string name="detail_heart_img_view_description">Apprezzato dall\'autore</string>
     <string name="mark_as_watched">Segna come visto</string>
+    <string name="loading_channel_details">Caricamento dettagli canale…</string>
+    <string name="error_show_channel_details">Errore per \"Mostra dettagli canale\"</string>
+    <string name="show_image_indicators_summary">Mostra gli indicatori colorati Picasso sopra le immagini, per indicare la loro fonte: rosso per la rete, blu per il disco e verde per la memoria</string>
+    <string name="show_image_indicators_title">Mostra indicatori immagine</string>
+    <string name="remote_search_suggestions">Suggerimenti di ricerca remoti</string>
+    <string name="local_search_suggestions">Suggerimenti di ricerca locali</string>
 </resources>

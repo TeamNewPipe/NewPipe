@@ -248,6 +248,7 @@ public final class ShareUtils {
         shareIntent.putExtra(Intent.EXTRA_TEXT, content);
         if (!title.isEmpty()) {
             shareIntent.putExtra(Intent.EXTRA_TITLE, title);
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, title);
         }
 
         /* TODO: add the image of the content to Android share sheet with setClipData after

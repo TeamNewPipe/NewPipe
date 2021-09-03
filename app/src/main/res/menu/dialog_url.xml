@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/okay"
-        android:title="@string/finish"
+        android:title="@string/ok"
         app:showAsAction="always" />
 
 </menu>

@@ -99,8 +99,7 @@
     <string name="start">Starten</string>
     <string name="pause">Pause</string>
     <string name="view">Abspielen</string>
-    <string name="add">Neue Mission</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_server_unsupported">Nicht unterstützter Server</string>
     <string name="could_not_load_image">Konnte Bild nicht laden</string>
     <string name="app_ui_crash">App/UI abgestürzt</string>
@@ -133,7 +132,7 @@
     <string name="player_gesture_controls_title">Gestensteuerung</string>
     <string name="player_gesture_controls_summary">Gesten verwenden, um die Helligkeit und Lautstärke einzustellen</string>
     <string name="show_search_suggestions_title">Suchvorschläge</string>
-    <string name="show_search_suggestions_summary">Beim Suchen Vorschläge anzeigen</string>
+    <string name="show_search_suggestions_summary">Wähle die Vorschläge aus, die bei der Suche angezeigt werden sollen</string>
     <string name="settings_category_popup_title">Pop-up</string>
     <string name="filter">Filter</string>
     <string name="refresh">Aktualisieren</string>
@@ -436,8 +435,6 @@
     <string name="enqueue">Warteschlange</string>
     <string name="permission_denied">System verweigert den Zugriff</string>
     <string name="download_failed">Herunterladen fehlgeschlagen</string>
-    <string name="download_finished">Herunterladen abgeschlossen</string>
-    <string name="download_finished_more">%s heruntergeladen</string>
     <string name="generate_unique_name">Eindeutigen Namen erzeugen</string>
     <string name="overwrite">Überschreiben</string>
     <string name="overwrite_unrelated_warning">Eine Datei mit diesem Namen existiert bereits</string>
@@ -527,7 +524,6 @@
     <string name="error_download_resource_gone">Kann diesen Download nicht wiederherstellen</string>
     <string name="clear_download_history">Downloadverlauf löschen</string>
     <string name="delete_downloaded_files">Heruntergeladene Dateien löschen</string>
-    <string name="deleted_downloads">%1$d Downloads gelöscht</string>
     <string name="permission_display_over_apps">Berechtigung zur Anzeige über andere Apps erteilen</string>
     <string name="app_language_title">Sprache der App</string>
     <string name="systems_language">Systemstandard</string>
@@ -717,5 +713,11 @@
     <string name="off">Aus</string>
     <string name="feed_toggle_show_played_items">Angesehene Elemente anzeigen</string>
     <string name="mark_as_watched">Als gesehen markieren</string>
-    <string name="detail_heart_img_view_description"></string>
+    <string name="detail_heart_img_view_description">Vom Ersteller mit Herz versehen</string>
+    <string name="loading_channel_details">Kanaldetails werden geladen…</string>
+    <string name="error_show_channel_details">Fehler beim Anzeigen der Kanaldetails</string>
+    <string name="show_image_indicators_summary">Farbige Picasso-Bänder über den Bildern anzeigen, die deren Quelle angeben: rot für Netzwerk, blau für Festplatte und grün für Speicher</string>
+    <string name="show_image_indicators_title">Bildindikatoren anzeigen</string>
+    <string name="remote_search_suggestions">Entfernte Suchvorschläge</string>
+    <string name="local_search_suggestions">Lokale Suchvorschläge</string>
 </resources>

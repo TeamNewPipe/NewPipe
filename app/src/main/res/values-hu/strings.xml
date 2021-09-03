@@ -87,7 +87,7 @@
     <string name="view">Lejátszás</string>
     <string name="delete">Törlés</string>
     <string name="checksum">Ellenőrző összeg</string>
-    <string name="finish">Rendben</string>
+    <string name="ok">Rendben</string>
     <string name="msg_name">Fájlnév</string>
     <string name="msg_threads">Threadek</string>
     <string name="msg_error">Hiba</string>
@@ -99,7 +99,6 @@
     <string name="msg_copied">Vágólapra másolva</string>
     <string name="no_available_dir">Kérlek adj meg egy letöltés könyvtárat a beállításokban</string>
     <string name="msg_server_unsupported">Nem támogatott szerver</string>
-    <string name="add">Új küldetés</string>
     <string name="channel_unsubscribed">Csatornáról leiratkozva</string>
     <string name="subscription_change_failed">Nem sikerült megváltoztatni a feliratkozást</string>
     <string name="subscription_update_failed">Nem sikerült frissíteni a feliratkozást</string>
@@ -409,7 +408,6 @@
     <string name="max_retry_desc">A letöltés megszakítása előtti kísérletek maximális száma</string>
     <string name="max_retry_msg">Maximális próbálkozások</string>
     <string name="stop">Állj</string>
-    <string name="deleted_downloads">%1$d letöltés törölve</string>
     <string name="delete_downloaded_files">Letöltött fájlok törlése</string>
     <string name="confirm_prompt">Törli a letöltési előzményeket, vagy törli az összes letöltött fájlt\?</string>
     <string name="clear_download_history">Letöltési előzmények törlése</string>
@@ -436,8 +434,6 @@
     <string name="overwrite_unrelated_warning">Az ilyen névű fájl már létezik</string>
     <string name="overwrite">Átír</string>
     <string name="generate_unique_name">Generáljon egyedi nevet</string>
-    <string name="download_finished_more">%s letöltés kész</string>
-    <string name="download_finished">Letöltés kész</string>
     <string name="download_failed">Letöltés sikertelen</string>
     <string name="recovering">Helyrehozás</string>
     <string name="post_processing">Utófeldolgozás</string>

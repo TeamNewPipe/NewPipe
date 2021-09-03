@@ -41,8 +41,7 @@
     <string name="audio">Audiu</string>
     <string name="delete">Desaniciar</string>
     <string name="checksum">Suma de comprobación</string>
-    <string name="add">Misión nueva</string>
-    <string name="finish">Aceutar</string>
+    <string name="ok">Aceutar</string>
     <string name="msg_threads">Filos</string>
     <string name="msg_error">Fallu</string>
     <string name="msg_wait">Espera…</string>
@@ -286,7 +285,6 @@
     <string name="import_complete_toast">Importóse</string>
     <string name="could_not_import_all_files">Alvertencia: nun pudieron importase tolos ficheros.</string>
     <string name="settings_category_updates_title">Anovamientos</string>
-    <string name="download_finished">Finó la descarga</string>
     <string name="peertube_instance_add_fail">Nun pudo validase la instancia</string>
     <plurals name="minutes">
         <item quantity="one">%d minutu</item>
@@ -370,7 +368,6 @@
     <string name="pause_downloads_on_mobile_desc">Útil al cambiar a los datos móviles, magar que dalgunes descargues nun puedan suspendese</string>
     <string name="pause_downloads_on_mobile">Torgar nes redes midíes</string>
     <string name="stop">Parar</string>
-    <string name="deleted_downloads">Desaniciáronse %1$d descargues</string>
     <string name="delete_downloaded_files">Desaniciar lo baxao</string>
     <string name="clear_download_history">Llimpiar l\'historial de descargues</string>
     <string name="error_download_resource_gone">Esta descarga nun pue recuperase</string>
@@ -382,7 +379,6 @@
     <string name="show_error">Amosar el fallu</string>
     <string name="overwrite">Sobrescribir</string>
     <string name="generate_unique_name">Xenerar un nome únicu</string>
-    <string name="download_finished_more">Finaron %s descargues</string>
     <string name="permission_denied">El sistema negó l\'aición</string>
     <string name="enqueue">Amestar a la cola</string>
     <string name="recovering">recuperando</string>

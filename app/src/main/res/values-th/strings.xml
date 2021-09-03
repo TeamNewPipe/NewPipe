@@ -229,7 +229,6 @@
     <string name="delete_all">ลบทั้งหมด</string>
     <string name="dismiss">ไม่สนใจ</string>
     <string name="rename">เปลี่ยนชื่อ</string>
-    <string name="add">ภารกิจใหม่</string>
     <string name="msg_name">ชื่อไฟล์</string>
     <string name="msg_server_unsupported">เซิร์ฟเวอร์ที่ไม่รองรับ</string>
     <string name="msg_exists">ไฟล์มีอยู่แล้ว</string>
@@ -402,8 +401,6 @@
     <string name="enqueue">คิว</string>
     <string name="permission_denied">การดำเนินการถูกปฏิเสธโดยระบบ</string>
     <string name="download_failed">การดาวน์โหลดล้มเหลว</string>
-    <string name="download_finished">การดาวน์โหลดเสร็จสิ้น</string>
-    <string name="download_finished_more">%s การดาวน์โหลดเสร็จสิ้น</string>
     <string name="generate_unique_name">สร้างชื่อเฉพาะ</string>
     <string name="overwrite">เขียนทับ</string>
     <string name="download_already_running">มีการดาวน์โหลดที่กำลังดำเนินการอยู่ด้วยไฟล์ชื่อนี้อยู่แล้ว</string>

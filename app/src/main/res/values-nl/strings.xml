@@ -72,7 +72,7 @@
     <string name="video">Video</string>
     <string name="audio">Geluid</string>
     <string name="retry">Opnieuw proberen</string>
-    <string name="main_bg_subtitle">Druk op \"Zoeken\" om te beginnen.</string>
+    <string name="main_bg_subtitle">Tik op het vergrootglas om te beginnen.</string>
     <string name="autoplay_by_calling_app_title">Automatisch afspelen</string>
     <string name="autoplay_by_calling_app_summary">Speelt video’s af als NewPipe vanuit een andere app wordt geopend</string>
     <string name="duration_live">Live</string>
@@ -90,8 +90,7 @@
     <string name="view">Afspelen</string>
     <string name="delete">Verwijderen</string>
     <string name="checksum">Controlesom</string>
-    <string name="add">Nieuwe missie</string>
-    <string name="finish">Oké</string>
+    <string name="ok">Oké</string>
     <string name="msg_name">Bestandsnaam</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_error">Fout</string>
@@ -133,7 +132,7 @@
     <string name="settings_category_popup_title">Pop-up</string>
     <string name="use_external_video_player_summary">Verwijdert geluid bij sommige resoluties</string>
     <string name="show_search_suggestions_title">Zoeksuggesties</string>
-    <string name="show_search_suggestions_summary">Toon suggesties bij zoeken</string>
+    <string name="show_search_suggestions_summary">Kies de suggesties om te tonen tijdens het zoeken</string>
     <string name="player_gesture_controls_title">Gebaarbesturing</string>
     <string name="player_gesture_controls_summary">Gebruik gebaren om de helderheid en het volume van de speler aan te passen</string>
     <string name="best_resolution">Beste resolutie</string>
@@ -430,8 +429,6 @@
     <string name="enqueue">Wachtrij</string>
     <string name="permission_denied">Actie door het systeem geweigerd</string>
     <string name="download_failed">Downloaden mislukt</string>
-    <string name="download_finished">Downloaden voltooid</string>
-    <string name="download_finished_more">%s downloads voltooid</string>
     <string name="generate_unique_name">Genereer een unieke naam</string>
     <string name="overwrite">Overschrijven</string>
     <string name="overwrite_finished_warning">Er bestaat al een gedownload bestand met deze naam</string>
@@ -517,7 +514,6 @@
     <string name="choose_instance_prompt">Kies een instantie</string>
     <string name="clear_download_history">Download geschiedenis verwijderen</string>
     <string name="delete_downloaded_files">Verwijder gedownloade bestanden</string>
-    <string name="deleted_downloads">%1$d downloads verwijderd</string>
     <string name="permission_display_over_apps">Geef toestemming voor weergave over andere apps</string>
     <string name="app_language_title">App taal</string>
     <string name="systems_language">Systeem taal gebruiken</string>
@@ -639,7 +635,7 @@
     <string name="clear_cookie_summary">Verwijder cookies die NewPipe opslaat wanneer u een reCAPTCHA oplost</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies zijn verwijderd</string>
     <string name="clear_cookie_title">Verwijder reCAPTCHA cookies</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube biedt een \"Beperkte modus\" aan, dit verbergt mogelijk materiaal voor volwassenen</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube biedt een \"Beperkte modes\" aan, dit verbergt mogelijk materiaal voor volwassenen</string>
     <string name="show_age_restricted_content_summary">Toon inhoud die mogelijk niet geschikt is voor kinderen omwille van een leeftijdslimiet (zoals 18+)</string>
     <string name="notification_colorize_summary">Laat Android de kleur van de notificatie aanpassen, op basis van de meest voorkomende kleur in de thumbnail (let op: niet beschikbaar op elk apparaat)</string>
     <string name="notification_colorize_title">Notificatie kleur aanpassen</string>
@@ -650,14 +646,14 @@
     <string name="hash_channel_description">Meldingen over de voortgang van video hashing</string>
     <string name="hash_channel_name">Video Hash Melding</string>
     <string name="show_meta_info_summary">Schakel dit uit om meta-informatie vakken te verbergen met aanvullende informatie over de maker van de stream, streaminhoud of een zoekopdracht</string>
-    <string name="show_meta_info_title">Toon meta informatie</string>
+    <string name="show_meta_info_title">Laat meta informatie zien</string>
     <string name="description_tab_description">Beschrijving</string>
-    <string name="show_description_title">Toon beschrijving</string>
+    <string name="show_description_title">Beschrijving laten zien</string>
     <string name="no_app_to_open_intent">Geen app op je apparaat kan dit openen</string>
     <string name="chapters">Hoofdstukken</string>
     <string name="related_items_tab_description">Gerelateerde streams</string>
     <string name="comments_tab_description">Reacties</string>
-    <string name="show_description_summary">Schakel dit uit om video beschrijvingen en additionele informatie te verbergen</string>
+    <string name="show_description_summary">Zet uit om video beschrijving en extra informatie te verbergen</string>
     <string name="open_with">Open met</string>
     <string name="radio">Radio</string>
     <string name="featured">Uitgelicht</string>
@@ -700,7 +696,7 @@
     <string name="open_website_license">Open website</string>
     <string name="service_provides_reason">%s geeft de volgende reden:</string>
     <string name="account_terminated">Account getermineerd</string>
-    <string name="feed_toggle_show_played_items">Toon gespeelde items</string>
+    <string name="feed_toggle_show_played_items">Toon bekeken items</string>
     <string name="feed_load_error_fast_unknown">De snelle feed mode levert hierover niet meer informatie.</string>
     <string name="feed_load_error_terminated">De account van de auteur is getermineerd.
 \nNewPipe zal niet in staat zijn deze feed in de toekomst te laden.
@@ -711,4 +707,17 @@
     <string name="downloads_storage_use_saf_summary_api_19">Het \'Storage Access Framework\' is niet ondersteund op Android KitKat en lager</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">U wordt gevraagd waar elk bestand wordt opgeslagen</string>
     <string name="no_dir_yet">Nog geen downloadfolder gekozen, kies de standaard downloadfolder</string>
+    <string name="loading_channel_details">Kanaaldetails laden…</string>
+    <string name="error_show_channel_details">Error tijdens tonen van kanaal details</string>
+    <string name="detail_heart_img_view_description">Geliefd door de maker</string>
+    <string name="dont_show">Niet laten zien</string>
+    <string name="low_quality_smaller">Lage kwaliteit (kleiner)</string>
+    <string name="high_quality_larger">Hoge kwaliteit (groter)</string>
+    <string name="seekbar_preview_thumbnail_title">Zoekbalk miniatuurafbeelding voorbeeld</string>
+    <string name="show_image_indicators_summary">Toon Picasso-gekleurde linten bovenop afbeeldingen die hun bron aangeven: rood voor netwerk, blauw voor schijf en groen voor geheugen</string>
+    <string name="show_image_indicators_title">Toon afbeeldingsindicatoren</string>
+    <string name="comments_are_disabled">Reacties zijn uitgeschakeld</string>
+    <string name="remote_search_suggestions">Zoeksuggesties op afstand</string>
+    <string name="local_search_suggestions">Lokale zoeksuggesties</string>
+    <string name="mark_as_watched">Markeer als bekeken</string>
 </resources>

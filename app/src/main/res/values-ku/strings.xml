@@ -197,8 +197,7 @@
     <string name="checksum">تاقیکردنەوەی هێڵێک</string>
     <string name="dismiss">فەرامۆشی</string>
     <string name="rename">ناو لێنانەوە</string>
-    <string name="add">ئەرکی نوێ</string>
-    <string name="finish">باشە</string>
+    <string name="ok">باشە</string>
     <string name="msg_name">ناوی فایل</string>
     <string name="msg_threads">دابەشکراوەکان</string>
     <string name="msg_error">کێشە ڕوویدا</string>
@@ -468,8 +467,6 @@
     <string name="enqueue">لە ڕیز</string>
     <string name="permission_denied">کردار ڕەتکرایەوە لەلایەن سیستەمەوە</string>
     <string name="download_failed">دابەزاندن کەوت</string>
-    <string name="download_finished">دابەزاندن تەواوبوو</string>
-    <string name="download_finished_more">%s دابەزاندن تەواوبوون</string>
     <string name="generate_unique_name">دانانی ناوی نوێ</string>
     <string name="overwrite">جێگیرکردن</string>
     <string name="conferences">کۆنفرانسەکان</string>
@@ -520,7 +517,6 @@
     <string name="choose_instance_prompt">دۆخێک هەڵبژێرە</string>
     <string name="clear_download_history">سڕینەوەی مێژووی دابەزاندن</string>
     <string name="delete_downloaded_files">سڕینەوەی فایلە دابەزێنراوەکان</string>
-    <string name="deleted_downloads">%1$d لە دابەزێنراوەکان سڕانەوە</string>
     <string name="permission_display_over_apps">دەسەڵاتی پێبدە بۆ پیشاندان لەسەرووی ئەپەکانیترەوە</string>
     <string name="app_language_title">زمانی ئەپ</string>
     <string name="systems_language">بنەڕەتی سیستەم</string>

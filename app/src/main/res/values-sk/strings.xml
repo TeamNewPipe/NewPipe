@@ -84,8 +84,7 @@
     <string name="view">Prehrať</string>
     <string name="delete">Zmazať</string>
     <string name="checksum">Kontrolný súčet</string>
-    <string name="add">Nová misia</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">Názov súboru</string>
     <string name="msg_threads">Vlákna</string>
     <string name="msg_error">Chyba</string>
@@ -435,8 +434,6 @@
     <string name="enqueue">Fronta</string>
     <string name="permission_denied">Akcia odmietnutá systémom</string>
     <string name="download_failed">Sťahovanie zlyhalo</string>
-    <string name="download_finished">Sťahovanie ukončené</string>
-    <string name="download_finished_more">%s sťahovania skončené</string>
     <string name="generate_unique_name">Vytvoriť jedinečný názov</string>
     <string name="overwrite">Prepísať</string>
     <string name="overwrite_unrelated_warning">Súbor s týmto názvom už existuje</string>
@@ -525,7 +522,6 @@
     <string name="choose_instance_prompt">Vyberte inštanciu</string>
     <string name="clear_download_history">Vymazať históriu sťahovania</string>
     <string name="delete_downloaded_files">Vymazať stiahnuté súbory</string>
-    <string name="deleted_downloads">%1$d odstránených</string>
     <string name="permission_display_over_apps">Súhlas pre zobrazenie cez ďalšie aplikácie</string>
     <string name="app_language_title">Jazyk aplikácie</string>
     <string name="systems_language">Predvolený</string>

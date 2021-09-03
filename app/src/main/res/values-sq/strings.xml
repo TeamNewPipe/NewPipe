@@ -86,7 +86,6 @@
     <string name="max_retry_desc">Numri maksimal i provave para se të anulohet shkarkimi</string>
     <string name="max_retry_msg">Provat maksimale</string>
     <string name="stop">Ndalo</string>
-    <string name="deleted_downloads">U fshinë %1$d shkarkime</string>
     <string name="delete_downloaded_files">Fshij skedarët e shkarkuar</string>
     <string name="confirm_prompt">A dëshironi të boshatisni historikun e shkarkimeve apo të fshini të gjithë skedarët e shkarkuar\?</string>
     <string name="clear_download_history">Boshatis historikun e shkarkimeve</string>
@@ -114,8 +113,6 @@
     <string name="overwrite_unrelated_warning">Një skedar me këtë emër ekziston tashmë</string>
     <string name="overwrite">Mbishkruaj</string>
     <string name="generate_unique_name">Gjenero një emër unik</string>
-    <string name="download_finished_more">%s shkarkime përfunduan</string>
-    <string name="download_finished">Shkarkimi përfundoi</string>
     <string name="download_failed">Shkarkimi dështoi</string>
     <string name="permission_denied">Veprim i ndaluar nga sistemi</string>
     <string name="enqueue">Radha</string>
@@ -313,8 +310,7 @@
     <string name="msg_error">Gabim</string>
     <string name="msg_threads">Veprimet paralele</string>
     <string name="msg_name">Emri i skedarit</string>
-    <string name="finish">OK</string>
-    <string name="add">Mision i ri</string>
+    <string name="ok">OK</string>
     <string name="rename">Riemërto</string>
     <string name="dismiss">Hiqe</string>
     <string name="checksum">Kodi verifikues</string>

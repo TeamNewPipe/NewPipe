@@ -67,7 +67,7 @@
     <string name="player_gesture_controls_title">播放器手勢控制</string>
     <string name="player_gesture_controls_summary">使用手勢來控制播放器的亮度及音量</string>
     <string name="show_search_suggestions_title">搜尋建議</string>
-    <string name="show_search_suggestions_summary">搜尋時顯示搜尋建議</string>
+    <string name="show_search_suggestions_summary">選擇在搜尋時顯示建議</string>
     <string name="settings_category_popup_title">懸浮視窗</string>
     <string name="popup_playing_toast">以懸浮視窗播放中</string>
     <string name="content">內容</string>
@@ -118,8 +118,7 @@
     <string name="view">播放</string>
     <string name="delete">刪除</string>
     <string name="checksum">檢查碼</string>
-    <string name="add">新任務</string>
-    <string name="finish">確定</string>
+    <string name="ok">確定</string>
     <string name="msg_name">檔案名稱</string>
     <string name="msg_threads">執行緒數目</string>
     <string name="msg_error">錯誤</string>
@@ -424,8 +423,6 @@
     <string name="enqueue">佇列</string>
     <string name="permission_denied">動作被系統拒絕</string>
     <string name="download_failed">下載失敗</string>
-    <string name="download_finished">下載已完成</string>
-    <string name="download_finished_more">%s 個下載已完成</string>
     <string name="generate_unique_name">生成獨特的名稱</string>
     <string name="overwrite">覆寫</string>
     <string name="overwrite_finished_warning">已有此名稱的已下載檔案</string>
@@ -515,7 +512,6 @@
     <string name="choose_instance_prompt">選擇一個站臺</string>
     <string name="clear_download_history">清除下載歷史紀錄</string>
     <string name="delete_downloaded_files">刪除已下載的檔案</string>
-    <string name="deleted_downloads">已刪除 %1$d 個下載</string>
     <string name="permission_display_over_apps">給予顯示在其他應用程式上層的權限</string>
     <string name="app_language_title">應用程式語言</string>
     <string name="systems_language">系統預設值</string>
@@ -708,4 +704,10 @@
     <string name="seekbar_preview_thumbnail_title">拖動列縮圖預覽</string>
     <string name="detail_heart_img_view_description">被創作者加心號</string>
     <string name="mark_as_watched">標記為已觀看</string>
+    <string name="loading_channel_details">正在載入頻道詳細資訊……</string>
+    <string name="error_show_channel_details">顯示頻道詳細資訊時發生錯誤</string>
+    <string name="show_image_indicators_summary">在圖片頂部顯示畢卡索彩色絲帶，指示其來源：紅色代表網路、藍色代表磁碟、綠色代表記憶體</string>
+    <string name="show_image_indicators_title">顯示圖片指示器</string>
+    <string name="remote_search_suggestions">遠端搜尋建議</string>
+    <string name="local_search_suggestions">本機搜尋建議</string>
 </resources>

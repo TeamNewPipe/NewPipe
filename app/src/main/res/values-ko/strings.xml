@@ -10,7 +10,7 @@
     <string name="download">다운로드</string>
     <string name="search">검색</string>
     <string name="settings">설정</string>
-    <string name="did_you_mean">%1$s를 찾으셨나요\?</string>
+    <string name="did_you_mean">\"%1$s\"를 찾으셨나요\?</string>
     <string name="share_dialog_title">다음으로 공유</string>
     <string name="choose_browser">브라우저 선택</string>
     <string name="screen_rotation">회전</string>
@@ -161,8 +161,7 @@
     </plurals>
     <string name="no_videos">비디오 없음</string>
     <string name="view">재생</string>
-    <string name="add">새로운 미션</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">파일명</string>
     <string name="msg_threads">쓰레드</string>
     <string name="msg_error">오류</string>
@@ -426,8 +425,6 @@
     <string name="enqueue">대기열</string>
     <string name="permission_denied">시스템에 의해 실행이 거부되었습니다</string>
     <string name="download_failed">다운로드 실패</string>
-    <string name="download_finished">다운로드 완료</string>
-    <string name="download_finished_more">%s 다운로드 완료됨</string>
     <string name="generate_unique_name">별개의 이름 생성</string>
     <string name="overwrite">덮어쓰기</string>
     <string name="overwrite_unrelated_warning">이 이름을 가진 파일이 이미 있습니다</string>
@@ -516,7 +513,6 @@
     <string name="choose_instance_prompt">인스턴스를 선택하세요</string>
     <string name="clear_download_history">다운로드 기록 삭제</string>
     <string name="delete_downloaded_files">다운로드된 파일 삭제</string>
-    <string name="deleted_downloads">%1$d 다운로드 삭제</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="other">%d 선택</item>
     </plurals>
@@ -581,4 +577,6 @@
     <string name="show_meta_info_title">메타 정보 표시</string>
     <string name="notification_colorize_title">색상화된 알림</string>
     <string name="clear_queue_confirmation_description">활성화된 플레이어 대기열이 교체됩니다.</string>
+    <string name="open_with">으로(로) 열기</string>
+    <string name="mark_as_watched">시청한 것으로 처리</string>
 </resources>

@@ -211,8 +211,7 @@
     <string name="checksum">تشخیص کریں</string>
     <string name="dismiss">برخاست کریں</string>
     <string name="rename">نام تبدیل کریں</string>
-    <string name="add">نیا مشن</string>
-    <string name="finish">ٹھيک ہے</string>
+    <string name="ok">ٹھيک ہے</string>
     <string name="msg_name">فائل کا نام</string>
     <string name="msg_threads">موضوعات</string>
     <string name="msg_error">خرابی</string>
@@ -425,8 +424,6 @@
     <string name="enqueue">قطار</string>
     <string name="permission_denied">سسٹم کے ذریعہ کارروائی سے انکار کیا گیا</string>
     <string name="download_failed">ڈاؤن لوڈ ناکام</string>
-    <string name="download_finished">ڈاؤن لوڈ مکمل</string>
-    <string name="download_finished_more">%s ڈاؤن لوڈ مکمل ہوا</string>
     <string name="generate_unique_name">منفرد نام بنائیں</string>
     <string name="overwrite">برتحریر</string>
     <string name="download_already_running">اس نام کے ساتھ ایک ڈاؤن لوڈ جاری ہے</string>
@@ -516,7 +513,6 @@
     <string name="choose_instance_prompt">ایک مثال منتخب کریں</string>
     <string name="clear_download_history">ڈاؤن لوڈ کی سرگزشت صاف کریں</string>
     <string name="delete_downloaded_files">ڈاؤن لوڈ شدہ فائلیں حذف کریں</string>
-    <string name="deleted_downloads">%1$d ڈاؤن لوڈز کو حذف کیا گیا</string>
     <string name="msg_calculating_hash">ہیش کا حساب لگا رہے ہیں</string>
     <string name="infinite_videos">∞ ویڈیوز</string>
     <string name="more_than_100_videos">100 سے زائد ویڈیو</string>

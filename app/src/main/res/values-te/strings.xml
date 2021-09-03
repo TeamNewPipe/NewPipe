@@ -121,8 +121,7 @@
     <string name="pause">ఆపు</string>
     <string name="view">ప్లే</string>
     <string name="delete">తొలగించు</string>
-    <string name="add">కొత్త మిషన్</string>
-    <string name="finish">అలాగే</string>
+    <string name="ok">అలాగే</string>
     <string name="msg_name">ఫైలుపేరు</string>
     <string name="msg_threads">థ్రెడ్లు</string>
     <string name="msg_error">లోపం</string>

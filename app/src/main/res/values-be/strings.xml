@@ -227,8 +227,7 @@
     <string name="checksum">Кантрольная сума</string>
     <string name="dismiss">Адхіліць</string>
     <string name="rename">Перайменаваць</string>
-    <string name="add">Новая мэта</string>
-    <string name="finish">ОК</string>
+    <string name="ok">ОК</string>
     <string name="msg_name">Імя файла</string>
     <string name="msg_threads">Патокі</string>
     <string name="msg_error">Памылка</string>
@@ -430,8 +429,6 @@
     <string name="enqueue">Чарга</string>
     <string name="permission_denied">Дзеянне забаронена сістэмай</string>
     <string name="download_failed">Памылка загрузкі</string>
-    <string name="download_finished">Загрузка завершана</string>
-    <string name="download_finished_more">%s загрузак завершана</string>
     <string name="generate_unique_name">Стварыць унікальнае імя</string>
     <string name="overwrite">Перазапісаць</string>
     <string name="download_already_running">Загрузка з такім імем ужо выконваецца</string>
@@ -503,7 +500,6 @@
     <string name="systems_language">Як у сістэме</string>
     <string name="app_language_title">Мова прылады</string>
     <string name="choose_instance_prompt">Выберыце экзэмпляр</string>
-    <string name="deleted_downloads">Выдалена %1$d загрузак</string>
     <string name="delete_downloaded_files">Выдаліць загружаныя файлы</string>
     <string name="show_original_time_ago_summary">Арыгінальныя тэксты з сэрвісаў будуць бачны ў ленце элементаў</string>
     <string name="clear_cookie_summary">Ачысціце cookie, якія NewPipe захоўвае пры рашэнні reCAPTCHA</string>

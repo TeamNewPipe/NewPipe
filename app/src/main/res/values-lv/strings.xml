@@ -117,8 +117,7 @@
     <string name="msg_error">Kļūda</string>
     <string name="msg_threads">Procesi</string>
     <string name="msg_name">Faila nosaukums</string>
-    <string name="finish">OK</string>
-    <string name="add">Jauna misija</string>
+    <string name="ok">OK</string>
     <string name="rename">Pārsaukt</string>
     <string name="dismiss">Atcelt</string>
     <string name="checksum">Kontrolsumma</string>
@@ -422,7 +421,6 @@
     <string name="max_retry_desc">Maksimālais mēģinājumu skaits pirms lejupielādes atcelšanas</string>
     <string name="max_retry_msg">Maksimālais atkārtoto mēģinājumu skaits</string>
     <string name="stop">Stop</string>
-    <string name="deleted_downloads">Izdzēstas %1$d lejupielādes</string>
     <string name="delete_downloaded_files">Dzēst lejupielādētos failus</string>
     <string name="confirm_prompt">Vai vēlaties notīrīt lejupielāžu vēsturi vai izdzēst visus lejupielādētos failus\?</string>
     <string name="clear_download_history">Notīrīt lejupielāžu vēsturi</string>
@@ -450,7 +448,6 @@
     <string name="overwrite_unrelated_warning">Fails ar šo nosaukumu jau pastāv</string>
     <string name="overwrite">Pārrakstīt</string>
     <string name="generate_unique_name">Ģenerēt unikālu nosaukumu</string>
-    <string name="download_finished_more">%s lejupielādes pabeigtas</string>
     <string name="permission_denied">Darbību noraidīja sistēma</string>
     <string name="recovering">atkopjas</string>
     <string name="post_processing">pēcapstrāde</string>
@@ -500,7 +497,6 @@
     <string name="drawer_header_action_paceholder_text">Kaut kas te parādīsies drīz :D</string>
     <string name="trending">Tendences</string>
     <string name="copyright">© %1$s no %2$s zem %3$s</string>
-    <string name="download_finished">Lejupielāde pabeigta</string>
     <string name="download_failed">Lejupielāde neizdevās</string>
     <string name="enqueue">Rinda</string>
     <string name="paused">Pausēts</string>

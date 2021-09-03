@@ -51,7 +51,7 @@
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
     <string name="msg_threads">Потоки</string>
-    <string name="finish">ОК</string>
+    <string name="ok">ОК</string>
     <string name="start">Начать</string>
     <string name="pause">Пауза</string>
     <string name="delete">Удалить</string>
@@ -117,12 +117,11 @@
     <string name="player_gesture_controls_title">Управление жестами</string>
     <string name="all">Всё</string>
     <string name="filter">Фильтр</string>
-    <string name="add">Новая цель</string>
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия пакета:\\nВерсия ОС:</string>
     <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>
     <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
-    <string name="show_search_suggestions_summary">Предлагать варианты при поиске</string>
+    <string name="show_search_suggestions_summary">Выберите отображаемые предложения поиска</string>
     <string name="later">Позже</string>
     <string name="disabled">Отключено</string>
     <string name="use_external_video_player_summary">Убирает звук в некоторых разрешениях</string>
@@ -131,7 +130,7 @@
     <string name="short_thousand">тыс.</string>
     <string name="default_popup_resolution_title">Разрешение всплывающего окна</string>
     <string name="popup_remember_size_pos_summary">Помнить последние размер и позицию всплывающего окна</string>
-    <string name="show_search_suggestions_title">Поисковые предложения</string>
+    <string name="show_search_suggestions_title">Предложения поиска</string>
     <string name="best_resolution">Лучшее разрешение</string>
     <string name="title_activity_recaptcha">Запрос reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запрошен ввод reCAPTCHA</string>
@@ -453,8 +452,6 @@
     <string name="conferences">Конференции</string>
     <string name="post_processing">пост-обработка</string>
     <string name="missions_header_pending">В очереди</string>
-    <string name="download_finished">Загрузка завершена</string>
-    <string name="download_finished_more">%s загрузок завершено</string>
     <string name="generate_unique_name">Создать уникальное имя</string>
     <string name="max_retry_msg">Максимум попыток</string>
     <string name="max_retry_desc">Количество попыток перед отменой загрузки</string>
@@ -526,7 +523,6 @@
     <string name="choose_instance_prompt">Выберите сервер</string>
     <string name="clear_download_history">Очистить историю загрузок</string>
     <string name="delete_downloaded_files">Удаление загруженных файлов</string>
-    <string name="deleted_downloads">Удалено загрузок: %1$d</string>
     <string name="permission_display_over_apps">Разрешите отображение поверх приложений</string>
     <string name="app_language_title">Язык интерфейса</string>
     <string name="systems_language">Как в системе</string>
@@ -730,4 +726,10 @@
     <string name="seekbar_preview_thumbnail_title">Миниатюра над полосой прокрутки</string>
     <string name="detail_heart_img_view_description">Автору видео понравилось это</string>
     <string name="mark_as_watched">Пометить как проигранные</string>
+    <string name="error_show_channel_details">Не удалось отобразить сведения о канале</string>
+    <string name="loading_channel_details">Загрузка сведений о канале…</string>
+    <string name="show_image_indicators_summary">Указать цветной полосой на изображениях Picasso их источник (красный - сеть, синий - диск, зелёный - память)</string>
+    <string name="show_image_indicators_title">Цветные метки на изображениях</string>
+    <string name="remote_search_suggestions">Серверные предложения поиска</string>
+    <string name="local_search_suggestions">Локальные предложения поиска</string>
 </resources>

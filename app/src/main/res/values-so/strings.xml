@@ -75,8 +75,6 @@
     <string name="overwrite_unrelated_warning">Shay magacan leh ayaa horay ujiray</string>
     <string name="overwrite">Ku badal</string>
     <string name="generate_unique_name">Usamee magac gaar ah</string>
-    <string name="download_finished_more">%s dajin ayaa dhamaystirantay</string>
-    <string name="download_finished">Dajintii way dhamaystirantay</string>
     <string name="download_failed">Dajintii ma guulaysan</string>
     <string name="permission_denied">Hawshan waxaa diiday aalada</string>
     <string name="recovering">kasoo kabanaya</string>
@@ -241,8 +239,7 @@
     <string name="msg_error">Khalad</string>
     <string name="msg_threads">Qaybaha</string>
     <string name="msg_name">Magaca shayga</string>
-    <string name="finish">Hagaag</string>
-    <string name="add">Hawl cusub</string>
+    <string name="ok">Hagaag</string>
     <string name="rename">Magaca ka baddal</string>
     <string name="dismiss">Iska dhaaf</string>
     <string name="checksum">Xaqiijiyaha</string>
@@ -459,7 +456,7 @@
     <string name="enable_watch_history_title">Wixii la daawaday</string>
     <string name="enable_search_history_summary">Ku kaydi wixii la raadiyay aallada</string>
     <string name="enable_search_history_title">Wixii laraadiyay</string>
-    <string name="show_search_suggestions_summary">Tus soojeedino marka wax la raadinayo</string>
+    <string name="show_search_suggestions_summary">Dooro soojeedinada lasoo bandhigo marka wax la raadinayo</string>
     <string name="show_search_suggestions_title">Soojeedinada raadinta</string>
     <string name="player_gesture_controls_summary">Isticmaal fartaada si aad umaamusho iftiinka iyo codka</string>
     <string name="player_gesture_controls_title">Ku maamulista daareha fartaada</string>
@@ -594,7 +591,6 @@
     <string name="pause_downloads_on_mobile_desc">Tani waxay muhiim tahay marka khadka la isticmaalayo midka SIM-ka loo baddalo ayadoo la qabanayo dajinta socota inkastooo soodajimaha qaar aan lajoojin karin</string>
     <string name="pause_downloads_on_mobile">Dhabqinta dajinta (khadka xadidan)</string>
     <string name="max_retry_msg">Xadka dib-isugudayida</string>
-    <string name="deleted_downloads">Waxaa la saaray %1$d shay</string>
     <string name="delete_downloaded_files">Saar dajinta</string>
     <string name="confirm_prompt">Ma waxaad rabtaa inaad nadiifiso kaydka wixii lasoo dajiyay (tani ma tirtirto wixii lasoo dajiyay) mise inaad saarto dhammaan wixii lasoo dajiyay\?</string>
     <string name="clear_download_history">Nadiifi dajinta</string>
@@ -717,5 +713,11 @@
     <string name="seekbar_preview_thumbnail_title">Tusmada dhaafdhaafinta</string>
     <string name="comments_are_disabled">Fallooyinka waa laxidhay</string>
     <string name="detail_heart_img_view_description">Kahelay soosaaraha</string>
-    <string name="mark_as_watched">Ucalaamadi in ladaawaday</string>
+    <string name="mark_as_watched">Waan daawaday</string>
+    <string name="error_show_channel_details">Khalad ayaa ka dhacay Faahfaahinta Kanaalka</string>
+    <string name="loading_channel_details">Soo kicinaya faahfaahinta Kanaalka…</string>
+    <string name="show_image_indicators_summary">Soo bandhig shaambado midabka Picasso leh sawirrada dushooda oo tilmaamaya isha laga keenay: guduud waa khadka, buluug waa kaydka gudaha, cagaar waa kaydka K/G</string>
+    <string name="show_image_indicators_title">Tus tilmaamayaasha sawirka</string>
+    <string name="remote_search_suggestions">Soojeedinada raadinta banaanka</string>
+    <string name="local_search_suggestions">Soojeedinada raadinta gudaha</string>
 </resources>

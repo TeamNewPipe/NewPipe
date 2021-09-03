@@ -97,8 +97,7 @@
     <string name="view">播放</string>
     <string name="delete">删除</string>
     <string name="checksum">校验</string>
-    <string name="add">新任务</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">文件名</string>
     <string name="msg_threads">线程数</string>
     <string name="msg_error">错误</string>
@@ -146,8 +145,6 @@
     <string name="enqueue">加入队列</string>
     <string name="permission_denied">操作已被系统拒绝</string>
     <string name="download_failed">下载失败</string>
-    <string name="download_finished">下载完成</string>
-    <string name="download_finished_more">%s 次下载已完成</string>
     <string name="no_comments">没有评论</string>
     <string name="drawer_header_description">切换服务，当前选择：</string>
     <string name="no_player_found">找不到串流播放器。您想安装 VLC 吗？</string>
@@ -511,5 +508,4 @@
     <string name="seek_duration_title">快进 / 快退的单位时间</string>
     <string name="clear_download_history">清除下载历史记录</string>
     <string name="delete_downloaded_files">删除下载了的文件</string>
-    <string name="deleted_downloads">已删除 %1$d 下载</string>
 </resources>

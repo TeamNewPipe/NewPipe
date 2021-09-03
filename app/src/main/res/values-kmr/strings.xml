@@ -14,8 +14,7 @@
     <string name="msg_error">Şaşî</string>
     <string name="msg_threads">Mijar</string>
     <string name="msg_name">Navê pelê</string>
-    <string name="finish">Baş e</string>
-    <string name="add">Mîsyona nû</string>
+    <string name="ok">Baş e</string>
     <string name="rename">Navlêkirin</string>
     <string name="dismiss">Berdan</string>
     <string name="checksum">Peyda kirin</string>
@@ -446,7 +445,6 @@
     <string name="max_retry_desc">Berî betalkirina dakêşanê jimara herî zêde hewldan</string>
     <string name="max_retry_msg">Zêdetir dubarekirin çêbû</string>
     <string name="stop">Rawestan</string>
-    <string name="deleted_downloads">%1$d daxistinan jê kir</string>
     <string name="delete_downloaded_files">Pelên dakêşandî hilweşînin</string>
     <string name="confirm_prompt">Ma hûn dixwazin dîroka dakêşanê xwe paqij bikin an hemî pelên dakêşandî jê bibin\?</string>
     <string name="clear_download_history">Dîroka dakêşanê paqij bikin</string>
@@ -474,8 +472,6 @@
     <string name="overwrite_unrelated_warning">Pelek bi vî navî jixwe heye</string>
     <string name="overwrite">Li ser binîvîsînê</string>
     <string name="generate_unique_name">Navê yekta çêbikin</string>
-    <string name="download_finished_more">%s dakêşan qediyan</string>
-    <string name="download_finished">Dakêşandin qediya</string>
     <string name="download_failed">Dakêşandin têk çû</string>
     <string name="permission_denied">Çalakiya ku ji hêla pergalê ve hatî înkar kirin</string>
     <string name="enqueue">Sira</string>

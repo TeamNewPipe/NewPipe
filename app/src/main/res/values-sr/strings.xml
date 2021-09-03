@@ -84,8 +84,7 @@
     <string name="view">Пусти</string>
     <string name="delete">Обриши</string>
     <string name="checksum">Контролна сума</string>
-    <string name="add">Нова мисија</string>
-    <string name="finish">У реду</string>
+    <string name="ok">У реду</string>
     <string name="msg_name">Назив фајла</string>
     <string name="msg_threads">Нити</string>
     <string name="msg_error">Грешка</string>
@@ -287,7 +286,6 @@
     <string name="max_retry_desc">Највећи број покушаја пре отказивања преузимања</string>
     <string name="max_retry_msg">Највише покушаја</string>
     <string name="stop">Заустави</string>
-    <string name="deleted_downloads">Обрисано %1$d преузимања</string>
     <string name="delete_downloaded_files">Избриши преузете фајлове</string>
     <string name="confirm_prompt">Желите да очистите историју преузимања или обришете све преузете фајлове\?</string>
     <string name="clear_download_history">Обриши историју преузимања</string>
@@ -315,8 +313,6 @@
     <string name="overwrite_unrelated_warning">Фајл са овим називом већ постоји</string>
     <string name="overwrite">Пребриши</string>
     <string name="generate_unique_name">Генериши јединствен назив</string>
-    <string name="download_finished_more">%s преузимања завршена</string>
-    <string name="download_finished">Преузимање завршено</string>
     <string name="download_failed">Преузимање неуспешно</string>
     <string name="permission_denied">Систем одбија радњу</string>
     <string name="enqueue">Ред чекања</string>

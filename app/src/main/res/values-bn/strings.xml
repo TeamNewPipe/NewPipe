@@ -15,7 +15,6 @@
     <string name="error_unknown_host">সার্ভার পাওয়া যায় নি</string>
     <string name="label_code">কোড</string>
     <string name="show_error">এরর দেখান</string>
-    <string name="download_finished">ডাউন লোড শেষ হয়েছে</string>
     <string name="download_failed">ডাউন লোড হয় নি</string>
     <string name="paused">পজ হয়েছে</string>
     <string name="missions_header_finished">সম্পূর্ণ</string>
@@ -111,8 +110,7 @@
     <string name="msg_error">ত্রুটি</string>
     <string name="msg_threads">থ্রেড</string>
     <string name="msg_name">ফাইলের নাম</string>
-    <string name="finish">ঠিক আছে</string>
-    <string name="add">নতুন মিশন</string>
+    <string name="ok">ঠিক আছে</string>
     <string name="rename">নাম পরিবর্তন করুন</string>
     <string name="dismiss">সরাও</string>
     <string name="checksum">চেকসাম</string>
@@ -515,9 +513,7 @@
     <string name="remove_watched_popup_title">দেখা ভিডিওগুলো সরাও\?</string>
     <string name="choose_instance_prompt">একটি ইন্সট্যান্স নাও</string>
     <string name="enable_queue_limit">ডাউনলোড সারি সীমিত করো</string>
-    <string name="deleted_downloads">%1$dটি ডাউনলোড মোছা হয়েছে</string>
     <string name="generate_unique_name">অনন্য নাম বানাও</string>
-    <string name="download_finished_more">%s টি ডাউনলোড শেষ</string>
     <string name="list_view_mode">তালিকা দর্শন মোড</string>
     <string name="wifi_only">শুধুমাত্র ওয়াই-ফাই-তে</string>
     <string name="skip_silence_checkbox">নীরবতার সময় দ্রুত আগাও</string>

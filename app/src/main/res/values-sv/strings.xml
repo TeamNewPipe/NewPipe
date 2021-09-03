@@ -48,7 +48,7 @@
     <string name="player_gesture_controls_title">Gestkontroller för spelare</string>
     <string name="player_gesture_controls_summary">Använd gester för att kontrollera spelarens ljusstyrka och volym</string>
     <string name="show_search_suggestions_title">Sökförslag</string>
-    <string name="show_search_suggestions_summary">Visa förslag i samband med sökning</string>
+    <string name="show_search_suggestions_summary">Välj förslag att visa i samband med sökning</string>
     <string name="download_dialog_title">Hämta</string>
     <string name="show_next_and_similar_title">Visa \'Nästa\' och \'Liknande\' videor</string>
     <string name="unsupported_url">Webbadressen stöds inte</string>
@@ -167,8 +167,7 @@
     <string name="view">Spela</string>
     <string name="delete">Ta bort</string>
     <string name="checksum">Kontrollsumma</string>
-    <string name="add">Nytt uppdrag</string>
-    <string name="finish">Okej</string>
+    <string name="ok">Okej</string>
     <string name="msg_name">Filnamn</string>
     <string name="msg_threads">Trådar</string>
     <string name="msg_error">Fel</string>
@@ -428,8 +427,6 @@
     <string name="enqueue">Kö</string>
     <string name="permission_denied">Åtgärden nekas av systemet</string>
     <string name="download_failed">Hämtningen misslyckades</string>
-    <string name="download_finished">Hämtningen är färdig</string>
-    <string name="download_finished_more">%s hämtningar är färdiga</string>
     <string name="generate_unique_name">Generera unikt namn</string>
     <string name="overwrite">Skriv över</string>
     <string name="download_already_running">Det finns en pågående hämtning med det här namnet</string>
@@ -575,7 +572,6 @@
     <string name="close">Stäng ner</string>
     <string name="pause_downloads_on_mobile_desc">Användbart vid byte till mobildata, även om vissa hämtningar inte kan avbrytas</string>
     <string name="pause_downloads_on_mobile">Avbryt på uppmätta nätverk</string>
-    <string name="deleted_downloads">Tog bort %1$d hämtningar</string>
     <string name="delete_downloaded_files">Ta bort hämtade filer</string>
     <string name="confirm_prompt">Vill du rensa din hämtningshistorik eller ta bort alla hämtade filer\?</string>
     <string name="clear_download_history">Rensa hämtningshistorik</string>
@@ -717,4 +713,7 @@
     <string name="select_night_theme_toast">Du kan välja det natt-tema du föredrar nedan</string>
     <string name="night_theme_summary">Välj det natt-tema du föredrar — %s</string>
     <string name="seekbar_preview_thumbnail_title">Sökradens förhandsvisningsminiatyr</string>
+    <string name="loading_channel_details">Laddar kanaldetaljer…</string>
+    <string name="show_image_indicators_title">Visa bildindikatorer</string>
+    <string name="local_search_suggestions">Lokala sökningsförslag</string>
 </resources>

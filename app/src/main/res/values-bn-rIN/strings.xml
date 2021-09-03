@@ -23,8 +23,7 @@
     <string name="msg_error">ত্রুটি</string>
     <string name="msg_threads">থ্রেড</string>
     <string name="msg_name">ফাইলের নাম</string>
-    <string name="finish">ঠিক আছে</string>
-    <string name="add">নতুন মিশন</string>
+    <string name="ok">ঠিক আছে</string>
     <string name="rename">নাম পরিবর্তন করুন</string>
     <string name="checksum">চেকসাম</string>
     <string name="delete">ডিলেট</string>
@@ -188,7 +187,6 @@
     <string name="error_http_not_found">পাওয়া যায় নি</string>
     <string name="error_unknown_host">সার্ভার পাওয়া যায় নি</string>
     <string name="label_code">কোড</string>
-    <string name="download_finished">ডাউন লোড শেষ হয়েছে</string>
     <string name="download_failed">ডাউন লোড হয় নি</string>
     <string name="paused">পজ হয়েছে</string>
     <string name="app_update_notification_content_text">ডাউন লোড করার জন্য চাপ দিন</string>

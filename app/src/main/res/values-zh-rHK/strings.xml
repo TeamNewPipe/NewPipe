@@ -87,8 +87,7 @@
     <string name="view">觀看</string>
     <string name="delete">刪除</string>
     <string name="checksum">校驗和</string>
-    <string name="add">新任務</string>
-    <string name="finish">好</string>
+    <string name="ok">好</string>
     <string name="msg_name">檔案名稱</string>
     <string name="msg_threads">線程</string>
     <string name="msg_error">錯誤</string>

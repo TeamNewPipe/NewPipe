@@ -244,8 +244,7 @@
     <string name="checksum">चेकसम</string>
     <string name="dismiss">खारेज</string>
     <string name="rename">पुनः नामकरण</string>
-    <string name="add">खण्ड</string>
-    <string name="finish">ठिक छ</string>
+    <string name="ok">ठिक छ</string>
     <string name="msg_name">msg</string>
     <string name="msg_threads">सूत्रहरू</string>
     <string name="msg_error">त्रुटि</string>
@@ -431,8 +430,6 @@
     <string name="enqueue">लाम</string>
     <string name="permission_denied">कार्य प्रणाली द्वारा अस्वीकार</string>
     <string name="download_failed">डाउनलोड असफल भयो</string>
-    <string name="download_finished">डाउनलोड सकियो</string>
-    <string name="download_finished_more">%s डाउनलोडहरु समाप्त</string>
     <string name="generate_unique_name">एउटा छुट्टै अलग नाम पैदा गर</string>
     <string name="overwrite">अधिलेखन</string>
     <string name="download_already_running">यसै नाम सितको एक डाउनलोड प्रगतिमा छ</string>
@@ -515,7 +512,6 @@
     <string name="choose_instance_prompt">एउटा उदाहरण छनौट गर्नुहोस्</string>
     <string name="clear_download_history">डाउनलोड इतिहास मेटाउ</string>
     <string name="delete_downloaded_files">डाउनलोड गरिएका फाइलहरु मेटाउ</string>
-    <string name="deleted_downloads">%1$d डाउनलोडहरु मेटियो</string>
     <string name="permission_display_over_apps">अन्य अनुप्रयोगहरूमा प्रदर्शन गर्न अनुमति दिने</string>
     <string name="app_language_title">एप्सको भाषा</string>
     <string name="systems_language">सिस्टम पूर्वनिर्धारित</string>

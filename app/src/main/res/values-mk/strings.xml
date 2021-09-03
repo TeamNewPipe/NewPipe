@@ -211,8 +211,7 @@
     <string name="checksum">Чексума</string>
     <string name="dismiss">Отфрли</string>
     <string name="rename">Прекрсти</string>
-    <string name="add">Нова мисија</string>
-    <string name="finish">Готово</string>
+    <string name="ok">Готово</string>
     <string name="msg_name">Име на датотека</string>
     <string name="msg_threads">Нишки</string>
     <string name="msg_error">Грешка</string>
@@ -422,8 +421,6 @@
     <string name="enqueue">Редица</string>
     <string name="permission_denied">Акција одбиена од системот</string>
     <string name="download_failed">преземањето не успеа</string>
-    <string name="download_finished">Преземањето заврши</string>
-    <string name="download_finished_more">%s преземањата завршија</string>
     <string name="generate_unique_name">Генерирај уникатно име</string>
     <string name="overwrite">Презапиши</string>
     <string name="download_already_running">Во тек е преземање со ова име</string>

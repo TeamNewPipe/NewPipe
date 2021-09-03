@@ -279,8 +279,7 @@
     <string name="msg_error">Xato</string>
     <string name="msg_threads">Iplar</string>
     <string name="msg_name">Faylnomi</string>
-    <string name="finish">Ok</string>
-    <string name="add">Yangi missiya</string>
+    <string name="ok">Ok</string>
     <string name="rename">Nomni o\'zgartirish</string>
     <string name="dismiss">Tarqatish</string>
     <string name="checksum">Sumnazorat</string>
@@ -479,7 +478,6 @@
     <string name="max_retry_desc">Yuklashni bekor qilishdan oldin maksimal urinishlar soni</string>
     <string name="max_retry_msg">Maksimal qayta urinishlar</string>
     <string name="stop">To\'xtatish</string>
-    <string name="deleted_downloads">%1$dta yuklash o\'chirildi</string>
     <string name="delete_downloaded_files">Yuklangan fayllarni o\'chirib tashlash</string>
     <string name="confirm_prompt">Yuklab olish tarixini tozalashni yoki barcha yuklab olingan fayllarni o\'chirishni xohlaysizmi\?</string>
     <string name="clear_download_history">Yuklab olish tarixini tozalash</string>
@@ -507,8 +505,6 @@
     <string name="overwrite_unrelated_warning">Bunday nomdagi fayl allaqachon mavjud</string>
     <string name="overwrite">Qayta yozish</string>
     <string name="generate_unique_name">Noyob nom yaratish</string>
-    <string name="download_finished_more">%s yuklash tugadi</string>
-    <string name="download_finished">Yuklab olish tugadi</string>
     <string name="download_failed">Yuklab bo‘lmadi</string>
     <string name="permission_denied">Tizim tomonidan rad etilgan harakat</string>
     <string name="enqueue">Navbat</string>

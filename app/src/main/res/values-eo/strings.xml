@@ -296,8 +296,7 @@
     <string name="view">Ludi</string>
     <string name="delete">Forviŝi</string>
     <string name="checksum">Kontrolsumo</string>
-    <string name="add">Nova misio</string>
-    <string name="finish">Bone</string>
+    <string name="ok">Bone</string>
     <string name="msg_name">Dosiernomo</string>
     <string name="msg_threads">Fadenoj</string>
     <string name="msg_error">Eraro</string>
@@ -462,8 +461,6 @@
     <string name="post_processing">postprocesado</string>
     <string name="permission_denied">Ago rifuzita kaŭze de la sistemon</string>
     <string name="download_failed">Elŝuto fiaskis!</string>
-    <string name="download_finished">Elŝuto finita</string>
-    <string name="download_finished_more">%s elŝutoj finitaj</string>
     <string name="generate_unique_name">Generu unikan nomon</string>
     <string name="overwrite">Anstataŭigi</string>
     <string name="download_already_running">Estas elŝuto en progreso kun ĉi tiu nomo</string>
@@ -519,7 +516,6 @@
     <string name="choose_instance_prompt">Elektu instancon</string>
     <string name="clear_download_history">Forviŝi la historion de elŝutoj</string>
     <string name="delete_downloaded_files">Forviŝi elŝutitajn dosierojn</string>
-    <string name="deleted_downloads">%1$d elŝutoj forviŝitaj</string>
     <string name="videos_string">Filmetoj</string>
     <string name="permission_display_over_apps">Doni la permeson por afiŝiĝi supre aliaj apoj</string>
     <string name="app_language_title">Preferata aplingvo</string>

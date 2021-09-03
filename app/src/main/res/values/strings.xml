@@ -9,6 +9,7 @@
     <string name="no_player_found_toast">No stream player found (you can install VLC to play it).</string>
     <string name="install">Install</string>
     <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
     <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="mark_as_watched">Mark as watched</string>
@@ -131,6 +132,8 @@
     <string name="resume_on_audio_focus_gain_title">Resume playing</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phonecalls)</string>
     <string name="download_dialog_title">Download</string>
+    <string name="start_main_player_fullscreen_title">Start main player in fullscreen</string>
+    <string name="start_main_player_fullscreen_summary">Do not start videos in the mini player, but turn to fullscreen mode directly, if auto rotation is locked. You can still access the mini player by exiting fullscreen.</string>
     <string name="autoplay_title">Autoplay</string>
     <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when pressing the background or the popup button in video \"Details:\"</string>
@@ -352,9 +355,6 @@
     <string name="checksum">Checksum</string>
     <string name="dismiss">Dismiss</string>
     <string name="rename">Rename</string>
-    <!-- Fragment -->
-    <string name="add">New mission</string>
-    <string name="finish">OK</string>
     <!-- Msg -->
     <string name="msg_name">Filename</string>
     <string name="msg_threads">Threads</string>
@@ -436,6 +436,7 @@
     <!-- Content -->
     <string name="main_page_content">Content of main page</string>
     <string name="main_page_content_summary">What tabs are shown on the main page</string>
+    <string name="main_page_content_swipe_remove">Swipe items to remove them</string>
     <string name="selection">Selection</string>
     <string name="blank_page_summary">Blank Page</string>
     <string name="kiosk_page_summary">Kiosk Page</string>
@@ -544,7 +545,7 @@
     <string name="previous_export">Previous export</string>
     <string name="subscriptions_import_unsuccessful">Could not import subscriptions</string>
     <string name="subscriptions_export_unsuccessful">Could not export subscriptions</string>
-    <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout:\n\n1. Go to this URL: %1$s\n2. Log in when asked\n3. Click on \"All data included\", then on \"Deselect all\", then select only \"subscriptions\" and click \"OK\"\n4. Click on \"Next step\" and then on \"Create export\"\n5. Click on the \"Download\" button after it appears and \n6. From the downloaded takeout zip extract the .json file (usually under \"YouTube and YouTube Music/subscriptions/subscriptions.json\") and import it here.</string>
+    <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout:\n\n1. Go to this URL: %1$s\n2. Log in when asked\n3. Click on \"All data included\", then on \"Deselect all\", then select only \"subscriptions\" and click \"OK\"\n4. Click on \"Next step\" and then on \"Create export\"\n5. Click on the \"Download\" button after it appears\n6. Click on IMPORT FILE below and select the downloaded zip file\n7. [If the zip import fails] Extract the .csv file (usually under \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), click on IMPORT FILE below and select the extracted csv file</string>
     <string name="import_soundcloud_instructions">Import a SoundCloud profile by typing either the URL or your ID:\n\n1. Enable \"desktop mode\" in a web-browser (the site is not available for mobile devices)\n2. Go to this URL: %1$s\n3. Log in when asked\n4. Copy the profile URL you were redirected to.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">Keep in mind this operation can be network expensive.\n\nDo you want to continue?</string>
@@ -611,8 +612,10 @@
     <string name="permission_denied">Action denied by the system</string>
     <!-- download notifications -->
     <string name="download_failed">Download failed</string>
-    <string name="download_finished">Download finished</string>
-    <string name="download_finished_more">%s downloads finished</string>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Download finished</item>
+        <item quantity="other">%s downloads finished</item>
+    </plurals>
     <!-- dialog about existing downloads -->
     <string name="generate_unique_name">Generate unique name</string>
     <string name="overwrite">Overwrite</string>
@@ -642,7 +645,10 @@
     <string name="clear_download_history">Clear download history</string>
     <string name="confirm_prompt">Do you want to clear your download history or delete all downloaded files?</string>
     <string name="delete_downloaded_files">Delete downloaded files</string>
-    <string name="deleted_downloads">Deleted %1$d downloads</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Deleted %1$s download</item>
+        <item quantity="other">Deleted %1$s downloads</item>
+    </plurals>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum retries</string>
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>

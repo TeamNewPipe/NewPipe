@@ -63,7 +63,7 @@
         <item quantity="one">%s subscriptor</item>
         <item quantity="other">%s subscriptors</item>
     </plurals>
-    <string name="finish">D\'acord</string>
+    <string name="ok">D\'acord</string>
     <string name="msg_name">Nom de fitxer</string>
     <string name="msg_error">Error</string>
     <string name="settings_category_downloads_title">Baixades</string>
@@ -145,7 +145,7 @@
     <string name="popup_remember_size_pos_title">Reproductor emergent intel·ligent</string>
     <string name="popup_remember_size_pos_summary">Recorda la darrera mida i posició del reproductor emergent</string>
     <string name="use_inexact_seek_title">Cerca ràpida poc precisa</string>
-    <string name="use_inexact_seek_summary">La cerca poc precisa permet que el reproductor cerqui una posició més ràpidament amb menys precisió. Cerques de 5, 15 o 25 segons no hi funcionaran.</string>
+    <string name="use_inexact_seek_summary">"La cerca poc precisa permet que el reproductor cerqui una posició més ràpidament amb menys precisió. Cerques de 5, 15 o 25 segons no  funcionaran"</string>
     <string name="download_thumbnail_title">Carrega les miniatures</string>
     <string name="thumbnail_cache_wipe_complete_notice">S\'ha eliminat la memòria cau d\'imatges</string>
     <string name="metadata_cache_wipe_title">Elimina les metadades de la memòria cau</string>
@@ -267,10 +267,10 @@
     <string name="playback_speed_control">Controls de la velocitat de reproducció</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">To</string>
-    <string name="main_bg_subtitle">Toca \"Cerca\" per començar</string>
+    <string name="main_bg_subtitle">Toca la lupa per començar.</string>
     <string name="use_external_video_player_summary">Elimina l\'àudio en algunes resolucions</string>
     <string name="use_external_audio_player_title">Reproductor d\'àudio extern</string>
-    <string name="download_thumbnail_summary">Desactiveu-ho per no generar miniatures i estalviar dades i memòria. Canviant aquesta opció, s\'eliminarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge.</string>
+    <string name="download_thumbnail_summary">Desactiveu-ho per no guardar miniatures i estalviar dades i memòria. Canviant aquesta opció, s\'eliminarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge</string>
     <string name="enable_search_history_summary">Emmagatzema les cerques localment</string>
     <string name="enable_watch_history_summary">Crea un historial de vídeos visualitzats</string>
     <string name="resume_on_audio_focus_gain_title">Reprèn la reproducció</string>
@@ -292,7 +292,6 @@
     <string name="short_million">milions</string>
     <string name="short_billion">mil milions</string>
     <string name="start">Inicia</string>
-    <string name="add">Nova missió</string>
     <string name="msg_url_malform">L\'URL té un format no vàlid o no hi ha connexió a Internet</string>
     <string name="msg_running_detail">Feu un toc aquí per a més detalls</string>
     <string name="no_available_dir">Defineix una carpeta de baixades més endavant als paràmetres</string>
@@ -313,7 +312,7 @@
     <string name="hold_to_append">Manteniu premut per afegir a la cua</string>
     <string name="start_here_on_background">Comença a reproduir en rerefons</string>
     <string name="start_here_on_popup">Comença a reproduir en mode emergent</string>
-    <string name="set_as_playlist_thumbnail">Defineix com a miniatura de la llista de reproducció</string>
+    <string name="set_as_playlist_thumbnail">Estableix com a miniatura de la llista de reproducció</string>
     <string name="bookmark_playlist">Afegeix la llista de reproducció a les adreces d\'interès</string>
     <string name="unbookmark_playlist">Elimina l\'adreça d\'interès</string>
     <string name="playlist_creation_success">S\'ha creat la llista de reproducció</string>
@@ -359,16 +358,16 @@
 \nVoleu continuar\?</string>
     <string name="no_streams_available_download">No hi ha vídeos que es puguin baixar</string>
     <string name="caption_setting_title">Subtítols</string>
-    <string name="caption_setting_description">Modifica la mida del text i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis.</string>
+    <string name="caption_setting_description">Modifica la mida i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis</string>
     <string name="toast_no_player">No s\'ha trobat cap aplicació que pugui reproduir aquest fitxer</string>
     <string name="clear_views_history_title">Neteja l\'historial de reproduccions</string>
     <string name="clear_views_history_summary">Neteja l\'historial dels vídeos reproduïts i les posicions de reproducció</string>
     <string name="delete_view_history_alert">Voleu suprimir tot l\'historial de reproduccions\?</string>
-    <string name="watch_history_deleted">S\'ha netejat l\'historial de reproduccions.</string>
+    <string name="watch_history_deleted">S\'ha esborrat l\'historial de reproduccions</string>
     <string name="clear_search_history_title">Neteja l\'historial de cerca</string>
     <string name="clear_search_history_summary">Neteja l\'historial de paraules cercades</string>
     <string name="delete_search_history_alert">Voleu suprimir tot l\'historial de cerca\?</string>
-    <string name="search_history_deleted">S\'ha netejat l\'historial de cerca.</string>
+    <string name="search_history_deleted">S\'ha esborrat l\'historial de cerca</string>
     <string name="one_item_deleted">S\'ha esborrat 1 element.</string>
     <string name="app_license">El NewPipe és programari lliure sota llicència copyleft: el podeu fer servir, estudiar, compartir i millorar com vulgueu. Concretament, el podeu redistribuir i/o modificar d\'acord amb els termes de la llicència GNU GPL publicada per la Free Software Foundation, versió 3 o qualsevol altra versió posterior.</string>
     <string name="import_settings">Voleu importar també els paràmetres\?</string>
@@ -431,8 +430,6 @@
     <string name="missions_header_finished">Finalitzades</string>
     <string name="post_processing">post-processament</string>
     <string name="download_failed">Ha fallat la baixada</string>
-    <string name="download_finished">Baixada finalitzada</string>
-    <string name="download_finished_more">%s baixades finalitzades</string>
     <string name="overwrite_finished_warning">Ja existeix un fitxer baixat amb aquest nom</string>
     <string name="overwrite_unrelated_warning">Ja existeix un fitxer amb aquest nom</string>
     <string name="download_already_running">Hi ha una baixada en curs amb aquest nom</string>
@@ -480,7 +477,7 @@
     <string name="error_permission_denied">Permís denegat pel sistema</string>
     <string name="error_http_unsupported_range">El servidor no accepta baixades simultànies. Proveu amb @string/msg_threads = 1</string>
     <string name="enable_playback_resume_summary">Restaura la darrera posició de la reproducció</string>
-    <string name="watch_history_states_deleted">S\'ha suprimit les posicions de reproducció.</string>
+    <string name="watch_history_states_deleted">S\'ha esborrat les posicions de reproducció</string>
     <string name="missing_file">El fitxer s\'ha mogut o suprimit</string>
     <string name="enable_queue_limit_desc">Només una baixada alhora</string>
     <string name="downloads_storage_use_saf_title">Utilitza SAF</string>
@@ -500,7 +497,7 @@
         <item quantity="one">%s escoltant</item>
         <item quantity="other">%s escoltants</item>
     </plurals>
-    <string name="localization_changes_requires_app_restart">Es canviarà la llengua en reiniciar l\'aplicació.</string>
+    <string name="localization_changes_requires_app_restart">Es canviarà l\'idioma en reiniciar l\'aplicació</string>
     <string name="default_kiosk_page_summary">Tendències</string>
     <string name="show_original_time_ago_title">Ensenya el temps passat original sobre els \"items\"</string>
     <string name="playlist_no_uploader">Auto-generat (no es troba cap uploader)</string>
@@ -597,7 +594,6 @@
     <string name="systems_language">Valors per defecte</string>
     <string name="app_language_title">Llengua de l\'aplicació</string>
     <string name="choose_instance_prompt">Escolliu una instància</string>
-    <string name="deleted_downloads">%1$d baixades suprimides</string>
     <string name="delete_downloaded_files">Esborrar els fitxers de baixades anteriors</string>
     <string name="clear_download_history">Esborra l\'historial de baixades</string>
     <string name="error_download_resource_gone">No s\'ha pogut recuperar aquesta baixada</string>
@@ -630,7 +626,7 @@
     <string name="settings_category_notification_title">Notificació</string>
     <string name="unsupported_url_dialog_message">No s\'ha pogut reconèixer l\'adreça URL. Obrir-la amb una altra aplicació\?</string>
     <string name="auto_queue_toggle">Cua automàtica</string>
-    <string name="show_meta_info_summary">Desactiveu-ho per deixar de mostrar les metadades, que contenen informació addicional sobre el creador del directe, el contingut o una sol·licitud de cerca.</string>
+    <string name="show_meta_info_summary">Desactiveu-ho per deixar de mostrar les metadades, que contenen informació addicional sobre el creador del directe, el contingut o una sol·licitud de cerca</string>
     <string name="show_meta_info_title">Mostra les metadades</string>
     <string name="clear_queue_confirmation_description">La cua de reproducció activa serà sobreescrita</string>
     <string name="clear_queue_confirmation_summary">Canviar de reproductor podria sobreescriure la vostra cua de reproducció</string>
@@ -642,7 +638,7 @@
     <string name="notification_action_shuffle">Mescla</string>
     <string name="notification_action_repeat">Repeteix</string>
     <string name="notification_actions_at_most_three">El màxim d\'accions que poden aparèixer en una notificació compacta és de tres!</string>
-    <string name="notification_actions_summary">Editeu cada acció de notificació tocant el botó corresponent. Podeu seleccionar-ne fins a tres, que es mostraran a les notificacions en format compacte.</string>
+    <string name="notification_actions_summary">Editeu cada acció de la notificació tocant el botó corresponent. Podeu seleccionar-ne fins a tres, que es mostraran a les notificacions en format compacte</string>
     <string name="notification_action_4_title">Cinquè botó d\'acció</string>
     <string name="notification_action_3_title">Quart botó d\'acció</string>
     <string name="notification_action_2_title">Tercer botó d\'acció</string>
@@ -670,4 +666,52 @@
     <string name="restricted_video_no_stream">Aquest vídeo té restriccions d\'edat.
 \nDegut a la nova política d\'edat de YouTube, el NewPipe no pot accedir a aquest contingut i per tant no pot reproduir-lo.</string>
     <string name="show_description_summary">Desactiveu per amagar la descripció i la informació addicional del vídeo</string>
+    <string name="disable_media_tunneling_title">Desactiva l\'entunelament del contingut</string>
+    <string name="loading_channel_details">Carregant detalls del canal…</string>
+    <string name="off">Desactiva</string>
+    <string name="on">Activa</string>
+    <string name="tablet_mode_title">Mode tablet</string>
+    <string name="open_website_license">Obra pàgina web</string>
+    <string name="detail_heart_img_view_description">Destacat pel creador</string>
+    <string name="metadata_privacy_internal">Intern</string>
+    <string name="metadata_privacy_private">Privat</string>
+    <string name="metadata_privacy_unlisted">Descatalogat</string>
+    <string name="metadata_privacy_public">Públic</string>
+    <string name="metadata_thumbnail_url">URL de la miniatura</string>
+    <string name="metadata_host">Amfitrió</string>
+    <string name="metadata_support">Suport</string>
+    <string name="metadata_language">Idioma</string>
+    <string name="metadata_age_limit">Límit d\'edat</string>
+    <string name="metadata_privacy">Privacitat</string>
+    <string name="metadata_licence">Llicència</string>
+    <string name="metadata_tags">Etiquetes</string>
+    <string name="metadata_category">Categoria</string>
+    <string name="description_select_disable">Desactiva la selecció de text en la descripció</string>
+    <string name="description_select_enable">Activa la selecció del text a la descripció</string>
+    <string name="description_select_note">Ara pots seleccionar el text dins de la descripció. Nota que la pagina pot fer pampallugues i els links poden no ser clicables mentre s\'està seleccionant.</string>
+    <string name="download_has_started">La descàrreca ha començat</string>
+    <string name="select_night_theme_toast">Pot seleccionar el seu tema fosc favorit aqui sota</string>
+    <string name="night_theme_summary">Selecciona el teu tema fosc favorit — %s</string>
+    <string name="auto_device_theme_title">Automàtic (tema del dispositiu)</string>
+    <string name="service_provides_reason">%s dóna aquesta raó:</string>
+    <string name="account_terminated">Usuari suspes</string>
+    <string name="feed_toggle_show_played_items">Mostra contingut visualitzat</string>
+    <string name="feed_load_error_terminated">El compte de l\'autor ha estat esborrat.
+\nNewPipe no serà capaç de carregar aquest fil en el futur.
+\nUs voleu desubscriure d\'aquest canal\?</string>
+    <string name="feed_load_error_account_info">No s\'ha pogut carregar el contingut per \'%s\'.</string>
+    <string name="feed_load_error">Error carregant contingut</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Ara se\'t pregunrarà on vols guardar cada descàrrega</string>
+    <string name="dont_show">No mostris</string>
+    <string name="low_quality_smaller">Baixa qualitat (més petit)</string>
+    <string name="high_quality_larger">Alta qualitat (més gran)</string>
+    <string name="show_image_indicators_title">Mostra indicadors de la imatge</string>
+    <string name="disable_media_tunneling_summary">Desactiva l\'entunelament del contingut si en els videos hi ha una pantalla negre o tartamudegen</string>
+    <string name="show_channel_details">Mostra detalls del canal</string>
+    <string name="no_dir_yet">No s\'ha establert una carpeta de descàrregues, selecciona la carpeta per defecte ara</string>
+    <string name="comments_are_disabled">Els comentaris estan desactivats</string>
+    <string name="remote_search_suggestions">Suggerments de cerca remota</string>
+    <string name="local_search_suggestions">Suggeriments de cerca local</string>
+    <string name="night_theme_title">Tema fosc</string>
+    <string name="mark_as_watched">Marca com a vist</string>
 </resources>

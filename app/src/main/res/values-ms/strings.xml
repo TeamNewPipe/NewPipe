@@ -3,25 +3,25 @@
     <string name="main_bg_subtitle">Tekan \"Cari\" untuk bermula</string>
     <string name="view_count_text">%1$s tontonan</string>
     <string name="upload_date_text">Diterbitkan pada %1$s</string>
-    <string name="no_player_found">Tiada pemain strim ditemui. Adakah anda mahu memasang VLC\?</string>
+    <string name="no_player_found">Tiada pemain strim ditemui. Muat turun VLC\?</string>
     <string name="no_player_found_toast">Tiada pemain strim yang ditemui (anda boleh memasang VLC untuk memainkan).</string>
     <string name="install">Pasang</string>
     <string name="cancel">Batal</string>
     <string name="open_in_browser">Buka dalam pelayar</string>
-    <string name="open_in_popup_mode">Buka dalam mod popup</string>
+    <string name="open_in_popup_mode">Buka dalam mod timbul</string>
     <string name="share">Kongsi</string>
     <string name="download">Muat turun</string>
     <string name="controls_download_desc">Muat turun fail strim</string>
     <string name="search">Carian</string>
     <string name="settings">Tetapan</string>
-    <string name="did_you_mean">Adakah anda maksudkan: %1$s\?</string>
+    <string name="did_you_mean">Adakah anda maksudkan \"%1$s\"\?</string>
     <string name="share_dialog_title">Berkongsi dengan</string>
     <string name="choose_browser">Pilih pelayar</string>
     <string name="screen_rotation">putaran</string>
     <string name="use_external_video_player_title">Guna pemain video luaran</string>
-    <string name="use_external_video_player_summary">Menghapus audio pada SESETENGAH resolusi</string>
+    <string name="use_external_video_player_summary">Menghilangkan audio untuk beberapa resolusi</string>
     <string name="use_external_audio_player_title">Gunakan pemain audio luaran</string>
-    <string name="popup_mode_share_menu_title">Mod popup</string>
+    <string name="popup_mode_share_menu_title">Mod timbul</string>
     <string name="subscribe_button_title">Langgan</string>
     <string name="subscribed_button_title">Dilanggan</string>
     <string name="channel_unsubscribed">Langganan saluran dihenti</string>
@@ -64,9 +64,9 @@
     <string name="popup_remember_size_pos_title">Mengingat saiz dan posisi popup</string>
     <string name="popup_remember_size_pos_summary">Mengingat saiz dan posisi popup terakhir</string>
     <string name="use_inexact_seek_title">Gunakan tinjau laju tidak tepat</string>
-    <string name="use_inexact_seek_summary">Membolehkan pemain untuk meninjau ke posisi lebih laju dengan kurang ketepatan</string>
+    <string name="use_inexact_seek_summary">Membolehkan pemain untuk meninjau ke posisi lebih laju dengan kurang ketepatan. Mencari 5, 15 atau 25 saat tidak berfungsi dengan ini</string>
     <string name="download_thumbnail_title">Muatkan thumbnail</string>
-    <string name="download_thumbnail_summary">Matikan untuk mengelakkan pemuatan thumbnail, menjimat penggunaan data dan memori. Perubahan akan menghapus cache imej dalam memori dan disk.</string>
+    <string name="download_thumbnail_summary">Matikan untuk mengelakkan pemuatan thumbnail, menjimat penggunaan data dan ingatan. Perubahan akan menghapus cache imej dari ingatan dan disk</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache imej dihapuskan</string>
     <string name="metadata_cache_wipe_title">Hapuskan cache metadata</string>
     <string name="metadata_cache_wipe_summary">Hapuskan semua cache data halaman web</string>
@@ -83,7 +83,7 @@
     <string name="show_search_suggestions_summary">Tunjukkan cadangan semasa mencari</string>
     <string name="enable_search_history_title">Sejarah carian</string>
     <string name="enable_search_history_summary">Simpan pertanyaan carian secara lokal</string>
-    <string name="enable_watch_history_title">Sejarah &amp; Cache</string>
+    <string name="enable_watch_history_title">Sejarah tontonan</string>
     <string name="enable_watch_history_summary">Simpan senarai video yang telah ditonton</string>
     <string name="resume_on_audio_focus_gain_title">Teruskan apabila fokus</string>
     <string name="resume_on_audio_focus_gain_summary">Teruskan bermain selepas gangguan (contohnya panggilan telefon)</string>
@@ -97,12 +97,12 @@
     <string name="content_language_title">Bahasa kandungan utama</string>
     <string name="settings_category_player_title">Pemain</string>
     <string name="settings_category_player_behavior_title">Tingkah laku</string>
-    <string name="settings_category_video_audio_title">Video &amp; audio</string>
-    <string name="settings_category_history_title">Sejarah &amp; cache</string>
+    <string name="settings_category_video_audio_title">Video dan audio</string>
+    <string name="settings_category_history_title">Sejarah dan cache</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="settings_category_appearance_title">Penampilan</string>
     <string name="settings_category_other_title">Lain-lain</string>
-    <string name="settings_category_debug_title">Debug</string>
+    <string name="settings_category_debug_title">Nyahpepijat</string>
     <string name="settings_category_updates_title">Kemas kini</string>
     <string name="background_player_playing_toast">Bermain di latar belakang</string>
     <string name="popup_playing_toast">Bermain dalam mod popup</string>
@@ -110,7 +110,7 @@
     <string name="popup_playing_append">Beratur pada pemain popup</string>
     <string name="content">Kandungan</string>
     <string name="show_age_restricted_content_title">Kandungan terhad umur</string>
-    <string name="duration_live">LANGSUNG</string>
+    <string name="duration_live">Langsung</string>
     <string name="downloads">Muat turun</string>
     <string name="downloads_title">Muat turun</string>
     <string name="error_report_title">Laporan ralat</string>
@@ -189,17 +189,15 @@
     <string name="sorry_string">Maaf, itu tidak sepatutnya berlaku.</string>
     <string name="error_report_button_text">Laporkan ralat melalui e-mel</string>
     <string name="error_snackbar_message">Maaf, ada ralat yang berlaku.</string>
-    <string name="error_snackbar_action">LAPOR</string>
+    <string name="error_snackbar_action">Lapor</string>
     <string name="what_device_headline">Maklumat:</string>
     <string name="what_happened_headline">Apa yang berlaku:</string>
-    <string name="info_labels">Apa:\\nPermintaan:\\nKandungan
-\nBahasa:\\nPerkhidmatan:\\nGMT
-\nMasa:\\nPakej:\\nVersi:\\nVersi OS:</string>
-    <string name="your_comment">Komen anda (dalam bahasa Inggeris):</string>
+    <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Kandungan:\\nNegara Kandungan:\\nBahasa Aplikasi:\\nPerkhidmatan:\\nWaktu GMT:\\nPakej:\\nVersi:\\nVersi OS:</string>
+    <string name="your_comment">Ulasan anda (dalam bahasa Inggeris):</string>
     <string name="error_details_headline">Butiran:</string>
     <string name="list_thumbnail_view_description">Thumbnail pratonton video</string>
-    <string name="detail_thumbnail_view_description">Thumbnail pratonton video</string>
-    <string name="detail_uploader_thumbnail_view_description">Thumbnail avatar pemuat</string>
+    <string name="detail_thumbnail_view_description">Main video, tempoh masa:</string>
+    <string name="detail_uploader_thumbnail_view_description">Thumbnail avatar pemuatnaik</string>
     <string name="detail_likes_img_view_description">Suka</string>
     <string name="detail_dislikes_img_view_description">Tidak suka</string>
     <string name="use_tor_title">Gunakan Tor</string>
@@ -214,7 +212,7 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Cuba semula</string>
-    <string name="storage_permission_denied">Kebenaran akses storan ditolak</string>
+    <string name="storage_permission_denied">Izinkan akses penyimpanan terlebih dahulu</string>
     <string name="short_thousand">K</string>
     <string name="short_million">J</string>
     <string name="short_billion">B</string>
@@ -235,11 +233,10 @@
     <string name="delete">Padam</string>
     <string name="delete_one">Padamkan Satu</string>
     <string name="delete_all">Padamkan Semua</string>
-    <string name="checksum">Checksum</string>
+    <string name="checksum">Ceksum</string>
     <string name="dismiss">Buangkan</string>
     <string name="rename">Namakan semula</string>
-    <string name="add">Misi baru</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">Nama fail</string>
     <string name="msg_threads">Thread</string>
     <string name="msg_error">Ralat</string>
@@ -250,7 +247,7 @@
     <string name="msg_running_detail">Ketuk untuk butiran</string>
     <string name="msg_wait">Sila tunggu…</string>
     <string name="msg_copied">Disalin ke papan klip</string>
-    <string name="no_available_dir">Sila pilih folder muat turun yang tersedia</string>
+    <string name="no_available_dir">Sila pilih folder muat turun nanti dalam tetapan</string>
     <string name="msg_popup_permission">Kebenaran ini diperlukan untuk
 \nbuka dalam mod popup</string>
     <string name="one_item_deleted">1 item dipadamkan.</string>
@@ -424,8 +421,6 @@
     <string name="enqueue">Beratur</string>
     <string name="permission_denied">Tindakan ditolak oleh sistem</string>
     <string name="download_failed">Muat turun gagal</string>
-    <string name="download_finished">Muat turun selesai</string>
-    <string name="download_finished_more">%s muat turun selesai</string>
     <string name="generate_unique_name">Menjana nama yang unik</string>
     <string name="overwrite">Timpa</string>
     <string name="overwrite_finished_warning">Fail yang dimuat turun dengan nama ini sudah wujud</string>
@@ -459,4 +454,58 @@
     <plurals name="listening">
         <item quantity="other">%s pendengar</item>
     </plurals>
+    <string name="subtitle_activity_recaptcha">Tekan \"Selesai\" saat selesai</string>
+    <string name="recaptcha_done_button">Selesai</string>
+    <string name="recaptcha_solve">Selesaikan</string>
+    <string name="no_comments">Tidak ada ulasan</string>
+    <plurals name="videos">
+        <item quantity="other">%s video</item>
+    </plurals>
+    <string name="infinite_videos">∞ video</string>
+    <string name="more_than_100_videos">100+ video</string>
+    <string name="no_one_listening">Tidak ada yang mendengarkan</string>
+    <plurals name="watching">
+        <item quantity="other">%s menonton</item>
+    </plurals>
+    <string name="no_one_watching">Tidak ada yang menonton</string>
+    <string name="description_tab_description">Deskripsi</string>
+    <string name="comments_tab_description">Ulasan</string>
+    <string name="error_report_open_github_notice">Sila periksa jika isu yang sama sudah dilaporkan. Jika laporan anda ternyata sudah ada, anda membuat kami membuang masa yang seharusnya boleh digunakan untuk memperbaiki pepijat yang sebenar.</string>
+    <string name="error_report_open_issue_button_text">Laporkan di GitHub</string>
+    <string name="artists">Artis</string>
+    <string name="albums">Album</string>
+    <string name="songs">Lagu</string>
+    <string name="videos_string">Video</string>
+    <string name="restricted_video">Video ini ada had umur.
+\n
+\nAktifkan \"%1$s\" dalam tetapan jika anda ingin melihatnya.</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube menyediakan \"Mode Terhad\" yang menyembunyikan kandungan dewasa</string>
+    <string name="youtube_restricted_mode_enabled_title">Aktifkan \"Mod Terhad\" YouTube</string>
+    <string name="show_age_restricted_content_summary">Tunjuk kandungan yang mungkin tidak wajar untuk kanak-kanak kerana mempunyai had umur (seperti 18+)</string>
+    <string name="unsupported_url_dialog_message">URL tidak dikenali. Buka dengan aplikasi lain\?</string>
+    <string name="settings_category_clear_data_title">Kosongkan data</string>
+    <string name="show_meta_info_summary">Matikan untuk menyembunyikan kotak meta-maklumat yang ada maklumat lanjut tentang pencipta, kandungan strim atau permintaan carian</string>
+    <string name="show_description_summary">Matikan untuk menyembunyikan deskripsi video dan maklumat lanjut</string>
+    <string name="show_description_title">Tunjuk deskripsi</string>
+    <string name="show_comments_summary">Matikan untuk menyembunyikan ulasan</string>
+    <string name="show_comments_title">Tunjuk ulasan</string>
+    <string name="seek_duration_title">Tempoh langkau/balik</string>
+    <string name="night_theme_title">Tema Malam</string>
+    <string name="notification_actions_at_most_three">Anda hanya boleh pilih hingga tiga aksi untuk dipapar dalam pemberitahuan padat!</string>
+    <string name="notification_actions_summary">Tekan untuk menyunting setiap aksi pemberitahuan di bawah. Pilih hingga tiga di antaranya untuk tunjukkannya di dalam pemberitahuan padat dengan menggunakan kotak pilihan di sebelah kanan</string>
+    <string name="clear_queue_confirmation_description">Baris gilir daripada pemain yang aktif akan digantikan</string>
+    <string name="clear_queue_confirmation_summary">Menukar ke pemain yang lain mungkin akan menggantikan baris gilir anda</string>
+    <string name="clear_queue_confirmation_title">Minta untuk pengesahan sebelum mengosongkan baris gilir</string>
+    <string name="notification_colorize_title">Mewarnai pemberitahuan</string>
+    <string name="notification_action_nothing">Tiada</string>
+    <string name="notification_action_shuffle">Ocok</string>
+    <string name="notification_action_repeat">Ulang</string>
+    <string name="notification_action_4_title">Butang aksi kelima</string>
+    <string name="notification_action_3_title">Butang aksi keempat</string>
+    <string name="notification_action_2_title">Butang aksi ketiga</string>
+    <string name="notification_action_1_title">Butang aksi kedua</string>
+    <string name="notification_action_0_title">Butang aksi pertama</string>
+    <string name="overwrite_failed">tidak boleh tulis ganti fail</string>
+    <string name="overwrite_unrelated_warning">Fail dengan nama yang sama sudah ada</string>
+    <string name="dont_show">Jangan tunjuk</string>
 </resources>

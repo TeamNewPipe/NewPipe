@@ -13,7 +13,6 @@
     <string name="settings_file_replacement_character_summary">Os carateres inválidos são substituídos por este valor</string>
     <string name="download">Descarregar</string>
     <string name="use_external_video_player_summary">Remove o áudio em algumas resoluções</string>
-    <string name="download_finished_more">%s descargas concluídas</string>
     <string name="systems_language">Predefinição do sistema</string>
     <string name="minimize_on_exit_title">Minimizar ao trocar de aplicação</string>
     <string name="unmute">Ativar som</string>
@@ -31,7 +30,7 @@
     <string name="enable_playback_state_lists_summary">Mostrar indicadores de posição de reprodução em listas</string>
     <string name="notification_channel_description">Notificações para NewPipe e para os reprodutores popup</string>
     <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
-    <string name="show_search_suggestions_summary">Mostrar sugestões ao pesquisar</string>
+    <string name="show_search_suggestions_summary">Escolha as sugestões a mostrar ao pesquisar</string>
     <string name="no_valid_zip_file">Ficheiro ZIP inválido</string>
     <string name="no_views">Sem visualizações</string>
     <string name="light_theme_title">Claro</string>
@@ -177,7 +176,6 @@
     <string name="content">Conteúdo</string>
     <string name="show_original_time_ago_summary">Os textos originais dos serviços serão visíveis nos itens de fluxo</string>
     <string name="upload_date_text">Publicado em %1$s</string>
-    <string name="download_finished">Descarga concluída</string>
     <string name="skip_silence_checkbox">Avanço rápido durante silêncio</string>
     <string name="audio_streams_empty">Não foram encontradas emissões de áudio</string>
     <string name="error_postprocessing_stopped">NewPipe foi fechado enquanto trabalhava no ficheiro</string>
@@ -255,7 +253,7 @@
     <string name="settings_category_other_title">Outros</string>
     <string name="duration_live">Em direto</string>
     <string name="feed_update_threshold_title">Limite de atualização da fonte</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="could_not_get_stream">Não foi possível obter a emissão</string>
     <string name="subscription_update_failed">Não foi possível atualizar a subscrição</string>
     <string name="toast_no_player">Não existe uma aplicação para reproduzir este ficheiro</string>
@@ -276,7 +274,6 @@
     <string name="download_path_audio_dialog_title">Escolha a pasta para colocar os ficheiros de áudio</string>
     <string name="app_update_notification_content_title">Atualização NewPipe disponível!</string>
     <string name="events">Eventos</string>
-    <string name="add">Nova missão</string>
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
     <string name="could_not_load_thumbnails">Não foi possível carregar todas as miniaturas</string>
     <string name="audio">Áudio</string>
@@ -565,7 +562,6 @@
     <string name="use_inexact_seek_title">Utilizar pesquisa rápida</string>
     <string name="override_current_data">Está prestes a substituir a configuração atual.</string>
     <string name="switch_to_popup">Mudar para popup</string>
-    <string name="deleted_downloads">%1$d descargas removidas</string>
     <string name="append_playlist">Adicionar à lista de reprodução</string>
     <string name="popup_playing_toast">Reproduzir no modo poppup</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Acha que a fonte demora muito tempo a carregar\? Se sim, tente ativar o carregamento rápido (pode alterar a opção nas definições ou no botão abaixo).
@@ -718,4 +714,10 @@
     <string name="no_dir_yet">Ainda sem pasta de descarregas definida, escolha agora a pasta de descarregas padrão</string>
     <string name="comments_are_disabled">Comentários estão desativados</string>
     <string name="mark_as_watched">Marcar como visto</string>
+    <string name="loading_channel_details">A carregar detalhes do canal…</string>
+    <string name="error_show_channel_details">Erro em Mostrar detalhes do canal</string>
+    <string name="show_image_indicators_summary">Mostrar fitas coloridas de Picasso em cima das imagens que indicam a sua fonte: vermelho para rede, azul para disco e verde para memória</string>
+    <string name="show_image_indicators_title">Mostrar indicadores de imagem</string>
+    <string name="remote_search_suggestions">Sugestões de pesquisa remotas</string>
+    <string name="local_search_suggestions">Sugestões de pesquisa locais</string>
 </resources>

@@ -95,8 +95,7 @@
     <string name="msg_wait">Počakajte …</string>
     <string name="msg_copied">Kopirano v odložišče.</string>
     <string name="no_available_dir">Izberite mapo za prejem</string>
-    <string name="add">Nova naloga</string>
-    <string name="finish">V redu</string>
+    <string name="ok">V redu</string>
     <string name="downloads">Prejemi</string>
     <string name="downloads_title">Prejemi</string>
     <string name="error_report_title">Poročilo o napaki</string>
@@ -278,8 +277,6 @@
     <string name="overwrite_finished_warning">Prenesena datoteka s tem imenom že obstaja</string>
     <string name="overwrite_unrelated_warning">Datoteka s tem imenom že obstaja</string>
     <string name="generate_unique_name">Ustvari edinstveno ime</string>
-    <string name="download_finished_more">%s prenosom je končanih</string>
-    <string name="download_finished">Prenos končan</string>
     <string name="download_failed">Prenos spodletel</string>
     <string name="paused">Pavza</string>
     <string name="missions_header_finished">Končano</string>

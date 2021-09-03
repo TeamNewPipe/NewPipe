@@ -94,7 +94,7 @@
     <string name="view">Відтворити</string>
     <string name="delete">Видалити</string>
     <string name="checksum">Контрольна сума</string>
-    <string name="finish">Гаразд</string>
+    <string name="ok">Гаразд</string>
     <string name="msg_name">Назва файлу</string>
     <string name="msg_threads">Потоки</string>
     <string name="msg_error">Помилка</string>
@@ -128,7 +128,7 @@
     <string name="player_gesture_controls_title">Жести керування програвачем</string>
     <string name="player_gesture_controls_summary">Контролювати яскравість та гучність програвача жестами</string>
     <string name="show_search_suggestions_title">Пошукові пропозиції</string>
-    <string name="show_search_suggestions_summary">Показувати пропозиції під час пошуку</string>
+    <string name="show_search_suggestions_summary">Виберіть які пропозиції показувати під час пошуку</string>
     <string name="enable_search_history_title">Історія пошуків</string>
     <string name="enable_search_history_summary">Зберігати пошукові запити локально</string>
     <string name="enable_playback_resume_title">Продовжувати перегляд</string>
@@ -250,7 +250,6 @@
         <item quantity="few">%s перегляди</item>
         <item quantity="many">%s переглядів</item>
     </plurals>
-    <string name="add">Нове завдання</string>
     <string name="title_activity_recaptcha">Перевірка reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запит перевірки reCAPTCHA</string>
     <string name="copyright" formatted="true">© %1$s, %2$s під %3$s</string>
@@ -436,8 +435,6 @@
     <string name="enqueue">Черга</string>
     <string name="permission_denied">Дію заборонено системою</string>
     <string name="download_failed">Помилка завантаження</string>
-    <string name="download_finished">Завантаження завершено</string>
-    <string name="download_finished_more">%s завантажень завершено</string>
     <string name="generate_unique_name">Згенерувати унікальну назву</string>
     <string name="overwrite">Перезаписати</string>
     <string name="overwrite_unrelated_warning">Файл з такою назвою вже існує</string>
@@ -606,7 +603,6 @@
     <string name="restricted_video">Це відео з віковим обмеженням.
 \n
 \nЩоб побачити його ввімкніть «%1$s» в налаштуваннях.</string>
-    <string name="deleted_downloads">Видалено %1$d завантажень</string>
     <string name="detail_sub_channel_thumbnail_view_description">Ескіз аватара каналу</string>
     <string name="show_original_time_ago_summary">Оригінальні тексти сервісів будуть видимі в потокових елементах</string>
     <string name="youtube_restricted_mode_enabled_title">Увімкнути «Обмежений режим» YouTube</string>
@@ -729,4 +725,10 @@
     <string name="seekbar_preview_thumbnail_title">Мініатюра з попереднім переглядом на повзунку поступу</string>
     <string name="detail_heart_img_view_description">Вподобано автором</string>
     <string name="mark_as_watched">Позначити переглянутим</string>
+    <string name="loading_channel_details">Завантаження відомостей про канал…</string>
+    <string name="error_show_channel_details">Помилка показу відомостей про канал</string>
+    <string name="show_image_indicators_summary">Показувати кольорові стрічки Пікассо поверх зображень із зазначенням їх джерела: червоний для мережі, синій для диска та зелений для пам’яті</string>
+    <string name="show_image_indicators_title">Показати індикатори зображень</string>
+    <string name="remote_search_suggestions">Віддалені пропозиції пошуку</string>
+    <string name="local_search_suggestions">Локальні пошукові пропозиції</string>
 </resources>

@@ -212,8 +212,7 @@
     <string name="checksum">Controlesom</string>
     <string name="dismiss">Sluiten</string>
     <string name="rename">Hernoemen</string>
-    <string name="add">Nieuwe missie</string>
-    <string name="finish">Oké</string>
+    <string name="ok">Oké</string>
     <string name="msg_name">Bestandsnaam</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_error">Fout</string>
@@ -431,8 +430,6 @@
     <string name="enqueue">Wachtrij</string>
     <string name="permission_denied">Actie geweigerd door het systeem</string>
     <string name="download_failed">Download mislukt</string>
-    <string name="download_finished">Download voltooid</string>
-    <string name="download_finished_more">%s downloads voltooid</string>
     <string name="generate_unique_name">Unieke naam genereren</string>
     <string name="overwrite">Overschrijven</string>
     <string name="overwrite_finished_warning">Er bestaat al een gedownload bestand met deze naam</string>
@@ -537,7 +534,6 @@
     <string name="start_downloads">Downloads starten</string>
     <string name="enable_queue_limit_desc">Maximaal 1 bestand tegelijk zal worden gedownload</string>
     <string name="enable_queue_limit">Limiteer de download wachtrij</string>
-    <string name="deleted_downloads">%1$d downloads verwijderd</string>
     <string name="delete_downloaded_files">Verwijder gedownloade bestanden</string>
     <string name="confirm_prompt">Wilt u de downloadgeschiedenis of alle gedownloade bestanden verwijderen\?</string>
     <string name="clear_download_history">Download geschiedenis verwijderen</string>

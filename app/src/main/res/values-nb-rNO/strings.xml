@@ -88,7 +88,7 @@
     <string name="view">Spill</string>
     <string name="delete">Slett</string>
     <string name="checksum">Sjekksum</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">Filnavn</string>
     <string name="msg_threads">Tråder</string>
     <string name="msg_error">Feil</string>
@@ -100,7 +100,6 @@
     <string name="msg_copied">Kopiert til utklippstavle</string>
     <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nInnholdsland:\\nProgramspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOS-versjon:</string>
     <string name="start">Start</string>
-    <string name="add">Nytt mål</string>
     <string name="msg_url_malform">Feilaktig nettadresse eller manglende internettilknytning</string>
     <string name="no_available_dir">Definer en nedlastingsmappe senere i innstillingene</string>
     <string name="title_activity_recaptcha">reCAPTCHA-oppgave</string>
@@ -431,8 +430,6 @@
     <string name="enqueue">Kø</string>
     <string name="permission_denied">Handling avvist av systemet</string>
     <string name="download_failed">Nedlasting mislyktes</string>
-    <string name="download_finished">Nedlasting fullført</string>
-    <string name="download_finished_more">%s nedlastinger fullført</string>
     <string name="generate_unique_name">Generer unikt navn</string>
     <string name="overwrite">Overskriv</string>
     <string name="overwrite_finished_warning">Nedlastet fil ved dette navnet finnes allerede</string>
@@ -509,7 +506,6 @@
     <string name="choose_instance_prompt">Velg en instans</string>
     <string name="clear_download_history">Tøm nedlastingshistorikk</string>
     <string name="delete_downloaded_files">Slett nedlastede filer</string>
-    <string name="deleted_downloads">Slettet %1$d nedlastninger</string>
     <string name="peertube_instance_url_summary">Velg dine favoritter blant PeerTube-instansene</string>
     <string name="peertube_instance_url_help">Finn instansene du liker på %s</string>
     <string name="peertube_instance_add_title">Legg til instans</string>
