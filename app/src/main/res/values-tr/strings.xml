@@ -329,7 +329,8 @@
 \n3. \"Tüm veriler dahil\"e ve sonrasında \"Hiçbirini seçme\"ye tıklayın, ardından yalnızca \"abonelikler\"i seçin ve \"Tamam\"a tıklayın
 \n4. \"Sonraki adım\"a ve ardından \"Dışa aktar\"a tıklayın
 \n5. Göründüğünde \"İndir\" düğmesini tıklayın
-\n6. İndirilen zip dosyasından .json dosyasını çıkarın (genellikle \"YouTube and YouTube Music/subscriptions/subscriptions.json\") ve buradan içe aktarın.</string>
+\n6. Aşağıdaki DOSYAYI İÇE AKTAR düğmesini tıklayın ve indirilen zip dosyasını seçin
+\n7. [Zip içe aktarma işlemi başarısız olursa] .csv dosyasını çıkarın (genellikle \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), aşağıdaki DOSYAYI İÇE AKTAR düğmesini tıklayın ve çıkarılan csv dosyasını seçin</string>
     <string name="import_soundcloud_instructions">URL\'yi veya ID\'nizi yazarak SoundCloud profilini içe aktarın:
 \n
 \n1. Web tarayıcısında \"masaüstü kipi\" etkinleştirin (site, mobil aygıtlar için uygun değildir)
@@ -728,4 +729,7 @@
         <item quantity="one">İndirme tamamlandı</item>
         <item quantity="other">%s indirme tamamlandı</item>
     </plurals>
+    <string name="main_page_content_swipe_remove">Ögeleri kaldırmak için kaydır</string>
+    <string name="start_main_player_fullscreen_summary">Videoları küçük oynatıcıda başlatma, kendiliğinden döndürme kilitliyse doğrudan tam ekran kipine geç. Tam ekrandan çıkarak küçük oynatıcıya erişmeye devam edebilirsiniz.</string>
+    <string name="start_main_player_fullscreen_title">Ana oynatıcıyı tam ekranda başlat</string>
 </resources>
