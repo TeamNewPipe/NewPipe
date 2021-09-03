@@ -1,0 +1,14 @@
+<resources>
+    <!-- Night Opening Theme -->
+    <style name="Base.V19.OpeningTheme" parent="Theme.AppCompat.DayNight.NoActionBar" />
+
+    <style name="Base.OpeningTheme" parent="Base.V19.OpeningTheme" />
+
+    <style name="OpeningTheme" parent="Base.OpeningTheme">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="colorAccent">@android:color/transparent</item>
+
+        <item name="android:windowBackground">@drawable/splash_background_night</item>
+    </style>
+</resources>
