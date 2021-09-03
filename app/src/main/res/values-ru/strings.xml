@@ -746,4 +746,6 @@
         <item quantity="other">%s загрузок завершено</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Удалять элементы смахиванием</string>
+    <string name="start_main_player_fullscreen_summary">Не начинать просмотр видео в мини-плеере, но сразу переключиться в полноэкранный режим, если автовращение экрана заблокировано. Вы можете переключиться на мини-плеер, выйдя из полноэкранного режима.</string>
+    <string name="start_main_player_fullscreen_title">Начинать просмотр в полноэкранном режиме</string>
 </resources>
