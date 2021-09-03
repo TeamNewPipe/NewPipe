@@ -7,6 +7,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Maybe
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
 import org.schabi.newpipe.database.stream.StreamWithState
@@ -37,7 +38,7 @@ abstract class FeedDAO {
         LIMIT 500
         """
     )
-    abstract fun getAllStreams(): Flowable<List<StreamWithState>>
+    abstract fun getAllStreams(): Maybe<List<StreamWithState>>
 
     @Query(
         """
@@ -62,7 +63,7 @@ abstract class FeedDAO {
         LIMIT 500
         """
     )
-    abstract fun getAllStreamsForGroup(groupId: Long): Flowable<List<StreamWithState>>
+    abstract fun getAllStreamsForGroup(groupId: Long): Maybe<List<StreamWithState>>
 
     /**
      * @see StreamStateEntity.isFinished()
@@ -97,7 +98,7 @@ abstract class FeedDAO {
         LIMIT 500
         """
     )
-    abstract fun getLiveOrNotPlayedStreams(): Flowable<List<StreamWithState>>
+    abstract fun getLiveOrNotPlayedStreams(): Maybe<List<StreamWithState>>
 
     /**
      * @see StreamStateEntity.isFinished()
@@ -137,7 +138,7 @@ abstract class FeedDAO {
         LIMIT 500
         """
     )
-    abstract fun getLiveOrNotPlayedStreamsForGroup(groupId: Long): Flowable<List<StreamWithState>>
+    abstract fun getLiveOrNotPlayedStreamsForGroup(groupId: Long): Maybe<List<StreamWithState>>
 
     @Query(
         """

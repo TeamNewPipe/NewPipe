@@ -33,12 +33,9 @@ class FeedViewModel(
     private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(applicationContext)
 
     private val toggleShowPlayedItems = BehaviorProcessor.create<Boolean>()
-    private val streamItems = toggleShowPlayedItems
+    private val toggleShowPlayedItemsFlowable = toggleShowPlayedItems
         .startWithItem(initialShowPlayedItems)
         .distinctUntilChanged()
-        .switchMap { showPlayedItems ->
-            feedDatabaseManager.getStreams(groupId, showPlayedItems)
-        }
 
     private val mutableStateLiveData = MutableLiveData<FeedState>()
     val stateLiveData: LiveData<FeedState> = mutableStateLiveData
@@ -46,17 +43,28 @@ class FeedViewModel(
     private var combineDisposable = Flowable
         .combineLatest(
             FeedEventManager.events(),
-            streamItems,
+                toggleShowPlayedItemsFlowable,
             feedDatabaseManager.notLoadedCount(groupId),
             feedDatabaseManager.oldestSubscriptionUpdate(groupId),
 
-            Function4 { t1: FeedEventManager.Event, t2: List<StreamWithState>,
+            Function4 { t1: FeedEventManager.Event, t2: Boolean,
                 t3: Long, t4: List<OffsetDateTime> ->
-                return@Function4 CombineResultHolder(t1, t2, t3, t4.firstOrNull())
+                return@Function4 CombineResultEventHolder(t1, t2, t3, t4.firstOrNull())
             }
         )
         .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
         .subscribeOn(Schedulers.io())
+        .observeOn(Schedulers.io())
+        .map { (event, showPlayedItems, notLoadedCount, oldestUpdate) ->
+            var streamItems = if (event is SuccessResultEvent || event is IdleEvent)
+                feedDatabaseManager
+                        .getStreams(groupId, showPlayedItems)
+                        .blockingGet(arrayListOf())
+            else
+                arrayListOf()
+
+            CombineResultDataHolder(event, streamItems, notLoadedCount, oldestUpdate)
+        }
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe { (event, listFromDB, notLoadedCount, oldestUpdate) ->
             mutableStateLiveData.postValue(
@@ -78,7 +86,17 @@ class FeedViewModel(
         combineDisposable.dispose()
     }
 
-    private data class CombineResultHolder(val t1: FeedEventManager.Event, val t2: List<StreamWithState>, val t3: Long, val t4: OffsetDateTime?)
+    private data class CombineResultEventHolder(
+            val t1: FeedEventManager.Event,
+            val t2: Boolean,
+            val t3: Long,
+            val t4: OffsetDateTime?)
+
+    private data class CombineResultDataHolder(
+            val t1: FeedEventManager.Event,
+            val t2: List<StreamWithState>,
+            val t3: Long,
+            val t4: OffsetDateTime?)
 
     fun togglePlayedItems(showPlayedItems: Boolean) {
         toggleShowPlayedItems.onNext(showPlayedItems)
