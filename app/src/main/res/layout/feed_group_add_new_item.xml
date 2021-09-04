@@ -27,7 +27,7 @@
             app:srcCompat="@drawable/ic_add"
             tools:ignore="ContentDescription" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemDurationView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="@+id/itemThumbnailView"
         tools:text="1:09:10" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemVideoTitleView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/itemProgressView"
         tools:text="@tools:sample/lorem[10]" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemUploaderView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/itemVideoTitleView"
         tools:text="Uploader name long very very long long" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemAdditionalDetails"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

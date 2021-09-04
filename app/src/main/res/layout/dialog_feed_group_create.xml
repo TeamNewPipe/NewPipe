@@ -57,7 +57,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/selected_subscription_count_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
-                    <TextView
+                    <org.schabi.newpipe.views.NewPipeTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="start|center_vertical"
@@ -126,7 +126,7 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <org.schabi.newpipe.views.NewPipeTextView
                         android:id="@+id/subscriptions_header_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
                 tools:spanCount="4" />
         </LinearLayout>
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/delete_screen_message"
             style="@style/TextAppearance.AppCompat.Subhead"
             android:layout_width="wrap_content"

@@ -21,7 +21,7 @@
         tools:ignore="ContentDescription"
         tools:src="@drawable/ic_previous" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/notificationActionTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="Second action button | Lorem ipsum dolor sit amet, consectetur adipisci elit" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/notificationActionSummary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

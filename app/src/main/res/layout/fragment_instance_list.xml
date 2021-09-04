@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/instanceHelpTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

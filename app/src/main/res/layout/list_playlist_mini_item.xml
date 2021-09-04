@@ -23,7 +23,7 @@
         android:src="@drawable/dummy_thumbnail_playlist"
         tools:ignore="RtlHardcoded" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemStreamCountView"
         android:layout_width="45dp"
         android:layout_height="match_parent"
@@ -42,7 +42,7 @@
         tools:ignore="RtlHardcoded"
         tools:text="3141" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemTitleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
         tools:ignore="RtlHardcoded"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemUploaderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

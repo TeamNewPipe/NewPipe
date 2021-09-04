@@ -33,7 +33,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -64,7 +64,7 @@
         android:paddingBottom="6dp"
         tools:ignore="RtlSymmetry">
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="match_parent"
             android:layout_height="@dimen/subscription_import_export_title_height"
             android:gravity="left|center"
@@ -83,7 +83,7 @@
             android:layout_marginLeft="36dp"
             android:orientation="vertical" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="match_parent"
             android:layout_height="@dimen/subscription_import_export_title_height"
             android:background="?attr/selectableItemBackground"

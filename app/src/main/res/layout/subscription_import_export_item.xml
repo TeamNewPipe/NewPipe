@@ -18,7 +18,7 @@
         tools:ignore="ContentDescription,RtlHardcoded"
         tools:src="@drawable/place_holder_youtube" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@android:id/text1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/subscription_import_export_item_height"

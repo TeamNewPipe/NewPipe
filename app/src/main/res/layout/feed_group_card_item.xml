@@ -28,7 +28,7 @@
             tools:ignore="ContentDescription"
             tools:src="@drawable/ic_fastfood" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

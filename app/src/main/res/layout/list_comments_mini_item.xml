@@ -21,7 +21,7 @@
         tools:ignore="RtlHardcoded" />
 
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemCommentContentView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         android:contentDescription="@string/detail_likes_img_view_description"
         app:srcCompat="@drawable/ic_thumb_up" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/detail_thumbs_up_count_view"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/video_item_detail_like_image_height"
@@ -66,7 +66,7 @@
         app:srcCompat="?attr/thumbs_down"
         tools:ignore="RtlHardcoded" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/detail_thumbs_down_count_view"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/video_item_detail_like_image_height"
@@ -80,7 +80,7 @@
         tools:ignore="RtlHardcoded"
         tools:text="10K" />-->
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemPublishedTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
