@@ -18,7 +18,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 975
-        versionName "0.21.9"
+        versionName "0.21.9_r2"
 
         multiDexEnabled true
 

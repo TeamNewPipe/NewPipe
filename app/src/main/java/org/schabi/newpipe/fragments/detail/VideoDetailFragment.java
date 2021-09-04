@@ -91,6 +91,7 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.VideoSegment;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
@@ -1623,12 +1624,18 @@ public final class VideoDetailFragment
         }
 
         videoSegmentsSubscriber = Single.fromCallable(() -> {
+            VideoSegment[] videoSegments = null;
+
             try {
-                return SponsorBlockUtils.getYouTubeVideoSegments(getContext(), currentInfo);
+                videoSegments =
+                        SponsorBlockUtils.getYouTubeVideoSegments(getContext(), currentInfo);
             } catch (final Exception e) {
-                // TODO: handle
-                return null;
+                // TODO: handle?
             }
+
+            return videoSegments == null
+                    ? new VideoSegment[0]
+                    : videoSegments;
         })
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
