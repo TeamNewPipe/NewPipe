@@ -1,10 +1,12 @@
 package org.schabi.newpipe.local.feed.notifications
 
 import android.content.Context
+import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager
 import androidx.work.BackoffPolicy
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.ForegroundInfo
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequest
@@ -16,11 +18,12 @@ import io.reactivex.rxjava3.core.Single
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.local.feed.service.FeedLoadManager
+import org.schabi.newpipe.local.feed.service.FeedLoadService
 import java.util.concurrent.TimeUnit
 
 class NotificationWorker(
     appContext: Context,
-    workerParams: WorkerParameters
+    workerParams: WorkerParameters,
 ) : RxWorker(appContext, workerParams) {
 
     private val notificationHelper by lazy {
@@ -29,7 +32,7 @@ class NotificationWorker(
     private val feedLoadManager = FeedLoadManager(appContext)
 
     override fun createWork(): Single<Result> = if (isEnabled(applicationContext)) {
-        feedLoadManager.startLoading()
+        feedLoadManager.startLoading(ignoreOutdatedThreshold = true)
             .map { feed ->
                 feed.mapNotNull { x ->
                     x.value?.takeIf {
@@ -38,11 +41,26 @@ class NotificationWorker(
                     }
                 }
             }
+            .doOnSubscribe { setForegroundAsync(createForegroundInfo()) }
             .flatMapObservable { Observable.fromIterable(it) }
             .flatMapCompletable { x -> notificationHelper.notify(x) }
             .toSingleDefault(Result.success())
             .onErrorReturnItem(Result.failure())
     } else Single.just(Result.success())
+
+    private fun createForegroundInfo(): ForegroundInfo {
+        val notification = NotificationCompat.Builder(
+            applicationContext,
+            applicationContext.getString(R.string.notification_channel_id)
+        ).setOngoing(true)
+            .setProgress(-1, -1, true)
+            .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setContentTitle(applicationContext.getString(R.string.feed_notification_loading))
+            .build()
+        return ForegroundInfo(FeedLoadService.NOTIFICATION_ID, notification)
+    }
 
     companion object {
 

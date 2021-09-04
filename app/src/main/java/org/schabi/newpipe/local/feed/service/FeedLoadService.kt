@@ -48,7 +48,7 @@ import java.util.concurrent.TimeUnit
 class FeedLoadService : Service() {
     companion object {
         private val TAG = FeedLoadService::class.java.simpleName
-        private const val NOTIFICATION_ID = 7293450
+        const val NOTIFICATION_ID = 7293450
         private const val ACTION_CANCEL = App.PACKAGE_NAME + ".local.feed.service.FeedLoadService.CANCEL"
 
         /**

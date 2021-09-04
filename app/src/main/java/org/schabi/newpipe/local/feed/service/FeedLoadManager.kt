@@ -38,19 +38,26 @@ class FeedLoadManager(private val context: Context) {
     }
 
     fun startLoading(
-        groupId: Long = FeedGroupEntity.GROUP_ALL_ID
+        groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
+        ignoreOutdatedThreshold: Boolean = false,
     ): Single<List<Notification<FeedUpdateInfo>>> {
         val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val useFeedExtractor = defaultSharedPreferences.getBoolean(
             context.getString(R.string.feed_use_dedicated_fetch_method_key),
             false
         )
-        val thresholdOutdatedSeconds = defaultSharedPreferences.getString(
-            context.getString(R.string.feed_update_threshold_key),
-            context.getString(R.string.feed_update_threshold_default_value)
-        )!!.toInt()
 
-        val outdatedThreshold = OffsetDateTime.now(ZoneOffset.UTC).minusSeconds(thresholdOutdatedSeconds.toLong())
+        val outdatedThreshold = if (ignoreOutdatedThreshold) {
+            OffsetDateTime.now(ZoneOffset.UTC)
+        } else {
+            val thresholdOutdatedSeconds = (
+                defaultSharedPreferences.getString(
+                    context.getString(R.string.feed_update_threshold_key),
+                    context.getString(R.string.feed_update_threshold_default_value)
+                ) ?: context.getString(R.string.feed_update_threshold_default_value)
+                ).toInt()
+            OffsetDateTime.now(ZoneOffset.UTC).minusSeconds(thresholdOutdatedSeconds.toLong())
+        }
 
         val subscriptions = when (groupId) {
             FeedGroupEntity.GROUP_ALL_ID -> feedDatabaseManager.outdatedSubscriptions(outdatedThreshold)
