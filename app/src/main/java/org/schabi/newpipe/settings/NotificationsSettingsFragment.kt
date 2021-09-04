@@ -87,12 +87,7 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
     }
 
     private fun updateSubscriptions(subscriptions: List<SubscriptionEntity>) {
-        var notified = 0
-        for (subscription in subscriptions) {
-            if (subscription.notificationMode != NotificationMode.DISABLED) {
-                notified++
-            }
-        }
+        val notified = subscriptions.count { it.notificationMode != NotificationMode.DISABLED }
         val preference = findPreference<Preference>(getString(R.string.streams_notifications_channels_key))
         if (preference != null) {
             preference.summary = preference.context.getString(

@@ -705,4 +705,5 @@
     <string name="notifications_disabled">Уведомления отключены</string>
     <string name="get_notified">Уведомлять</string>
     <string name="you_successfully_subscribed">Вы подписались на канал</string>
+    <string name="toggle_all">Переключить все</string>
 </resources>

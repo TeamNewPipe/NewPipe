@@ -40,6 +40,8 @@ class NotificationsConfigAdapter(
         return differ.currentList[position].id
     }
 
+    fun getCurrentList(): List<SubscriptionItem> = differ.currentList
+
     fun update(newData: List<SubscriptionEntity>) {
         differ.submitList(
             newData.map {
