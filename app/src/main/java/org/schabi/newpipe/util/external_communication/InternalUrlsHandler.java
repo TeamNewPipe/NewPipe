@@ -101,7 +101,12 @@ public final class InternalUrlsHandler {
             return false;
         }
         final String matchedUrl = matcher.group(1);
-        final int seconds = Integer.parseInt(matcher.group(2));
+        final int seconds;
+        if (matcher.group(2) == null) {
+            seconds = -1;
+        } else {
+            seconds = Integer.parseInt(matcher.group(2));
+        }
 
         final StreamingService service;
         final StreamingService.LinkType linkType;
@@ -154,7 +159,7 @@ public final class InternalUrlsHandler {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
                     final PlayQueue playQueue
-                            = new SinglePlayQueue(info, seconds * 1000);
+                            = new SinglePlayQueue(info, seconds * 1000L);
                     NavigationHelper.playOnPopupPlayer(context, playQueue, false);
                 }, throwable -> {
                     if (DEBUG) {

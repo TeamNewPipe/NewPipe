@@ -360,7 +360,7 @@ public final class NavigationHelper {
             autoPlay = false;
         }
 
-        final RunnableWithVideoDetailFragment onVideoDetailFragmentReady = (detailFragment) -> {
+        final RunnableWithVideoDetailFragment onVideoDetailFragmentReady = detailFragment -> {
             expandMainPlayer(detailFragment.requireActivity());
             detailFragment.setAutoPlay(autoPlay);
             if (switchingPlayers) {

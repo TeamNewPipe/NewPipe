@@ -614,7 +614,7 @@ public final class Player implements
             playQueue.append(newQueue.getStreams());
 
             if ((intent.getBooleanExtra(SELECT_ON_APPEND, false)
-                    || currentState == STATE_COMPLETED) && newQueue.getStreams().size() > 0) {
+                    || currentState == STATE_COMPLETED) && !newQueue.getStreams().isEmpty()) {
                 playQueue.setIndex(sizeBeforeAppend);
             }
 
@@ -2326,7 +2326,7 @@ public final class Player implements
             Log.d(TAG, "ExoPlayer - onRepeatModeChanged() called with: "
                     + "repeatMode = [" + repeatMode + "]");
         }
-        setRepeatModeButton(((AppCompatImageButton) binding.repeatButton), repeatMode);
+        setRepeatModeButton(binding.repeatButton, repeatMode);
         onShuffleOrRepeatModeChanged();
     }
 
@@ -3189,7 +3189,7 @@ public final class Player implements
     private StreamSegmentAdapter.StreamSegmentListener getStreamSegmentListener() {
         return (item, seconds) -> {
             segmentAdapter.selectSegment(item);
-            seekTo(seconds * 1000);
+            seekTo(seconds * 1000L);
             triggerProgressUpdate();
         };
     }
@@ -3199,7 +3199,7 @@ public final class Player implements
         final List<StreamSegment> segments = currentMetadata.getMetadata().getStreamSegments();
 
         for (int i = 0; i < segments.size(); i++) {
-            if (segments.get(i).getStartTimeSeconds() * 1000 > playbackPosition) {
+            if (segments.get(i).getStartTimeSeconds() * 1000L > playbackPosition) {
                 break;
             }
             nearestPosition++;
