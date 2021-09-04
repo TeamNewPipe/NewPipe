@@ -423,7 +423,7 @@ public final class VideoDetailFragment
             showRelatedItems = sharedPreferences.getBoolean(key, true);
             tabSettingsChanged = true;
         } else if (key.equals(getString(R.string.show_description_key))) {
-            showComments = sharedPreferences.getBoolean(key, true);
+            showDescription = sharedPreferences.getBoolean(key, true);
             tabSettingsChanged = true;
         }
     }
