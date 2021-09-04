@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Nhấn vào kính lúp để bắt đầu.</string>
-    <string name="view_count_text">%1$s lượt xem</string>
     <string name="upload_date_text">Đăng vào %1$s</string>
     <string name="no_player_found">Không tìm thấy trình phát. Cài đặt VLC\?</string>
     <string name="install">Cài đặt</string>
@@ -14,11 +13,9 @@
     <string name="settings">Cài đặt</string>
     <string name="did_you_mean">Ý bạn là \"%1$s\"\?</string>
     <string name="share_dialog_title">Chia sẻ với</string>
-    <string name="choose_browser">Chọn trình duyệt</string>
     <string name="use_external_video_player_title">Sử dụng trình phát video bên ngoài</string>
     <string name="use_external_video_player_summary">Loại bỏ âm thanh ở một số độ phân giải</string>
     <string name="use_external_audio_player_title">Sử dụng trình phát audio bên ngoài</string>
-    <string name="popup_mode_share_menu_title">Chế độ popup</string>
     <string name="controls_popup_title">Trình phát nổi</string>
     <string name="download_path_title">Thư mục video tải về</string>
     <string name="download_path_summary">Video đã tải về được lưu ở đây</string>
@@ -26,8 +23,6 @@
     <string name="download_path_audio_title">Thư mục tải về audio</string>
     <string name="download_path_audio_summary">Audio đã tải về được lưu ở đây</string>
     <string name="download_path_audio_dialog_title">Chọn vị trí lưu audio tải về</string>
-    <string name="autoplay_by_calling_app_title">Tự động phát</string>
-    <string name="autoplay_by_calling_app_summary">Phát video khi NewPipe được gọi từ một ứng dụng khác</string>
     <string name="default_resolution_title">Độ phân giải mặc định</string>
     <string name="default_popup_resolution_title">Độ phân giải popup mặc định</string>
     <string name="show_higher_resolutions_title">Hiện độ phân giải cao hơn</string>
@@ -46,15 +41,12 @@
     <string name="black_theme_title">Đen</string>
     <string name="popup_remember_size_pos_title">Nhớ thuộc tính của popup</string>
     <string name="popup_remember_size_pos_summary">Nhớ kích thước và vị trí lần trước của popup</string>
-    <string name="player_gesture_controls_title">Điều khiển cử chỉ trình phát</string>
-    <string name="player_gesture_controls_summary">Sử dụng cử chỉ để điều chỉnh độ sáng và âm lượng</string>
     <string name="show_search_suggestions_title">Đề xuất tìm kiếm</string>
     <string name="show_search_suggestions_summary">Chọn các đề xuất để hiển thị khi tìm kiếm</string>
     <string name="download_dialog_title">Tải về</string>
     <string name="show_next_and_similar_title">Hiển thị video \"Tiếp theo\" và \"Tương tự\"</string>
     <string name="unsupported_url">URL không được hỗ trợ</string>
     <string name="settings_category_appearance_title">Hiển thị</string>
-    <string name="settings_category_other_title">Khác</string>
     <string name="background_player_playing_toast">Phát ở chế độ nền</string>
     <string name="popup_playing_toast">Phát ở chế độ popup</string>
     <string name="content">Nội dung</string>
@@ -64,12 +56,8 @@
     <string name="downloads_title">Tải xuống</string>
     <string name="error_report_title">Báo lỗi</string>
     <string name="all">Tất cả</string>
-    <string name="channel">Kênh</string>
     <string name="yes">Có</string>
-    <string name="later">Để sau</string>
     <string name="disabled">Vô hiệu</string>
-    <string name="filter">Bộ lọc</string>
-    <string name="refresh">Tải lại</string>
     <string name="clear">Xóa</string>
     <string name="best_resolution">Độ phân giải tốt nhất</string>
     <string name="general_error">Lỗi</string>
@@ -77,12 +65,8 @@
     <string name="could_not_load_thumbnails">Không thể tải tất cả hình thu nhỏ</string>
     <string name="youtube_signature_deobfuscation_error">Không thể giải mã chữ ký URL video</string>
     <string name="parsing_error">Không thể phân tích cú pháp trang web</string>
-    <string name="light_parsing_error">Không thể phân tích cú pháp hoàn toàn trang web</string>
     <string name="content_not_available">Nội dung không khả dụng</string>
     <string name="could_not_setup_download_menu">Không thể thiết lập menu tải về</string>
-    <string name="live_streams_not_supported">Livestream chưa được hỗ trợ</string>
-    <string name="could_not_get_stream">Không thể lấy bất kỳ luồng nào</string>
-    <string name="could_not_load_image">Không thể tải hình ảnh</string>
     <string name="app_ui_crash">Ứng dụng / Giao diện người dùng bị lỗi</string>
     <string name="sorry_string">Xin lỗi, điều đó không nên xảy ra.</string>
     <string name="error_report_button_text">Báo lỗi qua email</string>
@@ -98,31 +82,20 @@
     <string name="detail_uploader_thumbnail_view_description">Hình thu nhỏ của avatar người tải lên</string>
     <string name="detail_likes_img_view_description">Lượt thích</string>
     <string name="detail_dislikes_img_view_description">Dislike</string>
-    <string name="use_tor_title">Dùng Tor</string>
-    <string name="use_tor_summary">(Thử nghiệm) Buộc tải về thông qua Tor để tăng tính bảo mật (chưa hỗ trợ xem video trực tiếp).</string>
-    <string name="report_error">Báo lỗi</string>
-    <string name="user_report">Báo cáo người dùng</string>
-    <string name="err_dir_create">Không thể tạo thư mục tải về \'%1$s\'</string>
-    <string name="info_dir_created">Đã tạo thư mục tải về \'%1$s\'</string>
     <string name="video">Video</string>
     <string name="audio">Âm thanh</string>
     <string name="retry">Thử lại</string>
-    <string name="storage_permission_denied">Cần cho phép truy cập bộ nhớ</string>
     <string name="short_thousand">ngàn</string>
     <string name="short_million">triệu</string>
     <string name="short_billion">tỉ</string>
     <string name="start">Bắt đầu</string>
     <string name="pause">Dừng</string>
-    <string name="view">Chơi</string>
     <string name="delete">Xóa</string>
     <string name="checksum">Mã tổng kiểm (checksum)</string>
     <string name="ok">OK</string>
     <string name="msg_name">Tên file</string>
     <string name="msg_threads">Chủ đề</string>
     <string name="msg_error">Lỗi</string>
-    <string name="msg_server_unsupported">Server không được hỗ trợ</string>
-    <string name="msg_exists">Tập tin đã tồn tại</string>
-    <string name="msg_url_malform">URL không hợp lệ hoặc Internet không khả dụng</string>
     <string name="msg_running">NewPipe đang tải xuống</string>
     <string name="msg_running_detail">Chạm để biết chi tiết</string>
     <string name="msg_wait">Xin hãy đợi…</string>
@@ -133,14 +106,9 @@
     <string name="title_activity_recaptcha">reCAPTCHA</string>
     <string name="recaptcha_request_toast">Yêu cầu reCAPTCHA</string>
     <string name="title_activity_about">Giới thiệu về NewPipe</string>
-    <string name="action_settings">Cài đặt</string>
-    <string name="action_about">Thông tin</string>
     <string name="title_licenses">Giấy phép của bên thứ ba</string>
     <string name="copyright" formatted="true">© %1$s bởi %2$s dưới %3$s</string>
-    <string name="error_unable_to_load_license">Không thể tải giấy phép</string>
-    <string name="action_open_website">Mở trang web</string>
     <string name="tab_about">Thông tin</string>
-    <string name="tab_contributors">Cộng tác viên</string>
     <string name="tab_licenses">Giấy phép</string>
     <string name="app_description">Trình phát nội dung nhẹ và mã nguồn mở cho Android.</string>
     <string name="view_on_github">Xem trên GitHub</string>
@@ -148,13 +116,10 @@
     <string name="contribution_encouragement">Sự đóng góp luôn được hoan nghênh – cho dù bạn dịch, có ý tưởng thiết kế, dọn code, hay thay đổi rất nhiều phần code. Càng làm nhiều thì ứng dụng này sẽ càng tốt!</string>
     <string name="read_full_license">Đọc giấy phép</string>
     <string name="contribution_title">Đóng góp</string>
-    <string name="screen_rotation">xoay màn hình</string>
     <string name="content_language_title">Ngôn ngữ nội dung ưu tiên</string>
     <string name="settings_category_video_audio_title">Video và âm thanh</string>
-    <string name="settings_category_popup_title">Trình phát nổi</string>
     <string name="enable_watch_history_title">Lịch sử xem</string>
     <string name="settings_category_history_title">Lịch sử và bộ nhớ cache</string>
-    <string name="playlist">Playlist</string>
     <string name="search_no_results">Không tìm thấy</string>
     <string name="subscribe_button_title">Đăng ký</string>
     <string name="subscribed_button_title">Đã đăng ký</string>
@@ -164,7 +129,6 @@
     <string name="no_player_found_toast">Không tìm thấy trình phát luồng nào (bạn có thể cài đặt VLC để phát).</string>
     <string name="controls_download_desc">Tải về tệp luồng</string>
     <string name="show_info">Hiện thông tin</string>
-    <string name="tab_main">Trang chủ</string>
     <string name="tab_subscriptions">Đăng ký</string>
     <string name="tab_bookmarks">Danh sách phát được đánh dấu</string>
     <string name="fragment_feed_title">Có gì mới</string>
@@ -187,12 +151,9 @@
     <string name="show_hold_to_append_title">Hiển thị mẹo \"Giữ để nối thêm\"</string>
     <string name="show_hold_to_append_summary">Hiển thị mẹo khi nhấn nút phát trong nền hoặc phát trên popup trong trang \"Chi tiết\"</string>
     <string name="default_content_country_title">Quốc gia nội dung mặc định</string>
-    <string name="service_title">Dịch vụ</string>
     <string name="settings_category_player_title">Phát</string>
     <string name="settings_category_player_behavior_title">Hành vi</string>
     <string name="settings_category_debug_title">Gỡ lỗi</string>
-    <string name="background_player_append">Đã xếp hàng đợi trên trình phát nền</string>
-    <string name="popup_playing_append">Đã thêm vào hàng chờ của popup</string>
     <string name="channels">Kênh</string>
     <string name="playlists">Playlist</string>
     <string name="tracks">Bản nhạc</string>
@@ -205,7 +166,6 @@
     <string name="notification_channel_name">Thông báo NewPipe</string>
     <string name="notification_channel_description">Thông báo cho trình phát popup và trình phát nền</string>
     <string name="unknown_content">[Không xác định]</string>
-    <string name="toggle_orientation">Chuyển đổi hướng màn hình</string>
     <string name="switch_to_background">Chuyển sang nền</string>
     <string name="switch_to_popup">Chuyển sang Popup</string>
     <string name="switch_to_main">Chuyển sang Main</string>
@@ -225,7 +185,6 @@
     <string name="player_unrecoverable_failure">Đã xảy ra lỗi trình phát không thể khôi phục</string>
     <string name="player_recoverable_failure">Phục hồi từ lỗi trình phát</string>
     <string name="external_player_unsupported_link_type">Trình phát ngoài không hỗ trợ các loại liên kết này</string>
-    <string name="invalid_url_toast">URL không hợp lệ</string>
     <string name="video_streams_empty">Không tìm thấy luồng video nào</string>
     <string name="audio_streams_empty">Không tìm thấy luồng audio nào</string>
     <string name="invalid_directory">Thư mục không hợp lệ</string>
@@ -249,8 +208,6 @@
         <item quantity="other">%s video</item>
     </plurals>
     <string name="create">Tạo nên</string>
-    <string name="delete_one">Xóa một</string>
-    <string name="delete_all">Xóa hết</string>
     <string name="dismiss">Bỏ qua</string>
     <string name="rename">Đổi tên</string>
     <string name="one_item_deleted">Đã xóa 1 mục.</string>
@@ -272,23 +229,13 @@
     <string name="read_privacy_policy">Đọc chính sách bảo mật</string>
     <string name="app_license">NewPipe là phần mềm miễn phí copyleft: Bạn có thể sử dụng, nghiên cứu, chia sẻ và cải thiện nó theo ý của bạn. Nói cụ thể hơn, bạn có thể phân phối lại và/hoặc sửa đổi nó theo các điều khoản trong Giấy phép Công cộng GNU (GPL) được xuất bản bởi Quỹ Phần mềm Tự do (FSF), theo phiên bản 3 hoặc bất kì phiên bản nào sau này của Giấy phép (tùy ý bạn).</string>
     <string name="title_activity_history">Lịch sử</string>
-    <string name="title_history_search">Đã tìm kiếm</string>
-    <string name="title_history_view">Đã xem</string>
-    <string name="history_disabled">Đã tắt lịch sử</string>
     <string name="action_history">Lịch sử</string>
-    <string name="history_empty">Lịch sử trống</string>
-    <string name="history_cleared">Đã xóa lịch sử</string>
-    <string name="item_deleted">Đã xóa mục</string>
     <string name="delete_item_search_history">Bạn có muốn xóa mục này khỏi lịch sử tìm kiếm không?</string>
-    <string name="delete_stream_history_prompt">Bạn có muốn xóa mục này khỏi lịch sử xem không?</string>
-    <string name="delete_all_history_prompt">Bạn có chắc chắn muốn xóa tất cả các mục khỏi lịch sử không?</string>
     <string name="title_last_played">Lần chơi cuối</string>
     <string name="title_most_played">Hầu hết phát</string>
     <string name="main_page_content">Nội dung trang chính</string>
     <string name="blank_page_summary">Trang trống</string>
     <string name="kiosk_page_summary">Trang chủ</string>
-    <string name="subscription_page_summary">Trang đăng ký</string>
-    <string name="feed_page_summary">Trang nguồn cấp dữ liệu</string>
     <string name="channel_page_summary">Trang kênh</string>
     <string name="select_a_channel">Chọn kênh</string>
     <string name="no_channel_subscribed_yet">Chưa đăng ký kênh nào</string>
@@ -299,19 +246,16 @@
     <string name="could_not_import_all_files">Cảnh báo: Không thể nhập tất cả các tệp.</string>
     <string name="override_current_data">Thao tác này sẽ ghi đè cài đặt hiện tại của bạn.</string>
     <string name="import_settings">Bạn cũng muốn nhập cài đặt?</string>
-    <string name="kiosk">Trang chủ</string>
     <string name="trending">Xu hướng</string>
     <string name="new_and_hot">Mới và hot</string>
     <string name="play_queue_remove">Tẩy xoá</string>
     <string name="play_queue_stream_detail">Chi tiết</string>
     <string name="play_queue_audio_settings">Cài đặt âm thanh</string>
     <string name="hold_to_append">Giữ để nối tiếp</string>
-    <string name="start_here_on_main">Bắt đầu phát ở đây</string>
     <string name="start_here_on_background">Bắt đầu phát từ đây trong nền</string>
     <string name="start_here_on_popup">Bắt đầu phát trên trình phát popup</string>
     <string name="drawer_open">Mở ngăn kéo</string>
     <string name="drawer_close">Đóng ngăn</string>
-    <string name="drawer_header_action_paceholder_text">Một cái gì đó sẽ xuất hiện ở đây sớm ;D</string>
     <string name="preferred_open_action_settings_title">Hành động \'mở\' được ưu tiên</string>
     <string name="preferred_open_action_settings_summary">Hành động mặc định khi mở nội dung — %s</string>
     <string name="video_player">Trình phát video</string>
@@ -321,7 +265,6 @@
     <string name="preferred_player_fetcher_notification_title">Đang nhận thông tin…</string>
     <string name="preferred_player_fetcher_notification_message">Đang tải nội dung được yêu cầu</string>
     <string name="create_playlist">Tạo playlist mới</string>
-    <string name="delete_playlist">Xóa playlist</string>
     <string name="rename_playlist">Đổi tên playlist</string>
     <string name="name">Tên</string>
     <string name="append_playlist">Thêm vào danh sách phát</string>
@@ -332,7 +275,6 @@
     <string name="playlist_creation_success">Đã tạo playlist</string>
     <string name="playlist_add_stream_success">Đã thêm vào playlist</string>
     <string name="playlist_thumbnail_change_success">Đã thay đổi hình thu nhỏ của playlist.</string>
-    <string name="playlist_delete_failure">Không thể xóa playlist.</string>
     <string name="caption_none">Không có phụ đề</string>
     <string name="resize_fit">Phù hợp</string>
     <string name="resize_fill">Lấp đầy</string>
@@ -343,7 +285,6 @@
     <string name="enable_leak_canary_summary">Theo dõi rò rỉ bộ nhớ có thể khiến ứng dụng trở nên không phản hồi khi đổ xô đống</string>
     <string name="enable_disposed_exceptions_title">Báo các lỗi out-of-lifecycle</string>
     <string name="enable_disposed_exceptions_summary">Buộc báo cáo ngoại lệ Rx không thể gửi được bên ngoài vòng đời của mảnh hoặc hoạt động sau khi xử lý</string>
-    <string name="import_export_title">Nhập/xuất</string>
     <string name="import_title">Nhập</string>
     <string name="import_from">Nhập từ</string>
     <string name="export_to">Xuất sang</string>
@@ -389,7 +330,6 @@
     <string name="minimize_on_exit_background_description">Thu nhỏ xuống trình phát nền</string>
     <string name="minimize_on_exit_popup_description">Thu nhỏ vào trình phát popup</string>
     <string name="unsubscribe">Hủy đăng ký</string>
-    <string name="tab_new">Tab mới</string>
     <string name="tab_choose">Chọn tab</string>
     <string name="volume_gesture_control_title">Điều khiển âm lượng bằng cử chỉ</string>
     <string name="volume_gesture_control_summary">Sử dụng cử chỉ để điều chỉnh âm lượng</string>
@@ -407,7 +347,6 @@
     <string name="restore_defaults_confirmation">Bạn có muốn khôi phục về mặc định\?</string>
     <string name="subscribers_count_not_available">Số người đăng ký không có</string>
     <string name="main_page_content_summary">Chọn các tab để hiện trên trang chủ</string>
-    <string name="selection">Lựa chọn</string>
     <string name="top_50">Top 50 phổ biến</string>
     <string name="import_soundcloud_instructions_hint">Nhập ID SoundCloud hoặc link soundcloud.com/&lt;ID của bạn&gt;</string>
     <string name="updates_setting_title">Cập nhật</string>
@@ -416,7 +355,6 @@
     <string name="list">Danh sách</string>
     <string name="grid">Lưới</string>
     <string name="auto">Tự động</string>
-    <string name="switch_view">Đổi chế độ hiển thị</string>
     <string name="app_update_notification_content_title">Đã có bản cập nhật NewPipe!</string>
     <string name="app_update_notification_content_text">Nhấn để tải về</string>
     <string name="missions_header_finished">Xong</string>
@@ -433,7 +371,6 @@
     <string name="show_error">Hiện lỗi</string>
     <string name="error_file_creation">Không thể tạo tệp</string>
     <string name="error_path_creation">Không thể tạo thư mục đích</string>
-    <string name="error_permission_denied">Quyền bị từ chối bởi hệ thống</string>
     <string name="error_ssl_exception">Không thể thiết lập kết nối an toàn</string>
     <string name="error_unknown_host">Không thể tìm máy chủ</string>
     <string name="error_connect_host">Không thế kết nối với máy chủ</string>
@@ -448,7 +385,6 @@
     <string name="pause_downloads_on_mobile_desc">Hữu ích khi chuyển sang dữ liệu di động, nhưng một số tải xuống không thể bị đình chỉ</string>
     <string name="missions_header_pending">Đang chờ xử lý</string>
     <string name="conferences">Hội thảo</string>
-    <string name="label_code">Mã</string>
     <string name="show_comments_title">Hiện bình luận</string>
     <string name="show_comments_summary">Tắt để ẩn bình luận</string>
     <string name="autoplay_title">Tự động phát</string>
@@ -480,7 +416,6 @@
     <string name="clear_playback_states_title">Xóa vị trí phát</string>
     <string name="clear_playback_states_summary">Xóa toàn bộ vị trí phát</string>
     <string name="delete_playback_states_alert">Xác nhận xóa toàn bộ vị trí phát\?</string>
-    <string name="download_choose_new_path">Thay đổi vị trí lưu để áp dụng</string>
     <string name="feed_groups_header_title">Nhóm kênh</string>
     <string name="choose_instance_prompt">Chọn thực thể</string>
     <string name="peertube_instance_add_exists">Thực thể đã tồn tại</string>

@@ -29,9 +29,6 @@
     <string name="show_higher_resolutions_title">ઉચ્ચ રીઝોલ્યુશન બતાવો</string>
     <string name="default_popup_resolution_title">ડિફોલ્ટ પોપઅપ રીઝોલ્યુશન</string>
     <string name="default_resolution_title">ડિફોલ્ટ રીઝોલ્યુશન</string>
-    <string name="autoplay_by_calling_app_summary">જ્યારે બીજી એપ્લિકેશનથી ન્યૂ પાઇપ કહેવામાં આવે ત્યારે વિડિઓ ચલાવે છે</string>
-    <string name="autoplay_by_calling_app_title">ઓટોપ્લે</string>
-    <string name="download_choose_new_path">અસર માટે ડાઉનલોડ ફોલ્ડર્સ બદલો</string>
     <string name="download_path_audio_dialog_title">ઓડિયો ફાઇલો માટે ડાઉનલોડ ફોલ્ડર પસંદ કરો</string>
     <string name="download_path_audio_summary">ડાઉનલોડ કરેલી ઓડિયો ફાઇલો અહીં સંગ્રહિત છે</string>
     <string name="download_path_audio_title">ઓડિયો ડાઉનલોડ ફોલ્ડર</string>
@@ -42,10 +39,8 @@
     <string name="controls_popup_title">પોપઅપ</string>
     <string name="controls_background_title">પૃષ્ઠભૂમિ</string>
     <string name="tab_choose">ટેબ પસંદ કરો</string>
-    <string name="tab_new">નવું ટેબ</string>
     <string name="tab_bookmarks">બુકમાર્ક કરેલ પ્લેલિસ્ટ્સ</string>
     <string name="tab_subscriptions">સબ્સ્ક્રિપ્શન્સ</string>
-    <string name="tab_main">મુખ્ય</string>
     <string name="show_info">માહિતી બતાવો</string>
     <string name="subscription_update_failed">સબ્સ્ક્રિપ્શન અપડેટ કરી શકાયું નથી</string>
     <string name="subscription_change_failed">સબ્સ્ક્રિપ્શન બદલી શકાયું નહીં</string>
@@ -53,12 +48,9 @@
     <string name="unsubscribe">અનસબ્સ્ક્રાઇબ કરો</string>
     <string name="subscribed_button_title">સબ્સ્ક્રાઇબ કર્યું</string>
     <string name="subscribe_button_title">સબ્સ્ક્રાઇબ કરો</string>
-    <string name="popup_mode_share_menu_title">પોપઅપ મોડ</string>
     <string name="use_external_audio_player_title">બાહ્ય ઓડિયો પ્લેયરનો ઉપયોગ કરો</string>
     <string name="use_external_video_player_summary">કેટલાક ઠરાવો પર ઓડિયો દૂર કરે છે</string>
     <string name="use_external_video_player_title">બાહ્ય વિડિઓ પ્લેયરનો ઉપયોગ કરો</string>
-    <string name="screen_rotation">પરિભ્રમણ</string>
-    <string name="choose_browser">બ્રાઉઝર પસંદ કરો</string>
     <string name="share_dialog_title">સાથે શેર કરો</string>
     <string name="search_showing_result_for">%s માટે પરિણામો બતાવી રહ્યું છે</string>
     <string name="did_you_mean">શું તમારો મતલબ %1$s છે\?</string>
@@ -75,6 +67,5 @@
     <string name="no_player_found_toast">કોઈ સ્ટ્રીમ પ્લેયર મળ્યો નથી (તમે તેને ચલાવવા માટે VLC ઇન્સ્ટોલ કરી શકો છો).</string>
     <string name="no_player_found">કોઈ સ્ટ્રીમ પ્લેયર મળ્યો નથી. વીએલસી સ્થાપિત કરીએ\?</string>
     <string name="upload_date_text">%1$s પર પ્રકાશિત</string>
-    <string name="view_count_text">%1$s દૃશ્યો</string>
     <string name="main_bg_subtitle">પ્રારંભ કરવા માટે વિપુલ - દર્શક કાચને ટેપ કરો.</string>
 </resources>

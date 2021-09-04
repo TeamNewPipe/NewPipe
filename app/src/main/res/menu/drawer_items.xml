@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/menu_services_group"></group>
-    <group android:id="@+id/menu_tabs_group"></group>
-    <group android:id="@+id/menu_options_about_group"></group>
+    <group android:id="@+id/menu_services_group" />
+    <group android:id="@+id/menu_tabs_group" />
+    <group android:id="@+id/menu_options_about_group" />
 </menu>

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/playlist_control"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:visibility="invisible"
@@ -32,7 +30,6 @@
     </LinearLayout>
 
     <View
-        android:id="@+id/anchorLeft"
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/playlist_ctrl_separator_margin"
@@ -60,7 +57,6 @@
     </LinearLayout>
 
     <View
-        android:id="@+id/anchorRight"
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/playlist_ctrl_separator_margin"

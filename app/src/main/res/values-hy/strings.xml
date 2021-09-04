@@ -11,7 +11,6 @@
     <string name="light_theme_title">Բաց</string>
     <string name="dark_theme_title">Մուգ</string>
     <string name="msg_wait">Սպասեք…</string>
-    <string name="msg_exists">Ֆայլ արդեն կա</string>
     <string name="msg_error">Սխալ</string>
     <string name="msg_name">ֆայլի անուն</string>
     <string name="ok">Լավ</string>
@@ -20,12 +19,10 @@
     <string name="detail_likes_img_view_description">Հավանում եմ</string>
     <string name="detail_dislikes_img_view_description">Չեմ հավանում</string>
     <string name="clear">Մաքրել</string>
-    <string name="view_count_text">%1$s դիտում</string>
     <string name="upload_date_text">Հրապարակվել է %1$s</string>
     <string name="install">Տեղադրել</string>
     <string name="cancel">Վերացնել</string>
     <string name="open_in_browser">Բացել բրաուզերում</string>
-    <string name="choose_browser">Ընտրեք բրաուզերը</string>
     <string name="download_path_audio_title">Ձայնային բեռնման պանակ</string>
     <string name="download_path_dialog_title">Ընտրեք ներբեռնման թղթապանակը տեսաֆայլերի համար</string>
     <string name="download_path_summary">Ներբեռնված տեսաֆայլերը պահվում են այստեղ</string>
@@ -34,10 +31,8 @@
     <string name="controls_popup_title">Թռուցիկ</string>
     <string name="controls_background_title">Ետին պլան</string>
     <string name="tab_choose">Ընտրեք ներդիր</string>
-    <string name="tab_new">Նոր էջանշան</string>
     <string name="tab_bookmarks">Էջանշված երգացանկեր</string>
     <string name="tab_subscriptions">Բաժանորդագրումներ</string>
-    <string name="tab_main">Հիմնական</string>
     <string name="show_info">Ցուցադրել ինֆոն</string>
     <string name="subscription_update_failed">Հնարավոր չէ թարմացնել բաժանորդագրումը</string>
     <string name="subscription_change_failed">Հնարավոր չէ փոխել Բաժանորդագրումը</string>
@@ -45,7 +40,6 @@
     <string name="unsubscribe">Ապաբաժանորդագրվել</string>
     <string name="subscribe_button_title">Բաժանորդագրվել</string>
     <string name="use_external_video_player_summary">Հառացնում է ձայնը որոշ լուծաչափերոկմ</string>
-    <string name="screen_rotation">Դիրք</string>
     <string name="share_dialog_title">Կիսվել</string>
     <string name="controls_download_desc">Բեռնել հոսքի նշքը</string>
     <string name="open_in_popup_mode">Բացել լողացող պատուհանում</string>
@@ -53,7 +47,6 @@
     <string name="no_player_found">Նվագարկիչ չի գտնվել, ցանկանո՞ւմ եք բեռնել VLC։</string>
     <string name="use_external_audio_player_title">Օգտագործել արտաքին աուդիո նվագարկիչ</string>
     <string name="use_external_video_player_title">Օգտագործել արտաքին դերակատար</string>
-    <string name="popup_mode_share_menu_title">Լողացող ռեժիմ NewPipe</string>
     <string name="updates_setting_title">Թարմացումներ</string>
     <string name="feed_update_threshold_option_always_update">Միշտ թարմացնել</string>
     <plurals name="feed_group_dialog_selection_count">
@@ -63,14 +56,11 @@
     <string name="feed_create_new_group_button_title">Նոր</string>
     <string name="website_title">Կայք</string>
     <string name="tab_about">Մասին</string>
-    <string name="action_about">Մասին</string>
     <string name="channels">Ալիքներ</string>
-    <string name="channel">Ալիք</string>
     <string name="all">Ամենը</string>
     <string name="settings_category_notification_title">Ծանուցում</string>
     <string name="settings_category_appearance_title">Տեսք</string>
     <string name="settings_category_updates_title">Թարմացումներ</string>
-    <string name="settings_category_other_title">Այլ</string>
     <string name="enable_watch_history_title">Դիտման պատմություն</string>
     <string name="file_deleted">Ֆայլը ջնջվեց</string>
     <string name="file">Ֆայլ</string>
@@ -107,7 +97,6 @@
     <string name="no_comments">Կարծիքներ չկան</string>
     <string name="name">Վերնագիր</string>
     <string name="rename_playlist">Վերանվանել</string>
-    <string name="view">Նվագել</string>
     <plurals name="videos">
         <item quantity="one">%s տեսանյութ</item>
         <item quantity="other">%s տեսանյութ</item>
@@ -123,9 +112,7 @@
         <item quantity="other">%s դիտում</item>
     </plurals>
     <string name="subscribed_button_title">Բաժանորդագրված</string>
-    <string name="delete_one">Ջնջել մեկը</string>
     <string name="rename">Վերանվանել</string>
-    <string name="delete_all">Ջնջել բոլորը</string>
     <string name="create">Ստեղծել</string>
     <string name="download_failed">Ներբեռնումը խափանվեց</string>
     <string name="enqueue">Հերթ</string>
