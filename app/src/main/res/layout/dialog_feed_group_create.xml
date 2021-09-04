@@ -45,7 +45,7 @@
                 app:layout_constraintStart_toEndOf="@+id/icon_preview"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <EditText
+                <org.schabi.newpipe.views.NewPipeEditText
                     android:id="@+id/group_name_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

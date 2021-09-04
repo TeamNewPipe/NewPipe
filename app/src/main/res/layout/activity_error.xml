@@ -109,7 +109,7 @@
                 android:text="@string/your_comment"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <EditText
+            <org.schabi.newpipe.views.NewPipeEditText
                 android:id="@+id/errorCommentBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
