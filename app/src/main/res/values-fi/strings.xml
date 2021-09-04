@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Napauta suurennuslasia aloittaaksesi.</string>
-    <string name="view_count_text">%1$s näyttökertaa</string>
     <string name="upload_date_text">Julkaistu %1$s</string>
     <string name="no_player_found">Ei löytynyt suoratoistosoitinta. Asennetaanko VLC\?</string>
     <string name="install">Asenna</string>
@@ -14,18 +13,14 @@
     <string name="settings">Asetukset</string>
     <string name="did_you_mean">Tarkoititko ”%1$s”\?</string>
     <string name="share_dialog_title">Jaa</string>
-    <string name="choose_browser">Valitse selain</string>
-    <string name="screen_rotation">kierto</string>
     <string name="use_external_video_player_title">Käytä ulkoista videosoitinta</string>
     <string name="use_external_video_player_summary">Ääni saattaa lakata toimimasta joillakin resoluutioilla</string>
     <string name="use_external_audio_player_title">Käytä ulkoista äänisoitinta</string>
-    <string name="popup_mode_share_menu_title">Ponnahdusikkunatila</string>
     <string name="subscribe_button_title">Tilaa</string>
     <string name="subscribed_button_title">Tilattu</string>
     <string name="channel_unsubscribed">Kanavan tilaus peruttu</string>
     <string name="subscription_change_failed">Tilauksen vaihtaminen epäonnistui</string>
     <string name="subscription_update_failed">Tilausta ei voitu päivittää</string>
-    <string name="tab_main">Päävalikko</string>
     <string name="tab_subscriptions">Tilaukset</string>
     <string name="fragment_feed_title">Uudet</string>
     <string name="controls_background_title">Taustatoisto</string>
@@ -36,8 +31,6 @@
     <string name="download_path_audio_title">Äänen latauskansio</string>
     <string name="download_path_audio_summary">Ladatut äänitiedostot tallennetaan tänne</string>
     <string name="download_path_audio_dialog_title">Valitse äänitiedostojen latauskansio</string>
-    <string name="autoplay_by_calling_app_title">Automaattitoisto</string>
-    <string name="autoplay_by_calling_app_summary">Toistaa videon automaattisesti, kun NewPipe avataan toisesta ohjelmasta</string>
     <string name="default_resolution_title">Oletusresoluutio</string>
     <string name="default_popup_resolution_title">Ponnahdusikkunan oletusresoluutio</string>
     <string name="show_higher_resolutions_title">Näytä korkeammat resoluutiot</string>
@@ -55,8 +48,6 @@
     <string name="black_theme_title">Musta</string>
     <string name="popup_remember_size_pos_title">Muista ponnahdusikkunan ominaisuudet</string>
     <string name="popup_remember_size_pos_summary">Muista ponnahdusikkunan viimeisin koko ja sijainti</string>
-    <string name="player_gesture_controls_title">Soittimen eleohjaus</string>
-    <string name="player_gesture_controls_summary">Käytä eleitä ohjataksesi soittimen kirkkautta ja äänentasoa</string>
     <string name="show_search_suggestions_title">Hakuehdotukset</string>
     <string name="show_search_suggestions_summary">Valitse ehdotuksia, jotka näkyvät hakiessa</string>
     <string name="enable_search_history_title">Hakuhistoria</string>
@@ -72,9 +63,7 @@
     <string name="settings_category_player_behavior_title">Käyttäytyminen</string>
     <string name="settings_category_video_audio_title">Video ja ääni</string>
     <string name="settings_category_history_title">Historia ja välimuisti</string>
-    <string name="settings_category_popup_title">Ponnahdusikkuna</string>
     <string name="settings_category_appearance_title">Ulkoasu</string>
-    <string name="settings_category_other_title">Muu</string>
     <string name="background_player_playing_toast">Toistaa taustalla</string>
     <string name="popup_playing_toast">Toistetaan ponnahdusikkunatilassa</string>
     <string name="content">Sisältö</string>
@@ -84,13 +73,8 @@
     <string name="downloads_title">Lataukset</string>
     <string name="error_report_title">Virheraportti</string>
     <string name="all">Kaikki</string>
-    <string name="channel">Kanava</string>
-    <string name="playlist">Soittolista</string>
     <string name="yes">Kyllä</string>
-    <string name="later">Myöhemmin</string>
     <string name="disabled">Poistettu käytöstä</string>
-    <string name="filter">Suodata</string>
-    <string name="refresh">Päivitä</string>
     <string name="clear">Pyyhi</string>
     <string name="best_resolution">Paras resoluutio</string>
     <string name="undo">Peru</string>
@@ -101,12 +85,8 @@
     <string name="could_not_load_thumbnails">Kaikkia esikatselukuvia ei voitu ladata</string>
     <string name="youtube_signature_deobfuscation_error">Videon URL-allekirjoituksen salausta ei voitu purkaa</string>
     <string name="parsing_error">Verkkosivua ei voitu jäsentää</string>
-    <string name="light_parsing_error">Verkkosivua ei voitu täysin jäsentää</string>
     <string name="content_not_available">Sisältö ei ole saatavilla</string>
     <string name="could_not_setup_download_menu">Latausvalikkoa ei voitu asettaa</string>
-    <string name="live_streams_not_supported">Live-suoratoistoa ei vielä tueta</string>
-    <string name="could_not_get_stream">Suoratoistosisältöä ei saatu</string>
-    <string name="could_not_load_image">Kuvan lataus epäonnistui</string>
     <string name="app_ui_crash">Sovellus/UI kaatui</string>
     <string name="sorry_string">Pahoittelut, noin ei olisi pitänyt käydä.</string>
     <string name="error_report_button_text">Raportoi tämä virhe sähköpostin kautta</string>
@@ -120,18 +100,11 @@
     <string name="detail_uploader_thumbnail_view_description">Lataajan hahmokuvake</string>
     <string name="detail_likes_img_view_description">Tykkäykset</string>
     <string name="detail_dislikes_img_view_description">Ei-tykkäykset</string>
-    <string name="use_tor_title">Käytä Tor</string>
-    <string name="use_tor_summary">(Kokeellinen) Pakota latausliikenne Tor:n kautta parantaaksesi yksityisyyttä (videoiden suoratoistoa ei vielä tueta).</string>
-    <string name="report_error">Raportoi virhe</string>
-    <string name="user_report">Käyttäjäraportti</string>
     <string name="search_no_results">Ei tuloksia</string>
     <string name="empty_subscription_feed_subtitle">Tyhjää täynnä</string>
-    <string name="err_dir_create">Ei voida luoda lataushakemistoa \'%1$s\'</string>
-    <string name="info_dir_created">Luotiin lataushakemisto \'%1$s\'</string>
     <string name="video">Video</string>
     <string name="audio">Ääni</string>
     <string name="retry">Toista uudelleen</string>
-    <string name="storage_permission_denied">Myönnä ensin käyttöoikeus tallennustilaan</string>
     <string name="short_thousand">t.</string>
     <string name="short_million">milj.</string>
     <string name="short_billion">bilj.</string>
@@ -152,16 +125,12 @@
     </plurals>
     <string name="start">Aloita</string>
     <string name="pause">Tauota</string>
-    <string name="view">Toista</string>
     <string name="delete">Poista</string>
     <string name="checksum">Tarkistussumma</string>
     <string name="ok">OK</string>
     <string name="msg_name">Tiedostonimi</string>
     <string name="msg_threads">Säikeet</string>
     <string name="msg_error">Virhe</string>
-    <string name="msg_server_unsupported">Palvelinta ei tueta</string>
-    <string name="msg_exists">Tiedosto on jo olemassa</string>
-    <string name="msg_url_malform">Epämuodostunut URL tai Internet-yhteys ei ole saatavilla</string>
     <string name="msg_running">NewPipe Lataus käynnissä</string>
     <string name="msg_running_detail">Napauta nähdäksesi lisää</string>
     <string name="msg_wait">Odota…</string>
@@ -178,13 +147,8 @@
     <string name="charset_letters_and_digits">Kirjaimet ja numerot</string>
     <string name="charset_most_special_characters">Suurin osa erikoismerkeistä</string>
     <string name="title_activity_about">Tietoja NewPipe</string>
-    <string name="action_settings">Asetukset</string>
-    <string name="action_about">Tietoja</string>
     <string name="title_licenses">Kolmannen osapuolen Lisenssit</string>
-    <string name="error_unable_to_load_license">Ei voitu ladata lisenssiä</string>
-    <string name="action_open_website">Avaa websivu</string>
     <string name="tab_about">Tietoja</string>
-    <string name="tab_contributors">Hyväntekijät</string>
     <string name="tab_licenses">Lisenssit</string>
     <string name="app_description">Vapaata ja kevyttä suoratoistoa Androidilla.</string>
     <string name="view_on_github">Näytä GitHub:ssa</string>
@@ -193,13 +157,7 @@
     <string name="read_full_license">Lue lisenssi</string>
     <string name="contribution_title">Osallistu</string>
     <string name="title_activity_history">Historia</string>
-    <string name="title_history_search">Haettu</string>
-    <string name="title_history_view">Katsottu</string>
-    <string name="history_disabled">Historia on pois käytöstä</string>
     <string name="action_history">Historia</string>
-    <string name="history_empty">Historia on tyhjä</string>
-    <string name="history_cleared">Historia pyyhitty</string>
-    <string name="item_deleted">Poistettu</string>
     <string name="delete_item_search_history">Haluatko poistaa tämän hakuhistoriasta?</string>
     <string name="resume_on_audio_focus_gain_title">Jatka toistoa</string>
     <string name="what_device_headline">Info:</string>
@@ -208,19 +166,14 @@
     <string name="main_page_content">Pääsivun sisältö</string>
     <string name="blank_page_summary">Tyhjä sivu</string>
     <string name="kiosk_page_summary">Kioski</string>
-    <string name="subscription_page_summary">Tilaukset</string>
-    <string name="feed_page_summary">Syötteet</string>
     <string name="channel_page_summary">Kanavat</string>
     <string name="select_a_channel">Valitse kanava</string>
     <string name="no_channel_subscribed_yet">Yhtään kanavaa ei ole vielä tilattu</string>
     <string name="select_a_kiosk">Valitse kioski</string>
-    <string name="kiosk">Kioski</string>
     <string name="trending">Nousussa</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Uudet ja kuumat</string>
     <string name="show_hold_to_append_summary">Näytä vihje, kun taustasoitto- tai ponnahdusikkunapainiketta painetaan videon yksityiskohtanäkymässä</string>
-    <string name="background_player_append">Lisätty taustasoittojonoon</string>
-    <string name="popup_playing_append">Lisätty ponnahdusikkunasoittimen jonoon</string>
     <string name="play_all">Toista kaikki</string>
     <string name="player_stream_failure">Tätä suoratoistosisältöä ei voitu toistaa</string>
     <string name="player_unrecoverable_failure">Palautuskelvoton soittimen virhe</string>
@@ -231,7 +184,6 @@
     <string name="hold_to_append">Pidä pohjassa lisätäksesi jonoon</string>
     <string name="show_hold_to_append_title">Näytä vihje soittolistaan lisäämiseksi</string>
     <string name="unknown_content">[Tuntematon]</string>
-    <string name="start_here_on_main">Aloita toistaminen tässä</string>
     <string name="start_here_on_background">Aloita toisto taustalla</string>
     <string name="start_here_on_popup">Aloita toisto ponnahdusikkunassa</string>
     <string name="donation_title">Lahjoita</string>
@@ -254,7 +206,6 @@
     <string name="metadata_cache_wipe_complete_notice">Metatiedot poistettu</string>
     <string name="auto_queue_summary">Jatka päättyvää (ei uudelleentoistettavaa) toistojonoa lisäämällä siihen aiheeseen liittyvä suoratoistosisältö</string>
     <string name="default_content_country_title">Sisällön oletusmaa</string>
-    <string name="service_title">Palvelu</string>
     <string name="settings_category_debug_title">Virheenkorjaus</string>
     <string name="channels">Kanavat</string>
     <string name="playlists">Soittolistat</string>
@@ -263,7 +214,6 @@
     <string name="always">Aina</string>
     <string name="just_once">Vain kerran</string>
     <string name="file">Tiedosto</string>
-    <string name="toggle_orientation">Vaihda orientaatio</string>
     <string name="switch_to_background">Vaihda taustalle</string>
     <string name="switch_to_popup">Vaihda ponnahdusikkunaan</string>
     <string name="switch_to_main">Vaihda normaalitoistoon</string>
@@ -280,7 +230,6 @@
     <string name="delete_search_history_alert">Poista koko hakuhistoria\?</string>
     <string name="search_history_deleted">Hakuhistoria poistettu</string>
     <string name="external_player_unsupported_link_type">Ulkoiset soittimet eivät tue tämänkaltaisia linkkejä</string>
-    <string name="invalid_url_toast">Viallinen osoite</string>
     <string name="video_streams_empty">Suoratoistovideoita ei löytynyt</string>
     <string name="audio_streams_empty">Suoratoistoääntä ei löytynyt</string>
     <string name="invalid_directory">Kansiota ei ole olemassa</string>
@@ -290,8 +239,6 @@
     <string name="error_occurred_detail">Hups! Tapahtui virhe: %1$s</string>
     <string name="detail_drag_description">Vedä järjestelläksesi</string>
     <string name="create">Luo</string>
-    <string name="delete_one">Poista yksi</string>
-    <string name="delete_all">Poista kaikki</string>
     <string name="dismiss">Hylkää</string>
     <string name="rename">Nimeä uudelleen</string>
     <string name="one_item_deleted">1 poistettu.</string>
@@ -303,8 +250,6 @@
     <string name="auto_queue_title">Lisää ehdotettu suoratoistosisältö automaattisesti soittolistaan</string>
     <string name="no_streams_available_download">Suoratoistosisältöä ei saatavilla ladattavaksi</string>
     <string name="app_license">NewPipe on vapaata ohjelmistoa. Voit käyttää, opiskella, jakaa ja parantaa sitä mielesi mukaan. Tarkemmin sanottuna voit jakaa sitä edelleen ja/tai muokata sitä Free Software Foundationin julkaiseman GNU General Public Licensen, version 3 tai uudemman, ehdoilla.</string>
-    <string name="delete_stream_history_prompt">Haluatko poistaa tämän katseluhistoriasta?</string>
-    <string name="delete_all_history_prompt">Oletko varma että haluat poistaa kaiken katseluhistoriasta?</string>
     <string name="title_last_played">Viimeksi toistettu</string>
     <string name="title_most_played">Eniten toistetut</string>
     <string name="export_complete_toast">Vienti valmis</string>
@@ -315,7 +260,6 @@
     <string name="import_settings">Haluatko myös tuoda asetukset?</string>
     <string name="drawer_open">Avaa alasvetovalikko</string>
     <string name="drawer_close">Sulje alasvetovalikko</string>
-    <string name="drawer_header_action_paceholder_text">Tähän tulee jotain jossainvaiheessa ;D</string>
     <string name="preferred_open_action_settings_title">Ensisijainen avaustapa</string>
     <string name="preferred_open_action_settings_summary">Oletustoiminto avatessa sisältöä — %s</string>
     <string name="video_player">Videosoitin</string>
@@ -325,7 +269,6 @@
     <string name="preferred_player_fetcher_notification_title">Haetaan infoa…</string>
     <string name="preferred_player_fetcher_notification_message">Ladataan pyydettyä sisältöä</string>
     <string name="create_playlist">Uusi soittolista</string>
-    <string name="delete_playlist">Poista</string>
     <string name="rename_playlist">Uudelleennimeä</string>
     <string name="name">Nimi</string>
     <string name="append_playlist">Lisää soittolistaan</string>
@@ -336,7 +279,6 @@
     <string name="playlist_creation_success">Soittolista luotu</string>
     <string name="playlist_add_stream_success">Lisätty soittolistaan</string>
     <string name="playlist_thumbnail_change_success">Soittolistan kuvake muutettu.</string>
-    <string name="playlist_delete_failure">Soittolistaa ei voitu poistaa.</string>
     <string name="caption_none">Ei tekstityksiä</string>
     <string name="resize_fit">Sovita</string>
     <string name="resize_fill">Täytä</string>
@@ -347,7 +289,6 @@
     <string name="enable_leak_canary_summary">Muistivuotojen valvonta voi aiheuttaa ohjelman hidastumisen virhetilanteissa</string>
     <string name="enable_disposed_exceptions_title">Raportoi yhteensopivuusvirheitä, jotka aiheutuvat vanhoista ohjelmista</string>
     <string name="enable_disposed_exceptions_summary">Pakota raportointi toimituskelvottomille Rx-poikkeuksille, jotka ovat poiston jälkeen muistisirpaleiden tai aktiviteettielämänkaaren ulkopuolella</string>
-    <string name="import_export_title">Tuo/vie</string>
     <string name="import_title">Tuo</string>
     <string name="import_from">Tuo kohteesta</string>
     <string name="export_to">Vie kohteeseen</string>
@@ -394,7 +335,6 @@
     <string name="minimize_on_exit_background_description">Pienennä taustasoittimeksi</string>
     <string name="minimize_on_exit_popup_description">Pienennä ponnahdusikkunasoittimeksi</string>
     <string name="unsubscribe">Peru tilaus</string>
-    <string name="tab_new">Uusi välilehti</string>
     <string name="tab_choose">Valitse välilehti</string>
     <string name="missions_header_finished">Valmis</string>
     <string name="enqueue">Jono</string>
@@ -404,7 +344,6 @@
     <string name="most_liked">Pidetyimmät</string>
     <string name="localization_changes_requires_app_restart">Kieli vaihtuu, kun sovellus uudelleenkäynnistetään</string>
     <string name="error_unable_to_load_comments">Kommentteja ei voitu ladata</string>
-    <string name="selection">Valinta</string>
     <string name="main_page_content_summary">Mitkä välilehdet näytetään pääsivulla</string>
     <string name="recaptcha_done_button">Valmis</string>
     <string name="subtitle_activity_recaptcha">Paina ”Valmis”, kun ratkaistu</string>
@@ -454,7 +393,6 @@
     <string name="autoplay_title">Automaattinen toisto</string>
     <string name="settings_category_clear_data_title">Tietojen tyhjennys</string>
     <string name="enable_playback_resume_title">Jatka toistoa</string>
-    <string name="download_choose_new_path">Vaihda latauskansioita, että muutokset tulevat voimaan</string>
     <string name="show_original_time_ago_summary">Palvelujen alkuperäiset tekstit näkyvät suoratoistettavassa sisällössä</string>
     <string name="brightness_gesture_control_summary">Käytä eleitä ohjataksesi soittimen kirkkautta</string>
     <string name="brightness_gesture_control_title">Kirkkauden eleohjaus</string>
@@ -562,10 +500,8 @@
     <string name="error_connect_host">Palvelimelle ei voi yhdistää</string>
     <string name="error_unknown_host">Palvelinta ei löytynyt</string>
     <string name="error_ssl_exception">Turvallista yhteyttä ei voitu muodostaa</string>
-    <string name="error_permission_denied">Järjestelmä esti käyttöoikeuden</string>
     <string name="error_path_creation">Kohdekansiota ei voi luoda</string>
     <string name="error_file_creation">Tiedostoa ei voi luoda</string>
-    <string name="label_code">Koodi</string>
     <string name="show_error">Näytä virhe</string>
     <string name="download_already_pending">Tällä nimellä on jo lataus odottamassa</string>
     <string name="download_already_running">Tällä nimellä on jo lataus käynnissä</string>
@@ -587,7 +523,6 @@
     <string name="paused">tauotettu</string>
     <string name="app_update_notification_content_text">Napauta ladataksesi</string>
     <string name="app_update_notification_content_title">NewPipe-päivitys on saatavilla!</string>
-    <string name="switch_view">Vaihda näkymää</string>
     <string name="list_view_mode">Listanäkymän ulkoasu</string>
     <string name="auto">Automaattinen</string>
     <string name="grid">Ruudukko</string>

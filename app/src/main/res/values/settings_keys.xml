@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" translatable="false">
     <!-- App versioning -->
-    <string name="last_used_version" translatable="false">last_used_version</string>
     <string name="last_used_preferences_version" translatable="false">last_used_preferences_version</string>
 
     <!-- Service -->
@@ -13,7 +12,6 @@
     <string name="default_service_value" translatable="false">@string/youtube</string>
 
     <string name="saved_tabs_key" translatable="false">saved_tabs_key</string>
-    <string name="feed_last_updated_key" translatable="false">feed_last_updated</string>
 
     <!-- Key values -->
     <string name="download_path_video_key" translatable="false">download_path</string>
@@ -136,8 +134,6 @@
         <item>144p</item>
     </string-array>
 
-    <string name="settings_notifications_compact_view_key" translatable="false">notifications_compact_view</string>
-    <string name="settings_notifications_compact_view_default_value" translatable="false">0,1,2</string>
     <string name="scale_to_square_image_in_notifications_key" translatable="false">scale_to_square_image_in_notifications</string>
 
     <string name="notification_slot_0_key" translatable="false">notification_slot_0_key</string>
@@ -253,7 +249,6 @@
     <string name="content_country_key" translatable="false">content_country</string>
     <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
     <string name="youtube_restricted_mode_enabled" translatable="false">youtube_restricted_mode_enabled</string>
-    <string name="use_tor_key" translatable="false">use_tor</string>
     <string name="enable_search_history_key" translatable="false">enable_search_history</string>
     <string name="enable_watch_history_key" translatable="false">enable_watch_history</string>
     <string name="main_page_content_key" translatable="false">main_page_content</string>
@@ -1249,7 +1244,6 @@
     </string-array>
 
     <string name="tablet_mode_key" translatable="false">tablet_mode</string>
-    <string name="tablet_mode_value" translatable="false">@string/tablet_mode_auto_key</string>
 
     <string name="tablet_mode_auto_key" translatable="false">auto</string>
     <string name="tablet_mode_on_key" translatable="false">on</string>

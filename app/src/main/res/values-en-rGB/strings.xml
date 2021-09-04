@@ -39,18 +39,13 @@
     <string name="switch_to_popup">Switch to Pop-up</string>
     <string name="switch_to_background">Switch to Background</string>
     <string name="hash_channel_name">Video hash notification</string>
-    <string name="toggle_orientation">Toggle orientation</string>
     <string name="app_update_notification_channel_name">App update notification</string>
     <string name="just_once">Just once</string>
     <string name="show_age_restricted_content_summary">Show content possibly unsuitable for children because it has an age limit (such as 18+)</string>
-    <string name="popup_playing_append">Queued on pop-up player</string>
-    <string name="background_player_append">Queued on background player</string>
     <string name="popup_playing_toast">Playing in pop-up mode</string>
     <string name="settings_category_updates_title">Updates</string>
     <string name="settings_category_debug_title">Debug</string>
-    <string name="settings_category_other_title">Other</string>
     <string name="settings_category_appearance_title">Appearance</string>
-    <string name="settings_category_popup_title">Pop-up</string>
     <string name="settings_category_history_title">History and cache</string>
     <string name="settings_category_video_audio_title">Video and audio</string>
     <string name="settings_category_player_title">Player</string>
@@ -75,7 +70,6 @@
     <string name="app_license">NewPipe is copyleft libre software: You can use, study share and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public Licence as published by the Free Software Foundation, either version 3 of the Licence, or (at your option) any later version.</string>
     <string name="app_license_title">NewPipe’s licence</string>
     <string name="tab_licenses">Licences</string>
-    <string name="error_unable_to_load_license">Could not load licence</string>
     <string name="title_licenses">Third-party licences</string>
     <string name="download_to_sdcard_error_message">Downloading to SD card not possible. Reset download folder location\?</string>
     <string name="settings_category_player_behavior_title">Behaviour</string>
@@ -83,7 +77,6 @@
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phone calls)</string>
     <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disc image cache.</string>
     <string name="upload_date_text">Published on %1$s</string>
-    <string name="view_count_text">%1$s views</string>
     <string name="error_report_button_text">Report this error via e-mail</string>
     <string name="night_theme_summary">Select your favorite night theme – %s</string>
 </resources>

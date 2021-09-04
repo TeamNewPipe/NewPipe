@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Başlamak için büyüteç simgesine dokunun.</string>
-    <string name="view_count_text">%1$s görüntüleme</string>
     <string name="upload_date_text">Yayınlanma: %1$s</string>
     <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC yüklensin mi\?</string>
     <string name="install">Yükle</string>
@@ -13,8 +12,6 @@
     <string name="settings">Ayarlar</string>
     <string name="did_you_mean">Bunu mu demek istediniz: \"%1$s\"\?</string>
     <string name="share_dialog_title">Şununla paylaş</string>
-    <string name="choose_browser">Tarayıcı seçin</string>
-    <string name="screen_rotation">döndürme</string>
     <string name="use_external_video_player_title">Dış video oynatıcı kullan</string>
     <string name="use_external_audio_player_title">Dış ses oynatıcı kullanın</string>
     <string name="download_path_title">Video indirme klasörü</string>
@@ -23,8 +20,6 @@
     <string name="download_path_audio_title">Ses indirme klasörü</string>
     <string name="download_path_audio_summary">İndirilen ses dosyaları burada depolanır</string>
     <string name="download_path_audio_dialog_title">Ses dosyaları için indirme klasörünü seç</string>
-    <string name="autoplay_by_calling_app_title">Kendiliğinden oynat</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe başka uygulamadan çağrıldığında video oynatır</string>
     <string name="default_resolution_title">Varsayılan çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Eksik Kore uygulaması yüklensin mi\?</string>
@@ -41,7 +36,6 @@
     <string name="play_audio">Ses</string>
     <string name="settings_category_video_audio_title">Video ve ses</string>
     <string name="settings_category_appearance_title">Görünüm</string>
-    <string name="settings_category_other_title">Diğer</string>
     <string name="background_player_playing_toast">Arka planda oynatılıyor</string>
     <string name="content">İçerik</string>
     <string name="show_age_restricted_content_title">Yaş kısıtlı içeriği göster</string>
@@ -54,11 +48,7 @@
     <string name="could_not_load_thumbnails">Küçük resimlerin tamamı yüklenemedi</string>
     <string name="youtube_signature_deobfuscation_error">Video URL imzasının şifresi çözülemedi</string>
     <string name="parsing_error">Web sitesi ayrıştırılamadı</string>
-    <string name="light_parsing_error">Web sitesi tamamen ayrıştırılamadı</string>
     <string name="content_not_available">İçerik kullanılamıyor</string>
-    <string name="live_streams_not_supported">Canlı akışlar henüz desteklenmiyor</string>
-    <string name="could_not_get_stream">Herhangi bir akış alınamadı</string>
-    <string name="could_not_load_image">Resim yüklenemedi</string>
     <string name="app_ui_crash">Uygulama/kullanıcı arayüzü çöktü</string>
     <string name="sorry_string">Üzgünüz, bu olmamalıydı.</string>
     <string name="error_report_button_text">Bu hatayı e-posta aracılığıyla bildir</string>
@@ -71,28 +61,17 @@
     <string name="detail_uploader_thumbnail_view_description">Yükleyicinin avatar küçük resmi</string>
     <string name="detail_likes_img_view_description">Beğeni</string>
     <string name="detail_dislikes_img_view_description">Beğenmeme</string>
-    <string name="use_tor_title">Tor kullanın</string>
-    <string name="use_tor_summary">(Deneysel) Artırılmış gizlilik için indirme trafiğini Tor\'dan geçmesi için zorlayın (video yayımlama henüz desteklenmemektedir).</string>
-    <string name="report_error">Hata bildir</string>
-    <string name="user_report">Kullanıcı raporu</string>
-    <string name="err_dir_create">İndirme klasörü \'%1$s\' oluşturulamıyor</string>
-    <string name="info_dir_created">İndirme klasörü \'%1$s\' oluşturuldu</string>
     <string name="video">Video</string>
     <string name="audio">Ses</string>
     <string name="retry">Yeniden dene</string>
-    <string name="storage_permission_denied">Önce depolama alanına erişim izni verin</string>
     <string name="start">Başlat</string>
     <string name="pause">Duraklat</string>
-    <string name="view">Oynat</string>
     <string name="delete">Sil</string>
     <string name="checksum">Doğrulama</string>
     <string name="ok">Tamam</string>
     <string name="msg_name">Dosya adı</string>
     <string name="msg_threads">İş parçacığı</string>
     <string name="msg_error">Hata</string>
-    <string name="msg_server_unsupported">Desteklenmeyen sunucu</string>
-    <string name="msg_exists">Dosya zaten var</string>
-    <string name="msg_url_malform">Hatalı biçimlendirilmiş URL veya İnternet mevcut değil</string>
     <string name="msg_running">NewPipe İndiriliyor</string>
     <string name="msg_running_detail">Ayrıntılar için dokunun</string>
     <string name="msg_wait">Lütfen bekleyin…</string>
@@ -100,7 +79,6 @@
     <string name="no_available_dir">Lütfen daha sonra ayarlardan uygun indirme klasörü belirleyin</string>
     <string name="could_not_setup_download_menu">İndirme menüsü ayarlanamadı</string>
     <string name="open_in_popup_mode">Açılır pencere kipinde aç</string>
-    <string name="popup_mode_share_menu_title">Açılır pencere kipi</string>
     <string name="default_popup_resolution_title">Varsayılan açılır pencere çözünürlüğü</string>
     <string name="show_higher_resolutions_title">Yüksek çözünürlükleri göster</string>
     <string name="show_higher_resolutions_summary">Yalnızca bazı aygıtlar 2K/4K videoları oynatabilir</string>
@@ -108,9 +86,7 @@
     <string name="black_theme_title">Siyah</string>
     <string name="popup_playing_toast">Açılır pencere kipinde oynatılıyor</string>
     <string name="all">Tümü</string>
-    <string name="channel">Kanal</string>
     <string name="yes">Evet</string>
-    <string name="later">Sonra</string>
     <string name="disabled">Devre dışı</string>
     <string name="your_comment">Yorumunuz (İngilizce):</string>
     <string name="error_details_headline">Ayrıntılar:</string>
@@ -124,27 +100,17 @@
     <string name="recaptcha_request_toast">reCAPTCHA formu istendi</string>
     <string name="controls_background_title">Arka plan</string>
     <string name="controls_popup_title">Açılır pencere</string>
-    <string name="filter">Filtrele</string>
-    <string name="refresh">Yenile</string>
     <string name="clear">Temizle</string>
     <string name="popup_remember_size_pos_title">Açılır pencere özelliklerini hatırla</string>
     <string name="popup_remember_size_pos_summary">Açılan pencerenin son boyutunu ve konumunu hatırla</string>
-    <string name="settings_category_popup_title">Açılır pencere</string>
     <string name="use_external_video_player_summary">Bazı çözünürlüklerde sesi kaldırır</string>
-    <string name="player_gesture_controls_summary">Oynatıcının parlaklığını ve sesini denetlemek için hareketleri kullan</string>
-    <string name="player_gesture_controls_title">Hareketli oynatıcı denetimi</string>
     <string name="show_search_suggestions_title">Arama önerileri</string>
     <string name="show_search_suggestions_summary">Ararken gösterilecek önerileri seçin</string>
     <string name="best_resolution">En iyi çözünürlük</string>
     <string name="title_activity_about">NewPipe Hakkında</string>
-    <string name="action_settings">Ayarlar</string>
-    <string name="action_about">Hakkında</string>
     <string name="title_licenses">Üçüncü Taraf Lisansları</string>
     <string name="copyright" formatted="true">© %1$s, %2$s tarafından %3$s altında</string>
-    <string name="error_unable_to_load_license">Lisans yüklenemedi</string>
-    <string name="action_open_website">Web sitesini aç</string>
     <string name="tab_about">Hakkında</string>
-    <string name="tab_contributors">Katkıda bulunanlar</string>
     <string name="tab_licenses">Lisanslar</string>
     <string name="app_description">Android\'de özgür ve hafif bir oynatıcı.</string>
     <string name="view_on_github">GitHub\'da görüntüle</string>
@@ -163,7 +129,6 @@
     <string name="channel_unsubscribed">Kanal aboneliğinden çıkıldı</string>
     <string name="subscription_change_failed">Abonelik değiştirilemedi</string>
     <string name="subscription_update_failed">Abonelik güncellenemedi</string>
-    <string name="tab_main">Ana</string>
     <string name="tab_subscriptions">Abonelikler</string>
     <string name="fragment_feed_title">Yenilikler</string>
     <string name="enable_search_history_title">Arama geçmişi</string>
@@ -175,7 +140,6 @@
     <string name="settings_category_player_title">Oynatıcı</string>
     <string name="settings_category_player_behavior_title">Davranış</string>
     <string name="settings_category_history_title">Geçmiş ve önbellek</string>
-    <string name="playlist">Oynatma Listesi</string>
     <string name="undo">Geri al</string>
     <string name="notification_channel_name">NewPipe Bildirimi</string>
     <string name="notification_channel_description">NewPipe arka plan ve açılır pencere oynatıcıları için bildirimler</string>
@@ -193,18 +157,10 @@
     </plurals>
     <string name="no_videos">Video yok</string>
     <string name="title_activity_history">Geçmiş</string>
-    <string name="title_history_search">Aranan</string>
-    <string name="title_history_view">İzlenen</string>
-    <string name="history_disabled">Geçmiş kapalı</string>
     <string name="action_history">Geçmiş</string>
-    <string name="history_empty">Geçmiş boş</string>
-    <string name="history_cleared">Geçmiş temizlendi</string>
-    <string name="item_deleted">Öge silindi</string>
     <string name="delete_item_search_history">Bu ögeyi arama geçmişinden silmek istiyor musunuz\?</string>
     <string name="show_hold_to_append_title">\"Eklemek için basılı tutun\" ipucunu göster</string>
     <string name="show_hold_to_append_summary">Video \"Ayrıntılar:\" sayfasında arka plan veya açılır pencere düğmesine basıldığında ipucu göster</string>
-    <string name="background_player_append">Arka plan oynatıcısı kuyruğuna eklendi</string>
-    <string name="popup_playing_append">Açılır pencere oynatıcısı kuyruğuna eklendi</string>
     <string name="play_all">Tümünü Oynat</string>
     <string name="unknown_content">[Bilinmeyen]</string>
     <string name="player_stream_failure">Bu akış oynatılamadı</string>
@@ -213,13 +169,10 @@
     <string name="main_page_content">Ana sayfanın içeriği</string>
     <string name="blank_page_summary">Boş Sayfa</string>
     <string name="kiosk_page_summary">Kiosk Sayfası</string>
-    <string name="subscription_page_summary">Abonelik Sayfası</string>
-    <string name="feed_page_summary">Yayın Sayfası</string>
     <string name="channel_page_summary">Kanal Sayfası</string>
     <string name="select_a_channel">Kanal seçin</string>
     <string name="no_channel_subscribed_yet">Henüz kanal aboneliği yok</string>
     <string name="select_a_kiosk">Kiosk seçin</string>
-    <string name="kiosk">Kiosk</string>
     <string name="trending">Popüler</string>
     <string name="top_50">En iyi 50</string>
     <string name="new_and_hot">Yeni ve popüler</string>
@@ -227,7 +180,6 @@
     <string name="play_queue_stream_detail">Ayrıntılar</string>
     <string name="play_queue_audio_settings">Ses Ayarları</string>
     <string name="hold_to_append">Kuyruğa eklemek için basılı tutun</string>
-    <string name="start_here_on_main">Burada oynatmaya başla</string>
     <string name="start_here_on_background">Arka planda oynatmayı başlat</string>
     <string name="start_here_on_popup">Açılır pencerede oynatmayı başlat</string>
     <string name="donation_title">Bağışta bulunun</string>
@@ -236,8 +188,6 @@
     <string name="website_title">Web sitesi</string>
     <string name="website_encouragement">Daha çok bilgi ve haber için NewPipe web sitesini ziyaret edin.</string>
     <string name="default_content_country_title">Varsayılan içerik ülkesi</string>
-    <string name="service_title">Hizmet</string>
-    <string name="toggle_orientation">Yönlendirmeyi Değiştir</string>
     <string name="switch_to_background">Arka Plana Geç</string>
     <string name="switch_to_popup">Açılır Pencereye Geç</string>
     <string name="switch_to_main">Ana Görünüme Geç</string>
@@ -247,7 +197,6 @@
     <string name="always">Her Zaman</string>
     <string name="just_once">Yalnızca Bir Kez</string>
     <string name="external_player_unsupported_link_type">Dış oynatıcılar bu tür bağlantıları desteklemez</string>
-    <string name="invalid_url_toast">Geçersiz URL</string>
     <string name="video_streams_empty">Video akışı bulunamadı</string>
     <string name="audio_streams_empty">Ses akışı bulunamadı</string>
     <string name="video_player">Video oynatıcı</string>
@@ -270,17 +219,12 @@
     <string name="controls_add_to_playlist_title">Ekle</string>
     <string name="detail_drag_description">Yeniden düzenlemek için sürükleyin</string>
     <string name="create">Oluştur</string>
-    <string name="delete_one">Birini Sil</string>
-    <string name="delete_all">Tümünü Sil</string>
     <string name="dismiss">Reddet</string>
     <string name="rename">Yeniden adlandır</string>
-    <string name="delete_stream_history_prompt">Bu ögeyi izleme geçmişinden silmek istiyor musunuz\?</string>
-    <string name="delete_all_history_prompt">Tüm ögeleri geçmişten silmek istediğinize emin misiniz\?</string>
     <string name="title_last_played">Son Oynatılan</string>
     <string name="title_most_played">En Çok Oynatılan</string>
     <string name="always_ask_open_action">Her zaman sor</string>
     <string name="create_playlist">Yeni Oynatma Listesi</string>
-    <string name="delete_playlist">Sil</string>
     <string name="rename_playlist">Yeniden adlandır</string>
     <string name="name">Ad</string>
     <string name="append_playlist">Oynatma listesine ekle</string>
@@ -291,13 +235,11 @@
     <string name="playlist_creation_success">Oynatma listesi oluşturuldu</string>
     <string name="playlist_add_stream_success">Oynatma listesine eklendi</string>
     <string name="playlist_thumbnail_change_success">Oynatma listesinin küçük resmi değiştirildi.</string>
-    <string name="playlist_delete_failure">Oynatma listesi silinemedi.</string>
     <string name="caption_none">Alt yazı yok</string>
     <string name="resize_fit">Sığdır</string>
     <string name="resize_fill">Doldur</string>
     <string name="resize_zoom">Yakınlaştır</string>
     <string name="settings_category_debug_title">Hata ayıklama</string>
-    <string name="drawer_header_action_paceholder_text">Yakında bir şeyler burada görünecek ;D</string>
     <string name="caption_auto_generated">Kendiliğinden oluşturulan</string>
     <string name="enable_leak_canary_summary">Bellek sızıntısı izleme, yığın boşaltımı sırasında uygulamanın yanıt vermemesine neden olabilir</string>
     <string name="enable_disposed_exceptions_title">Yaşam döngüsü dışı hatalarını bildir</string>
@@ -312,7 +254,6 @@
     <string name="invalid_file">Dosya yok ya da okuma veya yazma izni bulunmuyor</string>
     <string name="file_name_empty_error">Dosya adı boş olamaz</string>
     <string name="error_occurred_detail">Hata oluştu: %1$s</string>
-    <string name="import_export_title">İçe/dışa aktar</string>
     <string name="import_title">İçe aktar</string>
     <string name="import_from">Şuradan içe aktar</string>
     <string name="export_to">Şuraya dışa aktar</string>
@@ -391,7 +332,6 @@
     <string name="tracks">Parçalar</string>
     <string name="users">Kullanıcılar</string>
     <string name="unsubscribe">Abonelikten çık</string>
-    <string name="tab_new">Yeni Sekme</string>
     <string name="tab_choose">Sekmeyi Seçin</string>
     <string name="volume_gesture_control_title">Hareketli ses denetimi</string>
     <string name="volume_gesture_control_summary">Oynatıcının sesini denetlemek için hareketleri kullan</string>
@@ -408,14 +348,12 @@
     <string name="restore_defaults_confirmation">Varsayılanları geri yüklemek istiyor musunuz\?</string>
     <string name="subscribers_count_not_available">Abone sayısı mevcut değil</string>
     <string name="main_page_content_summary">Ana sayfada hangi sekmeler gösterilir</string>
-    <string name="selection">Seçim</string>
     <string name="updates_setting_title">Güncellemeler</string>
     <string name="updates_setting_description">Yeni bir sürüm mevcut olduğunda uygulama güncellemesi için bir bildirim göster</string>
     <string name="list_view_mode">Liste görünümü kipi</string>
     <string name="list">Liste</string>
     <string name="grid">Izgara</string>
     <string name="auto">Kendiliğinden</string>
-    <string name="switch_view">Görünümü Değiştir</string>
     <string name="app_update_notification_content_title">NewPipe güncellemesi var!</string>
     <string name="app_update_notification_content_text">İndirmek için dokunun</string>
     <string name="missions_header_finished">Tamamlandı</string>
@@ -430,10 +368,8 @@
     <string name="overwrite_finished_warning">Bu isme sahip indirilen bir dosya zaten var</string>
     <string name="download_already_running">Bu isim ile bir indirme süreci var</string>
     <string name="show_error">Hatayı göster</string>
-    <string name="label_code">Kod</string>
     <string name="error_file_creation">Dosya oluşturulamıyor</string>
     <string name="error_path_creation">Hedef klasör oluşturulamıyor</string>
-    <string name="error_permission_denied">İzin sistem tarafından reddedildi</string>
     <string name="error_ssl_exception">Güvenli bağlantı kurulamadı</string>
     <string name="error_unknown_host">Sunucu bulunamadı</string>
     <string name="error_connect_host">Sunucuya bağlanılamıyor</string>
@@ -482,7 +418,6 @@
     <string name="clear_playback_states_title">Oynatım konumlarını sil</string>
     <string name="clear_playback_states_summary">Tüm oynatım konumlarını siler</string>
     <string name="delete_playback_states_alert">Tüm oynatım konumları silinsin mi\?</string>
-    <string name="download_choose_new_path">Etkili olması için indirme klasörlerini değiştir</string>
     <string name="drawer_header_description">Hizmeti değiştir, şu anda seçili olan:</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>

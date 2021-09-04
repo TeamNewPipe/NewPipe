@@ -2,8 +2,6 @@
 <resources>
     <string name="controls_add_to_playlist_title">Rnu ɣer</string>
     <string name="tab_choose">Sty aseksel</string>
-    <string name="tab_new">Aseksel amaynu</string>
-    <string name="tab_main">Asenubeg</string>
     <string name="show_info">Smal ineɣmisen</string>
     <string name="share_dialog_title">Bḍu aked</string>
     <string name="settings">Tisɣal</string>
@@ -11,7 +9,6 @@
     <string name="download">Agem</string>
     <string name="share">Bḍu</string>
     <string name="cancel">Ser</string>
-    <string name="view_count_text">%1$s n tannayin</string>
     <string name="show_comments_title">Smal iɣfawalen</string>
     <string name="black_theme_title">Aberkan</string>
     <string name="dark_theme_title">Adeɣmum</string>
@@ -68,17 +65,12 @@
     <string name="video_player">Ameɣri n uvidyu</string>
     <string name="play_queue_audio_settings">Tiɣal n imesli</string>
     <string name="play_queue_remove">Sitey</string>
-    <string name="kiosk">Akiyusk</string>
     <string name="select_a_kiosk">Sty yan n ukiyusk</string>
     <string name="select_a_channel">Sty yat n tbadut</string>
     <string name="channel_page_summary">Tasna n Tbadut</string>
     <string name="kiosk_page_summary">Tasna n ukiyusk</string>
-    <string name="delete_all_history_prompt">Is nit txsed ad tkksed iferdisen maṛṛa seg umezruy\?</string>
-    <string name="delete_stream_history_prompt">Is nit txsed ad tkksed aferdis-a seg umezruy n wannay\?</string>
     <string name="delete_item_search_history">Is nit txsed ad tkksed aferdis-a seg umezruy n urezzu\?</string>
     <string name="view_on_github">Ẓeṛ g GitHub</string>
-    <string name="delete_all">Kkes maṛṛa</string>
-    <string name="delete_one">Kkes yan</string>
     <plurals name="videos">
         <item quantity="one">%s uvidyu</item>
         <item quantity="other">%s ividyuten</item>
@@ -87,7 +79,6 @@
         <item quantity="one">%s Tannayt</item>
         <item quantity="other">%s Tannayin</item>
     </plurals>
-    <string name="use_tor_title">Semres Tor</string>
     <string name="detail_thumbnail_view_description">Γer avidyu, azemz:</string>
     <string name="error_snackbar_action">Mel</string>
     <string name="error_report_open_issue_button_text">Mel g GitHub</string>
@@ -105,7 +96,6 @@
     <string name="show_higher_resolutions_summary">Zmern ad ɣren kra n wallalen ividyuten 2K/4K</string>
     <string name="feed_create_new_group_button_title">Amaynu</string>
     <string name="stop">Sbedd</string>
-    <string name="label_code">Tangalet</string>
     <string name="grid">Aẓeṭṭa</string>
     <string name="list">Talgamet</string>
     <string name="minimize_on_exit_none_description">Walu</string>
@@ -114,18 +104,14 @@
     <string name="accept">Deggi</string>
     <string name="mute">Ẓẓiẓen</string>
     <string name="name">Isem</string>
-    <string name="delete_playlist">Kkes</string>
     <string name="local">Adɣran</string>
     <string name="website_title">Asit wib</string>
     <string name="tab_about">Γef</string>
-    <string name="action_about">Γef</string>
-    <string name="action_settings">Tisɣal</string>
     <string name="settings_category_downloads_title">Agam</string>
     <string name="msg_name">Isem n ufaylu</string>
     <string name="ok">WAXXA</string>
     <string name="delete">Kkes</string>
     <string name="create">Senulfu</string>
-    <string name="view">Γer</string>
     <string name="start">Senti</string>
     <string name="short_thousand">ifḍ</string>
     <string name="retry">Als-arem</string>
@@ -137,8 +123,6 @@
     <string name="file">Afaylu</string>
     <string name="always">Ku dwal</string>
     <string name="clear">Sfeḍ</string>
-    <string name="refresh">Zzuzwu</string>
-    <string name="filter">Sty</string>
     <string name="yes">Yah</string>
     <string name="artists">Inaẓuṛen</string>
     <string name="songs">Tiɣennijin</string>
@@ -146,16 +130,13 @@
     <string name="users">Inessemras</string>
     <string name="videos_string">Ividyuten</string>
     <string name="channels">Tibuda</string>
-    <string name="channel">Tabadut</string>
     <string name="all">Maṛṛa</string>
     <string name="downloads_title">Tagamin</string>
     <string name="downloads">Tagamin</string>
     <string name="duration_live">Usrid</string>
     <string name="settings_category_notification_title">Tineɣmisin</string>
     <string name="settings_category_updates_title">Tisdɣiwin</string>
-    <string name="settings_category_other_title">Yaḍen</string>
     <string name="settings_category_player_title">Ameɣri</string>
-    <string name="service_title">Tanafut</string>
     <string name="download_dialog_title">Agem</string>
     <string name="subscribe_button_title">Lteɣ</string>
     <string name="main_bg_subtitle">Add \"Rzu\" i usenti</string>
@@ -164,7 +145,6 @@
     <string name="use_external_audio_player_title">Ssemres ameɣri n imsli abeṛṛani</string>
     <string name="use_external_video_player_summary">La-ittekkes imsli d kra n tɣariwin</string>
     <string name="use_external_video_player_title">Asenṭeḍ ameɣri n uvidyu abeṛṛani</string>
-    <string name="screen_rotation">abeṛṛem</string>
     <string name="did_you_mean">Txsed ad tarad \"%1$s\"\?</string>
     <string name="night_theme_title">Asgum n yiḍ</string>
     <string name="open_with">Ṛẓem s</string>
@@ -172,8 +152,6 @@
     <string name="fragment_feed_title">Matta n umaynu</string>
     <string name="always_ask_open_action">ttseqsa abda</string>
     <string name="blank_page_summary">Tasna ixwan</string>
-    <string name="item_deleted">Ittwakkes uferdis</string>
-    <string name="action_open_website">Ṛẓem asit</string>
     <string name="title_activity_about">Ɣef NewPipe</string>
     <string name="msg_wait">Ṛaja…</string>
     <plurals name="listening">
@@ -197,13 +175,10 @@
     <string name="unknown_content">[Arussin]</string>
     <string name="description_tab_description">Aglam</string>
     <string name="playlist_add_stream_success">Rnu ɣer telgamt n tɣuri</string>
-    <string name="title_history_view">Ittwaẓeṛ</string>
     <string name="tab_licenses">Turagin</string>
     <string name="dismiss">Ttu</string>
     <string name="undo">Ser</string>
     <string name="albums">Ilbumen</string>
     <string name="playlists">Tilgamin n tɣuri</string>
-    <string name="playlist">Talgamt n tɣuri</string>
     <string name="autoplay_title">Taɣuri tawurmant</string>
-    <string name="autoplay_by_calling_app_title">Taɣuri tawurmant</string>
 </resources>

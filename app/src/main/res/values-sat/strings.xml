@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="screen_rotation">ᱟᱹᱪᱩᱨ</string>
-    <string name="choose_browser">ᱵᱨᱟᱣᱡᱚᱨ ᱪᱚᱭᱚᱱ ᱢᱮ</string>
     <string name="share_dialog_title">ᱥᱟᱞᱟᱜ ᱦᱟᱹᱴᱤᱧ ᱢᱮ</string>
     <string name="settings">ᱥᱟᱡᱟᱣᱠᱚ</string>
     <string name="search">ᱥᱮᱸᱫᱽᱨᱟ</string>
@@ -10,7 +8,6 @@
     <string name="open_in_browser">ᱵᱨᱟᱣᱡᱟᱚᱨ ᱨᱮ ᱠᱷᱩᱞᱟᱹᱭ ᱢᱮ</string>
     <string name="cancel">ᱵᱟᱹᱰᱨᱟᱹ</string>
     <string name="install">ᱵᱚᱦᱟᱞ</string>
-    <string name="view_count_text">%1$s ᱧᱮᱞᱠᱚ</string>
     <string name="main_bg_subtitle">ᱮᱦᱚᱵ ᱞᱟᱹᱜᱤᱫ ᱢᱮᱜᱽᱱᱤᱯᱷᱟᱭᱤᱝ ᱜᱽᱞᱟᱥ ᱨᱮ ᱚᱛᱟᱭ ᱢᱮ ᱾</string>
     <string name="use_external_video_player_title">ᱵᱟᱦᱨᱮ ᱣᱤᱰᱤᱭᱚ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱮᱵᱷᱟᱨ ᱢᱮ</string>
     <string name="search_showing_result_for">ᱛᱮᱞᱟ ᱫᱮᱠᱷᱟᱣᱜᱽ ᱠᱟᱱᱟᱺ%s</string>
@@ -25,12 +22,9 @@
     <string name="subscribed_button_title">ᱥᱟᱹᱵᱥᱠᱨᱭᱤᱵᱽ ᱮᱱᱟ</string>
     <string name="subscription_change_failed">ᱥᱟᱹᱵᱥᱠᱨᱭᱤᱯᱥᱚᱱ ᱵᱚᱫᱚᱞ ᱵᱟᱭ ᱜᱟᱱᱟᱜᱽ ᱠᱟᱱᱟ</string>
     <string name="channel_unsubscribed">ᱪᱟᱱᱱᱮᱹᱞ ᱟᱹᱱᱥᱟᱹᱵᱥᱠᱨᱟᱭᱤᱵᱽ ᱮᱱᱟ</string>
-    <string name="popup_mode_share_menu_title">ᱯᱚᱯᱟᱹᱯ ᱢᱳᱰ</string>
     <string name="use_external_audio_player_title">ᱵᱟᱦᱨᱮ ᱟᱹᱰᱤᱭᱚ ᱯᱞᱮᱭᱟᱹᱨ ᱵᱮᱵᱽᱦᱟᱨ ᱢᱮ</string>
-    <string name="tab_new">ᱱᱟᱶᱟ ᱴᱮᱵ</string>
     <string name="tab_bookmarks">ᱵᱩᱻᱠᱢᱟᱨᱠ ᱯᱞᱮᱞᱤᱥᱴ ᱠᱚ</string>
     <string name="tab_subscriptions">ᱥᱟᱹᱵᱥᱠᱨᱤᱯᱥᱚᱱ ᱠᱚ</string>
-    <string name="tab_main">ᱢᱩᱞ</string>
     <string name="show_info">ᱤᱱᱯᱷᱚ ᱫᱮᱠᱷᱟᱣ ᱢᱮ</string>
     <string name="subscription_update_failed">ᱥᱟᱹᱵᱥᱠᱨᱤᱯᱥᱚᱱ ᱵᱟᱝ ᱟᱹᱯᱰᱮᱴ ᱜᱟᱱᱚᱜᱽ ᱱᱟᱠᱟ</string>
     <string name="use_external_video_player_summary">ᱥᱟᱲᱮ ᱠᱚ ᱛᱤᱱᱟᱹᱝ ᱜᱟᱱ ᱨᱤᱡᱚᱞᱭᱩᱥᱚᱱ ᱠᱚ ᱴᱷᱮᱱ ᱚᱪᱚᱜᱽ ᱟᱭ</string>
@@ -43,9 +37,6 @@
     <string name="show_higher_resolutions_title">ᱡᱟᱹᱥᱛᱤ ᱨᱤᱡᱽᱚᱞᱭᱩᱥᱚᱱ ᱫᱮᱠᱷᱟᱣᱢᱮ</string>
     <string name="default_popup_resolution_title">ᱢᱩᱞ ᱯᱷᱮᱲᱟᱛ ᱯᱚᱯ-ᱚᱯ ᱨᱤᱡᱽᱚᱞᱭᱩᱥᱚᱱ</string>
     <string name="default_resolution_title">ᱢᱩᱞ ᱯᱷᱮᱲᱟᱛ ᱨᱮᱡᱽᱚᱞᱭᱩᱥᱚᱱ</string>
-    <string name="autoplay_by_calling_app_summary">ᱚᱞᱜᱟ ᱮᱯ ᱠᱷᱚᱱ NewPipe ᱨᱮ ᱦᱚᱦᱚ ᱡᱷᱚᱜ ᱣᱤᱰᱤᱭᱚ ᱯᱞᱮᱜᱼᱟ</string>
-    <string name="autoplay_by_calling_app_title">ᱚᱴᱚᱯᱞᱮ</string>
-    <string name="download_choose_new_path">ᱵᱚᱫᱚᱞ ᱠᱚ ᱫᱚᱦᱚ ᱞᱟᱹᱜᱤᱫ ᱰᱟᱩᱱᱞᱳᱰ ᱯᱚᱴᱚᱢ ᱠᱚ ᱵᱚᱫᱚᱞ ᱢᱮ</string>
     <string name="download_path_audio_dialog_title">ᱥᱟᱫᱮ ᱨᱮᱫᱠᱚ ᱞᱟᱹᱜᱤᱫ ᱰᱟᱩᱱᱞᱳᱰ ᱯᱚᱴᱚᱢ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
     <string name="download_path_audio_summary">ᱰᱟᱩᱱᱞᱳᱰ ᱟᱠᱟᱱ ᱥᱟᱲᱮ ᱮᱨᱫ ᱠᱚ ᱱᱚᱰᱮ ᱫᱚᱦᱚᱜᱼᱟ</string>
     <string name="download_path_audio_title">ᱥᱟᱲᱮ ᱰᱟᱩᱱᱞᱳᱰ ᱯᱚᱴᱚᱢ</string>

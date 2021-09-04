@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Alustamiseks toksa suurendusklaasi ikooni.</string>
-    <string name="view_count_text">%1$s vaatamist</string>
     <string name="upload_date_text">Avaldatud %1$s</string>
     <string name="no_player_found">Voogesituseks puudub pleier. Kas paigaldada VLC?</string>
     <string name="no_player_found_toast">Voogesituseks puudub pleier (selleks võib paigaldada VLC).</string>
@@ -16,12 +15,9 @@
     <string name="settings">Seaded</string>
     <string name="did_you_mean">Kas mõtlesid: \"%1$s\"\?</string>
     <string name="share_dialog_title">Jaga</string>
-    <string name="choose_browser">Vali veebilehitseja</string>
-    <string name="screen_rotation">pööramine</string>
     <string name="use_external_video_player_title">Kasuta välist videopleierit</string>
     <string name="use_external_video_player_summary">Eemaldab audio mõnedel lahutustel</string>
     <string name="use_external_audio_player_title">Kasuta välist audiopleierit</string>
-    <string name="popup_mode_share_menu_title">Hüpikaknarežiim</string>
     <string name="subscribe_button_title">Telli</string>
     <string name="subscribed_button_title">Tellitud</string>
     <string name="channel_unsubscribed">Kanali tellimus tühistatud</string>
@@ -40,8 +36,6 @@
     <string name="download_path_audio_title">Audio allalaadimise kaust</string>
     <string name="download_path_audio_summary">Siia salvestatakse alla laaditud audiofailid</string>
     <string name="download_path_audio_dialog_title">Vali alla laaditud audiofailide kaust</string>
-    <string name="autoplay_by_calling_app_title">Automaatesitus</string>
-    <string name="autoplay_by_calling_app_summary">Esita video, kui NewPipe käivitub teise rakenduse kaudu</string>
     <string name="default_resolution_title">Vaikelahutus</string>
     <string name="default_popup_resolution_title">Hüpikakna vaikelahutus</string>
     <string name="show_higher_resolutions_title">Kuva kõrgemaid lahutusi</string>
@@ -69,8 +63,6 @@
     <string name="metadata_cache_wipe_complete_notice">Metaandmed kustutati vahemälust</string>
     <string name="auto_queue_title">Järgmine voog automaatselt järjekorda</string>
     <string name="auto_queue_summary">Jätka lõpetamise (mitte-kordavat) esitamist lisadest järjekorra lõppu seotud voo</string>
-    <string name="player_gesture_controls_title">Pleieri juhtimine viibetega</string>
-    <string name="player_gesture_controls_summary">Kasuta viipeid helitugevuse ja heleduse reguleerimiseks</string>
     <string name="show_search_suggestions_title">Kuva soovitused</string>
     <string name="show_search_suggestions_summary">Vali otsingu ajal kuvatavad soovitused</string>
     <string name="enable_search_history_title">Otsinguajalugu</string>
@@ -85,20 +77,15 @@
     <string name="show_hold_to_append_summary">Kuva vihje, kui videoandmete lehel vajutatakse tausta või hüpikakna nupule \"Täpsemalt:\"</string>
     <string name="unsupported_url">Mitte toetatud URL</string>
     <string name="default_content_country_title">Sisu vaikimisi riik</string>
-    <string name="service_title">Teenus</string>
     <string name="content_language_title">Sisu vaikimisi keel</string>
     <string name="settings_category_player_title">Pleier</string>
     <string name="settings_category_player_behavior_title">Käitumine</string>
     <string name="settings_category_video_audio_title">Pilt ja heli</string>
     <string name="settings_category_history_title">Ajalugu ja vahemälu</string>
-    <string name="settings_category_popup_title">Hüpikaken</string>
     <string name="settings_category_appearance_title">Välimus</string>
-    <string name="settings_category_other_title">Muu</string>
     <string name="settings_category_debug_title">Silumine</string>
     <string name="background_player_playing_toast">Taasesitus taustal</string>
     <string name="popup_playing_toast">Taasesitus hüpikaknas</string>
-    <string name="background_player_append">Lisati taustapleieri järjekorda</string>
-    <string name="popup_playing_append">Lisati hüpikpleieri järjekorda</string>
     <string name="content">Sisu</string>
     <string name="show_age_restricted_content_title">Kuva vanusepiiranguga sisu</string>
     <string name="duration_live">Otse</string>
@@ -106,13 +93,8 @@
     <string name="downloads_title">Allalaadimised</string>
     <string name="error_report_title">Vea teatamine</string>
     <string name="all">Kõik</string>
-    <string name="channel">Kanal</string>
-    <string name="playlist">Esitusloend</string>
     <string name="yes">Jah</string>
-    <string name="later">Hiljem</string>
     <string name="disabled">Keelatud</string>
-    <string name="filter">Filter</string>
-    <string name="refresh">Värskenda</string>
     <string name="clear">Kustuta</string>
     <string name="best_resolution">Parim lahutus</string>
     <string name="undo">Võta tagasi</string>
@@ -123,7 +105,6 @@
     <string name="notification_channel_name">NewPipe teavitus</string>
     <string name="notification_channel_description">Teavitused NewPipe tausta- ja hüpikpleierile</string>
     <string name="unknown_content">[Tundmatu]</string>
-    <string name="toggle_orientation">Vaheta suunda</string>
     <string name="switch_to_background">Lülita taustale</string>
     <string name="switch_to_popup">Lülita hüpikpleierile</string>
     <string name="import_data_title">Impordi andmebaas</string>
@@ -143,18 +124,13 @@
     <string name="could_not_load_thumbnails">Kõiki pisipilte ei õnnestunud laadida</string>
     <string name="youtube_signature_deobfuscation_error">Video URLi dekrüptimine nurjus</string>
     <string name="parsing_error">Veebilehe töötlemine nurjus</string>
-    <string name="light_parsing_error">Veebilehe täielik töötlemine nurjus</string>
     <string name="content_not_available">Sisu pole saadaval</string>
     <string name="could_not_setup_download_menu">Allalaadimismenüü seadistamine nurjus</string>
-    <string name="live_streams_not_supported">Otsevood ei ole veel toetatud</string>
-    <string name="could_not_get_stream">Ühtegi voogu ei leitud</string>
-    <string name="could_not_load_image">Pildi laadimine nurjus</string>
     <string name="app_ui_crash">Rakendus jooksis kokku</string>
     <string name="player_stream_failure">Selle voo esitus nurjus</string>
     <string name="player_unrecoverable_failure">Ilmnes taastamatu pleieri viga</string>
     <string name="player_recoverable_failure">Pleieri veast taastumine</string>
     <string name="external_player_unsupported_link_type">Välised pleierid ei toeta seda tüüpi linke</string>
-    <string name="invalid_url_toast">Kehtetu URL</string>
     <string name="video_streams_empty">Videovooge ei leitud</string>
     <string name="audio_streams_empty">Helivooge ei leitud</string>
     <string name="invalid_directory">Kataloogi pole</string>
@@ -177,19 +153,12 @@
     <string name="detail_uploader_thumbnail_view_description">Üleslaadiaja avatari pisipilt</string>
     <string name="detail_likes_img_view_description">Meeldib</string>
     <string name="detail_dislikes_img_view_description">Ei meeldi</string>
-    <string name="use_tor_title">Kasuta Tor võrku</string>
-    <string name="use_tor_summary">(Eksperimentaalne) Kasuta allalaadimiseks Tor võrku, et suurendada privaatsust (voogesitus ei ole veel toetatud).</string>
-    <string name="report_error">Teata veast</string>
-    <string name="user_report">Kasutaja raport</string>
     <string name="search_no_results">Tulemusi pole</string>
     <string name="empty_subscription_feed_subtitle">Siin pole veel midagi</string>
     <string name="detail_drag_description">Lohista järjestuse muutmiseks</string>
-    <string name="err_dir_create">Allalaadimiskataloogi \'%1$s\' loomine nurjus</string>
-    <string name="info_dir_created">Loodi allalaadimiskataloog \'%1$s\'</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Proovi uuesti</string>
-    <string name="storage_permission_denied">Luba esmalt salvestusmeedia kasutamine</string>
     <string name="short_thousand">tuh</string>
     <string name="short_million">mln</string>
     <string name="short_billion">mld</string>
@@ -210,11 +179,8 @@
     </plurals>
     <string name="start">Start</string>
     <string name="pause">Paus</string>
-    <string name="view">Esita</string>
     <string name="create">Loo</string>
     <string name="delete">Kustuta</string>
-    <string name="delete_one">Kustuta üks</string>
-    <string name="delete_all">Kustuta kõik</string>
     <string name="checksum">Kontrollsumma</string>
     <string name="dismiss">Loobu</string>
     <string name="rename">Nimeta ümber</string>
@@ -222,9 +188,6 @@
     <string name="msg_name">Faili nimi</string>
     <string name="msg_threads">Lõimed</string>
     <string name="msg_error">Viga</string>
-    <string name="msg_server_unsupported">Server pole toetatud</string>
-    <string name="msg_exists">Fail on juba olemas</string>
-    <string name="msg_url_malform">Vigane URL või internet pole saadaval</string>
     <string name="msg_running">NewPipe allalaadimine</string>
     <string name="msg_running_detail">Puuduta üksikasjade nägemiseks</string>
     <string name="msg_wait">Palun oota…</string>
@@ -241,13 +204,8 @@
     <string name="charset_most_special_characters">Erimärgid</string>
     <string name="toast_no_player">Selle faili esitamiseks puudub rakendus</string>
     <string name="title_activity_about">NewPipe rakendusest</string>
-    <string name="action_settings">Seaded</string>
-    <string name="action_about">Programmist</string>
     <string name="title_licenses">Kolmanda osapoole litsentsid</string>
-    <string name="error_unable_to_load_license">Litsentsi laadimine nurjus</string>
-    <string name="action_open_website">Ava veebileht</string>
     <string name="tab_about">Programmist</string>
-    <string name="tab_contributors">Kaasautorid</string>
     <string name="tab_licenses">Litsentsid</string>
     <string name="contribution_title">Panusta</string>
     <string name="view_on_github">Vaata GitHubis</string>
@@ -259,23 +217,13 @@
     <string name="app_license_title">NewPipe litsents</string>
     <string name="read_full_license">Loe litsentsi</string>
     <string name="title_activity_history">Ajalugu</string>
-    <string name="title_history_search">Otsitud</string>
-    <string name="title_history_view">Vaadatud</string>
-    <string name="history_disabled">Ajalugu on keelatud</string>
     <string name="action_history">Ajalugu</string>
-    <string name="history_empty">Ajalugu on tühi</string>
-    <string name="history_cleared">Ajalugu kustutati</string>
-    <string name="item_deleted">Element on kustutatud</string>
-    <string name="delete_item_search_history">Kas kustutame selle kirje otsinguajaloost\?</string>
-    <string name="delete_stream_history_prompt">Kas kustutame selle kirje vaatamiste ajaloost\?</string>
-    <string name="delete_all_history_prompt">Kas sa oled kindel, et soovid kustutada ajaloost kõik kirjed\?</string>
+    <string name="delete_item_search_history">Kas kustutada see kirje otsinguajaloost?</string>
     <string name="title_last_played">Viimati esitatud</string>
     <string name="title_most_played">Enim esitatud</string>
     <string name="main_page_content">Avalehe sisu</string>
     <string name="blank_page_summary">Tühi leht</string>
     <string name="kiosk_page_summary">Kioski leht</string>
-    <string name="subscription_page_summary">Tellimuse leht</string>
-    <string name="feed_page_summary">Voo leht</string>
     <string name="channel_page_summary">Kanali leht</string>
     <string name="select_a_channel">Vali kanal</string>
     <string name="no_channel_subscribed_yet">Kanaleid pole veel tellitud</string>
@@ -286,7 +234,6 @@
     <string name="could_not_import_all_files">Hoiatus: Kõiki faile ei õnnestunud importida.</string>
     <string name="override_current_data">See alistab praeguse seadistuse.</string>
     <string name="import_settings">Kas importida ka seadistused?</string>
-    <string name="kiosk">Kiosk</string>
     <string name="trending">Trendid</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Uus ja kuum</string>
@@ -294,12 +241,10 @@
     <string name="play_queue_stream_detail">Üksikasjad</string>
     <string name="play_queue_audio_settings">Heli seaded</string>
     <string name="hold_to_append">Hoia järjekorda lisamiseks</string>
-    <string name="start_here_on_main">Alusta taasesitust siit</string>
     <string name="start_here_on_background">Hakka taustal mängima</string>
     <string name="start_here_on_popup">Hakka mängima hüpikaknas</string>
     <string name="drawer_open">Ava sahtel</string>
     <string name="drawer_close">Sulge sahtel</string>
-    <string name="drawer_header_action_paceholder_text">Siia ilmub varsti midagi ;D</string>
     <string name="preferred_open_action_settings_title">Lingi avamine</string>
     <string name="preferred_open_action_settings_summary">Vaikimisi tegevus sisu avamisel — %s</string>
     <string name="video_player">Videopleier</string>
@@ -309,7 +254,6 @@
     <string name="preferred_player_fetcher_notification_title">Info hankimine…</string>
     <string name="preferred_player_fetcher_notification_message">Soovitud sisu laadimine</string>
     <string name="create_playlist">Uus esitusloend</string>
-    <string name="delete_playlist">Kustuta</string>
     <string name="rename_playlist">Nimeta ümber</string>
     <string name="name">Nimi</string>
     <string name="append_playlist">Lisa esitusloendisse</string>
@@ -320,7 +264,6 @@
     <string name="playlist_creation_success">Esitusloend loodud</string>
     <string name="playlist_add_stream_success">Lisasime esitusloendisse</string>
     <string name="playlist_thumbnail_change_success">Esitusloendi pisipilt on muudetud.</string>
-    <string name="playlist_delete_failure">Esitusloendi kustutamine ei õnnestunud.</string>
     <string name="caption_none">Subtiitriteta</string>
     <string name="resize_fit">Mahuta</string>
     <string name="resize_fill">Täida</string>
@@ -329,7 +272,6 @@
     <string name="caption_setting_title">Subtiitrid</string>
     <string name="caption_setting_description">Kohanda subtiitrite teksti suurust ja tausta meediamängijas. Jõustamiseks taaskäivita rakendus</string>
     <string name="enable_leak_canary_summary">Mälulekke seire võib põhjustada rakenduse hangumise</string>
-    <string name="import_export_title">Import/eksport</string>
     <string name="import_title">Import</string>
     <string name="import_from">Impordi asukohast</string>
     <string name="export_to">Ekspordi asukohta</string>
@@ -357,7 +299,6 @@
     <string name="decline">Keeldu</string>
     <string name="limit_data_usage_none_description">Piiranguta</string>
     <string name="limit_mobile_data_usage_title">Piira lahutust mobiilse andmeside kasutamisel</string>
-    <string name="tab_main">Peamine</string>
     <string name="channels">Kanalid</string>
     <string name="playlists">Esitusloendid</string>
     <string name="tracks">Lood</string>
@@ -395,7 +336,6 @@
     <string name="minimize_on_exit_popup_description">Minimeeri hüpikpleierisse</string>
     <string name="enable_disposed_exceptions_summary">Jõusta väljaspool fragmenti või elutsüklit olevate kättetoimetamatute Rx erindite raporteerimine nende vabastamise järgselt</string>
     <string name="unsubscribe">Lõpeta tellimine</string>
-    <string name="tab_new">Uus vahekaart</string>
     <string name="tab_choose">Vali vahekaart</string>
     <string name="volume_gesture_control_title">Helitugevuse juhtimine viibetega</string>
     <string name="volume_gesture_control_summary">Kasuta viipeid helitugevuse reguleerimiseks</string>
@@ -413,7 +353,6 @@
     <string name="restore_defaults_confirmation">Kas soovid taastada vaikeväärtused\?</string>
     <string name="subscribers_count_not_available">Tellijate arv pole saadaval</string>
     <string name="main_page_content_summary">Esilehel kuvatavad vahekaardid</string>
-    <string name="selection">Valik</string>
     <string name="conferences">Konverentsid</string>
     <string name="updates_setting_title">Uuendused</string>
     <string name="updates_setting_description">Kuva teavitus, kui uus versioon on saadaval</string>
@@ -421,7 +360,6 @@
     <string name="list">Nimekiri</string>
     <string name="grid">Võrgustik</string>
     <string name="auto">Auto</string>
-    <string name="switch_view">Vaheta vaadet</string>
     <string name="app_update_notification_content_title">NewPipe värskendus on saadaval!</string>
     <string name="app_update_notification_content_text">Allalaadimiseks puuduta</string>
     <string name="missions_header_finished">Lõpetatud</string>
@@ -438,10 +376,8 @@
     <string name="overwrite_finished_warning">Selle nimega allalaaditud fail on juba olemas</string>
     <string name="download_already_running">Selle nimega allalaadimine on käimas</string>
     <string name="show_error">Näita viga</string>
-    <string name="label_code">Kood</string>
     <string name="error_path_creation">Sihtkausta ei saa luua</string>
     <string name="error_file_creation">Faili ei saa luua</string>
-    <string name="error_permission_denied">Tegevus keelati süsteemi poolt</string>
     <string name="error_ssl_exception">Turvalist ühendust ei suudetud luua</string>
     <string name="error_unknown_host">Serverit ei leitud</string>
     <string name="error_connect_host">Serveriga ei saadud ühendust</string>
@@ -494,7 +430,6 @@
     <string name="notification_action_0_title">Esimene tegevusnupp</string>
     <string name="notification_scale_to_square_image_summary">Skaleeri teavituses kuvatav video pisipilt 16:9 külgede suhtest 1:1 suhtesse (võib põhjustada häireid)</string>
     <string name="notification_scale_to_square_image_title">Skaleeri pisipilt 1:1 küljesuhtesse</string>
-    <string name="download_choose_new_path">Vaheta alla laadimise kaust, et muudatused rakendada</string>
     <string name="msg_calculating_hash">Arvutan räsi</string>
     <string name="recent">Hiljutised</string>
     <string name="description_tab_description">Kirjeldus</string>

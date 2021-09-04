@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Norėdami pradėti paspauskite padidinimo stiklą.</string>
-    <string name="view_count_text">%1$s peržiūrų</string>
     <string name="upload_date_text">Publikuota %1$s</string>
     <string name="no_player_found">Nerastas srauto grotuvas. Įdiegti VLC\?</string>
     <string name="install">Įdiegti</string>
@@ -14,12 +13,9 @@
     <string name="settings">Nustatymai</string>
     <string name="did_you_mean">Ar turėjote omenyje %1$s ?</string>
     <string name="share_dialog_title">Dalintis su</string>
-    <string name="choose_browser">Pasirinkti naršyklę</string>
-    <string name="screen_rotation">sukimas</string>
     <string name="use_external_video_player_title">Naudoti išorinį vaizdo grotuvą</string>
     <string name="use_external_video_player_summary">Kai kurios raiškos nepalaiko garso, kai ši parinktis įgalinta</string>
     <string name="use_external_audio_player_title">Naudoti išorinį audio grotuvą</string>
-    <string name="popup_mode_share_menu_title">iššokančio lango rėžimas</string>
     <string name="controls_background_title">Groti fone</string>
     <string name="controls_popup_title">Groti iššokančiame lange</string>
     <string name="download_path_title">Vaizdo įrašų parsisiuntimo aplankas</string>
@@ -28,8 +24,6 @@
     <string name="download_path_audio_title">Garso įrašų parsiuntimo aplankalas</string>
     <string name="download_path_audio_summary">Vieta laikyti parsisiųstus garso įrašus</string>
     <string name="download_path_audio_dialog_title">Pasirinkite atsisiuntimų aplankalą garso įrašams</string>
-    <string name="autoplay_by_calling_app_title">Automatinis paleidimas</string>
-    <string name="autoplay_by_calling_app_summary">Groti vaizdo įrašą, kai NewPipe iškvečiama per kitą programėlę</string>
     <string name="default_resolution_title">Numatytoji raiška</string>
     <string name="default_popup_resolution_title">Numatytoji išokančiojo lango raiška</string>
     <string name="show_higher_resolutions_title">Rodyti aukštesnes raiškas</string>
@@ -47,8 +41,6 @@
     <string name="black_theme_title">Juoda</string>
     <string name="popup_remember_size_pos_title">Prisiminti iššokančio lango dydį ir vietą</string>
     <string name="popup_remember_size_pos_summary">Prisiminti paskutinį iššokančio lango dydį ir vietą</string>
-    <string name="player_gesture_controls_title">Grotuvo valdymas gestais</string>
-    <string name="player_gesture_controls_summary">Naudokite gestus valdyti grotuvo ryškumą ir garsumą</string>
     <string name="show_search_suggestions_title">Paieškos nuspėjimai</string>
     <string name="show_search_suggestions_summary">Pasirinkite pasiūlymus, kurie bus rodomi ieškant</string>
     <string name="download_dialog_title">Atsisiųsti</string>
@@ -56,9 +48,7 @@
     <string name="unsupported_url">URL nepalaikoma</string>
     <string name="content_language_title">Numatytoji turinio kalba</string>
     <string name="settings_category_video_audio_title">Vaizdas ir garsas</string>
-    <string name="settings_category_popup_title">Iššokantis langas</string>
     <string name="settings_category_appearance_title">Išvaizda</string>
-    <string name="settings_category_other_title">Kita</string>
     <string name="background_player_playing_toast">Groja fone</string>
     <string name="popup_playing_toast">Grojama iššokančiojo lango rėžime</string>
     <string name="content">Turinys</string>
@@ -68,12 +58,8 @@
     <string name="downloads_title">Atsisiuntimai</string>
     <string name="error_report_title">Klaidų ataskaita</string>
     <string name="all">Visi</string>
-    <string name="channel">Kanalas</string>
     <string name="yes">Taip</string>
-    <string name="later">Vėliau</string>
     <string name="disabled">Išjungta</string>
-    <string name="filter">Filtras</string>
-    <string name="refresh">Atnaujinti</string>
     <string name="clear">Išvalyti</string>
     <string name="best_resolution">Geriausia raiška</string>
     <string name="general_error">Klaida</string>
@@ -81,12 +67,8 @@
     <string name="could_not_load_thumbnails">Negalima įkelti visų miniatiūrų</string>
     <string name="youtube_signature_deobfuscation_error">Negalima iššifruoti vaizdo įrašo skaitmeninio parašo</string>
     <string name="parsing_error">Negalima apdoroti tinklapio</string>
-    <string name="light_parsing_error">Negalima visiškai apdoroti tinklapio</string>
     <string name="content_not_available">Turinys neprieinamas</string>
     <string name="could_not_setup_download_menu">Negalima sutvarkyti atsisiuntimų meniu</string>
-    <string name="live_streams_not_supported">Tiesioginės transliacijos kolkas nepalaikomos</string>
-    <string name="could_not_get_stream">Negalima gauti jokio srauto</string>
-    <string name="could_not_load_image">Negalima įkelti jokio paveikslėlio</string>
     <string name="app_ui_crash">Programėlė/ vartotojo sąsaja nulūžo</string>
     <string name="sorry_string">Atsiprašome, taip neturėjo įvykti.</string>
     <string name="error_report_button_text">Pranešti apie šią klaidą el. paštu</string>
@@ -102,12 +84,6 @@
     <string name="detail_uploader_thumbnail_view_description">Įkėlėjo naudotojo paveikslėlio miniatiūra</string>
     <string name="detail_likes_img_view_description">Pamėgimai</string>
     <string name="detail_dislikes_img_view_description">Nemėgimai</string>
-    <string name="use_tor_title">Naudoti Tor</string>
-    <string name="use_tor_summary">(Eksperimentinis) priverstinaisiųsti per Tor dėl privatumo (vaizdo įrašų užkrovimas dar nepalaikomas).</string>
-    <string name="report_error">Pranešti apie klaidą</string>
-    <string name="user_report">Naudoti raportavimą</string>
-    <string name="err_dir_create">Negalima sukurti atsisiuntimų aplanko \'%1$s\'</string>
-    <string name="info_dir_created">Sukurtas atsisiuntimų aplankas \'%1$s\'</string>
     <string name="video">Vaizdas</string>
     <string name="audio">Muzika</string>
     <string name="retry">Bandyti iš naujo</string>
@@ -129,9 +105,6 @@
     <string name="msg_name">Failo pavadinimas</string>
     <string name="msg_threads">Gijos</string>
     <string name="msg_error">Klaida</string>
-    <string name="msg_server_unsupported">Tarnybinė stotis nepalaikoma</string>
-    <string name="msg_exists">Failas jau egzistuoja</string>
-    <string name="msg_url_malform">Neteisingas adresas arba negalimas internetas</string>
     <string name="msg_running">NewPipe Atsiunčiama</string>
     <string name="msg_running_detail">Palieskite, kad peržiūrėtumėte detales</string>
     <string name="msg_wait">Prašome palaukti…</string>
@@ -146,7 +119,6 @@
     <string name="channel_unsubscribed">Kanalas Nebeprenumeruojamas</string>
     <string name="subscription_change_failed">Negalima keisti prenumeratos</string>
     <string name="subscription_update_failed">Negalima atnaujinti prenumeratos</string>
-    <string name="tab_main">Pagrindinis</string>
     <string name="tab_subscriptions">Prenumeratos</string>
     <string name="fragment_feed_title">Kas Naujo</string>
     <string name="enable_search_history_title">Ieškoti istorijoje</string>
@@ -160,9 +132,6 @@
     <string name="settings_category_player_title">Grotuvas</string>
     <string name="settings_category_player_behavior_title">Elgsena</string>
     <string name="settings_category_history_title">Istorija ir podėlis</string>
-    <string name="background_player_append">Foninio grotuvo eilėje</string>
-    <string name="popup_playing_append">Įtraukta į langelio rėžimo grojimo eilę</string>
-    <string name="playlist">Grojaraštis</string>
     <string name="undo">Atgal</string>
     <string name="play_all">Groti viską</string>
     <string name="notification_channel_name">NewPipe pranešimai</string>
@@ -173,7 +142,6 @@
     <string name="player_recoverable_failure">Atstatoma po grotuvo klaidos</string>
     <string name="search_no_results">Nėra rezultatų</string>
     <string name="empty_subscription_feed_subtitle">Čia nieko nėra išskyrus svirplius</string>
-    <string name="storage_permission_denied">Pirma duokite prieiga prie saugyklos</string>
     <string name="short_thousand">Tūkst.</string>
     <string name="short_million">Mln.</string>
     <string name="short_billion">Mlrd.</string>
@@ -185,7 +153,6 @@
         <item quantity="other">%s peržiūrų</item>
     </plurals>
     <string name="no_videos">Nėra vaizdo įrašų</string>
-    <string name="view">Groti</string>
     <string name="settings_category_downloads_title">Parsisiuntimai</string>
     <string name="settings_file_charset_title">Leidžiami simboliai failų varduose</string>
     <string name="settings_file_replacement_character_summary">Neleistini simboliai yra pakeičiami šia reikšme</string>
@@ -193,14 +160,9 @@
     <string name="charset_letters_and_digits">Raidės ir skaičiai</string>
     <string name="charset_most_special_characters">Ypatingieji simboliai</string>
     <string name="title_activity_about">Apie NewPipe</string>
-    <string name="action_settings">Nustatymai</string>
-    <string name="action_about">Apie</string>
     <string name="title_licenses">Trečiųjų šalių leidimai</string>
     <string name="copyright" formatted="true">© %1$s %2$s pagal %3$s</string>
-    <string name="error_unable_to_load_license">Negalima įkelti leidimo</string>
-    <string name="action_open_website">Atidaryti interneto puslapį</string>
     <string name="tab_about">Apie</string>
-    <string name="tab_contributors">Pagalbininkai</string>
     <string name="tab_licenses">Leidimai</string>
     <string name="app_description">Laisvas transliavimas ant Android.</string>
     <string name="contribution_title">Prisidėti</string>
@@ -214,24 +176,15 @@
     <string name="app_license_title">NewPipe Leidimas</string>
     <string name="read_full_license">Skaityti leidimą</string>
     <string name="title_activity_history">Istorija</string>
-    <string name="title_history_search">Ieškota</string>
-    <string name="title_history_view">Peržiūrėta</string>
-    <string name="history_disabled">Istorija išjungta</string>
     <string name="action_history">Istorija</string>
-    <string name="history_empty">Istorija tuščia</string>
-    <string name="history_cleared">Istorija išvalyta</string>
-    <string name="item_deleted">Elementas ištrintas</string>
     <string name="delete_item_search_history">Ar norite ištrinti šį elementą iš paieškos istorijos?</string>
     <string name="main_page_content">Pagrindinio puslapio turinys</string>
     <string name="blank_page_summary">Tuščias puslapis</string>
     <string name="kiosk_page_summary">Kiosko puslapis</string>
-    <string name="subscription_page_summary">Prenumeratos puslapis</string>
-    <string name="feed_page_summary">Srauto puslapis</string>
     <string name="channel_page_summary">Kanalo puslapis</string>
     <string name="select_a_channel">Pasirinkite kanalą</string>
     <string name="no_channel_subscribed_yet">Nė vienas kanalas dar neužprenumeruotas</string>
     <string name="select_a_kiosk">Pasirinkite kioską</string>
-    <string name="kiosk">Kioskas</string>
     <string name="trending">Tendencijos</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nauja ir karšta</string>
@@ -239,7 +192,6 @@
     <string name="play_queue_stream_detail">Detalės</string>
     <string name="play_queue_audio_settings">Garso nustatymai</string>
     <string name="hold_to_append">Laikykite kad įtraukti į eilę</string>
-    <string name="start_here_on_main">Pradėti groti čia</string>
     <string name="start_here_on_background">Pradėti groti foniniame rėžime</string>
     <string name="start_here_on_popup">Pradėti groti langelio grotuve</string>
     <string name="no_player_found_toast">Nerastas srauto grotuvas (galite įdiegti VLC kad grotumėte).</string>
@@ -248,11 +200,9 @@
     <string name="tab_bookmarks">Pažymėti grojaraščiai</string>
     <string name="controls_add_to_playlist_title">Pridėti į</string>
     <string name="default_content_country_title">Numatyta turinio šalis</string>
-    <string name="service_title">Paslauga</string>
     <string name="settings_category_debug_title">Šalinti riktus</string>
     <string name="always">Visada</string>
     <string name="just_once">Tik kartą</string>
-    <string name="toggle_orientation">Perjungti orentaciją</string>
     <string name="switch_to_background">Perjungti į foną</string>
     <string name="switch_to_popup">Perjungti į iššokantį langą</string>
     <string name="switch_to_main">Perjungti į pagrindinį</string>
@@ -261,17 +211,12 @@
     <string name="import_data_summary">Bus perrašyta jūsų dabartinė istorija, prenumeratos, grojaraščiai ir (pasirinktinai) nustatymai</string>
     <string name="export_data_summary">Eksportuoti istoriją, prenumeratas, grojaraščius ir nustatymus</string>
     <string name="external_player_unsupported_link_type">Išorinis grotuvas nepalaiko tokių nuorodų</string>
-    <string name="invalid_url_toast">Negalimas URL</string>
     <string name="video_streams_empty">Nerasta video srautų</string>
     <string name="audio_streams_empty">Nerasta audio srautų</string>
     <string name="detail_drag_description">Tempti kad perrūšiuoti</string>
     <string name="create">Sukurti</string>
-    <string name="delete_one">Ištrinti vieną</string>
-    <string name="delete_all">Ištrinti visus</string>
     <string name="dismiss">Nutraukti</string>
     <string name="rename">Pervadinti</string>
-    <string name="delete_stream_history_prompt">Ar norite ištrinti šią nuorodą iš peržiūrų istorijos?</string>
-    <string name="delete_all_history_prompt">Ar tikrai norite ištrinti visas nuorodas iš peržiūrų istorijos?</string>
     <string name="title_last_played">Paskutinis grotas</string>
     <string name="title_most_played">Daugiausiai grotas</string>
     <string name="export_complete_toast">Eksportavimas baigtas</string>
@@ -281,7 +226,6 @@
     <string name="override_current_data">Tai perrašys dabartinius nustatymus.</string>
     <string name="drawer_open">Stalčius</string>
     <string name="drawer_close">Uždaryti stalčių</string>
-    <string name="drawer_header_action_paceholder_text">Kai kas čia greit atsiras ;D</string>
     <string name="video_player">Video grotuvas</string>
     <string name="background_player">Foninis grotuvas</string>
     <string name="popup_player">Iššokantis grotuvas</string>
@@ -289,7 +233,6 @@
     <string name="preferred_player_fetcher_notification_title">Gauname informaciją…</string>
     <string name="preferred_player_fetcher_notification_message">Įkeliamas pasirinktas turinys</string>
     <string name="create_playlist">Naujas grojaraštį</string>
-    <string name="delete_playlist">Ištrinti</string>
     <string name="rename_playlist">Pervadinti</string>
     <string name="name">Pavadinimas</string>
     <string name="append_playlist">Pridėti į grojaraštį</string>
@@ -300,7 +243,6 @@
     <string name="playlist_creation_success">Grojaraštis sukurtas</string>
     <string name="playlist_add_stream_success">Pridėta į grojaraštį</string>
     <string name="playlist_thumbnail_change_success">Grojaraščio paveikslėlis pakeistas.</string>
-    <string name="playlist_delete_failure">Nepavyko ištrinti grojaraščio.</string>
     <string name="caption_none">Nėra antraštės</string>
     <string name="resize_fit">Pritaikyti</string>
     <string name="resize_fill">Užpildyti</string>
@@ -312,7 +254,6 @@
     <string name="show_comments_summary">Išjungti, kad paslėpti komentarus</string>
     <string name="show_comments_title">Rodyti komentarus</string>
     <string name="tab_choose">Pasirinkti skirtuką</string>
-    <string name="tab_new">Nauja kortelė</string>
     <string name="unsubscribe">Atsisakyti prenumeratos</string>
     <string name="search_showing_result_for">Rodomi rezultatai užklausai: %s</string>
     <string name="open_with">Atverti su</string>
@@ -434,7 +375,6 @@
     <string name="notification_action_0_title">Pirmas veiksmo mygtukas</string>
     <string name="notification_scale_to_square_image_summary">Pakeisti video miniatiūrų rodomų pranešime kraštinių santykį iš 16:9 į 1:1 (gali būti iškraipoma)</string>
     <string name="notification_scale_to_square_image_title">Pakeisti miniatiūrų dydi 1:1 santykiu</string>
-    <string name="download_choose_new_path">Pakeiskite parsiuntimo aplankus</string>
     <string name="watch_history_states_deleted">Atkūrimo vietos pašalintos</string>
     <string name="delete_playback_states_alert">Pašalinti visas atkūrimo vietas\?</string>
     <string name="peertube_instance_add_fail">Netinkama kopija</string>
@@ -519,7 +459,6 @@
     <string name="downloads_storage_use_saf_title">Naudoti sistemos aplanko parinktuką (SAP)</string>
     <string name="pause_downloads">Sustabdyti siuntimus</string>
     <string name="error_http_not_found">Nerasta</string>
-    <string name="switch_view">Perjungti rodinį</string>
     <string name="radio">Radijo</string>
     <string name="featured">Siūloma</string>
     <string name="chapters">Skyriai</string>
@@ -530,7 +469,6 @@
     <string name="recovering">atstatoma</string>
     <string name="close">Užverti</string>
     <string name="stop">Sustabdyti</string>
-    <string name="label_code">Kodas</string>
     <string name="overwrite">Perrašyti</string>
     <string name="enqueue">Eilė</string>
     <string name="post_processing">apdorojama</string>
@@ -552,7 +490,6 @@
     <string name="export_ongoing">Eksportuojama…</string>
     <string name="import_ongoing">Importuojama…</string>
     <string name="import_title">Importuoti</string>
-    <string name="import_export_title">Importuoti/Eksportuoti</string>
     <string name="caption_setting_title">Subtitrai</string>
     <string name="playlist_no_uploader">Automatiškai sugeneruota (įkėlėjas nerastas)</string>
     <string name="unmute">Įjungti garsą</string>
@@ -573,7 +510,6 @@
     <string name="no_playlist_bookmarked_yet">Kol kas nėra grojaraščio žymų</string>
     <string name="select_a_playlist">Pasirinkite grojaraštį</string>
     <string name="default_kiosk_page_summary">Numatytasis režimas</string>
-    <string name="selection">Pasirinkimas</string>
     <string name="main_page_content_summary">Kokios kortelės rodomos pagrindiniame puslapyje</string>
     <string name="read_privacy_policy">Skaityti privatumo politiką</string>
     <string name="privacy_policy_encouragement">NewPipe į jūsų privatumą žiūri labai rimtai. Programa be jūsų sutikimo nerenka jokių duomenų.
@@ -630,7 +566,6 @@
     <string name="error_file_creation">Failo sukurti nepavyko</string>
     <string name="error_insufficient_storage">Įrenginyje nebėra vietos</string>
     <string name="error_unknown_host">Nepavyko rasti serverio</string>
-    <string name="error_permission_denied">Sistema nedavė leidimo</string>
     <string name="permission_denied">Sistema uždraudė veiksmą</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Rodyti tik negrupuotas prenumeratas</string>
     <string name="feed_oldest_subscription_update">Paskutinis atnaujinimas: %s</string>
