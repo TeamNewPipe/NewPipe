@@ -1,5 +1,7 @@
 package org.schabi.newpipe.util;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,6 +11,7 @@ import com.squareup.picasso.LruCache;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
+import com.squareup.picasso.Target;
 import com.squareup.picasso.Transformation;
 
 import org.schabi.newpipe.R;
@@ -18,8 +21,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
-
-import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 
 public final class PicassoHelper {
     public static final String PLAYER_THUMBNAIL_TAG = "PICASSO_PLAYER_THUMBNAIL_TAG";
@@ -76,6 +77,10 @@ public final class PicassoHelper {
 
     public static void cancelTag(final Object tag) {
         picassoInstance.cancelTag(tag);
+    }
+
+    public static void cancelRequest(final Target target) {
+        picassoInstance.cancelRequest(target);
     }
 
     public static void setIndicatorsEnabled(final boolean enabled) {

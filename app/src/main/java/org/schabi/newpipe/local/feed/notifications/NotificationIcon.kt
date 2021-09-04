@@ -3,35 +3,43 @@ package org.schabi.newpipe.local.feed.notifications
 import android.app.ActivityManager
 import android.content.Context
 import android.graphics.Bitmap
-import android.view.View
-import com.nostra13.universalimageloader.core.ImageLoader
-import com.nostra13.universalimageloader.core.assist.FailReason
-import com.nostra13.universalimageloader.core.assist.ImageSize
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener
+import android.graphics.drawable.Drawable
+import com.squareup.picasso.Picasso
+import com.squareup.picasso.Target
 import io.reactivex.rxjava3.core.SingleEmitter
 import io.reactivex.rxjava3.core.SingleOnSubscribe
+import org.schabi.newpipe.util.PicassoHelper
 
 internal class NotificationIcon(
     context: Context,
-    private val url: String
+    private val url: String,
 ) : SingleOnSubscribe<Bitmap> {
 
     private val size = getIconSize(context)
 
     override fun subscribe(emitter: SingleEmitter<Bitmap>) {
-        ImageLoader.getInstance().loadImage(
-            url,
-            ImageSize(size, size),
-            object : SimpleImageLoadingListener() {
-                override fun onLoadingFailed(imageUri: String?, view: View?, failReason: FailReason) {
-                    emitter.onError(failReason.cause)
-                }
+        val target = SingleEmitterTarget(emitter)
+        PicassoHelper.loadThumbnail(url)
+            .resize(size, size)
+            .centerCrop()
+            .into(target)
+        emitter.setCancellable {
+            PicassoHelper.cancelRequest(target)
+        }
+    }
 
-                override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap) {
-                    emitter.onSuccess(loadedImage)
-                }
+    private class SingleEmitterTarget(private val emitter: SingleEmitter<Bitmap>) : Target {
+        override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom?) {
+            if (!emitter.isDisposed) {
+                emitter.onSuccess(bitmap)
             }
-        )
+        }
+
+        override fun onBitmapFailed(e: Exception, errorDrawable: Drawable?) {
+            emitter.tryOnError(e)
+        }
+
+        override fun onPrepareLoad(placeHolderDrawable: Drawable?) = Unit
     }
 
     private companion object {
