@@ -23,6 +23,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -567,9 +568,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         for (i in 0 until groupAdapter.itemCount) {
             val item = groupAdapter.getItem(i) as StreamItem
 
+            var typeface = Typeface.DEFAULT
             var resid = R.attr.selectableItemBackground
             if (doCheck) {
                 if (item.streamWithState.stream.uploadDate?.isAfter(updateTime) != false) {
+                    typeface = Typeface.DEFAULT_BOLD
                     resid = R.attr.dashed_border
                     highlightCount++
                 } else {
@@ -595,6 +598,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                             )
                         }.resourceId
                     )
+                viewBinding.itemVideoTitleView.typeface = typeface
             }
         }
 
