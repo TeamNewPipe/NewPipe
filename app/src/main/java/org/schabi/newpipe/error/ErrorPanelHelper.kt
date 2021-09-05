@@ -121,27 +121,14 @@ class ErrorPanelHelper(
                 ErrorActivity.reportError(context, errorInfo)
             }
 
-            errorTextView.setText(
-                when (errorInfo.throwable) {
-                    is AgeRestrictedContentException -> R.string.restricted_video_no_stream
-                    is GeographicRestrictionException -> R.string.georestricted_content
-                    is PaidContentException -> R.string.paid_content
-                    is PrivateContentException -> R.string.private_content
-                    is SoundCloudGoPlusContentException -> R.string.soundcloud_go_plus_content
-                    is YoutubeMusicPremiumContentException -> R.string.youtube_music_premium_content
-                    is ContentNotAvailableException -> R.string.content_not_available
-                    is ContentNotSupportedException -> R.string.content_not_supported
-                    else -> {
-                        // show retry button only for content which is not unavailable or unsupported
-                        errorRetryButton.isVisible = true
-                        if (errorInfo.throwable != null && errorInfo.throwable!!.isNetworkRelated) {
-                            R.string.network_error
-                        } else {
-                            R.string.error_snackbar_message
-                        }
-                    }
-                }
-            )
+            errorTextView.setText(getExceptionDescription(errorInfo.throwable))
+
+            if (errorInfo.throwable !is ContentNotAvailableException &&
+                errorInfo.throwable !is ContentNotSupportedException
+            ) {
+                // show retry button only for content which is not unavailable or unsupported
+                errorRetryButton.isVisible = true
+            }
         }
 
         setRootVisible()
@@ -189,5 +176,27 @@ class ErrorPanelHelper(
     companion object {
         val TAG: String = ErrorPanelHelper::class.simpleName!!
         val DEBUG: Boolean = MainActivity.DEBUG
+
+        @StringRes
+        public fun getExceptionDescription(throwable: Throwable?): Int {
+            return when (throwable) {
+                is AgeRestrictedContentException -> R.string.restricted_video_no_stream
+                is GeographicRestrictionException -> R.string.georestricted_content
+                is PaidContentException -> R.string.paid_content
+                is PrivateContentException -> R.string.private_content
+                is SoundCloudGoPlusContentException -> R.string.soundcloud_go_plus_content
+                is YoutubeMusicPremiumContentException -> R.string.youtube_music_premium_content
+                is ContentNotAvailableException -> R.string.content_not_available
+                is ContentNotSupportedException -> R.string.content_not_supported
+                else -> {
+                    // show retry button only for content which is not unavailable or unsupported
+                    if (throwable != null && throwable.isNetworkRelated) {
+                        R.string.network_error
+                    } else {
+                        R.string.error_snackbar_message
+                    }
+                }
+            }
+        }
     }
 }
