@@ -640,7 +640,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 execOnEnd = {
                     // Make the layout invisible so that the onScroll toTop method
                     // only does necessary work
-                    feedBinding.newItemsLoadedLayout.isVisible = false
+                    feedBinding?.newItemsLoadedLayout?.isVisible = false
                 }
             )
         } else {
