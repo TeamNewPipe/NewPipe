@@ -145,7 +145,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
 
-        if (PlayerHolder.getInstance().getType() != null) {
+        if (PlayerHolder.isPlayerOpen() != null) {
             entries.add(StreamDialogEntry.enqueue);
         }
 
