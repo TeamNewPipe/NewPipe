@@ -254,6 +254,9 @@ dependencies {
     // Crash reporting
     implementation "ch.acra:acra-core:5.7.0"
 
+    // Properly restarting
+    implementation 'com.jakewharton:process-phoenix:2.1.2'
+
     // Reactive extensions for Java VM
     implementation "io.reactivex.rxjava3:rxjava:3.0.7"
     implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
