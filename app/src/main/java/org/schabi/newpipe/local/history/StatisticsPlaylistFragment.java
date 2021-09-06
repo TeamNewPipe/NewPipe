@@ -340,7 +340,7 @@ public class StatisticsPlaylistFragment
 
         final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
 
-        if (PlayerHolder.getInstance().getType() != null) {
+        if (PlayerHolder.getInstance().isPlayerOpen()) {
             entries.add(StreamDialogEntry.enqueue);
         }
         if (infoItem.getStreamType() == StreamType.AUDIO_STREAM) {
