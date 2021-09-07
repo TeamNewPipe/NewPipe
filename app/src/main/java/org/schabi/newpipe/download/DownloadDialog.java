@@ -82,7 +82,7 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;
 import us.shandian.giga.service.MissionState;
 
-import static org.schabi.newpipe.util.ListHelper.checkIfWasSomeStreamedRemoved;
+import static org.schabi.newpipe.util.ListHelper.checkIfSomeStreamWasRemoved;
 import static org.schabi.newpipe.util.ListHelper.removeDeliveryDistinctStreams;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -94,11 +94,11 @@ public class DownloadDialog extends DialogFragment
     @State
     StreamInfo currentInfo;
     @State
-    StreamSizeWrapper<AudioStream> wrappedAudioStreams = StreamSizeWrapper.empty();
+    public StreamSizeWrapper<AudioStream> wrappedAudioStreams = StreamSizeWrapper.empty();
     @State
-    StreamSizeWrapper<VideoStream> wrappedVideoStreams = StreamSizeWrapper.empty();
+    public StreamSizeWrapper<VideoStream> wrappedVideoStreams = StreamSizeWrapper.empty();
     @State
-    StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams = StreamSizeWrapper.empty();
+    public StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams = StreamSizeWrapper.empty();
     @State
     int selectedVideoIndex = 0;
     @State
@@ -182,7 +182,7 @@ public class DownloadDialog extends DialogFragment
         instance.setVideoStreams(videoStreamsList);
         instance.setAudioStreams(progressiveHttpAudioStreams);
         instance.setSubtitleStreams(progressiveHttpSubtitlesStreams);
-        if (checkIfWasSomeStreamedRemoved(videoStreams,
+        if (checkIfSomeStreamWasRemoved(videoStreams,
                 videoOnlyStreams,
                 audioStreams,
                 subtitlesStreams,
@@ -310,8 +310,13 @@ public class DownloadDialog extends DialogFragment
                 secondaryStreams
                         .append(i, new SecondaryStreamHelper<>(wrappedAudioStreams, audioStream));
             } else if (DEBUG) {
-                Log.w(TAG, "No audio stream candidates for video format "
-                        + videoStreams.get(i).getFormat().name());
+                final MediaFormat mediaFormat = videoStreams.get(i).getFormat();
+                 if (mediaFormat != null) {
+                     Log.w(TAG, "No audio stream candidates for video format "
+                             + mediaFormat.name());
+                 } else {
+                     Log.w(TAG, "No audio stream candidates for unknown video format");
+                 }
             }
         }
 
@@ -776,23 +781,40 @@ public class DownloadDialog extends DialogFragment
                     mimeTmp = "audio/ogg";
                     filenameTmp += "opus";
                 } else {
-                    mimeTmp = format.mimeType;
-                    filenameTmp += format.suffix;
+                    if (format != null) {
+                        mimeTmp = format.mimeType;
+                    }
+                    if (format != null) {
+                        filenameTmp += format.suffix;
+                    }
                 }
                 break;
             case R.id.video_button:
                 selectedMediaType = getString(R.string.last_download_type_video_key);
                 mainStorage = mainStorageVideo;
                 format = videoStreamsAdapter.getItem(selectedVideoIndex).getFormat();
-                mimeTmp = format.mimeType;
-                filenameTmp += format.suffix;
+                if (format != null) {
+                    mimeTmp = format.mimeType;
+                }
+                if (format != null) {
+                    filenameTmp += format.suffix;
+                }
                 break;
             case R.id.subtitle_button:
                 selectedMediaType = getString(R.string.last_download_type_subtitle_key);
                 mainStorage = mainStorageVideo; // subtitle & video files go together
                 format = subtitleStreamsAdapter.getItem(selectedSubtitleIndex).getFormat();
-                mimeTmp = format.mimeType;
-                filenameTmp += (format == MediaFormat.TTML ? MediaFormat.SRT : format).suffix;
+                if (format != null) {
+                    mimeTmp = format.mimeType;
+                }
+
+                if (format == MediaFormat.TTML) {
+                    filenameTmp += MediaFormat.SRT.suffix;
+                } else {
+                    if (format != null) {
+                        filenameTmp += format.suffix;
+                    }
+                }
                 break;
             default:
                 throw new RuntimeException("No stream selected");

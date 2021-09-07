@@ -172,7 +172,7 @@ public final class ListHelper {
      *                                     the downloader
      * @return true if a stream was removed, false otherwise
      */
-    public static boolean checkIfWasSomeStreamedRemoved(
+    public static boolean checkIfSomeStreamWasRemoved(
             @NonNull final List<VideoStream> videoStreams,
             @NonNull final List<VideoStream> videoOnlyStreams,
             @NonNull final List<AudioStream> audioStreams,

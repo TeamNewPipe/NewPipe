@@ -57,11 +57,7 @@ import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.exceptions.SoundCloudGoPlusContentException;
 import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
-import org.schabi.newpipe.extractor.stream.AudioStream;
-import org.schabi.newpipe.extractor.stream.DeliveryMethod;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.SubtitlesStream;
-import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.MainPlayer;
@@ -97,9 +93,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-
-import static org.schabi.newpipe.util.ListHelper.checkIfWasSomeStreamedRemoved;
-import static org.schabi.newpipe.util.ListHelper.removeDeliveryDistinctStreams;
 
 /**
  * Get the url from the intent and open it in the chosen preferred player.
@@ -637,50 +630,14 @@ public class RouterActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
-                    final List<VideoStream> videoStreams = result.getVideoStreams();
-                    final List<VideoStream> progressiveHttpVideoStreams =
-                            removeDeliveryDistinctStreams(videoStreams,
-                                    DeliveryMethod.PROGRESSIVE_HTTP);
-
-                    final List<VideoStream> videoOnlyStreams = result.getVideoOnlyStreams();
-                    final List<VideoStream> progressiveHttpVideoOnlyStreams =
-                            removeDeliveryDistinctStreams(videoOnlyStreams,
-                                    DeliveryMethod.PROGRESSIVE_HTTP);
-
-                    final List<AudioStream> audioStreams = result.getAudioStreams();
-                    final List<AudioStream> progressiveHttpAudioStreams =
-                            removeDeliveryDistinctStreams(audioStreams,
-                                    DeliveryMethod.PROGRESSIVE_HTTP);
-
-                    final List<SubtitlesStream> subtitlesStreams = result.getSubtitles();
-                    final List<SubtitlesStream> progressiveHttpSubtitlesStreams =
-                            removeDeliveryDistinctStreams(subtitlesStreams,
-                                    DeliveryMethod.PROGRESSIVE_HTTP);
-
-                    final ArrayList<VideoStream> videoStreamsList = new ArrayList<>(
-                            ListHelper.getSortedStreamVideosList(
-                                    this, progressiveHttpVideoStreams,
-                                    progressiveHttpVideoOnlyStreams, false));
-
-                    final int selectedVideoStreamIndex = ListHelper
-                            .getDefaultResolutionIndex(this, videoStreamsList);
-
                     final FragmentManager fm = getSupportFragmentManager();
 
-                    final DownloadDialog downloadDialog = DownloadDialog.newInstance(result);
-                    downloadDialog.setVideoStreams(videoStreamsList);
-                    downloadDialog.setAudioStreams(progressiveHttpAudioStreams);
-                    downloadDialog.setSubtitleStreams(progressiveHttpSubtitlesStreams);
-                    if (checkIfWasSomeStreamedRemoved(videoStreams,
-                            videoOnlyStreams,
-                            audioStreams,
-                            subtitlesStreams,
-                            progressiveHttpVideoStreams,
-                            progressiveHttpVideoOnlyStreams,
-                            progressiveHttpAudioStreams,
-                            progressiveHttpSubtitlesStreams)) {
-                        downloadDialog.setNonProgressiveStreamsRemoved();
-                    }
+                    final DownloadDialog downloadDialog = DownloadDialog.newInstance(
+                            this, result);
+
+                    final int selectedVideoStreamIndex = ListHelper
+                            .getDefaultResolutionIndex(this,
+                                    downloadDialog.wrappedVideoStreams.getStreamsList());
 
                     downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
                     downloadDialog.setOnDismissListener(dialog -> finish());

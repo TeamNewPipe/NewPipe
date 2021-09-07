@@ -2180,7 +2180,9 @@ public final class VideoDetailFragment
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.setNeutralButton(R.string.open_in_browser, (dialog, i) ->
                 ShareUtils.openUrlInBrowser(requireActivity(), url));
-        if (!sortedVideoStreams.isEmpty()) {
+        if (sortedVideoStreams.isEmpty()) {
+            builder.setMessage(R.string.no_video_streams_available_for_external_players);
+        } else {
             final int selectedVideoStreamIndexForExternalPlayers = ListHelper
                     .getDefaultResolutionIndex(activity, sortedVideoStreams);
             final CharSequence[] resolutions = new CharSequence[sortedVideoStreams
@@ -2194,8 +2196,6 @@ public final class VideoDetailFragment
                         startOnExternalPlayer(activity, currentInfo, sortedVideoStreams.get(i));
                     }
             );
-        } else {
-            builder.setMessage(R.string.no_video_streams_available_for_external_players);
         }
         builder.show();
     }

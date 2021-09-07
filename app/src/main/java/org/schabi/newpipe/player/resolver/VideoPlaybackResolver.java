@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.android.exoplayer2.C.TIME_UNSET;
+import static org.schabi.newpipe.util.ListHelper.removeNonUrlAndTorrentStreams;
 
 public class VideoPlaybackResolver implements PlaybackResolver {
     @NonNull
@@ -111,8 +112,9 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         final List<SubtitlesStream> subtitlesStreams = info.getSubtitles();
         if (subtitlesStreams != null) {
             // Torrent and non URL subtitles are not supported by ExoPlayer
-            removeTorrentAndNonUrlStreams(subtitlesStreams);
-            for (final SubtitlesStream subtitle : subtitlesStreams) {
+            final List<SubtitlesStream> nonTorrentAndUrlStreams =
+                    removeNonUrlAndTorrentStreams(subtitlesStreams);
+            for (final SubtitlesStream subtitle : nonTorrentAndUrlStreams) {
                 final MediaFormat mediaFormat = subtitle.getFormat();
                 final String mimeType;
                 if (mediaFormat != null) {
@@ -136,8 +138,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         if (mediaSources.size() == 1) {
             return mediaSources.get(0);
         } else {
-            return new MergingMediaSource(mediaSources.toArray(
-                    new MediaSource[0]));
+            return new MergingMediaSource(mediaSources.toArray(new MediaSource[0]));
         }
     }
 
