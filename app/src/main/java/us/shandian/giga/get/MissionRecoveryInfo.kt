@@ -18,16 +18,16 @@ class MissionRecoveryInfo(
     var kind: Char = Char.MIN_VALUE,
     var validateCondition: String? = null
 ) : Serializable, Parcelable {
-    constructor(stream: Stream) : this(format = stream.getFormat()!!) {
+    constructor(stream: Stream) : this(format = stream.format!!) {
         when (stream) {
             is AudioStream -> {
-                desiredBitrate = stream.getAverageBitrate()
+                desiredBitrate = stream.averageBitrate
                 isDesired2 = false
                 kind = 'a'
             }
             is VideoStream -> {
-                desired = stream.getResolution()
-                isDesired2 = stream.isVideoOnly()
+                desired = stream.resolution
+                isDesired2 = stream.isVideoOnly
                 kind = 'v'
             }
             is SubtitlesStream -> {
