@@ -2176,7 +2176,7 @@ public final class VideoDetailFragment
         final List<VideoStream> sortedVideoStreams = ListHelper.getSortedStreamVideosList(
                 activity, videoStreams, videoOnlyStreams, false);
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle(R.string.select_quality_external_player);
+        builder.setTitle(R.string.select_quality_external_players);
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.setNeutralButton(R.string.open_in_browser, (dialog, i) ->
                 ShareUtils.openUrlInBrowser(requireActivity(), url));
