@@ -147,13 +147,6 @@ public class DownloadDialog extends DialogFragment
     //////////////////////////////////////////////////////////////////////////*/
 
     @NonNull
-    public static DownloadDialog newInstance(final StreamInfo info) {
-        final DownloadDialog dialog = new DownloadDialog();
-        dialog.setInfo(info);
-        return dialog;
-    }
-
-    @NonNull
     public static DownloadDialog newInstance(final Context context,
                                              @NonNull final StreamInfo info) {
         // TODO: Adapt this code when the downloader support other types of stream deliveries
@@ -178,7 +171,8 @@ public class DownloadDialog extends DialogFragment
                         context, progressiveHttpVideoStreams,
                         progressiveHttpVideoOnlyStreams, false));
 
-        final DownloadDialog instance = newInstance(info);
+        final DownloadDialog instance = new DownloadDialog();
+        instance.setInfo(info);
         instance.setVideoStreams(videoStreamsList);
         instance.setAudioStreams(progressiveHttpAudioStreams);
         instance.setSubtitleStreams(progressiveHttpSubtitlesStreams);
@@ -238,23 +232,45 @@ public class DownloadDialog extends DialogFragment
     }
 
     public void setNonProgressiveStreamsRemoved() {
-        if (!this.nonProgressiveStreamsRemoved) {
-            this.nonProgressiveStreamsRemoved = true;
-        }
+        this.nonProgressiveStreamsRemoved = true;
     }
 
+    /**
+     * Set the selected video stream, by using its index in the stream list.
+     *
+     * The index of the select video stream will be not set if this index is not in the bounds
+     * of the stream list.
+     *
+     * @param svi the index of the selected {@link VideoStream}
+     */
     public void setSelectedVideoStream(final int svi) {
         if (selectedStreamIsInBoundsOfWrappedStreams(svi, this.wrappedVideoStreams)) {
             this.selectedVideoIndex = svi;
         }
     }
 
+    /**
+     * Set the selected audio stream, by using its index in the stream list.
+     *
+     * The index of the select audio stream will be not set if this index is not in the bounds
+     * of the stream list.
+     *
+     * @param sai the index of the selected {@link AudioStream}
+     */
     public void setSelectedAudioStream(final int sai) {
         if (selectedStreamIsInBoundsOfWrappedStreams(sai, this.wrappedAudioStreams)) {
             this.selectedAudioIndex = sai;
         }
     }
 
+    /**
+     * Set the selected subtitles stream, by using its index in the stream list.
+     *
+     * The index of the select subtitles stream will be not set if this index is not in the bounds
+     * of the stream list.
+     *
+     * @param ssi the index of the selected {@link SubtitlesStream}
+     */
     public void setSelectedSubtitleStream(final int ssi) {
         if (selectedStreamIsInBoundsOfWrappedStreams(ssi, this.wrappedSubtitleStreams)) {
             this.selectedSubtitleIndex = ssi;
@@ -351,7 +367,8 @@ public class DownloadDialog extends DialogFragment
     }
 
     @Override
-    public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
+    public View onCreateView(@NonNull final LayoutInflater inflater,
+                             final ViewGroup container,
                              final Bundle savedInstanceState) {
         if (DEBUG) {
             Log.d(TAG, "onCreateView() called with: "
@@ -668,8 +685,10 @@ public class DownloadDialog extends DialogFragment
         final boolean isAudioStreamsAvailable = audioStreamsAdapter.getCount() > 0;
         final boolean isSubtitleStreamsAvailable = subtitleStreamsAdapter.getCount() > 0;
 
-        dialogBinding.audioButton.setVisibility(isAudioStreamsAvailable ? View.VISIBLE : View.GONE);
-        dialogBinding.videoButton.setVisibility(isVideoStreamsAvailable ? View.VISIBLE : View.GONE);
+        dialogBinding.audioButton.setVisibility(isAudioStreamsAvailable ? View.VISIBLE
+                : View.GONE);
+        dialogBinding.videoButton.setVisibility(isVideoStreamsAvailable ? View.VISIBLE
+                : View.GONE);
         dialogBinding.subtitleButton.setVisibility(isSubtitleStreamsAvailable
                 ? View.VISIBLE : View.GONE);
 
@@ -866,7 +885,8 @@ public class DownloadDialog extends DialogFragment
         }
 
         // check for existing file with the same name
-        checkSelectedDownload(mainStorage, mainStorage.findFile(filenameTmp), filenameTmp, mimeTmp);
+        checkSelectedDownload(mainStorage, mainStorage.findFile(filenameTmp), filenameTmp,
+                mimeTmp);
 
         // remember the last media type downloaded by the user
         prefs.edit().putString(getString(R.string.last_used_download_type), selectedMediaType)
