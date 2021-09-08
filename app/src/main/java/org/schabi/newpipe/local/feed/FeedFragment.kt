@@ -73,6 +73,7 @@ import org.schabi.newpipe.local.feed.item.StreamItem
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.player.helper.PlayerHolder
+import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.StreamDialogEntry
@@ -624,8 +625,12 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 250L,
                 delay = 100,
                 execOnEnd = {
-                    // Hide the new items-"popup" after 10s
-                    hideNewItemsLoaded(true, 10000)
+                    // Disabled animations would result in immediately hiding the button
+                    // after it showed up
+                    if (DeviceUtils.hasAnimationsAnimatorDurationEnabled(context)) {
+                        // Hide the new items-"popup" after 10s
+                        hideNewItemsLoaded(true, 10000)
+                    }
                 }
             )
     }
