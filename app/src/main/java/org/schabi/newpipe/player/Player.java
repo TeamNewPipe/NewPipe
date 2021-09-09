@@ -238,7 +238,7 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
 
     public static final int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
-    public static final int PROGRESS_LOOP_INTERVAL_MILLIS = 500; // 500 millis
+    public static final int PROGRESS_LOOP_INTERVAL_MILLIS = 1000; // 1 second
     public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
     public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
     public static final int DPAD_CONTROLS_HIDE_TIME = 7000;  // 7 Seconds
