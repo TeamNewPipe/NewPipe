@@ -608,7 +608,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         // state until the user scrolls them out of the visible area which causes a update/bind-call
         groupAdapter.notifyItemRangeChanged(
             0,
-            groupAdapter.itemCount.coerceAtMost(highlightCount.coerceAtLeast(lastNewItemsCount))
+            minOf(groupAdapter.itemCount, maxOf(highlightCount, lastNewItemsCount))
         )
 
         if (highlightCount > 0) {
