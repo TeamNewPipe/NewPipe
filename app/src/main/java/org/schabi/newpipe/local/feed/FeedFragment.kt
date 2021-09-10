@@ -151,7 +151,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                     !recyclerView.canScrollVertically(-1)
                 ) {
 
-                    if (feedBinding.newItemsLoadedLayout.isVisible) {
+                    if (feedBinding.newItemsLoadedButton.isVisible) {
                         hideNewItemsLoaded(true)
                     }
                 }
@@ -619,8 +619,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     }
 
     private fun showNewItemsLoaded() {
-        feedBinding.newItemsLoadedLayout.clearAnimation()
-        feedBinding.newItemsLoadedLayout
+        feedBinding.newItemsLoadedButton.clearAnimation()
+        feedBinding.newItemsLoadedButton
             .slideUp(
                 250L,
                 delay = 100,
@@ -636,20 +636,20 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     }
 
     private fun hideNewItemsLoaded(animate: Boolean, delay: Long = 0) {
-        feedBinding.newItemsLoadedLayout.clearAnimation()
+        feedBinding.newItemsLoadedButton.clearAnimation()
         if (animate) {
-            feedBinding.newItemsLoadedLayout.animate(
+            feedBinding.newItemsLoadedButton.animate(
                 false,
                 200,
                 delay = delay,
                 execOnEnd = {
                     // Make the layout invisible so that the onScroll toTop method
                     // only does necessary work
-                    feedBinding?.newItemsLoadedLayout?.isVisible = false
+                    feedBinding?.newItemsLoadedButton?.isVisible = false
                 }
             )
         } else {
-            feedBinding.newItemsLoadedLayout.isVisible = false
+            feedBinding.newItemsLoadedButton.isVisible = false
         }
     }
 

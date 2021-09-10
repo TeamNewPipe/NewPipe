@@ -87,25 +87,16 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/new_items_loaded_layout"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/new_items_loaded_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:visibility="gone"
-        tools:visibility="visible">
-
-        <Button
-            android:id="@+id/new_items_loaded_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/feed_new_items"
-            android:textSize="12sp"
-            android:theme="@style/ServiceColoredButton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_alignBottom="@id/swipeRefreshLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5sp"
+        android:text="@string/feed_new_items"
+        android:textSize="12sp"
+        android:theme="@style/ServiceColoredButton" />
 
     <LinearLayout
         android:layout_width="wrap_content"
