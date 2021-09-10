@@ -1186,7 +1186,7 @@ public final class VideoDetailFragment
         addVideoPlayerView();
 
         final Intent playerIntent = NavigationHelper.getPlayerIntent(requireContext(),
-                MainPlayer.class, queue, true, autoPlayEnabled);
+                MainPlayer.class, queue, autoPlayEnabled);
         ContextCompat.startForegroundService(activity, playerIntent);
     }
 
