@@ -23,8 +23,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
-import static org.schabi.newpipe.player.MainPlayer.PlayerType.AUDIO;
-import static org.schabi.newpipe.player.MainPlayer.PlayerType.POPUP;
 
 public enum StreamDialogEntry {
     //////////////////////////////////////
