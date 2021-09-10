@@ -1,0 +1,14 @@
+Nouveau
+• Miniature de prévisualisation lors d’une recherche
+• Détecte les commentaires désactivés
+• Autorise le marquage d’un item de flux comme vu
+• Affiche les cœurs de commentaires
+
+Améliorations
+• Métadonnées et mise en page des balises améliorées
+• Application de la couleur de service sur les composants de l’interface
+
+Corrections
+• Correction de la mise en tampon infinie
+• Correction du ReCAPTCHA restant chargé en arrière-plan
+• Désactivation des clics lors du rafraîchissement d’un flux

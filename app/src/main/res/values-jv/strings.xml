@@ -6,7 +6,6 @@
     <string name="enable_search_history_title">Riwayatmu biyen cuk</string>
     <string name="show_search_suggestions_summary">Duduhke saran nalika nggoleki</string>
     <string name="show_search_suggestions_title">Goleki saran</string>
-    <string name="player_gesture_controls_summary">Gunake gestur gawe ngontrol kepadhangan lan volum</string>
     <string name="brightness_gesture_control_summary">Ngontrol kepadhangan ngaggo gesture</string>
     <string name="brightness_gesture_control_title">Kontrol kepadhangan nganggo gestur</string>
     <string name="volume_gesture_control_summary">Gunake gesture gawe ngontrol volum</string>
@@ -37,9 +36,6 @@
     <string name="show_higher_resolutions_title">Duduhke resolusi luwih gedhe</string>
     <string name="default_popup_resolution_title">Resolusi ngambang standar</string>
     <string name="default_resolution_title">Resolusi standar</string>
-    <string name="autoplay_by_calling_app_summary">Puter video nalika NewPipe diarani seko aplikasi liyane</string>
-    <string name="autoplay_by_calling_app_title">Puter otomatis</string>
-    <string name="download_choose_new_path">Ganti tempat unduhan ben ngefek</string>
     <string name="download_path_audio_dialog_title">Pilih tempat kanggo nyimpen suara</string>
     <string name="download_path_audio_summary">Suara sing diunduh disimpen nang kene</string>
     <string name="download_path_audio_title">Tempat nyimpen suara</string>
@@ -50,10 +46,8 @@
     <string name="controls_popup_title">Ngambang</string>
     <string name="controls_background_title">Latar mburi</string>
     <string name="tab_choose">Pilih Tab</string>
-    <string name="tab_new">Tab anyar</string>
     <string name="tab_bookmarks">Daftar sing ditandai</string>
     <string name="tab_subscriptions">Langganan</string>
-    <string name="tab_main">Utama</string>
     <string name="show_info">Ndeloke info</string>
     <string name="subscription_update_failed">Ora iso nganyari langganan</string>
     <string name="subscription_change_failed">Ora iso ngubah langganan</string>
@@ -61,12 +55,9 @@
     <string name="unsubscribe">Rasido langganan</string>
     <string name="subscribed_button_title">Pelanggan</string>
     <string name="subscribe_button_title">Langganan</string>
-    <string name="popup_mode_share_menu_title">Mode ngambang</string>
     <string name="use_external_audio_player_title">Gunake pemuter suara liyane</string>
     <string name="use_external_video_player_summary">Busak suara ing resolusi cuk</string>
     <string name="use_external_video_player_title">Gunake pemuter video liyane</string>
-    <string name="screen_rotation">puter</string>
-    <string name="choose_browser">Pilih browser</string>
     <string name="share_dialog_title">Bagi nganggo</string>
     <string name="did_you_mean">Maksude: %1$s\?</string>
     <string name="settings">Setelan</string>
@@ -81,6 +72,5 @@
     <string name="no_player_found_toast">Ra ono pemuter (kowe iso pasang VLC gae muter iku).</string>
     <string name="no_player_found">Raono pemuter. Pasang VLC\?</string>
     <string name="upload_date_text">Diterbitke %1$s</string>
-    <string name="view_count_text">%1$s penonton</string>
     <string name="main_bg_subtitle">Pencet \"Cari\" nek meh mulai</string>
 </resources>

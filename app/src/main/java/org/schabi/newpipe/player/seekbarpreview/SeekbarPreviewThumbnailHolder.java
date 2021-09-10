@@ -1,16 +1,18 @@
 package org.schabi.newpipe.player.seekbarpreview;
 
+import static org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper.SeekbarPreviewThumbnailType;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.common.base.Stopwatch;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.extractor.stream.Frameset;
-import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.PicassoHelper;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -21,10 +23,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
-
-import static org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper.SeekbarPreviewThumbnailType;
 
 public class SeekbarPreviewThumbnailHolder {
 
@@ -174,6 +173,7 @@ public class SeekbarPreviewThumbnailHolder {
         }
     }
 
+    @Nullable
     private Bitmap getBitMapFrom(final String url) {
         if (url == null) {
             Log.w(TAG, "url is null; This should never happen");
@@ -182,24 +182,11 @@ public class SeekbarPreviewThumbnailHolder {
 
         final Stopwatch sw = Log.isLoggable(TAG, Log.DEBUG) ? Stopwatch.createStarted() : null;
         try {
-            final SyncImageLoadingListener syncImageLoadingListener =
-                    new SyncImageLoadingListener();
-
             Log.d(TAG, "Downloading bitmap for seekbarPreview from '" + url + "'");
 
-            // Ensure that everything is running
-            ImageLoader.getInstance().resume();
-            // Load the image
-            // Impl-Note:
+            // Gets the bitmap within the timeout of 15 seconds imposed by default by OkHttpClient
             // Ensure that your are not running on the main-Thread this will otherwise hang
-            ImageLoader.getInstance().loadImage(
-                    url,
-                    ImageDisplayConstants.DISPLAY_SEEKBAR_PREVIEW_OPTIONS,
-                    syncImageLoadingListener);
-
-            // Get the bitmap within the timeout
-            final Bitmap bitmap =
-                    syncImageLoadingListener.waitForBitmapOrThrow(30, TimeUnit.SECONDS);
+            final Bitmap bitmap = PicassoHelper.loadSeekbarThumbnailPreview(url).get();
 
             if (sw != null) {
                 Log.d(TAG,

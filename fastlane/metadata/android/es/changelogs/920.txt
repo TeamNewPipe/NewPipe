@@ -1,0 +1,9 @@
+Mejorado
+
+- Se ha añadido la fecha de carga y el recuento de vistas en los elementos de la cuadrícula de flujo
+- Mejoras en el diseño de la cabecera del cajón
+
+Corregido
+
+- Arreglado el botón de silencio que provoca fallos en la API 19
+- Corregida la descarga de vídeos largos de 1080p 60fps

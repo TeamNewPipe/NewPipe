@@ -10,6 +10,7 @@
         android:key="@string/default_resolution_key"
         android:summary="%s"
         android:title="@string/default_resolution_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <ListPreference
@@ -19,6 +20,7 @@
         android:key="@string/default_popup_resolution_key"
         android:summary="%s"
         android:title="@string/default_popup_resolution_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <ListPreference
@@ -28,6 +30,7 @@
         android:key="@string/limit_mobile_data_usage_key"
         android:summary="%s"
         android:title="@string/limit_mobile_data_usage_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
@@ -35,6 +38,7 @@
         android:key="@string/show_higher_resolutions_key"
         android:summary="@string/show_higher_resolutions_summary"
         android:title="@string/show_higher_resolutions_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <ListPreference
@@ -44,6 +48,7 @@
         android:key="@string/default_video_format_key"
         android:summary="%s"
         android:title="@string/default_video_format_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <ListPreference
@@ -53,11 +58,13 @@
         android:key="@string/default_audio_format_key"
         android:summary="%s"
         android:title="@string/default_audio_format_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
         android:title="@string/settings_category_player_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false">
 
         <SwitchPreferenceCompat
@@ -65,12 +72,14 @@
             android:key="@string/use_external_video_player_key"
             android:summary="@string/use_external_video_player_summary"
             android:title="@string/use_external_video_player_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="@string/use_external_audio_player_key"
             android:title="@string/use_external_audio_player_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
@@ -78,6 +87,7 @@
             android:key="@string/show_play_with_kodi_key"
             android:summary="@string/show_play_with_kodi_summary"
             android:title="@string/show_play_with_kodi_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
         <ListPreference
             android:layout_width="wrap_content"
@@ -88,6 +98,7 @@
             android:key="@string/seekbar_preview_thumbnail_key"
             android:summary="%s"
             android:title="@string/seekbar_preview_thumbnail_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
     </PreferenceCategory>
@@ -95,6 +106,7 @@
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
         android:title="@string/settings_category_player_behavior_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false">
 
         <ListPreference
@@ -104,6 +116,7 @@
             android:key="@string/preferred_open_action_key"
             android:summary="@string/preferred_open_action_settings_summary"
             android:title="@string/preferred_open_action_settings_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
         <ListPreference
@@ -113,6 +126,15 @@
             android:key="@string/minimize_on_exit_key"
             android:summary="@string/minimize_on_exit_summary"
             android:title="@string/minimize_on_exit_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/start_main_player_fullscreen_key"
+            android:summary="@string/start_main_player_fullscreen_summary"
+            android:title="@string/start_main_player_fullscreen_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
         <ListPreference
@@ -122,6 +144,7 @@
             android:key="@string/autoplay_key"
             android:summary="@string/autoplay_summary"
             android:title="@string/autoplay_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
@@ -129,6 +152,7 @@
             android:key="@string/auto_queue_key"
             android:summary="@string/auto_queue_summary"
             android:title="@string/auto_queue_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
@@ -136,6 +160,7 @@
             android:key="@string/resume_on_audio_focus_gain_key"
             android:summary="@string/resume_on_audio_focus_gain_summary"
             android:title="@string/resume_on_audio_focus_gain_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
@@ -143,6 +168,7 @@
             android:key="@string/volume_gesture_control_key"
             android:summary="@string/volume_gesture_control_summary"
             android:title="@string/volume_gesture_control_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
@@ -150,6 +176,7 @@
             android:key="@string/brightness_gesture_control_key"
             android:summary="@string/brightness_gesture_control_summary"
             android:title="@string/brightness_gesture_control_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
@@ -157,6 +184,7 @@
             android:key="@string/popup_remember_size_pos_key"
             android:summary="@string/popup_remember_size_pos_summary"
             android:title="@string/popup_remember_size_pos_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
@@ -164,6 +192,7 @@
             android:key="@string/use_inexact_seek_key"
             android:summary="@string/use_inexact_seek_summary"
             android:title="@string/use_inexact_seek_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
         <ListPreference
@@ -173,6 +202,7 @@
             android:key="@string/seek_duration_key"
             android:summary="%s"
             android:title="@string/seek_duration_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
@@ -180,6 +210,7 @@
             android:key="@string/clear_queue_confirmation_key"
             android:summary="@string/clear_queue_confirmation_summary"
             android:title="@string/clear_queue_confirmation_title"
+            app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
     </PreferenceCategory>

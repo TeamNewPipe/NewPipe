@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Pindutin ang \'hanap\' upang magsimula</string>
-    <string name="view_count_text">%1$s view</string>
     <string name="upload_date_text">Nai-publish noong %1$s</string>
     <string name="no_player_found">Walang nakitang stream player. Mag-install ng VLC\?</string>
     <string name="no_player_found_toast">Walang nahanap na stream player (puwede mag-install ng VLC upang i-play).</string>
@@ -16,12 +15,9 @@
     <string name="settings">Setting</string>
     <string name="did_you_mean">Ibig mo sabihin: %1$s\?</string>
     <string name="share_dialog_title">Ibahagi sa</string>
-    <string name="choose_browser">Pumili ng Browser</string>
-    <string name="screen_rotation">ikot</string>
     <string name="use_external_video_player_title">Gumamit ng panlabas na video player</string>
     <string name="use_external_video_player_summary">Tanggal ang audio sa ilang resolusyon</string>
     <string name="use_external_audio_player_title">Gumamit ng panlabas na audio player</string>
-    <string name="popup_mode_share_menu_title">NewPipe popup mode</string>
     <string name="subscribe_button_title">Mag-subscribe</string>
     <string name="subscribed_button_title">Naka-subscribe</string>
     <string name="unsubscribe">Mag-unsubscribe</string>
@@ -29,10 +25,8 @@
     <string name="subscription_change_failed">Hindi mabago ang subscription</string>
     <string name="subscription_update_failed">Hindi ma-update ang subscription</string>
     <string name="show_info">Ipakita ang impo</string>
-    <string name="tab_main">Pangunahing</string>
     <string name="tab_subscriptions">Mga subscription</string>
     <string name="tab_bookmarks">Naka-bookmark na Playlist</string>
-    <string name="tab_new">Bagong Tab</string>
     <string name="tab_choose">Pumili nang Tab</string>
     <string name="fragment_feed_title">Anong Bago</string>
     <string name="controls_background_title">Background</string>
@@ -45,10 +39,7 @@
     <string name="light_theme_title">Maliwanag</string>
     <string name="play_with_kodi_title">Buksan gamit Kodi</string>
     <string name="dark_theme_title">Madilim</string>
-    <string name="download_choose_new_path">Palitan ang download folder upang umepekto</string>
     <string name="download_path_summary">Dito nakaimbak na-download na video</string>
-    <string name="autoplay_by_calling_app_summary">Nagpe-play ng video kapag tinawag ang NewPipe ng ibáng app</string>
-    <string name="autoplay_by_calling_app_title">Autoplay</string>
     <string name="download_path_audio_title">Audio download folder</string>
     <string name="search_showing_result_for">Pinapakitang resulta para sa: %s</string>
     <string name="open_with">Buksan gámit ang</string>

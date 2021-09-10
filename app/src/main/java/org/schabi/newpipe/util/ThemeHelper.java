@@ -324,17 +324,40 @@ public final class ThemeHelper {
     }
 
     /**
-     * Calculates the number of grid items that can fit horizontally on the screen. The width of a
-     * grid item is obtained from the thumbnail width plus the right and left paddings.
+     * Calculates the number of grid channel info items that can fit horizontally on the screen.
      *
      * @param context the context to use
+     * @return the span count of grid channel info items
+     */
+    public static int getGridSpanCountChannels(final Context context) {
+        return getGridSpanCount(context,
+                context.getResources().getDimensionPixelSize(R.dimen.channel_item_grid_min_width));
+    }
+
+    /**
+     * Calculates the number of grid stream info items that can fit horizontally on the screen. The
+     * width of a grid stream info item is obtained from the thumbnail width plus the right and left
+     * paddings.
+     *
+     * @param context the context to use
+     * @return the span count of grid stream info items
+     */
+    public static int getGridSpanCountStreams(final Context context) {
+        final Resources res = context.getResources();
+        return getGridSpanCount(context,
+                res.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width)
+                        + res.getDimensionPixelSize(R.dimen.video_item_search_padding) * 2);
+    }
+
+    /**
+     * Calculates the number of grid items that can fit horizontally on the screen based on the
+     * minimum width.
+     *
+     * @param context the context to use
+     * @param minWidth the minimum width of items in the grid
      * @return the span count of grid list items
      */
-    public static int getGridSpanCount(final Context context) {
-        final Resources res = context.getResources();
-        final int minWidth
-                = res.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width)
-                + res.getDimensionPixelSize(R.dimen.video_item_search_padding) * 2;
-        return Math.max(1, res.getDisplayMetrics().widthPixels / minWidth);
+    public static int getGridSpanCount(final Context context, final int minWidth) {
+        return Math.max(1, context.getResources().getDisplayMetrics().widthPixels / minWidth);
     }
 }

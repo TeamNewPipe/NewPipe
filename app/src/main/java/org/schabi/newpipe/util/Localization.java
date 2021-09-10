@@ -226,6 +226,16 @@ public final class Localization {
                 shortCount(context, subscriberCount));
     }
 
+    public static String downloadCount(final Context context, final int downloadCount) {
+        return getQuantity(context, R.plurals.download_finished_notification, 0,
+                downloadCount, shortCount(context, downloadCount));
+    }
+
+    public static String deletedDownloadCount(final Context context, final int deletedCount) {
+        return getQuantity(context, R.plurals.deleted_downloads_toast, 0,
+                deletedCount, shortCount(context, deletedCount));
+    }
+
     private static String getQuantity(final Context context, @PluralsRes final int pluralId,
                                       @StringRes final int zeroCaseStringId, final long count,
                                       final String formattedCount) {

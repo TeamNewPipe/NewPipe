@@ -73,7 +73,7 @@ import org.schabi.newpipe.player.helper.PlayerHolder
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.StreamDialogEntry
-import org.schabi.newpipe.util.ThemeHelper.getGridSpanCount
+import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountStreams
 import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import java.time.OffsetDateTime
 import java.util.ArrayList
@@ -161,7 +161,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     fun setupListViewMode() {
         // does everything needed to setup the layouts for grid or list modes
-        groupAdapter.spanCount = if (shouldUseGridLayout(context)) getGridSpanCount(context) else 1
+        groupAdapter.spanCount = if (shouldUseGridLayout(context)) getGridSpanCountStreams(context) else 1
         feedBinding.itemsList.layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount).apply {
             spanSizeLookup = groupAdapter.spanSizeLookup
         }
@@ -206,7 +206,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                         putBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), !usingDedicatedMethod)
                     }
                 }
-                .setPositiveButton(resources.getString(R.string.finish), null)
+                .setPositiveButton(resources.getString(R.string.ok), null)
                 .create()
                 .show()
             return true
@@ -349,11 +349,20 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 )
             )
         }
-        if (item.streamType != StreamType.AUDIO_LIVE_STREAM && item.streamType != StreamType.LIVE_STREAM) {
+
+        // show "mark as watched" only when watch history is enabled
+        val isWatchHistoryEnabled = PreferenceManager
+            .getDefaultSharedPreferences(context)
+            .getBoolean(getString(R.string.enable_watch_history_key), false)
+        if (item.streamType != StreamType.AUDIO_LIVE_STREAM &&
+            item.streamType != StreamType.LIVE_STREAM &&
+            isWatchHistoryEnabled
+        ) {
             entries.add(
                 StreamDialogEntry.mark_as_watched
             )
         }
+        entries.add(StreamDialogEntry.show_channel_details)
 
         StreamDialogEntry.setEnabledEntries(entries)
         InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context)) { _, which ->

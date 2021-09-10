@@ -41,10 +41,10 @@ import org.schabi.newpipe.player.MainPlayer.PlayerType;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
-import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
@@ -67,7 +67,10 @@ import static org.schabi.newpipe.ktx.ViewUtils.animateBackgroundColor;
 
 public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         implements View.OnClickListener {
+
     private static final int BUTTON_DEBOUNCE_INTERVAL = 100;
+    private static final String PICASSO_CHANNEL_TAG = "PICASSO_CHANNEL_TAG";
+
     private final CompositeDisposable disposables = new CompositeDisposable();
     private Disposable subscribeButtonMonitor;
 
@@ -422,10 +425,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     @Override
     public void showLoading() {
         super.showLoading();
-
-        IMAGE_LOADER.cancelDisplayTask(headerBinding.channelBannerImage);
-        IMAGE_LOADER.cancelDisplayTask(headerBinding.channelAvatarView);
-        IMAGE_LOADER.cancelDisplayTask(headerBinding.subChannelAvatarView);
+        PicassoHelper.cancelTag(PICASSO_CHANNEL_TAG);
         animate(headerBinding.channelSubscribeButton, false, 100);
     }
 
@@ -434,13 +434,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         super.handleResult(result);
 
         headerBinding.getRoot().setVisibility(View.VISIBLE);
-        IMAGE_LOADER.displayImage(result.getBannerUrl(), headerBinding.channelBannerImage,
-                ImageDisplayConstants.DISPLAY_BANNER_OPTIONS);
-        IMAGE_LOADER.displayImage(result.getAvatarUrl(), headerBinding.channelAvatarView,
-                ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
-        IMAGE_LOADER.displayImage(result.getParentChannelAvatarUrl(),
-                headerBinding.subChannelAvatarView,
-                ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
+        PicassoHelper.loadBanner(result.getBannerUrl()).tag(PICASSO_CHANNEL_TAG)
+                .into(headerBinding.channelBannerImage);
+        PicassoHelper.loadAvatar(result.getAvatarUrl()).tag(PICASSO_CHANNEL_TAG)
+                .into(headerBinding.channelAvatarView);
+        PicassoHelper.loadAvatar(result.getParentChannelAvatarUrl()).tag(PICASSO_CHANNEL_TAG)
+                .into(headerBinding.subChannelAvatarView);
 
         headerBinding.channelSubscriberView.setVisibility(View.VISIBLE);
         if (result.getSubscriberCount() >= 0) {

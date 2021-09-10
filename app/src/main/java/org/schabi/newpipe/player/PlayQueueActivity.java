@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.PopupMenu;
 import android.widget.SeekBar;
 
 import androidx.annotation.Nullable;
@@ -40,14 +39,14 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import java.util.Collections;
 import java.util.List;
 
+import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-import static org.schabi.newpipe.util.external_communication.ShareUtils.shareText;
 
 public final class PlayQueueActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,
@@ -55,7 +54,6 @@ public final class PlayQueueActivity extends AppCompatActivity
 
     private static final String TAG = PlayQueueActivity.class.getSimpleName();
 
-    private static final int RECYCLER_ITEM_POPUP_MENU_GROUP_ID = 47;
     private static final int SMOOTH_SCROLL_MAXIMUM_DISTANCE = 80;
 
     protected Player player;
@@ -83,7 +81,7 @@ public final class PlayQueueActivity extends AppCompatActivity
     protected void onCreate(final Bundle savedInstanceState) {
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
-        ThemeHelper.setTheme(this);
+        ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
         queueControlBinding = ActivityPlayerQueueControlBinding.inflate(getLayoutInflater());
         setContentView(queueControlBinding.getRoot());
@@ -278,49 +276,6 @@ public final class PlayQueueActivity extends AppCompatActivity
         queueControlBinding.controlShuffle.setOnClickListener(this);
     }
 
-    private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
-        final PopupMenu popupMenu = new PopupMenu(this, view);
-        final MenuItem remove = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 0,
-                Menu.NONE, R.string.play_queue_remove);
-        remove.setOnMenuItemClickListener(menuItem -> {
-            if (player == null) {
-                return false;
-            }
-
-            final int index = player.getPlayQueue().indexOf(item);
-            if (index != -1) {
-                player.getPlayQueue().remove(index);
-            }
-            return true;
-        });
-
-        final MenuItem detail = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 1,
-                Menu.NONE, R.string.play_queue_stream_detail);
-        detail.setOnMenuItemClickListener(menuItem -> {
-            // playQueue is null since we don't want any queue change
-            NavigationHelper.openVideoDetail(this, item.getServiceId(), item.getUrl(),
-                    item.getTitle(), null, false);
-            return true;
-        });
-
-        final MenuItem append = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 2,
-                Menu.NONE, R.string.append_playlist);
-        append.setOnMenuItemClickListener(menuItem -> {
-            openPlaylistAppendDialog(Collections.singletonList(item));
-            return true;
-        });
-
-        final MenuItem share = popupMenu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 3,
-                Menu.NONE, R.string.share);
-        share.setOnMenuItemClickListener(menuItem -> {
-            shareText(getApplicationContext(), item.getTitle(), item.getUrl(),
-                    item.getThumbnailUrl());
-            return true;
-        });
-
-        popupMenu.show();
-    }
-
     ////////////////////////////////////////////////////////////////////////////
     // Component Helpers
     ////////////////////////////////////////////////////////////////////////////
@@ -368,13 +323,9 @@ public final class PlayQueueActivity extends AppCompatActivity
 
             @Override
             public void held(final PlayQueueItem item, final View view) {
-                if (player == null) {
-                    return;
-                }
-
-                final int index = player.getPlayQueue().indexOf(item);
-                if (index != -1) {
-                    buildItemPopupMenu(item, view);
+                if (player != null && player.getPlayQueue().indexOf(item) != -1) {
+                    openPopupMenu(player.getPlayQueue(), item, view, false,
+                            getSupportFragmentManager(), PlayQueueActivity.this);
                 }
             }
 

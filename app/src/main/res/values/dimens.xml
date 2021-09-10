@@ -19,8 +19,6 @@
     <dimen name="video_item_search_duration_text_size">11sp</dimen>
     <dimen name="video_item_search_uploader_text_size">11sp</dimen>
     <dimen name="video_item_search_upload_date_text_size">12sp</dimen>
-    <dimen name="header_footer_text_size">16sp</dimen>
-    <dimen name="item_in_history_indicator_text_size">12sp</dimen>
     <!-- Elements Size -->
     <!-- 16 / 9 ratio-->
     <dimen name="video_item_search_thumbnail_image_width">124dp</dimen>
@@ -38,8 +36,6 @@
     <dimen name="video_item_search_duration_vertical_padding">1sp</dimen>
     <dimen name="video_item_search_duration_horizontal_padding">5sp</dimen>
     <dimen name="video_item_search_duration_margin">2dp</dimen>
-    <dimen name="video_item_detail_description_to_details_margin">4dp</dimen>
-    <dimen name="software_component_item_padding">8dp</dimen>
     <dimen name="channel_item_grid_padding">12dp</dimen>
     <dimen name="comments_horizontal_padding">16dp</dimen>
     <dimen name="comments_vertical_padding">12dp</dimen>
@@ -53,8 +49,6 @@
     <dimen name="player_main_buttons_min_width">40dp</dimen>
     <dimen name="player_notification_thumbnail_width">200dp</dimen>
 
-    <dimen name="item_in_history_indicator_vertical_margin">2dp</dimen>
-    <dimen name="item_in_history_indicator_horizontal_margin">8dp</dimen>
     <!-- Miscellaneous -->
     <dimen name="popup_default_width">180dp</dimen>
     <dimen name="popup_minimum_width">150dp</dimen>
@@ -73,7 +67,6 @@
     <dimen name="video_item_detail_sub_channel_text_size">14sp</dimen>
     <dimen name="video_item_detail_upload_date_text_size">13sp</dimen>
     <dimen name="video_item_detail_description_text_size">13sp</dimen>
-    <dimen name="video_item_detail_next_text_size">15sp</dimen>
     <dimen name="channel_subscribers_text_size">12sp</dimen>
     <dimen name="channel_rss_title_size">12sp</dimen>
     <!-- Elements Size -->
@@ -99,10 +92,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
 
-    <dimen name="app_bar_height">180dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
-
     <!-- Channel View Dimensions-->
     <!-- Paddings & Margins -->
     <dimen name="channel_item_description_to_details_margin">4dp</dimen>
@@ -112,7 +101,6 @@
     <dimen name="playlist_ctrl_height">50dp</dimen>
     <dimen name="playlist_ctrl_separator_margin">10dp</dimen>
     <!-- Text Size -->
-    <dimen name="playlist_item_title_text_size">14sp</dimen>
     <dimen name="playlist_detail_title_text_size">16sp</dimen>
     <dimen name="playlist_detail_subtext_size">12sp</dimen>
     <!-- Elements Size -->
@@ -124,7 +112,6 @@
     <dimen name="play_queue_thumbnail_height">35dp</dimen>
 
     <!-- Kiosk view Dimensions-->
-    <dimen name="kiosk_title_text_size">30sp</dimen>
 
     <!-- File picker dimensions -->
     <dimen name="file_picker_items_text_size">14sp</dimen>

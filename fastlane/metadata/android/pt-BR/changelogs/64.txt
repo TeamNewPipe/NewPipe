@@ -1,0 +1,8 @@
+### Melhorias
+- Adicionada a capacidade de limitar a qualidade do vídeo ao usar dados móveis. # 1339
+- Lembra-se do brilho da sessão # 1442
+- Melhora o desempenho de download em CPUs mais fracas # 1431
+- Adiciona suporte (funcionando) à sessão de mídia # 1433
+
+### Correção
+- Corrige falha ao iniciar downloads (correção agora disponível em versões de lançamento) # 1441

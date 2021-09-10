@@ -1,0 +1,16 @@
+Nuevo
+• Muestra una miniatura mientras se busca
+• Detecta comentarios desactivados
+• Permite marcar un elemento del feed como visto
+• Muestra comentarios encorazonados
+
+Mejorado
+• Metadatos y diseño de etiquetas
+• Aplica color de servicio a componentes de la IU
+
+Corregido
+• Miniaturas en el mini player
+• Buffering infinito en elementos duplicados de la lista de espera
+• Correcciones del reproductor como la rotación y el cerrado
+• Cargado de ReCAPTCHA en segundo plano
+• Y otras correcciones más
