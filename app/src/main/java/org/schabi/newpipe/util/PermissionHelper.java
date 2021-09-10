@@ -119,7 +119,7 @@ public final class PermissionHelper {
 
     public static boolean isPopupEnabled(final Context context) {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-                || PermissionHelper.checkSystemAlertWindowPermission(context);
+                || checkSystemAlertWindowPermission(context);
     }
 
     public static void showPopupEnablementToast(final Context context) {
