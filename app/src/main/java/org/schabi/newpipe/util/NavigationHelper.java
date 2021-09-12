@@ -108,8 +108,8 @@ public final class NavigationHelper {
 
     @NonNull
     public static <T> Intent getPlayerEnqueueNextIntent(@NonNull final Context context,
-                                                 @NonNull final Class<T> targetClazz,
-                                                 @Nullable final PlayQueue playQueue) {
+                                                        @NonNull final Class<T> targetClazz,
+                                                        @Nullable final PlayQueue playQueue) {
         return getPlayerIntent(context, targetClazz, playQueue)
                 .putExtra(Player.ENQUEUE_NEXT, true);
     }
