@@ -609,15 +609,13 @@ public final class Player implements
         }
 
         // Resolve enqueue intents
-        if (intent.getBooleanExtra(ENQUEUE, false)
-                && playQueue != null) {
+        if (intent.getBooleanExtra(ENQUEUE, false) && playQueue != null) {
             playQueue.append(newQueue.getStreams());
 
             return;
 
         // Resolve enqueue next intents
-        } else if (intent.getBooleanExtra(ENQUEUE_NEXT, false)
-                && playQueue != null) {
+        } else if (intent.getBooleanExtra(ENQUEUE_NEXT, false) && playQueue != null) {
             final int currentIndex = playQueue.getIndex();
             playQueue.append(newQueue.getStreams());
             playQueue.move(playQueue.size() - 1, currentIndex + 1);
