@@ -32,6 +32,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
@@ -151,7 +152,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                     !recyclerView.canScrollVertically(-1)
                 ) {
 
-                    if (feedBinding.newItemsLoadedButton.isVisible) {
+                    if (tryGetNewItemsLoadedButton()?.isVisible == true) {
                         hideNewItemsLoaded(true)
                     }
                 }
@@ -264,6 +265,9 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     }
 
     override fun onDestroyView() {
+        // Ensure that all animations are canceled
+        feedBinding.newItemsLoadedButton?.clearAnimation()
+
         feedBinding.itemsList.adapter = null
         _feedBinding = null
         super.onDestroyView()
@@ -619,9 +623,9 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     }
 
     private fun showNewItemsLoaded() {
-        feedBinding.newItemsLoadedButton.clearAnimation()
-        feedBinding.newItemsLoadedButton
-            .slideUp(
+        tryGetNewItemsLoadedButton()?.clearAnimation()
+        tryGetNewItemsLoadedButton()
+            ?.slideUp(
                 250L,
                 delay = 100,
                 execOnEnd = {
@@ -636,21 +640,30 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     }
 
     private fun hideNewItemsLoaded(animate: Boolean, delay: Long = 0) {
-        feedBinding.newItemsLoadedButton.clearAnimation()
+        tryGetNewItemsLoadedButton()?.clearAnimation()
         if (animate) {
-            feedBinding.newItemsLoadedButton.animate(
+            tryGetNewItemsLoadedButton()?.animate(
                 false,
                 200,
                 delay = delay,
                 execOnEnd = {
                     // Make the layout invisible so that the onScroll toTop method
                     // only does necessary work
-                    feedBinding?.newItemsLoadedButton?.isVisible = false
+                    tryGetNewItemsLoadedButton()?.isVisible = false
                 }
             )
         } else {
-            feedBinding.newItemsLoadedButton.isVisible = false
+            tryGetNewItemsLoadedButton()?.isVisible = false
         }
+    }
+
+    /**
+     * The view/button can be disposed/set to null under certain circumstances.
+     * E.g. when the animation is still in progress but the view got destroyed.
+     * This method is a helper for such states and can be used in affected code blocks.
+     */
+    private fun tryGetNewItemsLoadedButton(): Button? {
+        return _feedBinding?.newItemsLoadedButton
     }
 
     // /////////////////////////////////////////////////////////////////////////
