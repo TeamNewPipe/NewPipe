@@ -151,10 +151,10 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         if (PlayerHolder.getInstance().isPlayerOpen()) {
             entries.add(StreamDialogEntry.enqueue);
-        }
 
-        if (PlayerHolder.getInstance().getQueueSize() > 1) {
-            entries.add(StreamDialogEntry.next);
+            if (PlayerHolder.getInstance().getQueueSize() > 1) {
+                entries.add(StreamDialogEntry.next);
+            }
         }
 
         if (item.getStreamType() == StreamType.AUDIO_STREAM) {
