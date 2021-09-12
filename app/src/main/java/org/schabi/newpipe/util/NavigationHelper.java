@@ -334,7 +334,7 @@ public final class NavigationHelper {
 
         final boolean autoPlay;
         @Nullable final MainPlayer.PlayerType playerType = PlayerHolder.getInstance().getType();
-        if (PlayerHolder.getInstance().isPlayerOpen()) {
+        if (!PlayerHolder.getInstance().isPlayerOpen()) {
             // no player open
             autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);
         } else if (switchingPlayers) {
