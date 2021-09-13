@@ -389,14 +389,15 @@
     <string name="clear_queue_confirmation_title">Prieš išvalant eilę prašyti patvirtinimo</string>
     <string name="seek_duration_title">Greito prasukimo trukmė</string>
     <string name="use_inexact_seek_summary">Netikslus prasukimas leidžia grotuvui greitai peršokti į kitą vietą su sumažintu tikslumu. 5, 15 ar 25 sekundės to nenaudoja</string>
-    <string name="import_youtube_instructions">Importuokite \"YouTube\" prenumeratas iš \"Google Takeout\":
+    <string name="import_youtube_instructions">Importuokite „YouTube“ prenumeratas iš „Google Takeout“:
 \n
 \n1. Eikite į šį URL adresą: %1$s
 \n2. Prisijunkite, kai būsite paprašyti
-\n3. Spustelėkite \"All data included\" (įtraukti visus duomenis), tada \"Deselect all\" (panaikinti visų duomenų pasirinkimą), tada pasirinkite tik \"Subscriptions\" (prenumeratos) ir spustelėkite \"OK\" (gerai).
-\n4. Spustelėkite \"Next step\" (kitas žingsnis), tada \"Create export\" (sukurti eksportą).
-\n5. Pasirodžius mygtukui \"Download\" (Atsisiųsti), spustelėkite jį ir
-\n6. Iš atsisiųsto išėmimo zip išskleiskite .json failą (paprastai po \"YouTube and YouTube Music/subscriptions/subscriptions.json\") ir importuokite jį čia.</string>
+\n3. Spustelėkite „All data included“ (įtraukti visus duomenis), tada „Deselect all“ (panaikinti visų duomenų pasirinkimą), tada pasirinkite tik „Subscriptions“ (prenumeratos) ir spustelėkite „OK“ (gerai).
+\n4. Spustelėkite „Next step“ (kitas žingsnis), tada „Create export“ (sukurti eksportą).
+\n5. Pasirodžius mygtukui „Download“ (Atsisiųsti), spustelėkite jį ir
+\n6. Spustelėkite toliau Importuoti failą ir pasirinkite atsisiųstą ZIP failą
+\n7. [Jei nepavyksta importuoti ZIP failo] Ištraukite .csv failą (paprastai po „YouTube and YouTube Music/subscriptions/subscriptions.json“), spustelėkite toliau esantį Importuoti failą ir pasirinkite išgautą CSV failą</string>
     <string name="app_license">\"NewPipe\" yra \"copyleft libre\" programinė įranga: galite ją naudoti, studijuoti, dalytis ja ir tobulinti savo nuožiūra. Konkrečiai, galite ją platinti ir (arba) keisti pagal GNU bendrosios viešosios licencijos, kurią paskelbė Laisvosios programinės įrangos fondas, 3 licencijos versiją arba (savo nuožiūra) bet kurią vėlesnę versiją, sąlygas.</string>
     <string name="import_soundcloud_instructions">Importuokite \"SoundCloud\" profilį įvesdami URL arba savo ID:
 \n
@@ -676,4 +677,6 @@
         <item quantity="other">%s atsiuntimų baigta</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Perbraukite elementus, kad juos pašalintumėte</string>
+    <string name="start_main_player_fullscreen_summary">Nepradėti vaizdo įrašų naudojant mini grotuvą, o iškart įjungti viso ekrano režimą, jei automatinis pasukimas yra užrakintas. Vis tiek galėsite pasiekti mini grotuvą išėję iš viso ekrano rėžimo</string>
+    <string name="start_main_player_fullscreen_title">Paleisti pagrindinį grotuvą viso ekrano režimu</string>
 </resources>

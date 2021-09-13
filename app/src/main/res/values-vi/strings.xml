@@ -651,4 +651,7 @@
     <plurals name="download_finished_notification">
         <item quantity="other">%s lượt tải xuống đã hoàn tất</item>
     </plurals>
+    <string name="main_page_content_swipe_remove">Vuốt các mục để xóa chúng</string>
+    <string name="start_main_player_fullscreen_summary">Không bắt đầu video ở trình phát mini, mà chuyển trực tiếp thành chế độ toàn màn hình, nếu tự động xoay bị khóa. Bạn vẫn có thể truy cập trình phát mini bằng cách thoát khỏi toàn màn hình</string>
+    <string name="start_main_player_fullscreen_title">Khởi động trình phát chính ở toàn màn hình</string>
 </resources>

@@ -665,4 +665,6 @@
         <item quantity="other">%s iscarrigamentos acabados</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Trìsina sos elementos pro los bogare</string>
+    <string name="start_main_player_fullscreen_summary">Si sa rotatzione automàtica est blocada no avies sos vìdeos in su riproduidore mini ma diretamente in sa modalidade a ischermu intreu. Podes atzèdere su matessi a su riproduidore mini essende dae s\'ischermu intreu</string>
+    <string name="start_main_player_fullscreen_title">Allughe su letore printzipale a ischermu intreu</string>
 </resources>

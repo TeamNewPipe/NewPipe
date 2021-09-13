@@ -260,7 +260,7 @@
     <string name="download_thumbnail_summary">Wyłącz, aby nie wczytywać miniatur, oszczędzając dane i zużycie pamięci. Zmiana tej opcji czyści pamięć podręczną obrazów</string>
     <string name="thumbnail_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną miniatur</string>
     <string name="metadata_cache_wipe_title">Wyczyść pamięć podręczną metadanych</string>
-    <string name="metadata_cache_wipe_summary">Wyczyść pamięć podręczną stron</string>
+    <string name="metadata_cache_wipe_summary">Usuwa całą pamięć podręczną stron</string>
     <string name="metadata_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną metadanych</string>
     <string name="auto_queue_title">Automatyczne kolejkowanie następnego strumienia</string>
     <string name="auto_queue_summary">Gdy kończy się kolejka odtwarzania, dodaj do niej kolejną powiązaną pozycję</string>
@@ -625,7 +625,7 @@
     <string name="show_channel_details">Pokaż szczegóły kanału</string>
     <string name="disable_media_tunneling_summary">Wyłącz tunelowanie multimediów, jeśli zaobserwowałeś czarny ekran bądź brak płynności odtwarzania wideo</string>
     <string name="disable_media_tunneling_title">Wyłącz tunelowanie multimediów</string>
-    <string name="metadata_age_limit">Ograniczenie wieku</string>
+    <string name="metadata_age_limit">Ograniczenie wiekowe</string>
     <string name="description_select_disable">Wyłącz zaznaczanie tekstu w opisie</string>
     <string name="description_select_enable">Włącz zaznaczanie tekstu w opisie</string>
     <string name="metadata_privacy_internal">Wewnętrzny</string>

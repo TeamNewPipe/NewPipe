@@ -10,7 +10,7 @@
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="share">Compartillar</string>
     <string name="download">Descarregar</string>
-    <string name="controls_download_desc">Descargar o ficheiro de transmisión</string>
+    <string name="controls_download_desc">Descargar o ficheiro de emisión</string>
     <string name="search">Procurar</string>
     <string name="settings">Opcións</string>
     <string name="did_you_mean">Non querería dicir \"%1$s\"\?</string>
