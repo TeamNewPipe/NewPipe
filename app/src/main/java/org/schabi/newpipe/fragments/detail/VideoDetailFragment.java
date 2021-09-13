@@ -545,14 +545,10 @@ public final class VideoDetailFragment
 
         switch (v.getId()) {
             case R.id.detail_controls_background:
-                if (PlayerHolder.getInstance().isPlayerOpen()) {
                     openBackgroundPlayer(true);
-                }
                 break;
             case R.id.detail_controls_popup:
-                if (PlayerHolder.getInstance().isPlayerOpen()) {
                     openPopupPlayer(true);
-                }
                 break;
             case R.id.detail_controls_download:
                 NavigationHelper.openDownloads(activity);
