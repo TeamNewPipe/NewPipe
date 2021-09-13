@@ -653,4 +653,6 @@
         <item quantity="other">%s 下載已完成</item>
     </plurals>
     <string name="main_page_content_swipe_remove">滑動項目以刪除它們</string>
+    <string name="start_main_player_fullscreen_summary">如果自動旋轉被鎖定，請不要在迷你播放器中啟動影片，而是直接切換到全螢幕模式。您仍然可以透過結束全螢幕存取迷你播放器</string>
+    <string name="start_main_player_fullscreen_title">以全螢幕開始主播放器</string>
 </resources>

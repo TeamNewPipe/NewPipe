@@ -1,0 +1,10 @@
+• Dodano opcję bezpośr. otw. odtw. na pełnym ekranie
+• Umożl. wybór typów sugestii wyszukiw. do wyświetl.
+• Ciemniejszy ciemny motyw + dodano ciemny ekran powitalny
+• Ulepsz. selektor plików do wyszarzania niechcianych plików
+• Napraw. import. subskrypcji YouTube
+• Ponowne odtw. strumienia wymaga ponownego dotknięcia przycisku odtw.
+• Napraw. zamykanie sesji audio
+• [Android TV] Napraw. długie przeskoki paska wyszukiw. przy korzystaniu z DPada
+
+Reszta zmian w dzienniku zmian w linkach poniżej.
