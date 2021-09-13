@@ -174,7 +174,7 @@ public final class NavigationHelper {
     public static void enqueueOnPlayer(final Context context, final PlayQueue queue) {
         PlayerType playerType = PlayerHolder.getInstance().getType();
         if (!PlayerHolder.getInstance().isPlayerOpen()) {
-            Log.e(TAG, "Enqueueing when no player is open; defaulting to background player");
+            Log.e(TAG, "Enqueueing but no player is open; defaulting to background player");
             playerType = MainPlayer.PlayerType.AUDIO;
         }
 
@@ -185,7 +185,7 @@ public final class NavigationHelper {
     public static void enqueueNextOnPlayer(final Context context, final PlayQueue queue) {
         PlayerType playerType = PlayerHolder.getInstance().getType();
         if (!PlayerHolder.getInstance().isPlayerOpen()) {
-            Log.e(TAG, "Enqueueing next when no player is open; defaulting to background player");
+            Log.e(TAG, "Enqueueing next but no player is open; defaulting to background player");
             playerType = MainPlayer.PlayerType.AUDIO;
         }
         Toast.makeText(context, R.string.enqueued_next, Toast.LENGTH_SHORT).show();
