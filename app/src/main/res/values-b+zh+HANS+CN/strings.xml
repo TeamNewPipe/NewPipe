@@ -650,7 +650,7 @@
         <item quantity="other">删除了 %1$s 个下载</item>
     </plurals>
     <plurals name="download_finished_notification">
-        <item quantity="other">完成了 %s 个下载</item
+        <item quantity="other">完成了 %s 个下载</item>
     </plurals>
     <string name="main_page_content_swipe_remove">滑动项目以删除它们</string>
     <string name="start_main_player_fullscreen_summary">若自动旋转被锁定，不在以小窗播放器形式中播放视频，而直接切换到全屏模式。仍可以通过退出全屏以切换至小窗播放器</string>
