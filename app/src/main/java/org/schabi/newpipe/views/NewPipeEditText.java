@@ -11,7 +11,16 @@ import androidx.appcompat.widget.AppCompatEditText;
 
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
+/**
+ * An {@link AppCompatEditText} which uses {@link ShareUtils#shareText(Context, String, String)}
+ * when sharing selected text by using the {@code Share} command of the floating actions.
+ * <p>
+ * This allows NewPipe to show Android share sheet instead of EMUI share sheet when sharing text
+ * from {@link AppCompatEditText} on EMUI devices.
+ * </p>
+ */
 public class NewPipeEditText extends AppCompatEditText {
+
     public NewPipeEditText(@NonNull final Context context) {
         super(context);
     }
