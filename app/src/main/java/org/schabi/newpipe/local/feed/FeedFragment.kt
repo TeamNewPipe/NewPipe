@@ -326,13 +326,14 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         if (context == null || context.resources == null || activity == null) return
 
         val entries = ArrayList<StreamDialogEntry>()
-        if (PlayerHolder.getInstance().isPlayerOpen()) {
+        if (PlayerHolder.getInstance().isPlayerOpen) {
             entries.add(StreamDialogEntry.enqueue)
 
-            if (PlayerHolder.getInstance().getQueueSize() > 1) {
+            if (PlayerHolder.getInstance().queueSize > 1) {
                 entries.add(StreamDialogEntry.enqueue_next)
             }
         }
+
         if (item.streamType == StreamType.AUDIO_STREAM) {
             entries.addAll(
                 listOf(
