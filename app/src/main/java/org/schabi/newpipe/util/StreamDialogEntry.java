@@ -39,7 +39,7 @@ public enum StreamDialogEntry {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(result -> {
-                        NewPipeDatabase.getInstance(fragment.getContext()).streamDAO()
+                        NewPipeDatabase.getInstance(fragment.requireContext()).streamDAO()
                                 .setUploaderUrl(serviceId, url, result.getUploaderUrl())
                                 .subscribeOn(Schedulers.io()).subscribe();
                         openChannelFragment(fragment, item, result.getUploaderUrl());
@@ -60,13 +60,11 @@ public enum StreamDialogEntry {
      * Info: Add this entry within showStreamDialog.
      */
     enqueue(R.string.enqueue_stream, (fragment, item) -> {
-        NavigationHelper.enqueueOnPlayer(fragment.getContext(),
-                new SinglePlayQueue(item));
+        NavigationHelper.enqueueOnPlayer(fragment.getContext(), new SinglePlayQueue(item));
     }),
 
-    next(R.string.enqueue_next_stream, (fragment, item) -> {
-        NavigationHelper.enqueueNextOnPlayer(fragment.getContext(),
-                new SinglePlayQueue(item));
+    enqueue_next(R.string.enqueue_next_stream, (fragment, item) -> {
+        NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), new SinglePlayQueue(item));
     }),
 
     start_here_on_background(R.string.start_here_on_background, (fragment, item) ->
@@ -99,16 +97,16 @@ public enum StreamDialogEntry {
         try {
             NavigationHelper.playWithKore(fragment.requireContext(), videoUrl);
         } catch (final Exception e) {
-            KoreUtils.showInstallKoreDialog(fragment.getActivity());
+            KoreUtils.showInstallKoreDialog(fragment.requireActivity());
         }
     }),
 
     share(R.string.share, (fragment, item) ->
-            ShareUtils.shareText(fragment.getContext(), item.getName(), item.getUrl(),
+            ShareUtils.shareText(fragment.requireContext(), item.getName(), item.getUrl(),
                     item.getThumbnailUrl())),
 
     open_in_browser(R.string.open_in_browser, (fragment, item) ->
-            ShareUtils.openUrlInBrowser(fragment.getContext(), item.getUrl())),
+            ShareUtils.openUrlInBrowser(fragment.requireContext(), item.getUrl())),
 
 
     mark_as_watched(R.string.mark_as_watched, (fragment, item) -> {

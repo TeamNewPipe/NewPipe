@@ -153,7 +153,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
             entries.add(StreamDialogEntry.enqueue);
 
             if (PlayerHolder.getInstance().getQueueSize() > 1) {
-                entries.add(StreamDialogEntry.next);
+                entries.add(StreamDialogEntry.enqueue_next);
             }
         }
 

@@ -342,9 +342,10 @@ public class StatisticsPlaylistFragment
             entries.add(StreamDialogEntry.enqueue);
 
             if (PlayerHolder.getInstance().getQueueSize() > 1) {
-                entries.add(StreamDialogEntry.next);
+                entries.add(StreamDialogEntry.enqueue_next);
             }
         }
+
         if (infoItem.getStreamType() == StreamType.AUDIO_STREAM) {
             entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,

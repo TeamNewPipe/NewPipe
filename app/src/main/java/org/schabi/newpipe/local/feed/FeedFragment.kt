@@ -330,7 +330,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             entries.add(StreamDialogEntry.enqueue)
 
             if (PlayerHolder.getInstance().getQueueSize() > 1) {
-                entries.add(StreamDialogEntry.next)
+                entries.add(StreamDialogEntry.enqueue_next)
             }
         }
         if (item.streamType == StreamType.AUDIO_STREAM) {
