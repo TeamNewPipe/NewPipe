@@ -70,6 +70,10 @@ public final class PlayerHolder {
         return player != null;
     }
 
+    public int getQueueSize() {
+        return isPlayerOpen() ? player.getPlayQueue().size() : 0;
+    }
+
     public void setListener(@Nullable final PlayerServiceExtendedEventListener newListener) {
         listener = newListener;
 

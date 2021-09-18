@@ -226,10 +226,10 @@ public final class Player implements
     public static final String REPEAT_MODE = "repeat_mode";
     public static final String PLAYBACK_QUALITY = "playback_quality";
     public static final String PLAY_QUEUE_KEY = "play_queue_key";
-    public static final String APPEND_ONLY = "append_only";
+    public static final String ENQUEUE = "enqueue";
+    public static final String ENQUEUE_NEXT = "enqueue_next";
     public static final String RESUME_PLAYBACK = "resume_playback";
     public static final String PLAY_WHEN_READY = "play_when_ready";
-    public static final String SELECT_ON_APPEND = "select_on_append";
     public static final String PLAYER_TYPE = "player_type";
     public static final String IS_MUTED = "is_muted";
 
@@ -608,15 +608,17 @@ public final class Player implements
             setPlaybackQuality(intent.getStringExtra(PLAYBACK_QUALITY));
         }
 
-        // Resolve append intents
-        if (intent.getBooleanExtra(APPEND_ONLY, false) && playQueue != null) {
-            final int sizeBeforeAppend = playQueue.size();
+        // Resolve enqueue intents
+        if (intent.getBooleanExtra(ENQUEUE, false) && playQueue != null) {
             playQueue.append(newQueue.getStreams());
 
-            if ((intent.getBooleanExtra(SELECT_ON_APPEND, false)
-                    || currentState == STATE_COMPLETED) && newQueue.getStreams().size() > 0) {
-                playQueue.setIndex(sizeBeforeAppend);
-            }
+            return;
+
+        // Resolve enqueue next intents
+        } else if (intent.getBooleanExtra(ENQUEUE_NEXT, false) && playQueue != null) {
+            final int currentIndex = playQueue.getIndex();
+            playQueue.append(newQueue.getStreams());
+            playQueue.move(playQueue.size() - 1, currentIndex + 1);
 
             return;
         }
