@@ -37,11 +37,11 @@ public class NewPipeTextView extends AppCompatTextView {
 
     @Override
     public boolean onTextContextMenuItem(final int id) {
-        final CharSequence text = getText();
         if (id == android.R.id.shareText) {
-            final String selectedText = getSelectedText(text).toString();
-            if (!selectedText.isEmpty()) {
-                ShareUtils.shareText(getContext(), "", selectedText);
+            final CharSequence text = getText();
+            final CharSequence selectedText = getSelectedText(text);
+            if (selectedText != null && selectedText.length() != 0) {
+                ShareUtils.shareText(getContext(), "", selectedText.toString());
             }
             final Spannable spannable = (text instanceof Spannable) ? (Spannable) text : null;
             Selection.setSelection(spannable, getSelectionEnd());
@@ -51,18 +51,15 @@ public class NewPipeTextView extends AppCompatTextView {
         }
     }
 
-    @NonNull
-    private CharSequence getSelectedText(@NonNull final CharSequence charSequence) {
-        int min = 0;
-        int max = charSequence.length();
-
-        if (isFocused()) {
-            final int selStart = getSelectionStart();
-            final int selEnd = getSelectionEnd();
-
-            min = Math.max(0, Math.min(selStart, selEnd));
-            max = Math.max(0, Math.max(selStart, selEnd));
+    @Nullable
+    private CharSequence getSelectedText(@Nullable final CharSequence text) {
+        if (!hasSelection() || text == null) {
+            return null;
         }
-        return charSequence.subSequence(min, max);
+
+        final int start = getSelectionStart();
+        final int end = getSelectionEnd();
+        return String.valueOf(start > end ? text.subSequence(end, start)
+                : text.subSequence(start, end));
     }
 }
