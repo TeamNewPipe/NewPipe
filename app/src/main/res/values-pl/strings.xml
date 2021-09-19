@@ -686,4 +686,6 @@
     <string name="main_page_content_swipe_remove">Przesuń w bok elementy, aby je usunąć</string>
     <string name="start_main_player_fullscreen_summary">Nie uruchamiaj wideo w miniodtwarzaczu, ale przełączaj się bezpośrednio na tryb pełnoekranowy, jeśli automatyczne obracanie jest zablokowane. Nadal możesz uzyskać dostęp do miniodtwarzacza, wychodząc z trybu pełnoekranowego</string>
     <string name="start_main_player_fullscreen_title">Uruchamiaj główny odtwarzacz w trybie pełnoekranowym</string>
+    <string name="enqueued_next">Dodano do kolejki (następny)</string>
+    <string name="enqueue_next_stream">Dodaj do kolejki (następny)</string>
 </resources>

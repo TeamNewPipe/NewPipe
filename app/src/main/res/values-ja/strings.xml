@@ -652,4 +652,6 @@
     <plurals name="download_finished_notification">
         <item quantity="other">%s つのダウンロードが完了しました</item>
     </plurals>
+    <string name="show_image_indicators_summary">ピカソは、画像の上に、画像の出所を識別する色彩記章を表示します: 赤はネットワーク、青はディスク、緑はメモリ</string>
+    <string name="show_image_indicators_title">画像に標識を表示</string>
 </resources>

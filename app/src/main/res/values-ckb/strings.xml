@@ -469,7 +469,7 @@
 \n2. بچۆرەژوورەوە گەر داوای‌ کرد
 \n3. كرته‌ بكه‌ له‌ \"All data included\"، پاشان كرته‌ بكه‌ له‌ \"Deselect all\" ، پاشان ته‌نیا \"subscriptions\" هه‌ڵبژێره‌ پاشان كرته‌ له‌ \"OK\" بكه‌
 \n4. كرته‌ بكه‌ له‌ \"Next step\" و دواتر له‌ \"Create export\"
-\n5. كرته‌ بكه‌ له‌ \"Download\" پاشان
+\n5. كرته‌ بكه‌ له‌ \"Download\" دوای دەرکەوتنی
 \n6. له‌ فایلی دابه‌زێنراودا فایلی .json ئێكستراكت بكه‌ و لێره‌دا هاورده‌ی بكه‌.</string>
     <string name="systems_language">به‌پێی سیستەم</string>
     <string name="network_error">کێشە لە هێڵەکەتدا هەیە</string>
@@ -654,4 +654,16 @@
     <string name="remote_search_suggestions">پێشنیازکراوەکانی گەڕانی ڕیمۆت</string>
     <string name="local_search_suggestions">پێشنیازکراوەکانی گەڕانی نێوخۆیی</string>
     <string name="mark_as_watched">دیارکردن وەک بینراو</string>
+    <string name="show_hold_to_append_summary">پیشاندانی ڕێنمایی لەکاتی کرتە کردن لە پاشبنەما یاخود دوگمەی پەنجەرە لە \"وردەکارییەکان\" ی ڤیدیۆکە.</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s دابەزێنراو سڕایەوە</item>
+        <item quantity="other">%1$s دابەزێنراو سڕانەوە</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">دابەزاندن تەواوبوو</item>
+        <item quantity="other">%s دابەزاندن تەواوبوون</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">لادانی بابەتەکان بە سواندنیان</string>
+    <string name="start_main_player_fullscreen_summary">لە حاڵەتێکدا کە لاربوونەوە ناکارا کرابوو ، ئەوا لەجیاتی لێدانی ڤیدیۆکان لە لێدەرێکی بچووکدا ، ڕاستەوخۆ ڤیدیۆکان لە دۆخی پڕ بە ڕوونمادا لێبدرێن. دەتوانیت بە دەرچوونت لەسەر ڤیدیۆکە بەردەوام بیت لەسەر لێدەرێکی بچووک</string>
+    <string name="start_main_player_fullscreen_title">دەستپێکردنی لێدەری سەرەکی لە ڕوونماپڕ</string>
 </resources>
