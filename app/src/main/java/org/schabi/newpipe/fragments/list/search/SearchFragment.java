@@ -215,6 +215,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @Override
     public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
+        searchBinding = FragmentSearchBinding.bind(rootView);
         super.onViewCreated(rootView, savedInstanceState);
         showSearchOnStart();
         initSearchListeners();
@@ -341,7 +342,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-        searchBinding = FragmentSearchBinding.bind(rootView);
 
         searchBinding.suggestionsList.setAdapter(suggestionListAdapter);
         new ItemTouchHelper(new ItemTouchHelper.Callback() {
@@ -807,18 +807,21 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(listNotification -> {
-                    if (listNotification.isOnNext()) {
-                        if (listNotification.getValue() != null) {
-                            handleSuggestions(listNotification.getValue());
-                        }
-                    } else if (listNotification.isOnError()
-                            && listNotification.getError() != null
-                            && !ExceptionUtils.isInterruptedCaused(listNotification.getError())) {
-                        showSnackBarError(new ErrorInfo(listNotification.getError(),
-                                UserAction.GET_SUGGESTIONS, searchString, serviceId));
-                    }
-                });
+                .subscribe(
+                        listNotification -> {
+                            if (listNotification.isOnNext()) {
+                                if (listNotification.getValue() != null) {
+                                    handleSuggestions(listNotification.getValue());
+                                }
+                            } else if (listNotification.isOnError()
+                                    && listNotification.getError() != null
+                                    && !ExceptionUtils.isInterruptedCaused(
+                                            listNotification.getError())) {
+                                showSnackBarError(new ErrorInfo(listNotification.getError(),
+                                        UserAction.GET_SUGGESTIONS, searchString, serviceId));
+                            }
+                        }, throwable -> showSnackBarError(new ErrorInfo(
+                            throwable, UserAction.GET_SUGGESTIONS, searchString, serviceId)));
     }
 
     @Override

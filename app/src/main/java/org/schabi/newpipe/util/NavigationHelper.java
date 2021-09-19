@@ -60,6 +60,8 @@ import java.util.ArrayList;
 
 import static org.schabi.newpipe.util.external_communication.ShareUtils.installApp;
 
+import com.jakewharton.processphoenix.ProcessPhoenix;
+
 public final class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
     public static final String SEARCH_FRAGMENT_TAG = "search_fragment_tag";
@@ -348,7 +350,7 @@ public final class NavigationHelper {
             autoPlay = false;
         }
 
-        final RunnableWithVideoDetailFragment onVideoDetailFragmentReady = (detailFragment) -> {
+        final RunnableWithVideoDetailFragment onVideoDetailFragmentReady = detailFragment -> {
             expandMainPlayer(detailFragment.requireActivity());
             detailFragment.setAutoPlay(autoPlay);
             if (switchingPlayers) {
@@ -595,8 +597,7 @@ public final class NavigationHelper {
      */
     public static void restartApp(final Activity activity) {
         NewPipeDatabase.close();
-        activity.finishAffinity();
-        final Intent intent = new Intent(activity, MainActivity.class);
-        activity.startActivity(intent);
+
+        ProcessPhoenix.triggerRebirth(activity.getApplicationContext());
     }
 }
