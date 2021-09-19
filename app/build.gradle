@@ -4,7 +4,7 @@ plugins {
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'checkstyle'
 
@@ -17,8 +17,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 975
-        versionName "0.21.9"
+        versionCode 976
+        versionName "0.21.10"
 
         multiDexEnabled true
 
@@ -82,11 +82,6 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
-    }
-
-    // Required and used only by groupie
-    androidExtensions {
-        experimental = true
     }
 
     sourceSets {
@@ -165,7 +160,10 @@ task formatKtlint(type: JavaExec) {
 }
 
 afterEvaluate {
-    preDebugBuild.dependsOn formatKtlint, runCheckstyle, runKtlint
+    if (!System.properties.containsKey('skipFormatKtlint')) {
+        preDebugBuild.dependsOn formatKtlint
+    }
+    preDebugBuild.dependsOn runCheckstyle, runKtlint
 }
 
 sonarqube {
@@ -186,7 +184,7 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.21.9'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.21.10'
 
 /** Checkstyle **/
     checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
@@ -243,7 +241,8 @@ dependencies {
     // Circular ImageView
     implementation "de.hdodenhof:circleimageview:3.1.0"
     // Image loading
-    implementation "com.nostra13.universalimageloader:universal-image-loader:1.9.5"
+    //noinspection GradleDependency --> 2.8 is the last version, not 2.71828!
+    implementation "com.squareup.picasso:picasso:2.8"
 
     // Markdown library for Android
     implementation "io.noties.markwon:core:${markwonVersion}"
@@ -254,6 +253,9 @@ dependencies {
 
     // Crash reporting
     implementation "ch.acra:acra-core:5.7.0"
+
+    // Properly restarting
+    implementation 'com.jakewharton:process-phoenix:2.1.2'
 
     // Reactive extensions for Java VM
     implementation "io.reactivex.rxjava3:rxjava:3.0.7"

@@ -27,6 +27,7 @@ public class PlayQueueItem implements Serializable {
     private final String thumbnailUrl;
     @NonNull
     private final String uploader;
+    private final String uploaderUrl;
     @NonNull
     private final StreamType streamType;
 
@@ -37,7 +38,8 @@ public class PlayQueueItem implements Serializable {
 
     PlayQueueItem(@NonNull final StreamInfo info) {
         this(info.getName(), info.getUrl(), info.getServiceId(), info.getDuration(),
-                info.getThumbnailUrl(), info.getUploaderName(), info.getStreamType());
+                info.getThumbnailUrl(), info.getUploaderName(),
+                info.getUploaderUrl(), info.getStreamType());
 
         if (info.getStartPosition() > 0) {
             setRecoveryPosition(info.getStartPosition() * 1000);
@@ -46,19 +48,21 @@ public class PlayQueueItem implements Serializable {
 
     PlayQueueItem(@NonNull final StreamInfoItem item) {
         this(item.getName(), item.getUrl(), item.getServiceId(), item.getDuration(),
-                item.getThumbnailUrl(), item.getUploaderName(), item.getStreamType());
+                item.getThumbnailUrl(), item.getUploaderName(),
+                item.getUploaderUrl(), item.getStreamType());
     }
 
     private PlayQueueItem(@Nullable final String name, @Nullable final String url,
                           final int serviceId, final long duration,
                           @Nullable final String thumbnailUrl, @Nullable final String uploader,
-                          @NonNull final StreamType streamType) {
+                          final String uploaderUrl, @NonNull final StreamType streamType) {
         this.title = name != null ? name : EMPTY_STRING;
         this.url = url != null ? url : EMPTY_STRING;
         this.serviceId = serviceId;
         this.duration = duration;
         this.thumbnailUrl = thumbnailUrl != null ? thumbnailUrl : EMPTY_STRING;
         this.uploader = uploader != null ? uploader : EMPTY_STRING;
+        this.uploaderUrl = uploaderUrl;
         this.streamType = streamType;
 
         this.recoveryPosition = RECOVERY_UNSET;
@@ -90,6 +94,10 @@ public class PlayQueueItem implements Serializable {
     @NonNull
     public String getUploader() {
         return uploader;
+    }
+
+    public String getUploaderUrl() {
+        return uploaderUrl;
     }
 
     @NonNull

@@ -17,8 +17,6 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
@@ -29,6 +27,7 @@ import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.File;
@@ -50,7 +49,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private ContentSettingsManager manager;
 
     private String importExportDataPathKey;
-    private String thumbnailLoadToggleKey;
     private String youtubeRestrictedModeEnabledKey;
 
     private Localization initialSelectedLocalization;
@@ -69,7 +67,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         manager.deleteSettingsFile();
 
         importExportDataPathKey = getString(R.string.import_export_data_path);
-        thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
         youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
 
         addPreferencesFromResource(R.xml.content_settings);
@@ -77,7 +74,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         final Preference importDataPreference = requirePreference(R.string.import_data);
         importDataPreference.setOnPreferenceClickListener((Preference p) -> {
             requestImportPathLauncher.launch(
-                    StoredFileHelper.getPicker(requireContext(), getImportExportDataUri()));
+                    StoredFileHelper.getPicker(requireContext(),
+                            ZIP_MIME_TYPE, getImportExportDataUri()));
             return true;
         });
 
@@ -95,8 +93,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getPreferredLocalization(requireContext());
         initialSelectedContentCountry = org.schabi.newpipe.util.Localization
                 .getPreferredContentCountry(requireContext());
-        initialLanguage = PreferenceManager
-                .getDefaultSharedPreferences(requireContext()).getString("app_language_key", "en");
+        initialLanguage = defaultPreferences.getString(getString(R.string.app_language_key), "en");
 
         final Preference clearCookiePref = requirePreference(R.string.clear_cookie_key);
         clearCookiePref.setOnPreferenceClickListener(preference -> {
@@ -112,20 +109,24 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         if (defaultPreferences.getString(getString(R.string.recaptcha_cookies_key), "").isEmpty()) {
             clearCookiePref.setVisible(false);
         }
+
+        findPreference(getString(R.string.download_thumbnail_key)).setOnPreferenceChangeListener(
+                (preference, newValue) -> {
+                    PicassoHelper.setShouldLoadImages((Boolean) newValue);
+                    try {
+                        PicassoHelper.clearCache(preference.getContext());
+                        Toast.makeText(preference.getContext(),
+                                R.string.thumbnail_cache_wipe_complete_notice, Toast.LENGTH_SHORT)
+                                .show();
+                    } catch (final IOException e) {
+                        Log.e(TAG, "Unable to clear Picasso cache", e);
+                    }
+                    return true;
+                });
     }
 
     @Override
     public boolean onPreferenceTreeClick(final Preference preference) {
-        if (preference.getKey().equals(thumbnailLoadToggleKey)) {
-            final ImageLoader imageLoader = ImageLoader.getInstance();
-            imageLoader.stop();
-            imageLoader.clearDiskCache();
-            imageLoader.clearMemoryCache();
-            imageLoader.resume();
-            Toast.makeText(preference.getContext(), R.string.thumbnail_cache_wipe_complete_notice,
-                    Toast.LENGTH_SHORT).show();
-        }
-
         if (preference.getKey().equals(youtubeRestrictedModeEnabledKey)) {
             final Context context = getContext();
             if (context != null) {
@@ -146,8 +147,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getPreferredLocalization(requireContext());
         final ContentCountry selectedContentCountry = org.schabi.newpipe.util.Localization
                 .getPreferredContentCountry(requireContext());
-        final String selectedLanguage = PreferenceManager
-                .getDefaultSharedPreferences(requireContext()).getString("app_language_key", "en");
+        final String selectedLanguage =
+                defaultPreferences.getString(getString(R.string.app_language_key), "en");
 
         if (!selectedLocalization.equals(initialSelectedLocalization)
                 || !selectedContentCountry.equals(initialSelectedContentCountry)
@@ -183,7 +184,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
             new AlertDialog.Builder(requireActivity())
                     .setMessage(R.string.override_current_data)
-                    .setPositiveButton(R.string.finish, (d, id) ->
+                    .setPositiveButton(R.string.ok, (d, id) ->
                             importDatabase(file, lastImportDataUri))
                     .setNegativeButton(R.string.cancel, (d, id) ->
                             d.cancel())
@@ -231,11 +232,11 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 final AlertDialog.Builder alert = new AlertDialog.Builder(requireContext());
                 alert.setTitle(R.string.import_settings);
 
-                alert.setNegativeButton(android.R.string.no, (dialog, which) -> {
+                alert.setNegativeButton(R.string.cancel, (dialog, which) -> {
                     dialog.dismiss();
                     finishImport(importDataUri);
                 });
-                alert.setPositiveButton(getString(R.string.finish), (dialog, which) -> {
+                alert.setPositiveButton(R.string.ok, (dialog, which) -> {
                     dialog.dismiss();
                     manager.loadSharedPreferences(PreferenceManager
                             .getDefaultSharedPreferences(requireContext()));

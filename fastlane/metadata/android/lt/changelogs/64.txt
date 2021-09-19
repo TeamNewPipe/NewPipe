@@ -1,0 +1,8 @@
+#### Patobulinimai
+- Pridėta galimybė apriboti vaizdo įrašo kokybę, jei naudojate mobiliuosius duomenis. #1339
+- Prisiminti sesijos ryškumą #1442
+- Pagerintas atsisiuntimo našumas silpnesniems procesoriams #1431
+- Pridėtas (veikiantis) medijos sesijos palaikymas #1433
+
+### Ištaisyti
+- Ištaisytas gedimas atidarant atsisiuntimus (ištaisymas dabar prieinamas išleistoms kompiliacijoms) #1441

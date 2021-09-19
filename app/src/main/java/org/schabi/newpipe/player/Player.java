@@ -18,6 +18,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
@@ -82,9 +83,8 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.util.Util;
 import com.google.android.exoplayer2.video.VideoListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
@@ -128,11 +128,11 @@ import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper;
 import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHolder;
 import org.schabi.newpipe.util.DeviceUtils;
-import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.SerializedCache;
-import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.ExpandableSurfaceView;
 
@@ -159,7 +159,9 @@ import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static com.google.android.exoplayer2.Player.RepeatMode;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_CLOSE;
@@ -196,7 +198,6 @@ import static org.schabi.newpipe.util.Localization.containsCaseInsensitive;
 public final class Player implements
         EventListener,
         PlaybackListener,
-        ImageLoadingListener,
         VideoListener,
         SeekBar.OnSeekBarChangeListener,
         View.OnClickListener,
@@ -237,7 +238,7 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
 
     public static final int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
-    public static final int PROGRESS_LOOP_INTERVAL_MILLIS = 500; // 500 millis
+    public static final int PROGRESS_LOOP_INTERVAL_MILLIS = 1000; // 1 second
     public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
     public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
     public static final int DPAD_CONTROLS_HIDE_TIME = 7000;  // 7 Seconds
@@ -390,7 +391,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Constructor
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Constructor
 
     public Player(@NonNull final MainPlayer service) {
         this.service = service;
@@ -437,7 +438,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Setup and initialization
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Setup and initialization
 
     public void setupFromView(@NonNull final PlayerBinding playerBinding) {
         initViews(playerBinding);
@@ -585,7 +586,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Playback initialization via intent
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Playback initialization via intent
 
     public void handleIntent(@NonNull final Intent intent) {
         // fail fast if no play queue was provided
@@ -613,12 +614,15 @@ public final class Player implements
             playQueue.append(newQueue.getStreams());
 
             if ((intent.getBooleanExtra(SELECT_ON_APPEND, false)
-                    || currentState == STATE_COMPLETED) && newQueue.getStreams().size() > 0) {
+                    || currentState == STATE_COMPLETED) && !newQueue.getStreams().isEmpty()) {
                 playQueue.setIndex(sizeBeforeAppend);
             }
 
             return;
         }
+
+        // needed for tablets, check the function for a better explanation
+        directlyOpenFullscreenIfNeeded();
 
         final PlaybackParameters savedParameters = retrievePlaybackParametersFromPrefs(this);
         final float playbackSpeed = savedParameters.speed;
@@ -671,6 +675,7 @@ public final class Player implements
                 && isPlaybackResumeEnabled(this)
                 && !samePlayQueue
                 && !newQueue.isEmpty()
+                && newQueue.getItem() != null
                 && newQueue.getItem().getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
             databaseUpdateDisposable.add(recordManager.loadStreamState(newQueue.getItem())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -742,6 +747,22 @@ public final class Player implements
         NavigationHelper.sendPlayerStartedEvent(context);
     }
 
+    /**
+     * Open fullscreen on tablets where the option to have the main player start automatically in
+     * fullscreen mode is on. Rotating the device to landscape is already done in {@link
+     * VideoDetailFragment#openVideoPlayer(boolean)} when the thumbnail is clicked, and that's
+     * enough for phones, but not for tablets since the mini player can be also shown in landscape.
+     */
+    private void directlyOpenFullscreenIfNeeded() {
+        if (fragmentListener != null
+                && PlayerHelper.isStartMainPlayerFullscreenEnabled(service)
+                && DeviceUtils.isTablet(service)
+                && videoPlayerSelected()
+                && PlayerHelper.globalScreenOrientationLocked(service)) {
+            fragmentListener.onScreenRotationButtonClicked();
+        }
+    }
+
     private void initPlayback(@NonNull final PlayQueue queue,
                               @RepeatMode final int repeatMode,
                               final float playbackSpeed,
@@ -774,7 +795,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Destroy and recovery
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Destroy and recovery
 
     private void destroyPlayer() {
         if (DEBUG) {
@@ -820,7 +841,7 @@ public final class Player implements
 
         databaseUpdateDisposable.clear();
         progressUpdateDisposable.set(null);
-        ImageLoader.getInstance().stop();
+        PicassoHelper.cancelTag(PicassoHelper.PLAYER_THUMBNAIL_TAG); // cancel thumbnail loading
 
         if (binding != null) {
             binding.endScreen.setImageBitmap(null);
@@ -883,7 +904,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Player type specific setup
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Player type specific setup
 
     private void initVideoPlayer() {
         // restore last resize mode
@@ -945,7 +966,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Elements visibility and size: popup and main players have different look
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Elements visibility and size: popup and main players have different look
 
     /**
      * This method ensures that popup and main players have different look.
@@ -1059,7 +1080,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Broadcast receiver
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Broadcast receiver
 
     private void setupBroadcastReceiver() {
         if (DEBUG) {
@@ -1211,18 +1232,49 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Thumbnail loading
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Thumbnail loading
 
     private void initThumbnail(final String url) {
         if (DEBUG) {
-            Log.d(TAG, "Thumbnail - initThumbnail() called");
+            Log.d(TAG, "Thumbnail - initThumbnail() called with url = ["
+                    + (url == null ? "null" : url) + "]");
         }
-        if (url == null || url.isEmpty()) {
+        if (isNullOrEmpty(url)) {
             return;
         }
-        ImageLoader.getInstance().resume();
-        ImageLoader.getInstance()
-                .loadImage(url, ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS, this);
+
+        // scale down the notification thumbnail for performance
+        PicassoHelper.loadScaledDownThumbnail(context, url).into(new Target() {
+            @Override
+            public void onBitmapLoaded(final Bitmap bitmap, final Picasso.LoadedFrom from) {
+                if (DEBUG) {
+                    Log.d(TAG, "Thumbnail - onLoadingComplete() called with: url = [" + url
+                            + "], " + "loadedImage = [" + bitmap + " -> " + bitmap.getWidth() + "x"
+                            + bitmap.getHeight() + "], from = [" + from + "]");
+                }
+
+                currentThumbnail = bitmap;
+                NotificationUtil.getInstance()
+                        .createNotificationIfNeededAndUpdate(Player.this, false);
+                // there is a new thumbnail, so changed the end screen thumbnail, too.
+                updateEndScreenThumbnail();
+            }
+
+            @Override
+            public void onBitmapFailed(final Exception e, final Drawable errorDrawable) {
+                Log.e(TAG, "Thumbnail - onBitmapFailed() called with: url = [" + url + "]", e);
+                currentThumbnail = null;
+                NotificationUtil.getInstance()
+                        .createNotificationIfNeededAndUpdate(Player.this, false);
+            }
+
+            @Override
+            public void onPrepareLoad(final Drawable placeHolderDrawable) {
+                if (DEBUG) {
+                    Log.d(TAG, "Thumbnail - onLoadingStarted() called with: url = [" + url + "]");
+                }
+            }
+        });
     }
 
     /**
@@ -1296,61 +1348,6 @@ public final class Player implements
             return Math.min(currentThumbnail.getHeight(), screenHeight);
         }
     }
-
-    @Override
-    public void onLoadingStarted(final String imageUri, final View view) {
-        if (DEBUG) {
-            Log.d(TAG, "Thumbnail - onLoadingStarted() called on: "
-                    + "imageUri = [" + imageUri + "], view = [" + view + "]");
-        }
-    }
-
-    @Override
-    public void onLoadingFailed(final String imageUri, final View view,
-                                final FailReason failReason) {
-        Log.e(TAG, "Thumbnail - onLoadingFailed() called on imageUri = [" + imageUri + "]",
-                failReason.getCause());
-        currentThumbnail = null;
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-    }
-
-    @Override
-    public void onLoadingComplete(final String imageUri, final View view,
-                                  final Bitmap loadedImage) {
-        // scale down the notification thumbnail for performance
-        final float notificationThumbnailWidth = Math.min(
-                context.getResources().getDimension(R.dimen.player_notification_thumbnail_width),
-                loadedImage.getWidth());
-        currentThumbnail = Bitmap.createScaledBitmap(
-                loadedImage,
-                (int) notificationThumbnailWidth,
-                (int) (loadedImage.getHeight()
-                        / (loadedImage.getWidth() / notificationThumbnailWidth)),
-                true);
-
-        if (DEBUG) {
-            Log.d(TAG, "Thumbnail - onLoadingComplete() called with: "
-                    + "imageUri = [" + imageUri + "], view = [" + view + "], "
-                    + "loadedImage = [" + loadedImage + "], "
-                    + loadedImage.getWidth() + "x" + loadedImage.getHeight()
-                    + ", scaled notification width = " + notificationThumbnailWidth);
-        }
-
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-
-        // there is a new thumbnail, thus the end screen thumbnail needs to be changed, too.
-        updateEndScreenThumbnail();
-    }
-
-    @Override
-    public void onLoadingCancelled(final String imageUri, final View view) {
-        if (DEBUG) {
-            Log.d(TAG, "Thumbnail - onLoadingCancelled() called with: "
-                    + "imageUri = [" + imageUri + "], view = [" + view + "]");
-        }
-        currentThumbnail = null;
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-    }
     //endregion
 
 
@@ -1358,7 +1355,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Popup player utils
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Popup player utils
 
     /**
      * Check if {@link #popupLayoutParams}' position is within a arbitrary boundary
@@ -1533,7 +1530,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Playback parameters
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Playback parameters
 
     public float getPlaybackSpeed() {
         return getPlaybackParameters().speed;
@@ -1586,7 +1583,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Progress loop and updates
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Progress loop and updates
 
     private void onUpdateProgress(final int currentProgress,
                                   final int duration,
@@ -1596,8 +1593,7 @@ public final class Player implements
         }
 
         if (duration != binding.playbackSeekBar.getMax()) {
-            binding.playbackEndTime.setText(getTimeString(duration));
-            binding.playbackSeekBar.setMax(duration);
+            setVideoDurationToControls(duration);
         }
         if (currentState != STATE_PAUSED) {
             if (currentState != STATE_PAUSED_SEEK) {
@@ -1802,7 +1798,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Controls showing / hiding
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Controls showing / hiding
 
     public boolean isControlsVisible() {
         return binding != null && binding.playbackControlRoot.getVisibility() == View.VISIBLE;
@@ -1972,7 +1968,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Playback states
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Playback states
 
     @Override // exoplayer listener
     public void onPlayerStateChanged(final boolean playWhenReady, final int playbackState) {
@@ -2097,8 +2093,8 @@ public final class Player implements
             Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
         }
 
-        binding.playbackSeekBar.setMax((int) simpleExoPlayer.getDuration());
-        binding.playbackEndTime.setText(getTimeString((int) simpleExoPlayer.getDuration()));
+        setVideoDurationToControls((int) simpleExoPlayer.getDuration());
+
         binding.playbackSpeed.setText(formatSpeed(getPlaybackSpeed()));
 
         if (playWhenReady) {
@@ -2293,7 +2289,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Repeat and shuffle
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Repeat and shuffle
 
     public void onRepeatClicked() {
         if (DEBUG) {
@@ -2330,7 +2326,7 @@ public final class Player implements
             Log.d(TAG, "ExoPlayer - onRepeatModeChanged() called with: "
                     + "repeatMode = [" + repeatMode + "]");
         }
-        setRepeatModeButton(((AppCompatImageButton) binding.repeatButton), repeatMode);
+        setRepeatModeButton(binding.repeatButton, repeatMode);
         onShuffleOrRepeatModeChanged();
     }
 
@@ -2382,7 +2378,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Mute / Unmute
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Mute / Unmute
 
     public void onMuteUnmuteButtonClicked() {
         if (DEBUG) {
@@ -2408,7 +2404,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // ExoPlayer listeners (that didn't fit in other categories)
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region ExoPlayer listeners (that didn't fit in other categories)
 
     @Override
     public void onTimelineChanged(@NonNull final Timeline timeline, final int reason) {
@@ -2496,7 +2492,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Errors
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Errors
     /**
      * Process exceptions produced by {@link com.google.android.exoplayer2.ExoPlayer ExoPlayer}.
      * <p>There are multiple types of errors:</p>
@@ -2597,7 +2593,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Playback position and seek
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Playback position and seek
 
     @Override // own playback listener (this is a getter)
     public boolean isApproachingPlaybackEdge(final long timeToEndMillis) {
@@ -2740,6 +2736,20 @@ public final class Player implements
             simpleExoPlayer.seekToDefaultPosition();
         }
     }
+
+    /**
+     * Sets the video duration time into all control components (e.g. seekbar).
+     * @param duration
+     */
+    private void setVideoDurationToControls(final int duration) {
+        binding.playbackEndTime.setText(getTimeString(duration));
+
+        binding.playbackSeekBar.setMax(duration);
+        // This is important for Android TVs otherwise it would apply the default from
+        // setMax/Min methods which is (max - min) / 20
+        binding.playbackSeekBar.setKeyProgressIncrement(
+                PlayerHelper.retrieveSeekDurationFromPreferences(this));
+    }
     //endregion
 
 
@@ -2747,7 +2757,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Player actions (play, pause, previous, fast-forward, ...)
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Player actions (play, pause, previous, fast-forward, ...)
 
     public void play() {
         if (DEBUG) {
@@ -2789,7 +2799,9 @@ public final class Player implements
             Log.d(TAG, "onPlayPause() called");
         }
 
-        if (getPlayWhenReady()) {
+        if (getPlayWhenReady()
+                // When state is completed (replay button is shown) then (re)play and do not pause
+                && currentState != STATE_COMPLETED) {
             pause();
         } else {
             play();
@@ -2855,7 +2867,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // StreamInfo history: views and progress
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region StreamInfo history: views and progress
 
     private void registerStreamViewed() {
         if (currentMetadata != null) {
@@ -2913,7 +2925,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Metadata
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Metadata
 
     private void onMetadataChanged(@NonNull final MediaSourceTag tag) {
         final StreamInfo info = tag.getMetadata();
@@ -3022,7 +3034,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Play queue, segments and streams
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Play queue, segments and streams
 
     private void maybeAutoQueueNextStream(@NonNull final MediaSourceTag metadata) {
         if (playQueue == null || playQueue.getIndex() != playQueue.size() - 1
@@ -3177,7 +3189,7 @@ public final class Player implements
     private StreamSegmentAdapter.StreamSegmentListener getStreamSegmentListener() {
         return (item, seconds) -> {
             segmentAdapter.selectSegment(item);
-            seekTo(seconds * 1000);
+            seekTo(seconds * 1000L);
             triggerProgressUpdate();
         };
     }
@@ -3187,7 +3199,7 @@ public final class Player implements
         final List<StreamSegment> segments = currentMetadata.getMetadata().getStreamSegments();
 
         for (int i = 0; i < segments.size(); i++) {
-            if (segments.get(i).getStartTimeSeconds() * 1000 > playbackPosition) {
+            if (segments.get(i).getStartTimeSeconds() * 1000L > playbackPosition) {
                 break;
             }
             nearestPosition++;
@@ -3222,9 +3234,9 @@ public final class Player implements
 
             @Override
             public void held(final PlayQueueItem item, final View view) {
-                final int index = playQueue.indexOf(item);
-                if (index != -1) {
-                    playQueue.remove(index);
+                if (playQueue.indexOf(item) != -1) {
+                    openPopupMenu(playQueue, item, view, true,
+                            getParentActivity().getSupportFragmentManager(), context);
                 }
             }
 
@@ -3338,7 +3350,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Popup menus ("popup" means that they pop up, not that they belong to the popup player)
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Popup menus ("popup" means that they pop up, not that they belong to the popup player)
 
     private void buildQualityMenu() {
         if (qualityPopupMenu == null) {
@@ -3541,7 +3553,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Captions (text tracks)
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Captions (text tracks)
 
     private void setupSubtitleView() {
         final float captionScale = PlayerHelper.getCaptionScale(context);
@@ -3620,7 +3632,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Click listeners
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Click listeners
 
     @Override
     public void onClick(final View v) {
@@ -3808,7 +3820,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Video size, resize, orientation, fullscreen
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Video size, resize, orientation, fullscreen
 
     private void setupScreenRotationButton() {
         binding.screenRotationButton.setVisibility(videoPlayerSelected()
@@ -3863,11 +3875,9 @@ public final class Player implements
         if (DEBUG) {
             Log.d(TAG, "toggleFullscreen() called");
         }
-        if (popupPlayerSelected() || exoPlayerIsNull() || currentMetadata == null
-                || fragmentListener == null) {
+        if (popupPlayerSelected() || exoPlayerIsNull() || fragmentListener == null) {
             return;
         }
-        //changeState(STATE_BLOCKED); TODO check what this does
 
         isFullscreen = !isFullscreen;
         if (!isFullscreen) {
@@ -3915,7 +3925,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Gestures
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Gestures
 
     @SuppressWarnings("checkstyle:ParameterNumber")
     private void onLayoutChange(final View view, final int l, final int t, final int r, final int b,
@@ -3979,7 +3989,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Activity / fragment binding
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Activity / fragment binding
 
     public void setFragmentListener(final PlayerServiceEventListener listener) {
         fragmentListener = listener;
@@ -4118,7 +4128,7 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // Getters
     //////////////////////////////////////////////////////////////////////////*/
-    //region
+    //region Getters
 
     public int getCurrentState() {
         return currentState;
@@ -4304,6 +4314,7 @@ public final class Player implements
     // SurfaceHolderCallback helpers
     //////////////////////////////////////////////////////////////////////////*/
     //region SurfaceHolderCallback helpers
+
     private void setupVideoSurface() {
         // make sure there is nothing left over from previous calls
         cleanupVideoSurface();
@@ -4331,5 +4342,5 @@ public final class Player implements
             }
         }
     }
-    //endregion SurfaceHolderCallback helpers
+    //endregion
 }

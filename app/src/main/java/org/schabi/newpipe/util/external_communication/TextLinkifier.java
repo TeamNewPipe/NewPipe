@@ -32,9 +32,8 @@ import static org.schabi.newpipe.util.external_communication.InternalUrlsHandler
 
 public final class TextLinkifier {
     public static final String TAG = TextLinkifier.class.getSimpleName();
+
     private static final Pattern HASHTAGS_PATTERN = Pattern.compile("(#[A-Za-z0-9_]+)");
-    private static final Pattern TIMESTAMPS_PATTERN = Pattern.compile(
-            "(?:^|(?!:)\\W)(?:([0-5]?[0-9]):)?([0-5]?[0-9]):([0-5][0-9])(?=$|(?!:)\\W)");
 
     private TextLinkifier() {
     }
@@ -174,33 +173,34 @@ public final class TextLinkifier {
                                                       final Info relatedInfo,
                                                       final CompositeDisposable disposables) {
         final String descriptionText = spannableDescription.toString();
-        final Matcher timestampsMatches = TIMESTAMPS_PATTERN.matcher(descriptionText);
+        final Matcher timestampsMatches =
+                TimestampExtractor.TIMESTAMPS_PATTERN.matcher(descriptionText);
 
         while (timestampsMatches.find()) {
-            final int timestampStart = timestampsMatches.start(2);
-            final int timestampEnd = timestampsMatches.end(3);
-            final String parsedTimestamp = descriptionText.substring(timestampStart, timestampEnd);
-            final String[] timestampParts = parsedTimestamp.split(":");
+            final TimestampExtractor.TimestampMatchDTO timestampMatchDTO =
+                    TimestampExtractor.getTimestampFromMatcher(
+                            timestampsMatches,
+                            descriptionText);
 
-            final int seconds;
-            if (timestampParts.length == 3) { // timestamp format: XX:XX:XX
-                seconds = Integer.parseInt(timestampParts[0]) * 3600 // hours
-                        + Integer.parseInt(timestampParts[1]) * 60 // minutes
-                        + Integer.parseInt(timestampParts[2]); // seconds
-            } else if (timestampParts.length == 2) { // timestamp format: XX:XX
-                seconds = Integer.parseInt(timestampParts[0]) * 60 // minutes
-                        + Integer.parseInt(timestampParts[1]); // seconds
-            } else {
+            if (timestampMatchDTO == null) {
                 continue;
             }
 
-            spannableDescription.setSpan(new ClickableSpan() {
-                @Override
-                public void onClick(@NonNull final View view) {
-                    playOnPopup(context, relatedInfo.getUrl(), relatedInfo.getService(), seconds,
-                            disposables);
-                }
-            }, timestampStart, timestampEnd, 0);
+            spannableDescription.setSpan(
+                    new ClickableSpan() {
+                        @Override
+                        public void onClick(@NonNull final View view) {
+                            playOnPopup(
+                                    context,
+                                    relatedInfo.getUrl(),
+                                    relatedInfo.getService(),
+                                    timestampMatchDTO.seconds(),
+                                    disposables);
+                        }
+                    },
+                    timestampMatchDTO.timestampStart(),
+                    timestampMatchDTO.timestampEnd(),
+                    0);
         }
     }
 

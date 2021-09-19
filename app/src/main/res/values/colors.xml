@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="modeColor">@color/white</color>
     <color name="contrastColor">@color/black</color>
 
     <color name="ic_launcher_background">#CD201F</color>
@@ -17,7 +16,6 @@
     <color name="light_shadow_start_color">#5a000000</color>
     <color name="light_license_background_color">#ffffff</color>
     <color name="light_license_text_color">#212121</color>
-    <color name="light_queue_background_color">#c8ffffff</color>
     <color name="light_card_item_background_color">#F8F8F8</color>
     <color name="light_card_item_contrast_color">#E9E9E9</color>
     <color name="light_border_color">#33000000</color>
@@ -54,13 +52,7 @@
     <color name="live_duration_background_color">#c8E53935</color>
     <color name="playlist_stream_count_background_color">#e6000000</color>
     <color name="duration_text_color">#EEFFFFFF</color>
-    <color name="playlist_stream_count_text_color">#ffffff</color>
     <color name="video_overlay_color">#64000000</color>
-    <color name="item_in_history_indicator_text_color">#E6FFFFFF</color>
-
-    <color name="background_notification_color">#323232</color>
-    <color name="background_title_color">#ffffff</color>
-    <color name="background_subtext_color">#999999</color>
 
     <color name="subscribe_text_color">#fff</color>
     <color name="subscribed_background_color">#d6d6d6</color>
@@ -84,11 +76,8 @@
     <color name="white">#FFFFFF</color>
     <color name="white_secondary">#C9CACB</color>
 
-    <color name="light_gray">#EFEFEF</color>
-    <color name="middle_gray">#E0E0E0</color>
     <color name="gray">#616161</color>
 
     <color name="black">#000</color>
-    <color name="gray_transparent">#be757575</color>
 
 </resources>

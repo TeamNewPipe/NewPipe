@@ -11,8 +11,6 @@
     <string name="settings">設定</string>
     <string name="did_you_mean">もしかして: 「%1$s」\?</string>
     <string name="share_dialog_title">共有</string>
-    <string name="choose_browser">ブラウザを選択</string>
-    <string name="screen_rotation">回転</string>
     <string name="download_path_title">動画を保存するフォルダー</string>
     <string name="download_path_summary">ダウンロードした動画をここに保存します</string>
     <string name="download_path_dialog_title">動画ファイルをダウンロードするフォルダーを選択して下さい</string>
@@ -28,7 +26,6 @@
     <string name="unsupported_url">対応していないURLです</string>
     <string name="content_language_title">デフォルトの言語</string>
     <string name="settings_category_video_audio_title">動画と音声</string>
-    <string name="view_count_text">%1$s 再生</string>
     <string name="list_thumbnail_view_description">動画 プレビュー サムネイル</string>
     <string name="detail_thumbnail_view_description">ビデオ再生、時間:</string>
     <string name="detail_uploader_thumbnail_view_description">投稿者アイコンのサムネイル</string>
@@ -37,30 +34,22 @@
     <string name="use_external_video_player_title">外部動画プレイヤーを使用する</string>
     <string name="use_external_audio_player_title">外部音声プレイヤーを使用する</string>
     <string name="background_player_playing_toast">バックグラウンドで再生中</string>
-    <string name="use_tor_title">Torを使用する</string>
-    <string name="use_tor_summary">(実験的) 強制的に Tor を経由した経路で保存して､匿名性を高めます(ストリーミング再生には、まだ対応していません)。</string>
     <string name="theme_title">テーマ</string>
     <string name="dark_theme_title">ダーク</string>
     <string name="light_theme_title">ホワイト</string>
     <string name="settings_category_appearance_title">外観</string>
-    <string name="settings_category_other_title">その他</string>
     <string name="network_error">ネットワークエラー</string>
     <string name="download_path_audio_title">音声を保存するフォルダー</string>
     <string name="download_path_audio_summary">ダウンロードした音楽ファイルをここに保存します</string>
     <string name="download_path_audio_dialog_title">音楽ファイルをダウンロードするフォルダーを選択して下さい</string>
-    <string name="err_dir_create">保存場所 \'%1$s\' を作成できません</string>
-    <string name="info_dir_created">保存場所 \'%1$s\' を作成しました</string>
     <string name="general_error">エラー</string>
     <string name="could_not_load_thumbnails">全てのサムネイルを読み込めませんでした</string>
     <string name="youtube_signature_deobfuscation_error">動画のURLを復号できませんでした</string>
     <string name="parsing_error">ウェブサイトを解析できませんでした</string>
     <string name="content_not_available">コンテンツが利用できません</string>
     <string name="could_not_setup_download_menu">保存メニューを設定できませんでした</string>
-    <string name="live_streams_not_supported">生放送にはまだ対応していません</string>
     <string name="content">コンテンツ</string>
     <string name="show_age_restricted_content_title">年齢制限のあるコンテンツを表示</string>
-    <string name="light_parsing_error">ウェブサイトを完全には解析できませんでした</string>
-    <string name="could_not_get_stream">動画を取得できませんでした</string>
     <string name="sorry_string">申し訳ありません。発生すべきでものではありませんでした。</string>
     <string name="error_report_button_text">メールで不具合を報告</string>
     <string name="error_snackbar_message">申し訳ありません、不具合が発生しました。</string>
@@ -72,26 +61,16 @@
     <string name="video">動画</string>
     <string name="audio">音声</string>
     <string name="retry">再試行</string>
-    <string name="storage_permission_denied">ストレージへのアクセスを許可してください</string>
-    <string name="autoplay_by_calling_app_title">自動再生</string>
-    <string name="autoplay_by_calling_app_summary">NewPipeが他のアプリから呼び出された時､動画を再生します｡</string>
-    <string name="report_error">不具合を報告</string>
-    <string name="user_report">利用者レポートを送る</string>
     <string name="duration_live">生放送</string>
     <string name="main_bg_subtitle">虫眼鏡をタップして開始します。</string>
     <string name="start">開始</string>
     <string name="pause">一時停止</string>
-    <string name="view">再生</string>
     <string name="delete">削除</string>
     <string name="checksum">チェックサム</string>
-    <string name="add">新しいミッション</string>
-    <string name="finish">OK</string>
+    <string name="ok">OK</string>
     <string name="msg_name">ファイル名</string>
     <string name="msg_threads">同時接続数</string>
     <string name="msg_error">エラー</string>
-    <string name="msg_server_unsupported">このサーバーには対応していません</string>
-    <string name="msg_exists">ファイルが既に存在します</string>
-    <string name="msg_url_malform">URL の形式が正しくないか､通信が利用できません</string>
     <string name="msg_running">NewPipe ダウンロード中</string>
     <string name="msg_running_detail">タップして詳細を表示</string>
     <string name="msg_wait">お待ちください…</string>
@@ -100,23 +79,19 @@
     <string name="downloads">ダウンロード</string>
     <string name="downloads_title">ダウンロード</string>
     <string name="error_report_title">不具合報告</string>
-    <string name="could_not_load_image">画像を読み込みできません</string>
     <string name="app_ui_crash">アプリ/UI がクラッシュしました</string>
     <string name="info_labels">どんな問題:\\nリクエスト:\\nコンテンツ言語:\\nコンテンツ国:\\nアプリ言語:\\nサービス:\\nGMT 時間:\\nパッケージ:\\nバージョン:\\nOSバージョン:</string>
     <string name="title_activity_recaptcha">reCAPTCHA の要求</string>
     <string name="recaptcha_request_toast">reCAPTCHA を要求しました</string>
     <string name="black_theme_title">ブラック</string>
     <string name="all">すべて</string>
-    <string name="channel">チャンネル</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
     <string name="yes">はい</string>
-    <string name="later">後で</string>
     <string name="open_in_popup_mode">ポップアップモードで開く</string>
     <string name="msg_popup_permission">ポップアップモードで開くには
 \n権限の許可が必要です</string>
-    <string name="popup_mode_share_menu_title">ポップアップモード</string>
     <string name="popup_playing_toast">ポップアップモードで再生中</string>
     <string name="disabled">無効</string>
     <string name="default_video_format_title">デフォルトの動画形式</string>
@@ -125,27 +100,17 @@
     <string name="show_higher_resolutions_summary">一部のデバイスのみ2K/4K動画を再生できます</string>
     <string name="controls_background_title">バックグラウンド</string>
     <string name="controls_popup_title">ポップアップ</string>
-    <string name="filter">フィルター</string>
-    <string name="refresh">更新</string>
     <string name="clear">消去</string>
     <string name="popup_remember_size_pos_title">ポップアップの属性を記憶</string>
     <string name="popup_remember_size_pos_summary">ポップアップしたサイズと位置を記憶します</string>
-    <string name="settings_category_popup_title">ポップアップ</string>
     <string name="use_external_video_player_summary">一部の解像度では音声がありません</string>
-    <string name="player_gesture_controls_title">プレイヤーのジェスチャー制御</string>
-    <string name="player_gesture_controls_summary">ジェスチャーを使用してプレイヤーの明るさと音量を制御する</string>
     <string name="show_search_suggestions_title">検索候補の表示</string>
-    <string name="show_search_suggestions_summary">検索時に候補を表示します</string>
+    <string name="show_search_suggestions_summary">検索時に表示する候補を選択します</string>
     <string name="best_resolution">最高の解像度</string>
     <string name="title_activity_about">NewPipe について</string>
-    <string name="action_settings">設定</string>
-    <string name="action_about">このアプリについて</string>
     <string name="title_licenses">サードパーティー ライセンス</string>
     <string name="copyright" formatted="true">© %1$s 作者 %2$s ライセンス %3$s</string>
-    <string name="error_unable_to_load_license">ライセンスを読み込めません</string>
-    <string name="action_open_website">Web サイトを開く</string>
     <string name="tab_about">このアプリについて</string>
-    <string name="tab_contributors">貢献者</string>
     <string name="tab_licenses">ライセンス</string>
     <string name="app_description">Android 向けのフリーで軽量なストリーミング。</string>
     <string name="view_on_github">GitHub で表示</string>
@@ -158,7 +123,6 @@
     <string name="channel_unsubscribed">チャンネル登録を解除しました</string>
     <string name="subscription_change_failed">チャンネル登録を変更できません</string>
     <string name="subscription_update_failed">チャンネル登録を更新できません</string>
-    <string name="tab_main">メイン</string>
     <string name="tab_subscriptions">登録チャンネル</string>
     <string name="fragment_feed_title">新着</string>
     <string name="enable_search_history_title">検索履歴</string>
@@ -171,7 +135,6 @@
     <string name="show_hold_to_append_summary">動画の詳細ページで、「バックグラウンド」または「ポップアップ」ボタンが押されたときにヒントを表示する</string>
     <string name="settings_category_player_behavior_title">動作</string>
     <string name="settings_category_history_title">履歴とキャッシュ</string>
-    <string name="playlist">プレイリスト</string>
     <string name="undo">元に戻す</string>
     <string name="play_all">すべて再生</string>
     <string name="notification_channel_name">NewPipe の通知</string>
@@ -192,36 +155,25 @@
     <string name="website_title">Webサイト</string>
     <string name="website_encouragement">NewPipe の詳しい情報や最新情報については、ウェブサイトをご覧ください。</string>
     <string name="title_activity_history">履歴</string>
-    <string name="title_history_search">検索履歴</string>
-    <string name="title_history_view">再生履歴</string>
-    <string name="history_disabled">履歴は無効になっています</string>
     <string name="action_history">履歴</string>
-    <string name="history_empty">履歴なし</string>
-    <string name="history_cleared">履歴を削除しました</string>
-    <string name="item_deleted">アイテムを削除しました</string>
     <string name="delete_item_search_history">このアイテムを検索履歴から削除しますか？</string>
     <string name="main_page_content">メインページのコンテンツ</string>
     <string name="blank_page_summary">空白ページ</string>
     <string name="kiosk_page_summary">Kioskページ</string>
-    <string name="subscription_page_summary">登録チャンネルページ</string>
-    <string name="feed_page_summary">フィードページ</string>
     <string name="channel_page_summary">チャンネルページ</string>
     <string name="select_a_channel">チャンネルを選択</string>
     <string name="no_channel_subscribed_yet">登録しているチャンネルはありません</string>
     <string name="select_a_kiosk">Kioskを選択</string>
-    <string name="kiosk">Kiosk</string>
     <string name="trending">人気</string>
     <string name="top_50">トップ50</string>
     <string name="play_queue_remove">削除</string>
     <string name="play_queue_stream_detail">詳細</string>
     <string name="play_queue_audio_settings">音声の設定</string>
-    <string name="toggle_orientation">画面を回転</string>
     <string name="switch_to_background">バックグラウンド再生を開始</string>
     <string name="switch_to_popup">ポップアップ再生を開始</string>
     <string name="switch_to_main">メイン再生に切り替え</string>
     <string name="no_player_found_toast">動画プレイヤーが見つかりません (VLCをインストールして再生できます)。</string>
     <string name="default_content_country_title">デフォルトの地域設定</string>
-    <string name="service_title">サービス</string>
     <string name="always">常に</string>
     <string name="just_once">一度だけ</string>
     <string name="import_data_title">データベースをインポート</string>
@@ -230,13 +182,11 @@
     <string name="export_data_summary">再生履歴、登録チャンネル一覧、プレイリストおよび設定をエクスポートします</string>
     <string name="player_recoverable_failure">再生エラーからの回復中</string>
     <string name="external_player_unsupported_link_type">外部プレイヤーは、これらのタイプのリンクをサポートしていません</string>
-    <string name="invalid_url_toast">無効なURL</string>
     <string name="export_complete_toast">エクスポートしました</string>
     <string name="import_complete_toast">インポートしました</string>
     <string name="no_valid_zip_file">有効な ZIP ファイルではありません</string>
     <string name="could_not_import_all_files">警告: すべてのファイルをインポートできませんでした。</string>
     <string name="override_current_data">これにより、現在の設定が上書きされます。</string>
-    <string name="start_here_on_main">ここから再生を開始</string>
     <string name="start_here_on_background">バックグラウンドで連続再生を開始</string>
     <string name="drawer_open">ドロワーを開く</string>
     <string name="drawer_close">ドロワーを閉じる</string>
@@ -265,15 +215,10 @@
     <string name="no_streams_available_download">ダウンロードできる動画はありません</string>
     <string name="detail_drag_description">ドラッグして並べ替え</string>
     <string name="create">作成</string>
-    <string name="delete_one">削除</string>
-    <string name="delete_all">すべて削除</string>
     <string name="dismiss">破棄</string>
     <string name="rename">名前を変更</string>
-    <string name="delete_stream_history_prompt">このアイテムを再生履歴から削除しますか？</string>
-    <string name="delete_all_history_prompt">すべてのアイテムを再生履歴から削除しますか？</string>
     <string name="always_ask_open_action">常に確認</string>
     <string name="create_playlist">新規プレイリスト</string>
-    <string name="delete_playlist">削除する</string>
     <string name="rename_playlist">変更</string>
     <string name="name">プレイリスト名</string>
     <string name="append_playlist">プレイリストに追加</string>
@@ -284,9 +229,7 @@
     <string name="playlist_creation_success">プレイリストが作成されました</string>
     <string name="playlist_add_stream_success">プレイリストに追加しました</string>
     <string name="playlist_thumbnail_change_success">プレイリストのサムネイルを変更しました。</string>
-    <string name="playlist_delete_failure">プレイリストを削除できませんでした。</string>
     <string name="caption_none">字幕表示なし</string>
-    <string name="import_export_title">インポート/エクスポート</string>
     <string name="import_title">インポート</string>
     <string name="import_from">インポート元</string>
     <string name="export_to">エクスポート先</string>
@@ -298,8 +241,6 @@
     <string name="subscriptions_export_unsuccessful">登録リストがエクスポートできませんでした</string>
     <string name="playback_tempo">速度</string>
     <string name="playback_pitch">音程</string>
-    <string name="background_player_append">バックグラウンド再生のキューに追加</string>
-    <string name="popup_playing_append">ポップアップ再生のキューに追加</string>
     <string name="clear_views_history_title">再生履歴を消去</string>
     <string name="clear_views_history_summary">再生した動画の履歴と再生位置を削除します</string>
     <string name="watch_history_deleted">再生履歴を削除しました</string>
@@ -343,7 +284,6 @@
     <string name="new_and_hot">新着と人気</string>
     <string name="hold_to_append">長押ししてキューに追加</string>
     <string name="start_here_on_popup">ポップアップで連続再生を開始</string>
-    <string name="drawer_header_action_paceholder_text">すぐにここに表示されます;D</string>
     <string name="preferred_open_action_settings_title">お好みの「開く」アクション</string>
     <string name="preferred_open_action_settings_summary">コンテンツを開くときのデフォルト動作 — %s</string>
     <string name="resize_fit">フィット</string>
@@ -355,10 +295,11 @@
 \n
 \n1. この URL を開きます: %1$s
 \n2. ログインしていなければログインします
-\n3. \"All data included\" をクリックし、そして \"Deselect all\" をクリック、そして \"subscriptions\" のみを選択し、\"OK\" をクリック
-\n4. \"Next step\" をクリックし、そして \"Create export\" をクリック
-\n5. 表示されたら \"Download\" ボタンをクリック
-\n6. ダウンロードした takeout の zip から、.json ファイル (たいてい、\"YouTube and YouTube Music/subscriptions/subscriptions.json\" の下にある) を抽出し、ここにインポートします。</string>
+\n3. \"すべて選択\" をクリックし、そして \"選択をすべて解除\" をクリック、そして \"登録チャンネル\" のみを選択し、\"OK\" をクリック
+\n4. \"次のステップ\" をクリックし、そして \"エクスポートを作成\" をクリック
+\n5. 表示されたら \"ダウンロード\" ボタンをクリック
+\n6. ファイルからインポートをクリックしてダウンロードした zip ファイルを選択
+\n7. (インポートが失敗したら) csv ファイル (たいてい、\"YouTube と YouTube Music/登録チャンネル/登録チャンネル.csv\" にある) を抽出し、ファイルからインポートをクリックして抽出した csv ファイルを選択</string>
     <string name="playback_reset">リセット</string>
     <string name="accept">同意する</string>
     <string name="decline">拒否する</string>
@@ -387,7 +328,6 @@
     <string name="skip_silence_checkbox">無音の間に早送り</string>
     <string name="playback_step">音程幅</string>
     <string name="unsubscribe">登録解除</string>
-    <string name="tab_new">新しいタブ</string>
     <string name="tab_choose">タブを選択</string>
     <string name="settings_category_updates_title">アプリの更新</string>
     <string name="events">イベント</string>
@@ -396,7 +336,6 @@
     <string name="restore_defaults">既定値に戻す</string>
     <string name="restore_defaults_confirmation">既定の設定を復元しますか\?</string>
     <string name="subscribers_count_not_available">登録者数は利用できません</string>
-    <string name="selection">選択</string>
     <string name="conferences">会議</string>
     <string name="start_accept_privacy_policy">ヨーロッパの一般データ保護規制（GDPR）に準拠するために、NewPipeの個人情報保護方針にご注意ください。よく読んでください。
 \n私たちに不具合報告を送るためには、これを受け入れなければなりません。</string>
@@ -405,7 +344,6 @@
     <string name="list">リスト</string>
     <string name="grid">グリッド</string>
     <string name="auto">自動</string>
-    <string name="switch_view">スイッチビュー</string>
     <string name="app_update_notification_content_title">NewPipe のアップデートがあります！</string>
     <string name="app_update_notification_content_text">タップでダウンロード</string>
     <string name="missions_header_finished">完了</string>
@@ -416,18 +354,14 @@
     <string name="enqueue">順番に処理する</string>
     <string name="permission_denied">操作がシステムによって拒否されました</string>
     <string name="download_failed">ダウンロードに失敗しました</string>
-    <string name="download_finished">ダウンロードが完了しました</string>
-    <string name="download_finished_more">%s件のダウンロード終了</string>
     <string name="generate_unique_name">一意の名前を生成します</string>
     <string name="overwrite">上書き</string>
     <string name="overwrite_unrelated_warning">この名前のファイルは既に存在します</string>
     <string name="overwrite_finished_warning">この名前のダウンロードファイルは既に存在します</string>
     <string name="download_already_running">同じ名前を持つダウンロードが既に進行中です</string>
     <string name="show_error">エラーを表示する</string>
-    <string name="label_code">コード</string>
     <string name="error_path_creation">宛先のフォルダーを作成できません</string>
     <string name="error_file_creation">ファイルを作成できません</string>
-    <string name="error_permission_denied">権限がシステムによって拒否されました</string>
     <string name="error_ssl_exception">安全な接続に失敗しました</string>
     <string name="error_unknown_host">サーバが見つかりませんでした</string>
     <string name="error_connect_host">サーバに接続できません</string>
@@ -482,7 +416,6 @@
     <string name="clear_playback_states_title">再生位置の削除</string>
     <string name="clear_playback_states_summary">すべての再生位置を削除します</string>
     <string name="delete_playback_states_alert">すべての再生位置を削除しますか\?</string>
-    <string name="download_choose_new_path">ダウンロードフォルダーを変更して有効にします</string>
     <string name="drawer_header_description">サービスの切り替え、現在の選択:</string>
     <plurals name="videos">
         <item quantity="other">%s本の動画</item>
@@ -514,7 +447,6 @@
     <string name="choose_instance_prompt">インスタンスを選択</string>
     <string name="clear_download_history">ダウンロード履歴を消去</string>
     <string name="delete_downloaded_files">ダウンロードしたファイルを消去</string>
-    <string name="deleted_downloads">%1$d 個削除しました</string>
     <string name="playlist_no_uploader">自動生成 (アップローダーが見つかりません)</string>
     <string name="permission_display_over_apps">他のアプリの上に表示する権限を与えてください</string>
     <string name="app_language_title">アプリの言語</string>
@@ -707,4 +639,19 @@
     <string name="seekbar_preview_thumbnail_title">シークバーのサムネイルプレビュー</string>
     <string name="comments_are_disabled">コメントは無効です</string>
     <string name="mark_as_watched">視聴済みとしてマーク</string>
+    <string name="error_show_channel_details">チャンネルの詳細の表示でエラー</string>
+    <string name="loading_channel_details">チャンネルの詳細を読み込み中…</string>
+    <string name="remote_search_suggestions">リモート検索候補</string>
+    <string name="local_search_suggestions">ローカル検索候補</string>
+    <string name="main_page_content_swipe_remove">アイテムをスワイプして削除</string>
+    <string name="start_main_player_fullscreen_summary">直接フルスクリーンモードに切り替えて、ミニプレイヤーで動画を開始しません。自動回転がロックされている場合でも、フルスクリーンを終了することでミニプレイヤーにアクセスできます</string>
+    <string name="start_main_player_fullscreen_title">フルスクリーンでメインプレイヤーを開始</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="other">%1$s つのダウンロードを削除しました</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="other">%s つのダウンロードが完了しました</item>
+    </plurals>
+    <string name="show_image_indicators_summary">ピカソは、画像の上に、画像の出所を識別する色彩記章を表示します: 赤はネットワーク、青はディスク、緑はメモリ</string>
+    <string name="show_image_indicators_title">画像に標識を表示</string>
 </resources>

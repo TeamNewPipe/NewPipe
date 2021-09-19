@@ -1,0 +1,10 @@
+• Opción para abrir reproductor directamente en pantalla completa
+• Escoge que tipo de sugerencias de búsqueda mostrar
+• Tema oscuro más oscuro + splash screen oscura
+• Selector de archivos mejorado
+• Importación de YouTube corregida
+• Reanudar stream requiere pulsar botón de reproducción otra vez
+• Corregido cierre de sesión de audio
+• [Android TV] Corregidos saltos en barra de reproducción al usar DPad
+
+Para ver más cambios, revisa nuestro registro (y blog) en la pestaña de enlaces de abajo.

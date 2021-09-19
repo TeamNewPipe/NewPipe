@@ -179,7 +179,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun onImportPreviousSelected() {
-        requestImportLauncher.launch(StoredFileHelper.getPicker(activity))
+        requestImportLauncher.launch(StoredFileHelper.getPicker(activity, JSON_MIME_TYPE))
     }
 
     private fun onExportSelected() {
@@ -187,7 +187,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         val exportName = "newpipe_subscriptions_$date.json"
 
         requestExportLauncher.launch(
-            StoredFileHelper.getNewPicker(activity, exportName, "application/json", null)
+            StoredFileHelper.getNewPicker(activity, exportName, JSON_MIME_TYPE, null)
         )
     }
 
@@ -195,7 +195,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         FeedGroupReorderDialog().show(parentFragmentManager, null)
     }
 
-    fun requestExportResult(result: ActivityResult) {
+    private fun requestExportResult(result: ActivityResult) {
         if (result.data != null && result.resultCode == Activity.RESULT_OK) {
             activity.startService(
                 Intent(activity, SubscriptionsExportService::class.java)
@@ -204,7 +204,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
     }
 
-    fun requestImportResult(result: ActivityResult) {
+    private fun requestImportResult(result: ActivityResult) {
         if (result.data != null && result.resultCode == Activity.RESULT_OK) {
             ImportConfirmationDialog.show(
                 this,
@@ -406,5 +406,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     override fun hideLoading() {
         super.hideLoading()
         binding.itemsList.animate(true, 200)
+    }
+
+    companion object {
+        const val JSON_MIME_TYPE = "application/json"
     }
 }

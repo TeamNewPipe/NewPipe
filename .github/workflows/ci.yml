@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - dev
@@ -36,20 +37,11 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 8
-          distribution: "adopt"
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle
+          distribution: "temurin"
+          cache: 'gradle'
           
-      - name: Check if kotlin files are formatted correctly
-        run: ./gradlew runKtlint
-
       - name: Build debug APK and run jvm tests
-        run: ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace
+        run: ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
 
       - name: Upload APK
         uses: actions/upload-artifact@v2
@@ -71,14 +63,8 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 8
-          distribution: "adopt"
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle
+          distribution: "temurin"
+          cache: 'gradle'
 
       - name: Run android tests
         uses: reactivecircus/android-emulator-runner@v2
@@ -99,7 +85,8 @@ jobs:
 #         uses: actions/setup-java@v2
 #         with:
 #           java-version: 11 # Sonar requires JDK 11
-#           distribution: "adopt"
+#           distribution: "temurin"
+#           cache: 'gradle'
 
 #       - name: Cache SonarCloud packages
 #         uses: actions/cache@v2
@@ -107,13 +94,6 @@ jobs:
 #           path: ~/.sonar/cache
 #           key: ${{ runner.os }}-sonar
 #           restore-keys: ${{ runner.os }}-sonar
-
-#       - name: Cache Gradle packages
-#         uses: actions/cache@v2
-#         with:
-#           path: ~/.gradle/caches
-#           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-#           restore-keys: ${{ runner.os }}-gradle
 
 #       - name: Build and analyze
 #         env:
