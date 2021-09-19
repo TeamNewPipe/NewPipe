@@ -697,4 +697,22 @@
     <string name="remote_search_suggestions">اقتراحات البحث عن بعد</string>
     <string name="local_search_suggestions">اقتراحات البحث المحلية</string>
     <string name="main_page_content_swipe_remove">اسحب العناصر لإزالتها</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="zero">اكتمل %1$s التنزيل</item>
+        <item quantity="one">اكتمل %1$s التنزيل</item>
+        <item quantity="two">اكتمل %1$s التنزيل</item>
+        <item quantity="few">اكتملت %1$s التنزيلات</item>
+        <item quantity="many">اكتملت %1$s التنزيلات</item>
+        <item quantity="other">اكتملت %1$s التنزيلات</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="zero">اكتمل التنزيل</item>
+        <item quantity="one">اكتمل التنزيل</item>
+        <item quantity="two">اكتمل التنزيل</item>
+        <item quantity="few">اكتمل تنزيل%s</item>
+        <item quantity="many">اكتملت التنزيلات%s</item>
+        <item quantity="other">اكتملت التنزيلات%s</item>
+    </plurals>
+    <string name="start_main_player_fullscreen_summary">لا تبدأ تشغيل مقاطع الفيديو في المشغل المصغر، ولكن قم بتدوير وضع ملء الشاشة مباشرة، إذا تم تأمين التدوير التلقائي. لا يزال بإمكانك الوصول إلى المشغل المصغر عن طريق الخروج من ملء الشاشة</string>
+    <string name="start_main_player_fullscreen_title">بدء تشغيل المشغل الرئيسي في وضع ملء الشاشة</string>
 </resources>

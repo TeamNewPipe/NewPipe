@@ -291,8 +291,9 @@
 \n2. Hasi saioa eskatzen zaizunean
 \n3. Hautatu \"Datu guztiak barne\", gero \"Kendu hautapen guztiak\", eta hautatu \"harpidetzak\" soilik eta egin klik \"Ados\" botoian
 \n4. Egin klik \"Hurrengo pausua\"-n eta \"Sortu esportazioa\"
-\n5. Egin klik \"Deskargatu\" botoian agertzen denean eta
-\n6. Erauzi .json fitxategia deskargatutako takeout zip-etik (normalean \"Youtube eta Youtube Music/harpidetzak/harpidetzak.json\") eta inportatu ezazu hemen.</string>
+\n5. Egin klik \"Deskargatu\" botoian agertzen denean
+\n6. Egin klik INPORTATU FITXATEGIA botoian eta hautatu deskargatutako zip fitxategia
+\n6. [Zip inportazioak huts egiten badu] Erauzi .csv fitxategia deskargatutako takeout zip-etik (normalean \"Youtube eta Youtube Music/harpidetzak/harpidetzak.csv\"), egin klik INPORTATU FITXATEGIA botoian eta hautatu erauzitako csv fitxategia</string>
     <string name="import_soundcloud_instructions">Inportatu SoundCloud profila URL-a edo zure ID-a idatziz:
 \n
 \n1. Gaitu \"mahaigain modua\" web nabigatzailean (gunea ez dabil mugikorretan)
@@ -663,4 +664,7 @@
     <string name="remote_search_suggestions">Urruneko bilaketaren iradokizunak</string>
     <string name="local_search_suggestions">Tokiko bilaketa-iradokizunak</string>
     <string name="mark_as_watched">Ikusi gisa markatu</string>
+    <string name="main_page_content_swipe_remove">Lerratu elementuak aldetara ezabatzeko</string>
+    <string name="start_main_player_fullscreen_summary">Ez hasi bideoak mini erreproduzitzailean eta hasi bideoak pantaila osoan zuzenean, auto biraketa blokeatuta badago. Mini erreproduzitzailea erabili dezakezu pantaila osotik irtetzean</string>
+    <string name="start_main_player_fullscreen_title">Hasi erreproduzitzaile nagusia pantaila osoan</string>
 </resources>
