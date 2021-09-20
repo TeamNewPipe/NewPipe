@@ -1,7 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools"
-        tools:ignore="MissingTranslation">
-
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="main_bg_subtitle">Tap the magnifying glass to get started.</string>
     <string name="upload_date_text">Published on %1$s</string>
     <string name="no_player_found">No stream player found. Install VLC?</string>
@@ -122,7 +120,7 @@
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phonecalls)</string>
     <string name="download_dialog_title">Download</string>
     <string name="start_main_player_fullscreen_title">Start main player in fullscreen</string>
-    <string name="start_main_player_fullscreen_summary">Do not start videos in the mini player, but turn to fullscreen mode directly, if auto rotation is locked. You can still access the mini player by exiting fullscreen.</string>
+    <string name="start_main_player_fullscreen_summary">Do not start videos in the mini player, but turn to fullscreen mode directly, if auto rotation is locked. You can still access the mini player by exiting fullscreen</string>
     <string name="autoplay_title">Autoplay</string>
     <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when pressing the background or the popup button in video \"Details:\"</string>
@@ -427,6 +425,8 @@
     <string name="show_channel_details">Show channel details</string>
     <string name="enqueue_stream">Enqueue</string>
     <string name="enqueued">Enqueued</string>
+    <string name="enqueue_next_stream">Enqueue next</string>
+    <string name="enqueued_next">Enqueued next</string>
     <string name="start_here_on_background">Start playing in the background</string>
     <string name="start_here_on_popup">Start playing in a popup</string>
     <!-- Drawer -->

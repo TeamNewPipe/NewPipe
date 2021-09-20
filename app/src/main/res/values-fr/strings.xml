@@ -667,6 +667,7 @@
         <item quantity="other">%s téléchargements terminés</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Balayez un élément pour le supprimer</string>
-    <string name="start_main_player_fullscreen_summary">Ne pas lancer les vidéos dans le mini lecteur mais directement en plein écran si la rotation automatique est verrouillée. Vous pouvez toujours accéder au mini-lecteur en quittant le mode plein écran.</string>
+    <string name="start_main_player_fullscreen_summary">Ne pas lancer les vidéos dans le mini lecteur mais directement en plein écran si la rotation automatique est verrouillée. Vous pouvez toujours accéder au mini-lecteur en quittant le mode plein écran</string>
     <string name="start_main_player_fullscreen_title">Lancer le lecteur principal en plein écran</string>
+    <string name="enqueue_next_stream">Mettre en file d’attente la suivante</string>
 </resources>

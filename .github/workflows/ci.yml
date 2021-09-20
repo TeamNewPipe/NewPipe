@@ -33,10 +33,10 @@ jobs:
         if: github.event_name == 'pull_request'
         run: git checkout -B ${{ github.head_ref }}
 
-      - name: set up JDK 8
+      - name: set up JDK 11
         uses: actions/setup-java@v2
         with:
-          java-version: 8
+          java-version: 11
           distribution: "temurin"
           cache: 'gradle'
           
@@ -59,10 +59,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: set up JDK 8
+      - name: set up JDK 11
         uses: actions/setup-java@v2
         with:
-          java-version: 8
+          java-version: 11
           distribution: "temurin"
           cache: 'gradle'
 

@@ -668,4 +668,6 @@
         <item quantity="other">%s descargas finalizadas</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Desliza los elementos para removerlos</string>
+    <string name="start_main_player_fullscreen_summary">Si la rotación automática está bloqueada, no inicie los videos en el mini reproductor, sino pase directamente a modo de pantalla completa. Aún podrá acceder al mini reproductor al salir del modo pantalla completa</string>
+    <string name="start_main_player_fullscreen_title">Iniciar reproductor principal en pantalla completa</string>
 </resources>

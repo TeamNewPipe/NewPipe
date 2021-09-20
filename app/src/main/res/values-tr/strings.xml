@@ -665,6 +665,6 @@
         <item quantity="other">%s indirme tamamlandı</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Ögeleri kaldırmak için kaydır</string>
-    <string name="start_main_player_fullscreen_summary">Videoları küçük oynatıcıda başlatma, kendiliğinden döndürme kilitliyse doğrudan tam ekran kipine geç. Tam ekrandan çıkarak küçük oynatıcıya erişmeye devam edebilirsiniz.</string>
+    <string name="start_main_player_fullscreen_summary">Videoları küçük oynatıcıda başlatma, kendiliğinden döndürme kilitliyse doğrudan tam ekran kipine geç. Tam ekrandan çıkarak küçük oynatıcıya erişmeye devam edebilirsiniz</string>
     <string name="start_main_player_fullscreen_title">Ana oynatıcıyı tam ekranda başlat</string>
 </resources>

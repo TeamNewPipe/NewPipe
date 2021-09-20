@@ -171,6 +171,10 @@ class AboutActivity : AppCompatActivity() {
                 "https://github.com/ocpsoft/prettytime", StandardLicenses.APACHE2
             ),
             SoftwareComponent(
+                "ProcessPhoenix", "2015", "Jake Wharton",
+                "https://github.com/JakeWharton/ProcessPhoenix", StandardLicenses.APACHE2
+            ),
+            SoftwareComponent(
                 "RxAndroid", "2015", "The RxAndroid authors",
                 "https://github.com/ReactiveX/RxAndroid", StandardLicenses.APACHE2
             ),

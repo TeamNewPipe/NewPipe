@@ -69,8 +69,8 @@
     <string name="open_in_browser">Buka nang Browser</string>
     <string name="cancel">Orasido</string>
     <string name="install">Pasang</string>
-    <string name="no_player_found_toast">Ra ono pemuter (kowe iso pasang VLC gae muter iku).</string>
-    <string name="no_player_found">Raono pemuter. Pasang VLC\?</string>
-    <string name="upload_date_text">Diterbitke %1$s</string>
-    <string name="main_bg_subtitle">Pencet \"Cari\" nek meh mulai</string>
+    <string name="no_player_found_toast">Ra ono pamuter (Sampeyan iso masang VLC kanggo muter iku).</string>
+    <string name="no_player_found">Pamuter ora ditemokke. Pasang VLC\?</string>
+    <string name="upload_date_text">Diterbitake ing %1$s</string>
+    <string name="main_bg_subtitle">Pencet suryakanta kanggo nglekasi</string>
 </resources>

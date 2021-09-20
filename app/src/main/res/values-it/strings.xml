@@ -665,4 +665,8 @@
         <item quantity="other">%s download completati</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Scorri gli elementi per rimuoverli</string>
+    <string name="start_main_player_fullscreen_summary">Se la rotazione automatica è bloccata, i video non saranno avviati nel mini player, ma direttamente a schermo intero. È comunque possibile accedere al mini player uscendo dalla modalità a schermo intero</string>
+    <string name="start_main_player_fullscreen_title">Avvia il lettore principale a schermo intero</string>
+    <string name="enqueued_next">Aggiunto alla coda come prossimo</string>
+    <string name="enqueue_next_stream">Accoda come prossimo</string>
 </resources>

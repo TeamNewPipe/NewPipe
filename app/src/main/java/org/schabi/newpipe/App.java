@@ -11,6 +11,8 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.multidex.MultiDexApplication;
 import androidx.preference.PreferenceManager;
 
+import com.jakewharton.processphoenix.ProcessPhoenix;
+
 import org.acra.ACRA;
 import org.acra.config.ACRAConfigurationException;
 import org.acra.config.CoreConfiguration;
@@ -85,6 +87,12 @@ public class App extends MultiDexApplication {
         super.onCreate();
 
         app = this;
+
+        if (ProcessPhoenix.isPhoenixProcess(this)) {
+            Log.i(TAG, "This is a phoenix process! "
+                    + "Aborting initialization of App[onCreate]");
+            return;
+        }
 
         // Initialize settings first because others inits can use its values
         NewPipeSettings.initSettings(this);

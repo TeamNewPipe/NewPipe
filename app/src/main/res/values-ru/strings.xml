@@ -269,9 +269,9 @@
     <string name="resize_fill">Заполнить</string>
     <string name="resize_zoom">Приблизить</string>
     <string name="caption_auto_generated">Создано автоматически</string>
-    <string name="enable_leak_canary_summary">Мониторинг утечки памяти может привести к зависанию приложения</string>
-    <string name="enable_disposed_exceptions_title">Сообщать об ошибках жизненного цикла</string>
-    <string name="enable_disposed_exceptions_summary">Принудительно сообщать о недоставляемых Rx-исключениях вне фрагмента или жизненного цикла после удаления</string>
+    <string name="enable_leak_canary_summary">Мониторинг утечек памяти может привести к зависанию приложения</string>
+    <string name="enable_disposed_exceptions_title">Сообщать об ошибках вне жизненного цикла</string>
+    <string name="enable_disposed_exceptions_summary">Принудительно сообщать о недоставляемых вне жизненного цикла фрагмента или активности Rx-исключениях после высвобождения ресурсов</string>
     <string name="import_title">Импорт</string>
     <string name="import_from">Импорт из</string>
     <string name="export_to">Экспорт в</string>
@@ -329,7 +329,7 @@
     <string name="import_settings">Хотите импортировать настройки?</string>
     <string name="privacy_policy_title">Конфиденциальность</string>
     <string name="privacy_policy_encouragement">Проект NewPipe очень серьёзно относится к вашей конфиденциальности. Приложение не собирает никаких данных без вашего согласия.
-\nПолитика конфиденциальности NewPipe подробно объясняет, какие данные отправляются и хранятся при отправке отчёта о сбоях.</string>
+\nПолитика конфиденциальности NewPipe подробно объясняет, какие данные обрабатываются и хранятся при отправке отчёта о сбоях.</string>
     <string name="read_privacy_policy">Прочитать политику</string>
     <string name="start_accept_privacy_policy">В соответствии с Общим регламентом по защите данных ЕС (GDPR), обращаем ваше внимание на политику конфиденциальности NewPipe. Пожалуйста, внимательно ознакомьтесь с ней.
 \nВам необходимо принять её условия, чтобы отправить нам отчёт об ошибке.</string>
@@ -609,7 +609,7 @@
     <string name="show_description_title">Показать описание</string>
     <string name="open_with">Открыть в</string>
     <string name="no_app_to_open_intent">Подходящее приложение не найдено</string>
-    <string name="crash_the_app">Сбой приложения</string>
+    <string name="crash_the_app">Вызвать сбой приложения</string>
     <string name="paid_content">Этот контент доступен только оплатившим его пользователям, поэтому NewPipe не может воспроизвести или загрузить его.</string>
     <string name="youtube_music_premium_content">Это видео доступно только для пользователей YouTube Music Premium, поэтому NewPipe не может воспроизвести или загрузить его.</string>
     <string name="private_content">Это частный контент, поэтому NewPipe не может воспроизвести или загрузить его.</string>
@@ -618,7 +618,7 @@
     <string name="download_has_started">Загрузка началась</string>
     <string name="select_night_theme_toast">Вы можете выбрать предпочтительную ночную тему ниже</string>
     <string name="night_theme_summary">Выберите предпочтительную ночную тему — %s</string>
-    <string name="auto_device_theme_title">Автоматическая (тема устройства)</string>
+    <string name="auto_device_theme_title">Автоматически (тема устройства)</string>
     <string name="radio">Радио</string>
     <string name="restricted_video_no_stream">Это видео имеет возрастные ограничения.
 \nСогласно новой политике YouTube в отношении видео с возрастными ограничениями NewPipe не может иметь доступ ни к одному потоку этого видео и, таким образом, не может воспроизвести его.</string>
@@ -670,7 +670,7 @@
     <string name="mark_as_watched">Пометить как проигранные</string>
     <string name="error_show_channel_details">Не удалось отобразить сведения о канале</string>
     <string name="loading_channel_details">Загрузка сведений о канале…</string>
-    <string name="show_image_indicators_summary">Указать цветной полосой на изображениях Picasso их источник (красный - сеть, синий - диск, зелёный - память)</string>
+    <string name="show_image_indicators_summary">Picasso: указать цветом источник изображений (красный - сеть, синий - диск, зелёный - память)</string>
     <string name="show_image_indicators_title">Цветные метки на изображениях</string>
     <string name="remote_search_suggestions">Серверные предложения поиска</string>
     <string name="local_search_suggestions">Локальные предложения поиска</string>
@@ -687,7 +687,7 @@
         <item quantity="other">%s загрузок завершено</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Удалять элементы смахиванием</string>
-    <string name="start_main_player_fullscreen_summary">Не начинать просмотр видео в мини-плеере, но сразу переключиться в полноэкранный режим, если автовращение экрана заблокировано. Вы можете переключиться на мини-плеер, выйдя из полноэкранного режима.</string>
+    <string name="start_main_player_fullscreen_summary">Запускать видео во весь экран, если отключён автоповорот. Мини-плеер доступен при выходе из полноэкранного режима</string>
     <string name="start_main_player_fullscreen_title">Начинать просмотр в полноэкранном режиме</string>
     <string name="notifications">Уведомления</string>
     <string name="streams_notification_channel_name">Новые видео</string>

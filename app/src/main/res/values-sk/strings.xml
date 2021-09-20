@@ -105,7 +105,7 @@
     <string name="popup_remember_size_pos_title">Zapamätať si parametre mini okna</string>
     <string name="popup_remember_size_pos_summary">Zapamätať si posledné nastavenie veľkosti a pozície mini okna</string>
     <string name="show_search_suggestions_title">Hľadať návrhy</string>
-    <string name="show_search_suggestions_summary">Zobrazovať návrhy pri vyhľadávaní</string>
+    <string name="show_search_suggestions_summary">Vyberte návrhy, ktoré sa majú zobrazovať pri vyhľadávaní</string>
     <string name="best_resolution">Najlepšie rozlíšenie</string>
     <string name="subscribe_button_title">Odber</string>
     <string name="subscribed_button_title">Odoberané</string>
@@ -289,7 +289,8 @@
 \n3. Kliknite na \"Zahrnuté sú všetky údaj služby YouTube\", tam kliknite na \"Zrušiť výber\", zaškrtnite \"odbery\" a potom kliknite na OK
 \n4. Kliknite na \"Ďaľší krok\" a potom na \"Vytvoriť export\"
 \n5. Po chvíli sa objaví tlačidlo s nápisom \"Stiahnuť\"
-\n6. Stiahnutý súbor otvorte a extraktujte .json súbor (nachádza sa v \"/Takeout/YouTube a YouTube Music/odbery/\"). Tento súbor importujte do NewPipe.</string>
+\n6. Kliknite na IMPORT ZO SÚBORU a zvoľte stiahnutý zip súbor
+\n7. Ak import zip súbory zlyhá. Stiahnutý súbor otvorte a extraktujte .csv súbor (nachádza sa v \"/Takeout/YouTube a YouTube Music/odbery/\"). Tento súbor importujte do NewPipe.</string>
     <string name="import_soundcloud_instructions">Importovať SoundCloud profil zadaním URL adresy alebo vášho ID:
 \n
 \n1. Prepnite režim na \"desktop\" (web nie je dostupný pre mobilné zariadenia)
@@ -648,4 +649,34 @@
     <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' nie je podporovaný v systéme Android KitKat a ani v starších verziách</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Pri každom sťahovaní sa zobrazí výzva kam uložiť súbor</string>
     <string name="no_dir_yet">Nie je nastavený adresár na sťahovanie. Nastavte ho teraz.</string>
+    <string name="mark_as_watched">Označiť ako pozorované</string>
+    <string name="loading_channel_details">Načítavanie podrobností o kanáli…</string>
+    <string name="error_show_channel_details">Chyba pri zobrazení podrobností kanála</string>
+    <string name="off">Vypnuté</string>
+    <string name="on">Zapnuté</string>
+    <string name="tablet_mode_title">Režim tabletu</string>
+    <string name="detail_heart_img_view_description">Obľúbené autorom</string>
+    <string name="feed_toggle_show_played_items">Zobrazovať pozreté položky</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s sťahovanie zmazané</item>
+        <item quantity="few">%1$s sťahovania zmazané</item>
+        <item quantity="other">%1$s sťahovaní zmazaných</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Sťahovanie ukončené</item>
+        <item quantity="few">%s ukončené sťahovania</item>
+        <item quantity="other">%s ukončených sťahovaní</item>
+    </plurals>
+    <string name="dont_show">Neukazovať</string>
+    <string name="low_quality_smaller">Nízka kvalita (menšie)</string>
+    <string name="high_quality_larger">Vysoká kvalita (väčšie)</string>
+    <string name="seekbar_preview_thumbnail_title">Náhľad miniatúry pri vyhľadávaní</string>
+    <string name="show_image_indicators_summary">Zobraziť farebné stužky Picassa na obrázkoch podľa ich zdroja: červená pre sieť, modrá pre disk a zelená pre pamäť</string>
+    <string name="show_image_indicators_title">Zobraziť indikátory obrázka</string>
+    <string name="main_page_content_swipe_remove">Potiahnutím vymazať</string>
+    <string name="comments_are_disabled">Komentáre sú zakázané</string>
+    <string name="start_main_player_fullscreen_summary">Pri zamknutej auto-rotácií nespúšťať videá v mini prehrávači, ale prepnúť sa priamo do režimu celej obrazovky. Prístup k mini prehrávaču bude po ukončení režimu celej obrazovky</string>
+    <string name="start_main_player_fullscreen_title">Hlavný prehrávač na celej obrazovke</string>
+    <string name="remote_search_suggestions">Návrhy vzdialeného vyhľadávania</string>
+    <string name="local_search_suggestions">Miestne návrhy vyhľadávania</string>
 </resources>

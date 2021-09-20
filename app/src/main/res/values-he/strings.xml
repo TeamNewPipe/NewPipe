@@ -689,6 +689,8 @@
         <item quantity="other">%s הורדות הסתיימו</item>
     </plurals>
     <string name="main_page_content_swipe_remove">ניתן להחליק פריטים להסרתם</string>
-    <string name="start_main_player_fullscreen_summary">לא להפעיל סרטונים בנגן המוקטן, לעבור למצב מסך מלא ישירות במקום זאת, אם הטיה אוטומטית מושבתת. עדיין ניתן לגשת לנגן המוקטן על ידי יציאה ממסך מלא.</string>
+    <string name="start_main_player_fullscreen_summary">לא להפעיל סרטונים בנגן המוקטן, לעבור למצב מסך מלא ישירות במקום זאת, אם הטיה אוטומטית מושבתת. עדיין ניתן לגשת לנגן המוקטן על ידי יציאה ממסך מלא</string>
     <string name="start_main_player_fullscreen_title">הפעלת הנגן הראשי במסך מלא</string>
+    <string name="enqueued_next">נוסף כהבא בתור</string>
+    <string name="enqueue_next_stream">הוספה כהבא בתור</string>
 </resources>

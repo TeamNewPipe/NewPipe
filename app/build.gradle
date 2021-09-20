@@ -17,8 +17,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 975
-        versionName "0.21.9"
+        versionCode 976
+        versionName "0.21.10"
 
         multiDexEnabled true
 
@@ -54,6 +54,11 @@ android {
         // debug build. This seems to be a Gradle bug, therefore
         // TODO: update Gradle version
         release {
+            if (System.properties.containsKey('packageSuffix')) {
+                applicationIdSuffix System.getProperty('packageSuffix')
+                resValue "string", "app_name", "NewPipe " + System.getProperty('packageSuffix')
+                archivesBaseName = 'NewPipe_' + System.getProperty('packageSuffix')
+            }
             minifyEnabled true
             shrinkResources false // disabled to fix F-Droid's reproducible build
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -185,7 +190,7 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:62b87552f51022be76804f3bed65447aeb9fce9b'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.21.10'
 
 /** Checkstyle **/
     checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
@@ -256,6 +261,9 @@ dependencies {
 
     // Crash reporting
     implementation "ch.acra:acra-core:5.7.0"
+
+    // Properly restarting
+    implementation 'com.jakewharton:process-phoenix:2.1.2'
 
     // Reactive extensions for Java VM
     implementation "io.reactivex.rxjava3:rxjava:3.0.7"

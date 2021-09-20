@@ -647,14 +647,14 @@
     <string name="remote_search_suggestions">远程搜索建议</string>
     <string name="local_search_suggestions">本地搜索建议</string>
     <plurals name="deleted_downloads_toast">
-        <item quantity="one">删除了 %1$s 个下载</item>
-        <item quantity="other"/>
+        <item quantity="other">删除了 %1$s 个下载</item>
     </plurals>
     <plurals name="download_finished_notification">
-        <item quantity="one">完成了 %s 个下载</item>
-        <item quantity="other"/>
+        <item quantity="other">完成了 %s 个下载</item>
     </plurals>
     <string name="main_page_content_swipe_remove">滑动项目以删除它们</string>
-    <string name="start_main_player_fullscreen_summary">若自动旋转被锁定，不在以小窗播放器形式中播放视频，而直接切换到全屏模式。仍可以通过退出全屏以切换至小窗播放器。</string>
+    <string name="start_main_player_fullscreen_summary">若自动旋转被锁定，不在以小窗播放器形式中播放视频，而直接切换到全屏模式。仍可以通过退出全屏以切换至小窗播放器</string>
     <string name="start_main_player_fullscreen_title">以全屏启动主播放器</string>
+    <string name="enqueued_next">已将下个视频加入队列</string>
+    <string name="enqueue_next_stream">将下一个视频加入队列</string>
 </resources>

@@ -665,4 +665,6 @@
         <item quantity="one">Allalaadimine lõppes</item>
         <item quantity="other">%s allalaadimist lõppesid</item>
     </plurals>
+    <string name="start_main_player_fullscreen_summary">Kui ekraani pööramine on lukustatud, siis videote esitamisel ära käivita väikest vaadet, vaid käivita kohe täisekraanivaade. Viimasest väljumisel näed väikest esitusvaadet</string>
+    <string name="start_main_player_fullscreen_title">Käivita meediamängija täisekraanivaates</string>
 </resources>

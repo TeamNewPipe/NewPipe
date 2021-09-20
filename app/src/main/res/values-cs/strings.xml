@@ -603,7 +603,7 @@
     <string name="crash_the_app">Zbořit aplikaci</string>
     <string name="download_has_started">Stahování bylo zahájeno</string>
     <string name="select_night_theme_toast">Můžete si zvolit svůj oblíbený motiv níže</string>
-    <string name="night_theme_summary">Zvolte si svůj oblíbený noční motiv -- %s</string>
+    <string name="night_theme_summary">Zvolte si svůj oblíbený noční motiv - %s</string>
     <string name="auto_device_theme_title">Automatický (motiv zařízení)</string>
     <string name="radio">Radio</string>
     <string name="featured">Představujeme</string>

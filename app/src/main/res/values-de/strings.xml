@@ -665,6 +665,8 @@
         <item quantity="other">%s Downloads abgeschlossen</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Wische über Elemente, um sie zu entfernen</string>
-    <string name="start_main_player_fullscreen_summary">Videos nicht im Miniplayer starten, sondern direkt in den Vollbildmodus schalten, wenn die automatische Drehung gesperrt ist. Du kannst immer noch auf den Miniplayer zugreifen, wenn du den Vollbildmodus verlässt.</string>
+    <string name="start_main_player_fullscreen_summary">Videos nicht im Miniplayer starten, sondern direkt in den Vollbildmodus schalten, wenn die automatische Drehung gesperrt ist. Du kannst immer noch auf den Miniplayer zugreifen, wenn du den Vollbildmodus verlässt</string>
     <string name="start_main_player_fullscreen_title">Hauptplayer im Vollbildmodus starten</string>
+    <string name="enqueued_next">Als Nächstes eingereiht</string>
+    <string name="enqueue_next_stream">Als Nächstes in Wiedergabe einreihen</string>
 </resources>

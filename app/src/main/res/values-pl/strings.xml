@@ -260,7 +260,7 @@
     <string name="download_thumbnail_summary">Wyłącz, aby nie wczytywać miniatur, oszczędzając dane i zużycie pamięci. Zmiana tej opcji czyści pamięć podręczną obrazów</string>
     <string name="thumbnail_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną miniatur</string>
     <string name="metadata_cache_wipe_title">Wyczyść pamięć podręczną metadanych</string>
-    <string name="metadata_cache_wipe_summary">Wyczyść pamięć podręczną stron</string>
+    <string name="metadata_cache_wipe_summary">Usuwa całą pamięć podręczną stron</string>
     <string name="metadata_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną metadanych</string>
     <string name="auto_queue_title">Automatyczne kolejkowanie następnego strumienia</string>
     <string name="auto_queue_summary">Gdy kończy się kolejka odtwarzania, dodaj do niej kolejną powiązaną pozycję</string>
@@ -625,7 +625,7 @@
     <string name="show_channel_details">Pokaż szczegóły kanału</string>
     <string name="disable_media_tunneling_summary">Wyłącz tunelowanie multimediów, jeśli zaobserwowałeś czarny ekran bądź brak płynności odtwarzania wideo</string>
     <string name="disable_media_tunneling_title">Wyłącz tunelowanie multimediów</string>
-    <string name="metadata_age_limit">Ograniczenie wieku</string>
+    <string name="metadata_age_limit">Ograniczenie wiekowe</string>
     <string name="description_select_disable">Wyłącz zaznaczanie tekstu w opisie</string>
     <string name="description_select_enable">Włącz zaznaczanie tekstu w opisie</string>
     <string name="metadata_privacy_internal">Wewnętrzny</string>
@@ -686,4 +686,6 @@
     <string name="main_page_content_swipe_remove">Przesuń w bok elementy, aby je usunąć</string>
     <string name="start_main_player_fullscreen_summary">Nie uruchamiaj wideo w miniodtwarzaczu, ale przełączaj się bezpośrednio na tryb pełnoekranowy, jeśli automatyczne obracanie jest zablokowane. Nadal możesz uzyskać dostęp do miniodtwarzacza, wychodząc z trybu pełnoekranowego</string>
     <string name="start_main_player_fullscreen_title">Uruchamiaj główny odtwarzacz w trybie pełnoekranowym</string>
+    <string name="enqueued_next">Dodano do kolejki (następny)</string>
+    <string name="enqueue_next_stream">Dodaj do kolejki (następny)</string>
 </resources>

@@ -269,7 +269,7 @@
 \n3. Clique em \"Todos os dados incluídos\", depois em \"Desmarcar todos\", depois selecione apenas \"subscrições\" e clique em \"OK\".
 \n4. Clique em \"Próximo passo\" e depois em \"Criar exportação\".
 \n5. Clique no botão \"Descarregar\" após aparecer
-\n6. Clique em IMPORT FILE abaixo e selecione o ficheiro zip baixado
+\n6. Clique em IMPORT FILE abaixo e selecione o ficheiro zip descarregado
 \n7. [Se a importação do zip falhar] Extraia o ficheiro .csv (geralmente em \"YouTube e YouTube Music/subscriptions/subscriptions.csv\"), clique em IMPORT FILE abaixo e selecione o ficheiro csv extraído</string>
     <string name="import_soundcloud_instructions">Importe o seu perfil SoundCloud digitando o URL ou a ID.:
 \n
@@ -665,4 +665,8 @@
         <item quantity="other">%s descargas concluídas</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Deslizar itens para removê-los</string>
+    <string name="start_main_player_fullscreen_summary">Não iniciar vídeos no reprodutor mini, mas ir diretamente ao modo de ecrã cheio, se a rotação automática estiver bloqueada. Ainda pode acessar o reprodutor mini por sair do modo de ecrã cheio</string>
+    <string name="start_main_player_fullscreen_title">Iniciar o reprodutor principal em ecrã cheio</string>
+    <string name="enqueued_next">Enfileirado o próximo</string>
+    <string name="enqueue_next_stream">Enfileirar o próximo</string>
 </resources>

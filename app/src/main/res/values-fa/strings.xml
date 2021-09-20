@@ -665,6 +665,8 @@
     <string name="loading_channel_details">بار کردن جزییات کانال…</string>
     <string name="error_show_channel_details">خطا در نمایش جزییات کانال</string>
     <string name="main_page_content_swipe_remove">برای برداشتن موارد، بکشیدشان</string>
-    <string name="start_main_player_fullscreen_summary">اگر چرخش خودکار قفل باشد، ویدیوها را در پخش‌کنندهٔ کوچک آغاز نمی‌کند، بلکه مستقیماً به تمام‌صفحه می‌رود. همچنان می‌توانید با خروج از تمام‌صفحه به پخش‌کنندهٔ کوچک دسترسی داشته باشید.</string>
+    <string name="start_main_player_fullscreen_summary">اگر چرخش خودکار قفل باشد، ویدیوها را در پخش‌کنندهٔ کوچک آغاز نمی‌کند، بلکه مستقیماً به تمام‌صفحه می‌رود. همچنان می‌توانید با خروج از تمام‌صفحه به پخش‌کنندهٔ کوچک دسترسی داشته باشید</string>
     <string name="start_main_player_fullscreen_title">آغاز پخش‌کنندهٔ اصلی در تمام‌صفحه</string>
+    <string name="enqueued_next">بعدی در صف گذاشته شد</string>
+    <string name="enqueue_next_stream">در صف گذاشتن بعدی</string>
 </resources>

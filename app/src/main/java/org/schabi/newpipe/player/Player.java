@@ -226,10 +226,10 @@ public final class Player implements
     public static final String REPEAT_MODE = "repeat_mode";
     public static final String PLAYBACK_QUALITY = "playback_quality";
     public static final String PLAY_QUEUE_KEY = "play_queue_key";
-    public static final String APPEND_ONLY = "append_only";
+    public static final String ENQUEUE = "enqueue";
+    public static final String ENQUEUE_NEXT = "enqueue_next";
     public static final String RESUME_PLAYBACK = "resume_playback";
     public static final String PLAY_WHEN_READY = "play_when_ready";
-    public static final String SELECT_ON_APPEND = "select_on_append";
     public static final String PLAYER_TYPE = "player_type";
     public static final String IS_MUTED = "is_muted";
 
@@ -238,7 +238,7 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
 
     public static final int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
-    public static final int PROGRESS_LOOP_INTERVAL_MILLIS = 500; // 500 millis
+    public static final int PROGRESS_LOOP_INTERVAL_MILLIS = 1000; // 1 second
     public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
     public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
     public static final int DPAD_CONTROLS_HIDE_TIME = 7000;  // 7 Seconds
@@ -608,16 +608,16 @@ public final class Player implements
             setPlaybackQuality(intent.getStringExtra(PLAYBACK_QUALITY));
         }
 
-        // Resolve append intents
-        if (intent.getBooleanExtra(APPEND_ONLY, false) && playQueue != null) {
-            final int sizeBeforeAppend = playQueue.size();
+        // Resolve enqueue intents
+        if (intent.getBooleanExtra(ENQUEUE, false) && playQueue != null) {
             playQueue.append(newQueue.getStreams());
+            return;
 
-            if ((intent.getBooleanExtra(SELECT_ON_APPEND, false)
-                    || currentState == STATE_COMPLETED) && newQueue.getStreams().size() > 0) {
-                playQueue.setIndex(sizeBeforeAppend);
-            }
-
+        // Resolve enqueue next intents
+        } else if (intent.getBooleanExtra(ENQUEUE_NEXT, false) && playQueue != null) {
+            final int currentIndex = playQueue.getIndex();
+            playQueue.append(newQueue.getStreams());
+            playQueue.move(playQueue.size() - 1, currentIndex + 1);
             return;
         }
 
@@ -2326,7 +2326,7 @@ public final class Player implements
             Log.d(TAG, "ExoPlayer - onRepeatModeChanged() called with: "
                     + "repeatMode = [" + repeatMode + "]");
         }
-        setRepeatModeButton(((AppCompatImageButton) binding.repeatButton), repeatMode);
+        setRepeatModeButton(binding.repeatButton, repeatMode);
         onShuffleOrRepeatModeChanged();
     }
 
@@ -3189,7 +3189,7 @@ public final class Player implements
     private StreamSegmentAdapter.StreamSegmentListener getStreamSegmentListener() {
         return (item, seconds) -> {
             segmentAdapter.selectSegment(item);
-            seekTo(seconds * 1000);
+            seekTo(seconds * 1000L);
             triggerProgressUpdate();
         };
     }
@@ -3199,7 +3199,7 @@ public final class Player implements
         final List<StreamSegment> segments = currentMetadata.getMetadata().getStreamSegments();
 
         for (int i = 0; i < segments.size(); i++) {
-            if (segments.get(i).getStartTimeSeconds() * 1000 > playbackPosition) {
+            if (segments.get(i).getStartTimeSeconds() * 1000L > playbackPosition) {
                 break;
             }
             nearestPosition++;

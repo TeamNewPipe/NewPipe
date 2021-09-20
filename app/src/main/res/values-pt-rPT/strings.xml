@@ -169,14 +169,15 @@
     <string name="default_content_country_title">País padrão para conteúdo</string>
     <string name="app_description">Aplicação livre de reprodução de emissões para Android.</string>
     <string name="content_language_title">Idioma padrão para conteúdo</string>
-    <string name="import_youtube_instructions">Importar subscrições YouTube do Google Takeout:
+    <string name="import_youtube_instructions">Importar subscrições do YouTube do Google Takeout:
 \n
-\n1. Aceda a este URL: %1$s
-\n2. Inicie a sessão
-\n3. Clique em \"Todos os dados incluídos\", depois em \"Desmarcar tudo\", selecione \"Subscrições\" e clique em \"OK\".
+\n1. Vá para este URL: %1$s
+\n2. Faça o login quando solicitado
+\n3. Clique em \"Todos os dados incluídos\", depois em \"Desmarcar todos\", depois selecione apenas \"subscrições\" e clique em \"OK\".
 \n4. Clique em \"Próximo passo\" e depois em \"Criar exportação\".
-\n5. Clique no botão \"Descarregar\"
-\n6. A partir do zip descarregado extraia o ficheiro .json (normalmente em \"YouTube e YouTube Music/subscriptions/subscriptions.json\") e importe-o aqui.</string>
+\n5. Clique no botão \"Descarregar\" após aparecer
+\n6. Clique em IMPORT FILE abaixo e selecione o ficheiro zip descarregado
+\n7. [Se a importação do zip falhar] Extraia o ficheiro .csv (geralmente em \"YouTube e YouTube Music/subscriptions/subscriptions.csv\"), clique em IMPORT FILE abaixo e selecione o ficheiro csv extraído</string>
     <string name="minimize_on_exit_background_description">Ativar reprodutor em segundo plano</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
     <string name="autoplay_title">Reprodução automática</string>
@@ -480,7 +481,7 @@
     <string name="videos_string">Vídeos</string>
     <string name="metadata_cache_wipe_complete_notice">Meta-dados em cache limpos</string>
     <string name="show_hold_to_append_summary">Mostrar dica ao premir em segundo plano ou no botão \"Detalhes:\" da janela popup</string>
-    <string name="no_player_found_toast">Não foi encontrado um reprodutor (pode instalar VLC para reproduzir).</string>
+    <string name="no_player_found_toast">Nenhum reprodutor foi encontrado (pode instalar VLC para reproduzir).</string>
     <string name="downloads_storage_ask_summary">Ser-lhe-á perguntado onde guardar cada descarga.
 \nAtive o seletor de pastas do sistema (SAF) se quiser descarregar para um cartão SD externo</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir no Kodi\"</string>
@@ -655,4 +656,17 @@
     <string name="show_image_indicators_title">Mostrar indicadores de imagem</string>
     <string name="remote_search_suggestions">Sugestões de pesquisa remotas</string>
     <string name="local_search_suggestions">Sugestões de pesquisa locais</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s descarga apagada</item>
+        <item quantity="other">%1$s descargas apagadas</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Descarga concluída</item>
+        <item quantity="other">%s descargas concluídas</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">Deslizar itens para removê-los</string>
+    <string name="start_main_player_fullscreen_summary">Não iniciar vídeos no reprodutor mini, mas ir diretamente ao modo de ecrã cheio, se a rotação automática estiver bloqueada. Ainda pode acessar o reprodutor mini por sair do modo de ecrã cheio</string>
+    <string name="start_main_player_fullscreen_title">Iniciar o reprodutor principal em ecrã cheio</string>
+    <string name="enqueued_next">Enfileirado o próximo</string>
+    <string name="enqueue_next_stream">Enfileirar o próximo</string>
 </resources>

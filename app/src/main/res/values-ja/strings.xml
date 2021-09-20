@@ -295,10 +295,11 @@
 \n
 \n1. この URL を開きます: %1$s
 \n2. ログインしていなければログインします
-\n3. \"All data included\" をクリックし、そして \"Deselect all\" をクリック、そして \"subscriptions\" のみを選択し、\"OK\" をクリック
-\n4. \"Next step\" をクリックし、そして \"Create export\" をクリック
-\n5. 表示されたら \"Download\" ボタンをクリック
-\n6. ダウンロードした takeout の zip から、.json ファイル (たいてい、\"YouTube and YouTube Music/subscriptions/subscriptions.json\" の下にある) を抽出し、ここにインポートします。</string>
+\n3. \"すべて選択\" をクリックし、そして \"選択をすべて解除\" をクリック、そして \"登録チャンネル\" のみを選択し、\"OK\" をクリック
+\n4. \"次のステップ\" をクリックし、そして \"エクスポートを作成\" をクリック
+\n5. 表示されたら \"ダウンロード\" ボタンをクリック
+\n6. ファイルからインポートをクリックしてダウンロードした zip ファイルを選択
+\n7. (インポートが失敗したら) csv ファイル (たいてい、\"YouTube と YouTube Music/登録チャンネル/登録チャンネル.csv\" にある) を抽出し、ファイルからインポートをクリックして抽出した csv ファイルを選択</string>
     <string name="playback_reset">リセット</string>
     <string name="accept">同意する</string>
     <string name="decline">拒否する</string>
@@ -643,4 +644,14 @@
     <string name="remote_search_suggestions">リモート検索候補</string>
     <string name="local_search_suggestions">ローカル検索候補</string>
     <string name="main_page_content_swipe_remove">アイテムをスワイプして削除</string>
+    <string name="start_main_player_fullscreen_summary">直接フルスクリーンモードに切り替えて、ミニプレイヤーで動画を開始しません。自動回転がロックされている場合でも、フルスクリーンを終了することでミニプレイヤーにアクセスできます</string>
+    <string name="start_main_player_fullscreen_title">フルスクリーンでメインプレイヤーを開始</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="other">%1$s つのダウンロードを削除しました</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="other">%s つのダウンロードが完了しました</item>
+    </plurals>
+    <string name="show_image_indicators_summary">ピカソは、画像の上に、画像の出所を識別する色彩記章を表示します: 赤はネットワーク、青はディスク、緑はメモリ</string>
+    <string name="show_image_indicators_title">画像に標識を表示</string>
 </resources>

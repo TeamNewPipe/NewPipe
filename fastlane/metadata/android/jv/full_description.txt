@@ -1,0 +1,1 @@
+NewPipe ora migunakake pustaka kerangka kerja Google, utawa API Youtube. NewPipe namung migunakake informasi situs kanggo njupuk informasi kang dibutuhake. Mula iku, NewPipe isa digunakke ing piranti tanpa Layanan Google. Sampeyan uga ora mbutuhake akun Youtube kanggo migunakake NewPipe, lan aplikasi iki FLOSS.

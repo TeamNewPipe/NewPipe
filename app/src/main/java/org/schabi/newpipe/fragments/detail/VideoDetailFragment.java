@@ -77,6 +77,7 @@ import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainPlayer;
+import org.schabi.newpipe.player.MainPlayer.PlayerType;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
@@ -423,7 +424,7 @@ public final class VideoDetailFragment
             showRelatedItems = sharedPreferences.getBoolean(key, true);
             tabSettingsChanged = true;
         } else if (key.equals(getString(R.string.show_description_key))) {
-            showComments = sharedPreferences.getBoolean(key, true);
+            showDescription = sharedPreferences.getBoolean(key, true);
             tabSettingsChanged = true;
         }
     }
@@ -742,20 +743,19 @@ public final class VideoDetailFragment
                 && player.getPlayQueue() != null
                 && player.videoPlayerSelected()
                 && player.getPlayQueue().previous()) {
-            return true;
+            return true; // no code here, as previous() was used in the if
         }
+
         // That means that we are on the start of the stack,
-        // return false to let the MainActivity handle the onBack
         if (stack.size() <= 1) {
             restoreDefaultOrientation();
-
-            return false;
+            return false; // let MainActivity handle the onBack (e.g. to minimize the mini player)
         }
+
         // Remove top
         stack.pop();
         // Get stack item from the new top
-        assert stack.peek() != null;
-        setupFromHistoryItem(stack.peek());
+        setupFromHistoryItem(Objects.requireNonNull(stack.peek()));
 
         return true;
     }
@@ -1096,8 +1096,8 @@ public final class VideoDetailFragment
         toggleFullscreenIfInFullscreenMode();
 
         final PlayQueue queue = setupPlayQueueForIntent(append);
-        if (append) {
-            NavigationHelper.enqueueOnPopupPlayer(activity, queue, false);
+        if (append) { //resumePlayback: false
+            NavigationHelper.enqueueOnPlayer(activity, queue, PlayerType.POPUP);
         } else {
             replaceQueueIfUserConfirms(() -> NavigationHelper
                     .playOnPopupPlayer(activity, queue, true));
@@ -1155,7 +1155,7 @@ public final class VideoDetailFragment
 
         final PlayQueue queue = setupPlayQueueForIntent(append);
         if (append) {
-            NavigationHelper.enqueueOnBackgroundPlayer(activity, queue, false);
+            NavigationHelper.enqueueOnPlayer(activity, queue, PlayerType.AUDIO);
         } else {
             replaceQueueIfUserConfirms(() -> NavigationHelper
                     .playOnBackgroundPlayer(activity, queue, true));
@@ -1181,7 +1181,7 @@ public final class VideoDetailFragment
         addVideoPlayerView();
 
         final Intent playerIntent = NavigationHelper.getPlayerIntent(requireContext(),
-                MainPlayer.class, queue, true, autoPlayEnabled);
+                MainPlayer.class, queue, autoPlayEnabled);
         ContextCompat.startForegroundService(activity, playerIntent);
     }
 
@@ -1432,17 +1432,15 @@ public final class VideoDetailFragment
     //////////////////////////////////////////////////////////////////////////*/
 
     private void restoreDefaultOrientation() {
-        if (!isPlayerAvailable() || !player.videoPlayerSelected() || activity == null) {
-            return;
+        if (isPlayerAvailable() && player.videoPlayerSelected()) {
+            toggleFullscreenIfInFullscreenMode();
         }
-
-        toggleFullscreenIfInFullscreenMode();
 
         // This will show systemUI and pause the player.
         // User can tap on Play button and video will be in fullscreen mode again
         // Note for tablet: trying to avoid orientation changes since it's not easy
         // to physically rotate the tablet every time
-        if (!DeviceUtils.isTablet(activity)) {
+        if (activity != null && !DeviceUtils.isTablet(activity)) {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         }
     }
