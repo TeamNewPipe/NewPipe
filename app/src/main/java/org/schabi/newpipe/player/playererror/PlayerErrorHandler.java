@@ -39,7 +39,8 @@ public class PlayerErrorHandler {
     public void showPlayerError(
             @NonNull final ExoPlaybackException exception,
             @NonNull final Info info,
-            @StringRes final int textResId) {
+            @StringRes final int textResId
+    ) {
         // Hide existing toast message
         if (errorToast != null) {
             Log.d(TAG, "Trying to cancel previous player error error toast");
@@ -54,6 +55,7 @@ public class PlayerErrorHandler {
                 return;
             } catch (final Exception ex) {
                 Log.w(TAG, "Unable to report error:", ex);
+                // This will show the toast as fallback
             }
         }
 
