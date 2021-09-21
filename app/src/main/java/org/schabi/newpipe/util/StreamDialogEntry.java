@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
@@ -50,7 +53,10 @@ public enum StreamDialogEntry {
                         NavigationHelper.openDownloadDialog(
                                 (AppCompatActivity) fragment.getActivity(), result);
                     }
-                });
+                }, throwable -> ErrorActivity.reportErrorInSnackbar(fragment.getActivity(),
+                        new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
+                                "Fetching Stream Info",
+                                serviceId)));
     }),
     /**
      * Enqueues the stream automatically to the current PlayerType.<br>
