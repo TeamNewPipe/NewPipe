@@ -225,7 +225,7 @@
                         android:layout_below="@id/detail_title_root_layout"
                         android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
                         android:visibility="gone"
-                        tools:visibility="visible" />
+                        tools:visibility="gone" />
 
                     <!--HIDING ROOT-->
                     <LinearLayout
@@ -562,6 +562,22 @@
                                 android:text="@string/play_with_kodi_title"
                                 android:textSize="@dimen/detail_control_text_size"
                                 app:drawableTopCompat="@drawable/ic_cast" />
+
+                            <TextView
+                                android:id="@+id/detail_controls_crash_the_player"
+                                android:layout_width="@dimen/detail_control_width"
+                                android:layout_height="@dimen/detail_control_height"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="1"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:contentDescription="@string/crash_the_player"
+                                android:focusable="true"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/detail_control_padding"
+                                android:text="@string/crash_the_player"
+                                android:textSize="@dimen/detail_control_text_size"
+                                app:drawableTopCompat="@drawable/ic_bug_report" />
 
                         </LinearLayout>
 
