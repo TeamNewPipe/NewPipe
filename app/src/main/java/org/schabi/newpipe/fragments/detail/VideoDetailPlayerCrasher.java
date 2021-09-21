@@ -145,6 +145,12 @@ public class VideoDetailPlayerCrasher {
         alertDialog.show();
     }
 
+    /**
+     * Note that this method does not crash the underlying exoplayer directly (it's not possible).
+     * It simply supplies a Exception to {@link Player#onPlayerError(ExoPlaybackException)}.
+     * @param player
+     * @param exception
+     */
     private void tryCrashPlayerWith(
             @NonNull final Player player,
             @NonNull final ExoPlaybackException exception
