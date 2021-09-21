@@ -43,7 +43,7 @@ class LocalPlaylistManagerTest {
 
     @Test
     fun createPlaylist() {
-        val NEW_PIPE_LINK = "https://newpipe.net/"
+        const val NEWPIPE_URL = "https://newpipe.net/"
         val stream = StreamEntity(
             serviceId = 1, url = NEW_PIPE_LINK, title = "title",
             streamType = StreamType.VIDEO_STREAM, duration = 1, uploader = "uploader",
