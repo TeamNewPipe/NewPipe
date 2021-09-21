@@ -52,6 +52,7 @@
     <string name="kore_package" translatable="false">org.xbmc.kore</string>
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
+    <string name="crash_the_player">Crash the player</string>
     <string name="report_player_errors_title">Report player errors</string>
     <string name="report_player_errors_summary">Reports player errors in full detail instead of showing a short-lived toast message (useful for diagnosing problems)</string>
     <string name="notification_scale_to_square_image_title">Scale thumbnail to 1:1 aspect ratio</string>
@@ -475,6 +476,8 @@
     <string name="show_image_indicators_title">Show image indicators</string>
     <string name="show_image_indicators_summary">Show Picasso colored ribbons on top of images indicating their source: red for network, blue for disk and green for memory</string>
     <string name="crash_the_app">Crash the app</string>
+    <string name="show_crash_the_player_title">Show \"crash the player\"</string>
+    <string name="show_crash_the_player_summary">Shows a crash option when using the player</string>
     <!-- Subscriptions import/export -->
     <string name="import_title">Import</string>
     <string name="import_from">Import from</string>

@@ -190,6 +190,7 @@
     <string name="disable_media_tunneling_key" translatable="false">disable_media_tunneling_key</string>
     <string name="crash_the_app_key" translatable="false">crash_the_app_key</string>
     <string name="show_image_indicators_key" translatable="false">show_image_indicators_key</string>
+    <string name="show_crash_the_player_key" translatable="false">show_crash_the_player_key</string>
 
     <!-- THEMES -->
     <string name="theme_key" translatable="false">theme</string>
