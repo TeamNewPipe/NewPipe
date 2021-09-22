@@ -206,7 +206,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                         putBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), !usingDedicatedMethod)
                     }
                 }
-                .setPositiveButton(resources.getString(R.string.finish), null)
+                .setPositiveButton(resources.getString(R.string.ok), null)
                 .create()
                 .show()
             return true
@@ -326,9 +326,14 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         if (context == null || context.resources == null || activity == null) return
 
         val entries = ArrayList<StreamDialogEntry>()
-        if (PlayerHolder.getInstance().getType() != null) {
+        if (PlayerHolder.getInstance().isPlayerOpen) {
             entries.add(StreamDialogEntry.enqueue)
+
+            if (PlayerHolder.getInstance().queueSize > 1) {
+                entries.add(StreamDialogEntry.enqueue_next)
+            }
         }
+
         if (item.streamType == StreamType.AUDIO_STREAM) {
             entries.addAll(
                 listOf(

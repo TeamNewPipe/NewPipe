@@ -12,7 +12,6 @@
     <dimen name="video_item_detail_uploader_text_size">12sp</dimen>
     <dimen name="video_item_detail_upload_date_text_size">16sp</dimen>
     <dimen name="video_item_detail_description_text_size">16sp</dimen>
-    <dimen name="video_item_detail_next_text_size">18sp</dimen>
     <!-- Elements Size -->
     <dimen name="video_item_detail_uploader_image_size">40dp</dimen>
     <dimen name="video_item_detail_sub_channel_image_size">20dp</dimen>

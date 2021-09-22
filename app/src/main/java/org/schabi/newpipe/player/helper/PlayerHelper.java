@@ -239,6 +239,11 @@ public final class PlayerHelper {
                 .getBoolean(context.getString(R.string.brightness_gesture_control_key), true);
     }
 
+    public static boolean isStartMainPlayerFullscreenEnabled(@NonNull final Context context) {
+        return getPreferences(context)
+                .getBoolean(context.getString(R.string.start_main_player_fullscreen_key), false);
+    }
+
     public static boolean isAutoQueueEnabled(@NonNull final Context context) {
         return getPreferences(context)
                 .getBoolean(context.getString(R.string.auto_queue_key), false);
@@ -305,22 +310,6 @@ public final class PlayerHelper {
      */
     public static int getPlaybackStartBufferMs() {
         return 500;
-    }
-
-    /**
-     * @return the minimum number of milliseconds the player always buffers to
-     * after starting playback.
-     */
-    public static int getPlaybackMinimumBufferMs() {
-        return 25000;
-    }
-
-    /**
-     * @return the maximum/optimal number of milliseconds the player will buffer to once the buffer
-     * hits the point of {@link #getPlaybackMinimumBufferMs()}.
-     */
-    public static int getPlaybackOptimalBufferMs() {
-        return 60000;
     }
 
     public static TrackSelection.Factory getQualitySelector() {

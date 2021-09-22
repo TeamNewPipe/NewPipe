@@ -681,7 +681,7 @@ public class DownloadDialog extends DialogFragment
         new AlertDialog.Builder(context)
                 .setTitle(R.string.general_error)
                 .setMessage(msg)
-                .setNegativeButton(getString(R.string.finish), null)
+                .setNegativeButton(getString(R.string.ok), null)
                 .create()
                 .show();
     }

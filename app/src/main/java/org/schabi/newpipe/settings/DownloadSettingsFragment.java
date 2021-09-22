@@ -179,7 +179,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         final AlertDialog.Builder msg = new AlertDialog.Builder(ctx);
         msg.setTitle(title);
         msg.setMessage(message);
-        msg.setPositiveButton(getString(R.string.finish), null);
+        msg.setPositiveButton(getString(R.string.ok), null);
         msg.show();
     }
 

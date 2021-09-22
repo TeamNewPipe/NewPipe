@@ -1,0 +1,12 @@
+Зміни в 0.17.3
+
+Поліпшення
+• Можливість очищення станів відтворення #2550
+• Можливість вибору схованих каталогів #2591
+• Підтримка відкриття URL екземплярів «invidio.us» #2488
+• Додано підтримку URL «music.youtube.com» TeamNewPipe/NewPipeExtractor#194
+
+Виправлено
+• [YouTube] 'java.lang.IllegalArgumentException #192
+• [YouTube] не працювали прямі трансляції TeamNewPipe/NewPipeExtractor #195
+• Проблему швидкодії android pie під час завантаження трансляцій #2592
