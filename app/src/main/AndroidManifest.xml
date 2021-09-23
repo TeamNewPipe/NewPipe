@@ -22,7 +22,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:logo="@mipmap/ic_launcher"
-        android:requestLegacyExternalStorage="true"
         android:theme="@style/OpeningTheme"
         android:resizeableActivity="true"
         tools:ignore="AllowBackup">
@@ -232,11 +231,10 @@
                 <data android:host="invidious.snopyta.org" />
                 <data android:host="yewtu.be" />
                 <data android:host="tube.connect.cafe" />
-                <data android:host="invidious.zapashcanon.fr" />
                 <data android:host="invidious.kavin.rocks" />
-                <data android:host="invidious.tube" />
+                <data android:host="invidious-us.kavin.rocks" />
+                <data android:host="piped.kavin.rocks" />
                 <data android:host="invidious.site" />
-                <data android:host="invidious.xyz" />
                 <data android:host="vid.mint.lgbt" />
                 <data android:host="invidiou.site" />
                 <data android:host="invidious.fdn.fr" />
@@ -244,6 +242,15 @@
                 <data android:host="invidious.zee.li" />
                 <data android:host="vid.puffyan.us" />
                 <data android:host="ytprivate.com" />
+                <data android:host="invidious.namazso.eu" />
+                <data android:host="invidious.silkky.cloud" />
+                <data android:host="invidious.exonip.de" />
+                <data android:host="inv.riverside.rocks" />
+                <data android:host="invidious.blamefran.net" />
+                <data android:host="invidious.moomoo.me" />
+                <data android:host="ytb.trom.tf" />
+                <data android:host="yt.cyberhost.uk" />
+                <data android:host="y.com.cm" />
                 <data android:pathPrefix="/" />
             </intent-filter>
 
@@ -319,7 +326,7 @@
                 <data android:pathPrefix="/video-channels/" />
             </intent-filter>
 
-            <!-- Bandcamp filter -->
+            <!-- Bandcamp filter for tracks, albums and playlists -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
@@ -330,10 +337,23 @@
 
                 <data android:scheme="http"/>
                 <data android:scheme="https"/>
-                <data android:host="bandcamp.com"/>
                 <data android:host="*.bandcamp.com"/>
-                <data android:pathPrefix="/"/>
             </intent-filter>
+
+            <!-- Bandcamp filter for radio -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:sspPattern="bandcamp.com/?show=*"/>
+            </intent-filter>
+
         </activity>
         <service
             android:name=".RouterActivity$FetcherService"

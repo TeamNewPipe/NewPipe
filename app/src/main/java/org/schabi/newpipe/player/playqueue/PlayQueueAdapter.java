@@ -182,8 +182,10 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return ITEM_VIEW_TYPE_ID;
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, final int type) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
+                                                      final int type) {
         switch (type) {
             case FOOTER_VIEW_TYPE_ID:
                 return new HFHolder(footer);
@@ -197,7 +199,8 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder,
+                                 final int position) {
         if (holder instanceof PlayQueueItemHolder) {
             final PlayQueueItemHolder itemHolder = (PlayQueueItemHolder) holder;
 
@@ -207,7 +210,6 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             // Check if the current item should be selected/highlighted
             final boolean isSelected = playQueue.getIndex() == position;
-            itemHolder.itemSelected.setVisibility(isSelected ? View.VISIBLE : View.INVISIBLE);
             itemHolder.itemView.setSelected(isSelected);
         } else if (holder instanceof HFHolder && position == playQueue.getStreams().size()
                 && footer != null && showFooter) {

@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.CharacterStyle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -56,6 +57,7 @@ import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -64,16 +66,19 @@ import org.schabi.newpipe.util.ServiceHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -142,7 +147,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Nullable private Map<Integer, String> menuItemToFilterName = null;
     private StreamingService service;
     private Page nextPage;
-    private boolean isSuggestionsEnabled = true;
+    private boolean showLocalSuggestions = true;
+    private boolean showRemoteSuggestions = true;
 
     private Disposable searchDisposable;
     private Disposable suggestionDisposable;
@@ -193,24 +199,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
 
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        showLocalSuggestions = NewPipeSettings.showLocalSearchSuggestions(activity, prefs);
+        showRemoteSuggestions = NewPipeSettings.showRemoteSearchSuggestions(activity, prefs);
+
         suggestionListAdapter = new SuggestionListAdapter(activity);
-        final SharedPreferences preferences
-                = PreferenceManager.getDefaultSharedPreferences(activity);
-        final boolean isSearchHistoryEnabled = preferences
-                .getBoolean(getString(R.string.enable_search_history_key), true);
-        suggestionListAdapter.setShowSuggestionHistory(isSearchHistoryEnabled);
-
         historyRecordManager = new HistoryRecordManager(context);
-    }
-
-    @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        final SharedPreferences preferences
-                = PreferenceManager.getDefaultSharedPreferences(activity);
-        isSuggestionsEnabled = preferences
-                .getBoolean(getString(R.string.show_search_suggestions_key), true);
     }
 
     @Override
@@ -221,9 +215,29 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @Override
     public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
+        searchBinding = FragmentSearchBinding.bind(rootView);
         super.onViewCreated(rootView, savedInstanceState);
         showSearchOnStart();
         initSearchListeners();
+    }
+
+    private void updateService() {
+        try {
+            service = NewPipe.getService(serviceId);
+        } catch (final Exception e) {
+            ErrorActivity.reportUiErrorInSnackbar(this,
+                    "Getting service for id " + serviceId, e);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        if (DEBUG) {
+            Log.d(TAG, "onStart() called");
+        }
+        super.onStart();
+
+        updateService();
     }
 
     @Override
@@ -249,13 +263,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
         super.onResume();
 
-        try {
-            service = NewPipe.getService(serviceId);
-        } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(this,
-                    "Getting service for id " + serviceId, e);
-        }
-
         if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
             initSuggestionObserver();
         }
@@ -277,8 +284,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
         handleSearchSuggestion();
 
-        disposables.add(showMetaInfoInTextView(metaInfo == null ? null : Arrays.asList(metaInfo),
-                    searchBinding.searchMetaInfoTextView, searchBinding.searchMetaInfoSeparator));
+        showMetaInfoInTextView(metaInfo == null ? null : Arrays.asList(metaInfo),
+                searchBinding.searchMetaInfoTextView, searchBinding.searchMetaInfoSeparator,
+                disposables);
 
         if (TextUtils.isEmpty(searchString) || wasSearchFocused) {
             showKeyboardSearch();
@@ -334,7 +342,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-        searchBinding = FragmentSearchBinding.bind(rootView);
 
         searchBinding.suggestionsList.setAdapter(suggestionListAdapter);
         new ItemTouchHelper(new ItemTouchHelper.Callback() {
@@ -411,7 +418,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
         final ActionBar supportActionBar = activity.getSupportActionBar();
@@ -425,6 +433,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         int itemId = 0;
         boolean isFirstItem = true;
         final Context c = getContext();
+
+        if (service == null) {
+            Log.w(TAG, "onCreateOptionsMenu() called with null service");
+            updateService();
+        }
+
         for (final String filter : service.getSearchQHFactory().getAvailableContentFilter()) {
             if (filter.equals(YoutubeSearchQueryHandlerFactory.MUSIC_SONGS)) {
                 final MenuItem musicItem = menu.add(2,
@@ -533,7 +547,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             if (DEBUG) {
                 Log.d(TAG, "onClick() called with: v = [" + v + "]");
             }
-            if (isSuggestionsEnabled && !isErrorPanelVisible()) {
+            if ((showLocalSuggestions || showRemoteSuggestions) && !isErrorPanelVisible()) {
                 showSuggestionsPanel();
             }
             if (DeviceUtils.isTv(getContext())) {
@@ -546,7 +560,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 Log.d(TAG, "onFocusChange() called with: "
                         + "v = [" + v + "], hasFocus = [" + hasFocus + "]");
             }
-            if (isSuggestionsEnabled && hasFocus && !isErrorPanelVisible()) {
+            if ((showLocalSuggestions || showRemoteSuggestions)
+                    && hasFocus && !isErrorPanelVisible()) {
                 showSuggestionsPanel();
             }
         });
@@ -588,6 +603,11 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
             @Override
             public void afterTextChanged(final Editable s) {
+                // Remove rich text formatting
+                for (final CharacterStyle span : s.getSpans(0, s.length(), CharacterStyle.class)) {
+                    s.removeSpan(span);
+                }
+
                 final String newText = searchEditText.getText().toString();
                 suggestionPublisher.onNext(newText);
             }
@@ -717,6 +737,34 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         return false;
     }
 
+
+    private Observable<List<SuggestionItem>> getLocalSuggestionsObservable(
+            final String query, final int similarQueryLimit) {
+        return historyRecordManager
+                .getRelatedSearches(query, similarQueryLimit, 25)
+                .toObservable()
+                .map(searchHistoryEntries -> {
+                    final Set<SuggestionItem> result = new HashSet<>(); // remove duplicates
+                    for (final SearchHistoryEntry entry : searchHistoryEntries) {
+                        result.add(new SuggestionItem(true, entry.getSearch()));
+                    }
+                    return new ArrayList<>(result);
+                });
+    }
+
+    private Observable<List<SuggestionItem>> getRemoteSuggestionsObservable(final String query) {
+        return ExtractorHelper
+                .suggestionsFor(serviceId, query)
+                .toObservable()
+                .map(strings -> {
+                    final List<SuggestionItem> result = new ArrayList<>();
+                    for (final String entry : strings) {
+                        result.add(new SuggestionItem(false, entry));
+                    }
+                    return result;
+                });
+    }
+
     private void initSuggestionObserver() {
         if (DEBUG) {
             Log.d(TAG, "initSuggestionObserver() called");
@@ -727,73 +775,53 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
         suggestionDisposable = suggestionPublisher
                 .debounce(SUGGESTIONS_DEBOUNCE, TimeUnit.MILLISECONDS)
-                .startWithItem(searchString != null
-                        ? searchString
-                        : "")
-                .filter(ss -> isSuggestionsEnabled)
+                .startWithItem(searchString == null ? "" : searchString)
                 .switchMap(query -> {
-                    final Flowable<List<SearchHistoryEntry>> flowable = historyRecordManager
-                            .getRelatedSearches(query, 3, 25);
-                    final Observable<List<SuggestionItem>> local = flowable.toObservable()
-                            .map(searchHistoryEntries -> {
-                                final List<SuggestionItem> result = new ArrayList<>();
-                                for (final SearchHistoryEntry entry : searchHistoryEntries) {
-                                    result.add(new SuggestionItem(true, entry.getSearch()));
-                                }
-                                return result;
-                            });
+                    // Only show remote suggestions if they are enabled in settings and
+                    // the query length is at least THRESHOLD_NETWORK_SUGGESTION
+                    final boolean shallShowRemoteSuggestionsNow = showRemoteSuggestions
+                            && query.length() >= THRESHOLD_NETWORK_SUGGESTION;
 
-                    if (query.length() < THRESHOLD_NETWORK_SUGGESTION) {
-                        // Only pass through if the query length
-                        // is equal or greater than THRESHOLD_NETWORK_SUGGESTION
-                        return local.materialize();
+                    if (showLocalSuggestions && shallShowRemoteSuggestionsNow) {
+                        return Observable.zip(
+                                getLocalSuggestionsObservable(query, 3),
+                                getRemoteSuggestionsObservable(query),
+                                (local, remote) -> {
+                                    remote.removeIf(remoteItem -> local.stream().anyMatch(
+                                            localItem -> localItem.equals(remoteItem)));
+                                    local.addAll(remote);
+                                    return local;
+                                })
+                                .materialize();
+                    } else if (showLocalSuggestions) {
+                        return getLocalSuggestionsObservable(query, 25)
+                                .materialize();
+                    } else if (shallShowRemoteSuggestionsNow) {
+                        return getRemoteSuggestionsObservable(query)
+                                .materialize();
+                    } else {
+                        return Single.fromCallable(Collections::<SuggestionItem>emptyList)
+                                .toObservable()
+                                .materialize();
                     }
-
-                    final Observable<List<SuggestionItem>> network = ExtractorHelper
-                            .suggestionsFor(serviceId, query)
-                            .onErrorReturn(throwable -> {
-                                if (!ExceptionUtils.isNetworkRelated(throwable)) {
-                                    showSnackBarError(new ErrorInfo(throwable,
-                                            UserAction.GET_SUGGESTIONS, searchString, serviceId));
-                                }
-                                return new ArrayList<>();
-                            })
-                            .toObservable()
-                            .map(strings -> {
-                                final List<SuggestionItem> result = new ArrayList<>();
-                                for (final String entry : strings) {
-                                    result.add(new SuggestionItem(false, entry));
-                                }
-                                return result;
-                            });
-
-                    return Observable.zip(local, network, (localResult, networkResult) -> {
-                        final List<SuggestionItem> result = new ArrayList<>();
-                        if (localResult.size() > 0) {
-                            result.addAll(localResult);
-                        }
-
-                        // Remove duplicates
-                        networkResult.removeIf(networkItem ->
-                                localResult.stream().anyMatch(localItem ->
-                                        localItem.query.equals(networkItem.query)));
-
-                        if (networkResult.size() > 0) {
-                            result.addAll(networkResult);
-                        }
-                        return result;
-                    }).materialize();
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(listNotification -> {
-                    if (listNotification.isOnNext()) {
-                        handleSuggestions(listNotification.getValue());
-                    } else if (listNotification.isOnError()) {
-                        showError(new ErrorInfo(listNotification.getError(),
-                                UserAction.GET_SUGGESTIONS, searchString, serviceId));
-                    }
-                });
+                .subscribe(
+                        listNotification -> {
+                            if (listNotification.isOnNext()) {
+                                if (listNotification.getValue() != null) {
+                                    handleSuggestions(listNotification.getValue());
+                                }
+                            } else if (listNotification.isOnError()
+                                    && listNotification.getError() != null
+                                    && !ExceptionUtils.isInterruptedCaused(
+                                            listNotification.getError())) {
+                                showSnackBarError(new ErrorInfo(listNotification.getError(),
+                                        UserAction.GET_SUGGESTIONS, searchString, serviceId));
+                            }
+                        }, throwable -> showSnackBarError(new ErrorInfo(
+                            throwable, UserAction.GET_SUGGESTIONS, searchString, serviceId)));
     }
 
     @Override
@@ -835,7 +863,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         infoListAdapter.clearStreamItemList();
         hideSuggestionsPanel();
         showMetaInfoInTextView(null, searchBinding.searchMetaInfoTextView,
-                searchBinding.searchMetaInfoSeparator);
+                searchBinding.searchMetaInfoSeparator, disposables);
         hideKeyboardSearch();
 
         disposables.add(historyRecordManager.onSearched(serviceId, theSearchString)
@@ -980,8 +1008,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         // List<MetaInfo> cannot be bundled without creating some containers
         metaInfo = new MetaInfo[result.getMetaInfo().size()];
         metaInfo = result.getMetaInfo().toArray(metaInfo);
-        disposables.add(showMetaInfoInTextView(result.getMetaInfo(),
-                searchBinding.searchMetaInfoTextView, searchBinding.searchMetaInfoSeparator));
+        showMetaInfoInTextView(result.getMetaInfo(), searchBinding.searchMetaInfoTextView,
+                searchBinding.searchMetaInfoSeparator, disposables);
 
         handleSearchSuggestion();
 

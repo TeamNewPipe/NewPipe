@@ -8,9 +8,11 @@ import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.functions.Function4
+import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
-import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.database.stream.StreamWithState
+import org.schabi.newpipe.local.feed.item.StreamItem
 import org.schabi.newpipe.local.feed.service.FeedEventManager
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.ErrorResultEvent
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.IdleEvent
@@ -20,15 +22,20 @@ import org.schabi.newpipe.util.DEFAULT_THROTTLE_TIMEOUT
 import java.time.OffsetDateTime
 import java.util.concurrent.TimeUnit
 
-class FeedViewModel(applicationContext: Context, val groupId: Long = FeedGroupEntity.GROUP_ALL_ID) : ViewModel() {
-    class Factory(val context: Context, val groupId: Long = FeedGroupEntity.GROUP_ALL_ID) : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return FeedViewModel(context.applicationContext, groupId) as T
-        }
-    }
-
+class FeedViewModel(
+    applicationContext: Context,
+    groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
+    initialShowPlayedItems: Boolean = true
+) : ViewModel() {
     private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(applicationContext)
+
+    private val toggleShowPlayedItems = BehaviorProcessor.create<Boolean>()
+    private val streamItems = toggleShowPlayedItems
+        .startWithItem(initialShowPlayedItems)
+        .distinctUntilChanged()
+        .switchMap { showPlayedItems ->
+            feedDatabaseManager.getStreams(groupId, showPlayedItems)
+        }
 
     private val mutableStateLiveData = MutableLiveData<FeedState>()
     val stateLiveData: LiveData<FeedState> = mutableStateLiveData
@@ -36,10 +43,12 @@ class FeedViewModel(applicationContext: Context, val groupId: Long = FeedGroupEn
     private var combineDisposable = Flowable
         .combineLatest(
             FeedEventManager.events(),
-            feedDatabaseManager.asStreamItems(groupId),
+            streamItems,
             feedDatabaseManager.notLoadedCount(groupId),
             feedDatabaseManager.oldestSubscriptionUpdate(groupId),
-            Function4 { t1: FeedEventManager.Event, t2: List<StreamInfoItem>, t3: Long, t4: List<OffsetDateTime> ->
+
+            Function4 { t1: FeedEventManager.Event, t2: List<StreamWithState>,
+                t3: Long, t4: List<OffsetDateTime> ->
                 return@Function4 CombineResultHolder(t1, t2, t3, t4.firstOrNull())
             }
         )
@@ -49,9 +58,9 @@ class FeedViewModel(applicationContext: Context, val groupId: Long = FeedGroupEn
         .subscribe { (event, listFromDB, notLoadedCount, oldestUpdate) ->
             mutableStateLiveData.postValue(
                 when (event) {
-                    is IdleEvent -> FeedState.LoadedState(listFromDB, oldestUpdate, notLoadedCount)
+                    is IdleEvent -> FeedState.LoadedState(listFromDB.map { e -> StreamItem(e) }, oldestUpdate, notLoadedCount)
                     is ProgressEvent -> FeedState.ProgressState(event.currentProgress, event.maxProgress, event.progressMessage)
-                    is SuccessResultEvent -> FeedState.LoadedState(listFromDB, oldestUpdate, notLoadedCount, event.itemsErrors)
+                    is SuccessResultEvent -> FeedState.LoadedState(listFromDB.map { e -> StreamItem(e) }, oldestUpdate, notLoadedCount, event.itemsErrors)
                     is ErrorResultEvent -> FeedState.ErrorState(event.error)
                 }
             )
@@ -66,5 +75,20 @@ class FeedViewModel(applicationContext: Context, val groupId: Long = FeedGroupEn
         combineDisposable.dispose()
     }
 
-    private data class CombineResultHolder(val t1: FeedEventManager.Event, val t2: List<StreamInfoItem>, val t3: Long, val t4: OffsetDateTime?)
+    private data class CombineResultHolder(val t1: FeedEventManager.Event, val t2: List<StreamWithState>, val t3: Long, val t4: OffsetDateTime?)
+
+    fun togglePlayedItems(showPlayedItems: Boolean) {
+        toggleShowPlayedItems.onNext(showPlayedItems)
+    }
+
+    class Factory(
+        private val context: Context,
+        private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
+        private val showPlayedItems: Boolean
+    ) : ViewModelProvider.Factory {
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return FeedViewModel(context.applicationContext, groupId, showPlayedItems) as T
+        }
+    }
 }

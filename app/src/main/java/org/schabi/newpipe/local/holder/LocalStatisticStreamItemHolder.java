@@ -15,7 +15,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
@@ -96,11 +96,11 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
 
-            if (item.getProgressTime() > 0) {
+            if (item.getProgressMillis() > 0) {
                 itemProgressView.setVisibility(View.VISIBLE);
                 itemProgressView.setMax((int) item.getStreamEntity().getDuration());
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
-                        .toSeconds(item.getProgressTime()));
+                        .toSeconds(item.getProgressMillis()));
             } else {
                 itemProgressView.setVisibility(View.GONE);
             }
@@ -114,8 +114,8 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        itemBuilder.displayImage(item.getStreamEntity().getThumbnailUrl(), itemThumbnailView,
-                ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
+        PicassoHelper.loadThumbnail(item.getStreamEntity().getThumbnailUrl())
+                .into(itemThumbnailView);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnItemSelectedListener() != null) {
@@ -140,14 +140,14 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         }
         final StreamStatisticsEntry item = (StreamStatisticsEntry) localItem;
 
-        if (item.getProgressTime() > 0 && item.getStreamEntity().getDuration() > 0) {
+        if (item.getProgressMillis() > 0 && item.getStreamEntity().getDuration() > 0) {
             itemProgressView.setMax((int) item.getStreamEntity().getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
                 itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS
-                        .toSeconds(item.getProgressTime()));
+                        .toSeconds(item.getProgressMillis()));
             } else {
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
-                        .toSeconds(item.getProgressTime()));
+                        .toSeconds(item.getProgressMillis()));
                 ViewUtils.animate(itemProgressView, true, 500);
             }
         } else if (itemProgressView.getVisibility() == View.VISIBLE) {

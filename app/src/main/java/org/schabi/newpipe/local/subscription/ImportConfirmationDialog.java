@@ -23,13 +23,9 @@ public class ImportConfirmationDialog extends DialogFragment {
 
     public static void show(@NonNull final Fragment fragment,
                             @NonNull final Intent resultServiceIntent) {
-        if (fragment.getFragmentManager() == null) {
-            return;
-        }
-
         final ImportConfirmationDialog confirmationDialog = new ImportConfirmationDialog();
         confirmationDialog.setResultServiceIntent(resultServiceIntent);
-        confirmationDialog.show(fragment.getFragmentManager(), null);
+        confirmationDialog.show(fragment.getParentFragmentManager(), null);
     }
 
     public void setResultServiceIntent(final Intent resultServiceIntent) {
@@ -40,11 +36,11 @@ public class ImportConfirmationDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
         assureCorrectAppLanguage(getContext());
-        return new AlertDialog.Builder(getContext())
+        return new AlertDialog.Builder(requireContext())
                 .setMessage(R.string.import_network_expensive_warning)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.finish, (dialogInterface, i) -> {
+                .setPositiveButton(R.string.ok, (dialogInterface, i) -> {
                     if (resultServiceIntent != null && getContext() != null) {
                         getContext().startService(resultServiceIntent);
                     }

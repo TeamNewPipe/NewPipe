@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
+import org.schabi.newpipe.util.NavigationHelper;
+
 /*
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>
  * ExitActivity.java is part of NewPipe.
@@ -48,6 +50,6 @@ public class ExitActivity extends Activity {
             finish();
         }
 
-        System.exit(0);
+        NavigationHelper.restartApp(this);
     }
 }

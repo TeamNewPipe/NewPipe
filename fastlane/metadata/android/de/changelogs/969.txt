@@ -1,0 +1,8 @@
+• Installation auf externen Speicher möglich
+• [Bandcamp] Unterstützung für die Anzeige der ersten drei Kommentare in einem Stream
+• Nur Hinweisanzeige "Download gestartet", wenn der Download gestartet wird
+• Setzt kein reCaptcha-Cookie, wenn kein Cookie gespeichert wird
+• Cache-Leistung verbessert
+• Problem behoben, dass die Wiedergabe nicht automatisch abspielt wird
+• Verwerfen früherer Snackbars beim Löschen von Downloads
+• Fehler beim Löschen des Objekts, das nicht in der Liste enthalten ist

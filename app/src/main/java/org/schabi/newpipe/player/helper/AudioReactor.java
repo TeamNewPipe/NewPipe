@@ -16,6 +16,7 @@ import androidx.media.AudioManagerCompat;
 
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.analytics.AnalyticsListener;
+import com.google.android.exoplayer2.decoder.DecoderCounters;
 
 public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, AnalyticsListener {
 
@@ -50,6 +51,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
     public void dispose() {
         abandonAudioFocus();
         player.removeAnalyticsListener(this);
+        notifyAudioSessionUpdate(false, player.getAudioSessionId());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -149,11 +151,21 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
 
     @Override
     public void onAudioSessionId(final EventTime eventTime, final int audioSessionId) {
+        notifyAudioSessionUpdate(true, audioSessionId);
+    }
+
+    @Override
+    public void onAudioDisabled(final EventTime eventTime, final DecoderCounters counters) {
+        notifyAudioSessionUpdate(false, player.getAudioSessionId());
+    }
+
+    private void notifyAudioSessionUpdate(final boolean active, final int audioSessionId) {
         if (!PlayerHelper.isUsingDSP()) {
             return;
         }
-
-        final Intent intent = new Intent(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION);
+        final Intent intent = new Intent(active
+                ? AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION
+                : AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION);
         intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, audioSessionId);
         intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName());
         context.sendBroadcast(intent);

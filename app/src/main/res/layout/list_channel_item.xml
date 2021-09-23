@@ -34,11 +34,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/channel_item_description_to_details_margin"
         android:ellipsize="end"
-        android:lines="2"
+        android:maxLines="2"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_uploader_text_size"
         app:layout_constraintBottom_toTopOf="@+id/itemAdditionalDetails"
-        app:layout_constraintLeft_toLeftOf="@+id/itemTitleView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/itemTitleView"
         app:layout_constraintTop_toBottomOf="@+id/itemTitleView"
         tools:text="Channel description, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit" />
 

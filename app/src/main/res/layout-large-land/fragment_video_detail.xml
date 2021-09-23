@@ -52,7 +52,7 @@
                             android:id="@+id/detail_thumbnail_image_view"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
+                            android:background="?windowBackground"
                             android:contentDescription="@string/detail_thumbnail_view_description"
                             android:scaleType="fitCenter"
                             tools:ignore="RtlHardcoded"

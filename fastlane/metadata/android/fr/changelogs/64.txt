@@ -1,7 +1,7 @@
 ### Améliorations
-- Possibilité de limiter la qualité vidéo si utilisation de données mobiles #1339 
-- Mémoriser luminosité pour la session #1442 
-- Performances de téléchargement pour CPU peu performants #1431 
+- Possibilité de limiter la qualité vidéo pour l'utilisation des données mobiles #1339 
+- Mémoriser la luminosité pour la session #1442 
+- Améliorations des performances de téléchargement pour les processeurs peu performants #1431 
 - Support pour les sessions média #1433
 
 ### Corrections

@@ -2,15 +2,20 @@ package org.schabi.newpipe.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Environment;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.DeviceUtils;
 
 import java.io.File;
 import java.util.Set;
+
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 /*
  * Created by k3b on 07.01.2016.
@@ -55,6 +60,10 @@ public final class NewPipeSettings {
             isFirstRun = true;
         }
 
+        // first run migrations, then setDefaultValues, since the latter requires the correct types
+        SettingMigrations.initMigrations(context, isFirstRun);
+
+        // readAgain is true so that if new settings are added their default value is set
         PreferenceManager.setDefaultValues(context, R.xml.main_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.video_audio_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.download_settings, true);
@@ -65,32 +74,34 @@ public final class NewPipeSettings {
         PreferenceManager.setDefaultValues(context, R.xml.update_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.debug_settings, true);
 
-        getVideoDownloadFolder(context);
-        getAudioDownloadFolder(context);
-
-        SettingMigrations.initMigrations(context, isFirstRun);
+        saveDefaultVideoDownloadDirectory(context);
+        saveDefaultAudioDownloadDirectory(context);
     }
 
-    private static void getVideoDownloadFolder(final Context context) {
-        getDir(context, R.string.download_path_video_key, Environment.DIRECTORY_MOVIES);
+    static void saveDefaultVideoDownloadDirectory(final Context context) {
+        saveDefaultDirectory(context, R.string.download_path_video_key,
+                Environment.DIRECTORY_MOVIES);
     }
 
-    private static void getAudioDownloadFolder(final Context context) {
-        getDir(context, R.string.download_path_audio_key, Environment.DIRECTORY_MUSIC);
+    static void saveDefaultAudioDownloadDirectory(final Context context) {
+        saveDefaultDirectory(context, R.string.download_path_audio_key,
+                Environment.DIRECTORY_MUSIC);
     }
 
-    private static void getDir(final Context context, final int keyID,
-                               final String defaultDirectoryName) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        final String key = context.getString(keyID);
-        final String downloadPath = prefs.getString(key, null);
-        if ((downloadPath != null) && (!downloadPath.isEmpty())) {
-            return;
+    private static void saveDefaultDirectory(final Context context, final int keyID,
+                                             final String defaultDirectoryName) {
+        if (!useStorageAccessFramework(context)) {
+            final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+            final String key = context.getString(keyID);
+            final String downloadPath = prefs.getString(key, null);
+            if (!isNullOrEmpty(downloadPath)) {
+                return;
+            }
+
+            final SharedPreferences.Editor spEditor = prefs.edit();
+            spEditor.putString(key, getNewPipeChildFolderPathForDir(getDir(defaultDirectoryName)));
+            spEditor.apply();
         }
-
-        final SharedPreferences.Editor spEditor = prefs.edit();
-        spEditor.putString(key, getNewPipeChildFolderPathForDir(getDir(defaultDirectoryName)));
-        spEditor.apply();
     }
 
     @NonNull
@@ -103,10 +114,42 @@ public final class NewPipeSettings {
     }
 
     public static boolean useStorageAccessFramework(final Context context) {
+        // There's a FireOS bug which prevents SAF open/close dialogs from being confirmed with a
+        // remote (see #6455).
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP || DeviceUtils.isFireTv()) {
+            return false;
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            return true;
+        }
+
         final String key = context.getString(R.string.storage_use_saf);
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-        return prefs.getBoolean(key, false);
+        return prefs.getBoolean(key, true);
     }
 
+    private static boolean showSearchSuggestions(final Context context,
+                                                 final SharedPreferences sharedPreferences,
+                                                 @StringRes final int key) {
+        final Set<String> enabledSearchSuggestions = sharedPreferences.getStringSet(
+                context.getString(R.string.show_search_suggestions_key), null);
+
+        if (enabledSearchSuggestions == null) {
+            return true; // defaults to true
+        } else {
+            return enabledSearchSuggestions.contains(context.getString(key));
+        }
+    }
+
+    public static boolean showLocalSearchSuggestions(final Context context,
+                                                     final SharedPreferences sharedPreferences) {
+        return showSearchSuggestions(context, sharedPreferences,
+                R.string.show_local_search_suggestions_key);
+    }
+
+    public static boolean showRemoteSearchSuggestions(final Context context,
+                                                      final SharedPreferences sharedPreferences) {
+        return showSearchSuggestions(context, sharedPreferences,
+                R.string.show_remote_search_suggestions_key);
+    }
 }

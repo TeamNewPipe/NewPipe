@@ -1,7 +1,6 @@
 package org.schabi.newpipe.local;
 
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
@@ -25,6 +25,7 @@ import org.schabi.newpipe.fragments.list.ListViewContract;
 
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
+import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 /**
  * This fragment is design to be used with persistent data such as
@@ -76,7 +77,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         super.onResume();
         if (updateFlags != 0) {
             if ((updateFlags & LIST_MODE_UPDATE_FLAG) != 0) {
-                final boolean useGrid = isGridLayout();
+                final boolean useGrid = shouldUseGridLayout(requireContext());
                 itemsList.setLayoutManager(
                         useGrid ? getGridLayoutManager() : getListLayoutManager());
                 itemListAdapter.setUseGridVariant(useGrid);
@@ -120,7 +121,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
 
         itemListAdapter = new LocalItemListAdapter(activity);
 
-        final boolean useGrid = isGridLayout();
+        final boolean useGrid = shouldUseGridLayout(requireContext());
         itemsList = rootView.findViewById(R.id.items_list);
         itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
 
@@ -145,7 +146,8 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         if (DEBUG) {
             Log.d(TAG, "onCreateOptionsMenu() called with: "
@@ -256,19 +258,6 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
                                           final String key) {
         if (key.equals(getString(R.string.list_view_mode_key))) {
             updateFlags |= LIST_MODE_UPDATE_FLAG;
-        }
-    }
-
-    protected boolean isGridLayout() {
-        final String listMode = PreferenceManager.getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.list_view_mode_key),
-                        getString(R.string.list_view_mode_value));
-        if ("auto".equals(listMode)) {
-            final Configuration configuration = getResources().getConfiguration();
-            return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-                    && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
-        } else {
-            return "grid".equals(listMode);
         }
     }
 }

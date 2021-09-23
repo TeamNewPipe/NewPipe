@@ -1,0 +1,3 @@
+Hotfix
+- Aumentar o buffer para reprodução após o rebuffer
+- Corrigida a falha em tablets e TVs ao clicar no ícone da fila de reprodução no reprodutor

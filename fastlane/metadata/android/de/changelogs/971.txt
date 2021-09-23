@@ -1,0 +1,3 @@
+Hotfix
+• Puffer für Wiedergabe nach Rebuffer erhöhen
+• Absturz auf Tablets und TVs beim Klicken auf das Widergabewartelisten-Symbol im Player behoben
