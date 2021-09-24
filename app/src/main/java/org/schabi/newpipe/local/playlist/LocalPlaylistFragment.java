@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -781,6 +782,19 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         entries.add(StreamDialogEntry.open_in_browser);
         if (KoreUtils.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
+        }
+
+        // show "mark as watched" only when watch history is enabled
+        final boolean isWatchHistoryEnabled = PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getBoolean(getString(R.string.enable_watch_history_key), false);
+        if (item.getStreamEntity().getStreamType() != StreamType.AUDIO_LIVE_STREAM
+                && item.getStreamEntity().getStreamType() != StreamType.LIVE_STREAM
+                && isWatchHistoryEnabled
+        ) {
+            entries.add(
+                    StreamDialogEntry.mark_as_watched
+            );
         }
         entries.add(StreamDialogEntry.show_channel_details);
 
