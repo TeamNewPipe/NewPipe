@@ -150,10 +150,10 @@ public class MediaSessionManager {
             return true;
         }
 
-        // Check if the current metadata is valid
+        // Check if the currently set metadata is valid
         if (getMetadataTitle() == null
                 || getMetadataArtist() == null
-                || getMetadataDuration() <= 1
+                // Note that the duration can be <= 0 for live streams
         ) {
             if (DEBUG) {
                 if (getMetadataTitle() == null) {
@@ -162,9 +162,6 @@ public class MediaSessionManager {
                 } else if (getMetadataArtist() == null) {
                     Log.d(TAG,
                             "N_getMetadataArtist: artist == null");
-                } else if (getMetadataDuration() <= 1) {
-                    Log.d(TAG,
-                            "N_getMetadataDuration: duration <= 1; " + getMetadataDuration());
                 }
             }
             return true;
@@ -198,11 +195,6 @@ public class MediaSessionManager {
     private String getMetadataArtist() {
         return mediaSession.getController().getMetadata()
                 .getString(MediaMetadataCompat.METADATA_KEY_ARTIST);
-    }
-
-    private long getMetadataDuration() {
-        return mediaSession.getController().getMetadata()
-                .getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
     }
 
     /**
