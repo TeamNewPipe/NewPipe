@@ -1,8 +1,6 @@
 package org.schabi.newpipe.views;
 
 import android.content.Context;
-import android.text.Selection;
-import android.text.Spannable;
 import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
@@ -10,6 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import org.schabi.newpipe.util.external_communication.ShareUtils;
+
+import static org.schabi.newpipe.util.NewPipeTextViewHelper.shareSelectedTextWithShareUtils;
 
 /**
  * An {@link AppCompatTextView} which uses {@link ShareUtils#shareText(Context, String, String)}
@@ -38,28 +38,8 @@ public class NewPipeTextView extends AppCompatTextView {
     @Override
     public boolean onTextContextMenuItem(final int id) {
         if (id == android.R.id.shareText) {
-            final CharSequence text = getText();
-            final CharSequence selectedText = getSelectedText(text);
-            if (selectedText != null && selectedText.length() != 0) {
-                ShareUtils.shareText(getContext(), "", selectedText.toString());
-            }
-            final Spannable spannable = (text instanceof Spannable) ? (Spannable) text : null;
-            Selection.setSelection(spannable, getSelectionEnd());
-            return true;
-        } else {
-            return super.onTextContextMenuItem(id);
+            return shareSelectedTextWithShareUtils(this);
         }
-    }
-
-    @Nullable
-    private CharSequence getSelectedText(@Nullable final CharSequence text) {
-        if (!hasSelection() || text == null) {
-            return null;
-        }
-
-        final int start = getSelectionStart();
-        final int end = getSelectionEnd();
-        return String.valueOf(start > end ? text.subSequence(end, start)
-                : text.subSequence(start, end));
+        return super.onTextContextMenuItem(id);
     }
 }
