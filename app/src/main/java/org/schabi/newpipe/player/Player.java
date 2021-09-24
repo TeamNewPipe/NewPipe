@@ -1606,8 +1606,12 @@ public final class Player implements
         final boolean showThumbnail = prefs.getBoolean(
                 context.getString(R.string.show_thumbnail_key), true);
         // setMetadata only updates the metadata when any of the metadata keys are null
-        mediaSessionManager.setMetadata(getVideoTitle(), getUploaderName(),
-                showThumbnail ? getThumbnail() : null, duration);
+        if (showThumbnail) {
+            mediaSessionManager.setMetadata(getVideoTitle(), getUploaderName(), getThumbnail(),
+                    duration);
+        } else {
+            mediaSessionManager.setMetadata(getVideoTitle(), getUploaderName(), duration);
+        }
     }
 
     private void startProgressLoop() {
@@ -2987,9 +2991,11 @@ public final class Player implements
 
     @Nullable
     public Bitmap getThumbnail() {
-        return currentThumbnail == null
-                ? BitmapFactory.decodeResource(context.getResources(), R.drawable.dummy_thumbnail)
-                : currentThumbnail;
+        if (currentThumbnail == null) {
+            currentThumbnail = BitmapFactory.decodeResource(
+                    context.getResources(), R.drawable.dummy_thumbnail);
+        }
+        return currentThumbnail;
     }
     //endregion
 
