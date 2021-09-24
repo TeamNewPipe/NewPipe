@@ -67,6 +67,39 @@ public class MediaSessionManager {
 
     public void setMetadata(final String title,
                             final String artist,
+                            final long duration) {
+        if (!mediaSession.isActive()) {
+            return;
+        }
+
+        if (DEBUG) {
+            if (getMetadataTitle() == null) {
+                Log.d(TAG, "N_getMetadataTitle: title == null");
+            }
+            if (getMetadataArtist() == null) {
+                Log.d(TAG, "N_getMetadataArtist: artist == null");
+            }
+            if (getMetadataDuration() <= 1) {
+                Log.d(TAG, "N_getMetadataDuration: duration <= 1; " + getMetadataDuration());
+            }
+        }
+
+        if (getMetadataTitle() == null || getMetadataArtist() == null || getMetadataDuration() <= 1
+                || !getMetadataTitle().equals(title)) {
+            if (DEBUG) {
+                Log.d(TAG, "setMetadata: N_Metadata update: t: " + title + " a: " + artist
+                        + " d: " + duration);
+            }
+
+            mediaSession.setMetadata(new MediaMetadataCompat.Builder()
+                    .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
+                    .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, artist)
+                    .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration).build());
+        }
+    }
+
+    public void setMetadata(final String title,
+                            final String artist,
                             final Bitmap albumArt,
                             final long duration) {
         if (albumArt == null || !mediaSession.isActive()) {
