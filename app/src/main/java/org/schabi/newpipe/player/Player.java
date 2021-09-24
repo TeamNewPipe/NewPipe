@@ -140,6 +140,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -1622,16 +1623,6 @@ public final class Player implements
         if (isQueueVisible) {
             updateQueueTime(currentProgress);
         }
-
-        final boolean showThumbnail = prefs.getBoolean(
-                context.getString(R.string.show_thumbnail_key), true);
-        // setMetadata only updates the metadata when any of the metadata keys are null
-        if (showThumbnail) {
-            mediaSessionManager.setMetadata(getVideoTitle(), getUploaderName(), getThumbnail(),
-                    duration);
-        } else {
-            mediaSessionManager.setMetadata(getVideoTitle(), getUploaderName(), duration);
-        }
     }
 
     private void startProgressLoop() {
@@ -2950,6 +2941,16 @@ public final class Player implements
                 tag.getMetadata().getPreviewFrames());
 
         NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
+
+        final boolean showThumbnail = prefs.getBoolean(
+                context.getString(R.string.show_thumbnail_key), true);
+        mediaSessionManager.setMetadata(
+                getVideoTitle(),
+                getUploaderName(),
+                showThumbnail ? Optional.ofNullable(getThumbnail()) : Optional.empty(),
+                tag.getMetadata().getDuration()
+        );
+
         notifyMetadataUpdateToListeners();
 
         if (areSegmentsVisible) {
