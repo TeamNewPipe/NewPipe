@@ -93,36 +93,41 @@ public class MediaSessionManager {
             return;
         }
 
-        if (checkIfMetadataShouldBeSet(title, artist, optAlbumArt, duration)) {
+        if (!checkIfMetadataShouldBeSet(title, artist, optAlbumArt, duration)) {
             if (DEBUG) {
-                Log.d(TAG, "setMetadata: N_Metadata update:"
-                        + " t: " + title
-                        + " a: " + artist
-                        + " thumb: " + (
-                        optAlbumArt.isPresent()
-                                ? optAlbumArt.get().hashCode()
-                                : "<none>")
-                        + " d: " + duration);
+                Log.d(TAG, "setMetadata: No update required");
             }
+            return;
+        }
 
-            final MediaMetadataCompat.Builder builder = new MediaMetadataCompat.Builder()
-                    .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
-                    .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, artist)
-                    .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration);
+        if (DEBUG) {
+            Log.d(TAG, "setMetadata: N_Metadata update:"
+                    + " t: " + title
+                    + " a: " + artist
+                    + " thumb: " + (
+                    optAlbumArt.isPresent()
+                            ? optAlbumArt.get().hashCode()
+                            : "<none>")
+                    + " d: " + duration);
+        }
 
-            if (optAlbumArt.isPresent()) {
-                builder.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, optAlbumArt.get());
-                builder.putBitmap(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON, optAlbumArt.get());
-            }
+        final MediaMetadataCompat.Builder builder = new MediaMetadataCompat.Builder()
+                .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
+                .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, artist)
+                .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration);
 
-            mediaSession.setMetadata(builder.build());
+        if (optAlbumArt.isPresent()) {
+            builder.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, optAlbumArt.get());
+            builder.putBitmap(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON, optAlbumArt.get());
+        }
 
-            lastTitleHashCode = title.hashCode();
-            lastArtistHashCode = artist.hashCode();
-            lastDuration = duration;
-            if (optAlbumArt.isPresent()) {
-                lastAlbumArtHashCode = optAlbumArt.get().hashCode();
-            }
+        mediaSession.setMetadata(builder.build());
+
+        lastTitleHashCode = title.hashCode();
+        lastArtistHashCode = artist.hashCode();
+        lastDuration = duration;
+        if (optAlbumArt.isPresent()) {
+            lastAlbumArtHashCode = optAlbumArt.get().hashCode();
         }
     }
 
@@ -144,6 +149,7 @@ public class MediaSessionManager {
             }
             return true;
         }
+
         // Check if the current metadata is valid
         if (getMetadataTitle() == null
                 || getMetadataArtist() == null
@@ -163,6 +169,7 @@ public class MediaSessionManager {
             }
             return true;
         }
+
         // If we got an album art check if the current set AlbumArt is null
         if (optAlbumArt.isPresent() && getMetadataAlbumArt() == null) {
             if (DEBUG) {
