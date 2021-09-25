@@ -70,6 +70,15 @@ public class MediaSessionManager {
         return mediaSession.getSessionToken();
     }
 
+    /**
+     * sets the Metadata - if required.
+     *
+     * @param title       {@link MediaMetadataCompat#METADATA_KEY_TITLE}
+     * @param artist      {@link MediaMetadataCompat#METADATA_KEY_ARTIST}
+     * @param optAlbumArt {@link MediaMetadataCompat#METADATA_KEY_ALBUM_ART}
+     * @param duration    {@link MediaMetadataCompat#METADATA_KEY_DURATION}
+     *                    - should be a negative value for unknown durations, e.g. for livestreams
+     */
     public void setMetadata(@NonNull final String title,
                             @NonNull final String artist,
                             @NonNull final Optional<Bitmap> optAlbumArt,
@@ -95,7 +104,7 @@ public class MediaSessionManager {
 
         if (!checkIfMetadataShouldBeSet(title, artist, optAlbumArt, duration)) {
             if (DEBUG) {
-                Log.d(TAG, "setMetadata: No update required");
+                Log.d(TAG, "setMetadata: No update required - exiting");
             }
             return;
         }
