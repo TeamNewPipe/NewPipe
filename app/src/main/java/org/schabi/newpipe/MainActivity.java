@@ -26,7 +26,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -83,7 +82,6 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
-import org.schabi.newpipe.util.TLSSocketFactoryCompat;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
 
@@ -92,6 +90,10 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+
+import javax.net.ssl.HttpsURLConnection;
+
+import info.guardianproject.netcipher.client.TlsOnlySocketFactory;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -130,10 +132,8 @@ public class MainActivity extends AppCompatActivity {
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }
 
-        // enable TLS1.1/1.2 for kitkat devices, to fix download and play for media.ccc.de sources
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
-            TLSSocketFactoryCompat.setAsDefault();
-        }
+        // use reasonable TLS settings (disable insecure, enable secure options)
+        HttpsURLConnection.setDefaultSSLSocketFactory(new TlsOnlySocketFactory());
 
         ThemeHelper.setDayNightMode(this);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
