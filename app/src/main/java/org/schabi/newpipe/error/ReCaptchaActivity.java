@@ -1,5 +1,6 @@
 package org.schabi.newpipe.error;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -66,6 +67,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     private ActivityRecaptchaBinding recaptchaBinding;
     private String foundCookies = "";
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         ThemeHelper.setTheme(this);

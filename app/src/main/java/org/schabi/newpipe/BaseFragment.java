@@ -10,16 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import icepick.Icepick;
 import icepick.State;
 import leakcanary.AppWatcher;
 
 public abstract class BaseFragment extends Fragment {
-    public static final ImageLoader IMAGE_LOADER = ImageLoader.getInstance();
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
-    protected final boolean DEBUG = MainActivity.DEBUG;
+    protected static final boolean DEBUG = MainActivity.DEBUG;
     protected AppCompatActivity activity;
     //These values are used for controlling fragments when they are part of the frontpage
     @State

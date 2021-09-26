@@ -10,6 +10,7 @@
         android:key="@string/theme_key"
         android:summary="%s"
         android:title="@string/theme_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <ListPreference
@@ -19,6 +20,7 @@
         android:key="@string/night_theme_key"
         android:summary="@string/night_theme_summary"
         android:title="@string/night_theme_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
@@ -26,6 +28,7 @@
         android:key="@string/show_hold_to_append_key"
         android:summary="@string/show_hold_to_append_summary"
         android:title="@string/show_hold_to_append_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <ListPreference
@@ -35,12 +38,14 @@
         android:key="@string/list_view_mode_key"
         android:summary="%s"
         android:title="@string/list_view_mode"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <Preference
         android:key="@string/caption_settings_key"
         android:summary="@string/caption_setting_description"
         android:title="@string/caption_setting_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <ListPreference
@@ -50,5 +55,6 @@
         android:key="@string/tablet_mode_key"
         android:summary="%s"
         android:title="@string/tablet_mode_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 </PreferenceScreen>

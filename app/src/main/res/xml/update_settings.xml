@@ -9,6 +9,7 @@
         android:key="@string/update_app_key"
         android:summary="@string/updates_setting_description"
         android:title="@string/updates_setting_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
 </PreferenceScreen>

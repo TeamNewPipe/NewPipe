@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.stream.model.StreamEntity
@@ -28,6 +29,9 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
 
     @Query("SELECT * FROM streams WHERE url = :url AND service_id = :serviceId")
     abstract fun getStream(serviceId: Long, url: String): Flowable<List<StreamEntity>>
+
+    @Query("UPDATE streams SET uploader_url = :uploaderUrl WHERE url = :url AND service_id = :serviceId")
+    abstract fun setUploaderUrl(serviceId: Long, url: String, uploaderUrl: String): Completable
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     internal abstract fun silentInsertInternal(stream: StreamEntity): Long

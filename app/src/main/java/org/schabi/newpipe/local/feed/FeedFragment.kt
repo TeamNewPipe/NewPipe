@@ -206,7 +206,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                         putBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), !usingDedicatedMethod)
                     }
                 }
-                .setPositiveButton(resources.getString(R.string.finish), null)
+                .setPositiveButton(resources.getString(R.string.ok), null)
                 .create()
                 .show()
             return true
@@ -362,6 +362,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 StreamDialogEntry.mark_as_watched
             )
         }
+        entries.add(StreamDialogEntry.show_channel_details)
 
         StreamDialogEntry.setEnabledEntries(entries)
         InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context)) { _, which ->

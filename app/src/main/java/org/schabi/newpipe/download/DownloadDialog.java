@@ -688,7 +688,7 @@ public class DownloadDialog extends DialogFragment
         new AlertDialog.Builder(context)
                 .setTitle(R.string.general_error)
                 .setMessage(msg)
-                .setNegativeButton(getString(R.string.finish), null)
+                .setNegativeButton(getString(R.string.ok), null)
                 .create()
                 .show();
     }
@@ -871,7 +871,7 @@ public class DownloadDialog extends DialogFragment
         final AlertDialog.Builder askDialog = new AlertDialog.Builder(context)
                 .setTitle(R.string.download_dialog_title)
                 .setMessage(msgBody)
-                .setNegativeButton(android.R.string.cancel, null);
+                .setNegativeButton(R.string.cancel, null);
         final StoredFileHelper finalStorage = storage;
 
 

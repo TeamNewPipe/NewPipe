@@ -8,7 +8,6 @@
     <dimen name="video_item_search_duration_text_size">12sp</dimen>
     <dimen name="video_item_search_uploader_text_size">14sp</dimen>
     <dimen name="video_item_search_upload_date_text_size">14sp</dimen>
-    <dimen name="header_footer_text_size">18sp</dimen>
     <!-- Elements Size -->
     <!-- 16 / 9 ratio-->
     <dimen name="video_item_search_thumbnail_image_width">142dp</dimen>
@@ -29,7 +28,6 @@
     <dimen name="video_item_detail_sub_channel_text_size">16sp</dimen>
     <dimen name="video_item_detail_upload_date_text_size">14sp</dimen>
     <dimen name="video_item_detail_description_text_size">14sp</dimen>
-    <dimen name="video_item_detail_next_text_size">17sp</dimen>
     <dimen name="channel_subscribers_text_size">14sp</dimen>
     <dimen name="channel_rss_title_size">14sp</dimen>
     <!-- Elements Size -->
@@ -44,8 +42,6 @@
     <dimen name="video_item_detail_error_panel_margin">4dp</dimen>
 
     <!-- Playlist View Dimensions-->
-    <dimen name="playlist_item_thumbnail_width">142dp</dimen>
-    <dimen name="playlist_item_thumbnail_height">80dp</dimen>
     <!-- Elements Size -->
     <dimen name="playlist_item_thumbnail_stream_count_width">70dp</dimen>
 

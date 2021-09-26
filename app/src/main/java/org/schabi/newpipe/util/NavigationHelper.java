@@ -18,8 +18,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
@@ -59,6 +57,8 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 import java.util.ArrayList;
 
 import static org.schabi.newpipe.util.external_communication.ShareUtils.installApp;
+
+import com.jakewharton.processphoenix.ProcessPhoenix;
 
 public final class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
@@ -259,10 +259,9 @@ public final class NavigationHelper {
             if (context instanceof Activity) {
                 new AlertDialog.Builder(context)
                         .setMessage(R.string.no_player_found)
-                        .setPositiveButton(R.string.install, (dialog, which) -> {
-                            ShareUtils.openUrlInBrowser(context,
-                                    context.getString(R.string.fdroid_vlc_url), false);
-                        })
+                        .setPositiveButton(R.string.install,
+                                (dialog, which) -> ShareUtils.openUrlInBrowser(context,
+                                        context.getString(R.string.fdroid_vlc_url), false))
                         .setNegativeButton(R.string.cancel, (dialog, which)
                                 -> Log.i("NavigationHelper", "You unlocked a secret unicorn."))
                         .show();
@@ -284,8 +283,6 @@ public final class NavigationHelper {
     }
 
     public static void gotoMainFragment(final FragmentManager fragmentManager) {
-        ImageLoader.getInstance().clearMemoryCache();
-
         final boolean popped = fragmentManager.popBackStackImmediate(MAIN_FRAGMENT_TAG, 0);
         if (!popped) {
             openMainFragment(fragmentManager);
@@ -365,13 +362,15 @@ public final class NavigationHelper {
             autoPlay = false;
         }
 
-        final RunnableWithVideoDetailFragment onVideoDetailFragmentReady = (detailFragment) -> {
+        final RunnableWithVideoDetailFragment onVideoDetailFragmentReady = detailFragment -> {
             expandMainPlayer(detailFragment.requireActivity());
             detailFragment.setAutoPlay(autoPlay);
             if (switchingPlayers) {
                 // Situation when user switches from players to main player. All needed data is
                 // here, we can start watching (assuming newQueue equals playQueue).
-                detailFragment.openVideoPlayer();
+                // Starting directly in fullscreen if the previous player type was popup.
+                detailFragment.openVideoPlayer(playerType == MainPlayer.PlayerType.POPUP
+                        || PlayerHelper.isStartMainPlayerFullscreenEnabled(context));
             } else {
                 detailFragment.selectAndLoadVideo(serviceId, url, title, playQueue);
             }
@@ -610,8 +609,7 @@ public final class NavigationHelper {
      */
     public static void restartApp(final Activity activity) {
         NewPipeDatabase.close();
-        activity.finishAffinity();
-        final Intent intent = new Intent(activity, MainActivity.class);
-        activity.startActivity(intent);
+
+        ProcessPhoenix.triggerRebirth(activity.getApplicationContext());
     }
 }

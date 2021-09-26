@@ -36,7 +36,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/messageWhatHappenedView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/activity_vertical_margin"
@@ -51,7 +50,6 @@
                 android:textColor="?attr/colorAccent" />
 
             <TextView
-                android:id="@+id/errorDeviceHeadlineView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/activity_vertical_margin"
@@ -59,7 +57,6 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <LinearLayout
-                android:id="@+id/errorInfoLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -86,7 +83,6 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/errorDetailView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/activity_vertical_margin"
@@ -94,7 +90,6 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <HorizontalScrollView
-                android:id="@+id/horizontalScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
@@ -108,7 +103,6 @@
             </HorizontalScrollView>
 
             <TextView
-                android:id="@+id/errorYourComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/activity_vertical_margin"

@@ -6,7 +6,6 @@
     <string name="error_snackbar_action">Reporta</string>
     <string name="error_http_not_found">Non invenit</string>
     <string name="error_file_creation">Creavit file non potui</string>
-    <string name="label_code">Codex</string>
     <plurals name="days">
         <item quantity="one">%d dies</item>
         <item quantity="other">%d dies</item>
@@ -24,9 +23,7 @@
     <string name="msg_wait">Mane…</string>
     <string name="controls_add_to_playlist_title">Adde ad</string>
     <string name="tab_choose">Elige tab</string>
-    <string name="tab_new">Tab novus</string>
     <string name="tab_subscriptions">Iscriptiones</string>
-    <string name="tab_main">Principalis</string>
     <string name="show_info">Informationes ostende</string>
     <string name="subscription_update_failed">Non potui inscription renovare</string>
     <string name="subscription_change_failed">Non potui inscription mutare</string>
@@ -34,15 +31,12 @@
     <string name="unsubscribe">Inscribe</string>
     <string name="subscribed_button_title">Scriptum</string>
     <string name="subscribe_button_title">Scribe</string>
-    <string name="popup_mode_share_menu_title">Popup mode</string>
     <string name="no_player_found_toast">Nullus amnem amnibus invenit (potes instalar VLC quia id ludere).</string>
     <string name="no_player_found">Nullus amnem amnibus invenit. Instalar VLC\?</string>
     <string name="controls_download_desc">Scarica amnem file</string>
     <string name="use_external_audio_player_title">Utere ludionem externum</string>
     <string name="use_external_video_player_summary">Removes sentum aliquas resolutionibus</string>
     <string name="use_external_video_player_title">Utere lectorem externum</string>
-    <string name="screen_rotation">Rotatio</string>
-    <string name="choose_browser">Elige browser</string>
     <string name="share_dialog_title">Condividi apud</string>
     <string name="search_showing_result_for">Praecessi propter: %s</string>
     <string name="did_you_mean">Intendi \"%1$s\"\?</string>
@@ -57,12 +51,10 @@
     <string name="cancel">Inrita</string>
     <string name="install">instalar</string>
     <string name="upload_date_text">Edita %1$s</string>
-    <string name="view_count_text">%1$s views</string>
     <string name="start">Initio</string>
     <string name="pause">Pausa</string>
     <string name="playback_reset">Repone</string>
     <string name="channels">Canales</string>
-    <string name="channel">Canalis</string>
     <string name="all">Omnis</string>
     <string name="albums">Collectio</string>
     <string name="songs">Cantica</string>
@@ -73,9 +65,6 @@
     <string name="no_subscribers">Nulli signatores</string>
     <string name="search_no_results">Nullae resultationes</string>
     <string name="settings_category_appearance_title">Apparentia</string>
-    <string name="service_title">Servitium</string>
-    <string name="selection">Selectio</string>
-    <string name="settings_category_other_title">Alter</string>
     <string name="settings_category_player_behavior_title">Mos</string>
     <string name="notification_channel_name">NewPipe notitia</string>
     <plurals name="listening">
@@ -83,10 +72,6 @@
         <item quantity="other">%s audientes</item>
     </plurals>
     <string name="decline">Declina</string>
-    <string name="view">Lude</string>
-    <string name="use_tor_title">Utere Tor</string>
-    <string name="delete_all">Dele omnis</string>
-    <string name="delete_one">Dele unus</string>
     <string name="delete">Dele</string>
     <string name="create">Crea</string>
     <string name="accept">Accipe</string>
@@ -96,7 +81,6 @@
     <string name="local">Localis</string>
     <string name="new_and_hot">Novi popularesque</string>
     <string name="rename_playlist">Renomina</string>
-    <string name="delete_playlist">Cancella</string>
     <string name="donation_title">Dona</string>
     <string name="dismiss">Dimitte</string>
     <string name="never">Namquam</string>
@@ -137,5 +121,4 @@
     <string name="resize_zoom">Retrahe</string>
     <string name="resize_fill">Satiatus</string>
     <string name="resize_fit">Aptus</string>
-    <string name="later">Deinde</string>
 </resources>
