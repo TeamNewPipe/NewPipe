@@ -14,6 +14,7 @@ assignees: ''
 <!-- This checklist is COMPULSORY. The first box has been checked for you to show you how it is done. -->
 
 - [x] I checked, but didn't find any duplicates (open OR closed) of this issue in the repo. <!-- Seriously, check. O_O -->
+- [ ] This feature is related to sponsor or ad blocking and/or has explicitly been rejected upstream. <!-- This is not the place for stale upstream feature requests. -->
 - [ ] I have read the contribution guidelines given at https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md.
 - [ ] This issue contains only one feature request. I will open one issue for every feature I want to request.
 

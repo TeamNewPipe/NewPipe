@@ -18,6 +18,7 @@ Oh no, a bug! It happens. Thanks for reporting an issue with NewPipe. To make it
 <!-- This checklist is COMPULSORY. The first box has been checked for you to show you how it is done. -->
 
 - [x] I am using the latest version - x.xx.x <!-- Check https://github.com/TeamNewPipe/NewPipe/releases -->
+- [ ] This issue CANNOT be reproduced with the same version of upstream NewPipe <!-- If it can, report it there instead, using the official app -->
 - [ ] I checked, but didn't find any duplicates (open OR closed) of this issue in the repo. <!-- Seriously, check. O_O -->
 - [ ] I have read the contribution guidelines given at https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md.
 - [ ] This issue contains only one bug. I will open one issue for every bug report I want to file.
