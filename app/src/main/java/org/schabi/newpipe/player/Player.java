@@ -2250,7 +2250,7 @@ public final class Player implements
             stopProgressLoop();
         }
 
-        // When a (short) video ends the elements have to display the correct values
+        // When a (short) video ends the elements have to display the correct values - see #6180
         updatePlayBackElementsCurrentDuration(binding.playbackSeekBar.getMax());
 
         showControls(500);
