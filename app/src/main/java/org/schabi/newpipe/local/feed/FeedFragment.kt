@@ -21,9 +21,12 @@ package org.schabi.newpipe.local.feed
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -33,6 +36,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.annotation.AttrRes
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
@@ -574,12 +578,24 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             val item = groupAdapter.getItem(i) as StreamItem
 
             var typeface = Typeface.DEFAULT
-            var resid = R.attr.selectableItemBackground
+            var backgroundSupplier = { ctx: Context ->
+                resolveDrawable(ctx, R.attr.selectableItemBackground)
+            }
             if (doCheck) {
+                // If the uploadDate is null or true we should highlight the item
                 if (item.streamWithState.stream.uploadDate?.isAfter(updateTime) != false) {
-                    typeface = Typeface.DEFAULT_BOLD
-                    resid = R.attr.dashed_border
                     highlightCount++
+
+                    typeface = Typeface.DEFAULT_BOLD
+                    backgroundSupplier = { ctx: Context ->
+                        // Merge the drawables together. Otherwise we would lose the "select" effect
+                        LayerDrawable(
+                            arrayOf(
+                                resolveDrawable(ctx, R.attr.dashed_border),
+                                resolveDrawable(ctx, R.attr.selectableItemBackground)
+                            )
+                        )
+                    }
                 } else {
                     // Increases execution time due to the order of the items (newest always on top)
                     // Once a item is is before the updateTime we can skip all following items
@@ -592,17 +608,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             // due to the fact that itemRoot is getting recycled
             item.execBindEnd = Consumer { viewBinding ->
                 val context = viewBinding.itemRoot.context
-                viewBinding.itemRoot.background =
-                    androidx.core.content.ContextCompat.getDrawable(
-                        context,
-                        android.util.TypedValue().apply {
-                            context.theme.resolveAttribute(
-                                resid,
-                                this,
-                                true
-                            )
-                        }.resourceId
-                    )
+                viewBinding.itemRoot.background = backgroundSupplier.invoke(context)
                 viewBinding.itemVideoTitleView.typeface = typeface
             }
         }
@@ -620,6 +626,19 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
 
         lastNewItemsCount = highlightCount
+    }
+
+    private fun resolveDrawable(context: Context, @AttrRes attrResId: Int): Drawable? {
+        return androidx.core.content.ContextCompat.getDrawable(
+            context,
+            android.util.TypedValue().apply {
+                context.theme.resolveAttribute(
+                    attrResId,
+                    this,
+                    true
+                )
+            }.resourceId
+        )
     }
 
     private fun showNewItemsLoaded() {
