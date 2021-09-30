@@ -107,7 +107,7 @@ ext {
     icepickVersion = '3.2.0'
     exoPlayerVersion = '2.12.3'
     googleAutoServiceVersion = '1.0'
-    groupieVersion = '2.8.1'
+    groupieVersion = '2.9.0'
     markwonVersion = '4.6.2'
 
     leakCanaryVersion = '2.5'
