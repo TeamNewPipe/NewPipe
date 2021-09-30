@@ -89,7 +89,7 @@ NewPipe suportă servicii multiple. [Documentele](https://teamnewpipe.github.io/
 ## Instalare şi actualizări
 Puteţi instala NewPipe folosind una dintre următoarele metode:
  1. Adăugaţi depozitul nostru F-droid personalizat. Instrucţiunile sunt aici: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
- 2. Descărcaţi APK-ul din [Github Releases](https://github.com/TeamNewPipe/NewPipe/releases) şi instalaţi-l.
+ 2. Descărcaţi APK-ul din [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases) şi instalaţi-l.
  3. Actualizaţi via F-Droid. Aceasta este cea mai lentă metodă de a obţine actualizări, deoarece F-Droid trebuie să recunoască schimbările, să constriască APK-ul, să îl semneze, iar apoi să îl trimită utilizatorilor.
  4. Construiţi un APK de depanare. Aceasta este cea mai rapidă metodă de a primi funcţii noi, dar este mult mai complicată, aşa că vă recomandăm să folosiţi una dintre celelalte metode.
 

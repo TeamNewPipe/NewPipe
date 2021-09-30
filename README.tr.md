@@ -23,7 +23,7 @@
 
 <b>GOOGLE PLAY STORE'A NEWPIPE VEYA BAŞKA BİR KOPYASINI KOYMAK, PLAY STORE ŞARTLARINI VE KOŞULLARINI İHLAL EDER.</b>
 
-## Ekran fotoğrafları
+## Ekran görüntüleri
 
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png)
@@ -88,7 +88,7 @@ NewPipe birden fazla hizmeti destekler. Uygulamaya ve ayıklayıcıya yeni bir h
 ## Kurulum ve güncellemeler
 Aşağıdaki yöntemlerden birini kullanarak NewPipe'ı kurabilirsiniz:
  1. Özel depomuzu F-Droid'e ekleyin ve oradan yükleyin. Kılavuzu şurada bulabilirsiniz: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
- 2. APK'yı [Github sürümlerinden](https://github.com/TeamNewPipe/NewPipe/releases) indirin ve kurun.
+ 2. APK'yı [GitHub sürümlerinden](https://github.com/TeamNewPipe/NewPipe/releases) indirin ve kurun.
  3. F-Droid ile güncelleyin. Bu, güncellemeleri almanın en yavaş yöntemidir, çünkü F-Droid değişiklikleri tanımalı, APK'yı kendisi oluşturmalı, imzalamalı ve ardından güncellemeyi kullanıcılara dağıtmalıdır.
  4. Kendiniz bir APK derleyin. Bu yöntem, cihazınızda yeni özellikler edinmenin en hızlı yoludur, ancak çok daha karmaşıktır, bu nedenle diğer yöntemlerden birini kullanmanızı öneririz.
 

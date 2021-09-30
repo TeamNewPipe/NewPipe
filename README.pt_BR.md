@@ -87,7 +87,7 @@ O NewPipe suporta vários serviços. Nosso [documentação](https://teamnewpipe.
 Quando uma alteração no código NewPipe (devido à adição de recursos ou fixação de bugs), eventualmente ocorrerá uma versão. Estes estão no formato x.xx.x . A fim de obter esta nova versão, você pode:
  1. Construa um APK de depuração você mesmo. Esta é a maneira mais rápida de obter novos recursos em seu dispositivo, mas é muito mais complicado, por isso recomendamos usar um dos outros métodos.
  2. Adicione nosso repo personalizado ao F-Droid e instale-o a partir daí assim que publicarmos um lançamento. As instruções estão aqui.: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
- 3. Baixe o APK do [Github Releases](https://github.com/TeamNewPipe/NewPipe/releases) e instalá-lo assim que publicarmos um lançamento.
+ 3. Baixe o APK do [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases) e instalá-lo assim que publicarmos um lançamento.
  4. Atualização via F-droid. Este é o método mais lento para obter atualizações, pois o F-Droid deve reconhecer alterações, construir o próprio APK, assiná-lo e, em seguida, enviar a atualização para os usuários.
 
 Recomendamos o método 2 para a maioria dos usuários. Os APKs instalados usando o método 2 ou 3 são compatíveis entre si, mas não com aqueles instalados usando o método 4. Isso se deve à mesma chave de assinatura (nossa) sendo usada para 2 e 3, mas uma chave de assinatura diferente (F-Droid's) está sendo usada para 4. Construir um APK depuração usando o método 1 exclui totalmente uma chave. Assinar chaves ajudam a garantir que um usuário não seja enganado para instalar uma atualização maliciosa em um aplicativo.
