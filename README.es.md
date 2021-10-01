@@ -46,6 +46,7 @@ NewPipe no usa ninguna librería del framework de Google, ni la API de YouTube. 
 ### Características
 
 * Buscar videos
+* No requiere inicio de sesión
 * Mostrar información general sobre videos
 * Mirar videos de YouTube
 * Solo audio en videos de YouTube
