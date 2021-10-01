@@ -59,7 +59,7 @@ NewPipe no usa ninguna librería del framework de Google, ni la API de YouTube. 
 * Buscar a través de YouTube en un idioma específico
 * Mirar/Bloquear videos restringidos por edad
 * Mostrar información general sobre canales
-* Búsqueda de canales
+* Buscar de canales
 * Mirar videos de un canal
 * Soporte Orbot/Tor (todavía no directamente)
 * Soporte para videos en 1080p/2K/4K
