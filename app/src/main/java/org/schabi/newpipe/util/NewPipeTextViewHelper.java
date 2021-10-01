@@ -34,30 +34,30 @@ public final class NewPipeTextViewHelper {
      * deselecting it, otherwise an exception
      */
     public static boolean shareSelectedTextWithShareUtils(@NonNull final TextView textView) {
-        if (textView instanceof NewPipeTextView) {
-            final NewPipeTextView newPipeTextView = (NewPipeTextView) textView;
-            final CharSequence text = newPipeTextView.getText();
-            final CharSequence selectedText = getSelectedText(newPipeTextView, text);
+        if (!(textView instanceof NewPipeEditText)) {
+            final CharSequence textViewText;
+            if (textView instanceof NewPipeTextView) {
+                final NewPipeTextView newPipeTextView = (NewPipeTextView) textView;
+                textViewText = newPipeTextView.getText();
+            } else {
+                textViewText = textView.getText();
+            }
 
-            shareSelectedTextIfNotNullAndNotEmpty(newPipeTextView, selectedText);
+            final CharSequence selectedText = getSelectedText(textView, textViewText);
+            shareSelectedTextIfNotNullAndNotEmpty(textView, selectedText);
 
-            final Spannable spannable = (text instanceof Spannable) ? (Spannable) text : null;
-            Selection.setSelection(spannable, newPipeTextView.getSelectionEnd());
-        } else if (textView instanceof NewPipeEditText) {
+            final Spannable spannable = (textViewText instanceof Spannable)
+                    ? (Spannable) textViewText : null;
+            if (spannable != null) {
+                Selection.setSelection(spannable, textView.getSelectionEnd());
+            }
+        } else {
             final NewPipeEditText editText = (NewPipeEditText) textView;
             final Spannable text = editText.getText();
 
             final CharSequence selectedText = getSelectedText(textView, text);
             shareSelectedTextIfNotNullAndNotEmpty(textView, selectedText);
             Selection.setSelection(text, editText.getSelectionEnd());
-        } else {
-            final CharSequence text = textView.getText();
-            final CharSequence selectedText = getSelectedText(textView, text);
-
-            shareSelectedTextIfNotNullAndNotEmpty(textView, selectedText);
-
-            final Spannable spannable = (text instanceof Spannable) ? (Spannable) text : null;
-            Selection.setSelection(spannable, textView.getSelectionEnd());
         }
 
         return true;
@@ -65,7 +65,7 @@ public final class NewPipeTextViewHelper {
 
     @Nullable
     private static CharSequence getSelectedText(@NonNull final TextView textView,
-                                               @Nullable final CharSequence text) {
+                                                @Nullable final CharSequence text) {
         if (!textView.hasSelection() || text == null) {
             return null;
         }
