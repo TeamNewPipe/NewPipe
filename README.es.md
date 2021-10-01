@@ -101,7 +101,7 @@ Mientras tanto, si quiere cambiar el método de instalación por alguna razón (
 
 ## Contribución
 
-Si tiene ideas, traducciónes, cambios de diseño, limpieza de código, o cambios grandes de código, su ayuda es siempre bienvenida. Cuanto más hagamos, la aplicación será mucho mejor!
+Si tiene ideas, traducciónes, cambios de diseño, limpieza de código, o cambios grandes de código, su ayuda es siempre bienvenida. ¡Cuanto más hagamos, la aplicación será mucho mejor!
 
 Si quiere involucrarse, fíjese en nuestras [notas de contribución](.github/CONTRIBUTING.md).
 
