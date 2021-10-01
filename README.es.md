@@ -97,12 +97,11 @@ Mientras tanto, si quiere cambiar el método de instalación por alguna razón (
 1. Respalde su información a través de Ajustes > Contenido > Exportar base de datos; esto para guardar su historial (videos vistos y las búsquedas), suscripciones, listas de reproducción y ajustes.
 2. Desinstale NewPipe.
 3. Descargue el APK con un método distinto e instale.
-4. Importe la información (la base de datos extraída del paso 1) a través de Ajustes > Contenido > Importar base de datos. Ten en cuenta que esta opción superpondrá tu historial actual (tanto de vídeos como de búsquedas), tus listas de reproducción y (opcionalmente) tus configuraciones.
+4. Importe la información (la base de datos extraída del paso 1) a través de Ajustes > Contenido > Importar base de datos. Tenga en cuenta que esta opción superpondrá tu historial actual (tanto de vídeos como de búsquedas), tus listas de reproducción y (opcionalmente) tus configuraciones.
 
 ## Contribución
 
-Si tiene ideas, traducciónes, cambios de diseño, limpieza de código, o cambios grandes de código, su ayuda es siempre bienvenida.
-Cuanto más hagamos, la aplicación será mucho mejor!
+Si tiene ideas, traducciónes, cambios de diseño, limpieza de código, o cambios grandes de código, su ayuda es siempre bienvenida. Cuanto más hagamos, la aplicación será mucho mejor!
 
 Si quiere involucrarse, fíjese en nuestras [notas de contribución](.github/CONTRIBUTING.md).
 
