@@ -27,8 +27,14 @@ import java.util.Map;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Supplier;
 
+/**
+ * Outsourced logic for crashing the player in the {@link VideoDetailFragment}.
+ */
 public class VideoDetailPlayerCrasher {
 
+    // This has to be <= 23 chars on devices running Android 7 or lower (API <= 25)
+    // or it fails with an IllegalArgumentException
+    // https://stackoverflow.com/a/54744028
     private static final String TAG = "VideoDetPlayerCrasher";
 
     @NonNull
@@ -108,6 +114,8 @@ public class VideoDetailPlayerCrasher {
 
             return;
         }
+
+        // -- Build the dialog/UI --
 
         final Context themeWrapperContext = getThemeWrapperContext();
 
