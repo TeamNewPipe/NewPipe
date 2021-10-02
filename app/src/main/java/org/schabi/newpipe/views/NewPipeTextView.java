@@ -7,9 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import org.schabi.newpipe.util.NewPipeTextViewHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
-
-import static org.schabi.newpipe.util.NewPipeTextViewHelper.shareSelectedTextWithShareUtils;
 
 /**
  * An {@link AppCompatTextView} which uses {@link ShareUtils#shareText(Context, String, String)}
@@ -38,7 +37,8 @@ public class NewPipeTextView extends AppCompatTextView {
     @Override
     public boolean onTextContextMenuItem(final int id) {
         if (id == android.R.id.shareText) {
-            return shareSelectedTextWithShareUtils(this);
+            NewPipeTextViewHelper.shareSelectedTextWithShareUtils(this);
+            return true;
         }
         return super.onTextContextMenuItem(id);
     }

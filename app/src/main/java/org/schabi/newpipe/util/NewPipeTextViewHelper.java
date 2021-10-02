@@ -29,11 +29,8 @@ public final class NewPipeTextViewHelper {
      * @param textView the {@link TextView} on which sharing the selected text. It should be a
      *                 {@link NewPipeTextView} or a {@link NewPipeEditText} (even if
      *                 {@link TextView standard TextViews} are supported).
-     *
-     * @return true if no exceptions occurred when getting the selected text, sharing it and
-     * deselecting it, otherwise an exception
      */
-    public static boolean shareSelectedTextWithShareUtils(@NonNull final TextView textView) {
+    public static void shareSelectedTextWithShareUtils(@NonNull final TextView textView) {
         if (!(textView instanceof NewPipeEditText)) {
             final CharSequence textViewText;
             if (textView instanceof NewPipeTextView) {
@@ -59,8 +56,6 @@ public final class NewPipeTextViewHelper {
             shareSelectedTextIfNotNullAndNotEmpty(textView, selectedText);
             Selection.setSelection(text, editText.getSelectionEnd());
         }
-
-        return true;
     }
 
     @Nullable
