@@ -433,6 +433,7 @@
     <string name="background_player">Background player</string>
     <string name="popup_player">Popup player</string>
     <string name="always_ask_open_action">Always ask</string>
+    <string name="add_to_playlist">Add to playlist</string>
     <string name="preferred_player_fetcher_notification_title">Getting info…</string>
     <string name="preferred_player_fetcher_notification_message">"Loading requested content"</string>
     <!-- Local Playlist -->

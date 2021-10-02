@@ -1,6 +1,8 @@
 package org.schabi.newpipe.local.dialog;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +41,9 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     private LocalItemListAdapter playlistAdapter;
 
     private final CompositeDisposable playlistDisposables = new CompositeDisposable();
+
+    @Nullable
+    private OnDismissListener onDismissListener = null;
 
     public static Disposable onPlaylistFound(
             final Context context, final Runnable onSuccess, final Runnable onFailed
@@ -81,6 +86,14 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         }
         dialog.setInfo(entities);
         return dialog;
+    }
+
+    public void setOnDismissListener(@Nullable final OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
+    }
+
+    public OnDismissListener getOnDismissListener() {
+        return onDismissListener;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -141,6 +154,14 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         playlistAdapter = null;
     }
 
+    @Override
+    public void onDismiss(@NonNull final DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (onDismissListener != null) {
+            onDismissListener.onDismiss(dialog);
+        }
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Helper
     //////////////////////////////////////////////////////////////////////////*/
@@ -150,7 +171,12 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
             return;
         }
 
-        PlaylistCreationDialog.newInstance(getStreams()).show(getParentFragmentManager(), TAG);
+        final PlaylistCreationDialog dialog = PlaylistCreationDialog.newInstance(getStreams());
+        // Move the dismissListener to the new dialog.
+        dialog.setOnDismissListener(this.onDismissListener);
+        this.onDismissListener = null;
+
+        dialog.show(getParentFragmentManager(), TAG);
         requireDialog().dismiss();
     }
 
