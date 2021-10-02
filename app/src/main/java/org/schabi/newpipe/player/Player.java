@@ -1597,10 +1597,7 @@ public final class Player implements
             setVideoDurationToControls(duration);
         }
         if (currentState != STATE_PAUSED) {
-            if (currentState != STATE_PAUSED_SEEK) {
-                binding.playbackSeekBar.setProgress(currentProgress);
-            }
-            binding.playbackCurrentTime.setText(getTimeString(currentProgress));
+            updatePlayBackElementsCurrentDuration(currentProgress);
         }
         if (simpleExoPlayer.isLoading() || bufferPercent > 90) {
             binding.playbackSeekBar.setSecondaryProgress(
@@ -2248,6 +2245,9 @@ public final class Player implements
             stopProgressLoop();
         }
 
+        // When a (short) video ends the elements have to display the correct values - see #6180
+        updatePlayBackElementsCurrentDuration(binding.playbackSeekBar.getMax());
+
         showControls(500);
         animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
         binding.loadingPanel.setVisibility(View.GONE);
@@ -2589,6 +2589,18 @@ public final class Player implements
     // Playback position and seek
     //////////////////////////////////////////////////////////////////////////*/
     //region Playback position and seek
+
+    /**
+     * Sets the current duration into the corresponding elements.
+     * @param currentProgress
+     */
+    private void updatePlayBackElementsCurrentDuration(final int currentProgress) {
+        // Don't set seekbar progress while user is seeking
+        if (currentState != STATE_PAUSED_SEEK) {
+            binding.playbackSeekBar.setProgress(currentProgress);
+        }
+        binding.playbackCurrentTime.setText(getTimeString(currentProgress));
+    }
 
     @Override // own playback listener (this is a getter)
     public boolean isApproachingPlaybackEdge(final long timeToEndMillis) {
