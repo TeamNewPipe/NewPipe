@@ -5,12 +5,12 @@
 <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-es.svg"></a></p>
 
 <p align="center">
-<a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
-<a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/Licencia-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Build Status"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
-<a href="https://hosted.weblate.org/engage/newpipe/es/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/newpipe/es/svg-badge.svg"></a>
-<a href="https://web.libera.chat/#newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/Canal%20de%20IRC%20-%23newpipe-brightgreen.svg"></a>
-<a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
+<a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="Lanzamientos GitHub"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
+<a href="https://www.gnu.org/licenses/gpl-3.0" alt="Licencia: GPLv3"><img src="https://img.shields.io/badge/Licencia-GPL%20v3-blue.svg"></a>
+<a href="https://github.com/TeamNewPipe/NewPipe/actions" alt="Estado del Build"><img src="https://github.com/TeamNewPipe/NewPipe/workflows/CI/badge.svg?branch=dev&event=push"></a>
+<a href="https://hosted.weblate.org/engage/newpipe/es/" alt="Estado de la Traducción"><img src="https://hosted.weblate.org/widgets/newpipe/es/svg-badge.svg"></a>
+<a href="https://web.libera.chat/#newpipe" alt="Canal de IRC: #newpipe"><img src="https://img.shields.io/badge/Canal%20de%20IRC%20-%23newpipe-brightgreen.svg"></a>
+<a href="https://www.bountysource.com/teams/newpipe" alt="Recompensas en Bountysource"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
 
@@ -91,7 +91,7 @@ Se puede instalar NewPipe usando uno de los métodos siguientes:
  1. Agregando nuestro repositorio personalizado a F-Droid e instalarlo desde allí. Las instrucciones están [aquí](https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/).
  2. Descargando el archivo APK de [aquí](https://github.com/TeamNewPipe/NewPipe/releases) y posteriormente instalarlo.
  3. Usando el repositorio oficial de F-Droid. Este es el método más lento para obtener actualizaciones, ya que F-Droid debe reconocer los cambios, construir el APK aparte, firmarlo con una clave, y finalmente publicar la actualización.
- 4. Compilando el código fuente de la app usted mismo. Este es el modo más rápido para obtener nuevas características en su dispositivo, pero es mucho más complicado, así que recomendamos uno de los otros métodos.
+ 4. Construyendo la app usted mismo. Este es el modo más rápido para obtener nuevas características en su dispositivo, pero es mucho más complicado, así que recomendamos uno de los otros métodos.
 
 Recomendamos el método 1 para la mayoría de usuarios. Los APKs instalados usando método 1 y 2 son compatibles entre sí, pero no lo son con los instalados usando el método 3. Esto es debido a la clave de firmado, ya que los métodos 1 y 2 usan la misma clave (la nuestra), pero el método 3 usa una clave diferente (la de F-Droid). El método 4 excluye totalmente una clave de firmado. Las claves de firmado aseguran que el usuario no esté siendo engañado para instalar/actualizar una APK maliciosa. 
 
@@ -108,7 +108,7 @@ Si tiene ideas, traducciones, cambios de diseño, limpieza de código o cambios 
 Si quiere involucrarse, fíjese en nuestras [notas de contribución](.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/es/">
-<img src="https://hosted.weblate.org/widgets/newpipe/es/287x66-grey.png" alt="Translation status" />
+<img src="https://hosted.weblate.org/widgets/newpipe/es/287x66-grey.png" alt="Estado de la Traducción" />
 </a>
 
 ## Donar
@@ -117,18 +117,18 @@ Si te gusta NewPipe, estaremos felices con una donación. Puede enviar bitcoin o
 <table>
   <tr>
     <td><img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin"></td>
-    <td><img src="assets/bitcoin_qr_code.png" alt="Bitcoin QR code" width="100px"></td>
+    <td><img src="assets/bitcoin_qr_code.png" alt="Código QR del Bitcoin" width="100px"></td>
     <td><samp>16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh</samp></td>
   </tr>
   <tr>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="assets/liberapay_qr_code.png" alt="Visit NewPipe at liberapay.com" width="100px"></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></a></td>
+    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="assets/liberapay_qr_code.png" alt="Visita NewPipe en liberapay.com" width="100px"></a></td>
+    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="assets/liberapay_donate_button.svg" alt="Dona vía Liberapay" height="35px"></a></td>
   </tr>
   <tr>
     <td><a href="https://www.bountysource.com/teams/newpipe"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bountysource.png/320px-Bountysource.png" alt="Bountysource" width="190px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="assets/bountysource_qr_code.png" alt="Visit NewPipe at bountysource.com" width="100px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe/issues"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f" height="30px" alt="Check out how many bounties you can earn."></a></td>
+    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="assets/bountysource_qr_code.png" alt="Visita NewPipe en bountysource.com" width="100px"></a></td>
+    <td><a href="https://www.bountysource.com/teams/newpipe/issues"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f" height="30px" alt="Revisa cuántas recompensas puedes obtener."></a></td>
   </tr>
 </table>
 
