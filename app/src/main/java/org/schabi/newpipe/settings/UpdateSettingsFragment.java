@@ -15,6 +15,7 @@ public class UpdateSettingsFragment extends BasePreferenceFragment {
                 .putBoolean(getString(R.string.update_app_key), (boolean) checkForUpdates).apply();
 
                 if ((boolean) checkForUpdates) {
+                    // Search for updates immediately when update checks are enabled.
                     // Reset the expire time. This is necessary to check for an update immediately.
                     defaultPreferences.edit()
                             .putLong(getString(R.string.update_expiry_key), 0).apply();
