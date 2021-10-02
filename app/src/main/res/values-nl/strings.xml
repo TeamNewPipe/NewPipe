@@ -274,7 +274,8 @@
 \n3. Klik op \"Alle YouTube-gegevens inbegrepen\", dan op \"Selectie van alle items ongedaan maken\", dan selecteer alleen \"abonnementen\" en klik op \"OK\"
 \n4. Klik op \"Volgende stap\", dan op \"Export maken\"
 \n5. Klik op de knop \"Downloaden\" nadat deze verschijnt
-\n6. Uit de Takeout zipfile, pak de .json uit (gebruikelijk in de folder \"YouTube en YouTube Music/abonnementen/abonnementen.json\") en importeer deze hier.</string>
+\n6. Klik onder op \"Bestand importeren\" en selecteer de gedownloade zip file
+\n7. [Als de zip import faalt] Uit de zip file, pak de .csv uit (gebruikelijk in de folder \"YouTube en YouTube Music/abonnementen/abonnementen.csv\"), klik onder op \"Bestand importeren\" en selecteer de uitgepakte zip file</string>
     <string name="import_soundcloud_instructions">Importeer een SoundCloud-profiel door de URL of het ID ervan in te voeren:
 \n
 \n1. Kies een webbrowser en schakel bureaubladmodus in (de website is niet beschikbaar voor mobiele apparaten)
@@ -574,9 +575,9 @@
     <string name="show_age_restricted_content_summary">Toon inhoud die mogelijk niet geschikt is voor kinderen omwille van een leeftijdslimiet (zoals 18+)</string>
     <string name="notification_colorize_summary">Laat Android de kleur van de notificatie aanpassen, op basis van de meest voorkomende kleur in de thumbnail (let op: niet beschikbaar op elk apparaat)</string>
     <string name="notification_colorize_title">Notificatie kleur aanpassen</string>
-    <string name="show_thumbnail_summary">Toon miniatuurafbeelding op het vergrendelscherm als achtergrond en in de meldingen</string>
+    <string name="show_thumbnail_summary">Toon miniatuurafbeelding op het vergrendelscherm als achtergrond en in de notificaties</string>
     <string name="show_thumbnail_title">Toon miniatuurafbeelding</string>
-    <string name="recent">Recent</string>
+    <string name="recent">Recente</string>
     <string name="msg_calculating_hash">Hash berekenen</string>
     <string name="hash_channel_description">Meldingen over de voortgang van video hashing</string>
     <string name="hash_channel_name">Video Hash Melding</string>
@@ -588,7 +589,7 @@
     <string name="chapters">Hoofdstukken</string>
     <string name="related_items_tab_description">Gerelateerde streams</string>
     <string name="comments_tab_description">Reacties</string>
-    <string name="show_description_summary">Zet uit om video beschrijving en extra informatie te verbergen</string>
+    <string name="show_description_summary">Zet uit om video omschrijving en andere informatie te verbergen</string>
     <string name="open_with">Open met</string>
     <string name="radio">Radio</string>
     <string name="featured">Uitgelicht</string>
@@ -606,7 +607,7 @@
     <string name="night_theme_summary">Selecteer uw favoriete nacht thema — %s</string>
     <string name="auto_device_theme_title">Automatisch (toestel thema)</string>
     <string name="show_channel_details">Toon details van kanaal</string>
-    <string name="night_theme_title">Nachtmodus</string>
+    <string name="night_theme_title">Nacht Thema</string>
     <string name="metadata_privacy_internal">Intern</string>
     <string name="metadata_privacy_private">Privé</string>
     <string name="metadata_privacy_unlisted">Niet vermeld</string>
@@ -655,4 +656,17 @@
     <string name="remote_search_suggestions">Zoeksuggesties op afstand</string>
     <string name="local_search_suggestions">Lokale zoeksuggesties</string>
     <string name="mark_as_watched">Markeer als bekeken</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s download verwijderd</item>
+        <item quantity="other">%1$s downloads verwijderd</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Download voltooid</item>
+        <item quantity="other">%s downloads voltooid</item>
+    </plurals>
+    <string name="enqueued_next">Volgende item in de wachtrij geplaatst</string>
+    <string name="enqueue_next_stream">Plaats volgende item in de wachtrij</string>
+    <string name="main_page_content_swipe_remove">Veeg items om ze te verwijderen</string>
+    <string name="start_main_player_fullscreen_summary">Start geen video\'s in de minispeler, maar ga direct naar de volledige schermmodus, als automatisch draaien is vergrendeld. Je hebt nog steeds toegang tot de minispeler door de volledige schermmodus af te sluiten</string>
+    <string name="start_main_player_fullscreen_title">Start hoofdspeler als volledig scherm</string>
 </resources>

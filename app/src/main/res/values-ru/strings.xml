@@ -683,4 +683,6 @@
     <string name="main_page_content_swipe_remove">Удалять элементы смахиванием</string>
     <string name="start_main_player_fullscreen_summary">Запускать видео во весь экран, если отключён автоповорот. Мини-плеер доступен при выходе из полноэкранного режима</string>
     <string name="start_main_player_fullscreen_title">Начинать просмотр в полноэкранном режиме</string>
+    <string name="enqueued_next">Добавлено следующим</string>
+    <string name="enqueue_next_stream">Добавить следующим</string>
 </resources>

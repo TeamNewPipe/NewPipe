@@ -1,0 +1,10 @@
+• Ajout d'une option pour mettre directement le plein écran
+• Laisse le choix du type de suggestion de recherche
+• Le thème sombre est maintenant plus sombre + ajout de l'écran de démarrage sombre
+• Amélioration du sélecteur de fichier en colorant en gris les fichiers non désiré
+• Correction de l'importation des abonnement YouTube
+• Relancer un flux demande de réappuyer sur le bouton relancer
+• Correction
+• [Android TV]
+
+Pour voir plus de modification, regardez le journal de modifications.

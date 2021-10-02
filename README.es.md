@@ -87,6 +87,7 @@ NewPipe soporta varios servicios. Nuestras [documentaciones](https://teamnewpipe
 ## Instalación y Actualizaciones
 
 Se puede instalar NewPipe usando uno de los métodos siguientes:
+
  1. Agregando nuestro repositorio personalizado a F-Droid e instalarlo desde allí. Las instrucciones están [aquí](https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/).
  2. Descargando el archivo APK de [aquí](https://github.com/TeamNewPipe/NewPipe/releases) y posteriormente instalarlo.
  3. Usando el repositorio oficial de F-Droid. Este es el método más lento para obtener actualizaciones, ya que F-Droid debe reconocer los cambios, construir el APK aparte, firmarlo con una clave, y finalmente publicar la actualización.

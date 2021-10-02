@@ -42,7 +42,7 @@
     <string name="unsupported_url">رابط غير مدعوم</string>
     <string name="use_external_audio_player_title">استخدام مشغل صوت خارجي</string>
     <string name="use_external_video_player_title">استخدام مشغل فيديو خارجي</string>
-    <string name="content_not_available">محتوى غير متوفر</string>
+    <string name="content_not_available">المحتوى غير متوفر</string>
     <string name="could_not_load_thumbnails">تعذر تحميل كافة الصور المصغرة</string>
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذر تحليل الموقع</string>
@@ -56,7 +56,7 @@
     <string name="black_theme_title">أسود</string>
     <string name="enable_watch_history_title">سجل المشاهدة</string>
     <string name="settings_category_history_title">سجل المشاهدة و ذاكرة التخزين المؤقت</string>
-    <string name="content">محتوى</string>
+    <string name="content">المحتوى</string>
     <string name="downloads">التحميلات</string>
     <string name="downloads_title">الملفات المحملة</string>
     <string name="all">الجميع</string>
@@ -554,7 +554,7 @@
     <string name="help">مساعدة</string>
     <string name="content_not_supported">هذا المحتوى ليس مدعوم من قبل NewPipe.
 \n
-\nنامل ان يكون مدعوما في التحديثات القادمة.</string>
+\nنأمل أن يكون مدعوما في التحديثات القادمة.</string>
     <string name="infinite_videos">∞ فيديو</string>
     <string name="more_than_100_videos">+100 فيديو</string>
     <string name="artists">الفنانين</string>
@@ -631,7 +631,7 @@
     <string name="show_description_summary">قم بإيقاف التشغيل لإخفاء وصف الفيديو والمعلومات الإضافية</string>
     <string name="show_description_title">إظهار الوصف</string>
     <string name="open_with">فتح مع</string>
-    <string name="paid_content">يتوفر هذا المحتوى فقط للمستخدمين الذين قاموا بالدفع، لذلك لا يمكن بثها أو تنزيلها من قبل NewPipe.</string>
+    <string name="paid_content">يتوفر هذا المحتوى فقط للمستخدمين الذين قاموا بالدفع، لذلك لا يمكن بثه أو تنزيله عبر NewPipe.</string>
     <string name="youtube_music_premium_content">يتوفر هذا الفيديو فقط لأعضاء YouTube Music Premium ، لذلك لا يمكن بثه أو تنزيله من قبل NewPipe.</string>
     <string name="private_content">هذا المحتوى خاص، لذلك لا يمكن دفقه أو تنزيله بواسطة NewPipe.</string>
     <string name="soundcloud_go_plus_content">هذا هو مسار SoundCloud Go+ ، على الأقل في بلدك ، لذلك لا يمكن بثها أو تنزيلها من قبل NewPipe.</string>
@@ -715,4 +715,6 @@
     </plurals>
     <string name="start_main_player_fullscreen_summary">لا تبدأ تشغيل مقاطع الفيديو في المشغل المصغر، ولكن قم بتدوير وضع ملء الشاشة مباشرة، إذا تم تأمين التدوير التلقائي. لا يزال بإمكانك الوصول إلى المشغل المصغر عن طريق الخروج من ملء الشاشة</string>
     <string name="start_main_player_fullscreen_title">بدء تشغيل المشغل الرئيسي في وضع ملء الشاشة</string>
+    <string name="enqueue_next_stream">وضع التالي على قائمة الانتظار</string>
+    <string name="enqueued_next">تم وضع التالي على قائمة الانتظار</string>
 </resources>

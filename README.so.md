@@ -86,7 +86,7 @@ NewPipe wuxuu taageeraa adeegyo badan. [warqadan](https://teamnewpipe.github.io/
 Marka koodhka NewPipe isbadal ku dhaco (wax cusub oo lagusoo kordhiyay ama cilad bixin), ugu dambayn waxaa lasii daayaa mid cusub (Siidayn). Siidaynta qaabkeedu waa x.xx.x . Si aad midka cusub u hesho, waxaad samayn kartaa:
  1. Inaad mid cusub (APK) adigu dhisato. Tani waa mida ugu dagdag badan eed waxyaabaha cusub ku heli karto, laakiin way adagtahay, sidaa darteed waxaan soojeedinaynaa inaad isticmaasho qababka kale.
  2. Ku dar qayb gaar ah xaganaga F-Droid oo xagaas kaga shub isla markay siidayn soobaxdo. Hagitaanka xagan ka eeg: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
- 3. Kasoo dajiso APK-ga xaga [Siidaynta Github](https://github.com/TeamNewPipe/NewPipe/releases) oo ku shubo isla markay siidayn soobaxdo.
+ 3. Kasoo dajiso APK-ga xaga [Siidaynta GitHub](https://github.com/TeamNewPipe/NewPipe/releases) oo ku shubo isla markay siidayn soobaxdo.
  4. Ka cusboonaysii xaga F-Droid. Tani waa mida ugu daahitaanka badan, sababtoo ah F-Droid waxay fiirin isbadalka waxayna iyadu dhisi mid (app), sixiixi, kadibna ay cusboonaysiinta usiidayn isticmaalayaasha.
 
 Waxaan usoojeedinaynaa isticmaaalka qaabka 2 dadka badankood. APK-yada loogu shubo qaabka 2 ama 3 way isqaadan karaan, laakiin isma qaadan karaan kuwa loogu shubay qaabka 4. Sababtuna waxaa weeye furaha sixiixa oo iskumid ah (kaanaga weeye) oo loo isticmaalay 2 iyo 3, laakiin furo sixiixeed ka duwan (midka F-Droid) oo loo isticmaalay 4. Dhisida APK ayadoo la isticmaalayo qaabka 1 waxay gabi ahaanba ka reebtaa wax fure ah. Furayaasha sixiixa waxay xaqiijiyaan in isticmaalaha aan lagu khaldin inuu ku shubto cusboonaysiin khalad ah (wax lasoo dhexraaciyay) app-ka.
