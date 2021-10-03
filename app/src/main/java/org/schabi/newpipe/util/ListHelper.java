@@ -172,6 +172,7 @@ public final class ListHelper {
      *                                     the downloader
      * @return true if a stream was removed, false otherwise
      */
+    @SuppressWarnings("checkstyle:ParameterNumber")
     public static boolean checkIfSomeStreamWasRemoved(
             @NonNull final List<VideoStream> videoStreams,
             @NonNull final List<VideoStream> videoOnlyStreams,
