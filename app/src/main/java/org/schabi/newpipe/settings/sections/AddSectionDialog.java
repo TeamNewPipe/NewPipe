@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.util.ThemeHelper;
 
 public final class AddSectionDialog {
     private final AlertDialog dialog;
@@ -62,7 +61,7 @@ public final class AddSectionDialog {
         private DialogListAdapter(final Context context, final ChooseSectionListItem[] items) {
             this.inflater = LayoutInflater.from(context);
             this.items = items;
-            this.fallbackIcon = ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_kiosk_hot);
+            this.fallbackIcon = R.drawable.ic_whatshot;
         }
 
         @Override

@@ -12,6 +12,7 @@ import com.grack.nanojson.JsonSink;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -29,7 +30,6 @@ import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.Objects;
 
@@ -198,7 +198,7 @@ public abstract class Section {
         @DrawableRes
         @Override
         public int getSectionIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_blank_page);
+            return R.drawable.ic_crop_portrait;
         }
 
         @Override
@@ -223,14 +223,13 @@ public abstract class Section {
         @DrawableRes
         @Override
         public int getSectionIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_channel);
+            return R.drawable.ic_tv;
         }
 
         @Override
         public SubscriptionFragment getFragment(final Context context) {
             return new SubscriptionFragment();
         }
-
     }
 
     public static class DownloadSection extends Section {
@@ -248,7 +247,7 @@ public abstract class Section {
 
         @Override
         public int getSectionIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_file_download);
+            return R.drawable.ic_file_download;
         }
 
         @Override
@@ -273,7 +272,7 @@ public abstract class Section {
         @DrawableRes
         @Override
         public int getSectionIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_rss);
+            return R.drawable.ic_rss_feed;
         }
 
         @Override
@@ -298,7 +297,7 @@ public abstract class Section {
         @DrawableRes
         @Override
         public int getSectionIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_bookmark);
+            return R.drawable.ic_bookmark;
         }
 
         @Override
@@ -323,7 +322,7 @@ public abstract class Section {
         @DrawableRes
         @Override
         public int getSectionIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_history);
+            return R.drawable.ic_history;
         }
 
         @Override
@@ -443,7 +442,7 @@ public abstract class Section {
         @DrawableRes
         @Override
         public int getSectionIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_channel);
+            return R.drawable.ic_tv;
         }
 
         @Override
@@ -517,9 +516,8 @@ public abstract class Section {
                 final StreamingService service = NewPipe.getService(kioskServiceId);
                 kioskId = service.getKioskList().getDefaultKioskId();
             } catch (final ExtractionException e) {
-                ErrorActivity.reportError(context, e, null, null,
-                        ErrorActivity.ErrorInfo.make(UserAction.REQUESTED_KIOSK, "none",
-                                "Loading default kiosk from selected service", 0));
+                ErrorActivity.reportErrorInSnackbar(context, new ErrorInfo(e,
+                        UserAction.REQUESTED_KIOSK, "Loading default kiosk for selected service"));
             }
             return kioskId;
         }
@@ -576,7 +574,7 @@ public abstract class Section {
         @DrawableRes
         @Override
         public int getSectionIconRes(final Context context) {
-            return ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_bookmark);
+            return R.drawable.ic_bookmark;
         }
 
         @Override
