@@ -51,6 +51,7 @@ import org.schabi.newpipe.databinding.ToolbarLayoutBinding;
 import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.fragments.DrawerFragment;
+import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
@@ -186,7 +187,6 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
-        setupBroadcastReceiver();
 
         // In case bottomSheet is not visible on the screen or collapsed we can assume that the user
         // interacts with a fragment inside fragment_holder so all back presses should be
