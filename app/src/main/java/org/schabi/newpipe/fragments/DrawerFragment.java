@@ -142,7 +142,7 @@ public class DrawerFragment extends MainFragment {
             toggleServiceButton.setContentDescription(
                     getString(R.string.drawer_header_description) + selectedServiceName);
         } catch (final Exception e) {
-            ErrorActivity.reportUiError(activity, e);
+            ErrorActivity.reportUiErrorInSnackbar(activity, "Setting up drawer", e);
         }
 
         final SharedPreferences sharedPreferences = PreferenceManager.
@@ -262,7 +262,7 @@ public class DrawerFragment extends MainFragment {
             try {
                 showSections();
             } catch (final Exception e) {
-                ErrorActivity.reportUiError(activity, e);
+                ErrorActivity.reportUiErrorInSnackbar(this, "Showing main page tabs", e);
             }
         }
     }
