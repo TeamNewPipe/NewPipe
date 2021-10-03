@@ -32,7 +32,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
-import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.settings.sections.Section;
 import org.schabi.newpipe.settings.sections.SectionsManager;
 import org.schabi.newpipe.util.Constants;

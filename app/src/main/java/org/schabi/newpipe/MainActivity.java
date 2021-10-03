@@ -47,6 +47,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import org.schabi.newpipe.databinding.ActivityMainBinding;
 import org.schabi.newpipe.databinding.DrawerHeaderBinding;
 import org.schabi.newpipe.databinding.DrawerLayoutBinding;
+import org.schabi.newpipe.databinding.ToolbarLayoutBinding;
 import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.fragments.DrawerFragment;
