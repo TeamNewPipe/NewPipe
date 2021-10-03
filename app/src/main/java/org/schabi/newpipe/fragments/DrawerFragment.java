@@ -268,7 +268,7 @@ public class DrawerFragment extends MainFragment {
     }
 
     private void showServices() {
-        serviceArrow.setImageResource(R.drawable.ic_arrow_drop_up_white_24dp);
+        serviceArrow.setImageResource(R.drawable.ic_arrow_drop_up);
 
         for (final StreamingService s : NewPipe.getServices()) {
             final String title = s.getServiceInfo().getName()
@@ -470,7 +470,7 @@ public class DrawerFragment extends MainFragment {
     }
 
     private void showSections() {
-        serviceArrow.setImageResource(R.drawable.ic_arrow_drop_down_white_24dp);
+        serviceArrow.setImageResource(R.drawable.ic_arrow_drop_down);
 
         updateSectionsIconAndDescription();
     }
@@ -515,10 +515,10 @@ public class DrawerFragment extends MainFragment {
         //Settings and About
         drawerItems.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_SETTINGS, ORDER, R.string.settings)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.ic_settings));
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(activity, R.drawable.ic_settings));
         drawerItems.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.ic_info_outline));
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(activity, R.drawable.ic_info_outline));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
