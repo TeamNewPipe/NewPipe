@@ -144,7 +144,6 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamSegment;
-import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -1720,14 +1719,12 @@ public final class Player implements
         // because HLS streams are fragmented
         // and thus the whole duration is not available to the player
         // TODO: revert #6307 when introducing proper HLS support
+
+        // The duration returned in the player response of YouTube for post live streams
+        // is sometimes wrong, so use the duration from ExoPlayer for this stream type
         final int duration;
         if (currentItem != null
-                && currentItem.getStreamType() != StreamType.AUDIO_LIVE_STREAM
-                && currentItem.getStreamType() != StreamType.LIVE_STREAM
-                // The duration returned in the player response of YouTube for post live streams
-                // is sometimes wrong, so use the duration from ExoPlayer for this stream type
-                && currentItem.getStreamType() != StreamType.POST_LIVE_AUDIO_STREAM
-                && currentItem.getStreamType() != StreamType.POST_LIVE_STREAM) {
+                && !StreamTypeUtil.isLiveStreamOrPostLiveStream(currentItem.getStreamType())) {
             // Convert seconds to milliseconds
             duration =  (int) (currentItem.getDuration() * 1000);
         } else {
