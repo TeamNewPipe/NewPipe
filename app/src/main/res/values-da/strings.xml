@@ -270,7 +270,7 @@
     <string name="create_playlist">Ny spilleliste</string>
     <string name="rename_playlist">Omdøb</string>
     <string name="name">Navn</string>
-    <string name="append_playlist">Føj til spilleliste</string>
+    <string name="add_to_playlist">Føj til spilleliste</string>
     <string name="delete_playlist_prompt">Slet denne spilleliste\?</string>
     <string name="playlist_creation_success">Spilleliste oprettet</string>
     <string name="caption_none">Ingen undertekster</string>

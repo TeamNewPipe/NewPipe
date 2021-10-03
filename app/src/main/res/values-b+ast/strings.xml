@@ -132,7 +132,7 @@
     <string name="dismiss">Escartar</string>
     <string name="create_playlist">Llista de reproducción nueva</string>
     <string name="name">Nome</string>
-    <string name="append_playlist">Amestar a una llista de reproducción</string>
+    <string name="add_to_playlist">Amestar a una llista de reproducción</string>
     <string name="delete_playlist_prompt">¿Desanicair esta llista de reproducción\?</string>
     <string name="caption_none">Ensin sotítulos</string>
     <string name="resize_fit">Axustar</string>

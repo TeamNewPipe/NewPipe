@@ -188,7 +188,7 @@
     <string name="unbookmark_playlist">বুকমার্ক মুছুন</string>
     <string name="unmute">আন মিউট</string>
     <string name="mute">মিউট</string>
-    <string name="append_playlist">প্লে লিস্ট এ যুক্ত করুন</string>
+    <string name="add_to_playlist">প্লে লিস্ট এ যুক্ত করুন</string>
     <string name="name">নাম</string>
     <string name="create_playlist">নতুন প্লে লিস্ট</string>
     <string name="always_ask_open_action">সবসময় জিজ্ঞেস করুন</string>

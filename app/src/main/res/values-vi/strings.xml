@@ -267,7 +267,7 @@
     <string name="create_playlist">Tạo playlist mới</string>
     <string name="rename_playlist">Đổi tên playlist</string>
     <string name="name">Tên</string>
-    <string name="append_playlist">Thêm vào danh sách phát</string>
+    <string name="add_to_playlist">Thêm vào danh sách phát</string>
     <string name="set_as_playlist_thumbnail">Đặt làm hình thu nhỏ của danh sách phát</string>
     <string name="bookmark_playlist">Đánh dấu playlist này</string>
     <string name="unbookmark_playlist">Xóa dấu trang</string>

@@ -254,7 +254,7 @@
     <string name="create_playlist">Új lejátszási lista</string>
     <string name="rename_playlist">Átnevezés</string>
     <string name="name">Név</string>
-    <string name="append_playlist">Lejátszási listához adás</string>
+    <string name="add_to_playlist">Lejátszási listához adás</string>
     <string name="set_as_playlist_thumbnail">Beállítás lejátszási lista indexképeként</string>
     <string name="unbookmark_playlist">Könyvjelző törlése</string>
     <string name="delete_playlist_prompt">Törlődjön ez a lejátszási lista\?</string>

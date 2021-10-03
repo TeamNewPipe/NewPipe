@@ -231,7 +231,7 @@
     <string name="create_playlist">Lista de reproducción nueva</string>
     <string name="rename_playlist">Cambiar nombre</string>
     <string name="name">Nombre</string>
-    <string name="append_playlist">Añadir a la lista de reproducción</string>
+    <string name="add_to_playlist">Añadir a la lista de reproducción</string>
     <string name="set_as_playlist_thumbnail">Definir como miniatura de lista de reproducción</string>
     <string name="bookmark_playlist">Marcar lista de reproducción</string>
     <string name="unbookmark_playlist">Quitar marcador</string>

@@ -266,7 +266,7 @@
     <string name="delete_view_history_alert">Ștergeți întregul istoric al vizionărilor\?</string>
     <string name="one_item_deleted">1 element șters.</string>
     <string name="create_playlist">Playlist nou</string>
-    <string name="append_playlist">Adăugați la playlist</string>
+    <string name="add_to_playlist">Adăugați la playlist</string>
     <string name="import_title">Importare</string>
     <string name="import_from">Importați din</string>
     <string name="export_to">Exportați în</string>

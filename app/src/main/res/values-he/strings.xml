@@ -240,7 +240,7 @@
     <string name="create_playlist">רשימת נגינה חדשה</string>
     <string name="rename_playlist">שינוי שם</string>
     <string name="name">שם</string>
-    <string name="append_playlist">הוספה לרשימת נגינה</string>
+    <string name="add_to_playlist">הוספה לרשימת נגינה</string>
     <string name="bookmark_playlist">הוספת רשימת נגינה לסימניות</string>
     <string name="unbookmark_playlist">הסרת סימנייה</string>
     <string name="delete_playlist_prompt">למחוק רשימת נגינה זו\?</string>

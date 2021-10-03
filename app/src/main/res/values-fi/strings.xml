@@ -271,7 +271,7 @@
     <string name="create_playlist">Uusi soittolista</string>
     <string name="rename_playlist">Uudelleennimeä</string>
     <string name="name">Nimi</string>
-    <string name="append_playlist">Lisää soittolistaan</string>
+    <string name="add_to_playlist">Lisää soittolistaan</string>
     <string name="set_as_playlist_thumbnail">Aseta soittolistan kuvakkeeksi</string>
     <string name="bookmark_playlist">Tallenna soittolista kirjanmerkkeihin</string>
     <string name="unbookmark_playlist">Poista kirjanmerkki</string>

@@ -271,7 +271,7 @@
     <string name="create_playlist">Ny spellista</string>
     <string name="rename_playlist">Byt namn</string>
     <string name="name">Namn</string>
-    <string name="append_playlist">Lägg till i spellista</string>
+    <string name="add_to_playlist">Lägg till i spellista</string>
     <string name="set_as_playlist_thumbnail">Använd som spellistans miniatyrbild</string>
     <string name="bookmark_playlist">Bokmärk spellistan</string>
     <string name="unbookmark_playlist">Ta bort bokmärke</string>

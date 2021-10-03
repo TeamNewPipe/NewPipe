@@ -229,7 +229,7 @@
     <string name="create_playlist">Daftar Putar Baru</string>
     <string name="rename_playlist">Ubah Nama</string>
     <string name="name">Nama</string>
-    <string name="append_playlist">Tambah ke daftar putar</string>
+    <string name="add_to_playlist">Tambah ke daftar putar</string>
     <string name="set_as_playlist_thumbnail">Atur sebagai thumbnail daftar putar</string>
     <string name="bookmark_playlist">Markah Daftar Putar</string>
     <string name="unbookmark_playlist">Hapus Markah</string>

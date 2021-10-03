@@ -228,7 +228,7 @@
     <string name="always_ask_open_action">Immer fragen</string>
     <string name="create_playlist">Neue Wiedergabeliste</string>
     <string name="rename_playlist">Umbenennen</string>
-    <string name="append_playlist">Zur Wiedergabeliste hinzufügen</string>
+    <string name="add_to_playlist">Zur Wiedergabeliste hinzufügen</string>
     <string name="set_as_playlist_thumbnail">Als Vorschaubild der Wiedergabeliste festlegen</string>
     <string name="unbookmark_playlist">Lesezeichen entfernen</string>
     <string name="delete_playlist_prompt">Diese Wiedergabeliste löschen?</string>

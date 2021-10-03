@@ -498,7 +498,7 @@
     <string name="set_as_playlist_thumbnail">Wekî Thumbnailê Lîsteya Lîsteyê saz bikin</string>
     <string name="unmute">Bê deng kirin</string>
     <string name="mute">Bêdeng</string>
-    <string name="append_playlist">Li lîsteyê zêde bike</string>
+    <string name="add_to_playlist">Li lîsteyê zêde bike</string>
     <string name="name">Nav</string>
     <string name="rename_playlist">Navlêkirin</string>
     <string name="create_playlist">Lîstinê ya nû</string>

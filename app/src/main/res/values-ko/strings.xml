@@ -230,7 +230,7 @@
     <string name="create_playlist">새로운 재생목록</string>
     <string name="rename_playlist">이름 바꾸기</string>
     <string name="name">이름</string>
-    <string name="append_playlist">재생목록에 추가</string>
+    <string name="add_to_playlist">재생목록에 추가</string>
     <string name="set_as_playlist_thumbnail">재생목록 썸네일로 설정</string>
     <string name="bookmark_playlist">재생목록 북마크하기</string>
     <string name="unbookmark_playlist">북마크 제거하기</string>

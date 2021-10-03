@@ -234,7 +234,7 @@
     <string name="create_playlist">Nový playlist</string>
     <string name="rename_playlist">Přejmenovat</string>
     <string name="name">Jméno</string>
-    <string name="append_playlist">Přidat do playlistu</string>
+    <string name="add_to_playlist">Přidat do playlistu</string>
     <string name="set_as_playlist_thumbnail">Nastavit jako miniaturu playlistu</string>
     <string name="bookmark_playlist">Přidat playlist do záložek</string>
     <string name="unbookmark_playlist">Smazat záložku</string>

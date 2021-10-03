@@ -350,7 +350,7 @@
     <string name="set_as_playlist_thumbnail">Постави као сличицу листе</string>
     <string name="unmute">Упали звук</string>
     <string name="mute">Утишај</string>
-    <string name="append_playlist">Додај на листу</string>
+    <string name="add_to_playlist">Додај на листу</string>
     <string name="name">Назив</string>
     <string name="rename_playlist">Преименуј</string>
     <string name="create_playlist">Нова листа</string>

@@ -81,7 +81,7 @@ public enum StreamDialogEntry {
     delete(R.string.delete, (fragment, item) -> {
     }), // has to be set manually
 
-    append_playlist(R.string.append_playlist, (fragment, item) -> {
+    append_playlist(R.string.add_to_playlist, (fragment, item) -> {
         final PlaylistAppendDialog d = PlaylistAppendDialog
                 .fromStreamInfoItems(Collections.singletonList(item));
 

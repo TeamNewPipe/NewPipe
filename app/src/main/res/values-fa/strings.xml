@@ -217,7 +217,7 @@
     <string name="create_playlist">فهرست پخش جدید</string>
     <string name="rename_playlist">تغییر نام</string>
     <string name="name">نام</string>
-    <string name="append_playlist">افزودن به سیاههٔ پخش</string>
+    <string name="add_to_playlist">افزودن به سیاههٔ پخش</string>
     <string name="set_as_playlist_thumbnail">تنظیم برای تصویر سیاههٔ پخش</string>
     <string name="delete_playlist_prompt">این فهرست پخش پاک شود؟</string>
     <string name="playlist_creation_success">فهرست پخش ایجاد شد</string>
