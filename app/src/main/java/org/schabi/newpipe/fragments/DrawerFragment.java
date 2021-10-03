@@ -40,7 +40,6 @@ import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PeertubeHelper;
 import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -349,7 +348,7 @@ public class DrawerFragment extends MainFragment {
                 try {
                     sectionSelected(item);
                 } catch (final Exception e) {
-                    ErrorActivity.reportUiError(activity, e);
+                    ErrorActivity.reportUiErrorInSnackbar(this, "Selecting main page tab", e);
                 }
                 break;
             case R.id.menu_options_about_group:
@@ -515,10 +514,10 @@ public class DrawerFragment extends MainFragment {
         //Settings and About
         drawerItems.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_SETTINGS, ORDER, R.string.settings)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(activity, R.drawable.ic_settings));
+                .setIcon(R.drawable.ic_settings);
         drawerItems.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(activity, R.drawable.ic_info_outline));
+                .setIcon(R.drawable.ic_info_outline);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
