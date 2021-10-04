@@ -92,6 +92,7 @@ import org.schabi.newpipe.views.FocusOverlayView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
     private ToolbarLayoutBinding toolbarLayoutBinding;
 
     private DrawerItemManager drawerItemManager;
-    private List<DrawerItem> sectionList = new ArrayList<>();
+    private List<DrawerItem> drawerItemList = new ArrayList<>();
 
     private ActionBarDrawerToggle toggle;
 
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupDrawer() throws Exception {
         drawerItemManager = DrawerItemManager.getManager(this);
-        setupSections();
+        setupDrawerItems();
 
         toggle = new ActionBarDrawerToggle(this, mainBinding.getRoot(),
                 toolbarLayoutBinding.toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -208,11 +209,11 @@ public class MainActivity extends AppCompatActivity {
         setupDrawerHeader();
     }
 
-    public void setupSections() {
-        sectionList.clear();
-        sectionList.addAll(drawerItemManager.getDrawerItems());
+    public void setupDrawerItems() {
+        drawerItemList.clear();
+        drawerItemList.addAll(drawerItemManager.getDrawerItems());
 
-        updateDrawerSections();
+        refreshDrawerItems();
     }
 
     private void updateVisibilityOfHistroySection() {
@@ -230,98 +231,137 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void updateDrawerSections() {
+    private void clearDrawer() {
         drawerLayoutBinding.navigation.getMenu().clear();
+    }
 
-        int kioskCounter = 0;
-        final HashMap<String, Integer> kioskMap = getKioskIdsAsMap();
+    private List<String> getUnusedKioskIdList(
+            final Map<String, Integer> kioskMap,
+            final List<DrawerItem> drawerItems) {
+        final List<String> kioskMapKeys = new ArrayList<>(kioskMap.keySet());
 
-        final int serviceId = ServiceHelper.getSelectedServiceId(this);
-
-        for (int i = 0; i < sectionList.size(); i++) {
-            final DrawerItem section = sectionList.get(i);
-            if (section.getDrawerItemId() != ITEM_ID_KIOSK) {
+        for (int i = 0; i < drawerItems.size(); i++) {
+            final DrawerItem drawerItem = drawerItems.get(i);
+            if (drawerItem.getDrawerItemId() != ITEM_ID_KIOSK) {
                 continue;
             }
 
-            final DrawerItem.KioskDrawerItem kioskSection = (DrawerItem.KioskDrawerItem) section;
-            final int kioskServiceId = kioskSection.getKioskServiceId();
+            final DrawerItem.KioskDrawerItem kioskDrawerItem =
+                    (DrawerItem.KioskDrawerItem) drawerItem;
+            final int kioskServiceId = kioskDrawerItem.getKioskServiceId();
+            final int serviceId = ServiceHelper.getSelectedServiceId(this);
             if (kioskServiceId != serviceId) {
                 continue;
             }
-            final String kioskId = kioskSection.getKioskId();
-            kioskMap.remove(kioskId);
+            final String kioskId = kioskDrawerItem.getKioskId();
+            kioskMapKeys.remove(kioskId);
         }
+        return kioskMapKeys;
+    }
 
-        final List<String> kioskList = new ArrayList<>();
-        kioskList.addAll(kioskMap.keySet());
+    private void drawerAddItem(
+            final int group,
+            final int menuId,
+            final int titleId,
+            final int iconRes) {
+        final String name = getResources().getString(titleId);
 
-        for (int i = 0; i < sectionList.size(); i++) {
-            final DrawerItem section = sectionList.get(i);
+        drawerAddItem(group, menuId, titleId, iconRes);
+    }
 
-            switch (section.getDrawerItemId()) {
+    private void drawerAddItem(
+            final int group,
+            final int menuId,
+            final String title,
+            final int iconRes) {
+        drawerLayoutBinding.navigation.getMenu().add(
+                group,
+                menuId,
+                ORDER,
+                title)
+                .setIcon(iconRes);
+    }
+
+    private void fillDynamicDrawerContent() {
+        final Map<String, Integer> kioskMap = getKioskIdsMappedToMenuIds();
+        final List<String> unusedKioskIdList = getUnusedKioskIdList(kioskMap, drawerItemList);
+        final int serviceId = ServiceHelper.getSelectedServiceId(this);
+        int defaultKioskCount = 0;
+
+        for (int i = 0; i < drawerItemList.size(); i++) {
+            final DrawerItem drawerItem = drawerItemList.get(i);
+
+            switch (drawerItem.getDrawerItemId()) {
                 case ITEM_ID_BLANK:
-                    // don't add blank sections
+                    // don't add blank DrawerItems
                     break;
                 case ITEM_ID_KIOSK:
-                    if (true) {
-                        final DrawerItem.KioskDrawerItem kioskSection
-                                = (DrawerItem.KioskDrawerItem) section;
-                        final int kioskServiceId = kioskSection.getKioskServiceId();
-                        if (kioskServiceId != serviceId) {
-                            continue;
-                        }
-                        // limits number of Kiosks to numbers of actual Kiosks
-                        final String sectionNameTranslated = kioskSection.getDrawerItemName(this);
-                        final int iconID = section.getDrawerItemIconRes(this);
-                        drawerLayoutBinding.navigation.getMenu().add(R.id.menu_tabs_group,
-                                kioskServiceId, ORDER,
-                                sectionNameTranslated)
-                                .setIcon(iconID);
+                    final DrawerItem.KioskDrawerItem kioskDrawerItem
+                            = (DrawerItem.KioskDrawerItem) drawerItem;
+
+                    if (kioskDrawerItem.getKioskServiceId() != serviceId) {
+                        continue;
                     }
+
+                    drawerAddItem(
+                            R.id.menu_tabs_group,
+                            kioskMap.get(kioskDrawerItem.getKioskId()),
+                            drawerItem.getDrawerItemName(this),
+                            drawerItem.getDrawerItemIconRes(this));
                     break;
                 case ITEM_ID_DEFAULT_KIOSK:
                     // limits number of visible Kiosks to numbers of actual Kiosks
-                    if (kioskCounter < kioskList.size()) {
-                        final DrawerItem.DefaultKioskDrawerItem defaultKioskSection =
-                                (DrawerItem.DefaultKioskDrawerItem) section;
-                        final String kioskId = kioskList.get(kioskCounter);
-                        final String sectionName =
-                                KioskTranslator.getTranslatedKioskName(kioskId, this);
-                        final int iconID = KioskTranslator.getKioskIcon(kioskId, this);
-                        final int kioskIdx = kioskMap.get(kioskId);
-                        drawerLayoutBinding.navigation.getMenu().add(R.id.menu_tabs_group,
-                                kioskIdx, ORDER,
-                                sectionName)
-                                .setIcon(iconID);
-                        kioskCounter++;
+                    if (defaultKioskCount >= unusedKioskIdList.size()) {
+                        continue;
                     }
+                    final String kioskId = unusedKioskIdList.get(defaultKioskCount);
+                    drawerAddItem(
+                            R.id.menu_tabs_group,
+                            kioskMap.get(unusedKioskIdList.get(defaultKioskCount)),
+                            KioskTranslator.getTranslatedKioskName(kioskId, this),
+                            KioskTranslator.getKioskIcon(kioskId, this));
+                    defaultKioskCount++;
                     break;
                 default:
-                    drawerLayoutBinding.navigation.getMenu()
-                            .add(R.id.menu_tabs_group, section.getDrawerItemId(), ORDER,
-                                    section.getDrawerItemName(this))
-                            .setIcon(section.getDrawerItemIconRes(this));
+                    drawerAddItem(
+                            R.id.menu_tabs_group,
+                            drawerItem.getDrawerItemId(),
+                            drawerItem.getDrawerItemName(this),
+                            drawerItem.getDrawerItemIconRes(this));
             }
         }
+    }
 
-
+    private void fillCantMissingDrawerItems() {
         //Settings and About
-        drawerLayoutBinding.navigation.getMenu()
-                .add(R.id.menu_options_about_group, ITEM_ID_SETTINGS, ORDER, R.string.settings)
-                .setIcon(R.drawable.ic_settings);
-        drawerLayoutBinding.navigation.getMenu()
-                .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
-                .setIcon(R.drawable.ic_info_outline);
+        drawerAddItem(
+                R.id.menu_options_about_group,
+                ITEM_ID_SETTINGS,
+                R.string.settings,
+                R.drawable.ic_settings);
+        drawerAddItem(
+                R.id.menu_options_about_group,
+                ITEM_ID_ABOUT,
+                R.string.tab_about,
+                R.drawable.ic_info_outline);
+    }
 
+    private void fillDrawer() {
+        fillDynamicDrawerContent();
+        fillCantMissingDrawerItems();
         updateVisibilityOfHistroySection();
     }
 
-    private HashMap<String, Integer> getKioskIdsAsMap() {
+    private void refreshDrawerItems() {
+        clearDrawer();
+        fillDrawer();
+    }
+
+    private HashMap<String, Integer> getKioskIdsMappedToMenuIds() {
         final int serviceId = ServiceHelper.getSelectedServiceId(this);
         final StreamingService service;
         final HashMap<String, Integer> kioskList = new HashMap<>();
-        final List<String> ids = getKioskIdsAsList();
+        final List<String> ids = getKioskIdList();
         try {
             service = NewPipe.getService(serviceId);
             for (int i = 0; i < ids.size(); i++) {
@@ -334,7 +374,7 @@ public class MainActivity extends AppCompatActivity {
         return kioskList;
     }
 
-    private List<String> getKioskIdsAsList() {
+    private List<String> getKioskIdList() {
         final int serviceId = ServiceHelper.getSelectedServiceId(this);
         final StreamingService service;
         final List<String> kioskList = new ArrayList<>();
@@ -354,7 +394,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.menu_tabs_group:
                 try {
-                    sectionSelected(item);
+                    drawerItemTabsGroupSelected(item);
                 } catch (final Exception e) {
                     ErrorActivity.reportUiErrorInSnackbar(this, "Selecting main page tab", e);
                 }
@@ -380,7 +420,7 @@ public class MainActivity extends AppCompatActivity {
                 .setChecked(true);
     }
 
-    private void sectionSelected(final MenuItem item) throws ExtractionException {
+    private void drawerItemTabsGroupSelected(final MenuItem item) throws ExtractionException {
         switch (item.getItemId()) {
             case ITEM_ID_SUBSCRIPTIONS:
                 NavigationHelper.openSubscriptionFragment(getSupportFragmentManager());
@@ -456,7 +496,7 @@ public class MainActivity extends AppCompatActivity {
             showServices();
         } else {
             try {
-                setupSections();
+                setupDrawerItems();
             } catch (final Exception e) {
                 ErrorActivity.reportUiErrorInSnackbar(this, "Showing main page tabs", e);
             }
@@ -529,10 +569,10 @@ public class MainActivity extends AppCompatActivity {
         menuItem.setActionView(spinner);
     }
 
-    private void showSections() throws ExtractionException {
+    private void showDrawerItems() throws ExtractionException {
         drawerHeaderBinding.drawerArrow.setImageResource(R.drawable.ic_arrow_drop_down);
 
-        updateDrawerSections();
+        refreshDrawerItems();
     }
 
     @Override
@@ -590,7 +630,7 @@ public class MainActivity extends AppCompatActivity {
             NavigationHelper.openMainActivity(this);
         }
 
-        setupSections();
+        setupDrawerItems();
     }
 
     @Override
