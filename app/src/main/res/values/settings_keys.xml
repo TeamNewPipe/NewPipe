@@ -359,8 +359,8 @@
     <string name="background_player_key" translatable="false">background_player</string>
     <string name="popup_player_key" translatable="false">popup_player</string>
     <string name="download_key" translatable="false">download</string>
-    <string name="always_ask_open_action_key" translatable="false">always_ask_player</string>
     <string name="add_to_playlist_key" translatable="false">add_to_playlist</string>
+    <string name="always_ask_open_action_key" translatable="false">always_ask_player</string>
 
     <string-array name="preferred_open_action_description_list" translatable="false">
         <item>@string/show_info</item>
