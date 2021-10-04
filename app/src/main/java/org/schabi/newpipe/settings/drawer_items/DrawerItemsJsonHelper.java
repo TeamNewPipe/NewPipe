@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 public final class DrawerItemsJsonHelper {
-    private static final String JSON_DRAWER_ITEMS_ARRAY_KEY = "tabs";
+    private static final String JSON_DRAWER_ITEMS_ARRAY_KEY = "drawer_items";
 
     private static final List<DrawerItem> FALLBACK_INITIAL_DRAWER_ITEM_LIST
             = Collections.unmodifiableList(

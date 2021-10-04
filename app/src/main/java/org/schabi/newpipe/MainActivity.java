@@ -209,30 +209,31 @@ public class MainActivity extends AppCompatActivity {
         setupDrawerHeader();
     }
 
-    public void setupDrawerItems() {
-        drawerItemList.clear();
-        drawerItemList.addAll(drawerItemManager.getDrawerItems());
-
+    private void setupDrawerItems() {
         refreshDrawerItems();
     }
 
-    private void updateVisibilityOfHistroySection() {
-        final SharedPreferences sharedPreferences = PreferenceManager.
-                getDefaultSharedPreferences(this);
-        final boolean isHistoryEnabled = sharedPreferences.getBoolean(
-                getString(R.string.enable_watch_history_key), true);
-        final MenuItem menuItem = drawerLayoutBinding
-                .navigation
-                .getMenu()
-                .findItem(ITEM_ID_HISTORY);
-        if (menuItem != null) {
-            drawerLayoutBinding.navigation.getMenu().findItem(ITEM_ID_HISTORY)
-                    .setVisible(isHistoryEnabled);
-        }
+    private void drawerAddItem(
+            final int group,
+            final int menuId,
+            final int titleId,
+            final int iconRes) {
+        final String title = getResources().getString(titleId);
+
+        drawerAddItem(group, menuId, title, iconRes);
     }
 
-    private void clearDrawer() {
-        drawerLayoutBinding.navigation.getMenu().clear();
+    private void drawerAddItem(
+            final int group,
+            final int menuId,
+            final String title,
+            final int iconRes) {
+        drawerLayoutBinding.navigation.getMenu().add(
+                group,
+                menuId,
+                ORDER,
+                title)
+                .setIcon(iconRes);
     }
 
     private List<String> getUnusedKioskIdList(
@@ -257,29 +258,6 @@ public class MainActivity extends AppCompatActivity {
             kioskMapKeys.remove(kioskId);
         }
         return kioskMapKeys;
-    }
-
-    private void drawerAddItem(
-            final int group,
-            final int menuId,
-            final int titleId,
-            final int iconRes) {
-        final String name = getResources().getString(titleId);
-
-        drawerAddItem(group, menuId, titleId, iconRes);
-    }
-
-    private void drawerAddItem(
-            final int group,
-            final int menuId,
-            final String title,
-            final int iconRes) {
-        drawerLayoutBinding.navigation.getMenu().add(
-                group,
-                menuId,
-                ORDER,
-                title)
-                .setIcon(iconRes);
     }
 
     private void fillDynamicDrawerContent() {
@@ -346,13 +324,35 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.ic_info_outline);
     }
 
+    private void updateVisibilityOfHistroySection() {
+        final SharedPreferences sharedPreferences = PreferenceManager.
+                getDefaultSharedPreferences(this);
+        final boolean isHistoryEnabled = sharedPreferences.getBoolean(
+                getString(R.string.enable_watch_history_key), true);
+        final MenuItem menuItem = drawerLayoutBinding
+                .navigation
+                .getMenu()
+                .findItem(ITEM_ID_HISTORY);
+        if (menuItem != null) {
+            drawerLayoutBinding.navigation.getMenu().findItem(ITEM_ID_HISTORY)
+                    .setVisible(isHistoryEnabled);
+        }
+    }
+
     private void fillDrawer() {
         fillDynamicDrawerContent();
         fillCantMissingDrawerItems();
         updateVisibilityOfHistroySection();
     }
 
+    private void clearDrawer() {
+        drawerLayoutBinding.navigation.getMenu().clear();
+    }
+
     private void refreshDrawerItems() {
+        drawerItemList.clear();
+        drawerItemList.addAll(drawerItemManager.getDrawerItems());
+
         clearDrawer();
         fillDrawer();
     }
@@ -496,7 +496,7 @@ public class MainActivity extends AppCompatActivity {
             showServices();
         } else {
             try {
-                setupDrawerItems();
+                showDrawerItems();
             } catch (final Exception e) {
                 ErrorActivity.reportUiErrorInSnackbar(this, "Showing main page tabs", e);
             }
