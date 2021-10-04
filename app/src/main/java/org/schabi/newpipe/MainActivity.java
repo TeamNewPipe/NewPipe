@@ -73,8 +73,8 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
-import org.schabi.newpipe.settings.sections.Section;
-import org.schabi.newpipe.settings.sections.SectionsManager;
+import org.schabi.newpipe.settings.drawer_items.DrawerItem;
+import org.schabi.newpipe.settings.drawer_items.DrawerItemManager;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KioskTranslator;
@@ -106,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayoutBinding drawerLayoutBinding;
     private ToolbarLayoutBinding toolbarLayoutBinding;
 
-    private SectionsManager sectionsManager;
-    private List<Section> sectionList = new ArrayList<>();
+    private DrawerItemManager drawerItemManager;
+    private List<DrawerItem> sectionList = new ArrayList<>();
 
     private ActionBarDrawerToggle toggle;
 
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawer() throws Exception {
-        sectionsManager = SectionsManager.getManager(this);
+        drawerItemManager = DrawerItemManager.getManager(this);
         setupSections();
 
         toggle = new ActionBarDrawerToggle(this, mainBinding.getRoot(),
@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setupSections() {
         sectionList.clear();
-        sectionList.addAll(sectionsManager.getSections());
+        sectionList.addAll(drawerItemManager.getDrawerItems());
 
         updateDrawerSections();
     }
@@ -239,12 +239,12 @@ public class MainActivity extends AppCompatActivity {
         final int serviceId = ServiceHelper.getSelectedServiceId(this);
 
         for (int i = 0; i < sectionList.size(); i++) {
-            final Section section = sectionList.get(i);
-            if (section.getSectionId() != ITEM_ID_KIOSK) {
+            final DrawerItem section = sectionList.get(i);
+            if (section.getDrawerItemId() != ITEM_ID_KIOSK) {
                 continue;
             }
 
-            final Section.KioskSection kioskSection = (Section.KioskSection) section;
+            final DrawerItem.KioskDrawerItem kioskSection = (DrawerItem.KioskDrawerItem) section;
             final int kioskServiceId = kioskSection.getKioskServiceId();
             if (kioskServiceId != serviceId) {
                 continue;
@@ -257,22 +257,23 @@ public class MainActivity extends AppCompatActivity {
         kioskList.addAll(kioskMap.keySet());
 
         for (int i = 0; i < sectionList.size(); i++) {
-            final Section section = sectionList.get(i);
+            final DrawerItem section = sectionList.get(i);
 
-            switch (section.getSectionId()) {
+            switch (section.getDrawerItemId()) {
                 case ITEM_ID_BLANK:
                     // don't add blank sections
                     break;
                 case ITEM_ID_KIOSK:
                     if (true) {
-                        final Section.KioskSection kioskSection = (Section.KioskSection) section;
+                        final DrawerItem.KioskDrawerItem kioskSection
+                                = (DrawerItem.KioskDrawerItem) section;
                         final int kioskServiceId = kioskSection.getKioskServiceId();
                         if (kioskServiceId != serviceId) {
                             continue;
                         }
                         // limits number of Kiosks to numbers of actual Kiosks
-                        final String sectionNameTranslated = kioskSection.getSectionName(this);
-                        final int iconID = section.getSectionIconRes(this);
+                        final String sectionNameTranslated = kioskSection.getDrawerItemName(this);
+                        final int iconID = section.getDrawerItemIconRes(this);
                         drawerLayoutBinding.navigation.getMenu().add(R.id.menu_tabs_group,
                                 kioskServiceId, ORDER,
                                 sectionNameTranslated)
@@ -282,8 +283,8 @@ public class MainActivity extends AppCompatActivity {
                 case ITEM_ID_DEFAULT_KIOSK:
                     // limits number of visible Kiosks to numbers of actual Kiosks
                     if (kioskCounter < kioskList.size()) {
-                        final Section.DefaultKioskSection defaultKioskSection =
-                                (Section.DefaultKioskSection) section;
+                        final DrawerItem.DefaultKioskDrawerItem defaultKioskSection =
+                                (DrawerItem.DefaultKioskDrawerItem) section;
                         final String kioskId = kioskList.get(kioskCounter);
                         final String sectionName =
                                 KioskTranslator.getTranslatedKioskName(kioskId, this);
@@ -298,9 +299,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 default:
                     drawerLayoutBinding.navigation.getMenu()
-                            .add(R.id.menu_tabs_group, section.getSectionId(), ORDER,
-                                    section.getSectionName(this))
-                            .setIcon(section.getSectionIconRes(this));
+                            .add(R.id.menu_tabs_group, section.getDrawerItemId(), ORDER,
+                                    section.getDrawerItemName(this))
+                            .setIcon(section.getDrawerItemIconRes(this));
             }
         }
 

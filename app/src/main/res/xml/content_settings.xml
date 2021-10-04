@@ -34,7 +34,7 @@
         app:iconSpaceReserved="false" />
 
     <PreferenceScreen
-        android:fragment="org.schabi.newpipe.settings.sections.ChooseSectionsFragment"
+        android:fragment="org.schabi.newpipe.settings.drawer_items.ChooseDrawerItemsFragment"
         android:summary="@string/panel_content_summary"
         android:key="@string/panel_content_key"
         android:title="@string/panel_content"

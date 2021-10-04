@@ -1,4 +1,4 @@
-package org.schabi.newpipe.settings.sections;
+package org.schabi.newpipe.settings.drawer_items;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -42,13 +42,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ChooseSectionsFragment extends Fragment {
+public class ChooseDrawerItemsFragment extends Fragment {
     private static final int MENU_ITEM_RESTORE_ID = 123456;
 
-    private SectionsManager sectionsManager;
+    private DrawerItemManager drawerItemManager;
 
-    private final List<Section> sectionList = new ArrayList<>();
-    private SelectedSectionsAdapter selectedSectionsAdapter;
+    private final List<DrawerItem> drawerItemList = new ArrayList<>();
+    private SelectedDrawerItemsAdapter selectedDrawerItemsAdapter;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Lifecycle
@@ -58,8 +58,8 @@ public class ChooseSectionsFragment extends Fragment {
     public void onCreate(final @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        sectionsManager = SectionsManager.getManager(requireContext());
-        updateSectionList();
+        drawerItemManager = DrawerItemManager.getManager(requireContext());
+        updateDrawerItemList();
 
         setHasOptionsMenu(true);
     }
@@ -77,14 +77,15 @@ public class ChooseSectionsFragment extends Fragment {
 
         initButton(rootView);
 
-        final RecyclerView listSelectedSections = rootView.findViewById(R.id.selectedTabs);
-        listSelectedSections.setLayoutManager(new LinearLayoutManager(requireContext()));
+        final RecyclerView listSelectedDrawerItems = rootView.findViewById(R.id.selectedTabs);
+        listSelectedDrawerItems.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         final ItemTouchHelper itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
-        itemTouchHelper.attachToRecyclerView(listSelectedSections);
+        itemTouchHelper.attachToRecyclerView(listSelectedDrawerItems);
 
-        selectedSectionsAdapter = new SelectedSectionsAdapter(requireContext(), itemTouchHelper);
-        listSelectedSections.setAdapter(selectedSectionsAdapter);
+        selectedDrawerItemsAdapter =
+                new SelectedDrawerItemsAdapter(requireContext(), itemTouchHelper);
+        listSelectedDrawerItems.setAdapter(selectedDrawerItemsAdapter);
     }
 
     @Override
@@ -128,27 +129,28 @@ public class ChooseSectionsFragment extends Fragment {
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void updateSectionList() {
-        sectionList.clear();
-        sectionList.addAll(sectionsManager.getSections());
+    private void updateDrawerItemList() {
+        drawerItemList.clear();
+        drawerItemList.addAll(drawerItemManager.getDrawerItems());
     }
 
     private void initButton(final View rootView) {
         final FloatingActionButton fab = rootView.findViewById(R.id.addTabsButton);
         fab.setOnClickListener(v -> {
-            final AddSectionDialog.ChooseSectionListItem[] availableSections =
-                    getAvailableSections(requireContext());
+            final AddDrawerItemDialog.ChooseDrawerItemListItem[] availabledrawerItems =
+                    getAvailableDrawerItems(requireContext());
 
-            if (availableSections.length == 0) {
+            if (availabledrawerItems.length == 0) {
                 return;
             }
 
             final Dialog.OnClickListener actionListener = ((dialog, which) -> {
-               final AddSectionDialog.ChooseSectionListItem selected = availableSections[which];
-               addSection(selected.sectionId);
+               final AddDrawerItemDialog.ChooseDrawerItemListItem selected
+                       = availabledrawerItems[which];
+               addDrawerItem(selected.drawerItemId);
             });
 
-            new AddSectionDialog(requireContext(), availableSections, actionListener).show();
+            new AddDrawerItemDialog(requireContext(), availabledrawerItems, actionListener).show();
         });
     }
 
@@ -167,28 +169,29 @@ public class ChooseSectionsFragment extends Fragment {
                 .setMessage(R.string.restore_defaults_confirmation)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.yes, (dialog, which) -> {
-                    sectionsManager.resetSections();
-                    updateSectionList();
-                    selectedSectionsAdapter.notifyDataSetChanged();
+                    drawerItemManager.resetDrawerItems();
+                    updateDrawerItemList();
+                    selectedDrawerItemsAdapter.notifyDataSetChanged();
                 })
                 .show();
     }
 
-    private void addSection(final Section section) {
-        if (sectionList.get(0).getSectionId() == Section.ITEM_ID_BLANK) {
-            sectionList.remove(0);
+    private void addDrawerItem(final DrawerItem drawerItem) {
+        if (drawerItemList.get(0).getDrawerItemId() == DrawerItem.ITEM_ID_BLANK) {
+            drawerItemList.remove(0);
         }
-        sectionList.add(section);
-        selectedSectionsAdapter.notifyDataSetChanged();
+        drawerItemList.add(drawerItem);
+        selectedDrawerItemsAdapter.notifyDataSetChanged();
     }
 
-    private void addSection(final int sectionId) {
-        final Section.Type type = Section.typeFrom(sectionId);
+    private void addDrawerItem(final int drawerItemId) {
+        final DrawerItem.Type type = DrawerItem.typeFrom(drawerItemId);
 
         if (type == null) {
             ErrorActivity.reportErrorInSnackbar(requireContext(),
-                    new ErrorInfo(new IllegalStateException("Section id not found: " + sectionId),
-                            UserAction.SOMETHING_ELSE, "Choosing sections on settings"));
+                    new ErrorInfo(
+                            new IllegalStateException("DrawerItem id not found: " + drawerItemId),
+                            UserAction.SOMETHING_ELSE, "Choosing DrawerItems on settings"));
             return;
         }
 
@@ -196,13 +199,13 @@ public class ChooseSectionsFragment extends Fragment {
             case KIOSK:
                 final SelectKioskFragment selectKioskFragment = new SelectKioskFragment();
                 selectKioskFragment.setOnSelectedListener((serviceId, kioskId, kioskName) ->
-                        addSection(new Section.KioskSection(serviceId, kioskId)));
+                        addDrawerItem(new DrawerItem.KioskDrawerItem(serviceId, kioskId)));
                 selectKioskFragment.show(getParentFragmentManager(), "select_kiosk");
                 return;
             case CHANNEL:
                 final SelectChannelFragment selectChannelFragment = new SelectChannelFragment();
                 selectChannelFragment.setOnSelectedListener((serviceId, url, name) ->
-                        addSection(new Section.ChannelSection(serviceId, url, name)));
+                        addDrawerItem(new DrawerItem.ChannelDrawerItem(serviceId, url, name)));
                 selectChannelFragment.show(getParentFragmentManager(), "select_channel");
                 return;
             case PLAYLIST:
@@ -211,76 +214,80 @@ public class ChooseSectionsFragment extends Fragment {
                         new SelectPlaylistFragment.OnSelectedListener() {
                             @Override
                             public void onLocalPlaylistSelected(final long id, final String name) {
-                                addSection(new Section.PlaylistSection(id, name));
+                                addDrawerItem(new DrawerItem.PlaylistDrawerItem(id, name));
                             }
 
                             @Override
                             public void onRemotePlaylistSelected(
                                     final int serviceId, final String url, final String name) {
-                                addSection(new Section.PlaylistSection(serviceId, url, name));
+                                addDrawerItem(
+                                        new DrawerItem.PlaylistDrawerItem(serviceId, url, name));
                             }
                         });
                 selectPlaylistFragment.show(getParentFragmentManager(), "select_playlist");
                 return;
             default:
-                addSection(type.getSection());
+                addDrawerItem(type.getDrawerItem());
                 break;
         }
     }
 
     private void saveChanges() {
-        sectionsManager.saveSections(sectionList);
+        drawerItemManager.saveDrawerItems(drawerItemList);
     }
 
-    private AddSectionDialog.ChooseSectionListItem[] getAvailableSections(final Context context) {
-        final ArrayList<AddSectionDialog.ChooseSectionListItem> returnList = new ArrayList<>();
+    private AddDrawerItemDialog.ChooseDrawerItemListItem[] getAvailableDrawerItems(
+            final Context context) {
+        final ArrayList<AddDrawerItemDialog.ChooseDrawerItemListItem> returnList
+                = new ArrayList<>();
 
-        for (final Section.Type type : Section.Type.values()) {
-            final Section section = type.getSection();
+        for (final DrawerItem.Type type : DrawerItem.Type.values()) {
+            final DrawerItem drawerItem = type.getDrawerItem();
             switch (type) {
                 case BLANK:
                     //dont show blank pages
                     break;
                 case DOWNLOADS:
-                    returnList.add(new AddSectionDialog.ChooseSectionListItem(
-                            section.getSectionId(),
+                    returnList.add(new AddDrawerItemDialog.ChooseDrawerItemListItem(
+                            drawerItem.getDrawerItemId(),
                             getString(R.string.download),
-                            section.getSectionIconRes(context)));
+                            drawerItem.getDrawerItemIconRes(context)));
                     break;
                 case KIOSK:
-                    returnList.add(new AddSectionDialog.ChooseSectionListItem(
-                            section.getSectionId(),
+                    returnList.add(new AddDrawerItemDialog.ChooseDrawerItemListItem(
+                            drawerItem.getDrawerItemId(),
                             getString(R.string.kiosk_page_summary),
                             R.drawable.ic_whatshot));
                     break;
                 case CHANNEL:
-                    returnList.add(new AddSectionDialog.ChooseSectionListItem(
-                            section.getSectionId(),
+                    returnList.add(new AddDrawerItemDialog.ChooseDrawerItemListItem(
+                            drawerItem.getDrawerItemId(),
                             getString(R.string.channel_page_summary),
-                            section.getSectionIconRes(context)));
+                            drawerItem.getDrawerItemIconRes(context)));
                     break;
                 case DEFAULT_KIOSK:
-                    returnList.add(new AddSectionDialog.ChooseSectionListItem(
-                            section.getSectionId(),
+                    returnList.add(new AddDrawerItemDialog.ChooseDrawerItemListItem(
+                            drawerItem.getDrawerItemId(),
                             getString(R.string.default_kiosk_page_summary),
                             R.drawable.ic_whatshot));
                     break;
                 case PLAYLIST:
-                    returnList.add(new AddSectionDialog.ChooseSectionListItem(
-                            section.getSectionId(),
+                    returnList.add(new AddDrawerItemDialog.ChooseDrawerItemListItem(
+                            drawerItem.getDrawerItemId(),
                             getString(R.string.playlist_page_summary),
-                            section.getSectionIconRes(context)));
+                            drawerItem.getDrawerItemIconRes(context)));
                     break;
                 default:
-                    if (!sectionList.contains(section)) {
+                    if (!drawerItemList.contains(drawerItem)) {
                         returnList.add(
-                                new AddSectionDialog.ChooseSectionListItem(context, section));
+                                new AddDrawerItemDialog
+                                        .ChooseDrawerItemListItem(context, drawerItem));
                     }
                     break;
             }
         }
 
-        return returnList.toArray(new AddSectionDialog.ChooseSectionListItem[0]);
+        return returnList.toArray(new AddDrawerItemDialog.ChooseDrawerItemListItem[0]);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -308,13 +315,13 @@ public class ChooseSectionsFragment extends Fragment {
                                   final RecyclerView.ViewHolder source,
                                   final RecyclerView.ViewHolder target) {
                 if (source.getItemViewType() != target.getItemViewType()
-                        || selectedSectionsAdapter == null) {
+                        || selectedDrawerItemsAdapter == null) {
                     return false;
                 }
 
                 final int sourceIndex = source.getAdapterPosition();
                 final int targetIndex = target.getAdapterPosition();
-                selectedSectionsAdapter.swapItems(sourceIndex, targetIndex);
+                selectedDrawerItemsAdapter.swapItems(sourceIndex, targetIndex);
                 return true;
             }
 
@@ -331,62 +338,62 @@ public class ChooseSectionsFragment extends Fragment {
             @Override
             public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int swipeDir) {
                 final int position = viewHolder.getAdapterPosition();
-                sectionList.remove(position);
-                selectedSectionsAdapter.notifyItemRemoved(position);
+                drawerItemList.remove(position);
+                selectedDrawerItemsAdapter.notifyItemRemoved(position);
 
-                if (sectionList.isEmpty()) {
-                    sectionList.add(Section.Type.BLANK.getSection());
-                    selectedSectionsAdapter.notifyItemInserted(0);
+                if (drawerItemList.isEmpty()) {
+                    drawerItemList.add(DrawerItem.Type.BLANK.getDrawerItem());
+                    selectedDrawerItemsAdapter.notifyItemInserted(0);
                 }
             }
         };
     }
 
-    private class SelectedSectionsAdapter
-            extends RecyclerView.Adapter<SelectedSectionsAdapter.TabViewHolder> {
+    private class SelectedDrawerItemsAdapter
+            extends RecyclerView.Adapter<SelectedDrawerItemsAdapter.TabViewHolder> {
         private final LayoutInflater inflater;
         private ItemTouchHelper itemTouchHelper;
 
-        SelectedSectionsAdapter(final Context context, final ItemTouchHelper itemTouchHelper) {
+        SelectedDrawerItemsAdapter(final Context context, final ItemTouchHelper itemTouchHelper) {
             this.itemTouchHelper = itemTouchHelper;
             this.inflater = LayoutInflater.from(context);
         }
 
         public void swapItems(final int fromPosition, final int toPosition) {
-            Collections.swap(sectionList, fromPosition, toPosition);
+            Collections.swap(drawerItemList, fromPosition, toPosition);
             notifyItemMoved(fromPosition, toPosition);
         }
 
         @NonNull
         @Override
-        public SelectedSectionsAdapter.TabViewHolder onCreateViewHolder(
+        public SelectedDrawerItemsAdapter.TabViewHolder onCreateViewHolder(
                 @NonNull final ViewGroup parent, final int viewType) {
             final View view = inflater.inflate(R.layout.list_choose_tabs, parent, false);
-            return new SelectedSectionsAdapter.TabViewHolder(view);
+            return new SelectedDrawerItemsAdapter.TabViewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(
-                @NonNull final SelectedSectionsAdapter.TabViewHolder holder,
+                @NonNull final SelectedDrawerItemsAdapter.TabViewHolder holder,
                 final int position) {
             holder.bind(position, holder);
         }
 
         @Override
         public int getItemCount() {
-            return sectionList.size();
+            return drawerItemList.size();
         }
 
         class TabViewHolder extends RecyclerView.ViewHolder {
-            private AppCompatImageView sectionIconView;
-            private TextView sectionNameView;
+            private AppCompatImageView drawerItemIconView;
+            private TextView drawerItemNameView;
             private ImageView handle;
 
             TabViewHolder(final View itemView) {
                 super(itemView);
 
-                sectionNameView = itemView.findViewById(R.id.tabName);
-                sectionIconView = itemView.findViewById(R.id.tabIcon);
+                drawerItemNameView = itemView.findViewById(R.id.tabName);
+                drawerItemIconView = itemView.findViewById(R.id.tabIcon);
                 handle = itemView.findViewById(R.id.handle);
             }
 
@@ -394,46 +401,50 @@ public class ChooseSectionsFragment extends Fragment {
             void bind(final int position, final TabViewHolder holder) {
                 handle.setOnTouchListener(getOnTouchListener(holder));
 
-                final Section section = sectionList.get(position);
-                final Section.Type type = Section.typeFrom(section.getSectionId());
+                final DrawerItem drawerItem = drawerItemList.get(position);
+                final DrawerItem.Type type = DrawerItem.typeFrom(drawerItem.getDrawerItemId());
 
                 if (type == null) {
                     return;
                 }
 
-                final String sectionName;
+                final String drawerItemName;
                 switch (type) {
                     case BLANK:
-                        sectionName = getString(R.string.blank_page_summary);
+                        drawerItemName = getString(R.string.blank_page_summary);
                         break;
                     case DEFAULT_KIOSK:
-                        sectionName = getString(R.string.default_kiosk_page_summary);
+                        drawerItemName = getString(R.string.default_kiosk_page_summary);
                         break;
                     case KIOSK:
-                        sectionName = NewPipe.getNameOfService(((Section.KioskSection) section)
+                        drawerItemName =
+                                NewPipe.getNameOfService(((DrawerItem.KioskDrawerItem) drawerItem)
                                 .getKioskServiceId()) + "/"
-                                + section.getSectionName(requireContext());
+                                + drawerItem.getDrawerItemName(requireContext());
                         break;
                     case CHANNEL:
-                        sectionName = NewPipe.getNameOfService(((Section.ChannelSection) section)
+                        drawerItemName =
+                                NewPipe.getNameOfService(((DrawerItem.ChannelDrawerItem) drawerItem)
                                 .getChannelServiceId()) + "/"
-                                + section.getSectionName(requireContext());
+                                + drawerItem.getDrawerItemName(requireContext());
                         break;
                     case PLAYLIST:
-                        final int serviceId = ((Section.PlaylistSection) section)
+                        final int serviceId = ((DrawerItem.PlaylistDrawerItem) drawerItem)
                                 .getPlaylistServiceId();
                         final String serviceName = serviceId == -1
                                 ? getString(R.string.local)
                                 : NewPipe.getNameOfService(serviceId);
-                        sectionName = serviceName + "/" + section.getSectionName(requireContext());
+                        drawerItemName =
+                                serviceName + "/" + drawerItem.getDrawerItemName(requireContext());
                         break;
                     default:
-                        sectionName = section.getSectionName(requireContext());
+                        drawerItemName = drawerItem.getDrawerItemName(requireContext());
                         break;
                 }
 
-                sectionNameView.setText(sectionName);
-                sectionIconView.setImageResource(section.getSectionIconRes(requireContext()));
+                drawerItemNameView.setText(drawerItemName);
+                drawerItemIconView.setImageResource(
+                        drawerItem.getDrawerItemIconRes(requireContext()));
             }
 
             @SuppressLint("ClickableViewAccessibility")

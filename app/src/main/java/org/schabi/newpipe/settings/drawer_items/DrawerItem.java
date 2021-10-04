@@ -1,4 +1,4 @@
-package org.schabi.newpipe.settings.sections;
+package org.schabi.newpipe.settings.drawer_items;
 
 import android.content.Context;
 
@@ -33,9 +33,9 @@ import org.schabi.newpipe.util.ServiceHelper;
 
 import java.util.Objects;
 
-public abstract class Section {
+public abstract class DrawerItem {
 
-    // this HAS TO be same as in Mainactivity.java
+    // this HAS TO be the same as in MainActivity.java
     /* TODO: you can create an interface to ensure that this is always the case or find another
      * solution. I didn't do it because my pull request was already that large and had already a lot
      * of changes... */
@@ -52,34 +52,34 @@ public abstract class Section {
     static final int ITEM_ID_CHANNEL = -11;
     static final int ITEM_ID_PLAYLIST = -12;
 
-    private static final String JSON_SECTION_ID_KEY = "section_id";
+    private static final String JSON_DRAWER_ITEM_ID_KEY = "drawer_item_id";
 
-    Section() {   }
+    DrawerItem() {   }
 
-    Section(@NonNull final JsonObject jsonObject) {
+    DrawerItem(@NonNull final JsonObject jsonObject) {
         readDataFromJson(jsonObject);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Section Handling
+    // DrawerItem Handling
     //////////////////////////////////////////////////////////////////////////*/
 
     @Nullable
-    public static Section from(@NonNull final JsonObject jsonObject) {
-        final int sectionId = jsonObject.getInt(Section.JSON_SECTION_ID_KEY, -1);
+    public static DrawerItem from(@NonNull final JsonObject jsonObject) {
+        final int drawerItemId = jsonObject.getInt(DrawerItem.JSON_DRAWER_ITEM_ID_KEY, -1);
 
-        return from(sectionId, jsonObject);
+        return from(drawerItemId, jsonObject);
     }
 
     @Nullable
-    public static Section from(final int sectionId) {
-        return from(sectionId, null);
+    public static DrawerItem from(final int drawerItemId) {
+        return from(drawerItemId, null);
     }
 
     @Nullable
-    public static Section.Type typeFrom(final int sectionId) {
-        for (final Section.Type available : Section.Type.values()) {
-            if (available.getSectionId() == sectionId) {
+    public static DrawerItem.Type typeFrom(final int drawerItemId) {
+        for (final DrawerItem.Type available : DrawerItem.Type.values()) {
+            if (available.getDrawerItemId() == drawerItemId) {
                 return available;
             }
         }
@@ -87,8 +87,8 @@ public abstract class Section {
     }
 
     @Nullable
-    private static Section from(final int sectionId, @Nullable final JsonObject jsonObject) {
-        final Section.Type type = typeFrom(sectionId);
+    private static DrawerItem from(final int drawerItemId, @Nullable final JsonObject jsonObject) {
+        final DrawerItem.Type type = typeFrom(drawerItemId);
 
         if (type == null) {
             return null;
@@ -97,29 +97,29 @@ public abstract class Section {
         if (jsonObject != null) {
             switch (type) {
                 case KIOSK:
-                    return new Section.KioskSection(jsonObject);
+                    return new KioskDrawerItem(jsonObject);
                 case CHANNEL:
-                    return new Section.ChannelSection(jsonObject);
+                    return new ChannelDrawerItem(jsonObject);
                 case PLAYLIST:
-                    return new Section.PlaylistSection(jsonObject);
+                    return new PlaylistDrawerItem(jsonObject);
             }
         }
 
-        return type.getSection();
+        return type.getDrawerItem();
     }
 
-    public abstract int getSectionId();
+    public abstract int getDrawerItemId();
 
-    public abstract String getSectionName(Context context);
+    public abstract String getDrawerItemName(Context context);
 
     @DrawableRes
-    public abstract int getSectionIconRes(Context context);
+    public abstract int getDrawerItemIconRes(Context context);
 
     /**
-     * Return a instance of the fragment that this Section represent.
+     * Return a instance of the fragment that this DrawerItem represent.
      *
      * @param context Android app context
-     * @return the fragment this Section represents
+     * @return the fragment this DrawerItem represents
      */
     public abstract Fragment getFragment(Context context) throws ExtractionException;
 
@@ -129,8 +129,8 @@ public abstract class Section {
             return true;
         }
 
-        return obj instanceof Section && obj.getClass().equals(this.getClass())
-                && ((Section) obj).getSectionId() == this.getSectionId();
+        return obj instanceof DrawerItem && obj.getClass().equals(this.getClass())
+                && ((DrawerItem) obj).getDrawerItemId() == this.getDrawerItemId();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -140,7 +140,7 @@ public abstract class Section {
     public void writeJsonOn(final JsonSink jsonSink) {
         jsonSink.object();
 
-        jsonSink.value(JSON_SECTION_ID_KEY, getSectionId());
+        jsonSink.value(JSON_DRAWER_ITEM_ID_KEY, getDrawerItemId());
         writeDataToJson(jsonSink);
 
         jsonSink.end();
@@ -159,48 +159,48 @@ public abstract class Section {
     //////////////////////////////////////////////////////////////////////////*/
 
     public enum Type {
-        BLANK(new Section.BlankSection()),
-        DOWNLOADS(new Section.DownloadSection()),
-        DEFAULT_KIOSK(new Section.DefaultKioskSection()),
-        SUBSCRIPTIONS(new Section.SubscriptionsSection()),
-        FEED(new Section.FeedSection()),
-        BOOKMARKS(new Section.BookmarksSection()),
-        HISTORY(new Section.HistorySection()),
-        KIOSK(new Section.KioskSection()),
-        CHANNEL(new Section.ChannelSection()),
-        PLAYLIST(new Section.PlaylistSection());
+        BLANK(new BlankDrawerItem()),
+        DOWNLOADS(new DownloadDrawerItem()),
+        DEFAULT_KIOSK(new DefaultKioskDrawerItem()),
+        SUBSCRIPTIONS(new SubscriptionsDrawerItem()),
+        FEED(new FeedDrawerItem()),
+        BOOKMARKS(new BookmarksDrawerItem()),
+        HISTORY(new HistoryDrawerItem()),
+        KIOSK(new KioskDrawerItem()),
+        CHANNEL(new ChannelDrawerItem()),
+        PLAYLIST(new PlaylistDrawerItem());
 
-        private Section section;
+        private DrawerItem drawerItem;
 
-        Type(final Section section) {
-            this.section = section;
+        Type(final DrawerItem drawerItem) {
+            this.drawerItem = drawerItem;
         }
 
-        public int getSectionId() {
-            return section.getSectionId();
+        public int getDrawerItemId() {
+            return drawerItem.getDrawerItemId();
         }
 
-        public Section getSection() {
-            return section;
+        public DrawerItem getDrawerItem() {
+            return drawerItem;
         }
     }
 
-    public static class BlankSection extends Section {
+    public static class BlankDrawerItem extends DrawerItem {
         public static final int ID = ITEM_ID_BLANK;
 
         @Override
-        public int getSectionId() {
+        public int getDrawerItemId() {
             return ID;
         }
 
         @Override
-        public String getSectionName(final Context context) {
+        public String getDrawerItemName(final Context context) {
             return "NewPipe"; //context.getString(R.string.blank_page_summary);
         }
 
         @DrawableRes
         @Override
-        public int getSectionIconRes(final Context context) {
+        public int getDrawerItemIconRes(final Context context) {
             return R.drawable.ic_crop_portrait;
         }
 
@@ -210,22 +210,22 @@ public abstract class Section {
         }
     }
 
-    public static class SubscriptionsSection extends Section {
+    public static class SubscriptionsDrawerItem extends DrawerItem {
         public static final int ID = ITEM_ID_SUBSCRIPTIONS;
 
         @Override
-        public int getSectionId() {
+        public int getDrawerItemId() {
             return ID;
         }
 
         @Override
-        public String getSectionName(final Context context) {
+        public String getDrawerItemName(final Context context) {
             return context.getString(R.string.tab_subscriptions);
         }
 
         @DrawableRes
         @Override
-        public int getSectionIconRes(final Context context) {
+        public int getDrawerItemIconRes(final Context context) {
             return R.drawable.ic_tv;
         }
 
@@ -235,21 +235,21 @@ public abstract class Section {
         }
     }
 
-    public static class DownloadSection extends Section {
+    public static class DownloadDrawerItem extends DrawerItem {
         public static final int ID = ITEM_ID_DOWNLOADS;
 
         @Override
-        public int getSectionId() {
+        public int getDrawerItemId() {
             return ID;
         }
 
         @Override
-        public String getSectionName(final Context context) {
+        public String getDrawerItemName(final Context context) {
             return context.getString(R.string.download);
         }
 
         @Override
-        public int getSectionIconRes(final Context context) {
+        public int getDrawerItemIconRes(final Context context) {
             return R.drawable.ic_file_download;
         }
 
@@ -259,22 +259,22 @@ public abstract class Section {
         }
     }
 
-    public static class FeedSection extends Section {
+    public static class FeedDrawerItem extends DrawerItem {
         public static final int ID = ITEM_ID_FEED;
 
         @Override
-        public int getSectionId() {
+        public int getDrawerItemId() {
             return ID;
         }
 
         @Override
-        public String getSectionName(final Context context) {
+        public String getDrawerItemName(final Context context) {
             return context.getString(R.string.fragment_feed_title);
         }
 
         @DrawableRes
         @Override
-        public int getSectionIconRes(final Context context) {
+        public int getDrawerItemIconRes(final Context context) {
             return R.drawable.ic_rss_feed;
         }
 
@@ -284,22 +284,22 @@ public abstract class Section {
         }
     }
 
-    public static class BookmarksSection extends Section {
+    public static class BookmarksDrawerItem extends DrawerItem {
         public static final int ID = ITEM_ID_BOOKMARKS;
 
         @Override
-        public int getSectionId() {
+        public int getDrawerItemId() {
             return ID;
         }
 
         @Override
-        public String getSectionName(final Context context) {
+        public String getDrawerItemName(final Context context) {
             return context.getString(R.string.tab_bookmarks);
         }
 
         @DrawableRes
         @Override
-        public int getSectionIconRes(final Context context) {
+        public int getDrawerItemIconRes(final Context context) {
             return R.drawable.ic_bookmark;
         }
 
@@ -309,22 +309,22 @@ public abstract class Section {
         }
     }
 
-    public static class HistorySection extends Section {
+    public static class HistoryDrawerItem extends DrawerItem {
         public static final int ID = ITEM_ID_HISTORY;
 
         @Override
-        public int getSectionId() {
+        public int getDrawerItemId() {
             return ID;
         }
 
         @Override
-        public String getSectionName(final Context context) {
+        public String getDrawerItemName(final Context context) {
             return context.getString(R.string.title_activity_history);
         }
 
         @DrawableRes
         @Override
-        public int getSectionIconRes(final Context context) {
+        public int getDrawerItemIconRes(final Context context) {
             return R.drawable.ic_history;
         }
 
@@ -334,39 +334,39 @@ public abstract class Section {
         }
     }
 
-    public static class KioskSection extends Section {
+    public static class KioskDrawerItem extends DrawerItem {
         public static final int ID = ITEM_ID_KIOSK;
         private static final String JSON_KIOSK_SERVICE_ID_KEY = "service_id";
         private static final String JSON_KIOSK_ID_KEY = "kiosk_id";
         private int kioskServiceId;
         private String kioskId;
 
-        private KioskSection() {
+        private KioskDrawerItem() {
             this(-1, "<no-id>");
         }
 
-        public KioskSection(final int kioskServiceId, final String kioskId) {
+        public KioskDrawerItem(final int kioskServiceId, final String kioskId) {
             this.kioskServiceId = kioskServiceId;
             this.kioskId = kioskId;
         }
 
-        public KioskSection(final JsonObject jsonObject) {
+        public KioskDrawerItem(final JsonObject jsonObject) {
             super(jsonObject);
         }
 
         @Override
-        public int getSectionId() {
+        public int getDrawerItemId() {
             return ID;
         }
 
         @Override
-        public String getSectionName(final Context context) {
+        public String getDrawerItemName(final Context context) {
             return KioskTranslator.getTranslatedKioskName(kioskId, context);
         }
 
         @DrawableRes
         @Override
-        public int getSectionIconRes(final Context context) {
+        public int getDrawerItemIconRes(final Context context) {
             final int kioskIcon = KioskTranslator.getKioskIcon(kioskId, context);
 
             if (kioskIcon <= 0) {
@@ -395,8 +395,8 @@ public abstract class Section {
 
         @Override
         public boolean equals(final Object obj) {
-            return super.equals(obj) && kioskServiceId == ((KioskSection) obj).kioskServiceId
-                    && Objects.equals(kioskId, ((KioskSection) obj).kioskId);
+            return super.equals(obj) && kioskServiceId == ((KioskDrawerItem) obj).kioskServiceId
+                    && Objects.equals(kioskId, ((KioskDrawerItem) obj).kioskId);
         }
 
         public int getKioskServiceId() {
@@ -408,7 +408,7 @@ public abstract class Section {
         }
     }
 
-    public static class ChannelSection extends Section {
+    public static class ChannelDrawerItem extends DrawerItem {
         public static final int ID = ITEM_ID_CHANNEL;
         private static final String JSON_CHANNEL_SERVICE_ID_KEY = "channel_service_id";
         private static final String JSON_CHANNEL_URL_KEY = "channel_url";
@@ -417,34 +417,34 @@ public abstract class Section {
         private String channelUrl;
         private String channelName;
 
-        private ChannelSection() {
+        private ChannelDrawerItem() {
             this(-1, "<no-url>", "<no-name>");
         }
 
-        public ChannelSection(final int channelServiceId, final String channelUrl,
-                          final String channelName) {
+        public ChannelDrawerItem(final int channelServiceId, final String channelUrl,
+                                 final String channelName) {
             this.channelServiceId = channelServiceId;
             this.channelUrl = channelUrl;
             this.channelName = channelName;
         }
 
-        public ChannelSection(final JsonObject jsonObject) {
+        public ChannelDrawerItem(final JsonObject jsonObject) {
             super(jsonObject);
         }
 
         @Override
-        public int getSectionId() {
+        public int getDrawerItemId() {
             return ID;
         }
 
         @Override
-        public String getSectionName(final Context context) {
+        public String getDrawerItemName(final Context context) {
             return channelName;
         }
 
         @DrawableRes
         @Override
-        public int getSectionIconRes(final Context context) {
+        public int getDrawerItemIconRes(final Context context) {
             return R.drawable.ic_tv;
         }
 
@@ -469,9 +469,10 @@ public abstract class Section {
 
         @Override
         public boolean equals(final Object obj) {
-            return super.equals(obj) && channelServiceId == ((ChannelSection) obj).channelServiceId
-                    && Objects.equals(channelUrl, ((ChannelSection) obj).channelUrl)
-                    && Objects.equals(channelName, ((ChannelSection) obj).channelName);
+            return super.equals(obj)
+                    && channelServiceId == ((ChannelDrawerItem) obj).channelServiceId
+                    && Objects.equals(channelUrl, ((ChannelDrawerItem) obj).channelUrl)
+                    && Objects.equals(channelName, ((ChannelDrawerItem) obj).channelName);
         }
 
         public int getChannelServiceId() {
@@ -487,22 +488,22 @@ public abstract class Section {
         }
     }
 
-    public static class DefaultKioskSection extends Section {
+    public static class DefaultKioskDrawerItem extends DrawerItem {
         public static final int ID = ITEM_ID_DEFAULT_KIOSK;
 
         @Override
-        public int getSectionId() {
+        public int getDrawerItemId() {
             return ID;
         }
 
         @Override
-        public String getSectionName(final Context context) {
+        public String getDrawerItemName(final Context context) {
             return KioskTranslator.getTranslatedKioskName(getDefaultKioskId(context), context);
         }
 
         @DrawableRes
         @Override
-        public int getSectionIconRes(final Context context) {
+        public int getDrawerItemIconRes(final Context context) {
             return KioskTranslator.getKioskIcon(getDefaultKioskId(context), context);
         }
 
@@ -526,7 +527,7 @@ public abstract class Section {
         }
     }
 
-    public static class PlaylistSection extends Section {
+    public static class PlaylistDrawerItem extends DrawerItem {
         public static final int ID = ITEM_ID_PLAYLIST;
         private static final String JSON_PLAYLIST_SERVICE_ID_KEY = "playlist_service_id";
         private static final String JSON_PLAYLIST_URL_KEY = "playlist_url";
@@ -539,11 +540,11 @@ public abstract class Section {
         private long playlistId;
         private LocalItem.LocalItemType playlistType;
 
-        private PlaylistSection() {
+        private PlaylistDrawerItem() {
             this(-1, "<no-name>");
         }
 
-        public PlaylistSection(final long playlistId, final String playlistName) {
+        public PlaylistDrawerItem(final long playlistId, final String playlistName) {
             this.playlistName = playlistName;
             this.playlistId = playlistId;
             this.playlistType = LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM;
@@ -551,8 +552,8 @@ public abstract class Section {
             this.playlistUrl = "<no-url>";
         }
 
-        public PlaylistSection(final int playlistServiceId, final String playlistUrl,
-                           final String playlistName) {
+        public PlaylistDrawerItem(final int playlistServiceId, final String playlistUrl,
+                                  final String playlistName) {
             this.playlistServiceId = playlistServiceId;
             this.playlistUrl = playlistUrl;
             this.playlistName = playlistName;
@@ -560,23 +561,23 @@ public abstract class Section {
             this.playlistId = -1;
         }
 
-        public PlaylistSection(final JsonObject jsonObject) {
+        public PlaylistDrawerItem(final JsonObject jsonObject) {
             super(jsonObject);
         }
 
         @Override
-        public int getSectionId() {
+        public int getDrawerItemId() {
             return ID;
         }
 
         @Override
-        public String getSectionName(final Context context) {
+        public String getDrawerItemName(final Context context) {
             return playlistName;
         }
 
         @DrawableRes
         @Override
-        public int getSectionIconRes(final Context context) {
+        public int getDrawerItemIconRes(final Context context) {
             return R.drawable.ic_bookmark;
         }
 
@@ -614,14 +615,14 @@ public abstract class Section {
         @Override
         public boolean equals(final Object obj) {
             if (!(super.equals(obj)
-                    && Objects.equals(playlistType, ((PlaylistSection) obj).playlistType)
-                    && Objects.equals(playlistName, ((PlaylistSection) obj).playlistName))) {
+                    && Objects.equals(playlistType, ((PlaylistDrawerItem) obj).playlistType)
+                    && Objects.equals(playlistName, ((PlaylistDrawerItem) obj).playlistName))) {
                 return false; // base objects are different
             }
 
-            return (playlistId == ((PlaylistSection) obj).playlistId)                     // local
-                    || (playlistServiceId == ((PlaylistSection) obj).playlistServiceId    // remote
-                    && Objects.equals(playlistUrl, ((PlaylistSection) obj).playlistUrl));
+            return (playlistId == ((PlaylistDrawerItem) obj).playlistId)                // local
+                    || (playlistServiceId == ((PlaylistDrawerItem) obj).playlistServiceId // remote
+                    && Objects.equals(playlistUrl, ((PlaylistDrawerItem) obj).playlistUrl));
         }
 
         public int getPlaylistServiceId() {

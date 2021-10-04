@@ -11,7 +11,7 @@
     <string name="current_service_key" translatable="false">service</string>
     <string name="default_service_value" translatable="false">@string/youtube</string>
 
-    <string name="saved_sections_key" translatable="false">saved_sections_key</string>
+    <string name="saved_drawer_items_key" translatable="false">saved_sections_key</string>
     <string name="saved_tabs_key" translatable="false">saved_tabs_key</string>
 
     <!-- Key values -->
