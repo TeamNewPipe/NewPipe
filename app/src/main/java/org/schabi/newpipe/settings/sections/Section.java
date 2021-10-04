@@ -35,7 +35,10 @@ import java.util.Objects;
 
 public abstract class Section {
 
-    //must be same as in the DrawerFragment class
+    // this HAS TO be same as in Mainactivity.java
+    /* TODO: you can create an interface to ensure that this is always the case or find another
+     * solution. I didn't do it because my pull request was already that large and had already a lot
+     * of changes... */
     static final int ITEM_ID_BLANK = -1;
     static final int ITEM_ID_SETTINGS = -2;
     static final int ITEM_ID_ABOUT = -3;

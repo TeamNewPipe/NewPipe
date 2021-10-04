@@ -178,48 +178,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupDrawer() throws Exception {
         sectionsManager = SectionsManager.getManager(this);
-
-
-//        //Tabs
-//        final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
-//        final StreamingService service = NewPipe.getService(currentServiceId);
-//
-//        int kioskId = 0;
-//
-//        for (final String ks : service.getKioskList().getAvailableKiosks()) {
-//            drawerLayoutBinding.navigation.getMenu()
-//                    .add(R.id.menu_tabs_group, kioskId, 0, KioskTranslator
-//                            .getTranslatedKioskName(ks, this))
-//                    .setIcon(KioskTranslator.getKioskIcon(ks, this));
-//            kioskId++;
-//        }
-//
-//        drawerLayoutBinding.navigation.getMenu()
-//                .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER,
-//                        R.string.tab_subscriptions)
-//                .setIcon(R.drawable.ic_tv);
-//        drawerLayoutBinding.navigation.getMenu()
-//                .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_feed_title)
-//                .setIcon(R.drawable.ic_rss_feed);
-//        drawerLayoutBinding.navigation.getMenu()
-//                .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
-//                .setIcon(R.drawable.ic_bookmark);
-//        drawerLayoutBinding.navigation.getMenu()
-//                .add(R.id.menu_tabs_group, ITEM_ID_DOWNLOADS, ORDER, R.string.downloads)
-//                .setIcon(R.drawable.ic_file_download);
-//        drawerLayoutBinding.navigation.getMenu()
-//                .add(R.id.menu_tabs_group, ITEM_ID_HISTORY, ORDER, R.string.action_history)
-//                .setIcon(R.drawable.ic_history);
-//
-//        //Settings and About
-//        drawerLayoutBinding.navigation.getMenu()
-//                .add(R.id.menu_options_about_group, ITEM_ID_SETTINGS, ORDER, R.string.settings)
-//                .setIcon(R.drawable.ic_settings);
-//        drawerLayoutBinding.navigation.getMenu()
-//                .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
-//                .setIcon(R.drawable.ic_info_outline);
-//
         setupSections();
+
         toggle = new ActionBarDrawerToggle(this, mainBinding.getRoot(),
                 toolbarLayoutBinding.toolbar, R.string.drawer_open, R.string.drawer_close);
         toggle.syncState();
@@ -252,8 +212,10 @@ public class MainActivity extends AppCompatActivity {
         sectionList.clear();
         sectionList.addAll(sectionsManager.getSections());
 
-        updateSectionsIconAndDescription();
+        updateDrawerSections();
+    }
 
+    private void updateVisibilityOfHistroySection() {
         final SharedPreferences sharedPreferences = PreferenceManager.
                 getDefaultSharedPreferences(this);
         final boolean isHistoryEnabled = sharedPreferences.getBoolean(
@@ -268,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void updateSectionsIconAndDescription() {
+    private void updateDrawerSections() {
         drawerLayoutBinding.navigation.getMenu().clear();
 
         int kioskCounter = 0;
@@ -334,15 +296,6 @@ public class MainActivity extends AppCompatActivity {
                         kioskCounter++;
                     }
                     break;
-//                case ITEM_ID_KIOSK:
-//                    //limits number of Kiosks to numbers of actual Kiosks
-//                    final String sectionName = section.getSectionName(this);
-//                    final int iconID = section.getSectionIconRes(this);
-//                    drawerLayoutBinding.navigation.getMenu().add(R.id.menu_tabs_group,
-//                            section.getSectionId(), ORDER,
-//                            sectionName)
-//                            .setIcon(iconID);
-//                    break;
                 default:
                     drawerLayoutBinding.navigation.getMenu()
                             .add(R.id.menu_tabs_group, section.getSectionId(), ORDER,
@@ -359,16 +312,17 @@ public class MainActivity extends AppCompatActivity {
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
                 .setIcon(R.drawable.ic_info_outline);
+
+        updateVisibilityOfHistroySection();
     }
 
     private HashMap<String, Integer> getKioskIdsAsMap() {
         final int serviceId = ServiceHelper.getSelectedServiceId(this);
         final StreamingService service;
         final HashMap<String, Integer> kioskList = new HashMap<>();
-        final List<String> ids = new ArrayList<>();
+        final List<String> ids = getKioskIdsAsList();
         try {
             service = NewPipe.getService(serviceId);
-            ids.addAll(service.getKioskList().getAvailableKiosks());
             for (int i = 0; i < ids.size(); i++) {
                 final String kioskId = ids.get(i);
                 kioskList.put(kioskId, i);
@@ -399,7 +353,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.menu_tabs_group:
                 try {
-                    tabSelected(item);
+                    sectionSelected(item);
                 } catch (final Exception e) {
                     ErrorActivity.reportUiErrorInSnackbar(this, "Selecting main page tab", e);
                 }
@@ -425,7 +379,7 @@ public class MainActivity extends AppCompatActivity {
                 .setChecked(true);
     }
 
-    private void tabSelected(final MenuItem item) throws ExtractionException {
+    private void sectionSelected(final MenuItem item) throws ExtractionException {
         switch (item.getItemId()) {
             case ITEM_ID_SUBSCRIPTIONS:
                 NavigationHelper.openSubscriptionFragment(getSupportFragmentManager());
@@ -577,7 +531,7 @@ public class MainActivity extends AppCompatActivity {
     private void showSections() throws ExtractionException {
         drawerHeaderBinding.drawerArrow.setImageResource(R.drawable.ic_arrow_drop_down);
 
-        updateSectionsIconAndDescription();
+        updateDrawerSections();
     }
 
     @Override
