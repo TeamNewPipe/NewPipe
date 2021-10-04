@@ -508,7 +508,7 @@ public abstract class Section {
             return new DefaultKioskFragment();
         }
 
-        private String getDefaultKioskId(final Context context) {
+        public String getDefaultKioskId(final Context context) {
             final int kioskServiceId = ServiceHelper.getSelectedServiceId(context);
 
             String kioskId = "";

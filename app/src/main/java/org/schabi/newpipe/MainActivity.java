@@ -90,6 +90,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -271,8 +272,27 @@ public class MainActivity extends AppCompatActivity {
         drawerLayoutBinding.navigation.getMenu().clear();
 
         int kioskCounter = 0;
-        final List<String> kioskList = getKioskIdsAsList();
+        final HashMap<String, Integer> kioskMap = getKioskIdsAsMap();
+
         final int serviceId = ServiceHelper.getSelectedServiceId(this);
+
+        for (int i = 0; i < sectionList.size(); i++) {
+            final Section section = sectionList.get(i);
+            if (section.getSectionId() != ITEM_ID_KIOSK) {
+                continue;
+            }
+
+            final Section.KioskSection kioskSection = (Section.KioskSection) section;
+            final int kioskServiceId = kioskSection.getKioskServiceId();
+            if (kioskServiceId != serviceId) {
+                continue;
+            }
+            final String kioskId = kioskSection.getKioskId();
+            kioskMap.remove(kioskId);
+        }
+
+        final List<String> kioskList = new ArrayList<>();
+        kioskList.addAll(kioskMap.keySet());
 
         for (int i = 0; i < sectionList.size(); i++) {
             final Section section = sectionList.get(i);
@@ -282,29 +302,33 @@ public class MainActivity extends AppCompatActivity {
                     // don't add blank sections
                     break;
                 case ITEM_ID_KIOSK:
-                    // hack to scope variables
-                    final int kioskId = kioskList.indexOf(section.getSectionName(this));
-                    if (kioskList.contains(section.getSectionName(this))) {
+                    if (true) {
+                        final Section.KioskSection kioskSection = (Section.KioskSection) section;
+                        final int kioskServiceId = kioskSection.getKioskServiceId();
+                        if (kioskServiceId != serviceId) {
+                            continue;
+                        }
                         // limits number of Kiosks to numbers of actual Kiosks
-                        final String sectionName = section.getSectionName(this);
+                        final String sectionNameTranslated = kioskSection.getSectionName(this);
                         final int iconID = section.getSectionIconRes(this);
                         drawerLayoutBinding.navigation.getMenu().add(R.id.menu_tabs_group,
-                                kioskId, ORDER,
-                                sectionName)
+                                kioskServiceId, ORDER,
+                                sectionNameTranslated)
                                 .setIcon(iconID);
-                        // TODO: exclude this section
-                        kioskCounter++;
                     }
                     break;
                 case ITEM_ID_DEFAULT_KIOSK:
                     // limits number of visible Kiosks to numbers of actual Kiosks
                     if (kioskCounter < kioskList.size()) {
+                        final Section.DefaultKioskSection defaultKioskSection =
+                                (Section.DefaultKioskSection) section;
                         final String kioskId = kioskList.get(kioskCounter);
                         final String sectionName =
                                 KioskTranslator.getTranslatedKioskName(kioskId, this);
                         final int iconID = KioskTranslator.getKioskIcon(kioskId, this);
+                        final int kioskIdx = kioskMap.get(kioskId);
                         drawerLayoutBinding.navigation.getMenu().add(R.id.menu_tabs_group,
-                                kioskCounter, ORDER,
+                                kioskIdx, ORDER,
                                 sectionName)
                                 .setIcon(iconID);
                         kioskCounter++;
@@ -335,6 +359,24 @@ public class MainActivity extends AppCompatActivity {
         drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
                 .setIcon(R.drawable.ic_info_outline);
+    }
+
+    private HashMap<String, Integer> getKioskIdsAsMap() {
+        final int serviceId = ServiceHelper.getSelectedServiceId(this);
+        final StreamingService service;
+        final HashMap<String, Integer> kioskList = new HashMap<>();
+        final List<String> ids = new ArrayList<>();
+        try {
+            service = NewPipe.getService(serviceId);
+            ids.addAll(service.getKioskList().getAvailableKiosks());
+            for (int i = 0; i < ids.size(); i++) {
+                final String kioskId = ids.get(i);
+                kioskList.put(kioskId, i);
+            }
+        } catch (final ExtractionException e) {
+            e.printStackTrace();
+        }
+        return kioskList;
     }
 
     private List<String> getKioskIdsAsList() {
