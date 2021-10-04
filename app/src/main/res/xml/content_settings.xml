@@ -34,11 +34,12 @@
         app:iconSpaceReserved="false" />
 
     <PreferenceScreen
-        app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.sections.ChooseSectionsFragment"
         android:summary="@string/panel_content_summary"
         android:key="@string/panel_content_key"
-        android:title="@string/panel_content"/>
+        android:title="@string/panel_content"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
 
     <PreferenceScreen
         android:fragment="org.schabi.newpipe.settings.tabs.ChooseTabsFragment"
