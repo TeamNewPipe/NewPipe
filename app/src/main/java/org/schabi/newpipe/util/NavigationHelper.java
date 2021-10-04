@@ -32,7 +32,6 @@ import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.fragments.DrawerFragment;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
@@ -284,8 +283,6 @@ public final class NavigationHelper {
         fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new MainFragment())
-                //always open Drawer when opening MainFragment
-                .replace(R.id.fragment_holder, new DrawerFragment())
                 .addToBackStack(MAIN_FRAGMENT_TAG)
                 .commit();
     }
