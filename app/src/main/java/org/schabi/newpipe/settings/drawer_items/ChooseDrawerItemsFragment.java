@@ -158,7 +158,7 @@ public class ChooseDrawerItemsFragment extends Fragment {
         if (getActivity() instanceof AppCompatActivity) {
             final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             if (actionBar != null) {
-                actionBar.setTitle(R.string.panel_content);
+                actionBar.setTitle(R.string.drawer_content);
             }
         }
     }

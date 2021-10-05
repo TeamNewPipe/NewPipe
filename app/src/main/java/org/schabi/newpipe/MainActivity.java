@@ -204,7 +204,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         drawerLayoutBinding.navigation.setNavigationItemSelectedListener(this::drawerItemSelected);
         setupDrawerHeader();
     }
