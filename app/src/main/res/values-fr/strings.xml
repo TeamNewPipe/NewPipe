@@ -680,4 +680,5 @@
     <string name="crash_the_player">Couper le lecteur</string>
     <string name="show_crash_the_player_title">Montrer \"Couper le lecteur\"</string>
     <string name="show_crash_the_player_summary">Montrer une option couper lors de l\'utilisation du lecteur</string>
+    <string name="auto_quality">Automatique</string>
 </resources>

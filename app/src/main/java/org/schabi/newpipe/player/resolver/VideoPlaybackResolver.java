@@ -1,5 +1,7 @@
 package org.schabi.newpipe.player.resolver;
 
+import static com.google.android.exoplayer2.C.TIME_UNSET;
+
 import android.content.Context;
 import android.net.Uri;
 
@@ -21,8 +23,6 @@ import org.schabi.newpipe.util.ListHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.google.android.exoplayer2.C.TIME_UNSET;
 
 public class VideoPlaybackResolver implements PlaybackResolver {
     @NonNull
@@ -60,9 +60,9 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         if (videos.isEmpty()) {
             index = -1;
         } else if (playbackQuality == null) {
-            index = qualityResolver.getDefaultResolutionIndex(videos);
+            index = qualityResolver.getDefaultResolutionIndex(info, videos);
         } else {
-            index = qualityResolver.getOverrideResolutionIndex(videos, getPlaybackQuality());
+            index = qualityResolver.getOverrideResolutionIndex(info, videos, getPlaybackQuality());
         }
         final MediaSourceTag tag = new MediaSourceTag(info, videos, index);
         @Nullable final VideoStream video = tag.getSelectedVideoStream();
@@ -128,8 +128,10 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     }
 
     public interface QualityResolver {
-        int getDefaultResolutionIndex(List<VideoStream> sortedVideos);
+        int getDefaultResolutionIndex(StreamInfo streamInfo, List<VideoStream> sortedVideos);
 
-        int getOverrideResolutionIndex(List<VideoStream> sortedVideos, String playbackQuality);
+        int getOverrideResolutionIndex(StreamInfo streamInfo,
+                                       List<VideoStream> sortedVideos,
+                                       String playbackQuality);
     }
 }

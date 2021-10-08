@@ -115,16 +115,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.PositionInfo;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
+import com.google.android.exoplayer2.analytics.AnalyticsListener;
 import com.google.android.exoplayer2.source.BehindLiveWindowException;
+import com.google.android.exoplayer2.source.MediaLoadData;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.text.Cue;
+import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.CaptionStyleCompat;
@@ -168,6 +172,7 @@ import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.player.playback.PlayerMediaSession;
 import org.schabi.newpipe.player.playback.SurfaceHolderCallback;
+import org.schabi.newpipe.player.playback.TrackSelectionListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueAdapter;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
@@ -416,21 +421,32 @@ public final class Player implements
         windowManager = ContextCompat.getSystemService(context, WindowManager.class);
     }
 
+    @NonNull
     private VideoPlaybackResolver.QualityResolver getQualityResolver() {
         return new VideoPlaybackResolver.QualityResolver() {
             @Override
-            public int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
-                return videoPlayerSelected()
-                        ? ListHelper.getDefaultResolutionIndex(context, sortedVideos)
-                        : ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
+            public int getDefaultResolutionIndex(final StreamInfo streamInfo,
+                    final List<VideoStream> sortedVideos) {
+                if (!StreamTypeUtil.isLiveStream(streamInfo.getStreamType())) {
+                    return videoPlayerSelected()
+                            ? ListHelper.getDefaultResolutionIndex(context, sortedVideos)
+                            : ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
+                } else {
+                    return -1;
+                }
             }
 
             @Override
-            public int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
+            public int getOverrideResolutionIndex(final StreamInfo streamInfo,
+                                                  final List<VideoStream> sortedVideos,
                                                   final String playbackQuality) {
-                return videoPlayerSelected()
-                        ? getResolutionIndex(context, sortedVideos, playbackQuality)
-                        : getPopupResolutionIndex(context, sortedVideos, playbackQuality);
+                if (!StreamTypeUtil.isLiveStream(streamInfo.getStreamType())) {
+                    return videoPlayerSelected()
+                            ? getResolutionIndex(context, sortedVideos, playbackQuality)
+                            : getPopupResolutionIndex(context, sortedVideos, playbackQuality);
+                } else {
+                    return -1;
+                }
             }
         };
     }
@@ -3295,6 +3311,16 @@ public final class Player implements
                 break;
 
             case LIVE_STREAM:
+                if (!isNullOrEmpty(info.getHlsUrl()) || !isNullOrEmpty(info.getDashMpdUrl())) {
+                    buildLiveStreamQualityMenu();
+                    addQualityTextViewQualityChangeEvent();
+                    binding.qualityTextView.setVisibility(View.VISIBLE);
+                } else if (info.getVideoStreams().size()
+                        + info.getVideoOnlyStreams().size() != 0) {
+                    buildVideoQualityMenu();
+                    binding.qualityTextView.setVisibility(View.VISIBLE);
+                }
+
                 binding.surfaceView.setVisibility(View.VISIBLE);
                 binding.endScreen.setVisibility(View.GONE);
                 binding.playbackLiveSync.setVisibility(View.VISIBLE);
@@ -3307,7 +3333,7 @@ public final class Player implements
 
                 availableStreams = currentMetadata.getSortedAvailableVideoStreams();
                 selectedStreamIndex = currentMetadata.getSelectedVideoStreamIndex();
-                buildQualityMenu();
+                buildVideoQualityMenu();
 
                 binding.qualityTextView.setVisibility(View.VISIBLE);
                 binding.surfaceView.setVisibility(View.VISIBLE);
@@ -3355,8 +3381,8 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Popup menus ("popup" means that they pop up, not that they belong to the popup player)
 
-    private void buildQualityMenu() {
-        if (qualityPopupMenu == null) {
+    private void buildVideoQualityMenu() {
+        if (qualityPopupMenu == null || currentMetadata == null) {
             return;
         }
         qualityPopupMenu.getMenu().removeGroup(POPUP_MENU_ID_QUALITY);
@@ -3371,6 +3397,89 @@ public final class Player implements
         }
         qualityPopupMenu.setOnMenuItemClickListener(this);
         qualityPopupMenu.setOnDismissListener(this);
+    }
+
+    private void buildLiveStreamQualityMenu() {
+        if (qualityPopupMenu == null || currentMetadata == null) {
+            return;
+        }
+        qualityPopupMenu.getMenu().removeGroup(POPUP_MENU_ID_QUALITY);
+
+        final MappingTrackSelector.MappedTrackInfo currentMappedTrackInfo = trackSelector
+                .getCurrentMappedTrackInfo();
+        final int videoTrackGroupIndex = getVideoRendererIndex();
+        if (currentMappedTrackInfo != null) {
+            final TrackGroupArray videoTrackGroupArray = currentMappedTrackInfo.getTrackGroups(
+                    videoTrackGroupIndex);
+            final Menu menu = qualityPopupMenu.getMenu();
+            menu.add(POPUP_MENU_ID_QUALITY, 0, Menu.NONE,
+                    context.getString(R.string.auto_quality));
+
+            for (int i = 0; i < videoTrackGroupArray.get(0).length; i++) {
+                final Format format = videoTrackGroupArray.get(0).getFormat(i);
+                final StringBuilder stringBuilder = new StringBuilder();
+                final int formatHeight = format.height;
+
+                if (formatHeight == Format.NO_VALUE) {
+                    stringBuilder.append(format.bitrate);
+                } else {
+                    stringBuilder.append(formatHeight);
+                    stringBuilder.append("p");
+                    final int formatFrameRate = (int) format.frameRate;
+                    if (formatFrameRate > 30) {
+                        stringBuilder.append(formatFrameRate);
+                    }
+                }
+
+                menu.add(POPUP_MENU_ID_QUALITY, i + 1, Menu.NONE, stringBuilder.toString());
+            }
+
+            final TrackSelectionListener trackSelectionListener = new TrackSelectionListener(
+                    trackSelector, context.getString(R.string.auto_quality), videoTrackGroupIndex);
+            qualityPopupMenu.setOnMenuItemClickListener(trackSelectionListener);
+            qualityPopupMenu.setOnDismissListener(this);
+        }
+    }
+
+    /**
+     * This event will set the correct resolution of the stream played when a quality change occurs
+     * in {@link R.id.qualityTextView}.
+     */
+    private void addQualityTextViewQualityChangeEvent() {
+        simpleExoPlayer.addAnalyticsListener(new AnalyticsListener() {
+            @Override
+            public void onDownstreamFormatChanged(@NonNull final EventTime eventTime,
+                                                  @NonNull final MediaLoadData mediaLoadData) {
+                final Format currentPlayingFormat = mediaLoadData.trackFormat;
+                if (currentPlayingFormat != null) {
+                    final int resolution = currentPlayingFormat.height;
+                    final int frameRate = (int) currentPlayingFormat.frameRate;
+
+                    if (frameRate > 30) {
+                        binding.qualityTextView.setText(resolution + "p" + frameRate);
+                    } else {
+                        binding.qualityTextView.setText(resolution + "p");
+                    }
+                }
+            }
+        });
+    }
+
+    private int getVideoRendererIndex() {
+        final MappingTrackSelector.MappedTrackInfo mappedTrackInfo = trackSelector
+                .getCurrentMappedTrackInfo();
+
+        if (mappedTrackInfo != null) {
+            for (int i = 0; i < mappedTrackInfo.getRendererCount(); i++) {
+                final TrackGroupArray trackGroups = mappedTrackInfo.getTrackGroups(i);
+                if (!trackGroups.isEmpty()
+                        && simpleExoPlayer.getRendererType(i) == C.TRACK_TYPE_VIDEO) {
+                    return i;
+                }
+            }
+        }
+
+        return 0;
     }
 
     private void buildPlaybackSpeedMenu() {

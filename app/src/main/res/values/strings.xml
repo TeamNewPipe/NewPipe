@@ -721,4 +721,5 @@
     <!-- Show Channel Details -->
     <string name="error_show_channel_details">Error at Show Channel Details</string>
     <string name="loading_channel_details">Loading Channel Details…</string>
+    <string name="auto_quality">Auto</string>
 </resources>
