@@ -33,6 +33,7 @@ import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
 
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
 import org.schabi.newpipe.databinding.SingleChoiceDialogViewBinding;
 import org.schabi.newpipe.download.DownloadDialog;
@@ -59,8 +60,7 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.ktx.ExceptionUtils;
-import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
-import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
+import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.helper.PlayerHolder;
@@ -82,6 +82,7 @@ import org.schabi.newpipe.views.FocusOverlayView;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import icepick.Icepick;
@@ -593,31 +594,26 @@ public class RouterActivity extends AppCompatActivity {
         disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, false)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(info -> {
-                    final FragmentManager fm = getSupportFragmentManager();
-                    final PlaylistAppendDialog playlistAppendDialog = PlaylistAppendDialog
-                            .fromStreamInfo(info);
+                .subscribe(
+                        info -> PlaylistDialog.createCorrespondingDialog(
+                                getThemeWrapperContext(),
+                                Collections.singletonList(new StreamEntity(info)),
+                                playlistDialog -> {
+                                    playlistDialog.setOnDismissListener(dialog -> finish());
 
-                    playlistAppendDialog.setOnDismissListener(dialog -> finish());
-
-                    PlaylistAppendDialog.onPlaylistFound(getThemeWrapperContext(),
-                            () -> {
-                                playlistAppendDialog.show(fm, "addToPlaylistDialog");
-                                fm.executePendingTransactions();
-                            },
-                            () -> {
-                                final PlaylistCreationDialog playlistCreationDialog =
-                                        PlaylistCreationDialog.newInstance(playlistAppendDialog);
-                                playlistCreationDialog.show(fm, "addToPlaylistDialog");
-
-                                fm.executePendingTransactions();
-
-                            });
-
-                }, throwable -> handleError(this,
-                        new ErrorInfo(throwable, UserAction.REQUESTED_STREAM,
+                                    playlistDialog.show(
+                                            this.getSupportFragmentManager(),
+                                            "addToPlaylistDialog"
+                                    );
+                                }
+                        ),
+                        throwable -> handleError(this, new ErrorInfo(
+                                throwable,
+                                UserAction.REQUESTED_STREAM,
                                 "Tried to add " + currentUrl + " to a playlist",
-                                currentService.getServiceId())))
+                                currentService.getServiceId())
+                        )
+                )
         );
     }
 

@@ -1,8 +1,6 @@
 package org.schabi.newpipe.local.dialog;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
 import android.os.Bundle;
 import android.text.InputType;
 import android.widget.Toast;
@@ -23,32 +21,8 @@ import java.util.List;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 public final class PlaylistCreationDialog extends PlaylistDialog {
-    @Nullable
-    private OnDismissListener onDismissListener = null;
-
-    public static PlaylistCreationDialog newInstance(final List<StreamEntity> streams) {
-        final PlaylistCreationDialog dialog = new PlaylistCreationDialog();
-        dialog.setInfo(streams);
-        return dialog;
-    }
-
-    public static PlaylistCreationDialog newInstance(final PlaylistAppendDialog appendDialog) {
-        final PlaylistCreationDialog dialog = new PlaylistCreationDialog();
-        dialog.setInfo(appendDialog.getStreams());
-        dialog.setOnDismissListener(appendDialog.getOnDismissListener());
-        return dialog;
-    }
-
-    public void setOnDismissListener(@Nullable final OnDismissListener onDismissListener) {
-        this.onDismissListener = onDismissListener;
-    }
-
-    @Override
-    public void onDismiss(@NonNull final DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (onDismissListener != null) {
-            onDismissListener.onDismiss(dialog);
-        }
+    public PlaylistCreationDialog(final List<StreamEntity> streamEntities) {
+        super(streamEntities);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -58,7 +32,7 @@ public final class PlaylistCreationDialog extends PlaylistDialog {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
-        if (getStreams() == null) {
+        if (getStreamEntities() == null) {
             return super.onCreateDialog(savedInstanceState);
         }
 
@@ -81,7 +55,7 @@ public final class PlaylistCreationDialog extends PlaylistDialog {
                             R.string.playlist_creation_success,
                             Toast.LENGTH_SHORT);
 
-                    playlistManager.createPlaylist(name, getStreams())
+                    playlistManager.createPlaylist(name, getStreamEntities())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(longs -> successToast.show());
                 });

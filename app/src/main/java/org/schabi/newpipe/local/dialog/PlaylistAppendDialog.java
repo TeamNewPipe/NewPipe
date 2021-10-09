@@ -1,8 +1,5 @@
 package org.schabi.newpipe.local.dialog;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,20 +16,14 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.LocalItemListAdapter;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
-import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.OnClickGesture;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
 
 public final class PlaylistAppendDialog extends PlaylistDialog {
     private static final String TAG = PlaylistAppendDialog.class.getCanonicalName();
@@ -42,58 +33,8 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
 
     private final CompositeDisposable playlistDisposables = new CompositeDisposable();
 
-    @Nullable
-    private OnDismissListener onDismissListener = null;
-
-    public static Disposable onPlaylistFound(
-            final Context context, final Runnable onSuccess, final Runnable onFailed
-    ) {
-        final LocalPlaylistManager playlistManager =
-                new LocalPlaylistManager(NewPipeDatabase.getInstance(context));
-
-        return playlistManager.hasPlaylists()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(hasPlaylists -> {
-                    if (hasPlaylists) {
-                        onSuccess.run();
-                    } else {
-                        onFailed.run();
-                    }
-                });
-    }
-
-    public static PlaylistAppendDialog fromStreamInfo(final StreamInfo info) {
-        final PlaylistAppendDialog dialog = new PlaylistAppendDialog();
-        dialog.setInfo(Collections.singletonList(new StreamEntity(info)));
-        return dialog;
-    }
-
-    public static PlaylistAppendDialog fromStreamInfoItems(final List<StreamInfoItem> items) {
-        final PlaylistAppendDialog dialog = new PlaylistAppendDialog();
-        final List<StreamEntity> entities = new ArrayList<>(items.size());
-        for (final StreamInfoItem item : items) {
-            entities.add(new StreamEntity(item));
-        }
-        dialog.setInfo(entities);
-        return dialog;
-    }
-
-    public static PlaylistAppendDialog fromPlayQueueItems(final List<PlayQueueItem> items) {
-        final PlaylistAppendDialog dialog = new PlaylistAppendDialog();
-        final List<StreamEntity> entities = new ArrayList<>(items.size());
-        for (final PlayQueueItem item : items) {
-            entities.add(new StreamEntity(item));
-        }
-        dialog.setInfo(entities);
-        return dialog;
-    }
-
-    public void setOnDismissListener(@Nullable final OnDismissListener onDismissListener) {
-        this.onDismissListener = onDismissListener;
-    }
-
-    public OnDismissListener getOnDismissListener() {
-        return onDismissListener;
+    public PlaylistAppendDialog(final List<StreamEntity> streamEntities) {
+        super(streamEntities);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -117,11 +58,15 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         playlistAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
             @Override
             public void selected(final LocalItem selectedItem) {
-                if (!(selectedItem instanceof PlaylistMetadataEntry) || getStreams() == null) {
+                if (!(selectedItem instanceof PlaylistMetadataEntry)
+                        || getStreamEntities() == null) {
                     return;
                 }
-                onPlaylistSelected(playlistManager, (PlaylistMetadataEntry) selectedItem,
-                        getStreams());
+                onPlaylistSelected(
+                        playlistManager,
+                        (PlaylistMetadataEntry) selectedItem,
+                        getStreamEntities()
+                );
             }
         });
 
@@ -154,29 +99,22 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         playlistAdapter = null;
     }
 
-    @Override
-    public void onDismiss(@NonNull final DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (onDismissListener != null) {
-            onDismissListener.onDismiss(dialog);
-        }
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Helper
     //////////////////////////////////////////////////////////////////////////*/
 
     public void openCreatePlaylistDialog() {
-        if (getStreams() == null || !isAdded()) {
+        if (getStreamEntities() == null || !isAdded()) {
             return;
         }
 
-        final PlaylistCreationDialog dialog = PlaylistCreationDialog.newInstance(getStreams());
+        final PlaylistCreationDialog playlistCreationDialog =
+                new PlaylistCreationDialog(getStreamEntities());
         // Move the dismissListener to the new dialog.
-        dialog.setOnDismissListener(this.onDismissListener);
-        this.onDismissListener = null;
+        playlistCreationDialog.setOnDismissListener(this.getOnDismissListener());
+        this.setOnDismissListener(null);
 
-        dialog.show(getParentFragmentManager(), TAG);
+        playlistCreationDialog.show(getParentFragmentManager(), TAG);
         requireDialog().dismiss();
     }
 
@@ -191,7 +129,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     private void onPlaylistSelected(@NonNull final LocalPlaylistManager manager,
                                     @NonNull final PlaylistMetadataEntry playlist,
                                     @NonNull final List<StreamEntity> streams) {
-        if (getStreams() == null) {
+        if (getStreamEntities() == null) {
             return;
         }
 
