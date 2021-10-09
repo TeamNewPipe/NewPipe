@@ -21,8 +21,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.Section
 import icepick.Icepick
@@ -78,7 +77,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
 
     private val subscriptionMainSection = Section()
     private val subscriptionEmptyFooter = Section()
-    private lateinit var subscriptionGroupAdapter: GroupAdapter<GroupieViewHolder>
+    private lateinit var subscriptionGroupAdapter: GroupieAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -143,23 +142,17 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         ).get(FeedGroupDialogViewModel::class.java)
 
         viewModel.groupLiveData.observe(viewLifecycleOwner, Observer(::handleGroup))
-        viewModel.subscriptionsLiveData.observe(
-            viewLifecycleOwner,
-            Observer {
-                setupSubscriptionPicker(it.first, it.second)
+        viewModel.subscriptionsLiveData.observe(viewLifecycleOwner) {
+            setupSubscriptionPicker(it.first, it.second)
+        }
+        viewModel.dialogEventLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                ProcessingEvent -> disableInput()
+                SuccessEvent -> dismiss()
             }
-        )
-        viewModel.dialogEventLiveData.observe(
-            viewLifecycleOwner,
-            Observer {
-                when (it) {
-                    ProcessingEvent -> disableInput()
-                    SuccessEvent -> dismiss()
-                }
-            }
-        )
+        }
 
-        subscriptionGroupAdapter = GroupAdapter<GroupieViewHolder>().apply {
+        subscriptionGroupAdapter = GroupieAdapter().apply {
             add(subscriptionMainSection)
             add(subscriptionEmptyFooter)
             spanCount = 4
@@ -385,7 +378,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     }
 
     private fun setupIconPicker() {
-        val groupAdapter = GroupAdapter<GroupieViewHolder>()
+        val groupAdapter = GroupieAdapter()
         groupAdapter.addAll(FeedGroupIcon.values().map { PickerIconItem(it) })
 
         feedGroupCreateBinding.iconSelector.apply {
@@ -437,7 +430,7 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         feedGroupCreateBinding.confirmButton.setText(
             when {
                 currentScreen == InitialScreen && groupId == NO_GROUP_SELECTED -> R.string.create
-                else -> android.R.string.ok
+                else -> R.string.ok
             }
         )
 

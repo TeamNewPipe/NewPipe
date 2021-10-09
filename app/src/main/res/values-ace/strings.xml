@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="choose_browser">Pileh peladen</string>
     <string name="share_dialog_title">Bagi ngen</string>
     <string name="did_you_mean">Nyoe meukeusud droe: %1$s\?</string>
     <string name="settings">Peuato</string>
@@ -15,6 +14,5 @@
     <string name="no_player_found_toast">Hana jiteumeung player (droe jeut pasang VLC keu puta nyan).</string>
     <string name="no_player_found">Hana jiteumeung stream player. Pasang VLC\?</string>
     <string name="upload_date_text">Peuleumah bak %1$s</string>
-    <string name="view_count_text">%1$s ngieng</string>
     <string name="main_bg_subtitle">Theun \"Seutot\" keu peuphon</string>
 </resources>

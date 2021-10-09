@@ -7,7 +7,6 @@
     android:orientation="vertical">
 
     <FrameLayout
-        android:id="@+id/panels_root"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -205,7 +204,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/confirm_button"
-            android:text="@android:string/cancel" />
+            android:text="@string/cancel" />
 
         <Button
             android:id="@+id/confirm_button"

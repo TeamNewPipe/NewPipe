@@ -40,8 +40,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.OnItemLongClickListener
@@ -73,7 +72,7 @@ import org.schabi.newpipe.player.helper.PlayerHolder
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.StreamDialogEntry
-import org.schabi.newpipe.util.ThemeHelper.getGridSpanCount
+import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountStreams
 import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import java.time.OffsetDateTime
 import java.util.ArrayList
@@ -91,11 +90,12 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private var groupName = ""
     private var oldestSubscriptionUpdate: OffsetDateTime? = null
 
-    private lateinit var groupAdapter: GroupAdapter<GroupieViewHolder>
+    private lateinit var groupAdapter: GroupieAdapter
     @State @JvmField var showPlayedItems: Boolean = true
 
     private var onSettingsChangeListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
     private var updateListViewModeOnResume = false
+    private var isRefreshing = false
 
     init {
         setHasOptionsMenu(true)
@@ -130,7 +130,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         viewModel = ViewModelProvider(this, factory).get(FeedViewModel::class.java)
         viewModel.stateLiveData.observe(viewLifecycleOwner, { it?.let(::handleResult) })
 
-        groupAdapter = GroupAdapter<GroupieViewHolder>().apply {
+        groupAdapter = GroupieAdapter().apply {
             setOnItemClickListener(listenerStreamItem)
             setOnItemLongClickListener(listenerStreamItem)
         }
@@ -160,7 +160,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     fun setupListViewMode() {
         // does everything needed to setup the layouts for grid or list modes
-        groupAdapter.spanCount = if (shouldUseGridLayout(context)) getGridSpanCount(context) else 1
+        groupAdapter.spanCount = if (shouldUseGridLayout(context)) getGridSpanCountStreams(context) else 1
         feedBinding.itemsList.layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount).apply {
             spanSizeLookup = groupAdapter.spanSizeLookup
         }
@@ -205,7 +205,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                         putBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), !usingDedicatedMethod)
                     }
                 }
-                .setPositiveButton(resources.getString(R.string.finish), null)
+                .setPositiveButton(resources.getString(R.string.ok), null)
                 .create()
                 .show()
             return true
@@ -259,6 +259,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         feedBinding.refreshRootView.animate(false, 0)
         feedBinding.loadingProgressText.animate(true, 200)
         feedBinding.swipeRefreshLayout.isRefreshing = true
+        isRefreshing = true
     }
 
     override fun hideLoading() {
@@ -267,6 +268,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         feedBinding.refreshRootView.animate(true, 200)
         feedBinding.loadingProgressText.animate(false, 0)
         feedBinding.swipeRefreshLayout.isRefreshing = false
+        isRefreshing = false
     }
 
     override fun showEmptyState() {
@@ -293,6 +295,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         feedBinding.refreshRootView.animate(false, 0)
         feedBinding.loadingProgressText.animate(false, 0)
         feedBinding.swipeRefreshLayout.isRefreshing = false
+        isRefreshing = false
     }
 
     private fun handleProgressState(progressState: FeedState.ProgressState) {
@@ -322,9 +325,14 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         if (context == null || context.resources == null || activity == null) return
 
         val entries = ArrayList<StreamDialogEntry>()
-        if (PlayerHolder.getInstance().getType() != null) {
+        if (PlayerHolder.getInstance().isPlayerOpen) {
             entries.add(StreamDialogEntry.enqueue)
+
+            if (PlayerHolder.getInstance().queueSize > 1) {
+                entries.add(StreamDialogEntry.enqueue_next)
+            }
         }
+
         if (item.streamType == StreamType.AUDIO_STREAM) {
             entries.addAll(
                 listOf(
@@ -346,6 +354,20 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             )
         }
 
+        // show "mark as watched" only when watch history is enabled
+        val isWatchHistoryEnabled = PreferenceManager
+            .getDefaultSharedPreferences(context)
+            .getBoolean(getString(R.string.enable_watch_history_key), false)
+        if (item.streamType != StreamType.AUDIO_LIVE_STREAM &&
+            item.streamType != StreamType.LIVE_STREAM &&
+            isWatchHistoryEnabled
+        ) {
+            entries.add(
+                StreamDialogEntry.mark_as_watched
+            )
+        }
+        entries.add(StreamDialogEntry.show_channel_details)
+
         StreamDialogEntry.setEnabledEntries(entries)
         InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context)) { _, which ->
             StreamDialogEntry.clickOn(which, this, item)
@@ -354,7 +376,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     private val listenerStreamItem = object : OnItemClickListener, OnItemLongClickListener {
         override fun onItemClick(item: Item<*>, view: View) {
-            if (item is StreamItem) {
+            if (item is StreamItem && !isRefreshing) {
                 val stream = item.streamWithState.stream
                 NavigationHelper.openVideoDetailFragment(
                     requireContext(), fm,
@@ -364,7 +386,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
 
         override fun onItemLongClick(item: Item<*>, view: View): Boolean {
-            if (item is StreamItem) {
+            if (item is StreamItem && !isRefreshing) {
                 showStreamDialog(item.streamWithState.stream.toStreamInfoItem())
                 return true
             }

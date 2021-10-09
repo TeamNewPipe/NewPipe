@@ -1,0 +1,2 @@
+Adicionados vídeos "recentes" ao serviço media.ccc.de.
+Adicionados streams ao vivo ao serviço media.ccc.de e também suporte a streams ao vivo.

@@ -53,8 +53,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
-
 public class StatisticsPlaylistFragment
         extends BaseLocalListFragment<List<StreamStatisticsEntry>, Void> {
     private final CompositeDisposable disposables = new CompositeDisposable();
@@ -340,9 +338,14 @@ public class StatisticsPlaylistFragment
 
         final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
 
-        if (PlayerHolder.getInstance().getType() != null) {
+        if (PlayerHolder.getInstance().isPlayerOpen()) {
             entries.add(StreamDialogEntry.enqueue);
+
+            if (PlayerHolder.getInstance().getQueueSize() > 1) {
+                entries.add(StreamDialogEntry.enqueue_next);
+            }
         }
+
         if (infoItem.getStreamType() == StreamType.AUDIO_STREAM) {
             entries.addAll(Arrays.asList(
                     StreamDialogEntry.start_here_on_background,
@@ -363,10 +366,7 @@ public class StatisticsPlaylistFragment
         if (KoreUtils.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
         }
-
-        if (!isNullOrEmpty(infoItem.getUploaderUrl())) {
-            entries.add(StreamDialogEntry.show_channel_details);
-        }
+        entries.add(StreamDialogEntry.show_channel_details);
 
         StreamDialogEntry.setEnabledEntries(entries);
 

@@ -1,0 +1,7 @@
+Mejorado
+- Guardar y restaurar si el tono y el tempo están desenganchados o no
+- Soporte de recorte de pantalla en el reproductor
+- Redondeo de vistas y recuento de suscriptores
+- Optimizado YouTube para utilizar menos datos
+
+En esta versión se han corregido más de 15 errores relacionados con YouTube.

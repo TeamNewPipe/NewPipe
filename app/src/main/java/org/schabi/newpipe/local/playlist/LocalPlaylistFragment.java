@@ -42,6 +42,7 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.player.MainPlayer.PlayerType;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
@@ -67,7 +68,6 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
@@ -494,12 +494,12 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
 
         playlistControlBinding.playlistCtrlPlayPopupButton.setOnLongClickListener(view -> {
-            NavigationHelper.enqueueOnPopupPlayer(activity, getPlayQueue(), true);
+            NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.POPUP);
             return true;
         });
 
         playlistControlBinding.playlistCtrlPlayBgButton.setOnLongClickListener(view -> {
-            NavigationHelper.enqueueOnBackgroundPlayer(activity, getPlayQueue(), true);
+            NavigationHelper.enqueueOnPlayer(activity, getPlayQueue(), PlayerType.AUDIO);
             return true;
         });
 
@@ -753,8 +753,12 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
 
-        if (PlayerHolder.getInstance().getType() != null) {
+        if (PlayerHolder.getInstance().isPlayerOpen()) {
             entries.add(StreamDialogEntry.enqueue);
+
+            if (PlayerHolder.getInstance().getQueueSize() > 1) {
+                entries.add(StreamDialogEntry.enqueue_next);
+            }
         }
         if (infoItem.getStreamType() == StreamType.AUDIO_STREAM) {
             entries.addAll(Arrays.asList(
@@ -778,10 +782,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         if (KoreUtils.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
         }
-
-        if (!isNullOrEmpty(infoItem.getUploaderUrl())) {
-            entries.add(StreamDialogEntry.show_channel_details);
-        }
+        entries.add(StreamDialogEntry.show_channel_details);
 
         StreamDialogEntry.setEnabledEntries(entries);
 

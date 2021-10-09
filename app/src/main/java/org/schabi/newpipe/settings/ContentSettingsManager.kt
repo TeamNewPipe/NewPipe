@@ -91,6 +91,11 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
                         is String -> {
                             preferenceEditor.putString(key, value)
                         }
+                        is Set<*> -> {
+                            // There are currently only Sets with type String possible
+                            @Suppress("UNCHECKED_CAST")
+                            preferenceEditor.putStringSet(key, value as Set<String>?)
+                        }
                     }
                 }
                 preferenceEditor.commit()

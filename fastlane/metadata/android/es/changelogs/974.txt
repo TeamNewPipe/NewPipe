@@ -1,0 +1,5 @@
+Hotfix
+- Corrección de los problemas de almacenamiento en el búfer causados por el estrangulamiento de YouTube
+- Corrección de la extracción de comentarios de YouTube y de los fallos con los comentarios desactivados
+- Corrección de la búsqueda de música en YouTube
+- Corrección de las transmisiones en directo de PeerTube

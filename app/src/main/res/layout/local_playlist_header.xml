@@ -35,15 +35,11 @@
         tools:ignore="RtlHardcoded"
         tools:text="234 videos" />
 
-    <LinearLayout
+    <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/playlist_stream_count">
-
-        <include
-            android:id="@+id/playlist_control"
-            layout="@layout/playlist_control" />
-
-    </LinearLayout>
+        android:id="@+id/playlist_control"
+        layout="@layout/playlist_control"
+        android:layout_below="@id/playlist_stream_count" />
 
 </RelativeLayout>

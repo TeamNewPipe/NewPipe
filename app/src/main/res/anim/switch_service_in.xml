@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android"
-    android:interpolator="@android:interpolator/decelerate_quint">
-
-    <alpha
-        android:duration="150"
-        android:fromAlpha="0.00"
-        android:toAlpha="1.0" />
-</set>

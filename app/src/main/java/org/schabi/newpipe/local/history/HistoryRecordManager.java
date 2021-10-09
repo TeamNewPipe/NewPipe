@@ -28,6 +28,7 @@ import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.feed.dao.FeedDAO;
 import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
 import org.schabi.newpipe.database.history.dao.StreamHistoryDAO;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
@@ -42,7 +43,10 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.local.feed.FeedViewModel;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.util.ExtractorHelper;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -80,6 +84,68 @@ public class HistoryRecordManager {
     ///////////////////////////////////////////////////////
     // Watch History
     ///////////////////////////////////////////////////////
+
+    /**
+     * Marks a stream item as watched such that it is hidden from the feed if watched videos are
+     * hidden. Adds a history entry and updates the stream progress to 100%.
+     *
+     * @see FeedDAO#getLiveOrNotPlayedStreams
+     * @see FeedViewModel#togglePlayedItems
+     * @param info the item to mark as watched
+     * @return a Maybe containing the ID of the item if successful
+     */
+    public Maybe<Long> markAsWatched(final StreamInfoItem info) {
+        if (!isStreamHistoryEnabled()) {
+            return Maybe.empty();
+        }
+
+        final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
+        return Maybe.fromCallable(() -> database.runInTransaction(() -> {
+            final long streamId;
+            final long duration;
+            // Duration will not exist if the item was loaded with fast mode, so fetch it if empty
+            if (info.getDuration() < 0) {
+                final StreamInfo completeInfo = ExtractorHelper.getStreamInfo(
+                        info.getServiceId(),
+                        info.getUrl(),
+                        false
+                )
+                        .subscribeOn(Schedulers.io())
+                        .blockingGet();
+                duration = completeInfo.getDuration();
+                streamId = streamTable.upsert(new StreamEntity(completeInfo));
+            } else {
+                duration = info.getDuration();
+                streamId = streamTable.upsert(new StreamEntity(info));
+            }
+
+            // Update the stream progress to the full duration of the video
+            final List<StreamStateEntity> states = streamStateTable.getState(streamId)
+                    .blockingFirst();
+            if (!states.isEmpty()) {
+                final StreamStateEntity entity = states.get(0);
+                entity.setProgressMillis(duration * 1000);
+                streamStateTable.update(entity);
+            } else {
+                final StreamStateEntity entity = new StreamStateEntity(
+                        streamId,
+                        duration * 1000
+                );
+                streamStateTable.insert(entity);
+            }
+
+            // Add a history entry
+            final StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry(streamId);
+            if (latestEntry != null) {
+                streamHistoryTable.delete(latestEntry);
+                latestEntry.setAccessDate(currentTime);
+                latestEntry.setRepeatCount(latestEntry.getRepeatCount() + 1);
+                return streamHistoryTable.insert(latestEntry);
+            } else {
+                return streamHistoryTable.insert(new StreamHistoryEntity(streamId, currentTime));
+            }
+        })).subscribeOn(Schedulers.io());
+    }
 
     public Maybe<Long> onViewed(final StreamInfo info) {
         if (!isStreamHistoryEnabled()) {

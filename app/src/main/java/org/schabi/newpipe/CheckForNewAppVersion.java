@@ -1,10 +1,10 @@
 package org.schabi.newpipe;
 
 import android.app.Application;
+import android.app.IntentService;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.net.ConnectivityManager;
@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.pm.PackageInfoCompat;
 import androidx.preference.PreferenceManager;
 
 import com.grack.nanojson.JsonObject;
@@ -25,8 +26,11 @@ import com.grack.nanojson.JsonParserException;
 import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.downloader.Response;
+import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -34,14 +38,12 @@ import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.util.List;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Maybe;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
-
-public final class CheckForNewAppVersion {
-    private CheckForNewAppVersion() { }
+public final class CheckForNewAppVersion extends IntentService {
+    public CheckForNewAppVersion() {
+        super("CheckForNewAppVersion");
+    }
 
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final String TAG = CheckForNewAppVersion.class.getSimpleName();
@@ -58,20 +60,22 @@ public final class CheckForNewAppVersion {
      */
     @NonNull
     private static String getCertificateSHA1Fingerprint(@NonNull final Application application) {
-        final PackageInfo packageInfo;
+        final List<Signature> signatures;
         try {
-            packageInfo = application.getPackageManager().getPackageInfo(
-                    application.getPackageName(), PackageManager.GET_SIGNATURES);
+            signatures = PackageInfoCompat.getSignatures(application.getPackageManager(),
+                    application.getPackageName());
         } catch (final PackageManager.NameNotFoundException e) {
             ErrorActivity.reportError(application, new ErrorInfo(e,
                     UserAction.CHECK_FOR_NEW_APP_VERSION, "Could not find package info"));
             return "";
         }
+        if (signatures.isEmpty()) {
+            return "";
+        }
 
         final X509Certificate c;
         try {
-            final Signature[] signatures = packageInfo.signatures;
-            final byte[] cert = signatures[0].toByteArray();
+            final byte[] cert = signatures.get(0).toByteArray();
             final InputStream input = new ByteArrayInputStream(cert);
             final CertificateFactory cf = CertificateFactory.getInstance("X509");
             c = (X509Certificate) cf.generateCertificate(input);
@@ -165,78 +169,87 @@ public final class CheckForNewAppVersion {
         return getCertificateSHA1Fingerprint(app).equals(GITHUB_APK_SHA1);
     }
 
-    @Nullable
-    public static Disposable checkNewVersion(@NonNull final App app) {
+    private void checkNewVersion() throws IOException, ReCaptchaException {
+        final App app = App.getApp();
+
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
         final NewVersionManager manager = new NewVersionManager();
 
         // Check if user has enabled/disabled update checking
         // and if the current apk is a github one or not.
         if (!prefs.getBoolean(app.getString(R.string.update_app_key), true) || !isGithubApk(app)) {
-            return null;
+            return;
         }
 
         // Check if the last request has happened a certain time ago
         // to reduce the number of API requests.
         final long expiry = prefs.getLong(app.getString(R.string.update_expiry_key), 0);
         if (!manager.isExpired(expiry)) {
-            return null;
+            return;
         }
 
-        return Maybe
-            .fromCallable(() -> {
-                if (!isConnected(app)) {
-                    return null;
-                }
+        // Make a network request to get latest NewPipe data.
+        final Response response = DownloaderImpl.getInstance().get(NEWPIPE_API_URL);
+        handleResponse(response, manager, prefs, app);
+    }
 
-                // Make a network request to get latest NewPipe data.
-                return DownloaderImpl.getInstance().get(NEWPIPE_API_URL);
-            })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        response -> {
-                            try {
-                                // Store a timestamp which needs to be exceeded,
-                                // before a new request to the API is made.
-                                final long newExpiry = manager
-                                    .coerceExpiry(response.getHeader("expires"));
-                                prefs.edit()
-                                    .putLong(app.getString(R.string.update_expiry_key), newExpiry)
-                                    .apply();
-                            } catch (final Exception e) {
-                                if (DEBUG) {
-                                    Log.w(TAG, "Could not extract and save new expiry date", e);
-                                }
-                            }
+    private void handleResponse(@NonNull final Response response,
+                                @NonNull final NewVersionManager manager,
+                                @NonNull final SharedPreferences prefs,
+                                @NonNull final App app) {
+        try {
+            // Store a timestamp which needs to be exceeded,
+            // before a new request to the API is made.
+            final long newExpiry = manager
+                    .coerceExpiry(response.getHeader("expires"));
+            prefs.edit()
+                    .putLong(app.getString(R.string.update_expiry_key), newExpiry)
+                    .apply();
+        } catch (final Exception e) {
+            if (DEBUG) {
+                Log.w(TAG, "Could not extract and save new expiry date", e);
+            }
+        }
 
-                            // Parse the json from the response.
-                            try {
-                                final JsonObject githubStableObject = JsonParser.object()
-                                    .from(response.responseBody()).getObject("flavors")
-                                    .getObject("github").getObject("stable");
+        // Parse the json from the response.
+        try {
+            final JsonObject githubStableObject = JsonParser.object()
+                    .from(response.responseBody()).getObject("flavors")
+                    .getObject("github").getObject("stable");
 
-                                final String versionName = githubStableObject
-                                    .getString("version");
-                                final int versionCode = githubStableObject
-                                    .getInt("version_code");
-                                final String apkLocationUrl = githubStableObject
-                                    .getString("apk");
+            final String versionName = githubStableObject
+                    .getString("version");
+            final int versionCode = githubStableObject
+                    .getInt("version_code");
+            final String apkLocationUrl = githubStableObject
+                    .getString("apk");
 
-                                compareAppVersionAndShowNotification(app, versionName,
-                                        apkLocationUrl, versionCode);
-                            } catch (final JsonParserException e) {
-                                // connectivity problems, do not alarm user and fail silently
-                                if (DEBUG) {
-                                    Log.w(TAG, "Could not get NewPipe API: invalid json", e);
-                                }
-                            }
-                        },
-                        e -> {
-                            // connectivity problems, do not alarm user and fail silently
-                            if (DEBUG) {
-                                Log.w(TAG, "Could not get NewPipe API: network problem", e);
-                            }
-                        });
+            compareAppVersionAndShowNotification(app, versionName,
+                    apkLocationUrl, versionCode);
+        } catch (final JsonParserException e) {
+            // Most likely something is wrong in data received from NEWPIPE_API_URL.
+            // Do not alarm user and fail silently.
+            if (DEBUG) {
+                Log.w(TAG, "Could not get NewPipe API: invalid json", e);
+            }
+        }
+    }
+
+    public static void startNewVersionCheckService() {
+        final Intent intent = new Intent(App.getApp().getApplicationContext(),
+                CheckForNewAppVersion.class);
+        App.getApp().startService(intent);
+    }
+
+    @Override
+    protected void onHandleIntent(@Nullable final Intent intent) {
+        try {
+            checkNewVersion();
+        } catch (final IOException e) {
+            Log.w(TAG, "Could not fetch NewPipe API: probably network problem", e);
+        } catch (final ReCaptchaException e) {
+            Log.e(TAG, "ReCaptchaException should never happen here.", e);
+        }
+
     }
 }

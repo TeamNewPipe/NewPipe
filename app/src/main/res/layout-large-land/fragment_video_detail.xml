@@ -52,7 +52,7 @@
                             android:id="@+id/detail_thumbnail_image_view"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
+                            android:background="?windowBackground"
                             android:contentDescription="@string/detail_thumbnail_view_description"
                             android:scaleType="fitCenter"
                             tools:ignore="RtlHardcoded"
@@ -695,10 +695,8 @@
 
             <ImageButton
                 android:id="@+id/overlay_play_pause_button"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground"
                 android:padding="10dp"
                 android:scaleType="center"
@@ -709,9 +707,8 @@
 
             <ImageButton
                 android:id="@+id/overlay_close_button"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginLeft="2dp"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground"
                 android:padding="10dp"
                 android:scaleType="center"

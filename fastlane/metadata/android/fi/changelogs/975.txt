@@ -1,0 +1,17 @@
+Uutta
+* Näyttää esikatselukuvat selatessa
+* Tunnistaa poistetut kommentit
+* Sallii kohteen merkitsemisen luetuksi
+* Näyttää sydämet kommenteissa
+
+Paranneltua
+* Metadatan ja tagien asettelu
+* Palvelun väri UI-komponentteihin
+
+Korjattua
+* Pienoiskuvake minisoittimessa
+* Loputon puskurointi jonon duplikaattikohteissa
+* Toistinkorjauksia: kiertäminen ja nopeampi sulkeminen
+* Taustalle lataamaan jäänyt ReCAPTCHA
+* Poistettu klikkaukset syötteen päivittämisessä
+* Lataajan kaatumisia
