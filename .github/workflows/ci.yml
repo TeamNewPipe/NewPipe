@@ -11,6 +11,7 @@ on:
       - 'fastlane/**'
       - 'assets/**'
       - '.github/**/*.md'
+      - .github/CODEOWNERS
   push:
     branches:
       - dev
@@ -20,6 +21,7 @@ on:
       - 'fastlane/**'
       - 'assets/**'
       - '.github/**/*.md'
+      - .github/CODEOWNERS
 
 jobs:
   build-and-test-jvm:
