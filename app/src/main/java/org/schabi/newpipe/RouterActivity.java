@@ -591,6 +591,14 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     private void openAddToPlaylistDialog() {
+        // Getting the stream info usually takes a moment
+        // Notifying the user here to ensure that no confusion arises
+        Toast.makeText(
+                getApplicationContext(),
+                getString(R.string.processing_may_take_a_moment),
+                Toast.LENGTH_SHORT)
+                .show();
+
         disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, false)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
