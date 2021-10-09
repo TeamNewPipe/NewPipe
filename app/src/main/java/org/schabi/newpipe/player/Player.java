@@ -2031,6 +2031,9 @@ public final class Player implements
         currentItem = null;
         currentMetadata = null;
         simpleExoPlayer.stop();
+        if (currentState == STATE_COMPLETED) {
+            simpleExoPlayer.setPlayWhenReady(false);
+        }
         isPrepared = false;
 
         changeState(STATE_BLOCKED);
