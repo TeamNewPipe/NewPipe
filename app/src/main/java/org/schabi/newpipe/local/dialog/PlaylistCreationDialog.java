@@ -38,6 +38,7 @@ public final class PlaylistCreationDialog extends PlaylistDialog {
 
         final DialogEditTextBinding dialogBinding
                 = DialogEditTextBinding.inflate(getLayoutInflater());
+        dialogBinding.getRoot().getContext().setTheme(ThemeHelper.getDialogTheme(requireContext()));
         dialogBinding.dialogEditText.setHint(R.string.name);
         dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
 
