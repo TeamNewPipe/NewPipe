@@ -40,7 +40,7 @@ public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener
                         .clearSelectionOverrides(rendererIndex)
                         .setRendererDisabled(rendererIndex, isDisabled);
 
-        if (!item.getTitle().equals(autoString)) {
+        if (!item.getTitle().toString().contains(autoString)) {
             final DefaultTrackSelector.SelectionOverride selectionOverride =
                     new DefaultTrackSelector.SelectionOverride(
                             rendererIndex, item.getItemId() - 1);

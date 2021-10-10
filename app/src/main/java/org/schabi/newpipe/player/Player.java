@@ -12,6 +12,7 @@ import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static com.google.android.exoplayer2.Player.RepeatMode;
+import static com.google.android.exoplayer2.util.MimeTypes.getVideoMediaMimeType;
 import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
@@ -3417,21 +3418,23 @@ public final class Player implements
 
             for (int i = 0; i < videoTrackGroupArray.get(0).length; i++) {
                 final Format format = videoTrackGroupArray.get(0).getFormat(i);
-                final StringBuilder stringBuilder = new StringBuilder();
+                final StringBuilder resolutionStringBuilder = new StringBuilder();
                 final int formatHeight = format.height;
 
                 if (formatHeight == Format.NO_VALUE) {
-                    stringBuilder.append(format.bitrate);
+                    resolutionStringBuilder.append(format.bitrate);
+                    resolutionStringBuilder.append("bps");
                 } else {
-                    stringBuilder.append(formatHeight);
-                    stringBuilder.append("p");
+                    resolutionStringBuilder.append(formatHeight);
+                    resolutionStringBuilder.append("p");
                     final int formatFrameRate = (int) format.frameRate;
                     if (formatFrameRate > 30) {
-                        stringBuilder.append(formatFrameRate);
+                        resolutionStringBuilder.append(formatFrameRate);
                     }
                 }
 
-                menu.add(POPUP_MENU_ID_QUALITY, i + 1, Menu.NONE, stringBuilder.toString());
+                menu.add(POPUP_MENU_ID_QUALITY, i + 1, Menu.NONE,
+                        resolutionStringBuilder.toString());
             }
 
             final TrackSelectionListener trackSelectionListener = new TrackSelectionListener(
@@ -3451,14 +3454,40 @@ public final class Player implements
             public void onDownstreamFormatChanged(@NonNull final EventTime eventTime,
                                                   @NonNull final MediaLoadData mediaLoadData) {
                 final Format currentPlayingFormat = mediaLoadData.trackFormat;
-                if (currentPlayingFormat != null) {
-                    final int resolution = currentPlayingFormat.height;
-                    final int frameRate = (int) currentPlayingFormat.frameRate;
+                if (currentPlayingFormat != null
+                        && getVideoMediaMimeType(currentPlayingFormat.codecs) != null) {
+                    final StringBuilder resolutionStringBuilder = new StringBuilder();
+                    final int formatHeight = currentPlayingFormat.height;
 
-                    if (frameRate > 30) {
-                        binding.qualityTextView.setText(resolution + "p" + frameRate);
+                    if (formatHeight == Format.NO_VALUE) {
+                        resolutionStringBuilder.append(currentPlayingFormat.bitrate);
+                        resolutionStringBuilder.append("bps");
                     } else {
-                        binding.qualityTextView.setText(resolution + "p");
+                        resolutionStringBuilder.append(formatHeight);
+                        resolutionStringBuilder.append("p");
+                        final int formatFrameRate = (int) currentPlayingFormat.frameRate;
+                        if (formatFrameRate > 30) {
+                            resolutionStringBuilder.append(formatFrameRate);
+                        }
+                    }
+
+                    final MappingTrackSelector.MappedTrackInfo currentMappedTrackInfo =
+                            trackSelector.getCurrentMappedTrackInfo();
+                    final int videoTrackGroupIndex = getVideoRendererIndex();
+
+                    // videoTrackGroupArray shouldn't be null because this method is called only if
+                    // a media source is available
+                    final TrackGroupArray videoTrackGroupArray = Objects.requireNonNull(
+                            currentMappedTrackInfo).getTrackGroups(videoTrackGroupIndex);
+
+                    if (trackSelector.getParameters().hasSelectionOverride(videoTrackGroupIndex,
+                            videoTrackGroupArray)) {
+                        binding.qualityTextView.setText(resolutionStringBuilder.toString());
+                    } else {
+                        binding.qualityTextView.setText(context.getString(
+                                R.string.auto_quality_selected,
+                                context.getString(R.string.auto_quality),
+                                resolutionStringBuilder.toString()));
                     }
                 }
             }
