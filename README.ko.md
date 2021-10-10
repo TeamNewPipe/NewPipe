@@ -89,7 +89,7 @@ NewPipe 코드의 변경이 있을 때(기능 추가 또는 버그 수정으로 
  따라서 우리는 다른 방법들 중 하나를 사용하는 것을 추천합니다.
  2. 우리의 커스텀 저장소를 F-Droid에 추가하고 우리가 릴리즈를 게시하는 대로 저곳에서 릴리즈를 설치할 수 있습니다. 
  이에 대한 설명서는 이곳에서 확인할 수 있습니다: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
- 3. 우리가 릴리즈를 게시하는 대로 [Github Releases](https://github.com/TeamNewPipe/NewPipe/releases)에서 APK를 다운받고 이것을 설치할 수 있습니다.
+ 3. 우리가 릴리즈를 게시하는 대로 [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases)에서 APK를 다운받고 이것을 설치할 수 있습니다.
  4. F-Droid를 통해 업데이트 할 수 있습니다. F-Droid는 변화를 인식하고, 스스로 APK를 생성하고, 이것에 서명하고, 사용자들에서 업데이트를 전달해야만 하기 때문에,
  이것은 업데이트를 받는 가장 느린 방법입니다.
 

@@ -40,8 +40,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.OnItemLongClickListener
@@ -91,7 +90,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private var groupName = ""
     private var oldestSubscriptionUpdate: OffsetDateTime? = null
 
-    private lateinit var groupAdapter: GroupAdapter<GroupieViewHolder>
+    private lateinit var groupAdapter: GroupieAdapter
     @State @JvmField var showPlayedItems: Boolean = true
 
     private var onSettingsChangeListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
@@ -131,7 +130,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         viewModel = ViewModelProvider(this, factory).get(FeedViewModel::class.java)
         viewModel.stateLiveData.observe(viewLifecycleOwner, { it?.let(::handleResult) })
 
-        groupAdapter = GroupAdapter<GroupieViewHolder>().apply {
+        groupAdapter = GroupieAdapter().apply {
             setOnItemClickListener(listenerStreamItem)
             setOnItemLongClickListener(listenerStreamItem)
         }
@@ -326,9 +325,14 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         if (context == null || context.resources == null || activity == null) return
 
         val entries = ArrayList<StreamDialogEntry>()
-        if (PlayerHolder.getInstance().getType() != null) {
+        if (PlayerHolder.getInstance().isPlayerOpen) {
             entries.add(StreamDialogEntry.enqueue)
+
+            if (PlayerHolder.getInstance().queueSize > 1) {
+                entries.add(StreamDialogEntry.enqueue_next)
+            }
         }
+
         if (item.streamType == StreamType.AUDIO_STREAM) {
             entries.addAll(
                 listOf(

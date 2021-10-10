@@ -253,7 +253,7 @@
     <string name="invalid_directory">Aucun dossier de ce type</string>
     <string name="invalid_source">Aucun fichier ou contenu de ce type</string>
     <string name="invalid_file">Le fichier n’existe pas ou n’est pas accessible en lecture ou en écriture</string>
-    <string name="file_name_empty_error">Le nom du fichier ne peut être vide</string>
+    <string name="file_name_empty_error">Le nom du fichier ne peut pas être vide</string>
     <string name="error_occurred_detail">Une erreur est survenue : %1$s</string>
     <string name="controls_download_desc">Télécharger le flux</string>
     <string name="auto_queue_title">Ajouter automatiquement le flux suivant à la liste de lecture</string>
@@ -670,4 +670,5 @@
     <string name="start_main_player_fullscreen_summary">Ne pas lancer les vidéos dans le mini lecteur mais directement en plein écran si la rotation automatique est verrouillée. Vous pouvez toujours accéder au mini-lecteur en quittant le mode plein écran</string>
     <string name="start_main_player_fullscreen_title">Lancer le lecteur principal en plein écran</string>
     <string name="enqueue_next_stream">Mettre en file d’attente la suivante</string>
+    <string name="enqueued_next">Placé comme suivant dans liste de lecture</string>
 </resources>

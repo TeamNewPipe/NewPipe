@@ -17,8 +17,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 976
-        versionName "0.21.10"
+        versionCode 977
+        versionName "0.21.11"
 
         multiDexEnabled true
 
@@ -54,6 +54,11 @@ android {
         // debug build. This seems to be a Gradle bug, therefore
         // TODO: update Gradle version
         release {
+            if (System.properties.containsKey('packageSuffix')) {
+                applicationIdSuffix System.getProperty('packageSuffix')
+                resValue "string", "app_name", "NewPipe " + System.getProperty('packageSuffix')
+                archivesBaseName = 'NewPipe_' + System.getProperty('packageSuffix')
+            }
             minifyEnabled true
             shrinkResources false // disabled to fix F-Droid's reproducible build
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -102,7 +107,7 @@ ext {
     icepickVersion = '3.2.0'
     exoPlayerVersion = '2.12.3'
     googleAutoServiceVersion = '1.0'
-    groupieVersion = '2.8.1'
+    groupieVersion = '2.9.0'
     markwonVersion = '4.6.2'
 
     leakCanaryVersion = '2.5'
@@ -184,7 +189,7 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.21.10'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.21.11'
 
 /** Checkstyle **/
     checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"

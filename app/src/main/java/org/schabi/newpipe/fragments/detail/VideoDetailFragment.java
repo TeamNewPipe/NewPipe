@@ -77,6 +77,7 @@ import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainPlayer;
+import org.schabi.newpipe.player.MainPlayer.PlayerType;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
@@ -1095,8 +1096,8 @@ public final class VideoDetailFragment
         toggleFullscreenIfInFullscreenMode();
 
         final PlayQueue queue = setupPlayQueueForIntent(append);
-        if (append) {
-            NavigationHelper.enqueueOnPopupPlayer(activity, queue, false);
+        if (append) { //resumePlayback: false
+            NavigationHelper.enqueueOnPlayer(activity, queue, PlayerType.POPUP);
         } else {
             replaceQueueIfUserConfirms(() -> NavigationHelper
                     .playOnPopupPlayer(activity, queue, true));
@@ -1154,7 +1155,7 @@ public final class VideoDetailFragment
 
         final PlayQueue queue = setupPlayQueueForIntent(append);
         if (append) {
-            NavigationHelper.enqueueOnBackgroundPlayer(activity, queue, false);
+            NavigationHelper.enqueueOnPlayer(activity, queue, PlayerType.AUDIO);
         } else {
             replaceQueueIfUserConfirms(() -> NavigationHelper
                     .playOnBackgroundPlayer(activity, queue, true));
@@ -1180,7 +1181,7 @@ public final class VideoDetailFragment
         addVideoPlayerView();
 
         final Intent playerIntent = NavigationHelper.getPlayerIntent(requireContext(),
-                MainPlayer.class, queue, true, autoPlayEnabled);
+                MainPlayer.class, queue, autoPlayEnabled);
         ContextCompat.startForegroundService(activity, playerIntent);
     }
 

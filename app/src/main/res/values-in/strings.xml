@@ -104,7 +104,7 @@
     <string name="popup_remember_size_pos_title">Ingat properti popup</string>
     <string name="popup_remember_size_pos_summary">Ingat ukuran dan posisi terakhir popup</string>
     <string name="show_search_suggestions_title">Saran pencarian</string>
-    <string name="show_search_suggestions_summary">Tampilkan saran pencarian saat mencari</string>
+    <string name="show_search_suggestions_summary">Menampilkan saran pencarian saat mencari</string>
     <string name="best_resolution">Resolusi terbaik</string>
     <string name="settings_category_downloads_title">Unduhan</string>
     <string name="settings_file_charset_title">Karakter yang diizinkan sebagai nama berkas</string>
@@ -638,4 +638,16 @@
     <string name="comments_are_disabled">Komentar dinonaktifkan</string>
     <string name="seekbar_preview_thumbnail_title">Pratinjau thumbnail bilah laju</string>
     <string name="mark_as_watched">Tandai ditonton</string>
+    <string name="start_main_player_fullscreen_title">Buka pemutar utama dalam layar penuh</string>
+    <plurals name="download_finished_notification">
+        <item quantity="other">%s unduhan selesai</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">Geser item untuk membuangnya</string>
+    <string name="detail_heart_img_view_description">Disukai oleh kreator</string>
+    <string name="local_search_suggestions">Saran pencarian lokal</string>
+    <string name="remote_search_suggestions">Saran pencarian remote</string>
+    <string name="show_image_indicators_title">Tampilkan indikator gambar</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="other">Menghapus %1$s unduhan</item>
+    </plurals>
 </resources>

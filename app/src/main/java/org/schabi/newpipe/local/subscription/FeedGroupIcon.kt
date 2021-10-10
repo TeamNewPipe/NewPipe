@@ -22,7 +22,7 @@ enum class FeedGroupIcon(
     COMPUTER(5, R.drawable.ic_computer),
     GAMING(6, R.drawable.ic_videogame_asset),
     SPORTS(7, R.drawable.ic_directions_bike),
-    NEWS(8, R.drawable.ic_megaphone),
+    NEWS(8, R.drawable.ic_campaign),
     FAVORITES(9, R.drawable.ic_favorite),
     CAR(10, R.drawable.ic_directions_car),
     MOTORCYCLE(11, R.drawable.ic_motorcycle),

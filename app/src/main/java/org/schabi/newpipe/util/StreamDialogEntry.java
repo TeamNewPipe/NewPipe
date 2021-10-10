@@ -12,8 +12,6 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.player.MainPlayer;
-import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
@@ -25,8 +23,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
-import static org.schabi.newpipe.player.MainPlayer.PlayerType.AUDIO;
-import static org.schabi.newpipe.player.MainPlayer.PlayerType.POPUP;
 
 public enum StreamDialogEntry {
     //////////////////////////////////////
@@ -43,7 +39,7 @@ public enum StreamDialogEntry {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(result -> {
-                        NewPipeDatabase.getInstance(fragment.getContext()).streamDAO()
+                        NewPipeDatabase.getInstance(fragment.requireContext()).streamDAO()
                                 .setUploaderUrl(serviceId, url, result.getUploaderUrl())
                                 .subscribeOn(Schedulers.io()).subscribe();
                         openChannelFragment(fragment, item, result.getUploaderUrl());
@@ -64,18 +60,11 @@ public enum StreamDialogEntry {
      * Info: Add this entry within showStreamDialog.
      */
     enqueue(R.string.enqueue_stream, (fragment, item) -> {
-        final MainPlayer.PlayerType type = PlayerHolder.getInstance().getType();
+        NavigationHelper.enqueueOnPlayer(fragment.getContext(), new SinglePlayQueue(item));
+    }),
 
-        if (type == AUDIO) {
-            NavigationHelper.enqueueOnBackgroundPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), false);
-        } else if (type == POPUP) {
-            NavigationHelper.enqueueOnPopupPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), false);
-        } else /* type == VIDEO */ {
-            NavigationHelper.enqueueOnVideoPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), false);
-        }
+    enqueue_next(R.string.enqueue_next_stream, (fragment, item) -> {
+        NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), new SinglePlayQueue(item));
     }),
 
     start_here_on_background(R.string.start_here_on_background, (fragment, item) ->
@@ -108,16 +97,16 @@ public enum StreamDialogEntry {
         try {
             NavigationHelper.playWithKore(fragment.requireContext(), videoUrl);
         } catch (final Exception e) {
-            KoreUtils.showInstallKoreDialog(fragment.getActivity());
+            KoreUtils.showInstallKoreDialog(fragment.requireActivity());
         }
     }),
 
     share(R.string.share, (fragment, item) ->
-            ShareUtils.shareText(fragment.getContext(), item.getName(), item.getUrl(),
+            ShareUtils.shareText(fragment.requireContext(), item.getName(), item.getUrl(),
                     item.getThumbnailUrl())),
 
     open_in_browser(R.string.open_in_browser, (fragment, item) ->
-            ShareUtils.openUrlInBrowser(fragment.getContext(), item.getUrl())),
+            ShareUtils.openUrlInBrowser(fragment.requireContext(), item.getUrl())),
 
 
     mark_as_watched(R.string.mark_as_watched, (fragment, item) -> {

@@ -43,10 +43,11 @@ class LocalPlaylistManagerTest {
 
     @Test
     fun createPlaylist() {
+        val NEWPIPE_URL = "https://newpipe.net/"
         val stream = StreamEntity(
-            serviceId = 1, url = "https://newpipe.net/", title = "title",
+            serviceId = 1, url = NEWPIPE_URL, title = "title",
             streamType = StreamType.VIDEO_STREAM, duration = 1, uploader = "uploader",
-            uploaderUrl = "https://newpipe.net/"
+            uploaderUrl = NEWPIPE_URL
         )
 
         val result = manager.createPlaylist("name", listOf(stream))

@@ -33,6 +33,9 @@ public final class DeviceUtils {
     // Zephir TS43UHD-2
     private static final boolean CVT_MT5886_EU_1G = Build.VERSION.SDK_INT == 24
             && Build.DEVICE.equals("cvt_mt5886_eu_1g");
+    // Hilife TV
+    private static final boolean REALTEKATV = Build.VERSION.SDK_INT == 25
+            && Build.DEVICE.equals("RealtekATV");
 
     private DeviceUtils() {
     }
@@ -129,7 +132,8 @@ public final class DeviceUtils {
     public static boolean shouldSupportMediaTunneling() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
                 && !HI3798MV200
-                && !CVT_MT5886_EU_1G;
+                && !CVT_MT5886_EU_1G
+                && !REALTEKATV;
     }
 
     public static boolean isLandscape(final Context context) {
