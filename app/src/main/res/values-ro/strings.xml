@@ -79,7 +79,7 @@
     <string name="msg_wait">Vă rugăm așteptați…</string>
     <string name="msg_copied">Copiat în clipboard</string>
     <string name="no_available_dir">Vă rugăm să definiți un folder de descărcare mai târziu în setări</string>
-    <string name="open_in_popup_mode">Deschide in modul popup</string>
+    <string name="open_in_popup_mode">Deschide în modul popup</string>
     <string name="msg_popup_permission">Această permisiune este necesară pentru a 
 \ndeschide în mod pop-up</string>
     <string name="title_activity_recaptcha">Provocare reCAPTCHA</string>
@@ -181,8 +181,8 @@
     <string name="show_info">Arată informații</string>
     <string name="tab_bookmarks">Playlist-uri salvate</string>
     <string name="controls_add_to_playlist_title">Salvează în</string>
-    <string name="use_inexact_seek_title">Folosește parcurgerea inexactă</string>
-    <string name="use_inexact_seek_summary">Derularea inexactă permite player-ului să deruleze mai rapid, cu o precizie redusă. Derularea timp de 5, 15 sau 25 de secunde nu funcționează cu aceasta.</string>
+    <string name="use_inexact_seek_title">Folosește parcurgerea rapidă inexactă</string>
+    <string name="use_inexact_seek_summary">Derularea inexactă permite player-ului să deruleze mai rapid, cu o precizie redusă. Derularea timp de 5, 15 sau 25 de secunde nu funcționează cu aceasta</string>
     <string name="download_thumbnail_title">Încarcă miniaturi</string>
     <string name="download_thumbnail_summary">Dezactivați pentru a preveni încărcarea miniaturilor, economisirea datelor și utilizarea memoriei. Modificările șterg atât memoria cache a imaginilor în memorie, cât și pe disc</string>
     <string name="thumbnail_cache_wipe_complete_notice">Datele cache de imagini au fost șterse</string>
@@ -409,7 +409,7 @@
 \nAșadar, alegerea se reduce la ceea ce preferați: rapiditate sau informații precise.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Dezactivați modul rapid</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activați modul rapid</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Disponibilă în unele servicii, este, de obicei, mult mai rapidă, dar poate returna un număr limitat de articole și adesea informații incomplete (de exemplu, fără durată, fără tipul de articol, fără stare în direct).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponibilă în unele servicii, este, de obicei, mult mai rapidă, dar poate returna un număr limitat de articole și adesea informații incomplete (de exemplu, fără durată, fără tipul de articol, fără stare în direct)</string>
     <string name="feed_use_dedicated_fetch_method_title">Preluare din fluxul dedicat atunci când este disponibil</string>
     <string name="feed_update_threshold_option_always_update">Actualizați întotdeauna</string>
     <string name="feed_update_threshold_summary">Timpul de la ultima actualizare înainte ca un abonament să fie considerat învechit - %s</string>
@@ -455,10 +455,10 @@
     <string name="systems_language">Prestabilită de sistem</string>
     <string name="app_language_title">Limba aplicației</string>
     <string name="choose_instance_prompt">Alegeți o instanță</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" permite descărcări pe un card SD extern.</string>
+    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" permite descărcări pe un card SD extern</string>
     <string name="downloads_storage_use_saf_title">Utilizați selectorul de dosare de sistem (SAF)</string>
     <string name="downloads_storage_ask_summary">Veți fi întrebat unde să salvați fiecare descărcare.
-\nActivați selectorul de foldere de sistem (SAF) dacă doriți să descărcați pe un card SD extern.</string>
+\nActivați selectorul de foldere de sistem (SAF) dacă doriți să descărcați pe un card SD extern</string>
     <string name="downloads_storage_ask_title">Întrebați unde să descărcați</string>
     <string name="pause_downloads">Întrerupeți descărcările</string>
     <string name="max_retry_msg">Numărul maxim de încercări</string>
@@ -572,7 +572,7 @@
     <string name="most_liked">Cele mai apreciate</string>
     <string name="recently_added">Adăugate recent</string>
     <string name="local">Local</string>
-    <string name="localization_changes_requires_app_restart">Limba se va schimba odată ce aplicația este repornită.</string>
+    <string name="localization_changes_requires_app_restart">Limba se va schimba odată ce aplicația este repornită</string>
     <string name="no_playlist_bookmarked_yet">Nu există încă marcaje în playlist</string>
     <string name="select_a_playlist">Selectați un playlist</string>
     <string name="default_kiosk_page_summary">Chioșc implicit</string>
