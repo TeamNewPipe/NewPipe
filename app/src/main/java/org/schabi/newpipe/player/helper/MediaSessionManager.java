@@ -179,9 +179,7 @@ public class MediaSessionManager {
         // If we got an album art check if the current set AlbumArt is null
         if (optAlbumArt.isPresent() && getMetadataAlbumArt() == null) {
             if (DEBUG) {
-                if (getMetadataAlbumArt() == null) {
-                    Log.d(TAG, "N_getMetadataAlbumArt: thumb == null");
-                }
+                Log.d(TAG, "N_getMetadataAlbumArt: thumb == null");
             }
             return true;
         }
@@ -191,16 +189,19 @@ public class MediaSessionManager {
     }
 
 
+    @Nullable
     private Bitmap getMetadataAlbumArt() {
         return mediaSession.getController().getMetadata()
                 .getBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART);
     }
 
+    @Nullable
     private String getMetadataTitle() {
         return mediaSession.getController().getMetadata()
                 .getString(MediaMetadataCompat.METADATA_KEY_TITLE);
     }
 
+    @Nullable
     private String getMetadataArtist() {
         return mediaSession.getController().getMetadata()
                 .getString(MediaMetadataCompat.METADATA_KEY_ARTIST);
