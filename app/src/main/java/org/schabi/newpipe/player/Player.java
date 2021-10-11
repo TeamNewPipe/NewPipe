@@ -136,7 +136,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import org.jetbrains.annotations.NotNull;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -626,7 +625,7 @@ public final class Player implements
                     }
 
                     @Override
-                    public Boolean shouldFastForward(@NotNull final DisplayPortion portion) {
+                    public Boolean shouldFastForward(@NonNull final DisplayPortion portion) {
                         // Null indicates an invalid area or condition e.g. the middle portion
                         // or video start or end was reached during double tap seeking
                         if (invalidSeekConditions()) {
