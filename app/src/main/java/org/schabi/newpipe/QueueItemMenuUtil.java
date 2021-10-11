@@ -1,7 +1,5 @@
 package org.schabi.newpipe;
 
-import static org.schabi.newpipe.util.external_communication.ShareUtils.shareText;
-
 import android.content.Context;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -16,6 +14,8 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.Collections;
+
+import static org.schabi.newpipe.util.external_communication.ShareUtils.shareText;
 
 public final class QueueItemMenuUtil {
     public static void openPopupMenu(final PlayQueue playQueue,
@@ -54,6 +54,10 @@ public final class QueueItemMenuUtil {
                             () -> d.show(fragmentManager, "QueueItemMenuUtil@append_playlist"),
                             () -> PlaylistCreationDialog.newInstance(d)
                                     .show(fragmentManager, "QueueItemMenuUtil@append_playlist"));
+                    return true;
+                case R.id.menu_item_channel_details:
+                    NavigationHelper.openChannelFragmentUsingIntent(context, item.getServiceId(),
+                            item.getUploaderUrl(), item.getUploader());
                     return true;
                 case R.id.menu_item_share:
                     shareText(context, item.getTitle(), item.getUrl(),

@@ -11,6 +11,9 @@
         android:id="@+id/menu_item_append_playlist"
         android:title="@string/append_playlist" />
     <item
+        android:id="@+id/menu_item_channel_details"
+        android:title="@string/show_channel_details" />
+    <item
         android:id="@+id/menu_item_share"
         android:title="@string/share" />
 </menu>
