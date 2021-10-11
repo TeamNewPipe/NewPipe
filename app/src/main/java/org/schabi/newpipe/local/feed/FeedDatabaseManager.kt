@@ -72,7 +72,7 @@ class FeedDatabaseManager(context: Context) {
     fun markAsOutdated(subscriptionId: Long) = feedTable
         .setLastUpdatedForSubscription(FeedLastUpdatedEntity(subscriptionId, null))
 
-    fun isStreamExist(stream: StreamInfoItem): Boolean {
+    fun doesStreamExist(stream: StreamInfoItem): Boolean {
         return streamTable.exists(stream.serviceId, stream.url)
     }
 

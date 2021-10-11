@@ -199,7 +199,7 @@ class FeedLoadManager(private val context: Context) {
         private fun countNewStreams(list: List<StreamInfoItem>): Int {
             var count = 0
             for (item in list) {
-                if (feedDatabaseManager.isStreamExist(item)) {
+                if (feedDatabaseManager.doesStreamExist(item)) {
                     return count
                 } else {
                     count++
