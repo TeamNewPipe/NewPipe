@@ -105,7 +105,7 @@
     <string name="popup_remember_size_pos_summary">Lembrar último tamanho e posição do popup</string>
     <string name="use_external_video_player_summary">Remove o som em algumas resoluções</string>
     <string name="show_search_suggestions_title">Sugestões de pesquisa</string>
-    <string name="show_search_suggestions_summary">Mostra sugestões ao pesquisar</string>
+    <string name="show_search_suggestions_summary">Escolha as sugestões a serem exibidas enquanto estiver buscando</string>
     <string name="best_resolution">Melhor resolução</string>
     <string name="title_licenses">Licenças de Terceiros</string>
     <string name="tab_about">Sobre</string>
@@ -264,14 +264,15 @@
     <string name="previous_export">Exportação anterior</string>
     <string name="subscriptions_import_unsuccessful">Não foi possível importar inscrições</string>
     <string name="subscriptions_export_unsuccessful">Não foi possível exportar inscrições</string>
-    <string name="import_youtube_instructions">Importe inscrições do YouTubedo pelo Google takeout:
+    <string name="import_youtube_instructions">Importe inscrições do YouTube pelo Google takeout:
 \n
 \n1. Acesse este link: %1$s
 \n2. Logue quando solicitado
 \n3. Clique em \"Todos os dados incluídos\", em seguida, em \"Desmarque todos\", em seguida, selecione apenas \"assinaturas\" e clique em \"OK\"
 \n4. Clique em \"Próximo passo\" e, em seguida, em \"Criar exportação\"
-\n5. Clique no botão \"Baixar\" depois de aparecer e
-\n6. A partir do arquivo zip baixado, retire o arquivo .json (geralmente em \"YouTube e YouTube Music/assinaturas/assinaturas.json\") e importe aqui.</string>
+\n5. Clique no botão \"Baixar\" quando ele aparecer
+\n6. Clique em Importar Arquivo abaixo e selecione o arquivo zip baixado
+\n7. Caso a importação do arquivo zip falhe: Extraia o arquivo .csv (normalmente em \"YouTube e YouTube Music/subscriptions/subscriptions.csv\", clique em Importar Arquivo abaixo e selecione o arquivo cvs extraído</string>
     <string name="import_soundcloud_instructions">Importe um perfil do SoundCloud digitando o URL ou seu ID:
 \n
 \n1. Ative o \"modo desktop\" no navegador (o site está indisponível em celulares)
@@ -649,4 +650,23 @@
     <string name="comments_are_disabled">Comentários estão desabilitados</string>
     <string name="mark_as_watched">Marcar como visto</string>
     <string name="detail_heart_img_view_description">Curtido pelo criador</string>
+    <string name="show_image_indicators_summary">Exibir fitas coloridas de picasso no topo das imagens indicando sua fonte: vermelho para rede, azul para disco e verde para memória</string>
+    <string name="loading_channel_details">Carregando detalhes do canal…</string>
+    <string name="error_show_channel_details">Erro ao exibir detalhes do canal</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s download apagado</item>
+        <item quantity="other">%1$s downloads apagados</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Download finalizado</item>
+        <item quantity="other">%s downloads finalizados</item>
+    </plurals>
+    <string name="show_image_indicators_title">Exibir indicadores com imagem</string>
+    <string name="enqueued_next">Adicionado na próxima posição da fila</string>
+    <string name="enqueue_next_stream">Adicionar a próxima posição da fila</string>
+    <string name="main_page_content_swipe_remove">Deslize items para remove-los</string>
+    <string name="start_main_player_fullscreen_summary">Não iniciar o reprodutor pequeno, mas sim iniciar no modo tela cheia, caso rotação automática estiver bloqueada. Você pode ainda acessar o reprodutor pequeno saindo do modo tela cheia</string>
+    <string name="start_main_player_fullscreen_title">Iniciar o reprodutor principal em tela cheia</string>
+    <string name="remote_search_suggestions">Sugestões de busca remotas</string>
+    <string name="local_search_suggestions">Sugestões de busca locais</string>
 </resources>

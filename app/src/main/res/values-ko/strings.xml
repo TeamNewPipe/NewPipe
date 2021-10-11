@@ -16,7 +16,7 @@
     <string name="download_path_dialog_title">비디오 파일이 다운로드 될 폴더를 선택하세요</string>
     <string name="default_resolution_title">기본 해상도</string>
     <string name="play_with_kodi_title">Kodi로 재생</string>
-    <string name="kore_not_found">Kore 앱이 발견되지 않았습니다. Kore를 설치할까요?</string>
+    <string name="kore_not_found">Kore를 설치할까요\?</string>
     <string name="show_play_with_kodi_title">\"Kodi로 재생\" 옵션 표시</string>
     <string name="show_play_with_kodi_summary">비디오를 Kodi 미디어 센터를 사용해 재생하는 옵션을 표시합니다</string>
     <string name="play_audio">오디오</string>
@@ -282,7 +282,7 @@
 \n 
 \n계속하시겠습니까\?</string>
     <string name="download_thumbnail_title">썸네일 로드하기</string>
-    <string name="download_thumbnail_summary">동영상 썸네일을 로드하지 않으며, 데이터와 메모리 사용을 최대한 줄입니다. 이 옵션을 선택 시 모든 메모리 캐시와 저장소 캐시를 삭제합니다.</string>
+    <string name="download_thumbnail_summary">동영상 썸네일을 로드하지 않으며, 데이터와 메모리 사용을 최대한 줄입니다. 이 옵션을 선택 시 모든 메모리 캐시와 저장소 캐시를 삭제합니다</string>
     <string name="thumbnail_cache_wipe_complete_notice">이미지 캐시 지워짐</string>
     <string name="metadata_cache_wipe_title">캐시된 메타데이터 지우기</string>
     <string name="metadata_cache_wipe_summary">캐시된 모든 웹페이지 데이터 지우기</string>
@@ -501,7 +501,7 @@
     <string name="title_activity_play_queue">재생목록 실행</string>
     <string name="settings_category_notification_title">알림</string>
     <string name="unsupported_url_dialog_message">URL을 인식할 수 없습니다. 다른 앱으로 여시겠습니까\?</string>
-    <string name="clear_queue_confirmation_title">스트림을 비우기 전 확인을 요청합니다.</string>
+    <string name="clear_queue_confirmation_title">대기열을 비우기 전 확인하도록 합니다.</string>
     <string name="notification_colorize_summary">안드로이드에서 썸네일의 색상에 따라 알림 색상을 조절합니다. (지원되지 않는 기기가 있을 수 있습니다.)</string>
     <string name="notification_action_buffering">버퍼링</string>
     <string name="notification_action_4_title">다섯번째 버튼</string>
@@ -514,4 +514,10 @@
     <string name="clear_queue_confirmation_description">활성화된 플레이어 대기열이 교체됩니다.</string>
     <string name="open_with">으로(로) 열기</string>
     <string name="mark_as_watched">시청한 것으로 처리</string>
+    <string name="show_description_summary">비활성화하면 비디오 설명과 추가 정보를 표시하지 않습니다</string>
+    <string name="show_description_title">설명 표시</string>
+    <string name="clear_queue_confirmation_summary">원래 플레이어에서 다른 플레이어로 바꾸면 대기열이 지워집니다</string>
+    <string name="night_theme_title">어두운 테마</string>
+    <string name="notification_actions_at_most_three">최대 3개까지 축소 알림에 표시될 항목을 고를 수 있습니다!</string>
+    <string name="notification_actions_summary">아래 항목을 터치해서 편집하세요. 위에서부터 체크된 3개 항목은 축소 알림일 때도 표시됩니다</string>
 </resources>

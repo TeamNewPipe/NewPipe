@@ -1,0 +1,10 @@
+• Dodano przycisk „odtwórz następny” do menu długiego naciśnięcia
+• Dodano prefiks ścieżki YouTube shorts do filtru intentów
+• Naprawiono import ustawień
+• Zamiana pozycji paska z przyciskami odtwarzacza na ekranie kolejki
+• Różne poprawki związane z MediasessionManager
+• Naprawiono pasek przewijania po zakończeniu wideo
+• Wyłączono tunelowanie multimediów w RealtekATV
+• Rozszerzono klikalny obszar przycisków na zminimalizowanym odtwarzaczu
+
+Reszta zmian w dzienniku zmian w linkach poniżej.

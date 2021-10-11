@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -246,7 +247,7 @@ public final class ShareUtils {
         final Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, content);
-        if (!title.isEmpty()) {
+        if (!TextUtils.isEmpty(title)) {
             shareIntent.putExtra(Intent.EXTRA_TITLE, title);
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, title);
         }

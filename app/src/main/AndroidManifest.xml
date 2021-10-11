@@ -146,6 +146,7 @@
                 <data android:pathPrefix="/embed/" />
                 <data android:pathPrefix="/watch" />
                 <data android:pathPrefix="/attribution_link" />
+                <data android:pathPrefix="/shorts/" />
                 <!-- channel prefix -->
                 <data android:pathPrefix="/channel/" />
                 <data android:pathPrefix="/user/" />
@@ -224,6 +225,7 @@
 
                 <data android:scheme="http" />
                 <data android:scheme="https" />
+                <data android:host="tubus.eduvid.org" />
                 <data android:host="invidio.us" />
                 <data android:host="dev.invidio.us" />
                 <data android:host="www.invidio.us" />
@@ -309,6 +311,7 @@
                 <data android:scheme="http" />
                 <data android:scheme="https" />
 
+                <data android:host="eduvid.org" />
                 <data android:host="framatube.org" />
                 <data android:host="media.assassinate-you.net" />
                 <data android:host="peertube.co.uk" />
@@ -357,6 +360,9 @@
         </activity>
         <service
             android:name=".RouterActivity$FetcherService"
+            android:exported="false" />
+        <service
+            android:name=".CheckForNewAppVersion"
             android:exported="false" />
 
         <!-- opting out of sending metrics to Google in Android System WebView -->

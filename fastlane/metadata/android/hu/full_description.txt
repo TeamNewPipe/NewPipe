@@ -1,0 +1,1 @@
+A NewPipe nem használ semmilyen Google vázkönyvtárat vagy a YouTube API-t. Csupán a weboldalt elemzi, hogy megszerezze a szükséges információt. Így ez az alkalmazás a Google Szolgáltatások nélkül futó ezközökön is használható. Emellett, a NewPipe használatához nincs szükséged YouTube fiókra,

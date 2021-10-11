@@ -1,5 +1,53 @@
 package org.schabi.newpipe.player;
 
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_AD_INSERTION;
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_INTERNAL;
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_PERIOD_TRANSITION;
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK;
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJUSTMENT;
+import static com.google.android.exoplayer2.Player.DiscontinuityReason;
+import static com.google.android.exoplayer2.Player.EventListener;
+import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
+import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
+import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
+import static com.google.android.exoplayer2.Player.RepeatMode;
+import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
+import static org.schabi.newpipe.extractor.ServiceList.YouTube;
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_CLOSE;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_FORWARD;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_REWIND;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_NEXT;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_PAUSE;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_PREVIOUS;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_RECREATE_NOTIFICATION;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_REPEAT;
+import static org.schabi.newpipe.player.MainPlayer.ACTION_SHUFFLE;
+import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
+import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
+import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
+import static org.schabi.newpipe.player.helper.PlayerHelper.buildCloseOverlayLayoutParams;
+import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
+import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimizeOnExitAction;
+import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimumVideoHeight;
+import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
+import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
+import static org.schabi.newpipe.player.helper.PlayerHelper.isPlaybackResumeEnabled;
+import static org.schabi.newpipe.player.helper.PlayerHelper.nextRepeatMode;
+import static org.schabi.newpipe.player.helper.PlayerHelper.nextResizeModeAndSaveToPrefs;
+import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlaybackParametersFromPrefs;
+import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlayerTypeFromIntent;
+import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePopupLayoutParamsFromPrefs;
+import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
+import static org.schabi.newpipe.player.helper.PlayerHelper.savePlaybackParametersToPrefs;
+import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
+import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+import static org.schabi.newpipe.util.Localization.containsCaseInsensitive;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -94,7 +142,6 @@ import org.schabi.newpipe.databinding.PlayerPopupCloseOverlayBinding;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamSegment;
-import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -127,12 +174,13 @@ import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper;
 import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHolder;
+import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.DeviceUtils;
-import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.SerializedCache;
+import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.ExpandableSurfaceView;
 
@@ -140,60 +188,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.disposables.SerialDisposable;
-
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_AD_INSERTION;
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_INTERNAL;
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_PERIOD_TRANSITION;
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK;
-import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJUSTMENT;
-import static com.google.android.exoplayer2.Player.DiscontinuityReason;
-import static com.google.android.exoplayer2.Player.EventListener;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
-import static com.google.android.exoplayer2.Player.RepeatMode;
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
-import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
-import static org.schabi.newpipe.extractor.ServiceList.YouTube;
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
-import static org.schabi.newpipe.ktx.ViewUtils.animate;
-import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_CLOSE;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_FORWARD;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_REWIND;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_NEXT;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_PAUSE;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_PREVIOUS;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_RECREATE_NOTIFICATION;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_REPEAT;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_SHUFFLE;
-import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
-import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
-import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
-import static org.schabi.newpipe.player.helper.PlayerHelper.buildCloseOverlayLayoutParams;
-import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
-import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimizeOnExitAction;
-import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimumVideoHeight;
-import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
-import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
-import static org.schabi.newpipe.player.helper.PlayerHelper.isPlaybackResumeEnabled;
-import static org.schabi.newpipe.player.helper.PlayerHelper.nextRepeatMode;
-import static org.schabi.newpipe.player.helper.PlayerHelper.nextResizeModeAndSaveToPrefs;
-import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlaybackParametersFromPrefs;
-import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlayerTypeFromIntent;
-import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePopupLayoutParamsFromPrefs;
-import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
-import static org.schabi.newpipe.player.helper.PlayerHelper.savePlaybackParametersToPrefs;
-import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
-import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-import static org.schabi.newpipe.util.Localization.containsCaseInsensitive;
 
 public final class Player implements
         EventListener,
@@ -1596,10 +1597,7 @@ public final class Player implements
             setVideoDurationToControls(duration);
         }
         if (currentState != STATE_PAUSED) {
-            if (currentState != STATE_PAUSED_SEEK) {
-                binding.playbackSeekBar.setProgress(currentProgress);
-            }
-            binding.playbackCurrentTime.setText(getTimeString(currentProgress));
+            updatePlayBackElementsCurrentDuration(currentProgress);
         }
         if (simpleExoPlayer.isLoading() || bufferPercent > 90) {
             binding.playbackSeekBar.setSecondaryProgress(
@@ -1622,12 +1620,6 @@ public final class Player implements
         if (isQueueVisible) {
             updateQueueTime(currentProgress);
         }
-
-        final boolean showThumbnail = prefs.getBoolean(
-                context.getString(R.string.show_thumbnail_key), true);
-        // setMetadata only updates the metadata when any of the metadata keys are null
-        mediaSessionManager.setMetadata(getVideoTitle(), getUploaderName(),
-                showThumbnail ? getThumbnail() : null, duration);
     }
 
     private void startProgressLoop() {
@@ -1652,10 +1644,10 @@ public final class Player implements
         // TODO: revert #6307 when introducing proper HLS support
         final int duration;
         if (currentItem != null
-                && currentItem.getStreamType() != StreamType.AUDIO_LIVE_STREAM
-                && currentItem.getStreamType() != StreamType.LIVE_STREAM) {
+                && !StreamTypeUtil.isLiveStream(currentItem.getStreamType())
+        ) {
             // convert seconds to milliseconds
-            duration =  (int) (currentItem.getDuration() * 1000);
+            duration = (int) (currentItem.getDuration() * 1000);
         } else {
             duration = (int) simpleExoPlayer.getDuration();
         }
@@ -2253,6 +2245,9 @@ public final class Player implements
             stopProgressLoop();
         }
 
+        // When a (short) video ends the elements have to display the correct values - see #6180
+        updatePlayBackElementsCurrentDuration(binding.playbackSeekBar.getMax());
+
         showControls(500);
         animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
         binding.loadingPanel.setVisibility(View.GONE);
@@ -2594,6 +2589,18 @@ public final class Player implements
     // Playback position and seek
     //////////////////////////////////////////////////////////////////////////*/
     //region Playback position and seek
+
+    /**
+     * Sets the current duration into the corresponding elements.
+     * @param currentProgress
+     */
+    private void updatePlayBackElementsCurrentDuration(final int currentProgress) {
+        // Don't set seekbar progress while user is seeking
+        if (currentState != STATE_PAUSED_SEEK) {
+            binding.playbackSeekBar.setProgress(currentProgress);
+        }
+        binding.playbackCurrentTime.setText(getTimeString(currentProgress));
+    }
 
     @Override // own playback listener (this is a getter)
     public boolean isApproachingPlaybackEdge(final long timeToEndMillis) {
@@ -2946,6 +2953,18 @@ public final class Player implements
                 tag.getMetadata().getPreviewFrames());
 
         NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
+
+        final boolean showThumbnail = prefs.getBoolean(
+                context.getString(R.string.show_thumbnail_key), true);
+        mediaSessionManager.setMetadata(
+                getVideoTitle(),
+                getUploaderName(),
+                showThumbnail ? Optional.ofNullable(getThumbnail()) : Optional.empty(),
+                StreamTypeUtil.isLiveStream(tag.getMetadata().getStreamType())
+                        ? -1
+                        : tag.getMetadata().getDuration()
+        );
+
         notifyMetadataUpdateToListeners();
 
         if (areSegmentsVisible) {
@@ -3023,9 +3042,11 @@ public final class Player implements
 
     @Nullable
     public Bitmap getThumbnail() {
-        return currentThumbnail == null
-                ? BitmapFactory.decodeResource(context.getResources(), R.drawable.dummy_thumbnail)
-                : currentThumbnail;
+        if (currentThumbnail == null) {
+            currentThumbnail = BitmapFactory.decodeResource(
+                    context.getResources(), R.drawable.dummy_thumbnail);
+        }
+        return currentThumbnail;
     }
     //endregion
 

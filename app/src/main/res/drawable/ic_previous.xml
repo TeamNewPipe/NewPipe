@@ -7,5 +7,5 @@
     <!-- Tint here is for preventing pixelization -->
     <path
         android:fillColor="#ffffff"
-        android:pathData="m19,5 l-10,7 10,7zM8,19v-14H5v14z" />
+        android:pathData="M6,6h2v12L6,18zM9.5,12l8.5,6L18,6z" />
 </vector>

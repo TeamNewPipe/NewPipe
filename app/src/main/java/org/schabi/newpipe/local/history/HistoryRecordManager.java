@@ -334,9 +334,9 @@ public class HistoryRecordManager {
                         .getState(entities.get(0).getUid()).blockingFirst();
                 if (states.isEmpty()) {
                     result.add(null);
-                    continue;
+                } else {
+                    result.add(states.get(0));
                 }
-                result.add(states.get(0));
             }
             return result;
         }).subscribeOn(Schedulers.io());
@@ -362,9 +362,9 @@ public class HistoryRecordManager {
                         .blockingFirst();
                 if (states.isEmpty()) {
                     result.add(null);
-                    continue;
+                } else {
+                    result.add(states.get(0));
                 }
-                result.add(states.get(0));
             }
             return result;
         }).subscribeOn(Schedulers.io());
