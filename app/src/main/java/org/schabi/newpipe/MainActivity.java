@@ -20,6 +20,7 @@
 
 package org.schabi.newpipe;
 
+import static org.schabi.newpipe.CheckForNewAppVersion.startNewVersionCheckService;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.content.BroadcastReceiver;
@@ -163,6 +164,9 @@ public class MainActivity extends AppCompatActivity {
             FocusOverlayView.setupFocusObserver(this);
         }
         openMiniPlayerUponPlayerStarted();
+
+        // Check for new version
+        startNewVersionCheckService();
     }
 
     private void setupDrawer() throws ExtractionException {
