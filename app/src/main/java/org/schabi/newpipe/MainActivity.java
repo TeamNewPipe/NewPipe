@@ -20,6 +20,8 @@
 
 package org.schabi.newpipe;
 
+import static org.schabi.newpipe.CheckForNewAppVersion.startNewVersionCheckService;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -163,6 +165,9 @@ public class MainActivity extends AppCompatActivity {
             FocusOverlayView.setupFocusObserver(this);
         }
         openMiniPlayerUponPlayerStarted();
+
+        // Check for new version
+        startNewVersionCheckService();
     }
 
     private void setupDrawer() throws Exception {
