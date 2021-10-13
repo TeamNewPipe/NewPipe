@@ -227,7 +227,7 @@
     <string name="create_playlist">Yeni Oynatma Listesi</string>
     <string name="rename_playlist">Yeniden adlandır</string>
     <string name="name">Ad</string>
-    <string name="append_playlist">Oynatma listesine ekle</string>
+    <string name="add_to_playlist">Oynatma listesine ekle</string>
     <string name="set_as_playlist_thumbnail">Oynatma listesi küçük resmi olarak ayarla</string>
     <string name="bookmark_playlist">Oynatma listesini yer imlerine ekle</string>
     <string name="unbookmark_playlist">Yer imini kaldır</string>

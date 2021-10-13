@@ -231,7 +231,7 @@
     <string name="create_playlist">Nieuwe afspeellijst</string>
     <string name="rename_playlist">Naam wijzigen</string>
     <string name="name">Naam</string>
-    <string name="append_playlist">Toevoegen aan afspeellijst</string>
+    <string name="add_to_playlist">Toevoegen aan afspeellijst</string>
     <string name="set_as_playlist_thumbnail">Instellen als miniatuur voor afspeellijst</string>
     <string name="bookmark_playlist">Afspeellijst toevoegen aan bladwijzers</string>
     <string name="unbookmark_playlist">Bladwijzer verwijderen</string>

@@ -230,7 +230,7 @@
     <string name="create_playlist">नई प्लेलिस्ट</string>
     <string name="rename_playlist">नाम बदलें</string>
     <string name="name">नाम</string>
-    <string name="append_playlist">प्लेलिस्ट में जोड़ें</string>
+    <string name="add_to_playlist">प्लेलिस्ट में जोड़ें</string>
     <string name="set_as_playlist_thumbnail">प्लेलिस्ट थंबनेल के रूप में सेट करें</string>
     <string name="bookmark_playlist">प्लेलिस्ट बुकमार्क करें</string>
     <string name="unbookmark_playlist">बुकमार्क हटायें</string>

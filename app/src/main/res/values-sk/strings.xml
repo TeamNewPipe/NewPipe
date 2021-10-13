@@ -234,7 +234,7 @@
     <string name="create_playlist">Nový zoznam skladieb</string>
     <string name="rename_playlist">Premenovať</string>
     <string name="name">Názov</string>
-    <string name="append_playlist">Pridať do zoznamu skladieb</string>
+    <string name="add_to_playlist">Pridať do zoznamu skladieb</string>
     <string name="set_as_playlist_thumbnail">Nastaviť ako miniatúru zoznamu skladieb</string>
     <string name="bookmark_playlist">Záložka zoznamu skladieb</string>
     <string name="unbookmark_playlist">Odstrániť Záložku</string>

@@ -430,7 +430,7 @@
                             android:layout_weight="1"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
-                            android:contentDescription="@string/append_playlist"
+                            android:contentDescription="@string/add_to_playlist"
                             android:focusable="true"
                             android:gravity="center"
                             android:paddingVertical="@dimen/detail_control_padding"

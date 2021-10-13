@@ -86,7 +86,7 @@
     <string name="create_playlist">Crea una llista de reproducció</string>
     <string name="rename_playlist">Canvia el nom</string>
     <string name="name">Nom</string>
-    <string name="append_playlist">Afegeix a una llista de reproducció</string>
+    <string name="add_to_playlist">Afegeix a una llista de reproducció</string>
     <string name="import_title">Importa</string>
     <string name="import_from">Importa des de</string>
     <string name="export_to">Exporta a</string>

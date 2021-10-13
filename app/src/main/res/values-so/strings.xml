@@ -115,7 +115,7 @@
     <string name="bookmark_playlist">Calaamadso Xulka</string>
     <string name="set_as_playlist_thumbnail">Ku fadhiisi galka xulka</string>
     <string name="unmute">Ka hadalsii</string>
-    <string name="append_playlist">Ku dar xul</string>
+    <string name="add_to_playlist">Ku dar xul</string>
     <string name="rename_playlist">Magaca ka baddal</string>
     <string name="create_playlist">Xul Cusub</string>
     <string name="preferred_player_fetcher_notification_message">Soo kicinaya shayga la codsaday</string>

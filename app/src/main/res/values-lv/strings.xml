@@ -5,7 +5,7 @@
     <string name="playlist_creation_success">Atskaņošanas saraksts radīts</string>
     <string name="delete_playlist_prompt">Dzēst atskaņošanas sarakstu\?</string>
     <string name="set_as_playlist_thumbnail">Iestatīt, kā atskaņošanas saraksta attēlu</string>
-    <string name="append_playlist">Pievienot atskaņošanas sarakstam</string>
+    <string name="add_to_playlist">Pievienot atskaņošanas sarakstam</string>
     <string name="name">Vārds</string>
     <string name="rename_playlist">Pārsaukt</string>
     <string name="create_playlist">Jauns Atskaņošanas Saraksts</string>

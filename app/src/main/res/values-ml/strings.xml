@@ -54,7 +54,7 @@
     <string name="set_as_playlist_thumbnail">പ്ലേലിസ്റ്റ് ലഘുചിത്രമായി സജ്ജമാക്കുക</string>
     <string name="unmute">അൺമ്യൂട്ട്</string>
     <string name="mute">മ്യൂട്ട്</string>
-    <string name="append_playlist">പ്ലേലിസ്റ്റിലേക്ക് ചേർക്കുക</string>
+    <string name="add_to_playlist">പ്ലേലിസ്റ്റിലേക്ക് ചേർക്കുക</string>
     <string name="name">പേര്</string>
     <string name="rename_playlist">പേര് മാറ്റുക</string>
     <string name="create_playlist">പുതിയ പ്ലേലിസ്റ്റ്</string>

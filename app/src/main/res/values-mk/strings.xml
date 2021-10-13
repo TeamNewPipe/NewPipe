@@ -248,7 +248,7 @@
     <string name="create_playlist">Создај нова плејлиста</string>
     <string name="rename_playlist">Прекрсти плејлиста</string>
     <string name="name">Име</string>
-    <string name="append_playlist">Додај во плејлиста</string>
+    <string name="add_to_playlist">Додај во плејлиста</string>
     <string name="set_as_playlist_thumbnail">Постави како икона на плејлистата</string>
     <string name="bookmark_playlist">Обележи ја плејлистата</string>
     <string name="unbookmark_playlist">Избриши ја белешката</string>
