@@ -3416,29 +3416,18 @@ public final class Player implements
             menu.add(POPUP_MENU_ID_QUALITY, 0, Menu.NONE,
                     context.getString(R.string.auto_quality));
 
-            for (int i = 0; i < videoTrackGroupArray.get(0).length; i++) {
-                final Format format = videoTrackGroupArray.get(0).getFormat(i);
-                final StringBuilder resolutionStringBuilder = new StringBuilder();
-                final int formatHeight = format.height;
+            final int videoTrackGroupArrayLength = videoTrackGroupArray.get(0).length;
 
-                if (formatHeight == Format.NO_VALUE) {
-                    resolutionStringBuilder.append(format.bitrate);
-                    resolutionStringBuilder.append("bps");
-                } else {
-                    resolutionStringBuilder.append(formatHeight);
-                    resolutionStringBuilder.append("p");
-                    final int formatFrameRate = (int) format.frameRate;
-                    if (formatFrameRate > 30) {
-                        resolutionStringBuilder.append(formatFrameRate);
-                    }
-                }
+            for (int i = 0; i < videoTrackGroupArrayLength; i++) {
+                final Format format = videoTrackGroupArray.get(0).getFormat(
+                        videoTrackGroupArrayLength - 1 - i);
 
                 menu.add(POPUP_MENU_ID_QUALITY, i + 1, Menu.NONE,
-                        resolutionStringBuilder.toString());
+                        getResolutionStringFromFormat(format));
             }
 
             final TrackSelectionListener trackSelectionListener = new TrackSelectionListener(
-                    trackSelector, context.getString(R.string.auto_quality), videoTrackGroupIndex);
+                    context, trackSelector, videoTrackGroupIndex, binding.qualityTextView);
             qualityPopupMenu.setOnMenuItemClickListener(trackSelectionListener);
             qualityPopupMenu.setOnDismissListener(this);
         }
@@ -3454,22 +3443,11 @@ public final class Player implements
             public void onDownstreamFormatChanged(@NonNull final EventTime eventTime,
                                                   @NonNull final MediaLoadData mediaLoadData) {
                 final Format currentPlayingFormat = mediaLoadData.trackFormat;
+                final String qualityTextViewText = binding.qualityTextView.getText().toString();
                 if (currentPlayingFormat != null
-                        && getVideoMediaMimeType(currentPlayingFormat.codecs) != null) {
-                    final StringBuilder resolutionStringBuilder = new StringBuilder();
-                    final int formatHeight = currentPlayingFormat.height;
-
-                    if (formatHeight == Format.NO_VALUE) {
-                        resolutionStringBuilder.append(currentPlayingFormat.bitrate);
-                        resolutionStringBuilder.append("bps");
-                    } else {
-                        resolutionStringBuilder.append(formatHeight);
-                        resolutionStringBuilder.append("p");
-                        final int formatFrameRate = (int) currentPlayingFormat.frameRate;
-                        if (formatFrameRate > 30) {
-                            resolutionStringBuilder.append(formatFrameRate);
-                        }
-                    }
+                        && getVideoMediaMimeType(currentPlayingFormat.codecs) != null
+                        && (qualityTextViewText.isEmpty() || qualityTextViewText.contains(
+                                context.getString(R.string.auto_quality)))) {
 
                     final MappingTrackSelector.MappedTrackInfo currentMappedTrackInfo =
                             trackSelector.getCurrentMappedTrackInfo();
@@ -3482,16 +3460,37 @@ public final class Player implements
 
                     if (trackSelector.getParameters().hasSelectionOverride(videoTrackGroupIndex,
                             videoTrackGroupArray)) {
-                        binding.qualityTextView.setText(resolutionStringBuilder.toString());
+                        binding.qualityTextView.setText(getResolutionStringFromFormat(
+                                currentPlayingFormat));
                     } else {
                         binding.qualityTextView.setText(context.getString(
                                 R.string.auto_quality_selected,
                                 context.getString(R.string.auto_quality),
-                                resolutionStringBuilder.toString()));
+                                getResolutionStringFromFormat(currentPlayingFormat)));
                     }
                 }
             }
         });
+    }
+
+    @NonNull
+    public static String getResolutionStringFromFormat(@NonNull final Format format) {
+        final StringBuilder resolutionStringBuilder = new StringBuilder();
+        final int formatHeight = format.height;
+
+        if (formatHeight == Format.NO_VALUE) {
+            resolutionStringBuilder.append(format.bitrate);
+            resolutionStringBuilder.append("bps");
+        } else {
+            resolutionStringBuilder.append(formatHeight);
+            resolutionStringBuilder.append("p");
+            final int formatFrameRate = (int) format.frameRate;
+            if (formatFrameRate > 30) {
+                resolutionStringBuilder.append(formatFrameRate);
+            }
+        }
+
+        return resolutionStringBuilder.toString();
     }
 
     private int getVideoRendererIndex() {
