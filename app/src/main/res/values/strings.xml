@@ -448,7 +448,8 @@
     <string name="create_playlist">New Playlist</string>
     <string name="rename_playlist">Rename</string>
     <string name="name">Name</string>
-    <string name="append_playlist">Add to playlist</string>
+    <string name="add_to_playlist">Add to playlist</string>
+    <string name="processing_may_take_a_moment">Processing... May take a moment</string>
     <string name="mute">Mute</string>
     <string name="unmute">Unmute</string>
     <string name="set_as_playlist_thumbnail">Set as playlist thumbnail</string>

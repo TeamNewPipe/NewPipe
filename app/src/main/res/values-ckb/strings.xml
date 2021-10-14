@@ -403,7 +403,7 @@
     <string name="msg_name">ناوفایل</string>
     <string name="set_as_playlist_thumbnail">دانان لەسەر وێنۆچکەی خشتەلێدان</string>
     <string name="title_activity_about">دەربارەی نیوپایپ</string>
-    <string name="append_playlist">زیادکردن بۆ خشتەلێدان</string>
+    <string name="add_to_playlist">زیادکردن بۆ خشتەلێدان</string>
     <string name="unknown_content">(نەزانراو)</string>
     <string name="app_language_title">زمانی به‌رنامه‌</string>
     <string name="kiosk_page_summary">پەڕەی کیۆسک</string>

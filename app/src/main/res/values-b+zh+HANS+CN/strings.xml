@@ -259,7 +259,7 @@
     <string name="create_playlist">新建播放列表</string>
     <string name="rename_playlist">重命名</string>
     <string name="name">名称</string>
-    <string name="append_playlist">添加至播放列表</string>
+    <string name="add_to_playlist">添加至播放列表</string>
     <string name="set_as_playlist_thumbnail">设为播放列表封面</string>
     <string name="bookmark_playlist">收藏播放列表</string>
     <string name="unbookmark_playlist">删除收藏</string>

@@ -247,7 +247,7 @@
     <string name="resize_fill">Napolni</string>
     <string name="playlist_creation_success">Seznam predvajanja je bil ustvarjen</string>
     <string name="delete_playlist_prompt">Izbrišem seznam predvajanja\?</string>
-    <string name="append_playlist">Dodaj v seznam predvajanja</string>
+    <string name="add_to_playlist">Dodaj v seznam predvajanja</string>
     <string name="rename_playlist">Preimenuj</string>
     <string name="create_playlist">Nov seznam predvajanja</string>
     <string name="preferred_player_fetcher_notification_message">Nalaganje zahtevano vsebino</string>

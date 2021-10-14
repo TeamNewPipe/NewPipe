@@ -7,29 +7,22 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog.Builder;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.DialogEditTextBinding;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 public final class PlaylistCreationDialog extends PlaylistDialog {
-    public static PlaylistCreationDialog newInstance(final List<StreamEntity> streams) {
-        final PlaylistCreationDialog dialog = new PlaylistCreationDialog();
-        dialog.setInfo(streams);
-        return dialog;
-    }
-
-    public static PlaylistCreationDialog newInstance(final PlaylistAppendDialog appendDialog) {
-        final PlaylistCreationDialog dialog = new PlaylistCreationDialog();
-        dialog.setInfo(appendDialog.getStreams());
-        return dialog;
+    public PlaylistCreationDialog(final List<StreamEntity> streamEntities) {
+        super(streamEntities);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -39,16 +32,18 @@ public final class PlaylistCreationDialog extends PlaylistDialog {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
-        if (getStreams() == null) {
+        if (getStreamEntities() == null) {
             return super.onCreateDialog(savedInstanceState);
         }
 
         final DialogEditTextBinding dialogBinding
                 = DialogEditTextBinding.inflate(getLayoutInflater());
+        dialogBinding.getRoot().getContext().setTheme(ThemeHelper.getDialogTheme(requireContext()));
         dialogBinding.dialogEditText.setHint(R.string.name);
         dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
 
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireContext())
+        final Builder dialogBuilder = new Builder(requireContext(),
+                ThemeHelper.getDialogTheme(requireContext()))
                 .setTitle(R.string.create_playlist)
                 .setView(dialogBinding.getRoot())
                 .setCancelable(true)
@@ -61,11 +56,10 @@ public final class PlaylistCreationDialog extends PlaylistDialog {
                             R.string.playlist_creation_success,
                             Toast.LENGTH_SHORT);
 
-                    playlistManager.createPlaylist(name, getStreams())
+                    playlistManager.createPlaylist(name, getStreamEntities())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(longs -> successToast.show());
                 });
-
         return dialogBuilder.create();
     }
 }

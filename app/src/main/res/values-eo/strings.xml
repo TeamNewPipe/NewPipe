@@ -153,7 +153,7 @@
     <string name="create_playlist">Nova ludlisto</string>
     <string name="rename_playlist">Alinomi</string>
     <string name="name">Nomo</string>
-    <string name="append_playlist">Aldoni al la ludlisto</string>
+    <string name="add_to_playlist">Aldoni al la ludlisto</string>
     <string name="set_as_playlist_thumbnail">Meti kiel bildeto de ludlisto</string>
     <string name="bookmark_playlist">Legosigno Ludlisto</string>
     <string name="unbookmark_playlist">Forviŝi Legosignon</string>

@@ -504,7 +504,7 @@
     <string name="use_inexact_seek_title">Utilizar pesquisa rápida</string>
     <string name="override_current_data">Está prestes a substituir a configuração atual.</string>
     <string name="switch_to_popup">Mudar para popup</string>
-    <string name="append_playlist">Adicionar à lista de reprodução</string>
+    <string name="add_to_playlist">Adicionar à lista de reprodução</string>
     <string name="popup_playing_toast">Reproduzir no modo poppup</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Acha que a fonte demora muito tempo a carregar\? Se sim, tente ativar o carregamento rápido (pode alterar a opção nas definições ou no botão abaixo).
 \n

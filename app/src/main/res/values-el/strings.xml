@@ -270,7 +270,7 @@
     <string name="create_playlist">Νέα λίστα αναπαραγωγής</string>
     <string name="rename_playlist">Μετονομασία</string>
     <string name="name">Όνομα</string>
-    <string name="append_playlist">Προσθήκη σε λίστα αναπαραγωγής</string>
+    <string name="add_to_playlist">Προσθήκη σε λίστα αναπαραγωγής</string>
     <string name="set_as_playlist_thumbnail">Ορισμός ως μικρογραφία λίστας αναπαραγωγής</string>
     <string name="bookmark_playlist">Προσθήκη σελιδοδείκτη στη λίστα</string>
     <string name="unbookmark_playlist">Διαγραφή σελιδοδείκτη</string>

@@ -23,11 +23,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.PlaybackParameters;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.ActivityPlayerQueueControlBinding;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
-import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
-import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
+import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -43,6 +43,7 @@ import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
@@ -452,12 +453,12 @@ public final class PlayQueueActivity extends AppCompatActivity
         }
     }
 
-    private void openPlaylistAppendDialog(final List<PlayQueueItem> playlist) {
-        final PlaylistAppendDialog d = PlaylistAppendDialog.fromPlayQueueItems(playlist);
-
-        PlaylistAppendDialog.onPlaylistFound(getApplicationContext(),
-            () -> d.show(getSupportFragmentManager(), TAG),
-            () -> PlaylistCreationDialog.newInstance(d).show(getSupportFragmentManager(), TAG));
+    private void openPlaylistAppendDialog(final List<PlayQueueItem> playQueueItems) {
+        PlaylistDialog.createCorrespondingDialog(
+                getApplicationContext(),
+                playQueueItems.stream().map(StreamEntity::new).collect(Collectors.toList()),
+                dialog -> dialog.show(getSupportFragmentManager(), TAG)
+        );
     }
 
     ////////////////////////////////////////////////////////////////////////////

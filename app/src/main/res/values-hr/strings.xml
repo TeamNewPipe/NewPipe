@@ -202,7 +202,7 @@
     <string name="create_playlist">Nova playlista</string>
     <string name="rename_playlist">Preimenuj</string>
     <string name="name">Ime</string>
-    <string name="append_playlist">Dodaj u playlistu</string>
+    <string name="add_to_playlist">Dodaj u playlistu</string>
     <string name="set_as_playlist_thumbnail">Postavi kao minijaturu playliste</string>
     <string name="bookmark_playlist">Zabilježi playlistu</string>
     <string name="unbookmark_playlist">Ukloni zabilješku</string>

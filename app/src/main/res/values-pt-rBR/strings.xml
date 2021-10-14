@@ -229,7 +229,7 @@
     <string name="create_playlist">Nova playlist</string>
     <string name="rename_playlist">Renomear</string>
     <string name="name">Nome</string>
-    <string name="append_playlist">Adicionar à Playlist</string>
+    <string name="add_to_playlist">Adicionar à Playlist</string>
     <string name="set_as_playlist_thumbnail">Definir Como Capa da Playlist</string>
     <string name="bookmark_playlist">Favoritar playlist</string>
     <string name="unbookmark_playlist">Desfavoritar</string>

@@ -242,7 +242,7 @@
     <string name="preferred_player_fetcher_notification_message">A carregar o conteúdo solicitado</string>
     <string name="create_playlist">Nova lista de reprodução</string>
     <string name="rename_playlist">Mudar nome</string>
-    <string name="append_playlist">Adicionar à lista de reprodução</string>
+    <string name="add_to_playlist">Adicionar à lista de reprodução</string>
     <string name="bookmark_playlist">Guardar lista de reprodução como favorita</string>
     <string name="unbookmark_playlist">Remover marcador</string>
     <string name="delete_playlist_prompt">Eliminar esta lista de reprodução\?</string>

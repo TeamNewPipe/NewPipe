@@ -43,8 +43,6 @@ import io.reactivex.rxjava3.exceptions.UndeliverableException;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 
-import static org.schabi.newpipe.CheckForNewAppVersion.startNewVersionCheckService;
-
 /*
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>
  * App.java is part of NewPipe.
@@ -113,8 +111,6 @@ public class App extends MultiDexApplication {
                 && prefs.getBoolean(getString(R.string.show_image_indicators_key), false));
 
         configureRxJavaErrorHandler();
-        // Check for new version
-        startNewVersionCheckService();
     }
 
     @Override

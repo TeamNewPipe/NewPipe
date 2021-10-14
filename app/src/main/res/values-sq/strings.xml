@@ -183,7 +183,7 @@
     <string name="set_as_playlist_thumbnail">Vendose si pamjen statike të listës së luajtjes</string>
     <string name="unmute">Me zë</string>
     <string name="mute">Pa zë</string>
-    <string name="append_playlist">Shto në listën e luajtjes</string>
+    <string name="add_to_playlist">Shto në listën e luajtjes</string>
     <string name="name">Emri</string>
     <string name="rename_playlist">Riemërto</string>
     <string name="create_playlist">Listë Luajtje e Re</string>
