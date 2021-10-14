@@ -491,6 +491,11 @@ public final class NavigationHelper {
         context.startActivity(intent);
     }
 
+    /////////////////////////////////////////////////////
+    // PlayQueueActivity doesn't use fragments so the  //
+    // openChannelFragment method can't be used        //
+    // since that uses FragmentManager transactions.   //
+    /////////////////////////////////////////////////////
     public static void openChannelFragmentUsingIntent(final Context context,
                                                       final int serviceId,
                                                       final String url,
