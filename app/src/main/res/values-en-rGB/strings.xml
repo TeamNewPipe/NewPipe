@@ -80,4 +80,5 @@
     <string name="upload_date_text">Published on %1$s</string>
     <string name="error_report_button_text">Report this error via e-mail</string>
     <string name="night_theme_summary">Select your favorite night theme – %s</string>
+    <string name="show_replies">Show Replies</string>
 </resources>

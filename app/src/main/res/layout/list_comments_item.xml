@@ -93,8 +93,8 @@
         android:layout_toRightOf="@+id/detail_thumbs_up_count_view"
         android:contentDescription="@string/detail_heart_img_view_description"
         android:visibility="gone"
-        app:srcCompat="@drawable/ic_heart"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        app:srcCompat="@drawable/ic_heart" />
 
 
     <!--we can uncomment below code if we need dislike button and count in future-->
@@ -148,7 +148,7 @@
         android:layout_marginEnd="0sp"
         android:layout_marginBottom="0sp"
         android:layout_toEndOf="@+id/itemPublishedTime"
-        android:text="Show Replies"
+        android:text="@string/show_replies"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textSize="@dimen/video_item_search_upload_date_text_size" />
 
