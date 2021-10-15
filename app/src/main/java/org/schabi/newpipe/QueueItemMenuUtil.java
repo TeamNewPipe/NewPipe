@@ -56,6 +56,9 @@ public final class QueueItemMenuUtil {
                                     .show(fragmentManager, "QueueItemMenuUtil@append_playlist"));
                     return true;
                 case R.id.menu_item_channel_details:
+                    // An intent must be used here.
+                    // Opening with FragmentManager transactions is not working,
+                    // as PlayQueueActivity doesn't use fragments.
                     NavigationHelper.openChannelFragmentUsingIntent(context, item.getServiceId(),
                             item.getUploaderUrl(), item.getUploader());
                     return true;

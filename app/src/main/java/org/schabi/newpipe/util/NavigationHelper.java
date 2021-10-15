@@ -491,11 +491,15 @@ public final class NavigationHelper {
         context.startActivity(intent);
     }
 
-    /////////////////////////////////////////////////////
-    // PlayQueueActivity doesn't use fragments so the  //
-    // openChannelFragment method can't be used        //
-    // since that uses FragmentManager transactions.   //
-    /////////////////////////////////////////////////////
+    /**
+     * Opens {@link ChannelFragment}.
+     * Use this instead of {@link #openChannelFragment(FragmentManager, int, String, String)}
+     * when no fragments are used / no FragmentManager is available.
+     * @param context
+     * @param serviceId
+     * @param url
+     * @param title
+     */
     public static void openChannelFragmentUsingIntent(final Context context,
                                                       final int serviceId,
                                                       final String url,
