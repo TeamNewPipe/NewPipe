@@ -92,7 +92,7 @@ class NotificationsChannelsConfigFragment : Fragment(), ModeToggleListener {
         val subscriptions = adapter?.getCurrentList() ?: return
         val mode = subscriptions.firstOrNull()?.notificationMode ?: return
         val newMode = when (mode) {
-            NotificationMode.DISABLED -> NotificationMode.ENABLED_DEFAULT
+            NotificationMode.DISABLED -> NotificationMode.ENABLED
             else -> NotificationMode.DISABLED
         }
         val subscriptionManager = SubscriptionManager(requireContext())

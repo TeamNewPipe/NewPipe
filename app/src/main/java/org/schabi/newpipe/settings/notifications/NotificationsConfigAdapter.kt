@@ -85,7 +85,7 @@ class NotificationsConfigAdapter(
             val mode = if (checkedTextView.isChecked) {
                 NotificationMode.DISABLED
             } else {
-                NotificationMode.ENABLED_DEFAULT
+                NotificationMode.ENABLED
             }
             listener.onModeToggle(adapterPosition, mode)
         }

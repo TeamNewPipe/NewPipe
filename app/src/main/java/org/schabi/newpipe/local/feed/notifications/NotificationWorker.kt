@@ -36,7 +36,7 @@ class NotificationWorker(
             .map { feed ->
                 feed.mapNotNull { x ->
                     x.value?.takeIf {
-                        it.notificationMode == NotificationMode.ENABLED_DEFAULT &&
+                        it.notificationMode == NotificationMode.ENABLED &&
                             it.newStreamsCount > 0
                     }
                 }

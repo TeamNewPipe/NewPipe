@@ -414,7 +414,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     }
 
     private void setNotify(final boolean isEnabled) {
-        final int mode = isEnabled ? NotificationMode.ENABLED_DEFAULT : NotificationMode.DISABLED;
+        final int mode = isEnabled ? NotificationMode.ENABLED : NotificationMode.DISABLED;
         disposables.add(
                 subscriptionManager.updateNotificationMode(currentInfo.getServiceId(),
                         currentInfo.getUrl(), mode)
