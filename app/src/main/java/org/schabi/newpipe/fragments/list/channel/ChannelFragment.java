@@ -400,17 +400,16 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         if (menuNotifyButton == null) {
             return;
         }
-        if (subscription == null) {
-            menuNotifyButton.setVisible(false);
-        } else {
+        if (subscription != null) {
             menuNotifyButton.setEnabled(
                     NotificationHelper.isNewStreamsNotificationsEnabled(requireContext())
             );
             menuNotifyButton.setChecked(
-                    subscription.getNotificationMode() != NotificationMode.DISABLED
+                    subscription.getNotificationMode() == NotificationMode.ENABLED
             );
-            menuNotifyButton.setVisible(true);
         }
+        
+        menuNotifyButton.setVisible(subscription != null);
     }
 
     private void setNotify(final boolean isEnabled) {
