@@ -44,7 +44,6 @@ class AppDatabaseTest {
             insert(
                 "streams", SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
-                    // put("uid", null)
                     put("service_id", DEFAULT_SERVICE_ID)
                     put("url", DEFAULT_URL)
                     put("title", DEFAULT_TITLE)
@@ -57,27 +56,14 @@ class AppDatabaseTest {
             insert(
                 "streams", SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
-                    // put("uid", null)
                     put("service_id", DEFAULT_SECOND_SERVICE_ID)
                     put("url", DEFAULT_SECOND_URL)
-                    // put("title", null)
-                    // put("stream_type", null)
-                    // put("duration", null)
-                    // put("uploader", null)
-                    // put("thumbnail_url", null)
                 }
             )
             insert(
                 "streams", SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
-                    // put("uid", null)
                     put("service_id", DEFAULT_SERVICE_ID)
-                    // put("url", null)
-                    // put("title", null)
-                    // put("stream_type", null)
-                    // put("duration", null)
-                    // put("uploader", null)
-                    // put("thumbnail_url", null)
                 }
             )
             close()
