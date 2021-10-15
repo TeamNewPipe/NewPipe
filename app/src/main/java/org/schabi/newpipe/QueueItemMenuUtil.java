@@ -1,5 +1,7 @@
 package org.schabi.newpipe;
 
+import static org.schabi.newpipe.util.external_communication.ShareUtils.shareText;
+
 import android.content.Context;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -15,9 +17,10 @@ import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.Collections;
 
-import static org.schabi.newpipe.util.external_communication.ShareUtils.shareText;
-
 public final class QueueItemMenuUtil {
+    private QueueItemMenuUtil() {
+    }
+
     public static void openPopupMenu(final PlayQueue playQueue,
                                      final PlayQueueItem item,
                                      final View view,
@@ -72,6 +75,4 @@ public final class QueueItemMenuUtil {
 
         popupMenu.show();
     }
-
-    private QueueItemMenuUtil() { }
 }
