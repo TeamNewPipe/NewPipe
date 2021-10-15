@@ -495,6 +495,27 @@ public final class NavigationHelper {
         context.startActivity(intent);
     }
 
+    /**
+     * Opens {@link ChannelFragment}.
+     * Use this instead of {@link #openChannelFragment(FragmentManager, int, String, String)}
+     * when no fragments are used / no FragmentManager is available.
+     * @param context
+     * @param serviceId
+     * @param url
+     * @param title
+     */
+    public static void openChannelFragmentUsingIntent(final Context context,
+                                                      final int serviceId,
+                                                      final String url,
+                                                      @NonNull final String title) {
+        final Intent intent = getOpenIntent(context, url, serviceId,
+                StreamingService.LinkType.CHANNEL);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(Constants.KEY_TITLE, title);
+
+        context.startActivity(intent);
+    }
+
     public static void openMainActivity(final Context context) {
         final Intent mIntent = new Intent(context, MainActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

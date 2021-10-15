@@ -18,6 +18,9 @@ import org.schabi.newpipe.util.NavigationHelper;
 import java.util.Collections;
 
 public final class QueueItemMenuUtil {
+    private QueueItemMenuUtil() {
+    }
+
     public static void openPopupMenu(final PlayQueue playQueue,
                                      final PlayQueueItem item,
                                      final View view,
@@ -57,6 +60,13 @@ public final class QueueItemMenuUtil {
                     );
 
                     return true;
+                case R.id.menu_item_channel_details:
+                    // An intent must be used here.
+                    // Opening with FragmentManager transactions is not working,
+                    // as PlayQueueActivity doesn't use fragments.
+                    NavigationHelper.openChannelFragmentUsingIntent(context, item.getServiceId(),
+                            item.getUploaderUrl(), item.getUploader());
+                    return true;
                 case R.id.menu_item_share:
                     shareText(context, item.getTitle(), item.getUrl(),
                             item.getThumbnailUrl());
@@ -67,6 +77,4 @@ public final class QueueItemMenuUtil {
 
         popupMenu.show();
     }
-
-    private QueueItemMenuUtil() { }
 }
