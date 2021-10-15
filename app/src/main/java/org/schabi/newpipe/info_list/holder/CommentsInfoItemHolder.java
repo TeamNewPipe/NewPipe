@@ -70,7 +70,9 @@ public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
 
         repliesView.setMinimumHeight(100);
         repliesView.setHasFixedSize(true);
+        comment.setRepliesOpen(true);
         buttonView.setVisibility(View.GONE);
+        repliesView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -88,8 +90,12 @@ public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
         itemHeartView.setVisibility(item.isHeartedByUploader() ? View.VISIBLE : View.GONE);
         itemPinnedView.setVisibility(item.isPinned() ? View.VISIBLE : View.GONE);
         if (item.getReplies() == null) {
+            repliesView.setVisibility(View.GONE);
             showReplies.setVisibility(View.GONE);
+        } else if (item.getRepliesOpen()) {
+            addReplies(showReplies, item);
         } else {
+            repliesView.setVisibility(View.GONE);
             showReplies.setVisibility(View.VISIBLE);
             showReplies.setOnClickListener(v -> addReplies(v, item));
         }
