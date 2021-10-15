@@ -259,7 +259,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                 .map(List::isEmpty)
                 .distinctUntilChanged()
                 .skip(1) // channel has just been opened
-                .filter(x -> NotificationHelper.isNewStreamsNotificationsEnabled(requireContext()))
+                .filter(x -> NotificationHelper.areNewStreamsNotificationsEnabled(requireContext()))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(isEmpty -> {
                     if (!isEmpty) {
@@ -402,13 +402,13 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         }
         if (subscription != null) {
             menuNotifyButton.setEnabled(
-                    NotificationHelper.isNewStreamsNotificationsEnabled(requireContext())
+                    NotificationHelper.areNewStreamsNotificationsEnabled(requireContext())
             );
             menuNotifyButton.setChecked(
                     subscription.getNotificationMode() == NotificationMode.ENABLED
             );
         }
-        
+
         menuNotifyButton.setVisible(subscription != null);
     }
 
@@ -423,6 +423,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         );
     }
 
+    /**
+     * Show a snackbar with the option to enable notifications on new streams for this channel.
+     */
     private void showNotifySnackbar() {
         Snackbar.make(itemsList, R.string.you_successfully_subscribed, Snackbar.LENGTH_LONG)
                 .setAction(R.string.get_notified, v -> setNotify(true))

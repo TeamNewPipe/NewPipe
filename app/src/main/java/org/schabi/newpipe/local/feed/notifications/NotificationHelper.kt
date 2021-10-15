@@ -21,13 +21,20 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
 import org.schabi.newpipe.util.NavigationHelper
 
+/**
+ * Helper for everything related to show notifications about new streams to the user.
+ */
 class NotificationHelper(val context: Context) {
 
     private val manager = context.getSystemService(
         Context.NOTIFICATION_SERVICE
     ) as NotificationManager
 
-    fun notify(data: FeedUpdateInfo): Completable {
+    /**
+     * Show a notification about new streams from a single channel.
+     * Opening the notification will open the corresponding channel page.
+     */
+    fun displayNewStreamsNotification(data: FeedUpdateInfo): Completable {
         val newStreams: List<StreamInfoItem> = data.newStreams
         val summary = context.resources.getQuantityString(
             R.plurals.new_streams, newStreams.size, newStreams.size
@@ -69,11 +76,14 @@ class NotificationHelper(val context: Context) {
         style.setSummaryText(summary)
         style.setBigContentTitle(data.name)
         builder.setStyle(style)
+        // open the channel page when clicking on the notification
         builder.setContentIntent(
             PendingIntent.getActivity(
                 context,
                 data.pseudoId,
-                NavigationHelper.getChannelIntent(context, data.listInfo.serviceId, data.listInfo.url)
+                NavigationHelper.getChannelIntent(
+                    context, data.listInfo.serviceId, data.listInfo.url
+                )
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
                 0
             )
@@ -110,7 +120,7 @@ class NotificationHelper(val context: Context) {
         }
 
         @JvmStatic
-        fun isNewStreamsNotificationsEnabled(context: Context): Boolean {
+        fun areNewStreamsNotificationsEnabled(context: Context): Boolean {
             return (
                 PreferenceManager.getDefaultSharedPreferences(context)
                     .getBoolean(context.getString(R.string.enable_streams_notifications), false) &&

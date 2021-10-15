@@ -5,6 +5,10 @@ import androidx.preference.PreferenceManager
 import org.schabi.newpipe.R
 import java.util.concurrent.TimeUnit
 
+/**
+ * Information for the Scheduler which checks for new streams.
+ * See [NotificationWorker]
+ */
 data class ScheduleOptions(
     val interval: Long,
     val isRequireNonMeteredNetwork: Boolean

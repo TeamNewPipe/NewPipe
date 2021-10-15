@@ -21,6 +21,10 @@ import org.schabi.newpipe.local.feed.service.FeedLoadManager
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import java.util.concurrent.TimeUnit
 
+/*
+ * Worker which checks for new streams of subscribed channels
+ * in intervals which can be set by the user in the settings.
+ */
 class NotificationWorker(
     appContext: Context,
     workerParams: WorkerParameters,
@@ -43,7 +47,7 @@ class NotificationWorker(
             }
             .doOnSubscribe { setForegroundAsync(createForegroundInfo()) }
             .flatMapObservable { Observable.fromIterable(it) }
-            .flatMapCompletable { x -> notificationHelper.notify(x) }
+            .flatMapCompletable { x -> notificationHelper.displayNewStreamsNotification(x) }
             .toSingleDefault(Result.success())
             .onErrorReturnItem(Result.failure())
     } else Single.just(Result.success())
