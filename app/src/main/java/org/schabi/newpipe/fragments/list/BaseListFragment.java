@@ -383,7 +383,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         }
 
         StreamDialogEntry.setEnabledEntries(entries);
-
+        StreamDialogEntry.start_here_on_background.setRequireNetwork(true);
+        StreamDialogEntry.start_here_on_popup.setRequireNetwork(true);
         new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context),
                 (dialog, which) -> StreamDialogEntry.clickOn(which, this, item)).show();
     }

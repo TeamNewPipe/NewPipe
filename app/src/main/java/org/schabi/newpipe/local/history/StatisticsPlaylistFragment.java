@@ -375,7 +375,8 @@ public class StatisticsPlaylistFragment
                         .playOnBackgroundPlayer(context, getPlayQueueStartingAt(item), true));
         StreamDialogEntry.delete.setCustomAction((fragment, infoItemDuplicate) ->
                 deleteEntry(Math.max(itemListAdapter.getItemsList().indexOf(item), 0)));
-
+        StreamDialogEntry.start_here_on_popup.setRequireNetwork(true);
+        StreamDialogEntry.start_here_on_background.setRequireNetwork(true);
         new InfoItemDialog(activity, infoItem, StreamDialogEntry.getCommands(context),
                 (dialog, which) -> StreamDialogEntry.clickOn(which, this, infoItem)).show();
     }

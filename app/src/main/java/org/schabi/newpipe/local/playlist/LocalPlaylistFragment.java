@@ -794,6 +794,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                         changeThumbnailUrl(item.getStreamEntity().getThumbnailUrl()));
         StreamDialogEntry.delete.setCustomAction((fragment, infoItemDuplicate) ->
                 deleteItem(item));
+        StreamDialogEntry.start_here_on_popup.setRequireNetwork(true);
+        StreamDialogEntry.start_here_on_background.setRequireNetwork(true);
 
         new InfoItemDialog(activity, infoItem, StreamDialogEntry.getCommands(context),
                 (dialog, which) -> StreamDialogEntry.clickOn(which, this, infoItem)).show();

@@ -369,6 +369,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         entries.add(StreamDialogEntry.show_channel_details)
 
         StreamDialogEntry.setEnabledEntries(entries)
+        StreamDialogEntry.start_here_on_popup.setRequireNetwork(true)
+        StreamDialogEntry.start_here_on_background.setRequireNetwork(true)
         InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context)) { _, which ->
             StreamDialogEntry.clickOn(which, this, item)
         }.show()

@@ -1,10 +1,17 @@
 package org.schabi.newpipe.util;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
+
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
@@ -22,8 +29,6 @@ import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 public enum StreamDialogEntry {
     //////////////////////////////////////
@@ -68,13 +73,15 @@ public enum StreamDialogEntry {
         NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), new SinglePlayQueue(item));
     }),
 
-    start_here_on_background(R.string.start_here_on_background, (fragment, item) ->
-            NavigationHelper.playOnBackgroundPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), true)),
+    start_here_on_background(R.string.start_here_on_background, (fragment, item) -> {
+        NavigationHelper.playOnBackgroundPlayer(fragment.getContext(),
+                new SinglePlayQueue(item), true);
+    }),
 
-    start_here_on_popup(R.string.start_here_on_popup, (fragment, item) ->
-            NavigationHelper.playOnPopupPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), true)),
+    start_here_on_popup(R.string.start_here_on_popup, (fragment, item) -> {
+        NavigationHelper.playOnPopupPlayer(fragment.getContext(),
+                new SinglePlayQueue(item), true);
+    }),
 
     set_as_playlist_thumbnail(R.string.set_as_playlist_thumbnail, (fragment, item) -> {
     }), // has to be set manually
@@ -128,11 +135,13 @@ public enum StreamDialogEntry {
     private final int resource;
     private final StreamDialogEntryAction defaultAction;
     private StreamDialogEntryAction customAction;
+    private boolean requireNetwork;
 
     StreamDialogEntry(final int resource, final StreamDialogEntryAction defaultAction) {
         this.resource = resource;
         this.defaultAction = defaultAction;
         this.customAction = null;
+        this.requireNetwork = false;
     }
 
 
@@ -153,6 +162,7 @@ public enum StreamDialogEntry {
         // cleanup from last time StreamDialogEntry was used
         for (final StreamDialogEntry streamDialogEntry : values()) {
             streamDialogEntry.customAction = null;
+            streamDialogEntry.requireNetwork = false;
         }
 
         enabledEntries = entries;
@@ -174,10 +184,15 @@ public enum StreamDialogEntry {
 
     public static void clickOn(final int which, final Fragment fragment,
                                final StreamInfoItem infoItem) {
-        if (enabledEntries[which].customAction == null) {
-            enabledEntries[which].defaultAction.onClick(fragment, infoItem);
+        if (enabledEntries[which].requireNetwork
+                && !isNetworkAvailable(fragment.requireContext())) {
+            showNetworkUnavailableSnackbar(fragment);
         } else {
-            enabledEntries[which].customAction.onClick(fragment, infoItem);
+            if (enabledEntries[which].customAction == null) {
+                enabledEntries[which].defaultAction.onClick(fragment, infoItem);
+            } else {
+                enabledEntries[which].customAction.onClick(fragment, infoItem);
+            }
         }
     }
 
@@ -188,6 +203,15 @@ public enum StreamDialogEntry {
      */
     public void setCustomAction(final StreamDialogEntryAction action) {
         this.customAction = action;
+    }
+
+    /**
+     * Can be used after {@link #setEnabledEntries(StreamDialogEntry...)} has been called.
+     *
+     * @param requireNetwork if network is needed for this entry or not
+     */
+    public void setRequireNetwork(final boolean requireNetwork) {
+        this.requireNetwork = requireNetwork;
     }
 
     public interface StreamDialogEntryAction {
@@ -205,5 +229,31 @@ public enum StreamDialogEntry {
         NavigationHelper.openChannelFragment(
                 fragment.requireActivity().getSupportFragmentManager(),
                 item.getServiceId(), uploaderUrl, item.getUploaderName());
+    }
+
+    private static boolean isNetworkAvailable(final Context context) {
+        final ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        final NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null
+                && activeNetwork.isConnectedOrConnecting();
+    }
+
+
+    /////////////////////////////////////////////////////////
+    // private method to show unavailable network Snackbar //
+    /////////////////////////////////////////////////////////
+
+    private static void showNetworkUnavailableSnackbar(final Fragment fragment) {
+        final Snackbar snackbar = Snackbar.make(
+                fragment.requireView(),
+                R.string.error_no_network,
+                Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction(R.string.error_no_network_action, view ->
+                NavigationHelper.openDownloads(fragment.requireActivity()));
+        // Snackbar needs to adjust its position if the system has gesture navigation
+        snackbar.setGestureInsetBottomIgnored(true);
+        snackbar.show();
     }
 }

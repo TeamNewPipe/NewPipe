@@ -185,6 +185,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         StreamDialogEntry.start_here_on_background.setCustomAction((fragment, infoItem) ->
                 NavigationHelper.playOnBackgroundPlayer(context,
                         getPlayQueueStartingAt(infoItem), true));
+        StreamDialogEntry.start_here_on_popup.setRequireNetwork(true);
+        StreamDialogEntry.start_here_on_background.setRequireNetwork(true);
 
         new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context),
                 (dialog, which) -> StreamDialogEntry.clickOn(which, this, item)).show();
