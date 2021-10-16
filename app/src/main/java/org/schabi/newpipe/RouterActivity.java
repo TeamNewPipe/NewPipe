@@ -2,6 +2,7 @@ package org.schabi.newpipe;
 
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.AUDIO;
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.VIDEO;
+import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
 
 import android.annotation.SuppressLint;
 import android.app.IntentService;
@@ -10,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
@@ -17,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -27,7 +30,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.ServiceCompat;
@@ -325,54 +327,17 @@ public class RouterActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Toggle the visibility for advanced options view.
-     * @param dialogView Main view of the dialog.
-     * @param visible State of the visibility.
-     */
-    private void toggleAdvancedOptions(final View dialogView, final boolean visible) {
-        final AppCompatButton toggle = dialogView.findViewById(R.id.toggle_adv);
-        final SwitchCompat prioritizeEnqueue = dialogView.findViewById(R.id.prioritize_enqueue);
-
-        final int visibility = (visible
-                ? View.VISIBLE
-                : View.GONE);
-        final int icon = (visible
-                ? R.drawable.ic_arrow_drop_down
-                : R.drawable.ic_arrow_drop_right);
-
-        prioritizeEnqueue.setVisibility(visibility);
-        TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(toggle,
-                AppCompatResources.getDrawable(getApplicationContext(), icon),
-                null, null, null);
-    };
-
     private void showDialog(final List<AdapterChoiceItem> choices) {
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         final Context themeWrapperContext = getThemeWrapperContext();
 
         final LayoutInflater inflater = LayoutInflater.from(themeWrapperContext);
-        final View dialogView = View.inflate(themeWrapperContext, R.layout.dialog_share_context,
+        final View dialogView = View.inflate(
+                themeWrapperContext,
+                R.layout.dialog_share_context,
                 null);
+
         final RadioGroup radioGroup = dialogView.findViewById(R.id.player_group);
-        final AppCompatButton toggle = dialogView.findViewById(R.id.toggle_adv);
-        final SwitchCompat prioritizeEnqueue = dialogView.findViewById(R.id.prioritize_enqueue);
-
-        /* Initialize component states. */
-        toggleAdvancedOptions(dialogView, false);
-        prioritizeEnqueue.setChecked(preferences.getBoolean(
-                getString(R.string.prioritize_enqueue),
-                false));
-
-        /* Save linked preference when changed. */
-        prioritizeEnqueue.setOnCheckedChangeListener((v, checked) -> {
-            preferences.edit().putBoolean(getString(R.string.prioritize_enqueue), checked).apply();
-        });
-        /* Toggle advanced options view. */
-        toggle.setOnClickListener(v -> {
-            toggleAdvancedOptions(dialogView,
-                    prioritizeEnqueue.getVisibility() != View.VISIBLE);
-        });
 
         final DialogInterface.OnClickListener dialogButtonsClickListener = (dialog, which) -> {
             final int indexOfChild = radioGroup.indexOfChild(
@@ -388,6 +353,8 @@ public class RouterActivity extends AppCompatActivity {
                         .apply();
             }
         };
+
+        initAdvancedOptions(dialogView);
 
         alertDialogChoice = new AlertDialog.Builder(themeWrapperContext)
                 .setTitle(R.string.preferred_open_action_share_menu_title)
@@ -463,6 +430,65 @@ public class RouterActivity extends AppCompatActivity {
         if (DeviceUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(alertDialogChoice);
         }
+    }
+
+    private void initAdvancedOptions(final View dialogView) {
+        final SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(this);
+
+        final LinearLayout layoutAdvancedOptionsContent =
+                dialogView.findViewById(R.id.advanced_options_content);
+        final SwitchCompat prioritizeEnqueue = dialogView.findViewById(R.id.prioritize_enqueue);
+
+        /* Initialize component states. */
+        setVisibilityOfAdvancedOptions(
+                dialogView,
+                false,
+                false
+        );
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // It's not possible to add secondary text / it would be to much for the small dialog
+            // -> Use a tooltip (only works on Android 8+/Oreo - API 26+)
+            prioritizeEnqueue.setTooltipText(getString(R.string.prioritize_enqueue_summary));
+        }
+        prioritizeEnqueue.setChecked(
+                preferences.getBoolean(
+                        getString(R.string.prioritize_enqueue),
+                        false
+                )
+        );
+
+        /* Listener for toggling advanced options view. */
+        dialogView.findViewById(R.id.layout_toggle_adv)
+                .setOnClickListener(v -> setVisibilityOfAdvancedOptions(
+                        dialogView,
+                        layoutAdvancedOptionsContent.getVisibility() != View.VISIBLE,
+                        true
+                    )
+            );
+
+        /* Save linked preference when changed. */
+        prioritizeEnqueue.setOnCheckedChangeListener((v, checked) ->
+                preferences.edit()
+                        .putBoolean(getString(R.string.prioritize_enqueue), checked)
+                        .apply()
+        );
+    }
+
+    private void setVisibilityOfAdvancedOptions(
+            final View dialogView,
+            final boolean visible,
+            final boolean doAnimation
+    ) {
+        dialogView.findViewById(R.id.advanced_options_content)
+                .setVisibility(visible ? View.VISIBLE : View.GONE);
+
+        animateRotation(
+                dialogView.findViewById(R.id.toggle_adv_icon),
+                doAnimation ? 300 : 0,
+                visible ? 0 : -90
+        );
     }
 
     private List<AdapterChoiceItem> getChoicesForService(final StreamingService service,
