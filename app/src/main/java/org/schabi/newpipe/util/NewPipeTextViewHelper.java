@@ -31,30 +31,10 @@ public final class NewPipeTextViewHelper {
      *                 {@link TextView standard TextViews} are supported).
      */
     public static void shareSelectedTextWithShareUtils(@NonNull final TextView textView) {
-        if (!(textView instanceof NewPipeEditText)) {
-            final CharSequence textViewText;
-            if (textView instanceof NewPipeTextView) {
-                final NewPipeTextView newPipeTextView = (NewPipeTextView) textView;
-                textViewText = newPipeTextView.getText();
-            } else {
-                textViewText = textView.getText();
-            }
-
-            final CharSequence selectedText = getSelectedText(textView, textViewText);
-            shareSelectedTextIfNotNullAndNotEmpty(textView, selectedText);
-
-            final Spannable spannable = (textViewText instanceof Spannable)
-                    ? (Spannable) textViewText : null;
-            if (spannable != null) {
-                Selection.setSelection(spannable, textView.getSelectionEnd());
-            }
-        } else {
-            final NewPipeEditText editText = (NewPipeEditText) textView;
-            final Spannable text = editText.getText();
-
-            final CharSequence selectedText = getSelectedText(textView, text);
-            shareSelectedTextIfNotNullAndNotEmpty(textView, selectedText);
-            Selection.setSelection(text, editText.getSelectionEnd());
+        final CharSequence textViewText = textView.getText();
+        shareSelectedTextIfNotNullAndNotEmpty(textView, getSelectedText(textView, textViewText));
+        if (textViewText instanceof Spannable) {
+            Selection.setSelection((Spannable) textViewText, textView.getSelectionEnd());
         }
     }
 
