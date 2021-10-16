@@ -97,11 +97,9 @@ public class SubscriptionsImportFragment extends BaseFragment {
     }
 
     @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            setTitle(getString(R.string.import_title));
-        }
+    public void onResume() {
+        super.onResume();
+        setTitle(getString(R.string.import_title));
     }
 
     @Nullable
