@@ -12,6 +12,7 @@ import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.util.ListHelper;
 
 public class AudioPlaybackResolver implements PlaybackResolver {
@@ -28,9 +29,11 @@ public class AudioPlaybackResolver implements PlaybackResolver {
 
     @Override
     @Nullable
-    public MediaSource resolve(@NonNull final StreamInfo info) {
+    public MediaSource resolve(@NonNull final CustomTrackSelector trackSelector,
+                               @NonNull final StreamInfo info) {
         final MediaSource liveSource = maybeBuildLiveMediaSource(dataSource, info);
         if (liveSource != null) {
+            setMaximumVideoSizeIfUsingMobileData(context, trackSelector);
             return liveSource;
         }
 

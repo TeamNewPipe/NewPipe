@@ -12,7 +12,6 @@ import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static com.google.android.exoplayer2.Player.RepeatMode;
-import static com.google.android.exoplayer2.util.MimeTypes.getVideoMediaMimeType;
 import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
@@ -3272,7 +3271,7 @@ public final class Player implements
     @Override // own playback listener
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-        return (isAudioOnly ? audioResolver : videoResolver).resolve(info);
+        return (isAudioOnly ? audioResolver : videoResolver).resolve(trackSelector, info);
     }
 
     public void disablePreloadingOfCurrentTrack() {
@@ -3444,10 +3443,9 @@ public final class Player implements
                                                   @NonNull final MediaLoadData mediaLoadData) {
                 final Format currentPlayingFormat = mediaLoadData.trackFormat;
                 final String qualityTextViewText = binding.qualityTextView.getText().toString();
-                if (currentPlayingFormat != null
-                        && getVideoMediaMimeType(currentPlayingFormat.codecs) != null
-                        && (qualityTextViewText.isEmpty() || qualityTextViewText.contains(
-                                context.getString(R.string.auto_quality)))) {
+                if (currentPlayingFormat != null && (qualityTextViewText.isEmpty()
+                        || qualityTextViewText.contains(context.getString(
+                                R.string.auto_quality)))) {
 
                     final MappingTrackSelector.MappedTrackInfo currentMappedTrackInfo =
                             trackSelector.getCurrentMappedTrackInfo();

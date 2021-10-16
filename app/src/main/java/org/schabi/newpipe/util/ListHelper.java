@@ -522,7 +522,7 @@ public final class ListHelper {
      * @param context App context
      * @return maximum resolution allowed or null if there is no maximum
      */
-    private static String getResolutionLimit(final Context context) {
+    public static String getResolutionLimit(final Context context) {
         String resolutionLimit = null;
         if (isMeteredNetwork(context)) {
             final SharedPreferences preferences
