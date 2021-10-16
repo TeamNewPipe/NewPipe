@@ -841,12 +841,10 @@ public class RouterActivity extends AppCompatActivity {
                 final boolean prioritizeEnqueue = preferences.getBoolean(
                         getString(R.string.prioritize_enqueue),
                         false);
-                // BUG: getType() always return null if main view is not open.
-                // final MainPlayer.PlayerType type = PlayerHolder.getType();
 
                 /* If prioritize_enqueue is enabled and we have running player, then enqueue
                    this stream. Otherwise, open preferred player instead. */
-                if (prioritizeEnqueue /* && type != null*/) {
+                if (prioritizeEnqueue) {
                     if (choice.playerChoice.equals(videoPlayerKey)) {
                         NavigationHelper.enqueueOnPlayer(this, playQueue,
                                 MainPlayer.PlayerType.VIDEO);
