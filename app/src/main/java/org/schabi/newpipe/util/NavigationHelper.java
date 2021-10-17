@@ -87,6 +87,7 @@ public final class NavigationHelper {
             }
         }
         intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.VIDEO.ordinal());
+        intent.putExtra(Player.RESUME_PLAYBACK, true);
 
         return intent;
     }
