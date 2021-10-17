@@ -21,6 +21,7 @@
 package org.schabi.newpipe;
 
 import static org.schabi.newpipe.CheckForNewAppVersion.startNewVersionCheckService;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -93,8 +94,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     @SuppressWarnings("ConstantConditions")
@@ -165,9 +164,6 @@ public class MainActivity extends AppCompatActivity {
             FocusOverlayView.setupFocusObserver(this);
         }
         openMiniPlayerUponPlayerStarted();
-
-        // Check for new version
-        startNewVersionCheckService();
     }
 
     private void setupDrawer() throws Exception {
@@ -520,6 +516,19 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.enable_watch_history_key), true);
         drawerLayoutBinding.navigation.getMenu().findItem(ITEM_ID_HISTORY)
                 .setVisible(isHistoryEnabled);
+
+        if (!App.wasAppInForeground()) {
+            // Check for new app version
+            // The service searching for a new NewPipe version must not be started in background
+            // and therefore needs to be placed in onResume().
+            // Only start the service once when app is started
+            // and not everytime onResume() is called.
+            if (DEBUG) {
+                Log.d(TAG, "App is in foreground for the first time");
+            }
+            App.setWasAppInForeground(true);
+            startNewVersionCheckService();
+        }
     }
 
     @Override

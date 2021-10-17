@@ -65,6 +65,7 @@ public class App extends MultiDexApplication {
     public static final String PACKAGE_NAME = BuildConfig.APPLICATION_ID;
     private static final String TAG = App.class.toString();
     private static App app;
+    private static boolean wasAppInForeground = false;
 
     @NonNull
     public static App getApp() {
@@ -253,5 +254,13 @@ public class App extends MultiDexApplication {
 
     protected boolean isDisposedRxExceptionsReported() {
         return false;
+    }
+
+    public static boolean wasAppInForeground() {
+        return wasAppInForeground;
+    }
+
+    public static void setWasAppInForeground(final boolean wasAppInForeground) {
+        App.wasAppInForeground = wasAppInForeground;
     }
 }
