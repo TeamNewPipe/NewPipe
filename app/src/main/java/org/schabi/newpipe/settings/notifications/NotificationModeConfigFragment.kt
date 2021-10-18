@@ -16,13 +16,18 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.local.subscription.SubscriptionManager
-import org.schabi.newpipe.settings.notifications.NotificationsConfigAdapter.ModeToggleListener
+import org.schabi.newpipe.settings.notifications.NotificationModeConfigAdapter.ModeToggleListener
 
-class NotificationsChannelsConfigFragment : Fragment(), ModeToggleListener {
+/**
+ * [NotificationModeConfigFragment] is a settings fragment
+ * which allows changing the [NotificationMode] of all subscribed channels.
+ * The [NotificationMode] can either be changed one by one or toggled for all channels.
+ */
+class NotificationModeConfigFragment : Fragment(), ModeToggleListener {
 
     private lateinit var updaters: CompositeDisposable
     private var loader: Disposable? = null
-    private var adapter: NotificationsConfigAdapter? = null
+    private var adapter: NotificationModeConfigAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +44,7 @@ class NotificationsChannelsConfigFragment : Fragment(), ModeToggleListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
-        adapter = NotificationsConfigAdapter(this)
+        adapter = NotificationModeConfigAdapter(this)
         recyclerView.adapter = adapter
         loader?.dispose()
         loader = SubscriptionManager(requireContext())
@@ -74,7 +79,9 @@ class NotificationsChannelsConfigFragment : Fragment(), ModeToggleListener {
         }
     }
 
-    override fun onModeToggle(position: Int, @NotificationMode mode: Int) {
+    override fun onModeChange(position: Int, @NotificationMode mode: Int) {
+        // Notification mode has been changed via the UI.
+        // Now change it in the database.
         val subscription = adapter?.getItem(position) ?: return
         updaters.add(
             SubscriptionManager(requireContext())

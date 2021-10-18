@@ -10,9 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
-import org.schabi.newpipe.settings.notifications.NotificationsConfigAdapter.SubscriptionHolder
+import org.schabi.newpipe.settings.notifications.NotificationModeConfigAdapter.SubscriptionHolder
 
-class NotificationsConfigAdapter(
+/**
+ * This [RecyclerView.Adapter] is used in the [NotificationModeConfigFragment].
+ * The adapter holds all subscribed channels and their [NotificationMode]s
+ * and provides the needed data structures and methods for this task.
+ */
+class NotificationModeConfigAdapter(
     private val listener: ModeToggleListener
 ) : RecyclerView.Adapter<SubscriptionHolder>() {
 
@@ -87,7 +92,7 @@ class NotificationsConfigAdapter(
             } else {
                 NotificationMode.ENABLED
             }
-            listener.onModeToggle(adapterPosition, mode)
+            listener.onModeChange(adapterPosition, mode)
         }
     }
 
@@ -111,6 +116,9 @@ class NotificationsConfigAdapter(
     }
 
     interface ModeToggleListener {
-        fun onModeToggle(position: Int, @NotificationMode mode: Int)
+        /**
+         * Triggered when the UI representation of a notification mode is changed.
+         */
+        fun onModeChange(position: Int, @NotificationMode mode: Int)
     }
 }

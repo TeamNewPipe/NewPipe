@@ -10,6 +10,10 @@ import io.reactivex.rxjava3.core.SingleEmitter
 import io.reactivex.rxjava3.core.SingleOnSubscribe
 import org.schabi.newpipe.util.PicassoHelper
 
+/**
+ * Helper class to handle loading and resizing of icons
+ * which are used going to be used in notifications.
+ */
 internal class NotificationIcon(
     context: Context,
     private val url: String,
