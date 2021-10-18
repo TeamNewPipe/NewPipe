@@ -7,6 +7,8 @@ A fork of [NewPipe](https://github.com/TeamNewPipe/NewPipe) with [SponsorBlock](
 The implementation is still a bit basic but it generally works pretty well.
 
 ## How can I get this?
+[<img alt="Get it on IzzyOnDroid" height="80" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png">](https://apt.izzysoft.de/fdroid/index/apk/org.polymorphicshade.newpipe)
+
 Builds will be uploaded in the [Releases](https://github.com/polymorphicshade/NewPipe/releases) section. Please download the APK from the newest release and install it on your device.
 
 ## Why isn't this in upstream NewPipe?
@@ -16,3 +18,6 @@ We obviously disagree but we respect their decision and continue to offer Sponso
 
 ## Bugs
 Please do not report bugs encountered while using this fork to the upstream developers. Either try to reproduce the bug in vanilla NewPipe and then report it (preferred) or [create a bug report in our repo](https://github.com/polymorphicshade/NewPipe/issues/new?assignees=&labels=bug&template=bug_report.md).
+
+## License
+[![GNU GPLv3](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)
