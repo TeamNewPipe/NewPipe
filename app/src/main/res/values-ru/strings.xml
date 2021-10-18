@@ -238,7 +238,7 @@
     <string name="error_occurred_detail">Произошла ошибка: %1$s</string>
     <string name="detail_drag_description">Перетащите, чтобы изменить порядок</string>
     <string name="create">Создать</string>
-    <string name="dismiss">Отклонить</string>
+    <string name="dismiss">Скрыть</string>
     <string name="rename">Переименовать</string>
     <string name="title_last_played">Недавно проигранные</string>
     <string name="title_most_played">Часто проигрываемые</string>
@@ -664,7 +664,7 @@
     <string name="mark_as_watched">Пометить как проигранные</string>
     <string name="error_show_channel_details">Не удалось отобразить сведения о канале</string>
     <string name="loading_channel_details">Загрузка сведений о канале…</string>
-    <string name="show_image_indicators_summary">Picasso: указать цветом источник изображений (красный - сеть, синий - диск, зелёный - память)</string>
+    <string name="show_image_indicators_summary">Picasso: указать цветом источник изображений (красный — сеть, синий — диск, зелёный — память)</string>
     <string name="show_image_indicators_title">Цветные метки на изображениях</string>
     <string name="remote_search_suggestions">Серверные предложения поиска</string>
     <string name="local_search_suggestions">Локальные предложения поиска</string>
@@ -683,4 +683,6 @@
     <string name="main_page_content_swipe_remove">Удалять элементы смахиванием</string>
     <string name="start_main_player_fullscreen_summary">Запускать видео во весь экран, если отключён автоповорот. Мини-плеер доступен при выходе из полноэкранного режима</string>
     <string name="start_main_player_fullscreen_title">Начинать просмотр в полноэкранном режиме</string>
+    <string name="enqueued_next">Добавлено следующим</string>
+    <string name="enqueue_next_stream">Добавить следующим</string>
 </resources>

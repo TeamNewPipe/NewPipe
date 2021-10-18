@@ -190,7 +190,7 @@
     <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre para brindarle la mejor experiencia. Haz una aportación para ayudarlos a crear un NewPipe mejor mientras disfrutan de una taza de café.</string>
     <string name="give_back">Dar de vuelta</string>
     <string name="website_title">Sitio web</string>
-    <string name="website_encouragement">Visite el sitio web de NewPipe para más información y noticias.</string>
+    <string name="website_encouragement">Visita el sitio web de NewPipe para más información y noticias.</string>
     <string name="default_content_country_title">País predefinido del contenido</string>
     <string name="switch_to_background">Cambiar a segundo plano</string>
     <string name="switch_to_popup">Cambiar a emergente</string>
@@ -314,11 +314,11 @@
     <string name="one_item_deleted">Se ha borrado 1 elemento.</string>
     <string name="app_license">NewPipe es un software copyleft libre: puedes usarlo, estudiarlo, compartirlo y mejorarlo a voluntad. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la licencia, o (a tu elección) cualquier versión posterior.</string>
     <string name="import_settings">¿Quieres importar también los ajustes\?</string>
-    <string name="privacy_policy_title">Normativa de privacidad de NewPipe</string>
+    <string name="privacy_policy_title">Política de privacidad de NewPipe</string>
     <string name="privacy_policy_encouragement">El proyecto NewPipe toma tu privacidad muy en serio. Por ello, la aplicación no recopila ningún dato sin tu consentimiento.
-\nLa normativa de privacidad de NewPipe explica en detalle qué datos se envían y almacenan al enviar un informe de fallo.</string>
-    <string name="read_privacy_policy">Leer la normativa de privacidad</string>
-    <string name="start_accept_privacy_policy">Para cumplir con el «Reglamento general europeo de protección de datos (GDPR)», atraemos tu atención sobre la normativa de privacidad de NewPipe. Por favor léase cuidadosamente.
+\nLa política de privacidad de NewPipe explica en detalle qué datos se envían y almacenan al enviar un informe de fallo.</string>
+    <string name="read_privacy_policy">Leer política de privacidad</string>
+    <string name="start_accept_privacy_policy">Para cumplir con el «Reglamento general europeo de protección de datos (GDPR)», atraemos tu atención sobre la política de privacidad de NewPipe. Por favor léase cuidadosamente.
 \nDebes aceptarlo para enviarnos el informe de error.</string>
     <string name="accept">Aceptar</string>
     <string name="decline">Declinar</string>
@@ -670,4 +670,6 @@
     <string name="main_page_content_swipe_remove">Desliza los elementos para removerlos</string>
     <string name="start_main_player_fullscreen_summary">Si la rotación automática está bloqueada, no inicie los videos en el mini reproductor, sino pase directamente a modo de pantalla completa. Aún podrá acceder al mini reproductor al salir del modo pantalla completa</string>
     <string name="start_main_player_fullscreen_title">Iniciar reproductor principal en pantalla completa</string>
+    <string name="enqueued_next">Añadido el siguiente vídeo a la cola</string>
+    <string name="enqueue_next_stream">Añadir el siguiente vídeo a la cola</string>
 </resources>

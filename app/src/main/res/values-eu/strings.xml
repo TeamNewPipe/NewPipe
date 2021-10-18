@@ -488,7 +488,7 @@
     <string name="feed_group_dialog_empty_name">Talde izena hutsik</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d hautatuta</item>
-        <item quantity="other">%d hautatuta</item>
+        <item quantity="other">%d hautatutak</item>
     </plurals>
     <string name="feed_group_dialog_empty_selection">Ez da harpidetzarik aukeratu</string>
     <string name="feed_group_dialog_select_subscriptions">Hautatu harpidetzak</string>
@@ -667,4 +667,6 @@
     <string name="main_page_content_swipe_remove">Lerratu elementuak aldetara ezabatzeko</string>
     <string name="start_main_player_fullscreen_summary">Ez hasi bideoak mini erreproduzitzailean eta hasi bideoak pantaila osoan zuzenean, auto biraketa blokeatuta badago. Mini erreproduzitzailea erabili dezakezu pantaila osotik irtetzean</string>
     <string name="start_main_player_fullscreen_title">Hasi erreproduzitzaile nagusia pantaila osoan</string>
+    <string name="enqueued_next">Isatsari bideo hau erantsita</string>
+    <string name="enqueue_next_stream">Gehitu bideo hau isatsari</string>
 </resources>

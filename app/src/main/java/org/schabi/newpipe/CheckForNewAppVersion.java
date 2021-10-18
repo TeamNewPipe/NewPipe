@@ -85,7 +85,9 @@ public final class CheckForNewAppVersion {
     }
 
     @Nullable
-    public static Disposable checkNewVersion(@NonNull final App app) {
+    public static Disposable checkNewVersion() {
+        final App app = App.getApp();
+
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
 
         // Check if user has enabled/disabled update checking

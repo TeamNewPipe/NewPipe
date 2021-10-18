@@ -189,7 +189,7 @@
     <string name="unknown_content">[Neznámý]</string>
     <string name="start_here_on_background">Začít přehrávat na pozadí</string>
     <string name="start_here_on_popup">Začít přehrávat v pop-upu</string>
-    <string name="donation_title">Donate</string>
+    <string name="donation_title">Přispět</string>
     <string name="donation_encouragement">NewPipe je vyvíjen dobrovolníky, kteří tráví svůj volný čas, aby vaše zkušenost s aplikací byla co nejlepší. Vraťte vývojářům něco zpět, aby mohli NewPipe dále zlepšovat a zároveň si vychutnat šálek kávy.</string>
     <string name="give_back">Daruj</string>
     <string name="website_title">Webová stránka</string>
@@ -283,7 +283,8 @@
 \n3. Klikněte na \"Jsou zahrnuta všechna data z YouTube\" pak na \"Zrušit výběr všech\" a pak vyberte jen \"odběry\" a klikněte na OK
 \n4. Klikněte na \"Další krok\" a pak na \"Vytvořit export\"
 \n5. Vyčkejte než se objeví tlačítko \"Stáhnout\" a klikněte na něj
-\n6. Ze staženého zip archivu extrahujte .json soubor (nejčastěji na cestě \"Takeout/YouTube a YouTube Music/odběry/odběry.json\") a importujte jej.</string>
+\n6. Klikněte IMPORTOVAT SOUBOR a vyberte stažený .zip soubor z předchozího kroku
+\n7. [Pokud se import .zip souboru nezdaří] Rozbalte soubor subscriptions.csv (měl by se nacházet v adresáři \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), stiskněte IMPORTOVAT SOUBOR níže a vyberte rozbalený soubor subscriptions.csv</string>
     <string name="import_soundcloud_instructions">Importovat SoundCloud profil zadáním URL adresy nebo vašeho ID: 
 \n 
 \n1. Ve svém prohlížeči povolte \"režim pro PC\" (pro mobilní zařízení není stránka dostupná) 
@@ -659,7 +660,7 @@
     <string name="comments_are_disabled">Komentáře jsou vypnuty</string>
     <string name="detail_heart_img_view_description">Srdíčko od tvůrce</string>
     <string name="mark_as_watched">Označit jako zhlédnuté</string>
-    <string name="loading_channel_details">Načítám podrobnosti kanálu…</string>
+    <string name="loading_channel_details">Načítání podrobností kanálu…</string>
     <string name="error_show_channel_details">Chyba při zobrazení prodrobností kanálu</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s stažení smazáno</item>
@@ -675,4 +676,9 @@
     <string name="show_image_indicators_title">Ukázat indikátory obrázků</string>
     <string name="remote_search_suggestions">Vzdálené návrhy vyhledávání</string>
     <string name="local_search_suggestions">Lokální návrhy vyhledávání</string>
+    <string name="start_main_player_fullscreen_summary">Pokud je vypnuté automatické otáčení, nespouštějte video v mini přehrávači, ale přepněte se přímo do režimu celé obrazovky. Do mini přehrávače se lze i nadále dostat ukončením režimu celé obrazovky</string>
+    <string name="enqueued_next">Další ve frontě</string>
+    <string name="enqueue_next_stream">Přidat do fronty (další)</string>
+    <string name="main_page_content_swipe_remove">Tažením položky odstraníte</string>
+    <string name="start_main_player_fullscreen_title">Spustit hlavní přehrávač na celé obrazovce</string>
 </resources>

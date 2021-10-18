@@ -49,7 +49,7 @@
     <string name="popup_remember_size_pos_title">Zapamti veličinu i poziciju skočnog prozora</string>
     <string name="popup_remember_size_pos_summary">Zapamti posljednju veličinu i poziciju skočnog prozora</string>
     <string name="show_search_suggestions_title">Prijedlozi pri traženju</string>
-    <string name="show_search_suggestions_summary">Prikaži prijedloge pri traženju</string>
+    <string name="show_search_suggestions_summary">Odaberi prijedloge koji se prikazuju pri traženju</string>
     <string name="enable_search_history_title">Povijest pretraživanja</string>
     <string name="enable_search_history_summary">Svaku pretragu spremi lokalno</string>
     <string name="enable_watch_history_title">Prati povijest</string>
