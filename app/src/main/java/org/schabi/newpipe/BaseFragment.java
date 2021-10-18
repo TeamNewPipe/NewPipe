@@ -21,7 +21,6 @@ public abstract class BaseFragment extends Fragment {
     //These values are used for controlling fragments when they are part of the frontpage
     @State
     protected boolean useAsFrontPage = false;
-    private boolean mIsVisibleToUser = false;
 
     public void useAsFrontPage(final boolean value) {
         useAsFrontPage = value;
@@ -85,12 +84,6 @@ public abstract class BaseFragment extends Fragment {
         AppWatcher.INSTANCE.getObjectWatcher().watch(this);
     }
 
-    @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        mIsVisibleToUser = isVisibleToUser;
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Init
     //////////////////////////////////////////////////////////////////////////*/
@@ -109,8 +102,7 @@ public abstract class BaseFragment extends Fragment {
         if (DEBUG) {
             Log.d(TAG, "setTitle() called with: title = [" + title + "]");
         }
-        if ((!useAsFrontPage || mIsVisibleToUser)
-                && (activity != null && activity.getSupportActionBar() != null)) {
+        if (!useAsFrontPage && activity != null && activity.getSupportActionBar() != null) {
             activity.getSupportActionBar().setDisplayShowTitleEnabled(true);
             activity.getSupportActionBar().setTitle(title);
         }
