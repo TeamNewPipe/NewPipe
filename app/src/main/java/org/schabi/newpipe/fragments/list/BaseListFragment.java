@@ -143,7 +143,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             final View focusedItem = itemsList.getFocusedChild();
             final RecyclerView.ViewHolder itemHolder =
                     itemsList.findContainingViewHolder(focusedItem);
-            return itemHolder.getAdapterPosition();
+            return itemHolder.getBindingAdapterPosition();
         } catch (final NullPointerException e) {
             return -1;
         }

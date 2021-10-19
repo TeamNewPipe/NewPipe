@@ -1088,7 +1088,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     //////////////////////////////////////////////////////////////////////////*/
 
     public int getSuggestionMovementFlags(@NonNull final RecyclerView.ViewHolder viewHolder) {
-        final int position = viewHolder.getAdapterPosition();
+        final int position = viewHolder.getBindingAdapterPosition();
         if (position == RecyclerView.NO_POSITION) {
             return 0;
         }
@@ -1099,7 +1099,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     }
 
     public void onSuggestionItemSwiped(@NonNull final RecyclerView.ViewHolder viewHolder) {
-        final int position = viewHolder.getAdapterPosition();
+        final int position = viewHolder.getBindingAdapterPosition();
         final String query = suggestionListAdapter.getItem(position).query;
         final Disposable onDelete = historyRecordManager.deleteSearchHistory(query)
                 .observeOn(AndroidSchedulers.mainThread())
