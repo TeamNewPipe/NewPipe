@@ -208,7 +208,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata:${androidxLifecycleVersion}"
     implementation "androidx.lifecycle:lifecycle-viewmodel:${androidxLifecycleVersion}"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
-    implementation 'androidx.media:media:1.4.2'
+    implementation 'androidx.media:media:1.4.3'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
