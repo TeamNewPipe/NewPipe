@@ -77,7 +77,8 @@ public final class NavigationHelper {
     @NonNull
     public static <T> Intent getPlayerIntent(@NonNull final Context context,
                                              @NonNull final Class<T> targetClazz,
-                                             @Nullable final PlayQueue playQueue) {
+                                             @Nullable final PlayQueue playQueue,
+                                             final boolean resumePlayback) {
         final Intent intent = new Intent(context, targetClazz);
 
         if (playQueue != null) {
@@ -87,7 +88,7 @@ public final class NavigationHelper {
             }
         }
         intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.VIDEO.ordinal());
-        intent.putExtra(Player.RESUME_PLAYBACK, true);
+        intent.putExtra(Player.RESUME_PLAYBACK, resumePlayback);
 
         return intent;
     }
@@ -96,8 +97,9 @@ public final class NavigationHelper {
     public static <T> Intent getPlayerIntent(@NonNull final Context context,
                                              @NonNull final Class<T> targetClazz,
                                              @Nullable final PlayQueue playQueue,
+                                             final boolean resumePlayback,
                                              final boolean playWhenReady) {
-        return getPlayerIntent(context, targetClazz, playQueue)
+        return getPlayerIntent(context, targetClazz, playQueue, resumePlayback)
                 .putExtra(Player.PLAY_WHEN_READY, playWhenReady);
     }
 
@@ -105,7 +107,14 @@ public final class NavigationHelper {
     public static <T> Intent getPlayerEnqueueIntent(@NonNull final Context context,
                                                     @NonNull final Class<T> targetClazz,
                                                     @Nullable final PlayQueue playQueue) {
-        return getPlayerIntent(context, targetClazz, playQueue)
+        // when enqueueing `resumePlayback` is always `false` since:
+        // - if there is a video already playing, the value of `resumePlayback` just doesn't make
+        //   any difference.
+        // - if there is nothing already playing, it is useful for the enqueue action to have a
+        //   slightly different behaviour than the normal play action: the latter resumes playback,
+        //   the former doesn't. (note that enqueue can be triggered when nothing is playing only
+        //   by long pressing the video detail fragment, playlist or channel controls
+        return getPlayerIntent(context, targetClazz, playQueue, false)
                 .putExtra(Player.ENQUEUE, true);
     }
 
@@ -113,7 +122,8 @@ public final class NavigationHelper {
     public static <T> Intent getPlayerEnqueueNextIntent(@NonNull final Context context,
                                                         @NonNull final Class<T> targetClazz,
                                                         @Nullable final PlayQueue playQueue) {
-        return getPlayerIntent(context, targetClazz, playQueue)
+        // see comment in `getPlayerEnqueueIntent` as to why `resumePlayback` is false
+        return getPlayerIntent(context, targetClazz, playQueue, false)
                 .putExtra(Player.ENQUEUE_NEXT, true);
     }
 
