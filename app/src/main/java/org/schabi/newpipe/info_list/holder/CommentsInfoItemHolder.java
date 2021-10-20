@@ -5,18 +5,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
-import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-
-import java.util.List;
-import java.util.Objects;
 
 /*
  * Created by Christian Schabesberger on 12.02.17.
@@ -42,7 +37,6 @@ public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
     public final TextView itemTitleView;
     private final ImageView itemHeartView;
     private final ImageView itemPinnedView;
-
     private final TextView showReplies;
     private final RecyclerView repliesView;
 
@@ -52,29 +46,12 @@ public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
         itemTitleView = itemView.findViewById(R.id.itemTitleView);
         itemHeartView = itemView.findViewById(R.id.detail_heart_image_view);
         itemPinnedView = itemView.findViewById(R.id.detail_pinned_view);
-        showReplies = itemView.findViewById(R.id.showReplies);
-        repliesView = itemView.findViewById(R.id.replyRecycleView);
-        repliesView.setAdapter(new InfoListAdapter(repliesView.getContext()));
-        repliesView.setLayoutManager(new LinearLayoutManager(repliesView.getContext()));
+        final TextView showReplies = itemView.findViewById(R.id.showReplies);
+		final RecyclerView repliesView = itemView.findViewById(R.id.replyRecycleView);
+		repliesHandler = new RepliesHandler(showReplies, repliesView);
     }
 
-    public void addReplies(final View buttonView, final CommentsInfoItem comment) {
-
-        final List<CommentsInfoItem> replies = comment.getRepliesInfoList();
-        ((InfoListAdapter) Objects.requireNonNull(repliesView.getAdapter()))
-                .setInfoItemList(replies);
-
-        final ViewGroup.MarginLayoutParams params =
-                (ViewGroup.MarginLayoutParams) repliesView.getLayoutParams();
-        params.topMargin = 45;
-
-        repliesView.setMinimumHeight(100);
-        repliesView.setHasFixedSize(true);
-        comment.setRepliesOpen(true);
-        buttonView.setVisibility(View.GONE);
-        repliesView.setVisibility(View.VISIBLE);
-    }
-
+    
     @Override
     public void updateFromItem(final InfoItem infoItem,
                                final HistoryRecordManager historyRecordManager) {
@@ -84,20 +61,9 @@ public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
             return;
         }
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
-
         itemTitleView.setText(item.getUploaderName());
-
         itemHeartView.setVisibility(item.isHeartedByUploader() ? View.VISIBLE : View.GONE);
         itemPinnedView.setVisibility(item.isPinned() ? View.VISIBLE : View.GONE);
-        if (item.getReplies() == null) {
-            repliesView.setVisibility(View.GONE);
-            showReplies.setVisibility(View.GONE);
-        } else if (item.getRepliesOpen()) {
-            addReplies(showReplies, item);
-        } else {
-            repliesView.setVisibility(View.GONE);
-            showReplies.setVisibility(View.VISIBLE);
-            showReplies.setOnClickListener(v -> addReplies(v, item));
-        }
+        repliesHandler.checkForReplies(item);
     }
 }
