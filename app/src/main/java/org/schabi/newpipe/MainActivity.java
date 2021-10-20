@@ -166,6 +166,15 @@ public class MainActivity extends AppCompatActivity {
         openMiniPlayerUponPlayerStarted();
     }
 
+    @Override
+    protected void onPostCreate(final Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Start the service which is checking all conditions
+        // and eventually searching for a new version.
+        // The service searching for a new NewPipe version must not be started in background.
+        startNewVersionCheckService();
+    }
+
     private void setupDrawer() throws Exception {
         //Tabs
         final int currentServiceId = ServiceHelper.getSelectedServiceId(this);
@@ -516,19 +525,6 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.enable_watch_history_key), true);
         drawerLayoutBinding.navigation.getMenu().findItem(ITEM_ID_HISTORY)
                 .setVisible(isHistoryEnabled);
-
-        if (!App.wasAppInForeground()) {
-            // Check for new app version
-            // The service searching for a new NewPipe version must not be started in background
-            // and therefore needs to be placed in onResume().
-            // Only start the service once when app is started
-            // and not everytime onResume() is called.
-            if (DEBUG) {
-                Log.d(TAG, "App is in foreground for the first time");
-            }
-            App.setWasAppInForeground(true);
-            startNewVersionCheckService();
-        }
     }
 
     @Override

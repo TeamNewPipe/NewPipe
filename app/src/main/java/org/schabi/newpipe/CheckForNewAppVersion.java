@@ -235,6 +235,23 @@ public final class CheckForNewAppVersion extends IntentService {
         }
     }
 
+    /**
+     * Start a new service which
+     * checks if all conditions for performing a version check are met,
+     * fetches the API endpoint {@link #NEWPIPE_API_URL} containing info
+     * about the latest NewPipe version
+     * and displays a notification about ana available update.
+     * <br>
+     * Following conditions need to be met, before data is request from the server:
+     * <ul>
+     * <li> The app is signed with the correct signing key (by TeamNewPipe / schabi).
+     * If the signing key differs from the one used upstream, the update cannot be installed.</li>
+     * <li>The user enabled searching for and notifying about updates in the settings.</li>
+     * <li>The app did not recently check for updates.
+     * We do not want to make unnecessary connections and DOS our servers.</li>
+     * </ul>
+     * <b>Must not be executed</b> when the app is in background.
+     */
     public static void startNewVersionCheckService() {
         final Intent intent = new Intent(App.getApp().getApplicationContext(),
                 CheckForNewAppVersion.class);
