@@ -427,26 +427,24 @@ public final class Player implements
             @Override
             public int getDefaultResolutionIndex(final StreamInfo streamInfo,
                     final List<VideoStream> sortedVideos) {
-                if (!StreamTypeUtil.isLiveStream(streamInfo.getStreamType())) {
-                    return videoPlayerSelected()
-                            ? ListHelper.getDefaultResolutionIndex(context, sortedVideos)
-                            : ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
-                } else {
+                if (StreamTypeUtil.isLiveStream(streamInfo.getStreamType())) {
                     return -1;
                 }
+                return videoPlayerSelected()
+                        ? ListHelper.getDefaultResolutionIndex(context, sortedVideos)
+                        : ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
             }
 
             @Override
             public int getOverrideResolutionIndex(final StreamInfo streamInfo,
                                                   final List<VideoStream> sortedVideos,
                                                   final String playbackQuality) {
-                if (!StreamTypeUtil.isLiveStream(streamInfo.getStreamType())) {
-                    return videoPlayerSelected()
-                            ? getResolutionIndex(context, sortedVideos, playbackQuality)
-                            : getPopupResolutionIndex(context, sortedVideos, playbackQuality);
-                } else {
+                if (StreamTypeUtil.isLiveStream(streamInfo.getStreamType())) {
                     return -1;
                 }
+                return videoPlayerSelected()
+                        ? getResolutionIndex(context, sortedVideos, playbackQuality)
+                        : getPopupResolutionIndex(context, sortedVideos, playbackQuality);
             }
         };
     }

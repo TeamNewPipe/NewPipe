@@ -116,12 +116,8 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         if (isMeteredNetwork(context) && resolutionLimit != null) {
             final String[] resolutionLimitArray = resolutionLimit.split("p");
             final int heightLimit = Integer.parseInt(resolutionLimitArray[0]);
-            final int frameRateLimit;
-            if (resolutionLimitArray.length == 2) {
-                frameRateLimit = Integer.parseInt(resolutionLimitArray[1]);
-            } else {
-                frameRateLimit = -1;
-            }
+            final int frameRateLimit = resolutionLimitArray.length == 2
+                    ? Integer.parseInt(resolutionLimitArray[1]) : -1;
 
             final DefaultTrackSelector.ParametersBuilder parametersBuilder = trackSelector
                     .buildUponParameters();
@@ -129,11 +125,7 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
             // ExoPlayer to only take care of the height value (using a negative number for the
             // width makes ExoPlayer playing always the lowest stream).
             parametersBuilder.setMaxVideoSize(Integer.MAX_VALUE, heightLimit);
-            if (frameRateLimit != -1) {
-                parametersBuilder.setMaxVideoFrameRate(frameRateLimit);
-            } else {
-                parametersBuilder.setMaxVideoFrameRate(30);
-            }
+            parametersBuilder.setMaxVideoFrameRate(frameRateLimit != -1 ? frameRateLimit : 30);
 
             trackSelector.setParameters(parametersBuilder);
         }
