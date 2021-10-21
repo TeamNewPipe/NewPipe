@@ -21,6 +21,7 @@
 package org.schabi.newpipe;
 
 import static org.schabi.newpipe.CheckForNewAppVersion.startNewVersionCheckService;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -93,8 +94,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     @SuppressWarnings("ConstantConditions")
@@ -165,8 +164,14 @@ public class MainActivity extends AppCompatActivity {
             FocusOverlayView.setupFocusObserver(this);
         }
         openMiniPlayerUponPlayerStarted();
+    }
 
-        // Check for new version
+    @Override
+    protected void onPostCreate(final Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Start the service which is checking all conditions
+        // and eventually searching for a new version.
+        // The service searching for a new NewPipe version must not be started in background.
         startNewVersionCheckService();
     }
 
