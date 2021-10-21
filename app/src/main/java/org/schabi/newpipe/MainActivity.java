@@ -164,8 +164,14 @@ public class MainActivity extends AppCompatActivity {
             FocusOverlayView.setupFocusObserver(this);
         }
         openMiniPlayerUponPlayerStarted();
+    }
 
-        // Check for new version
+    @Override
+    protected void onPostCreate(final Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Start the service which is checking all conditions
+        // and eventually searching for a new version.
+        // The service searching for a new NewPipe version must not be started in background.
         startNewVersionCheckService();
     }
 
