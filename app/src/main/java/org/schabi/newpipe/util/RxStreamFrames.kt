@@ -1,7 +1,6 @@
 package org.schabi.newpipe.util
 
 import android.graphics.Bitmap
-import com.nostra13.universalimageloader.core.ImageLoader
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.core.ObservableOnSubscribe
@@ -9,7 +8,8 @@ import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 
-class RxStreamFrames(private val serviceId: Int, private val url: String) : ObservableOnSubscribe<Bitmap> {
+class RxStreamFrames(private val serviceId: Int, private val url: String) :
+    ObservableOnSubscribe<Bitmap> {
 
     override fun subscribe(emitter: ObservableEmitter<Bitmap>) {
         try {
@@ -22,7 +22,7 @@ class RxStreamFrames(private val serviceId: Int, private val url: String) : Obse
                     if (emitter.isDisposed) {
                         return
                     }
-                    ImageLoader.getInstance().loadImageSync(url).use { bmp ->
+                    PicassoHelper.loadSeekbarThumbnailPreview(url).get().use { bmp ->
                         val xCount = bmp.width / frameset.frameWidth
                         val yCount = bmp.height / frameset.frameHeight
                         for (x in 0 until xCount) {
