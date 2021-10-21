@@ -18,6 +18,10 @@ import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 
 import org.schabi.newpipe.R;
 
+/**
+ * A listener class to allow setting a specified quality for livestreams when clicking an item on
+ * the quality selector popup menu in video players.
+ */
 public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener {
     private final Context context;
     private final CustomTrackSelector trackSelector;
@@ -25,14 +29,25 @@ public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener
     private final TextView qualityTextView;
     private final TrackGroupArray rendererTrackGroups;
 
+    /**
+     * Create a {@link TrackSelectionListener}.
+     *
+     * @param context         the player context
+     * @param trackSelector   the {@link CustomTrackSelector} used by the player, which couldn't be
+     *                        null
+     * @param rendererIndex   the index of the video renderer
+     * @param qualityTextView the {@link TextView quality text view} on which the playing quality
+     *                        will be updated after a quality item is clicked
+     * @throws NullPointerException if trackSelector is null
+     */
     public TrackSelectionListener(@NonNull final Context context,
                                   @NonNull final CustomTrackSelector trackSelector,
                                   final int rendererIndex,
                                   @NonNull final TextView qualityTextView) {
         this.context = context;
         this.trackSelector = trackSelector;
-        final MappingTrackSelector.MappedTrackInfo mappedTrackInfo = checkNotNull(trackSelector
-                .getCurrentMappedTrackInfo());
+        final MappingTrackSelector.MappedTrackInfo mappedTrackInfo = checkNotNull(
+                trackSelector.getCurrentMappedTrackInfo());
         this.rendererIndex = rendererIndex;
         this.qualityTextView = qualityTextView;
 
@@ -41,15 +56,14 @@ public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener
 
     @Override
     public boolean onMenuItemClick(@NonNull final MenuItem item) {
-        final DefaultTrackSelector.Parameters selectionParameters =
-                trackSelector.getParameters();
+        final DefaultTrackSelector.Parameters selectionParameters = trackSelector.getParameters();
         final boolean isDisabled = selectionParameters.getRendererDisabled(rendererIndex);
-        final DefaultTrackSelector.ParametersBuilder builder =
-                selectionParameters.buildUpon()
-                        .clearSelectionOverrides(rendererIndex)
-                        .setRendererDisabled(rendererIndex, isDisabled);
+        final DefaultTrackSelector.ParametersBuilder builder = selectionParameters.buildUpon()
+                .clearSelectionOverrides(rendererIndex)
+                .setRendererDisabled(rendererIndex, isDisabled);
 
         if (item.getItemId() != 0) {
+            // A resolution string
             final TrackGroup videoTrackGroup = rendererTrackGroups.get(0);
 
             final int qualityId = videoTrackGroup.length - item.getItemId();
@@ -60,9 +74,15 @@ public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener
                     selectionOverride);
 
             final Format currentPlayingFormat = videoTrackGroup.getFormat(qualityId);
-            qualityTextView.setText(getResolutionStringFromFormat(currentPlayingFormat));
+            qualityTextView.setText(getResolutionStringFromFormat(context, currentPlayingFormat));
         } else {
+            // The auto string
             final String qualityTextViewText = qualityTextView.getText().toString();
+
+            // If the quality text view text contains already the auto string, it means the user
+            // already selected the auto option and pressed again the auto option from the quality
+            // selector, so no need to update the text of the quality text view (if we update it,
+            // we will get something like Auto (Auto (1080p))).
             if (!qualityTextViewText.contains(context.getString(R.string.auto_quality))) {
                 qualityTextView.setText(context.getString(R.string.auto_quality_selected,
                         context.getString(R.string.auto_quality),

@@ -3315,6 +3315,8 @@ public final class Player implements
                     binding.qualityTextView.setVisibility(View.VISIBLE);
                 } else if (info.getVideoStreams().size()
                         + info.getVideoOnlyStreams().size() != 0) {
+                    // In the case where live streams are extracted as video streams by the
+                    // extractor
                     buildVideoQualityMenu();
                     binding.qualityTextView.setVisibility(View.VISIBLE);
                 }
@@ -3379,6 +3381,15 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Popup menus ("popup" means that they pop up, not that they belong to the popup player)
 
+
+    /**
+     * Build the quality menu for video streams.
+     *
+     * <p>
+     * This method loops into the streams we get from the extractor and them to the quality
+     * selector. The resolution and the container format/mime type of streams are shown.
+     * </p>
+     */
     private void buildVideoQualityMenu() {
         if (qualityPopupMenu == null || currentMetadata == null) {
             return;
@@ -3390,6 +3401,7 @@ public final class Player implements
             qualityPopupMenu.getMenu().add(POPUP_MENU_ID_QUALITY, i, Menu.NONE, MediaFormat
                     .getNameById(videoStream.getFormatId()) + " " + videoStream.resolution);
         }
+
         if (getSelectedVideoStream() != null) {
             binding.qualityTextView.setText(getSelectedVideoStream().resolution);
         }
@@ -3397,6 +3409,15 @@ public final class Player implements
         qualityPopupMenu.setOnDismissListener(this);
     }
 
+    /**
+     * Build the quality menu for livestreams.
+     *
+     * <p>
+     * This method loops into available streams in the video renderer index and add them to the
+     * quality selector. Only the resolution is shown, with the frame rate when its value is more
+     * than 30 because it seems that there is no way to get the container format/mime type.
+     * </p>
+     */
     private void buildLiveStreamQualityMenu() {
         if (qualityPopupMenu == null || currentMetadata == null) {
             return;
@@ -3406,7 +3427,7 @@ public final class Player implements
         final MappingTrackSelector.MappedTrackInfo currentMappedTrackInfo = trackSelector
                 .getCurrentMappedTrackInfo();
         final int videoTrackGroupIndex = getVideoRendererIndex();
-        if (currentMappedTrackInfo != null) {
+        if (currentMappedTrackInfo != null && videoTrackGroupIndex != -1) {
             final TrackGroupArray videoTrackGroupArray = currentMappedTrackInfo.getTrackGroups(
                     videoTrackGroupIndex);
             final Menu menu = qualityPopupMenu.getMenu();
@@ -3420,7 +3441,7 @@ public final class Player implements
                         videoTrackGroupArrayLength - 1 - i);
 
                 menu.add(POPUP_MENU_ID_QUALITY, i + 1, Menu.NONE,
-                        getResolutionStringFromFormat(format));
+                        getResolutionStringFromFormat(context, format));
             }
 
             final TrackSelectionListener trackSelectionListener = new TrackSelectionListener(
@@ -3449,46 +3470,85 @@ public final class Player implements
                             trackSelector.getCurrentMappedTrackInfo();
                     final int videoTrackGroupIndex = getVideoRendererIndex();
 
-                    // videoTrackGroupArray shouldn't be null because this method is called only if
-                    // a media source is available
-                    final TrackGroupArray videoTrackGroupArray = Objects.requireNonNull(
-                            currentMappedTrackInfo).getTrackGroups(videoTrackGroupIndex);
+                    if (videoTrackGroupIndex != 1) {
+                        // videoTrackGroupArray shouldn't be null because this method is called
+                        // only if a media source is available
+                        final TrackGroupArray videoTrackGroupArray = Objects.requireNonNull(
+                                currentMappedTrackInfo).getTrackGroups(videoTrackGroupIndex);
 
-                    if (trackSelector.getParameters().hasSelectionOverride(videoTrackGroupIndex,
-                            videoTrackGroupArray)) {
-                        binding.qualityTextView.setText(getResolutionStringFromFormat(
-                                currentPlayingFormat));
-                    } else {
-                        binding.qualityTextView.setText(context.getString(
-                                R.string.auto_quality_selected,
-                                context.getString(R.string.auto_quality),
-                                getResolutionStringFromFormat(currentPlayingFormat)));
+                        if (trackSelector.getParameters().hasSelectionOverride(
+                                videoTrackGroupIndex, videoTrackGroupArray)) {
+                            binding.qualityTextView.setText(getResolutionStringFromFormat(context,
+                                    currentPlayingFormat));
+                        } else {
+                            binding.qualityTextView.setText(context.getString(
+                                    R.string.auto_quality_selected,
+                                    context.getString(R.string.auto_quality),
+                                    getResolutionStringFromFormat(context, currentPlayingFormat)));
+                        }
                     }
                 }
             }
         });
     }
 
+    /**
+     * Get the resolution string from a {@link Format}.
+     *
+     * <p>
+     * The string returned will be one of this third string formats:
+     * <ul>
+     *     <li>
+     *         <p>The height of the stream and its frame rate (if its value is more than 30).</p>
+     *         <p>Examples of a string returned in this case: <code>480p, 720p60</code></p>
+     *     </li>
+     *     <li>
+     *         <p>If the height of the stream is unknown, its bitrate will be used.</p>
+     *         <p>Examples of a string returned in this case: <code>596495bps, 782766bps</code></p>
+     *     </li>
+     *     <li>
+     *         <p>If the bitrate of the stream is also unknown, the unknown quality string.</p>
+     *     </li>
+     * </ul>
+     * </p>
+     *
+     * @param context the context to be used to get the unknown quality string
+     * @param format  a {@link Format} object on which applying the method
+     * @return the resolution string described above
+     */
     @NonNull
-    public static String getResolutionStringFromFormat(@NonNull final Format format) {
+    public static String getResolutionStringFromFormat(
+            @NonNull final Context context,
+            @NonNull final Format format) {
         final StringBuilder resolutionStringBuilder = new StringBuilder();
         final int formatHeight = format.height;
 
-        if (formatHeight == Format.NO_VALUE) {
-            resolutionStringBuilder.append(format.bitrate);
-            resolutionStringBuilder.append("bps");
-        } else {
+        if (formatHeight != Format.NO_VALUE) {
             resolutionStringBuilder.append(formatHeight);
             resolutionStringBuilder.append("p");
             final int formatFrameRate = (int) format.frameRate;
             if (formatFrameRate > 30) {
                 resolutionStringBuilder.append(formatFrameRate);
             }
+        } else {
+            final int formatBitrate = format.bitrate;
+            if (formatBitrate != Format.NO_VALUE) {
+                resolutionStringBuilder.append(formatBitrate);
+                resolutionStringBuilder.append("bps");
+            } else {
+                resolutionStringBuilder.append(context.getString(R.string.unknown_quality));
+            }
         }
 
         return resolutionStringBuilder.toString();
     }
 
+    /**
+     * Get the video renderer index by looping into the track groups of the current track info.
+     *
+     * @return the video renderer or {@link #RENDERER_UNAVAILABLE} if there is no video renderer
+     * index available or if the current mapped track info is null.
+     */
     private int getVideoRendererIndex() {
         final MappingTrackSelector.MappedTrackInfo mappedTrackInfo = trackSelector
                 .getCurrentMappedTrackInfo();
@@ -3503,7 +3563,7 @@ public final class Player implements
             }
         }
 
-        return 0;
+        return RENDERER_UNAVAILABLE;
     }
 
     private void buildPlaybackSpeedMenu() {

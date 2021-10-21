@@ -723,4 +723,5 @@
     <string name="loading_channel_details">Loading Channel Details…</string>
     <string name="auto_quality">Auto</string>
     <string name="auto_quality_selected">%1$s (%2$s)</string>
+    <string name="unknown_quality">Unknown quality</string>
 </resources>
