@@ -47,7 +47,7 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
 
     override fun onResume() {
         super.onResume()
-        val enabled = NotificationHelper.isNotificationsEnabledNative(requireContext())
+        val enabled = NotificationHelper.areNotificationsEnabledOnDevice(requireContext())
         preferenceScreen.isEnabled = enabled
         if (!enabled) {
             if (notificationWarningSnackbar == null) {
@@ -56,8 +56,8 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
                     R.string.notifications_disabled,
                     Snackbar.LENGTH_INDEFINITE
                 ).apply {
-                    setAction(R.string.settings) { v ->
-                        NotificationHelper.openNativeSettingsScreen(v.context)
+                    setAction(R.string.settings) {
+                        activity?.let { NotificationHelper.openNewPipeSystemNotificationSettings(it) }
                     }
                     setActionTextColor(Color.YELLOW)
                     addCallback(object : Snackbar.Callback() {

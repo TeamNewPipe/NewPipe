@@ -101,39 +101,57 @@ class NotificationHelper(val context: Context) {
 
     companion object {
         /**
-         * Check whether notifications are not disabled by user via system settings.
+         * Check whether notifications are enabled on the device.
+         * Users can disable them via the system settings for a single app.
+         * If this is the case, the app cannot create any notifications
+         * and display them to the user.
+         * <br>
+         * On Android 26 and above, notification channels are used by NewPipe.
+         * These can be configured by the user, too.
+         * The notification channel for new streams is also checked by this method.
          *
          * @param context Context
-         * @return true if notifications are allowed, false otherwise
+         * @return <code>true</code> if notifications are allowed and can be displayed;
+         * <code>false</code> otherwise
          */
-        fun isNotificationsEnabledNative(context: Context): Boolean {
+        fun areNotificationsEnabledOnDevice(context: Context): Boolean {
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val channelId = context.getString(R.string.streams_notification_channel_id)
                 val manager = context.getSystemService(
                     Context.NOTIFICATION_SERVICE
                 ) as NotificationManager
+                val enabled = manager.areNotificationsEnabled()
                 val channel = manager.getNotificationChannel(channelId)
-                channel != null && channel.importance != NotificationManager.IMPORTANCE_NONE
+                val importance = channel?.importance
+                enabled && channel != null && importance != NotificationManager.IMPORTANCE_NONE
             } else {
                 NotificationManagerCompat.from(context).areNotificationsEnabled()
             }
         }
 
         @JvmStatic
+        /**
+         * Whether the user enabled the notifications for new streams in the app settings.
+         */
         fun areNewStreamsNotificationsEnabled(context: Context): Boolean {
             return (
                 PreferenceManager.getDefaultSharedPreferences(context)
                     .getBoolean(context.getString(R.string.enable_streams_notifications), false) &&
-                    isNotificationsEnabledNative(context)
+                    areNotificationsEnabledOnDevice(context)
                 )
         }
 
-        fun openNativeSettingsScreen(context: Context) {
+        /**
+         * Open the system's notification settings for NewPipe on Android O (API 26) and later.
+         * Open the system's app settings for NewPipe on previous Android versions.
+         */
+        fun openNewPipeSystemNotificationSettings(context: Context) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val channelId = context.getString(R.string.streams_notification_channel_id)
                 val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
                     .putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
                     .putExtra(Settings.EXTRA_CHANNEL_ID, channelId)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(intent)
             } else {
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)

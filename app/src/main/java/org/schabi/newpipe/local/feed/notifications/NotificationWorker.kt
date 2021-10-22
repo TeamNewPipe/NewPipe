@@ -75,7 +75,7 @@ class NotificationWorker(
                 .getBoolean(
                     context.getString(R.string.enable_streams_notifications),
                     false
-                ) && NotificationHelper.isNotificationsEnabledNative(context)
+                ) && NotificationHelper.areNotificationsEnabledOnDevice(context)
         }
 
         fun schedule(context: Context, options: ScheduleOptions, force: Boolean = false) {
