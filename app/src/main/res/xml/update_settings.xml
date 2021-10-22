@@ -12,4 +12,11 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
+    <Preference
+        android:key="@string/manual_update_key"
+        android:summary="@string/manual_update_description"
+        android:title="@string/manual_update_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
 </PreferenceScreen>

@@ -17,8 +17,11 @@ public class MainSettingsFragment extends BasePreferenceFragment {
         addPreferencesFromResource(R.xml.main_settings);
 
         if (!CheckForNewAppVersion.isGithubApk(App.getApp())) {
-            final Preference update = findPreference(getString(R.string.update_pref_screen_key));
-            getPreferenceScreen().removePreference(update);
+            if (!DEBUG) {
+                final Preference update
+                        = findPreference(getString(R.string.update_pref_screen_key));
+                getPreferenceScreen().removePreference(update);
+            }
 
             defaultPreferences.edit().putBoolean(getString(R.string.update_app_key), false).apply();
         }

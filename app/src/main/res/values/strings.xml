@@ -517,6 +517,8 @@
     <!-- Updates Settings -->
     <string name="updates_setting_title">Updates</string>
     <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>
+    <string name="manual_update_title">Check for updates</string>
+    <string name="manual_update_description">Manually check for new versions</string>
     <!-- Minimize to exit action -->
     <string name="minimize_on_exit_title">Minimize on app switch</string>
     <string name="minimize_on_exit_summary">Action when switching to other app from main video player — %s</string>
