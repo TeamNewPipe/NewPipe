@@ -35,7 +35,7 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
 
         return null;
     }
-0
+
     @NonNull
     default MediaSource buildLiveMediaSource(@NonNull final PlayerDataSource dataSource,
                                              @NonNull final String sourceUrl,
