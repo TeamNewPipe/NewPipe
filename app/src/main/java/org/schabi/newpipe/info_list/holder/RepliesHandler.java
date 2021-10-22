@@ -19,7 +19,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.core.SingleObserver;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RepliesHandler {
@@ -53,6 +57,81 @@ public class RepliesHandler {
         }
     }
 
+    private Single<ListExtractor.InfoItemsPage<CommentsInfoItem>>
+    repliesSingle(final CommentsInfo parentCommentInfo,
+                      final CommentsInfoItem parentInfoItem) {
+
+        final GetMoreItemsCallable getMoreItems = new GetMoreItemsCallable();
+        getMoreItems.setCallableParameters(parentCommentInfo, parentInfoItem);
+        return Single.fromCallable(getMoreItems);
+
+    }
+
+    private SingleObserver<ListExtractor.InfoItemsPage<CommentsInfoItem>>
+    repliesObserver(final CommentsInfoItem parentInfoItem) {
+
+        return new SingleObserver<ListExtractor.InfoItemsPage<CommentsInfoItem>>() {
+
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onSubscribe(@NonNull final Disposable d) {
+                showReplies.setText("Setting up replies");
+            }
+
+            @Override
+            public void onSuccess(@NonNull final
+                                  ListExtractor.InfoItemsPage<CommentsInfoItem>
+                                          commentsInfoItemInfoItemsPage) {
+
+                final List<CommentsInfoItem> actualList
+                        = commentsInfoItemInfoItemsPage.getItems();
+
+                cachedReplies.addAll(actualList);
+                addRepliesToUI(parentInfoItem);
+            }
+
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onError(@NonNull final Throwable e) {
+                showReplies.setText("Error getting replies");
+            }
+        };
+    }
+
+    private SingleObserver<CommentsInfo>
+        repliesInfoObserver(final CommentsInfoItem parentInfoItem) {
+
+        return new SingleObserver<CommentsInfo>() {
+
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onSubscribe(@NonNull final Disposable d) {
+                showReplies.setText("Downloading Replies");
+            }
+
+            @Override
+            public void onSuccess(@NonNull final CommentsInfo commentsInfo) {
+                final Single<ListExtractor.InfoItemsPage<CommentsInfoItem>>
+                        getRepliesInfoSingle =
+                        repliesSingle(commentsInfo, parentInfoItem);
+
+                final SingleObserver<ListExtractor.InfoItemsPage<CommentsInfoItem>>
+                        getRepliesInfoObserver = repliesObserver(parentInfoItem);
+
+                getRepliesInfoSingle
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(getRepliesInfoObserver);
+            }
+
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onError(@NonNull final Throwable e) {
+                showReplies.setText("Error getting replies");
+            }
+        };
+    }
+
 
     public void addRepliesToUI(final CommentsInfoItem parentInfoItem) {
         ((InfoListAdapter) Objects.requireNonNull(repliesView.getAdapter()))
@@ -69,9 +148,7 @@ public class RepliesHandler {
         repliesView.setVisibility(View.VISIBLE);
     }
 
-    @SuppressLint("SetTextI18n") // Testing purposes
     public void downloadReplies(final CommentsInfoItem parentInfoItem) {
-        showReplies.setText("Loading...");
 
         final Single<CommentsInfo> parentInfoSingle = ExtractorHelper.getCommentsInfo(
                 parentInfoItem.getServiceId(),
@@ -79,20 +156,13 @@ public class RepliesHandler {
                 false
         );
 
-        final CommentsInfo infoListInfo = parentInfoSingle.blockingGet();
+        final SingleObserver<CommentsInfo> singleInfoRepliesInfoObserver
+                = repliesInfoObserver(parentInfoItem);
 
-        final GetMoreItemsCallable getMoreItems = new GetMoreItemsCallable();
-        getMoreItems.setCallableParameters(infoListInfo, parentInfoItem);
-        final Single<ListExtractor.InfoItemsPage<CommentsInfoItem>>
-                getItemsSingle = Single.fromCallable(getMoreItems);
-
-        final ListExtractor.InfoItemsPage<CommentsInfoItem> infoItemsPageList = getItemsSingle
-                .subscribeOn(Schedulers.newThread())
-                .blockingGet(); // It works, just isn't great
-
-        final List<CommentsInfoItem> actualList = infoItemsPageList.getItems();
-        cachedReplies.addAll(actualList);
-        addRepliesToUI(parentInfoItem);
+        parentInfoSingle
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(singleInfoRepliesInfoObserver);
     }
 
     public void addReplies(final CommentsInfoItem parentInfoItem) {
