@@ -1,8 +1,7 @@
 package org.schabi.newpipe.settings;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.preference.Preference;
 
@@ -11,29 +10,31 @@ import org.schabi.newpipe.R;
 import static org.schabi.newpipe.CheckForNewAppVersion.startNewVersionCheckService;
 
 public class UpdateSettingsFragment extends BasePreferenceFragment {
-    private static final String RELEASES_URL = "https://github.com/TeamNewPipe/NewPipe/releases";
-
     private final Preference.OnPreferenceChangeListener updatePreferenceChange
             = (preference, checkForUpdates) -> {
         defaultPreferences.edit()
                 .putBoolean(getString(R.string.update_app_key), (boolean) checkForUpdates).apply();
 
                 if ((boolean) checkForUpdates) {
-                    // Search for updates immediately when update checks are enabled.
-                    // Reset the expire time. This is necessary to check for an update immediately.
-                    defaultPreferences.edit()
-                            .putLong(getString(R.string.update_expiry_key), 0).apply();
-                    startNewVersionCheckService();
+                    checkNewVersionNow();
                 }
         return true;
     };
 
     private final Preference.OnPreferenceClickListener manualUpdateClick
             = preference -> {
-        final Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(RELEASES_URL));
-        startActivity(browserIntent);
+        Toast.makeText(getContext(), R.string.checking_updates_toast, Toast.LENGTH_SHORT).show();
+        checkNewVersionNow();
         return true;
     };
+
+    private void checkNewVersionNow() {
+        // Search for updates immediately when update checks are enabled.
+        // Reset the expire time. This is necessary to check for an update immediately.
+        defaultPreferences.edit()
+                .putLong(getString(R.string.update_expiry_key), 0).apply();
+        startNewVersionCheckService();
+    }
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {

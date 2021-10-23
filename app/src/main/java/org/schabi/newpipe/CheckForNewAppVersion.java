@@ -175,9 +175,8 @@ public final class CheckForNewAppVersion extends IntentService {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
         final NewVersionManager manager = new NewVersionManager();
 
-        // Check if user has enabled/disabled update checking
-        // and if the current apk is a github one or not.
-        if (!prefs.getBoolean(app.getString(R.string.update_app_key), true) || !isGithubApk(app)) {
+        // Check if the current apk is a github one or not.
+        if (!isGithubApk(app)) {
             return;
         }
 
@@ -213,6 +212,7 @@ public final class CheckForNewAppVersion extends IntentService {
 
         // Parse the json from the response.
         try {
+
             final JsonObject githubStableObject = JsonParser.object()
                     .from(response.responseBody()).getObject("flavors")
                     .getObject("github").getObject("stable");

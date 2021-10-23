@@ -549,6 +549,7 @@
     <string name="recovering">recovering</string>
     <string name="enqueue">Queue</string>
     <string name="permission_denied">Action denied by the system</string>
+    <string name="checking_updates_toast">Checking for updates…</string>
     <!-- download notifications -->
     <string name="download_failed">Download failed</string>
     <plurals name="download_finished_notification">
