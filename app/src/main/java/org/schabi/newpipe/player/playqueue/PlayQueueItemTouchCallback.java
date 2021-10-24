@@ -51,6 +51,6 @@ public abstract class PlayQueueItemTouchCallback extends ItemTouchHelper.SimpleC
 
     @Override
     public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int swipeDir) {
-        onSwiped(viewHolder.getAdapterPosition());
+        onSwiped(viewHolder.getBindingAdapterPosition());
     }
 }

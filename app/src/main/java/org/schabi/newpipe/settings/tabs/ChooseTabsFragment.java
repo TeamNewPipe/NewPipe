@@ -299,8 +299,8 @@ public class ChooseTabsFragment extends Fragment {
                     return false;
                 }
 
-                final int sourceIndex = source.getAdapterPosition();
-                final int targetIndex = target.getAdapterPosition();
+                final int sourceIndex = source.getBindingAdapterPosition();
+                final int targetIndex = target.getBindingAdapterPosition();
                 selectedTabsAdapter.swapItems(sourceIndex, targetIndex);
                 return true;
             }
@@ -318,7 +318,7 @@ public class ChooseTabsFragment extends Fragment {
             @Override
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder,
                                  final int swipeDir) {
-                final int position = viewHolder.getAdapterPosition();
+                final int position = viewHolder.getBindingAdapterPosition();
                 tabList.remove(position);
                 selectedTabsAdapter.notifyItemRemoved(position);
 

@@ -107,7 +107,7 @@ ext {
     icepickVersion = '3.2.0'
     exoPlayerVersion = '2.12.3'
     googleAutoServiceVersion = '1.0'
-    groupieVersion = '2.9.0'
+    groupieVersion = '2.10.0'
     markwonVersion = '4.6.2'
 
     leakCanaryVersion = '2.5'
@@ -211,11 +211,14 @@ dependencies {
     implementation 'androidx.media:media:1.4.3'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.preference:preference:1.1.1'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation "androidx.room:room-runtime:${androidxRoomVersion}"
     implementation "androidx.room:room-rxjava3:${androidxRoomVersion}"
     kapt "androidx.room:room-compiler:${androidxRoomVersion}"
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    // Newer version specified to prevent accessibility regressions with RecyclerView, see:
+    // https://developer.android.com/jetpack/androidx/releases/viewpager2#1.1.0-alpha01
+    implementation 'androidx.viewpager2:viewpager2:1.1.0-beta01'
     implementation 'androidx.webkit:webkit:1.4.0'
     implementation 'com.google.android.material:material:1.2.1'
 
