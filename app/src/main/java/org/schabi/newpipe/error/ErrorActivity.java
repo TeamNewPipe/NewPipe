@@ -77,6 +77,16 @@ public class ErrorActivity extends AppCompatActivity {
 
     private ActivityErrorBinding activityErrorBinding;
 
+    /**
+     * Reports a new error by starting a new activity.
+     * <br/>
+     * Ensure that the data within errorInfo is serializable otherwise
+     * an exception will be thrown!<br/>
+     * {@link EnsureExceptionSerializable} might help.
+     *
+     * @param context
+     * @param errorInfo
+     */
     public static void reportError(final Context context, final ErrorInfo errorInfo) {
         final Intent intent = new Intent(context, ErrorActivity.class);
         intent.putExtra(ERROR_INFO, errorInfo);

@@ -12,6 +12,7 @@ import androidx.preference.PreferenceManager;
 import com.google.android.exoplayer2.ExoPlaybackException;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.error.EnsureExceptionSerializable;
 import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
@@ -69,7 +70,7 @@ public class PlayerErrorHandler {
         ErrorActivity.reportError(
                 context,
                 new ErrorInfo(
-                        exception,
+                        EnsureExceptionSerializable.ensureSerializable(exception),
                         UserAction.PLAY_STREAM,
                         "Player error[type=" + exception.type + "] occurred while playing: "
                                 + info.getUrl(),
