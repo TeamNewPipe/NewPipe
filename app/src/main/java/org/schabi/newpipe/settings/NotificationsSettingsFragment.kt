@@ -57,7 +57,7 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
                     Snackbar.LENGTH_INDEFINITE
                 ).apply {
                     setAction(R.string.settings) {
-                        activity?.let { NotificationHelper.openNewPipeSystemNotificationSettings(it) }
+                        NotificationHelper.openNewPipeSystemNotificationSettings(it.context)
                     }
                     setActionTextColor(Color.YELLOW)
                     addCallback(object : Snackbar.Callback() {
