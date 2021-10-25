@@ -37,6 +37,15 @@ class FeedLoadManager(private val context: Context) {
         FeedLoadState(description, maxProgress.get(), currentProgress.get())
     }
 
+    /**
+     * Start checking for new streams of a subscription group.
+     * @param groupId The ID of the subscription group to load.
+     * When using [FeedGroupEntity.GROUP_ALL_ID], all subscriptions are loaded.
+     * @param ignoreOutdatedThreshold When `false`, only subscriptions which have not been updated
+     * within the `feed_update_threshold` are checked for updates.
+     * This threshold can be set by the user in the app settings.
+     * When `true`, all subscriptions are checked for new streams.
+     */
     fun startLoading(
         groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
         ignoreOutdatedThreshold: Boolean = false,
@@ -59,12 +68,15 @@ class FeedLoadManager(private val context: Context) {
             OffsetDateTime.now(ZoneOffset.UTC).minusSeconds(thresholdOutdatedSeconds.toLong())
         }
 
-        val subscriptions = when (groupId) {
+        /**
+         * subscriptions which have not been updated within the feed updated threshold
+         */
+        val outdatedSubscriptions = when (groupId) {
             FeedGroupEntity.GROUP_ALL_ID -> feedDatabaseManager.outdatedSubscriptions(outdatedThreshold)
             else -> feedDatabaseManager.outdatedSubscriptionsForGroup(groupId, outdatedThreshold)
         }
 
-        return subscriptions
+        return outdatedSubscriptions
             .take(1)
 
             .doOnNext {
@@ -90,9 +102,14 @@ class FeedLoadManager(private val context: Context) {
             .map { subscriptionEntity ->
                 var error: Throwable? = null
                 try {
+                    // check for and load new streams
+                    // either by using the dedicated feed method or by getting the channel info
                     val listInfo = if (useFeedExtractor) {
                         ExtractorHelper
-                            .getFeedInfoFallbackToChannelInfo(subscriptionEntity.serviceId, subscriptionEntity.url)
+                            .getFeedInfoFallbackToChannelInfo(
+                                subscriptionEntity.serviceId,
+                                subscriptionEntity.url
+                            )
                             .onErrorReturn {
                                 error = it // store error, otherwise wrapped into RuntimeException
                                 throw it
@@ -100,7 +117,11 @@ class FeedLoadManager(private val context: Context) {
                             .blockingGet()
                     } else {
                         ExtractorHelper
-                            .getChannelInfo(subscriptionEntity.serviceId, subscriptionEntity.url, true)
+                            .getChannelInfo(
+                                subscriptionEntity.serviceId,
+                                subscriptionEntity.url,
+                                true
+                            )
                             .onErrorReturn {
                                 error = it // store error, otherwise wrapped into RuntimeException
                                 throw it
@@ -108,7 +129,12 @@ class FeedLoadManager(private val context: Context) {
                             .blockingGet()
                     } as ListInfo<StreamInfoItem>
 
-                    return@map Notification.createOnNext(FeedUpdateInfo(subscriptionEntity, listInfo))
+                    return@map Notification.createOnNext(
+                        FeedUpdateInfo(
+                            subscriptionEntity,
+                            listInfo
+                        )
+                    )
                 } catch (e: Throwable) {
                     if (error == null) {
                         // do this to prevent blockingGet() from wrapping into RuntimeException
@@ -116,7 +142,8 @@ class FeedLoadManager(private val context: Context) {
                     }
 
                     val request = "${subscriptionEntity.serviceId}:${subscriptionEntity.url}"
-                    val wrapper = FeedLoadService.RequestException(subscriptionEntity.uid, request, error!!)
+                    val wrapper =
+                        FeedLoadService.RequestException(subscriptionEntity.uid, request, error!!)
                     return@map Notification.createOnError<FeedUpdateInfo>(wrapper)
                 }
             }
@@ -142,6 +169,13 @@ class FeedLoadManager(private val context: Context) {
         FeedEventManager.postEvent(FeedEventManager.Event.ProgressEvent(currentProgress.get(), maxProgress.get()))
     }
 
+    /**
+     * Keep the feed and the stream tables small
+     * to reduce loading times when trying to display the feed.
+     * <br>
+     * Remove streams from the feed which are older than [FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE].
+     * Remove streams from the database which are not linked / used by any table.
+     */
     private fun postProcessFeed() = Completable.fromRunnable {
         FeedEventManager.postEvent(FeedEventManager.Event.ProgressEvent(R.string.feed_processing_message))
         feedDatabaseManager.removeOrphansOrOlderStreams()
@@ -179,7 +213,12 @@ class FeedLoadManager(private val context: Context) {
                             subscriptionManager.updateFromInfo(subscriptionId, info)
 
                             if (info.errors.isNotEmpty()) {
-                                feedResultsHolder.addErrors(FeedLoadService.RequestException.wrapList(subscriptionId, info))
+                                feedResultsHolder.addErrors(
+                                    FeedLoadService.RequestException.wrapList(
+                                        subscriptionId,
+                                        info
+                                    )
+                                )
                                 feedDatabaseManager.markAsOutdated(subscriptionId)
                             }
                         }

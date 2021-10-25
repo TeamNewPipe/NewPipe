@@ -81,9 +81,8 @@ class NotificationHelper(val context: Context) {
             PendingIntent.getActivity(
                 context,
                 data.pseudoId,
-                NavigationHelper.getChannelIntent(
-                    context, data.listInfo.serviceId, data.listInfo.url
-                )
+                NavigationHelper
+                    .getChannelIntent(context, data.listInfo.serviceId, data.listInfo.url)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
                 0
             )
@@ -129,10 +128,10 @@ class NotificationHelper(val context: Context) {
             }
         }
 
-        @JvmStatic
         /**
          * Whether the user enabled the notifications for new streams in the app settings.
          */
+        @JvmStatic
         fun areNewStreamsNotificationsEnabled(context: Context): Boolean {
             return (
                 PreferenceManager.getDefaultSharedPreferences(context)
