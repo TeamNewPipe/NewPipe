@@ -128,33 +128,33 @@ public final class CheckForNewAppVersion extends IntentService {
                                                              final String versionName,
                                                              final String apkLocationUrl,
                                                              final int versionCode) {
-        final int notificationId = 2000;
-
-        if (BuildConfig.VERSION_CODE < versionCode) {
-            // A pending intent to open the apk location url in the browser.
-            final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            final PendingIntent pendingIntent
-                    = PendingIntent.getActivity(application, 0, intent, 0);
-
-            final String channelId = application
-                    .getString(R.string.app_update_notification_channel_id);
-            final NotificationCompat.Builder notificationBuilder
-                    = new NotificationCompat.Builder(application, channelId)
-                    .setSmallIcon(R.drawable.ic_newpipe_update)
-                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                    .setContentIntent(pendingIntent)
-                    .setAutoCancel(true)
-                    .setContentTitle(application
-                            .getString(R.string.app_update_notification_content_title))
-                    .setContentText(application
-                            .getString(R.string.app_update_notification_content_text)
-                            + " " + versionName);
-
-            final NotificationManagerCompat notificationManager
-                    = NotificationManagerCompat.from(application);
-            notificationManager.notify(notificationId, notificationBuilder.build());
+        if (BuildConfig.VERSION_CODE >= versionCode) {
+            return;
         }
+
+        // A pending intent to open the apk location url in the browser.
+        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        final PendingIntent pendingIntent
+                = PendingIntent.getActivity(application, 0, intent, 0);
+
+        final String channelId = application
+                .getString(R.string.app_update_notification_channel_id);
+        final NotificationCompat.Builder notificationBuilder
+                = new NotificationCompat.Builder(application, channelId)
+                .setSmallIcon(R.drawable.ic_newpipe_update)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .setContentTitle(application
+                        .getString(R.string.app_update_notification_content_title))
+                .setContentText(application
+                        .getString(R.string.app_update_notification_content_text)
+                        + " " + versionName);
+
+        final NotificationManagerCompat notificationManager
+                = NotificationManagerCompat.from(application);
+        notificationManager.notify(2000, notificationBuilder.build());
     }
 
     public static boolean isReleaseApk(@NonNull final App app) {
