@@ -1,5 +1,7 @@
 package org.schabi.newpipe.settings;
 
+import static org.schabi.newpipe.CheckForNewAppVersion.startNewVersionCheckService;
+
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -7,17 +9,15 @@ import androidx.preference.Preference;
 
 import org.schabi.newpipe.R;
 
-import static org.schabi.newpipe.CheckForNewAppVersion.startNewVersionCheckService;
-
 public class UpdateSettingsFragment extends BasePreferenceFragment {
     private final Preference.OnPreferenceChangeListener updatePreferenceChange
             = (preference, checkForUpdates) -> {
         defaultPreferences.edit()
                 .putBoolean(getString(R.string.update_app_key), (boolean) checkForUpdates).apply();
 
-                if ((boolean) checkForUpdates) {
-                    checkNewVersionNow();
-                }
+        if ((boolean) checkForUpdates) {
+            checkNewVersionNow();
+        }
         return true;
     };
 
@@ -40,9 +40,9 @@ public class UpdateSettingsFragment extends BasePreferenceFragment {
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         addPreferencesFromResource(R.xml.update_settings);
 
-        final String updateToggleKey = getString(R.string.update_app_key);
-        final String manualUpdateKey = getString(R.string.manual_update_key);
-        findPreference(updateToggleKey).setOnPreferenceChangeListener(updatePreferenceChange);
-        findPreference(manualUpdateKey).setOnPreferenceClickListener(manualUpdateClick);
+        findPreference(getString(R.string.update_app_key))
+                .setOnPreferenceChangeListener(updatePreferenceChange);
+        findPreference(getString(R.string.manual_update_key))
+                .setOnPreferenceClickListener(manualUpdateClick);
     }
 }
