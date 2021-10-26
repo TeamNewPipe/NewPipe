@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.util.Log;
 
@@ -15,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.pm.PackageInfoCompat;
 import androidx.preference.PreferenceManager;
 
@@ -156,13 +154,6 @@ public final class CheckForNewAppVersion extends IntentService {
                     = NotificationManagerCompat.from(application);
             notificationManager.notify(notificationId, notificationBuilder.build());
         }
-    }
-
-    private static boolean isConnected(@NonNull final App app) {
-        final ConnectivityManager connectivityManager =
-                ContextCompat.getSystemService(app, ConnectivityManager.class);
-        return connectivityManager != null && connectivityManager.getActiveNetworkInfo() != null
-                && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
     public static boolean isGithubApk(@NonNull final App app) {
