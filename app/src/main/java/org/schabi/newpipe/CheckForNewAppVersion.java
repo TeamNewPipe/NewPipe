@@ -46,7 +46,8 @@ public final class CheckForNewAppVersion extends IntentService {
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final String TAG = CheckForNewAppVersion.class.getSimpleName();
 
-    private static final String GITHUB_APK_SHA1
+    // Public key of the certificate that is used in NewPipe release versions
+    private static final String RELEASE_CERT_PUBLIC_KEY_SHA1
             = "B0:2E:90:7C:1C:D6:FC:57:C3:35:F0:88:D0:8F:50:5F:94:E4:D2:15";
     private static final String NEWPIPE_API_URL = "https://newpipe.net/api/data.json";
 
@@ -156,8 +157,8 @@ public final class CheckForNewAppVersion extends IntentService {
         }
     }
 
-    public static boolean isGithubApk(@NonNull final App app) {
-        return getCertificateSHA1Fingerprint(app).equals(GITHUB_APK_SHA1);
+    public static boolean isReleaseApk(@NonNull final App app) {
+        return getCertificateSHA1Fingerprint(app).equals(RELEASE_CERT_PUBLIC_KEY_SHA1);
     }
 
     private void checkNewVersion() throws IOException, ReCaptchaException {
@@ -167,7 +168,7 @@ public final class CheckForNewAppVersion extends IntentService {
         final NewVersionManager manager = new NewVersionManager();
 
         // Check if the current apk is a github one or not.
-        if (!isGithubApk(app)) {
+        if (!isReleaseApk(app)) {
             return;
         }
 

@@ -16,7 +16,7 @@ public class MainSettingsFragment extends BasePreferenceFragment {
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         addPreferencesFromResource(R.xml.main_settings);
 
-        if (!CheckForNewAppVersion.isGithubApk(App.getApp())) {
+        if (!CheckForNewAppVersion.isReleaseApk(App.getApp())) {
             final Preference update
                     = findPreference(getString(R.string.update_pref_screen_key));
             getPreferenceScreen().removePreference(update);
