@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/info_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <EditText
+        <org.schabi.newpipe.views.NewPipeEditText
             android:id="@+id/input_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

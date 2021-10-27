@@ -6,7 +6,7 @@
     android:layout_height="?attr/actionBarSize"
     tools:background="?attr/colorPrimary">
 
-    <EditText
+    <org.schabi.newpipe.views.NewPipeEditText
         android:id="@+id/toolbar_search_edit_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
