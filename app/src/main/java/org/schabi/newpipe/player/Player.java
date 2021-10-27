@@ -112,6 +112,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.PositionInfo;
 import com.google.android.exoplayer2.RenderersFactory;
@@ -122,6 +123,7 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.text.Cue;
+import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.CaptionStyleCompat;
@@ -144,6 +146,7 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamSegment;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -2443,9 +2446,9 @@ public final class Player implements
     }
 
     @Override
-    public void onPositionDiscontinuity(
-            final PositionInfo oldPosition, final PositionInfo newPosition,
-            @DiscontinuityReason final int discontinuityReason) {
+    public void onPositionDiscontinuity(@NonNull final PositionInfo oldPosition,
+                                        @NonNull final PositionInfo newPosition,
+                                        @DiscontinuityReason final int discontinuityReason) {
         if (DEBUG) {
             Log.d(TAG, "ExoPlayer - onPositionDiscontinuity() called with "
                     + "discontinuityReason = [" + discontinuityReason + "]");
@@ -2493,7 +2496,7 @@ public final class Player implements
     }
 
     @Override
-    public void onCues(final List<Cue> cues) {
+    public void onCues(@NonNull final List<Cue> cues) {
         binding.subtitleView.onCues(cues);
     }
     //endregion
@@ -2999,8 +3002,16 @@ public final class Player implements
 
         final MediaSourceTag metadata;
         try {
-            metadata = (MediaSourceTag) simpleExoPlayer.getCurrentTag();
-        } catch (IndexOutOfBoundsException | ClassCastException error) {
+            final MediaItem currentMediaItem = simpleExoPlayer.getCurrentMediaItem();
+            if (currentMediaItem != null) {
+                final MediaItem.PlaybackProperties playbackProperties =
+                        currentMediaItem.playbackProperties;
+                metadata = (MediaSourceTag) (playbackProperties != null ? playbackProperties.tag
+                        : null);
+            } else {
+                metadata = null;
+            }
+        } catch (final IndexOutOfBoundsException | ClassCastException error) {
             if (DEBUG) {
                 Log.d(TAG, "Could not update metadata: " + error.getMessage());
                 error.printStackTrace();
@@ -3286,7 +3297,15 @@ public final class Player implements
     @Override // own playback listener
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-        return (isAudioOnly ? audioResolver : videoResolver).resolve(info);
+        if (audioPlayerSelected()) {
+            return audioResolver.resolve(info);
+        } else {
+            if (isAudioOnly && !videoResolver.isVideoStreamVideoOnly()) {
+                return audioResolver.resolve(info);
+            }
+
+            return videoResolver.resolve(info);
+        }
     }
 
     public void disablePreloadingOfCurrentTrack() {
@@ -4141,19 +4160,61 @@ public final class Player implements
         return (AppCompatActivity) ((ViewGroup) binding.getRoot().getParent()).getContext();
     }
 
-    private void useVideoSource(final boolean video) {
-        if (playQueue == null || isAudioOnly == !video || audioPlayerSelected()) {
+    private void useVideoSource(final boolean videoEnabled) {
+        if (playQueue == null || isAudioOnly == !videoEnabled || audioPlayerSelected()) {
             return;
         }
 
-        isAudioOnly = !video;
+        isAudioOnly = !videoEnabled;
         // When a user returns from background controls could be hidden
         // but systemUI will be shown 100%. Hide it
         if (!isAudioOnly && !isControlsVisible()) {
             hideSystemUIIfNeeded();
         }
+
+        final int videoRenderIndex = getVideoRendererIndex();
+
+        // We can safely assume that currentMetadata is not null (otherwise this method isn't
+        // called) so we can use the requireNonNull method of the Objects class.
+        final StreamInfo info = Objects.requireNonNull(currentMetadata).getMetadata();
+
+        /* For video streams: we don't want to stream in background the video stream so if the
+        video stream played is not a video-only stream and if there is an audio stream available,
+        play this audio stream in background by reloading the play queue manager.
+        Otherwise the video renderer will be just disabled (because there is no
+        other stream for it to play the audio): if the video stream is video-only, only the audio
+        stream will be fetched and the video stream will be fetched again when the user return to a
+        video player.
+
+        For audio streams: nothing is done, it's not needed to reload the player with the same
+        audio stream.
+
+        In the case where we don't know the index of the video renderer, the play queue manager
+        is also reloaded. */
+
+        final StreamType streamType = info.getStreamType();
+
+        final boolean isVideoStreamTypeAndIsVideoOnlyStreamOrNoAudioStreamsAvailable =
+                (streamType == StreamType.VIDEO_STREAM || streamType == StreamType.LIVE_STREAM)
+                        && (videoResolver.isVideoStreamVideoOnly()
+                            || isNullOrEmpty(info.getAudioStreams()));
+        if (videoRenderIndex != RENDERER_UNAVAILABLE
+                && isVideoStreamTypeAndIsVideoOnlyStreamOrNoAudioStreamsAvailable) {
+            final TrackGroupArray videoTrackGroupArray = Objects.requireNonNull(
+                    trackSelector.getCurrentMappedTrackInfo()).getTrackGroups(videoRenderIndex);
+            if (videoEnabled) {
+                trackSelector.setParameters(trackSelector.buildUponParameters()
+                        .clearSelectionOverride(videoRenderIndex, videoTrackGroupArray));
+            } else {
+                trackSelector.setParameters(trackSelector.buildUponParameters()
+                        .setSelectionOverride(videoRenderIndex, videoTrackGroupArray, null));
+            }
+        } else if (streamType != StreamType.AUDIO_STREAM
+                && streamType != StreamType.AUDIO_LIVE_STREAM) {
+            reloadPlayQueueManager();
+        }
+
         setRecovery();
-        reloadPlayQueueManager();
     }
     //endregion
 
@@ -4191,7 +4252,7 @@ public final class Player implements
     private boolean isLive() {
         try {
             return !exoPlayerIsNull() && simpleExoPlayer.isCurrentWindowDynamic();
-        } catch (@NonNull final IndexOutOfBoundsException e) {
+        } catch (final IndexOutOfBoundsException e) {
             // Why would this even happen =(... but lets log it anyway, better safe than sorry
             if (DEBUG) {
                 Log.d(TAG, "player.isCurrentWindowDynamic() failed: ", e);
@@ -4369,15 +4430,31 @@ public final class Player implements
     }
 
     private void cleanupVideoSurface() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // >=API23
-            if (surfaceHolderCallback != null) {
-                if (binding != null) {
-                    binding.surfaceView.getHolder().removeCallback(surfaceHolderCallback);
-                }
-                surfaceHolderCallback.release();
-                surfaceHolderCallback = null;
+        // Only for API >= 23
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && surfaceHolderCallback != null) {
+            if (binding != null) {
+                binding.surfaceView.getHolder().removeCallback(surfaceHolderCallback);
             }
+            surfaceHolderCallback.release();
+            surfaceHolderCallback = null;
         }
     }
     //endregion
+
+    private int getVideoRendererIndex() {
+        final MappingTrackSelector.MappedTrackInfo mappedTrackInfo = trackSelector
+                .getCurrentMappedTrackInfo();
+
+        if (mappedTrackInfo != null) {
+            for (int i = 0; i < mappedTrackInfo.getRendererCount(); i++) {
+                final TrackGroupArray trackGroups = mappedTrackInfo.getTrackGroups(i);
+                if (!trackGroups.isEmpty()
+                        && simpleExoPlayer.getRendererType(i) == C.TRACK_TYPE_VIDEO) {
+                    return i;
+                }
+            }
+        }
+
+        return RENDERER_UNAVAILABLE;
+    }
 }

@@ -44,4 +44,9 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         return buildMediaSource(dataSource, audio.getUrl(), PlayerHelper.cacheKeyOf(info, audio),
                 MediaFormat.getSuffixById(audio.getFormatId()), tag);
     }
+
+    @Override
+    public boolean isVideoStreamVideoOnly() {
+        return false;
+    }
 }

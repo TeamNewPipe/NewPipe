@@ -35,6 +35,8 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     @Nullable
     private String playbackQuality;
 
+    private boolean isVideoStreamVideoOnly = false;
+
     public VideoPlaybackResolver(@NonNull final Context context,
                                  @NonNull final PlayerDataSource dataSource,
                                  @NonNull final QualityResolver qualityResolver) {
@@ -46,6 +48,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     @Override
     @Nullable
     public MediaSource resolve(@NonNull final StreamInfo info) {
+        isVideoStreamVideoOnly = false;
         final MediaSource liveSource = maybeBuildLiveMediaSource(dataSource, info);
         if (liveSource != null) {
             return liveSource;
@@ -85,6 +88,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                     PlayerHelper.cacheKeyOf(info, audio),
                     MediaFormat.getSuffixById(audio.getFormatId()), tag);
             mediaSources.add(audioSource);
+            isVideoStreamVideoOnly = true;
         }
 
         // If there is no audio or video sources, then this media source cannot be played back
@@ -116,6 +120,11 @@ public class VideoPlaybackResolver implements PlaybackResolver {
             return new MergingMediaSource(mediaSources.toArray(
                     new MediaSource[0]));
         }
+    }
+
+    @Override
+    public boolean isVideoStreamVideoOnly() {
+        return isVideoStreamVideoOnly;
     }
 
     @Nullable
