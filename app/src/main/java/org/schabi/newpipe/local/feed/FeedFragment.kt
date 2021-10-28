@@ -159,6 +159,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
     }
 
+    // TODO: Move
+    fun redrawContent() {
+        groupAdapter.notifyItemRangeChanged(0, Int.MAX_VALUE)
+    }
+
     fun setupListViewMode() {
         // does everything needed to setup the layouts for grid or list modes
         groupAdapter.spanCount = if (shouldUseGridLayout(context)) getGridSpanCountStreams(context) else 1

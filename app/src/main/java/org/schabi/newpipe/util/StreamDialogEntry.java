@@ -62,13 +62,13 @@ public enum StreamDialogEntry {
      * Info: Add this entry within showStreamDialog.
      */
     enqueue(R.string.enqueue_stream, (fragment, item) -> {
-        fetchItemInfoIfSparse(item,
+        fetchItemInfoIfSparse(fragment, item,
                 fullItem -> NavigationHelper.enqueueOnPlayer(fragment.getContext(), fullItem)
         );
     }),
 
     enqueue_next(R.string.enqueue_next_stream, (fragment, item) -> {
-        fetchItemInfoIfSparse(item,
+        fetchItemInfoIfSparse(fragment, item,
                 fullItem -> NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), fullItem)
         );
     }),
@@ -218,8 +218,9 @@ public enum StreamDialogEntry {
         void onInfo(SinglePlayQueue item);
     }
 
-    private static void fetchItemInfoIfSparse(final StreamInfoItem item,
-                                              final InfoCallback callback) {
+    private static void fetchItemInfoIfSparse(final Fragment fragment,
+            final StreamInfoItem item,
+            final InfoCallback callback) {
         if (item.getDuration() < 0) {
             // Sparse item: fetched by fast fetch
             final Disposable currentWorker = ExtractorHelper.getStreamInfo(
@@ -227,9 +228,19 @@ public enum StreamDialogEntry {
                     item.getUrl(),
                     false
             )
+
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(result -> {
+                        final HistoryRecordManager recordManager =
+                                new HistoryRecordManager(fragment.getContext());
+                        recordManager.saveStreamState(result, 0)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .doOnError(throwable -> Log.e("StreamDialogEntry",
+                                        throwable.toString()))
+                                .subscribe();
+
                         callback.onInfo(new SinglePlayQueue(result));
                     }, throwable -> Log.e("StreamDialogEntry", throwable.toString()));
         } else {
