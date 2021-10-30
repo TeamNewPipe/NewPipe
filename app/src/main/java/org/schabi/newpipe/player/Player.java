@@ -43,6 +43,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlayerTypeFr
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePopupLayoutParamsFromPrefs;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
 import static org.schabi.newpipe.player.helper.PlayerHelper.savePlaybackParametersToPrefs;
+import static org.schabi.newpipe.util.ListHelper.computeDefaultResolution;
 import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
 import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
@@ -128,6 +129,7 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.text.Cue;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
@@ -3269,11 +3271,47 @@ public final class Player implements
     @Override // own playback listener
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-        return (isAudioOnly ? audioResolver : videoResolver).resolve(trackSelector, info);
+        final MediaSource mediaSource = (isAudioOnly ? audioResolver : videoResolver)
+                .resolve(info);
+        if ((isAudioOnly ? audioResolver : videoResolver).isLiveSource()) {
+            setDefaultResolutionLimit();
+        }
+        return mediaSource;
     }
 
     public void disablePreloadingOfCurrentTrack() {
         loadController.disablePreloadingOfCurrentTrack();
+    }
+
+    private void setDefaultResolutionLimit() {
+        final String defaultResolution;
+
+        if (popupPlayerSelected()) {
+            defaultResolution = computeDefaultResolution(context,
+                    R.string.default_popup_resolution_key,
+                    R.string.default_popup_resolution_value);
+        } else {
+            defaultResolution = computeDefaultResolution(context,
+                    R.string.default_resolution_key, R.string.default_resolution_value);
+        }
+
+        // Best resolution set: not needed to set a maximum resolution
+        if (!defaultResolution.equals(context.getString(R.string.best_resolution_key))) {
+            final String[] defaultResolutionArray = defaultResolution.split("p");
+            final int defaultHeight = Integer.parseInt(defaultResolutionArray[0]);
+            final int defaultFrameRate = defaultResolutionArray.length == 2
+                    ? Integer.parseInt(defaultResolutionArray[1]) : -1;
+
+            final DefaultTrackSelector.Parameters selectionParameters = trackSelector
+                    .getParameters();
+            final DefaultTrackSelector.ParametersBuilder builder = selectionParameters.buildUpon()
+                    .clearSelectionOverrides();
+
+            builder.setMaxVideoSize(Integer.MAX_VALUE, defaultHeight);
+            builder.setMaxVideoFrameRate(defaultFrameRate != -1 ? defaultFrameRate : 30);
+
+            trackSelector.setParameters(builder);
+        }
     }
 
     @Nullable
@@ -3461,16 +3499,13 @@ public final class Player implements
             public void onDownstreamFormatChanged(@NonNull final EventTime eventTime,
                                                   @NonNull final MediaLoadData mediaLoadData) {
                 final Format currentPlayingFormat = mediaLoadData.trackFormat;
-                final String qualityTextViewText = binding.qualityTextView.getText().toString();
-                if (currentPlayingFormat != null && (qualityTextViewText.isEmpty()
-                        || qualityTextViewText.contains(context.getString(
-                                R.string.auto_quality)))) {
+                if (currentPlayingFormat != null) {
 
                     final MappingTrackSelector.MappedTrackInfo currentMappedTrackInfo =
                             trackSelector.getCurrentMappedTrackInfo();
                     final int videoTrackGroupIndex = getVideoRendererIndex();
 
-                    if (videoTrackGroupIndex != 1) {
+                    if (videoTrackGroupIndex != RENDERER_UNAVAILABLE) {
                         // videoTrackGroupArray shouldn't be null because this method is called
                         // only if a media source is available
                         final TrackGroupArray videoTrackGroupArray = Objects.requireNonNull(
@@ -4353,7 +4388,7 @@ public final class Player implements
     private boolean isLive() {
         try {
             return !exoPlayerIsNull() && simpleExoPlayer.isCurrentWindowDynamic();
-        } catch (@NonNull final IndexOutOfBoundsException e) {
+        } catch (final IndexOutOfBoundsException e) {
             // Why would this even happen =(... but lets log it anyway, better safe than sorry
             if (DEBUG) {
                 Log.d(TAG, "player.isCurrentWindowDynamic() failed: ", e);

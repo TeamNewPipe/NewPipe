@@ -12,7 +12,6 @@ import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.util.ListHelper;
 
 public class AudioPlaybackResolver implements PlaybackResolver {
@@ -20,6 +19,8 @@ public class AudioPlaybackResolver implements PlaybackResolver {
     private final Context context;
     @NonNull
     private final PlayerDataSource dataSource;
+
+    private boolean isLiveSource = false;
 
     public AudioPlaybackResolver(@NonNull final Context context,
                                  @NonNull final PlayerDataSource dataSource) {
@@ -29,11 +30,10 @@ public class AudioPlaybackResolver implements PlaybackResolver {
 
     @Override
     @Nullable
-    public MediaSource resolve(@NonNull final CustomTrackSelector trackSelector,
-                               @NonNull final StreamInfo info) {
+    public MediaSource resolve(@NonNull final StreamInfo info) {
         final MediaSource liveSource = maybeBuildLiveMediaSource(dataSource, info);
         if (liveSource != null) {
-            setMaximumVideoSizeIfUsingMobileData(context, trackSelector);
+            isLiveSource = true;
             return liveSource;
         }
 
@@ -46,5 +46,10 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         final MediaSourceTag tag = new MediaSourceTag(info);
         return buildMediaSource(dataSource, audio.getUrl(), PlayerHelper.cacheKeyOf(info, audio),
                 MediaFormat.getSuffixById(audio.getFormatId()), tag);
+    }
+
+    @Override
+    public boolean isLiveSource() {
+        return isLiveSource;
     }
 }

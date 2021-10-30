@@ -19,7 +19,6 @@ import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.util.ListHelper;
 
 import java.util.ArrayList;
@@ -32,6 +31,8 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     private final PlayerDataSource dataSource;
     @NonNull
     private final QualityResolver qualityResolver;
+
+    private boolean isLiveSource = false;
 
     @Nullable
     private String playbackQuality;
@@ -46,11 +47,10 @@ public class VideoPlaybackResolver implements PlaybackResolver {
 
     @Override
     @Nullable
-    public MediaSource resolve(@NonNull final CustomTrackSelector trackSelector,
-                               @NonNull final StreamInfo info) {
+    public MediaSource resolve(@NonNull final StreamInfo info) {
         final MediaSource liveSource = maybeBuildLiveMediaSource(dataSource, info);
         if (liveSource != null) {
-            setMaximumVideoSizeIfUsingMobileData(context, trackSelector);
+            isLiveSource = true;
             return liveSource;
         }
 
@@ -119,6 +119,11 @@ public class VideoPlaybackResolver implements PlaybackResolver {
             return new MergingMediaSource(mediaSources.toArray(
                     new MediaSource[0]));
         }
+    }
+
+    @Override
+    public boolean isLiveSource() {
+        return isLiveSource;
     }
 
     @Nullable

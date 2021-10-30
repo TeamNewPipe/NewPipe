@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
@@ -135,8 +136,9 @@ public final class ListHelper {
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    private static String computeDefaultResolution(final Context context, final int key,
-                                                   final int value) {
+    public static String computeDefaultResolution(@NonNull final Context context,
+                                                  final int key,
+                                                  final int value) {
         final SharedPreferences preferences
                 = PreferenceManager.getDefaultSharedPreferences(context);
 
@@ -519,10 +521,11 @@ public final class ListHelper {
     /**
      * The maximum resolution allowed.
      *
-     * @param context App context
-     * @return maximum resolution allowed or null if there is no maximum
+     * @param context the app context
+     * @return the maximum resolution allowed or null if there is no maximum
      */
-    public static String getResolutionLimit(final Context context) {
+    @Nullable
+    private static String getResolutionLimit(final Context context) {
         String resolutionLimit = null;
         if (isMeteredNetwork(context)) {
             final SharedPreferences preferences

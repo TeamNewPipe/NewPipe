@@ -1,9 +1,5 @@
 package org.schabi.newpipe.player.resolver;
 
-import static org.schabi.newpipe.util.ListHelper.getResolutionLimit;
-import static org.schabi.newpipe.util.ListHelper.isMeteredNetwork;
-
-import android.content.Context;
 import android.net.Uri;
 import android.text.TextUtils;
 
@@ -14,13 +10,11 @@ import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MediaSourceFactory;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.util.Util;
 
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
-import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.util.StreamTypeUtil;
 
 public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
@@ -107,27 +101,5 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                     .setCustomCacheKey(cacheKey)
                     .build()
         );
-    }
-
-    default void setMaximumVideoSizeIfUsingMobileData(
-            @NonNull final Context context,
-            @NonNull final CustomTrackSelector trackSelector) {
-        final String resolutionLimit = getResolutionLimit(context);
-        if (isMeteredNetwork(context) && resolutionLimit != null) {
-            final String[] resolutionLimitArray = resolutionLimit.split("p");
-            final int heightLimit = Integer.parseInt(resolutionLimitArray[0]);
-            final int frameRateLimit = resolutionLimitArray.length == 2
-                    ? Integer.parseInt(resolutionLimitArray[1]) : -1;
-
-            final DefaultTrackSelector.ParametersBuilder parametersBuilder = trackSelector
-                    .buildUponParameters();
-            // We don't know what will be the width of the stream so using Integer.MAX_VALUE allows
-            // ExoPlayer to only take care of the height value (using a negative number for the
-            // width makes ExoPlayer playing always the lowest stream).
-            parametersBuilder.setMaxVideoSize(Integer.MAX_VALUE, heightLimit);
-            parametersBuilder.setMaxVideoFrameRate(frameRateLimit != -1 ? frameRateLimit : 30);
-
-            trackSelector.setParameters(parametersBuilder);
-        }
     }
 }

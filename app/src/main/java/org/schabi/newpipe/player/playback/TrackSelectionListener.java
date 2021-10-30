@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player.playback;
 
 import static com.google.android.exoplayer2.util.Assertions.checkNotNull;
+
 import static org.schabi.newpipe.player.Player.getResolutionStringFromFormat;
 
 import android.content.Context;
@@ -61,6 +62,8 @@ public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener
         final DefaultTrackSelector.ParametersBuilder builder = selectionParameters.buildUpon()
                 .clearSelectionOverrides(rendererIndex)
                 .setRendererDisabled(rendererIndex, isDisabled);
+        // The auto string
+        final String qualityTextViewText = qualityTextView.getText().toString();
 
         if (item.getItemId() != 0) {
             // A resolution string
@@ -73,11 +76,19 @@ public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener
             builder.setSelectionOverride(rendererIndex, rendererTrackGroups,
                     selectionOverride);
 
-            final Format currentPlayingFormat = videoTrackGroup.getFormat(qualityId);
-            qualityTextView.setText(getResolutionStringFromFormat(context, currentPlayingFormat));
+            // The quality needs only to be set here when a user keeps the quality selected
+            // automatically by ExoPlayer but selects it manually with the quality selector (the
+            // quality string will be changed in other cases with the analytics listener set in the
+            // player)
+            if (qualityTextViewText.contains(context.getString(R.string.auto_quality))) {
+                final Format currentPlayingFormat = videoTrackGroup.getFormat(qualityId);
+                qualityTextView.setText(getResolutionStringFromFormat(context,
+                        currentPlayingFormat));
+            }
+
+            trackSelector.setParameters(builder);
         } else {
-            // The auto string
-            final String qualityTextViewText = qualityTextView.getText().toString();
+            trackSelector.setParameters(builder);
 
             // If the quality text view text contains already the auto string, it means the user
             // already selected the auto option and pressed again the auto option from the quality
@@ -90,7 +101,6 @@ public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener
             }
         }
 
-        trackSelector.setParameters(builder);
         return true;
     }
 }
