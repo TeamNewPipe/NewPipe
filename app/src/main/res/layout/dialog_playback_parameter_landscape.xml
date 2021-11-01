@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:clickable="false"
     android:paddingLeft="@dimen/video_item_search_padding"
-    android:paddingTop="@dimen/video_item_search_padding"
+    android:paddingTop="4dp"
     android:paddingRight="@dimen/video_item_search_padding">
 
     <RelativeLayout
@@ -21,9 +21,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:gravity="center"
+
             android:text="@string/playback_tempo"
             android:textColor="?attr/colorAccent"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <RelativeLayout
@@ -31,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@id/tempoControlText"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="0dp"
             android:orientation="horizontal">
 
             <TextView
@@ -108,7 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tempoCurrentText"
-                    android:paddingBottom="4dp"
+                    android:paddingBottom="0dp"
                     tools:progress="50" />
             </RelativeLayout>
 
@@ -138,9 +139,9 @@
             android:layout_height="1dp"
             android:layout_below="@id/tempoControl"
             android:layout_marginStart="@dimen/video_item_search_padding"
-            android:layout_marginTop="@dimen/video_item_search_padding"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="@dimen/video_item_search_padding"
-            android:layout_marginBottom="@dimen/video_item_search_padding"
+            android:layout_marginBottom="8dp"
             android:background="?attr/separator_color" />
 
         <TextView
@@ -149,9 +150,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/separatorPitch"
             android:layout_centerHorizontal="true"
-            android:gravity="center"
             android:text="@string/playback_pitch"
             android:textColor="?attr/colorAccent"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <RelativeLayout
@@ -159,7 +160,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@id/pitchControlText"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="0dp"
             android:orientation="horizontal">
 
             <TextView
@@ -236,7 +237,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pitchCurrentText"
-                    android:paddingBottom="4dp"
+                    android:paddingBottom="0dp"
                     tools:progress="50" />
             </RelativeLayout>
 
@@ -265,15 +266,17 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/pitchControl"
-            android:layout_margin="@dimen/video_item_search_padding"
+            android:layout_marginStart="@dimen/video_item_search_padding"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/video_item_search_padding"
+            android:layout_marginBottom="8dp"
             android:background="?attr/separator_color" />
 
         <LinearLayout
             android:id="@+id/stepSizeSelector"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@id/separatorStepSizeSelector"
-            android:orientation="horizontal">
+            android:layout_height="20dp"
+            android:layout_below="@id/separatorStepSizeSelector">
 
             <TextView
                 android:layout_width="0dp"
@@ -282,6 +285,7 @@
                 android:clickable="false"
                 android:gravity="center"
                 android:text="@string/playback_step"
+                android:textSize="12sp"
                 android:textColor="?attr/colorAccent"
                 android:textStyle="bold" />
 
@@ -294,7 +298,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:textColor="?attr/colorAccent" />
+                android:textColor="?attr/colorAccent"
+                android:textSize="12sp"/>
 
             <TextView
                 android:id="@+id/stepSizeFivePercent"
@@ -305,6 +310,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
+                android:textSize="12sp"
                 android:textColor="?attr/colorAccent" />
 
             <TextView
@@ -316,6 +322,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
+                android:textSize="12sp"
                 android:textColor="?attr/colorAccent" />
 
             <TextView
@@ -327,6 +334,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
+                android:textSize ="12sp"
                 android:textColor="?attr/colorAccent" />
 
             <TextView
@@ -338,6 +346,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
+                android:textSize="12sp"
                 android:textColor="?attr/colorAccent" />
         </LinearLayout>
 
@@ -346,32 +355,47 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/stepSizeSelector"
-            android:layout_margin="@dimen/video_item_search_padding"
+            android:layout_marginStart="@dimen/video_item_search_padding"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/video_item_search_padding"
+            android:layout_marginBottom="8dp"
             android:background="?attr/separator_color" />
 
-        <CheckBox
-            android:id="@+id/unhookCheckbox"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/separatorCheckbox"
-            android:layout_centerHorizontal="true"
-            android:checked="false"
-            android:clickable="true"
-            android:focusable="true"
-            android:maxLines="1"
-            android:text="@string/unhook_checkbox" />
+            android:layout_height="40dp"
+            android:layout_below="@+id/separatorCheckbox"
+            android:orientation="horizontal">
 
-        <CheckBox
-            android:id="@+id/skipSilenceCheckbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/unhookCheckbox"
-            android:layout_centerHorizontal="true"
-            android:checked="false"
-            android:clickable="true"
-            android:focusable="true"
-            android:maxLines="1"
-            android:text="@string/skip_silence_checkbox" />
+            <CheckBox
+                android:id="@+id/unhookCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_weight="10"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:clickable="true"
+                android:focusable="true"
+                android:maxLines="2"
+                android:text="@string/unhook_checkbox" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"/>
+
+            <CheckBox
+                android:id="@+id/skipSilenceCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:checked="false"
+                android:clickable="true"
+                android:focusable="true"
+                android:maxLines="2"
+                android:text="@string/skip_silence_checkbox" />
+
+        </LinearLayout>
 
         <!-- END HERE -->
 

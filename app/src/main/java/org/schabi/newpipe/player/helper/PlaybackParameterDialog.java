@@ -2,9 +2,12 @@ package org.schabi.newpipe.player.helper;
 
 import android.app.Dialog;
 import android.content.Context;
+//import android.content.DialogInterface;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -153,11 +156,13 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
         assureCorrectAppLanguage(getContext());
-        final View view = View.inflate(getContext(), R.layout.dialog_playback_parameter, null);
+        final View view = View.inflate(getContext(),
+                R.layout.dialog_playback_parameter_landscape, null);
         setupControlViews(view);
+        final View customTitle = View.inflate(getContext(), R.layout.dialog_playback_title, null);
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireActivity())
-                .setTitle(R.string.playback_speed_control)
+                .setCustomTitle(customTitle)
                 .setView(view)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, (dialogInterface, i) ->
@@ -167,7 +172,39 @@ public class PlaybackParameterDialog extends DialogFragment {
                 .setPositiveButton(R.string.ok, (dialogInterface, i) ->
                         setCurrentPlaybackParameters());
 
-        return dialogBuilder.create();
+
+        return setupButton(dialogBuilder);
+    }
+
+    private Dialog setupButton(@NonNull final AlertDialog.Builder dialogBuilder) {
+        final AlertDialog dialog = dialogBuilder.create();
+
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(@NonNull final DialogInterface dialog) {
+
+                final Button pos = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                pos.setHeight(getResources()
+                        .getDimensionPixelSize(R.dimen.alertdialog_button_height));
+                pos.setTextSize(getResources()
+                        .getDimensionPixelSize(R.dimen.alertdialog_button_text_size));
+
+                final Button neg = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE);
+                neg.setHeight(getResources()
+                        .getDimensionPixelSize(R.dimen.alertdialog_button_height));
+                neg.setTextSize(getResources()
+                        .getDimensionPixelSize(R.dimen.alertdialog_button_text_size));
+
+                final Button reset = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEUTRAL);
+                reset.setHeight(getResources()
+                        .getDimensionPixelSize(R.dimen.alertdialog_button_height));
+                reset.setTextSize(getResources()
+                        .getDimensionPixelSize(R.dimen.alertdialog_button_text_size));
+
+            }
+        });
+
+        return dialog;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
