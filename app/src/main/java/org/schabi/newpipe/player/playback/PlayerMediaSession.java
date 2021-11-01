@@ -88,6 +88,7 @@ public class PlayerMediaSession implements MediaSessionCallback {
     @Override
     public void play() {
         player.play();
+        player.hideControls(0, 0);
     }
 
     @Override

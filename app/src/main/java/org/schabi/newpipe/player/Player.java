@@ -3754,6 +3754,9 @@ public final class Player implements
             case KeyEvent.KEYCODE_SPACE:
                 if (isFullscreen) {
                     playPause();
+                    if (isPlaying()) {
+                        hideControls(0, 0);
+                    }
                 }
                 break;
             case KeyEvent.KEYCODE_BACK:
