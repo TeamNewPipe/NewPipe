@@ -2,6 +2,7 @@ package org.schabi.newpipe.player.resolver;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +28,8 @@ import static com.google.android.exoplayer2.C.TIME_UNSET;
 import static org.schabi.newpipe.util.ListHelper.removeNonUrlAndTorrentStreams;
 
 public class VideoPlaybackResolver implements PlaybackResolver {
+    private static final String TAG = "VideoPlaybackResolver";
+
     @NonNull
     private final Context context;
     @NonNull
@@ -80,6 +83,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                         PlayerHelper.cacheKeyOf(info, video), tag);
                 mediaSources.add(streamSource);
             } catch (final IOException e) {
+                Log.e(TAG, "Unable to create video source:", e);
                 return null;
             }
         }
@@ -98,6 +102,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                         PlayerHelper.cacheKeyOf(info, audio), tag);
                 mediaSources.add(audioSource);
             } catch (final IOException e) {
+                Log.e(TAG, "Unable to create audio source:", e);
                 return null;
             }
         }

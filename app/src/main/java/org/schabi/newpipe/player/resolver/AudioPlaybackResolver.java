@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player.resolver;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AudioPlaybackResolver implements PlaybackResolver {
+    private static final String TAG = "AudioPlaybackResolver";
+
     @NonNull
     private final Context context;
     @NonNull
@@ -51,7 +54,8 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         try {
             mediaSource = buildMediaSource(dataSource, audio, info, PlayerHelper.cacheKeyOf(info,
                     audio), tag);
-        } catch (final IOException ignored) {
+        } catch (final IOException e) {
+            Log.e(TAG, "Unable to create audio source:", e);
         }
         return mediaSource;
     }
