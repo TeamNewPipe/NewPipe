@@ -169,10 +169,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        // Start the service which is checking all conditions
-        // and eventually searching for a new version.
-        // The service searching for a new NewPipe version must not be started in background.
-        startNewVersionCheckService();
+
+        final App app = App.getApp();
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
+
+        if (prefs.getBoolean(app.getString(R.string.update_app_key), true)) {
+            // Start the service which is checking all conditions
+            // and eventually searching for a new version.
+            // The service searching for a new NewPipe version must not be started in background.
+            startNewVersionCheckService();
+        }
     }
 
     private void setupDrawer() throws ExtractionException {
