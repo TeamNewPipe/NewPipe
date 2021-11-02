@@ -47,6 +47,7 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
 
     override fun onResume() {
         super.onResume()
+
         val enabled = NotificationHelper.areNotificationsEnabledOnDevice(requireContext())
         preferenceScreen.isEnabled = enabled
         if (!enabled) {
@@ -73,6 +74,8 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
             notificationWarningSnackbar?.dismiss()
             notificationWarningSnackbar = null
         }
+
+        // (Re-)Create loader
         loader?.dispose()
         loader = SubscriptionManager(requireContext())
             .subscriptions()
@@ -83,6 +86,7 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
     override fun onPause() {
         loader?.dispose()
         loader = null
+
         super.onPause()
     }
 
