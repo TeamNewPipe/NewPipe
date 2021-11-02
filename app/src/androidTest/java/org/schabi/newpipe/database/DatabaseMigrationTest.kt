@@ -16,7 +16,7 @@ import org.junit.runner.RunWith
 import org.schabi.newpipe.extractor.stream.StreamType
 
 @RunWith(AndroidJUnit4::class)
-class AppDatabaseTest {
+class DatabaseMigrationTest {
     companion object {
         private const val DEFAULT_SERVICE_ID = 0
         private const val DEFAULT_URL = "https://www.youtube.com/watch?v=cDphUib5iG4"
