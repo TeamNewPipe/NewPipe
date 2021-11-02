@@ -150,6 +150,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/separatorPitch"
             android:layout_centerHorizontal="true"
+
             android:text="@string/playback_pitch"
             android:textColor="?attr/colorAccent"
             android:textSize="12sp"
@@ -363,7 +364,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/separatorCheckbox"
             android:orientation="horizontal">
 
@@ -376,7 +377,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:maxLines="2"
-                android:text="@string/unhook_checkbox" />
+                android:text="@string/unhook_checkbox"
+                android:textSize="12sp"/>
 
             <View
                 android:layout_width="0dp"
@@ -393,7 +395,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:maxLines="2"
-                android:text="@string/skip_silence_checkbox" />
+                android:text="@string/skip_silence_checkbox"
+                android:textSize="12sp"/>
 
         </LinearLayout>
 

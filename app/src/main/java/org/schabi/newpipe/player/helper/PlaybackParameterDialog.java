@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 //import android.content.DialogInterface;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -156,8 +157,16 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
         assureCorrectAppLanguage(getContext());
-        final View view = View.inflate(getContext(),
-                R.layout.dialog_playback_parameter_landscape, null);
+        final int orientation = getResources().getConfiguration().orientation;
+        View view = null;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            view = View.inflate(getContext(),
+                    R.layout.dialog_playback_parameter_landscape, null);
+        } else {
+            view = View.inflate(getContext(), R.layout.dialog_playback_parameter, null);
+
+        }
+
         setupControlViews(view);
         final View customTitle = View.inflate(getContext(), R.layout.dialog_playback_title, null);
 
