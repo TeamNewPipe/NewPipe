@@ -103,6 +103,7 @@ ext {
 
     androidxLifecycleVersion = '2.3.1'
     androidxRoomVersion = '2.3.0'
+    androidxWorkVersion = '2.5.0'
 
     icepickVersion = '3.2.0'
     exoPlayerVersion = '2.12.3'
@@ -113,7 +114,6 @@ ext {
     leakCanaryVersion = '2.5'
     stethoVersion = '1.6.0'
     mockitoVersion = '3.6.0'
-    workVersion = '2.5.0'
 }
 
 configurations {
@@ -222,8 +222,8 @@ dependencies {
     implementation 'androidx.viewpager2:viewpager2:1.1.0-beta01'
     implementation 'androidx.webkit:webkit:1.4.0'
     implementation 'com.google.android.material:material:1.2.1'
-    implementation "androidx.work:work-runtime-ktx:${workVersion}"
-    implementation "androidx.work:work-rxjava3:${workVersion}"
+    implementation "androidx.work:work-runtime-ktx:${androidxWorkVersion}"
+    implementation "androidx.work:work-rxjava3:${androidxWorkVersion}"
 
 /** Third-party libraries **/
     // Instance state boilerplate elimination
