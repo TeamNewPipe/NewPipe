@@ -101,9 +101,9 @@ public class StatisticsPlaylistFragment
     }
 
     @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (activity != null && isVisibleToUser) {
+    public void onResume() {
+        super.onResume();
+        if (activity != null) {
             setTitle(activity.getString(R.string.title_activity_history));
         }
     }

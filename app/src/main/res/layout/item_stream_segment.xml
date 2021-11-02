@@ -35,7 +35,7 @@
         app:layout_constraintStart_toEndOf="@id/previewImage"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:textSize="@dimen/video_item_search_title_text_size"
             tools:text="Lorem ipusum is widely used to create long sample text which is used here too" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/textViewChannel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
 
             tools:text="Lorem ipsum creator" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/textViewStartSeconds"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

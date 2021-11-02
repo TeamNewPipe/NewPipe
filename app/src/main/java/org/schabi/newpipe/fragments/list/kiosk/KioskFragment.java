@@ -99,9 +99,12 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     }
 
     @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (useAsFrontPage && isVisibleToUser && activity != null) {
+    public void onResume() {
+        super.onResume();
+        if (!Localization.getPreferredContentCountry(requireContext()).equals(contentCountry)) {
+            reloadContent();
+        }
+        if (useAsFrontPage && activity != null) {
             try {
                 setTitle(kioskTranslatedName);
             } catch (final Exception e) {
@@ -115,15 +118,6 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_kiosk, container, false);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        if (!Localization.getPreferredContentCountry(requireContext()).equals(contentCountry)) {
-            reloadContent();
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

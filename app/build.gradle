@@ -17,8 +17,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 978
-        versionName "0.21.12"
+        versionCode 979
+        versionName "0.21.13"
 
         multiDexEnabled true
 
@@ -107,7 +107,7 @@ ext {
     icepickVersion = '3.2.0'
     exoPlayerVersion = '2.12.3'
     googleAutoServiceVersion = '1.0'
-    groupieVersion = '2.9.0'
+    groupieVersion = '2.10.0'
     markwonVersion = '4.6.2'
 
     leakCanaryVersion = '2.5'
@@ -190,7 +190,7 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.21.11'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:4f60225ddc'
 
 /** Checkstyle **/
     checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
@@ -209,14 +209,17 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata:${androidxLifecycleVersion}"
     implementation "androidx.lifecycle:lifecycle-viewmodel:${androidxLifecycleVersion}"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
-    implementation 'androidx.media:media:1.4.2'
+    implementation 'androidx.media:media:1.4.3'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.preference:preference:1.1.1'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation "androidx.room:room-runtime:${androidxRoomVersion}"
     implementation "androidx.room:room-rxjava3:${androidxRoomVersion}"
     kapt "androidx.room:room-compiler:${androidxRoomVersion}"
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    // Newer version specified to prevent accessibility regressions with RecyclerView, see:
+    // https://developer.android.com/jetpack/androidx/releases/viewpager2#1.1.0-alpha01
+    implementation 'androidx.viewpager2:viewpager2:1.1.0-beta01'
     implementation 'androidx.webkit:webkit:1.4.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation "androidx.work:work-runtime-ktx:${workVersion}"

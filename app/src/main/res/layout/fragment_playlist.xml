@@ -30,7 +30,7 @@
         android:visibility="gone"
         tools:visibility="visible">
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -40,7 +40,7 @@
             android:textSize="35sp"
             tools:ignore="HardcodedText,UnusedAttribute" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

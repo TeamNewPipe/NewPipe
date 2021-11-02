@@ -103,11 +103,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     }
 
     @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (activity != null
-                && useAsFrontPage
-                && isVisibleToUser) {
+    public void onResume() {
+        super.onResume();
+        if (activity != null && useAsFrontPage) {
             setTitle(currentInfo != null ? currentInfo.getName() : name);
         }
     }

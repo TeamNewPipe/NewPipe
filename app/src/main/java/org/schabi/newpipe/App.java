@@ -262,4 +262,5 @@ public class App extends MultiDexApplication {
     protected boolean isDisposedRxExceptionsReported() {
         return false;
     }
+
 }

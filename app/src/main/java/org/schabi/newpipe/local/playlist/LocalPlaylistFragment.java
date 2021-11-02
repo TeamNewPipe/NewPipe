@@ -709,8 +709,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     return false;
                 }
 
-                final int sourceIndex = source.getAdapterPosition();
-                final int targetIndex = target.getAdapterPosition();
+                final int sourceIndex = source.getBindingAdapterPosition();
+                final int targetIndex = target.getBindingAdapterPosition();
                 final boolean isSwapped = itemListAdapter.swapItems(sourceIndex, targetIndex);
                 if (isSwapped) {
                     saveChanges();
