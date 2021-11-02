@@ -87,6 +87,7 @@ class NotificationWorker(
                         NetworkType.CONNECTED
                     }
                 ).build()
+
             val request = PeriodicWorkRequest.Builder(
                 NotificationWorker::class.java,
                 options.interval,
@@ -95,6 +96,7 @@ class NotificationWorker(
                 .addTag(TAG)
                 .setBackoffCriteria(BackoffPolicy.LINEAR, 30, TimeUnit.MINUTES)
                 .build()
+
             WorkManager.getInstance(context)
                 .enqueueUniquePeriodicWork(
                     TAG,
