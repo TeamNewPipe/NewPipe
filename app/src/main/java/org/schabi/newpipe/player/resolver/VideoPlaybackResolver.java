@@ -58,7 +58,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
 
         // Create video stream source
         final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
-                info.getVideoStreams(), info.getVideoOnlyStreams(), false);
+                info.getVideoStreams(), info.getVideoOnlyStreams(), false, true);
         final int index;
         if (videos.isEmpty()) {
             index = -1;

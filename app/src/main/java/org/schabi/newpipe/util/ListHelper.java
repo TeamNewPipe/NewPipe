@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
@@ -108,17 +109,21 @@ public final class ListHelper {
      * Join the two lists of video streams (video_only and normal videos),
      * and sort them according with default format chosen by the user.
      *
-     * @param context          context to search for the format to give preference
-     * @param videoStreams     normal videos list
-     * @param videoOnlyStreams video only stream list
-     * @param ascendingOrder   true -> smallest to greatest | false -> greatest to smallest
+     * @param context                the context to search for the format to give preference
+     * @param videoStreams           the normal videos list
+     * @param videoOnlyStreams       the video-only stream list
+     * @param ascendingOrder         true -> smallest to greatest | false -> greatest to smallest
+     * @param preferVideoOnlyStreams if video-only streams should preferred when both video-only
+     *                               streams and normal video streams are available
      * @return the sorted list
      */
-    public static List<VideoStream> getSortedStreamVideosList(final Context context,
-                                                              final List<VideoStream> videoStreams,
-                                                              final List<VideoStream>
-                                                                      videoOnlyStreams,
-                                                              final boolean ascendingOrder) {
+    @NonNull
+    public static List<VideoStream> getSortedStreamVideosList(
+            @NonNull final Context context,
+            @Nullable final List<VideoStream> videoStreams,
+            @Nullable final List<VideoStream> videoOnlyStreams,
+            final boolean ascendingOrder,
+            final boolean preferVideoOnlyStreams) {
         final SharedPreferences preferences
                 = PreferenceManager.getDefaultSharedPreferences(context);
 
@@ -128,7 +133,7 @@ public final class ListHelper {
                 R.string.default_video_format_key, R.string.default_video_format_value);
 
         return getSortedStreamVideosList(defaultFormat, showHigherResolutions, videoStreams,
-                videoOnlyStreams, ascendingOrder);
+                videoOnlyStreams, ascendingOrder, preferVideoOnlyStreams);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -192,37 +197,63 @@ public final class ListHelper {
      * Join the two lists of video streams (video_only and normal videos),
      * and sort them according with default format chosen by the user.
      *
-     * @param defaultFormat         format to give preference
-     * @param showHigherResolutions show >1080p resolutions
-     * @param videoStreams          normal videos list
-     * @param videoOnlyStreams      video only stream list
-     * @param ascendingOrder        true -> smallest to greatest | false -> greatest to smallest
+     * @param defaultFormat          format to give preference
+     * @param showHigherResolutions  show >1080p resolutions
+     * @param videoStreams           normal videos list
+     * @param videoOnlyStreams       video only stream list
+     * @param ascendingOrder         true -> smallest to greatest | false -> greatest to smallest
+     * @param preferVideoOnlyStreams if video-only streams should preferred when both video-only
+     *                               streams and normal video streams are available
      * @return the sorted list
      */
-    static List<VideoStream> getSortedStreamVideosList(final MediaFormat defaultFormat,
-                                                       final boolean showHigherResolutions,
-                                                       final List<VideoStream> videoStreams,
-                                                       final List<VideoStream> videoOnlyStreams,
-                                                       final boolean ascendingOrder) {
+    @NonNull
+    static List<VideoStream> getSortedStreamVideosList(
+            @Nullable final MediaFormat defaultFormat,
+            final boolean showHigherResolutions,
+            @Nullable final List<VideoStream> videoStreams,
+            @Nullable final List<VideoStream> videoOnlyStreams,
+            final boolean ascendingOrder,
+            final boolean preferVideoOnlyStreams) {
         final ArrayList<VideoStream> retList = new ArrayList<>();
         final HashMap<String, VideoStream> hashMap = new HashMap<>();
 
-        if (videoOnlyStreams != null) {
-            for (final VideoStream stream : videoOnlyStreams) {
-                if (!showHigherResolutions
-                        && HIGH_RESOLUTION_LIST.contains(stream.getResolution())) {
-                    continue;
+        if (preferVideoOnlyStreams) {
+            if (videoStreams != null) {
+                for (final VideoStream stream : videoStreams) {
+                    if (!showHigherResolutions && HIGH_RESOLUTION_LIST.contains(
+                            stream.getResolution())) {
+                        continue;
+                    }
+                    retList.add(stream);
                 }
-                retList.add(stream);
             }
-        }
-        if (videoStreams != null) {
-            for (final VideoStream stream : videoStreams) {
-                if (!showHigherResolutions
-                        && HIGH_RESOLUTION_LIST.contains(stream.getResolution())) {
-                    continue;
+            if (videoOnlyStreams != null) {
+                for (final VideoStream stream : videoOnlyStreams) {
+                    if (!showHigherResolutions && HIGH_RESOLUTION_LIST.contains(
+                            stream.getResolution())) {
+                        continue;
+                    }
+                    retList.add(stream);
                 }
-                retList.add(stream);
+            }
+        } else {
+            if (videoOnlyStreams != null) {
+                for (final VideoStream stream : videoOnlyStreams) {
+                    if (!showHigherResolutions && HIGH_RESOLUTION_LIST.contains(
+                            stream.getResolution())) {
+                        continue;
+                    }
+                    retList.add(stream);
+                }
+            }
+            if (videoStreams != null) {
+                for (final VideoStream stream : videoStreams) {
+                    if (!showHigherResolutions && HIGH_RESOLUTION_LIST.contains(
+                            stream.getResolution())) {
+                        continue;
+                    }
+                    retList.add(stream);
+                }
             }
         }
 

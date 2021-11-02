@@ -9,7 +9,7 @@
 
   <suppress checks="FinalParameters"
     files="ListHelper.java"
-    lines="280,312"/>
+    lines="311,343"/>
 
   <suppress checks="EmptyBlock"
     files="ContentSettingsFragment.java"
