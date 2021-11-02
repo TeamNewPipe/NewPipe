@@ -157,7 +157,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
         assureCorrectAppLanguage(getContext());
-        
+
         final int orientation = getResources().getConfiguration().orientation;
         View view = null;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -183,10 +183,10 @@ public class PlaybackParameterDialog extends DialogFragment {
                         setCurrentPlaybackParameters());
 
 
-        return setupButton(dialogBuilder);
+        return setupDialogButton(dialogBuilder);
     }
 
-    private Dialog setupButton(@NonNull final AlertDialog.Builder dialogBuilder) {
+    private Dialog setupDialogButton(@NonNull final AlertDialog.Builder dialogBuilder) {
         final AlertDialog dialog = dialogBuilder.create();
 
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
