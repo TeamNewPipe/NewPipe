@@ -69,6 +69,8 @@ class NotificationHelper(val context: Context) {
             .setColorized(true)
             .setAutoCancel(true)
             .setCategory(NotificationCompat.CATEGORY_SOCIAL)
+
+        // Build style
         val style = NotificationCompat.InboxStyle()
         for (stream in newStreams) {
             style.addLine(stream.name)
@@ -76,6 +78,7 @@ class NotificationHelper(val context: Context) {
         style.setSummaryText(summary)
         style.setBigContentTitle(data.name)
         builder.setStyle(style)
+
         // open the channel page when clicking on the notification
         builder.setContentIntent(
             PendingIntent.getActivity(
@@ -87,6 +90,7 @@ class NotificationHelper(val context: Context) {
                 0
             )
         )
+
         return Single.create(NotificationIcon(context, data.avatarUrl))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
