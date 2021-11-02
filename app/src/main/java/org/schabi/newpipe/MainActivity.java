@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         }
         openMiniPlayerUponPlayerStarted();
 
-        // shedule worker for checking for new streans and creating corresponding notifications
+        // schedule worker for checking for new streams and creating corresponding notifications
         NotificationWorker.schedule(this);
     }
 
