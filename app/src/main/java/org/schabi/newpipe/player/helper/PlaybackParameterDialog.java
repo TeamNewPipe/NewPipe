@@ -157,6 +157,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
         assureCorrectAppLanguage(getContext());
+        
         final int orientation = getResources().getConfiguration().orientation;
         View view = null;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -194,21 +195,21 @@ public class PlaybackParameterDialog extends DialogFragment {
 
                 final Button pos = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
                 pos.setHeight(getResources()
-                        .getDimensionPixelSize(R.dimen.alertdialog_button_height));
+                        .getDimensionPixelSize(R.dimen.playback_alertdialog_button_height));
                 pos.setTextSize(getResources()
-                        .getDimensionPixelSize(R.dimen.alertdialog_button_text_size));
+                        .getDimensionPixelSize(R.dimen.playback_alertdialog_button_text_size));
 
                 final Button neg = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE);
                 neg.setHeight(getResources()
-                        .getDimensionPixelSize(R.dimen.alertdialog_button_height));
+                        .getDimensionPixelSize(R.dimen.playback_alertdialog_button_height));
                 neg.setTextSize(getResources()
-                        .getDimensionPixelSize(R.dimen.alertdialog_button_text_size));
+                        .getDimensionPixelSize(R.dimen.playback_alertdialog_button_text_size));
 
                 final Button reset = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEUTRAL);
                 reset.setHeight(getResources()
-                        .getDimensionPixelSize(R.dimen.alertdialog_button_height));
+                        .getDimensionPixelSize(R.dimen.playback_alertdialog_button_height));
                 reset.setTextSize(getResources()
-                        .getDimensionPixelSize(R.dimen.alertdialog_button_text_size));
+                        .getDimensionPixelSize(R.dimen.playback_alertdialog_button_text_size));
 
             }
         });
