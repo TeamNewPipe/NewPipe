@@ -442,7 +442,7 @@ public abstract class PlayQueue implements Serializable {
         if (backup == null) {
             backup = new ArrayList<>(streams);
         }
-        // Can't shuffle an list that's empty or only has one element
+        // Can't shuffle a list that's empty or only has one element
         if (size() <= 2) {
             return;
         }
