@@ -774,6 +774,8 @@ public final class Player implements
         destroyPlayer();
         initPlayer(playOnReady);
         setRepeatMode(repeatMode);
+        // #6825 - Ensure that the shuffle-button is in the correct state on the UI
+        setShuffleButton(binding.shuffleButton, simpleExoPlayer.getShuffleModeEnabled());
         setPlaybackParameters(playbackSpeed, playbackPitch, playbackSkipSilence);
 
         playQueue = queue;
