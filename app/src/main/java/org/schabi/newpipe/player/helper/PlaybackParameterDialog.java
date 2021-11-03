@@ -2,13 +2,10 @@ package org.schabi.newpipe.player.helper;
 
 import android.app.Dialog;
 import android.content.Context;
-//import android.content.DialogInterface;
-import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -158,17 +155,15 @@ public class PlaybackParameterDialog extends DialogFragment {
     public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
         assureCorrectAppLanguage(getContext());
 
-        final int orientation = getResources().getConfiguration().orientation;
-        View view = null;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            view = View.inflate(getContext(),
-                    R.layout.dialog_playback_parameter_landscape, null);
-        } else {
-            view = View.inflate(getContext(), R.layout.dialog_playback_parameter, null);
-
-        }
+        //Get the right layout file in function of the orientation of the screen
+        final View view = View.inflate(getContext(),
+                getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE
+                        ? R.layout.dialog_playback_parameter_landscape
+                        : R.layout.dialog_playback_parameter, null);
 
         setupControlViews(view);
+
+        //Put a custom title to reduce this area and to gain more place
         final View customTitle = View.inflate(getContext(), R.layout.dialog_playback_title, null);
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireActivity())
@@ -183,39 +178,9 @@ public class PlaybackParameterDialog extends DialogFragment {
                         setCurrentPlaybackParameters());
 
 
-        return setupDialogButton(dialogBuilder);
+        return dialogBuilder.create();
     }
 
-    private Dialog setupDialogButton(@NonNull final AlertDialog.Builder dialogBuilder) {
-        final AlertDialog dialog = dialogBuilder.create();
-
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(@NonNull final DialogInterface dialog) {
-
-                final Button pos = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
-                pos.setHeight(getResources()
-                        .getDimensionPixelSize(R.dimen.playback_alertdialog_button_height));
-                pos.setTextSize(getResources()
-                        .getDimensionPixelSize(R.dimen.playback_alertdialog_button_text_size));
-
-                final Button neg = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE);
-                neg.setHeight(getResources()
-                        .getDimensionPixelSize(R.dimen.playback_alertdialog_button_height));
-                neg.setTextSize(getResources()
-                        .getDimensionPixelSize(R.dimen.playback_alertdialog_button_text_size));
-
-                final Button reset = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEUTRAL);
-                reset.setHeight(getResources()
-                        .getDimensionPixelSize(R.dimen.playback_alertdialog_button_height));
-                reset.setTextSize(getResources()
-                        .getDimensionPixelSize(R.dimen.playback_alertdialog_button_text_size));
-
-            }
-        });
-
-        return dialog;
-    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Control Views

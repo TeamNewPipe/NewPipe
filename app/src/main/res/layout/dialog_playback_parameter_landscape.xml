@@ -8,6 +8,7 @@
     android:paddingTop="4dp"
     android:paddingRight="@dimen/video_item_search_padding">
 
+    <!-- Comparing to portrait mode, all layouts have been reduced to optimize space and checkboxes layout are now horizontal -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
