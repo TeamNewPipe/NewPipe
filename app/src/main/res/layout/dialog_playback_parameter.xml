@@ -137,10 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/tempoControl"
-            android:layout_marginStart="@dimen/video_item_search_padding"
-            android:layout_marginTop="@dimen/video_item_search_padding"
-            android:layout_marginEnd="@dimen/video_item_search_padding"
-            android:layout_marginBottom="@dimen/video_item_search_padding"
+            android:layout_margin="@dimen/video_item_search_padding"
             android:background="?attr/separator_color" />
 
         <TextView
