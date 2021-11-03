@@ -3752,11 +3752,9 @@ public final class Player implements
             default:
                 break;
             case KeyEvent.KEYCODE_SPACE:
-                if (isFullscreen) {
-                    playPause();
-                    if (isPlaying()) {
-                        hideControls(0, 0);
-                    }
+                playPause();
+                if (isPlaying()) {
+                    hideControls(0, 0);
                 }
                 break;
             case KeyEvent.KEYCODE_BACK:
