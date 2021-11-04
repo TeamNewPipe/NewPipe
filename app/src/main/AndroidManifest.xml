@@ -340,8 +340,12 @@
                 <data android:host="skeptikon.fr" />
 
                 <data android:pathPrefix="/videos/" /> <!-- it contains playlists -->
+                <data android:pathPrefix="/w/" /> <!-- short video URLs -->
+                <data android:pathPrefix="/w/p/" /> <!-- short playlist URLs -->
                 <data android:pathPrefix="/accounts/" />
+                <data android:pathPrefix="/a/" /> <!-- short account URLs -->
                 <data android:pathPrefix="/video-channels/" />
+                <data android:pathPrefix="/c/" /> <!-- short video-channels URLs -->
             </intent-filter>
 
             <!-- Bandcamp filter for tracks, albums and playlists -->
