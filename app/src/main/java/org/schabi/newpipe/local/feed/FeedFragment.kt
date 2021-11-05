@@ -25,6 +25,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -464,7 +465,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                                 errors.subList(i + 1, errors.size)
                             )
                         },
-                        { throwable -> throwable.printStackTrace() }
+                        { throwable -> Log.e(TAG, "Unable to process", throwable) }
                     )
                 return // this will be called on the remaining errors by handleFeedNotAvailable()
             }

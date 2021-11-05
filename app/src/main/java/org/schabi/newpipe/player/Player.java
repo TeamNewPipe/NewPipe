@@ -695,7 +695,7 @@ public final class Player implements
                             },
                             error -> {
                                 if (DEBUG) {
-                                    error.printStackTrace();
+                                    Log.w(TAG, "Failed to start playback", error);
                                 }
                                 // In case any error we can start playback without history
                                 initPlayback(newQueue, repeatMode, playbackSpeed, playbackPitch,
@@ -4184,8 +4184,7 @@ public final class Player implements
         } catch (@NonNull final IndexOutOfBoundsException e) {
             // Why would this even happen =(... but lets log it anyway, better safe than sorry
             if (DEBUG) {
-                Log.d(TAG, "player.isCurrentWindowDynamic() failed: " + e.getMessage());
-                e.printStackTrace();
+                Log.d(TAG, "player.isCurrentWindowDynamic() failed: ", e);
             }
             return false;
         }

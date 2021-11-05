@@ -14,6 +14,8 @@ import javax.net.ssl.TrustManager;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 
+import android.util.Log;
+
 
 /**
  * This is an extension of the SSLSocketFactory which enables TLS 1.2 and 1.1.
@@ -21,6 +23,7 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
  */
 public class TLSSocketFactoryCompat extends SSLSocketFactory {
 
+    private static final String TAG = "TLSSocketFactoryCom";
 
     private static TLSSocketFactoryCompat instance = null;
 
@@ -53,9 +56,7 @@ public class TLSSocketFactoryCompat extends SSLSocketFactory {
         try {
             HttpsURLConnection.setDefaultSSLSocketFactory(getInstance());
         } catch (NoSuchAlgorithmException | KeyManagementException e) {
-            if (DEBUG) {
-                e.printStackTrace();
-            }
+            Log.e(TAG, "Unable to setAsDefault", e);
         }
     }
 
