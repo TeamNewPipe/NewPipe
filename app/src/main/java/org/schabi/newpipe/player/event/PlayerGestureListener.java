@@ -210,11 +210,8 @@ public class PlayerGestureListener
             Log.d(TAG, "onScrollEnd called with playerType = ["
                 + player.getPlayerType() + "]");
         }
+        
         if (playerType == MainPlayer.PlayerType.VIDEO) {
-            if (DEBUG) {
-                Log.d(TAG, "onScrollEnd() called");
-            }
-
             if (player.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
                 animate(player.getVolumeRelativeLayout(), false, 200, SCALE_AND_ALPHA,
                         200);
