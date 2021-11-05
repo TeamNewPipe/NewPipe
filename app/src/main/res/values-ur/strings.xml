@@ -474,7 +474,6 @@
     <string name="youtube_restricted_mode_enabled_summary">یوٹیوب ایک \"پابندی والا وضع\" فراہم کرتا ہے جو امکانی طور پر نازیبا مواد کو چھپاتا ہے</string>
     <string name="youtube_restricted_mode_enabled_title">یوٹیوب کا \"پابندی والا وضع\" چالو کریں</string>
     <string name="show_age_restricted_content_summary">وہ مواد دکھائیں جو بچوں کے لیے ممکنہ طور پر نا مناسب ہیں کیوں کہ اس میں عمر کی حد ہے (جیسے 18+)</string>
-    <string name="settings_category_notification_title">اطلاع</string>
     <string name="unsupported_url_dialog_message">URL کو نہیں پہچان سکے۔ کسی اور ایپ کے ساتھ کھولیں؟</string>
     <string name="auto_queue_toggle">ازخود قطار</string>
     <string name="show_meta_info_summary">اسٹریم کے موجد، اسٹریم مواد یا تلاش کی درخواست کے بارے میں اضافی معلومات والے میٹا انفارمیشن بکسوں کو چھپانے کیلئے بند کریں۔</string>

@@ -89,6 +89,7 @@
             android:title="@string/show_play_with_kodi_title"
             app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
+
         <ListPreference
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

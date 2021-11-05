@@ -499,7 +499,6 @@
     <string name="remove_watched_popup_title">시청 기록을 지우겠습니까\?</string>
     <string name="remove_watched">시청 기록 지우기</string>
     <string name="title_activity_play_queue">재생목록 실행</string>
-    <string name="settings_category_notification_title">알림</string>
     <string name="unsupported_url_dialog_message">URL을 인식할 수 없습니다. 다른 앱으로 여시겠습니까\?</string>
     <string name="clear_queue_confirmation_title">대기열을 비우기 전 확인하도록 합니다.</string>
     <string name="notification_colorize_summary">안드로이드에서 썸네일의 색상에 따라 알림 색상을 조절합니다. (지원되지 않는 기기가 있을 수 있습니다.)</string>

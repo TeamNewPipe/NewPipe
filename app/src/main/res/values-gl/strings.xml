@@ -595,7 +595,6 @@
     <string name="restricted_video_no_stream">Este vídeo ten restrición de idade.
 \nDebido ás novas políticas de Youtube cos vídeos con restrición de idade, NewPipe non pode acceder ás transmisións do vídeo, polo que non pode reproducilo.</string>
     <string name="youtube_restricted_mode_enabled_summary">Youtube ten un \"Modo Restrinxido\" que oculta contido potencialmente só para adultos</string>
-    <string name="settings_category_notification_title">Notificación</string>
     <string name="unsupported_url_dialog_message">URL non recoñecido. Abrir con outra aplicación\?</string>
     <string name="show_meta_info_title">Mostrar metainformación</string>
     <string name="show_description_summary">Desactíveo para ocultar a descrición do vídeo e a información adicional</string>

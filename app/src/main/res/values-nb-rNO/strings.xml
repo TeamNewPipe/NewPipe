@@ -554,7 +554,6 @@
     <string name="title_activity_play_queue">Spill kø</string>
     <string name="no_playlist_bookmarked_yet">Ingen spillelistebokmerker enda</string>
     <string name="copy_for_github">Kopier formatert rapport</string>
-    <string name="settings_category_notification_title">Merknad</string>
     <string name="notification_action_repeat">Gjenta</string>
     <string name="notification_action_4_title">Femte handlingstast</string>
     <string name="notification_action_3_title">Fjerde handlingstast</string>

@@ -554,7 +554,6 @@
     <string name="notification_action_0_title">第一操作按钮</string>
     <string name="notification_scale_to_square_image_summary">将通知中视频缩略图的长宽比从 16:9 强制缩放到 1:1（可能会导致失真）</string>
     <string name="notification_scale_to_square_image_title">强制缩放缩略图至 1:1 比例</string>
-    <string name="settings_category_notification_title">通知</string>
     <string name="show_memory_leaks">显示内存泄漏</string>
     <string name="enqueued">已加入播放队列</string>
     <string name="enqueue_stream">加入播放队列</string>

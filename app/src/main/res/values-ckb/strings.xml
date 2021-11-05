@@ -543,7 +543,6 @@
     <string name="error_report_open_github_notice">تكایه‌ پشكنینێك بكه‌ كه‌ ئاخۆ كێشه‌یه‌ك هه‌یه‌ باسی كڕاشه‌كه‌ت بكات. له‌كاتی سازدانی پلیتی لێكچوو ، كات له‌ ئێمه‌ ده‌گریت كه‌ ئێمه‌ سه‌رقاڵی چاره‌سه‌ركردنی هه‌مان كێشه‌ ده‌كه‌یت.</string>
     <string name="error_report_open_issue_button_text">سكاڵا لەسەر GitHub</string>
     <string name="copy_for_github">له‌به‌رگرتنه‌وه‌ی سكاڵای جۆركراو</string>
-    <string name="settings_category_notification_title">ئاگانامە</string>
     <string name="unsupported_url_dialog_message">ناتوانرێت به‌سته‌ره‌كه‌ بناسرێتەوە. بە بەرنامەیەکی دیكه‌ بکرێتەوە؟</string>
     <string name="auto_queue_toggle">خستنه‌ نۆبه‌تی-خۆكاری</string>
     <string name="clear_queue_confirmation_description">نۆبه‌ته‌كه‌ لە لێدەری چالاکەوە جێگۆڕکێی دەکرێت</string>

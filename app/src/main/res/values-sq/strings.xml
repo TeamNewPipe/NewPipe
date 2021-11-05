@@ -546,7 +546,6 @@
     <string name="never">Kurrë</string>
     <string name="autoplay_summary">Nise luajtjen automatikisht — %s</string>
     <string name="title_activity_play_queue">Lista e luajtjes</string>
-    <string name="settings_category_notification_title">Njoftim</string>
     <string name="unsupported_url_dialog_message">Nuk u njoh URL. Të hapet me një aplikacion tjetër\?</string>
     <string name="auto_queue_toggle">Listë automatike luajtjeje</string>
     <string name="clear_queue_confirmation_description">Lista aktive e luajtjes do të zëvendësohet</string>

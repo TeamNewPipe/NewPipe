@@ -571,7 +571,6 @@
     <string name="clear_queue_confirmation_description">התור מהנגן הפעיל יוחלף</string>
     <string name="clear_queue_confirmation_summary">מעבר מנגן אחד למשנהו עלול להחליף את התור שלך</string>
     <string name="clear_queue_confirmation_title">לבקש אישור לפני מחיקת התור</string>
-    <string name="settings_category_notification_title">התראה</string>
     <string name="notification_action_nothing">כלום</string>
     <string name="notification_action_buffering">איסוף</string>
     <string name="notification_action_shuffle">ערבוב</string>

@@ -104,7 +104,6 @@
     <string name="content">Məzmun</string>
     <string name="popup_playing_toast">Ani pəncərədə oxudulur</string>
     <string name="background_player_playing_toast">Fonda oxudulur</string>
-    <string name="settings_category_notification_title">Bildiriş</string>
     <string name="settings_category_updates_title">Yeniləmələr</string>
     <string name="settings_category_debug_title">Sazlama</string>
     <string name="settings_category_appearance_title">Görünüş</string>

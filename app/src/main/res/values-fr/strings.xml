@@ -554,7 +554,6 @@
     <string name="auto_queue_toggle">Ajouter automatiquement à la liste de lecture</string>
     <string name="clear_queue_confirmation_description">La liste de lecture du lecteur actif sera remplacée</string>
     <string name="clear_queue_confirmation_title">Confirmer av. de suppr. la liste de lecture</string>
-    <string name="settings_category_notification_title">Notification</string>
     <string name="notification_action_nothing">Rien</string>
     <string name="notification_action_buffering">Chargement</string>
     <string name="notification_action_shuffle">Lire aléatoirement</string>

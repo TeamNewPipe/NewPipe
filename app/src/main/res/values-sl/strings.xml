@@ -427,7 +427,6 @@
     <string name="youtube_restricted_mode_enabled_summary">Youtube ponuja \"omejeni način\", ki skrije potencialno vsebino za odrasle</string>
     <string name="youtube_restricted_mode_enabled_title">Vklop YouTubovega \"omejenega načina\"</string>
     <string name="show_age_restricted_content_summary">Prikaz vsebin, ki so morda neprimerne za otroke zaradi omejitve starosti (kot na primer 18+)</string>
-    <string name="settings_category_notification_title">Obvestilo</string>
     <string name="peertube_instance_add_exists">Instanca že obstaja</string>
     <string name="peertube_instance_add_fail">Validacija instance ni bila mogoča</string>
     <string name="peertube_instance_add_help">Vnesite URL instance</string>

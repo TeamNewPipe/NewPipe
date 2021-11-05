@@ -5,9 +5,9 @@ import android.os.Bundle
 import androidx.preference.Preference
 import org.schabi.newpipe.R
 
-class NotificationSettingsFragment : BasePreferenceFragment() {
+class PlayerNotificationSettingsFragment : BasePreferenceFragment() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        addPreferencesFromResource(R.xml.notification_settings)
+        addPreferencesFromResource(R.xml.player_notification_settings)
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             val colorizePref: Preference? = findPreference(getString(R.string.notification_colorize_key))

@@ -465,7 +465,6 @@
     <string name="youtube_restricted_mode_enabled_summary">यूट्यूब एक \"प्रतिबंधित मोड\" प्रदान करता है जो संभावित रूप से परिपक्व सामग्री को छुपाता है</string>
     <string name="youtube_restricted_mode_enabled_title">यूट्यूब का \"प्रतिबंधित मोड\" चालू करें</string>
     <string name="show_age_restricted_content_summary">बच्चों के लिए अनुपयुक्त सामग्री दिखाएं क्योंकि इसकी आयु सीमा है (जैसे 18)</string>
-    <string name="settings_category_notification_title">अधिसूचना</string>
     <string name="peertube_instance_add_https_only">केवल HTTPS यूआरएल ही समर्थित हैं</string>
     <string name="unsupported_url_dialog_message">URL की पहचान नहीं हो सकी। दूसरे ऐप से खोलें\?</string>
     <string name="auto_queue_toggle">ऑटोमैटिकली कतार करे</string>

@@ -332,7 +332,6 @@
     <string name="youtube_restricted_mode_enabled_summary">Youtube turi „apribotą režimą“ kuriame slepiamas galimai suaugusiems skirtas turinys</string>
     <string name="youtube_restricted_mode_enabled_title">Įjungti YouTube „apribotą režimą“</string>
     <string name="show_age_restricted_content_summary">Rodyti turinį kuris gali būti netinkamas vaikams (18+)</string>
-    <string name="settings_category_notification_title">Pranešimai</string>
     <string name="settings_category_updates_title">Atnaujinimai</string>
     <string name="peertube_instance_add_exists">Kopija jau yra</string>
     <string name="peertube_instance_add_https_only">Palaikomi tik HTTPS adresai</string>

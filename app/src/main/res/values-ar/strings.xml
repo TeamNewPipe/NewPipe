@@ -586,7 +586,6 @@
     <string name="wifi_only">فقط على شبكة Wi-Fi</string>
     <string name="autoplay_summary">بدء التشغيل تلقائياً — %s</string>
     <string name="title_activity_play_queue">تشغيل قائمة الانتظار</string>
-    <string name="settings_category_notification_title">الإشعار</string>
     <string name="unsupported_url_dialog_message">تعذر التعرف على الرابط. فتح باستخدام تطبيق آخر؟</string>
     <string name="auto_queue_toggle">قائمة انتظار تلقائيّة</string>
     <string name="clear_queue_confirmation_description">سيتم استبدال قائمة انتظار للمشغل النشط</string>

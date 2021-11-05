@@ -365,7 +365,6 @@
     <string name="youtube_restricted_mode_enabled_summary">YouTube oferă un \"Mod restricționat\" care ascunde conținutul potențial matur</string>
     <string name="youtube_restricted_mode_enabled_title">Activați \"Modul restricționat\" de pe YouTube</string>
     <string name="show_age_restricted_content_summary">Afișați conținut posibil nepotrivit pentru copii, deoarece are o limită de vârstă (cum ar fi 18+)</string>
-    <string name="settings_category_notification_title">Notificare</string>
     <string name="unsupported_url_dialog_message">Adresa URL nu a putut fi recunoscută. Deschideți cu o altă aplicație\?</string>
     <string name="show_meta_info_title">Afișează informațiile meta</string>
     <string name="notification_colorize_summary">Faceți ca Android să personalizeze culoarea notificării în funcție de culoarea principală din miniatură (rețineți că aceasta nu este disponibilă pe toate dispozitivele)</string>

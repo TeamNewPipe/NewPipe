@@ -58,7 +58,6 @@
     <string name="tab_about">Մասին</string>
     <string name="channels">Ալիքներ</string>
     <string name="all">Ամենը</string>
-    <string name="settings_category_notification_title">Ծանուցում</string>
     <string name="settings_category_appearance_title">Տեսք</string>
     <string name="settings_category_updates_title">Թարմացումներ</string>
     <string name="enable_watch_history_title">Դիտման պատմություն</string>

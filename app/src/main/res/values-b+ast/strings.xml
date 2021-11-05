@@ -517,7 +517,6 @@
     <string name="youtube_restricted_mode_enabled_summary">YouTube forne\'l «Mou torgáu» qu\'anubre conteníu\'l que seya potencialmente p\'adultos</string>
     <string name="youtube_restricted_mode_enabled_title">Activar el «Mou torgáu» de YouTube</string>
     <string name="show_age_restricted_content_summary">Amuesa\'l conteníu que quiciabes nun seya afayadizu pa guaḥes porque tien una llende d\'edá (como +18)</string>
-    <string name="settings_category_notification_title">Avisu permanente</string>
     <string name="settings_category_debug_title">Depuración</string>
     <string name="peertube_instance_add_https_only">Namás se sofiten URLs HTTPS</string>
     <string name="peertube_instance_add_help">Introduz la URL d\'una instancia</string>

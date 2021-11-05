@@ -262,7 +262,6 @@
     <string name="content">Saturs</string>
     <string name="popup_playing_toast">Atskaņo popup režīmā</string>
     <string name="background_player_playing_toast">Atskaņo fonā</string>
-    <string name="settings_category_notification_title">Notifikācija</string>
     <string name="settings_category_updates_title">Atjauninājumi</string>
     <string name="settings_category_debug_title">Atkļūdošana</string>
     <string name="settings_category_appearance_title">Izskats</string>

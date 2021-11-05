@@ -362,7 +362,6 @@
     <string name="content">Luuqada &amp; Fadhiga Kale</string>
     <string name="popup_playing_toast">Ku daaraya daaqada</string>
     <string name="background_player_playing_toast">Ka daaraya xaga dambe</string>
-    <string name="settings_category_notification_title">Ogaysiisyada</string>
     <string name="settings_category_updates_title">Cusboonaysiinta</string>
     <string name="settings_category_debug_title">Cilad bixinta</string>
     <string name="settings_category_appearance_title">Nashqada</string>

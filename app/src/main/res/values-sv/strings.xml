@@ -531,7 +531,6 @@
     <string name="notification_scale_to_square_image_summary">Skala videominiatyrbilden som visas i aviseringen från 16:9- till 1:1-förhållande (kan orsaka bildförvrängning)</string>
     <string name="autoplay_summary">Starta uppspelning automatiskt — %s</string>
     <string name="title_activity_play_queue">Uppspelningskö</string>
-    <string name="settings_category_notification_title">Aviseringar</string>
     <string name="unsupported_url_dialog_message">Kunde inte känna igen URL:en. Vill du öppna med annan app\?</string>
     <string name="auto_queue_toggle">Köa automatiskt</string>
     <string name="clear_queue_confirmation_description">Den aktiva spellistan kommer att ersättas</string>

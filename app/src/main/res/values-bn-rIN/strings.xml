@@ -291,7 +291,6 @@
     </plurals>
     <string name="description_tab_description">বিবরণ</string>
     <string name="comments_tab_description">মন্তব্য</string>
-    <string name="settings_category_notification_title">নোটিফিকেশন</string>
     <string name="show_meta_info_title">মেটা ইনফো দেখান</string>
     <string name="show_description_title">বিবরণ দেখান</string>
     <string name="night_theme_title">রাত্রি থিম</string>

@@ -560,7 +560,6 @@
     <string name="notification_action_buffering">Buffer in corso</string>
     <string name="notification_actions_at_most_three">Nella notifica compatta è possibile visualizzare al massimo 3 azioni!</string>
     <string name="notification_action_shuffle">Casuale</string>
-    <string name="settings_category_notification_title">Notifica</string>
     <string name="notification_action_nothing">Niente</string>
     <string name="notification_action_repeat">Ripeti</string>
     <string name="notification_scale_to_square_image_title">Ridimensiona copertina alla proporzione 1:1</string>
