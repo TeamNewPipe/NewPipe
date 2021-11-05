@@ -69,8 +69,8 @@ class SubscriptionManager(context: Context) {
             }
         }
 
-    fun updateNotificationMode(serviceId: Int, url: String?, @NotificationMode mode: Int): Completable {
-        return subscriptionTable().getSubscription(serviceId, url!!)
+    fun updateNotificationMode(serviceId: Int, url: String, @NotificationMode mode: Int): Completable {
+        return subscriptionTable().getSubscription(serviceId, url)
             .flatMapCompletable { entity: SubscriptionEntity ->
                 Completable.fromAction {
                     entity.notificationMode = mode
