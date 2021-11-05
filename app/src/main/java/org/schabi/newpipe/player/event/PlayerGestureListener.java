@@ -227,7 +227,7 @@ public class PlayerGestureListener
             if (player.isControlsVisible() && player.getCurrentState() == STATE_PLAYING) {
                 player.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
             }
-        } else {
+        } else /* Popup-Player */ {
             if (player.isControlsVisible() && player.getCurrentState() == STATE_PLAYING) {
                 player.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
             }
