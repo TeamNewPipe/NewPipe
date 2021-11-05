@@ -69,26 +69,22 @@ public class PlayerGestureListener
         if (DEBUG) {
             Log.d(TAG, "onSingleTap called with playerType = [" + player.getPlayerType() + "]");
         }
-        if (playerType == MainPlayer.PlayerType.POPUP) {
 
-            if (player.isControlsVisible()) {
-                player.hideControls(100, 100);
-            } else {
-                player.getPlayPauseButton().requestFocus();
-                player.showControlsThenHide();
-            }
+        if (player.isControlsVisible()) {
 
-        } else /* playerType == MainPlayer.PlayerType.VIDEO */ {
+            // -- Controls visible --
 
-            if (player.isControlsVisible()) {
-                player.hideControls(150, 0);
-            } else {
-                if (player.getCurrentState() == Player.STATE_COMPLETED) {
-                    player.showControls(0);
-                } else {
-                    player.showControlsThenHide();
-                }
-            }
+            player.hideControls(150, 0);
+            return;
+        }
+
+        // -- Controls are not visible --
+
+        // When player is completed show controls and don't hide them later
+        if (player.getCurrentState() == Player.STATE_COMPLETED) {
+            player.showControls(0);
+        } else {
+            player.showControlsThenHide();
         }
     }
 
