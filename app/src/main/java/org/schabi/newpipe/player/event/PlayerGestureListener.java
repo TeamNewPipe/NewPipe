@@ -99,6 +99,8 @@ public class PlayerGestureListener
                 + player.getPlayerType() + "], portion = [" + portion + "]");
         }
         if (playerType == MainPlayer.PlayerType.VIDEO) {
+
+            // -- Brightness and Volume control --
             final boolean isBrightnessGestureEnabled =
                 PlayerHelper.isBrightnessGestureEnabled(service);
             final boolean isVolumeGestureEnabled = PlayerHelper.isVolumeGestureEnabled(service);
@@ -117,15 +119,14 @@ public class PlayerGestureListener
             }
 
         } else /* MainPlayer.PlayerType.POPUP */ {
+
+            // -- Determine if the ClosingOverlayView (red X) has to be shown or hidden --
             final View closingOverlayView = player.getClosingOverlayView();
-            if (player.isInsideClosingRadius(movingEvent)) {
-                if (closingOverlayView.getVisibility() == View.GONE) {
-                    animate(closingOverlayView, true, 200);
-                }
-            } else {
-                if (closingOverlayView.getVisibility() == View.VISIBLE) {
-                    animate(closingOverlayView, false, 200);
-                }
+            final boolean showClosingOverlayView = player.isInsideClosingRadius(movingEvent);
+            // Check if an view is in expected state and if not animate it into the correct state
+            final int expectedVisibility = showClosingOverlayView ? View.VISIBLE : View.GONE;
+            if (closingOverlayView.getVisibility() != expectedVisibility) {
+                animate(closingOverlayView, showClosingOverlayView, 200);
             }
         }
     }
