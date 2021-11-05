@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -154,20 +155,14 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable final Bundle savedInstanceState) {
         assureCorrectAppLanguage(getContext());
-
-        //Get the right layout file in function of the orientation of the screen
         final View view = View.inflate(getContext(),
-                getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE
-                        ? R.layout.dialog_playback_parameter_landscape
-                        : R.layout.dialog_playback_parameter, null);
+                R.layout.dialog_playback_parameter, null);
 
         setupControlViews(view);
 
         //Put a custom title to reduce this area and to gain more place
-        final View customTitle = View.inflate(getContext(), R.layout.dialog_playback_title, null);
-
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireActivity())
-                .setCustomTitle(customTitle)
+                .setCustomTitle(View.inflate(getContext(), R.layout.dialog_playback_title, null))
                 .setView(view)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, (dialogInterface, i) ->
@@ -177,10 +172,8 @@ public class PlaybackParameterDialog extends DialogFragment {
                 .setPositiveButton(R.string.ok, (dialogInterface, i) ->
                         setCurrentPlaybackParameters());
 
-
         return dialogBuilder.create();
     }
-
 
     /*//////////////////////////////////////////////////////////////////////////
     // Control Views
@@ -195,6 +188,16 @@ public class PlaybackParameterDialog extends DialogFragment {
 
         setStepSize(stepSize);
         setupStepSizeSelector(rootView);
+        setupOrientationLayoutCheckbox(rootView);
+    }
+
+    private void setupOrientationLayoutCheckbox(@NonNull final View rootView) {
+        //Put the checkbox area horizontal when the screen is in landscape and vertical otherwise
+        ((LinearLayout) rootView.findViewById(R.id.checkboxsContainer))
+                .setOrientation(getResources().getConfiguration()
+                        .orientation == Configuration.ORIENTATION_LANDSCAPE
+                        ? LinearLayout.HORIZONTAL
+                        : LinearLayout.VERTICAL);
     }
 
     private void setupTempoControl(@NonNull final View rootView) {

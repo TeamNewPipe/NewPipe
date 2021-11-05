@@ -10,10 +10,9 @@
         android:layout_height="wrap_content"
         android:paddingStart="16dp"
         android:paddingTop="4dp"
-
+        android:textColor="?attr/colorAccent"
         android:textSize="18sp"
         android:text="@string/playback_speed_control"
-        android:textColor="@color/black"
         android:textStyle="bold"
         />
 
