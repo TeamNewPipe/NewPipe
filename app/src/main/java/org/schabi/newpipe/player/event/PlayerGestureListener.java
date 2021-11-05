@@ -210,7 +210,11 @@ public class PlayerGestureListener
             Log.d(TAG, "onScrollEnd called with playerType = ["
                 + player.getPlayerType() + "]");
         }
-        
+
+        if (player.isControlsVisible() && player.getCurrentState() == STATE_PLAYING) {
+            player.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+        }
+
         if (playerType == MainPlayer.PlayerType.VIDEO) {
             if (player.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
                 animate(player.getVolumeRelativeLayout(), false, 200, SCALE_AND_ALPHA,
@@ -220,15 +224,7 @@ public class PlayerGestureListener
                 animate(player.getBrightnessRelativeLayout(), false, 200, SCALE_AND_ALPHA,
                         200);
             }
-
-            if (player.isControlsVisible() && player.getCurrentState() == STATE_PLAYING) {
-                player.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-            }
         } else /* Popup-Player */ {
-            if (player.isControlsVisible() && player.getCurrentState() == STATE_PLAYING) {
-                player.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-            }
-
             if (player.isInsideClosingRadius(event)) {
                 player.closePopup();
             } else if (!player.isPopupClosing()) {
