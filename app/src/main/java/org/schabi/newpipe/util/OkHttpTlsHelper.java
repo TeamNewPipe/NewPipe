@@ -35,8 +35,9 @@ public final class OkHttpTlsHelper {
      * </p>
      *
      * @param builder The HTTPClient Builder on which TLS is enabled on (will be modified in-place)
+     * @return the same builder that was supplied. So the method can be chained.
      */
-    public static void enableModernTLS(final OkHttpClient.Builder builder) {
+    public static OkHttpClient.Builder enableModernTLS(final OkHttpClient.Builder builder) {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
             try {
                 // get the default TrustManager
@@ -77,5 +78,7 @@ public final class OkHttpTlsHelper {
                 }
             }
         }
+
+        return builder;
     }
 }
