@@ -157,11 +157,6 @@ public class PlaybackParameterDialog extends DialogFragment {
         setupControlViews(view);
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireActivity())
-                .setCustomTitle(
-                        View.inflate(
-                                getContext(),
-                                R.layout.dialog_playback_parameter_title,
-                                null))
                 .setView(view)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, (dialogInterface, i) ->
