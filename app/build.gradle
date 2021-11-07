@@ -113,6 +113,7 @@ ext {
     leakCanaryVersion = '2.5'
     stethoVersion = '1.6.0'
     mockitoVersion = '3.6.0'
+    netcipherVersion = '2.1.0'
 }
 
 configurations {
@@ -233,6 +234,9 @@ dependencies {
     // HTTP client
     //noinspection GradleDependency --> do not update okhttp to keep supporting Android 4.4 users
     implementation "com.squareup.okhttp3:okhttp:3.12.13"
+
+    // TLS compatibility
+    implementation "info.guardianproject.netcipher:netcipher:${netcipherVersion}"
 
     // Media player
     implementation "com.google.android.exoplayer:exoplayer:${exoPlayerVersion}"

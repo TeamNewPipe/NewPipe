@@ -2,7 +2,6 @@ package org.schabi.newpipe.util;
 
 import android.os.Build;
 
-import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -15,19 +14,20 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import okhttp3.CipherSuite;
+import info.guardianproject.netcipher.NetCipher;
 import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 
 public final class OkHttpTlsHelper {
+    private static final String TAG = OkHttpTlsHelper.class.getSimpleName();
 
     private OkHttpTlsHelper() {
     }
 
     /**
-     * Enable TLS 1.2 and 1.1 on Android Kitkat. This function is mostly taken
+     * Enable TLS 1.2 and 1.1 on Android Kitkat through NetCipher. This function is mostly taken
      * from the documentation of OkHttpClient.Builder.sslSocketFactory(_,_).
      * <p>
      * If there is an error, the function will safely fall back to doing nothing
@@ -51,8 +51,8 @@ public final class OkHttpTlsHelper {
                 }
                 final X509TrustManager trustManager = (X509TrustManager) trustManagers[0];
 
-                // insert our own TLSSocketFactory
-                final SSLSocketFactory sslSocketFactory = TLSSocketFactoryCompat.getInstance();
+                // insert NetCiphers TLSSocketFactory
+                final SSLSocketFactory sslSocketFactory = NetCipher.getTlsOnlySocketFactory();
 
                 builder.sslSocketFactory(sslSocketFactory, trustManager);
 
@@ -71,8 +71,7 @@ public final class OkHttpTlsHelper {
                                 .build();
 
                 builder.connectionSpecs(Arrays.asList(legacyTLS, ConnectionSpec.CLEARTEXT));
-            } catch (final KeyManagementException | NoSuchAlgorithmException
-                    | KeyStoreException e) {
+            } catch (final NoSuchAlgorithmException | KeyStoreException e) {
                 if (DEBUG) {
                     e.printStackTrace();
                 }

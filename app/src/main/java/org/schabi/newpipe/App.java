@@ -36,6 +36,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import javax.net.ssl.HttpsURLConnection;
+
+import info.guardianproject.netcipher.NetCipher;
 import io.reactivex.rxjava3.exceptions.CompositeException;
 import io.reactivex.rxjava3.exceptions.MissingBackpressureException;
 import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException;
@@ -88,6 +91,9 @@ public class App extends MultiDexApplication {
                     + "Aborting initialization of App[onCreate]");
             return;
         }
+
+        // use reasonable TLS settings (disable insecure, enable secure options)
+        HttpsURLConnection.setDefaultSSLSocketFactory(NetCipher.getTlsOnlySocketFactory());
 
         // Initialize settings first because others inits can use its values
         NewPipeSettings.initSettings(this);
