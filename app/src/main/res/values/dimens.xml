@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- Menu Drawer Dimensions -->
     <dimen name="drawer_header_content_min_height">120dp</dimen>
     <dimen name="drawer_header_padding_top">16dp</dimen>
@@ -29,8 +28,6 @@
 
     <dimen name="channel_item_grid_thumbnail_image_size">42dp</dimen>
     <dimen name="channel_item_grid_min_width">128dp</dimen>
-
-
     <!-- Calculated: 2*video_item_search_padding + video_item_search_thumbnail_image_height -->
     <dimen name="video_item_search_height">96dp</dimen>
     <!-- Paddings & Margins -->
@@ -72,7 +69,6 @@
     <dimen name="video_item_detail_description_text_size">13sp</dimen>
     <dimen name="channel_subscribers_text_size">12sp</dimen>
     <dimen name="channel_rss_title_size">12sp</dimen>
-
     <!-- Elements Size -->
     <dimen name="video_item_detail_uploader_image_size">32dp</dimen>
     <dimen name="video_item_detail_sub_channel_image_size">16dp</dimen>
