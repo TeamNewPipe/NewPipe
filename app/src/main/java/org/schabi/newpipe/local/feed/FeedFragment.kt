@@ -128,6 +128,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
         val factory = FeedViewModel.Factory(requireContext(), groupId, showPlayedItems)
         viewModel = ViewModelProvider(this, factory).get(FeedViewModel::class.java)
+        showPlayedItems = viewModel.getSavedPlayedItemsToggle()
         viewModel.stateLiveData.observe(viewLifecycleOwner, { it?.let(::handleResult) })
 
         groupAdapter = GroupieAdapter().apply {
@@ -158,7 +159,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
     }
 
-    fun setupListViewMode() {
+    private fun setupListViewMode() {
         // does everything needed to setup the layouts for grid or list modes
         groupAdapter.spanCount = if (shouldUseGridLayout(context)) getGridSpanCountStreams(context) else 1
         feedBinding.itemsList.layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount).apply {
@@ -213,6 +214,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             showPlayedItems = !item.isChecked
             updateTogglePlayedItemsButton(item)
             viewModel.togglePlayedItems(showPlayedItems)
+            viewModel.savePlayedItemsToggle(showPlayedItems)
         }
 
         return super.onOptionsItemSelected(item)

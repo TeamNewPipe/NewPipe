@@ -1,10 +1,12 @@
 package org.schabi.newpipe.local.feed
 
 import android.content.Context
+import androidx.core.content.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.functions.Function4
@@ -28,6 +30,10 @@ class FeedViewModel(
     initialShowPlayedItems: Boolean = true
 ) : ViewModel() {
     private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(applicationContext)
+    private var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+    companion object {
+        const val SHOW_PLAYED_ITEMS_PREFERENCE = "show_played_items_preference_tag"
+    }
 
     private val toggleShowPlayedItems = BehaviorProcessor.create<Boolean>()
     private val streamItems = toggleShowPlayedItems
@@ -80,6 +86,13 @@ class FeedViewModel(
     fun togglePlayedItems(showPlayedItems: Boolean) {
         toggleShowPlayedItems.onNext(showPlayedItems)
     }
+
+    fun savePlayedItemsToggle(showPlayedItems: Boolean) = sharedPreferences.edit {
+        this.putBoolean(SHOW_PLAYED_ITEMS_PREFERENCE, showPlayedItems)
+        this.apply()
+    }
+
+    fun getSavedPlayedItemsToggle() = sharedPreferences.getBoolean(SHOW_PLAYED_ITEMS_PREFERENCE, true)
 
     class Factory(
         private val context: Context,
