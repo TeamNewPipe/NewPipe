@@ -1,13 +1,12 @@
 package org.schabi.newpipe.util;
 
-import android.os.Build;
+import android.util.Log;
 
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
 
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
@@ -18,8 +17,6 @@ import info.guardianproject.netcipher.NetCipher;
 import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
 
-import static org.schabi.newpipe.MainActivity.DEBUG;
-
 public final class OkHttpTlsHelper {
     private static final String TAG = OkHttpTlsHelper.class.getSimpleName();
 
@@ -27,8 +24,13 @@ public final class OkHttpTlsHelper {
     }
 
     /**
-     * Enable TLS 1.2 and 1.1 on Android Kitkat through NetCipher. This function is mostly taken
-     * from the documentation of OkHttpClient.Builder.sslSocketFactory(_,_).
+     * Enable modern TLS 1.1 and 1.2 through NetCipher.
+     * This is especially useful on Android KitKat where TLS 1.1 and 1.2 are
+     * available but not enabled by default. Furthermore NetCipher will
+     * enable/disable ciphers and TLS versions according to best practice.
+     * <p>
+     * Parts of this function are taken from the documentation of
+     * OkHttpClient.Builder.sslSocketFactory(_,_).
      * <p>
      * If there is an error, the function will safely fall back to doing nothing
      * and printing the error to the console.
@@ -38,44 +40,32 @@ public final class OkHttpTlsHelper {
      * @return the same builder that was supplied. So the method can be chained.
      */
     public static OkHttpClient.Builder enableModernTLS(final OkHttpClient.Builder builder) {
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
-            try {
-                // get the default TrustManager
-                final TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
-                        TrustManagerFactory.getDefaultAlgorithm());
-                trustManagerFactory.init((KeyStore) null);
-                final TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
-                if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
-                    throw new IllegalStateException("Unexpected default trust managers:"
-                            + Arrays.toString(trustManagers));
-                }
-                final X509TrustManager trustManager = (X509TrustManager) trustManagers[0];
-
-                // insert NetCiphers TLSSocketFactory
-                final SSLSocketFactory sslSocketFactory = NetCipher.getTlsOnlySocketFactory();
-
-                builder.sslSocketFactory(sslSocketFactory, trustManager);
-
-                // This will try to enable all modern CipherSuites(+2 more)
-                // that are supported on the device.
-                // Necessary because some servers (e.g. Framatube.org)
-                // don't support the old cipher suites.
-                // https://github.com/square/okhttp/issues/4053#issuecomment-402579554
-                final List<CipherSuite> cipherSuites =
-                        new ArrayList<>(ConnectionSpec.MODERN_TLS.cipherSuites());
-                cipherSuites.add(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA);
-                cipherSuites.add(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA);
-                final ConnectionSpec legacyTLS =
-                        new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
-                                .cipherSuites(cipherSuites.toArray(new CipherSuite[0]))
-                                .build();
-
-                builder.connectionSpecs(Arrays.asList(legacyTLS, ConnectionSpec.CLEARTEXT));
-            } catch (final NoSuchAlgorithmException | KeyStoreException e) {
-                if (DEBUG) {
-                    e.printStackTrace();
-                }
+        try {
+            // get the default TrustManager
+            final TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
+                    TrustManagerFactory.getDefaultAlgorithm());
+            trustManagerFactory.init((KeyStore) null);
+            final TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
+            if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
+                throw new IllegalStateException("Unexpected default trust managers:"
+                        + Arrays.toString(trustManagers));
             }
+            final X509TrustManager trustManager = (X509TrustManager) trustManagers[0];
+
+            // insert NetCiphers TLSSocketFactory
+            final SSLSocketFactory sslSocketFactory = NetCipher.getTlsOnlySocketFactory();
+
+            builder.sslSocketFactory(sslSocketFactory, trustManager);
+
+            // Let NetCipher sort out the TlsVersions and CipherSuites that should not be used
+            final ConnectionSpec connectionSpec =
+                    new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
+                            .allEnabledTlsVersions()
+                            .allEnabledCipherSuites()
+                            .build();
+            builder.connectionSpecs(Collections.singletonList(connectionSpec));
+        } catch (final NoSuchAlgorithmException | KeyStoreException e) {
+            Log.w(TAG, "Could not setup X509TrustManager for NetCipher", e);
         }
 
         return builder;
