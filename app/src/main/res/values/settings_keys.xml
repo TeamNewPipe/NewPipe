@@ -14,6 +14,7 @@
     <string name="saved_tabs_key" translatable="false">saved_tabs_key</string>
 
     <!-- Key values -->
+    <string name="show_played_items_filter_key" translatable="false">show_played_items_preference_key</string>
     <string name="download_path_video_key" translatable="false">download_path</string>
     <string name="download_path_audio_key" translatable="false">download_path_audio</string>
 

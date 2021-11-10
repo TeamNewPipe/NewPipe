@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.functions.Function4
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.stream.StreamWithState
 import org.schabi.newpipe.local.feed.item.StreamItem
@@ -25,15 +26,12 @@ import java.time.OffsetDateTime
 import java.util.concurrent.TimeUnit
 
 class FeedViewModel(
-    applicationContext: Context,
+    val applicationContext: Context,
     groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
     initialShowPlayedItems: Boolean = true
 ) : ViewModel() {
     private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(applicationContext)
     private var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-    companion object {
-        const val SHOW_PLAYED_ITEMS_PREFERENCE = "show_played_items_preference_tag"
-    }
 
     private val toggleShowPlayedItems = BehaviorProcessor.create<Boolean>()
     private val streamItems = toggleShowPlayedItems
@@ -88,11 +86,11 @@ class FeedViewModel(
     }
 
     fun savePlayedItemsToggle(showPlayedItems: Boolean) = sharedPreferences.edit {
-        this.putBoolean(SHOW_PLAYED_ITEMS_PREFERENCE, showPlayedItems)
+        this.putBoolean(applicationContext.getString(R.string.show_played_items_filter_key), showPlayedItems)
         this.apply()
     }
 
-    fun getSavedPlayedItemsToggle() = sharedPreferences.getBoolean(SHOW_PLAYED_ITEMS_PREFERENCE, true)
+    fun getSavedPlayedItemsToggle() = sharedPreferences.getBoolean(applicationContext.getString(R.string.show_played_items_filter_key), true)
 
     class Factory(
         private val context: Context,
