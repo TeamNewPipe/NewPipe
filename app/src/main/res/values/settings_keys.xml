@@ -14,7 +14,6 @@
     <string name="saved_tabs_key" translatable="false">saved_tabs_key</string>
 
     <!-- Key values -->
-    <string name="feed_show_played_items_key" translatable="false">feed_show_played_items</string>
     <string name="download_path_video_key" translatable="false">download_path</string>
     <string name="download_path_audio_key" translatable="false">download_path_audio</string>
 
@@ -264,6 +263,7 @@
 
     <string name="feed_update_threshold_key" translatable="false">feed_update_threshold_key</string>
     <string name="feed_update_threshold_default_value" translatable="false">300</string>
+    <string name="feed_show_played_items_key" translatable="false">feed_show_played_items</string>
 
     <string name="show_thumbnail_key" translatable="false">show_thumbnail_key</string>
 
