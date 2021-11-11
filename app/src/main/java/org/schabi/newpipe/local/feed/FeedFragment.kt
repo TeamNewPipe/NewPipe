@@ -126,9 +126,9 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         _feedBinding = FragmentFeedBinding.bind(rootView)
         super.onViewCreated(rootView, savedInstanceState)
 
-        val factory = FeedViewModel.Factory(requireContext(), groupId, showPlayedItems)
+        val factory = FeedViewModel.Factory(requireContext(), groupId)
         viewModel = ViewModelProvider(this, factory).get(FeedViewModel::class.java)
-        showPlayedItems = viewModel.getSavedPlayedItemsToggle()
+        showPlayedItems = viewModel.getShowPlayedItemsFromPreferences()
         viewModel.stateLiveData.observe(viewLifecycleOwner, { it?.let(::handleResult) })
 
         groupAdapter = GroupieAdapter().apply {
@@ -214,7 +214,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             showPlayedItems = !item.isChecked
             updateTogglePlayedItemsButton(item)
             viewModel.togglePlayedItems(showPlayedItems)
-            viewModel.savePlayedItemsToggle(showPlayedItems)
+            viewModel.saveShowPlayedItemsToPreferences(showPlayedItems)
         }
 
         return super.onOptionsItemSelected(item)

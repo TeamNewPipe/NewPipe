@@ -26,12 +26,11 @@ import java.time.OffsetDateTime
 import java.util.concurrent.TimeUnit
 
 class FeedViewModel(
-    val applicationContext: Context,
+    private val applicationContext: Context,
     groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
     initialShowPlayedItems: Boolean = true
 ) : ViewModel() {
     private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(applicationContext)
-    private var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
 
     private val toggleShowPlayedItems = BehaviorProcessor.create<Boolean>()
     private val streamItems = toggleShowPlayedItems
@@ -85,21 +84,32 @@ class FeedViewModel(
         toggleShowPlayedItems.onNext(showPlayedItems)
     }
 
-    fun savePlayedItemsToggle(showPlayedItems: Boolean) = sharedPreferences.edit {
-        this.putBoolean(applicationContext.getString(R.string.show_played_items_filter_key), showPlayedItems)
-        this.apply()
-    }
+    fun saveShowPlayedItemsToPreferences(showPlayedItems: Boolean) =
+        PreferenceManager.getDefaultSharedPreferences(applicationContext).edit {
+            this.putBoolean(applicationContext.getString(R.string.feed_show_played_items_key), showPlayedItems)
+            this.apply()
+        }
 
-    fun getSavedPlayedItemsToggle() = sharedPreferences.getBoolean(applicationContext.getString(R.string.show_played_items_filter_key), true)
+    fun getShowPlayedItemsFromPreferences() = getShowPlayedItemsFromPreferences(applicationContext)
+
+    companion object {
+        private fun getShowPlayedItemsFromPreferences(context: Context) =
+            PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.feed_show_played_items_key), true)
+    }
 
     class Factory(
         private val context: Context,
-        private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
-        private val showPlayedItems: Boolean
+        private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return FeedViewModel(context.applicationContext, groupId, showPlayedItems) as T
+            return FeedViewModel(
+                context.applicationContext,
+                groupId,
+                // Read initial value from preferences
+                getShowPlayedItemsFromPreferences(context.applicationContext)
+            ) as T
         }
     }
 }
