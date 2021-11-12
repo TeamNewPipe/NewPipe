@@ -1,15 +1,18 @@
 package org.schabi.newpipe.local.feed
 
 import android.content.Context
+import androidx.core.content.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.functions.Function4
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.stream.StreamWithState
 import org.schabi.newpipe.local.feed.item.StreamItem
@@ -23,7 +26,7 @@ import java.time.OffsetDateTime
 import java.util.concurrent.TimeUnit
 
 class FeedViewModel(
-    applicationContext: Context,
+    private val applicationContext: Context,
     groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
     initialShowPlayedItems: Boolean = true
 ) : ViewModel() {
@@ -81,14 +84,32 @@ class FeedViewModel(
         toggleShowPlayedItems.onNext(showPlayedItems)
     }
 
+    fun saveShowPlayedItemsToPreferences(showPlayedItems: Boolean) =
+        PreferenceManager.getDefaultSharedPreferences(applicationContext).edit {
+            this.putBoolean(applicationContext.getString(R.string.feed_show_played_items_key), showPlayedItems)
+            this.apply()
+        }
+
+    fun getShowPlayedItemsFromPreferences() = getShowPlayedItemsFromPreferences(applicationContext)
+
+    companion object {
+        private fun getShowPlayedItemsFromPreferences(context: Context) =
+            PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.feed_show_played_items_key), true)
+    }
+
     class Factory(
         private val context: Context,
-        private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
-        private val showPlayedItems: Boolean
+        private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return FeedViewModel(context.applicationContext, groupId, showPlayedItems) as T
+            return FeedViewModel(
+                context.applicationContext,
+                groupId,
+                // Read initial value from preferences
+                getShowPlayedItemsFromPreferences(context.applicationContext)
+            ) as T
         }
     }
 }
