@@ -36,79 +36,83 @@ public class PlayerDataSource {
     }
 
     public SsMediaSource.Factory getLiveSsMediaSourceFactory() {
-        return new SsMediaSource.Factory(new DefaultSsChunkSource.Factory(
-                cachelessDataSourceFactory), cachelessDataSourceFactory)
+        return new SsMediaSource.Factory(
+                new DefaultSsChunkSource.Factory(cachelessDataSourceFactory),
+                cachelessDataSourceFactory
+        )
                 .setLoadErrorHandlingPolicy(
                         new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY))
                 .setLivePresentationDelayMs(LIVE_STREAM_EDGE_GAP_MILLIS);
     }
 
     public HlsMediaSource.Factory getLiveHlsMediaSourceFactory() {
+        final HlsMediaSource.Factory factory =
+                new HlsMediaSource.Factory(cachelessDataSourceFactory)
+                        .setAllowChunklessPreparation(true)
+                        .setLoadErrorHandlingPolicy(
+                                new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY));
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            return new HlsMediaSource.Factory(cachelessDataSourceFactory)
-                    .setExtractorFactory(MediaParserHlsMediaChunkExtractor.FACTORY)
-                    .setAllowChunklessPreparation(true)
-                    .setLoadErrorHandlingPolicy(
-                            new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY));
-        } else {
-            return new HlsMediaSource.Factory(cachelessDataSourceFactory)
-                    .setAllowChunklessPreparation(true)
-                    .setLoadErrorHandlingPolicy(
-                            new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY));
+            factory.setExtractorFactory(MediaParserHlsMediaChunkExtractor.FACTORY);
         }
+
+        return factory;
     }
 
     public DashMediaSource.Factory getLiveDashMediaSourceFactory() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            return new DashMediaSource.Factory(new DefaultDashChunkSource.Factory(
-                    MediaParserChunkExtractor.FACTORY,
-                    cachelessDataSourceFactory, 1), cachelessDataSourceFactory)
-                    .setLoadErrorHandlingPolicy(
-                            new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY));
-        } else {
-            return new DashMediaSource.Factory(new DefaultDashChunkSource.Factory(
-                    cachelessDataSourceFactory), cachelessDataSourceFactory)
-                    .setLoadErrorHandlingPolicy(
-                            new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY));
-        }
+        return new DashMediaSource.Factory(
+                getDefaultDashChunkSourceFactory(cachelessDataSourceFactory),
+                cachelessDataSourceFactory
+        )
+                .setLoadErrorHandlingPolicy(
+                        new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY));
     }
 
-    public SsMediaSource.Factory getSsMediaSourceFactory() {
-        return new SsMediaSource.Factory(new DefaultSsChunkSource.Factory(
-                cacheDataSourceFactory), cacheDataSourceFactory);
+    private DefaultDashChunkSource.Factory getDefaultDashChunkSourceFactory(
+            final DataSource.Factory dataSourceFactory
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            return new DefaultDashChunkSource.Factory(
+                    MediaParserChunkExtractor.FACTORY,
+                    dataSourceFactory,
+                    1
+            );
+        }
+
+        return new DefaultDashChunkSource.Factory(dataSourceFactory);
     }
 
     public HlsMediaSource.Factory getHlsMediaSourceFactory() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            return new HlsMediaSource.Factory(cacheDataSourceFactory)
-                    .setExtractorFactory(MediaParserHlsMediaChunkExtractor.FACTORY);
-        } else {
-            return new HlsMediaSource.Factory(cacheDataSourceFactory);
+        final HlsMediaSource.Factory factory = new HlsMediaSource.Factory(cacheDataSourceFactory);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            return factory;
         }
+
+        // *** >= Android 11 / R / API 30 ***
+        return factory.setExtractorFactory(MediaParserHlsMediaChunkExtractor.FACTORY);
     }
 
     public DashMediaSource.Factory getDashMediaSourceFactory() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            return new DashMediaSource.Factory(new DefaultDashChunkSource.Factory(
-                    MediaParserChunkExtractor.FACTORY,
-                    cacheDataSourceFactory, 1), cacheDataSourceFactory);
-        } else {
-            return new DashMediaSource.Factory(new DefaultDashChunkSource.Factory(
-                    cacheDataSourceFactory), cacheDataSourceFactory);
-        }
+        return new DashMediaSource.Factory(
+                getDefaultDashChunkSourceFactory(cacheDataSourceFactory),
+                cacheDataSourceFactory
+        );
     }
 
     public ProgressiveMediaSource.Factory getExtractorMediaSourceFactory() {
+        final ProgressiveMediaSource.Factory factory;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            return new ProgressiveMediaSource.Factory(cacheDataSourceFactory,
-                    MediaParserExtractorAdapter.FACTORY)
-                    .setLoadErrorHandlingPolicy(
-                            new DefaultLoadErrorHandlingPolicy(EXTRACTOR_MINIMUM_RETRY));
+            factory = new ProgressiveMediaSource.Factory(
+                    cacheDataSourceFactory,
+                    MediaParserExtractorAdapter.FACTORY
+            );
         } else {
-            return new ProgressiveMediaSource.Factory(cacheDataSourceFactory)
-                    .setLoadErrorHandlingPolicy(
-                            new DefaultLoadErrorHandlingPolicy(EXTRACTOR_MINIMUM_RETRY));
+            factory = new ProgressiveMediaSource.Factory(cacheDataSourceFactory);
         }
+
+        return factory.setLoadErrorHandlingPolicy(
+                new DefaultLoadErrorHandlingPolicy(EXTRACTOR_MINIMUM_RETRY));
     }
 
     public SingleSampleMediaSource.Factory getSampleMediaSourceFactory() {
