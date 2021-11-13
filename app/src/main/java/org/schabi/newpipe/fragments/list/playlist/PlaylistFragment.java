@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.preference.PreferenceManager;
 import androidx.viewbinding.ViewBinding;
 
 import org.reactivestreams.Subscriber;
@@ -178,13 +177,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         }
 
         // show "mark as watched" only when watch history is enabled
-        final boolean isWatchHistoryEnabled = PreferenceManager
-                .getDefaultSharedPreferences(context)
-                .getBoolean(getString(R.string.enable_watch_history_key), false);
-        if (item.getStreamType() != StreamType.AUDIO_LIVE_STREAM
-                && item.getStreamType() != StreamType.LIVE_STREAM
-                && isWatchHistoryEnabled
-        ) {
+        if (StreamDialogEntry.shouldAddMarkAsWatched(item.getStreamType(), context)) {
             entries.add(
                     StreamDialogEntry.mark_as_watched
             );

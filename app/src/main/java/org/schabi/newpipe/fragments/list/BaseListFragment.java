@@ -380,13 +380,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         }
 
         // show "mark as watched" only when watch history is enabled
-        final boolean isWatchHistoryEnabled = PreferenceManager
-                .getDefaultSharedPreferences(context)
-                .getBoolean(getString(R.string.enable_watch_history_key), false);
-        if (item.getStreamType() != StreamType.AUDIO_LIVE_STREAM
-                && item.getStreamType() != StreamType.LIVE_STREAM
-                && isWatchHistoryEnabled
-        ) {
+        if (StreamDialogEntry.shouldAddMarkAsWatched(item.getStreamType(), context)) {
             entries.add(
                     StreamDialogEntry.mark_as_watched
             );
