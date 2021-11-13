@@ -378,6 +378,13 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         if (KoreUtils.shouldShowPlayWithKodi(context, item.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
         }
+
+        // show "mark as watched" only when watch history is enabled
+        if (StreamDialogEntry.shouldAddMarkAsWatched(item.getStreamType(), context)) {
+            entries.add(
+                    StreamDialogEntry.mark_as_watched
+            );
+        }
         if (!isNullOrEmpty(item.getUploaderUrl())) {
             entries.add(StreamDialogEntry.show_channel_details);
         }

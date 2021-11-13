@@ -5,11 +5,13 @@ import android.net.Uri;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -192,6 +194,16 @@ public enum StreamDialogEntry {
 
     public interface StreamDialogEntryAction {
         void onClick(Fragment fragment, StreamInfoItem infoItem);
+    }
+
+    public static boolean shouldAddMarkAsWatched(final StreamType streamType,
+                                                 final Context context) {
+        final boolean isWatchHistoryEnabled = PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.enable_watch_history_key), false);
+        return streamType != StreamType.AUDIO_LIVE_STREAM
+                && streamType != StreamType.LIVE_STREAM
+                && isWatchHistoryEnabled;
     }
 
     /////////////////////////////////////////////
