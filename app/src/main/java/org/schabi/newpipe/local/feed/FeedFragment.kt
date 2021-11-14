@@ -597,7 +597,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                         )
                     }
                 } else {
-                    // Increases execution time due to the order of the items (newest always on top)
+                    // Decreases execution time due to the order of the items (newest always on top)
                     // Once a item is is before the updateTime we can skip all following items
                     doCheck = false
                 }
