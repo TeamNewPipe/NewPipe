@@ -2448,6 +2448,7 @@ public final class Player implements
         // Refresh the playback if there is a transition to the next video
         final int newWindowIndex = simpleExoPlayer.getCurrentWindowIndex();
         switch (discontinuityReason) {
+            case DISCONTINUITY_REASON_AUTO_TRANSITION:
             case DISCONTINUITY_REASON_REMOVE:
                 // When player is in single repeat mode and a period transition occurs,
                 // we need to register a view count here since no metadata has changed
@@ -2470,7 +2471,6 @@ public final class Player implements
                 }
                 break;
             case DISCONTINUITY_REASON_SKIP:
-            case DISCONTINUITY_REASON_AUTO_TRANSITION:
                 break; // only makes Android Studio linter happy, as there are no ads
         }
 
