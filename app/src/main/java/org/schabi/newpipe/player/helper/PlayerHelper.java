@@ -305,13 +305,6 @@ public final class PlayerHelper {
         return 2 * 1024 * 1024L; // ExoPlayer CacheDataSink.MIN_RECOMMENDED_FRAGMENT_SIZE
     }
 
-    /**
-     * @return the number of milliseconds the player buffers for before starting playback
-     */
-    public static int getPlaybackStartBufferMs() {
-        return 500;
-    }
-
     public static ExoTrackSelection.Factory getQualitySelector() {
         return new AdaptiveTrackSelection.Factory(
                 1000,
