@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.BatteryManager;
 import android.os.Build;
+import android.provider.Settings;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 
@@ -143,5 +144,12 @@ public final class DeviceUtils {
 
     public static boolean isInMultiWindow(final AppCompatActivity activity) {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && activity.isInMultiWindowMode();
+    }
+
+    public static boolean hasAnimationsAnimatorDurationEnabled(final Context context) {
+        return Settings.System.getFloat(
+                context.getContentResolver(),
+                Settings.Global.ANIMATOR_DURATION_SCALE,
+                1F) != 0F;
     }
 }
