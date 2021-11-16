@@ -679,7 +679,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 return true;
             case R.id.delete:
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                builder.setMessage(R.string.confirmation_before_deleting_download)
+                builder.setMessage(R.string.delete_downloaded_files)
                         .setPositiveButton(R.string.yes, (dialog, which) -> {
                             mDeleter.append(h.item.mission);
                             applyChanges();
