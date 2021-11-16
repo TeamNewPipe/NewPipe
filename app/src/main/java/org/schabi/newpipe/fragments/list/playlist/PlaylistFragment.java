@@ -63,6 +63,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
+import static org.schabi.newpipe.util.Constants.DEFAULT_SHORT_ANIM_DURATION;
 
 public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
@@ -281,19 +282,19 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     @Override
     public void showLoading() {
         super.showLoading();
-        animate(headerBinding.getRoot(), false, 200);
+        animate(headerBinding.getRoot(), false, DEFAULT_SHORT_ANIM_DURATION);
         animateHideRecyclerViewAllowingScrolling(itemsList);
 
         PicassoHelper.cancelTag(PICASSO_PLAYLIST_TAG);
-        animate(headerBinding.uploaderLayout, false, 200);
+        animate(headerBinding.uploaderLayout, false, DEFAULT_SHORT_ANIM_DURATION);
     }
 
     @Override
     public void handleResult(@NonNull final PlaylistInfo result) {
         super.handleResult(result);
 
-        animate(headerBinding.getRoot(), true, 100);
-        animate(headerBinding.uploaderLayout, true, 300);
+        animate(headerBinding.getRoot(), true, DEFAULT_SHORT_ANIM_DURATION);
+        animate(headerBinding.uploaderLayout, true, DEFAULT_SHORT_ANIM_DURATION);
         headerBinding.uploaderLayout.setOnClickListener(null);
         // If we have an uploader put them into the UI
         if (!TextUtils.isEmpty(result.getUploaderName())) {

@@ -679,9 +679,9 @@ public final class VideoDetailFragment
             }
 
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                animate(binding.touchAppendDetail, true, DEFAULT_SHORT_ANIM_DURATION, AnimationType.ALPHA,
-                        0, () ->
-                        animate(binding.touchAppendDetail, false, DEFAULT_LONG_ANIM_DURATION,
+                animate(binding.touchAppendDetail, true, DEFAULT_SHORT_ANIM_DURATION,
+                        AnimationType.ALPHA, 0,
+                        () -> animate(binding.touchAppendDetail, false, DEFAULT_LONG_ANIM_DURATION,
                                 AnimationType.ALPHA, DEFAULT_LONG_ANIM_DURATION));
             }
             return false;
@@ -1374,7 +1374,9 @@ public final class VideoDetailFragment
         binding.detailThumbnailImageView.setImageDrawable(
                 AppCompatResources.getDrawable(requireContext(), imageResource));
         animate(binding.detailThumbnailImageView, false, 0, AnimationType.ALPHA,
-                0, () -> animate(binding.detailThumbnailImageView, true, DEFAULT_SHORT_ANIM_DURATION));
+                0,
+                () -> animate(binding.detailThumbnailImageView, true,
+                        DEFAULT_SHORT_ANIM_DURATION));
     }
 
     @Override

@@ -87,6 +87,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject;
 import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
 import static java.util.Arrays.asList;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.util.Constants.DEFAULT_SHORT_ANIM_DURATION;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 
 public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.InfoItemsPage<?>>
@@ -656,7 +657,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             Log.d(TAG, "showSuggestionsPanel() called");
         }
         suggestionsPanelVisible = true;
-        animate(searchBinding.suggestionsPanel, true, 200,
+        animate(searchBinding.suggestionsPanel, true, DEFAULT_SHORT_ANIM_DURATION,
                 AnimationType.LIGHT_SLIDE_AND_ALPHA);
     }
 
@@ -665,7 +666,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             Log.d(TAG, "hideSuggestionsPanel() called");
         }
         suggestionsPanelVisible = false;
-        animate(searchBinding.suggestionsPanel, false, 200,
+        animate(searchBinding.suggestionsPanel, false, DEFAULT_SHORT_ANIM_DURATION,
                 AnimationType.LIGHT_SLIDE_AND_ALPHA);
     }
 
