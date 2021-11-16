@@ -288,28 +288,12 @@ public final class ListHelper {
      * @param audioStreams List of audio streams
      * @return Index of audio stream that produces the most compact results or -1 if not found
      */
-    static int getHighestQualityAudioIndex(@Nullable MediaFormat format,
-                                           final List<AudioStream> audioStreams) {
-        int result = -1;
-        if (audioStreams != null) {
-            while (result == -1) {
-                AudioStream prevStream = null;
-                for (int idx = 0; idx < audioStreams.size(); idx++) {
-                    final AudioStream stream = audioStreams.get(idx);
-                    if ((format == null || stream.getFormat() == format)
-                            && (prevStream == null || compareAudioStreamBitrate(prevStream, stream,
-                                    AUDIO_FORMAT_QUALITY_RANKING) < 0)) {
-                        prevStream = stream;
-                        result = idx;
-                    }
-                }
-                if (result == -1 && format == null) {
-                    break;
-                }
-                format = null;
-            }
-        }
-        return result;
+    static int getHighestQualityAudioIndex(@Nullable final MediaFormat format,
+                                           @Nullable final List<AudioStream> audioStreams) {
+        return getAudioIndexByHighestRank(format, audioStreams,
+                // Compares descending (last = highest rank)
+                (s1, s2) -> compareAudioStreamBitrate(s1, s2, AUDIO_FORMAT_QUALITY_RANKING)
+        );
     }
 
     /**
@@ -320,28 +304,47 @@ public final class ListHelper {
      * @param audioStreams List of audio streams
      * @return Index of audio stream that produces the most compact results or -1 if not found
      */
-    static int getMostCompactAudioIndex(@Nullable MediaFormat format,
-                                        final List<AudioStream> audioStreams) {
-        int result = -1;
-        if (audioStreams != null) {
-            while (result == -1) {
-                AudioStream prevStream = null;
-                for (int idx = 0; idx < audioStreams.size(); idx++) {
-                    final AudioStream stream = audioStreams.get(idx);
-                    if ((format == null || stream.getFormat() == format)
-                            && (prevStream == null || compareAudioStreamBitrate(prevStream, stream,
-                                    AUDIO_FORMAT_EFFICIENCY_RANKING) > 0)) {
-                        prevStream = stream;
-                        result = idx;
-                    }
-                }
-                if (result == -1 && format == null) {
-                    break;
-                }
-                format = null;
-            }
+    static int getMostCompactAudioIndex(@Nullable final MediaFormat format,
+                                        @Nullable final List<AudioStream> audioStreams) {
+
+        return getAudioIndexByHighestRank(format, audioStreams,
+                // The "-" is important -> Compares ascending (first = highest rank)
+                (s1, s2) -> -compareAudioStreamBitrate(s1, s2, AUDIO_FORMAT_EFFICIENCY_RANKING)
+        );
+    }
+
+    /**
+     * Get the audio-stream from the list with the highest rank, depending on the comparator.
+     * Format will be ignored if it yields no results.
+     *
+     * @param targetedFormat The target format type or null if it doesn't matter
+     * @param audioStreams   List of audio streams
+     * @param comparator     The comparator used for determining the max/best/highest ranked value
+     * @return Index of audio stream that produces the most compact results or -1 if not found
+     */
+    private static int getAudioIndexByHighestRank(@Nullable final MediaFormat targetedFormat,
+                                                  @Nullable final List<AudioStream> audioStreams,
+                                                  final Comparator<AudioStream> comparator) {
+        if (audioStreams == null || audioStreams.isEmpty()) {
+            return -1;
         }
-        return result;
+
+        final AudioStream highestRankedAudioStream = audioStreams.stream()
+                .filter(audioStream -> targetedFormat == null
+                        || audioStream.getFormat() == targetedFormat)
+                .max(comparator)
+                .orElse(null);
+
+        if (highestRankedAudioStream == null) {
+            // Fallback: Ignore targetedFormat if not null
+            if (targetedFormat != null) {
+                return getAudioIndexByHighestRank(null, audioStreams, comparator);
+            }
+            // targetedFormat is already null -> return -1
+            return -1;
+        }
+
+        return audioStreams.indexOf(highestRankedAudioStream);
     }
 
     /**
