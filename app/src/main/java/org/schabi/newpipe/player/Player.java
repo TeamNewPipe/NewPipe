@@ -3003,25 +3003,18 @@ public final class Player implements
         final MediaSourceTag metadata;
         try {
             final MediaItem currentMediaItem = simpleExoPlayer.getCurrentMediaItem();
-            if (currentMediaItem != null) {
-                final MediaItem.PlaybackProperties playbackProperties =
-                        currentMediaItem.playbackProperties;
-                metadata = (MediaSourceTag) (playbackProperties != null ? playbackProperties.tag
-                        : null);
-            } else {
-                metadata = null;
+            if (currentMediaItem == null || currentMediaItem.playbackProperties == null
+                    || currentMediaItem.playbackProperties.tag == null) {
+                return;
             }
-        } catch (final IndexOutOfBoundsException | ClassCastException error) {
+            metadata = (MediaSourceTag) currentMediaItem.playbackProperties.tag;
+        } catch (final IndexOutOfBoundsException | ClassCastException ex) {
             if (DEBUG) {
-                Log.d(TAG, "Could not update metadata: " + error.getMessage());
-                error.printStackTrace();
+                Log.d(TAG, "Could not update metadata", ex);
             }
             return;
         }
 
-        if (metadata == null) {
-            return;
-        }
         maybeAutoQueueNextStream(metadata);
 
         if (currentMetadata == metadata) {
