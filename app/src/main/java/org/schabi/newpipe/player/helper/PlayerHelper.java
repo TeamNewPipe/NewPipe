@@ -3,6 +3,8 @@ package org.schabi.newpipe.player.helper;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
+import static org.schabi.newpipe.extractor.stream.AudioStream.UNKNOWN_BITRATE;
+import static org.schabi.newpipe.extractor.stream.VideoStream.RESOLUTION_UNKNOWN;
 import static org.schabi.newpipe.player.Player.IDLE_WINDOW_FLAGS;
 import static org.schabi.newpipe.player.Player.PLAYER_TYPE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
@@ -76,6 +78,9 @@ public final class PlayerHelper {
             = new Formatter(STRING_BUILDER, Locale.getDefault());
     private static final NumberFormat SPEED_FORMATTER = new DecimalFormat("0.##x");
     private static final NumberFormat PITCH_FORMATTER = new DecimalFormat("##%");
+    private static final String MEDIA_FORMAT_UNKNOWN = "MEDIA_FORMAT_UNKNOWN";
+    private static int cachedVideoStreamsWithResolutionUnknown = 0;
+    private static int cachedAudioStreamWithAverageBitrateUnknown = 0;
 
     @Retention(SOURCE)
     @IntDef({AUTOPLAY_TYPE_ALWAYS, AUTOPLAY_TYPE_WIFI,
@@ -95,7 +100,8 @@ public final class PlayerHelper {
         int MINIMIZE_ON_EXIT_MODE_POPUP = 2;
     }
 
-    private PlayerHelper() { }
+    private PlayerHelper() {
+    }
 
     ////////////////////////////////////////////////////////////////////////////
     // Exposed helpers
@@ -163,13 +169,39 @@ public final class PlayerHelper {
     @NonNull
     public static String cacheKeyOf(@NonNull final StreamInfo info,
                                     @NonNull final VideoStream video) {
-        return info.getUrl() + video.getResolution() + video.getFormat().getName();
+        String cacheKey = info.getUrl();
+        final String resolution = video.getResolution();
+        if (!resolution.equals(RESOLUTION_UNKNOWN)) {
+            cacheKey += resolution;
+        } else {
+            cacheKey += String.valueOf(cachedVideoStreamsWithResolutionUnknown);
+            cachedVideoStreamsWithResolutionUnknown += 1;
+        }
+        final MediaFormat mediaFormat = video.getFormat();
+        if (mediaFormat != null) {
+            return cacheKey + video.getFormat().getName();
+        } else {
+            return cacheKey + MEDIA_FORMAT_UNKNOWN;
+        }
     }
 
     @NonNull
     public static String cacheKeyOf(@NonNull final StreamInfo info,
                                     @NonNull final AudioStream audio) {
-        return info.getUrl() + audio.getAverageBitrate() + audio.getFormat().getName();
+        String cacheKey = info.getUrl();
+        final int averageBitrate = audio.getAverageBitrate();
+        if (averageBitrate != UNKNOWN_BITRATE) {
+            cacheKey += averageBitrate;
+        } else {
+            cacheKey += String.valueOf(cachedAudioStreamWithAverageBitrateUnknown);
+            cachedAudioStreamWithAverageBitrateUnknown += 1;
+        }
+        final MediaFormat mediaFormat = audio.getFormat();
+        if (mediaFormat != null) {
+            return cacheKey + audio.getFormat().getName();
+        } else {
+            return cacheKey + MEDIA_FORMAT_UNKNOWN;
+        }
     }
 
     /**
@@ -203,7 +235,7 @@ public final class PlayerHelper {
             return null;
         }
 
-        if (relatedItems.get(0) != null && relatedItems.get(0) instanceof StreamInfoItem
+        if (relatedItems.get(0) instanceof StreamInfoItem
                 && !urls.contains(relatedItems.get(0).getUrl())) {
             return getAutoQueuedSinglePlayQueue((StreamInfoItem) relatedItems.get(0));
         }
@@ -305,6 +337,7 @@ public final class PlayerHelper {
         return 2 * 1024 * 1024L; // ExoPlayer CacheDataSink.MIN_RECOMMENDED_FRAGMENT_SIZE
     }
 
+    @NonNull
     public static ExoTrackSelection.Factory getQualitySelector() {
         return new AdaptiveTrackSelection.Factory(
                 1000,
@@ -359,7 +392,7 @@ public final class PlayerHelper {
     /**
      * @param context the Android context
      * @return the screen brightness to use. A value less than 0 (the default) means to use the
-     *         preferred screen brightness
+     * preferred screen brightness
      */
     public static float getScreenBrightness(@NonNull final Context context) {
         final SharedPreferences sp = getPreferences(context);
@@ -437,7 +470,8 @@ public final class PlayerHelper {
                 return REPEAT_MODE_ONE;
             case REPEAT_MODE_ONE:
                 return REPEAT_MODE_ALL;
-            case REPEAT_MODE_ALL: default:
+            case REPEAT_MODE_ALL:
+            default:
                 return REPEAT_MODE_OFF;
         }
     }
@@ -505,7 +539,7 @@ public final class PlayerHelper {
                 player.getContext().getResources().getDimension(R.dimen.popup_default_width);
         final float popupWidth = popupRememberSizeAndPos
                 ? player.getPrefs().getFloat(player.getContext().getString(
-                        R.string.popup_saved_width_key), defaultSize)
+                R.string.popup_saved_width_key), defaultSize)
                 : defaultSize;
         final float popupHeight = getMinimumVideoHeight(popupWidth);
 
@@ -521,10 +555,10 @@ public final class PlayerHelper {
         final int centerY = (int) (player.getScreenHeight() / 2f - popupHeight / 2f);
         popupLayoutParams.x = popupRememberSizeAndPos
                 ? player.getPrefs().getInt(player.getContext().getString(
-                        R.string.popup_saved_x_key), centerX) : centerX;
+                R.string.popup_saved_x_key), centerX) : centerX;
         popupLayoutParams.y = popupRememberSizeAndPos
                 ? player.getPrefs().getInt(player.getContext().getString(
-                        R.string.popup_saved_y_key), centerY) : centerY;
+                R.string.popup_saved_y_key), centerY) : centerY;
 
         return popupLayoutParams;
     }

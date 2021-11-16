@@ -3,8 +3,10 @@ package org.schabi.newpipe.player.resolver;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.source.hls.playlist.HlsMasterPlaylist;
+import com.google.android.exoplayer2.source.hls.playlist.HlsMediaPlaylist;
 import com.google.android.exoplayer2.source.hls.playlist.HlsPlaylist;
 import com.google.android.exoplayer2.source.hls.playlist.HlsPlaylistParserFactory;
 import com.google.android.exoplayer2.upstream.ParsingLoadable;
@@ -38,7 +40,8 @@ public class NewPipeHlsPlaylistParserFactory implements HlsPlaylistParserFactory
     @NonNull
     @Override
     public ParsingLoadable.Parser<HlsPlaylist> createPlaylistParser(
-            @NonNull final HlsMasterPlaylist masterPlaylist) {
+            @NonNull final HlsMasterPlaylist masterPlaylist,
+            @Nullable final HlsMediaPlaylist previousMediaPlaylist) {
         return new NewPipeHlsPlayListParser();
     }
 }
