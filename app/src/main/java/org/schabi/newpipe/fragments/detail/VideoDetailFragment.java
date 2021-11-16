@@ -120,6 +120,8 @@ import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
 import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
+import static org.schabi.newpipe.util.Constants.DEFAULT_LONG_ANIM_DURATION;
+import static org.schabi.newpipe.util.Constants.DEFAULT_SHORT_ANIM_DURATION;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 
 public final class VideoDetailFragment
@@ -677,10 +679,10 @@ public final class VideoDetailFragment
             }
 
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                animate(binding.touchAppendDetail, true, 250, AnimationType.ALPHA,
+                animate(binding.touchAppendDetail, true, DEFAULT_SHORT_ANIM_DURATION, AnimationType.ALPHA,
                         0, () ->
-                        animate(binding.touchAppendDetail, false, 1500,
-                                AnimationType.ALPHA, 1000));
+                        animate(binding.touchAppendDetail, false, DEFAULT_LONG_ANIM_DURATION,
+                                AnimationType.ALPHA, DEFAULT_LONG_ANIM_DURATION));
             }
             return false;
         };
@@ -1372,7 +1374,7 @@ public final class VideoDetailFragment
         binding.detailThumbnailImageView.setImageDrawable(
                 AppCompatResources.getDrawable(requireContext(), imageResource));
         animate(binding.detailThumbnailImageView, false, 0, AnimationType.ALPHA,
-                0, () -> animate(binding.detailThumbnailImageView, true, 500));
+                0, () -> animate(binding.detailThumbnailImageView, true, DEFAULT_SHORT_ANIM_DURATION));
     }
 
     @Override
@@ -1459,10 +1461,10 @@ public final class VideoDetailFragment
             binding.detailContentRootHiding.setVisibility(View.INVISIBLE);
         }
 
-        animate(binding.detailThumbnailPlayButton, false, 50);
-        animate(binding.detailDurationView, false, 100);
-        animate(binding.detailPositionView, false, 100);
-        animate(binding.positionView, false, 50);
+        animate(binding.detailThumbnailPlayButton, false, DEFAULT_SHORT_ANIM_DURATION);
+        animate(binding.detailDurationView, false, DEFAULT_SHORT_ANIM_DURATION);
+        animate(binding.detailPositionView, false, DEFAULT_SHORT_ANIM_DURATION);
+        animate(binding.positionView, false, DEFAULT_SHORT_ANIM_DURATION);
 
         binding.detailVideoTitleView.setText(title);
         binding.detailVideoTitleView.setMaxLines(1);
@@ -1495,7 +1497,7 @@ public final class VideoDetailFragment
 
         updateTabs(info);
 
-        animate(binding.detailThumbnailPlayButton, true, 200);
+        animate(binding.detailThumbnailPlayButton, true, DEFAULT_SHORT_ANIM_DURATION);
         binding.detailVideoTitleView.setText(title);
 
         if (!isEmpty(info.getSubChannelName())) {
@@ -1561,12 +1563,12 @@ public final class VideoDetailFragment
             binding.detailDurationView.setText(Localization.getDurationString(info.getDuration()));
             binding.detailDurationView.setBackgroundColor(
                     ContextCompat.getColor(activity, R.color.duration_background_color));
-            animate(binding.detailDurationView, true, 100);
+            animate(binding.detailDurationView, true, DEFAULT_SHORT_ANIM_DURATION);
         } else if (info.getStreamType() == StreamType.LIVE_STREAM) {
             binding.detailDurationView.setText(R.string.duration_live);
             binding.detailDurationView.setBackgroundColor(
                     ContextCompat.getColor(activity, R.color.live_duration_background_color));
-            animate(binding.detailDurationView, true, 100);
+            animate(binding.detailDurationView, true, DEFAULT_SHORT_ANIM_DURATION);
         } else {
             binding.detailDurationView.setVisibility(View.GONE);
         }
@@ -1694,8 +1696,8 @@ public final class VideoDetailFragment
                 // Show saved position from backStack if user allows it
                 showPlaybackProgress(playQueue.getItem().getRecoveryPosition(),
                         playQueue.getItem().getDuration() * 1000);
-                animate(binding.positionView, true, 500);
-                animate(binding.detailPositionView, true, 500);
+                animate(binding.positionView, true, DEFAULT_SHORT_ANIM_DURATION);
+                animate(binding.detailPositionView, true, DEFAULT_SHORT_ANIM_DURATION);
             }
             return;
         }
@@ -1709,8 +1711,8 @@ public final class VideoDetailFragment
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(state -> {
                     showPlaybackProgress(state.getProgressMillis(), info.getDuration() * 1000);
-                    animate(binding.positionView, true, 500);
-                    animate(binding.detailPositionView, true, 500);
+                    animate(binding.positionView, true, DEFAULT_SHORT_ANIM_DURATION);
+                    animate(binding.detailPositionView, true, DEFAULT_SHORT_ANIM_DURATION);
                 }, e -> {
                     if (DEBUG) {
                         e.printStackTrace();
@@ -1739,8 +1741,8 @@ public final class VideoDetailFragment
             binding.detailPositionView.setText(position);
         }
         if (binding.positionView.getVisibility() != View.VISIBLE) {
-            animate(binding.positionView, true, 100);
-            animate(binding.detailPositionView, true, 100);
+            animate(binding.positionView, true, DEFAULT_SHORT_ANIM_DURATION);
+            animate(binding.detailPositionView, true, DEFAULT_SHORT_ANIM_DURATION);
         }
     }
 
@@ -1794,8 +1796,8 @@ public final class VideoDetailFragment
                         && player.getPlayQueue() != null
                         && player.getPlayQueue().getItem() != null
                         && player.getPlayQueue().getItem().getUrl().equals(url)) {
-                    animate(binding.positionView, true, 100);
-                    animate(binding.detailPositionView, true, 100);
+                    animate(binding.positionView, true, DEFAULT_SHORT_ANIM_DURATION);
+                    animate(binding.detailPositionView, true, DEFAULT_SHORT_ANIM_DURATION);
                 }
                 break;
         }

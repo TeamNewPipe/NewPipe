@@ -18,3 +18,6 @@ const val KEY_THEME_CHANGE = "key_theme_change"
 const val KEY_MAIN_PAGE_CHANGE = "key_main_page_change"
 
 const val NO_SERVICE_ID = -1
+
+const val DEFAULT_LONG_ANIM_DURATION = 1500
+const val DEFAULT_SHORT_ANIM_DURATION = 250

@@ -48,6 +48,7 @@ import java.util.Queue;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
+import static org.schabi.newpipe.util.Constants.DEFAULT_SHORT_ANIM_DURATION;
 
 public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         implements ListViewContract<I, N>, StateSaver.WriteRead,
@@ -428,7 +429,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     @Override
     public void hideLoading() {
         super.hideLoading();
-        animate(itemsList, true, 300);
+        animate(itemsList, true, DEFAULT_SHORT_ANIM_DURATION);
     }
 
     @Override
