@@ -20,7 +20,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public final class ListHelper {
     // Video format in order of quality. 0=lowest quality, n=highest quality
@@ -34,8 +38,9 @@ public final class ListHelper {
     private static final List<MediaFormat> AUDIO_FORMAT_EFFICIENCY_RANKING =
             Arrays.asList(MediaFormat.WEBMA, MediaFormat.M4A, MediaFormat.MP3);
 
-    private static final List<String> HIGH_RESOLUTION_LIST
-            = Arrays.asList("1440p", "2160p", "1440p60", "2160p60");
+    private static final Set<String> HIGH_RESOLUTION_LIST
+            // Uses a HashSet for better performance
+            = new HashSet<>(Arrays.asList("1440p", "2160p", "1440p60", "2160p60"));
 
     private ListHelper() { }
 
@@ -213,66 +218,39 @@ public final class ListHelper {
             @Nullable final List<VideoStream> videoStreams,
             @Nullable final List<VideoStream> videoOnlyStreams,
             final boolean ascendingOrder,
-            final boolean preferVideoOnlyStreams) {
-        final ArrayList<VideoStream> retList = new ArrayList<>();
+            final boolean preferVideoOnlyStreams
+    ) {
+        // Determine order of streams
+        // The last added list is preferred
+        final List<List<VideoStream>> videoStreamsOrdered =
+                preferVideoOnlyStreams
+                        ? Arrays.asList(videoStreams, videoOnlyStreams)
+                        : Arrays.asList(videoOnlyStreams, videoStreams);
+
+        final List<VideoStream> allInitialStreams = videoStreamsOrdered.stream()
+                // Ignore lists that are null
+                .filter(Objects::nonNull)
+                .flatMap(List::stream)
+                // Filter out higher resolutions (or not if high resolutions should always be shown)
+                .filter(stream -> showHigherResolutions
+                        || !HIGH_RESOLUTION_LIST.contains(stream.getResolution()))
+                .collect(Collectors.toList());
+
         final HashMap<String, VideoStream> hashMap = new HashMap<>();
-
-        if (preferVideoOnlyStreams) {
-            if (videoStreams != null) {
-                for (final VideoStream stream : videoStreams) {
-                    if (!showHigherResolutions && HIGH_RESOLUTION_LIST.contains(
-                            stream.getResolution())) {
-                        continue;
-                    }
-                    retList.add(stream);
-                }
-            }
-            if (videoOnlyStreams != null) {
-                for (final VideoStream stream : videoOnlyStreams) {
-                    if (!showHigherResolutions && HIGH_RESOLUTION_LIST.contains(
-                            stream.getResolution())) {
-                        continue;
-                    }
-                    retList.add(stream);
-                }
-            }
-        } else {
-            if (videoOnlyStreams != null) {
-                for (final VideoStream stream : videoOnlyStreams) {
-                    if (!showHigherResolutions && HIGH_RESOLUTION_LIST.contains(
-                            stream.getResolution())) {
-                        continue;
-                    }
-                    retList.add(stream);
-                }
-            }
-            if (videoStreams != null) {
-                for (final VideoStream stream : videoStreams) {
-                    if (!showHigherResolutions && HIGH_RESOLUTION_LIST.contains(
-                            stream.getResolution())) {
-                        continue;
-                    }
-                    retList.add(stream);
-                }
-            }
-        }
-
         // Add all to the hashmap
-        for (final VideoStream videoStream : retList) {
+        for (final VideoStream videoStream : allInitialStreams) {
             hashMap.put(videoStream.getResolution(), videoStream);
         }
 
         // Override the values when the key == resolution, with the defaultFormat
-        for (final VideoStream videoStream : retList) {
+        for (final VideoStream videoStream : allInitialStreams) {
             if (videoStream.getFormat() == defaultFormat) {
                 hashMap.put(videoStream.getResolution(), videoStream);
             }
         }
 
-        retList.clear();
-        retList.addAll(hashMap.values());
-        sortStreamList(retList, ascendingOrder);
-        return retList;
+        // Return the sorted list
+        return sortStreamList(new ArrayList<>(hashMap.values()), ascendingOrder);
     }
 
     /**
@@ -288,16 +266,18 @@ public final class ListHelper {
      *      1080p    ->  1080
      *      1080p60  ->  1081
      * <br>
-     *  ascendingOrder  ? 360 < 720 < 721 < 1080 < 1081
-     *  !ascendingOrder ? 1081 < 1080 < 721 < 720 < 360</pre></blockquote>
+     * ascendingOrder  ? 360 < 720 < 721 < 1080 < 1081
+     * !ascendingOrder ? 1081 < 1080 < 721 < 720 < 360</pre></blockquote>
      *
      * @param videoStreams   list that the sorting will be applied
      * @param ascendingOrder true -> smallest to greatest | false -> greatest to smallest
+     * @return The sorted list (same reference as parameter videoStreams)
      */
-    private static void sortStreamList(final List<VideoStream> videoStreams,
-                                       final boolean ascendingOrder) {
+    private static List<VideoStream> sortStreamList(final List<VideoStream> videoStreams,
+                                                    final boolean ascendingOrder) {
         final Comparator<VideoStream> comparator = ListHelper::compareVideoStreamResolution;
         Collections.sort(videoStreams, ascendingOrder ? comparator : comparator.reversed());
+        return videoStreams;
     }
 
     /**
