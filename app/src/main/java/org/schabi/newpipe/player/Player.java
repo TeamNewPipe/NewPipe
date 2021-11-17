@@ -857,10 +857,10 @@ public final class Player implements
 
         final int queuePos = playQueue.getIndex();
         final long windowPos = simpleExoPlayer.getCurrentPosition();
+        final long duration = simpleExoPlayer.getDuration();
 
-        if (windowPos > 0 && windowPos <= simpleExoPlayer.getDuration()) {
-            setRecovery(queuePos, windowPos);
-        }
+        // No checks due to https://github.com/TeamNewPipe/NewPipe/pull/7195#issuecomment-962624380
+        setRecovery(queuePos, Math.max(0, Math.min(windowPos, duration)));
     }
 
     private void setRecovery(final int queuePos, final long windowPos) {
