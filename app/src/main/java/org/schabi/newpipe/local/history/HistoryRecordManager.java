@@ -120,19 +120,11 @@ public class HistoryRecordManager {
             }
 
             // Update the stream progress to the full duration of the video
-            final List<StreamStateEntity> states = streamStateTable.getState(streamId)
-                    .blockingFirst();
-            if (!states.isEmpty()) {
-                final StreamStateEntity entity = states.get(0);
-                entity.setProgressMillis(duration * 1000);
-                streamStateTable.update(entity);
-            } else {
-                final StreamStateEntity entity = new StreamStateEntity(
-                        streamId,
-                        duration * 1000
-                );
-                streamStateTable.insert(entity);
-            }
+            final StreamStateEntity entity = new StreamStateEntity(
+                    streamId,
+                    duration * 1000
+            );
+            streamStateTable.upsert(entity);
 
             // Add a history entry
             final StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry(streamId);

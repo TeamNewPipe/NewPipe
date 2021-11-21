@@ -42,7 +42,7 @@ class FeedDatabaseManager(context: Context) {
     fun getStreams(
         groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
         getPlayedStreams: Boolean = true
-    ): Flowable<List<StreamWithState>> {
+    ): Maybe<List<StreamWithState>> {
         return when (groupId) {
             FeedGroupEntity.GROUP_ALL_ID -> {
                 if (getPlayedStreams) feedTable.getAllStreams()

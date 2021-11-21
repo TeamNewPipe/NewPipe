@@ -87,6 +87,19 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <Button
+        android:id="@+id/new_items_loaded_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/swipeRefreshLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5sp"
+        android:text="@string/feed_new_items"
+        android:textSize="12sp"
+        android:theme="@style/ServiceColoredButton"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

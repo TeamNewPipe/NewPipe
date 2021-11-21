@@ -782,6 +782,16 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         if (KoreUtils.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
         }
+
+        // show "mark as watched" only when watch history is enabled
+        if (StreamDialogEntry.shouldAddMarkAsWatched(
+                item.getStreamEntity().getStreamType(),
+                context
+        )) {
+            entries.add(
+                    StreamDialogEntry.mark_as_watched
+            );
+        }
         entries.add(StreamDialogEntry.show_channel_details);
 
         StreamDialogEntry.setEnabledEntries(entries);
