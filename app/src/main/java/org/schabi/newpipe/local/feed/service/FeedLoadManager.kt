@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.processors.PublishProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
+import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.extractor.ListInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
@@ -41,6 +42,8 @@ class FeedLoadManager(private val context: Context) {
      * Start checking for new streams of a subscription group.
      * @param groupId The ID of the subscription group to load.
      * When using [FeedGroupEntity.GROUP_ALL_ID], all subscriptions are loaded.
+     * When using [GROUP_NOTIFICATION_ENABLED], only subscriptions with enabled notifications
+     * for new streams are loaded.
      * @param ignoreOutdatedThreshold When `false`, only subscriptions which have not been updated
      * within the `feed_update_threshold` are checked for updates.
      * This threshold can be set by the user in the app settings.
@@ -73,6 +76,9 @@ class FeedLoadManager(private val context: Context) {
          */
         val outdatedSubscriptions = when (groupId) {
             FeedGroupEntity.GROUP_ALL_ID -> feedDatabaseManager.outdatedSubscriptions(outdatedThreshold)
+            GROUP_NOTIFICATION_ENABLED -> feedDatabaseManager.outdatedSubscriptionsWithNotificationMode(
+                outdatedThreshold, NotificationMode.ENABLED
+            )
             else -> feedDatabaseManager.outdatedSubscriptionsForGroup(groupId, outdatedThreshold)
         }
 
@@ -248,16 +254,21 @@ class FeedLoadManager(private val context: Context) {
         }
     }
 
-    private companion object {
+    companion object {
+
+        /**
+         *
+         */
+        const val GROUP_NOTIFICATION_ENABLED = -2L
 
         /**
          * How many extractions will be running in parallel.
          */
-        const val PARALLEL_EXTRACTIONS = 6
+        private const val PARALLEL_EXTRACTIONS = 6
 
         /**
          * Number of items to buffer to mass-insert in the database.
          */
-        const val BUFFER_COUNT_BEFORE_INSERT = 20
+        private const val BUFFER_COUNT_BEFORE_INSERT = 20
     }
 }

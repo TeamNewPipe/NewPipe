@@ -16,7 +16,6 @@ import androidx.work.rxjava3.RxWorker
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import org.schabi.newpipe.R
-import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.local.feed.service.FeedLoadManager
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import java.util.concurrent.TimeUnit
@@ -36,12 +35,14 @@ class NotificationWorker(
     private val feedLoadManager = FeedLoadManager(appContext)
 
     override fun createWork(): Single<Result> = if (isEnabled(applicationContext)) {
-        feedLoadManager.startLoading(ignoreOutdatedThreshold = true)
+        feedLoadManager.startLoading(
+            ignoreOutdatedThreshold = true,
+            groupId = FeedLoadManager.GROUP_NOTIFICATION_ENABLED
+        )
             .map { feed ->
                 feed.mapNotNull { x ->
                     x.value?.takeIf {
-                        it.notificationMode == NotificationMode.ENABLED &&
-                            it.newStreamsCount > 0
+                        it.newStreamsCount > 0
                     }
                 }
             }
