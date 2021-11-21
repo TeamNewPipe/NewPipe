@@ -76,7 +76,6 @@ public class PlayerGestureListener
             player.hideControls(150, 0);
             return;
         }
-
         // -- Controls are not visible --
 
         // When player is completed show controls and don't hide them later
