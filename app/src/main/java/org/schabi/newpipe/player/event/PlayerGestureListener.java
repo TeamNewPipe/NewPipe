@@ -72,7 +72,6 @@ public class PlayerGestureListener
 
         if (player.isControlsVisible()) {
 
-            // -- Controls visible --
 
             player.hideControls(150, 0);
             return;
