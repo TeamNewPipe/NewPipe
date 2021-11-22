@@ -871,22 +871,14 @@ public class RouterActivity extends AppCompatActivity {
                 // If prioritize_enqueue is enabled, then enqueue this stream.
                 // Otherwise, open preferred player instead
                 if (prioritizeEnqueue) {
+                    MainPlayer.PlayerType playerType = MainPlayer.PlayerType.AUDIO;
                     if (choice.playerChoice.equals(videoPlayerKey)) {
-                        NavigationHelper.enqueueOnPlayer(
-                                this,
-                                playQueue,
-                                MainPlayer.PlayerType.VIDEO);
-                    } else if (choice.playerChoice.equals(backgroundPlayerKey)) {
-                        NavigationHelper.enqueueOnPlayer(
-                                this,
-                                playQueue,
-                                MainPlayer.PlayerType.AUDIO);
+                        playerType = MainPlayer.PlayerType.VIDEO;
                     } else if (choice.playerChoice.equals(popupPlayerKey)) {
-                        NavigationHelper.enqueueOnPlayer(
-                                this,
-                                playQueue,
-                                MainPlayer.PlayerType.POPUP);
-                    }
+                        playerType = MainPlayer.PlayerType.POPUP;
+                    } // else background, init value of playerType
+                    
+                    NavigationHelper.enqueueOnPlayer(this, playQueue, playerType);
                 } else {
                     if (choice.playerChoice.equals(videoPlayerKey)) {
                         NavigationHelper.playOnMainPlayer(this, playQueue, false);
