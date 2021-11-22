@@ -877,7 +877,6 @@ public class RouterActivity extends AppCompatActivity {
                     } else if (choice.playerChoice.equals(popupPlayerKey)) {
                         playerType = MainPlayer.PlayerType.POPUP;
                     } // else background, init value of playerType
-                    
                     NavigationHelper.enqueueOnPlayer(this, playQueue, playerType);
                 } else {
                     if (choice.playerChoice.equals(videoPlayerKey)) {
