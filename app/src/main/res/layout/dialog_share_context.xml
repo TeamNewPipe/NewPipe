@@ -9,9 +9,7 @@
     <RadioGroup
         android:id="@+id/player_group"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </RadioGroup>
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
