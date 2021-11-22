@@ -320,7 +320,7 @@ public final class ListHelper {
      * @param targetedFormat The target format type or null if it doesn't matter
      * @param audioStreams   List of audio streams
      * @param comparator     The comparator used for determining the max/best/highest ranked value
-     * @return Index of audio stream that produces the most compact results or -1 if not found
+     * @return Index of audio stream that produces the highest ranked result or -1 if not found
      */
     private static int getAudioIndexByHighestRank(@Nullable final MediaFormat targetedFormat,
                                                   @Nullable final List<AudioStream> audioStreams,
