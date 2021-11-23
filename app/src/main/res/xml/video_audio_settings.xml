@@ -102,14 +102,6 @@
             app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
-        <SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="@string/report_player_errors_key"
-            android:summary="@string/report_player_errors_summary"
-            android:title="@string/report_player_errors_title"
-            app:singleLineTitle="false"
-            app:iconSpaceReserved="false" />
-
     </PreferenceCategory>
 
     <PreferenceCategory
