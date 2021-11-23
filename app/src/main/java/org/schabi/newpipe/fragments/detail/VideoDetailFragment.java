@@ -205,9 +205,6 @@ public final class VideoDetailFragment
     private Player player;
     private final PlayerHolder playerHolder = PlayerHolder.getInstance();
 
-    @Nullable
-    private VideoDetailPlayerCrasher videoDetailPlayerCrasher = null;
-
     /*//////////////////////////////////////////////////////////////////////////
     // Service management
     //////////////////////////////////////////////////////////////////////////*/
@@ -600,13 +597,6 @@ public final class VideoDetailFragment
     @Override
     public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
-
-        if (DEBUG) {
-            this.videoDetailPlayerCrasher = new VideoDetailPlayerCrasher(
-                    () -> this.getContext(),
-                    () -> this.getLayoutInflater()
-            );
-        }
     }
 
     @Override // called from onViewCreated in {@link BaseFragment#onViewCreated}
@@ -667,7 +657,8 @@ public final class VideoDetailFragment
         binding.detailControlsPlayWithKodi.setOnClickListener(this);
         if (DEBUG) {
             binding.detailControlsCrashThePlayer.setOnClickListener(
-                    v -> videoDetailPlayerCrasher.onCrashThePlayer(this.player));
+                    v -> VideoDetailPlayerCrasher.onCrashThePlayer(this.player, getLayoutInflater())
+            );
         }
 
         binding.overlayThumbnail.setOnClickListener(this);

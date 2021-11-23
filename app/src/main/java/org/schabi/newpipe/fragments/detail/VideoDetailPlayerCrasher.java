@@ -22,6 +22,7 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
@@ -30,24 +31,18 @@ import java.util.function.Supplier;
 /**
  * Outsourced logic for crashing the player in the {@link VideoDetailFragment}.
  */
-public class VideoDetailPlayerCrasher {
+public final class VideoDetailPlayerCrasher {
 
     // This has to be <= 23 chars on devices running Android 7 or lower (API <= 25)
     // or it fails with an IllegalArgumentException
     // https://stackoverflow.com/a/54744028
     private static final String TAG = "VideoDetPlayerCrasher";
 
-    @NonNull
-    private final Supplier<Context> contextSupplier;
-    @NonNull
-    private final Supplier<LayoutInflater> layoutInflaterSupplier;
+    private static final Map<String, Supplier<ExoPlaybackException>> AVAILABLE_EXCEPTION_TYPES =
+            getExceptionTypes();
 
-    public VideoDetailPlayerCrasher(
-            @NonNull final Supplier<Context> contextSupplier,
-            @NonNull final Supplier<LayoutInflater> layoutInflaterSupplier
-    ) {
-        this.contextSupplier = contextSupplier;
-        this.layoutInflaterSupplier = layoutInflaterSupplier;
+    private VideoDetailPlayerCrasher() {
+        // No impls
     }
 
     private static Map<String, Supplier<ExoPlaybackException>> getExceptionTypes() {
@@ -87,29 +82,22 @@ public class VideoDetailPlayerCrasher {
                 )
         );
 
-        return exceptionTypes;
+        return Collections.unmodifiableMap(exceptionTypes);
     }
 
-    private Context getContext() {
-        return this.contextSupplier.get();
-    }
-
-    private LayoutInflater getLayoutInflater() {
-        return this.layoutInflaterSupplier.get();
-    }
-
-    private Context getThemeWrapperContext() {
+    private static Context getThemeWrapperContext(final Context context) {
         return new ContextThemeWrapper(
-                getContext(),
-                ThemeHelper.isLightThemeSelected(getContext())
+                context,
+                ThemeHelper.isLightThemeSelected(context)
                         ? R.style.LightTheme
                         : R.style.DarkTheme);
     }
 
-    public void onCrashThePlayer(final Player player) {
+    public static void onCrashThePlayer(final Player player, final LayoutInflater layoutInflater) {
+        final Context context = player.getContext();
         if (!isPlayerAvailable(player)) {
             Log.d(TAG, "Player is not available");
-            Toast.makeText(getContext(), "Player is not available", Toast.LENGTH_SHORT)
+            Toast.makeText(context, "Player is not available", Toast.LENGTH_SHORT)
                     .show();
 
             return;
@@ -117,13 +105,13 @@ public class VideoDetailPlayerCrasher {
 
         // -- Build the dialog/UI --
 
-        final Context themeWrapperContext = getThemeWrapperContext();
+        final Context themeWrapperContext = getThemeWrapperContext(context);
 
         final LayoutInflater inflater = LayoutInflater.from(themeWrapperContext);
-        final RadioGroup radioGroup = SingleChoiceDialogViewBinding.inflate(getLayoutInflater())
+        final RadioGroup radioGroup = SingleChoiceDialogViewBinding.inflate(layoutInflater)
                 .list;
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(getThemeWrapperContext())
+        final AlertDialog alertDialog = new AlertDialog.Builder(getThemeWrapperContext(context))
                 .setTitle("Choose an exception")
                 .setView(radioGroup)
                 .setCancelable(true)
@@ -131,7 +119,7 @@ public class VideoDetailPlayerCrasher {
                 .create();
 
         for (final Map.Entry<String, Supplier<ExoPlaybackException>> entry
-                : getExceptionTypes().entrySet()) {
+                : AVAILABLE_EXCEPTION_TYPES.entrySet()) {
             final RadioButton radioButton = ListRadioIconItemBinding.inflate(inflater).getRoot();
             radioButton.setText(entry.getKey());
             radioButton.setChecked(false);
@@ -159,7 +147,7 @@ public class VideoDetailPlayerCrasher {
      * @param player
      * @param exception
      */
-    private void tryCrashPlayerWith(
+    private static void tryCrashPlayerWith(
             @NonNull final Player player,
             @NonNull final ExoPlaybackException exception
     ) {
@@ -173,7 +161,7 @@ public class VideoDetailPlayerCrasher {
         }
     }
 
-    private boolean isPlayerAvailable(final Player player) {
+    private static boolean isPlayerAvailable(final Player player) {
         return player != null;
     }
 }
