@@ -25,6 +25,7 @@ import org.schabi.newpipe.fragments.list.ListViewContract;
 
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
+import static org.schabi.newpipe.util.Constants.DEFAULT_SHORT_ANIM_DURATION;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 /**
@@ -190,7 +191,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
             animateHideRecyclerViewAllowingScrolling(itemsList);
         }
         if (headerRootBinding != null) {
-            animate(headerRootBinding.getRoot(), false, 200);
+            animate(headerRootBinding.getRoot(), false, DEFAULT_SHORT_ANIM_DURATION);
         }
     }
 
@@ -198,10 +199,10 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     public void hideLoading() {
         super.hideLoading();
         if (itemsList != null) {
-            animate(itemsList, true, 200);
+            animate(itemsList, true, DEFAULT_SHORT_ANIM_DURATION);
         }
         if (headerRootBinding != null) {
-            animate(headerRootBinding.getRoot(), true, 200);
+            animate(headerRootBinding.getRoot(), true, DEFAULT_SHORT_ANIM_DURATION);
         }
     }
 
@@ -249,7 +250,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
             animateHideRecyclerViewAllowingScrolling(itemsList);
         }
         if (headerRootBinding != null) {
-            animate(headerRootBinding.getRoot(), false, 200);
+            animate(headerRootBinding.getRoot(), false, DEFAULT_SHORT_ANIM_DURATION);
         }
     }
 

@@ -1,5 +1,7 @@
 package org.schabi.newpipe.local.holder;
 
+import static org.schabi.newpipe.util.Constants.DEFAULT_SHORT_ANIM_DURATION;
+
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,10 +119,10 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
             } else {
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
                         .toSeconds(item.getProgressMillis()));
-                ViewUtils.animate(itemProgressView, true, 500);
+                ViewUtils.animate(itemProgressView, true, DEFAULT_SHORT_ANIM_DURATION);
             }
         } else if (itemProgressView.getVisibility() == View.VISIBLE) {
-            ViewUtils.animate(itemProgressView, false, 500);
+            ViewUtils.animate(itemProgressView, false, DEFAULT_SHORT_ANIM_DURATION);
         }
     }
 

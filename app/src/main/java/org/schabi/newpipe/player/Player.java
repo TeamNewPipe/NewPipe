@@ -235,9 +235,7 @@ public final class Player implements
     public static final String IS_MUTED = "is_muted";
 
     /*//////////////////////////////////////////////////////////////////////////
-    //
     Time constants
-     */
     //////////////////////////////////////////////////////////////////////////*/
 
     public static final int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds

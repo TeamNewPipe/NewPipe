@@ -69,6 +69,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.util.Constants.DEFAULT_SHORT_ANIM_DURATION;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> {
@@ -204,8 +205,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public void showLoading() {
         super.showLoading();
         if (headerBinding != null) {
-            animate(headerBinding.getRoot(), false, 200);
-            animate(playlistControlBinding.getRoot(), false, 200);
+            animate(headerBinding.getRoot(), false, DEFAULT_SHORT_ANIM_DURATION);
+            animate(playlistControlBinding.getRoot(), false, DEFAULT_SHORT_ANIM_DURATION);
         }
     }
 
@@ -213,8 +214,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public void hideLoading() {
         super.hideLoading();
         if (headerBinding != null) {
-            animate(headerBinding.getRoot(), true, 200);
-            animate(playlistControlBinding.getRoot(), true, 200);
+            animate(headerBinding.getRoot(), true, DEFAULT_SHORT_ANIM_DURATION);
+            animate(playlistControlBinding.getRoot(), true, DEFAULT_SHORT_ANIM_DURATION);
         }
     }
 
