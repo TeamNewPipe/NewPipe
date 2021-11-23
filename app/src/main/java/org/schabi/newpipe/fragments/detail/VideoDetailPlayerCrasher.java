@@ -12,8 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.RendererCapabilities;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.concurrent.TimeoutException;
 import java.util.function.Supplier;
 
 /**
@@ -61,7 +60,7 @@ public final class VideoDetailPlayerCrasher {
                         "Dummy renderer",
                         0,
                         null,
-                        RendererCapabilities.FORMAT_HANDLED
+                        C.FORMAT_HANDLED
                 )
         );
         exceptionTypes.put(
@@ -73,13 +72,6 @@ public final class VideoDetailPlayerCrasher {
         exceptionTypes.put(
                 "Remote",
                 () -> ExoPlaybackException.createForRemote(defaultMsg)
-        );
-        exceptionTypes.put(
-                "Timeout",
-                () -> ExoPlaybackException.createForTimeout(
-                        new TimeoutException(defaultMsg),
-                        ExoPlaybackException.TIMEOUT_OPERATION_UNDEFINED
-                )
         );
 
         return Collections.unmodifiableMap(exceptionTypes);
