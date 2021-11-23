@@ -453,6 +453,7 @@
     <string name="playlist_no_uploader">Généré automatiquement (pas de téléverseur trouvé)</string>
     <string name="clear_download_history">Effacer l’historique de téléchargement</string>
     <string name="delete_downloaded_files">Supprimer les fichiers téléchargés</string>
+    <string name="delete_selected_file">Supprimer %1s?</string>
     <string name="permission_display_over_apps">Autoriser l’affichage au-dessus d’autres applications</string>
     <string name="app_language_title">Langue de l’application</string>
     <string name="systems_language">Prédéfini par le système</string>

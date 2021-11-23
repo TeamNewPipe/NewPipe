@@ -678,19 +678,15 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 shareFile(h.item.mission);
                 return true;
             case R.id.delete:
-                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                builder.setMessage(R.string.delete_selected_file)
+                new AlertDialog.Builder(mContext)
+                        .setMessage(mContext.getString(R.string.delete_selected_file, h.item.mission.storage.getName()))
+                        .setNegativeButton(R.string.cancel, null)
                         .setPositiveButton(R.string.yes, (dialog, which) -> {
                             mDeleter.append(h.item.mission);
                             applyChanges();
                             checkMasterButtonsVisibility();
                         })
-                        .setNegativeButton(R.string.cancel, (dialog, which) -> {
-                            //nothing happens
-                        });
-                // Create the AlertDialog object and run it
-                builder.create();
-                builder.show();
+                        .show();
                 return true;
             case R.id.md5:
             case R.id.sha1:
