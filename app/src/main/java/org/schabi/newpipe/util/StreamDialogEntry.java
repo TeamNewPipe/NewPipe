@@ -221,7 +221,7 @@ public enum StreamDialogEntry {
     private static void fetchItemInfoIfSparse(final Fragment fragment,
             final StreamInfoItem item,
             final InfoCallback callback) {
-        if (item.getDuration() < 0) {
+        if ((item.getStreamType() == StreamType.LIVE_STREAM || item.getStreamType() == StreamType.AUDIO_LIVE_STREAM) && item.getDuration() < 0) {
             // Sparse item: fetched by fast fetch
             final Disposable currentWorker = ExtractorHelper.getStreamInfo(
                     item.getServiceId(),
