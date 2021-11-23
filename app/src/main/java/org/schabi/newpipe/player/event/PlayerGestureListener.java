@@ -69,26 +69,18 @@ public class PlayerGestureListener
         if (DEBUG) {
             Log.d(TAG, "onSingleTap called with playerType = [" + player.getPlayerType() + "]");
         }
-        if (playerType == MainPlayer.PlayerType.POPUP) {
 
-            if (player.isControlsVisible()) {
-                player.hideControls(100, 100);
-            } else {
-                player.getPlayPauseButton().requestFocus();
-                player.showControlsThenHide();
-            }
+        if (player.isControlsVisible()) {
+            player.hideControls(150, 0);
+            return;
+        }
+        // -- Controls are not visible --
 
-        } else /* playerType == MainPlayer.PlayerType.VIDEO */ {
-
-            if (player.isControlsVisible()) {
-                player.hideControls(150, 0);
-            } else {
-                if (player.getCurrentState() == Player.STATE_COMPLETED) {
-                    player.showControls(0);
-                } else {
-                    player.showControlsThenHide();
-                }
-            }
+        // When player is completed show controls and don't hide them later
+        if (player.getCurrentState() == Player.STATE_COMPLETED) {
+            player.showControls(0);
+        } else {
+            player.showControlsThenHide();
         }
     }
 
@@ -103,6 +95,8 @@ public class PlayerGestureListener
                 + player.getPlayerType() + "], portion = [" + portion + "]");
         }
         if (playerType == MainPlayer.PlayerType.VIDEO) {
+
+            // -- Brightness and Volume control --
             final boolean isBrightnessGestureEnabled =
                 PlayerHelper.isBrightnessGestureEnabled(service);
             final boolean isVolumeGestureEnabled = PlayerHelper.isVolumeGestureEnabled(service);
@@ -121,15 +115,14 @@ public class PlayerGestureListener
             }
 
         } else /* MainPlayer.PlayerType.POPUP */ {
+
+            // -- Determine if the ClosingOverlayView (red X) has to be shown or hidden --
             final View closingOverlayView = player.getClosingOverlayView();
-            if (player.isInsideClosingRadius(movingEvent)) {
-                if (closingOverlayView.getVisibility() == View.GONE) {
-                    animate(closingOverlayView, true, 200);
-                }
-            } else {
-                if (closingOverlayView.getVisibility() == View.VISIBLE) {
-                    animate(closingOverlayView, false, 200);
-                }
+            final boolean showClosingOverlayView = player.isInsideClosingRadius(movingEvent);
+            // Check if an view is in expected state and if not animate it into the correct state
+            final int expectedVisibility = showClosingOverlayView ? View.VISIBLE : View.GONE;
+            if (closingOverlayView.getVisibility() != expectedVisibility) {
+                animate(closingOverlayView, showClosingOverlayView, 200);
             }
         }
     }
@@ -210,11 +203,12 @@ public class PlayerGestureListener
             Log.d(TAG, "onScrollEnd called with playerType = ["
                 + player.getPlayerType() + "]");
         }
-        if (playerType == MainPlayer.PlayerType.VIDEO) {
-            if (DEBUG) {
-                Log.d(TAG, "onScrollEnd() called");
-            }
 
+        if (player.isControlsVisible() && player.getCurrentState() == STATE_PLAYING) {
+            player.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+        }
+
+        if (playerType == MainPlayer.PlayerType.VIDEO) {
             if (player.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
                 animate(player.getVolumeRelativeLayout(), false, 200, SCALE_AND_ALPHA,
                         200);
@@ -223,15 +217,7 @@ public class PlayerGestureListener
                 animate(player.getBrightnessRelativeLayout(), false, 200, SCALE_AND_ALPHA,
                         200);
             }
-
-            if (player.isControlsVisible() && player.getCurrentState() == STATE_PLAYING) {
-                player.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-            }
-        } else {
-            if (player.isControlsVisible() && player.getCurrentState() == STATE_PLAYING) {
-                player.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-            }
-
+        } else /* Popup-Player */ {
             if (player.isInsideClosingRadius(event)) {
                 player.closePopup();
             } else if (!player.isPopupClosing()) {

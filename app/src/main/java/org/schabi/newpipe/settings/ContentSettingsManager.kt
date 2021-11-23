@@ -1,6 +1,7 @@
 package org.schabi.newpipe.settings
 
 import android.content.SharedPreferences
+import android.util.Log
 import org.schabi.newpipe.streams.io.SharpOutputStream
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.ZipHelper
@@ -13,6 +14,9 @@ import java.io.ObjectOutputStream
 import java.util.zip.ZipOutputStream
 
 class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
+    companion object {
+        const val TAG = "ContentSetManager"
+    }
 
     /**
      * Exports given [SharedPreferences] to the file in given outputPath.
@@ -31,7 +35,7 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
                         output.flush()
                     }
                 } catch (e: IOException) {
-                    e.printStackTrace()
+                    Log.e(TAG, "Unable to exportDatabase", e)
                 }
 
                 ZipHelper.addFileToZip(outZip, fileLocator.settings.path, "newpipe.settings")
@@ -101,9 +105,9 @@ class ContentSettingsManager(private val fileLocator: NewPipeFileLocator) {
                 preferenceEditor.commit()
             }
         } catch (e: IOException) {
-            e.printStackTrace()
+            Log.e(TAG, "Unable to loadSharedPreferences", e)
         } catch (e: ClassNotFoundException) {
-            e.printStackTrace()
+            Log.e(TAG, "Unable to loadSharedPreferences", e)
         }
     }
 }
