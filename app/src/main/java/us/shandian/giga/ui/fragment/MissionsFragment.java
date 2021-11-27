@@ -1,6 +1,7 @@
 package us.shandian.giga.ui.fragment;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,6 +34,7 @@ import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.streams.io.NoFileManagerHelper;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 
@@ -46,6 +49,7 @@ import us.shandian.giga.ui.adapter.MissionAdapter;
 
 public class MissionsFragment extends Fragment {
 
+    private static final String TAG = "MissionsFragment";
     private static final int SPAN_SIZE = 2;
 
     private SharedPreferences mPrefs;
@@ -257,9 +261,14 @@ public class MissionsFragment extends Fragment {
             initialPath = Uri.parse(initialSavePath.getAbsolutePath());
         }
 
-        requestDownloadSaveAsLauncher.launch(
-                StoredFileHelper.getNewPicker(mContext, mission.storage.getName(),
-                        mission.storage.getType(), initialPath));
+        try {
+            requestDownloadSaveAsLauncher.launch(
+                    StoredFileHelper.getNewPicker(mContext, mission.storage.getName(),
+                            mission.storage.getType(), initialPath));
+        } catch (final ActivityNotFoundException aex) {
+            Log.w(TAG, "Unable to launch file-picker", aex);
+            NoFileManagerHelper.showActivityNotFoundAlert(getContext());
+        }
     }
 
     @Override

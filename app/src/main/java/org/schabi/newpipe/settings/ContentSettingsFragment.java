@@ -1,6 +1,7 @@
 package org.schabi.newpipe.settings;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +26,7 @@ import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
+import org.schabi.newpipe.streams.io.NoFileManagerHelper;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
@@ -73,19 +75,29 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         final Preference importDataPreference = requirePreference(R.string.import_data);
         importDataPreference.setOnPreferenceClickListener((Preference p) -> {
-            requestImportPathLauncher.launch(
-                    StoredFileHelper.getPicker(requireContext(),
-                            ZIP_MIME_TYPE, getImportExportDataUri()));
+            try {
+                requestImportPathLauncher.launch(
+                        StoredFileHelper.getPicker(requireContext(),
+                                ZIP_MIME_TYPE, getImportExportDataUri()));
+            } catch (final ActivityNotFoundException aex) {
+                Log.w(TAG, "Unable to launch file-picker", aex);
+                NoFileManagerHelper.showActivityNotFoundAlert(getContext());
+            }
             return true;
         });
 
         final Preference exportDataPreference = requirePreference(R.string.export_data);
         exportDataPreference.setOnPreferenceClickListener((final Preference p) -> {
 
-            requestExportPathLauncher.launch(
-                    StoredFileHelper.getNewPicker(requireContext(),
-                            "NewPipeData-" + exportDateFormat.format(new Date()) + ".zip",
-                            ZIP_MIME_TYPE, getImportExportDataUri()));
+            try {
+                requestExportPathLauncher.launch(
+                        StoredFileHelper.getNewPicker(requireContext(),
+                                "NewPipeData-" + exportDateFormat.format(new Date()) + ".zip",
+                                ZIP_MIME_TYPE, getImportExportDataUri()));
+            } catch (final ActivityNotFoundException aex) {
+                Log.w(TAG, "Unable to launch file-picker", aex);
+                NoFileManagerHelper.showActivityNotFoundAlert(getContext());
+            }
             return true;
         });
 

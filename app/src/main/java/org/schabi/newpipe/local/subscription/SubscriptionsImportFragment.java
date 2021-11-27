@@ -1,10 +1,12 @@
 package org.schabi.newpipe.local.subscription;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
+import org.schabi.newpipe.streams.io.NoFileManagerHelper;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -175,8 +178,14 @@ public class SubscriptionsImportFragment extends BaseFragment {
     }
 
     public void onImportFile() {
-        // leave */* mime type to support all services with different mime types and file extensions
-        requestImportFileLauncher.launch(StoredFileHelper.getPicker(activity, "*/*"));
+        try {
+            // leave */* mime type to support all services
+            // with different mime types and file extensions
+            requestImportFileLauncher.launch(StoredFileHelper.getPicker(activity, "*/*"));
+        } catch (final ActivityNotFoundException aex) {
+            Log.w(TAG, "Unable to launch file-picker", aex);
+            NoFileManagerHelper.showActivityNotFoundAlert(getContext());
+        }
     }
 
     private void requestImportFileResult(final ActivityResult result) {
