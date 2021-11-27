@@ -128,11 +128,11 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     }
 
     /**
-     * Determines if the last resolved StreamInfo had separated audio and video streams
-     * (or only audio).
+     * Determine if the last resolved {@link StreamInfo} had separated audio and video streams (or
+     * only audio).
      *
-     * @return {@link Optional#empty()} if nothing was resolved
-     * otherwise <code>true</code> or <code>false</code>
+     * @return {@link Optional#empty()} if nothing was resolved, otherwise {@code true} or
+     * {@code false}
      */
     public Optional<Boolean> wasLastResolvedVideoAndAudioSeparated() {
         return Optional.ofNullable(wasLastResolvedVideoAndAudioSeparated);

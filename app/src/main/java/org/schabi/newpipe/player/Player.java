@@ -3295,9 +3295,18 @@ public final class Player implements
         } else {
             if (isAudioOnly
                     && !videoResolver.wasLastResolvedVideoAndAudioSeparated().orElse(false)) {
+                // If the current info has only video streams with audio and if the stream is
+                // played as audio, we need to use the audio resolver, otherwise the video stream
+                // will be played in background.
                 return audioResolver.resolve(info);
             }
 
+            // Even if the stream is played in background, we need to use the video resolver if the
+            // info played is separated video-only and audio-only streams; otherwise, if the audio
+            // resolver was called when the app was in background, the app will only stream audio
+            // when the user come back to the app and will never fetch the video stream.
+            // Note that the video is not fetched when the app is in background because the video
+            // renderer is fully disabled (see useVideoSource method).
             return videoResolver.resolve(info);
         }
     }
@@ -4160,8 +4169,8 @@ public final class Player implements
         }
 
         isAudioOnly = !videoEnabled;
-        // When a user returns from background controls could be hidden
-        // but systemUI will be shown 100%. Hide it
+        // When a user returns from background, controls could be hidden but SystemUI will be shown
+        // 100%. Hide it.
         if (!isAudioOnly && !isControlsVisible()) {
             hideSystemUIIfNeeded();
         }
@@ -4198,9 +4207,13 @@ public final class Player implements
             final TrackGroupArray videoTrackGroupArray = Objects.requireNonNull(
                     trackSelector.getCurrentMappedTrackInfo()).getTrackGroups(videoRenderIndex);
             if (videoEnabled) {
+                // Clearing the null selection override enable again the video stream (and its
+                // fetching).
                 trackSelector.setParameters(trackSelector.buildUponParameters()
                         .clearSelectionOverride(videoRenderIndex, videoTrackGroupArray));
             } else {
+                // Using setRendererDisabled still fetch the video stream in background, contrary
+                // to setSelectionOverride with a null override.
                 trackSelector.setParameters(trackSelector.buildUponParameters()
                         .setSelectionOverride(videoRenderIndex, videoTrackGroupArray, null));
             }
@@ -4436,6 +4449,15 @@ public final class Player implements
     }
     //endregion
 
+    /**
+     * Get the video renderer index of the current playing stream.
+     *
+     * This method returns the video renderer index of the current
+     * {@link MappingTrackSelector.MappedTrackInfo} or {@link #RENDERER_UNAVAILABLE} if the current
+     * {@link MappingTrackSelector.MappedTrackInfo} is null or if there is no video renderer index.
+     *
+     * @return the video renderer index or {@link #RENDERER_UNAVAILABLE} if it cannot be get
+     */
     private int getVideoRendererIndex() {
         final MappingTrackSelector.MappedTrackInfo mappedTrackInfo = trackSelector
                 .getCurrentMappedTrackInfo();
