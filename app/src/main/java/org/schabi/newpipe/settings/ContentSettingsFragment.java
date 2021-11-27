@@ -80,7 +80,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                         StoredFileHelper.getPicker(requireContext(),
                                 ZIP_MIME_TYPE, getImportExportDataUri()));
             } catch (final ActivityNotFoundException aex) {
-                Log.w(TAG, "Unable to launch file-picker", aex);
+                Log.w(TAG, "Unable to launch file picker", aex);
                 NoFileManagerHelper.showActivityNotFoundAlert(getContext());
             }
             return true;
@@ -95,7 +95,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                                 "NewPipeData-" + exportDateFormat.format(new Date()) + ".zip",
                                 ZIP_MIME_TYPE, getImportExportDataUri()));
             } catch (final ActivityNotFoundException aex) {
-                Log.w(TAG, "Unable to launch file-picker", aex);
+                Log.w(TAG, "Unable to launch file picker", aex);
                 NoFileManagerHelper.showActivityNotFoundAlert(getContext());
             }
             return true;

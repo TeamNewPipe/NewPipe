@@ -183,7 +183,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
             // with different mime types and file extensions
             requestImportFileLauncher.launch(StoredFileHelper.getPicker(activity, "*/*"));
         } catch (final ActivityNotFoundException aex) {
-            Log.w(TAG, "Unable to launch file-picker", aex);
+            Log.w(TAG, "Unable to launch file picker", aex);
             NoFileManagerHelper.showActivityNotFoundAlert(getContext());
         }
     }

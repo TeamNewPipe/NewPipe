@@ -219,7 +219,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         try {
             launcher.launch(StoredDirectoryHelper.getPicker(ctx));
         } catch (final ActivityNotFoundException aex) {
-            Log.w(TAG, "Unable to launch directory-picker", aex);
+            Log.w(TAG, "Unable to launch directory picker", aex);
             NoFileManagerHelper.showActivityNotFoundAlert(getContext());
         }
     }

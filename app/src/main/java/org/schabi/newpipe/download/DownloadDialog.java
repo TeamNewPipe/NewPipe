@@ -692,7 +692,7 @@ public class DownloadDialog extends DialogFragment
         try {
             launcher.launch(StoredDirectoryHelper.getPicker(context));
         } catch (final ActivityNotFoundException aex) {
-            Log.w(TAG, "Unable to launch directory-picker", aex);
+            Log.w(TAG, "Unable to launch directory picker", aex);
             NoFileManagerHelper.showActivityNotFoundAlert(getContext());
         }
     }
@@ -777,7 +777,7 @@ public class DownloadDialog extends DialogFragment
                 requestDownloadSaveAsLauncher.launch(StoredFileHelper.getNewPicker(context,
                         filenameTmp, mimeTmp, initialPath));
             } catch (final ActivityNotFoundException aex) {
-                Log.w(TAG, "Unable to launch file-picker", aex);
+                Log.w(TAG, "Unable to launch file picker", aex);
                 NoFileManagerHelper.showActivityNotFoundAlert(getContext());
             }
 

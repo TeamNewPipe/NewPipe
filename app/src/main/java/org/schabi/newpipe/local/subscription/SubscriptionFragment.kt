@@ -185,7 +185,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         try {
             requestImportLauncher.launch(StoredFileHelper.getPicker(activity, JSON_MIME_TYPE))
         } catch (aex: ActivityNotFoundException) {
-            Log.w(TAG, "Unable to launch file-picker", aex)
+            Log.w(TAG, "Unable to launch file picker", aex)
             NoFileManagerHelper.showActivityNotFoundAlert(context)
         }
     }
@@ -199,7 +199,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 StoredFileHelper.getNewPicker(activity, exportName, JSON_MIME_TYPE, null)
             )
         } catch (aex: ActivityNotFoundException) {
-            Log.w(TAG, "Unable to launch file-picker", aex)
+            Log.w(TAG, "Unable to launch file picker", aex)
             NoFileManagerHelper.showActivityNotFoundAlert(context)
         }
     }

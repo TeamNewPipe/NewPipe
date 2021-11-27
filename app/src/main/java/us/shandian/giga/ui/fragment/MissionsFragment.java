@@ -266,7 +266,7 @@ public class MissionsFragment extends Fragment {
                     StoredFileHelper.getNewPicker(mContext, mission.storage.getName(),
                             mission.storage.getType(), initialPath));
         } catch (final ActivityNotFoundException aex) {
-            Log.w(TAG, "Unable to launch file-picker", aex);
+            Log.w(TAG, "Unable to launch file picker", aex);
             NoFileManagerHelper.showActivityNotFoundAlert(getContext());
         }
     }
