@@ -1,7 +1,6 @@
 package org.schabi.newpipe.download;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -54,7 +53,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.settings.NewPipeSettings;
-import org.schabi.newpipe.streams.io.NoFileManagerHelper;
+import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
@@ -689,12 +688,12 @@ public class DownloadDialog extends DialogFragment
     }
 
     private void launchDirectoryPicker(final ActivityResultLauncher<Intent> launcher) {
-        try {
-            launcher.launch(StoredDirectoryHelper.getPicker(context));
-        } catch (final ActivityNotFoundException aex) {
-            Log.w(TAG, "Unable to launch directory picker", aex);
-            NoFileManagerHelper.showActivityNotFoundAlert(getContext());
-        }
+        NoFileManagerSafeGuard.launchSafe(
+                launcher,
+                StoredDirectoryHelper.getPicker(context),
+                TAG,
+                context
+        );
     }
 
     private void prepareSelectedDownload() {
@@ -773,13 +772,12 @@ public class DownloadDialog extends DialogFragment
                 initialPath = Uri.parse(initialSavePath.getAbsolutePath());
             }
 
-            try {
-                requestDownloadSaveAsLauncher.launch(StoredFileHelper.getNewPicker(context,
-                        filenameTmp, mimeTmp, initialPath));
-            } catch (final ActivityNotFoundException aex) {
-                Log.w(TAG, "Unable to launch file picker", aex);
-                NoFileManagerHelper.showActivityNotFoundAlert(getContext());
-            }
+            NoFileManagerSafeGuard.launchSafe(
+                    requestDownloadSaveAsLauncher,
+                    StoredFileHelper.getNewPicker(context, filenameTmp, mimeTmp, initialPath),
+                    TAG,
+                    context
+            );
 
             return;
         }

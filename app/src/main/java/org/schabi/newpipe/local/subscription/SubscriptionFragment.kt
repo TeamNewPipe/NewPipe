@@ -1,7 +1,6 @@
 package org.schabi.newpipe.local.subscription
 
 import android.app.Activity
-import android.content.ActivityNotFoundException
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.DialogInterface
@@ -9,7 +8,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -57,7 +55,7 @@ import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.PREVIOUS_EXPORT_MODE
-import org.schabi.newpipe.streams.io.NoFileManagerHelper
+import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
@@ -182,26 +180,24 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun onImportPreviousSelected() {
-        try {
-            requestImportLauncher.launch(StoredFileHelper.getPicker(activity, JSON_MIME_TYPE))
-        } catch (aex: ActivityNotFoundException) {
-            Log.w(TAG, "Unable to launch file picker", aex)
-            NoFileManagerHelper.showActivityNotFoundAlert(context)
-        }
+        NoFileManagerSafeGuard.launchSafe(
+            requestImportLauncher,
+            StoredFileHelper.getPicker(activity, JSON_MIME_TYPE),
+            TAG,
+            requireContext()
+        )
     }
 
     private fun onExportSelected() {
         val date = SimpleDateFormat("yyyyMMddHHmm", Locale.ENGLISH).format(Date())
         val exportName = "newpipe_subscriptions_$date.json"
 
-        try {
-            requestExportLauncher.launch(
-                StoredFileHelper.getNewPicker(activity, exportName, JSON_MIME_TYPE, null)
-            )
-        } catch (aex: ActivityNotFoundException) {
-            Log.w(TAG, "Unable to launch file picker", aex)
-            NoFileManagerHelper.showActivityNotFoundAlert(context)
-        }
+        NoFileManagerSafeGuard.launchSafe(
+            requestExportLauncher,
+            StoredFileHelper.getNewPicker(activity, exportName, JSON_MIME_TYPE, null),
+            TAG,
+            requireContext()
+        )
     }
 
     private fun openReorderDialog() {

@@ -1,7 +1,6 @@
 package org.schabi.newpipe.settings;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +21,7 @@ import androidx.preference.SwitchPreferenceCompat;
 import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.streams.io.NoFileManagerHelper;
+import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 
@@ -216,12 +215,12 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     }
 
     private void launchDirectoryPicker(final ActivityResultLauncher<Intent> launcher) {
-        try {
-            launcher.launch(StoredDirectoryHelper.getPicker(ctx));
-        } catch (final ActivityNotFoundException aex) {
-            Log.w(TAG, "Unable to launch directory picker", aex);
-            NoFileManagerHelper.showActivityNotFoundAlert(getContext());
-        }
+        NoFileManagerSafeGuard.launchSafe(
+                launcher,
+                StoredDirectoryHelper.getPicker(ctx),
+                TAG,
+                ctx
+        );
     }
 
     private void requestDownloadVideoPathResult(final ActivityResult result) {
