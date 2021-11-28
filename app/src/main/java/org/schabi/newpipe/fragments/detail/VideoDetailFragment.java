@@ -657,7 +657,10 @@ public final class VideoDetailFragment
         binding.detailControlsPlayWithKodi.setOnClickListener(this);
         if (DEBUG) {
             binding.detailControlsCrashThePlayer.setOnClickListener(
-                    v -> VideoDetailPlayerCrasher.onCrashThePlayer(this.player, getLayoutInflater())
+                    v -> VideoDetailPlayerCrasher.onCrashThePlayer(
+                            this.getContext(),
+                            this.player,
+                            getLayoutInflater())
             );
         }
 

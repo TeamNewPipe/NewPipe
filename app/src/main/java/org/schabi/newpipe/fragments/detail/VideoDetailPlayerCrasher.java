@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.exoplayer2.C;
@@ -85,9 +86,12 @@ public final class VideoDetailPlayerCrasher {
                         : R.style.DarkTheme);
     }
 
-    public static void onCrashThePlayer(final Player player, final LayoutInflater layoutInflater) {
-        final Context context = player.getContext();
-        if (!isPlayerAvailable(player)) {
+    public static void onCrashThePlayer(
+            @NonNull final Context context,
+            @Nullable final Player player,
+            @NonNull final LayoutInflater layoutInflater
+    ) {
+        if (player == null) {
             Log.d(TAG, "Player is not available");
             Toast.makeText(context, "Player is not available", Toast.LENGTH_SHORT)
                     .show();
@@ -151,9 +155,5 @@ public final class VideoDetailPlayerCrasher {
                     "Run into an exception while crashing the player:",
                     exPlayer);
         }
-    }
-
-    private static boolean isPlayerAvailable(final Player player) {
-        return player != null;
     }
 }
