@@ -1,24 +1,24 @@
 package org.schabi.newpipe.local.subscription
 
 import android.app.Activity
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.SubMenu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
@@ -34,7 +34,9 @@ import org.schabi.newpipe.databinding.FeedItemCarouselBinding
 import org.schabi.newpipe.databinding.FragmentSubscriptionBinding
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.UserAction
+import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
+import org.schabi.newpipe.extractor.exceptions.ExtractionException
 import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.local.subscription.SubscriptionViewModel.SubscriptionState
@@ -45,13 +47,10 @@ import org.schabi.newpipe.local.subscription.item.EmptyPlaceholderItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupAddItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCardItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCarouselItem
-import org.schabi.newpipe.local.subscription.item.FeedImportExportItem
 import org.schabi.newpipe.local.subscription.item.HeaderWithMenuItem
 import org.schabi.newpipe.local.subscription.item.HeaderWithMenuItem.Companion.PAYLOAD_UPDATE_VISIBILITY_MENU_ITEM
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService
-import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService.EXPORT_COMPLETE_ACTION
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
-import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.IMPORT_COMPLETE_ACTION
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.PREVIOUS_EXPORT_MODE
@@ -65,6 +64,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.function.Supplier
 
 class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private var _binding: FragmentSubscriptionBinding? = null
@@ -74,12 +74,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private lateinit var subscriptionManager: SubscriptionManager
     private val disposables: CompositeDisposable = CompositeDisposable()
 
-    private var subscriptionBroadcastReceiver: BroadcastReceiver? = null
-
     private val groupAdapter = GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>()
     private val feedGroupsSection = Section()
     private var feedGroupsCarousel: FeedGroupCarouselItem? = null
-    private lateinit var importExportItem: FeedImportExportItem
     private lateinit var feedGroupsSortMenuItem: HeaderWithMenuItem
     private val subscriptionsSection = Section()
 
@@ -94,9 +91,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     @State
     @JvmField
     var feedGroupsListState: Parcelable? = null
-    @State
-    @JvmField
-    var importExportItemExpandedState: Boolean? = null
 
     init {
         setHasOptionsMenu(true)
@@ -120,20 +114,10 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         return inflater.inflate(R.layout.fragment_subscription, container, false)
     }
 
-    override fun onResume() {
-        super.onResume()
-        setupBroadcastReceiver()
-    }
-
     override fun onPause() {
         super.onPause()
         itemsListState = binding.itemsList.layoutManager?.onSaveInstanceState()
         feedGroupsListState = feedGroupsCarousel?.onSaveInstanceState()
-        importExportItemExpandedState = importExportItem.isExpanded
-
-        if (subscriptionBroadcastReceiver != null && activity != null) {
-            LocalBroadcastManager.getInstance(activity).unregisterReceiver(subscriptionBroadcastReceiver!!)
-        }
     }
 
     override fun onDestroy() {
@@ -150,28 +134,75 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
         activity.supportActionBar?.setTitle(R.string.tab_subscriptions)
+
+        buildImportExportMenu(menu)
     }
 
-    private fun setupBroadcastReceiver() {
-        if (activity == null) return
+    private fun buildImportExportMenu(menu: Menu) {
+        // -- Import --
 
-        if (subscriptionBroadcastReceiver != null) {
-            LocalBroadcastManager.getInstance(activity).unregisterReceiver(subscriptionBroadcastReceiver!!)
+        val importSubMenu = menu.addSubMenu(R.string.import_from)
+
+        addMenuItem(importSubMenu, R.string.previous_export) {
+            onImportPreviousSelected()
         }
 
-        val filters = IntentFilter()
-        filters.addAction(EXPORT_COMPLETE_ACTION)
-        filters.addAction(IMPORT_COMPLETE_ACTION)
-        subscriptionBroadcastReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent) {
-                _binding?.itemsList?.post {
-                    importExportItem.isExpanded = false
-                    importExportItem.notifyChanged(FeedImportExportItem.REFRESH_EXPANDED_STATUS)
+        val services = requireContext().resources.getStringArray(R.array.service_list)
+        for (serviceName in services) {
+            try {
+                val service = NewPipe.getService(serviceName)
+
+                val subscriptionExtractor = service.subscriptionExtractor ?: continue
+
+                val supportedSources = subscriptionExtractor.supportedSources
+                if (supportedSources.isEmpty()) continue
+
+                addMenuItem(importSubMenu, serviceName) {
+                    onImportFromServiceSelected(service.serviceId)
                 }
+            } catch (e: ExtractionException) {
+                throw RuntimeException(
+                    "Services array contains an entry that it's not a valid service name ($serviceName)",
+                    e
+                )
             }
         }
 
-        LocalBroadcastManager.getInstance(activity).registerReceiver(subscriptionBroadcastReceiver!!, filters)
+        // -- Export --
+
+        val exportSubMenu = menu.addSubMenu(R.string.export_to)
+
+        addMenuItem(exportSubMenu, R.string.file) { onExportSelected() }
+    }
+
+    private fun addMenuItem(
+        subMenu: SubMenu,
+        @StringRes title: Int,
+        onClick: Runnable
+    ): MenuItem {
+        return addMenuItem({ subMenu.add(title) }, onClick)
+    }
+
+    private fun addMenuItem(
+        subMenu: SubMenu,
+        title: String,
+        onClick: Runnable
+    ): MenuItem {
+        return addMenuItem({ subMenu.add(title) }, onClick)
+    }
+
+    private fun addMenuItem(
+        menuItemSupplier: Supplier<MenuItem>,
+        onClick: Runnable
+    ): MenuItem {
+        val item = menuItemSupplier.get()
+
+        item.setOnMenuItemClickListener { _ ->
+            onClick.run()
+            true
+        }
+
+        return item
     }
 
     private fun onImportFromServiceSelected(serviceId: Int) {
@@ -263,13 +294,14 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         subscriptionsSection.setPlaceholder(EmptyPlaceholderItem())
         subscriptionsSection.setHideWhenEmpty(true)
 
-        importExportItem = FeedImportExportItem(
-            { onImportPreviousSelected() },
-            { onImportFromServiceSelected(it) },
-            { onExportSelected() },
-            importExportItemExpandedState ?: false
+        groupAdapter.add(
+            Section(
+                HeaderWithMenuItem(
+                    getString(R.string.tab_subscriptions)
+                ),
+                listOf(subscriptionsSection)
+            )
         )
-        groupAdapter.add(Section(importExportItem, listOf(subscriptionsSection)))
     }
 
     override fun initViews(rootView: View, savedInstanceState: Bundle?) {
@@ -370,13 +402,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
                 subscriptionsSection.update(result.subscriptions)
                 subscriptionsSection.setHideWhenEmpty(false)
-
-                if (result.subscriptions.isEmpty() && importExportItemExpandedState == null) {
-                    binding.itemsList.post {
-                        importExportItem.isExpanded = true
-                        importExportItem.notifyChanged(FeedImportExportItem.REFRESH_EXPANDED_STATUS)
-                    }
-                }
 
                 if (itemsListState != null) {
                     binding.itemsList.layoutManager?.onRestoreInstanceState(itemsListState)
