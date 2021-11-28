@@ -97,7 +97,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -166,6 +165,7 @@ import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.player.playback.PlayerMediaSession;
 import org.schabi.newpipe.player.playback.SurfaceHolderCallback;
+import org.schabi.newpipe.player.playererror.PlayerErrorHandler;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueAdapter;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
@@ -268,7 +268,7 @@ public final class Player implements
     @Nullable private MediaSourceTag currentMetadata;
     @Nullable private Bitmap currentThumbnail;
 
-    @Nullable private Toast errorToast;
+    @NonNull private PlayerErrorHandler playerErrorHandler;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -412,6 +412,8 @@ public final class Player implements
 
         videoResolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
         audioResolver = new AudioPlaybackResolver(context, dataSource);
+
+        playerErrorHandler = new PlayerErrorHandler(context);
 
         windowManager = ContextCompat.getSystemService(context, WindowManager.class);
     }
@@ -2512,30 +2514,33 @@ public final class Player implements
      */
     @Override
     public void onPlayerError(@NonNull final ExoPlaybackException error) {
-        if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - onPlayerError() called with: " + "error = [" + error + "]");
-        }
-        if (errorToast != null) {
-            errorToast.cancel();
-            errorToast = null;
-        }
+        Log.e(TAG, "ExoPlayer - onPlayerError() called with:", error);
 
         saveStreamProgressState();
 
         switch (error.type) {
             case ExoPlaybackException.TYPE_SOURCE:
                 processSourceError(error.getSourceException());
-                showStreamError(error);
+                playerErrorHandler.showPlayerError(
+                        error,
+                        currentMetadata.getMetadata(),
+                        R.string.player_stream_failure);
                 break;
             case ExoPlaybackException.TYPE_UNEXPECTED:
-                showRecoverableError(error);
+                playerErrorHandler.showPlayerError(
+                        error,
+                        currentMetadata.getMetadata(),
+                        R.string.player_recoverable_failure);
                 setRecovery();
                 reloadPlayQueueManager();
                 break;
             case ExoPlaybackException.TYPE_REMOTE:
             case ExoPlaybackException.TYPE_RENDERER:
             default:
-                showUnrecoverableError(error);
+                playerErrorHandler.showPlayerError(
+                        error,
+                        currentMetadata.getMetadata(),
+                        R.string.player_unrecoverable_failure);
                 onPlaybackShutdown();
                 break;
         }
@@ -2556,37 +2561,6 @@ public final class Player implements
         } else {
             playQueue.error();
         }
-    }
-
-    private void showStreamError(final Exception exception) {
-        exception.printStackTrace();
-
-        if (errorToast == null) {
-            errorToast = Toast
-                    .makeText(context, R.string.player_stream_failure, Toast.LENGTH_SHORT);
-            errorToast.show();
-        }
-    }
-
-    private void showRecoverableError(final Exception exception) {
-        exception.printStackTrace();
-
-        if (errorToast == null) {
-            errorToast = Toast
-                    .makeText(context, R.string.player_recoverable_failure, Toast.LENGTH_SHORT);
-            errorToast.show();
-        }
-    }
-
-    private void showUnrecoverableError(final Exception exception) {
-        exception.printStackTrace();
-
-        if (errorToast != null) {
-            errorToast.cancel();
-        }
-        errorToast = Toast
-                .makeText(context, R.string.player_unrecoverable_failure, Toast.LENGTH_SHORT);
-        errorToast.show();
     }
     //endregion
 
