@@ -211,10 +211,10 @@ class FeedLoadManager(private val context: Context) {
                 for (notification in list) {
                     when {
                         notification.isOnNext -> {
-                            val subscriptionId = notification.value.uid
-                            val info = notification.value.listInfo
+                            val subscriptionId = notification.value!!.uid
+                            val info = notification.value!!.listInfo
 
-                            notification.value.newStreamsCount = countNewStreams(info.relatedItems)
+                            notification.value!!.newStreamsCount = countNewStreams(info.relatedItems)
                             feedDatabaseManager.upsertAll(subscriptionId, info.relatedItems)
                             subscriptionManager.updateFromInfo(subscriptionId, info)
 
@@ -230,7 +230,7 @@ class FeedLoadManager(private val context: Context) {
                         }
                         notification.isOnError -> {
                             val error = notification.error
-                            feedResultsHolder.addError(error)
+                            feedResultsHolder.addError(error!!)
 
                             if (error is FeedLoadService.RequestException) {
                                 feedDatabaseManager.markAsOutdated(error.subscriptionId)
