@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ListHelperTest {
     private static final String BEST_RESOLUTION_KEY = "best_resolution";
@@ -52,9 +54,9 @@ public class ListHelperTest {
         List<String> expected = Arrays.asList("144p", "240p", "360p", "480p", "720p", "720p60",
                 "1080p", "1080p60", "1440p60", "2160p", "2160p60");
 
-        assertEquals(result.size(), expected.size());
+        assertEquals(expected.size(), result.size());
         for (int i = 0; i < result.size(); i++) {
-            assertEquals(result.get(i).resolution, expected.get(i));
+            assertEquals(expected.get(i), result.get(i).resolution);
         }
 
         ////////////////////
@@ -65,9 +67,56 @@ public class ListHelperTest {
                 VIDEO_STREAMS_TEST_LIST, VIDEO_ONLY_STREAMS_TEST_LIST, false, false);
         expected = Arrays.asList("2160p60", "2160p", "1440p60", "1080p60", "1080p", "720p60",
                 "720p", "480p", "360p", "240p", "144p");
-        assertEquals(result.size(), expected.size());
+        assertEquals(expected.size(), result.size());
         for (int i = 0; i < result.size(); i++) {
-            assertEquals(result.get(i).resolution, expected.get(i));
+            assertEquals(expected.get(i), result.get(i).resolution);
+        }
+    }
+
+    @Test
+    public void getSortedStreamVideosListWithPreferVideoOnlyStreamsTest() {
+        List<VideoStream> result = ListHelper.getSortedStreamVideosList(MediaFormat.MPEG_4, true,
+                null, VIDEO_ONLY_STREAMS_TEST_LIST, true, true);
+
+        List<String> expected =
+                Arrays.asList("720p", "720p60", "1080p", "1080p60", "1440p60", "2160p", "2160p60");
+
+        assertEquals(expected.size(), result.size());
+        for (int i = 0; i < result.size(); i++) {
+            assertEquals(expected.get(i), result.get(i).resolution);
+            assertTrue(result.get(i).isVideoOnly);
+        }
+
+        //////////////////////////////////////////////////////////
+        // No video only streams -> should return mixed streams //
+        //////////////////////////////////////////////////////////
+
+        result = ListHelper.getSortedStreamVideosList(MediaFormat.MPEG_4, true,
+                VIDEO_STREAMS_TEST_LIST, null, false, true);
+        expected = Arrays.asList("720p", "480p", "360p", "240p", "144p");
+        assertEquals(expected.size(), result.size());
+        for (int i = 0; i < result.size(); i++) {
+            assertEquals(expected.get(i), result.get(i).resolution);
+            assertFalse(result.get(i).isVideoOnly);
+        }
+
+        /////////////////////////////////////////////////////////////////
+        // Both types of  streams -> should return correct one streams //
+        /////////////////////////////////////////////////////////////////
+
+        result = ListHelper.getSortedStreamVideosList(MediaFormat.MPEG_4, true,
+                VIDEO_STREAMS_TEST_LIST, VIDEO_ONLY_STREAMS_TEST_LIST, true, true);
+        expected = Arrays.asList("144p", "240p", "360p", "480p", "720p", "720p60",
+                "1080p", "1080p60", "1440p60", "2160p", "2160p60");
+        final List<String> expectedVideoOnly =
+                Arrays.asList("720p", "720p60", "1080p", "1080p60", "1440p60", "2160p", "2160p60");
+
+        assertEquals(expected.size(), result.size());
+        for (int i = 0; i < result.size(); i++) {
+            assertEquals(expected.get(i), result.get(i).resolution);
+            assertEquals(
+                    expectedVideoOnly.contains(result.get(i).resolution),
+                    result.get(i).isVideoOnly);
         }
     }
 
@@ -81,9 +130,9 @@ public class ListHelperTest {
                 false, VIDEO_STREAMS_TEST_LIST, VIDEO_ONLY_STREAMS_TEST_LIST, false, false);
         final List<String> expected = Arrays.asList(
                 "1080p60", "1080p", "720p60", "720p", "480p", "360p", "240p", "144p");
-        assertEquals(result.size(), expected.size());
+        assertEquals(expected.size(), result.size());
         for (int i = 0; i < result.size(); i++) {
-            assertEquals(result.get(i).resolution, expected.get(i));
+            assertEquals(expected.get(i), result.get(i).resolution);
         }
     }
 
