@@ -22,7 +22,7 @@ public final class NoFileManagerSafeGuard {
      * Shows an alert dialog when no file-manager is found.
      * @param context Context
      */
-    private static void showActivityNotFoundAlert(@NonNull final Context context) {
+    private static void showActivityNotFoundAlert(final Context context) {
         if (context == null) {
             throw new IllegalArgumentException(
                     "Unable to open no file manager alert dialog: Context is null");
@@ -54,8 +54,8 @@ public final class NoFileManagerSafeGuard {
     public static <I> void launchSafe(
             final ActivityResultLauncher<I> activityResultLauncher,
             final I input,
-            @NonNull final String tag,
-            @NonNull final Context context
+            final String tag,
+            final Context context
     ) {
         try {
             activityResultLauncher.launch(input);
