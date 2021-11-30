@@ -1,14 +1,11 @@
 New
 • Added "Add to playlist" open to share menu
-• Added manual button to check for updates
 • Added support for y2u.be and PeerTube short links
-• Mark streams as watched with the long press menu
 
 Improved
 • Use Android's default share menu when selecting text
 • Made Playback-Speed-Controls more compact
 • Feed highlights new items now
-• "Show watched items" option in the feed is now saved
 
 Fixed
 • Fixed YouTube likes and dislikes extraction
