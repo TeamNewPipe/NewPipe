@@ -214,7 +214,10 @@ class FeedLoadManager(private val context: Context) {
                             val subscriptionId = notification.value!!.uid
                             val info = notification.value!!.listInfo
 
-                            notification.value!!.newStreamsCount = countNewStreams(info.relatedItems)
+                            notification.value!!.newStreams = filterNewStreams(
+                                notification.value!!.listInfo.relatedItems
+                            )
+
                             feedDatabaseManager.upsertAll(subscriptionId, info.relatedItems)
                             subscriptionManager.updateFromInfo(subscriptionId, info)
 
@@ -241,16 +244,17 @@ class FeedLoadManager(private val context: Context) {
             }
         }
 
-        private fun countNewStreams(list: List<StreamInfoItem>): Int {
-            var count = 0
-            for (item in list) {
-                if (feedDatabaseManager.doesStreamExist(item)) {
-                    return count
-                } else {
-                    count++
-                }
+        private fun filterNewStreams(list: List<StreamInfoItem>): List<StreamInfoItem> {
+            return list.filter {
+                !feedDatabaseManager.doesStreamExist(it) &&
+                    it.uploadDate != null &&
+                    // Streams older than this date are automatically removed from the feed.
+                    // Therefore, streams which are not in the database,
+                    // but older than this date, are considered old.
+                    it.uploadDate!!.offsetDateTime().isAfter(
+                        FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE
+                    )
             }
-            return 0
         }
     }
 

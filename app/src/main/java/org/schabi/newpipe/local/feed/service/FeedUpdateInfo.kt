@@ -11,14 +11,17 @@ data class FeedUpdateInfo(
     val notificationMode: Int,
     val name: String,
     val avatarUrl: String,
-    val listInfo: ListInfo<StreamInfoItem>
+    val listInfo: ListInfo<StreamInfoItem>,
 ) {
-    constructor(subscription: SubscriptionEntity, listInfo: ListInfo<StreamInfoItem>) : this(
+    constructor(
+        subscription: SubscriptionEntity,
+        listInfo: ListInfo<StreamInfoItem>,
+    ) : this(
         uid = subscription.uid,
         notificationMode = subscription.notificationMode,
         name = subscription.name,
         avatarUrl = subscription.avatarUrl,
-        listInfo = listInfo
+        listInfo = listInfo,
     )
 
     /**
@@ -27,8 +30,5 @@ data class FeedUpdateInfo(
     val pseudoId: Int
         get() = listInfo.url.hashCode()
 
-    var newStreamsCount: Int = 0
-
-    val newStreams: List<StreamInfoItem>
-        get() = listInfo.relatedItems.take(newStreamsCount)
+    lateinit var newStreams: List<StreamInfoItem>
 }

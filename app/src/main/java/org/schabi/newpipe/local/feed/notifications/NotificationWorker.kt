@@ -42,7 +42,7 @@ class NotificationWorker(
             .map { feed ->
                 feed.mapNotNull { x ->
                     x.value?.takeIf {
-                        it.newStreamsCount > 0
+                        it.newStreams.isNotEmpty()
                     }
                 }
             }
