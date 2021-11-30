@@ -1,0 +1,4 @@
+Ändringar i 0.17.2
+
+Fixar
+• Fixade inga videor tillgängliga

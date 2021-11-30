@@ -1,0 +1,2 @@
+- Tegime korda taasesituse jätkamise
+- Kohendasime, et uuendusi kontrolliv teenus ei käivituks asjatult taustal

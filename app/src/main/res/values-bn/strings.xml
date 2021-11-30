@@ -580,4 +580,9 @@
     <string name="tablet_mode_title">ট্যাবলেট অবস্থা</string>
     <string name="off">বন্ধ</string>
     <string name="on">চালু</string>
+    <plurals name="download_finished_notification">
+        <item quantity="one">ডাউনলোড সমাপ্ত</item>
+        <item quantity="other">%sটি ডাউনলোড সমাপ্ত</item>
+    </plurals>
+    <string name="mark_as_watched">দেখা হয়েছে চিহ্নিত করো</string>
 </resources>

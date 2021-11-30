@@ -1,0 +1,1 @@
+Fixade avkrypteringsfunktionens namn regex som gjorde YouTube obrukbar.

@@ -669,4 +669,14 @@
     <string name="start_main_player_fullscreen_title">Avvia il lettore principale a schermo intero</string>
     <string name="enqueued_next">Aggiunto alla coda come prossimo</string>
     <string name="enqueue_next_stream">Accoda come prossimo</string>
+    <string name="processing_may_take_a_moment">Elaborazione... Potrebbe volerci un attimo</string>
+    <string name="manual_update_title">Controlla aggiornamenti</string>
+    <string name="manual_update_description">Verifica manualmente la presenza di nuove versioni</string>
+    <string name="checking_updates_toast">Controllo aggiornamenti…</string>
+    <string name="feed_new_items">Nuovi elementi feed</string>
+    <string name="report_player_errors_title">Segnala errori del lettore multimediale</string>
+    <string name="show_crash_the_player_summary">Quando il lettore multimediale è in uso, mostra un\'opzione per farlo crashare</string>
+    <string name="report_player_errors_summary">Invece di mostrare un messaggio popup di breve durata, gli errori del lettore multimediale saranno visualizzati in modo dettagliato (utile per diagnosticare i problemi)</string>
+    <string name="show_crash_the_player_title">Mostra \"Fai crashare il lettore\"</string>
+    <string name="crash_the_player">Fai crashare il lettore</string>
 </resources>

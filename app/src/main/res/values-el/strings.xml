@@ -304,7 +304,7 @@
 \n4. Πατήστε «Επόμενο βήμα» και μετά «Δημιουργία εξαγωγής».
 \n5. Πατήστε «Λήψη» όταν εμφανιστεί.
 \n6. Πατήστε το ΕΙΣΑΓΩΓΗ ΑΡΧΕΙΟΥ και επιλέξτε το ληφθέν αρχείο zip.
-\n7. Αν η εισαγωγή από το zip αποτύχει, εξάγετε το αρχείο .csv (συνήθως βρίσκεται στο \"YouTube και YouTube Music/subscriptions/subscriptions.csv\"), πατήστε το ΕΙΣΑΓΩΓΗ ΑΡΧΕΙΟΥ και επιλέξτε το ληφθέν αρχείο csv.</string>
+\n7. Αν η εισαγωγή από το zip αποτύχει, εξάγετε το αρχείο .csv (συνήθως βρίσκεται στο \"YouTube και YouTube Music/subscriptions/subscriptions.csv\"), πατήστε το ΕΙΣΑΓΩΓΗ ΑΡΧΕΙΟΥ και επιλέξτε το ληφθέν αρχείο csv</string>
     <string name="import_soundcloud_instructions">Για να εισάγετε τον λογαριασμό SoundCloud σας, πληκτρολογήστε τον σύνδεσμο ή το ID σας:
 \n
 \n1. Ενεργοποιήστε τη λειτουργία «Desktop mode» στον φυλλομετρητή σας (καθώς η ιστοσελίδα δεν είναι διαθέσιμη για κινητά)
@@ -665,8 +665,18 @@
         <item quantity="other">%s λήψεις ολοκληρώθηκαν</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Απομάκρυνση αντικειμένων με σύρσιμο</string>
-    <string name="start_main_player_fullscreen_summary">Εκκίνηση των βίντεο σε πλήρη οθόνη και όχι σε αναδυόμενο παράθυρο, αν η αυτόματη περιστροφή της οθόνης είναι ανενεργή. Μπορείτε να ενεργοποιήσετε το αναδυόμενο παράθυρο βγαίνοντας από την πλήρη οθόνη.</string>
+    <string name="start_main_player_fullscreen_summary">Εκκίνηση των βίντεο σε πλήρη οθόνη και όχι σε αναδυόμενο παράθυρο, αν η αυτόματη περιστροφή της οθόνης είναι ανενεργή. Μπορείτε να ενεργοποιήσετε το αναδυόμενο παράθυρο βγαίνοντας από την πλήρη οθόνη</string>
     <string name="start_main_player_fullscreen_title">Εκκίνηση κύριου αναπαραγωγού σε πλήρη οθόνη</string>
     <string name="enqueued_next">Προστέθηκε το επόμενο στην ουρά</string>
     <string name="enqueue_next_stream">Προσθήκη επόμενου στην ουρά</string>
+    <string name="processing_may_take_a_moment">Επεξεργασία... Μπορεί να πάρει λίγο χρόνο</string>
+    <string name="checking_updates_toast">Έλεγχος αναβάθμισης…</string>
+    <string name="manual_update_description">Χειροκίνητος έλεγχος για νέα έκδοση</string>
+    <string name="manual_update_title">Έλεγχος αναβάθμισης</string>
+    <string name="feed_new_items">Νέα αντικείμενα τροφοδοσίας</string>
+    <string name="show_crash_the_player_title">Εμφάνιση «κατάρρευσης αναπαραγωγέα»</string>
+    <string name="show_crash_the_player_summary">Εμφανίζει μια επιλογή κατάρρευσης κατά τη χρήση του αναπαραγωγέα</string>
+    <string name="report_player_errors_title">Αναφορά σφαλμάτων αναπαραγωγέα</string>
+    <string name="report_player_errors_summary">Αναφορά σφαλμάτων αναπαραγωγέα με λεπτομέρειες αντί για ένα σύντομο μήνυμα (χρήσιμο για διάγνωση προβλημάτων)</string>
+    <string name="crash_the_player">Κατάρρευση αναπαραγωγέα</string>
 </resources>

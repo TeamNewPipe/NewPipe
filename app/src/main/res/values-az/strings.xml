@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Başlamaq üçün \"Axtarış\" bölməsinə toxunun</string>
+    <string name="main_bg_subtitle">Başlamaq üçün \"Axtarış\" bölməsinə toxunun.</string>
     <string name="upload_date_text">%1$s tarixində yayımlanıb</string>
     <string name="no_player_found">Axın pleyeri tapılmadı. \"VLC\" yüklənilsin\?</string>
     <string name="no_player_found_toast">Axın pleyeri tapılmadı (baxmaq üçün \"VLC\"ni yükləyə bilərsiniz).</string>
@@ -59,7 +59,7 @@
     <string name="enable_watch_history_title">İzləmə tarixçəsi</string>
     <string name="enable_search_history_summary">Axtarış sorğularını lokal olaraq saxlayın</string>
     <string name="enable_search_history_title">Axtarış tarixçəsi</string>
-    <string name="show_search_suggestions_summary">Axtarış edərkən təklifləri göstər</string>
+    <string name="show_search_suggestions_summary">Axtarış edərkən göstəriləcək təklifləri seçin</string>
     <string name="show_search_suggestions_title">Axtarış təklifləri</string>
     <string name="brightness_gesture_control_summary">Pleyerin parlaqlığını idarə etmək üçün jestlərdən istifadə edin</string>
     <string name="brightness_gesture_control_title">Parlaqlığın jestlə idarə edilməsi</string>
@@ -77,7 +77,7 @@
     <string name="clear_queue_confirmation_summary">Bir pleyerdən digərinə keçmək növbənizi dəyişdirə bilər</string>
     <string name="clear_queue_confirmation_title">Növbəni təmizləmədən öncə təsdiq üçün soruş</string>
     <string name="use_inexact_seek_title">Qeyri-dəqiq axtarış (videonu irəli/geri çəkmə) istifadə edin</string>
-    <string name="use_inexact_seek_summary">Qeyri-dəqiq axtarış pleyerə azaldılmış həssaslıqla mövqeləri daha sürətlə axtarmağa imkan verir. 5, 15 və ya 25 saniyəlik axtarış bununla işləmir.</string>
+    <string name="use_inexact_seek_summary">Qeyri-dəqiq axtarış oynadıcıya azaldılmış həssaslıqla mövqeləri daha sürətlə axtarmağa imkan verir. 5, 15 və ya 25 saniyəlik axtarış bununla işləmir</string>
     <string name="seek_duration_title">Cəld irəli/geri çəkmə müddəti</string>
     <string name="notification_action_nothing">Heç nə</string>
     <string name="notification_action_buffering">Buferizasiya olunur</string>
@@ -99,7 +99,7 @@
     <string name="channels">Kanallar</string>
     <string name="video_detail_by">%s tərəfindən</string>
     <string name="youtube_restricted_mode_enabled_title">\"Youtube\"un \"Məhdudiyyətli Rejimi\"ni aktivləşdir</string>
-    <string name="show_age_restricted_content_summary">Yaş limiti olduğuna görə (məs. 18+) böyük ehtimal uşaqlar üçün uyğun olmayan məzmunu göstər.</string>
+    <string name="show_age_restricted_content_summary">Yaş limiti olduğuna görə (məs. 18+) böyük ehtimal uşaqlar üçün uyğun olmayan məzmunu göstər</string>
     <string name="show_age_restricted_content_title">Yaş məhdudiyyətli məzmunu göstər</string>
     <string name="content">Məzmun</string>
     <string name="popup_playing_toast">Ani pəncərədə oxudulur</string>
@@ -119,7 +119,7 @@
     <string name="show_hold_to_append_title">\"Əlavə etmək üçün basılı tutun\" məsləhətini göstər</string>
     <string name="show_next_and_similar_title">\"Növbəti\" və \"Bənzər\" videoları göstər</string>
     <string name="export_data_summary">Tarixçəni, abunəlikləri və oxutma siyahılarını ixrac et</string>
-    <string name="import_data_summary">Cari tarixçənizi və abunəliklərinizi ləğv edər</string>
+    <string name="import_data_summary">"Cari tarixçə, abunəliklər, pleylistlər və (istəyə görə)  ayarlarınızın üzərinə yazır"</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA çərəzləri təmizləndi</string>
     <string name="clear_cookie_title">reCAPTCHA çərəzlərini təmizlə</string>
     <string name="export_data_title">Məlumat bazasını ixrac et</string>
@@ -268,4 +268,30 @@
     <string name="show_description_summary">Video təsvirini və əlavə bilgiləri gizlətmək üçün söndürün</string>
     <string name="show_description_title">Təsviri göstər</string>
     <string name="notification_colorize_title">Bildirişləri rənglə</string>
+    <string name="invalid_directory">Belə qovluq yoxdur</string>
+    <string name="start_main_player_fullscreen_title">Əsas oynadıcını (pleyeri) tam ekranda başlat</string>
+    <string name="external_player_unsupported_link_type">Xarici oynadıcılar bu cür linkləri dəstəkləmir</string>
+    <string name="local_search_suggestions">Yerli axtarış təklifləri</string>
+    <string name="video">Video</string>
+    <string name="related_items_tab_description">Əlaqəli videolar</string>
+    <string name="mark_as_watched">İzlənmiş kimi işarələ</string>
+    <string name="open_with">Aşağıdakılardan biri ilə aç</string>
+    <string name="night_theme_title">Gecə Mövzusu</string>
+    <string name="popup_remember_size_pos_title">Ani açılan pəncərə (popup) xüsusiyyətlərini xatırla</string>
+    <string name="popup_remember_size_pos_summary">Ani açılan pəncərənin son ölçüsü və mövqeyini xatırla</string>
+    <string name="video_streams_empty">Video yayımı tapılmadı</string>
+    <string name="comments_tab_description">Şərhlər</string>
+    <string name="description_tab_description">Təsvir</string>
+    <string name="empty_subscription_feed_subtitle"></string>
+    <string name="search_no_results">Nəticə yoxdur</string>
+    <string name="restore_defaults">İlkin ayarları qaytar</string>
+    <string name="missing_file">Fayl köçürüldü və ya silindi</string>
+    <string name="player_recoverable_failure">Oynadıcı xətası düzəldilir</string>
+    <string name="player_unrecoverable_failure">Bərpa oluna bilməyən oynadıcı xətası baş verdi</string>
+    <string name="ok">Oldu</string>
+    <string name="restricted_video_no_stream">Bu video yaş məhdudiyyətlidir.
+\n\"YouTube\"un yeni yaş məhdudiyyətli videolar siyasətinə görə \"NewPipe\" bu cür videoların yayımını əldə edə bilmir, beləliklə, videonu oynatmaq mümkün deyil.</string>
+    <string name="audio_streams_empty">Səs yayımı tapılmadı</string>
+    <string name="permission_display_over_apps">Başqa proqramların üzərində göstərmə icazəsi ver</string>
+    <string name="restore_defaults_confirmation">İlkin ayarları qaytarmaq istəyirsiniz\?</string>
 </resources>

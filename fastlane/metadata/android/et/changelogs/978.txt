@@ -1,0 +1,1 @@
+Parandasime NewPipe'i versiooni kontrollimise vea. Me nimelt mõnikord üritasime seda teha liiga varajases faasis ja võis viia rakenduse kokkujooksmiseni.

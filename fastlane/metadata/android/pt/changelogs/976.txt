@@ -1,0 +1,10 @@
+• +opção para abrir o reprodutor em ecrã cheio
+• Pode escolher as sugestões de pesquisa a mostrar
+• Tema escuro + escuro e novo ecrã inicial escuro
+• Seletor de ficheiros: ficheiros indesejados acinzentados
+• Importação de subscrições do YouTube corrigida
+• A repetição de uma transmissão requer um toque no botão de repetição
+• Fecho da sessão de áudio corrigido
+• [Android TV] Correção de longos saltos da barra de pesquisa ao usar um DPad
+
+Ver também o registo de alterações e o blogue abaixo.

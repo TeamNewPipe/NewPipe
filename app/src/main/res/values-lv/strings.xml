@@ -201,15 +201,15 @@
     <string name="download_to_sdcard_error_title">Ārējā krātuve nepieejama</string>
     <string name="general_error">Kļūda</string>
     <string name="help">Palīdzība</string>
-    <string name="search_history_deleted">Meklēšanas vēsture izdzēsta.</string>
+    <string name="search_history_deleted">Meklēšanas vēsture izdzēsta</string>
     <string name="delete_search_history_alert">Izdzēsy visu meklēšanas vēsturi\?</string>
     <string name="clear_search_history_summary">Izdzēš meklēto vārdu vēsturi</string>
     <string name="clear_search_history_title">Izdzēst skatīšanās vēsturi</string>
-    <string name="watch_history_states_deleted">Atskaņošanas pozīcikas izdzēstas.</string>
+    <string name="watch_history_states_deleted">Atskaņošanas pozīcikas izdzēstas</string>
     <string name="delete_playback_states_alert">Izdzēst visas atskaņošanas pozīcijas\?</string>
     <string name="clear_playback_states_summary">Izdzēš visas atskaņošanas pozīcijas</string>
     <string name="clear_playback_states_title">Izdzēst atskaņošanas pozīcijas</string>
-    <string name="watch_history_deleted">Skatīšanās vēsture izdzēsta.</string>
+    <string name="watch_history_deleted">Skatīšanās vēsture izdzēsta</string>
     <string name="delete_view_history_alert">Izdzēst visu skatīšanās vēsturi\?</string>
     <string name="clear_views_history_summary">Izdzēš atskaņoto videoklipu un atskaņošanas pozīciju vēsturi</string>
     <string name="clear_views_history_title">Notīrīt skatīšanās vēsturi</string>
@@ -278,7 +278,7 @@
     <string name="peertube_instance_url_help">Atrodiet instances, kas jums patīk ar %s</string>
     <string name="peertube_instance_url_summary">Izvēlaties jūsu mīļāko PeerTube instanci</string>
     <string name="peertube_instance_url_title">PeerTube instances</string>
-    <string name="localization_changes_requires_app_restart">Valoda nomainīsies, kad aplikāciju restartēs.</string>
+    <string name="localization_changes_requires_app_restart">Valoda nomainīsies, kad aplikāciju restartēs</string>
     <string name="no_app_to_open_intent">Neviena lietotne jūsu ierīcē nevar šo atvērt</string>
     <string name="chapters">Nodaļas</string>
     <string name="recent">Jaunākie</string>
@@ -304,7 +304,7 @@
 \nTātad izvēle sakrīt ar vēlamo: ātrums vai precīza informācija.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Izslēgt ātro režīmu</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Ieslēgt ātro režīmu</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Pieejams dažos pakalpojumos, tas parasti ir daudz ātrāk, taču var atgriezt ierobežotu daudzumu informācijas un bieži arī nepilnīgu informāciju (piemēram, nav video ilguma, vienuma veida, nav tiešraides statusa).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Pieejams dažos pakalpojumos, tas parasti ir daudz ātrāk, taču var atgriezt ierobežotu daudzumu informācijas un bieži arī nepilnīgu informāciju (piemēram, nav video ilguma, vienuma veida, nav tiešraides statusa)</string>
     <string name="feed_use_dedicated_fetch_method_title">Iegūt no īpašās plūsmas, kad tas ir pieejams</string>
     <string name="feed_update_threshold_option_always_update">Vienmēr atjauniniet</string>
     <string name="feed_update_threshold_summary">Laiks pēc pēdējās atjaunināšanas, pirms abonements tiek uzskatīts par novecojušu — %s</string>
@@ -356,10 +356,10 @@
     <string name="systems_language">System default</string>
     <string name="app_language_title">Lietotnes valoda</string>
     <string name="choose_instance_prompt">Izvēlieties instanci</string>
-    <string name="downloads_storage_use_saf_title">Izmantojiet KPS</string>
-    <string name="downloads_storage_use_saf_summary">“Krātuves Piekļuves Sistēma” ļauj lejupielādēt ārējā SD kartē.
-\nAr dažām ierīcēm nestrādā</string>
-    <string name="downloads_storage_ask_summary">Jums tiks jautāts, kur saglabāt katru lejupielādi</string>
+    <string name="downloads_storage_use_saf_title">Izmantot sistēmas mapes izvēlni</string>
+    <string name="downloads_storage_use_saf_summary">“Krātuves Piekļuves Sistēma” ļauj lejupielādēt ārējā SD kartē</string>
+    <string name="downloads_storage_ask_summary">Jums tiks jautāts, kur saglabāt katru lejupielādi.
+\nIeslēdziet sistēmas mapes izvēlni, ja vēlaties lejupielādēt uz ārējo SD karti</string>
     <string name="downloads_storage_ask_title">Jautājiet, kur lejupielādēt</string>
     <string name="pause_downloads">Pauzēt lejupielādes</string>
     <string name="start_downloads">Sākt lejupielādes</string>
@@ -426,14 +426,15 @@
 \n2. Ierakstaties, kad tiek prasīts
 \n3. Noklikšķiniet uz \"Visi dati iekļauti\", pēc tam uz \"Atcelt visu atlasi\", pēc tam atlasiet tikai \"Abonementi\" un noklikšķiniet uz \"Labi\"
 \n4. Noklikšķiniet uz \"Nākamais solis\" un pēc tam uz \"Izveidot eksportu\"
-\n5. Pēc tam, kad tā parādās, noklikšķiniet uz pogas \"Lejupielādēt\" un
-\n6. No lejupielādētā izņemšanas zip izvelciet .json failu (parasti sadaļā “YouTube un YouTube mūzika / abonementi / abonementi.json”) un importējiet to šeit.</string>
+\n5. Pēc tam, kad tā parādās, noklikšķiniet uz pogas \"Lejupielādēt\"
+\n6. Noklikšķiniet \"Importēt failu\" apakšā un izvēlaties lejupielādēto zip failu
+\n7. [Ja zip faila imports neizdodas] No lejupielādētā izņemšanas zip izvelciet .csv failu (parasti sadaļā “YouTube un YouTube mūzika / abonementi / abonementi.csv\"), noklikšķiniet uz \"Importēt failu\" apakšā un izvēlaties iegūto csv failu</string>
     <string name="preferred_open_action_settings_summary">Noklusējuma darbība, kad atver saturu — %s</string>
     <string name="show_original_time_ago_summary">Pakalpojumu oriģinālteksti būs redzami video vienumos</string>
     <string name="enable_disposed_exceptions_summary">Pēc izdzēšanas, piespiedu kārtā ziņot par nepiegādātiem Rx izņēmumiem, ārpus fragmenta vai darbības dzīves cikla</string>
     <string name="enable_disposed_exceptions_title">Ziņot par ārpus-dzīves-cikla kļūdu</string>
     <string name="enable_leak_canary_summary">Atmiņas noplūdes uzraudzība var izraisīt lietotnes nereaģēšanu, kad tiek nottīrītas vairs nevajadzīgas lietas no atmiņas</string>
-    <string name="caption_setting_description">Mainīt atskaņotāja subtitru teksta mērogu un fona stilus. Nepieciešama lietotnes restartēšana, lai tā stātos spēkā.</string>
+    <string name="caption_setting_description">Mainīt atskaņotāja subtitru teksta mērogu un fona stilus. Nepieciešama lietotnes restartēšana, lai tā stātos spēkā</string>
     <string name="playlist_no_uploader">Automātiski ģenerēts (neviens augšupielādētājs nav atrasts)</string>
     <string name="playlist_add_stream_success">Ielikts atskaņošanas sarakstā</string>
     <string name="unbookmark_playlist">Noņemt Grāmatzīmi</string>
@@ -506,7 +507,7 @@
     <string name="enable_watch_history_title">Skatīšanās vēsture</string>
     <string name="enable_search_history_summary">Glabāt meklēšanas vēsturi uz telefona</string>
     <string name="enable_search_history_title">Meklēšanas vēsture</string>
-    <string name="show_search_suggestions_summary">Meklējot, rādīt ieteikumus</string>
+    <string name="show_search_suggestions_summary">Izvēlaties, kādus ieteikumus rādīt, rakstot meklēšanas joslā</string>
     <string name="show_search_suggestions_title">Meklēšanas ieteikumi</string>
     <string name="brightness_gesture_control_summary">Velkot ar pirkstu, mainiet video atskaņošanas spilgtumu</string>
     <string name="brightness_gesture_control_title">Spilgtuma kontrole, atskaņojot video</string>
@@ -519,20 +520,20 @@
     <string name="metadata_cache_wipe_summary">Izdzēst visus kešatmiņā glabātos mājaslapu datus</string>
     <string name="metadata_cache_wipe_title">Notīrīt kešatmiņas metadatus</string>
     <string name="thumbnail_cache_wipe_complete_notice">Attēlu kešatmiņa notīrīta</string>
-    <string name="show_meta_info_summary">Izslēdziet, lai paslēptu informācijas zīmes ar papildus ziņām par video autoru, video saturu vai meklēšanas rezultātu.</string>
+    <string name="show_meta_info_summary">Izslēdziet, lai paslēptu informācijas zīmes ar papildus ziņām par video autoru, video saturu vai meklēšanas rezultātu</string>
     <string name="show_meta_info_title">Rādīt papildus informāciju</string>
     <string name="show_description_summary">Izslēdziet, ja nevēlaties redzēt video aprakstus un papildus informāciju</string>
     <string name="show_description_title">Rādīt video aprakstu</string>
     <string name="show_next_and_similar_title">Rādīt \'Nākošos\' un \'Līdzīgos\' videoklipus</string>
     <string name="show_comments_summary">Izslēdziet, ja vēlaties neredzēt komentārus</string>
     <string name="show_comments_title">Rādīt komentārus</string>
-    <string name="download_thumbnail_summary">Izslēdziet, ja vēlaties nelādēt video attēlus, ietaupot datus un atmiņu. Opcija notīra kešatmiņu, izdzēšot visus saglabātos video attēlus.</string>
+    <string name="download_thumbnail_summary">Izslēdziet, ja vēlaties nelādēt video attēlus, ietaupot datus un atmiņu. Opcija notīra kešatmiņu, izdzēšot visus saglabātos video attēlus</string>
     <string name="download_thumbnail_title">Ielādēt video attēlus</string>
     <string name="clear_queue_confirmation_description">Tagadējā atskaņošanas rinda tiks aizvietota</string>
     <string name="clear_queue_confirmation_summary">Mainoties vienam video uz citu, iespējams notīrīsies jūsu atskaņošanas rinda</string>
     <string name="clear_queue_confirmation_title">Prasīt apstiprinājumu, pirms notīrīt atskaņošanas rindu</string>
     <string name="seek_duration_title">Uz priekšu/ uz atpakaļu, meklētāja ilgums</string>
-    <string name="use_inexact_seek_summary">Neprecīzs meklētājs atļauj video atskaņotājam atrast pozīciju atrāk, bet ar zemāku precizitāti. Meklēšana 5, 15 vai 25 sekundes uz priekšu vai atpakaļ, nestrādā ar šo opciju.</string>
+    <string name="use_inexact_seek_summary">Neprecīzs meklētājs atļauj video atskaņotājam atrast pozīciju atrāk, bet ar zemāku precizitāti. Meklēšana 5, 15 vai 25 sekundes uz priekšu vai atpakaļ, nestrādā ar šo opciju</string>
     <string name="use_inexact_seek_title">Izmantot ātru, neprecīzu meklētāju</string>
     <string name="black_theme_title">Melna</string>
     <string name="dark_theme_title">Tumša</string>
@@ -557,7 +558,7 @@
     <string name="notification_action_shuffle">Sajaukt</string>
     <string name="notification_action_repeat">Atkārtot</string>
     <string name="notification_actions_at_most_three">Jūs varat izvēlēties tikai 3 darbības, kuras rādīs kompaktajā notifikācijā!</string>
-    <string name="notification_actions_summary">Rediģējiet katru notifikācijas darbību pieskaroties tai. Izvēlaties trīs darbības, kuras rādīs kompaktā notifikācijā, izmantojot rūtiņas labajā pusē.</string>
+    <string name="notification_actions_summary">Rediģējiet katru notifikācijas darbību pieskaroties tai. Izvēlaties trīs darbības, kuras rādīs kompaktā notifikācijā, izmantojot rūtiņas labajā pusē</string>
     <string name="notification_action_4_title">Piektā darbības poga</string>
     <string name="notification_action_3_title">Ceturtā darbības poga</string>
     <string name="notification_action_2_title">Trešā darbības poga</string>
@@ -631,4 +632,57 @@
     <string name="dont_show">Nerādīt</string>
     <string name="account_terminated">Konts ir pārtraukts</string>
     <string name="comments_are_disabled">Komentāri ir atspējoti</string>
+    <string name="enqueue_next_stream">Ielikt rindā nākošo</string>
+    <string name="enqueued_next">Ielikts rindā nākošais</string>
+    <string name="start_main_player_fullscreen_title">Sākt video atskaņotāju pilnekrāna režīmā</string>
+    <string name="start_main_player_fullscreen_summary">Nesākt video atskaņošanu samazinātā režīmā, bet pilnekrāna režīmā, ja automātiskā rotācija ir izslēgta</string>
+    <string name="disable_media_tunneling_title">Izslēgt multivides tuneļošanu</string>
+    <string name="disable_media_tunneling_summary">Izslēdziet multivides tuneļošanu, ja jums video atskaņošanas laikā parādās melns ekrāns vai aizķeršanās</string>
+    <string name="show_image_indicators_summary">Rādīt krāsainas lentes virs attēliem, norādot to avotu: sarkana - tīkls, zila - disks, zaļa - atmiņa</string>
+    <string name="downloads_storage_use_saf_summary_api_19">“Krātuves Piekļuves Sistēma” ir neatbalstīta uz Android KitKat un zemākām versijām</string>
+    <string name="description_select_enable">Ieslēgt teksta atlasīšanu video aprakstā</string>
+    <string name="no_dir_yet">Nav izvēlēts noklusējuma lejupielādes mape, izvēlaties to tagad</string>
+    <string name="main_page_content_swipe_remove">Pārvelciet objektus, lai tos noņemtu</string>
+    <string name="feed_toggle_show_played_items">Rādīt noskatītos video</string>
+    <string name="local_search_suggestions">Lokālie meklēšanas ieteikumi</string>
+    <string name="show_image_indicators_title">Rādīt attēlu indikatorus</string>
+    <string name="high_quality_larger">Augstas kvalitātes (lielāks)</string>
+    <string name="manual_update_title">Pārbaudīt atjauninājumus</string>
+    <string name="manual_update_description">Manuāli pārbaudīt, vai ir atjauninājumi</string>
+    <string name="seekbar_preview_thumbnail_title">Video atskaņošanas joslas sīktēla priekšskatījums</string>
+    <string name="checking_updates_toast">Pārbauda, vai ir atjauninājumi…</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Sākot ar Android 10, tikai“Krātuves Piekļuves Sistēma” ir atbalstīta</string>
+    <string name="feed_load_error_account_info">Nevarēja ielādēt straumi priekš \'%s\'.</string>
+    <string name="feed_load_error">Kļūda lādējot plūsmu</string>
+    <string name="feed_load_error_terminated">Autora konts tika slēgts.
+\nNewPipe turpmāk nevarēs ielādēt šo plūsmu.
+\nVai vēlaties atteikties no šī kanāla abonēšanas\?</string>
+    <string name="feed_load_error_fast_unknown">Ātrās straumes režīms nesniedz vairāk informācijas par šo.</string>
+    <string name="service_provides_reason">%s dod šādu pamatojumu:</string>
+    <string name="description_select_disable">Izslēgt teksta atlasīšanu video aprakstā</string>
+    <string name="metadata_privacy_internal">Iekšeji</string>
+    <string name="detail_heart_img_view_description">Autors piekrīt</string>
+    <string name="open_website_license">Atvērt mājaslapu</string>
+    <string name="tablet_mode_title">Tabletes režīms</string>
+    <string name="error_show_channel_details">Kļūda rādot kanāla informāciju</string>
+    <string name="loading_channel_details">Ielādē kanāla informāciju…</string>
+    <string name="low_quality_smaller">Zemas kvalitātes (mazāks)</string>
+    <string name="metadata_privacy">Privātums</string>
+    <string name="metadata_privacy_unlisted">Sarakstā neiekļauts</string>
+    <string name="metadata_thumbnail_url">Video attēla URL</string>
+    <string name="metadata_host">Uzņēmums</string>
+    <string name="remote_search_suggestions">Attālinātie meklēšanas ieteikumi</string>
+    <string name="mark_as_watched">Atzīmēt kā skatītu</string>
+    <string name="processing_may_take_a_moment">Apstrādā... Var aizņemt kādu laiku</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="zero">Izdzēsa %1$s lejupielāžu</item>
+        <item quantity="one">Izdzēsa %1$s lejupielādi</item>
+        <item quantity="other">Izdzēsa %1$s lejupielādes</item>
+    </plurals>
+    <plurals name="download_finished_notification">
+        <item quantity="zero">Lejupielāžu pabeigtas</item>
+        <item quantity="one">Lejupielāde pabeigta</item>
+        <item quantity="other">Lejupielādes pabeigtas</item>
+    </plurals>
+    <string name="description_select_note">Tagad varat atlasīt tekstu video aprakstā.</string>
 </resources>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">தொடங்க \"தேடல்\" ஐ தட்டவும்</string>
+    <string name="main_bg_subtitle">ஆரம்பிக்க பூதக்கண்ணாடியைத் தட்டு.</string>
     <string name="upload_date_text">%1$s அன்று வெளியிடப்பட்டது</string>
-    <string name="no_player_found">நிகழ்பட ஓட்டி கண்டறியப்படவில்லை. VLC நிறுவ வேண்டுமா\?</string>
+    <string name="no_player_found">நிகழ்பட ஓட்டி கண்டறியப்படவில்லை. VLC நிறுவவா\?</string>
     <string name="install">நிறுவு</string>
     <string name="cancel">ரத்துசெய்</string>
     <string name="open_in_browser">உலாவியில் திற</string>
@@ -14,7 +14,7 @@
     <string name="no_player_found_toast">நிகழ்பட ஓட்டி கண்டறியப்படவில்லை (தாங்கள் VLC-ஐ பயன்படுத்தலாம்).</string>
     <string name="open_in_popup_mode">திரைமேல் நிலையில் காட்டவும்</string>
     <string name="controls_download_desc">நிகழ்பட கோப்பை பதிவிறக்கு</string>
-    <string name="did_you_mean">நீங்கள் கூறியது: %1$s\?</string>
+    <string name="did_you_mean">\"%1$s\" என்றீர்களா\?</string>
     <string name="use_external_video_player_title">வேறு நிகழ்பட ஓட்டியை பயன்படுத்தவும்</string>
     <string name="use_external_audio_player_title">வேறு ஒலி இயக்கியை பயன்படுத்தவும்</string>
     <string name="subscribe_button_title">குழுசேர்</string>
@@ -33,13 +33,13 @@
     <string name="download_path_summary">பதிவிறக்கப்பட்ட காணொலிகள் இங்கு சேமிக்கப்படும்</string>
     <string name="download_path_dialog_title">காணொலியின் தரவிறக்கக் கோப்புறையை தேர்வு செய்க</string>
     <string name="download_path_audio_title">ஒலி பதிவிறக்க கோப்புறை</string>
-    <string name="download_path_audio_summary">தரவிறக்கப்பட்ட ஒலி இங்கே சேமிக்கப்பட்டுள்ளது</string>
+    <string name="download_path_audio_summary">தரவிறக்கப்பட்ட ஒலி கோப்புகள் இங்கே சேமிக்கப்பட்டுள்ளது</string>
     <string name="download_path_audio_dialog_title">ஒலி கோப்புகளுக்கான பதிவிறக்கப் பாதையை தேர்வு செய்க</string>
     <string name="default_resolution_title">முதல் பிரிதிறன்</string>
     <string name="default_popup_resolution_title">முதல் திரைமேல் நிலை பிரிதிறன்</string>
     <string name="show_higher_resolutions_title">மேம்பட்ட பிரிதிறன்களைக் காண்பி</string>
     <string name="play_with_kodi_title">Kodi கொண்டு இயக்கு</string>
-    <string name="kore_not_found">Kore செயலி காணவில்லை. நிறுவலாமா\?</string>
+    <string name="kore_not_found">காணாத Kore செயலியை நிறுவவா\?</string>
     <string name="show_play_with_kodi_title">\"Kodi கொண்டு இயக்கு\" இடப்பை காண்பி</string>
     <string name="play_audio">ஒலி</string>
     <string name="default_audio_format_title">முதல் ஒலி வடிவம்</string>
@@ -94,10 +94,10 @@
     <string name="audio">ஒலி</string>
     <string name="retry">மீண்டும் முயற்சி</string>
     <string name="use_external_video_player_summary">சில பிரிதிறன்களில் ஒலி நீக்கப்படும்</string>
-    <string name="show_higher_resolutions_summary">சில சாதனங்கள் மட்டுமெ 2k/4k காணொளிகலை இயக்கும்</string>
+    <string name="show_higher_resolutions_summary">சில சாதனங்கள் மட்டுமே 2k/4k காணொளிகளை இயக்கமுடியும்</string>
     <string name="show_play_with_kodi_summary">காணொளிகலை Kodi media center கொண்டு இயக்கும் இடப்பை காண்பி</string>
     <string name="use_inexact_seek_title">வேகமான பொருத்தமற்ற தேடலை பயன்படுத்து</string>
-    <string name="show_search_suggestions_summary">தேடும்போது பரிந்துரைகளை கான்பி</string>
+    <string name="show_search_suggestions_summary">தேடும்போது காட்டுவதற்கான பரிந்துரைகளைத் தெரிவுசெய்</string>
     <string name="resume_on_audio_focus_gain_summary">தொலைபேசி அழைப்பு போன்ற குறுக்கீடுகளுக்கு பிறகு தொடரவும்</string>
     <string name="show_next_and_similar_title">\'அடுத்து\' மற்றும் \'ஒப்பான\' காணொளிகலை காண்பி</string>
     <string name="enable_search_history_summary">தேடப்பட்ட வாக்கியத்தை அமைவிடத்தில் சேமிக்கவும்</string>
@@ -160,9 +160,9 @@
     <string name="tracks">காணொளிக் கோப்புகள்</string>
     <string name="tab_choose">பக்கத்தை தேர்வு செய்</string>
     <string name="volume_gesture_control_title">சத்தக் கட்டுப்பாடு செய்கை</string>
-    <string name="volume_gesture_control_summary">Player-ன் சத்தத்தைக் கட்டுப்படுத்த செய்கையை பயன்படுத்து</string>
+    <string name="volume_gesture_control_summary">இயக்கிச் சத்தத்தைக் கட்டுப்படுத்த சைகையைப் பயன்படுத்து</string>
     <string name="brightness_gesture_control_title">வெளிச்ச கட்டுப்பாடு செய்கை</string>
-    <string name="brightness_gesture_control_summary">Player-ன் வெளிச்சத்தைக் கட்டுப்படுத்த செய்கையை பயன்படுத்து</string>
+    <string name="brightness_gesture_control_summary">இயக்கி ஒளிர்வைக் கட்டுப்படுத்த சைகையைப் பயன்படுத்து</string>
     <string name="settings_category_updates_title">புதுப்பித்தல்கள்</string>
     <string name="file_deleted">கோப்பு அழிக்கப்பட்டது</string>
     <string name="app_update_notification_channel_name">செயலி புதுப்பித்தல் அறிவிப்பு</string>
@@ -171,7 +171,7 @@
     <string name="subscribers_count_not_available">பின்தொடர்பவர்கள் எண்ணிக்கை இல்லை</string>
     <string name="events">நிகழ்வுகள்</string>
     <string name="show_comments_title">கருத்துக்களை காண்பி</string>
-    <string name="show_comments_summary">கருத்துக்களை காண்பிப்பதை நிறுத்துதலை செயலிழக்கசெய்</string>
+    <string name="show_comments_summary">கருத்துக்களை மறைக்க அணை</string>
     <string name="autoplay_title">தானாக ஓட்டு</string>
     <string name="enable_playback_resume_title">திரையிடலை தொடங்கு</string>
     <string name="enable_playback_state_lists_title">பட்டியலில் இடங்கள்</string>
@@ -194,16 +194,16 @@
     <string name="show_description_title">விளக்கத்தைக் காட்டு</string>
     <string name="clear_queue_confirmation_description">செயலிலுள்ள இயக்கி வரிசை மாற்றப்படும்</string>
     <string name="clear_queue_confirmation_summary">ஒரு இயக்கி விட்டு மறு இயக்கி மாறுதல் உங்கள் வரிசையை மாற்றக்கூடும்</string>
-    <string name="use_inexact_seek_summary">துல்லியமற்ற நாடல் குறைந்த துல்லியத்துடன் விரைவாக நாட இயக்கியை அனுமதிக்கிறது. 5, 15 அ 25 விநாடிகள் நாடுவது இதனுடன் செயல்படா.</string>
-    <string name="night_theme_title">இரவு தீம்</string>
-    <string name="notification_colorize_summary">சிறுபடத்தில் உள்ள முக்கிய வண்ணத்திற்கு ஏற்ப அறிவிப்பின் நிறத்தை Androidஐ தனிப்பயனாக்கச் செய் (இது எல்லா சாதனங்களிலும் கிடைக்காது என்பதை குறித்துக்கொள்)</string>
+    <string name="use_inexact_seek_summary">துல்லியமற்ற நாடல் குறைந்த துல்லியத்துடன் விரைவாக நாட இயக்கியை அனுமதிக்கிறது. 5, 15 அ 25 நொடிகள் நாடுவது இதனுடன் செயல்படாது</string>
+    <string name="night_theme_title">இருள் தோற்றம்</string>
+    <string name="notification_colorize_summary">சிறுபடத்திலுள்ள முதன்மை நிறத்திற்கேற்ப அறிவிப்பின் நிறத்தை Androidஐ தனிப்பயனாக்கச் செய் (இது எல்லா சாதனங்களிலும் கிடைக்காதென்பதை குறித்துக்கொள்)</string>
     <string name="notification_colorize_title">அறிவிப்பை வண்ணமயமாக்கு</string>
     <string name="notification_action_nothing">ஏதுமில்லை</string>
     <string name="notification_action_buffering">இடையகப்படுத்துகிறது</string>
     <string name="notification_action_shuffle">கலக்கு</string>
     <string name="notification_action_repeat">மீண்டும்</string>
     <string name="notification_actions_at_most_three">சுருக்க அறிவிப்பில் காட்ட அதிகபட்சம் மூன்று செயல்களை நீங்கள் தேர்ந்தெடுக்கலாம்!</string>
-    <string name="notification_actions_summary">கீழே உள்ள ஒவ்வொரு அறிவிப்பு செயலையும் தட்டுவதன் மூலம் திருத்தவும். வலதுபுறத்தில் உள்ள தேர்வுப்பெட்டிகளைப் பயன்படுத்தி சுருக்க அறிவிப்பில் காண்பிக்க அவற்றில் மூன்று வரை தேர்ந்தெடுக்கவும்.</string>
+    <string name="notification_actions_summary">கீழுள்ள ஒவ்வோரறிவிப்பு செயலையும் தட்டுவதன் மூலம் திருத்துக. வலதுபுறத்திலுள்ள தேர்வுப்பெட்டிகளைப் பயன்படுத்தி சுருக்க அறிவிப்பில் காண்பிக்க அவற்றில் மூன்று வரை தேர்ந்தெடு</string>
     <string name="notification_action_4_title">ஐந்தாம் செயல் பொத்தான்</string>
     <string name="notification_action_3_title">நான்காம் செயல் பொத்தான்</string>
     <string name="notification_action_2_title">மூன்றாம் செயல் பொத்தான்</string>
@@ -220,4 +220,12 @@
     <string name="low_quality_smaller">குறைந்த தரம்</string>
     <string name="limit_mobile_data_usage_title">மொபைல் தரவைப் பயன்படுத்தும் போது வீடியோ தரத்தைக் கட்டுப்படுத்துங்கள்</string>
     <string name="limit_data_usage_none_description">வரம்பற்ற</string>
+    <string name="content_not_available">கிடைக்கவில்லை</string>
+    <string name="mark_as_watched">பார்த்ததாக குறிக்கவும்</string>
+    <string name="ok">சரி</string>
+    <string name="could_not_load_thumbnails">அனைத்து சிறு படங்களையும் காட்ட முடியவில்லை</string>
+    <string name="parsing_error">வலைத்தளத்தை பயன்படுத்த முடியவில்லை</string>
+    <string name="remote_search_suggestions">தொலைதேடல் பரிந்துரைகள்</string>
+    <string name="auto_queue_toggle">தானாக-சாரை</string>
+    <string name="enable_playback_resume_summary">கடைசியாக மீட்பொலித்த இருப்பிடத்தை மீட்டெடு</string>
 </resources>

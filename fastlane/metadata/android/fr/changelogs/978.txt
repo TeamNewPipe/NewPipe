@@ -1,0 +1,1 @@
+Correction de la vérification d'une nouvelle version de NewPipe. Cette vérification était parfois exécutée trop tôt ce qui entraînait un plantage de l'application.
