@@ -665,4 +665,15 @@
     <string name="show_image_indicators_title">Vis bildeindikatorer</string>
     <string name="main_page_content_swipe_remove">Dra elementer for å fjerne dem</string>
     <string name="start_main_player_fullscreen_title">Start hovedspiller i fullskjerm</string>
+    <string name="enqueue_next_stream">Spill etterpå</string>
+    <string name="enqueued_next">Spill etterpå</string>
+    <string name="manual_update_title">Se etter oppdateringer</string>
+    <string name="processing_may_take_a_moment">Behandler … Kan ta sin tid</string>
+    <string name="crash_the_player">Krasj avspilleren</string>
+    <string name="report_player_errors_title">Rapporter avspillerfeil</string>
+    <string name="report_player_errors_summary">Sirlig rapportering av feil, istedenfor å kun vise et lite oppsprett en stund (nyttig i avlusningsøyemed)</string>
+    <string name="show_crash_the_player_title">Vis «Krasj spilleren»</string>
+    <string name="manual_update_description">Se etter nye versjoner manuelt</string>
+    <string name="feed_new_items">Nye informasjonskanalelementer</string>
+    <string name="checking_updates_toast">Ser etter oppdateringer …</string>
 </resources>

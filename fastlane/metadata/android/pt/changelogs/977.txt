@@ -1,0 +1,10 @@
+• Adicionado botão "reproduzir seguinte" ao menu de toque longo
+• Adicionado prefixo do caminho curto do YouTube ao filtro
+• Importação de configurações corrigida
+• Trocada a posição da barra de pesquisa com os botões do reprodutor no ecrã da fila
+• Várias correções de MediasessionManager
+• Barra de pesquisa corrigida após o final do vídeo
+• Tunelamento de mídia desativado no RealtekATV
+• Expandida a área clicável dos botões minimizados
+
+Ver também o registo de alterações e o blogue abaixo.

@@ -1,0 +1,10 @@
+• Añade botón de "reproducir siguiente" al menú presionado
+• Añadido prefijo de ruta de Youtube shorts
+• Corregida importación de ajustes
+• Intercambio entre barra y botones en pantalla de cola
+• Correcciones relacionadas con MediasessionManager
+• Corregida barra incompleta al terminar video
+• Desactivado túnel de medios en RealtekATV
+• Ampliada zona de pulsación en botones del reproductor minimizado
+
+Para ver más cambios, revisa nuestro registro (y blog) en la pestaña de enlaces de abajo.

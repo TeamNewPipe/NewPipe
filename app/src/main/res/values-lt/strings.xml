@@ -681,4 +681,9 @@
     <string name="start_main_player_fullscreen_title">Paleisti pagrindinį grotuvą viso ekrano režimu</string>
     <string name="enqueued_next">Sekantis pridėtas į eilę</string>
     <string name="enqueue_next_stream">Įtraukti į eilę sekantį</string>
+    <string name="processing_may_take_a_moment">Apdorojama… tai gali užtrukti</string>
+    <string name="manual_update_title">Tikrinti ar yra atnaujinimų</string>
+    <string name="manual_update_description">Tikrinti ar yra atnaujinimų rankiniu būdu</string>
+    <string name="checking_updates_toast">Tikrinti ar yra atnaujinimų…</string>
+    <string name="feed_new_items">Nauji sklaidos kanalo elementai</string>
 </resources>

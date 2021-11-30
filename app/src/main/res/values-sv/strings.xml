@@ -115,9 +115,9 @@
     <string name="video">Video</string>
     <string name="audio">Ljud</string>
     <string name="retry">Försök igen</string>
-    <string name="short_thousand">T.</string>
+    <string name="short_thousand">t</string>
     <string name="short_million">mn</string>
-    <string name="short_billion">Mrd.</string>
+    <string name="short_billion">md</string>
     <string name="no_subscribers">Inga prenumeranter</string>
     <plurals name="subscribers">
         <item quantity="one">%s prenumerant</item>
@@ -333,7 +333,7 @@
     <string name="minimize_on_exit_title">Minimera vid växling av applikationen</string>
     <string name="minimize_on_exit_summary">Åtgärd när du växlar till andra applikationer från huvudvideospelare — %s</string>
     <string name="minimize_on_exit_none_description">Ingen</string>
-    <string name="minimize_on_exit_background_description">Minimera till Bakgrunds-spelare</string>
+    <string name="minimize_on_exit_background_description">Minimera till bakgrunds-spelare</string>
     <string name="minimize_on_exit_popup_description">Minimera till popup-spelare</string>
     <string name="unsubscribe">Sluta prenumerera</string>
     <string name="tab_choose">Välj flik</string>
@@ -347,10 +347,10 @@
     <string name="app_update_notification_channel_description">Aviseringar för nya NewPipe-versioner</string>
     <string name="download_to_sdcard_error_title">Extern lagring otillgänglig</string>
     <string name="saved_tabs_invalid_json">Fel vid läsning av sparade flikar, använder standardflikar</string>
-    <string name="restore_defaults">Återställ till standardvärden</string>
+    <string name="restore_defaults">Återställ standardvärden</string>
     <string name="restore_defaults_confirmation">Vill du återställa till standard\?</string>
     <string name="subscribers_count_not_available">Antalet prenumeranter är otillgängligt</string>
-    <string name="main_page_content_summary">Vilka flikar som visas på huvudsidan</string>
+    <string name="main_page_content_summary">Vilka flikar visas på huvudsidan</string>
     <string name="updates_setting_title">Uppdateringar</string>
     <string name="updates_setting_description">Visa avisering för att uppdatera appen när en ny version finns tillgänglig</string>
     <string name="list_view_mode">Listvy</string>
@@ -368,7 +368,7 @@
     <string name="download_failed">Hämtningen misslyckades</string>
     <string name="generate_unique_name">Generera unikt namn</string>
     <string name="overwrite">Skriv över</string>
-    <string name="download_already_running">Det finns en pågående hämtning med det här namnet</string>
+    <string name="download_already_running">Det finns en pågående hämtning med det namnet</string>
     <string name="show_error">Visa fel</string>
     <string name="error_ssl_exception">Kunde inte fastställa en säker anslutning</string>
     <string name="error_unknown_host">Kunde inte hitta servern</string>
@@ -389,14 +389,14 @@
     <string name="enable_playback_state_lists_title">Positioner i listor</string>
     <string name="autoplay_title">Spela automatiskt</string>
     <string name="settings_category_clear_data_title">Rensa data</string>
-    <string name="seek_duration_title">Snabbspola framåt/-bakåt sökvaraktighet</string>
+    <string name="seek_duration_title">Spola framåt/bakåt sökvaraktighet</string>
     <string name="enable_playback_state_lists_summary">Visa indikatorer för uppspelningsposition i listor</string>
     <string name="clear_playback_states_title">Ta bort uppspelningspositioner</string>
     <string name="peertube_instance_url_title">PeerTube-instanser</string>
     <string name="peertube_instance_url_summary">Välj dina favoritpeertube-instanser</string>
     <string name="peertube_instance_url_help">Hitta de instanser du gillar på %s</string>
     <string name="peertube_instance_add_title">Lägg till instans</string>
-    <string name="peertube_instance_add_help">Ange i instans-URL</string>
+    <string name="peertube_instance_add_help">Ange instansens URL</string>
     <string name="peertube_instance_add_fail">Det gick inte att validera instansen</string>
     <string name="peertube_instance_add_https_only">Endast HTTPS-URL:er stöds</string>
     <string name="peertube_instance_add_exists">Instansen finns redan</string>
@@ -410,7 +410,7 @@
     <string name="artists">Artister</string>
     <string name="albums">Album</string>
     <string name="songs">Låtar</string>
-    <string name="restricted_video">Denna video har en åldersgräns.
+    <string name="restricted_video">Denna video är åldersbegränsad.
 \n
 \nOm du vill visa den aktiverar du \"%1$s\" i inställningarna.</string>
     <string name="no_comments">Inga kommentarer</string>
@@ -435,7 +435,7 @@
     <string name="download_already_pending">Det finns en pågående hämtning med det här namnet</string>
     <string name="overwrite_failed">kan inte skriva över filen</string>
     <string name="overwrite_finished_warning">Det finns redan en hämtad fil med det här namnet</string>
-    <string name="overwrite_unrelated_warning">En fil med det här namnet finns redan</string>
+    <string name="overwrite_unrelated_warning">En fil med det namnet finns redan</string>
     <string name="recovering">återställer</string>
     <string name="missions_header_pending">Väntande</string>
     <string name="show_original_time_ago_summary">Originaltexter från tjänster kommer att synas i streamobjekt</string>
@@ -467,8 +467,8 @@
     </plurals>
     <string name="feed_group_dialog_empty_selection">Ingen prenumeration vald</string>
     <string name="feed_group_dialog_select_subscriptions">Välj prenumerationer</string>
-    <string name="feed_processing_message">Bearbetar flöde …</string>
-    <string name="feed_notification_loading">Läser in flödet…</string>
+    <string name="feed_processing_message">Bearbetar flöde…</string>
+    <string name="feed_notification_loading">Läser in flöde…</string>
     <string name="feed_subscription_not_loaded_count">Inte inläst: %d</string>
     <string name="feed_oldest_subscription_update">Flödet senast uppdaterat: %s</string>
     <string name="feed_groups_header_title">Kanalgrupper</string>
@@ -490,8 +490,8 @@
     </plurals>
     <string name="new_seek_duration_toast">På grund av ExoPlayer-begränsningar sattes söktiden till %d sekunder</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, och delvis tittade videor</string>
-    <string name="remove_watched_popup_warning">Videor som har tittats före och efter att de har lagts till i spellistan kommer att tas bort.
-\nÄr du säker\? Detta kan inte göras ogjort!</string>
+    <string name="remove_watched_popup_warning">Videor som har spelats före och efter att de har lagts till i spellistan kommer att tas bort.
+\nÄr du säker\? Detta kan inte ångras!</string>
     <string name="remove_watched_popup_title">Ta bort tittade videor\?</string>
     <string name="remove_watched">Ta bort tittade</string>
     <string name="systems_language">Systems standard</string>
@@ -501,7 +501,7 @@
     <string name="downloads_storage_use_saf_title">Använd systemmappväljaren (SAF)</string>
     <string name="downloads_storage_ask_summary">Du kommer att bli tillfrågad var du vill spara varje hämtning.
 \nAktivera systemmappväljaren (SAF) om du vill hämta till ett externt SD-kort</string>
-    <string name="downloads_storage_ask_title">Fråga vart du ska hämta</string>
+    <string name="downloads_storage_ask_title">Fråga var filen ska sparas</string>
     <string name="pause_downloads">Pausa hämtningar</string>
     <string name="start_downloads">Starta hämtningar</string>
     <string name="enable_queue_limit_desc">En hämtning körs samtidigt</string>
@@ -514,7 +514,7 @@
     <string name="clear_download_history">Rensa hämtningshistorik</string>
     <string name="error_download_resource_gone">Kan inte återställa den här hämtningen</string>
     <string name="error_timeout">Anslutnings avbrott</string>
-    <string name="error_progress_lost">Framsteg förlorat, För att filen blev borttagen</string>
+    <string name="error_progress_lost">Framsteg förlorat, för att filen blev borttagen</string>
     <string name="error_insufficient_storage">Inget utrymme kvar på enhet</string>
     <string name="error_postprocessing_stopped">NewPipe stängdes under arbete med en fil</string>
     <string name="error_report_open_github_notice">Vänligen kontrollera om en felrapport som tar upp din krasch redan finns. Att skapa ärenden när en felrapport redan finns, tar av den tid som vi annars kunde ha ägnat åt att fixa den faktiska buggen.</string>
@@ -524,7 +524,7 @@
     <string name="select_a_playlist">Välj en spellista</string>
     <string name="video_detail_by">Av %s</string>
     <string name="channel_created_by">Skapad av %s</string>
-    <string name="no_playlist_bookmarked_yet">Ingen spellista bokmärkt än</string>
+    <string name="no_playlist_bookmarked_yet">Ingen spellista har bokmärkts än</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Visa endast prenumerationer som inte grupperats</string>
     <string name="notification_scale_to_square_image_title">Skala tumnagel till 1:1-förhållande</string>
     <string name="wifi_only">Endast över Wi-Fi</string>
@@ -546,7 +546,7 @@
     <string name="notification_action_0_title">Första händelseknapp</string>
     <string name="content_not_supported">Detta innehåll stöds ännu inte av NewPipe.
 \n
-\nDet kommer förhoppningsvis inkluderas i en framtida version.</string>
+\nDetta kommer förhoppningsvis ändras i en kommande version.</string>
     <string name="playlist_page_summary">Spellistesida</string>
     <string name="never">Aldrig</string>
     <string name="notification_action_nothing">Ingenting</string>
@@ -661,4 +661,17 @@
         <item quantity="one">Nedladdning slutförd</item>
         <item quantity="other">%s nedladdningar slutförda</item>
     </plurals>
+    <string name="enqueue_next_stream">Köa nästa</string>
+    <string name="enqueued_next">Köade nästa</string>
+    <string name="start_main_player_fullscreen_title">Starta huvudspelaren i helskärmsläge</string>
+    <string name="processing_may_take_a_moment">Bearbetar… Kan ta en stund</string>
+    <string name="recent">Senaste</string>
+    <string name="main_page_content_swipe_remove">Svep objekt för att ta bort dem</string>
+    <string name="remote_search_suggestions">Förslag via fjärrsökning</string>
+    <string name="start_main_player_fullscreen_summary">Starta inte videor i minispelaren, utan byt till helskärmsläge direkt, om auto-rotation är låst. Du kan fortfarande komma åt minispelaren genom att gå ut ur helskärmsläge</string>
+    <string name="show_image_indicators_summary">Visa Picasso färgade band ovanpå bilderna som anger deras källa: rött för nätverk, blått för disk och grönt för minne</string>
+    <string name="manual_update_title">Sök efter uppdateringar</string>
+    <string name="manual_update_description">Kolla manuellt efter nya versioner</string>
+    <string name="checking_updates_toast">Söker efter uppdateringar…</string>
+    <string name="feed_new_items">Nya flödes objekt</string>
 </resources>

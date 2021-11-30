@@ -63,7 +63,7 @@
     <string name="events">Tidyanin</string>
     <string name="no_comments">Ulac iwenniten</string>
     <string name="name">Isem</string>
-    <string name="settings_category_updates_title">Isedγiten</string>
+    <string name="settings_category_updates_title">Ileqman</string>
     <string name="missions_header_pending">Yettraǧu</string>
     <string name="play_queue_audio_settings">Iɣewwaren n umeslaw</string>
     <string name="unmute">Sermed imesli</string>
@@ -138,11 +138,14 @@
     <string name="rename_playlist">Snifel isem</string>
     <string name="videos_string">Tividyutin</string>
     <string name="open_in_browser">Ldi deg uminig</string>
-    <string name="upload_date_text">Yeffeɣ-d deg %1$s</string>
+    <string name="upload_date_text">Teffeɣ-d deg %1$s</string>
     <string name="main_bg_subtitle">Senned ɣef «Nadi» akken ad tebduḍ</string>
     <string name="no_views">Ula d yiwet n tmeẓriwt</string>
     <plurals name="views">
         <item quantity="one">%s n tmeẓriwt</item>
         <item quantity="other">%s n tmeẓriyin</item>
     </plurals>
+    <string name="metadata_category">Taggayt</string>
+    <string name="metadata_privacy">Tabaḍnit</string>
+    <string name="metadata_licence">Turagt</string>
 </resources>

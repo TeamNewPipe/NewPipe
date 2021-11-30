@@ -671,4 +671,9 @@
     <string name="start_main_player_fullscreen_title">Lancer le lecteur principal en plein écran</string>
     <string name="enqueue_next_stream">Mettre en file d’attente la suivante</string>
     <string name="enqueued_next">Placé comme suivant dans liste de lecture</string>
+    <string name="processing_may_take_a_moment">Traitement en cours… Veuillez patienter</string>
+    <string name="manual_update_description">Vérifier manuellement de nouvelles versions</string>
+    <string name="checking_updates_toast">Vérification des mises à jour…</string>
+    <string name="manual_update_title">Vérifier les mises à jours</string>
+    <string name="feed_new_items">Nouveaux éléments du flux</string>
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">Publicado em %1$s</string>
-    <string name="no_player_found">Não tem um reprodutor de vídeo. Instalar VLC\?</string>
+    <string name="no_player_found">Não tem um reprodutor de vídeo. Instalar o VLC\?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir no navegador</string>
@@ -198,7 +198,7 @@
     <string name="create">Criar</string>
     <string name="rename">Mudar nome</string>
     <string name="donation_title">Doar</string>
-    <string name="no_player_found_toast">Não foi encontrado um reprodutor (pode instalar VLC para reproduzir).</string>
+    <string name="no_player_found_toast">Não foi encontrado um reprodutor (pode instalar o VLC para reproduzir).</string>
     <string name="controls_download_desc">Descarregar ficheiro de vídeo</string>
     <string name="controls_add_to_playlist_title">Adicionar a</string>
     <string name="use_inexact_seek_title">Utilizar pesquisa rápida</string>
@@ -610,8 +610,8 @@
     <string name="show_channel_details">Mostrar detalhes do canal</string>
     <string name="disable_media_tunneling_summary">Desative esta opção se estiverem a ocorrer erros de ecrã escuro ou paragens durante a reprodução</string>
     <string name="disable_media_tunneling_title">Desativar túnel multimédia</string>
-    <string name="downloads_storage_ask_summary_no_saf_notice">Sempre que transferir um ficheiro, terá que indicar o local para o guardar</string>
-    <string name="no_dir_yet">Ainda sem pasta de descarregas definida, escolha agora a pasta de descarregas padrão</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Sempre que descarregar um ficheiro, terá que indicar o local para o guardar</string>
+    <string name="no_dir_yet">Ainda não foi definida uma pasta de descarregamento, escolha agora a pasta de descarregamento padrão</string>
     <string name="service_provides_reason">%s fornece este motivo:</string>
     <string name="account_terminated">Conta encerrada</string>
     <string name="feed_toggle_show_played_items">Mostrar itens vistos</string>
@@ -622,7 +622,7 @@
     <string name="feed_load_error_account_info">Não foi possível carregar o feed para \'%s\'.</string>
     <string name="feed_load_error">Erro ao carregar o feed</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, apenas o \'Storage Access Framework\' é compatível</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' não é compatível com Android KitKat e versões anteriores</string>
+    <string name="downloads_storage_use_saf_summary_api_19">A \'Framework de acesso ao armazenamento\' não está disponível no Android KitKat e anteriores</string>
     <string name="seekbar_preview_thumbnail_title">Pré-visualização da miniatura da barra de pesquisa</string>
     <string name="mark_as_watched">Marcar como visto</string>
     <string name="off">Desligado</string>
@@ -669,4 +669,9 @@
     <string name="start_main_player_fullscreen_title">Iniciar reprodutor principal em ecrã completo</string>
     <string name="enqueued_next">Enfileirado o próximo</string>
     <string name="enqueue_next_stream">Enfileirar o próximo</string>
+    <string name="processing_may_take_a_moment">A processar… Pode demorar um momento</string>
+    <string name="manual_update_title">Procurar atualizações</string>
+    <string name="manual_update_description">Verificar manualmente se existe uma nova versão</string>
+    <string name="checking_updates_toast">A procurar atualizações…</string>
+    <string name="feed_new_items">Novos itens</string>
 </resources>

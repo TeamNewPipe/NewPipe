@@ -1,0 +1,4 @@
+Changes in 0.17.2
+
+تعمیر
+• Fix no video was available

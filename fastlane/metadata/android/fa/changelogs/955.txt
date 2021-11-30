@@ -1,0 +1,3 @@
+[یوتوب] Fix search for some users
+[یوتوب] Fix random decryption exceptions
+[سوندکلود] URLs that end with a slash are now parsed correctly

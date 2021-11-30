@@ -94,7 +94,7 @@
     <string name="yes">Da</string>
     <string name="disabled">Dezactivat</string>
     <string name="app_ui_crash">Aplicația/UI s-a oprit</string>
-    <string name="info_labels">Ce:\\nSolicitare:\\nLimba conținutului:\\nȚara conținutului:\\nLimba aplicației:\\nServiciu:\\nOra GMT:\\nPachet:\\nVersiune: \\nVersiune OS:</string>
+    <string name="info_labels">Ce:\\nSolicitare:\\nLimba conținutului:\\nȚara conținutului:\\nLimba aplicației:\\nServiciu:\\nOra GMT:\\nPachet:\\nVersiune: \\nVersiune SO:</string>
     <string name="short_thousand">k</string>
     <string name="short_million">mil.</string>
     <string name="short_billion">mld.</string>
@@ -371,7 +371,7 @@
     <string name="notification_colorize_summary">Faceți ca Android să personalizeze culoarea notificării în funcție de culoarea principală din miniatură (rețineți că aceasta nu este disponibilă pe toate dispozitivele)</string>
     <string name="notification_colorize_title">Colorează notificarea</string>
     <string name="notification_action_nothing">Nimic</string>
-    <string name="notification_action_buffering">Buffering</string>
+    <string name="notification_action_buffering">Tamponare</string>
     <string name="notification_action_shuffle">Redare aleatorie</string>
     <string name="notification_action_repeat">Repetaţi</string>
     <string name="notification_actions_at_most_three">Puteți selecta cel mult trei acțiuni pentru afișare în notificarea compactă!</string>
@@ -681,4 +681,5 @@
     <string name="show_image_indicators_summary">Afișați panglici colorate de Picasso deasupra imaginilor, indicând sursa acestora: roșu pentru rețea, albastru pentru disc și verde pentru memorie</string>
     <string name="show_image_indicators_title">Afișați indicatorii de imagine</string>
     <string name="disable_media_tunneling_summary">Dezactivați tunelarea media dacă întâmpinați un ecran negru sau blocaje la redarea video</string>
+    <string name="processing_may_take_a_moment">Procesarea.. Poate dura un moment</string>
 </resources>
