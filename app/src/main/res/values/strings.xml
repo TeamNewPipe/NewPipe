@@ -182,14 +182,17 @@
     <string name="just_once">Just Once</string>
     <string name="file">File</string>
     <string name="notification_channel_id" translatable="false">newpipe</string>
-    <string name="notification_channel_name">NewPipe Notification</string>
-    <string name="notification_channel_description">Notifications for NewPipe background and popup players</string>
+    <string name="notification_channel_name">NewPipe notification</string>
+    <string name="notification_channel_description">Notifications for NewPipe\'s player</string>
     <string name="app_update_notification_channel_id" translatable="false">newpipeAppUpdate</string>
-    <string name="app_update_notification_channel_name">App Update Notification</string>
-    <string name="app_update_notification_channel_description">Notifications for new NewPipe version</string>
+    <string name="app_update_notification_channel_name">App update notification</string>
+    <string name="app_update_notification_channel_description">Notifications for new NewPipe versions</string>
     <string name="hash_channel_id" translatable="false">newpipeHash</string>
-    <string name="hash_channel_name">Video Hash Notification</string>
+    <string name="hash_channel_name">Video hash notification</string>
     <string name="hash_channel_description">Notifications for video hashing progress</string>
+    <string name="error_report_channel_id" translatable="false">newpipeErrorReport</string>
+    <string name="error_report_channel_name">Error report notification</string>
+    <string name="error_report_channel_description">Notifications to report errors</string>
     <string name="unknown_content">[Unknown]</string>
     <string name="switch_to_background">Switch to Background</string>
     <string name="switch_to_popup">Switch to Popup</string>

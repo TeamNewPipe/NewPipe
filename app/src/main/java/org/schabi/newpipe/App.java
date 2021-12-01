@@ -227,28 +227,35 @@ public class App extends MultiDexApplication {
         // the main and update channels
         final NotificationChannelCompat mainChannel = new NotificationChannelCompat
                 .Builder(getString(R.string.notification_channel_id),
-                NotificationManagerCompat.IMPORTANCE_LOW)
+                        NotificationManagerCompat.IMPORTANCE_LOW)
                 .setName(getString(R.string.notification_channel_name))
                 .setDescription(getString(R.string.notification_channel_description))
                 .build();
 
         final NotificationChannelCompat appUpdateChannel = new NotificationChannelCompat
                 .Builder(getString(R.string.app_update_notification_channel_id),
-                NotificationManagerCompat.IMPORTANCE_LOW)
+                        NotificationManagerCompat.IMPORTANCE_LOW)
                 .setName(getString(R.string.app_update_notification_channel_name))
                 .setDescription(getString(R.string.app_update_notification_channel_description))
                 .build();
 
         final NotificationChannelCompat hashChannel = new NotificationChannelCompat
                 .Builder(getString(R.string.hash_channel_id),
-                NotificationManagerCompat.IMPORTANCE_HIGH)
+                        NotificationManagerCompat.IMPORTANCE_HIGH)
                 .setName(getString(R.string.hash_channel_name))
                 .setDescription(getString(R.string.hash_channel_description))
                 .build();
 
+        final NotificationChannelCompat errorReportChannel = new NotificationChannelCompat
+                .Builder(getString(R.string.error_report_channel_id),
+                        NotificationManagerCompat.IMPORTANCE_LOW)
+                .setName(getString(R.string.error_report_channel_name))
+                .setDescription(getString(R.string.error_report_channel_description))
+                .build();
+
         final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.createNotificationChannelsCompat(Arrays.asList(mainChannel,
-                appUpdateChannel, hashChannel));
+                appUpdateChannel, hashChannel, errorReportChannel));
     }
 
     protected boolean isDisposedRxExceptionsReported() {
