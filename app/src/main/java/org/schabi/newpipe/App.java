@@ -16,8 +16,8 @@ import org.acra.ACRA;
 import org.acra.config.ACRAConfigurationException;
 import org.acra.config.CoreConfiguration;
 import org.acra.config.CoreConfigurationBuilder;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -217,7 +217,7 @@ public class App extends MultiDexApplication {
             ACRA.init(this, acraConfig);
         } catch (final ACRAConfigurationException exception) {
             exception.printStackTrace();
-            ErrorActivity.reportError(this, new ErrorInfo(exception,
+            ErrorUtil.openActivity(this, new ErrorInfo(exception,
                     UserAction.SOMETHING_ELSE, "Could not initialize ACRA crash report"));
         }
     }

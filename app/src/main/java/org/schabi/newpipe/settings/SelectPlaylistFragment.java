@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +20,8 @@ import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
@@ -105,8 +104,7 @@ public class SelectPlaylistFragment extends DialogFragment {
     }
 
     protected void onError(final Throwable e) {
-        final Activity activity = requireActivity();
-        ErrorActivity.reportErrorInSnackbar(activity, new ErrorInfo(e,
+        ErrorUtil.showSnackbar(requireActivity(), new ErrorInfo(e,
                 UserAction.UI_ERROR, "Loading playlists"));
     }
 

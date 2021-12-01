@@ -21,8 +21,8 @@ import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
 import com.grack.nanojson.JsonParserException;
 
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.downloader.Response;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
@@ -64,7 +64,7 @@ public final class CheckForNewAppVersion extends IntentService {
             signatures = PackageInfoCompat.getSignatures(application.getPackageManager(),
                     application.getPackageName());
         } catch (final PackageManager.NameNotFoundException e) {
-            ErrorActivity.reportError(application, new ErrorInfo(e,
+            ErrorUtil.createNotification(application, new ErrorInfo(e,
                     UserAction.CHECK_FOR_NEW_APP_VERSION, "Could not find package info"));
             return "";
         }
@@ -79,7 +79,7 @@ public final class CheckForNewAppVersion extends IntentService {
             final CertificateFactory cf = CertificateFactory.getInstance("X509");
             c = (X509Certificate) cf.generateCertificate(input);
         } catch (final CertificateException e) {
-            ErrorActivity.reportError(application, new ErrorInfo(e,
+            ErrorUtil.createNotification(application, new ErrorInfo(e,
                     UserAction.CHECK_FOR_NEW_APP_VERSION, "Certificate error"));
             return "";
         }
@@ -89,7 +89,7 @@ public final class CheckForNewAppVersion extends IntentService {
             final byte[] publicKey = md.digest(c.getEncoded());
             return byte2HexFormatted(publicKey);
         } catch (NoSuchAlgorithmException | CertificateEncodingException e) {
-            ErrorActivity.reportError(application, new ErrorInfo(e,
+            ErrorUtil.createNotification(application, new ErrorInfo(e,
                     UserAction.CHECK_FOR_NEW_APP_VERSION, "Could not retrieve SHA1 key"));
             return "";
         }

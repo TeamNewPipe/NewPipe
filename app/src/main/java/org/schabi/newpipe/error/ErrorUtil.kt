@@ -14,7 +14,7 @@ import org.schabi.newpipe.R
 
 class ErrorUtil {
     companion object {
-        private const val ERROR_REPORT_NOTIFICATION_ID = 5340681;
+        private const val ERROR_REPORT_NOTIFICATION_ID = 5340681
 
         /**
          * Reports a new error by starting a new activity.
@@ -62,34 +62,34 @@ class ErrorUtil {
         @JvmStatic
         fun createNotification(context: Context, errorInfo: ErrorInfo) {
             val notificationManager =
-                    ContextCompat.getSystemService(context, NotificationManager::class.java)
+                ContextCompat.getSystemService(context, NotificationManager::class.java)
             if (notificationManager == null) {
                 // this should never happen, but just in case open error activity
                 openActivity(context, errorInfo)
             }
 
             val notificationBuilder: NotificationCompat.Builder =
-                    NotificationCompat.Builder(context,
-                            context.getString(R.string.error_report_channel_id))
-                            .setSmallIcon(R.drawable.ic_bug_report)
-                            .setContentTitle(context.getString(R.string.error_report_title))
-                            .setContentText(context.getString(errorInfo.messageStringId))
+                NotificationCompat.Builder(
+                    context,
+                    context.getString(R.string.error_report_channel_id)
+                )
+                    .setSmallIcon(R.drawable.ic_bug_report)
+                    .setContentTitle(context.getString(R.string.error_report_title))
+                    .setContentText(context.getString(errorInfo.messageStringId))
 
             notificationManager!!.notify(ERROR_REPORT_NOTIFICATION_ID, notificationBuilder.build())
         }
-
 
         private fun showSnackbar(context: Context, rootView: View?, errorInfo: ErrorInfo) {
             if (rootView == null) {
                 // fallback to showing a notification if no root view is available
                 createNotification(context, errorInfo)
-
             } else {
                 Snackbar.make(rootView, R.string.error_snackbar_message, Snackbar.LENGTH_LONG)
-                        .setActionTextColor(Color.YELLOW)
-                        .setAction(context.getString(R.string.error_snackbar_action).uppercase()) {
-                            openActivity(context, errorInfo)
-                        }.show()
+                    .setActionTextColor(Color.YELLOW)
+                    .setAction(context.getString(R.string.error_snackbar_action).uppercase()) {
+                        openActivity(context, errorInfo)
+                    }.show()
             }
         }
     }

@@ -8,8 +8,8 @@ import android.util.Log;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.DeviceUtils;
 
@@ -157,7 +157,7 @@ public final class SettingMigrations {
             } catch (final Exception e) {
                 // save the version with the last successful migration and report the error
                 sp.edit().putInt(lastPrefVersionKey, currentVersion).apply();
-                ErrorActivity.reportError(context, new ErrorInfo(
+                ErrorUtil.openActivity(context, new ErrorInfo(
                         e,
                         UserAction.PREFERENCES_MIGRATION,
                         "Migrating preferences from version " + lastPrefVersion + " to "

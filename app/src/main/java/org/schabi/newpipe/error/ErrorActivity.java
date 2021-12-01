@@ -52,7 +52,7 @@ import java.util.Arrays;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class ErrorActivity extends AppCompatActivity {
+public class ErrorActivity extends AppCompatActivity {
     // LOG TAGS
     public static final String TAG = ErrorActivity.class.toString();
     // BUNDLE TAGS

@@ -23,7 +23,7 @@ import com.google.android.material.tabs.TabLayout;
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentMainBinding;
-import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
@@ -145,7 +145,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 NavigationHelper.openSearchFragment(getFM(),
                         ServiceHelper.getSelectedServiceId(activity), "");
             } catch (final Exception e) {
-                ErrorActivity.reportUiErrorInSnackbar(this, "Opening search fragment", e);
+                ErrorUtil.showUiErrorSnackbar(this, "Opening search fragment", e);
             }
             return true;
         }
@@ -227,16 +227,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         public Fragment getItem(final int position) {
             final Tab tab = internalTabsList.get(position);
 
-            Throwable throwable = null;
-            Fragment fragment = null;
+            final Fragment fragment;
             try {
                 fragment = tab.getFragment(context);
             } catch (final ExtractionException e) {
-                throwable = e;
-            }
-
-            if (throwable != null) {
-                ErrorActivity.reportUiErrorInSnackbar(context, "Getting fragment item", throwable);
+                ErrorUtil.showUiErrorSnackbar(context, "Getting fragment item", e);
                 return new BlankFragment();
             }
 

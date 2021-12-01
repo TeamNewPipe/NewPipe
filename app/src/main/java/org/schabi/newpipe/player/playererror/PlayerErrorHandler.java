@@ -13,8 +13,8 @@ import com.google.android.exoplayer2.ExoPlaybackException;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.EnsureExceptionSerializable;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.Info;
 
@@ -67,7 +67,7 @@ public class PlayerErrorHandler {
 
     private void reportError(@NonNull final ExoPlaybackException exception,
                              @NonNull final Info info) {
-        ErrorActivity.reportError(
+        ErrorUtil.createNotification(
                 context,
                 new ErrorInfo(
                         EnsureExceptionSerializable.ensureSerializable(exception),
