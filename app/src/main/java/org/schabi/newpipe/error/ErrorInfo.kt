@@ -2,6 +2,7 @@ package org.schabi.newpipe.error
 
 import android.os.Parcelable
 import androidx.annotation.StringRes
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Info
@@ -21,10 +22,13 @@ class ErrorInfo(
     val userAction: UserAction,
     val serviceName: String,
     val request: String,
-    val messageStringId: Int,
-    @Transient // no need to store throwable, all data for report is in other variables
-    var throwable: Throwable? = null
+    val messageStringId: Int
 ) : Parcelable {
+
+    // no need to store throwable, all data for report is in other variables
+    // also, the throwable might not be serializable, see TeamNewPipe/NewPipe#7302
+    @IgnoredOnParcel
+    var throwable: Throwable? = null
 
     private constructor(
         throwable: Throwable,
@@ -36,9 +40,10 @@ class ErrorInfo(
         userAction,
         serviceName,
         request,
-        getMessageStringId(throwable, userAction),
-        throwable
-    )
+        getMessageStringId(throwable, userAction)
+    ) {
+        this.throwable = throwable
+    }
 
     private constructor(
         throwable: List<Throwable>,
@@ -50,9 +55,10 @@ class ErrorInfo(
         userAction,
         serviceName,
         request,
-        getMessageStringId(throwable.firstOrNull(), userAction),
-        throwable.firstOrNull()
-    )
+        getMessageStringId(throwable.firstOrNull(), userAction)
+    ) {
+        this.throwable = throwable.firstOrNull()
+    }
 
     // constructors with single throwable
     constructor(throwable: Throwable, userAction: UserAction, request: String) :

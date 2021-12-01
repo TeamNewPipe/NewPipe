@@ -20,10 +20,6 @@ class ErrorUtil {
 
         /**
          * Reports a new error by starting a new activity.
-         * <br></br>
-         * Ensure that the data within errorInfo is serializable otherwise
-         * an exception will be thrown!<br></br>
-         * [EnsureExceptionSerializable] might help.
          *
          * @param context
          * @param errorInfo
