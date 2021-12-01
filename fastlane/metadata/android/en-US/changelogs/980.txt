@@ -1,5 +1,5 @@
 New
-• Added "Add to playlist" open to share menu
+• Added "Add to playlist" option to share menu
 • Added support for y2u.be and PeerTube short links
 
 Improved
