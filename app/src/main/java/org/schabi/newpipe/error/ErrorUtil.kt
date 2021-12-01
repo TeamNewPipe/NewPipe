@@ -2,9 +2,11 @@ package org.schabi.newpipe.error
 
 import android.app.Activity
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import android.view.View
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
@@ -28,10 +30,7 @@ class ErrorUtil {
          */
         @JvmStatic
         fun openActivity(context: Context, errorInfo: ErrorInfo) {
-            val intent = Intent(context, ErrorActivity::class.java)
-            intent.putExtra(ErrorActivity.ERROR_INFO, errorInfo)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            context.startActivity(intent)
+            context.startActivity(getErrorActivityIntent(context, errorInfo))
         }
 
         @JvmStatic
@@ -68,16 +67,37 @@ class ErrorUtil {
                 openActivity(context, errorInfo)
             }
 
+            var pendingIntentFlags = PendingIntent.FLAG_UPDATE_CURRENT
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                pendingIntentFlags = pendingIntentFlags or PendingIntent.FLAG_IMMUTABLE
+            }
+
             val notificationBuilder: NotificationCompat.Builder =
                 NotificationCompat.Builder(
                     context,
                     context.getString(R.string.error_report_channel_id)
                 )
                     .setSmallIcon(R.drawable.ic_bug_report)
-                    .setContentTitle(context.getString(R.string.error_report_title))
+                    .setContentTitle(context.getString(R.string.error_report_notification_title))
                     .setContentText(context.getString(errorInfo.messageStringId))
+                    .setAutoCancel(true)
+                    .setContentIntent(
+                        PendingIntent.getActivity(
+                            context,
+                            0,
+                            getErrorActivityIntent(context, errorInfo),
+                            pendingIntentFlags
+                        )
+                    )
 
             notificationManager!!.notify(ERROR_REPORT_NOTIFICATION_ID, notificationBuilder.build())
+        }
+
+        private fun getErrorActivityIntent(context: Context, errorInfo: ErrorInfo): Intent {
+            val intent = Intent(context, ErrorActivity::class.java)
+            intent.putExtra(ErrorActivity.ERROR_INFO, errorInfo)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            return intent
         }
 
         private fun showSnackbar(context: Context, rootView: View?, errorInfo: ErrorInfo) {

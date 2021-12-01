@@ -246,6 +246,7 @@
     <string name="restore_defaults_confirmation">Do you want to restore defaults?</string>
     <string name="permission_display_over_apps">Give permission to display over other apps</string>
     <!-- error activity -->
+    <string name="error_report_notification_title">NewPipe encountered an error, tap to report</string>
     <string name="sorry_string">Sorry, that should not have happened.</string>
     <string name="guru_meditation" translatable="false">Guru Meditation.</string>
     <string name="error_report_button_text">Report this error via e-mail</string>
