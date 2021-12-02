@@ -477,9 +477,11 @@
     <string name="disable_media_tunneling_summary">Disable media tunneling if you experience a black screen or stuttering on video playback</string>
     <string name="show_image_indicators_title">Show image indicators</string>
     <string name="show_image_indicators_summary">Show Picasso colored ribbons on top of images indicating their source: red for network, blue for disk and green for memory</string>
-    <string name="crash_the_app">Crash the app</string>
     <string name="show_crash_the_player_title">Show \"crash the player\"</string>
     <string name="show_crash_the_player_summary">Shows a crash option when using the player</string>
+    <string name="crash_the_app">Crash the app</string>
+    <string name="show_error_snackbar">Show an error snackbar</string>
+    <string name="create_error_notification">Create an error notification</string>
     <!-- Subscriptions import/export -->
     <string name="import_title">Import</string>
     <string name="import_from">Import from</string>
