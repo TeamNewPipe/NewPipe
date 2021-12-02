@@ -2,6 +2,7 @@ package org.schabi.newpipe.error
 
 import android.os.Parcelable
 import androidx.annotation.StringRes
+import com.google.android.exoplayer2.ExoPlaybackException
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.schabi.newpipe.R
@@ -108,6 +109,13 @@ class ErrorInfo(
                 throwable is ContentNotSupportedException -> R.string.content_not_supported
                 throwable is DeobfuscateException -> R.string.youtube_signature_deobfuscation_error
                 throwable is ExtractionException -> R.string.parsing_error
+                throwable is ExoPlaybackException -> {
+                    when (throwable.type) {
+                        ExoPlaybackException.TYPE_SOURCE -> R.string.player_stream_failure
+                        ExoPlaybackException.TYPE_UNEXPECTED -> R.string.player_recoverable_failure
+                        else -> R.string.player_unrecoverable_failure
+                    }
+                }
                 action == UserAction.UI_ERROR -> R.string.app_ui_crash
                 action == UserAction.REQUESTED_COMMENTS -> R.string.error_unable_to_load_comments
                 action == UserAction.SUBSCRIPTION_CHANGE -> R.string.subscription_change_failed

@@ -89,8 +89,6 @@
         <item>@string/never</item>
     </string-array>
 
-    <string name="report_player_errors_key" translatable="false">report_player_errors_key</string>
-
     <string name="seekbar_preview_thumbnail_key" translatable="false">seekbar_preview_thumbnail_key</string>
     <string name="seekbar_preview_thumbnail_high_quality" translatable="false">seekbar_preview_thumbnail_high_quality</string>
     <string name="seekbar_preview_thumbnail_low_quality" translatable="false">seekbar_preview_thumbnail_low_quality</string>

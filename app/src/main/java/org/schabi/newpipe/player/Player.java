@@ -141,6 +141,9 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.databinding.PlayerPopupCloseOverlayBinding;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamSegment;
@@ -165,7 +168,6 @@ import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.player.playback.PlayerMediaSession;
 import org.schabi.newpipe.player.playback.SurfaceHolderCallback;
-import org.schabi.newpipe.player.playererror.PlayerErrorHandler;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueAdapter;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
@@ -267,8 +269,6 @@ public final class Player implements
     @Nullable private PlayQueueItem currentItem;
     @Nullable private MediaSourceTag currentMetadata;
     @Nullable private Bitmap currentThumbnail;
-
-    @NonNull private PlayerErrorHandler playerErrorHandler;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -412,8 +412,6 @@ public final class Player implements
 
         videoResolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
         audioResolver = new AudioPlaybackResolver(context, dataSource);
-
-        playerErrorHandler = new PlayerErrorHandler(context);
 
         windowManager = ContextCompat.getSystemService(context, WindowManager.class);
     }
@@ -2518,29 +2516,30 @@ public final class Player implements
 
         saveStreamProgressState();
 
+        // create error notification
+        final ErrorInfo errorInfo;
+        if (currentMetadata == null) {
+            errorInfo = new ErrorInfo(error, UserAction.PLAY_STREAM,
+                    "Player error[type=" + error.type + "] occurred, currentMetadata is null");
+        } else {
+            errorInfo = new ErrorInfo(error, UserAction.PLAY_STREAM,
+                    "Player error[type=" + error.type + "] occurred while playing "
+                            + currentMetadata.getMetadata().getUrl(),
+                    currentMetadata.getMetadata());
+        }
+        ErrorUtil.createNotification(context, errorInfo);
+
         switch (error.type) {
             case ExoPlaybackException.TYPE_SOURCE:
                 processSourceError(error.getSourceException());
-                playerErrorHandler.showPlayerError(
-                        error,
-                        currentMetadata.getMetadata(),
-                        R.string.player_stream_failure);
                 break;
             case ExoPlaybackException.TYPE_UNEXPECTED:
-                playerErrorHandler.showPlayerError(
-                        error,
-                        currentMetadata.getMetadata(),
-                        R.string.player_recoverable_failure);
                 setRecovery();
                 reloadPlayQueueManager();
                 break;
             case ExoPlaybackException.TYPE_REMOTE:
             case ExoPlaybackException.TYPE_RENDERER:
             default:
-                playerErrorHandler.showPlayerError(
-                        error,
-                        currentMetadata.getMetadata(),
-                        R.string.player_unrecoverable_failure);
                 onPlaybackShutdown();
                 break;
         }
