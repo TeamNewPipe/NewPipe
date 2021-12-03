@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="false"
-        android:focusable="false"
-        android:visibility="invisible" />
+        android:focusable="false" />
 
     <org.schabi.newpipe.views.player.SecondsView
         android:id="@+id/seconds_view"

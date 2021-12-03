@@ -6,10 +6,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.annotation.DrawableRes
 import org.schabi.newpipe.R
-import org.schabi.newpipe.databinding.PlayerSeekSecondsViewBinding
+import org.schabi.newpipe.databinding.PlayerFastSeekSecondsViewBinding
 
 class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context, attrs) {
 
@@ -35,31 +33,15 @@ class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context
             field = value
         }
 
-    var isForward: Boolean = true
-        set(value) {
-            binding.triangleContainer.rotation = if (value) 0f else 180f
-            field = value
-        }
-
-    val binding = PlayerSeekSecondsViewBinding.inflate(LayoutInflater.from(context), this)
-
-    val textView: TextView
-        get() = binding.tvSeconds
-
-    @DrawableRes
-    var icon: Int = R.drawable.ic_play_seek_triangle
-        set(value) {
-            if (value > 0) {
-                binding.icon1.setImageResource(value)
-                binding.icon2.setImageResource(value)
-                binding.icon3.setImageResource(value)
-            }
-            field = value
-        }
+    val binding = PlayerFastSeekSecondsViewBinding.inflate(LayoutInflater.from(context), this)
 
     init {
         orientation = VERTICAL
         layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+    }
+
+    fun setForwarding(isForward: Boolean) {
+        binding.triangleContainer.rotation = if (isForward) 0f else 180f
     }
 
     fun start() {

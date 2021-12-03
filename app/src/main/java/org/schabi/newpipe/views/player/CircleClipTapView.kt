@@ -6,17 +6,8 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
-import org.schabi.newpipe.player.event.DisplayPortion
 
 class CircleClipTapView(context: Context?, attrs: AttributeSet) : View(context, attrs) {
-
-    companion object {
-        const val COLOR_DARK = 0x45000000
-        const val COLOR_DARK_TRANSPARENT = 0x30000000
-        const val COLOR_LIGHT_TRANSPARENT = 0x25EEEEEE
-
-        fun calculateArcSize(view: View): Float = view.height / 11.4f
-    }
 
     private var backgroundPaint = Paint()
 
@@ -26,6 +17,7 @@ class CircleClipTapView(context: Context?, attrs: AttributeSet) : View(context, 
     // Background
 
     private var shapePath = Path()
+    private var arcSize: Float = 80f
     private var isLeft = true
 
     init {
@@ -34,7 +26,7 @@ class CircleClipTapView(context: Context?, attrs: AttributeSet) : View(context, 
         backgroundPaint.apply {
             style = Paint.Style.FILL
             isAntiAlias = true
-            color = COLOR_LIGHT_TRANSPARENT
+            color = 0x30000000
         }
 
         val dm = context.resources.displayMetrics
@@ -44,24 +36,15 @@ class CircleClipTapView(context: Context?, attrs: AttributeSet) : View(context, 
         updatePathShape()
     }
 
-    var arcSize: Float = 80f
-        set(value) {
-            field = value
+    fun updateArcSize(baseView: View) {
+        val newArcSize = baseView.height / 11.4f
+        if (arcSize != newArcSize) {
+            arcSize = newArcSize
             updatePathShape()
         }
+    }
 
-    var circleBackgroundColor: Int
-        get() = backgroundPaint.color
-        set(value) {
-            backgroundPaint.color = value
-        }
-
-    /*
-        Background
-     */
-
-    fun updatePosition(portion: DisplayPortion) {
-        val newIsLeft = portion == DisplayPortion.LEFT
+    fun updatePosition(newIsLeft: Boolean) {
         if (isLeft != newIsLeft) {
             isLeft = newIsLeft
             updatePathShape()

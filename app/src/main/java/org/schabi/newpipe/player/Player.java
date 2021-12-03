@@ -51,8 +51,6 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
@@ -189,8 +187,7 @@ import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.ExpandableSurfaceView;
-import org.schabi.newpipe.views.player.CircleClipTapView;
-import org.schabi.newpipe.views.player.PlayerSeekOverlay;
+import org.schabi.newpipe.views.player.PlayerFastSeekOverlay;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -454,6 +451,8 @@ public final class Player implements
             initPlayer(true);
         }
         initListeners();
+
+        setupPlayerSeekOverlay();
     }
 
     private void initViews(@NonNull final PlayerBinding playerBinding) {
@@ -530,12 +529,6 @@ public final class Player implements
         binding.resizeTextView.setOnClickListener(this);
         binding.playbackLiveSync.setOnClickListener(this);
 
-        playerGestureListener = new PlayerGestureListener(this, service);
-        gestureDetector = new GestureDetectorCompat(context, playerGestureListener);
-        //noinspection ClickableViewAccessibility
-        binding.getRoot().setOnTouchListener(playerGestureListener);
-        setupPlayerSeekOverlay();
-
         binding.queueButton.setOnClickListener(this);
         binding.segmentsButton.setOnClickListener(this);
         binding.repeatButton.setOnClickListener(this);
@@ -586,26 +579,26 @@ public final class Player implements
                                 v.getPaddingBottom()));
     }
 
+    /**
+     * Initializes the Fast-For/Backward overlay.
+     */
     private void setupPlayerSeekOverlay() {
-        binding.seekOverlay.showCircle(true)
-                .circleBackgroundColorInt(CircleClipTapView.COLOR_DARK_TRANSPARENT)
+        playerGestureListener = new PlayerGestureListener(this, service);
+        gestureDetector = new GestureDetectorCompat(context, playerGestureListener);
+        binding.getRoot().setOnTouchListener(playerGestureListener);
+
+        binding.fastSeekOverlay
                 .seekSeconds((int) (retrieveSeekDurationFromPreferences(this) / 1000.0f))
-                .performListener(new PlayerSeekOverlay.PerformListener() {
+                .performListener(new PlayerFastSeekOverlay.PerformListener() {
 
                     @Override
-                    public void onPrepare() {
-                        if (invalidSeekConditions()) {
-                            playerGestureListener.endMultiDoubleTap();
-                            return;
-                        }
-                        binding.seekOverlay.arcSize(
-                                CircleClipTapView.Companion.calculateArcSize(getSurfaceView())
-                        );
+                    public void onDoubleTabStart() {
+                        // TODO
                     }
 
                     @Override
-                    public void onAnimationStart() {
-                        animate(binding.seekOverlay, true, SEEK_OVERLAY_DURATION);
+                    public void onDoubleTab() {
+                        animate(binding.fastSeekOverlay, true, SEEK_OVERLAY_DURATION);
                         animate(binding.playbackControlsShadow,
                                 !simpleExoPlayer.getPlayWhenReady(), SEEK_OVERLAY_DURATION);
                         animate(binding.playerTopShadow, false, SEEK_OVERLAY_DURATION);
@@ -615,8 +608,8 @@ public final class Player implements
                     }
 
                     @Override
-                    public void onAnimationEnd() {
-                        animate(binding.seekOverlay, false, SEEK_OVERLAY_DURATION);
+                    public void onDoubleTabEnd() {
+                        animate(binding.fastSeekOverlay, false, SEEK_OVERLAY_DURATION);
                         if (!simpleExoPlayer.getPlayWhenReady()) {
                             showControls(SEEK_OVERLAY_DURATION);
                         } else {
@@ -629,6 +622,7 @@ public final class Player implements
                         // Null indicates an invalid area or condition e.g. the middle portion
                         // or video start or end was reached during double tap seeking
                         if (invalidSeekConditions()) {
+                            playerGestureListener.endMultiDoubleTap();
                             return null;
                         }
                         if (portion == DisplayPortion.LEFT
@@ -637,9 +631,9 @@ public final class Player implements
                             return false;
                         } else if (portion == DisplayPortion.RIGHT) {
                             return true;
-                        } else /* portion == DisplayPortion.MIDDLE */ {
-                            return null;
                         }
+                        /* portion == DisplayPortion.MIDDLE */
+                        return null;
                     }
 
                     @Override
@@ -653,12 +647,13 @@ public final class Player implements
                     }
 
                     private boolean invalidSeekConditions() {
-                        return simpleExoPlayer.getCurrentPosition() == simpleExoPlayer.getDuration()
-                                || currentState == STATE_COMPLETED
-                                || !isPrepared;
+                        return exoPlayerIsNull()
+                            || simpleExoPlayer.getPlaybackState() == SimpleExoPlayer.STATE_ENDED
+                            || simpleExoPlayer.getCurrentPosition() >= simpleExoPlayer.getDuration()
+                            || currentState == STATE_COMPLETED;
                     }
                 });
-        playerGestureListener.doubleTapControls(binding.seekOverlay);
+        playerGestureListener.doubleTapControls(binding.fastSeekOverlay);
     }
 
     //endregion
@@ -1879,71 +1874,6 @@ public final class Player implements
         return binding != null && binding.playbackControlRoot.getVisibility() == View.VISIBLE;
     }
 
-    /**
-     * Show a animation, and depending on goneOnEnd, will stay on the screen or be gone.
-     *
-     * @param drawableId the drawable that will be used to animate,
-     *                   pass -1 to clear any animation that is visible
-     * @param goneOnEnd  will set the animation view to GONE on the end of the animation
-     */
-    public void showAndAnimateControl(final int drawableId, final boolean goneOnEnd) {
-        if (DEBUG) {
-            Log.d(TAG, "showAndAnimateControl() called with: "
-                    + "drawableId = [" + drawableId + "], goneOnEnd = [" + goneOnEnd + "]");
-        }
-        if (controlViewAnimator != null && controlViewAnimator.isRunning()) {
-            if (DEBUG) {
-                Log.d(TAG, "showAndAnimateControl: controlViewAnimator.isRunning");
-            }
-            controlViewAnimator.end();
-        }
-
-        if (drawableId == -1) {
-            if (binding.controlAnimationView.getVisibility() == View.VISIBLE) {
-                controlViewAnimator = ObjectAnimator.ofPropertyValuesHolder(
-                        binding.controlAnimationView,
-                        PropertyValuesHolder.ofFloat(View.ALPHA, 1.0f, 0.0f),
-                        PropertyValuesHolder.ofFloat(View.SCALE_X, 1.4f, 1.0f),
-                        PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.4f, 1.0f)
-                ).setDuration(DEFAULT_CONTROLS_DURATION);
-                controlViewAnimator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(final Animator animation) {
-                        binding.controlAnimationView.setVisibility(View.GONE);
-                    }
-                });
-                controlViewAnimator.start();
-            }
-            return;
-        }
-
-        final float scaleFrom = goneOnEnd ? 1f : 1f;
-        final float scaleTo = goneOnEnd ? 1.8f : 1.4f;
-        final float alphaFrom = goneOnEnd ? 1f : 0f;
-        final float alphaTo = goneOnEnd ? 0f : 1f;
-
-
-        controlViewAnimator = ObjectAnimator.ofPropertyValuesHolder(
-                binding.controlAnimationView,
-                PropertyValuesHolder.ofFloat(View.ALPHA, alphaFrom, alphaTo),
-                PropertyValuesHolder.ofFloat(View.SCALE_X, scaleFrom, scaleTo),
-                PropertyValuesHolder.ofFloat(View.SCALE_Y, scaleFrom, scaleTo)
-        );
-        controlViewAnimator.setDuration(goneOnEnd ? 1000 : 500);
-        controlViewAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(final Animator animation) {
-                binding.controlAnimationView.setVisibility(goneOnEnd ? View.GONE : View.VISIBLE);
-            }
-        });
-
-
-        binding.controlAnimationView.setVisibility(View.VISIBLE);
-        binding.controlAnimationView.setImageDrawable(
-                AppCompatResources.getDrawable(context, drawableId));
-        controlViewAnimator.start();
-    }
-
     public void showControlsThenHide() {
         if (DEBUG) {
             Log.d(TAG, "showControlsThenHide() called");
@@ -2214,8 +2144,6 @@ public final class Player implements
 
         updateStreamRelatedViews();
 
-        showAndAnimateControl(-1, true);
-
         binding.playbackSeekBar.setEnabled(true);
         binding.playbackSeekBar.getThumb()
                 .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_IN));
@@ -2295,7 +2223,6 @@ public final class Player implements
         if (DEBUG) {
             Log.d(TAG, "onPausedSeek() called");
         }
-        showAndAnimateControl(-1, true);
 
         animatePlayButtons(false, 100);
         binding.getRoot().setKeepScreenOn(true);
@@ -4364,8 +4291,8 @@ public final class Player implements
         return binding.currentDisplaySeek;
     }
 
-    public PlayerSeekOverlay getSeekOverlay() {
-        return binding.seekOverlay;
+    public PlayerFastSeekOverlay getFastSeekOverlay() {
+        return binding.fastSeekOverlay;
     }
 
     @Nullable

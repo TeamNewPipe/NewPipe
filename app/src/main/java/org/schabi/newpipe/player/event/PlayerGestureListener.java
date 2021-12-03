@@ -230,11 +230,10 @@ public class PlayerGestureListener
         if (DEBUG) {
             Log.d(TAG, "onPopupResizingStart called");
         }
-        player.showAndAnimateControl(-1, true);
         player.getLoadingPanel().setVisibility(View.GONE);
 
         player.hideControls(0, 0);
-        animate(player.getSeekOverlay(), false, 0);
+        animate(player.getFastSeekOverlay(), false, 0);
         animate(player.getCurrentDisplaySeek(), false, 0, ALPHA, 0);
     }
 
