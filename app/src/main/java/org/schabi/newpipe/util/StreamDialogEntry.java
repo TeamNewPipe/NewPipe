@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -21,7 +22,6 @@ import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
@@ -221,7 +221,9 @@ public enum StreamDialogEntry {
     private static void fetchItemInfoIfSparse(final Fragment fragment,
             final StreamInfoItem item,
             final InfoCallback callback) {
-        if ((item.getStreamType() == StreamType.LIVE_STREAM || item.getStreamType() == StreamType.AUDIO_LIVE_STREAM) && item.getDuration() < 0) {
+        if (!(item.getStreamType() == StreamType.LIVE_STREAM
+                || item.getStreamType() == StreamType.AUDIO_LIVE_STREAM)
+                && item.getDuration() < 0) {
             // Sparse item: fetched by fast fetch
             ExtractorHelper.getStreamInfo(
                     item.getServiceId(),
