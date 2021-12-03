@@ -73,13 +73,20 @@ public enum StreamDialogEntry {
         );
     }),
 
-    start_here_on_background(R.string.start_here_on_background, (fragment, item) ->
-            NavigationHelper.playOnBackgroundPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), true)),
+    start_here_on_background(R.string.start_here_on_background, (fragment, item) -> {
+        fetchItemInfoIfSparse(fragment, item,
+                fullItem -> {
+                    NavigationHelper.playOnBackgroundPlayer(fragment.getContext(),
+                            fullItem, true);
+                });
+    }),
 
-    start_here_on_popup(R.string.start_here_on_popup, (fragment, item) ->
-            NavigationHelper.playOnPopupPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), true)),
+    start_here_on_popup(R.string.start_here_on_popup, (fragment, item) -> {
+        fetchItemInfoIfSparse(fragment, item, fullItem -> {
+                    NavigationHelper.playOnPopupPlayer(fragment.getContext(),
+                            fullItem, true);
+                });
+    }),
 
     set_as_playlist_thumbnail(R.string.set_as_playlist_thumbnail, (fragment, item) -> {
     }), // has to be set manually
