@@ -1,5 +1,10 @@
 package org.schabi.newpipe.fragments.list.search;
 
+import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
+import static java.util.Arrays.asList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -36,7 +41,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.databinding.FragmentSearchBinding;
 import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -68,12 +72,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -83,11 +86,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
-
-import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
-import static java.util.Arrays.asList;
-import static org.schabi.newpipe.ktx.ViewUtils.animate;
-import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 
 public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.InfoItemsPage<?>>
         implements BackPressable {
@@ -743,13 +741,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         return historyRecordManager
                 .getRelatedSearches(query, similarQueryLimit, 25)
                 .toObservable()
-                .map(searchHistoryEntries -> {
-                    final Set<SuggestionItem> result = new HashSet<>(); // remove duplicates
-                    for (final SearchHistoryEntry entry : searchHistoryEntries) {
-                        result.add(new SuggestionItem(true, entry.getSearch()));
-                    }
-                    return new ArrayList<>(result);
-                });
+                .map(searchHistoryEntries ->
+                    searchHistoryEntries.stream()
+                            .map(entry -> new SuggestionItem(true, entry))
+                            .collect(Collectors.toList()));
     }
 
     private Observable<List<SuggestionItem>> getRemoteSuggestionsObservable(final String query) {
