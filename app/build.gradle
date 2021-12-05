@@ -4,7 +4,7 @@ plugins {
     id "kotlin-kapt"
     id "kotlin-parcelize"
     id "checkstyle"
-    id "org.sonarqube" version "3.1.1"
+    id "org.sonarqube" version "3.3"
 }
 
 android {
