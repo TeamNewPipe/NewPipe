@@ -98,7 +98,7 @@ android {
 }
 
 ext {
-    checkstyleVersion = '8.38'
+    checkstyleVersion = '9.2'
 
     androidxLifecycleVersion = '2.3.1'
     androidxRoomVersion = '2.3.0'
