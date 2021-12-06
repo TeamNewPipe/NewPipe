@@ -2,7 +2,7 @@
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Una interfaz de streaming ligera y libre para Android.</h4>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-es.svg"></a></p>
+<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-es.svg" alt="Get it on F-Droid" height=80/></a></p>
 
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="Lanzamientos GitHub"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
