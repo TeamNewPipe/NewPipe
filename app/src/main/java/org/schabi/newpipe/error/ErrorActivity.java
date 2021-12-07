@@ -52,6 +52,10 @@ import java.util.Arrays;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * This activity is used to show error details and allow reporting them in various ways. Use {@link
+ * ErrorUtil#openActivity(Context, ErrorInfo)} to correctly open this activity.
+ */
 public class ErrorActivity extends AppCompatActivity {
     // LOG TAGS
     public static final String TAG = ErrorActivity.class.toString();

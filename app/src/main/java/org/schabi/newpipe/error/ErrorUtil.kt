@@ -15,27 +15,59 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import org.schabi.newpipe.R
 
+/**
+ * This class contains all of the methods that should be used to let the user know that an error has
+ * occurred in the least intrusive way possible for each case. This class is for unexpected errors,
+ * for handled errors (e.g. network errors) use e.g. [ErrorPanelHelper] instead.
+ * - Use a snackbar if the exception is not critical and it happens in a place where a root view
+ *      is available.
+ * - Use a notification if the exception happens inside a background service (player, subscription
+ *      import, ...) or there is no activity/fragment from which to extract a root view.
+ * - Finally use the error activity only as a last resort in case the exception is critical and
+ *      happens in an open activity (since the workflow would be interrupted anyway in that case).
+ */
 class ErrorUtil {
     companion object {
         private const val ERROR_REPORT_NOTIFICATION_ID = 5340681
 
         /**
-         * Reports a new error by starting a new activity.
+         * Starts a new error activity allowing the user to report the provided error. Only use this
+         * method directly as a last resort in case the exception is critical and happens in an open
+         * activity (since the workflow would be interrupted anyway in that case). So never use this
+         * for background services.
          *
-         * @param context
-         * @param errorInfo
+         * @param context the context to use to start the new activity
+         * @param errorInfo the error info to be reported
          */
         @JvmStatic
         fun openActivity(context: Context, errorInfo: ErrorInfo) {
             context.startActivity(getErrorActivityIntent(context, errorInfo))
         }
 
+        /**
+         * Show a bottom snackbar to the user, with a report button that opens the error activity.
+         * Use this method if the exception is not critical and it happens in a place where a root
+         * view is available.
+         *
+         * @param context will be used to obtain the root view if it is an [Activity]; if no root
+         *                view can be found an error notification is shown instead
+         * @param errorInfo the error info to be reported
+         */
         @JvmStatic
         fun showSnackbar(context: Context, errorInfo: ErrorInfo) {
             val rootView = if (context is Activity) context.findViewById<View>(R.id.content) else null
             showSnackbar(context, rootView, errorInfo)
         }
 
+        /**
+         * Show a bottom snackbar to the user, with a report button that opens the error activity.
+         * Use this method if the exception is not critical and it happens in a place where a root
+         * view is available.
+         *
+         * @param fragment will be used to obtain the root view if it has a connected [Activity]; if
+         *                 no root view can be found an error notification is shown instead
+         * @param errorInfo the error info to be reported
+         */
         @JvmStatic
         fun showSnackbar(fragment: Fragment, errorInfo: ErrorInfo) {
             var rootView = fragment.view
@@ -45,16 +77,32 @@ class ErrorUtil {
             showSnackbar(fragment.requireContext(), rootView, errorInfo)
         }
 
+        /**
+         * Shortcut to calling [showSnackbar] with an [ErrorInfo] of type [UserAction.UI_ERROR]
+         */
         @JvmStatic
         fun showUiErrorSnackbar(context: Context, request: String, throwable: Throwable) {
             showSnackbar(context, ErrorInfo(throwable, UserAction.UI_ERROR, request))
         }
 
+        /**
+         * Shortcut to calling [showSnackbar] with an [ErrorInfo] of type [UserAction.UI_ERROR]
+         */
         @JvmStatic
         fun showUiErrorSnackbar(fragment: Fragment, request: String, throwable: Throwable) {
             showSnackbar(fragment, ErrorInfo(throwable, UserAction.UI_ERROR, request))
         }
 
+        /**
+         * Create an error notification. Tapping on the notification opens the error activity. Use
+         * this method if the exception happens inside a background service (player, subscription
+         * import, ...) or there is no activity/fragment from which to extract a root view.
+         *
+         * @param context the context to use to show the notification
+         * @param errorInfo the error info to be reported; the error message
+         *                  [ErrorInfo.messageStringId] will be shown in the notification
+         *                  description
+         */
         @JvmStatic
         fun createNotification(context: Context, errorInfo: ErrorInfo) {
             val notificationManager =
