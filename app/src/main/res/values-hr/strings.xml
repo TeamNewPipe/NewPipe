@@ -36,7 +36,7 @@
     <string name="show_higher_resolutions_title">Prikaži više rezolucije</string>
     <string name="show_higher_resolutions_summary">Samo neki uređaji podržavaju reprodukciju 2K/4K videozapisa</string>
     <string name="play_with_kodi_title">Reproduciraj s Kodijem</string>
-    <string name="kore_not_found">Kore aplikacija nije pronađena. Želite li ju instalirati?</string>
+    <string name="kore_not_found">Instalirati nedostajući Kore program\?</string>
     <string name="show_play_with_kodi_title">Prikaži opciju \"Reproduciraj putem Kodija\"</string>
     <string name="show_play_with_kodi_summary">Prikaži opciju za reproduciranje videozapisa putem Kodija</string>
     <string name="play_audio">Zvuk</string>
@@ -82,14 +82,14 @@
     <string name="parsing_error">Nije moguće dohvatiti stranicu</string>
     <string name="content_not_available">Sadržaj nije dostupan</string>
     <string name="could_not_setup_download_menu">Nije moguće postaviti izbornik za preuzimanje</string>
-    <string name="app_ui_crash">Aplikacija/UI se srušio</string>
-    <string name="sorry_string">Oprostite, ovo se nije trebalo dogoditi.</string>
+    <string name="app_ui_crash">Program/korisničko sučelje su preknuli raditi</string>
+    <string name="sorry_string">Oprosti, ovo se nije trebalo dogoditi.</string>
     <string name="error_report_button_text">Prijavi pogrešku putem e-maila</string>
     <string name="error_snackbar_message">Žao nam je, došlo je do neke greške.</string>
     <string name="error_snackbar_action">Prijavi</string>
     <string name="what_device_headline">Informacije:</string>
     <string name="what_happened_headline">Što se dogodilo:</string>
-    <string name="info_labels">Što:\\nZahtjev:\\nJezik sadržaja:\\nZemlja sadržaja:\\nJezik aplikacije:\\nUsluga:\\nGMT vrijeme:\\nPaket:\\nVerzija:\\nVerzija OS-a:</string>
+    <string name="info_labels">Što:\\nZahtjev:\\nJezik sadržaja:\\nZemlja sadržaja:\\nJezik programa:\\nUsluga:\\nGMT vrijeme:\\nPaket:\\nVerzija:\\nVerzija OS-a:</string>
     <string name="your_comment">Vaš komentar (na engleskom):</string>
     <string name="error_details_headline">Detalji:</string>
     <string name="list_thumbnail_view_description">Sličica pregleda videozapisa</string>
@@ -131,7 +131,7 @@
     <string name="copyright" formatted="true">© %1$s od %2$s pod %3$s</string>
     <string name="tab_about">O aplikaciji</string>
     <string name="tab_licenses">Licence</string>
-    <string name="app_description">Besplatna i mala YouTube aplikacija za Android.</string>
+    <string name="app_description">Slobodan i mali YouTube program za Android.</string>
     <string name="view_on_github">Pogledaj na GitHubu</string>
     <string name="app_license_title">Licenca za NewPipe</string>
     <string name="contribution_encouragement">Ako imate ideja za prijevod, promjene u dizajnu, čišćenje koda ili neke veće promjene u kodu, pomoć je uvijek dobro došla. Što više radimo, to bolji postajemo!</string>
@@ -167,10 +167,10 @@
     </plurals>
     <string name="play_all">Reproduciraj sve</string>
     <string name="player_stream_failure">Nije moguće reproducirati ovaj stream</string>
-    <string name="player_unrecoverable_failure">Dogodila se neoporavljiva pogreška reproduktora</string>
-    <string name="player_recoverable_failure">Oporavljanje od pogreške reproduktora</string>
+    <string name="player_unrecoverable_failure">Dogodila se neoporavljiva greška reproduktora</string>
+    <string name="player_recoverable_failure">Oporavljanje od greške reproduktora</string>
     <string name="show_hold_to_append_title">Prikaži savjet za držanje</string>
-    <string name="show_hold_to_append_summary">Prikažite savjet kada je pritisnut gumb za pozadinsku ili skočnu reprodukciju na stranici detalja videozapisa</string>
+    <string name="show_hold_to_append_summary">Prikaži savjet kad se pritisne gumb za pozadinsku ili skočni prozor u detaljima videa:</string>
     <string name="delete_item_search_history">Želite li izbrisati ovu stavku iz povijesti pretraživanja?</string>
     <string name="main_page_content">Sadržaj</string>
     <string name="blank_page_summary">Prazna stranica</string>
@@ -193,12 +193,12 @@
     <string name="start_here_on_popup">Reproduciraj u skočnom prozoru</string>
     <string name="drawer_open">Otvori ladicu</string>
     <string name="drawer_close">Zatvori ladicu</string>
-    <string name="video_player">Video reprodukcija</string>
-    <string name="background_player">Pozadinska reprodukcija</string>
-    <string name="popup_player">Skočna reprodukcija</string>
+    <string name="video_player">Video reproduktor</string>
+    <string name="background_player">Pozadinski reproduktor</string>
+    <string name="popup_player">Skočni reproduktor</string>
     <string name="always_ask_open_action">Uvjek pitaj</string>
-    <string name="preferred_player_fetcher_notification_title">Dohvaćam informacije…</string>
-    <string name="preferred_player_fetcher_notification_message">Odabrani sadržaj se učitava</string>
+    <string name="preferred_player_fetcher_notification_title">Dohvaćanje podataka …</string>
+    <string name="preferred_player_fetcher_notification_message">Učitava se odabrani sadržaj</string>
     <string name="create_playlist">Nova playlista</string>
     <string name="rename_playlist">Preimenuj</string>
     <string name="name">Ime</string>
@@ -215,7 +215,7 @@
     <string name="resize_fill">Ispuniti</string>
     <string name="resize_zoom">Povećaj</string>
     <string name="caption_auto_generated">Auto generirano</string>
-    <string name="enable_leak_canary_summary">Monitoring curenja memorije može uzrokovati greške u radu aplikacije prilikom odlaganje gomile</string>
+    <string name="enable_leak_canary_summary">Praćenje curenja memorije može uzrokovati greške u radu programa prilikom odlaganje gomile</string>
     <string name="enable_disposed_exceptions_title">Izvijesti o krajevima životnog ciklusa</string>
     <string name="show_info">Prikaži informacije</string>
     <string name="tab_bookmarks">Zabilježeni popisi</string>
@@ -252,7 +252,7 @@
     <string name="dismiss">Odbaci</string>
     <string name="rename">Preimenuj</string>
     <string name="one_item_deleted">1 stavka izbrisana.</string>
-    <string name="toast_no_player">Nijedna aplikacija nije instalirana za reprodukciju te datoteke</string>
+    <string name="toast_no_player">Nijedan program nije instaliran za reprodukciju ove datoteke</string>
     <string name="give_back">Vrati</string>
     <string name="website_encouragement">Posjetite web stranicu NewPipe za više informacija i vijesti.</string>
     <string name="privacy_policy_title">NewPipeova pravila o privatnosti</string>
@@ -274,14 +274,15 @@
     <string name="previous_export">Prethodni izvoz</string>
     <string name="subscriptions_import_unsuccessful">Nije bilo moguće uvesti pretplate</string>
     <string name="subscriptions_export_unsuccessful">Nije bilo moguće izvesti pretplate</string>
-    <string name="import_youtube_instructions">Uvezite pretplate na YouTubu pomoću Google Takeouta:
+    <string name="import_youtube_instructions">Uvezi pretplate na YouTubu pomoću Google Takeouta:
 \n
-\n1. Idite na ovaj URL: %1$s
-\n2. Prijavite se
-\n3. Kliknite \"Uključeni svi podaci\", zatim \"Poništi odabir svih\", a zatim odaberite samo \"pretplate\" i kliknite \"U redu\"
-\n4. Kliknite na \"Nastavi\", a zatim \"Stvori izvoz\"
-\n5. Kliknite na \"Preuzmi\"
-\n6. Preuzmite zip datoteku i izvucite json datoteku (pod \"YouTube and YouTube Music/subscriptions/subscriptions.json\") pa uvezite je ovdje.</string>
+\n1. Idi na ovaj URL: %1$s
+\n2. Prijavi se
+\n3. Pritisni „Uključeni svi podaci”, zatim „Poništi odabir svih”, a zatim odaberi samo „pretplate” i pritisni „U redu”
+\n4. Pritisni na „Nastavi”, a zatim „Stvori izvoz”
+\n5. Pritisni na „Preuzmi”
+\n6. Dolje pritisni na UVEZI DATOEKU i odaberi zip datoteku za peuzimanje
+\n7. [Ako uvoz zip datoteke ne uspije] Izdvoji .csv datoteku (pod \"YouTube and YouTube Music/subscriptions/subscriptions.json\"). Dolje pritisni UVEZI DATOTEKU i odaberi izdvojenu csv datoteku</string>
     <string name="import_soundcloud_instructions_hint">vašID, soundcloud.com/vašID</string>
     <string name="import_network_expensive_warning">Uzmite u obzir da ova operacija može uzrokovat veliku potrošnju prometa.
 \n
@@ -308,11 +309,11 @@
     <string name="clear_search_history_summary">Briše povijest ključnih riječi pretraživanja</string>
     <string name="download_to_sdcard_error_title">Vanjska pohrana nije dostupna</string>
     <string name="updates_setting_title">Ažuriranja</string>
-    <string name="updates_setting_description">Prikažite obavijest kada je dostupna nova verzija aplikacije</string>
+    <string name="updates_setting_description">Prikaži obavijest i zatraži aktualiziranje programa kad je dostupna nova verzija</string>
     <string name="list">Popis</string>
     <string name="grid">Popločeno</string>
     <string name="app_update_notification_content_title">Dostupna je nova verzija za NewPipe!</string>
-    <string name="app_update_notification_content_text">Dodirnite za preuzimanje</string>
+    <string name="app_update_notification_content_text">Dodirni za preuzimanje</string>
     <string name="download_failed">Preuzimanje nije uspjelo</string>
     <string name="show_error">Prikaži pogrešku</string>
     <string name="download_thumbnail_summary">Isključi za sprječavanje učitavanja sličica, čime se štede podatci i memorija. Promjena postavke čisti predmemoriju u radnoj memoriji i u pohrani</string>
@@ -326,9 +327,9 @@
     <string name="brightness_gesture_control_summary">Koristi gesture za kontrolu svjetline</string>
     <string name="default_content_country_title">Zadana zemlja sadržaja</string>
     <string name="settings_category_debug_title">Otkrivanje grešaka</string>
-    <string name="app_update_notification_channel_name">Obavijest o ažuriranju aplikacije</string>
+    <string name="app_update_notification_channel_name">Obavijest o novoj verziji programa</string>
     <string name="download_to_sdcard_error_message">Preuzimanje na vanjsku SD karticu nije moguće. Ponovo postaviti lokaciju mape za preuzimanje\?</string>
-    <string name="external_player_unsupported_link_type">Vanjski playeri ne podržavaju ove vrste veza</string>
+    <string name="external_player_unsupported_link_type">Vanjski reproduktori ne podržavaju ove vrste veza</string>
     <string name="video_streams_empty">Nije pronađen nijedan videozapis</string>
     <string name="audio_streams_empty">Nije pronađen nijedan audio zapis</string>
     <string name="invalid_source">Nema takve datoteke/izvora sadržaja</string>
@@ -344,7 +345,7 @@
     <string name="preferred_open_action_settings_title">Preferirana \'otvori\' akcija</string>
     <string name="preferred_open_action_settings_summary">Zadana radnja pri otvaranju sadržaja — %s</string>
     <string name="caption_setting_title">Titlovi</string>
-    <string name="caption_setting_description">Izmijeni skalu podnaslova i pozadinske stilove reproduktora. Potrebno je ponovno pokretanje aplikacije kako bi stupilo na snagu</string>
+    <string name="caption_setting_description">Promijeni veličinu podnaslova reproduktora i pozadinske stilove reproduktora. Za stupanje na snagu, program se mora ponovo pokrenuti</string>
     <string name="enable_disposed_exceptions_summary">Prisilno izvješćivanje o greškama Rx-a koje se ne mogu isporučiti izvan \'fragmenta\' ili životnog ciklusa aktivnosti nakon odlaganja</string>
     <string name="import_soundcloud_instructions">Uvezite SoundCloud profil tako da upišete URL ili svoj ID:
 \n
@@ -355,10 +356,10 @@
     <string name="playback_tempo">brzina</string>
     <string name="playback_pitch">Visina tona</string>
     <string name="unhook_checkbox">Odspoji (može prouzročiti izobličenje)</string>
-    <string name="minimize_on_exit_title">Smanji prilikom mijenjanje aplikacije</string>
-    <string name="minimize_on_exit_summary">Radnja prilikom prebacivanja na drugu aplikaciju iz glavnog videoplayera – %s</string>
-    <string name="minimize_on_exit_background_description">Smanji na pozadinski player</string>
-    <string name="minimize_on_exit_popup_description">Smanji na skočni player</string>
+    <string name="minimize_on_exit_title">Sklopi prilikom mijenjanje programa</string>
+    <string name="minimize_on_exit_summary">Radnja prilikom prebacivanja na drugi program iz glavnog video reproduktora – %s</string>
+    <string name="minimize_on_exit_background_description">Smanji na pozadinski reproduktor</string>
+    <string name="minimize_on_exit_popup_description">Smanji na skočni reproduktor</string>
     <string name="list_view_mode">Način prikaza popisa</string>
     <string name="auto">Automatski</string>
     <string name="missions_header_finished">Gotovo</string>
@@ -393,9 +394,9 @@
     <string name="no_comments">Nema komentara</string>
     <string name="error_unable_to_load_comments">Komentare nije moguće učitati</string>
     <string name="close">Zatvori</string>
-    <string name="app_license">NewPipe je copyleft libre software: možete ga koristiti, proučavati i poboljšavati po volji. Konkretno, možete ga redistribuirati i / ili modificirati pod uvjetima GNU opće javne licence koju je objavila Free Software Foundation, bilo verzije 3 Licence, ili (po vašem izboru) bilo koje kasnije verzije.</string>
-    <string name="privacy_policy_encouragement">Projekt NewPipe ozbiljno shvaća vašu privatnost. Stoga aplikacija ne prikuplja nikakve podatke bez vašeg pristanka. 
-\nNewPipe pravila o privatnosti detaljno objašnjavaju koji se podaci šalju i pohranjuju kada šaljete izvješće o padu aplikacije.</string>
+    <string name="app_license">NewPipe je copyleft libre software: Može se koristiti, proučavati i poboljšavati po volji. Konkretno, može se redistribuirati i / ili modificirati pod uvjetima GNU opće javne licence koju je objavila Free Software Foundation, bilo licence verzije 3, ili (po vlastitom izboru) bilo koje kasnije verzije.</string>
+    <string name="privacy_policy_encouragement">Projekt NewPipe ozbiljno shvaća tvou privatnost. Stoga program ne prikuplja nikakve podatke bez tvog pristanka.
+\nNewPipe pravila o privatnosti detaljno objašnjavaju koji se podaci šalju i spremaju kad šalješ izvještaje o prekidu rada programa.</string>
     <string name="start_accept_privacy_policy">Kako bismo se uskladili s Europskom općom uredbom o zaštiti podataka (GDPR), upozoravamo vas na politiku privatnosti tvrtke NewPipe. Pažljivo ga pročitajte.
 \nZa slanje izvješća o pogreškama potrebno je prihvatiti politiku privatnosti.</string>
     <string name="enable_playback_resume_title">Nastavi reprodukciju</string>
@@ -416,7 +417,7 @@
     <string name="delete_playback_states_alert">Izbrisati sve pozicije reprodukcije\?</string>
     <string name="no_one_watching">Nitko ne gleda</string>
     <string name="no_one_listening">Nitko ne sluša</string>
-    <string name="localization_changes_requires_app_restart">Jezik će se promjeniti nakon ponovnog pokretanja aplikacije</string>
+    <string name="localization_changes_requires_app_restart">Jezik će se promijeniti nakon ponovnog pokretanja programa</string>
     <string name="default_kiosk_page_summary">Zadani Kiosk</string>
     <string name="peertube_instance_add_https_only">Podržani su samo HTTP URL-ovi</string>
     <string name="local">Lokalno</string>
@@ -424,8 +425,8 @@
     <string name="playlist_no_uploader">Autogenerirano (prenositelj nedefiniran)</string>
     <string name="clear_download_history">Očisti povijest preuzimanja</string>
     <string name="delete_downloaded_files">Izbriši preuzete datoteke</string>
-    <string name="permission_display_over_apps">Dajte dopuštenje za prikazivanje na vrhu</string>
-    <string name="app_language_title">Jezik aplikacije</string>
+    <string name="permission_display_over_apps">Dopusti prikaz iznad drugih programa</string>
+    <string name="app_language_title">Jezik programa</string>
     <string name="systems_language">Zadani sustav</string>
     <string name="videos_string">Videozapisi</string>
     <string name="mute">Isključi</string>
@@ -482,7 +483,7 @@
     <string name="notification_action_1_title">Gumb druge radnje</string>
     <string name="notification_action_0_title">Gumb prve radnje</string>
     <string name="search_showing_result_for">Prikazuju se rezultati za: %s</string>
-    <string name="unsupported_url_dialog_message">Nije moguće prepoznati URL. Želite li otvoriti u drugoj aplikaciji\?</string>
+    <string name="unsupported_url_dialog_message">Nije moguće prepoznati URL. Želiš li otvoriti s drugim programom\?</string>
     <string name="notification_scale_to_square_image_title">Smanjiti omjer minijatura na 1:1</string>
     <string name="notification_action_buffering">Učitavanje u predmemoriju</string>
     <string name="enable_queue_limit_desc">Istovremeno se pokreće jedno preuzimanje</string>
@@ -490,8 +491,8 @@
     <string name="enqueue_stream">Dodaj u popis izvođenja</string>
     <string name="title_activity_play_queue">Popis izvođenja</string>
     <string name="auto_queue_toggle">Automatski popis izvođenja</string>
-    <string name="clear_queue_confirmation_description">Popis izvođenja aktivnog playera će se zamijeniti</string>
-    <string name="clear_queue_confirmation_summary">Prebacivanje s jednog playera na drugi može zamijeniti popisa izvođenja</string>
+    <string name="clear_queue_confirmation_description">Popis izvođenja aktivnog reproduktora će se zamijeniti</string>
+    <string name="clear_queue_confirmation_summary">Prebacivanje s jednog reproduktora na drugi može zamijeniti popisa izvođenja</string>
     <string name="clear_queue_confirmation_title">Pitaj prije pražnjenja popisa izvođenja</string>
     <plurals name="listening">
         <item quantity="one">%s slušatelj</item>
@@ -592,7 +593,7 @@
     <string name="show_meta_info_summary">Isključi za skrivanje polja metapodataka s dodatnim podacima o autoru streama, sadržaju streama ili zahtjevu za pretraživanje</string>
     <string name="show_meta_info_title">Prikaži metapodatke</string>
     <string name="related_items_tab_description">Slični videozapisi</string>
-    <string name="no_app_to_open_intent">Nijedna aplikacija na vašem uređaju ne može to otvoriti</string>
+    <string name="no_app_to_open_intent">Nijedan program na tvom uređaju ovo ne može otvoriti</string>
     <string name="chapters">Poglavlja videozapisa</string>
     <string name="description_tab_description">Opis</string>
     <string name="comments_tab_description">Komentari</string>
@@ -616,7 +617,7 @@
     <string name="recaptcha_solve">Riješi</string>
     <string name="night_theme_title">Noćna tema</string>
     <string name="show_channel_details">Prikaži detalje kanala</string>
-    <string name="disable_media_tunneling_summary">Iskljuci medija tuneling ako dobivate crni ekran kada gledate video</string>
+    <string name="disable_media_tunneling_summary">Isključi tuneliranje medija ako doživiš crni ekran ili isprekidanu reprodukciju videa</string>
     <string name="disable_media_tunneling_title">Iskljuci medija tuneling</string>
     <string name="off">Isklj.</string>
     <string name="on">Uklj.</string>
@@ -658,4 +659,29 @@
     <string name="metadata_privacy">Privatnost</string>
     <string name="description_select_note">Sada možeš odabrati tekst u opisu. Napomena: stranica će možda treperiti i možda nećeš moći kliknuti poveznice u načinu rada za odabir teksta.</string>
     <string name="service_provides_reason">%s daje ovaj razlog:</string>
+    <string name="processing_may_take_a_moment">Obrada... Pričekajte trenutak</string>
+    <string name="error_show_channel_details">Pogreška pri prikazu detalja kanala</string>
+    <string name="loading_channel_details">Učitavanje detalja o kanalu…</string>
+    <string name="main_page_content_swipe_remove">Povucite stavke da biste ih uklonili</string>
+    <string name="show_image_indicators_title">Prikazati indikatore slike</string>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Dovršeno %s preuzimanje</item>
+        <item quantity="few">Dovršena %s preuzimanja</item>
+        <item quantity="other">Dovršeno %s preuzimanja</item>
+    </plurals>
+    <string name="start_main_player_fullscreen_title">Pokreni glavni reproduktor u cjeloekranskom prikazu</string>
+    <string name="enqueue_next_stream">Reproduciraj sljedeće</string>
+    <string name="enqueued_next">U redu čekanja</string>
+    <string name="show_image_indicators_summary">Prikažite Picassove vrpce u boji na slikama koje označavaju njihov izvor: crvena za mrežu, plava za disk i zelena za memoriju</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Izbrisano %1$s preuzimanje</item>
+        <item quantity="few">Izbrisana %1$s preuzimanja</item>
+        <item quantity="other">Izbrisano %1$s preuzimanja</item>
+    </plurals>
+    <string name="remote_search_suggestions">Prijedlozi daljinjske pretrage</string>
+    <string name="manual_update_description">Ručno traži nove verzije</string>
+    <string name="checking_updates_toast">Traženje novih verzija …</string>
+    <string name="local_search_suggestions">Prijedlozi lokalne pretrage</string>
+    <string name="manual_update_title">Traži nove verzije</string>
+    <string name="start_main_player_fullscreen_summary">Nemoj pokretati videa u mini reproduktoru, već se izravno pokreni cjeloekranski prikaz, ako je automatsko okretanje zaključano. Mini reproduktoru i dalje možeš pristupiti izlaskom iz cjeloekranskog prikaza</string>
 </resources>

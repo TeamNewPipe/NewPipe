@@ -1,0 +1,2 @@
+افزودن ویدیوهای «اخیر» به خدمت media.ccc.de.
+Added live streams to media.ccc.de service and also live stream support.

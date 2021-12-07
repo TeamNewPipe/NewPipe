@@ -1,0 +1,1 @@
+تعمیر کار نکردن درست یوتوب در اروپا. This was caused by a new cookie and privacy consent system which requires NewPipe to set a CONSENT cookie.

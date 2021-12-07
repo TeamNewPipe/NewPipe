@@ -28,7 +28,7 @@
     <string name="download_path_audio_dialog_title">Válaszd ki a hangfájlok letöltési helyét</string>
     <string name="network_error">Hálózati hiba</string>
     <string name="background_player_playing_toast">Lejátszás háttérben</string>
-    <string name="settings_category_video_audio_title">Videó és audio</string>
+    <string name="settings_category_video_audio_title">Videó és hang</string>
     <string name="settings_category_appearance_title">Megjelenés</string>
     <string name="content_language_title">Tartalom preferált nyelve</string>
     <string name="show_next_and_similar_title">\'Következő\' és \'Hasonló\' videók mutatása</string>
@@ -40,7 +40,7 @@
     <string name="detail_likes_img_view_description">Tetszik</string>
     <string name="detail_dislikes_img_view_description">Nem tetszik</string>
     <string name="list_thumbnail_view_description">Előnézeti kép</string>
-    <string name="detail_thumbnail_view_description">Vidó lejátszása, időtartam:</string>
+    <string name="detail_thumbnail_view_description">Videó lejátszása, hossz:</string>
     <string name="detail_uploader_thumbnail_view_description">Fetöltő profilképe</string>
     <string name="content">Tartalom</string>
     <string name="show_age_restricted_content_title">Korhatáros tartalom megjelenítése</string>
@@ -78,7 +78,7 @@
     <string name="msg_running_detail">Katt a részletekért</string>
     <string name="msg_wait">Kérlek várj…</string>
     <string name="msg_copied">Vágólapra másolva</string>
-    <string name="no_available_dir">Kérlek adj meg egy letöltés könyvtárat a beállításokban</string>
+    <string name="no_available_dir">Kérlek, válassz egy létező könyvtárat a letöltésekhez</string>
     <string name="channel_unsubscribed">Csatornáról leiratkozva</string>
     <string name="subscription_change_failed">Nem sikerült megváltoztatni a feliratkozást</string>
     <string name="subscription_update_failed">Nem sikerült frissíteni a feliratkozást</string>
@@ -191,7 +191,8 @@
     </plurals>
     <string name="create">Létrehozás</string>
     <string name="rename">Átnevezés</string>
-    <string name="msg_popup_permission">Ez az engedély szükséges a felugró ablakban történő megnyitáshoz</string>
+    <string name="msg_popup_permission">Ez az engedély szükséges
+\na felugró ablakban történő megnyitáshoz</string>
     <string name="one_item_deleted">1 elem törölve.</string>
     <string name="title_activity_recaptcha">reCAPTCHA rejtvény</string>
     <string name="recaptcha_request_toast">reCAPTCHA rejtvény igényelve</string>
@@ -314,7 +315,7 @@
     <string name="tab_choose">Válassz fület</string>
     <string name="show_comments_title">Kommentek mutatása</string>
     <string name="show_comments_summary">Kapcsold ki a kommentek elrejtéséhez</string>
-    <string name="default_content_country_title">Tartalmak alapértelmezett országa</string>
+    <string name="default_content_country_title">Alapértelmezett ország tartalom</string>
     <string name="switch_to_main">Folytatás főnézetben</string>
     <string name="dismiss">Figyelmen kívül hagy</string>
     <string name="bookmark_playlist">Lejátszási lista könyvjelzők közé</string>

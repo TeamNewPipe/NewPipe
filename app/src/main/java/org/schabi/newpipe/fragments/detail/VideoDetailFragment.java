@@ -594,6 +594,11 @@ public final class VideoDetailFragment
     // Init
     //////////////////////////////////////////////////////////////////////////*/
 
+    @Override
+    public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
+        super.onViewCreated(rootView, savedInstanceState);
+    }
+
     @Override // called from onViewCreated in {@link BaseFragment#onViewCreated}
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
@@ -603,6 +608,18 @@ public final class VideoDetailFragment
         binding.tabLayout.setupWithViewPager(binding.viewPager);
 
         binding.detailThumbnailRootLayout.requestFocus();
+
+        binding.detailControlsPlayWithKodi.setVisibility(
+                KoreUtils.shouldShowPlayWithKodi(requireContext(), serviceId)
+                        ? View.VISIBLE
+                        : View.GONE
+        );
+        binding.detailControlsCrashThePlayer.setVisibility(
+                DEBUG && PreferenceManager.getDefaultSharedPreferences(getContext())
+                        .getBoolean(getString(R.string.show_crash_the_player_key), false)
+                        ? View.VISIBLE
+                        : View.GONE
+        );
 
         if (DeviceUtils.isTv(getContext())) {
             // remove ripple effects from detail controls
@@ -638,8 +655,14 @@ public final class VideoDetailFragment
         binding.detailControlsShare.setOnClickListener(this);
         binding.detailControlsOpenInBrowser.setOnClickListener(this);
         binding.detailControlsPlayWithKodi.setOnClickListener(this);
-        binding.detailControlsPlayWithKodi.setVisibility(KoreUtils.shouldShowPlayWithKodi(
-                requireContext(), serviceId) ? View.VISIBLE : View.GONE);
+        if (DEBUG) {
+            binding.detailControlsCrashThePlayer.setOnClickListener(
+                    v -> VideoDetailPlayerCrasher.onCrashThePlayer(
+                            this.getContext(),
+                            this.player,
+                            getLayoutInflater())
+            );
+        }
 
         binding.overlayThumbnail.setOnClickListener(this);
         binding.overlayThumbnail.setOnLongClickListener(this);

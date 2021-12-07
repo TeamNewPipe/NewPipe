@@ -300,7 +300,7 @@
 \n2. Đăng nhập khi được yêu cầu
 \n3. Nhấn chọn \"Bao gồm tất cả dữ liệu trên YouTube\", sau đó nhấn \"Bỏ chọn tất cả\", sau đó chỉ chọn mục \"đăng kí\" rồi nhấn OK
 \n4. Nhấn nút \"Bước tiếp theo\" rồi nhấn \"Tạo tệp xuất\"
-\n5. Nhấn nút \"Tải xuống\" khi nó hiện
+\n5. Nhấn nút \"Tải xuống\" khi nó xuất hiện
 \n6. Từ file zip mới tải về, trích xuất file .json ra (thường nằm ở đường dẫn \"YouTube và YouTube Music/đăng kí/subscriptions.json\") rồi nhập vào đây.</string>
     <string name="import_soundcloud_instructions">Nhập hồ sơ SoundCloud bằng cách nhập URL hoặc ID của bạn:
 \n
@@ -655,4 +655,5 @@
     <string name="start_main_player_fullscreen_title">Khởi động trình phát chính ở toàn màn hình</string>
     <string name="enqueued_next">Đã cho mục tiếp vào hàng đợi</string>
     <string name="enqueue_next_stream">Cho mục tiếp vào hàng đợi</string>
+    <string name="processing_may_take_a_moment">Đang thực hiện...Có thể mất một lúc</string>
 </resources>

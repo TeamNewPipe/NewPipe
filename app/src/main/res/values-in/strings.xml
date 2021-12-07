@@ -200,9 +200,9 @@
     <string name="main_page_content">Konten halaman utama</string>
     <string name="blank_page_summary">Halaman Kosong</string>
     <string name="kiosk_page_summary">Halaman Kiosk</string>
-    <string name="channel_page_summary">Halaman Kanal</string>
-    <string name="select_a_channel">Pilih kanal</string>
-    <string name="no_channel_subscribed_yet">Belum ada langganan kanal</string>
+    <string name="channel_page_summary">Halaman Channel</string>
+    <string name="select_a_channel">Pilih channel</string>
+    <string name="no_channel_subscribed_yet">Belum ada langganan channel</string>
     <string name="select_a_kiosk">Pilih kiosk</string>
     <string name="export_complete_toast">Diekspor</string>
     <string name="import_complete_toast">Diimpor</string>
@@ -290,7 +290,7 @@
 \n3. Klik \"Semua data disertakan\", lalu \"Batalkan semua pilihan\", lalu hanya pilih \"langganan\" dan klik \"OKE\"
 \n4. Klik \"Langkah berikutnya\" dan kemudian \"Buat ekspor\"
 \n5. Klik tombol \"Unduh\" dan
-\n6. Dari unduhan zip takeout ekstrak berkas .json (biasanya di bawah \"YouTube and YouTube Music/subscriptions/subscriptions.json\") dan impor di sini.</string>
+\n6. Dari unduhan zip takeout ekstrak berkas .json (biasanya di bawah \"YouTube and YouTube Music/subscriptions/subscriptions.json\") dan impor di sini</string>
     <string name="import_soundcloud_instructions">Impor profil SoundCloud dengan mengetik URL atau ID Anda:
 \n
 \n1. Aktifkan \"mode desktop\" di peramban web (situs tidak tersedia untuk perangkat seluler)
@@ -305,7 +305,7 @@
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Nada</string>
     <string name="unhook_checkbox">Batalkan tautan (dapat menyebabkan distorsi)</string>
-    <string name="channels">Kanal</string>
+    <string name="channels">Channel</string>
     <string name="playlists">Daftar Putar</string>
     <string name="tracks">Trek</string>
     <string name="users">Pengguna</string>
@@ -467,7 +467,7 @@
     <plurals name="days">
         <item quantity="other">%d hari</item>
     </plurals>
-    <string name="feed_groups_header_title">Grup kanal</string>
+    <string name="feed_groups_header_title">Grup channel</string>
     <string name="feed_oldest_subscription_update">Terakhir diperbarui: %s</string>
     <string name="feed_subscription_not_loaded_count">Tidak dimuat: %d</string>
     <string name="feed_notification_loading">Memuat langganan…</string>
@@ -522,7 +522,7 @@
     <string name="youtube_restricted_mode_enabled_title">Aktifkan \"Mode Terbatas\" YouTube</string>
     <string name="video_detail_by">Oleh %s</string>
     <string name="channel_created_by">Dibuat oleh %s</string>
-    <string name="detail_sub_channel_thumbnail_view_description">Thumbnail avatar kanal</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Thumbnail avatar channel</string>
     <string name="error_report_open_github_notice">Harap periksa apakah masalah yang sama sudah ada atau belum. Ketika laporan Anda ternyata sudah ada, Anda membuat kami menghabiskan waktu yang seharusnya bisa kami gunakan untuk meningkatkan aplikasi menjadi lebih baik.</string>
     <string name="error_report_open_issue_button_text">Laporkan di GitHub</string>
     <string name="copy_for_github">Salin laporan dengan format</string>
@@ -595,7 +595,7 @@
     <string name="recaptcha_solve">Selesaikan</string>
     <string name="night_theme_title">Tema malam</string>
     <string name="download_has_started">Pengunduhan dimulai</string>
-    <string name="show_channel_details">Tampilkan rincian channel</string>
+    <string name="show_channel_details">Tampilkan detail channel</string>
     <string name="disable_media_tunneling_summary">Nonaktifkan terowongan media (tunnel) jiaka anda mengalami sebuah layar hitam atau kerusakan dalam memutar video</string>
     <string name="disable_media_tunneling_title">Nonaktifkan terowongan media (tunnel)</string>
     <string name="metadata_privacy_internal">Internal</string>
@@ -620,7 +620,7 @@
     <string name="feed_load_error_fast_unknown">Mode langganan cepat tidak menyediakan lebih banyak info tentang ini.</string>
     <string name="feed_load_error_terminated">Akun kreator telah dinonaktifkan.
 \nNewPipe tidak akan bisa memuat langganan ini lagi.
-\nApakah Anda ingin berhenti berlangganan kanal ini\?</string>
+\nApakah Anda ingin berhenti berlangganan channel ini\?</string>
     <string name="feed_load_error_account_info">Tidak bisa memuat langganan untuk \'%s\'.</string>
     <string name="feed_load_error">Galat memuat langganan</string>
     <string name="downloads_storage_use_saf_summary_api_29">Mulai Android 10, hanya \'Storage Access Framework\' yang didukung</string>
@@ -649,4 +649,15 @@
     <plurals name="deleted_downloads_toast">
         <item quantity="other">Menghapus %1$s unduhan</item>
     </plurals>
+    <string name="enqueue_next_stream">tambahkan ke selanjutnya</string>
+    <string name="enqueued_next">telah ditambahkan ke selanjutnya</string>
+    <string name="show_image_indicators_summary">Tampilkan Ribon bewarna Picasso di atas gambar yang mengindikasikan asalnya: merah untuk jaringan, biru untuk disk dan hijau untuk memori</string>
+    <string name="start_main_player_fullscreen_summary">Jangan memulai memutar video di mini player, tapi nyalakan langsung di mode layar penuh, jika rotasi otomatis terkunci. Anda tetap dapat mengakses mini player dengan keluar dari layar penuh</string>
+    <string name="loading_channel_details">Memuat Detail Channel…</string>
+    <string name="error_show_channel_details">Galat Menampilkan Detail Channel</string>
+    <string name="processing_may_take_a_moment">Memproses… Mungkin butuh waktu sebentar</string>
+    <string name="manual_update_title">Periksa Pembaruan</string>
+    <string name="manual_update_description">Periksa manual untuk versi baru</string>
+    <string name="checking_updates_toast">Memeriksa pembaruan…</string>
+    <string name="feed_new_items">Item feed baru</string>
 </resources>

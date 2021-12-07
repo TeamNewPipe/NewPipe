@@ -89,6 +89,8 @@
         <item>@string/never</item>
     </string-array>
 
+    <string name="report_player_errors_key" translatable="false">report_player_errors_key</string>
+
     <string name="seekbar_preview_thumbnail_key" translatable="false">seekbar_preview_thumbnail_key</string>
     <string name="seekbar_preview_thumbnail_high_quality" translatable="false">seekbar_preview_thumbnail_high_quality</string>
     <string name="seekbar_preview_thumbnail_low_quality" translatable="false">seekbar_preview_thumbnail_low_quality</string>
@@ -188,6 +190,7 @@
     <string name="disable_media_tunneling_key" translatable="false">disable_media_tunneling_key</string>
     <string name="crash_the_app_key" translatable="false">crash_the_app_key</string>
     <string name="show_image_indicators_key" translatable="false">show_image_indicators_key</string>
+    <string name="show_crash_the_player_key" translatable="false">show_crash_the_player_key</string>
     <string name="check_new_streams_key" translatable="false">check_new_streams</string>
 
     <!-- THEMES -->

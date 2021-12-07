@@ -290,7 +290,7 @@
 \n4. Kliknite na \"Ďaľší krok\" a potom na \"Vytvoriť export\"
 \n5. Po chvíli sa objaví tlačidlo s nápisom \"Stiahnuť\"
 \n6. Kliknite na IMPORT ZO SÚBORU a zvoľte stiahnutý zip súbor
-\n7. Ak import zip súbory zlyhá. Stiahnutý súbor otvorte a extraktujte .csv súbor (nachádza sa v \"/Takeout/YouTube a YouTube Music/odbery/\"). Tento súbor importujte do NewPipe.</string>
+\n7. Ak import zip súbory zlyhá. Stiahnutý súbor otvorte a extraktujte .csv súbor (nachádza sa v \"/Takeout/YouTube a YouTube Music/odbery/\"), tento súbor importujte do NewPipe</string>
     <string name="import_soundcloud_instructions">Importovať SoundCloud profil zadaním URL adresy alebo vášho ID:
 \n
 \n1. Prepnite režim na \"desktop\" (web nie je dostupný pre mobilné zariadenia)
@@ -421,7 +421,7 @@
     <string name="downloads_storage_ask_summary">Pri každom sťahovaní súboru sa bude vyžadovať zadanie cieľového adresára.
 \nAk chcete súbory sťahovať na externú SD kartu povoľte možnosť výberu adresára (SAF)</string>
     <string name="downloads_storage_use_saf_title">Použite výber adresára (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' umožňuje sťahovanie na externú SD kartu.</string>
+    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" umožňuje sťahovanie na externú SD kartu</string>
     <string name="clear_playback_states_title">Odstrániť pozície prehrávania</string>
     <string name="clear_playback_states_summary">Odstráni všetky pozície prehrávania</string>
     <string name="delete_playback_states_alert">Odstrániť všetky pozície prehrávania\?</string>
@@ -647,7 +647,7 @@
     <string name="downloads_storage_use_saf_summary_api_29">\'Storage Access Framework\' je podporovaný len od Androidu 10 a vyššie</string>
     <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' nie je podporovaný v systéme Android KitKat a ani v starších verziách</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Pri každom sťahovaní sa zobrazí výzva kam uložiť súbor</string>
-    <string name="no_dir_yet">Nie je nastavený adresár na sťahovanie. Nastavte ho teraz.</string>
+    <string name="no_dir_yet">Nie je nastavený adresár na sťahovanie, nastavte ho teraz</string>
     <string name="mark_as_watched">Označiť ako pozorované</string>
     <string name="loading_channel_details">Načítavanie podrobností o kanáli…</string>
     <string name="error_show_channel_details">Chyba pri zobrazení podrobností kanála</string>
@@ -678,4 +678,11 @@
     <string name="start_main_player_fullscreen_title">Hlavný prehrávač na celej obrazovke</string>
     <string name="remote_search_suggestions">Návrhy vzdialeného vyhľadávania</string>
     <string name="local_search_suggestions">Miestne návrhy vyhľadávania</string>
+    <string name="enqueue_next_stream">Pridať do zoznamu</string>
+    <string name="enqueued_next">Ďaľší v poradí</string>
+    <string name="processing_may_take_a_moment">Spracovávanie... môže to chvíľku trvať</string>
+    <string name="manual_update_title">Skontrolovať aktualizácie</string>
+    <string name="manual_update_description">Ručne skontrolovať nové verzie</string>
+    <string name="checking_updates_toast">Kontrolujú sa aktualizácie…</string>
+    <string name="feed_new_items">Nové položky informačného kanála</string>
 </resources>

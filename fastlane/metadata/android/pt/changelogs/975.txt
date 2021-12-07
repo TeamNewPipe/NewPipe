@@ -1,0 +1,15 @@
+Novo
+• Mostrar uma visualização em miniatura enquanto busca
+• Detetar comentários desativados
+• Permitir a marcação de um item de feed como assistido
+• Mostrar corações nos comentários
+
+Melhorias
+• Layout de metadados e etiquetas
+
+Fixo
+• Corrigir miniatura no miniplayer
+• Corrigir buffer sem fim em itens de fila duplicados
+• Corrigir ReCAPTCHA que permanece carregado em segundo plano
+• Desativados os cliques enquanto atualiza o feed
+• Corrigir algumas falhas do descarregador

@@ -1,0 +1,8 @@
+### Förbättringar
+- La till möjligheten all begränsa video kvaliteten vid användning av mobildata. #1339
+- Kom ihåg ljusstyrka för sessionen #1442
+- Förbättra nedladdnings prestandan på svagare CPUs #1431
+- La till (fungerande) support för media sessioner #1433
+
+### Fixade
+- Fixade krasch vid öppning av nedladdningar (fixen är nu tillgänglig för release builds) #1441

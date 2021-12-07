@@ -37,6 +37,9 @@ public final class DeviceUtils {
     // Hilife TV
     private static final boolean REALTEKATV = Build.VERSION.SDK_INT == 25
             && Build.DEVICE.equals("RealtekATV");
+    // Philips QM16XE
+    private static final boolean QM16XE_U = Build.VERSION.SDK_INT == 23
+            && Build.DEVICE.equals("QM16XE_U");
 
     private DeviceUtils() {
     }
@@ -134,7 +137,8 @@ public final class DeviceUtils {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
                 && !HI3798MV200
                 && !CVT_MT5886_EU_1G
-                && !REALTEKATV;
+                && !REALTEKATV
+                && !QM16XE_U;
     }
 
     public static boolean isLandscape(final Context context) {

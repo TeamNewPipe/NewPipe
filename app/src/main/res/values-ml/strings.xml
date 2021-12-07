@@ -654,4 +654,7 @@
     <string name="remote_search_suggestions">റിമോട്ട് സെർച്ച്‌ നിർദ്ദേശങ്ങൾ</string>
     <string name="local_search_suggestions">ലോക്കൽ സെർച്ച്‌ നിർദേശങ്ങൾ</string>
     <string name="mark_as_watched">കണ്ടതാണെന്ന് അടയാളപ്പെടുത്തുക</string>
+    <string name="start_main_player_fullscreen_title">തുടങ്ങുന്ന പ്രേധാന പേജ് മുഴുവന്‍ സ്ക്രീനില്‍ കാണിക്കുക</string>
+    <string name="main_page_content_swipe_remove">ഐറ്റം കളയണം എന്നുണ്ടെല്‍ സ്വൈപ്പ് ചൈയ്യുക</string>
+    <string name="start_main_player_fullscreen_summary">മിനി പ്ലേയര്‍ -ല്‍ വീഡിയോ -ക്കള്‍ ഒരിക്കലും സ്റ്റാര്‍ട്ട് ചൈയ്യരുത് , പക്ഷേ നേരെ ഫുള്‍ സ്ക്രീന്‍ മോഡിലെക് മാറും .ഓട്ടോ റൊട്ടേഷന്‍ ലോക്ക് ചെയിത്തിട്ടുണ്ടെങ്കില്‍ നിലവിലെ ഫുള്‍ സ്ക്രീന്‍ നില്‍ നിന്നും മിനി പ്ലായേറിലെക് മാറാന്‍ ആകും</string>
 </resources>

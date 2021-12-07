@@ -47,7 +47,7 @@
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذر تحليل الموقع</string>
     <string name="youtube_signature_deobfuscation_error">تعذر فك تشفير توقيع رابط الفيديو</string>
-    <string name="main_bg_subtitle">اضغط على عدسة المكبرة للبدء.</string>
+    <string name="main_bg_subtitle">اضغط على العدسة المكبرة للبدء.</string>
     <string name="subscribe_button_title">اشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_subscriptions">الاشتراكات</string>
@@ -262,7 +262,7 @@
     <string name="export_ongoing">عملية التصدير جارية …</string>
     <string name="import_file_title">إستيراد ملف</string>
     <string name="import_soundcloud_instructions_hint">معرفك, soundcloud.com/هويتك</string>
-    <string name="download_thumbnail_summary">عند إيقاف تحميل أي صور مصغرة، وتوفير البيانات واستخدام الذاكرة. تعمل التغييرات على محو ذاكرة التخزين المؤقت للصورة الموجودة على الذاكرة أو على القرص</string>
+    <string name="download_thumbnail_summary">قم بإيقاف تشغيله لمنع تحميل الصور المصغرة وحفظ البيانات واستخدام الذاكرة. تمسح التغييرات كلاً من ذاكرة التخزين المؤقت للصورة الموجودة في الذاكرة والموجودة على القرص</string>
     <string name="metadata_cache_wipe_title">امسح البيانات الوصفيّة المخزّنة مؤقّتًا</string>
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقّتًا</string>
     <string name="metadata_cache_wipe_complete_notice">تم محو ذاكرة التخزين المؤقتّة للبيانات الوصفيّة</string>
@@ -596,7 +596,7 @@
     <string name="notification_action_shuffle">خلط</string>
     <string name="notification_action_repeat">كرّر</string>
     <string name="notification_actions_at_most_three">يمكنك تحديد ثلاثة إجراءات كحد أقصى لإظهارها في الإشعار المضغوط!</string>
-    <string name="notification_actions_summary">قم بتحرير كل اشعار أدناه من خلال النقر عليه. حدد ما يصل إلى ثلاثة منها لتظهر في الإشعار المضغوط باستخدام مربعات الاختيار الموجودة على اليمين</string>
+    <string name="notification_actions_summary">قم بتحرير كل إشعار أدناه من خلال النقر عليه. حدد ما يصل إلى ثلاثة منها لتظهر في الإشعار المضغوط باستخدام مربعات الاختيار الموجودة على اليمين</string>
     <string name="notification_action_4_title">زر الإجراء الخامس</string>
     <string name="notification_action_3_title">زر الإجراء الرابع</string>
     <string name="notification_action_2_title">زر الإجراء الثالث</string>
@@ -716,4 +716,14 @@
     <string name="start_main_player_fullscreen_title">بدء تشغيل المشغل الرئيسي في وضع ملء الشاشة</string>
     <string name="enqueue_next_stream">وضع التالي على قائمة الانتظار</string>
     <string name="enqueued_next">تم وضع التالي على قائمة الانتظار</string>
+    <string name="processing_may_take_a_moment">جاري المعالجة ... قد يستغرق لحظة</string>
+    <string name="manual_update_title">التحقق من وجود تحديثات</string>
+    <string name="manual_update_description">التحقق يدويا من وجود إصدارات جديدة</string>
+    <string name="checking_updates_toast">جاري التحقق من وجود تحديثات…</string>
+    <string name="feed_new_items">عناصر تغذية جديدة</string>
+    <string name="report_player_errors_title">الإبلاغ عن أخطاء المشغل</string>
+    <string name="show_crash_the_player_summary">إظهار خيار تعطل عند استخدام المشغل</string>
+    <string name="show_crash_the_player_title">إظهار \"تعطل المشغل\"</string>
+    <string name="crash_the_player">تحطيم المشغل</string>
+    <string name="report_player_errors_summary">رفع تقرير لأخطاء المشغل بالتفصيل الكامل بدلا من إظهار رسالة اشعار قصيرة الأجل (مفيدة لتشخيص المشاكل)</string>
 </resources>

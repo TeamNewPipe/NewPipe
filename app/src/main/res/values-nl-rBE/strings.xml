@@ -54,9 +54,9 @@
     <string name="popup_remember_size_pos_title">Onthoud grootte en positie van pop-up</string>
     <string name="popup_remember_size_pos_summary">Onthoud laatste grootte en positie van pop-up</string>
     <string name="use_inexact_seek_title">Snel, minder exact spoelen gebruiken</string>
-    <string name="use_inexact_seek_summary">Minder exact spoelen laat de speler sneller posities zoeken met verminderde precisie. 5, 15 en 25 seconden werken niet.</string>
+    <string name="use_inexact_seek_summary">Minder exact spoelen laat de speler sneller posities zoeken met verminderde precisie. 5, 15 en 25 seconden werken niet</string>
     <string name="download_thumbnail_title">Miniatuurvoorbeelden laden</string>
-    <string name="download_thumbnail_summary">Schakel dit uit voor het laden van miniatuurvoorbeelden te verhinderen; dit bespaart mobiele gegevens en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache.</string>
+    <string name="download_thumbnail_summary">Schakel dit uit voor het laden van miniatuurvoorbeelden te verhinderen; dit bespaart mobiele gegevens en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache</string>
     <string name="thumbnail_cache_wipe_complete_notice">Afbeeldingscache gewist</string>
     <string name="metadata_cache_wipe_title">Gecachete metagegevens wissen</string>
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
@@ -64,7 +64,7 @@
     <string name="auto_queue_title">Volgende stream automatisch in wachtrij plaatsen</string>
     <string name="auto_queue_summary">Automatisch een gerelateerde stream toekennen bij het afspelen van de laatste stream in een niet-herhalende afspeelwachtlijst</string>
     <string name="show_search_suggestions_title">Zoeksuggesties</string>
-    <string name="show_search_suggestions_summary">Toon suggesties bij zoeken</string>
+    <string name="show_search_suggestions_summary">Kies de suggesties die getoond worden bij het zoeken</string>
     <string name="enable_search_history_title">Zoekgeschiedenis</string>
     <string name="enable_search_history_summary">Sla zoekopdrachten lokaal op</string>
     <string name="enable_watch_history_title">Geschiedenis bekijken</string>
@@ -266,7 +266,7 @@
     <string name="resize_zoom">Inzoomen</string>
     <string name="caption_auto_generated">Automatisch gegenereerd</string>
     <string name="caption_setting_title">Bijschriften</string>
-    <string name="caption_setting_description">Bijschrift grootte en achtergrond stijlen wijzigen. Vereist herstart van de app.</string>
+    <string name="caption_setting_description">Bijschrift grootte en achtergrond stijlen wijzigen. Vereist herstart van de app</string>
     <string name="enable_leak_canary_summary">Het monitoren van geheugenlekken kan ervoor zorgen dat de app niet goed meer reageert</string>
     <string name="enable_disposed_exceptions_title">Out-of-lifecycle-fouten melden</string>
     <string name="enable_disposed_exceptions_summary">Forceer het melden van niet-bezorgbare Rx-uitzonderingen buiten fragment of activiteitscyclus</string>
@@ -286,7 +286,8 @@
 \n3. Klik op \"Alle YouTube-gegevens inbegrepen\", dan op \"Selectie van alle items ongedaan maken\", dan selecteer alleen \"abonnementen\" en klik op \"OK\"
 \n4. Klik op \"Volgende stap\", dan op \"Export maken\"
 \n5. Klik op de knop \"Downloaden\" nadat deze verschijnt
-\n6. Uit de Takeout zipfile, pak de .json uit (gebruikelijk in de folder \"YouTube en YouTube Music/abonnementen/abonnementen.json\") en importeer deze hier.</string>
+\n6. Klik op IMPORTEER BESTAND hieronder en selecteer het gedownloade zip-bestand
+\n7. [Als de zip import faalt] Pak het .csv bestand uit (gebruikelijk in de folder \"YouTube en YouTube Music/abonnementen/abonnementen.csv), klik op IMPORTEER BESTAND hieronder en selecteer het uitgepakt csv bestand</string>
     <string name="import_soundcloud_instructions">Importeer een SoundCloud-profiel door de URL of het ID ervan in te voeren:
 \n
 \n1. Kies een webbrowser en schakel bureaubladmodus in (de website is niet beschikbaar voor mobiele apparaten)
@@ -304,11 +305,11 @@
     <string name="clear_views_history_title">Wissen afspeel geschiedenis</string>
     <string name="clear_views_history_summary">Verwijdert de geschiedenis van bekeken video\'s en afspeelposities</string>
     <string name="delete_view_history_alert">Alle afspeel geschiedenis verwijderen\?</string>
-    <string name="watch_history_deleted">Afspeel geschiedenis verwijderd.</string>
+    <string name="watch_history_deleted">Afspeel geschiedenis verwijderd</string>
     <string name="clear_search_history_title">Zoekgeschiedenis wissen</string>
     <string name="clear_search_history_summary">Verwijdert de gebruikte zoektermen</string>
     <string name="delete_search_history_alert">De hele zoekgeschiedenis verwijderen\?</string>
-    <string name="search_history_deleted">Zoekgeschiedenis verwijderd.</string>
+    <string name="search_history_deleted">Zoekgeschiedenis verwijderd</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
     <string name="app_license">NewPipe is vrije software: u kan het gebruiken, bestuderen, delen en verbeteren zoveel u maar wil. U kan het opnieuw uitgeven en/of aanpassen volgens de voorwaarden van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) om het even welke latere versie.</string>
     <string name="import_settings">Wilt u ook de instellingen importeren\?</string>
@@ -496,7 +497,7 @@
     <string name="most_liked">Meest leuk gevonden</string>
     <string name="recently_added">Recent toegevoegd</string>
     <string name="local">Lokaal</string>
-    <string name="localization_changes_requires_app_restart">De taal zal veranderen zodra de app opnieuw is opgestart.</string>
+    <string name="localization_changes_requires_app_restart">De taal zal veranderen zodra de app opnieuw is opgestart</string>
     <string name="no_playlist_bookmarked_yet">Geen afspeellijst bladwijzers</string>
     <string name="select_a_playlist">Selecteer een afspeellijst</string>
     <string name="default_kiosk_page_summary">Standaard kiosk</string>
@@ -521,7 +522,7 @@
     <string name="permission_display_over_apps">Geef toestemming voor weergave over andere apps</string>
     <string name="missing_file">Stream bestand downloaden</string>
     <string name="help">Hulp</string>
-    <string name="watch_history_states_deleted">Afspeelposities verwijderd.</string>
+    <string name="watch_history_states_deleted">Afspeelposities verwijderd</string>
     <string name="delete_playback_states_alert">Alle afspeelposities verwijderen\?</string>
     <string name="clear_playback_states_summary">Verwijdert alle geschiedenis van afspeelposities</string>
     <string name="clear_playback_states_title">Verwijder geschiedenis afspeelposities</string>
@@ -562,7 +563,7 @@
     <string name="notification_action_shuffle">Shuffle</string>
     <string name="notification_action_repeat">Herhaal</string>
     <string name="notification_actions_at_most_three">Je kan maximaal drie acties selecteren om te tonen in de compacte notificatie!</string>
-    <string name="notification_actions_summary">Pas elke notificatie actie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte notificatie door gebruik te maken van de selectie vakjes aan de rechterkant.</string>
+    <string name="notification_actions_summary">Pas elke notificatie actie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte notificatie door gebruik te maken van de selectie vakjes aan de rechterkant</string>
     <string name="notification_action_4_title">Vijfde actie knop</string>
     <string name="notification_action_3_title">Vierde actie knop</string>
     <string name="notification_action_2_title">Derde actie knop</string>
@@ -579,7 +580,7 @@
     <string name="msg_calculating_hash">Hash aan het berekenen</string>
     <string name="hash_channel_description">Meldingen van vooruitgang video hashing</string>
     <string name="hash_channel_name">Video Hash Melding</string>
-    <string name="show_meta_info_summary">Zet uit om metadata pop-ups te verbergen met extra informatie over de stream auteur, stream inhoud of een zoekaanvraag.</string>
+    <string name="show_meta_info_summary">Zet uit om metadata pop-ups te verbergen met extra informatie over de stream auteur, stream inhoud of een zoekaanvraag</string>
     <string name="show_meta_info_title">Toon metadata</string>
     <string name="disable_media_tunneling_title">Media vertunneling uitschakelen</string>
     <string name="show_channel_details">Toon kanaal details</string>
@@ -608,4 +609,19 @@
     <string name="georestricted_content">Deze inhoud is niet toegankelijk in uw land.</string>
     <string name="no_app_to_open_intent">Geen app beschikbaar om dit te openen</string>
     <string name="chapters">Hoofdstukken</string>
+    <string name="enqueue_next_stream">Volgende in de wachtrij</string>
+    <string name="enqueued_next">Volgende in de wachtrij</string>
+    <string name="high_quality_larger">Hoge kwaliteit (groter)</string>
+    <string name="low_quality_smaller">Lage kwaliteit (kleiner)</string>
+    <string name="start_main_player_fullscreen_title">Start hoofdspeler in volledig scherm</string>
+    <string name="main_page_content_swipe_remove">Veeg items om ze te verwijderen</string>
+    <string name="seekbar_preview_thumbnail_title">Zoekbalk miniatuurvoorbeeld</string>
+    <string name="mark_as_watched">Markeer als bekeken</string>
+    <string name="local_search_suggestions">Lokale zoeksuggesties</string>
+    <string name="remote_search_suggestions">Suggesties voor zoeken op afstand</string>
+    <string name="start_main_player_fullscreen_summary">Start geen video\'s in de minispeler, maar schakel direct over naar volledig scherm-modus, als de auto rotatie is vergrendeld. U kunt de minispeler nog steeds openen door het volledige scherm te verlaten</string>
+    <string name="no_dir_yet">Geen download map ingesteld, kies nu de standaard download map</string>
+    <string name="dont_show">Niet tonen</string>
+    <string name="comments_are_disabled">Reacties zijn uitgeschakeld</string>
+    <string name="show_image_indicators_title">Toon afbeeldingsindicatoren</string>
 </resources>

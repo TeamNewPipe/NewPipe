@@ -1,0 +1,2 @@
+- Correction de la reprise de la lecture
+- Améliorations pour assurer que le service qui détermine si NewPipe devrait vérifier les mises à jour n'est pas lancée en arrière-plan

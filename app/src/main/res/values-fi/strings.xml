@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Napauta suurennuslasia aloittaaksesi.</string>
+    <string name="main_bg_subtitle">Aloita napauttamalla suurennuslasia.</string>
     <string name="upload_date_text">Julkaistu %1$s</string>
     <string name="no_player_found">Ei löytynyt suoratoistosoitinta. Asennetaanko VLC\?</string>
     <string name="install">Asenna</string>
@@ -194,10 +194,10 @@
     <string name="no_player_found_toast">Suoratoistosoitinta ei löytynyt (voit asentaa VLC:n toistaaksesi).</string>
     <string name="controls_download_desc">Lataa suoratoistotiedosto</string>
     <string name="show_info">Näytä lisätietoja</string>
-    <string name="tab_bookmarks">Soittolistakirjanmerkit</string>
+    <string name="tab_bookmarks">Kirjanmerkit</string>
     <string name="controls_add_to_playlist_title">Lisää soittolistaan</string>
     <string name="use_inexact_seek_title">Käytä nopeampaa epätarkkaa pikakelausta</string>
-    <string name="use_inexact_seek_summary">Epätarkka kelaus mahdollistaa videon kelauksen nopeammin huonommalla tarkkuudella. Kelaaminen 5, 15 tai 25 sekunnin erissä ei toimi tämän kanssa</string>
+    <string name="use_inexact_seek_summary">Epätarkka kelaus mahdollistaa videon kelauksen nopeammin huonommalla tarkkuudella. Kelaaminen 5, 15 tai 25 sekunnin hyppäyksin ei toimi tämän kanssa</string>
     <string name="download_thumbnail_title">Lataa esikatselukuvat</string>
     <string name="download_thumbnail_summary">Poista käytöstä estääksesi esikatselukuvien lataus. Tämä säästää dataa ja vähentää muistin käyttöä. Asetuksen muuttaminen poistaa muistissa ja levyllä olevan kuvavälimuistin</string>
     <string name="thumbnail_cache_wipe_complete_notice">Kuvavälimuisti tyhjennetty</string>
@@ -304,8 +304,9 @@
 \n2. Kirjaudu sisään pyydettäessä
 \n3. Klikkaa \"Kaikki Youtube-data valittuna\", sitten \"Poista kaikki valinnat\", sitten ainoastaan \"tilaukset\" ja klikkaa \"OK\"
 \n4. Klikkaa \"Seuraava vaihe\" ja \"Luo vienti\"
-\n5. Klikkaa \"Lataa\" tämän ilmestyessä
-\n6. Ladatusta zip-tiedostosta pura .json-tiedosto (yleensä sijainnissa \"Youtube ja Youtube Musiikki/tilaukset/tilaukset.json\") ja tuo se tänne.</string>
+\n5. Klikkaa \"Lataa\"-painiketta tämän ilmestyessä
+\n6. Klikkaa TUO TIEDOSTO alhaalta ja valitse ladattu tiedosto
+\n7. [Jos zip-tiedoston tuonti epäonnistuu] Pura .csv-tiedosto (yleensä sijainnissa \"Youtube ja Youtube Musiikki/tilaukset/tilaukset.csv\") ja klikkaa TUO TIEDOSTO alhaalta ja valitse purettu csv-tiedosto</string>
     <string name="import_soundcloud_instructions">Tuo SoundCloud-profiili kirjoittamalla joko osoite tai ID:si:
 \n
 \n1. Laita päälle työpöytämoodi selaimessasi (tai käytä tietokonetta, tämä sivu ei toimi mobiilisivuna)
@@ -654,4 +655,21 @@
     <string name="show_image_indicators_title">Näytä kuvailmaisimet</string>
     <string name="remote_search_suggestions">Etähakuehdotukset</string>
     <string name="local_search_suggestions">Paikalliset hakuehdotukset</string>
+    <string name="enqueue_next_stream">Lisää seuraavaksi</string>
+    <string name="enqueued_next">Seuraavaksi jonossa</string>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Lataus valmis</item>
+        <item quantity="other">%s latausta valmiina</item>
+    </plurals>
+    <string name="start_main_player_fullscreen_title">Käynnistä pääsoitin koko näytössä</string>
+    <string name="main_page_content_swipe_remove">Pyyhkäise kohteita poistaaksesi ne</string>
+    <string name="start_main_player_fullscreen_summary">Älä käynnistä videoita minisoittimessa, vaan siirry suoraan koko näytön tilaan, jos automaattinen kierto on lukittu. Voit silti käyttää minisoitinta poistumalla koko näytön tilasta</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Poistettu %1$s lataus</item>
+        <item quantity="other">Poistettu %1$s latausta</item>
+    </plurals>
+    <string name="processing_may_take_a_moment">Käsitellään… Voi kestää hetken</string>
+    <string name="manual_update_title">Tarkista päivitykset</string>
+    <string name="manual_update_description">Tarkista manuaalisesti onko uusia versioita saatavilla</string>
+    <string name="checking_updates_toast">Tarkistetaan päivityksiä…</string>
 </resources>
