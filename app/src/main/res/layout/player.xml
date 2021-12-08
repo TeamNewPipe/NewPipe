@@ -682,11 +682,12 @@
                     android:indeterminate="false"
                     android:progressDrawable="@drawable/progress_circular_white" />
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/volumeImageView"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_centerInParent="true"
+                    app:tint="@color/white"
                     tools:ignore="ContentDescription"
                     tools:src="@drawable/ic_volume_up" />
             </RelativeLayout>
@@ -708,11 +709,12 @@
                     android:indeterminate="false"
                     android:progressDrawable="@drawable/progress_circular_white" />
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/brightnessImageView"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_centerInParent="true"
+                    app:tint="@color/white"
                     tools:ignore="ContentDescription"
                     tools:src="@drawable/ic_brightness_high" />
             </RelativeLayout>
