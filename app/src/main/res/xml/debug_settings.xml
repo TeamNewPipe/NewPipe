@@ -60,6 +60,7 @@
     <Preference
         android:key="@string/check_new_streams_key"
         android:title="@string/check_new_streams"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
     <Preference
@@ -75,5 +76,6 @@
         android:key="@string/show_crash_the_player_key"
         android:summary="@string/show_crash_the_player_summary"
         android:title="@string/show_crash_the_player_title"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 </PreferenceScreen>
