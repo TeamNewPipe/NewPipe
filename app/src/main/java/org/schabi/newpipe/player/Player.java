@@ -4177,9 +4177,15 @@ public final class Player implements
 
         final int videoRenderIndex = getVideoRendererIndex();
 
-        // We can safely assume that currentMetadata is not null (otherwise this method isn't
-        // called) so we can use the requireNonNull method of the Objects class.
-        final StreamInfo info = Objects.requireNonNull(currentMetadata).getMetadata();
+        // The current metadata may be null sometimes so we will be not able to execute the
+        // block above. Reload the play queue manager in this case.
+        if (currentMetadata == null) {
+            reloadPlayQueueManager();
+            setRecovery();
+            return;
+        }
+
+        final StreamInfo info = currentMetadata.getMetadata();
 
         /* For video streams: we don't want to stream in background the video stream so if the
         video stream played is not a video-only stream and if there is an audio stream available,
