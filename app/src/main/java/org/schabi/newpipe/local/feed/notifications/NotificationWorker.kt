@@ -2,7 +2,6 @@ package org.schabi.newpipe.local.feed.notifications
 
 import android.content.Context
 import androidx.core.app.NotificationCompat
-import androidx.preference.PreferenceManager
 import androidx.work.BackoffPolicy
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
@@ -15,6 +14,7 @@ import androidx.work.WorkerParameters
 import androidx.work.rxjava3.RxWorker
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.local.feed.service.FeedLoadManager
 import org.schabi.newpipe.local.feed.service.FeedLoadService
@@ -51,7 +51,11 @@ class NotificationWorker(
             .flatMapCompletable { x -> notificationHelper.displayNewStreamsNotification(x) }
             .toSingleDefault(Result.success())
             .onErrorReturnItem(Result.failure())
-    } else Single.just(Result.success())
+    } else {
+        // Can be the case when the user disables notifications for NewPipe
+        // in the device's app settings.
+        Single.just(Result.success())
+    }
 
     private fun createForegroundInfo(): ForegroundInfo {
         val notification = NotificationCompat.Builder(
@@ -69,16 +73,32 @@ class NotificationWorker(
 
     companion object {
 
-        private const val TAG = "streams_notifications"
+        private const val TAG = App.PACKAGE_NAME + "_streams_notifications"
 
-        private fun isEnabled(context: Context): Boolean {
-            return PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(
-                    context.getString(R.string.enable_streams_notifications),
-                    false
-                ) && NotificationHelper.areNotificationsEnabledOnDevice(context)
+        private fun isEnabled(context: Context) =
+            NotificationHelper.areNewStreamsNotificationsEnabled(context) &&
+                NotificationHelper.areNotificationsEnabledOnDevice(context)
+
+        /**
+         * Schedules a task for the [NotificationWorker]
+         * if the (device and in-app) notifications are enabled,
+         * otherwise [cancel]s all scheduled tasks.
+         */
+        @JvmStatic
+        fun initialize(context: Context) {
+            if (isEnabled(context)) {
+                schedule(context)
+            } else {
+                cancel(context)
+            }
         }
 
+        /**
+         * @param context the context to use
+         * @param options configuration options for the scheduler
+         * @param force Force the scheduler to use the new options
+         * by replacing the previously used worker.
+         */
         fun schedule(context: Context, options: ScheduleOptions, force: Boolean = false) {
             val constraints = Constraints.Builder()
                 .setRequiredNetworkType(
@@ -113,12 +133,23 @@ class NotificationWorker(
         @JvmStatic
         fun schedule(context: Context) = schedule(context, ScheduleOptions.from(context))
 
+        /**
+         * Check for new streams immediately
+         */
         @JvmStatic
         fun runNow(context: Context) {
             val request = OneTimeWorkRequestBuilder<NotificationWorker>()
                 .addTag(TAG)
                 .build()
             WorkManager.getInstance(context).enqueue(request)
+        }
+
+        /**
+         * Cancels all current work related to the [NotificationWorker].
+         */
+        @JvmStatic
+        fun cancel(context: Context) {
+            WorkManager.getInstance(context).cancelAllWorkByTag(TAG)
         }
     }
 }

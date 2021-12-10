@@ -40,14 +40,29 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         val context = context ?: return
-        if (key == getString(R.string.streams_notifications_interval_key) || key == getString(R.string.streams_notifications_network_key)) {
+        if (key == getString(R.string.streams_notifications_interval_key) ||
+            key == getString(R.string.streams_notifications_network_key)
+        ) {
+            // apply new configuration
             NotificationWorker.schedule(context, ScheduleOptions.from(context), true)
+        } else if (key == getString(R.string.enable_streams_notifications)) {
+            if (NotificationHelper.areNewStreamsNotificationsEnabled(context)) {
+                // Start the worker, because notifications were disabled previously.
+                NotificationWorker.schedule(context)
+            } else {
+                // The user disabled the notifications. Cancel the worker to save energy.
+                // A new one will be created once the notifications are enabled again.
+                NotificationWorker.cancel(context)
+            }
         }
     }
 
     override fun onResume() {
         super.onResume()
 
+        // Check whether the notifications are disabled in the device's app settings.
+        // If they are disabled, show a snackbar informing the user about that
+        // while allowing them to open the device's app settings.
         val enabled = NotificationHelper.areNotificationsEnabledOnDevice(requireContext())
         preferenceScreen.isEnabled = enabled
         if (!enabled) {

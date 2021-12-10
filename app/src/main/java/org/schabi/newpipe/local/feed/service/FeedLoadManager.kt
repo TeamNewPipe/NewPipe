@@ -261,7 +261,7 @@ class FeedLoadManager(private val context: Context) {
     companion object {
 
         /**
-         *
+         * Constant used to check for updates of subscriptions with [NotificationMode.ENABLED].
          */
         const val GROUP_NOTIFICATION_ENABLED = -2L
 
