@@ -178,7 +178,8 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
             try {
                 content = YoutubeDashManifestCreator
                         .createDashManifestFromOtfStreamingUrl(stream.getContent(),
-                                Objects.requireNonNull(stream.getItagItem()));
+                                Objects.requireNonNull(stream.getItagItem()),
+                                streamInfo.getDuration());
             } catch (final YoutubeDashManifestCreator.
                     YoutubeDashManifestCreationException | NullPointerException e) {
                 throw new IOException("Error when generating the DASH manifest of "
@@ -196,7 +197,8 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                         .createDashManifestFromPostLiveStreamDvrStreamingUrl(
                                 stream.getContent(),
                                 itagItem,
-                                itagItem.getTargetDurationSec());
+                                itagItem.getTargetDurationSec(),
+                                streamInfo.getDuration());
             } catch (final YoutubeDashManifestCreator.
                     YoutubeDashManifestCreationException | NullPointerException e) {
                 throw new IOException("Error when generating the DASH manifest of "
