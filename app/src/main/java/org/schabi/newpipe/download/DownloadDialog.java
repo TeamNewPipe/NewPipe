@@ -105,6 +105,8 @@ public class DownloadDialog extends DialogFragment
     int selectedAudioIndex = 0;
     @State
     int selectedSubtitleIndex = 0;
+    @State
+    boolean nonProgressiveStreamsRemoved = false;
 
     @Nullable
     private OnDismissListener onDismissListener = null;
@@ -139,8 +141,6 @@ public class DownloadDialog extends DialogFragment
     private final ActivityResultLauncher<Intent> requestDownloadPickVideoFolderLauncher =
             registerForActivityResult(
                     new StartActivityForResult(), this::requestDownloadPickVideoFolderResult);
-
-    private boolean nonProgressiveStreamsRemoved = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Instance creation

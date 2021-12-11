@@ -108,7 +108,7 @@
             android:progress="3" />
     </LinearLayout>
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/streams_hidden"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
