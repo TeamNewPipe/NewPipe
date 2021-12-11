@@ -1,0 +1,1 @@
+Se ha corregido la comprobación de nuevas versiones de NewPipe. Esta operación a veces se ejecutaba de manera prematura, provocando cierres inesperados en la aplicación. Ese error debiese estar corregido ahora.

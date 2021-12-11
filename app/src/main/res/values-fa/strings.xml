@@ -22,7 +22,7 @@
     <string name="download_path_audio_dialog_title">پوشه بارگیری صداها را انتخاب کنید</string>
     <string name="default_resolution_title">وضوح پیش‌گزیده</string>
     <string name="play_with_kodi_title">پخش با کودی</string>
-    <string name="kore_not_found">کارهٔ کوره (Kore) پیدا نشد. نصب شود؟</string>
+    <string name="kore_not_found">کارهٔ کُره (Kore) پیدا نشد. نصب شود؟</string>
     <string name="show_play_with_kodi_title">نمایش گزینهٔ «پخش با کودی»</string>
     <string name="show_play_with_kodi_summary">نمایش گزینه‌ای برای پخش ویدیو با مرکز رسانهٔ کودی</string>
     <string name="play_audio">صدا</string>
@@ -94,15 +94,15 @@
     <string name="controls_background_title">پس زمینه</string>
     <string name="controls_add_to_playlist_title">افزودن به</string>
     <string name="show_higher_resolutions_title">نمایش کیفیت بالاتر</string>
-    <string name="show_higher_resolutions_summary">تنها برخی دستگاه‌ها توانایی پخش ویدئوهای 2K و 4K را دارند</string>
-    <string name="default_video_format_title">قالب ویدئوی پیش‌فرض</string>
+    <string name="show_higher_resolutions_summary">تنها برخی دستگاه‌ها توانایی پخش ویدیوهای 2K و 4K را دارند</string>
+    <string name="default_video_format_title">قالب ویدیویی پیش‌گزیده</string>
     <string name="black_theme_title">سیاه</string>
-    <string name="download_thumbnail_title">دریافت تصویر بندانگشتی</string>
+    <string name="download_thumbnail_title">بار کردن بندانگشتی‌ها</string>
     <string name="auto_queue_title">قرار دادن خودکار جریان بعدی در صف</string>
     <string name="show_search_suggestions_title">پیشنهادهای جستجو</string>
     <string name="show_search_suggestions_summary">گزینش پیشنهادها برای نمایش هنگام جست‌وجو</string>
     <string name="enable_search_history_title">تاریخچه جستجو</string>
-    <string name="enable_watch_history_summary">نگه‌داشتن آمار ویدئوهای دیده‌شده</string>
+    <string name="enable_watch_history_summary">نگه‌داشتن رد ویدیوهای دیده</string>
     <string name="default_content_country_title">کشور محتوای پیش‌فرض</string>
     <string name="settings_category_player_title">پخش‌کننده</string>
     <string name="settings_category_player_behavior_title">رفتار</string>
@@ -123,7 +123,7 @@
     <string name="export_data_title">صادرکردن</string>
     <string name="import_data_summary">تاریخچه، اشتراک‌ها، سیاهه‌های پخش و (به صورت اختیاری) تنظیماتتان را بازنویسی خواهند کرد</string>
     <string name="export_data_summary">برون‌ریزی پیشینه، اشتراک‌ها، سیاهه‌های پخش و تنظیمات</string>
-    <string name="clear_views_history_title">پاک‌کردن تاریخچه ویدئوهای دیده‌شده</string>
+    <string name="clear_views_history_title">پاک‌سازی تاریخچهٔ دیدن</string>
     <string name="import_title">وارد کردن</string>
     <string name="import_from">وارد کردن از</string>
     <string name="export_to">صادر کردن به</string>
@@ -144,7 +144,7 @@
     <string name="delete_search_history_alert">تمام تاریخچه جستجو پاک شود؟</string>
     <string name="search_history_deleted">پیشینهٔ جست‌جو حذف شد</string>
     <string name="player_stream_failure">ناتوانی در پخش این جریان</string>
-    <string name="video_streams_empty">هیچ جریان ویدئویی پیدا نشد</string>
+    <string name="video_streams_empty">هیچ جریان ویدیویی پیدا نشد</string>
     <string name="audio_streams_empty">هیچ جریان صدایی پیدا نشد</string>
     <string name="invalid_directory">چنین پوشه‌ای وجود ندارد</string>
     <string name="invalid_source">چنین منبع محتوا/پرونده‌ای وجود ندارد</string>
@@ -164,7 +164,7 @@
         <item quantity="one">%s بازدید</item>
         <item quantity="other">%s بازدید</item>
     </plurals>
-    <string name="no_videos">بدون ویدئو</string>
+    <string name="no_videos">بدون ویدیو</string>
     <plurals name="videos">
         <item quantity="one">%s ویدیو</item>
         <item quantity="other">%s ویدیو</item>
@@ -204,12 +204,12 @@
     <string name="no_channel_subscribed_yet">هنز کانال مشترک‌شده‌ای وجود ندارد</string>
     <string name="select_a_kiosk">یک کیوسک را انتخاب کنید</string>
     <string name="trending">محبوب</string>
-    <string name="top_50">۵۰ ویدئوی برتر</string>
+    <string name="top_50">۵۰ برتر</string>
     <string name="new_and_hot">جدید و داغ</string>
     <string name="play_queue_remove">حذف</string>
     <string name="play_queue_stream_detail">جزئیات</string>
     <string name="play_queue_audio_settings">تنظیمات صدا</string>
-    <string name="video_player">پخش‌کننده ویدئو</string>
+    <string name="video_player">پخش‌کنندهٔ ویدیو</string>
     <string name="background_player">پخش‌کننده پس‌زمینه</string>
     <string name="always_ask_open_action">همیشه بپرس</string>
     <string name="preferred_player_fetcher_notification_title">در حال دریافت اطلاعات…</string>
@@ -217,7 +217,7 @@
     <string name="create_playlist">فهرست پخش جدید</string>
     <string name="rename_playlist">تغییر نام</string>
     <string name="name">نام</string>
-    <string name="append_playlist">افزودن به سیاههٔ پخش</string>
+    <string name="add_to_playlist">افزودن به سیاههٔ پخش</string>
     <string name="set_as_playlist_thumbnail">تنظیم برای تصویر سیاههٔ پخش</string>
     <string name="delete_playlist_prompt">این فهرست پخش پاک شود؟</string>
     <string name="playlist_creation_success">فهرست پخش ایجاد شد</string>
@@ -417,8 +417,8 @@
     <string name="minimize_on_exit_background_description">کوچک کردن پخش کننده به پس زمینه</string>
     <string name="import_soundcloud_instructions_hint">آی‌دی شما، soundcloud.com/yourid</string>
     <string name="minimize_on_exit_summary">عملکرد هنگام تغییر به برنامه دیگر از پخش‌کننده اصلی فیلم — %s</string>
-    <string name="tracks">آهنگ‌ها</string>
-    <string name="videos_string">ویدئوها</string>
+    <string name="tracks">قطعه‌ها</string>
+    <string name="videos_string">ویدیوها</string>
     <string name="peertube_instance_add_exists">این نمونه قبلا وجود دارد</string>
     <string name="peertube_instance_add_https_only">تنها نشانی‌های دارای http پشتیبانی می‌شوند</string>
     <string name="peertube_instance_add_fail">ناتوانی در اعتبارسنجی نشانی نمونه</string>
@@ -484,8 +484,8 @@
     <string name="default_kiosk_page_summary">کیوسک پیش‌فرض</string>
     <string name="recaptcha_done_button">انجام شد</string>
     <string name="subtitle_activity_recaptcha">وقتی انجام شد، «Done» یا «انجام شد» را بفشارید</string>
-    <string name="infinite_videos">بی‌نهایت ویدئو</string>
-    <string name="more_than_100_videos">بیش از ۱۰۰ ویدئو</string>
+    <string name="infinite_videos">∞ ویدیو</string>
+    <string name="more_than_100_videos">بیش از ۱۰۰ ویدیو</string>
     <plurals name="listening">
         <item quantity="one">%s شنونده</item>
         <item quantity="other">%s شنونده</item>
@@ -501,7 +501,7 @@
     <string name="help">راهنما</string>
     <string name="artists">هنرمندان</string>
     <string name="albums">آلبوم‌ها</string>
-    <string name="songs">موسیقی‌ها</string>
+    <string name="songs">آوازها</string>
     <string name="youtube_restricted_mode_enabled_title">روشن کردن «حالت محدود» یوتوب</string>
     <string name="search_showing_result_for">نمایش نتایج برای: %s</string>
     <string name="error_report_open_issue_button_text">گزارش روی گیت‌هاب</string>
@@ -509,7 +509,7 @@
     <string name="select_a_playlist">انتخاب یک فهرست پخش</string>
     <string name="no_playlist_bookmarked_yet">نشانک‌های فهرست پخش هنوز موجود نیستند</string>
     <string name="copy_for_github">از گزارش قالب‌بندی‌شده را رونوشت بگیرید</string>
-    <string name="playlist_no_uploader">تولید شده به صورت خودکار (بارگذارکننده ای یافت نشد)</string>
+    <string name="playlist_no_uploader">خودکار ایجاد شده (بارگذاری پیدا نشد)</string>
     <string name="feed_groups_header_title">گروه‌های کانال</string>
     <string name="feed_group_dialog_select_subscriptions">انتخاب اشتراک‌ها</string>
     <string name="feed_group_dialog_empty_selection">اشتراکی انتخاب نشده است</string>
@@ -669,4 +669,14 @@
     <string name="start_main_player_fullscreen_title">آغاز پخش‌کنندهٔ اصلی در تمام‌صفحه</string>
     <string name="enqueued_next">بعدی در صف گذاشته شد</string>
     <string name="enqueue_next_stream">در صف گذاشتن بعدی</string>
+    <string name="processing_may_take_a_moment">در حال پردازش… ممکن است کمی طول بکشد</string>
+    <string name="manual_update_title">بررسی به‌روز رسانی‌ها</string>
+    <string name="manual_update_description">بررسی دستی برای نگارش‌های جدید</string>
+    <string name="checking_updates_toast">بررسی کردن به‌روز رسانی‌ها…</string>
+    <string name="feed_new_items">موارد خوراک جدید</string>
+    <string name="crash_the_player">فروپاشی پخش‌کننده</string>
+    <string name="report_player_errors_title">گزارش خطاهای پخش کننده</string>
+    <string name="show_crash_the_player_summary">نمایش یک گزینهٔ فروپاشی هنگام استفاده از پخش کننده</string>
+    <string name="report_player_errors_summary">گزارش خطاهای پخش کننده با جزییات کامل به جای نشان دادن پیامی با عمر کوتاه (مناسب برای تشخیص مشکلات)</string>
+    <string name="show_crash_the_player_title">نمایش «فروپاشی پخش کننده»</string>
 </resources>

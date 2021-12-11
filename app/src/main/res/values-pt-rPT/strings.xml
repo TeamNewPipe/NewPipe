@@ -351,7 +351,7 @@
         <item quantity="one">%d hora</item>
         <item quantity="other">%d horas</item>
     </plurals>
-    <string name="auto_queue_title">Colocar vídeo seguinte na fila</string>
+    <string name="auto_queue_title">Enfileirar o próximo stream automaticamente</string>
     <string name="peertube_instance_url_summary">Defina as suas instâncias favoritas PeerTube</string>
     <string name="export_data_summary">Exportar histórico, subscrições, listas de reprodução e definições</string>
     <string name="best_resolution">Melhor resolução</string>
@@ -468,7 +468,7 @@
     <string name="feed_group_dialog_select_subscriptions">Selecionar subscrições</string>
     <string name="playlist_add_stream_success">Adicionado à lista de reprodução</string>
     <string name="default_video_format_title">Formato padrão de vídeo</string>
-    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para colocar na fila\"</string>
+    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para enfileirar\"</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
     <string name="metadata_cache_wipe_summary">Limpar todos os dados da página web</string>
     <string name="drawer_close">Fechar menu</string>
@@ -504,7 +504,7 @@
     <string name="use_inexact_seek_title">Utilizar pesquisa rápida</string>
     <string name="override_current_data">Está prestes a substituir a configuração atual.</string>
     <string name="switch_to_popup">Mudar para popup</string>
-    <string name="append_playlist">Adicionar à lista de reprodução</string>
+    <string name="add_to_playlist">Adicionar à lista de reprodução</string>
     <string name="popup_playing_toast">Reproduzir no modo poppup</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Acha que a fonte demora muito tempo a carregar\? Se sim, tente ativar o carregamento rápido (pode alterar a opção nas definições ou no botão abaixo).
 \n
@@ -547,7 +547,7 @@
     <string name="title_activity_play_queue">Reproduzir fila</string>
     <string name="settings_category_notification_title">Notificação</string>
     <string name="unsupported_url_dialog_message">URL não reconhecido. Abrir com outra aplicação\?</string>
-    <string name="auto_queue_toggle">Colocar na fila automaticamente</string>
+    <string name="auto_queue_toggle">Enfileiramento automático</string>
     <string name="clear_queue_confirmation_description">A fila do reprodutor ativo será substituída</string>
     <string name="clear_queue_confirmation_summary">Mudar de um reprodutor para outro pode substituir a sua fila</string>
     <string name="clear_queue_confirmation_title">Pedir confirmação antes de limpar uma fila</string>
@@ -642,12 +642,12 @@
     <string name="feed_load_error">Erro ao carregar o feed</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, apenas o \'Storage Access Framework\' é compatível</string>
     <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' não é compatível com Android KitKat e versões anteriores</string>
-    <string name="downloads_storage_ask_summary_no_saf_notice">Sempre que transferir um ficheiro, terá que indicar o local para o guardar</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Sempre que descarregar um ficheiro, terá que indicar o local para o guardar</string>
     <string name="dont_show">Não mostrar</string>
     <string name="low_quality_smaller">Baixa qualidade (menor)</string>
     <string name="high_quality_larger">Alta qualidade (maior)</string>
     <string name="seekbar_preview_thumbnail_title">Pré-visualização da miniatura da barra de pesquisa</string>
-    <string name="no_dir_yet">Ainda sem pasta de descarregas definida, escolha agora a pasta de descarregas padrão</string>
+    <string name="no_dir_yet">Ainda não foi definida uma pasta de descarregamento, escolha agora a pasta de descarregamento padrão</string>
     <string name="comments_are_disabled">Comentários estão desativados</string>
     <string name="mark_as_watched">Marcar como visto</string>
     <string name="loading_channel_details">A carregar detalhes do canal…</string>
@@ -669,4 +669,14 @@
     <string name="start_main_player_fullscreen_title">Iniciar reprodutor principal em ecrã completo</string>
     <string name="enqueued_next">Enfileirado o próximo</string>
     <string name="enqueue_next_stream">Enfileirar o próximo</string>
+    <string name="processing_may_take_a_moment">A processar… Pode demorar um momento</string>
+    <string name="manual_update_title">Procurar atualizações</string>
+    <string name="manual_update_description">Verificar manualmente se existe uma nova versão</string>
+    <string name="checking_updates_toast">A procurar atualizações…</string>
+    <string name="feed_new_items">Novos itens</string>
+    <string name="crash_the_player">Travar o reprodutor</string>
+    <string name="report_player_errors_summary">Relata os erros do reprodutor com todos os detalhes em vez de mostrar uma mensagem de notificação por pouco tempo (útil para diagnosticar problemas)</string>
+    <string name="report_player_errors_title">Relatar erros do reprodutor</string>
+    <string name="show_crash_the_player_title">Mostrar \"travar o reprodutor\"</string>
+    <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o reprodutor</string>
 </resources>

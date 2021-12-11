@@ -1,0 +1,8 @@
+### Fejlesztések
+- Beállítások importálása/exportálása #1333 
+- Túlrajzolás csökkentése (teljesítménybeli javítás) #1371 
+- Apró kódfejlesztések #1375 
+- GDPR információk hozzáadása #1420
+
+### Javítva
+- Letöltés: A befejezetlen .giga fájlokból történő betöltés közbeni összeomlás javítása #1407

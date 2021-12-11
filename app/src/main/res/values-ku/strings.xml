@@ -212,7 +212,7 @@
     <string name="create_playlist">لیستەلێدانی نوێ</string>
     <string name="rename_playlist">ناولێنانەوە</string>
     <string name="name">ناو</string>
-    <string name="append_playlist">زیادکردن بۆ لیستەلێدان</string>
+    <string name="add_to_playlist">زیادکردن بۆ لیستەلێدان</string>
     <string name="set_as_playlist_thumbnail">دانان لەسەر وێنۆچکەی لیستەلێدان</string>
     <string name="bookmark_playlist">لیستەلێدانی نیشانەکراو</string>
     <string name="unbookmark_playlist">لادانی نیشانەکراو</string>

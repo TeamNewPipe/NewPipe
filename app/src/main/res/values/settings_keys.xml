@@ -89,6 +89,8 @@
         <item>@string/never</item>
     </string-array>
 
+    <string name="report_player_errors_key" translatable="false">report_player_errors_key</string>
+
     <string name="seekbar_preview_thumbnail_key" translatable="false">seekbar_preview_thumbnail_key</string>
     <string name="seekbar_preview_thumbnail_high_quality" translatable="false">seekbar_preview_thumbnail_high_quality</string>
     <string name="seekbar_preview_thumbnail_low_quality" translatable="false">seekbar_preview_thumbnail_low_quality</string>
@@ -188,6 +190,7 @@
     <string name="disable_media_tunneling_key" translatable="false">disable_media_tunneling_key</string>
     <string name="crash_the_app_key" translatable="false">crash_the_app_key</string>
     <string name="show_image_indicators_key" translatable="false">show_image_indicators_key</string>
+    <string name="show_crash_the_player_key" translatable="false">show_crash_the_player_key</string>
 
     <!-- THEMES -->
     <string name="theme_key" translatable="false">theme</string>
@@ -263,6 +266,7 @@
 
     <string name="feed_update_threshold_key" translatable="false">feed_update_threshold_key</string>
     <string name="feed_update_threshold_default_value" translatable="false">300</string>
+    <string name="feed_show_played_items_key" translatable="false">feed_show_played_items</string>
 
     <string name="show_thumbnail_key" translatable="false">show_thumbnail_key</string>
 
@@ -359,6 +363,7 @@
     <string name="background_player_key" translatable="false">background_player</string>
     <string name="popup_player_key" translatable="false">popup_player</string>
     <string name="download_key" translatable="false">download</string>
+    <string name="add_to_playlist_key" translatable="false">add_to_playlist</string>
     <string name="always_ask_open_action_key" translatable="false">always_ask_player</string>
 
     <string-array name="preferred_open_action_description_list" translatable="false">
@@ -367,6 +372,7 @@
         <item>@string/background_player</item>
         <item>@string/popup_player</item>
         <item>@string/download</item>
+        <item>@string/add_to_playlist</item>
         <item>@string/always_ask_open_action</item>
     </string-array>
     <string-array name="preferred_open_action_values_list" translatable="false">
@@ -375,11 +381,13 @@
         <item>@string/background_player_key</item>
         <item>@string/popup_player_key</item>
         <item>@string/download_key</item>
+        <item>@string/add_to_playlist_key</item>
         <item>@string/always_ask_open_action_key</item>
     </string-array>
 
     <!-- Updates -->
     <string name="update_app_key" translatable="false">update_app_key</string>
+    <string name="manual_update_key">manual_update_key</string>
     <string name="update_pref_screen_key" translatable="false">update_pref_screen_key</string>
     <string name="update_expiry_key" translatable="false">update_expiry_key</string>
 

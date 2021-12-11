@@ -240,7 +240,7 @@
     <string name="create_playlist">רשימת נגינה חדשה</string>
     <string name="rename_playlist">שינוי שם</string>
     <string name="name">שם</string>
-    <string name="append_playlist">הוספה לרשימת נגינה</string>
+    <string name="add_to_playlist">הוספה לרשימת נגינה</string>
     <string name="bookmark_playlist">הוספת רשימת נגינה לסימניות</string>
     <string name="unbookmark_playlist">הסרת סימנייה</string>
     <string name="delete_playlist_prompt">למחוק רשימת נגינה זו\?</string>
@@ -693,4 +693,14 @@
     <string name="start_main_player_fullscreen_title">הפעלת הנגן הראשי במסך מלא</string>
     <string name="enqueued_next">נוסף כהבא בתור</string>
     <string name="enqueue_next_stream">הוספה כהבא בתור</string>
+    <string name="processing_may_take_a_moment">מתבצע עיבוד… נא להמתין רגע קט</string>
+    <string name="manual_update_title">איתור עדכונים</string>
+    <string name="checking_updates_toast">מתבצע איתור עדכונים…</string>
+    <string name="manual_update_description">לנסות לאתר גרסאות חדשות ידנית</string>
+    <string name="feed_new_items">פריטים חדשים בהזנה</string>
+    <string name="crash_the_player">להקריס את הנגן</string>
+    <string name="show_crash_the_player_title">הצגת „להקריס את הנגן”</string>
+    <string name="report_player_errors_title">דיווח על שגיאות בנגן</string>
+    <string name="report_player_errors_summary">מדווח על שגיאות בנגן בפירוט מלא במקום להציג הודעה שקופצת למסך לזמן קצר (יעיל לניתוח תקלות)</string>
+    <string name="show_crash_the_player_summary">הצגת אפשרות קריסה בעת שימוש בנגן</string>
 </resources>

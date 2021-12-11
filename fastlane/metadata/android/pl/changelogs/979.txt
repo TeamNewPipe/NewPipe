@@ -1,0 +1,2 @@
+- Naprawiono wznawianie odtwarzania
+- Ulepszenia zapewniające, że usługa, która określa, czy NewPipe powinien sprawdzać nowe wersje, nie jest uruchamiana w tle

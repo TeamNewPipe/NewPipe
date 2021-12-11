@@ -259,7 +259,7 @@
     <string name="create_playlist">Erreprodukzio-zerrenda berria</string>
     <string name="rename_playlist">Aldatu izena</string>
     <string name="name">Izena</string>
-    <string name="append_playlist">Gehitu erreprodukzio-zerrendara</string>
+    <string name="add_to_playlist">Gehitu erreprodukzio-zerrendara</string>
     <string name="set_as_playlist_thumbnail">Ezarri erreprodukzio-zerrendaren iruditxo gisa</string>
     <string name="bookmark_playlist">Gogoko erreprodukzio-zerrenda</string>
     <string name="unbookmark_playlist">Kendu gogokoa</string>

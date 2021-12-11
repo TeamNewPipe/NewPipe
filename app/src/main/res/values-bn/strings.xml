@@ -37,7 +37,7 @@
     <string name="unbookmark_playlist">বুকমার্ক মুছুন</string>
     <string name="unmute">আন মিউট</string>
     <string name="mute">মিউট</string>
-    <string name="append_playlist">প্লে লিস্ট এ যুক্ত করুন</string>
+    <string name="add_to_playlist">প্লে লিস্ট এ যুক্ত করুন</string>
     <string name="name">নাম</string>
     <string name="rename_playlist">নাম পাল্টাও</string>
     <string name="create_playlist">নতুন প্লে লিস্ট</string>
@@ -580,4 +580,9 @@
     <string name="tablet_mode_title">ট্যাবলেট অবস্থা</string>
     <string name="off">বন্ধ</string>
     <string name="on">চালু</string>
+    <plurals name="download_finished_notification">
+        <item quantity="one">ডাউনলোড সমাপ্ত</item>
+        <item quantity="other">%sটি ডাউনলোড সমাপ্ত</item>
+    </plurals>
+    <string name="mark_as_watched">দেখা হয়েছে চিহ্নিত করো</string>
 </resources>

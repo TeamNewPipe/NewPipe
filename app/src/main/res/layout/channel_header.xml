@@ -49,7 +49,7 @@
                 tools:visibility="visible" />
         </FrameLayout>
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/channel_title_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
             tools:ignore="RtlHardcoded"
             tools:text="Lorem ipsum dolor" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/sub_channel_title_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
             tools:layout_below="@id/channel_title_view"
             tools:text="Lorem ipsum dolor" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/channel_subscriber_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

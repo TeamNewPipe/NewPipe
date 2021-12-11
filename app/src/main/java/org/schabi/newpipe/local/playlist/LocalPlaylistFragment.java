@@ -709,8 +709,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     return false;
                 }
 
-                final int sourceIndex = source.getAdapterPosition();
-                final int targetIndex = target.getAdapterPosition();
+                final int sourceIndex = source.getBindingAdapterPosition();
+                final int targetIndex = target.getBindingAdapterPosition();
                 final boolean isSwapped = itemListAdapter.swapItems(sourceIndex, targetIndex);
                 if (isSwapped) {
                     saveChanges();
@@ -781,6 +781,16 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         entries.add(StreamDialogEntry.open_in_browser);
         if (KoreUtils.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
+        }
+
+        // show "mark as watched" only when watch history is enabled
+        if (StreamDialogEntry.shouldAddMarkAsWatched(
+                item.getStreamEntity().getStreamType(),
+                context
+        )) {
+            entries.add(
+                    StreamDialogEntry.mark_as_watched
+            );
         }
         entries.add(StreamDialogEntry.show_channel_details);
 

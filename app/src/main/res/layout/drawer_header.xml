@@ -42,7 +42,7 @@
                 app:srcCompat="@drawable/splash_foreground"
                 tools:ignore="ContentDescription" />
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/drawer_header_newpipe_title"
                 android:layout_width="@dimen/drawer_header_newpipe_title_default_width"
                 android:layout_height="match_parent"
@@ -88,7 +88,7 @@
                     tools:ignore="ContentDescription"
                     tools:srcCompat="@drawable/place_holder_youtube" />
 
-                <TextView
+                <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/drawer_header_service_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

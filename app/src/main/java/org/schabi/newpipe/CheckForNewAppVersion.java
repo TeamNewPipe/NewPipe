@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.util.Log;
 
@@ -15,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.pm.PackageInfoCompat;
 import androidx.preference.PreferenceManager;
 
@@ -48,7 +46,8 @@ public final class CheckForNewAppVersion extends IntentService {
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final String TAG = CheckForNewAppVersion.class.getSimpleName();
 
-    private static final String GITHUB_APK_SHA1
+    // Public key of the certificate that is used in NewPipe release versions
+    private static final String RELEASE_CERT_PUBLIC_KEY_SHA1
             = "B0:2E:90:7C:1C:D6:FC:57:C3:35:F0:88:D0:8F:50:5F:94:E4:D2:15";
     private static final String NEWPIPE_API_URL = "https://newpipe.net/api/data.json";
 
@@ -129,44 +128,37 @@ public final class CheckForNewAppVersion extends IntentService {
                                                              final String versionName,
                                                              final String apkLocationUrl,
                                                              final int versionCode) {
-        final int notificationId = 2000;
-
-        if (BuildConfig.VERSION_CODE < versionCode) {
-            // A pending intent to open the apk location url in the browser.
-            final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            final PendingIntent pendingIntent
-                    = PendingIntent.getActivity(application, 0, intent, 0);
-
-            final String channelId = application
-                    .getString(R.string.app_update_notification_channel_id);
-            final NotificationCompat.Builder notificationBuilder
-                    = new NotificationCompat.Builder(application, channelId)
-                    .setSmallIcon(R.drawable.ic_newpipe_update)
-                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                    .setContentIntent(pendingIntent)
-                    .setAutoCancel(true)
-                    .setContentTitle(application
-                            .getString(R.string.app_update_notification_content_title))
-                    .setContentText(application
-                            .getString(R.string.app_update_notification_content_text)
-                            + " " + versionName);
-
-            final NotificationManagerCompat notificationManager
-                    = NotificationManagerCompat.from(application);
-            notificationManager.notify(notificationId, notificationBuilder.build());
+        if (BuildConfig.VERSION_CODE >= versionCode) {
+            return;
         }
+
+        // A pending intent to open the apk location url in the browser.
+        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        final PendingIntent pendingIntent
+                = PendingIntent.getActivity(application, 0, intent, 0);
+
+        final String channelId = application
+                .getString(R.string.app_update_notification_channel_id);
+        final NotificationCompat.Builder notificationBuilder
+                = new NotificationCompat.Builder(application, channelId)
+                .setSmallIcon(R.drawable.ic_newpipe_update)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .setContentTitle(application
+                        .getString(R.string.app_update_notification_content_title))
+                .setContentText(application
+                        .getString(R.string.app_update_notification_content_text)
+                        + " " + versionName);
+
+        final NotificationManagerCompat notificationManager
+                = NotificationManagerCompat.from(application);
+        notificationManager.notify(2000, notificationBuilder.build());
     }
 
-    private static boolean isConnected(@NonNull final App app) {
-        final ConnectivityManager connectivityManager =
-                ContextCompat.getSystemService(app, ConnectivityManager.class);
-        return connectivityManager != null && connectivityManager.getActiveNetworkInfo() != null
-                && connectivityManager.getActiveNetworkInfo().isConnected();
-    }
-
-    public static boolean isGithubApk(@NonNull final App app) {
-        return getCertificateSHA1Fingerprint(app).equals(GITHUB_APK_SHA1);
+    public static boolean isReleaseApk(@NonNull final App app) {
+        return getCertificateSHA1Fingerprint(app).equals(RELEASE_CERT_PUBLIC_KEY_SHA1);
     }
 
     private void checkNewVersion() throws IOException, ReCaptchaException {
@@ -175,9 +167,8 @@ public final class CheckForNewAppVersion extends IntentService {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
         final NewVersionManager manager = new NewVersionManager();
 
-        // Check if user has enabled/disabled update checking
-        // and if the current apk is a github one or not.
-        if (!prefs.getBoolean(app.getString(R.string.update_app_key), true) || !isGithubApk(app)) {
+        // Check if the current apk is a github one or not.
+        if (!isReleaseApk(app)) {
             return;
         }
 
@@ -213,6 +204,7 @@ public final class CheckForNewAppVersion extends IntentService {
 
         // Parse the json from the response.
         try {
+
             final JsonObject githubStableObject = JsonParser.object()
                     .from(response.responseBody()).getObject("flavors")
                     .getObject("github").getObject("stable");

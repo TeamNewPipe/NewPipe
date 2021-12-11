@@ -184,7 +184,7 @@
     <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Knopf „Details:“ im Video gedrückt wird</string>
     <string name="new_and_hot">Neu und Heiß</string>
     <string name="hold_to_append">Halten, um zur Wiedergabeliste hinzuzufügen</string>
-    <string name="show_hold_to_append_title">„Zum Anhängen gedrückt halten“ Tipp anzeigen</string>
+    <string name="show_hold_to_append_title">„Halten zum Einreihen“ Tipp anzeigen</string>
     <string name="unknown_content">[Unbekannt]</string>
     <string name="start_here_on_background">Wiedergabe im Hintergrund starten</string>
     <string name="start_here_on_popup">Wiedergabe in einem Pop-up starten</string>
@@ -228,7 +228,7 @@
     <string name="always_ask_open_action">Immer fragen</string>
     <string name="create_playlist">Neue Wiedergabeliste</string>
     <string name="rename_playlist">Umbenennen</string>
-    <string name="append_playlist">Zur Wiedergabeliste hinzufügen</string>
+    <string name="add_to_playlist">Zur Wiedergabeliste hinzufügen</string>
     <string name="set_as_playlist_thumbnail">Als Vorschaubild der Wiedergabeliste festlegen</string>
     <string name="unbookmark_playlist">Lesezeichen entfernen</string>
     <string name="delete_playlist_prompt">Diese Wiedergabeliste löschen?</string>
@@ -290,7 +290,7 @@
 \n4. Klicke auf „Nächster Schritt“ und dann auf „Export erstellen“
 \n5. Klicke auf die Schaltfläche „Download“, nachdem sie erscheint
 \n6. Klicke unten auf \"Datei importieren\" und wähle die heruntergeladene Zip-Datei aus
-\n7. [Wenn der Zip-Import fehlschlägt] Entpacke die csv-Datei (normalerweise unter „YouTube und YouTube Music/subscriptions/subscriptions.json“), klicke auf \"Datei importieren\" und wähle die extrahierte csv-Datei aus</string>
+\n7. [Wenn der Zip-Import fehlschlägt] Entpacke die CSV-Datei (normalerweise unter „YouTube und YouTube Music/Abos/Abos.csv“), klicke auf \"Datei importieren\" und wähle die extrahierte CSV-Datei aus</string>
     <string name="import_soundcloud_instructions">Importiere ein SoundCloud-Profil, indem die URL oder deine ID eingegeben wird:
 \n
 \n1. Aktiviere den Desktop-Modus in einem Web-Browser (die Seite ist für mobile Geräte nicht verfügbar)
@@ -545,7 +545,7 @@
     <string name="playlist_page_summary">Wiedergabelisten-Seite</string>
     <string name="no_playlist_bookmarked_yet">Bisher keine Lesezeichen für Wiedergabelisten</string>
     <string name="select_a_playlist">Wiedergabeliste auswählen</string>
-    <string name="error_report_open_github_notice">Bitte überprüfen Sie, ob es schon Fragen zu diesem Thema gibt. Doppelt erstellte Tickets kosten uns Zeit, die wir nutzen könnten, um diesen Fehler zu beheben.</string>
+    <string name="error_report_open_github_notice">Bitte prüfe, ob nicht bereits ein Thema existiert, das deinen Absturz behandelt. Doppelt erstellte Tickets kosten uns Zeit, die wir nutzen könnten, um diesen Fehler zu beheben.</string>
     <string name="search_showing_result_for">Zeige Ergebnisse für: %s</string>
     <string name="autoplay_summary">Wiedergabe automatisch starten — %s</string>
     <string name="wifi_only">Nur über WLAN</string>
@@ -566,7 +566,7 @@
     <string name="notification_action_repeat">Wiederholen</string>
     <string name="notification_action_nothing">Nichts</string>
     <string name="title_activity_play_queue">Warteschlange abspielen</string>
-    <string name="auto_queue_toggle">Automatische Warteschlange</string>
+    <string name="auto_queue_toggle">Auto-Einreihung</string>
     <string name="clear_queue_confirmation_summary">Der Wechsel von einem Player zu einem anderen kann deine Warteschlange überschreiben</string>
     <string name="clear_queue_confirmation_title">Überschreiben der Warteschlange bestätigen</string>
     <string name="clear_queue_confirmation_description">Die aktive Player-Warteschlange wird ersetzt</string>
@@ -669,4 +669,14 @@
     <string name="start_main_player_fullscreen_title">Hauptplayer im Vollbildmodus starten</string>
     <string name="enqueued_next">Als Nächstes eingereiht</string>
     <string name="enqueue_next_stream">Als Nächstes in Wiedergabe einreihen</string>
+    <string name="processing_may_take_a_moment">Verarbeitung… Kann einen Moment dauern</string>
+    <string name="manual_update_title">Nach Aktualisierungen suchen</string>
+    <string name="checking_updates_toast">Suche nach Aktualisierungen…</string>
+    <string name="manual_update_description">Manuelle Prüfung auf neue Versionen</string>
+    <string name="feed_new_items">Neue Feed-Elemente</string>
+    <string name="show_crash_the_player_title">\"Absturz des Players\" anzeigen</string>
+    <string name="crash_the_player">Absturz des Players</string>
+    <string name="report_player_errors_summary">Meldet Playerfehler mit allen Details, anstatt eine kurzlebige Popupmeldung anzuzeigen (nützlich für die Diagnose von Problemen)</string>
+    <string name="show_crash_the_player_summary">Zeigt eine Absturzoption an, wenn der Player verwendet wird</string>
+    <string name="report_player_errors_title">Playerfehler melden</string>
 </resources>

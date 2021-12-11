@@ -26,7 +26,7 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingBottom="@dimen/activity_vertical_margin">
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/errorSorryView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,21 +35,21 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textStyle="bold" />
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:text="@string/what_happened_headline"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/errorMessageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/info_labels"
                 android:textColor="?attr/colorAccent" />
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/activity_vertical_margin"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/errorInfoLabelsView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="16dp">
 
-                    <TextView
+                    <org.schabi.newpipe.views.NewPipeTextView
                         android:id="@+id/errorInfosView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -82,7 +82,7 @@
 
             </LinearLayout>
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/activity_vertical_margin"
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
 
-                <TextView
+                <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/errorView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -102,14 +102,14 @@
                     android:typeface="monospace" />
             </HorizontalScrollView>
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:text="@string/your_comment"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <EditText
+            <org.schabi.newpipe.views.NewPipeEditText
                 android:id="@+id/errorCommentBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/error_report_button_text" />
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

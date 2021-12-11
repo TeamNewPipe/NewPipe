@@ -1,0 +1,26 @@
+### بهبوودها
+
+- #1486
+- #1472
+- #1498
+- #1454
+- #1354
+- #1510
+- #1392
+  - Reworked the playback speed control dialog.
+  - Added a toggle to fast-forward.
+  - Refactored media source resolution.
+  - Fixed remote playlist metadata not updating .
+  - #1383
+- Use new extractor
+
+### تعمیرها
+
+- Fix #1440 #1491
+- #1497
+  - #1495.
+  - #1475.
+- #1463 (Fixed #640)
+- #1509
+  - [#1412].
+  - Fixed minimizing player.

@@ -7,7 +7,7 @@
     android:paddingTop="@dimen/video_item_search_padding"
     android:paddingRight="@dimen/video_item_search_padding">
 
-    <EditText
+    <org.schabi.newpipe.views.NewPipeEditText
         android:id="@+id/dialogEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

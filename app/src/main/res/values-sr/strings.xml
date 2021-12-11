@@ -194,7 +194,7 @@
     <string name="always">Увек</string>
     <string name="just_once">Само једном</string>
     <string name="unknown_content">[непознато]</string>
-    <string name="show_hold_to_append_title">Прикажи поруку „задржи ради стављања у ред”</string>
+    <string name="show_hold_to_append_title">Прикажи поруку „задржи ради заказивања”</string>
     <string name="donation_title">Донација</string>
     <string name="donation_encouragement">ЊуПајп развијају волонтери у своје слободно време како би вам пружили најбоље искуство. Узвратите им како би наставили са побољшавањем ЊуПајпа док уживају уз шољицу кафе.</string>
     <string name="give_back">Узврати</string>
@@ -350,7 +350,7 @@
     <string name="set_as_playlist_thumbnail">Постави као сличицу листе</string>
     <string name="unmute">Упали звук</string>
     <string name="mute">Утишај</string>
-    <string name="append_playlist">Додај на листу</string>
+    <string name="add_to_playlist">Додај на листу</string>
     <string name="name">Назив</string>
     <string name="rename_playlist">Преименуј</string>
     <string name="create_playlist">Нова листа</string>
@@ -507,9 +507,9 @@
     <string name="brightness_gesture_control_title">Контрола осветљености потезом</string>
     <string name="volume_gesture_control_summary">Користите потезе за контролу јачине звука плејера</string>
     <string name="volume_gesture_control_title">Контрола јачине звука потезом</string>
-    <string name="auto_queue_toggle">Аутоматски ред</string>
+    <string name="auto_queue_toggle">Самостално заказивање</string>
     <string name="auto_queue_summary">Наставите да завршавате (не понављајући) ред репродукције додавањем повезаног стрима</string>
-    <string name="auto_queue_title">Аутоматски стави у ред следећи ток</string>
+    <string name="auto_queue_title">Самостално закажи следећи ток</string>
     <string name="metadata_cache_wipe_complete_notice">Кеш метаподатака обрисан</string>
     <string name="show_meta_info_summary">Искључите за сакривање поља мета-података са додатним информацијама о творцу тока, садржају или захтеву за претрагу</string>
     <string name="show_meta_info_title">Прикажи мета-податке</string>
@@ -652,4 +652,15 @@
     <string name="on">укљ</string>
     <string name="tablet_mode_title">Режим таблета</string>
     <string name="feed_toggle_show_played_items">Прикажи пуштано</string>
+    <string name="enqueue_next_stream">Закажи следеће</string>
+    <string name="enqueued_next">Заказано је следеће</string>
+    <string name="local_search_suggestions">Местни предлози претраге</string>
+    <string name="remote_search_suggestions">Удаљени предлози претраге</string>
+    <string name="mark_as_watched">Означи као одгледано</string>
+    <string name="comments_are_disabled">Разговори су онемогућени</string>
+    <string name="processing_may_take_a_moment">Обрађујем… Може потрајати пар тренутака</string>
+    <string name="show_image_indicators_title">Приказуј указиваче слике</string>
+    <string name="start_main_player_fullscreen_summary">Не покрећи видео у малом прозору, већ пређи одмах у пун приказ заслона, уколико је обртање приказа закључано. И даље можете приступити малом приказу извођача изласком из пуног приказа</string>
+    <string name="report_player_errors_title">Пријави грешке програма извођача видеа</string>
+    <string name="start_main_player_fullscreen_title">Покрени пуни главни приказ извођача</string>
 </resources>

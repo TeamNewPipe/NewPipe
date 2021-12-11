@@ -1,0 +1,1 @@
+Die Prüfung auf eine neue NewPipe-Version wurde korrigiert. Diese Prüfung wurde manchmal zu früh ausgeführt und führte daher zu einem Absturz der App. Dies sollte nun behoben sein.

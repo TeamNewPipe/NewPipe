@@ -1,5 +1,8 @@
 package org.schabi.newpipe;
 
+import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.AUDIO;
+import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.VIDEO;
+
 import android.annotation.SuppressLint;
 import android.app.IntentService;
 import android.content.Context;
@@ -30,6 +33,7 @@ import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
 
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
 import org.schabi.newpipe.databinding.SingleChoiceDialogViewBinding;
 import org.schabi.newpipe.download.DownloadDialog;
@@ -56,6 +60,7 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.ktx.ExceptionUtils;
+import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.helper.PlayerHolder;
@@ -69,14 +74,15 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.urlfinder.UrlFinder;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import icepick.Icepick;
@@ -88,9 +94,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-
-import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.AUDIO;
-import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.VIDEO;
 
 /**
  * Get the url from the intent and open it in the chosen preferred player.
@@ -107,6 +110,7 @@ public class RouterActivity extends AppCompatActivity {
     protected String currentUrl;
     private StreamingService currentService;
     private boolean selectionIsDownload = false;
+    private boolean selectionIsAddToPlaylist = false;
     private AlertDialog alertDialogChoice = null;
 
     @Override
@@ -350,7 +354,7 @@ public class RouterActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.just_once, dialogButtonsClickListener)
                 .setPositiveButton(R.string.always, dialogButtonsClickListener)
                 .setOnDismissListener((dialog) -> {
-                    if (!selectionIsDownload) {
+                    if (!selectionIsDownload && !selectionIsAddToPlaylist) {
                         finish();
                     }
                 })
@@ -446,6 +450,10 @@ public class RouterActivity extends AppCompatActivity {
         final AdapterChoiceItem backgroundPlayer = new AdapterChoiceItem(
                 getString(R.string.background_player_key), getString(R.string.background_player),
                 R.drawable.ic_headset);
+        final AdapterChoiceItem addToPlaylist = new AdapterChoiceItem(
+                getString(R.string.add_to_playlist_key), getString(R.string.add_to_playlist),
+                R.drawable.ic_add);
+
 
         if (linkType == LinkType.STREAM) {
             if (isExtVideoEnabled) {
@@ -481,6 +489,10 @@ public class RouterActivity extends AppCompatActivity {
             returnList.add(new AdapterChoiceItem(getString(R.string.download_key),
                     getString(R.string.download),
                     R.drawable.ic_file_download));
+
+            // Add to playlist is not necessary for CHANNEL and PLAYLIST linkType since those can
+            // not be added to a playlist
+            returnList.add(addToPlaylist);
 
         } else {
             returnList.add(showInfo);
@@ -547,6 +559,12 @@ public class RouterActivity extends AppCompatActivity {
             return;
         }
 
+        if (selectedChoiceKey.equals(getString(R.string.add_to_playlist_key))) {
+            selectionIsAddToPlaylist = true;
+            openAddToPlaylistDialog();
+            return;
+        }
+
         // stop and bypass FetcherService if InfoScreen was selected since
         // StreamDetailFragment can fetch data itself
         if (selectedChoiceKey.equals(getString(R.string.show_info_key))) {
@@ -570,6 +588,41 @@ public class RouterActivity extends AppCompatActivity {
         startService(intent);
 
         finish();
+    }
+
+    private void openAddToPlaylistDialog() {
+        // Getting the stream info usually takes a moment
+        // Notifying the user here to ensure that no confusion arises
+        Toast.makeText(
+                getApplicationContext(),
+                getString(R.string.processing_may_take_a_moment),
+                Toast.LENGTH_SHORT)
+                .show();
+
+        disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, false)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        info -> PlaylistDialog.createCorrespondingDialog(
+                                getThemeWrapperContext(),
+                                Collections.singletonList(new StreamEntity(info)),
+                                playlistDialog -> {
+                                    playlistDialog.setOnDismissListener(dialog -> finish());
+
+                                    playlistDialog.show(
+                                            this.getSupportFragmentManager(),
+                                            "addToPlaylistDialog"
+                                    );
+                                }
+                        ),
+                        throwable -> handleError(this, new ErrorInfo(
+                                throwable,
+                                UserAction.REQUESTED_STREAM,
+                                "Tried to add " + currentUrl + " to a playlist",
+                                currentService.getServiceId())
+                        )
+                )
+        );
     }
 
     @SuppressLint("CheckResult")

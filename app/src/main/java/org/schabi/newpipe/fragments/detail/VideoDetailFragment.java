@@ -52,6 +52,7 @@ import com.squareup.picasso.Callback;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.FragmentVideoDetailBinding;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.error.ErrorActivity;
@@ -73,8 +74,7 @@ import org.schabi.newpipe.fragments.EmptyFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.videos.RelatedItemsFragment;
 import org.schabi.newpipe.ktx.AnimationType;
-import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
-import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
+import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.MainPlayer.PlayerType;
@@ -99,6 +99,7 @@ import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -444,12 +445,11 @@ public final class VideoDetailFragment
                 break;
             case R.id.detail_controls_playlist_append:
                 if (getFM() != null && currentInfo != null) {
-
-                    final PlaylistAppendDialog d = PlaylistAppendDialog.fromStreamInfo(currentInfo);
                     disposables.add(
-                            PlaylistAppendDialog.onPlaylistFound(getContext(),
-                                    () -> d.show(getFM(), TAG),
-                                    () -> PlaylistCreationDialog.newInstance(d).show(getFM(), TAG)
+                            PlaylistDialog.createCorrespondingDialog(
+                                    getContext(),
+                                    Collections.singletonList(new StreamEntity(currentInfo)),
+                                    dialog -> dialog.show(getFM(), TAG)
                             )
                     );
                 }
@@ -594,6 +594,11 @@ public final class VideoDetailFragment
     // Init
     //////////////////////////////////////////////////////////////////////////*/
 
+    @Override
+    public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
+        super.onViewCreated(rootView, savedInstanceState);
+    }
+
     @Override // called from onViewCreated in {@link BaseFragment#onViewCreated}
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
@@ -603,6 +608,18 @@ public final class VideoDetailFragment
         binding.tabLayout.setupWithViewPager(binding.viewPager);
 
         binding.detailThumbnailRootLayout.requestFocus();
+
+        binding.detailControlsPlayWithKodi.setVisibility(
+                KoreUtils.shouldShowPlayWithKodi(requireContext(), serviceId)
+                        ? View.VISIBLE
+                        : View.GONE
+        );
+        binding.detailControlsCrashThePlayer.setVisibility(
+                DEBUG && PreferenceManager.getDefaultSharedPreferences(getContext())
+                        .getBoolean(getString(R.string.show_crash_the_player_key), false)
+                        ? View.VISIBLE
+                        : View.GONE
+        );
 
         if (DeviceUtils.isTv(getContext())) {
             // remove ripple effects from detail controls
@@ -638,8 +655,14 @@ public final class VideoDetailFragment
         binding.detailControlsShare.setOnClickListener(this);
         binding.detailControlsOpenInBrowser.setOnClickListener(this);
         binding.detailControlsPlayWithKodi.setOnClickListener(this);
-        binding.detailControlsPlayWithKodi.setVisibility(KoreUtils.shouldShowPlayWithKodi(
-                requireContext(), serviceId) ? View.VISIBLE : View.GONE);
+        if (DEBUG) {
+            binding.detailControlsCrashThePlayer.setOnClickListener(
+                    v -> VideoDetailPlayerCrasher.onCrashThePlayer(
+                            this.getContext(),
+                            this.player,
+                            getLayoutInflater())
+            );
+        }
 
         binding.overlayThumbnail.setOnClickListener(this);
         binding.overlayThumbnail.setOnLongClickListener(this);

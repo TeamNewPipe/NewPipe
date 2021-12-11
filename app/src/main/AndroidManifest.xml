@@ -256,6 +256,21 @@
                 <data android:pathPrefix="/" />
             </intent-filter>
 
+            <!-- y2u.be filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="y2u.be" />
+                <data android:pathPrefix="/" />
+            </intent-filter>
+
             <!-- Soundcloud filter -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -325,8 +340,12 @@
                 <data android:host="skeptikon.fr" />
 
                 <data android:pathPrefix="/videos/" /> <!-- it contains playlists -->
+                <data android:pathPrefix="/w/" /> <!-- short video URLs -->
+                <data android:pathPrefix="/w/p/" /> <!-- short playlist URLs -->
                 <data android:pathPrefix="/accounts/" />
+                <data android:pathPrefix="/a/" /> <!-- short account URLs -->
                 <data android:pathPrefix="/video-channels/" />
+                <data android:pathPrefix="/c/" /> <!-- short video-channels URLs -->
             </intent-filter>
 
             <!-- Bandcamp filter for tracks, albums and playlists -->

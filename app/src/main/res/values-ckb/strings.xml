@@ -403,7 +403,7 @@
     <string name="msg_name">ناوفایل</string>
     <string name="set_as_playlist_thumbnail">دانان لەسەر وێنۆچکەی خشتەلێدان</string>
     <string name="title_activity_about">دەربارەی نیوپایپ</string>
-    <string name="append_playlist">زیادکردن بۆ خشتەلێدان</string>
+    <string name="add_to_playlist">زیادکردن بۆ خشتەلێدان</string>
     <string name="unknown_content">(نەزانراو)</string>
     <string name="app_language_title">زمانی به‌رنامه‌</string>
     <string name="kiosk_page_summary">پەڕەی کیۆسک</string>
@@ -631,8 +631,8 @@
     <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' پشتگیری نه‌كراوه‌ له‌سه‌ر وه‌شانه‌كانی ئه‌ندرۆید كیتكات و نزمتر</string>
     <string name="crash_the_app">كڕاشی به‌رنامه‌كه‌</string>
     <string name="show_memory_leaks">پیشاندانی دزه‌كردنی بیرگه‌</string>
-    <string name="enqueued">له‌نۆبه‌تكرا</string>
-    <string name="enqueue_stream">له‌نۆبه‌ت</string>
+    <string name="enqueued">له‌نۆبه‌ت دانرا</string>
+    <string name="enqueue_stream">له‌نۆبه‌ت دانان</string>
     <string name="show_channel_details">پیشاندانی ورده‌كارییه‌كانی كه‌ناڵ</string>
     <string name="recaptcha_solve">چاره‌سه‌ر كردن</string>
     <string name="no_dir_yet">هێشتا فۆڵده‌ری دابه‌زاندن دانه‌نراوه‌، ئێستا فۆڵده‌ری بنه‌ڕه‌تی دابه‌زاندن هه‌ڵبژێره‌</string>
@@ -666,4 +666,7 @@
     <string name="main_page_content_swipe_remove">لادانی بابەتەکان بە سواندنیان</string>
     <string name="start_main_player_fullscreen_summary">لە حاڵەتێکدا کە لاربوونەوە ناکارا کرابوو ، ئەوا لەجیاتی لێدانی ڤیدیۆکان لە لێدەرێکی بچووکدا ، ڕاستەوخۆ ڤیدیۆکان لە دۆخی پڕ بە ڕوونمادا لێبدرێن. دەتوانیت بە دەرچوونت لەسەر ڤیدیۆکە بەردەوام بیت لەسەر لێدەرێکی بچووک</string>
     <string name="start_main_player_fullscreen_title">دەستپێکردنی لێدەری سەرەکی لە ڕوونماپڕ</string>
+    <string name="enqueue_next_stream">لە نۆبەت دانان بۆ دواتر</string>
+    <string name="enqueued_next">لە نۆبەت دانرا بۆ دواتر</string>
+    <string name="processing_may_take_a_moment">جێبەجێ دەکرێت... ڕەنگە ساتێک بخایەنێت</string>
 </resources>

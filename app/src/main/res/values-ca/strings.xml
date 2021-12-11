@@ -86,7 +86,7 @@
     <string name="create_playlist">Crea una llista de reproducció</string>
     <string name="rename_playlist">Canvia el nom</string>
     <string name="name">Nom</string>
-    <string name="append_playlist">Afegeix a una llista de reproducció</string>
+    <string name="add_to_playlist">Afegeix a una llista de reproducció</string>
     <string name="import_title">Importa</string>
     <string name="import_from">Importa des de</string>
     <string name="export_to">Exporta a</string>
@@ -649,4 +649,8 @@
     <string name="local_search_suggestions">Suggeriments de cerca local</string>
     <string name="night_theme_title">Tema fosc</string>
     <string name="mark_as_watched">Marca com a vist</string>
+    <string name="processing_may_take_a_moment">Processant... Pot trigar un moment</string>
+    <string name="start_main_player_fullscreen_title">Inicia el reproductor principal en pantalla completa</string>
+    <string name="main_page_content_swipe_remove">Llisqueu els elements per eliminar-los</string>
+    <string name="start_main_player_fullscreen_summary">Si la rotació automàtica està bloquejada, no inicieu vídeos al mini reproductor, sinó que aneu directament al mode de pantalla completa. Podeu accedir igualment al mini reproductor sortint de pantalla completa</string>
 </resources>

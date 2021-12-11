@@ -52,6 +52,9 @@
     <string name="kore_package" translatable="false">org.xbmc.kore</string>
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
+    <string name="crash_the_player">Crash the player</string>
+    <string name="report_player_errors_title">Report player errors</string>
+    <string name="report_player_errors_summary">Reports player errors in full detail instead of showing a short-lived toast message (useful for diagnosing problems)</string>
     <string name="notification_scale_to_square_image_title">Scale thumbnail to 1:1 aspect ratio</string>
     <string name="notification_scale_to_square_image_summary">Scale the video thumbnail shown in the notification from 16:9 to 1:1 aspect ratio (may introduce distortions)</string>
     <string name="notification_action_0_title">First action button</string>
@@ -96,9 +99,9 @@
     <string name="metadata_cache_wipe_title">Wipe cached metadata</string>
     <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache wiped</string>
-    <string name="auto_queue_title">Auto-queue next stream</string>
+    <string name="auto_queue_title">Auto-enqueue next stream</string>
     <string name="auto_queue_summary">Continue ending (non-repeating) playback queue by appending a related stream</string>
-    <string name="auto_queue_toggle">Auto-queue</string>
+    <string name="auto_queue_toggle">Auto-enqueuing</string>
     <string name="volume_gesture_control_title">Volume gesture control</string>
     <string name="volume_gesture_control_summary">Use gestures to control player volume</string>
     <string name="brightness_gesture_control_title">Brightness gesture control</string>
@@ -122,7 +125,7 @@
     <string name="start_main_player_fullscreen_title">Start main player in fullscreen</string>
     <string name="start_main_player_fullscreen_summary">Do not start videos in the mini player, but turn to fullscreen mode directly, if auto rotation is locked. You can still access the mini player by exiting fullscreen</string>
     <string name="autoplay_title">Autoplay</string>
-    <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
+    <string name="show_hold_to_append_title">Show \"Hold to enqueue\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when pressing the background or the popup button in video \"Details:\"</string>
     <string name="unsupported_url">Unsupported URL</string>
     <string name="unsupported_url_dialog_message">Could not recognize the URL. Open with another app?</string>
@@ -439,7 +442,8 @@
     <string name="create_playlist">New Playlist</string>
     <string name="rename_playlist">Rename</string>
     <string name="name">Name</string>
-    <string name="append_playlist">Add to playlist</string>
+    <string name="add_to_playlist">Add to playlist</string>
+    <string name="processing_may_take_a_moment">Processing… May take a moment</string>
     <string name="mute">Mute</string>
     <string name="unmute">Unmute</string>
     <string name="set_as_playlist_thumbnail">Set as playlist thumbnail</string>
@@ -472,6 +476,8 @@
     <string name="show_image_indicators_title">Show image indicators</string>
     <string name="show_image_indicators_summary">Show Picasso colored ribbons on top of images indicating their source: red for network, blue for disk and green for memory</string>
     <string name="crash_the_app">Crash the app</string>
+    <string name="show_crash_the_player_title">Show \"crash the player\"</string>
+    <string name="show_crash_the_player_summary">Shows a crash option when using the player</string>
     <!-- Subscriptions import/export -->
     <string name="import_title">Import</string>
     <string name="import_from">Import from</string>
@@ -516,6 +522,8 @@
     <!-- Updates Settings -->
     <string name="updates_setting_title">Updates</string>
     <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>
+    <string name="manual_update_title">Check for updates</string>
+    <string name="manual_update_description">Manually check for new versions</string>
     <!-- Minimize to exit action -->
     <string name="minimize_on_exit_title">Minimize on app switch</string>
     <string name="minimize_on_exit_summary">Action when switching to other app from main video player — %s</string>
@@ -546,6 +554,7 @@
     <string name="recovering">recovering</string>
     <string name="enqueue">Queue</string>
     <string name="permission_denied">Action denied by the system</string>
+    <string name="checking_updates_toast">Checking for updates…</string>
     <!-- download notifications -->
     <string name="download_failed">Download failed</string>
     <plurals name="download_finished_notification">
@@ -632,6 +641,7 @@
     <string name="feed_subscription_not_loaded_count">Not loaded: %d</string>
     <string name="feed_notification_loading">Loading feed…</string>
     <string name="feed_processing_message">Processing feed…</string>
+    <string name="feed_new_items">New feed items</string>
     <string name="feed_group_dialog_select_subscriptions">Select subscriptions</string>
     <string name="feed_group_dialog_empty_selection">No subscription selected</string>
     <plurals name="feed_group_dialog_selection_count">

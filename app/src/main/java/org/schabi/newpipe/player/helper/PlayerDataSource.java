@@ -1,14 +1,18 @@
 package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.exoplayer2.source.MediaParserExtractorAdapter;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.SingleSampleMediaSource;
+import com.google.android.exoplayer2.source.chunk.MediaParserChunkExtractor;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
+import com.google.android.exoplayer2.source.hls.MediaParserHlsMediaChunkExtractor;
 import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource;
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.upstream.DataSource;
@@ -19,7 +23,7 @@ import com.google.android.exoplayer2.upstream.TransferListener;
 public class PlayerDataSource {
     private static final int MANIFEST_MINIMUM_RETRY = 5;
     private static final int EXTRACTOR_MINIMUM_RETRY = Integer.MAX_VALUE;
-    private static final int LIVE_STREAM_EDGE_GAP_MILLIS = 10000;
+    public static final int LIVE_STREAM_EDGE_GAP_MILLIS = 10000;
 
     private final DataSource.Factory cacheDataSourceFactory;
     private final DataSource.Factory cachelessDataSourceFactory;
@@ -32,51 +36,83 @@ public class PlayerDataSource {
     }
 
     public SsMediaSource.Factory getLiveSsMediaSourceFactory() {
-        return new SsMediaSource.Factory(new DefaultSsChunkSource.Factory(
-                cachelessDataSourceFactory), cachelessDataSourceFactory)
+        return new SsMediaSource.Factory(
+                new DefaultSsChunkSource.Factory(cachelessDataSourceFactory),
+                cachelessDataSourceFactory
+        )
                 .setLoadErrorHandlingPolicy(
                         new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY))
                 .setLivePresentationDelayMs(LIVE_STREAM_EDGE_GAP_MILLIS);
     }
 
     public HlsMediaSource.Factory getLiveHlsMediaSourceFactory() {
-        return new HlsMediaSource.Factory(cachelessDataSourceFactory)
-                .setAllowChunklessPreparation(true)
+        final HlsMediaSource.Factory factory =
+                new HlsMediaSource.Factory(cachelessDataSourceFactory)
+                        .setAllowChunklessPreparation(true)
+                        .setLoadErrorHandlingPolicy(
+                                new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            factory.setExtractorFactory(MediaParserHlsMediaChunkExtractor.FACTORY);
+        }
+
+        return factory;
+    }
+
+    public DashMediaSource.Factory getLiveDashMediaSourceFactory() {
+        return new DashMediaSource.Factory(
+                getDefaultDashChunkSourceFactory(cachelessDataSourceFactory),
+                cachelessDataSourceFactory
+        )
                 .setLoadErrorHandlingPolicy(
                         new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY));
     }
 
-    public DashMediaSource.Factory getLiveDashMediaSourceFactory() {
-        return new DashMediaSource.Factory(new DefaultDashChunkSource.Factory(
-                cachelessDataSourceFactory), cachelessDataSourceFactory)
-                .setLoadErrorHandlingPolicy(
-                        new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY))
-                .setLivePresentationDelayMs(LIVE_STREAM_EDGE_GAP_MILLIS, true);
-    }
+    private DefaultDashChunkSource.Factory getDefaultDashChunkSourceFactory(
+            final DataSource.Factory dataSourceFactory
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            return new DefaultDashChunkSource.Factory(
+                    MediaParserChunkExtractor.FACTORY,
+                    dataSourceFactory,
+                    1
+            );
+        }
 
-    public SsMediaSource.Factory getSsMediaSourceFactory() {
-        return new SsMediaSource.Factory(new DefaultSsChunkSource.Factory(
-                cacheDataSourceFactory), cacheDataSourceFactory);
+        return new DefaultDashChunkSource.Factory(dataSourceFactory);
     }
 
     public HlsMediaSource.Factory getHlsMediaSourceFactory() {
-        return new HlsMediaSource.Factory(cacheDataSourceFactory);
+        final HlsMediaSource.Factory factory = new HlsMediaSource.Factory(cacheDataSourceFactory);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            return factory;
+        }
+
+        // *** >= Android 11 / R / API 30 ***
+        return factory.setExtractorFactory(MediaParserHlsMediaChunkExtractor.FACTORY);
     }
 
     public DashMediaSource.Factory getDashMediaSourceFactory() {
-        return new DashMediaSource.Factory(new DefaultDashChunkSource.Factory(
-                cacheDataSourceFactory), cacheDataSourceFactory);
+        return new DashMediaSource.Factory(
+                getDefaultDashChunkSourceFactory(cacheDataSourceFactory),
+                cacheDataSourceFactory
+        );
     }
 
     public ProgressiveMediaSource.Factory getExtractorMediaSourceFactory() {
-        return new ProgressiveMediaSource.Factory(cacheDataSourceFactory)
-                .setLoadErrorHandlingPolicy(
-                        new DefaultLoadErrorHandlingPolicy(EXTRACTOR_MINIMUM_RETRY));
-    }
+        final ProgressiveMediaSource.Factory factory;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            factory = new ProgressiveMediaSource.Factory(
+                    cacheDataSourceFactory,
+                    MediaParserExtractorAdapter.FACTORY
+            );
+        } else {
+            factory = new ProgressiveMediaSource.Factory(cacheDataSourceFactory);
+        }
 
-    public ProgressiveMediaSource.Factory getExtractorMediaSourceFactory(
-            @NonNull final String key) {
-        return getExtractorMediaSourceFactory().setCustomCacheKey(key);
+        return factory.setLoadErrorHandlingPolicy(
+                new DefaultLoadErrorHandlingPolicy(EXTRACTOR_MINIMUM_RETRY));
     }
 
     public SingleSampleMediaSource.Factory getSampleMediaSourceFactory() {

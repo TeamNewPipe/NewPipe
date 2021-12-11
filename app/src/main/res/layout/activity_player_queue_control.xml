@@ -37,7 +37,7 @@
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/play_queue_item" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/seek_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         android:padding="8dp"
         tools:ignore="RtlHardcoded,RtlSymmetry">
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/song_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
             android:textSize="14sp"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta." />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/artist_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
         android:paddingRight="12dp"
         android:layout_above="@+id/playback_controls">
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/current_time"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -129,7 +129,7 @@
             tools:progress="25"
             tools:secondaryProgress="50" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/end_time"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -139,7 +139,7 @@
             tools:ignore="HardcodedText"
             tools:text="1:23:49" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/live_sync"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

@@ -8,7 +8,7 @@
     android:paddingEnd="@dimen/activity_horizontal_margin"
     tools:context=".fragments.detail.VideoDetailFragment">
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -19,7 +19,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="40sp" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

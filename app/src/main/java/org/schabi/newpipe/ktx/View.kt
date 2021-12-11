@@ -299,18 +299,36 @@ private fun View.animateLightSlideAndAlpha(enterOrExit: Boolean, duration: Long,
     }
 }
 
-fun View.slideUp(duration: Long, delay: Long, @FloatRange(from = 0.0, to = 1.0) translationPercent: Float) {
+fun View.slideUp(
+    duration: Long,
+    delay: Long,
+    @FloatRange(from = 0.0, to = 1.0) translationPercent: Float
+) {
+    slideUp(duration, delay, translationPercent, null)
+}
+
+fun View.slideUp(
+    duration: Long,
+    delay: Long = 0L,
+    @FloatRange(from = 0.0, to = 1.0) translationPercent: Float = 1.0F,
+    execOnEnd: Runnable? = null
+) {
     val newTranslationY = (resources.displayMetrics.heightPixels * translationPercent).toInt()
     animate().setListener(null).cancel()
     alpha = 0f
     translationY = newTranslationY.toFloat()
-    visibility = View.VISIBLE
+    isVisible = true
     animate()
         .alpha(1f)
         .translationY(0f)
         .setStartDelay(delay)
         .setDuration(duration)
         .setInterpolator(FastOutSlowInInterpolator())
+        .setListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                execOnEnd?.run()
+            }
+        })
         .start()
 }
 
