@@ -99,9 +99,9 @@
     <string name="metadata_cache_wipe_title">Wipe cached metadata</string>
     <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache wiped</string>
-    <string name="auto_queue_title">Auto-queue next stream</string>
+    <string name="auto_queue_title">Auto-enqueue next stream</string>
     <string name="auto_queue_summary">Continue ending (non-repeating) playback queue by appending a related stream</string>
-    <string name="auto_queue_toggle">Auto-queue</string>
+    <string name="auto_queue_toggle">Auto-enqueuing</string>
     <string name="volume_gesture_control_title">Volume gesture control</string>
     <string name="volume_gesture_control_summary">Use gestures to control player volume</string>
     <string name="brightness_gesture_control_title">Brightness gesture control</string>
@@ -125,7 +125,7 @@
     <string name="start_main_player_fullscreen_title">Start main player in fullscreen</string>
     <string name="start_main_player_fullscreen_summary">Do not start videos in the mini player, but turn to fullscreen mode directly, if auto rotation is locked. You can still access the mini player by exiting fullscreen</string>
     <string name="autoplay_title">Autoplay</string>
-    <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
+    <string name="show_hold_to_append_title">Show \"Hold to enqueue\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when pressing the background or the popup button in video \"Details:\"</string>
     <string name="unsupported_url">Unsupported URL</string>
     <string name="unsupported_url_dialog_message">Could not recognize the URL. Open with another app?</string>

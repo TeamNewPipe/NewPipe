@@ -692,4 +692,7 @@
     <string name="feed_new_items">Новое на канале</string>
     <string name="report_player_errors_title">Отчёт об ошибках плеера</string>
     <string name="report_player_errors_summary">Подробные отчёты об ошибках плеера вместо коротких всплывающих сообщений (полезно при диагностике проблем)</string>
+    <string name="show_crash_the_player_title">Показать \"Вызвать сбой плеера\"</string>
+    <string name="show_crash_the_player_summary">Показать функцию вызова сбоя при работе плеера</string>
+    <string name="crash_the_player">Вызвать сбой плеера</string>
 </resources>

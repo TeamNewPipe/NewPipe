@@ -351,7 +351,7 @@
         <item quantity="one">%d hora</item>
         <item quantity="other">%d horas</item>
     </plurals>
-    <string name="auto_queue_title">Colocar vídeo seguinte na fila</string>
+    <string name="auto_queue_title">Enfileirar o próximo stream automaticamente</string>
     <string name="peertube_instance_url_summary">Defina as suas instâncias favoritas PeerTube</string>
     <string name="export_data_summary">Exportar histórico, subscrições, listas de reprodução e definições</string>
     <string name="best_resolution">Melhor resolução</string>
@@ -468,7 +468,7 @@
     <string name="feed_group_dialog_select_subscriptions">Selecionar subscrições</string>
     <string name="playlist_add_stream_success">Adicionado à lista de reprodução</string>
     <string name="default_video_format_title">Formato padrão de vídeo</string>
-    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para colocar na fila\"</string>
+    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para enfileirar\"</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
     <string name="metadata_cache_wipe_summary">Limpar todos os dados da página web</string>
     <string name="drawer_close">Fechar menu</string>
@@ -547,7 +547,7 @@
     <string name="title_activity_play_queue">Reproduzir fila</string>
     <string name="settings_category_notification_title">Notificação</string>
     <string name="unsupported_url_dialog_message">URL não reconhecido. Abrir com outra aplicação\?</string>
-    <string name="auto_queue_toggle">Colocar na fila automaticamente</string>
+    <string name="auto_queue_toggle">Enfileiramento automático</string>
     <string name="clear_queue_confirmation_description">A fila do reprodutor ativo será substituída</string>
     <string name="clear_queue_confirmation_summary">Mudar de um reprodutor para outro pode substituir a sua fila</string>
     <string name="clear_queue_confirmation_title">Pedir confirmação antes de limpar uma fila</string>
@@ -674,4 +674,9 @@
     <string name="manual_update_description">Verificar manualmente se existe uma nova versão</string>
     <string name="checking_updates_toast">A procurar atualizações…</string>
     <string name="feed_new_items">Novos itens</string>
+    <string name="crash_the_player">Travar o reprodutor</string>
+    <string name="report_player_errors_summary">Relata os erros do reprodutor com todos os detalhes em vez de mostrar uma mensagem de notificação por pouco tempo (útil para diagnosticar problemas)</string>
+    <string name="report_player_errors_title">Relatar erros do reprodutor</string>
+    <string name="show_crash_the_player_title">Mostrar \"travar o reprodutor\"</string>
+    <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o reprodutor</string>
 </resources>
