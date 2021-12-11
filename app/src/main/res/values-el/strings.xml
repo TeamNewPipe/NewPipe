@@ -106,7 +106,7 @@
     <string name="enable_watch_history_summary">Κρατήστε ιστορικό των αναπαραχθέντων βίντεο</string>
     <string name="resume_on_audio_focus_gain_title">Ανάκτηση αναπαραγωγής</string>
     <string name="resume_on_audio_focus_gain_summary">Συνέχιση της αναπαραγωγής έπειτα από διακοπές (π.χ. κλήσεις)</string>
-    <string name="show_hold_to_append_title">Εμφάνιση επεξήγησης του «Πιέστε παρατεταμένα για προσθήκη»</string>
+    <string name="show_hold_to_append_title">Εμφάνιση επεξήγησης του «Πιέστε παρατεταμένα για προσθήκη στην ουρά»</string>
     <string name="show_hold_to_append_summary">Εμφάνιση υπόδειξης όταν πατηθεί το κουμπί παρασκηνίου ή αναδυόμενου παραθύρου στη σελίδα λεπτομερειών του βίντεο</string>
     <string name="default_content_country_title">Προεπιλεγμένη χώρα περιεχομένου</string>
     <string name="settings_category_player_title">Αναπαραγωγός</string>
@@ -252,7 +252,7 @@
     <string name="play_queue_remove">Αφαίρεση</string>
     <string name="play_queue_stream_detail">Λεπτομέρειες</string>
     <string name="play_queue_audio_settings">Ρυθμίσεις ήχου</string>
-    <string name="hold_to_append">Πιέστε παρατεταμένα για να προστεθεί στην ουρά</string>
+    <string name="hold_to_append">Πιέστε παρατεταμένα για προσθήκη στην ουρά</string>
     <string name="start_here_on_background">Εκκίνηση αναπαραγωγής στο παρασκήνιο</string>
     <string name="start_here_on_popup">Εκκίνηση αναπαραγωγής σε ένα αναδυόμενο παράθυρο</string>
     <string name="drawer_open">Άνοιγμα συρταριού</string>
@@ -487,7 +487,7 @@
     <string name="youtube_restricted_mode_enabled_title">Λειτουργία περιορισμένης πρόσβασης του YouTube</string>
     <string name="settings_category_notification_title">Ειδοποίηση</string>
     <string name="unsupported_url_dialog_message">Δεν ήταν δυνατή η αναγνώριση της διεύθυνσης URL. Άνοιγμα με άλλη εφαρμογή;</string>
-    <string name="auto_queue_toggle">Αυτόματη ουρά</string>
+    <string name="auto_queue_toggle">Αυτόματη προσθήκη στην ουρά</string>
     <string name="clear_queue_confirmation_description">Η ουρά του ενεργού αναπαραγωγού θα αντικατασταθεί</string>
     <string name="clear_queue_confirmation_summary">Η εναλλαγή από έναν αναπαραγωγό σε άλλον, μπορεί να αντικαταστήσει την ουρά σας</string>
     <string name="clear_queue_confirmation_title">Ζητήστε επιβεβαίωση πριν από την εκκαθάριση μιας ουράς</string>

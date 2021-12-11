@@ -564,7 +564,7 @@
     <string name="notification_action_0_title">Eerste actieknop</string>
     <string name="notification_scale_to_square_image_summary">Schaal de miniatuurafbeelding van de video die getoond wordt in de notificatie van verhouding 16:9 naar 1:1 (dit kan vervorming creëren)</string>
     <string name="notification_scale_to_square_image_title">Schaal de miniatuurafbeelding tot verhouding 1:1</string>
-    <string name="auto_queue_toggle">Auto-wachtrij</string>
+    <string name="auto_queue_toggle">Automatisch in de wachtrij plaatsen</string>
     <string name="show_memory_leaks">Toon memory leaks</string>
     <string name="enqueued">In de wachtrij geplaatst</string>
     <string name="enqueue_stream">In de wachtrij plaatsen</string>
@@ -669,4 +669,14 @@
     <string name="main_page_content_swipe_remove">Veeg items om ze te verwijderen</string>
     <string name="start_main_player_fullscreen_summary">Start geen video\'s in de minispeler, maar ga direct naar de volledige schermmodus, als automatisch draaien is vergrendeld. Je hebt nog steeds toegang tot de minispeler door de volledige schermmodus af te sluiten</string>
     <string name="start_main_player_fullscreen_title">Start hoofdspeler als volledig scherm</string>
+    <string name="report_player_errors_summary">Rapporteer fouten van de speler in volledig detail in plaats van een kortstondige toastmelding te tonen (handig voor het diagnosticeren van problemen)</string>
+    <string name="processing_may_take_a_moment">Verwerken... Dit kan even duren</string>
+    <string name="crash_the_player">Crash de speler</string>
+    <string name="report_player_errors_title">Rapporteer fouten van de speler</string>
+    <string name="show_crash_the_player_title">Toon \"crash de speler\"</string>
+    <string name="show_crash_the_player_summary">Toon een crash overzicht bij gebruik van de speler</string>
+    <string name="manual_update_description">Controleer handmatig op nieuwe versies</string>
+    <string name="manual_update_title">Controleer op updates</string>
+    <string name="checking_updates_toast">Bezig met controleren op updates…</string>
+    <string name="feed_new_items">Nieuwe feed items</string>
 </resources>

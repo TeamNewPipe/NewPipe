@@ -91,7 +91,7 @@
     <string name="enable_watch_history_summary">Håll koll på videor som du tittat på</string>
     <string name="resume_on_audio_focus_gain_title">Återuppta uppspelning</string>
     <string name="resume_on_audio_focus_gain_summary">Fortsätt uppspelning efter avbrott (t.ex. telefonsamtal)</string>
-    <string name="show_hold_to_append_title">Visa \"Håll för att lägga till\"-tips</string>
+    <string name="show_hold_to_append_title">Visa \"Håll för att placera i kön\"-tips</string>
     <string name="show_hold_to_append_summary">Visa tips när bakgrunds- eller popup-knappen trycks på sidan för videodetaljer</string>
     <string name="settings_category_player_title">Spelare</string>
     <string name="settings_category_player_behavior_title">Beteende</string>
@@ -674,4 +674,9 @@
     <string name="manual_update_description">Kolla manuellt efter nya versioner</string>
     <string name="checking_updates_toast">Söker efter uppdateringar…</string>
     <string name="feed_new_items">Nya flödes objekt</string>
+    <string name="show_crash_the_player_title">Visa \"krascha spelaren\"</string>
+    <string name="report_player_errors_title">Rapportera spelarfel</string>
+    <string name="crash_the_player">Krascha spelaren</string>
+    <string name="show_crash_the_player_summary">Visar ett kraschalternativ vid användning av spelaren</string>
+    <string name="report_player_errors_summary">Rapporterar spelarfel i detalj i stället för att visa ett kortvarigt popup-meddelande (användbart för att diagnostisera problem)</string>
 </resources>

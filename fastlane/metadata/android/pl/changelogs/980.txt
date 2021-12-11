@@ -1,0 +1,13 @@
+Nowe
+• Dodano opcję „Dodaj do playlisty” do menu kontekstowego
+• Dodano obsługę krótkich linków dla y2u.be and PeerTube
+
+Poprawione
+• Bardziej kompaktowe sterowanie prędkością odtwarzania
+• Kanał wyróżnia teraz nowe pozycje
+• Opcja „Pokaż obejrzane pozycje” w kanale jest teraz zapisywana
+
+Naprawione
+• Naprawiono wyciąganie polubień i łapek w dół z YouTube'a
+• Naprawiono automatyczne odtwarzanie po powracaniu z tła
+I wiele więcej
