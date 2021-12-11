@@ -4175,16 +4175,17 @@ public final class Player implements
             hideSystemUIIfNeeded();
         }
 
-        final int videoRenderIndex = getVideoRendererIndex();
-
-        // The current metadata may be null sometimes so we will be not able to execute the
-        // block above. Reload the play queue manager in this case.
+        // The current metadata may be null sometimes (for e.g. when using an unstable connection
+        // in livestreams) so we will be not able to execute the block below.
+        // Reload the play queue manager in this case, which is the behavior when the video stream
+        // played is not video only or when we don't know the index of the video renderer.
         if (currentMetadata == null) {
             reloadPlayQueueManager();
             setRecovery();
             return;
         }
 
+        final int videoRenderIndex = getVideoRendererIndex();
         final StreamInfo info = currentMetadata.getMetadata();
 
         /* For video streams: we don't want to stream in background the video stream so if the
