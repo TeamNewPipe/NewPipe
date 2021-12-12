@@ -30,7 +30,7 @@
         android:visibility="gone"
         tools:visibility="visible">
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/channel_kaomoji"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:textSize="35sp"
             tools:ignore="HardcodedText,UnusedAttribute" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/channel_no_videos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
             android:text="@string/empty_view_no_videos"
             android:textSize="24sp" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/error_content_not_supported"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

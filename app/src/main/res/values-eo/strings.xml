@@ -18,8 +18,8 @@
     <string name="play_audio">Sono</string>
     <string name="default_audio_format_title">Defaŭlta sondosierformo</string>
     <string name="theme_title">Etoso</string>
-    <string name="dark_theme_title">Malluma</string>
-    <string name="light_theme_title">Luma</string>
+    <string name="dark_theme_title">Malhela</string>
+    <string name="light_theme_title">Hela</string>
     <string name="black_theme_title">Nigra</string>
     <string name="download_dialog_title">Elŝuti</string>
     <string name="unsupported_url">Ligilo ne subtenita</string>
@@ -34,7 +34,7 @@
     <string name="detail_dislikes_img_view_description">Malŝatoj</string>
     <string name="no_player_found">Neniu elsendlflua ludilo trovita. Ĉu instali la aplikaĵon VLC\?</string>
     <string name="kore_not_found">Ĉu instali la mankan aplikaĵon Kore\?</string>
-    <string name="show_next_and_similar_title">Montri la sekvan filmeton kaj similajn filmetojn</string>
+    <string name="show_next_and_similar_title">Montri \'Sekvajn\' kaj \'Similajn\' videojn</string>
     <string name="could_not_load_thumbnails">Ĉiuj bildetoj ne ŝargeblas</string>
     <string name="youtube_signature_deobfuscation_error">La subskribo de la ligilo de la filmeto ne malĉifreblas</string>
     <string name="parsing_error">La retejo ne analizeblas</string>
@@ -42,7 +42,7 @@
     <string name="detail_thumbnail_view_description">Ludi filmeton, daŭro:</string>
     <string name="detail_uploader_thumbnail_view_description">Bildeto de la alŝutinto</string>
     <string name="download_path_title">Elŝutujo por filmetoj</string>
-    <string name="download_path_audio_title">Elŝutujo por muziko</string>
+    <string name="download_path_audio_title">Elŝutujo por aŭdio</string>
     <string name="show_play_with_kodi_summary">Montri opcion por ludi filmeton per la aplikaĵo Kodi</string>
     <string name="download_path_summary">Elŝutitaj filmetoj estas konservitaj tie</string>
     <string name="download_path_audio_summary">Dosierujo por konservi elŝutitajn muzikojn</string>
@@ -76,11 +76,11 @@
     <string name="default_popup_resolution_title">Defaŭlta rezolucio de la ŝprucfenestra ludilo</string>
     <string name="show_higher_resolutions_title">Montri pli altajn rezoluciojn</string>
     <string name="show_higher_resolutions_summary">Nur kelkaj aparatoj povas ludi 2K / 4K filmetojn</string>
-    <string name="default_video_format_title">Defaŭlta fomato de filmeto</string>
-    <string name="popup_remember_size_pos_title">Memoru ŝprucfenestran grandecon kaj pozicion</string>
-    <string name="popup_remember_size_pos_summary">Memoru lastan grandecon kaj pozicion de ŝprucfenestro</string>
-    <string name="use_inexact_seek_title">Uzi rapide, ne precizan serĉon</string>
-    <string name="use_inexact_seek_summary">Ne preciza serĉo permesas al la ludanto serĉi poziciojn pli rapide kun malalta precizeco. Serĉi por 5, 15 kaj 25 sekundoj ne funckios kun tio opcio</string>
+    <string name="default_video_format_title">Defaŭlta filmetdosierformo</string>
+    <string name="popup_remember_size_pos_title">Memori ecojn de ŝprucfenestro</string>
+    <string name="popup_remember_size_pos_summary">Memori lastan grandon kaj pozicion de ŝprucfenestro</string>
+    <string name="use_inexact_seek_title">Uzi rapidan malekzaktan serĉon</string>
+    <string name="use_inexact_seek_summary">Malekzakta serĉo permesas ke, la ludilo serĉi poziciojn pli rapide sed kun malpli ekzakto. Serĉi por 5, 15 aŭ 25 sekundoj ne funckias kun ĉi tio opcio</string>
     <string name="download_thumbnail_title">Ŝarĝi bildetojn</string>
     <string name="could_not_setup_download_menu">Ne povis konstrui la dosierujon de elŝuto</string>
     <string name="show_age_restricted_content_title">Enhavo limigita al aĝo</string>
@@ -153,7 +153,7 @@
     <string name="create_playlist">Nova ludlisto</string>
     <string name="rename_playlist">Alinomi</string>
     <string name="name">Nomo</string>
-    <string name="append_playlist">Aldoni al la ludlisto</string>
+    <string name="add_to_playlist">Aldoni al la ludlisto</string>
     <string name="set_as_playlist_thumbnail">Meti kiel bildeto de ludlisto</string>
     <string name="bookmark_playlist">Legosigno Ludlisto</string>
     <string name="unbookmark_playlist">Forviŝi Legosignon</string>
@@ -162,7 +162,7 @@
     <string name="playlist_add_stream_success">Ludlistita</string>
     <string name="playlist_thumbnail_change_success">Bildeto de ludlisto ŝanĝiĝita.</string>
     <string name="settings_category_debug_title">Malcimigi</string>
-    <string name="auto_queue_title">Auto-vico sekva fluo</string>
+    <string name="auto_queue_title">Memenvici sekvan fluon</string>
     <string name="auto_queue_summary">Daŭrigi finanta (malripetanta) atendovico aldonante rilata enhavo</string>
     <string name="file">Dosiero</string>
     <string name="invalid_directory">Tia dosierujo ne ekzistas</string>
@@ -183,11 +183,11 @@
 \n2. Iru tien: %1$s
 \n3. Ensalutu kiam oni petas vin 
 \n4. Kopiu la ligilon de profilo ke oni kondikis vin.</string>
-    <string name="download_thumbnail_summary">Malŝaltu por malebligi ŝarĝajn bildetojn, konservi datumojn kaj uzadon de memoro. Ŝanĝoj forviŝas ambaŭ en-memoro kaj sur-disko bildo kaŝmemoro</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Bildoj en kaŝmemoro forviŝitaj</string>
-    <string name="metadata_cache_wipe_title">Forviŝi la metadatumojn kaŝitajn</string>
-    <string name="metadata_cache_wipe_summary">Forviŝi ĉiojn retpaĝojn kaŝitajn</string>
-    <string name="metadata_cache_wipe_complete_notice">Metadatumoj kaŝitaj forviŝitaj</string>
+    <string name="download_thumbnail_summary">Malŝaltu por malebligi ŝarĝajn bildetojn por konservi datumuzadon kaj memoruzadon. Ŝanĝoj vakigi ambaŭ en memoran kaj en diskan bildkaŝmemoron</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Bildokaŝmemoro vakigis</string>
+    <string name="metadata_cache_wipe_title">Vakigi kaŝmemorigitajn metadatumojn</string>
+    <string name="metadata_cache_wipe_summary">Vakigi tutajn kaŝmemorigitajn retpaĝajn datumojn</string>
+    <string name="metadata_cache_wipe_complete_notice">Kaŝmemorojn de metadatumojn vakigis</string>
     <string name="no_streams_available_download">Neniuj torentoj haveblaj por elŝuti</string>
     <string name="toast_no_player">Neniu apo instalita por ludi ĉi tiun dosieron</string>
     <string name="clear_views_history_title">Forviŝi vidohistorion</string>
@@ -224,7 +224,7 @@
     <string name="events">Eventoj</string>
     <string name="conferences">Konferencoj</string>
     <string name="show_comments_title">Montri komentojn</string>
-    <string name="show_comments_summary">Malŝati por malvidigi komentojn</string>
+    <string name="show_comments_summary">Malŝatu por kaŝi komentojn</string>
     <string name="autoplay_title">Aŭtoludo</string>
     <string name="error_unable_to_load_comments">Ne povis ŝarĝi komentojn</string>
     <string name="close">Fermi</string>
@@ -433,7 +433,7 @@
         <item quantity="other">%s aŭskultantoj</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">La lingvo ŝanĝos kiam la apo restartos</string>
-    <string name="seek_duration_title">Rapida antaŭen / posten serĉan daŭron</string>
+    <string name="seek_duration_title">Daŭro de rapidpluiga/revolva serĉo</string>
     <string name="peertube_instance_url_title">Instancoj de PeerTube</string>
     <string name="peertube_instance_url_summary">Elekti viajn preferitajn instancojn de PeerTube</string>
     <string name="peertube_instance_url_help">Trovu la instancojn ke vi ŝatas ĉe %s</string>
@@ -515,7 +515,7 @@
 \n
 \nŜalti \"%1$s\" en la agordoj, se vi volas vidi ĝin.</string>
     <string name="settings_category_notification_title">Sciigo</string>
-    <string name="night_theme_title">Malhela etoso</string>
+    <string name="night_theme_title">Nokta etoso</string>
     <string name="notification_colorize_title">farbi sciigon</string>
     <string name="notification_action_buffering">Alŝuto</string>
     <string name="notification_scale_to_square_image_title">Skali bildeton ĝis 1:1 proportio</string>
@@ -543,4 +543,17 @@
     <string name="description_tab_description">Priskribo</string>
     <string name="comments_tab_description">Komentoj</string>
     <string name="show_description_title">Montri priskribon</string>
+    <string name="notification_scale_to_square_image_summary">Skali la bildeto de la video en la sciigo inter 16:9 kaj 1:1 propocio (povas kaŭzi distordo)</string>
+    <string name="show_meta_info_title">Montri metadatumojn</string>
+    <string name="mark_as_watched">Marki spektita</string>
+    <string name="show_meta_info_summary">Malŝatu por kaŝi metadatumujojn kio havas aldonajn informojn pri la elsendfluisto, enhavo de la fluo, aŭ serĉpto</string>
+    <string name="show_description_summary">Malŝaltu por kaŝi la videan priskribon kaj aldonan informon</string>
+    <string name="clear_queue_confirmation_title">Peti por konfirmo antaŭ vakigado atendvico</string>
+    <string name="clear_queue_confirmation_summary">Via atendvico povas anstataŭigi se vi ŝanĝi al malsama ludilo</string>
+    <string name="clear_queue_confirmation_description">La aktiva ludila atendvico anstataŭigos</string>
+    <string name="notification_action_4_title">Kvina agobutono</string>
+    <string name="notification_action_0_title">Unua agobutono</string>
+    <string name="notification_action_1_title">Dua agobutono</string>
+    <string name="notification_action_2_title">Tria agobutono</string>
+    <string name="notification_action_3_title">Kvara agobutono</string>
 </resources>

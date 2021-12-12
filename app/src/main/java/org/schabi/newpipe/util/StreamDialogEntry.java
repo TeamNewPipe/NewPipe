@@ -5,12 +5,15 @@ import android.net.Uri;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
-import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
+import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
@@ -81,14 +84,16 @@ public enum StreamDialogEntry {
     delete(R.string.delete, (fragment, item) -> {
     }), // has to be set manually
 
-    append_playlist(R.string.append_playlist, (fragment, item) -> {
-        final PlaylistAppendDialog d = PlaylistAppendDialog
-                .fromStreamInfoItems(Collections.singletonList(item));
-
-        PlaylistAppendDialog.onPlaylistFound(fragment.getContext(),
-            () -> d.show(fragment.getParentFragmentManager(), "StreamDialogEntry@append_playlist"),
-            () -> PlaylistCreationDialog.newInstance(d)
-                    .show(fragment.getParentFragmentManager(), "StreamDialogEntry@create_playlist")
+    append_playlist(R.string.add_to_playlist, (fragment, item) -> {
+        PlaylistDialog.createCorrespondingDialog(
+                fragment.getContext(),
+                Collections.singletonList(new StreamEntity(item)),
+                dialog -> dialog.show(
+                        fragment.getParentFragmentManager(),
+                        "StreamDialogEntry@"
+                                + (dialog instanceof PlaylistAppendDialog ? "append" : "create")
+                                + "_playlist"
+                )
         );
     }),
 
@@ -189,6 +194,16 @@ public enum StreamDialogEntry {
 
     public interface StreamDialogEntryAction {
         void onClick(Fragment fragment, StreamInfoItem infoItem);
+    }
+
+    public static boolean shouldAddMarkAsWatched(final StreamType streamType,
+                                                 final Context context) {
+        final boolean isWatchHistoryEnabled = PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.enable_watch_history_key), false);
+        return streamType != StreamType.AUDIO_LIVE_STREAM
+                && streamType != StreamType.LIVE_STREAM
+                && isWatchHistoryEnabled;
     }
 
     /////////////////////////////////////////////

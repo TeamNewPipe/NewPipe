@@ -157,7 +157,9 @@ public final class NavigationHelper {
             return;
         }
 
-        Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
+        if (PlayerHolder.getInstance().getType() != PlayerType.POPUP) {
+            Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
+        }
         final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
         intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.POPUP.ordinal());
         ContextCompat.startForegroundService(context, intent);
@@ -166,8 +168,10 @@ public final class NavigationHelper {
     public static void playOnBackgroundPlayer(final Context context,
                                               final PlayQueue queue,
                                               final boolean resumePlayback) {
-        Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT)
-                .show();
+        if (PlayerHolder.getInstance().getType() != MainPlayer.PlayerType.AUDIO) {
+            Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT)
+                    .show();
+        }
         final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
         intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.AUDIO.ordinal());
         ContextCompat.startForegroundService(context, intent);
@@ -499,6 +503,27 @@ public final class NavigationHelper {
                 intent.putExtra(Player.PLAY_QUEUE_KEY, cacheKey);
             }
         }
+        context.startActivity(intent);
+    }
+
+    /**
+     * Opens {@link ChannelFragment}.
+     * Use this instead of {@link #openChannelFragment(FragmentManager, int, String, String)}
+     * when no fragments are used / no FragmentManager is available.
+     * @param context
+     * @param serviceId
+     * @param url
+     * @param title
+     */
+    public static void openChannelFragmentUsingIntent(final Context context,
+                                                      final int serviceId,
+                                                      final String url,
+                                                      @NonNull final String title) {
+        final Intent intent = getOpenIntent(context, url, serviceId,
+                StreamingService.LinkType.CHANNEL);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(Constants.KEY_TITLE, title);
+
         context.startActivity(intent);
     }
 

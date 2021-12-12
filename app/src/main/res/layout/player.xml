@@ -116,7 +116,7 @@
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
 
-                        <TextView
+                        <org.schabi.newpipe.views.NewPipeTextView
                             android:id="@+id/titleTextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                             tools:ignore="RtlHardcoded"
                             tools:text="The Video Title LONG very LONG" />
 
-                        <TextView
+                        <org.schabi.newpipe.views.NewPipeTextView
                             android:id="@+id/channelTextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -149,7 +149,7 @@
                             tools:text="The Video Artist  LONG very LONG very Long" />
                     </LinearLayout>
 
-                    <TextView
+                    <org.schabi.newpipe.views.NewPipeTextView
                         android:id="@+id/qualityTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
@@ -163,7 +163,7 @@
                         tools:ignore="HardcodedText,RtlHardcoded"
                         tools:text="720p" />
 
-                    <TextView
+                    <org.schabi.newpipe.views.NewPipeTextView
                         android:id="@+id/playbackSpeed"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
@@ -243,7 +243,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                        <TextView
+                        <org.schabi.newpipe.views.NewPipeTextView
                             android:id="@+id/resizeTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="35dp"
@@ -262,7 +262,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="3">
 
-                            <TextView
+                            <org.schabi.newpipe.views.NewPipeTextView
                                 android:id="@+id/captionTextView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -397,7 +397,7 @@
                     android:orientation="vertical"
                     android:paddingBottom="12dp">
 
-                    <TextView
+                    <org.schabi.newpipe.views.NewPipeTextView
                         android:id="@+id/currentDisplaySeek"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -439,7 +439,7 @@
                 android:paddingLeft="@dimen/player_main_controls_padding"
                 android:paddingRight="@dimen/player_main_controls_padding">
 
-                <TextView
+                <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/playbackCurrentTime"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -461,7 +461,7 @@
                     tools:progress="25"
                     tools:secondaryProgress="50" />
 
-                <TextView
+                <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/playbackEndTime"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -471,7 +471,7 @@
                     tools:ignore="HardcodedText"
                     tools:text="1:23:49" />
 
-                <TextView
+                <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/playbackLiveSync"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"

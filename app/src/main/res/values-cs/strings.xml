@@ -234,7 +234,7 @@
     <string name="create_playlist">Nový playlist</string>
     <string name="rename_playlist">Přejmenovat</string>
     <string name="name">Jméno</string>
-    <string name="append_playlist">Přidat do playlistu</string>
+    <string name="add_to_playlist">Přidat do playlistu</string>
     <string name="set_as_playlist_thumbnail">Nastavit jako miniaturu playlistu</string>
     <string name="bookmark_playlist">Přidat playlist do záložek</string>
     <string name="unbookmark_playlist">Smazat záložku</string>
@@ -681,4 +681,5 @@
     <string name="enqueue_next_stream">Přidat do fronty (další)</string>
     <string name="main_page_content_swipe_remove">Tažením položky odstraníte</string>
     <string name="start_main_player_fullscreen_title">Spustit hlavní přehrávač na celé obrazovce</string>
+    <string name="processing_may_take_a_moment">Zpracovávám... může trvat moment</string>
 </resources>

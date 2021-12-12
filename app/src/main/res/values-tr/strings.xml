@@ -227,7 +227,7 @@
     <string name="create_playlist">Yeni Oynatma Listesi</string>
     <string name="rename_playlist">Yeniden adlandır</string>
     <string name="name">Ad</string>
-    <string name="append_playlist">Oynatma listesine ekle</string>
+    <string name="add_to_playlist">Oynatma listesine ekle</string>
     <string name="set_as_playlist_thumbnail">Oynatma listesi küçük resmi olarak ayarla</string>
     <string name="bookmark_playlist">Oynatma listesini yer imlerine ekle</string>
     <string name="unbookmark_playlist">Yer imini kaldır</string>
@@ -669,4 +669,9 @@
     <string name="start_main_player_fullscreen_title">Ana oynatıcıyı tam ekranda başlat</string>
     <string name="enqueue_next_stream">Sonrakini sıraya ekle</string>
     <string name="enqueued_next">Sonraki sıraya eklendi</string>
+    <string name="processing_may_take_a_moment">İşleniyor… Biraz zaman alabilir</string>
+    <string name="manual_update_title">Güncellemeleri denetle</string>
+    <string name="manual_update_description">Yeni sürümleri el ile denetleyin</string>
+    <string name="checking_updates_toast">Güncellemeler denetleniyor…</string>
+    <string name="feed_new_items">Yeni akış ögeleri</string>
 </resources>

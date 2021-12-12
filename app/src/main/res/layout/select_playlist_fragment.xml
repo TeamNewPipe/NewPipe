@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="13dp">
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -27,7 +27,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/empty_state_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

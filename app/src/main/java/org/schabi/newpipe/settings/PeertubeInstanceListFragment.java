@@ -303,8 +303,8 @@ public class PeertubeInstanceListFragment extends Fragment {
                     return false;
                 }
 
-                final int sourceIndex = source.getAdapterPosition();
-                final int targetIndex = target.getAdapterPosition();
+                final int sourceIndex = source.getBindingAdapterPosition();
+                final int targetIndex = target.getBindingAdapterPosition();
                 instanceListAdapter.swapItems(sourceIndex, targetIndex);
                 return true;
             }
@@ -322,7 +322,7 @@ public class PeertubeInstanceListFragment extends Fragment {
             @Override
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder,
                                  final int swipeDir) {
-                final int position = viewHolder.getAdapterPosition();
+                final int position = viewHolder.getBindingAdapterPosition();
                 // do not allow swiping the selected instance
                 if (instanceList.get(position).getUrl().equals(selectedInstance.getUrl())) {
                     instanceListAdapter.notifyItemChanged(position);

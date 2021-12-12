@@ -24,7 +24,7 @@
             android:contentDescription="@string/list_thumbnail_view_description"
             tools:src="@drawable/buddy_channel_item" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/title_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

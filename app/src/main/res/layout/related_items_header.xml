@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground">
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

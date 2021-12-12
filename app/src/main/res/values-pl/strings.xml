@@ -45,11 +45,11 @@
     <string name="error_report_title">Raport o błędach</string>
     <string name="general_error">Błąd</string>
     <string name="network_error">Błąd sieci</string>
-    <string name="could_not_load_thumbnails">Nie można załadować wszystkich miniatur</string>
+    <string name="could_not_load_thumbnails">Nie udało się załadować wszystkich miniatur</string>
     <string name="youtube_signature_deobfuscation_error">Nie udało się odszyfrować sygnatury URL wideo</string>
-    <string name="parsing_error">Nie można przetworzyć strony internetowej</string>
+    <string name="parsing_error">Nie udało się przetworzyć strony internetowej</string>
     <string name="content_not_available">Zawartość niedostępna</string>
-    <string name="could_not_setup_download_menu">Nie można ustawić menu pobierania</string>
+    <string name="could_not_setup_download_menu">Nie udało się utworzyć menu pobierania</string>
     <string name="sorry_string">Przepraszamy, to nie powinno mieć miejsca.</string>
     <string name="error_report_button_text">Zgłoś błąd przez e-mail</string>
     <string name="error_snackbar_message">Niestety, coś poszło nie tak.</string>
@@ -150,10 +150,10 @@
     <string name="show_hold_to_append_summary">Pokaż wskazówkę po naciśnięciu tła lub wyskakującego przycisku „Szczegóły” w odtwarzaczu</string>
     <string name="play_all">Odtwórz wszystkie</string>
     <string name="unknown_content">[Nieznane]</string>
-    <string name="player_stream_failure">Nie można odtworzyć strumienia</string>
+    <string name="player_stream_failure">Nie udało się odtworzyć tego strumienia</string>
     <string name="player_unrecoverable_failure">Wystąpił nieodwracalny błąd odtwarzacza</string>
     <string name="player_recoverable_failure">Odzyskiwanie po błędzie odtwarzacza</string>
-    <string name="empty_subscription_feed_subtitle">Nic tu nie ma. Słychać świerszcze</string>
+    <string name="empty_subscription_feed_subtitle">Nic tu nie ma. Słychać tylko świerszcze.</string>
     <string name="no_subscribers">Brak subskrybentów</string>
     <plurals name="subscribers">
         <item quantity="one">%s subskrybent</item>
@@ -238,7 +238,7 @@
     <string name="create_playlist">Nowa playlista</string>
     <string name="rename_playlist">Zmień nazwę</string>
     <string name="name">Nazwa</string>
-    <string name="append_playlist">Dodaj do playlisty</string>
+    <string name="add_to_playlist">Dodaj do playlisty</string>
     <string name="set_as_playlist_thumbnail">Ustaw jako miniaturę playlisty</string>
     <string name="bookmark_playlist">Dodaj do ulubionych</string>
     <string name="unbookmark_playlist">Usuń z ulubionych</string>
@@ -252,8 +252,8 @@
     <string name="resize_zoom">Powiększ</string>
     <string name="caption_auto_generated">Wygenerowane automatycznie</string>
     <string name="enable_leak_canary_summary">Monitorowanie wycieków pamięci może powodować niestabilność aplikacji podczas zrzutu pamięci</string>
-    <string name="enable_disposed_exceptions_title">Zgłoś błędy spoza cyklu życia</string>
-    <string name="enable_disposed_exceptions_summary">Wymuś raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności</string>
+    <string name="enable_disposed_exceptions_title">Zgłaszaj błędy spoza cyklu życia</string>
+    <string name="enable_disposed_exceptions_summary">Wymuś raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności po usunięciu</string>
     <string name="use_inexact_seek_title">Używaj szybkiego, niedokładnego przewijania</string>
     <string name="use_inexact_seek_summary">Niedokładne przewijanie umożliwia szybsze przewijanie ze zmniejszoną dokładnością. Przewijanie o 5, 15 lub 25 sekund nie działa w tym przypadku</string>
     <string name="download_thumbnail_title">Wczytuj miniatury</string>
@@ -353,7 +353,7 @@
     <string name="app_update_notification_channel_description">Powiadomienia o nowej wersji NewPipe</string>
     <string name="download_to_sdcard_error_title">Pamięć zewnętrzna niedostępna</string>
     <string name="download_to_sdcard_error_message">Pobieranie na kartę SD nie jest możliwe. Zresetować lokalizację folderu zapisywania\?</string>
-    <string name="saved_tabs_invalid_json">Nie można odczytać zapisanych kart, więc będą używane domyślne</string>
+    <string name="saved_tabs_invalid_json">Nie udało się odczytać zapisanych kart, więc będą używane domyślne</string>
     <string name="restore_defaults">Przywróć domyślne</string>
     <string name="restore_defaults_confirmation">Czy chcesz przywrócić ustawienia domyślne\?</string>
     <string name="subscribers_count_not_available">Liczba subskrybentów jest niedostępna</string>
@@ -381,7 +381,7 @@
     <string name="error_file_creation">Nie można utworzyć pliku</string>
     <string name="error_path_creation">Nie można utworzyć folderu docelowego</string>
     <string name="error_ssl_exception">Nie udało się nawiązać bezpiecznego połączenia</string>
-    <string name="error_unknown_host">Nie można znaleźć serwera</string>
+    <string name="error_unknown_host">Nie udało się znaleźć serwera</string>
     <string name="error_connect_host">Nie można połączyć się z serwerem</string>
     <string name="error_http_no_content">Serwer nie wysyła danych</string>
     <string name="error_http_unsupported_range">Serwer nie akceptuje pobierania wielowątkowego, spróbuj ponownie za pomocą @string/msg_threads = 1</string>
@@ -399,7 +399,7 @@
     <string name="show_comments_summary">Wyłącz, aby ukryć komentarze</string>
     <string name="autoplay_title">Automatyczne odtwarzanie</string>
     <string name="no_comments">Brak komentarzy</string>
-    <string name="error_unable_to_load_comments">Nie można załadować komentarzy</string>
+    <string name="error_unable_to_load_comments">Nie udało się załadować komentarzy</string>
     <string name="close">Zamknij</string>
     <string name="enable_playback_resume_title">Wznawiaj odtwarzanie</string>
     <string name="enable_playback_resume_summary">Przywracaj odtwarzanie od ostatniej pozycji</string>
@@ -544,7 +544,7 @@
     <string name="remove_watched_popup_title">Usunąć obejrzane wideo\?</string>
     <string name="remove_watched">Usuń obejrzane</string>
     <string name="show_original_time_ago_summary">Oryginalne teksty z usług będą widoczne w strumieniowanych pozycjach</string>
-    <string name="show_original_time_ago_title">Pokaż oryginalny czas</string>
+    <string name="show_original_time_ago_title">Pokazuj oryginalny czas na pozycjach</string>
     <string name="youtube_restricted_mode_enabled_title">Włącz tryb ograniczonego dostępu YouTube\'a</string>
     <string name="video_detail_by">Przez %s</string>
     <string name="channel_created_by">Utworzony przez %s</string>
@@ -667,8 +667,8 @@
     <string name="mark_as_watched">Oznacz jako obejrzane</string>
     <string name="loading_channel_details">Ładowanie szczegółów kanału…</string>
     <string name="error_show_channel_details">Błąd podczas wyświetlania szczegółów kanału</string>
-    <string name="show_image_indicators_summary">Pokaż kolorowe wstążki Picasso nad obrazami wskazujące ich źródło: czerwone dla sieci, niebieskie dla dysku i zielone dla pamięci</string>
-    <string name="show_image_indicators_title">Pokaż wskaźniki obrazu</string>
+    <string name="show_image_indicators_summary">Pokazuj kolorowe wstążki Picasso nad obrazami wskazujące ich źródło: czerwone dla sieci, niebieskie dla dysku i zielone dla pamięci</string>
+    <string name="show_image_indicators_title">Pokazuj wskaźniki obrazu</string>
     <string name="remote_search_suggestions">Zdalne podpowiedzi wyszukiwania</string>
     <string name="local_search_suggestions">Lokalne podpowiedzi wyszukiwania</string>
     <plurals name="deleted_downloads_toast">
@@ -688,4 +688,14 @@
     <string name="start_main_player_fullscreen_title">Uruchamiaj główny odtwarzacz w trybie pełnoekranowym</string>
     <string name="enqueued_next">Dodano do kolejki (następny)</string>
     <string name="enqueue_next_stream">Dodaj do kolejki (następny)</string>
+    <string name="processing_may_take_a_moment">Przetwarzanie… Może to chwilę potrwać</string>
+    <string name="checking_updates_toast">Sprawdzanie aktualizacji…</string>
+    <string name="manual_update_description">Ręcznie sprawdź dostępność nowych wersji</string>
+    <string name="manual_update_title">Sprawdź dostępność aktualizacji</string>
+    <string name="feed_new_items">Nowe pozycje kanału</string>
+    <string name="report_player_errors_title">Zgłaszaj błędy odtwarzacza</string>
+    <string name="show_crash_the_player_summary">Pokazuje opcję psucia podczas korzystania z odtwarzacza</string>
+    <string name="crash_the_player">Zepsuj odtwarzacz</string>
+    <string name="show_crash_the_player_title">Pokazuj „zepsuj odtwarzacz”</string>
+    <string name="report_player_errors_summary">Zgłasza szczegółowo błędy odtwarzacza zamiast pokazywać krótkotrwałą wiadomość toast (przydatne do diagnozowania problemów)</string>
 </resources>

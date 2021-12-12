@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="false"
-    android:paddingLeft="@dimen/video_item_search_padding"
-    android:paddingTop="@dimen/video_item_search_padding"
-    android:paddingRight="@dimen/video_item_search_padding">
+    android:paddingStart="6dp"
+    android:paddingTop="4dp"
+    android:paddingEnd="6dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:scrollbars="vertical">
 
         <!-- START HERE -->
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/tempoControlText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,10 +31,10 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@id/tempoControlText"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="3dp"
             android:orientation="horizontal">
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/tempoStepDown"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -62,7 +62,7 @@
                 android:layout_toRightOf="@id/tempoStepDown"
                 android:orientation="horizontal">
 
-                <TextView
+                <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/tempoMinimumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                     tools:ignore="HardcodedText"
                     tools:text="1.00x" />
 
-                <TextView
+                <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/tempoCurrentText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                     tools:ignore="HardcodedText"
                     tools:text="100%" />
 
-                <TextView
+                <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/tempoMaximumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
                     tools:progress="50" />
             </RelativeLayout>
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/tempoStepUp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -137,10 +137,13 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/tempoControl"
-            android:layout_margin="@dimen/video_item_search_padding"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="6dp"
             android:background="?attr/separator_color" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/pitchControlText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -156,10 +159,10 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@id/pitchControlText"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="3dp"
             android:orientation="horizontal">
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/pitchStepDown"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -177,6 +180,7 @@
                 tools:text="-5%" />
 
             <RelativeLayout
+                android:id="@+id/pitchDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
@@ -187,7 +191,7 @@
                 android:layout_toRightOf="@+id/pitchStepDown"
                 android:orientation="horizontal">
 
-                <TextView
+                <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/pitchMinimumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -201,7 +205,7 @@
                     tools:ignore="HardcodedText"
                     tools:text="25%" />
 
-                <TextView
+                <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/pitchCurrentText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -213,7 +217,7 @@
                     tools:ignore="HardcodedText"
                     tools:text="100%" />
 
-                <TextView
+                <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/pitchMaximumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -237,7 +241,7 @@
                     tools:progress="50" />
             </RelativeLayout>
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/pitchStepUp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -262,17 +266,20 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/pitchControl"
-            android:layout_margin="@dimen/video_item_search_padding"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="6dp"
             android:background="?attr/separator_color" />
 
         <LinearLayout
             android:id="@+id/stepSizeSelector"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="32dp"
             android:layout_below="@id/separatorStepSizeSelector"
             android:orientation="horizontal">
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -282,7 +289,7 @@
                 android:textColor="?attr/colorAccent"
                 android:textStyle="bold" />
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/stepSizeOnePercent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -293,7 +300,7 @@
                 android:gravity="center"
                 android:textColor="?attr/colorAccent" />
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/stepSizeFivePercent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -304,7 +311,7 @@
                 android:gravity="center"
                 android:textColor="?attr/colorAccent" />
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/stepSizeTenPercent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -315,7 +322,7 @@
                 android:gravity="center"
                 android:textColor="?attr/colorAccent" />
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/stepSizeTwentyFivePercent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -343,32 +350,37 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/stepSizeSelector"
-            android:layout_margin="@dimen/video_item_search_padding"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="6dp"
             android:background="?attr/separator_color" />
 
-        <CheckBox
-            android:id="@+id/unhookCheckbox"
+        <LinearLayout
+            android:id="@+id/additionalOptions"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@id/separatorCheckbox"
-            android:layout_centerHorizontal="true"
-            android:checked="false"
-            android:clickable="true"
-            android:focusable="true"
-            android:maxLines="1"
-            android:text="@string/unhook_checkbox" />
+            android:orientation="vertical">
 
-        <CheckBox
-            android:id="@+id/skipSilenceCheckbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/unhookCheckbox"
-            android:layout_centerHorizontal="true"
-            android:checked="false"
-            android:clickable="true"
-            android:focusable="true"
-            android:maxLines="1"
-            android:text="@string/skip_silence_checkbox" />
+            <CheckBox
+                android:id="@+id/unhookCheckbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/unhook_checkbox" />
+
+            <CheckBox
+                android:id="@+id/skipSilenceCheckbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/skip_silence_checkbox" />
+        </LinearLayout>
 
         <!-- END HERE -->
 

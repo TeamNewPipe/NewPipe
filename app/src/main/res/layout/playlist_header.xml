@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="?attr/contrast_background_color">
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/playlist_title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 app:civ_border_color="#ffffff"
                 app:civ_border_width="1dp" />
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/uploader_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -62,7 +62,7 @@
                 tools:text="Typical uploader name" />
         </RelativeLayout>
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/playlist_stream_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

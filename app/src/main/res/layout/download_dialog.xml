@@ -7,7 +7,7 @@
         android:id="@+id/toolbar_layout"
         layout="@layout/toolbar_layout" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/file_name_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:layout_marginBottom="6dp"
         android:text="@string/msg_name" />
 
-    <EditText
+    <org.schabi.newpipe.views.NewPipeEditText
         android:id="@+id/file_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
         android:minWidth="150dp"
         tools:listitem="@layout/stream_quality_item" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/threads_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
         android:orientation="horizontal"
         android:paddingBottom="12dp">
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/threads_count"
             android:layout_width="25dp"
             android:layout_height="match_parent"

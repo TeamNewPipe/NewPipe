@@ -230,7 +230,7 @@
     <string name="create_playlist">नई प्लेलिस्ट</string>
     <string name="rename_playlist">नाम बदलें</string>
     <string name="name">नाम</string>
-    <string name="append_playlist">प्लेलिस्ट में जोड़ें</string>
+    <string name="add_to_playlist">प्लेलिस्ट में जोड़ें</string>
     <string name="set_as_playlist_thumbnail">प्लेलिस्ट थंबनेल के रूप में सेट करें</string>
     <string name="bookmark_playlist">प्लेलिस्ट बुकमार्क करें</string>
     <string name="unbookmark_playlist">बुकमार्क हटायें</string>
@@ -555,4 +555,8 @@
     <string name="peertube_instance_add_title">उदाहरण जोड़ें</string>
     <string name="peertube_instance_url_help">%s . पर अपनी पसंद के उदाहरण ढूँढ़ें</string>
     <string name="peertube_instance_url_summary">अपने पसंदीदा PeerTube उदाहरण चुनें</string>
+    <string name="start_main_player_fullscreen_title">मुख्य प्लेयर को पूर्ण स्क्रीन में शुरू करें</string>
+    <string name="start_main_player_fullscreen_summary">मिनी प्लेयर में वीडियो शुरू न करें, लेकिन ऑटो रोटेशन लॉक होने पर सीधे फुल स्क्रीन मोड पर जाएं। आप अब भी फ़ुलस्क्रीन से बाहर निकलकर मिनी प्लेयर तक पहुंच सकते हैं।</string>
+    <string name="comments_are_disabled">टिप्पणियाँ करना बंद है</string>
+    <string name="mark_as_watched">देखा हुआ चिह्नित करें</string>
 </resources>

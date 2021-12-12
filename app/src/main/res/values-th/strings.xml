@@ -270,7 +270,7 @@
     <string name="create_playlist">เพลย์ลิสต์ใหม่</string>
     <string name="rename_playlist">เปลี่ยนชื่อ</string>
     <string name="name">ชื่อ</string>
-    <string name="append_playlist">เพิ่มในเพลย์ลิสต์</string>
+    <string name="add_to_playlist">เพิ่มในเพลย์ลิสต์</string>
     <string name="set_as_playlist_thumbnail">ตั้งเป็นรูปขนาดย่อของเพลย์ลิสต์</string>
     <string name="bookmark_playlist">เก็บเพลย์ลิสต์</string>
     <string name="unbookmark_playlist">เอาที่คั่นหน้าออก</string>

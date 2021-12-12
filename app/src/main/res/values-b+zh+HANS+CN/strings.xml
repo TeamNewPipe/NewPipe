@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">点击放大镜开始使用。</string>
+    <string name="main_bg_subtitle">点击放大镜图标即可开始使用。</string>
     <string name="upload_date_text">发布于 %1$s</string>
     <string name="open_in_browser">在浏览器中打开</string>
     <string name="open_in_popup_mode">在悬浮窗中打开</string>
@@ -33,7 +33,7 @@
     <plurals name="videos">
         <item quantity="other">%s 个视频</item>
     </plurals>
-    <string name="disabled">禁用</string>
+    <string name="disabled">停用</string>
     <string name="controls_background_title">后台播放</string>
     <string name="show_search_suggestions_title">显示搜索建议</string>
     <string name="subscribe_button_title">订阅</string>
@@ -62,7 +62,7 @@
     <string name="grid">网格</string>
     <string name="app_update_notification_content_title">NewPipe 可更新！</string>
     <string name="error_http_unsupported_range">服务器不接受多线程下载, 使用 @string/msg_threads = 1 重试</string>
-    <string name="autoplay_title">自动恢复上次播放</string>
+    <string name="autoplay_title">自动播放</string>
     <string name="settings_category_clear_data_title">清空数据</string>
     <string name="watch_history_deleted">播放历史已删除</string>
     <string name="detail_likes_img_view_description">喜欢</string>
@@ -115,7 +115,7 @@
     <string name="missions_header_pending">等待中</string>
     <string name="paused">已暂停</string>
     <string name="queued">已加入队列</string>
-    <string name="enqueue">加入队列</string>
+    <string name="enqueue">排队</string>
     <string name="permission_denied">操作已被系统拒绝</string>
     <string name="download_failed">下载失败</string>
     <string name="no_comments">没有评论</string>
@@ -211,7 +211,7 @@
     <string name="trending">时下流行</string>
     <string name="top_50">前 50</string>
     <string name="new_and_hot">最新与热门</string>
-    <string name="show_hold_to_append_title">显示“长按添加”说明</string>
+    <string name="show_hold_to_append_title">显示“长按加入播放队列”提示</string>
     <string name="show_hold_to_append_summary">在视频详情页中，长按后台播放或悬浮窗播放按钮时显示提示</string>
     <string name="player_stream_failure">无法播放此串流</string>
     <string name="player_unrecoverable_failure">发生无法处理的播放器错误</string>
@@ -259,7 +259,7 @@
     <string name="create_playlist">新建播放列表</string>
     <string name="rename_playlist">重命名</string>
     <string name="name">名称</string>
-    <string name="append_playlist">添加至播放列表</string>
+    <string name="add_to_playlist">添加至播放列表</string>
     <string name="set_as_playlist_thumbnail">设为播放列表封面</string>
     <string name="bookmark_playlist">收藏播放列表</string>
     <string name="unbookmark_playlist">删除收藏</string>
@@ -385,7 +385,7 @@
     <string name="stop">停止</string>
     <string name="max_retry_msg">最大重试次数</string>
     <string name="max_retry_desc">取消下载前的最多重试次数</string>
-    <string name="pause_downloads_on_mobile">切换到移动流量网络后中断播放</string>
+    <string name="pause_downloads_on_mobile">切换到按流量计费的网络后中断下载</string>
     <string name="pause_downloads_on_mobile_desc">切换至移动数据时可能有用，虽然部分下载无法被暂停</string>
     <string name="events">事件</string>
     <string name="conferences">会议大会</string>
@@ -490,7 +490,7 @@
     <string name="feed_use_dedicated_fetch_method_title">可用时使用专用 feed 获取</string>
     <string name="feed_use_dedicated_fetch_method_summary">仅在某些服务中可用，通常速度更快，但返回的视频数量可能有限，而且信息通常不完整（如无视频时长、类型，无直播状态）</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">启用快速模式</string>
-    <string name="feed_use_dedicated_fetch_method_disable_button">禁用快速模式</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">停用快速模式</string>
     <string name="feed_use_dedicated_fetch_method_help_text">您是否觉得 feed 加载太慢？如果是这样，请尝试启用快速加载（可在设置中修改，也可使用下面的按钮修改）
 \n
 \nNewPipe 提供两种 feed 加载策略:
@@ -534,7 +534,7 @@
     <string name="search_showing_result_for">显示结果：%s</string>
     <string name="never">从不</string>
     <string name="wifi_only">仅在 Wi-Fi 下</string>
-    <string name="autoplay_summary">视频开始播放后，自动定位到上次播放时的位置 — %s</string>
+    <string name="autoplay_summary">自动开始播放 — %s</string>
     <string name="title_activity_play_queue">播放队列</string>
     <string name="unsupported_url_dialog_message">无法识别此 URL。是否用其他应用打开\?</string>
     <string name="auto_queue_toggle">自动加入播放队列</string>
@@ -579,7 +579,7 @@
     <string name="related_items_tab_description">相关视频</string>
     <string name="comments_tab_description">评论</string>
     <string name="show_description_summary">显示视频描述和其他信息</string>
-    <string name="open_with">用…打开</string>
+    <string name="open_with">打开方式</string>
     <string name="no_app_to_open_intent">设备上没有应用可以打开</string>
     <string name="crash_the_app">让应用崩溃</string>
     <string name="paid_content">此内容仅对已付费的用户可用，因此 NewPipe 无法流式传输或下载该内容。</string>
@@ -598,9 +598,9 @@
     <string name="night_theme_summary">选择你最喜欢的夜间主题 — %s</string>
     <string name="night_theme_title">夜间主题</string>
     <string name="show_channel_details">显示频道详情</string>
-    <string name="disable_media_tunneling_summary">如果遇到黑屏或视频播放卡顿的情况，请禁用媒体隧道</string>
-    <string name="disable_media_tunneling_title">禁用媒体隧道</string>
-    <string name="description_select_disable">关闭简介中的文本选择功能</string>
+    <string name="disable_media_tunneling_summary">如果遇到黑屏或视频播放卡顿的情况，请停用媒体隧道</string>
+    <string name="disable_media_tunneling_title">停用媒体隧道</string>
+    <string name="description_select_disable">停用简介中的文本选择功能</string>
     <string name="metadata_privacy_internal">内部</string>
     <string name="metadata_privacy_private">私享</string>
     <string name="metadata_privacy_unlisted">未分类</string>
@@ -611,10 +611,10 @@
     <string name="metadata_language">语言</string>
     <string name="metadata_age_limit">年龄限制</string>
     <string name="metadata_privacy">私有性</string>
-    <string name="metadata_licence">发行许可</string>
+    <string name="metadata_licence">许可</string>
     <string name="metadata_tags">标签</string>
     <string name="metadata_category">类别</string>
-    <string name="description_select_enable">开启简介中的文本选择功能</string>
+    <string name="description_select_enable">启用简介中的文本选择功能</string>
     <string name="description_select_note">你现在可以选择简介中的文本，注意，在选择模式下，页面可能会闪烁，链接可能无法点击。</string>
     <string name="open_website_license">打开网站</string>
     <string name="service_provides_reason">%s 提供这个原因：</string>
@@ -633,7 +633,7 @@
     <string name="feed_toggle_show_played_items">显示已观看的项目</string>
     <string name="off">关闭</string>
     <string name="on">开启</string>
-    <string name="comments_are_disabled">评论功能已禁用</string>
+    <string name="comments_are_disabled">评论功能已停用</string>
     <string name="seekbar_preview_thumbnail_title">进度条缩略图预览</string>
     <string name="dont_show">不显示</string>
     <string name="low_quality_smaller">低品质（较小）</string>
@@ -652,9 +652,19 @@
     <plurals name="download_finished_notification">
         <item quantity="other">完成了 %s 个下载</item>
     </plurals>
-    <string name="main_page_content_swipe_remove">滑动项目以删除它们</string>
+    <string name="main_page_content_swipe_remove">滑动即可删除项目</string>
     <string name="start_main_player_fullscreen_summary">若自动旋转被锁定，不在以小窗播放器形式中播放视频，而直接切换到全屏模式。仍可以通过退出全屏以切换至小窗播放器</string>
     <string name="start_main_player_fullscreen_title">以全屏启动主播放器</string>
-    <string name="enqueued_next">已将下个视频加入队列</string>
-    <string name="enqueue_next_stream">将下一个视频加入队列</string>
+    <string name="enqueued_next">已添加为下一个播放</string>
+    <string name="enqueue_next_stream">下一个播放</string>
+    <string name="processing_may_take_a_moment">处理中…可能需要一些时间</string>
+    <string name="manual_update_description">手动检查新版本</string>
+    <string name="checking_updates_toast">检查更新中…</string>
+    <string name="manual_update_title">检查更新</string>
+    <string name="feed_new_items">新订阅源条目</string>
+    <string name="report_player_errors_summary">完整报告播放器错误，而不是弹出一个临时Toast（对诊断应用很有用）</string>
+    <string name="show_crash_the_player_title">显示\"使播放器崩溃\"</string>
+    <string name="show_crash_the_player_summary">在使用播放器时显示一个崩溃选项</string>
+    <string name="crash_the_player">使播放器崩溃</string>
+    <string name="report_player_errors_title">报告播放器错误</string>
 </resources>

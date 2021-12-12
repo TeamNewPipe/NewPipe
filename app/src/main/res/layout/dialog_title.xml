@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/video_item_search_padding"
     android:paddingRight="@dimen/video_item_search_padding">
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemTitleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:textSize="@dimen/channel_item_detail_title_text_size"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. " />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemAdditionalDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

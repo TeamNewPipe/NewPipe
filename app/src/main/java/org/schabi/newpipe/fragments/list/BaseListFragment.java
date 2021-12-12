@@ -143,7 +143,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             final View focusedItem = itemsList.getFocusedChild();
             final RecyclerView.ViewHolder itemHolder =
                     itemsList.findContainingViewHolder(focusedItem);
-            return itemHolder.getAdapterPosition();
+            return itemHolder.getBindingAdapterPosition();
         } catch (final NullPointerException e) {
             return -1;
         }
@@ -377,6 +377,13 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         entries.add(StreamDialogEntry.open_in_browser);
         if (KoreUtils.shouldShowPlayWithKodi(context, item.getServiceId())) {
             entries.add(StreamDialogEntry.play_with_kodi);
+        }
+
+        // show "mark as watched" only when watch history is enabled
+        if (StreamDialogEntry.shouldAddMarkAsWatched(item.getStreamType(), context)) {
+            entries.add(
+                    StreamDialogEntry.mark_as_watched
+            );
         }
         if (!isNullOrEmpty(item.getUploaderUrl())) {
             entries.add(StreamDialogEntry.show_channel_details);

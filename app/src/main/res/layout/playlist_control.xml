@@ -17,7 +17,7 @@
         android:focusable="true"
         android:gravity="center">
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="4dp"
@@ -47,7 +47,7 @@
         android:focusable="true"
         android:gravity="center">
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -74,7 +74,7 @@
         android:focusable="true"
         android:gravity="center">
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="4dp"

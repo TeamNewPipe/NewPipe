@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="?attr/contrast_background_color">
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/playlist_title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
         android:textSize="@dimen/playlist_detail_title_text_size"
         tools:text="Mix musics #23 title Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/playlist_stream_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

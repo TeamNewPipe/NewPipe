@@ -230,7 +230,7 @@
     <string name="create_playlist">Nouvelle liste de lecture</string>
     <string name="rename_playlist">Renommer</string>
     <string name="name">Nom</string>
-    <string name="append_playlist">Ajouter à la liste de lecture</string>
+    <string name="add_to_playlist">Ajouter à la liste de lecture</string>
     <string name="set_as_playlist_thumbnail">Définir comme miniature de la liste de lecture</string>
     <string name="bookmark_playlist">Enregister la liste de lecture</string>
     <string name="unbookmark_playlist">Supprimer le signet</string>
@@ -671,4 +671,14 @@
     <string name="start_main_player_fullscreen_title">Lancer le lecteur principal en plein écran</string>
     <string name="enqueue_next_stream">Mettre en file d’attente la suivante</string>
     <string name="enqueued_next">Placé comme suivant dans liste de lecture</string>
+    <string name="processing_may_take_a_moment">Traitement en cours… Veuillez patienter</string>
+    <string name="manual_update_description">Vérifier manuellement de nouvelles versions</string>
+    <string name="checking_updates_toast">Vérification des mises à jour…</string>
+    <string name="manual_update_title">Vérifier les mises à jours</string>
+    <string name="feed_new_items">Nouveaux éléments du flux</string>
+    <string name="report_player_errors_summary">Reporter les erreurs du lecteur en détail au lieu de montrer un bref message éphémère (utile pour diagnostiquer les problèmes)</string>
+    <string name="report_player_errors_title">Reporter des erreurs du lecteur</string>
+    <string name="crash_the_player">Couper le lecteur</string>
+    <string name="show_crash_the_player_title">Montrer \"Couper le lecteur\"</string>
+    <string name="show_crash_the_player_summary">Montrer une option couper lors de l\'utilisation du lecteur</string>
 </resources>
