@@ -237,7 +237,6 @@ public enum StreamDialogEntry {
                     item.getUrl(),
                     false
             )
-
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(result -> {
