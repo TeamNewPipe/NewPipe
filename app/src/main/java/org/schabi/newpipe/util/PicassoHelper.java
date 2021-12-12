@@ -5,6 +5,8 @@ import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 
 import com.squareup.picasso.Cache;
 import com.squareup.picasso.LruCache;
@@ -19,6 +21,7 @@ import org.schabi.newpipe.R;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 import okhttp3.OkHttpClient;
 
@@ -156,6 +159,29 @@ public final class PicassoHelper {
                     @Override
                     public String key() {
                         return PLAYER_THUMBNAIL_TRANSFORMATION_KEY;
+                    }
+                });
+    }
+
+
+    public static void loadNotificationIcon(final String url,
+                                            final Context context,
+                                            final Consumer<Bitmap> bitmapConsumer) {
+        loadImageDefault(url, R.drawable.ic_newpipe_triangle_white)
+                .into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(final Bitmap bitmap, final Picasso.LoadedFrom from) {
+                        bitmapConsumer.accept(bitmap);
+                    }
+
+                    @Override
+                    public void onBitmapFailed(final Exception e, final Drawable errorDrawable) {
+                        bitmapConsumer.accept(BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.ic_newpipe_triangle_white));
+                    }
+
+                    @Override
+                    public void onPrepareLoad(final Drawable placeHolderDrawable) {
                     }
                 });
     }

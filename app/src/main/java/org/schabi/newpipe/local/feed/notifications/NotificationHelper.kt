@@ -4,7 +4,6 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
@@ -12,14 +11,11 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
 import org.schabi.newpipe.util.NavigationHelper
+import org.schabi.newpipe.util.PicassoHelper
 
 /**
  * Helper for everything related to show notifications about new streams to the user.
@@ -34,7 +30,7 @@ class NotificationHelper(val context: Context) {
      * Show a notification about new streams from a single channel.
      * Opening the notification will open the corresponding channel page.
      */
-    fun displayNewStreamsNotification(data: FeedUpdateInfo): Completable {
+    fun displayNewStreamsNotification(data: FeedUpdateInfo) {
         val newStreams: List<StreamInfoItem> = data.newStreams
         val summary = context.resources.getQuantityString(
             R.plurals.new_streams, newStreams.size, newStreams.size
@@ -59,12 +55,6 @@ class NotificationHelper(val context: Context) {
             .setBadgeIconType(NotificationCompat.BADGE_ICON_LARGE)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-            .setLargeIcon(
-                BitmapFactory.decodeResource(
-                    context.resources,
-                    R.drawable.ic_newpipe_triangle_white
-                )
-            )
             .setColor(ContextCompat.getColor(context, R.color.ic_launcher_background))
             .setColorized(true)
             .setAutoCancel(true)
@@ -87,19 +77,17 @@ class NotificationHelper(val context: Context) {
                 NavigationHelper
                     .getChannelIntent(context, data.listInfo.serviceId, data.listInfo.url)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
-                0
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                    PendingIntent.FLAG_IMMUTABLE
+                else
+                    0
             )
         )
 
-        return Single.create(NotificationIcon(context, data.avatarUrl))
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSuccess { icon ->
-                builder.setLargeIcon(icon)
-            }
-            .ignoreElement()
-            .onErrorComplete()
-            .doOnComplete { manager.notify(data.pseudoId, builder.build()) }
+        PicassoHelper.loadNotificationIcon(data.avatarUrl, context) { bitmap ->
+            builder.setLargeIcon(bitmap)
+            manager.notify(data.pseudoId, builder.build())
+        }
     }
 
     companion object {

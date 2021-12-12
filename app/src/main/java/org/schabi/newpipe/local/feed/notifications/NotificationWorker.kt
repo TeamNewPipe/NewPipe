@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.feed.notifications
 
 import android.content.Context
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.work.BackoffPolicy
 import androidx.work.Constraints
@@ -12,7 +13,7 @@ import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import androidx.work.rxjava3.RxWorker
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import org.schabi.newpipe.App
 import org.schabi.newpipe.R
@@ -34,30 +35,39 @@ class NotificationWorker(
     }
     private val feedLoadManager = FeedLoadManager(appContext)
 
-    override fun createWork(): Single<Result> = if (isEnabled(applicationContext)) {
+    override fun createWork(): Single<Result> = if (areNotificationsEnabled(applicationContext)) {
         feedLoadManager.startLoading(
             ignoreOutdatedThreshold = true,
             groupId = FeedLoadManager.GROUP_NOTIFICATION_ENABLED
         )
+            .doOnSubscribe { showLoadingFeedForegroundNotification() }
             .map { feed ->
-                feed.mapNotNull { x ->
-                    x.value?.takeIf {
-                        it.newStreams.isNotEmpty()
+                // filter out feedUpdateInfo items (i.e. channels) with nothing new
+                feed.mapNotNull {
+                    it.value?.takeIf { feedUpdateInfo ->
+                        feedUpdateInfo.newStreams.isNotEmpty()
                     }
                 }
             }
-            .doOnSubscribe { setForegroundAsync(createForegroundInfo()) }
-            .flatMapObservable { Observable.fromIterable(it) }
-            .flatMapCompletable { x -> notificationHelper.displayNewStreamsNotification(x) }
-            .toSingleDefault(Result.success())
+            .observeOn(AndroidSchedulers.mainThread()) // Picasso requires calls from main thread
+            .map { feedUpdateInfoList ->
+                // display notifications for each feedUpdateInfo (i.e. channel)
+                feedUpdateInfoList.forEach { feedUpdateInfo ->
+                    notificationHelper.displayNewStreamsNotification(feedUpdateInfo)
+                }
+                return@map Result.success()
+            }
+            .doOnError { throwable ->
+                Log.e(TAG, "Error while displaying streams notifications", throwable)
+                // TODO show error notification
+            }
             .onErrorReturnItem(Result.failure())
     } else {
-        // Can be the case when the user disables notifications for NewPipe
-        // in the device's app settings.
+        // the user can disable streams notifications in the device's app settings
         Single.just(Result.success())
     }
 
-    private fun createForegroundInfo(): ForegroundInfo {
+    private fun showLoadingFeedForegroundNotification() {
         val notification = NotificationCompat.Builder(
             applicationContext,
             applicationContext.getString(R.string.notification_channel_id)
@@ -68,14 +78,15 @@ class NotificationWorker(
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setContentTitle(applicationContext.getString(R.string.feed_notification_loading))
             .build()
-        return ForegroundInfo(FeedLoadService.NOTIFICATION_ID, notification)
+        setForegroundAsync(ForegroundInfo(FeedLoadService.NOTIFICATION_ID, notification))
     }
 
     companion object {
 
-        private const val TAG = App.PACKAGE_NAME + "_streams_notifications"
+        private val TAG = NotificationWorker::class.java.simpleName
+        private const val WORK_TAG = App.PACKAGE_NAME + "_streams_notifications"
 
-        private fun isEnabled(context: Context) =
+        private fun areNotificationsEnabled(context: Context) =
             NotificationHelper.areNewStreamsNotificationsEnabled(context) &&
                 NotificationHelper.areNotificationsEnabledOnDevice(context)
 
@@ -86,7 +97,7 @@ class NotificationWorker(
          */
         @JvmStatic
         fun initialize(context: Context) {
-            if (isEnabled(context)) {
+            if (areNotificationsEnabled(context)) {
                 schedule(context)
             } else {
                 cancel(context)
@@ -114,13 +125,13 @@ class NotificationWorker(
                 options.interval,
                 TimeUnit.MILLISECONDS
             ).setConstraints(constraints)
-                .addTag(TAG)
+                .addTag(WORK_TAG)
                 .setBackoffCriteria(BackoffPolicy.LINEAR, 30, TimeUnit.MINUTES)
                 .build()
 
             WorkManager.getInstance(context)
                 .enqueueUniquePeriodicWork(
-                    TAG,
+                    WORK_TAG,
                     if (force) {
                         ExistingPeriodicWorkPolicy.REPLACE
                     } else {
@@ -139,7 +150,7 @@ class NotificationWorker(
         @JvmStatic
         fun runNow(context: Context) {
             val request = OneTimeWorkRequestBuilder<NotificationWorker>()
-                .addTag(TAG)
+                .addTag(WORK_TAG)
                 .build()
             WorkManager.getInstance(context).enqueue(request)
         }
@@ -149,7 +160,7 @@ class NotificationWorker(
          */
         @JvmStatic
         fun cancel(context: Context) {
-            WorkManager.getInstance(context).cancelAllWorkByTag(TAG)
+            WorkManager.getInstance(context).cancelAllWorkByTag(WORK_TAG)
         }
     }
 }
