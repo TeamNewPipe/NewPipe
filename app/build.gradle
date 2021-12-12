@@ -1,12 +1,11 @@
 plugins {
-    id "org.sonarqube" version "3.1.1"
+    id "com.android.application"
+    id "kotlin-android"
+    id "kotlin-kapt"
+    id "kotlin-parcelize"
+    id "checkstyle"
+    id "org.sonarqube" version "3.3"
 }
-
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-parcelize'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'checkstyle'
 
 android {
     compileSdkVersion 30
@@ -80,13 +79,13 @@ android {
         // Flag to enable support for the new language APIs
         coreLibraryDesugaringEnabled true
 
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
         encoding 'utf-8'
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = JavaVersion.VERSION_11
     }
 
     sourceSets {
@@ -99,7 +98,7 @@ android {
 }
 
 ext {
-    checkstyleVersion = '8.38'
+    checkstyleVersion = '9.2'
 
     androidxLifecycleVersion = '2.3.1'
     androidxRoomVersion = '2.3.0'
@@ -193,7 +192,7 @@ dependencies {
 
 /** Checkstyle **/
     checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
-    ktlint 'com.pinterest:ktlint:0.40.0'
+    ktlint 'com.pinterest:ktlint:0.43.2'
 
 /** Kotlin **/
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}"
