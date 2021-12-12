@@ -62,30 +62,23 @@ public enum StreamDialogEntry {
      * Info: Add this entry within showStreamDialog.
      */
     enqueue(R.string.enqueue_stream, (fragment, item) -> {
-        fetchItemInfoIfSparse(fragment, item,
-                fullItem -> NavigationHelper.enqueueOnPlayer(fragment.getContext(), fullItem)
-        );
+        fetchItemInfoIfSparse(fragment, item, fullItem ->
+                NavigationHelper.enqueueOnPlayer(fragment.getContext(), fullItem));
     }),
 
     enqueue_next(R.string.enqueue_next_stream, (fragment, item) -> {
-        fetchItemInfoIfSparse(fragment, item,
-                fullItem -> NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), fullItem)
-        );
+        fetchItemInfoIfSparse(fragment, item, fullItem ->
+                NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), fullItem));
     }),
 
     start_here_on_background(R.string.start_here_on_background, (fragment, item) -> {
-        fetchItemInfoIfSparse(fragment, item,
-                fullItem -> {
-                    NavigationHelper.playOnBackgroundPlayer(fragment.getContext(),
-                            fullItem, true);
-                });
+        fetchItemInfoIfSparse(fragment, item, fullItem ->
+                NavigationHelper.playOnBackgroundPlayer(fragment.getContext(), fullItem, true));
     }),
 
     start_here_on_popup(R.string.start_here_on_popup, (fragment, item) -> {
-        fetchItemInfoIfSparse(fragment, item, fullItem -> {
-                    NavigationHelper.playOnPopupPlayer(fragment.getContext(),
-                            fullItem, true);
-                });
+        fetchItemInfoIfSparse(fragment, item, fullItem ->
+                NavigationHelper.playOnPopupPlayer(fragment.getContext(), fullItem, true));
     }),
 
     set_as_playlist_thumbnail(R.string.set_as_playlist_thumbnail, (fragment, item) -> {
