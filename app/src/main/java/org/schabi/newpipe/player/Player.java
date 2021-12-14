@@ -529,6 +529,10 @@ public final class Player implements
         binding.resizeTextView.setOnClickListener(this);
         binding.playbackLiveSync.setOnClickListener(this);
 
+        playerGestureListener = new PlayerGestureListener(this, service);
+        gestureDetector = new GestureDetectorCompat(context, playerGestureListener);
+        binding.getRoot().setOnTouchListener(playerGestureListener);
+
         binding.queueButton.setOnClickListener(this);
         binding.segmentsButton.setOnClickListener(this);
         binding.repeatButton.setOnClickListener(this);
@@ -583,10 +587,6 @@ public final class Player implements
      * Initializes the Fast-For/Backward overlay.
      */
     private void setupPlayerSeekOverlay() {
-        playerGestureListener = new PlayerGestureListener(this, service);
-        gestureDetector = new GestureDetectorCompat(context, playerGestureListener);
-        binding.getRoot().setOnTouchListener(playerGestureListener);
-
         binding.fastSeekOverlay
                 .seekSeconds((int) (retrieveSeekDurationFromPreferences(this) / 1000.0f))
                 .performListener(new PlayerFastSeekOverlay.PerformListener() {
