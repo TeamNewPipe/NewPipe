@@ -30,6 +30,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
+import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -174,8 +175,14 @@ public class SubscriptionsImportFragment extends BaseFragment {
     }
 
     public void onImportFile() {
-        // leave */* mime type to support all services with different mime types and file extensions
-        requestImportFileLauncher.launch(StoredFileHelper.getPicker(activity, "*/*"));
+        NoFileManagerSafeGuard.launchSafe(
+                requestImportFileLauncher,
+                // leave */* mime type to support all services
+                // with different mime types and file extensions
+                StoredFileHelper.getPicker(activity, "*/*"),
+                TAG,
+                getContext()
+        );
     }
 
     private void requestImportFileResult(final ActivityResult result) {

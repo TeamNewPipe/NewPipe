@@ -55,6 +55,7 @@ import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.PREVIOUS_EXPORT_MODE
+import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
@@ -179,15 +180,23 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     }
 
     private fun onImportPreviousSelected() {
-        requestImportLauncher.launch(StoredFileHelper.getPicker(activity, JSON_MIME_TYPE))
+        NoFileManagerSafeGuard.launchSafe(
+            requestImportLauncher,
+            StoredFileHelper.getPicker(activity, JSON_MIME_TYPE),
+            TAG,
+            requireContext()
+        )
     }
 
     private fun onExportSelected() {
         val date = SimpleDateFormat("yyyyMMddHHmm", Locale.ENGLISH).format(Date())
         val exportName = "newpipe_subscriptions_$date.json"
 
-        requestExportLauncher.launch(
-            StoredFileHelper.getNewPicker(activity, exportName, JSON_MIME_TYPE, null)
+        NoFileManagerSafeGuard.launchSafe(
+            requestExportLauncher,
+            StoredFileHelper.getNewPicker(activity, exportName, JSON_MIME_TYPE, null),
+            TAG,
+            requireContext()
         )
     }
 
