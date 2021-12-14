@@ -57,7 +57,6 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
             Log.d(TAG, "onDoubleTapStarted called with portion = [$portion]")
 
         initTap = false
-        performListener?.onDoubleTabStart()
 
         secondsView.stop()
     }
@@ -122,7 +121,6 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
     }
 
     interface PerformListener {
-        fun onDoubleTabStart() {}
         fun onDoubleTab()
         fun onDoubleTabEnd()
         fun shouldFastForward(portion: DisplayPortion): Boolean?

@@ -592,29 +592,13 @@ public final class Player implements
                 .performListener(new PlayerFastSeekOverlay.PerformListener() {
 
                     @Override
-                    public void onDoubleTabStart() {
-                        // TODO
-                    }
-
-                    @Override
                     public void onDoubleTab() {
                         animate(binding.fastSeekOverlay, true, SEEK_OVERLAY_DURATION);
-                        animate(binding.playbackControlsShadow,
-                                !simpleExoPlayer.getPlayWhenReady(), SEEK_OVERLAY_DURATION);
-                        animate(binding.playerTopShadow, false, SEEK_OVERLAY_DURATION);
-                        animate(binding.playerBottomShadow, false, SEEK_OVERLAY_DURATION);
-                        animate(binding.playbackControlRoot, false, SEEK_OVERLAY_DURATION);
-                        hideSystemUIIfNeeded();
                     }
 
                     @Override
                     public void onDoubleTabEnd() {
                         animate(binding.fastSeekOverlay, false, SEEK_OVERLAY_DURATION);
-                        if (!simpleExoPlayer.getPlayWhenReady()) {
-                            showControls(SEEK_OVERLAY_DURATION);
-                        } else {
-                            showHideShadow(false, SEEK_OVERLAY_DURATION);
-                        }
                     }
 
                     @Override
