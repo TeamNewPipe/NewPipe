@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import org.schabi.newpipe.R
 import org.schabi.newpipe.databinding.PlayerFastSeekSecondsViewBinding
+import org.schabi.newpipe.util.DeviceUtils
 
 class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context, attrs) {
 
@@ -33,6 +34,9 @@ class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context
             field = value
         }
 
+    // Done as a field so that we don't have to compute on each tab if animations are enabled
+    private val animationsEnabled = DeviceUtils.hasAnimationsAnimatorDurationEnabled(context)
+
     val binding = PlayerFastSeekSecondsViewBinding.inflate(LayoutInflater.from(context), this)
 
     init {
@@ -44,12 +48,18 @@ class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context
         binding.triangleContainer.rotation = if (isForward) 0f else 180f
     }
 
-    fun start() {
-        stop()
-        firstAnimator.start()
+    fun startAnimation() {
+        stopAnimation()
+
+        if (animationsEnabled) {
+            firstAnimator.start()
+        } else {
+            // If no animations are enable show the arrow(s) without animation
+            showWithoutAnimation()
+        }
     }
 
-    fun stop() {
+    fun stopAnimation() {
         firstAnimator.cancel()
         secondAnimator.cancel()
         thirdAnimator.cancel()
@@ -63,6 +73,12 @@ class SecondsView(context: Context, attrs: AttributeSet?) : LinearLayout(context
         binding.icon1.alpha = 0f
         binding.icon2.alpha = 0f
         binding.icon3.alpha = 0f
+    }
+
+    private fun showWithoutAnimation() {
+        binding.icon1.alpha = 1f
+        binding.icon2.alpha = 1f
+        binding.icon3.alpha = 1f
     }
 
     private val firstAnimator: ValueAnimator = CustomValueAnimator(

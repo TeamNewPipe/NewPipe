@@ -58,7 +58,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
 
         initTap = false
 
-        secondsView.stop()
+        secondsView.stopAnimation()
     }
 
     override fun onDoubleTapProgressDown(portion: DisplayPortion) {
@@ -86,8 +86,6 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
             wasForwarding = shouldForward
 
             if (!initTap) {
-                // Start animation
-                secondsView.start()
                 initTap = true
             }
         }
@@ -104,6 +102,8 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
 
         if (initTap) performListener?.onDoubleTabEnd()
         initTap = false
+
+        secondsView.stopAnimation()
     }
 
     private fun changeConstraints(forward: Boolean) {
@@ -115,7 +115,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
                 secondsView.id, if (forward) END else START,
                 PARENT_ID, if (forward) END else START
             )
-            secondsView.start()
+            secondsView.startAnimation()
             applyTo(rootConstraintLayout)
         }
     }
