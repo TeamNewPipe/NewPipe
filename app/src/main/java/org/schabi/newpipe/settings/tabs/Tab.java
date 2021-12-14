@@ -12,8 +12,8 @@ import com.grack.nanojson.JsonSink;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem.LocalItemType;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -506,7 +506,7 @@ public abstract class Tab {
                 final StreamingService service = NewPipe.getService(kioskServiceId);
                 kioskId = service.getKioskList().getDefaultKioskId();
             } catch (final ExtractionException e) {
-                ErrorActivity.reportErrorInSnackbar(context, new ErrorInfo(e,
+                ErrorUtil.showSnackbar(context, new ErrorInfo(e,
                         UserAction.REQUESTED_KIOSK, "Loading default kiosk for selected service"));
             }
             return kioskId;

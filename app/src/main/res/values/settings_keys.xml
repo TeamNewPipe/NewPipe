@@ -89,8 +89,6 @@
         <item>@string/never</item>
     </string-array>
 
-    <string name="report_player_errors_key" translatable="false">report_player_errors_key</string>
-
     <string name="seekbar_preview_thumbnail_key" translatable="false">seekbar_preview_thumbnail_key</string>
     <string name="seekbar_preview_thumbnail_high_quality" translatable="false">seekbar_preview_thumbnail_high_quality</string>
     <string name="seekbar_preview_thumbnail_low_quality" translatable="false">seekbar_preview_thumbnail_low_quality</string>
@@ -188,9 +186,11 @@
     <string name="allow_disposed_exceptions_key" translatable="false">allow_disposed_exceptions_key</string>
     <string name="show_original_time_ago_key" translatable="false">show_original_time_ago_key</string>
     <string name="disable_media_tunneling_key" translatable="false">disable_media_tunneling_key</string>
-    <string name="crash_the_app_key" translatable="false">crash_the_app_key</string>
     <string name="show_image_indicators_key" translatable="false">show_image_indicators_key</string>
     <string name="show_crash_the_player_key" translatable="false">show_crash_the_player_key</string>
+    <string name="crash_the_app_key" translatable="false">crash_the_app_key</string>
+    <string name="show_error_snackbar_key" translatable="false">show_error_snackbar_key</string>
+    <string name="create_error_notification_key" translatable="false">create_error_notification_key</string>
 
     <!-- THEMES -->
     <string name="theme_key" translatable="false">theme</string>

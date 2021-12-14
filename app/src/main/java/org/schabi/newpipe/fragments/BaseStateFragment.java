@@ -7,12 +7,13 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorPanelHelper;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.util.InfoCache;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -198,9 +199,8 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     }
 
     /**
-     * Show a SnackBar and only call
-     * {@link ErrorActivity#reportErrorInSnackbar(androidx.fragment.app.Fragment, ErrorInfo)}
-     * IF we a find a valid view (otherwise the error screen appears).
+     * Directly calls {@link ErrorUtil#showSnackbar(Fragment, ErrorInfo)}, that shows a snackbar if
+     * a valid view can be found, otherwise creates an error report notification.
      *
      * @param errorInfo The error information
      */
@@ -208,6 +208,6 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         if (DEBUG) {
             Log.d(TAG, "showSnackBarError() called with: errorInfo = [" + errorInfo + "]");
         }
-        ErrorActivity.reportErrorInSnackbar(this, errorInfo);
+        ErrorUtil.showSnackbar(this, errorInfo);
     }
 }

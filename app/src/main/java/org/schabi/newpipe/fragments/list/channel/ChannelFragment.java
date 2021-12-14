@@ -26,8 +26,8 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.databinding.ChannelHeaderBinding;
 import org.schabi.newpipe.databinding.FragmentChannelBinding;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
@@ -407,7 +407,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                                 currentInfo.getParentChannelUrl(),
                                 currentInfo.getParentChannelName());
                     } catch (final Exception e) {
-                        ErrorActivity.reportUiErrorInSnackbar(this, "Opening channel fragment", e);
+                        ErrorUtil.showUiErrorSnackbar(this, "Opening channel fragment", e);
                     }
                 } else if (DEBUG) {
                     Log.i(TAG, "Can't open parent channel because we got no channel URL");

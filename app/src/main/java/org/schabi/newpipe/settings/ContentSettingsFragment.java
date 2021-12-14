@@ -20,7 +20,7 @@ import androidx.preference.PreferenceManager;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
@@ -205,7 +205,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             saveLastImportExportDataUri(exportDataUri); // save export path only on success
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
         } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(this, "Exporting database", e);
+            ErrorUtil.showUiErrorSnackbar(this, "Exporting database", e);
         }
     }
 
@@ -247,7 +247,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 finishImport(importDataUri);
             }
         } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(this, "Importing database", e);
+            ErrorUtil.showUiErrorSnackbar(this, "Importing database", e);
         }
     }
 

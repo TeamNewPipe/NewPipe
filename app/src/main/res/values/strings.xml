@@ -53,8 +53,6 @@
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
     <string name="crash_the_player">Crash the player</string>
-    <string name="report_player_errors_title">Report player errors</string>
-    <string name="report_player_errors_summary">Reports player errors in full detail instead of showing a short-lived toast message (useful for diagnosing problems)</string>
     <string name="notification_scale_to_square_image_title">Scale thumbnail to 1:1 aspect ratio</string>
     <string name="notification_scale_to_square_image_summary">Scale the video thumbnail shown in the notification from 16:9 to 1:1 aspect ratio (may introduce distortions)</string>
     <string name="notification_action_0_title">First action button</string>
@@ -182,14 +180,17 @@
     <string name="just_once">Just Once</string>
     <string name="file">File</string>
     <string name="notification_channel_id" translatable="false">newpipe</string>
-    <string name="notification_channel_name">NewPipe Notification</string>
-    <string name="notification_channel_description">Notifications for NewPipe background and popup players</string>
+    <string name="notification_channel_name">NewPipe notification</string>
+    <string name="notification_channel_description">Notifications for NewPipe\'s player</string>
     <string name="app_update_notification_channel_id" translatable="false">newpipeAppUpdate</string>
-    <string name="app_update_notification_channel_name">App Update Notification</string>
-    <string name="app_update_notification_channel_description">Notifications for new NewPipe version</string>
+    <string name="app_update_notification_channel_name">App update notification</string>
+    <string name="app_update_notification_channel_description">Notifications for new NewPipe versions</string>
     <string name="hash_channel_id" translatable="false">newpipeHash</string>
-    <string name="hash_channel_name">Video Hash Notification</string>
+    <string name="hash_channel_name">Video hash notification</string>
     <string name="hash_channel_description">Notifications for video hashing progress</string>
+    <string name="error_report_channel_id" translatable="false">newpipeErrorReport</string>
+    <string name="error_report_channel_name">Error report notification</string>
+    <string name="error_report_channel_description">Notifications to report errors</string>
     <string name="unknown_content">[Unknown]</string>
     <string name="switch_to_background">Switch to Background</string>
     <string name="switch_to_popup">Switch to Popup</string>
@@ -243,6 +244,8 @@
     <string name="restore_defaults_confirmation">Do you want to restore defaults?</string>
     <string name="permission_display_over_apps">Give permission to display over other apps</string>
     <!-- error activity -->
+    <string name="error_report_notification_title">NewPipe encountered an error, tap to report</string>
+    <string name="error_report_notification_toast">An error occurred, see the notification</string>
     <string name="sorry_string">Sorry, that should not have happened.</string>
     <string name="guru_meditation" translatable="false">Guru Meditation.</string>
     <string name="error_report_button_text">Report this error via e-mail</string>
@@ -475,9 +478,11 @@
     <string name="disable_media_tunneling_summary">Disable media tunneling if you experience a black screen or stuttering on video playback</string>
     <string name="show_image_indicators_title">Show image indicators</string>
     <string name="show_image_indicators_summary">Show Picasso colored ribbons on top of images indicating their source: red for network, blue for disk and green for memory</string>
-    <string name="crash_the_app">Crash the app</string>
     <string name="show_crash_the_player_title">Show \"crash the player\"</string>
     <string name="show_crash_the_player_summary">Shows a crash option when using the player</string>
+    <string name="crash_the_app">Crash the app</string>
+    <string name="show_error_snackbar">Show an error snackbar</string>
+    <string name="create_error_notification">Create an error notification</string>
     <!-- Subscriptions import/export -->
     <string name="import_title">Import</string>
     <string name="import_from">Import from</string>

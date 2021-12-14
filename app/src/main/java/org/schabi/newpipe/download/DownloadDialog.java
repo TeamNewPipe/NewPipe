@@ -41,8 +41,8 @@ import com.nononsenseapps.filepicker.Utils;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.DownloadDialogBinding;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -402,7 +402,7 @@ public class DownloadDialog extends DialogFragment
                             == R.id.video_button) {
                         setupVideoSpinner();
                     }
-                }, throwable -> ErrorActivity.reportErrorInSnackbar(context,
+                }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
                                 "Downloading video stream size",
                                 currentInfo.getServiceId()))));
@@ -412,7 +412,7 @@ public class DownloadDialog extends DialogFragment
                             == R.id.audio_button) {
                         setupAudioSpinner();
                     }
-                }, throwable -> ErrorActivity.reportErrorInSnackbar(context,
+                }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
                                 "Downloading audio stream size",
                                 currentInfo.getServiceId()))));
@@ -422,7 +422,7 @@ public class DownloadDialog extends DialogFragment
                             == R.id.subtitle_button) {
                         setupSubtitleSpinner();
                     }
-                }, throwable -> ErrorActivity.reportErrorInSnackbar(context,
+                }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
                                 "Downloading subtitle stream size",
                                 currentInfo.getServiceId()))));
@@ -799,7 +799,7 @@ public class DownloadDialog extends DialogFragment
                         mainStorage.getTag());
             }
         } catch (final Exception e) {
-            ErrorActivity.reportErrorInSnackbar(this,
+            ErrorUtil.createNotification(requireContext(),
                     new ErrorInfo(e, UserAction.DOWNLOAD_FAILED, "Getting storage"));
             return;
         }
