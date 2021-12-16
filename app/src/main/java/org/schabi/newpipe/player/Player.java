@@ -51,7 +51,6 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
