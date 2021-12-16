@@ -314,7 +314,6 @@ public final class Player implements
 
     private PlayerBinding binding;
 
-    private ValueAnimator controlViewAnimator;
     private final Handler controlsVisibilityHandler = new Handler();
 
     // fullscreen player
