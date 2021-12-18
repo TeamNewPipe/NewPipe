@@ -65,7 +65,20 @@ public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener
         // The auto string
         final String qualityTextViewText = qualityTextView.getText().toString();
 
-        if (item.getItemId() != 0) {
+        if (item.getItemId() == 0) {
+            // 0 is the index of the Auto item of the quality selector
+            trackSelector.setParameters(builder);
+
+            // If the quality text view text contains already the auto string, it means the user
+            // already selected the auto option and pressed again the auto option from the quality
+            // selector, so no need to update the text of the quality text view (if we update it,
+            // we will get something like Auto (Auto (1080p))).
+            if (!qualityTextViewText.contains(context.getString(R.string.auto_quality))) {
+                qualityTextView.setText(context.getString(R.string.auto_quality_selected,
+                        context.getString(R.string.auto_quality),
+                        qualityTextViewText));
+            }
+        } else {
             // A resolution string
             final TrackGroup videoTrackGroup = rendererTrackGroups.get(0);
 
@@ -87,18 +100,6 @@ public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener
             }
 
             trackSelector.setParameters(builder);
-        } else {
-            trackSelector.setParameters(builder);
-
-            // If the quality text view text contains already the auto string, it means the user
-            // already selected the auto option and pressed again the auto option from the quality
-            // selector, so no need to update the text of the quality text view (if we update it,
-            // we will get something like Auto (Auto (1080p))).
-            if (!qualityTextViewText.contains(context.getString(R.string.auto_quality))) {
-                qualityTextView.setText(context.getString(R.string.auto_quality_selected,
-                        context.getString(R.string.auto_quality),
-                        qualityTextViewText));
-            }
         }
 
         return true;

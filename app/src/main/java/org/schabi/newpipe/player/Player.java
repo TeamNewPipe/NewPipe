@@ -12,6 +12,8 @@ import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static com.google.android.exoplayer2.Player.RepeatMode;
+import static com.google.android.exoplayer2.util.MimeTypes.isText;
+import static com.google.android.exoplayer2.util.MimeTypes.isVideo;
 import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
@@ -3299,8 +3301,6 @@ public final class Player implements
         if (!defaultResolution.equals(context.getString(R.string.best_resolution_key))) {
             final String[] defaultResolutionArray = defaultResolution.split("p");
             final int defaultHeight = Integer.parseInt(defaultResolutionArray[0]);
-            final int defaultFrameRate = defaultResolutionArray.length == 2
-                    ? Integer.parseInt(defaultResolutionArray[1]) : -1;
 
             final DefaultTrackSelector.Parameters selectionParameters = trackSelector
                     .getParameters();
@@ -3308,7 +3308,8 @@ public final class Player implements
                     .clearSelectionOverrides();
 
             builder.setMaxVideoSize(Integer.MAX_VALUE, defaultHeight);
-            builder.setMaxVideoFrameRate(defaultFrameRate != -1 ? defaultFrameRate : 30);
+            builder.setMaxVideoFrameRate(defaultResolutionArray.length == 2
+                    ? Integer.parseInt(defaultResolutionArray[1]) : 30);
 
             trackSelector.setParameters(builder);
         }
@@ -3499,7 +3500,12 @@ public final class Player implements
             public void onDownstreamFormatChanged(@NonNull final EventTime eventTime,
                                                   @NonNull final MediaLoadData mediaLoadData) {
                 final Format currentPlayingFormat = mediaLoadData.trackFormat;
-                if (currentPlayingFormat != null) {
+                final String sampleMimeType = currentPlayingFormat.sampleMimeType;
+
+                // Don't update the quality string if the format changed is a subtitle or an
+                // audio-only stream
+                if (currentPlayingFormat != null && !isText(sampleMimeType)
+                        && isVideo(sampleMimeType)) {
 
                     final MappingTrackSelector.MappedTrackInfo currentMappedTrackInfo =
                             trackSelector.getCurrentMappedTrackInfo();
