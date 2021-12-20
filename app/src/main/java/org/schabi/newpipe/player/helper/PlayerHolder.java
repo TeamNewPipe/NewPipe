@@ -41,7 +41,7 @@ public final class PlayerHolder {
     private PlayerServiceExtendedEventListener listener;
 
     private final PlayerServiceConnection serviceConnection = new PlayerServiceConnection();
-    public boolean bound;
+    private boolean bound;
     private MainPlayer playerService;
     private Player player;
 
@@ -68,6 +68,10 @@ public final class PlayerHolder {
 
     public boolean isPlayerOpen() {
         return player != null;
+    }
+
+    public boolean isBound() {
+        return bound;
     }
 
     public int getQueueSize() {
