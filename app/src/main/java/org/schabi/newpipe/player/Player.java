@@ -12,8 +12,6 @@ import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static com.google.android.exoplayer2.Player.RepeatMode;
-import static com.google.android.exoplayer2.util.MimeTypes.isText;
-import static com.google.android.exoplayer2.util.MimeTypes.isVideo;
 import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
@@ -124,15 +122,15 @@ import com.google.android.exoplayer2.Player.PositionInfo;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.analytics.AnalyticsListener;
 import com.google.android.exoplayer2.source.BehindLiveWindowException;
-import com.google.android.exoplayer2.source.MediaLoadData;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.text.Cue;
+import com.google.android.exoplayer2.trackselection.BaseTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
+import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.CaptionStyleCompat;
@@ -343,6 +341,9 @@ public final class Player implements
     private PopupMenu playbackSpeedPopupMenu;
     private PopupMenu captionPopupMenu;
 
+    private boolean isDefaultResolutionOverrideOrMaxVideoSizeAndFrameRateSet = false;
+    private boolean qualityPopupMenuBuiltForLivestreams = false;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Popup player
     //////////////////////////////////////////////////////////////////////////*/
@@ -430,7 +431,7 @@ public final class Player implements
         return new VideoPlaybackResolver.QualityResolver() {
             @Override
             public int getDefaultResolutionIndex(final StreamInfo streamInfo,
-                    final List<VideoStream> sortedVideos) {
+                                                 final List<VideoStream> sortedVideos) {
                 if (StreamTypeUtil.isLiveStream(streamInfo.getStreamType())) {
                     return -1;
                 }
@@ -2442,6 +2443,7 @@ public final class Player implements
         }
         maybeUpdateCurrentMetadata();
         onTextTracksChanged();
+        updateQualityPlayedStringAndQualityElementsForLivestreamsIfNeeded(trackSelections);
     }
 
     @Override
@@ -3273,21 +3275,33 @@ public final class Player implements
     @Override // own playback listener
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-        final MediaSource mediaSource = (isAudioOnly ? audioResolver : videoResolver)
-                .resolve(info);
-        if ((isAudioOnly ? audioResolver : videoResolver).isLiveSource()) {
-            setDefaultResolutionLimit();
-        }
-        return mediaSource;
+        return (isAudioOnly ? audioResolver : videoResolver).resolve(info);
     }
 
     public void disablePreloadingOfCurrentTrack() {
         loadController.disablePreloadingOfCurrentTrack();
     }
 
-    private void setDefaultResolutionLimit() {
-        final String defaultResolution;
+    /**
+     * Set the default resolution for livestreams according to user choice in "Video and audio"
+     * settings.
+     *
+     * <p>
+     * If no stream match the minimum criteria required (video format height <= default height),
+     * then the maximum resolution limit and the maximum frame rate will be set.
+     * </p>
+     *
+     * @param videoTrackGroupArray the video {@link TrackGroupArray}, which cannot be null
+     * @param videoRendererIndex   the video renderer index
+     */
+    private void setDefaultResolutionForLivestreamsIfNeeded(
+            @NonNull final TrackGroupArray videoTrackGroupArray,
+            final int videoRendererIndex) {
+        if (isDefaultResolutionOverrideOrMaxVideoSizeAndFrameRateSet) {
+            return;
+        }
 
+        final String defaultResolution;
         if (popupPlayerSelected()) {
             defaultResolution = computeDefaultResolution(context,
                     R.string.default_popup_resolution_key,
@@ -3296,23 +3310,43 @@ public final class Player implements
             defaultResolution = computeDefaultResolution(context,
                     R.string.default_resolution_key, R.string.default_resolution_value);
         }
+        final String[] defaultResolutionArray = defaultResolution.split("p");
+        final int defaultHeight = !defaultResolution.equals(context.getString(
+                R.string.best_resolution_key))
+                ? Integer.parseInt(defaultResolutionArray[0]) : -1;
+        final int defaultFrameRate = defaultResolutionArray.length == 2
+                ? Integer.parseInt(defaultResolutionArray[1]) : -1;
 
-        // Best resolution set: not needed to set a maximum resolution
-        if (!defaultResolution.equals(context.getString(R.string.best_resolution_key))) {
-            final String[] defaultResolutionArray = defaultResolution.split("p");
-            final int defaultHeight = Integer.parseInt(defaultResolutionArray[0]);
+        final DefaultTrackSelector.Parameters selectionParameters = trackSelector
+                .getParameters();
+        final DefaultTrackSelector.ParametersBuilder builder = selectionParameters
+                .buildUpon().clearSelectionOverrides();
 
-            final DefaultTrackSelector.Parameters selectionParameters = trackSelector
-                    .getParameters();
-            final DefaultTrackSelector.ParametersBuilder builder = selectionParameters.buildUpon()
-                    .clearSelectionOverrides();
+        for (int i = 0; i < videoTrackGroupArray.length; i++) {
+            final TrackGroup trackGroup = videoTrackGroupArray.get(i);
+            for (int j = trackGroup.length - 1; j >= 0; j--) {
+                final Format videoFormat = trackGroup.getFormat(j);
+                if ((defaultHeight == -1 || videoFormat.height <= defaultHeight)
+                        && (defaultFrameRate <= -1 || videoFormat.frameRate == defaultFrameRate)) {
+                    final DefaultTrackSelector.SelectionOverride selectionOverride =
+                            new DefaultTrackSelector.SelectionOverride(
+                                    videoRendererIndex, j);
 
-            builder.setMaxVideoSize(Integer.MAX_VALUE, defaultHeight);
-            builder.setMaxVideoFrameRate(defaultResolutionArray.length == 2
-                    ? Integer.parseInt(defaultResolutionArray[1]) : 30);
-
-            trackSelector.setParameters(builder);
+                    builder.setSelectionOverride(videoRendererIndex, videoTrackGroupArray,
+                            selectionOverride);
+                    trackSelector.setParameters(builder);
+                    isDefaultResolutionOverrideOrMaxVideoSizeAndFrameRateSet = true;
+                    return;
+                }
+            }
         }
+
+        builder.setMaxVideoSize(Integer.MAX_VALUE, defaultHeight);
+        builder.setMaxVideoFrameRate(defaultResolutionArray.length == 2
+                ? Integer.parseInt(defaultResolutionArray[1]) : 30);
+
+        trackSelector.setParameters(builder);
+        isDefaultResolutionOverrideOrMaxVideoSizeAndFrameRateSet = true;
     }
 
     @Nullable
@@ -3349,8 +3383,6 @@ public final class Player implements
 
             case LIVE_STREAM:
                 if (!isNullOrEmpty(info.getHlsUrl()) || !isNullOrEmpty(info.getDashMpdUrl())) {
-                    buildLiveStreamQualityMenu();
-                    addQualityTextViewQualityChangeEvent();
                     binding.qualityTextView.setVisibility(View.VISIBLE);
                 } else if (info.getVideoStreams().size()
                         + info.getVideoOnlyStreams().size() != 0) {
@@ -3449,88 +3481,144 @@ public final class Player implements
     }
 
     /**
-     * Build the quality menu for livestreams.
+     * Build the quality menu for livestreams, if needed.
      *
      * <p>
      * This method loops into available streams in the video renderer index and add them to the
-     * quality selector. Only the resolution is shown, with the frame rate when its value is more
-     * than 30 because it seems that there is no way to get the container format/mime type.
+     * quality selector.
      * </p>
+     *
+     * <p>
+     * Only the resolution is shown, with the frame rate when its value is more than 30 because it
+     * seems that there is no way to get the container format/mime type.
+     * </p>
+     *
+     * @param videoTrackGroupArray the video {@link TrackGroupArray}, which cannot be null
+     * @param videoRendererIndex   the index of the video renderer
      */
-    private void buildLiveStreamQualityMenu() {
-        if (qualityPopupMenu == null || currentMetadata == null) {
+    private void buildLiveStreamQualityMenuIfNeeded(
+            @NonNull final TrackGroupArray videoTrackGroupArray,
+            final int videoRendererIndex) {
+        if (qualityPopupMenuBuiltForLivestreams || qualityPopupMenu == null
+                || currentMetadata == null) {
             return;
         }
-        qualityPopupMenu.getMenu().removeGroup(POPUP_MENU_ID_QUALITY);
 
-        final MappingTrackSelector.MappedTrackInfo currentMappedTrackInfo = trackSelector
-                .getCurrentMappedTrackInfo();
-        final int videoTrackGroupIndex = getVideoRendererIndex();
-        if (currentMappedTrackInfo != null && videoTrackGroupIndex != -1) {
-            final TrackGroupArray videoTrackGroupArray = currentMappedTrackInfo.getTrackGroups(
-                    videoTrackGroupIndex);
-            final Menu menu = qualityPopupMenu.getMenu();
-            menu.add(POPUP_MENU_ID_QUALITY, 0, Menu.NONE,
-                    context.getString(R.string.auto_quality));
-
-            final int videoTrackGroupArrayLength = videoTrackGroupArray.get(0).length;
-
-            for (int i = 0; i < videoTrackGroupArrayLength; i++) {
-                final Format format = videoTrackGroupArray.get(0).getFormat(
-                        videoTrackGroupArrayLength - 1 - i);
-
-                menu.add(POPUP_MENU_ID_QUALITY, i + 1, Menu.NONE,
-                        getResolutionStringFromFormat(context, format));
-            }
-
-            final TrackSelectionListener trackSelectionListener = new TrackSelectionListener(
-                    context, trackSelector, videoTrackGroupIndex, binding.qualityTextView);
-            qualityPopupMenu.setOnMenuItemClickListener(trackSelectionListener);
-            qualityPopupMenu.setOnDismissListener(this);
+        int videoFormatsCount = 0;
+        for (int i = 0; i < videoTrackGroupArray.length; i++) {
+            videoFormatsCount += videoTrackGroupArray.get(i).length;
         }
+
+        final Menu menu = qualityPopupMenu.getMenu();
+        if (videoFormatsCount + 1 == menu.size()) {
+            return;
+        }
+
+        menu.removeGroup(POPUP_MENU_ID_QUALITY);
+        menu.add(POPUP_MENU_ID_QUALITY, 0, Menu.NONE,
+                context.getString(R.string.auto_quality));
+
+        int menuItemId = 1;
+        for (int i = 0; i < videoTrackGroupArray.length; i++) {
+            final TrackGroup videoTrackGroup = videoTrackGroupArray.get(i);
+                final int videoTrackGroupLength = videoTrackGroup.length;
+            for (int j = 0; j < videoTrackGroupLength; j++) {
+                final Format format = videoTrackGroup.getFormat(videoTrackGroupLength - 1 - j);
+                menu.add(POPUP_MENU_ID_QUALITY, menuItemId, Menu.NONE,
+                        getResolutionStringFromFormat(context, format));
+                menuItemId++;
+            }
+        }
+
+        final TrackSelectionListener trackSelectionListener = new TrackSelectionListener(
+                context, trackSelector, videoRendererIndex, binding.qualityTextView);
+        qualityPopupMenu.setOnMenuItemClickListener(trackSelectionListener);
+        qualityPopupMenu.setOnDismissListener(this);
+        qualityPopupMenuBuiltForLivestreams = true;
     }
 
     /**
-     * This event will set the correct resolution of the stream played when a quality change occurs
-     * in {@link R.id.qualityTextView}.
+     * Return if the {@link TrackGroup} of a {@link BaseTrackSelection} passed as the first
+     * parameter is one of the video {@link TrackGroup TrackGroups}.
+     * @param trackSelectionTrackGroup the {@link TrackGroup} of a {@link BaseTrackSelection} to
+     *                                 check, which cannot be null
+     * @param videoTrackGroups         the {@link TrackGroupArray} of the video
+     *                                 {@link TrackGroup TrackGroups}, which cannot be null
+     * @return {@code true} if {@code trackSelectionTrackGroup} is one of the
+     * {@code videoTrackGroups}, {@code false} otherwise
      */
-    private void addQualityTextViewQualityChangeEvent() {
-        simpleExoPlayer.addAnalyticsListener(new AnalyticsListener() {
-            @Override
-            public void onDownstreamFormatChanged(@NonNull final EventTime eventTime,
-                                                  @NonNull final MediaLoadData mediaLoadData) {
-                final Format currentPlayingFormat = mediaLoadData.trackFormat;
-                final String sampleMimeType = currentPlayingFormat.sampleMimeType;
+    private boolean isSameVideoTrackGroup(
+            @NonNull final TrackGroup trackSelectionTrackGroup,
+            @NonNull final TrackGroupArray videoTrackGroups) {
+        for (int i = 0; i < videoTrackGroups.length; i++) {
+            if (videoTrackGroups.get(i) == trackSelectionTrackGroup) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-                // Don't update the quality string if the format changed is a subtitle or an
-                // audio-only stream
-                if (currentPlayingFormat != null && !isText(sampleMimeType)
-                        && isVideo(sampleMimeType)) {
-
+    /**
+     * Update the quality played string for livestreams and quality elements, if needed.
+     *
+     * <p>
+     * This method will also update, for the first time it's called, the default resolution,
+     * according to user settings, with
+     * {@link #setDefaultResolutionForLivestreamsIfNeeded(TrackGroupArray, int)} and will build
+     * the popup quality menu {@link #buildLiveStreamQualityMenuIfNeeded(TrackGroupArray, int)}.
+     * </p>
+     * @param trackSelections the {@link TrackSelectionArray} of ExoPlayer's track selections,
+     *                        which cannot be null
+     */
+    private void updateQualityPlayedStringAndQualityElementsForLivestreamsIfNeeded(
+            @NonNull final TrackSelectionArray trackSelections) {
+        if (!(isAudioOnly ? audioResolver : videoResolver).isLiveSource()) {
+            return;
+        }
+        for (int i = 0; i < trackSelections.length; i++) {
+            final TrackSelection trackSelection = trackSelections.get(i);
+            if (trackSelection instanceof BaseTrackSelection) {
+                final int videoRendererIndex = getVideoRendererIndex();
+                if (videoRendererIndex != RENDERER_UNAVAILABLE) {
+                    final BaseTrackSelection exoTrackSelection =
+                            ((BaseTrackSelection) trackSelection);
                     final MappingTrackSelector.MappedTrackInfo currentMappedTrackInfo =
-                            trackSelector.getCurrentMappedTrackInfo();
-                    final int videoTrackGroupIndex = getVideoRendererIndex();
+                            Objects.requireNonNull(trackSelector
+                                    .getCurrentMappedTrackInfo());
+                    final TrackGroup exoTrackSelectionTrackGroup = exoTrackSelection
+                            .getTrackGroup();
+                    final boolean isVideoTrackGroup = isSameVideoTrackGroup(
+                            exoTrackSelectionTrackGroup, currentMappedTrackInfo
+                                    .getTrackGroups(videoRendererIndex));
 
-                    if (videoTrackGroupIndex != RENDERER_UNAVAILABLE) {
-                        // videoTrackGroupArray shouldn't be null because this method is called
-                        // only if a media source is available
-                        final TrackGroupArray videoTrackGroupArray = Objects.requireNonNull(
-                                currentMappedTrackInfo).getTrackGroups(videoTrackGroupIndex);
+                    if (isVideoTrackGroup) {
+                        final TrackGroupArray videoTrackGroupArray = Objects
+                                .requireNonNull(currentMappedTrackInfo).getTrackGroups(
+                                        videoRendererIndex);
+
+                        setDefaultResolutionForLivestreamsIfNeeded(videoTrackGroupArray,
+                                videoRendererIndex);
+                        buildLiveStreamQualityMenuIfNeeded(videoTrackGroupArray,
+                                videoRendererIndex);
 
                         if (trackSelector.getParameters().hasSelectionOverride(
-                                videoTrackGroupIndex, videoTrackGroupArray)) {
-                            binding.qualityTextView.setText(getResolutionStringFromFormat(context,
-                                    currentPlayingFormat));
+                                videoRendererIndex, videoTrackGroupArray)) {
+                            binding.qualityTextView.setText(
+                                    getResolutionStringFromFormat(context,
+                                            exoTrackSelection.getSelectedFormat()));
                         } else {
                             binding.qualityTextView.setText(context.getString(
                                     R.string.auto_quality_selected,
                                     context.getString(R.string.auto_quality),
-                                    getResolutionStringFromFormat(context, currentPlayingFormat)));
+                                    getResolutionStringFromFormat(context,
+                                            exoTrackSelection.getSelectedFormat())));
                         }
+
+                        break;
                     }
                 }
             }
-        });
+        }
     }
 
     /**

@@ -65,7 +65,8 @@ public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener
         // The auto string
         final String qualityTextViewText = qualityTextView.getText().toString();
 
-        if (item.getItemId() == 0) {
+        final int itemId = item.getItemId();
+        if (itemId == 0) {
             // 0 is the index of the Auto item of the quality selector
             trackSelector.setParameters(builder);
 
@@ -80,9 +81,20 @@ public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener
             }
         } else {
             // A resolution string
-            final TrackGroup videoTrackGroup = rendererTrackGroups.get(0);
+            TrackGroup videoTrackGroup = null;
+            int lengthOfVideoTrackGroupWhichMatchMenuItem = 0;
+            for (int i = 0; i < rendererTrackGroups.length; i++) {
+                final TrackGroup trackGroup = rendererTrackGroups.get(i);
+                final int rendererTrackGroupLength = trackGroup.length;
+                if (rendererTrackGroupLength >= itemId) {
+                    lengthOfVideoTrackGroupWhichMatchMenuItem = rendererTrackGroupLength;
+                    videoTrackGroup = trackGroup;
+                }
+            }
 
-            final int qualityId = videoTrackGroup.length - item.getItemId();
+            final int qualityId = lengthOfVideoTrackGroupWhichMatchMenuItem > 0
+                    ? lengthOfVideoTrackGroupWhichMatchMenuItem - itemId
+                    : itemId - 1;
             final DefaultTrackSelector.SelectionOverride selectionOverride =
                     new DefaultTrackSelector.SelectionOverride(
                             rendererIndex, qualityId);
@@ -94,7 +106,10 @@ public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener
             // quality string will be changed in other cases with the analytics listener set in the
             // player)
             if (qualityTextViewText.contains(context.getString(R.string.auto_quality))) {
-                final Format currentPlayingFormat = videoTrackGroup.getFormat(qualityId);
+                final Format currentPlayingFormat = videoTrackGroup != null
+                        ? videoTrackGroup.getFormat(qualityId)
+                        // Fallback to the first track group
+                        : rendererTrackGroups.get(0).getFormat(qualityId);
                 qualityTextView.setText(getResolutionStringFromFormat(context,
                         currentPlayingFormat));
             }
