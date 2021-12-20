@@ -33,7 +33,8 @@ import static org.schabi.newpipe.util.external_communication.InternalUrlsHandler
 public final class TextLinkifier {
     public static final String TAG = TextLinkifier.class.getSimpleName();
 
-    private static final Pattern HASHTAGS_PATTERN = Pattern.compile("(#[A-Za-z0-9_]+)");
+    private static final Pattern HASHTAGS_PATTERN =
+            Pattern.compile("(#[A-Za-z0-9_\\u0080-\\uFFFF]+)");
 
     private TextLinkifier() {
     }
