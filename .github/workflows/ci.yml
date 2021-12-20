@@ -39,7 +39,7 @@ jobs:
           java-version: 11
           distribution: "temurin"
           cache: 'gradle'
-          
+
       - name: Build debug APK and run jvm tests
         run: ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
 
@@ -54,7 +54,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        # api-level 19 is min sdk, but throws errors related to desugaring 
+        # api-level 19 is min sdk, but throws errors related to desugaring
         api-level: [ 21, 29 ]
     steps:
       - uses: actions/checkout@v2
@@ -72,7 +72,7 @@ jobs:
           api-level: ${{ matrix.api-level }}
           # workaround to emulator bug: https://github.com/ReactiveCircus/android-emulator-runner/issues/160
           emulator-build: 7425822
-          script: ./gradlew connectedCheck
+          script: ./gradlew connectedCheck --stacktrace
 
   sonar:
     runs-on: ubuntu-latest
