@@ -503,7 +503,9 @@
     <string name="playback_pitch">Pitch</string>
     <string name="unhook_checkbox">Unhook (may cause distortion)</string>
     <string name="skip_silence_checkbox">Fast-forward during silence</string>
+    <string name="adjust_by_semitones_checkbox">Adjust pitch by musical semitones</string>
     <string name="playback_step">Step</string>
+    <string name="playback_tempo_step">Tempo step</string>
     <string name="playback_reset">Reset</string>
     <!-- GDPR dialog -->
     <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to NewPipe\'s privacy policy. Please read it carefully.\nYou must accept it to send us the bug report.</string>
