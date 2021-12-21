@@ -2348,7 +2348,8 @@ public final class Player implements
         NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
-    private void setRepeatModeButton(final AppCompatImageButton imageButton, final int repeatMode) {
+    private void setRepeatModeButton(final AppCompatImageButton imageButton,
+                                     @RepeatMode final int repeatMode) {
         switch (repeatMode) {
             case REPEAT_MODE_OFF:
                 imageButton.setImageResource(R.drawable.exo_controls_repeat_off);
@@ -2362,7 +2363,7 @@ public final class Player implements
         }
     }
 
-    private void setShuffleButton(final ImageButton button, final boolean shuffled) {
+    private void setShuffleButton(@NonNull final ImageButton button, final boolean shuffled) {
         button.setImageAlpha(shuffled ? 255 : 77);
     }
     //endregion
@@ -2387,7 +2388,7 @@ public final class Player implements
         return !exoPlayerIsNull() && simpleExoPlayer.getVolume() == 0;
     }
 
-    private void setMuteButton(final ImageButton button, final boolean isMuted) {
+    private void setMuteButton(@NonNull final ImageButton button, final boolean isMuted) {
         button.setImageDrawable(AppCompatResources.getDrawable(context, isMuted
                 ? R.drawable.ic_volume_off : R.drawable.ic_volume_up));
     }
@@ -2876,7 +2877,7 @@ public final class Player implements
         databaseUpdateDisposable
                 .add(recordManager.saveStreamState(currentMetadata.getMetadata(), progressMillis)
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnError((e) -> {
+                .doOnError(e -> {
                     if (DEBUG) {
                         e.printStackTrace();
                     }
@@ -3386,7 +3387,7 @@ public final class Player implements
         playbackSpeedPopupMenu.setOnDismissListener(this);
     }
 
-    private void buildCaptionMenu(final List<String> availableLanguages) {
+    private void buildCaptionMenu(@NonNull final List<String> availableLanguages) {
         if (captionPopupMenu == null) {
             return;
         }
@@ -3454,7 +3455,7 @@ public final class Player implements
      * Called when an item of the quality selector or the playback speed selector is selected.
      */
     @Override
-    public boolean onMenuItemClick(final MenuItem menuItem) {
+    public boolean onMenuItemClick(@NonNull final MenuItem menuItem) {
         if (DEBUG) {
             Log.d(TAG, "onMenuItemClick() called with: "
                     + "menuItem = [" + menuItem + "], "
@@ -3491,7 +3492,7 @@ public final class Player implements
      * Called when some popup menu is dismissed.
      */
     @Override
-    public void onDismiss(final PopupMenu menu) {
+    public void onDismiss(@Nullable final PopupMenu menu) {
         if (DEBUG) {
             Log.d(TAG, "onDismiss() called with: menu = [" + menu + "]");
         }
@@ -3544,7 +3545,7 @@ public final class Player implements
         isSomePopupMenuVisible = true;
     }
 
-    private void setPlaybackQuality(final String quality) {
+    private void setPlaybackQuality(@Nullable final String quality) {
         videoResolver.setPlaybackQuality(quality);
     }
     //endregion
@@ -3568,7 +3569,7 @@ public final class Player implements
             final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
             final float captionRatioInverse = 20f + 4f * (1.0f - captionScale);
             binding.subtitleView.setFixedTextSize(
-                    TypedValue.COMPLEX_UNIT_PX, (float) minimumLength / captionRatioInverse);
+                    TypedValue.COMPLEX_UNIT_PX, minimumLength / captionRatioInverse);
         }
         binding.subtitleView.setApplyEmbeddedStyles(captionStyle == CaptionStyleCompat.DEFAULT);
         binding.subtitleView.setStyle(captionStyle);
@@ -3845,7 +3846,7 @@ public final class Player implements
     }
 
     @Override // exoplayer listener
-    public void onVideoSizeChanged(final VideoSize videoSize) {
+    public void onVideoSizeChanged(@NonNull final VideoSize videoSize) {
         if (DEBUG) {
             Log.d(TAG, "onVideoSizeChanged() called with: "
                     + "width / height = [" + videoSize.width + " / " + videoSize.height
@@ -3959,7 +3960,7 @@ public final class Player implements
         }
     }
 
-    private int distanceFromCloseButton(final MotionEvent popupMotionEvent) {
+    private int distanceFromCloseButton(@NonNull final MotionEvent popupMotionEvent) {
         final int closeOverlayButtonX = closeOverlayBinding.closeButton.getLeft()
                 + closeOverlayBinding.closeButton.getWidth() / 2;
         final int closeOverlayButtonY = closeOverlayBinding.closeButton.getTop()
@@ -3978,7 +3979,7 @@ public final class Player implements
         return buttonRadius * 1.2f;
     }
 
-    public boolean isInsideClosingRadius(final MotionEvent popupMotionEvent) {
+    public boolean isInsideClosingRadius(@NonNull final MotionEvent popupMotionEvent) {
         return distanceFromCloseButton(popupMotionEvent) <= getClosingRadius();
     }
     //endregion
@@ -4098,6 +4099,7 @@ public final class Player implements
         }
     }
 
+    @Nullable
     public AppCompatActivity getParentActivity() {
         // ! instanceof ViewGroup means that view was added via windowManager for Popup
         if (binding == null || !(binding.getRoot().getParent() instanceof ViewGroup)) {

@@ -54,11 +54,9 @@ class ChannelItem(
             context.getString(R.string.subscribers_count_not_available)
         }
 
-        if (itemVersion == ItemVersion.NORMAL) {
-            if (infoItem.streamCount >= 0) {
-                val formattedVideoAmount = Localization.localizeStreamCount(context, infoItem.streamCount)
-                details = Localization.concatenateStrings(details, formattedVideoAmount)
-            }
+        if (itemVersion == ItemVersion.NORMAL && infoItem.streamCount >= 0) {
+            val formattedVideoAmount = Localization.localizeStreamCount(context, infoItem.streamCount)
+            details = Localization.concatenateStrings(details, formattedVideoAmount)
         }
         return details
     }

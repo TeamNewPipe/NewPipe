@@ -35,8 +35,8 @@ public final class PlayerHolder {
         return PlayerHolder.instance;
     }
 
-    private final boolean DEBUG = MainActivity.DEBUG;
-    private final String TAG = PlayerHolder.class.getSimpleName();
+    private static final boolean DEBUG = MainActivity.DEBUG;
+    private static final String TAG = PlayerHolder.class.getSimpleName();
 
     private PlayerServiceExtendedEventListener listener;
 
@@ -152,7 +152,7 @@ public final class PlayerHolder {
             }
             startPlayerListener();
         }
-    };
+    }
 
     private void bind(final Context context) {
         if (DEBUG) {
