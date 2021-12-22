@@ -357,12 +357,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         val activity: Activity? = getActivity()
         if (context == null || context.resources == null || activity == null) return
 
-        val dialogBuilder = InfoItemDialog.Builder(activity, this, item)
-
-        dialogBuilder.addDefaultEntriesAtBeginning()
-        dialogBuilder.addDefaultEntriesAtEnd()
-
-        dialogBuilder.create().show()
+        InfoItemDialog.Builder(activity, this, item).create().show()
     }
 
     private val listenerStreamItem = object : OnItemClickListener, OnItemLongClickListener {

@@ -750,15 +750,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         final InfoItemDialog.Builder dialogBuilder = new InfoItemDialog.Builder(
                 activity, this, infoItem);
 
-        // set entries
-        dialogBuilder.addDefaultEntriesAtBeginning();
+        // add entries in the middle
         dialogBuilder.addAllEntries(
                 StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
                 StreamDialogDefaultEntry.DELETE
         );
-        dialogBuilder.addDefaultEntriesAtEnd();
 
-        // set custom actions
+        // set custom actions; all entries modified here have already been added within the builder
         dialogBuilder.setAction(StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
                 (fragment, infoItemDuplicate) -> NavigationHelper.playOnBackgroundPlayer(
                         context, getPlayQueueStartingAt(item), true));

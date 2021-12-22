@@ -335,10 +335,8 @@ public class StatisticsPlaylistFragment
         final InfoItemDialog.Builder dialogBuilder = new InfoItemDialog.Builder(
                 activity, this, infoItem);
 
-        // set entries
-        dialogBuilder.addDefaultEntriesAtBeginning();
+        // set entries in the middle; the others are added automatically
         dialogBuilder.addEntry(StreamDialogDefaultEntry.DELETE);
-        dialogBuilder.addDefaultEntriesAtEnd();
 
         // set custom actions
         dialogBuilder.setAction(StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,

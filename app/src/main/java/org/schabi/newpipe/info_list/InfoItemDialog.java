@@ -76,16 +76,39 @@ public final class InfoItemDialog {
      */
     public static class Builder {
         @NonNull private final Activity activity;
-        @NonNull private final StreamInfoItem item;
+        @NonNull private final StreamInfoItem infoItem;
         @NonNull private final Fragment fragment;
         @NonNull private final List<StreamDialogEntry> entries = new ArrayList<>();
+        private final boolean addDefaultEntriesAutomatically;
 
         public Builder(@NonNull final Activity activity,
                        @NonNull final Fragment fragment,
-                       @NonNull final StreamInfoItem item) {
+                       @NonNull final StreamInfoItem infoItem) {
+            this(activity, fragment, infoItem, true);
+        }
+
+        /**
+         * <p>Create an instance of this Builder</p>
+         * @param activity
+         * @param fragment
+         * @param infoItem
+         * @param addDefaultEntriesAutomatically whether default entries added with
+         *                                       {@link #addDefaultEntriesAtBeginning()} and
+         *                                       {@link #addDefaultEntriesAtEnd()}
+         *                                       are added automatically when generating
+         *                                       the {@link InfoItemDialog}.
+         */
+        public Builder(@NonNull final Activity activity,
+                       @NonNull final Fragment fragment,
+                       @NonNull final StreamInfoItem infoItem,
+                       final boolean addDefaultEntriesAutomatically) {
             this.activity = activity;
             this.fragment = fragment;
-            this.item = item;
+            this.infoItem = infoItem;
+            this.addDefaultEntriesAutomatically = addDefaultEntriesAutomatically;
+            if (addDefaultEntriesAutomatically) {
+                addDefaultEntriesAtBeginning();
+            }
         }
 
         public void addEntry(@NonNull final StreamDialogDefaultEntry entry) {
@@ -98,17 +121,26 @@ public final class InfoItemDialog {
             }
         }
 
+        /**
+         * <p>Change an entries' action that is called when the entry is selected.</p>
+         * <p><strong>Warning:</strong> Only use this method when the entry has been already added.
+         * Changing the action of an entry which has not been added to the Builder yet
+         * does not have an effect.</p>
+         * @param entry the entry to change
+         * @param action the action to perform when the entry is selected
+         */
         public void setAction(@NonNull final StreamDialogDefaultEntry entry,
                               @NonNull final StreamDialogEntry.StreamDialogEntryAction action) {
             for (int i = 0; i < entries.size(); i++) {
                 if (entries.get(i).resource == entry.resource) {
                     entries.set(i, new StreamDialogEntry(entry.resource, action));
+                    return;
                 }
             }
         }
 
         public void addChannelDetailsEntryIfPossible() {
-            if (!isNullOrEmpty(item.getUploaderUrl())) {
+            if (!isNullOrEmpty(infoItem.getUploaderUrl())) {
                 addEntry(StreamDialogDefaultEntry.SHOW_CHANNEL_DETAILS);
             }
         }
@@ -125,8 +157,8 @@ public final class InfoItemDialog {
 
         public void addStartHereEntries() {
             addEntry(StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND);
-            if (item.getStreamType() != StreamType.AUDIO_STREAM
-                    && item.getStreamType() != StreamType.AUDIO_LIVE_STREAM) {
+            if (infoItem.getStreamType() != StreamType.AUDIO_STREAM
+                    && infoItem.getStreamType() != StreamType.AUDIO_LIVE_STREAM) {
                 addEntry(StreamDialogDefaultEntry.START_HERE_ON_POPUP);
             }
         }
@@ -134,21 +166,20 @@ public final class InfoItemDialog {
         /**
          * Adds {@link StreamDialogDefaultEntry.MARK_AS_WATCHED} if the watch history is enabled
          * and the stream is not a livestream.
-         * @param streamType the item's stream type
          */
-        public void addMarkAsWatchedEntryIfNeeded(final StreamType streamType) {
+        public void addMarkAsWatchedEntryIfNeeded() {
             final boolean isWatchHistoryEnabled = PreferenceManager
                     .getDefaultSharedPreferences(activity)
                     .getBoolean(activity.getString(R.string.enable_watch_history_key), false);
-            if (streamType != StreamType.AUDIO_LIVE_STREAM
-                    && streamType != StreamType.LIVE_STREAM
-                    && isWatchHistoryEnabled) {
+            if (isWatchHistoryEnabled
+                    && infoItem.getStreamType() != StreamType.LIVE_STREAM
+                    && infoItem.getStreamType() != StreamType.AUDIO_LIVE_STREAM) {
                 addEntry(StreamDialogDefaultEntry.MARK_AS_WATCHED);
             }
         }
 
         public void addPlayWithKodiEntryIfNeeded() {
-            if (KoreUtils.shouldShowPlayWithKodi(activity, item.getServiceId())) {
+            if (KoreUtils.shouldShowPlayWithKodi(activity, infoItem.getServiceId())) {
                 addEntry(StreamDialogDefaultEntry.PLAY_WITH_KODI);
             }
         }
@@ -165,7 +196,7 @@ public final class InfoItemDialog {
                     StreamDialogDefaultEntry.OPEN_IN_BROWSER
             );
             addPlayWithKodiEntryIfNeeded();
-            addMarkAsWatchedEntryIfNeeded(item.getStreamType());
+            addMarkAsWatchedEntryIfNeeded();
             addChannelDetailsEntryIfPossible();
         }
 
@@ -174,7 +205,10 @@ public final class InfoItemDialog {
          * @return a new instance of {@link InfoItemDialog}
          */
         public InfoItemDialog create() {
-            return new InfoItemDialog(this.activity, this.fragment, this.item, this.entries);
+            if (addDefaultEntriesAutomatically) {
+                addDefaultEntriesAtEnd();
+            }
+            return new InfoItemDialog(this.activity, this.fragment, this.infoItem, this.entries);
         }
     }
 }
