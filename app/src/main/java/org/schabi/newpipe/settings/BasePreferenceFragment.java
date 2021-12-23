@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
-    protected final boolean DEBUG = MainActivity.DEBUG;
+    protected static final boolean DEBUG = MainActivity.DEBUG;
 
     SharedPreferences defaultPreferences;
 

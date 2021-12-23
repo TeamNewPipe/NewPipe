@@ -724,7 +724,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public boolean onBackPressed() {
         if (suggestionsPanelVisible
-                && infoListAdapter.getItemsList().size() > 0
+                && !infoListAdapter.getItemsList().isEmpty()
                 && !isLoading.get()) {
             hideSuggestionsPanel();
             hideKeyboardSearch();
