@@ -1,5 +1,8 @@
 package org.schabi.newpipe.settings;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -38,9 +41,6 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
-import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
-
 public class ContentSettingsFragment extends BasePreferenceFragment {
     private static final String ZIP_MIME_TYPE = "application/zip";
 
@@ -70,7 +70,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         importExportDataPathKey = getString(R.string.import_export_data_path);
         youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
 
-        addPreferencesFromResource(R.xml.content_settings);
+        addPreferencesFromResourceRegistry();
 
         final Preference importDataPreference = requirePreference(R.string.import_data);
         importDataPreference.setOnPreferenceClickListener((Preference p) -> {

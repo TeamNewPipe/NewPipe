@@ -29,7 +29,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.history_settings);
+        addPreferencesFromResourceRegistry();
 
         cacheWipeKey = getString(R.string.metadata_cache_wipe_key);
         viewsHistoryClearKey = getString(R.string.clear_views_history_key);
