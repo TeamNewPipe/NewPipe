@@ -18,6 +18,7 @@
     <dimen name="video_item_detail_like_image_height">18sp</dimen>
     <dimen name="video_item_detail_like_image_width">18sp</dimen>
     <!-- Paddings & Margins -->
+    <dimen name="video_item_detail_pinned_right_margin">10dp</dimen>
     <dimen name="video_item_detail_like_margin">10dp</dimen>
 
     <dimen name="search_suggestion_text_size">14sp</dimen>
