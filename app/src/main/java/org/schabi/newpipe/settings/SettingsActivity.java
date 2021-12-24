@@ -226,6 +226,8 @@ public class SettingsActivity extends AppCompatActivity
                     .add(FRAGMENT_HOLDER_ID, searchFragment, PreferenceSearchFragment.NAME)
                     .addToBackStack(PreferenceSearchFragment.NAME)
                     .commit();
+
+            KeyboardUtil.showKeyboard(this, searchEditText);
         } else if (searchFragment != null) {
             fm.beginTransaction().remove(searchFragment).commit();
             fm.popBackStack(

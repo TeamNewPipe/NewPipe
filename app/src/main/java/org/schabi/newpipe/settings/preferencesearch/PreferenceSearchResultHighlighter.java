@@ -70,7 +70,7 @@ public final class PreferenceSearchResultHighlighter {
                         }
                     }
                     highlightFallback(prefsFragment, prefResult);
-                }, 150);
+                }, 200);
                 return;
             }
         }
