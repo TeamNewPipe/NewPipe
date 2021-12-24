@@ -25,7 +25,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -34,7 +33,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.TooltipCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -65,6 +63,7 @@ import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.KeyboardUtil;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 
@@ -670,31 +669,15 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (DEBUG) {
             Log.d(TAG, "showKeyboardSearch() called");
         }
-        if (searchEditText == null) {
-            return;
-        }
-
-        if (searchEditText.requestFocus()) {
-            final InputMethodManager imm = ContextCompat.getSystemService(activity,
-                    InputMethodManager.class);
-            imm.showSoftInput(searchEditText, InputMethodManager.SHOW_FORCED);
-        }
+        KeyboardUtil.showKeyboard(activity, searchEditText);
     }
 
     private void hideKeyboardSearch() {
         if (DEBUG) {
             Log.d(TAG, "hideKeyboardSearch() called");
         }
-        if (searchEditText == null) {
-            return;
-        }
 
-        final InputMethodManager imm = ContextCompat.getSystemService(activity,
-                InputMethodManager.class);
-        imm.hideSoftInputFromWindow(searchEditText.getWindowToken(),
-                InputMethodManager.RESULT_UNCHANGED_SHOWN);
-
-        searchEditText.clearFocus();
+        KeyboardUtil.hideKeyboard(activity, searchEditText);
     }
 
     private void showDeleteSuggestionDialog(final SuggestionItem item) {
