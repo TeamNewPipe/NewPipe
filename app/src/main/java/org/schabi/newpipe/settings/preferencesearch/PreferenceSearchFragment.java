@@ -81,7 +81,7 @@ public class PreferenceSearchFragment extends Fragment {
 
         adapter.setContent(new ArrayList<>(results));
 
-        setEmptyViewShown(!TextUtils.isEmpty(keyword) && results.isEmpty());
+        setEmptyViewShown(results.isEmpty());
     }
 
     private void setEmptyViewShown(final boolean shown) {

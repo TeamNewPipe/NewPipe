@@ -21,16 +21,7 @@ public class PreferenceSearchConfiguration {
     private BinaryOperator<String> breadcrumbConcat =
             (s1, s2) -> TextUtils.isEmpty(s1) ? s2 : (s1 + " > " + s2);
 
-    private PreferenceSearchFunction searcher =
-            (itemStream, keyword) ->
-                    itemStream
-                            // Filter the items by the keyword
-                            .filter(item -> item.getAllRelevantSearchFields().stream()
-                                    .filter(str -> !TextUtils.isEmpty(str))
-                                    .anyMatch(str ->
-                                            str.toLowerCase().contains(keyword.toLowerCase())))
-                            // Limit the search results
-                            .limit(100);
+    private PreferenceSearchFunction searcher = new PreferenceFuzzySearchFunction();
 
     private final List<String> parserIgnoreElements = Arrays.asList(
             PreferenceCategory.class.getSimpleName());

@@ -112,6 +112,15 @@ public class SettingsActivity extends AppCompatActivity
     }
 
     @Override
+    public void onBackPressed() {
+        if (isSearchActive()) {
+            setSearchActive(false);
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         final int id = item.getItemId();
         if (id == android.R.id.home) {
