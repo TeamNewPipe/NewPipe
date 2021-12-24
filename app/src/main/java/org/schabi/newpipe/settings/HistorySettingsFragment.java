@@ -8,9 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
+import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.InfoCache;
@@ -37,6 +39,21 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
         searchHistoryClearKey = getString(R.string.clear_search_history_key);
         recordManager = new HistoryRecordManager(getActivity());
         disposables = new CompositeDisposable();
+
+        final Preference clearCookiePref = requirePreference(R.string.clear_cookie_key);
+        clearCookiePref.setOnPreferenceClickListener(preference -> {
+            defaultPreferences.edit()
+                    .putString(getString(R.string.recaptcha_cookies_key), "").apply();
+            DownloaderImpl.getInstance().setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, "");
+            Toast.makeText(getActivity(), R.string.recaptcha_cookies_cleared,
+                    Toast.LENGTH_SHORT).show();
+            clearCookiePref.setEnabled(false);
+            return true;
+        });
+
+        if (defaultPreferences.getString(getString(R.string.recaptcha_cookies_key), "").isEmpty()) {
+            clearCookiePref.setEnabled(false);
+        }
     }
 
     @Override
