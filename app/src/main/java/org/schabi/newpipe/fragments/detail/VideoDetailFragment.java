@@ -1648,6 +1648,11 @@ public final class VideoDetailFragment
         binding.detailSubChannelTextView.setVisibility(View.VISIBLE);
         binding.detailSubChannelTextView.setSelected(true);
         binding.detailUploaderTextView.setVisibility(View.GONE);
+
+        //No sub-channel name implies no sub-channel icon, but check just to make sure.
+        if(isEmpty(info.getSubChannelAvatarUrl())){
+            binding.detailSubChannelThumbnailView.setVisibility(View.GONE);
+        }
     }
 
     private void displayBothUploaderAndSubChannel(final StreamInfo info) {
