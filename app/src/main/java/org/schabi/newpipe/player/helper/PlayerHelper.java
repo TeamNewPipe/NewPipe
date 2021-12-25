@@ -78,9 +78,6 @@ public final class PlayerHelper {
             = new Formatter(STRING_BUILDER, Locale.getDefault());
     private static final NumberFormat SPEED_FORMATTER = new DecimalFormat("0.##x");
     private static final NumberFormat PITCH_FORMATTER = new DecimalFormat("##%");
-    private static final String MEDIA_FORMAT_UNKNOWN = "MEDIA_FORMAT_UNKNOWN";
-    private static int cachedVideoStreamsWithResolutionUnknown = 0;
-    private static int cachedAudioStreamWithAverageBitrateUnknown = 0;
 
     @Retention(SOURCE)
     @IntDef({AUTOPLAY_TYPE_ALWAYS, AUTOPLAY_TYPE_WIFI,
@@ -107,6 +104,7 @@ public final class PlayerHelper {
     // Exposed helpers
     ////////////////////////////////////////////////////////////////////////////
 
+    @NonNull
     public static String getTimeString(final int milliSeconds) {
         final int seconds = (milliSeconds % 60000) / 1000;
         final int minutes = (milliSeconds % 3600000) / 60000;
@@ -122,15 +120,18 @@ public final class PlayerHelper {
         ).toString();
     }
 
+    @NonNull
     public static String formatSpeed(final double speed) {
         return SPEED_FORMATTER.format(speed);
     }
 
+    @NonNull
     public static String formatPitch(final double pitch) {
         return PITCH_FORMATTER.format(pitch);
     }
 
-    public static String subtitleMimeTypesOf(final MediaFormat format) {
+    @NonNull
+    public static String subtitleMimeTypesOf(@NonNull final MediaFormat format) {
         switch (format) {
             case VTT:
                 return MimeTypes.TEXT_VTT;
@@ -168,40 +169,46 @@ public final class PlayerHelper {
 
     @NonNull
     public static String cacheKeyOf(@NonNull final StreamInfo info,
-                                    @NonNull final VideoStream video) {
-        String cacheKey = info.getUrl();
-        final String resolution = video.getResolution();
-        if (!resolution.equals(RESOLUTION_UNKNOWN)) {
-            cacheKey += resolution;
+                                    @NonNull final VideoStream videoStream) {
+        String cacheKey = info.getUrl() + " " + videoStream.getId();
+
+        final String resolution = videoStream.getResolution();
+        final MediaFormat mediaFormat = videoStream.getFormat();
+        if (resolution.equals(RESOLUTION_UNKNOWN) && mediaFormat == null) {
+            final String content = videoStream.getContent();
+            cacheKey += " " + content.substring(20 * content.length() / 100);
         } else {
-            cacheKey += String.valueOf(cachedVideoStreamsWithResolutionUnknown);
-            cachedVideoStreamsWithResolutionUnknown += 1;
+            if (mediaFormat != null) {
+                cacheKey += " " + videoStream.getFormat().getName();
+            }
+            if (!resolution.equals(RESOLUTION_UNKNOWN)) {
+                cacheKey += " " + resolution;
+            }
         }
-        final MediaFormat mediaFormat = video.getFormat();
-        if (mediaFormat != null) {
-            return cacheKey + video.getFormat().getName();
-        } else {
-            return cacheKey + MEDIA_FORMAT_UNKNOWN;
-        }
+
+        return cacheKey;
     }
 
     @NonNull
     public static String cacheKeyOf(@NonNull final StreamInfo info,
-                                    @NonNull final AudioStream audio) {
-        String cacheKey = info.getUrl();
-        final int averageBitrate = audio.getAverageBitrate();
-        if (averageBitrate != UNKNOWN_BITRATE) {
-            cacheKey += averageBitrate;
+                                    @NonNull final AudioStream audioStream) {
+        String cacheKey = info.getUrl() + " " + audioStream.getId();
+
+        final int averageBitrate = audioStream.getAverageBitrate();
+        final MediaFormat mediaFormat = audioStream.getFormat();
+        if (averageBitrate == UNKNOWN_BITRATE && mediaFormat == null) {
+            final String content = audioStream.getContent();
+            cacheKey += " " + content.substring(20 * content.length() / 100);
         } else {
-            cacheKey += String.valueOf(cachedAudioStreamWithAverageBitrateUnknown);
-            cachedAudioStreamWithAverageBitrateUnknown += 1;
+            if (mediaFormat != null) {
+                cacheKey += " " + audioStream.getFormat().getName();
+            }
+            if (averageBitrate != UNKNOWN_BITRATE) {
+                cacheKey += " " + averageBitrate;
+            }
         }
-        final MediaFormat mediaFormat = audio.getFormat();
-        if (mediaFormat != null) {
-            return cacheKey + audio.getFormat().getName();
-        } else {
-            return cacheKey + MEDIA_FORMAT_UNKNOWN;
-        }
+
+        return cacheKey;
     }
 
     /**

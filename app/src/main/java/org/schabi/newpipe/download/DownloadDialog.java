@@ -71,6 +71,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import icepick.Icepick;
 import icepick.State;
@@ -82,8 +83,7 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;
 import us.shandian.giga.service.MissionState;
 
-import static org.schabi.newpipe.util.ListHelper.checkIfSomeStreamWasRemoved;
-import static org.schabi.newpipe.util.ListHelper.removeDeliveryDistinctStreams;
+import static org.schabi.newpipe.util.ListHelper.keepStreamsWithDelivery;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class DownloadDialog extends DialogFragment
@@ -105,8 +105,6 @@ public class DownloadDialog extends DialogFragment
     int selectedAudioIndex = 0;
     @State
     int selectedSubtitleIndex = 0;
-    @State
-    boolean nonProgressiveStreamsRemoved = false;
 
     @Nullable
     private OnDismissListener onDismissListener = null;
@@ -150,23 +148,23 @@ public class DownloadDialog extends DialogFragment
     public static DownloadDialog newInstance(final Context context,
                                              @NonNull final StreamInfo info) {
         // TODO: Adapt this code when the downloader support other types of stream deliveries
-        final List<VideoStream> videoStreams = info.getVideoStreams();
+        final List<VideoStream> videoStreams = new ArrayList<>(info.getVideoStreams());
         final List<VideoStream> progressiveHttpVideoStreams =
-                removeDeliveryDistinctStreams(videoStreams, DeliveryMethod.PROGRESSIVE_HTTP);
+                keepStreamsWithDelivery(videoStreams, DeliveryMethod.PROGRESSIVE_HTTP);
 
-        final List<VideoStream> videoOnlyStreams = info.getVideoOnlyStreams();
+        final List<VideoStream> videoOnlyStreams = new ArrayList<>(info.getVideoOnlyStreams());
         final List<VideoStream> progressiveHttpVideoOnlyStreams =
-                removeDeliveryDistinctStreams(videoOnlyStreams, DeliveryMethod.PROGRESSIVE_HTTP);
+                keepStreamsWithDelivery(videoOnlyStreams, DeliveryMethod.PROGRESSIVE_HTTP);
 
-        final List<AudioStream> audioStreams = info.getAudioStreams();
+        final List<AudioStream> audioStreams = new ArrayList<>(info.getAudioStreams());
         final List<AudioStream> progressiveHttpAudioStreams =
-                removeDeliveryDistinctStreams(audioStreams, DeliveryMethod.PROGRESSIVE_HTTP);
+                keepStreamsWithDelivery(audioStreams, DeliveryMethod.PROGRESSIVE_HTTP);
 
-        final List<SubtitlesStream> subtitlesStreams = info.getSubtitles();
+        final List<SubtitlesStream> subtitlesStreams = new ArrayList<>(info.getSubtitles());
         final List<SubtitlesStream> progressiveHttpSubtitlesStreams =
-                removeDeliveryDistinctStreams(subtitlesStreams, DeliveryMethod.PROGRESSIVE_HTTP);
+                keepStreamsWithDelivery(subtitlesStreams, DeliveryMethod.PROGRESSIVE_HTTP);
 
-        final ArrayList<VideoStream> videoStreamsList = new ArrayList<>(
+        final List<VideoStream> videoStreamsList = new ArrayList<>(
                 ListHelper.getSortedStreamVideosList(
                         context, progressiveHttpVideoStreams,
                         progressiveHttpVideoOnlyStreams, false));
@@ -176,16 +174,6 @@ public class DownloadDialog extends DialogFragment
         instance.setVideoStreams(videoStreamsList);
         instance.setAudioStreams(progressiveHttpAudioStreams);
         instance.setSubtitleStreams(progressiveHttpSubtitlesStreams);
-        if (checkIfSomeStreamWasRemoved(videoStreams,
-                videoOnlyStreams,
-                audioStreams,
-                subtitlesStreams,
-                progressiveHttpVideoStreams,
-                progressiveHttpVideoOnlyStreams,
-                progressiveHttpAudioStreams,
-                progressiveHttpSubtitlesStreams)) {
-            instance.setNonProgressiveStreamsRemoved();
-        }
 
         return instance;
     }
@@ -195,44 +183,20 @@ public class DownloadDialog extends DialogFragment
     // Setters
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void setInfo(final StreamInfo info) {
+    private void setInfo(@NonNull final StreamInfo info) {
         this.currentInfo = info;
     }
 
-    public void setAudioStreams(final List<AudioStream> audioStreams) {
-        removeDeliveryDistinctStreams(audioStreams, DeliveryMethod.PROGRESSIVE_HTTP);
-        setAudioStreams(new StreamSizeWrapper<>(audioStreams, getContext()));
-    }
-
-    public void setAudioStreams(final StreamSizeWrapper<AudioStream> was) {
-        this.wrappedAudioStreams = was;
+    public void setAudioStreams(@NonNull final List<AudioStream> audioStreams) {
+        this.wrappedAudioStreams = new StreamSizeWrapper<>(audioStreams, getContext());
     }
 
     public void setVideoStreams(@NonNull final List<VideoStream> videoStreams) {
-        removeDeliveryDistinctStreams(videoStreams, DeliveryMethod.PROGRESSIVE_HTTP);
-        setVideoStreams(new StreamSizeWrapper<>(videoStreams, getContext()));
-    }
-
-    public void setVideoStreams(final StreamSizeWrapper<VideoStream> wvs) {
-        this.wrappedVideoStreams = wvs;
+        this.wrappedVideoStreams = new StreamSizeWrapper<>(videoStreams, getContext());
     }
 
     public void setSubtitleStreams(@NonNull final List<SubtitlesStream> subtitleStreams) {
-        removeDeliveryDistinctStreams(subtitleStreams, DeliveryMethod.PROGRESSIVE_HTTP);
-        setSubtitleStreams(new StreamSizeWrapper<>(subtitleStreams, getContext()));
-    }
-
-    public void setSubtitleStreams(final StreamSizeWrapper<SubtitlesStream> wss) {
-        this.wrappedSubtitleStreams = wss;
-    }
-
-    private void showIfStreamsWereRemovedMessage() {
-        dialogBinding.streamsHidden.setVisibility(this.nonProgressiveStreamsRemoved ? View.VISIBLE
-                : View.GONE);
-    }
-
-    public void setNonProgressiveStreamsRemoved() {
-        this.nonProgressiveStreamsRemoved = true;
+        this.wrappedSubtitleStreams = new StreamSizeWrapper<>(subtitleStreams, getContext());
     }
 
     /**
@@ -323,16 +287,16 @@ public class DownloadDialog extends DialogFragment
                     .getAudioStreamFor(wrappedAudioStreams.getStreamsList(), videoStreams.get(i));
 
             if (audioStream != null) {
-                secondaryStreams
-                        .append(i, new SecondaryStreamHelper<>(wrappedAudioStreams, audioStream));
+                secondaryStreams.append(i, new SecondaryStreamHelper<>(wrappedAudioStreams,
+                        audioStream));
             } else if (DEBUG) {
                 final MediaFormat mediaFormat = videoStreams.get(i).getFormat();
-                 if (mediaFormat != null) {
-                     Log.w(TAG, "No audio stream candidates for video format "
-                             + mediaFormat.name());
-                 } else {
-                     Log.w(TAG, "No audio stream candidates for unknown video format");
-                 }
+                if (mediaFormat != null) {
+                    Log.w(TAG, "No audio stream candidates for video format "
+                         + mediaFormat.name());
+                } else {
+                    Log.w(TAG, "No audio stream candidates for unknown video format");
+                }
             }
         }
 
@@ -397,7 +361,7 @@ public class DownloadDialog extends DialogFragment
 
         initToolbar(dialogBinding.toolbarLayout.toolbar);
         setupDownloadOptions();
-        showIfStreamsWereRemovedMessage();
+        dialogBinding.streamsHidden.setVisibility(View.VISIBLE);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
 
@@ -406,7 +370,8 @@ public class DownloadDialog extends DialogFragment
         dialogBinding.threads.setProgress(threads - 1);
         dialogBinding.threads.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(final SeekBar seekbar, final int progress,
+            public void onProgressChanged(final SeekBar seekbar,
+                                          final int progress,
                                           final boolean fromUser) {
                 final int newProgress = progress + 1;
                 prefs.edit().putInt(getString(R.string.default_download_threads), newProgress)
@@ -415,10 +380,10 @@ public class DownloadDialog extends DialogFragment
             }
 
             @Override
-            public void onStartTrackingTouch(final SeekBar p1) { }
+            public void onStartTrackingTouch(final SeekBar seekbar) { }
 
             @Override
-            public void onStopTrackingTouch(final SeekBar p1) { }
+            public void onStopTrackingTouch(final SeekBar seekbar) { }
         });
 
         fetchStreamsSize();
@@ -557,7 +522,7 @@ public class DownloadDialog extends DialogFragment
                 result, getString(R.string.download_path_video_key), DownloadManager.TAG_VIDEO);
     }
 
-    private void requestDownloadSaveAsResult(final ActivityResult result) {
+    private void requestDownloadSaveAsResult(@NonNull final ActivityResult result) {
         if (result.getResultCode() != Activity.RESULT_OK) {
             return;
         }
@@ -574,8 +539,8 @@ public class DownloadDialog extends DialogFragment
             return;
         }
 
-        final DocumentFile docFile
-                = DocumentFile.fromSingleUri(context, result.getData().getData());
+        final DocumentFile docFile = DocumentFile.fromSingleUri(context,
+                result.getData().getData());
         if (docFile == null) {
             showFailedDialog(R.string.general_error);
             return;
@@ -586,7 +551,7 @@ public class DownloadDialog extends DialogFragment
                 docFile.getType());
     }
 
-    private void requestDownloadPickFolderResult(final ActivityResult result,
+    private void requestDownloadPickFolderResult(@NonNull final ActivityResult result,
                                                  final String key,
                                                  final String tag) {
         if (result.getResultCode() != Activity.RESULT_OK) {
@@ -606,12 +571,11 @@ public class DownloadDialog extends DialogFragment
                     StoredDirectoryHelper.PERMISSION_FLAGS);
         }
 
-        PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString(key, uri.toString()).apply();
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key,
+                uri.toString()).apply();
 
         try {
-            final StoredDirectoryHelper mainStorage
-                    = new StoredDirectoryHelper(context, uri, tag);
+            final StoredDirectoryHelper mainStorage = new StoredDirectoryHelper(context, uri, tag);
             checkSelectedDownload(mainStorage, mainStorage.findFile(filenameTmp),
                     filenameTmp, mimeTmp);
         } catch (final IOException e) {
@@ -649,8 +613,10 @@ public class DownloadDialog extends DialogFragment
     }
 
     @Override
-    public void onItemSelected(final AdapterView<?> parent, final View view,
-                               final int position, final long id) {
+    public void onItemSelected(final AdapterView<?> parent,
+                               final View view,
+                               final int position,
+                               final long id) {
         if (DEBUG) {
             Log.d(TAG, "onItemSelected() called with: "
                     + "parent = [" + parent + "], view = [" + view + "], "
@@ -730,7 +696,7 @@ public class DownloadDialog extends DialogFragment
         dialogBinding.subtitleButton.setEnabled(enabled);
     }
 
-    private int getSubtitleIndexBy(final List<SubtitlesStream> streams) {
+    private int getSubtitleIndexBy(@NonNull final List<SubtitlesStream> streams) {
         final Localization preferredLocalization = NewPipe.getPreferredLocalization();
 
         int candidate = 0;
@@ -756,8 +722,10 @@ public class DownloadDialog extends DialogFragment
         return candidate;
     }
 
+    @NonNull
     private String getNameEditText() {
-        final String str = dialogBinding.fileName.getText().toString().trim();
+        final String str = Objects.requireNonNull(dialogBinding.fileName.getText()).toString()
+                .trim();
 
         return FilenameUtils.createFilename(context, str.isEmpty() ? currentInfo.getName() : str);
     }
@@ -773,12 +741,8 @@ public class DownloadDialog extends DialogFragment
     }
 
     private void launchDirectoryPicker(final ActivityResultLauncher<Intent> launcher) {
-        NoFileManagerSafeGuard.launchSafe(
-                launcher,
-                StoredDirectoryHelper.getPicker(context),
-                TAG,
-                context
-        );
+        NoFileManagerSafeGuard.launchSafe(launcher, StoredDirectoryHelper.getPicker(context), TAG,
+                context);
     }
 
     private void prepareSelectedDownload() {
@@ -839,8 +803,7 @@ public class DownloadDialog extends DialogFragment
                 throw new RuntimeException("No stream selected");
         }
 
-        if (!askForSavePath
-                && (mainStorage == null
+        if (!askForSavePath && (mainStorage == null
                 || mainStorage.isDirect() == NewPipeSettings.useStorageAccessFramework(context)
                 || mainStorage.isInvalidSafStorage())) {
             // Pick new download folder if one of:
@@ -874,12 +837,9 @@ public class DownloadDialog extends DialogFragment
                 initialPath = Uri.parse(initialSavePath.getAbsolutePath());
             }
 
-            NoFileManagerSafeGuard.launchSafe(
-                    requestDownloadSaveAsLauncher,
-                    StoredFileHelper.getNewPicker(context, filenameTmp, mimeTmp, initialPath),
-                    TAG,
-                    context
-            );
+            NoFileManagerSafeGuard.launchSafe(requestDownloadSaveAsLauncher,
+                    StoredFileHelper.getNewPicker(context, filenameTmp, mimeTmp, initialPath), TAG,
+                    context);
 
             return;
         }
@@ -894,7 +854,8 @@ public class DownloadDialog extends DialogFragment
     }
 
     private void checkSelectedDownload(final StoredDirectoryHelper mainStorage,
-                                       final Uri targetFile, final String filename,
+                                       final Uri targetFile,
+                                       final String filename,
                                        final String mime) {
         StoredFileHelper storage;
 
@@ -1055,7 +1016,7 @@ public class DownloadDialog extends DialogFragment
                 storage.truncate();
             }
         } catch (final IOException e) {
-            Log.e(TAG, "failed to truncate the file: " + storage.getUri().toString(), e);
+            Log.e(TAG, "Failed to truncate the file: " + storage.getUri().toString(), e);
             showFailedDialog(R.string.overwrite_failed);
             return;
         }
@@ -1087,8 +1048,8 @@ public class DownloadDialog extends DialogFragment
                 selectedStream = videoStreamsAdapter.getItem(selectedVideoIndex);
 
                 final SecondaryStreamHelper<AudioStream> secondary = videoStreamsAdapter
-                        .getAllSecondary()
-                        .get(wrappedVideoStreams.getStreamsList().indexOf(selectedStream));
+                        .getAllSecondary().get(wrappedVideoStreams.getStreamsList().indexOf(
+                                selectedStream));
 
                 if (secondary != null) {
                     secondaryStream = secondary.getStream();
@@ -1100,8 +1061,8 @@ public class DownloadDialog extends DialogFragment
                     }
 
                     psArgs = null;
-                    final long videoSize = wrappedVideoStreams
-                            .getSizeInBytes((VideoStream) selectedStream);
+                    final long videoSize = wrappedVideoStreams.getSizeInBytes(
+                            (VideoStream) selectedStream);
 
                     // set nearLength, only, if both sizes are fetched or known. This probably
                     // does not work on slow networks but is later updated in the downloader
@@ -1117,7 +1078,7 @@ public class DownloadDialog extends DialogFragment
 
                 if (selectedStream.getFormat() == MediaFormat.TTML) {
                     psName = Postprocessing.ALGORITHM_TTML_CONVERTER;
-                    psArgs = new String[]{
+                    psArgs = new String[] {
                             selectedStream.getFormat().getSuffix(),
                             "false" // ignore empty frames
                     };
@@ -1128,21 +1089,22 @@ public class DownloadDialog extends DialogFragment
         }
 
         if (secondaryStream == null) {
-            urls = new String[]{
+            urls = new String[] {
                     selectedStream.getContent()
             };
-            recoveryInfo = new MissionRecoveryInfo[]{
+            recoveryInfo = new MissionRecoveryInfo[] {
                     new MissionRecoveryInfo(selectedStream)
             };
         } else {
             if (secondaryStream.getDeliveryMethod() != DeliveryMethod.PROGRESSIVE_HTTP) {
-                throw new IllegalArgumentException("Unsupported stream delivery format");
+                throw new IllegalArgumentException("Unsupported stream delivery format"
+                        + secondaryStream.getDeliveryMethod());
             }
 
-            urls = new String[]{
+            urls = new String[] {
                     selectedStream.getContent(), secondaryStream.getContent()
             };
-            recoveryInfo = new MissionRecoveryInfo[]{new MissionRecoveryInfo(selectedStream),
+            recoveryInfo = new MissionRecoveryInfo[] {new MissionRecoveryInfo(selectedStream),
                     new MissionRecoveryInfo(secondaryStream)};
         }
 

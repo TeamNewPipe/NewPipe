@@ -1726,7 +1726,7 @@ public final class Player implements
         if (currentItem != null
                 && !StreamTypeUtil.isLiveStreamOrPostLiveStream(currentItem.getStreamType())) {
             // Convert seconds to milliseconds
-            duration =  (int) (currentItem.getDuration() * 1000);
+            duration = (int) (currentItem.getDuration() * 1000);
         } else {
             duration = (int) simpleExoPlayer.getDuration();
         }

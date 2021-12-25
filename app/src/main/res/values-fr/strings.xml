@@ -399,7 +399,7 @@
     <string name="enable_playback_resume_title">Reprendre la liste de lecture</string>
     <string name="settings_category_clear_data_title">Effacer les données</string>
     <string name="missing_file">Fichier déplacé ou supprimé</string>
-    <string name="overwrite_failed">impossible d’écraser le fichier</string>
+    <string name="overwrite_failed">Impossible d’écraser le fichier</string>
     <string name="download_already_pending">Il y a un téléchargement en attente avec ce nom</string>
     <string name="error_postprocessing_stopped">NewPipe a été fermé alors qu’il travaillait sur le fichier</string>
     <string name="error_insufficient_storage">Aucun espace disponible sur l’appareil</string>

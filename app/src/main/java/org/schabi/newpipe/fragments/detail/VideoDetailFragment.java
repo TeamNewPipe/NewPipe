@@ -95,6 +95,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
@@ -1656,11 +1657,8 @@ public final class VideoDetailFragment
             }
         }
 
-        binding.detailControlsDownload.setVisibility(streamType.equals(StreamType.LIVE_STREAM)
-                || streamType.equals(StreamType.AUDIO_LIVE_STREAM)
-                || streamType.equals(StreamType.POST_LIVE_STREAM)
-                || streamType.equals(StreamType.POST_LIVE_AUDIO_STREAM)
-                ? View.GONE : View.VISIBLE);
+        binding.detailControlsDownload.setVisibility(StreamTypeUtil.isLiveStreamOrPostLiveStream(
+                streamType) ? View.GONE : View.VISIBLE);
         binding.detailControlsBackground.setVisibility(info.getAudioStreams().isEmpty()
                 ? View.GONE : View.VISIBLE);
 
@@ -1671,14 +1669,14 @@ public final class VideoDetailFragment
                 noVideoStreams ? R.drawable.ic_headset_shadow : R.drawable.ic_play_arrow_shadow);
     }
 
-    private void displayUploaderAsSubChannel(final StreamInfo info) {
+    private void displayUploaderAsSubChannel(@NonNull final StreamInfo info) {
         binding.detailSubChannelTextView.setText(info.getUploaderName());
         binding.detailSubChannelTextView.setVisibility(View.VISIBLE);
         binding.detailSubChannelTextView.setSelected(true);
         binding.detailUploaderTextView.setVisibility(View.GONE);
     }
 
-    private void displayBothUploaderAndSubChannel(final StreamInfo info) {
+    private void displayBothUploaderAndSubChannel(@NonNull final StreamInfo info) {
         binding.detailSubChannelTextView.setText(info.getSubChannelName());
         binding.detailSubChannelTextView.setVisibility(View.VISIBLE);
         binding.detailSubChannelTextView.setSelected(true);
@@ -1734,10 +1732,7 @@ public final class VideoDetailFragment
                 // TODO: Remove this check when separation of concerns is done.
                 //  (live streams weren't getting updated because they are mixed)
                 final StreamType streamType = info.getStreamType();
-                if (!streamType.equals(StreamType.LIVE_STREAM)
-                        && !streamType.equals(StreamType.AUDIO_LIVE_STREAM)
-                        && !streamType.equals(StreamType.POST_LIVE_STREAM)
-                        && !streamType.equals(StreamType.POST_LIVE_AUDIO_STREAM)) {
+                if (!StreamTypeUtil.isLiveStream(streamType)) {
                     return;
                 }
             } else {

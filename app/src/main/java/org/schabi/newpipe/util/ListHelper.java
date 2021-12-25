@@ -15,7 +15,6 @@ import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.DeliveryMethod;
 import org.schabi.newpipe.extractor.stream.Stream;
-import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 
 import java.util.ArrayList;
@@ -23,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public final class ListHelper {
@@ -118,26 +118,28 @@ public final class ListHelper {
      * @return a stream list which uses the given delivery method
      */
     @NonNull
-    public static <S extends Stream> List<S> removeDeliveryDistinctStreams(
+    public static <S extends Stream> List<S> keepStreamsWithDelivery(
             @NonNull final List<S> streamList,
             final DeliveryMethod deliveryMethod) {
         if (streamList.isEmpty()) {
             return Collections.emptyList();
         }
-        final List<S> deliveryStreamList = new ArrayList<>();
-        for (final S stream : streamList) {
-            if (stream.getDeliveryMethod() == deliveryMethod) {
-                deliveryStreamList.add(stream);
+
+        final Iterator<S> streamListIterator = streamList.iterator();
+        while (streamListIterator.hasNext()) {
+            if (streamListIterator.next().getDeliveryMethod() != deliveryMethod) {
+                streamListIterator.remove();
             }
         }
-        return deliveryStreamList;
+
+        return streamList;
     }
 
     /**
      * Return a {@link Stream} list which only contains URL streams and non-torrent streams.
      *
-     * @param streamList     the original stream list
-     * @param <S>            the item type's class that extends {@link Stream}
+     * @param streamList the original stream list
+     * @param <S>        the item type's class that extends {@link Stream}
      * @return a stream list which only contains URL streams and non-torrent streams
      */
     @NonNull
@@ -146,46 +148,16 @@ public final class ListHelper {
         if (streamList.isEmpty()) {
             return Collections.emptyList();
         }
-        final List<S> deliveryStreamList = new ArrayList<>();
-        for (final S stream : streamList) {
-            if (stream.isUrl() && stream.getDeliveryMethod() != DeliveryMethod.TORRENT) {
-                deliveryStreamList.add(stream);
+
+        final Iterator<S> streamListIterator = streamList.iterator();
+        while (streamListIterator.hasNext()) {
+            final S stream = streamListIterator.next();
+            if (!stream.isUrl() || stream.getDeliveryMethod() == DeliveryMethod.TORRENT) {
+                streamListIterator.remove();
             }
         }
-        return deliveryStreamList;
-    }
 
-    /**
-     * Check if a stream was removed among downloadable streams.
-     *
-     * @param videoStreams                 the list of video streams gotten from the extractor
-     * @param videoOnlyStreams             the list of video only streams gotten from the extractor
-     * @param audioStreams                 the list of audio streams gotten from the extractor
-     * @param subtitlesStreams             the list of subtitles streams gotten from the extractor
-     * @param downloadableVideoStreams     the list of video streams which will be passed to
-     *                                     the downloader
-     * @param downloadableVideoOnlyStreams the list of video only streams which will be passed to
-     *                                     the downloader
-     * @param downloadableAudioStreams     the list of audio streams which will be passed to
-     *                                     the downloader
-     * @param downloadableSubtitlesStreams the list of subtitles streams which will be passed to
-     *                                     the downloader
-     * @return true if a stream was removed, false otherwise
-     */
-    @SuppressWarnings("checkstyle:ParameterNumber")
-    public static boolean checkIfSomeStreamWasRemoved(
-            @NonNull final List<VideoStream> videoStreams,
-            @NonNull final List<VideoStream> videoOnlyStreams,
-            @NonNull final List<AudioStream> audioStreams,
-            @NonNull final List<SubtitlesStream> subtitlesStreams,
-            @NonNull final List<VideoStream> downloadableVideoStreams,
-            @NonNull final List<VideoStream> downloadableVideoOnlyStreams,
-            @NonNull final List<AudioStream> downloadableAudioStreams,
-            @NonNull final List<SubtitlesStream> downloadableSubtitlesStreams) {
-        return (videoStreams.size() != downloadableVideoStreams.size())
-                || (videoOnlyStreams.size() != downloadableVideoOnlyStreams.size())
-                || (audioStreams.size() != downloadableAudioStreams.size())
-                || (subtitlesStreams.size() != downloadableSubtitlesStreams.size());
+        return streamList;
     }
 
     /**
@@ -198,6 +170,7 @@ public final class ListHelper {
      * @param ascendingOrder   true -> smallest to greatest | false -> greatest to smallest
      * @return the sorted list
      */
+    @NonNull
     public static List<VideoStream> getSortedStreamVideosList(final Context context,
                                                               final List<VideoStream> videoStreams,
                                                               final List<VideoStream>
@@ -283,6 +256,7 @@ public final class ListHelper {
      * @param ascendingOrder        true -> smallest to greatest | false -> greatest to smallest
      * @return the sorted list
      */
+    @NonNull
     static List<VideoStream> getSortedStreamVideosList(final MediaFormat defaultFormat,
                                                        final boolean showHigherResolutions,
                                                        final List<VideoStream> videoStreams,
@@ -436,8 +410,9 @@ public final class ListHelper {
      * @param videoStreams     the available video streams
      * @return the index of the preferred video stream
      */
-    static int getVideoStreamIndex(final String targetResolution, final MediaFormat targetFormat,
-                                   final List<VideoStream> videoStreams) {
+    static int getVideoStreamIndex(@NonNull final String targetResolution,
+                                   final MediaFormat targetFormat,
+                                   @NonNull final List<VideoStream> videoStreams) {
         int fullMatchIndex = -1;
         int fullMatchNoRefreshIndex = -1;
         int resMatchOnlyIndex = -1;
@@ -507,7 +482,7 @@ public final class ListHelper {
                 context.getString(R.string.best_resolution_key), defaultFormat, videoStreams);
     }
 
-    private static MediaFormat getDefaultFormat(final Context context,
+    private static MediaFormat getDefaultFormat(@NonNull final Context context,
                                                 @StringRes final int defaultFormatKey,
                                                 @StringRes final int defaultFormatValueKey) {
         final SharedPreferences preferences
@@ -527,8 +502,8 @@ public final class ListHelper {
         return defaultMediaFormat;
     }
 
-    private static MediaFormat getMediaFormatFromKey(final Context context,
-                                                     final String formatKey) {
+    private static MediaFormat getMediaFormatFromKey(@NonNull final Context context,
+                                                     @NonNull final String formatKey) {
         MediaFormat format = null;
         if (formatKey.equals(context.getString(R.string.video_webm_key))) {
             format = MediaFormat.WEBM;
@@ -566,7 +541,8 @@ public final class ListHelper {
                 - formatRanking.indexOf(streamB.getFormat());
     }
 
-    private static int compareVideoStreamResolution(final String r1, final String r2) {
+    private static int compareVideoStreamResolution(@NonNull final String r1,
+                                                    @NonNull final String r2) {
         try {
             final int res1 = Integer.parseInt(r1.replaceAll("0p\\d+$", "1")
                     .replaceAll("[^\\d.]", ""));
@@ -613,7 +589,7 @@ public final class ListHelper {
      * @param context App context
      * @return maximum resolution allowed or null if there is no maximum
      */
-    private static String getResolutionLimit(final Context context) {
+    private static String getResolutionLimit(@NonNull final Context context) {
         String resolutionLimit = null;
         if (isMeteredNetwork(context)) {
             final SharedPreferences preferences
@@ -632,7 +608,7 @@ public final class ListHelper {
      * @param context App context
      * @return {@code true} if connected to a metered network
      */
-    public static boolean isMeteredNetwork(final Context context) {
+    public static boolean isMeteredNetwork(@NonNull final Context context) {
         final ConnectivityManager manager
                 = ContextCompat.getSystemService(context, ConnectivityManager.class);
         if (manager == null || manager.getActiveNetworkInfo() == null) {
