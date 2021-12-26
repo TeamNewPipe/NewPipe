@@ -171,7 +171,7 @@ public final class NavigationHelper {
         Toast.makeText(
                 context,
                 PlayerHolder.getInstance().getType() == PlayerType.AUDIO
-                    ? R.string.background_player_playing_toast
+                    ? R.string.background_player_already_playing_toast
                     : R.string.background_player_playing_toast,
                 Toast.LENGTH_SHORT)
                 .show();
