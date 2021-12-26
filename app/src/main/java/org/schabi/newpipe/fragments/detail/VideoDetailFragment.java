@@ -1650,7 +1650,7 @@ public final class VideoDetailFragment
         binding.detailUploaderTextView.setVisibility(View.GONE);
 
         //No sub-channel name implies no sub-channel icon, but check just to make sure.
-        if(isEmpty(info.getSubChannelAvatarUrl())){
+        if (isEmpty(info.getSubChannelAvatarUrl())) {
             binding.detailSubChannelThumbnailView.setVisibility(View.GONE);
         }
     }
