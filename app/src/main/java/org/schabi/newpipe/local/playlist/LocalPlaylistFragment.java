@@ -747,8 +747,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
         final StreamInfoItem infoItem = item.toStreamInfoItem();
 
-        final InfoItemDialog.Builder dialogBuilder = new InfoItemDialog.Builder(
-                activity, this, infoItem);
+        final InfoItemDialog.Builder dialogBuilder =
+                new InfoItemDialog.Builder(activity, context, this, infoItem);
 
         // add entries in the middle
         dialogBuilder.addAllEntries(

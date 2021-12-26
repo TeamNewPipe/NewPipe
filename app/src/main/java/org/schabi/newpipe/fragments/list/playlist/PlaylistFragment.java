@@ -142,8 +142,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
             return;
         }
 
-        final InfoItemDialog.Builder dialogBuilder = new InfoItemDialog.Builder(
-                activity, this, item);
+        final InfoItemDialog.Builder dialogBuilder =
+                new InfoItemDialog.Builder(activity, context, this, item);
 
         dialogBuilder.setAction(StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
                 (fragment, infoItem) -> NavigationHelper.playOnBackgroundPlayer(

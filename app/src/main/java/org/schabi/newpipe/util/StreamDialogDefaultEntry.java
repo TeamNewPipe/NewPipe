@@ -12,6 +12,9 @@ import androidx.fragment.app.Fragment;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
@@ -25,11 +28,23 @@ import java.util.Collections;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
+/**
+ * <p>
+ *     This enum provides entries that are accepted
+ *     by the {@link org.schabi.newpipe.info_list.InfoItemDialog.Builder}.
+ * </p>
+ * <p>
+ *     These entries contain a String {@link #resource} which is displayed in the dialog and
+ *     a default {@link #action} that is executed
+ *     when the entry is selected (via <code>onClick()</code>).
+ *     <br/>
+ *     They action can be overridden by using the Builder's
+ *     {@link org.schabi.newpipe.info_list.InfoItemDialog.Builder#setAction(
+ *     StreamDialogDefaultEntry, StreamDialogEntry.StreamDialogEntryAction)}
+ *     method.
+ * </p>
+ */
 public enum StreamDialogDefaultEntry {
-    //////////////////////////////////////
-    // enum values with DEFAULT actions //
-    //////////////////////////////////////
-
     SHOW_CHANNEL_DETAILS(R.string.show_channel_details, (fragment, item) -> {
         if (isNullOrEmpty(item.getUploaderUrl())) {
             final int serviceId = item.getServiceId();
@@ -125,6 +140,7 @@ public enum StreamDialogDefaultEntry {
     public final int resource;
     @NonNull
     public final StreamDialogEntry.StreamDialogEntryAction action;
+
     StreamDialogDefaultEntry(@StringRes final int resource,
                              @NonNull final StreamDialogEntry.StreamDialogEntryAction action) {
         this.resource = resource;
@@ -135,10 +151,6 @@ public enum StreamDialogDefaultEntry {
     public StreamDialogEntry toStreamDialogEntry() {
         return new StreamDialogEntry(resource, action);
     }
-
-    /////////////////////////////////////////////
-    // private method to open channel fragment //
-    /////////////////////////////////////////////
 
     private static void openChannelFragment(@NonNull final Fragment fragment,
                                             @NonNull final StreamInfoItem item,

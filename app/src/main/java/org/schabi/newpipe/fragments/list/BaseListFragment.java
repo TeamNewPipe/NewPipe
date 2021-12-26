@@ -409,7 +409,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             return;
         }
 
-        new InfoItemDialog.Builder(activity, this, item).create().show();
+        new InfoItemDialog.Builder(activity, context, this, item).create().show();
     }
 
     /*//////////////////////////////////////////////////////////////////////////

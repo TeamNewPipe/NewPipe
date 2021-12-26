@@ -332,8 +332,8 @@ public class StatisticsPlaylistFragment
         }
         final StreamInfoItem infoItem = item.toStreamInfoItem();
 
-        final InfoItemDialog.Builder dialogBuilder = new InfoItemDialog.Builder(
-                activity, this, infoItem);
+        final InfoItemDialog.Builder dialogBuilder =
+                new InfoItemDialog.Builder(activity, context, this, infoItem);
 
         // set entries in the middle; the others are added automatically
         dialogBuilder.addEntry(StreamDialogDefaultEntry.DELETE);
