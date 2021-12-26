@@ -1,5 +1,7 @@
 package org.schabi.newpipe.player.resolver;
 
+import static org.schabi.newpipe.util.ListHelper.removeTorrentStreams;
+
 import android.content.Context;
 import android.util.Log;
 
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AudioPlaybackResolver implements PlaybackResolver {
-    private static final String TAG = "AudioPlaybackResolver";
+    private static final String TAG = AudioPlaybackResolver.class.getSimpleName();
 
     @NonNull
     private final Context context;
@@ -50,13 +52,13 @@ public class AudioPlaybackResolver implements PlaybackResolver {
 
         final AudioStream audio = info.getAudioStreams().get(index);
         final MediaSourceTag tag = new MediaSourceTag(info);
-        MediaSource mediaSource = null;
+
         try {
-            mediaSource = buildMediaSource(dataSource, audio, info, PlayerHelper.cacheKeyOf(info,
-                    audio), tag);
+            return buildMediaSource(dataSource, audio, info, PlayerHelper.cacheKeyOf(info, audio),
+                    tag);
         } catch (final IOException e) {
             Log.e(TAG, "Unable to create audio source:", e);
+            return null;
         }
-        return mediaSource;
     }
 }

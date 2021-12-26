@@ -34,8 +34,6 @@ import org.schabi.newpipe.util.StreamTypeUtil;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Objects;
 
 public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
@@ -113,17 +111,17 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
             @NonNull final MediaSourceTag metadata) throws IOException {
         final String url = stream.getContent();
 
-        if (!isNullOrEmpty(url)) {
-            return dataSource.getExtractorMediaSourceFactory()
-                    .createMediaSource(new MediaItem.Builder()
+        if (isNullOrEmpty(url)) {
+            throw new IOException(
+                    "Try to generate a progressive media source from an empty string or from a "
+                            + "null object");
+        } else {
+            return dataSource.getProgressiveMediaSourceFactory().createMediaSource(
+                    new MediaItem.Builder()
                             .setTag(metadata)
                             .setUri(Uri.parse(url))
                             .setCustomCacheKey(cacheKey)
                             .build());
-        } else {
-            throw new IOException(
-                    "Try to generate a progressive media source from an empty string"
-                            + "or from a null object");
         }
     }
 
@@ -201,12 +199,12 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                                 streamInfo.getDuration());
             } catch (final YoutubeDashManifestCreator.
                     YoutubeDashManifestCreationException | NullPointerException e) {
-                throw new IOException("Error when generating the DASH manifest of "
-                        + "YouTube ended live stream " + stream.getContent(), e);
+                throw new IOException("Error when generating the DASH manifest of YouTube ended"
+                        + "live stream " + stream.getContent(), e);
             }
         } else {
-            throw new IllegalArgumentException("DASH manifest generation of YouTube"
-                    + "livestreams is not supported");
+            throw new IllegalArgumentException("DASH manifest generation of YouTube livestreams is"
+                    + "not supported");
         }
         return content;
     }
@@ -281,25 +279,6 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                             .setUri(Uri.parse(stream.getContent()))
                             .setCustomCacheKey(cacheKey)
                             .build());
-        }
-    }
-
-    /**
-     * Remove streams which are using the {@link DeliveryMethod#TORRENT torrent delivery method}.
-     *
-     * @param streamList the list of {@link Stream streams} for which you want to delete the
-     *                   torrent streams.
-     */
-    default void removeTorrentStreams(@NonNull final List<? extends Stream> streamList) {
-        if (streamList.isEmpty()) {
-            return;
-        }
-        final Iterator<? extends Stream> streamIterator = streamList.iterator();
-        while (streamIterator.hasNext()) {
-            final Stream stream = streamIterator.next();
-            if (stream.getDeliveryMethod() == DeliveryMethod.TORRENT) {
-                streamIterator.remove();
-            }
         }
     }
 }

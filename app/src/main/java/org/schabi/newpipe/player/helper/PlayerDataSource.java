@@ -81,11 +81,11 @@ public class PlayerDataSource {
                 cacheDataSourceFactory);
     }
 
-    public ProgressiveMediaSource.Factory getExtractorMediaSourceFactory() {
+    public ProgressiveMediaSource.Factory getProgressiveMediaSourceFactory() {
         return new ProgressiveMediaSource.Factory(cacheDataSourceFactory);
     }
 
-    public SingleSampleMediaSource.Factory getSampleMediaSourceFactory() {
+    public SingleSampleMediaSource.Factory getSingleSampleMediaSourceFactory() {
         return new SingleSampleMediaSource.Factory(cacheDataSourceFactory);
     }
 

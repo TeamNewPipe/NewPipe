@@ -44,14 +44,16 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
     private final StreamSizeWrapper<T> streamsWrapper;
     private final SparseArray<SecondaryStreamHelper<U>> secondaryStreams;
 
-    public StreamItemAdapter(final Context context, final StreamSizeWrapper<T> streamsWrapper,
+    public StreamItemAdapter(final Context context,
+                             final StreamSizeWrapper<T> streamsWrapper,
                              final SparseArray<SecondaryStreamHelper<U>> secondaryStreams) {
         this.context = context;
         this.streamsWrapper = streamsWrapper;
         this.secondaryStreams = secondaryStreams;
     }
 
-    public StreamItemAdapter(final Context context, final StreamSizeWrapper<T> streamsWrapper,
+    public StreamItemAdapter(final Context context,
+                             final StreamSizeWrapper<T> streamsWrapper,
                              final boolean showIconNoAudio) {
         this(context, streamsWrapper, showIconNoAudio ? new SparseArray<>() : null);
     }
@@ -84,7 +86,8 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
     }
 
     @Override
-    public View getDropDownView(final int position, final View convertView,
+    public View getDropDownView(final int position,
+                                final View convertView,
                                 final ViewGroup parent) {
         return getCustomView(position, convertView, parent, true);
     }
@@ -96,7 +99,9 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
     }
 
     @NonNull
-    private View getCustomView(final int position, final View view, final ViewGroup parent,
+    private View getCustomView(final int position,
+                               final View view,
+                               final ViewGroup parent,
                                final boolean isDropdownItem) {
         View convertView = view;
         if (convertView == null) {
@@ -167,15 +172,13 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
         if (stream instanceof SubtitlesStream) {
             formatNameView.setText(((SubtitlesStream) stream).getLanguageTag());
         } else {
-            if (mediaFormat != null) {
-                if (mediaFormat == MediaFormat.WEBMA_OPUS) {
-                    // noinspection AndroidLintSetTextI18n
-                    formatNameView.setText("opus");
-                } else {
-                    formatNameView.setText(mediaFormat.getName());
-                }
-            } else {
+            if (mediaFormat == null) {
                 formatNameView.setText(context.getString(R.string.unknown_format));
+            } else if (mediaFormat == MediaFormat.WEBMA_OPUS) {
+                // noinspection AndroidLintSetTextI18n
+                formatNameView.setText("opus");
+            } else {
+                formatNameView.setText(mediaFormat.getName());
             }
         }
 

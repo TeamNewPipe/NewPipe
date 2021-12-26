@@ -197,8 +197,7 @@ public final class PlayerHelper {
         final int averageBitrate = audioStream.getAverageBitrate();
         final MediaFormat mediaFormat = audioStream.getFormat();
         if (averageBitrate == UNKNOWN_BITRATE && mediaFormat == null) {
-            final String content = audioStream.getContent();
-            cacheKey += " " + content.substring(20 * content.length() / 100);
+            cacheKey += " " + audioStream.hashCode();
         } else {
             if (mediaFormat != null) {
                 cacheKey += " " + audioStream.getFormat().getName();

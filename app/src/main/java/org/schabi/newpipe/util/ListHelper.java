@@ -161,6 +161,31 @@ public final class ListHelper {
     }
 
     /**
+     * Return a {@link Stream} list which only contains non-torrent streams.
+     *
+     * @param streamList the original stream list
+     * @param <S>        the item type's class that extends {@link Stream}
+     * @return a stream list which only contains non-torrent streams
+     */
+    @NonNull
+    public static <S extends Stream> List<S> removeTorrentStreams(
+            @NonNull final List<S> streamList) {
+        if (streamList.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        final Iterator<S> streamListIterator = streamList.iterator();
+        while (streamListIterator.hasNext()) {
+            final S stream = streamListIterator.next();
+            if (stream.getDeliveryMethod() == DeliveryMethod.TORRENT) {
+                streamListIterator.remove();
+            }
+        }
+
+        return streamList;
+    }
+
+    /**
      * Join the two lists of video streams (video_only and normal videos),
      * and sort them according with default format chosen by the user.
      *
@@ -550,9 +575,9 @@ public final class ListHelper {
                     .replaceAll("[^\\d.]", ""));
             return res1 - res2;
         } catch (final NumberFormatException e) {
-            // Return 1 because we don't know if the two streams are different or not (a
-            // NumberFormatException was thrown so we don't know the resolution of one stream or
-            // of all streams)
+            // Consider the first one greater because we don't know if the two streams are
+            // different or not (a NumberFormatException was thrown so we don't know the resolution
+            // of one stream or of all streams)
             return 1;
         }
     }

@@ -26,9 +26,10 @@ import java.util.List;
 
 import static com.google.android.exoplayer2.C.TIME_UNSET;
 import static org.schabi.newpipe.util.ListHelper.removeNonUrlAndTorrentStreams;
+import static org.schabi.newpipe.util.ListHelper.removeTorrentStreams;
 
 public class VideoPlaybackResolver implements PlaybackResolver {
-    private static final String TAG = "VideoPlaybackResolver";
+    private static final String TAG = VideoPlaybackResolver.class.getSimpleName();
 
     @NonNull
     private final Context context;
@@ -117,33 +118,28 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         final List<SubtitlesStream> subtitlesStreams = info.getSubtitles();
         if (subtitlesStreams != null) {
             // Torrent and non URL subtitles are not supported by ExoPlayer
-            final List<SubtitlesStream> nonTorrentAndUrlStreams =
-                    removeNonUrlAndTorrentStreams(subtitlesStreams);
+            final List<SubtitlesStream> nonTorrentAndUrlStreams = removeNonUrlAndTorrentStreams(
+                    subtitlesStreams);
             for (final SubtitlesStream subtitle : nonTorrentAndUrlStreams) {
                 final MediaFormat mediaFormat = subtitle.getFormat();
-                final String mimeType;
                 if (mediaFormat != null) {
-                    mimeType = PlayerHelper.subtitleMimeTypesOf(subtitle.getFormat());
-                } else {
-                    continue;
+                    final String mimeType = PlayerHelper.subtitleMimeTypesOf(mediaFormat);
+                    if (mimeType == null) {
+                        continue;
+                    }
+                    mediaSources.add(dataSource.getSingleSampleMediaSourceFactory()
+                            .createMediaSource(new MediaItem.Subtitle(
+                                    Uri.parse(subtitle.getContent()), mimeType,
+                                            PlayerHelper.captionLanguageOf(context, subtitle)),
+                                    TIME_UNSET));
                 }
-                if (mimeType == null) {
-                    continue;
-                }
-                final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
-                        .createMediaSource(
-                                new MediaItem.Subtitle(Uri.parse(subtitle.getContent()),
-                                        mimeType,
-                                        PlayerHelper.captionLanguageOf(context, subtitle)),
-                                TIME_UNSET);
-                mediaSources.add(textSource);
             }
         }
 
         if (mediaSources.size() == 1) {
             return mediaSources.get(0);
         } else {
-            return new MergingMediaSource(mediaSources.toArray(new MediaSource[0]));
+            return new MergingMediaSource(true, mediaSources.toArray(new MediaSource[0]));
         }
     }
 

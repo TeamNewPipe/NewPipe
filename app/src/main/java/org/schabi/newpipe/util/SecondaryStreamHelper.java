@@ -44,7 +44,7 @@ public class SecondaryStreamHelper<T extends Stream> {
                     return null;
             }
 
-            final boolean m4v = mediaFormat == MediaFormat.MPEG_4;
+            final boolean m4v = (mediaFormat == MediaFormat.MPEG_4);
 
             for (final AudioStream audio : audioStreams) {
                 if (audio.getFormat() == (m4v ? MediaFormat.M4A : MediaFormat.WEBMA)) {
