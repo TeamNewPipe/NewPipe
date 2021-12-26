@@ -50,7 +50,7 @@ public class PreferenceSearchConfiguration {
         return item;
     }
 
-    List<SearchIndexItem> getFiles() {
+    public List<SearchIndexItem> getFiles() {
         return itemsToIndex;
     }
 

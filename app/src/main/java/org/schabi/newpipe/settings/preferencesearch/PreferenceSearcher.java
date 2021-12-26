@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class PreferenceSearcher implements AutoCloseable {
+public class PreferenceSearcher {
     private final List<PreferenceSearchItem> allEntries = new ArrayList<>();
 
     private final PreferenceSearchConfiguration configuration;
 
-    PreferenceSearcher(final PreferenceSearchConfiguration configuration) {
+    public PreferenceSearcher(final PreferenceSearchConfiguration configuration) {
         this.configuration = configuration;
     }
 
-    void add(final List<PreferenceSearchItem> items) {
+    public void add(final List<PreferenceSearchItem> items) {
         allEntries.addAll(items);
     }
 
@@ -29,8 +29,7 @@ class PreferenceSearcher implements AutoCloseable {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public void close() {
+    public void clear() {
         allEntries.clear();
     }
 }

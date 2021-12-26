@@ -24,29 +24,15 @@ import java.util.Objects;
 public class PreferenceSearchFragment extends Fragment {
     public static final String NAME = PreferenceSearchFragment.class.getSimpleName();
 
-    private final PreferenceSearchConfiguration searchConfiguration;
-
     private final PreferenceSearcher searcher;
+
     private SearchViewHolder viewHolder;
     private PreferenceSearchAdapter adapter;
 
-    public PreferenceSearchFragment(final PreferenceSearchConfiguration searchConfiguration) {
-        this.searchConfiguration = searchConfiguration;
-        this.searcher = new PreferenceSearcher(searchConfiguration);
-    }
-
-    @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        final PreferenceParser parser =
-                new PreferenceParser(
-                        getContext(),
-                        searchConfiguration);
-
-        searchConfiguration.getFiles().stream()
-                .map(parser::parse)
-                .forEach(searcher::add);
+    public PreferenceSearchFragment(
+            final PreferenceSearcher searcher
+    ) {
+        this.searcher = searcher;
     }
 
     @Nullable
@@ -96,12 +82,6 @@ public class PreferenceSearchFragment extends Fragment {
         }
 
         ((PreferenceSearchResultListener) getActivity()).onSearchResultClicked(item);
-    }
-
-    @Override
-    public void onDestroy() {
-        searcher.close();
-        super.onDestroy();
     }
 
     private static class SearchViewHolder {

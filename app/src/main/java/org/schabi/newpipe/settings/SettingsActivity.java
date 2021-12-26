@@ -26,11 +26,13 @@ import org.schabi.newpipe.CheckForNewAppVersion;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.SettingsLayoutBinding;
+import org.schabi.newpipe.settings.preferencesearch.PreferenceParser;
 import org.schabi.newpipe.settings.preferencesearch.PreferenceSearchConfiguration;
 import org.schabi.newpipe.settings.preferencesearch.PreferenceSearchFragment;
 import org.schabi.newpipe.settings.preferencesearch.PreferenceSearchItem;
 import org.schabi.newpipe.settings.preferencesearch.PreferenceSearchResultHighlighter;
 import org.schabi.newpipe.settings.preferencesearch.PreferenceSearchResultListener;
+import org.schabi.newpipe.settings.preferencesearch.PreferenceSearcher;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KeyboardUtil;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -58,9 +60,8 @@ import java.util.concurrent.TimeUnit;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class SettingsActivity extends AppCompatActivity
-        implements
-        BasePreferenceFragment.OnPreferenceStartFragmentCallback,
+public class SettingsActivity extends AppCompatActivity implements
+        PreferenceFragmentCompat.OnPreferenceStartFragmentCallback,
         PreferenceSearchResultListener {
     private static final String TAG = "SettingsActivity";
     private static final boolean DEBUG = MainActivity.DEBUG;
@@ -165,6 +166,7 @@ public class SettingsActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         setMenuSearchItem(null);
+        searchFragment = null;
         super.onDestroy();
     }
 
@@ -183,26 +185,33 @@ public class SettingsActivity extends AppCompatActivity
         RxTextView.textChanges(searchEditText)
                 // Wait some time after the last input before actually searching
                 .debounce(200, TimeUnit.MILLISECONDS)
-                .subscribe(v -> runOnUiThread(() -> onSearchChanged()));
+                .subscribe(v -> runOnUiThread(this::onSearchChanged));
 
         // Configure clear button
         searchContainer.findViewById(R.id.toolbar_search_clear)
                 .setOnClickListener(ev -> resetSearchText());
 
-        // Build search configuration using SettingsResourceRegistry
         prepareSearchConfig();
 
+        // Build search configuration using SettingsResourceRegistry
         final PreferenceSearchConfiguration config = new PreferenceSearchConfiguration();
         SettingsResourceRegistry.getInstance().getAllEntries().stream()
                 .filter(SettingsResourceRegistry.SettingRegistryEntry::isSearchable)
                 .map(SettingsResourceRegistry.SettingRegistryEntry::getPreferencesResId)
                 .forEach(config::index);
 
-        searchFragment = new PreferenceSearchFragment(config);
+        // Build search items
+        final PreferenceParser parser = new PreferenceParser(getApplicationContext(), config);
+        final PreferenceSearcher searcher = new PreferenceSearcher(config);
+        config.getFiles().stream()
+                .map(parser::parse)
+                .forEach(searcher::add);
+
+        searchFragment = new PreferenceSearchFragment(searcher);
     }
 
     private void prepareSearchConfig() {
-        // Check if the update settings should be available
+        // Check if the update settings are available
         if (!CheckForNewAppVersion.isReleaseApk(App.getApp())) {
             SettingsResourceRegistry.getInstance()
                     .getEntryByPreferencesResId(R.xml.update_settings)

@@ -2,8 +2,6 @@ package org.schabi.newpipe.settings.preferencesearch;
 
 import android.text.TextUtils;
 
-import androidx.annotation.NonNull;
-
 import org.schabi.newpipe.settings.preferencesearch.similarity.FuzzyScore;
 
 import java.util.Comparator;
@@ -22,7 +20,7 @@ public class PreferenceFuzzySearchFunction
             final Stream<PreferenceSearchItem> allAvailable,
             final String keyword
     ) {
-        final float maxScore = (keyword.length() + 1) * 3 - 2; // First can't get +2 bonus score
+        final int maxScore = (keyword.length() + 1) * 3 - 2; // First can't get +2 bonus score
 
         return allAvailable
                 // General search
@@ -37,14 +35,6 @@ public class PreferenceFuzzySearchFunction
                 .map(FuzzySearchSpecificDTO::getItem)
                 // Limit the amount of search results
                 .limit(20);
-    }
-
-    private float computeFuzzyScore(
-            @NonNull final PreferenceSearchItem item,
-            @NonNull final Function<PreferenceSearchItem, String> resolver,
-            @NonNull final String keyword
-    ) {
-        return FUZZY_SCORE.fuzzyScore(resolver.apply(item), keyword);
     }
 
     static class FuzzySearchGeneralDTO {

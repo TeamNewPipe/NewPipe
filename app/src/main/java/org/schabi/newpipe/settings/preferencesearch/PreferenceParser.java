@@ -18,7 +18,7 @@ import java.util.Objects;
 /**
  * Parses the corresponding preference-file(s).
  */
-class PreferenceParser {
+public class PreferenceParser {
     private static final String TAG = "PreferenceParser";
 
     private static final String NS_ANDROID = "http://schemas.android.com/apk/res/android";
@@ -28,7 +28,7 @@ class PreferenceParser {
     private final Map<String, ?> allPreferences;
     private final PreferenceSearchConfiguration searchConfiguration;
 
-    PreferenceParser(
+    public PreferenceParser(
             final Context context,
             final PreferenceSearchConfiguration searchConfiguration
     ) {
