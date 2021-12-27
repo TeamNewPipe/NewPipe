@@ -750,18 +750,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         final InfoItemDialog.Builder dialogBuilder = new InfoItemDialog.Builder(
                 activity, this, infoItem);
 
-        dialogBuilder.addEnqueueEntriesIfNeeded();
-        dialogBuilder.addStartHereEntries();
+        // set entries
+        dialogBuilder.addDefaultEntriesAtBeginning();
         dialogBuilder.addAllEntries(
                 StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
-                StreamDialogDefaultEntry.DELETE,
-                StreamDialogDefaultEntry.APPEND_PLAYLIST,
-                StreamDialogDefaultEntry.SHARE,
-                StreamDialogDefaultEntry.OPEN_IN_BROWSER
+                StreamDialogDefaultEntry.DELETE
         );
-        dialogBuilder.addPlayWithKodiEntryIfNeeded();
-        dialogBuilder.addMarkAsWatchedEntryIfNeeded(infoItem.getStreamType());
-        dialogBuilder.addChannelDetailsEntryIfPossible();
+        dialogBuilder.addDefaultEntriesAtEnd();
 
         // set custom actions
         dialogBuilder.setAction(StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,

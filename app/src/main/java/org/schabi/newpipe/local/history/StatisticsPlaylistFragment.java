@@ -335,19 +335,12 @@ public class StatisticsPlaylistFragment
         final InfoItemDialog.Builder dialogBuilder = new InfoItemDialog.Builder(
                 activity, this, infoItem);
 
-        dialogBuilder.addEnqueueEntriesIfNeeded();
-        dialogBuilder.addStartHereEntries();
-        dialogBuilder.addAllEntries(
-                StreamDialogDefaultEntry.DELETE,
-                StreamDialogDefaultEntry.APPEND_PLAYLIST,
-                StreamDialogDefaultEntry.SHARE,
-                StreamDialogDefaultEntry.OPEN_IN_BROWSER
-        );
-        dialogBuilder.addPlayWithKodiEntryIfNeeded();
-        dialogBuilder.addMarkAsWatchedEntryIfNeeded(infoItem.getStreamType());
-        dialogBuilder.addChannelDetailsEntryIfPossible();
+        // set entries
+        dialogBuilder.addDefaultEntriesAtBeginning();
+        dialogBuilder.addEntry(StreamDialogDefaultEntry.DELETE);
+        dialogBuilder.addDefaultEntriesAtEnd();
 
-
+        // set custom actions
         dialogBuilder.setAction(StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
                 (fragment, infoItemDuplicate) -> NavigationHelper
                         .playOnBackgroundPlayer(context, getPlayQueueStartingAt(item), true));

@@ -80,7 +80,6 @@ import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
-import org.schabi.newpipe.util.StreamDialogDefaultEntry
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountStreams
 import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import java.time.OffsetDateTime
@@ -360,16 +359,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
         val dialogBuilder = InfoItemDialog.Builder(activity, this, item)
 
-        dialogBuilder.addEnqueueEntriesIfNeeded()
-        dialogBuilder.addStartHereEntries()
-        dialogBuilder.addAllEntries(
-            StreamDialogDefaultEntry.APPEND_PLAYLIST,
-            StreamDialogDefaultEntry.SHARE,
-            StreamDialogDefaultEntry.OPEN_IN_BROWSER
-        )
-        dialogBuilder.addPlayWithKodiEntryIfNeeded()
-        dialogBuilder.addMarkAsWatchedEntryIfNeeded(item.streamType)
-        dialogBuilder.addChannelDetailsEntryIfPossible()
+        dialogBuilder.addDefaultEntriesAtBeginning()
+        dialogBuilder.addDefaultEntriesAtEnd()
 
         dialogBuilder.create().show()
     }

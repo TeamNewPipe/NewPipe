@@ -35,7 +35,6 @@ import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
-import org.schabi.newpipe.util.StreamDialogDefaultEntry;
 import org.schabi.newpipe.views.SuperScrollLayoutManager;
 
 import java.util.List;
@@ -413,16 +412,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         final InfoItemDialog.Builder dialogBuilder = new InfoItemDialog.Builder(
                 activity, this, item);
 
-        dialogBuilder.addEnqueueEntriesIfNeeded();
-        dialogBuilder.addStartHereEntries();
-        dialogBuilder.addAllEntries(
-                StreamDialogDefaultEntry.APPEND_PLAYLIST,
-                StreamDialogDefaultEntry.SHARE,
-                StreamDialogDefaultEntry.OPEN_IN_BROWSER
-        );
-        dialogBuilder.addPlayWithKodiEntryIfNeeded();
-        dialogBuilder.addMarkAsWatchedEntryIfNeeded(item.getStreamType());
-        dialogBuilder.addChannelDetailsEntryIfPossible();
+        dialogBuilder.addDefaultEntriesAtBeginning();
+        dialogBuilder.addDefaultEntriesAtEnd();
 
         dialogBuilder.create().show();
     }

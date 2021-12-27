@@ -76,16 +76,16 @@ public final class InfoItemDialog {
      */
     public static class Builder {
         @NonNull private final Activity activity;
-        @NonNull private final StreamInfoItem info;
+        @NonNull private final StreamInfoItem item;
         @NonNull private final Fragment fragment;
         @NonNull private final List<StreamDialogEntry> entries = new ArrayList<>();
 
         public Builder(@NonNull final Activity activity,
                        @NonNull final Fragment fragment,
-                       @NonNull final StreamInfoItem info) {
+                       @NonNull final StreamInfoItem item) {
             this.activity = activity;
             this.fragment = fragment;
-            this.info = info;
+            this.item = item;
         }
 
         public void addEntry(@NonNull final StreamDialogDefaultEntry entry) {
@@ -108,7 +108,7 @@ public final class InfoItemDialog {
         }
 
         public void addChannelDetailsEntryIfPossible() {
-            if (!isNullOrEmpty(info.getUploaderUrl())) {
+            if (!isNullOrEmpty(item.getUploaderUrl())) {
                 addEntry(StreamDialogDefaultEntry.SHOW_CHANNEL_DETAILS);
             }
         }
@@ -125,8 +125,8 @@ public final class InfoItemDialog {
 
         public void addStartHereEntries() {
             addEntry(StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND);
-            if (info.getStreamType() != StreamType.AUDIO_STREAM
-                    && info.getStreamType() != StreamType.AUDIO_LIVE_STREAM) {
+            if (item.getStreamType() != StreamType.AUDIO_STREAM
+                    && item.getStreamType() != StreamType.AUDIO_LIVE_STREAM) {
                 addEntry(StreamDialogDefaultEntry.START_HERE_ON_POPUP);
             }
         }
@@ -148,9 +148,25 @@ public final class InfoItemDialog {
         }
 
         public void addPlayWithKodiEntryIfNeeded() {
-            if (KoreUtils.shouldShowPlayWithKodi(activity, info.getServiceId())) {
+            if (KoreUtils.shouldShowPlayWithKodi(activity, item.getServiceId())) {
                 addEntry(StreamDialogDefaultEntry.PLAY_WITH_KODI);
             }
+        }
+
+        public void addDefaultEntriesAtBeginning() {
+            addEnqueueEntriesIfNeeded();
+            addStartHereEntries();
+        }
+
+        public void addDefaultEntriesAtEnd() {
+            addAllEntries(
+                    StreamDialogDefaultEntry.APPEND_PLAYLIST,
+                    StreamDialogDefaultEntry.SHARE,
+                    StreamDialogDefaultEntry.OPEN_IN_BROWSER
+            );
+            addPlayWithKodiEntryIfNeeded();
+            addMarkAsWatchedEntryIfNeeded(item.getStreamType());
+            addChannelDetailsEntryIfPossible();
         }
 
         /**
@@ -158,7 +174,7 @@ public final class InfoItemDialog {
          * @return a new instance of {@link InfoItemDialog}
          */
         public InfoItemDialog create() {
-            return new InfoItemDialog(this.activity, this.fragment, this.info, this.entries);
+            return new InfoItemDialog(this.activity, this.fragment, this.item, this.entries);
         }
     }
 }
