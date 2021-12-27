@@ -135,7 +135,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     }
 
     @Override
-    protected void showStreamDialog(final StreamInfoItem item) {
+    protected void showInfoItemDialog(final StreamInfoItem item) {
         final Context context = getContext();
         final Activity activity = getActivity();
         if (context == null || context.getResources() == null || activity == null) {

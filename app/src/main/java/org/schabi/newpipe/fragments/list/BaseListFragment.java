@@ -261,7 +261,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
 
             @Override
             public void held(final StreamInfoItem selectedItem) {
-                showStreamDialog(selectedItem);
+                showInfoItemDialog(selectedItem);
             }
         });
 
@@ -402,7 +402,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         }
     }
 
-    protected void showStreamDialog(final StreamInfoItem item) {
+    protected void showInfoItemDialog(final StreamInfoItem item) {
         final Context context = getContext();
         final Activity activity = getActivity();
         if (context == null || context.getResources() == null || activity == null) {

@@ -178,7 +178,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             @Override
             public void held(final LocalItem selectedItem) {
                 if (selectedItem instanceof PlaylistStreamEntry) {
-                    showStreamItemDialog((PlaylistStreamEntry) selectedItem);
+                    showInfoItemDialog((PlaylistStreamEntry) selectedItem);
                 }
             }
 
@@ -739,7 +739,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         return getPlayQueue(Math.max(itemListAdapter.getItemsList().indexOf(infoItem), 0));
     }
 
-    protected void showStreamItemDialog(final PlaylistStreamEntry item) {
+    protected void showInfoItemDialog(final PlaylistStreamEntry item) {
         final Context context = getContext();
         final Activity activity = getActivity();
         if (context == null || context.getResources() == null || activity == null) {

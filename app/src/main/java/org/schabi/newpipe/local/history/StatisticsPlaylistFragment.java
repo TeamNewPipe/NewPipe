@@ -150,7 +150,7 @@ public class StatisticsPlaylistFragment
             @Override
             public void held(final LocalItem selectedItem) {
                 if (selectedItem instanceof StreamStatisticsEntry) {
-                    showStreamDialog((StreamStatisticsEntry) selectedItem);
+                    showInfoItemDialog((StreamStatisticsEntry) selectedItem);
                 }
             }
         });
@@ -324,7 +324,7 @@ public class StatisticsPlaylistFragment
         return getPlayQueue(Math.max(itemListAdapter.getItemsList().indexOf(infoItem), 0));
     }
 
-    private void showStreamDialog(final StreamStatisticsEntry item) {
+    private void showInfoItemDialog(final StreamStatisticsEntry item) {
         final Context context = getContext();
         final Activity activity = getActivity();
         if (context == null || context.getResources() == null || activity == null) {
