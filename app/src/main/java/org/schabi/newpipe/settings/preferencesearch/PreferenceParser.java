@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.XmlRes;
 import androidx.preference.PreferenceManager;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -111,7 +112,7 @@ public class PreferenceParser {
     private PreferenceSearchItem parseSearchResult(
             final XmlPullParser xpp,
             final String breadcrumbs,
-            final int searchIndexItemResId
+            @XmlRes final int searchIndexItemResId
     ) {
         final String key = readString(getAttribute(xpp, "key"));
         final String[] entries = readStringArray(getAttribute(xpp, "entries"));
@@ -130,7 +131,6 @@ public class PreferenceParser {
                 entries,
                 entryValues),
             TextUtils.join(",", entries),
-            readString(getAttribute(xpp, NS_SEARCH, "keywords")),
             breadcrumbs,
             searchIndexItemResId
         );
