@@ -29,20 +29,16 @@ import org.schabi.newpipe.databinding.StatisticPlaylistControlBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.BaseLocalListFragment;
-import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.settings.HistorySettingsFragment;
-import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
-import org.schabi.newpipe.util.StreamDialogEntry;
+import org.schabi.newpipe.util.StreamDialogDefaultEntry;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -336,58 +332,29 @@ public class StatisticsPlaylistFragment
         }
         final StreamInfoItem infoItem = item.toStreamInfoItem();
 
-        final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
+        final InfoItemDialog.Builder dialogBuilder = new InfoItemDialog.Builder(
+                activity, this, infoItem);
 
-        if (PlayerHolder.getInstance().isPlayQueueReady()) {
-            entries.add(StreamDialogEntry.enqueue);
+        dialogBuilder.addEnqueueEntriesIfNeeded();
+        dialogBuilder.addStartHereEntries();
+        dialogBuilder.addAllEntries(
+                StreamDialogDefaultEntry.DELETE,
+                StreamDialogDefaultEntry.APPEND_PLAYLIST,
+                StreamDialogDefaultEntry.SHARE,
+                StreamDialogDefaultEntry.OPEN_IN_BROWSER
+        );
+        dialogBuilder.addPlayWithKodiEntryIfNeeded();
+        dialogBuilder.addMarkAsWatchedEntryIfNeeded(infoItem.getStreamType());
+        dialogBuilder.addChannelDetailsEntryIfPossible();
 
-            if (PlayerHolder.getInstance().getQueueSize() > 1) {
-                entries.add(StreamDialogEntry.enqueue_next);
-            }
-        }
 
-        if (infoItem.getStreamType() == StreamType.AUDIO_STREAM) {
-            entries.addAll(Arrays.asList(
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.delete,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share
-            ));
-        } else  {
-            entries.addAll(Arrays.asList(
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.start_here_on_popup,
-                    StreamDialogEntry.delete,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share
-            ));
-        }
-        entries.add(StreamDialogEntry.open_in_browser);
-        if (KoreUtils.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
-            entries.add(StreamDialogEntry.play_with_kodi);
-        }
-
-        // show "mark as watched" only when watch history is enabled
-        if (StreamDialogEntry.shouldAddMarkAsWatched(
-                item.getStreamEntity().getStreamType(),
-                context
-        )) {
-            entries.add(
-                    StreamDialogEntry.mark_as_watched
-            );
-        }
-        entries.add(StreamDialogEntry.show_channel_details);
-
-        StreamDialogEntry.setEnabledEntries(entries);
-
-        StreamDialogEntry.start_here_on_background.setCustomAction((fragment, infoItemDuplicate) ->
-                NavigationHelper
+        dialogBuilder.setAction(StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
+                (fragment, infoItemDuplicate) -> NavigationHelper
                         .playOnBackgroundPlayer(context, getPlayQueueStartingAt(item), true));
-        StreamDialogEntry.delete.setCustomAction((fragment, infoItemDuplicate) ->
+        dialogBuilder.setAction(StreamDialogDefaultEntry.DELETE, (fragment, infoItemDuplicate) ->
                 deleteEntry(Math.max(itemListAdapter.getItemsList().indexOf(item), 0)));
 
-        new InfoItemDialog(activity, infoItem, StreamDialogEntry.getCommands(context),
-                (dialog, which) -> StreamDialogEntry.clickOn(which, this, infoItem)).show();
+        dialogBuilder.create().show();
     }
 
     private void deleteEntry(final int index) {

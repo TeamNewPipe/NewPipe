@@ -68,7 +68,6 @@ import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
-import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty
 import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.info_list.InfoItemDialog
@@ -78,15 +77,13 @@ import org.schabi.newpipe.ktx.slideUp
 import org.schabi.newpipe.local.feed.item.StreamItem
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.local.subscription.SubscriptionManager
-import org.schabi.newpipe.player.helper.PlayerHolder
 import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
-import org.schabi.newpipe.util.StreamDialogEntry
+import org.schabi.newpipe.util.StreamDialogDefaultEntry
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountStreams
 import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import java.time.OffsetDateTime
-import java.util.ArrayList
 import java.util.function.Consumer
 
 class FeedFragment : BaseStateFragment<FeedState>() {
@@ -361,48 +358,20 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         val activity: Activity? = getActivity()
         if (context == null || context.resources == null || activity == null) return
 
-        val entries = ArrayList<StreamDialogEntry>()
-        if (PlayerHolder.getInstance().isPlayQueueReady) {
-            entries.add(StreamDialogEntry.enqueue)
+        val dialogBuilder = InfoItemDialog.Builder(activity, this, item)
 
-            if (PlayerHolder.getInstance().queueSize > 1) {
-                entries.add(StreamDialogEntry.enqueue_next)
-            }
-        }
+        dialogBuilder.addEnqueueEntriesIfNeeded()
+        dialogBuilder.addStartHereEntries()
+        dialogBuilder.addAllEntries(
+            StreamDialogDefaultEntry.APPEND_PLAYLIST,
+            StreamDialogDefaultEntry.SHARE,
+            StreamDialogDefaultEntry.OPEN_IN_BROWSER
+        )
+        dialogBuilder.addPlayWithKodiEntryIfNeeded()
+        dialogBuilder.addMarkAsWatchedEntryIfNeeded(item.streamType)
+        dialogBuilder.addChannelDetailsEntryIfPossible()
 
-        if (item.streamType == StreamType.AUDIO_STREAM) {
-            entries.addAll(
-                listOf(
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share,
-                    StreamDialogEntry.open_in_browser
-                )
-            )
-        } else {
-            entries.addAll(
-                listOf(
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.start_here_on_popup,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share,
-                    StreamDialogEntry.open_in_browser
-                )
-            )
-        }
-
-        // show "mark as watched" only when watch history is enabled
-        if (StreamDialogEntry.shouldAddMarkAsWatched(item.streamType, context)) {
-            entries.add(
-                StreamDialogEntry.mark_as_watched
-            )
-        }
-        entries.add(StreamDialogEntry.show_channel_details)
-
-        StreamDialogEntry.setEnabledEntries(entries)
-        InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context)) { _, which ->
-            StreamDialogEntry.clickOn(which, this, item)
-        }.show()
+        dialogBuilder.create().show()
     }
 
     private val listenerStreamItem = object : OnItemClickListener, OnItemLongClickListener {

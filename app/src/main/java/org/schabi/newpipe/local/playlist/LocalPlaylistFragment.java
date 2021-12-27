@@ -1,5 +1,8 @@
 package org.schabi.newpipe.local.playlist;
 
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -38,22 +41,18 @@ import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainPlayer.PlayerType;
-import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
-import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
-import org.schabi.newpipe.util.StreamDialogEntry;
+import org.schabi.newpipe.util.StreamDialogDefaultEntry;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -67,9 +66,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
-
-import static org.schabi.newpipe.ktx.ViewUtils.animate;
-import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> {
     // Save the list 10 seconds after the last change occurred
@@ -751,62 +747,33 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
         final StreamInfoItem infoItem = item.toStreamInfoItem();
 
-        final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
+        final InfoItemDialog.Builder dialogBuilder = new InfoItemDialog.Builder(
+                activity, this, infoItem);
 
-        if (PlayerHolder.getInstance().isPlayQueueReady()) {
-            entries.add(StreamDialogEntry.enqueue);
+        dialogBuilder.addEnqueueEntriesIfNeeded();
+        dialogBuilder.addStartHereEntries();
+        dialogBuilder.addAllEntries(
+                StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
+                StreamDialogDefaultEntry.DELETE,
+                StreamDialogDefaultEntry.APPEND_PLAYLIST,
+                StreamDialogDefaultEntry.SHARE,
+                StreamDialogDefaultEntry.OPEN_IN_BROWSER
+        );
+        dialogBuilder.addPlayWithKodiEntryIfNeeded();
+        dialogBuilder.addMarkAsWatchedEntryIfNeeded(infoItem.getStreamType());
+        dialogBuilder.addChannelDetailsEntryIfPossible();
 
-            if (PlayerHolder.getInstance().getQueueSize() > 1) {
-                entries.add(StreamDialogEntry.enqueue_next);
-            }
-        }
-        if (infoItem.getStreamType() == StreamType.AUDIO_STREAM) {
-            entries.addAll(Arrays.asList(
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.set_as_playlist_thumbnail,
-                    StreamDialogEntry.delete,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share
-            ));
-        } else {
-            entries.addAll(Arrays.asList(
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.start_here_on_popup,
-                    StreamDialogEntry.set_as_playlist_thumbnail,
-                    StreamDialogEntry.delete,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share
-            ));
-        }
-        entries.add(StreamDialogEntry.open_in_browser);
-        if (KoreUtils.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
-            entries.add(StreamDialogEntry.play_with_kodi);
-        }
-
-        // show "mark as watched" only when watch history is enabled
-        if (StreamDialogEntry.shouldAddMarkAsWatched(
-                item.getStreamEntity().getStreamType(),
-                context
-        )) {
-            entries.add(
-                    StreamDialogEntry.mark_as_watched
-            );
-        }
-        entries.add(StreamDialogEntry.show_channel_details);
-
-        StreamDialogEntry.setEnabledEntries(entries);
-
-        StreamDialogEntry.start_here_on_background.setCustomAction((fragment, infoItemDuplicate) ->
-                NavigationHelper.playOnBackgroundPlayer(context,
-                        getPlayQueueStartingAt(item), true));
-        StreamDialogEntry.set_as_playlist_thumbnail.setCustomAction(
+        // set custom actions
+        dialogBuilder.setAction(StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
+                (fragment, infoItemDuplicate) -> NavigationHelper.playOnBackgroundPlayer(
+                        context, getPlayQueueStartingAt(item), true));
+        dialogBuilder.setAction(StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
                 (fragment, infoItemDuplicate) ->
                         changeThumbnailUrl(item.getStreamEntity().getThumbnailUrl()));
-        StreamDialogEntry.delete.setCustomAction((fragment, infoItemDuplicate) ->
-                deleteItem(item));
+        dialogBuilder.setAction(StreamDialogDefaultEntry.DELETE,
+                (fragment, infoItemDuplicate) -> deleteItem(item));
 
-        new InfoItemDialog(activity, infoItem, StreamDialogEntry.getCommands(context),
-                (dialog, which) -> StreamDialogEntry.clickOn(which, this, infoItem)).show();
+        dialogBuilder.create().show();
     }
 
     private void setInitialData(final long pid, final String title) {
