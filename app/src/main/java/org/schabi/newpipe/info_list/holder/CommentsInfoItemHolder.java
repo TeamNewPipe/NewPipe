@@ -34,12 +34,14 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
     public final TextView itemTitleView;
     private final ImageView itemHeartView;
+    private final ImageView itemPinnedView;
 
     public CommentsInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
         super(infoItemBuilder, R.layout.list_comments_item, parent);
 
         itemTitleView = itemView.findViewById(R.id.itemTitleView);
         itemHeartView = itemView.findViewById(R.id.detail_heart_image_view);
+        itemPinnedView = itemView.findViewById(R.id.detail_pinned_view);
     }
 
     @Override
@@ -55,5 +57,7 @@ public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
         itemTitleView.setText(item.getUploaderName());
 
         itemHeartView.setVisibility(item.isHeartedByUploader() ? View.VISIBLE : View.GONE);
+
+        itemPinnedView.setVisibility(item.isPinned() ? View.VISIBLE : View.GONE);
     }
 }
