@@ -1521,6 +1521,8 @@ public final class VideoDetailFragment
         animate(binding.detailThumbnailPlayButton, true, 200);
         binding.detailVideoTitleView.setText(title);
 
+        binding.detailSubChannelThumbnailView.setVisibility(View.GONE);
+
         if (!isEmpty(info.getSubChannelName())) {
             displayBothUploaderAndSubChannel(info);
         } else if (!isEmpty(info.getUploaderName())) {
@@ -1648,11 +1650,6 @@ public final class VideoDetailFragment
         binding.detailSubChannelTextView.setVisibility(View.VISIBLE);
         binding.detailSubChannelTextView.setSelected(true);
         binding.detailUploaderTextView.setVisibility(View.GONE);
-
-        //No sub-channel name implies no sub-channel icon, but check just to make sure.
-        if (isEmpty(info.getSubChannelAvatarUrl())) {
-            binding.detailSubChannelThumbnailView.setVisibility(View.GONE);
-        }
     }
 
     private void displayBothUploaderAndSubChannel(final StreamInfo info) {
