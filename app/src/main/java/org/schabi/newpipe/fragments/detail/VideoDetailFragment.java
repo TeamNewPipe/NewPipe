@@ -2266,7 +2266,7 @@ public final class VideoDetailFragment
 
                 switch (newState) {
                     case BottomSheetBehavior.STATE_HIDDEN:
-                        moveFocusToMainFragment(true);
+                        moveFocusToMainFragment(false);
                         manageSpaceAtTheBottom(true);
 
                         bottomSheetBehavior.setPeekHeight(0);
