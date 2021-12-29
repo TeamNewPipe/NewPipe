@@ -40,13 +40,13 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
         assert showErrorSnackbarPreference != null;
         assert createErrorNotificationPreference != null;
 
-        final Optional<DebugSettingsBVLeakCanaryAPI> optPDLeakCanary = getBVLeakCanary();
+        final Optional<DebugSettingsBVLeakCanaryAPI> optBVLeakCanary = getBVLeakCanary();
 
-        allowHeapDumpingPreference.setEnabled(optPDLeakCanary.isPresent());
-        showMemoryLeaksPreference.setEnabled(optPDLeakCanary.isPresent());
+        allowHeapDumpingPreference.setEnabled(optBVLeakCanary.isPresent());
+        showMemoryLeaksPreference.setEnabled(optBVLeakCanary.isPresent());
 
-        if (optPDLeakCanary.isPresent()) {
-            final DebugSettingsBVLeakCanaryAPI pdLeakCanary = optPDLeakCanary.get();
+        if (optBVLeakCanary.isPresent()) {
+            final DebugSettingsBVLeakCanaryAPI pdLeakCanary = optBVLeakCanary.get();
 
             showMemoryLeaksPreference.setOnPreferenceClickListener(preference -> {
                 startActivity(pdLeakCanary.getNewLeakDisplayActivityIntent());
