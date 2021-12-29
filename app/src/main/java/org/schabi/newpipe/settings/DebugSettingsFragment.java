@@ -11,9 +11,12 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.PicassoHelper;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 
 public class DebugSettingsFragment extends BasePreferenceFragment {
+    private static final String DUMMY = "Dummy";
+
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         addPreferencesFromResourceRegistry();
@@ -61,18 +64,18 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
         });
 
         crashTheAppPreference.setOnPreferenceClickListener(preference -> {
-            throw new RuntimeException();
+            throw new RuntimeException(DUMMY);
         });
 
         showErrorSnackbarPreference.setOnPreferenceClickListener(preference -> {
             ErrorUtil.showUiErrorSnackbar(DebugSettingsFragment.this,
-                    "Dummy", new RuntimeException("Dummy"));
+                    DUMMY, new RuntimeException(DUMMY));
             return true;
         });
 
         createErrorNotificationPreference.setOnPreferenceClickListener(preference -> {
             ErrorUtil.createNotification(requireContext(),
-                    new ErrorInfo(new RuntimeException("Dummy"), UserAction.UI_ERROR, "Dummy"));
+                    new ErrorInfo(new RuntimeException(DUMMY), UserAction.UI_ERROR, DUMMY));
             return true;
         });
     }
@@ -81,9 +84,10 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
         try {
             // Try to find the implementation of the LeakCanary API
             return Optional.of((DebugSettingsBVLeakCanaryAPI)
-                    Class.forName(DebugSettingsBVLeakCanaryAPI.IMPL_CLASS).newInstance());
-        } catch (final ClassNotFoundException
-                | IllegalAccessException | java.lang.InstantiationException e) {
+                    Class.forName(DebugSettingsBVLeakCanaryAPI.IMPL_CLASS)
+                            .getDeclaredConstructor()
+                            .newInstance());
+        } catch (final Exception e) {
             return Optional.empty();
         }
     }
