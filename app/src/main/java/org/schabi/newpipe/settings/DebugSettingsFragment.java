@@ -11,7 +11,6 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.PicassoHelper;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 
 public class DebugSettingsFragment extends BasePreferenceFragment {
