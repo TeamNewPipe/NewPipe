@@ -217,6 +217,13 @@ public class SettingsActivity extends AppCompatActivity implements
                     .getEntryByPreferencesResId(R.xml.update_settings)
                     .setSearchable(false);
         }
+
+        // Hide debug preferences in RELEASE build variant
+        if (DEBUG) {
+            SettingsResourceRegistry.getInstance()
+                    .getEntryByPreferencesResId(R.xml.debug_settings)
+                    .setSearchable(true);
+        }
     }
 
     public void setMenuSearchItem(final MenuItem menuSearchItem) {

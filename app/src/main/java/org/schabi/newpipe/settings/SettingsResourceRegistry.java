@@ -1,7 +1,6 @@
 package org.schabi.newpipe.settings;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.XmlRes;
 import androidx.fragment.app.Fragment;
 
@@ -34,6 +33,7 @@ public final class SettingsResourceRegistry {
 
         add(AppearanceSettingsFragment.class, R.xml.appearance_settings);
         add(ContentSettingsFragment.class, R.xml.content_settings);
+        add(DebugSettingsFragment.class, R.xml.debug_settings).setSearchable(false);
         add(DownloadSettingsFragment.class, R.xml.download_settings);
         add(HistorySettingsFragment.class, R.xml.history_settings);
         add(NotificationSettingsFragment.class, R.xml.notification_settings);
@@ -51,7 +51,6 @@ public final class SettingsResourceRegistry {
         return entry;
     }
 
-    @Nullable
     public SettingRegistryEntry getEntryByFragmentClass(
             final Class<? extends Fragment> fragmentClass
     ) {
@@ -62,7 +61,6 @@ public final class SettingsResourceRegistry {
                 .orElse(null);
     }
 
-    @Nullable
     public SettingRegistryEntry getEntryByPreferencesResId(@XmlRes final int preferencesResId) {
         return registeredEntries.stream()
                 .filter(e -> Objects.equals(e.getPreferencesResId(), preferencesResId))
@@ -78,7 +76,6 @@ public final class SettingsResourceRegistry {
         return entry.getPreferencesResId();
     }
 
-    @Nullable
     public Class<? extends Fragment> getFragmentClass(@XmlRes final int preferencesResId) {
         final SettingRegistryEntry entry = getEntryByPreferencesResId(preferencesResId);
         if (entry == null) {

@@ -6,7 +6,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.preference.Preference;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.CheckForNewAppVersion;
@@ -26,11 +25,16 @@ public class MainSettingsFragment extends BasePreferenceFragment {
 
         // Check if the app is updatable
         if (!CheckForNewAppVersion.isReleaseApk(App.getApp())) {
-            final Preference update
-                    = findPreference(getString(R.string.update_pref_screen_key));
-            getPreferenceScreen().removePreference(update);
+            getPreferenceScreen().removePreference(
+                    findPreference(getString(R.string.update_pref_screen_key)));
 
             defaultPreferences.edit().putBoolean(getString(R.string.update_app_key), false).apply();
+        }
+
+        // Hide debug preferences in RELEASE build variant
+        if (!DEBUG) {
+            getPreferenceScreen().removePreference(
+                    findPreference(getString(R.string.debug_pref_screen_key)));
         }
     }
 

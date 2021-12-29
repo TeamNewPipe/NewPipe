@@ -1,5 +1,6 @@
 package org.schabi.newpipe.settings;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.preference.Preference;
@@ -10,13 +11,15 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.PicassoHelper;
 
-import leakcanary.LeakCanary;
+import java.util.Optional;
 
 public class DebugSettingsFragment extends BasePreferenceFragment {
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.debug_settings);
+        addPreferencesFromResourceRegistry();
 
+        final Preference allowHeapDumpingPreference
+                = findPreference(getString(R.string.allow_heap_dumping_key));
         final Preference showMemoryLeaksPreference
                 = findPreference(getString(R.string.show_memory_leaks_key));
         final Preference showImageIndicatorsPreference
@@ -28,16 +31,29 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
         final Preference createErrorNotificationPreference
                 = findPreference(getString(R.string.create_error_notification_key));
 
+        assert allowHeapDumpingPreference != null;
         assert showMemoryLeaksPreference != null;
         assert showImageIndicatorsPreference != null;
         assert crashTheAppPreference != null;
         assert showErrorSnackbarPreference != null;
         assert createErrorNotificationPreference != null;
 
-        showMemoryLeaksPreference.setOnPreferenceClickListener(preference -> {
-            startActivity(LeakCanary.INSTANCE.newLeakDisplayActivityIntent());
-            return true;
-        });
+        final Optional<DebugSettingsBVLeakCanaryAPI> optPDLeakCanary = getBVLeakCanary();
+
+        allowHeapDumpingPreference.setEnabled(optPDLeakCanary.isPresent());
+        showMemoryLeaksPreference.setEnabled(optPDLeakCanary.isPresent());
+
+        if (optPDLeakCanary.isPresent()) {
+            final DebugSettingsBVLeakCanaryAPI pdLeakCanary = optPDLeakCanary.get();
+
+            showMemoryLeaksPreference.setOnPreferenceClickListener(preference -> {
+                startActivity(pdLeakCanary.getNewLeakDisplayActivityIntent());
+                return true;
+            });
+        } else {
+            allowHeapDumpingPreference.setSummary(R.string.leak_canary_not_available);
+            showMemoryLeaksPreference.setSummary(R.string.leak_canary_not_available);
+        }
 
         showImageIndicatorsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             PicassoHelper.setIndicatorsEnabled((Boolean) newValue);
@@ -59,5 +75,27 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
                     new ErrorInfo(new RuntimeException("Dummy"), UserAction.UI_ERROR, "Dummy"));
             return true;
         });
+    }
+
+    private Optional<DebugSettingsBVLeakCanaryAPI> getBVLeakCanary() {
+        try {
+            // Try to find the implementation of the LeakCanary API
+            return Optional.of((DebugSettingsBVLeakCanaryAPI)
+                    Class.forName(DebugSettingsBVLeakCanaryAPI.IMPL_CLASS).newInstance());
+        } catch (final ClassNotFoundException
+                | IllegalAccessException | java.lang.InstantiationException e) {
+            return Optional.empty();
+        }
+    }
+
+    /**
+     * Build variant dependent leak canary API for this fragment.
+     * Why is LeakCanary not used directly? Because it can't be assured
+     */
+    public interface DebugSettingsBVLeakCanaryAPI {
+        String IMPL_CLASS =
+                "org.schabi.newpipe.settings.DebugSettingsBVLeakCanary";
+
+        Intent getNewLeakDisplayActivityIntent();
     }
 }
