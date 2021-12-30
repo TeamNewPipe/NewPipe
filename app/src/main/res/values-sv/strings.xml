@@ -79,7 +79,7 @@
     <string name="detail_likes_img_view_description">Gillar</string>
     <string name="detail_dislikes_img_view_description">Ogillar</string>
     <string name="subscribe_button_title">Prenumerera</string>
-    <string name="subscribed_button_title">Prenumererad</string>
+    <string name="subscribed_button_title">Prenumererar</string>
     <string name="channel_unsubscribed">Prenumeration avslutad</string>
     <string name="subscription_change_failed">Kunde inte ändra prenumeration</string>
     <string name="subscription_update_failed">Kunde inte uppdatera prenumeration</string>
@@ -494,7 +494,7 @@
 \nÄr du säker\? Detta kan inte ångras!</string>
     <string name="remove_watched_popup_title">Ta bort tittade videor\?</string>
     <string name="remove_watched">Ta bort tittade</string>
-    <string name="systems_language">Systems standard</string>
+    <string name="systems_language">Systemets standard</string>
     <string name="app_language_title">Appspråk</string>
     <string name="choose_instance_prompt">Välj en instans</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" möjliggör hämtningar till ett externt SD-kort</string>
