@@ -494,7 +494,7 @@
 \nÄr du säker\? Detta kan inte ångras!</string>
     <string name="remove_watched_popup_title">Ta bort tittade videor\?</string>
     <string name="remove_watched">Ta bort tittade</string>
-    <string name="systems_language">Systemets standard</string>
+    <string name="systems_language">Systemstandard</string>
     <string name="app_language_title">Appspråk</string>
     <string name="choose_instance_prompt">Välj en instans</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" möjliggör hämtningar till ett externt SD-kort</string>
