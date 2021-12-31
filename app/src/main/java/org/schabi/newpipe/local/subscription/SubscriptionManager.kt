@@ -75,7 +75,12 @@ class SubscriptionManager(context: Context) {
                 Completable.fromAction {
                     entity.notificationMode = mode
                     subscriptionTable().update(entity)
-                }.andThen(rememberLastStream(entity))
+                }.apply {
+                    if (mode != NotificationMode.DISABLED) {
+                        // notifications have just been enabled, mark all streams as "old"
+                        andThen(rememberAllStreams(entity))
+                    }
+                }
             }
     }
 
@@ -108,7 +113,12 @@ class SubscriptionManager(context: Context) {
         subscriptionTable.delete(subscriptionEntity)
     }
 
-    private fun rememberLastStream(subscription: SubscriptionEntity): Completable {
+    /**
+     * Fetches the list of videos for the provided channel and saves them in the database, so that
+     * they will be considered as "old"/"already seen" streams and the user will never notified
+     * about any one of them.
+     */
+    private fun rememberAllStreams(subscription: SubscriptionEntity): Completable {
         return ExtractorHelper.getChannelInfo(subscription.serviceId, subscription.url, false)
             .map { channel -> channel.relatedItems.map { stream -> StreamEntity(stream) } }
             .flatMapCompletable { entities ->
