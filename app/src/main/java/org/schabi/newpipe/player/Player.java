@@ -600,22 +600,24 @@ public final class Player implements
                     }
 
                     @Override
-                    public Boolean shouldFastForward(@NonNull final DisplayPortion portion) {
+                    public Optional<Boolean> shouldFastForward(
+                            @NonNull final DisplayPortion portion
+                    ) {
                         // Null indicates an invalid area or condition e.g. the middle portion
                         // or video start or end was reached during double tap seeking
                         if (invalidSeekConditions()) {
                             playerGestureListener.endMultiDoubleTap();
-                            return null;
+                            return Optional.empty();
                         }
                         if (portion == DisplayPortion.LEFT
                                 // Small puffer to eliminate infinite rewind seeking
                                 && simpleExoPlayer.getCurrentPosition() > 500L) {
-                            return false;
+                            return Optional.of(false);
                         } else if (portion == DisplayPortion.RIGHT) {
-                            return true;
+                            return Optional.of(true);
                         }
                         /* portion == DisplayPortion.MIDDLE */
-                        return null;
+                        return Optional.empty();
                     }
 
                     @Override
@@ -630,7 +632,8 @@ public final class Player implements
 
                     private boolean invalidSeekConditions() {
                         return exoPlayerIsNull()
-                            || simpleExoPlayer.getPlaybackState() == SimpleExoPlayer.STATE_ENDED
+                            || simpleExoPlayer.getPlaybackState()
+                                == com.google.android.exoplayer2.Player.STATE_ENDED
                             || simpleExoPlayer.getCurrentPosition() >= simpleExoPlayer.getDuration()
                             || currentState == STATE_COMPLETED;
                     }

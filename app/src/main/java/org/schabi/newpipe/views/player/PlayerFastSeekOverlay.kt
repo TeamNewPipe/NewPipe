@@ -13,6 +13,7 @@ import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.player.event.DisplayPortion
 import org.schabi.newpipe.player.event.DoubleTapListener
+import java.util.Optional
 
 class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
     ConstraintLayout(context, attrs), DoubleTapListener {
@@ -62,7 +63,8 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
     }
 
     override fun onDoubleTapProgressDown(portion: DisplayPortion) {
-        val shouldForward: Boolean = performListener?.shouldFastForward(portion) ?: return
+        val shouldForward: Boolean =
+            performListener?.shouldFastForward(portion)?.orElse(null) ?: return
 
         if (DEBUG)
             Log.d(
@@ -123,7 +125,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
     interface PerformListener {
         fun onDoubleTap()
         fun onDoubleTapEnd()
-        fun shouldFastForward(portion: DisplayPortion): Boolean?
+        fun shouldFastForward(portion: DisplayPortion): Optional<Boolean>
         fun seek(forward: Boolean)
     }
 
