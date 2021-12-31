@@ -17,6 +17,9 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import org.schabi.newpipe.App
 import org.schabi.newpipe.R
+import org.schabi.newpipe.error.ErrorInfo
+import org.schabi.newpipe.error.ErrorUtil
+import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.local.feed.service.FeedLoadManager
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import java.util.concurrent.TimeUnit
@@ -59,7 +62,10 @@ class NotificationWorker(
             }
             .doOnError { throwable ->
                 Log.e(TAG, "Error while displaying streams notifications", throwable)
-                // TODO show error notification
+                ErrorUtil.createNotification(
+                    applicationContext,
+                    ErrorInfo(throwable, UserAction.NEW_STREAMS_NOTIFICATIONS, "main worker")
+                )
             }
             .onErrorReturnItem(Result.failure())
     } else {
