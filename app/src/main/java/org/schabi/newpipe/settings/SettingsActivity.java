@@ -3,6 +3,7 @@ package org.schabi.newpipe.settings;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +40,9 @@ import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.concurrent.TimeUnit;
+
+import icepick.Icepick;
+import icepick.State;
 
 /*
  * Created by Christian Schabesberger on 31.08.15.
@@ -77,20 +81,37 @@ public class SettingsActivity extends AppCompatActivity implements
     private View searchContainer;
     private EditText searchEditText;
 
+    // State
+    @State
+    String searchText;
+    @State
+    boolean wasSearchActive;
+
     @Override
     protected void onCreate(final Bundle savedInstanceBundle) {
         setTheme(ThemeHelper.getSettingsThemeStyle(this));
         assureCorrectAppLanguage(this);
+
         super.onCreate(savedInstanceBundle);
+        Icepick.restoreInstanceState(this, savedInstanceBundle);
+        final boolean restored = savedInstanceBundle != null;
 
         final SettingsLayoutBinding settingsLayoutBinding =
                 SettingsLayoutBinding.inflate(getLayoutInflater());
         setContentView(settingsLayoutBinding.getRoot());
-        initSearch(settingsLayoutBinding);
+        initSearch(settingsLayoutBinding, restored);
 
         setSupportActionBar(settingsLayoutBinding.settingsToolbarLayout.toolbar);
 
-        if (savedInstanceBundle == null) {
+        if (restored) {
+            // Restore state
+            if (this.wasSearchActive) {
+                setSearchActive(true);
+                if (!TextUtils.isEmpty(this.searchText)) {
+                    this.searchEditText.setText(this.searchText);
+                }
+            }
+        } else {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.settings_fragment_holder, new MainSettingsFragment())
                     .commit();
@@ -99,6 +120,12 @@ public class SettingsActivity extends AppCompatActivity implements
         if (DeviceUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull final Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Icepick.saveInstanceState(this, outState);
     }
 
     @Override
@@ -175,7 +202,10 @@ public class SettingsActivity extends AppCompatActivity implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Search
 
-    private void initSearch(final SettingsLayoutBinding settingsLayoutBinding) {
+    private void initSearch(
+            final SettingsLayoutBinding settingsLayoutBinding,
+            final boolean restored
+    ) {
         searchContainer =
                 settingsLayoutBinding.settingsToolbarLayout.toolbar
                         .findViewById(R.id.toolbar_search_container);
@@ -207,7 +237,19 @@ public class SettingsActivity extends AppCompatActivity implements
                 .map(parser::parse)
                 .forEach(searcher::add);
 
-        searchFragment = new PreferenceSearchFragment(searcher);
+        if (restored) {
+            searchFragment = (PreferenceSearchFragment) getSupportFragmentManager()
+                    .findFragmentByTag(PreferenceSearchFragment.NAME);
+            if (searchFragment != null) {
+                // Hide/Remove the search fragment otherwise we get an exception
+                // when adding it (because it's already present)
+                hideSearchFragment();
+            }
+        }
+        if (searchFragment == null) {
+            searchFragment = new PreferenceSearchFragment();
+        }
+        searchFragment.setSearcher(searcher);
     }
 
     private void prepareSearchConfig() {
@@ -228,41 +270,54 @@ public class SettingsActivity extends AppCompatActivity implements
 
     public void setMenuSearchItem(final MenuItem menuSearchItem) {
         this.menuSearchItem = menuSearchItem;
+
+        // Ensure that the item is in the correct state when adding it. This is due to
+        // Android's lifecycle (the Activity is recreated before the Fragment that registers this)
+        if (menuSearchItem != null) {
+            menuSearchItem.setVisible(!isSearchActive());
+        }
     }
 
     public void setSearchActive(final boolean active) {
+        if (DEBUG) {
+            Log.d(TAG, "setSearchActive called active=" + active);
+        }
+
         // Ignore if search is already in correct state
         if (isSearchActive() == active) {
             return;
         }
 
-        if (DEBUG) {
-            Log.d(TAG, "setSearchActive called active=" + active);
-        }
+        wasSearchActive = active;
 
         searchContainer.setVisibility(active ? View.VISIBLE : View.GONE);
         if (menuSearchItem != null) {
             menuSearchItem.setVisible(!active);
         }
 
-        final FragmentManager fm = getSupportFragmentManager();
         if (active) {
-            fm.beginTransaction()
+            getSupportFragmentManager()
+                    .beginTransaction()
                     .add(FRAGMENT_HOLDER_ID, searchFragment, PreferenceSearchFragment.NAME)
                     .addToBackStack(PreferenceSearchFragment.NAME)
                     .commit();
 
             KeyboardUtil.showKeyboard(this, searchEditText);
         } else if (searchFragment != null) {
-            fm.beginTransaction().remove(searchFragment).commit();
-            fm.popBackStack(
-                    PreferenceSearchFragment.NAME,
-                    FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            hideSearchFragment();
+            getSupportFragmentManager()
+                    .popBackStack(
+                        PreferenceSearchFragment.NAME,
+                        FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
             KeyboardUtil.hideKeyboard(this, searchEditText);
         }
 
         resetSearchText();
+    }
+
+    private void hideSearchFragment() {
+        getSupportFragmentManager().beginTransaction().remove(searchFragment).commit();
     }
 
     private void resetSearchText() {
@@ -279,7 +334,8 @@ public class SettingsActivity extends AppCompatActivity implements
         }
 
         if (searchFragment != null) {
-            searchFragment.updateSearchResults(this.searchEditText.getText().toString());
+            searchText = this.searchEditText.getText().toString();
+            searchFragment.updateSearchResults(searchText);
         }
     }
 

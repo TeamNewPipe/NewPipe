@@ -24,14 +24,12 @@ import java.util.Objects;
 public class PreferenceSearchFragment extends Fragment {
     public static final String NAME = PreferenceSearchFragment.class.getSimpleName();
 
-    private final PreferenceSearcher searcher;
+    private PreferenceSearcher searcher;
 
     private SearchViewHolder viewHolder;
     private PreferenceSearchAdapter adapter;
 
-    public PreferenceSearchFragment(
-            final PreferenceSearcher searcher
-    ) {
+    public void setSearcher(final PreferenceSearcher searcher) {
         this.searcher = searcher;
     }
 
@@ -56,7 +54,7 @@ public class PreferenceSearchFragment extends Fragment {
     }
 
     public void updateSearchResults(final String keyword) {
-        if (adapter == null) {
+        if (adapter == null || searcher == null) {
             return;
         }
 
