@@ -40,13 +40,13 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
         assert showErrorSnackbarPreference != null;
         assert createErrorNotificationPreference != null;
 
-        final Optional<DebugSettingsBVLeakCanaryAPI> optBVLeakCanary = getBVLeakCanary();
+        final Optional<DebugSettingsBVDLeakCanaryAPI> optBVLeakCanary = getBVDLeakCanary();
 
         allowHeapDumpingPreference.setEnabled(optBVLeakCanary.isPresent());
         showMemoryLeaksPreference.setEnabled(optBVLeakCanary.isPresent());
 
         if (optBVLeakCanary.isPresent()) {
-            final DebugSettingsBVLeakCanaryAPI pdLeakCanary = optBVLeakCanary.get();
+            final DebugSettingsBVDLeakCanaryAPI pdLeakCanary = optBVLeakCanary.get();
 
             showMemoryLeaksPreference.setOnPreferenceClickListener(preference -> {
                 startActivity(pdLeakCanary.getNewLeakDisplayActivityIntent());
@@ -79,11 +79,15 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
         });
     }
 
-    private Optional<DebugSettingsBVLeakCanaryAPI> getBVLeakCanary() {
+    /**
+     * Tries to find the {@link DebugSettingsBVDLeakCanaryAPI#IMPL_CLASS} and loads it if available.
+     * @return An {@link Optional} which is empty if the implementation class couldn't be loaded.
+     */
+    private Optional<DebugSettingsBVDLeakCanaryAPI> getBVDLeakCanary() {
         try {
             // Try to find the implementation of the LeakCanary API
-            return Optional.of((DebugSettingsBVLeakCanaryAPI)
-                    Class.forName(DebugSettingsBVLeakCanaryAPI.IMPL_CLASS)
+            return Optional.of((DebugSettingsBVDLeakCanaryAPI)
+                    Class.forName(DebugSettingsBVDLeakCanaryAPI.IMPL_CLASS)
                             .getDeclaredConstructor()
                             .newInstance());
         } catch (final Exception e) {
@@ -92,12 +96,12 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
     }
 
     /**
-     * Build variant dependent leak canary API for this fragment.
+     * Build variant dependent (BVD) leak canary API for this fragment.
      * Why is LeakCanary not used directly? Because it can't be assured
      */
-    public interface DebugSettingsBVLeakCanaryAPI {
+    public interface DebugSettingsBVDLeakCanaryAPI {
         String IMPL_CLASS =
-                "org.schabi.newpipe.settings.DebugSettingsBVLeakCanary";
+                "org.schabi.newpipe.settings.DebugSettingsBVDLeakCanary";
 
         Intent getNewLeakDisplayActivityIntent();
     }
