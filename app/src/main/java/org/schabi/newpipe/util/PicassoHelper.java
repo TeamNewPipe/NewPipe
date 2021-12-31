@@ -5,7 +5,6 @@ import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 
 import com.squareup.picasso.Cache;
@@ -165,7 +164,6 @@ public final class PicassoHelper {
 
 
     public static void loadNotificationIcon(final String url,
-                                            final Context context,
                                             final Consumer<Bitmap> bitmapConsumer) {
         loadImageDefault(url, R.drawable.ic_newpipe_triangle_white)
                 .into(new Target() {
@@ -176,8 +174,7 @@ public final class PicassoHelper {
 
                     @Override
                     public void onBitmapFailed(final Exception e, final Drawable errorDrawable) {
-                        bitmapConsumer.accept(BitmapFactory.decodeResource(context.getResources(),
-                                R.drawable.ic_newpipe_triangle_white));
+                        bitmapConsumer.accept(null);
                     }
 
                     @Override

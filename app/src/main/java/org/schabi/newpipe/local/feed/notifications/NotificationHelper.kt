@@ -84,8 +84,8 @@ class NotificationHelper(val context: Context) {
             )
         )
 
-        PicassoHelper.loadNotificationIcon(data.avatarUrl, context) { bitmap ->
-            builder.setLargeIcon(bitmap)
+        PicassoHelper.loadNotificationIcon(data.avatarUrl) { bitmap ->
+            bitmap?.let { builder.setLargeIcon(it) } // set only if != null
             manager.notify(data.pseudoId, builder.build())
         }
     }
