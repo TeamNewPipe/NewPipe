@@ -74,7 +74,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
             )
 
         /*
-         * Check if a initial tab occurred or if direction was switched
+         * Check if a initial tap occurred or if direction was switched
          */
         if (!initTap || wasForwarding != shouldForward) {
             // Reset seconds and update position
@@ -90,7 +90,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
             }
         }
 
-        performListener?.onDoubleTab()
+        performListener?.onDoubleTap()
 
         secondsView.seconds += seekSeconds
         performListener?.seek(forward = shouldForward)
@@ -100,7 +100,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
         if (DEBUG)
             Log.d(TAG, "onDoubleTapFinished called with initTap = [$initTap]")
 
-        if (initTap) performListener?.onDoubleTabEnd()
+        if (initTap) performListener?.onDoubleTapEnd()
         initTap = false
 
         secondsView.stopAnimation()
@@ -121,8 +121,8 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
     }
 
     interface PerformListener {
-        fun onDoubleTab()
-        fun onDoubleTabEnd()
+        fun onDoubleTap()
+        fun onDoubleTapEnd()
         fun shouldFastForward(portion: DisplayPortion): Boolean?
         fun seek(forward: Boolean)
     }

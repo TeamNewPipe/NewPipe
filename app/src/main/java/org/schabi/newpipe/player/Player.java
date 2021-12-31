@@ -590,12 +590,12 @@ public final class Player implements
                 .performListener(new PlayerFastSeekOverlay.PerformListener() {
 
                     @Override
-                    public void onDoubleTab() {
+                    public void onDoubleTap() {
                         animate(binding.fastSeekOverlay, true, SEEK_OVERLAY_DURATION);
                     }
 
                     @Override
-                    public void onDoubleTabEnd() {
+                    public void onDoubleTapEnd() {
                         animate(binding.fastSeekOverlay, false, SEEK_OVERLAY_DURATION);
                     }
 
