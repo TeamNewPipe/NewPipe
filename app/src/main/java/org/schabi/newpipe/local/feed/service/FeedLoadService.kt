@@ -154,7 +154,9 @@ class FeedLoadService : Service() {
     private fun createNotification(): NotificationCompat.Builder {
         val cancelActionIntent = PendingIntent.getBroadcast(
             this,
-            NOTIFICATION_ID, Intent(ACTION_CANCEL), 0
+            NOTIFICATION_ID,
+            Intent(ACTION_CANCEL),
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
         )
 
         return NotificationCompat.Builder(this, getString(R.string.notification_channel_id))

@@ -675,4 +675,9 @@
     <string name="checking_updates_toast">Vérification des mises à jour…</string>
     <string name="manual_update_title">Vérifier les mises à jours</string>
     <string name="feed_new_items">Nouveaux éléments du flux</string>
+    <string name="report_player_errors_summary">Reporter les erreurs du lecteur en détail au lieu de montrer un bref message éphémère (utile pour diagnostiquer les problèmes)</string>
+    <string name="report_player_errors_title">Reporter des erreurs du lecteur</string>
+    <string name="crash_the_player">Couper le lecteur</string>
+    <string name="show_crash_the_player_title">Montrer \"Couper le lecteur\"</string>
+    <string name="show_crash_the_player_summary">Montrer une option couper lors de l\'utilisation du lecteur</string>
 </resources>

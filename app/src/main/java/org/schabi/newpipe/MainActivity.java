@@ -63,7 +63,7 @@ import org.schabi.newpipe.databinding.DrawerHeaderBinding;
 import org.schabi.newpipe.databinding.DrawerLayoutBinding;
 import org.schabi.newpipe.databinding.InstanceSpinnerLayoutBinding;
 import org.schabi.newpipe.databinding.ToolbarLayoutBinding;
-import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             setupDrawer();
         } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(this, "Setting up drawer", e);
+            ErrorUtil.showUiErrorSnackbar(this, "Setting up drawer", e);
         }
         if (DeviceUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Builds the drawer menu for the current service.
      *
-     * @throws ExtractionException
+     * @throws ExtractionException if the service didn't provide available kiosks
      */
     private void addDrawerMenuForCurrentService() throws ExtractionException {
         //Tabs
@@ -270,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     tabSelected(item);
                 } catch (final Exception e) {
-                    ErrorActivity.reportUiErrorInSnackbar(this, "Selecting main page tab", e);
+                    ErrorUtil.showUiErrorSnackbar(this, "Selecting main page tab", e);
                 }
                 break;
             case R.id.menu_options_about_group:
@@ -376,7 +376,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 addDrawerMenuForCurrentService();
             } catch (final Exception e) {
-                ErrorActivity.reportUiErrorInSnackbar(this, "Showing main page tabs", e);
+                ErrorUtil.showUiErrorSnackbar(this, "Showing main page tabs", e);
             }
         }
     }
@@ -479,7 +479,7 @@ public class MainActivity extends AppCompatActivity {
             drawerHeaderBinding.drawerHeaderActionButton.setContentDescription(
                     getString(R.string.drawer_header_description) + selectedServiceName);
         } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(this, "Setting up service toggle", e);
+            ErrorUtil.showUiErrorSnackbar(this, "Setting up service toggle", e);
         }
 
         final SharedPreferences sharedPreferences
@@ -789,7 +789,7 @@ public class MainActivity extends AppCompatActivity {
                 NavigationHelper.gotoMainFragment(getSupportFragmentManager());
             }
         } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(this, "Handling intent", e);
+            ErrorUtil.showUiErrorSnackbar(this, "Handling intent", e);
         }
     }
 

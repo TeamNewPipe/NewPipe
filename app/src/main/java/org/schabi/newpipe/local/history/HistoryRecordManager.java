@@ -244,9 +244,9 @@ public class HistoryRecordManager {
                 .subscribeOn(Schedulers.io());
     }
 
-    public Flowable<List<SearchHistoryEntry>> getRelatedSearches(final String query,
-                                                                 final int similarQueryLimit,
-                                                                 final int uniqueQueryLimit) {
+    public Flowable<List<String>> getRelatedSearches(final String query,
+                                                     final int similarQueryLimit,
+                                                     final int uniqueQueryLimit) {
         return query.length() > 0
                 ? searchHistoryTable.getSimilarEntries(query, similarQueryLimit)
                 : searchHistoryTable.getUniqueEntries(uniqueQueryLimit);

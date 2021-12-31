@@ -1,9 +1,10 @@
 package org.schabi.newpipe.error;
 
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,15 +12,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.grack.nanojson.JsonWriter;
 
 import org.schabi.newpipe.BuildConfig;
@@ -27,14 +25,12 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ActivityErrorBinding;
 import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 /*
  * Created by Christian Schabesberger on 24.10.15.
@@ -56,6 +52,10 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * This activity is used to show error details and allow reporting them in various ways. Use {@link
+ * ErrorUtil#openActivity(Context, ErrorInfo)} to correctly open this activity.
+ */
 public class ErrorActivity extends AppCompatActivity {
     // LOG TAGS
     public static final String TAG = ErrorActivity.class.toString();
@@ -76,67 +76,6 @@ public class ErrorActivity extends AppCompatActivity {
     private String currentTimeStamp;
 
     private ActivityErrorBinding activityErrorBinding;
-
-    /**
-     * Reports a new error by starting a new activity.
-     * <br/>
-     * Ensure that the data within errorInfo is serializable otherwise
-     * an exception will be thrown!<br/>
-     * {@link EnsureExceptionSerializable} might help.
-     *
-     * @param context
-     * @param errorInfo
-     */
-    public static void reportError(final Context context, final ErrorInfo errorInfo) {
-        final Intent intent = new Intent(context, ErrorActivity.class);
-        intent.putExtra(ERROR_INFO, errorInfo);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
-    }
-
-    public static void reportErrorInSnackbar(final Context context, final ErrorInfo errorInfo) {
-        final View rootView = context instanceof Activity
-                ? ((Activity) context).findViewById(android.R.id.content) : null;
-        reportErrorInSnackbar(context, rootView, errorInfo);
-    }
-
-    public static void reportErrorInSnackbar(final Fragment fragment, final ErrorInfo errorInfo) {
-        View rootView = fragment.getView();
-        if (rootView == null && fragment.getActivity() != null) {
-            rootView = fragment.getActivity().findViewById(android.R.id.content);
-        }
-        reportErrorInSnackbar(fragment.requireContext(), rootView, errorInfo);
-    }
-
-    public static void reportUiErrorInSnackbar(final Context context,
-                                               final String request,
-                                               final Throwable throwable) {
-        reportErrorInSnackbar(context, new ErrorInfo(throwable, UserAction.UI_ERROR, request));
-    }
-
-    public static void reportUiErrorInSnackbar(final Fragment fragment,
-                                               final String request,
-                                               final Throwable throwable) {
-        reportErrorInSnackbar(fragment, new ErrorInfo(throwable, UserAction.UI_ERROR, request));
-    }
-
-
-    ////////////////////////////////////////////////////////////////////////
-    // Utils
-    ////////////////////////////////////////////////////////////////////////
-
-    private static void reportErrorInSnackbar(final Context context,
-                                              @Nullable final View rootView,
-                                              final ErrorInfo errorInfo) {
-        if (rootView != null) {
-            Snackbar.make(rootView, R.string.error_snackbar_message, Snackbar.LENGTH_LONG)
-                    .setActionTextColor(Color.YELLOW)
-                    .setAction(context.getString(R.string.error_snackbar_action).toUpperCase(), v ->
-                            reportError(context, errorInfo)).show();
-        } else {
-            reportError(context, errorInfo);
-        }
-    }
 
 
     ////////////////////////////////////////////////////////////////////////

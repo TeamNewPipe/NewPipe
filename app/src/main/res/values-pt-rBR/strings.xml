@@ -672,4 +672,10 @@
     <string name="manual_update_title">Procurar por atualizações</string>
     <string name="manual_update_description">Procurar manualmente por novas versões</string>
     <string name="checking_updates_toast">Procurando por atualizações…</string>
+    <string name="crash_the_player">Travar o player</string>
+    <string name="report_player_errors_summary">Reporta os erros do player em detalhes completos, em vez de mostrar uma mensagem de notificação de curta duração (útil para diagnosticar problemas)</string>
+    <string name="show_crash_the_player_title">Mostrar \"travar o player\"</string>
+    <string name="report_player_errors_title">Reportar erros do player</string>
+    <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o player</string>
+    <string name="feed_new_items">Novos itens do feed</string>
 </resources>

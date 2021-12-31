@@ -118,7 +118,7 @@ class ErrorPanelHelper(
             showAndSetErrorButtonAction(
                 R.string.error_snackbar_action
             ) {
-                ErrorActivity.reportError(context, errorInfo)
+                ErrorUtil.openActivity(context, errorInfo)
             }
 
             errorTextView.setText(getExceptionDescription(errorInfo.throwable))
@@ -178,7 +178,7 @@ class ErrorPanelHelper(
         val DEBUG: Boolean = MainActivity.DEBUG
 
         @StringRes
-        public fun getExceptionDescription(throwable: Throwable?): Int {
+        fun getExceptionDescription(throwable: Throwable?): Int {
             return when (throwable) {
                 is AgeRestrictedContentException -> R.string.restricted_video_no_stream
                 is GeographicRestrictionException -> R.string.georestricted_content

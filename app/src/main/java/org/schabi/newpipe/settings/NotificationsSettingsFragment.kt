@@ -11,8 +11,8 @@ import io.reactivex.rxjava3.disposables.Disposable
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
-import org.schabi.newpipe.error.ErrorActivity
 import org.schabi.newpipe.error.ErrorInfo
+import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.local.feed.notifications.NotificationHelper
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker
@@ -118,7 +118,7 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
     }
 
     private fun onError(e: Throwable) {
-        ErrorActivity.reportErrorInSnackbar(
+        ErrorUtil.showSnackbar(
             this,
             ErrorInfo(e, UserAction.SUBSCRIPTION_GET, "Get subscriptions list")
         )

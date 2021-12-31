@@ -282,7 +282,7 @@
     <string name="playback_tempo">Ritmo</string>
     <string name="clear_views_history_title">Limpar histórico de visualizações</string>
     <string name="auto_queue_summary">Continuar (sem repetição) a fila de reprodução anexando um vídeo relacionado</string>
-    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para colocar na fila\"</string>
+    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para enfileirar\"</string>
     <string name="show_hold_to_append_summary">Mostrar dica ao premir em segundo plano ou no botão \"Detalhes:\" da janela popup</string>
     <string name="channels">Canais</string>
     <string name="playlists">Listas de reprodução</string>
@@ -303,7 +303,7 @@
     <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Por isso, não recolhe nenhum dado sem o seu consentimento.
 \nA polícia de privacidade do NewPipe explica, em detalhe, os tipos de dados enviados sempre que submete um relatório de erro.</string>
     <string name="read_privacy_policy">Ver política de privacidade</string>
-    <string name="auto_queue_title">Colocar vídeo seguinte na fila</string>
+    <string name="auto_queue_title">Enfileirar o próximo stream automaticamente</string>
     <string name="app_license">NewPipe é um software livre \"copyleft\": pode utilizar, estudar, partilhar e melhorar a aplicação. Especificamente, pode redistribuir e/ou modificar a aplicação nos termos da GNU General Public License, conforme publicada pela Free Software Foundation, tanto a versão 3 da licença ou (por opção) qualquer versão posterior.</string>
     <string name="import_settings">Também deseja importar as definições\?</string>
     <string name="hold_to_append">Toque longo para colocar na fila</string>
@@ -554,7 +554,7 @@
     <string name="notification_action_buffering">A carregar</string>
     <string name="clear_queue_confirmation_description">A fila do reprodutor ativo será substituída</string>
     <string name="unsupported_url_dialog_message">URL não reconhecido. Abrir com outra aplicação\?</string>
-    <string name="auto_queue_toggle">Colocar na fila automaticamente</string>
+    <string name="auto_queue_toggle">Enfileiramento automático</string>
     <string name="notification_action_shuffle">Baralhar</string>
     <string name="wifi_only">Apenas em Wi-Fi</string>
     <string name="notification_action_nothing">Nada</string>
@@ -673,4 +673,9 @@
     <string name="manual_update_description">Verificar manualmente se existe uma nova versão</string>
     <string name="checking_updates_toast">A procurar atualizações…</string>
     <string name="feed_new_items">Novos itens</string>
+    <string name="crash_the_player">Travar o reprodutor</string>
+    <string name="report_player_errors_summary">Relata os erros do reprodutor com todos os detalhes em vez de mostrar uma mensagem de notificação por pouco tempo (útil para diagnosticar problemas)</string>
+    <string name="report_player_errors_title">Relatar erros do reprodutor</string>
+    <string name="show_crash_the_player_title">Mostrar \"travar o reprodutor\"</string>
+    <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o reprodutor</string>
 </resources>

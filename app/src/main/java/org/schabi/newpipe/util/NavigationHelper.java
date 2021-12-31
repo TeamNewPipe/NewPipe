@@ -168,10 +168,14 @@ public final class NavigationHelper {
     public static void playOnBackgroundPlayer(final Context context,
                                               final PlayQueue queue,
                                               final boolean resumePlayback) {
-        if (PlayerHolder.getInstance().getType() != MainPlayer.PlayerType.AUDIO) {
-            Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT)
-                    .show();
-        }
+        Toast.makeText(
+                context,
+                PlayerHolder.getInstance().getType() == PlayerType.AUDIO
+                    ? R.string.background_player_already_playing_toast
+                    : R.string.background_player_playing_toast,
+                Toast.LENGTH_SHORT)
+                .show();
+
         final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
         intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.AUDIO.ordinal());
         ContextCompat.startForegroundService(context, intent);

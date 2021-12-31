@@ -252,8 +252,8 @@
     <string name="resize_zoom">Powiększ</string>
     <string name="caption_auto_generated">Wygenerowane automatycznie</string>
     <string name="enable_leak_canary_summary">Monitorowanie wycieków pamięci może powodować niestabilność aplikacji podczas zrzutu pamięci</string>
-    <string name="enable_disposed_exceptions_title">Zgłoś błędy spoza cyklu życia</string>
-    <string name="enable_disposed_exceptions_summary">Wymuś raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności</string>
+    <string name="enable_disposed_exceptions_title">Zgłaszaj błędy spoza cyklu życia</string>
+    <string name="enable_disposed_exceptions_summary">Wymuś raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności po usunięciu</string>
     <string name="use_inexact_seek_title">Używaj szybkiego, niedokładnego przewijania</string>
     <string name="use_inexact_seek_summary">Niedokładne przewijanie umożliwia szybsze przewijanie ze zmniejszoną dokładnością. Przewijanie o 5, 15 lub 25 sekund nie działa w tym przypadku</string>
     <string name="download_thumbnail_title">Wczytuj miniatury</string>
@@ -544,7 +544,7 @@
     <string name="remove_watched_popup_title">Usunąć obejrzane wideo\?</string>
     <string name="remove_watched">Usuń obejrzane</string>
     <string name="show_original_time_ago_summary">Oryginalne teksty z usług będą widoczne w strumieniowanych pozycjach</string>
-    <string name="show_original_time_ago_title">Pokaż oryginalny czas</string>
+    <string name="show_original_time_ago_title">Pokazuj oryginalny czas na pozycjach</string>
     <string name="youtube_restricted_mode_enabled_title">Włącz tryb ograniczonego dostępu YouTube\'a</string>
     <string name="video_detail_by">Przez %s</string>
     <string name="channel_created_by">Utworzony przez %s</string>
@@ -666,8 +666,8 @@
     <string name="mark_as_watched">Oznacz jako obejrzane</string>
     <string name="loading_channel_details">Ładowanie szczegółów kanału…</string>
     <string name="error_show_channel_details">Błąd podczas wyświetlania szczegółów kanału</string>
-    <string name="show_image_indicators_summary">Pokaż kolorowe wstążki Picasso nad obrazami wskazujące ich źródło: czerwone dla sieci, niebieskie dla dysku i zielone dla pamięci</string>
-    <string name="show_image_indicators_title">Pokaż wskaźniki obrazu</string>
+    <string name="show_image_indicators_summary">Pokazuj kolorowe wstążki Picasso nad obrazami wskazujące ich źródło: czerwone dla sieci, niebieskie dla dysku i zielone dla pamięci</string>
+    <string name="show_image_indicators_title">Pokazuj wskaźniki obrazu</string>
     <string name="remote_search_suggestions">Zdalne podpowiedzi wyszukiwania</string>
     <string name="local_search_suggestions">Lokalne podpowiedzi wyszukiwania</string>
     <plurals name="deleted_downloads_toast">

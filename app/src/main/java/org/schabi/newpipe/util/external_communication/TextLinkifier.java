@@ -33,7 +33,9 @@ import static org.schabi.newpipe.util.external_communication.InternalUrlsHandler
 public final class TextLinkifier {
     public static final String TAG = TextLinkifier.class.getSimpleName();
 
-    private static final Pattern HASHTAGS_PATTERN = Pattern.compile("(#[A-Za-z0-9_]+)");
+    // Looks for hashtags with characters from any language (\p{L}), numbers, or underscores
+    private static final Pattern HASHTAGS_PATTERN =
+            Pattern.compile("(#[\\p{L}0-9_]+)");
 
     private TextLinkifier() {
     }

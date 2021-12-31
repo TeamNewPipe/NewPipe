@@ -84,27 +84,22 @@ class FeedLoadManager(private val context: Context) {
 
         return outdatedSubscriptions
             .take(1)
-
             .doOnNext {
                 currentProgress.set(0)
                 maxProgress.set(it.size)
             }
             .filter { it.isNotEmpty() }
-
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext {
                 notificationUpdater.onNext("")
                 broadcastProgress()
             }
-
             .observeOn(Schedulers.io())
             .flatMap { Flowable.fromIterable(it) }
             .takeWhile { !cancelSignal.get() }
-
             .parallel(PARALLEL_EXTRACTIONS, PARALLEL_EXTRACTIONS * 2)
             .runOn(Schedulers.io(), PARALLEL_EXTRACTIONS * 2)
             .filter { !cancelSignal.get() }
-
             .map { subscriptionEntity ->
                 var error: Throwable? = null
                 try {
@@ -154,14 +149,11 @@ class FeedLoadManager(private val context: Context) {
                 }
             }
             .sequential()
-
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext(NotificationConsumer())
-
             .observeOn(Schedulers.io())
             .buffer(BUFFER_COUNT_BEFORE_INSERT)
             .doOnNext(DatabaseConsumer())
-
             .subscribeOn(Schedulers.io())
             .toList()
             .flatMap { x -> postProcessFeed().toSingleDefault(x.flatten()) }

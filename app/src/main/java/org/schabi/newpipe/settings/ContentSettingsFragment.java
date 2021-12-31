@@ -20,11 +20,12 @@ import androidx.preference.PreferenceManager;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
+import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
@@ -73,19 +74,28 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         final Preference importDataPreference = requirePreference(R.string.import_data);
         importDataPreference.setOnPreferenceClickListener((Preference p) -> {
-            requestImportPathLauncher.launch(
+            NoFileManagerSafeGuard.launchSafe(
+                    requestImportPathLauncher,
                     StoredFileHelper.getPicker(requireContext(),
-                            ZIP_MIME_TYPE, getImportExportDataUri()));
+                            ZIP_MIME_TYPE, getImportExportDataUri()),
+                    TAG,
+                    getContext()
+            );
+
             return true;
         });
 
         final Preference exportDataPreference = requirePreference(R.string.export_data);
         exportDataPreference.setOnPreferenceClickListener((final Preference p) -> {
-
-            requestExportPathLauncher.launch(
+            NoFileManagerSafeGuard.launchSafe(
+                    requestExportPathLauncher,
                     StoredFileHelper.getNewPicker(requireContext(),
                             "NewPipeData-" + exportDateFormat.format(new Date()) + ".zip",
-                            ZIP_MIME_TYPE, getImportExportDataUri()));
+                            ZIP_MIME_TYPE, getImportExportDataUri()),
+                    TAG,
+                    getContext()
+            );
+
             return true;
         });
 
@@ -205,7 +215,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             saveLastImportExportDataUri(exportDataUri); // save export path only on success
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT).show();
         } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(this, "Exporting database", e);
+            ErrorUtil.showUiErrorSnackbar(this, "Exporting database", e);
         }
     }
 
@@ -247,7 +257,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 finishImport(importDataUri);
             }
         } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(this, "Importing database", e);
+            ErrorUtil.showUiErrorSnackbar(this, "Importing database", e);
         }
     }
 

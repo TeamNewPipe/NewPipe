@@ -12,8 +12,8 @@ import com.grack.nanojson.JsonSink;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem.LocalItemType;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -35,6 +35,10 @@ import java.util.Objects;
 
 public abstract class Tab {
     private static final String JSON_TAB_ID_KEY = "tab_id";
+
+    private static final String NO_NAME = "<no-name>";
+    private static final String NO_ID = "<no-id>";
+    private static final String NO_URL = "<no-url>";
 
     Tab() {
     }
@@ -185,7 +189,9 @@ public abstract class Tab {
 
         @Override
         public String getTabName(final Context context) {
-            return "NewPipe"; //context.getString(R.string.blank_page_summary);
+            // TODO: find a better name for the blank tab (maybe "blank_tab") or replace it with
+            //       context.getString(R.string.app_name);
+            return "NewPipe"; // context.getString(R.string.blank_page_summary);
         }
 
         @DrawableRes
@@ -309,7 +315,7 @@ public abstract class Tab {
         private String kioskId;
 
         private KioskTab() {
-            this(-1, "<no-id>");
+            this(-1, NO_ID);
         }
 
         public KioskTab(final int kioskServiceId, final String kioskId) {
@@ -357,7 +363,7 @@ public abstract class Tab {
         @Override
         protected void readDataFromJson(final JsonObject jsonObject) {
             kioskServiceId = jsonObject.getInt(JSON_KIOSK_SERVICE_ID_KEY, -1);
-            kioskId = jsonObject.getString(JSON_KIOSK_ID_KEY, "<no-id>");
+            kioskId = jsonObject.getString(JSON_KIOSK_ID_KEY, NO_ID);
         }
 
         @Override
@@ -395,7 +401,7 @@ public abstract class Tab {
         private String channelName;
 
         private ChannelTab() {
-            this(-1, "<no-url>", "<no-name>");
+            this(-1, NO_URL, NO_NAME);
         }
 
         public ChannelTab(final int channelServiceId, final String channelUrl,
@@ -440,8 +446,8 @@ public abstract class Tab {
         @Override
         protected void readDataFromJson(final JsonObject jsonObject) {
             channelServiceId = jsonObject.getInt(JSON_CHANNEL_SERVICE_ID_KEY, -1);
-            channelUrl = jsonObject.getString(JSON_CHANNEL_URL_KEY, "<no-url>");
-            channelName = jsonObject.getString(JSON_CHANNEL_NAME_KEY, "<no-name>");
+            channelUrl = jsonObject.getString(JSON_CHANNEL_URL_KEY, NO_URL);
+            channelName = jsonObject.getString(JSON_CHANNEL_NAME_KEY, NO_NAME);
         }
 
         @Override
@@ -506,7 +512,7 @@ public abstract class Tab {
                 final StreamingService service = NewPipe.getService(kioskServiceId);
                 kioskId = service.getKioskList().getDefaultKioskId();
             } catch (final ExtractionException e) {
-                ErrorActivity.reportErrorInSnackbar(context, new ErrorInfo(e,
+                ErrorUtil.showSnackbar(context, new ErrorInfo(e,
                         UserAction.REQUESTED_KIOSK, "Loading default kiosk for selected service"));
             }
             return kioskId;
@@ -527,7 +533,7 @@ public abstract class Tab {
         private LocalItemType playlistType;
 
         private PlaylistTab() {
-            this(-1, "<no-name>");
+            this(-1, NO_NAME);
         }
 
         public PlaylistTab(final long playlistId, final String playlistName) {
@@ -535,7 +541,7 @@ public abstract class Tab {
             this.playlistId = playlistId;
             this.playlistType = LocalItemType.PLAYLIST_LOCAL_ITEM;
             this.playlistServiceId = -1;
-            this.playlistUrl = "<no-url>";
+            this.playlistUrl = NO_URL;
         }
 
         public PlaylistTab(final int playlistServiceId, final String playlistUrl,
@@ -589,8 +595,8 @@ public abstract class Tab {
         @Override
         protected void readDataFromJson(final JsonObject jsonObject) {
             playlistServiceId = jsonObject.getInt(JSON_PLAYLIST_SERVICE_ID_KEY, -1);
-            playlistUrl = jsonObject.getString(JSON_PLAYLIST_URL_KEY, "<no-url>");
-            playlistName = jsonObject.getString(JSON_PLAYLIST_NAME_KEY, "<no-name>");
+            playlistUrl = jsonObject.getString(JSON_PLAYLIST_URL_KEY, NO_URL);
+            playlistName = jsonObject.getString(JSON_PLAYLIST_NAME_KEY, NO_NAME);
             playlistId = jsonObject.getInt(JSON_PLAYLIST_ID_KEY, -1);
             playlistType = LocalItemType.valueOf(
                     jsonObject.getString(JSON_PLAYLIST_TYPE_KEY,

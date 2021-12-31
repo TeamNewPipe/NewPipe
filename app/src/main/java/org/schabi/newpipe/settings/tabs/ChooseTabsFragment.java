@@ -27,8 +27,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.settings.SelectChannelFragment;
@@ -182,7 +182,7 @@ public class ChooseTabsFragment extends Fragment {
         final Tab.Type type = typeFrom(tabId);
 
         if (type == null) {
-            ErrorActivity.reportErrorInSnackbar(this,
+            ErrorUtil.showSnackbar(this,
                     new ErrorInfo(new IllegalStateException("Tab id not found: " + tabId),
                             UserAction.SOMETHING_ELSE, "Choosing tabs on settings"));
             return;

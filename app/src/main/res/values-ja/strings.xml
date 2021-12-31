@@ -660,4 +660,8 @@
     <string name="enqueue_next_stream">次をキューに追加</string>
     <string name="enqueued_next">次をキューに追加しました</string>
     <string name="detail_heart_img_view_description">クリエイターの心をこめて</string>
+    <string name="report_player_errors_summary">プレーヤーのエラーを、短時間のトーストメッセージではなく、詳細に報告する（問題の診断に役立ちます）</string>
+    <string name="report_player_errors_title">プレイヤーのエラーを報告</string>
+    <string name="show_crash_the_player_title">\"プレイヤーがクラッシュ\"を表示</string>
+    <string name="crash_the_player">プレイヤーがクラッシュ</string>
 </resources>

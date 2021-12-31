@@ -183,7 +183,7 @@
     <string name="unknown_content">[Desconocido]</string>
     <string name="start_here_on_background">Comenzar a reproducir en segundo plano</string>
     <string name="start_here_on_popup">Reproducir en modo emergente</string>
-    <string name="show_hold_to_append_title">Mostrar la sugerencia \"Mantener pulsado para añadir a la cola\"</string>
+    <string name="show_hold_to_append_title">Mostrar sugerencia de \"Mantener pulsado para añadir a la cola\"</string>
     <string name="new_and_hot">Nuevo y lo mejor</string>
     <string name="hold_to_append">Mantener pulsado para añadir a la cola</string>
     <string name="donation_title">Donar</string>
@@ -250,7 +250,7 @@
     <string name="enable_disposed_exceptions_summary">Forzar informe de excepciones no entregables de RX fuera del fragmento o del ciclo de actividad después del descarte</string>
     <string name="use_inexact_seek_title">Usar búsqueda rápida e inexacta</string>
     <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión. Buscar de a 5, 15 o 25 segundos no funciona</string>
-    <string name="auto_queue_title">Poner en cola vídeo relacionado siguiente</string>
+    <string name="auto_queue_title">Poner en cola automáticamente la siguiente transmisión</string>
     <string name="auto_queue_summary">Continuar reproducción sin repetir al añadir de forma automática un vídeo relacionado con el último visto</string>
     <string name="file">Archivo</string>
     <string name="missing_file">Archivo movido o borrado</string>
@@ -552,7 +552,7 @@
     <string name="autoplay_summary">Comenzar reproducción automáticamente — %s</string>
     <string name="title_activity_play_queue">Reproducir cola</string>
     <string name="unsupported_url_dialog_message">No se pudo reconocer la URL. ¿Abrir con otra aplicación\?</string>
-    <string name="auto_queue_toggle">Poner en cola</string>
+    <string name="auto_queue_toggle">Poner en cola automáticamente</string>
     <string name="clear_queue_confirmation_summary">Cambiar de un reproductor a otro puede reemplazar la cola de reproducción</string>
     <string name="clear_queue_confirmation_description">La cola de reproducción activa será reemplazada</string>
     <string name="clear_queue_confirmation_title">Pedir confirmación antes de vaciar una cola</string>

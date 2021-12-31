@@ -115,7 +115,7 @@
     <string name="enable_watch_history_title">Історія переглядів</string>
     <string name="resume_on_audio_focus_gain_title">Відновлювати відтворення</string>
     <string name="resume_on_audio_focus_gain_summary">Продовжувати відтворення після переривань (напр. телефонних дзвінків)</string>
-    <string name="show_hold_to_append_title">Показати пораду «Утримуй, щоб додати»</string>
+    <string name="show_hold_to_append_title">Показувати підказку «Утримуйте, щоб додати в чергу»</string>
     <string name="default_content_country_title">Типова країна вмісту</string>
     <string name="settings_category_player_title">Програвач</string>
     <string name="settings_category_player_behavior_title">Поведінка</string>
@@ -130,7 +130,7 @@
     <string name="notification_channel_name">Сповіщення NewPipe</string>
     <string name="notification_channel_description">Сповіщення для програвачів NewPipe на тлі й у вікні</string>
     <string name="unknown_content">[Невідомо]</string>
-    <string name="switch_to_background">Перемкнути на тло</string>
+    <string name="switch_to_background">Перейти у фоновий режим</string>
     <string name="switch_to_popup">Перемкнути у вікно</string>
     <string name="switch_to_main">Перемкнути на головну</string>
     <string name="import_data_title">Імпортувати базу даних</string>
@@ -258,7 +258,7 @@
     <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx-винятків, які відбуваються за межами фрагменту або діяльності життєвого циклу після усунення</string>
     <string name="use_inexact_seek_title">Викор. швидкий неточний пошук</string>
     <string name="use_inexact_seek_summary">Неточний пошук дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю</string>
-    <string name="auto_queue_title">Автододавання в чергу наступного запису</string>
+    <string name="auto_queue_title">Автододавання в чергу наступної трансляції</string>
     <string name="auto_queue_summary">Продовжити при завершені (не повторюваної) черги, додавши повʼязаний запис</string>
     <string name="file">Файл</string>
     <string name="invalid_directory">Такої теки не існує</string>
@@ -583,7 +583,7 @@
     <string name="comments_tab_description">Коментарі</string>
     <string name="settings_category_player_notification_summary">Налаштувати повідомлення про відтворюваний наразі потік</string>
     <string name="unsupported_url_dialog_message">Не розпізнано URL. Відкрити через іншу програму\?</string>
-    <string name="auto_queue_toggle">Самододавання в чергу</string>
+    <string name="auto_queue_toggle">Автоматична черга</string>
     <string name="show_meta_info_title">Показувати метадані</string>
     <string name="show_description_title">Показувати описи</string>
     <string name="night_theme_title">Нічна тема</string>

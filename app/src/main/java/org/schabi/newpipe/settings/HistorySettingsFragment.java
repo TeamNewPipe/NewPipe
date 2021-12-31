@@ -9,8 +9,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.InfoCache;
@@ -64,7 +64,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                 .subscribe(
                         howManyDeleted -> Toast.makeText(context,
                                 R.string.watch_history_states_deleted,  Toast.LENGTH_SHORT).show(),
-                        throwable -> ErrorActivity.reportError(context,
+                        throwable -> ErrorUtil.openActivity(context,
                                 new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
                                         "Delete playback states")));
     }
@@ -76,7 +76,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                 .subscribe(
                         howManyDeleted -> Toast.makeText(context,
                                 R.string.watch_history_deleted, Toast.LENGTH_SHORT).show(),
-                        throwable -> ErrorActivity.reportError(context,
+                        throwable -> ErrorUtil.openActivity(context,
                                 new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
                                         "Delete from history")));
     }
@@ -87,7 +87,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         howManyDeleted -> { },
-                        throwable -> ErrorActivity.reportError(context,
+                        throwable -> ErrorUtil.openActivity(context,
                                 new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
                                         "Clear orphaned records")));
     }
@@ -99,7 +99,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                 .subscribe(
                         howManyDeleted -> Toast.makeText(context,
                                 R.string.search_history_deleted, Toast.LENGTH_SHORT).show(),
-                        throwable -> ErrorActivity.reportError(context,
+                        throwable -> ErrorUtil.openActivity(context,
                                 new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
                                         "Delete search history")));
     }

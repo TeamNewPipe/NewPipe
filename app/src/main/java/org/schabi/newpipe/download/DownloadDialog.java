@@ -41,8 +41,8 @@ import com.nononsenseapps.filepicker.Utils;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.DownloadDialogBinding;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -53,6 +53,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
@@ -402,7 +403,7 @@ public class DownloadDialog extends DialogFragment
                             == R.id.video_button) {
                         setupVideoSpinner();
                     }
-                }, throwable -> ErrorActivity.reportErrorInSnackbar(context,
+                }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
                                 "Downloading video stream size",
                                 currentInfo.getServiceId()))));
@@ -412,7 +413,7 @@ public class DownloadDialog extends DialogFragment
                             == R.id.audio_button) {
                         setupAudioSpinner();
                     }
-                }, throwable -> ErrorActivity.reportErrorInSnackbar(context,
+                }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
                                 "Downloading audio stream size",
                                 currentInfo.getServiceId()))));
@@ -422,7 +423,7 @@ public class DownloadDialog extends DialogFragment
                             == R.id.subtitle_button) {
                         setupSubtitleSpinner();
                     }
-                }, throwable -> ErrorActivity.reportErrorInSnackbar(context,
+                }, throwable -> ErrorUtil.showSnackbar(context,
                         new ErrorInfo(throwable, UserAction.DOWNLOAD_OPEN_DIALOG,
                                 "Downloading subtitle stream size",
                                 currentInfo.getServiceId()))));
@@ -687,7 +688,12 @@ public class DownloadDialog extends DialogFragment
     }
 
     private void launchDirectoryPicker(final ActivityResultLauncher<Intent> launcher) {
-        launcher.launch(StoredDirectoryHelper.getPicker(context));
+        NoFileManagerSafeGuard.launchSafe(
+                launcher,
+                StoredDirectoryHelper.getPicker(context),
+                TAG,
+                context
+        );
     }
 
     private void prepareSelectedDownload() {
@@ -766,8 +772,12 @@ public class DownloadDialog extends DialogFragment
                 initialPath = Uri.parse(initialSavePath.getAbsolutePath());
             }
 
-            requestDownloadSaveAsLauncher.launch(StoredFileHelper.getNewPicker(context,
-                    filenameTmp, mimeTmp, initialPath));
+            NoFileManagerSafeGuard.launchSafe(
+                    requestDownloadSaveAsLauncher,
+                    StoredFileHelper.getNewPicker(context, filenameTmp, mimeTmp, initialPath),
+                    TAG,
+                    context
+            );
 
             return;
         }
@@ -799,7 +809,7 @@ public class DownloadDialog extends DialogFragment
                         mainStorage.getTag());
             }
         } catch (final Exception e) {
-            ErrorActivity.reportErrorInSnackbar(this,
+            ErrorUtil.createNotification(requireContext(),
                     new ErrorInfo(e, UserAction.DOWNLOAD_FAILED, "Getting storage"));
             return;
         }
