@@ -1521,6 +1521,8 @@ public final class VideoDetailFragment
         animate(binding.detailThumbnailPlayButton, true, 200);
         binding.detailVideoTitleView.setText(title);
 
+        binding.detailSubChannelThumbnailView.setVisibility(View.GONE);
+
         if (!isEmpty(info.getSubChannelName())) {
             displayBothUploaderAndSubChannel(info);
         } else if (!isEmpty(info.getUploaderName())) {
