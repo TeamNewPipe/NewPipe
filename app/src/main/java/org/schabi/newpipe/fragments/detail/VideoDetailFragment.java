@@ -2206,12 +2206,19 @@ public final class VideoDetailFragment
             mainFragment.setDescendantFocusability(afterDescendants);
             toolbar.setDescendantFocusability(afterDescendants);
             ((ViewGroup) requireView()).setDescendantFocusability(blockDescendants);
-            mainFragment.requestFocus();
+            // Check if the mainFragment (search-results) or the toolbar (Textfield for search)
+            // have focus. If so then don't focus them again.
+            if (!mainFragment.hasFocus() && !toolbar.hasFocus()) {
+                mainFragment.requestFocus();
+            }
         } else {
             mainFragment.setDescendantFocusability(blockDescendants);
             toolbar.setDescendantFocusability(blockDescendants);
             ((ViewGroup) requireView()).setDescendantFocusability(afterDescendants);
-            binding.detailThumbnailRootLayout.requestFocus();
+            // Check if the player already has focus. If so don't focus again.
+            if (!binding.getRoot().hasFocus()) {
+                binding.detailThumbnailRootLayout.requestFocus();
+            }
         }
     }
 
