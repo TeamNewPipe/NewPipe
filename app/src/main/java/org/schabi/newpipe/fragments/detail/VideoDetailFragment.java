@@ -2206,8 +2206,8 @@ public final class VideoDetailFragment
             mainFragment.setDescendantFocusability(afterDescendants);
             toolbar.setDescendantFocusability(afterDescendants);
             ((ViewGroup) requireView()).setDescendantFocusability(blockDescendants);
-            // Check if the mainFragment (search-results) or the toolbar (Textfield for search)
-            // have focus. If so then don't focus them again.
+            // Only focus the mainFragment if the mainFragment (e.g. search-results)
+            // or the toolbar (e.g. Textfield for search) don't have focus.
             if (!mainFragment.hasFocus() && !toolbar.hasFocus()) {
                 mainFragment.requestFocus();
             }
@@ -2215,7 +2215,7 @@ public final class VideoDetailFragment
             mainFragment.setDescendantFocusability(blockDescendants);
             toolbar.setDescendantFocusability(blockDescendants);
             ((ViewGroup) requireView()).setDescendantFocusability(afterDescendants);
-            // Check if the player already has focus. If so don't focus again.
+            // Only focus the player if it not already has focus
             if (!binding.getRoot().hasFocus()) {
                 binding.detailThumbnailRootLayout.requestFocus();
             }
