@@ -2208,6 +2208,7 @@ public final class VideoDetailFragment
             ((ViewGroup) requireView()).setDescendantFocusability(blockDescendants);
             // Only focus the mainFragment if the mainFragment (e.g. search-results)
             // or the toolbar (e.g. Textfield for search) don't have focus.
+            // This was done to fix problems with the keyboard input, see also #7490
             if (!mainFragment.hasFocus() && !toolbar.hasFocus()) {
                 mainFragment.requestFocus();
             }
