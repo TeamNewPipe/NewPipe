@@ -20,6 +20,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -214,13 +215,9 @@ public enum StreamDialogEntry {
     // helper functions                        //
     /////////////////////////////////////////////
 
-    private interface InfoCallback {
-        void onInfo(SinglePlayQueue item);
-    }
-
     private static void fetchItemInfoIfSparse(final Fragment fragment,
             final StreamInfoItem item,
-            final InfoCallback callback) {
+            final Consumer<SinglePlayQueue> callback) {
         if (!(item.getStreamType() == StreamType.LIVE_STREAM
                 || item.getStreamType() == StreamType.AUDIO_LIVE_STREAM)
                 && item.getDuration() < 0) {
@@ -242,10 +239,10 @@ public enum StreamDialogEntry {
                                         throwable.toString()))
                                 .subscribe();
 
-                        callback.onInfo(new SinglePlayQueue(result));
+                        callback.accept(new SinglePlayQueue(result));
                     }, throwable -> Log.e("StreamDialogEntry", throwable.toString()));
         } else {
-            callback.onInfo(new SinglePlayQueue(item));
+            callback.accept(new SinglePlayQueue(item));
         }
     }
 }
