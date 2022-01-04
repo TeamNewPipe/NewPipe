@@ -92,7 +92,6 @@
     <string name="info_labels">Što:\\nZahtjev:\\nJezik sadržaja:\\nZemlja sadržaja:\\nJezik programa:\\nUsluga:\\nGMT vrijeme:\\nPaket:\\nVerzija:\\nVerzija OS-a:</string>
     <string name="your_comment">Vaš komentar (na engleskom):</string>
     <string name="error_details_headline">Detalji:</string>
-    <string name="list_thumbnail_view_description">Sličica pregleda videozapisa</string>
     <string name="detail_thumbnail_view_description">Pokreni video, trajanje:</string>
     <string name="detail_uploader_thumbnail_view_description">Profilna slika prenositelja</string>
     <string name="detail_likes_img_view_description">Goreglasovi</string>

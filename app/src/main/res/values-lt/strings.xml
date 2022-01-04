@@ -79,7 +79,6 @@
     <string name="info_labels">Kas:\\nUžklausa:\\nTurinio Kalba:\\nTurinio Šalis:\\nProgramėlės Kalba:\\nPaslauga:\\nGMT Laikas:\\nPaketas:\\nVersija:\\nOS versija:</string>
     <string name="your_comment">Jūsų komentaras (anglų kalba):</string>
     <string name="error_details_headline">Išsami informacija:</string>
-    <string name="list_thumbnail_view_description">Vaizdo įrašo peržiūros miniatiūra</string>
     <string name="detail_thumbnail_view_description">Paleisti vaizdo įrašą, trukmė:</string>
     <string name="detail_uploader_thumbnail_view_description">Įkėlėjo naudotojo paveikslėlio miniatiūra</string>
     <string name="detail_likes_img_view_description">Pamėgimai</string>

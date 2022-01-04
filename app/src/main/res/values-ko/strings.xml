@@ -26,7 +26,6 @@
     <string name="unsupported_url">지원하지 않는 URL입니다</string>
     <string name="content_language_title">기본 컨텐츠 언어</string>
     <string name="settings_category_video_audio_title">비디오 &amp; 오디오</string>
-    <string name="list_thumbnail_view_description">비디오 미리보기 썸네일</string>
     <string name="detail_thumbnail_view_description">비디오 재생, 구간:</string>
     <string name="detail_uploader_thumbnail_view_description">업로더 썸네일</string>
     <string name="detail_dislikes_img_view_description">싫어요</string>

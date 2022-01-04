@@ -31,7 +31,6 @@
     <string name="settings_category_appearance_title">外觀</string>
     <string name="background_player_playing_toast">背景播放</string>
     <string name="network_error">網絡問題</string>
-    <string name="list_thumbnail_view_description">影片預覽縮圖</string>
     <string name="detail_thumbnail_view_description">影片預覽縮圖</string>
     <string name="detail_uploader_thumbnail_view_description">上載者的個人頭像縮圖</string>
     <string name="detail_likes_img_view_description">讚好</string>

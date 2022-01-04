@@ -135,7 +135,6 @@
     <string name="error_report_button_text">மின்னஞ்சல் மூலம் பிழையை தெரிவிக்கவும்</string>
     <string name="what_happened_headline">என்ன நடந்தது:</string>
     <string name="your_comment">உங்கள் கருத்து:</string>
-    <string name="list_thumbnail_view_description">காணொளி முன்தோற்றம்</string>
     <string name="detail_dislikes_img_view_description">வெறுப்புகள்</string>
     <string name="no_subscribers">பின் தொடர்பவர்கள் இல்லை</string>
     <plurals name="subscribers">

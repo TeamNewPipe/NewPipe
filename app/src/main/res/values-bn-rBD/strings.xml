@@ -77,7 +77,6 @@
     <string name="your_comment">তোমার মন্তব্য (ইংরেজিতে):</string>
     <string name="error_details_headline">বর্ণনা:</string>
     <!-- Content descriptions (for better accessibility) -->
-    <string name="list_thumbnail_view_description">ভিডিও প্রাকদর্শন থাম্বনেইল</string>
     <string name="detail_thumbnail_view_description">ভিডিও প্রাকদর্শন, সময়ঃ</string>
     <string name="detail_uploader_thumbnail_view_description">আপলোডারের ইউজারপিক থাম্বনেইল</string>
     <string name="detail_likes_img_view_description">পছন্দ হয়েছে</string>

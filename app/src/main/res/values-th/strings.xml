@@ -163,7 +163,6 @@
     <string name="what_happened_headline">เกิดอะไรขึ้น:</string>
     <string name="your_comment">ความคิดเห็นของคุณ (เป็นภาษาอังกฤษ):</string>
     <string name="error_details_headline">รายละเอียด:</string>
-    <string name="list_thumbnail_view_description">ภาพขนาดย่อของตัวอย่างวิดีโอ</string>
     <string name="detail_thumbnail_view_description">ภาพของตัวอย่างวิดีโอขนาดย่อ</string>
     <string name="detail_uploader_thumbnail_view_description">รูปขนาดย่อของผู้อัปโหลด</string>
     <string name="detail_likes_img_view_description">ชอบ</string>
