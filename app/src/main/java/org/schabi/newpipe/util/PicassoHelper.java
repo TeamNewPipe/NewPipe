@@ -179,6 +179,7 @@ public final class PicassoHelper {
 
                     @Override
                     public void onPrepareLoad(final Drawable placeHolderDrawable) {
+                        // Nothing to do
                     }
                 });
     }

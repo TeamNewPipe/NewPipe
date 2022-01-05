@@ -92,7 +92,7 @@ class NotificationModeConfigAdapter(
             } else {
                 NotificationMode.ENABLED
             }
-            listener.onModeChange(adapterPosition, mode)
+            listener.onModeChange(bindingAdapterPosition, mode)
         }
     }
 
