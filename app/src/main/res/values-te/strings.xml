@@ -233,5 +233,4 @@
     <string name="peertube_instance_add_help">ఉదాహరణ URLని నమోదు చేయండి</string>
     <string name="peertube_instance_add_fail">ఉదాహరణను ధృవీకరించడం సాధ్యపడలేదు</string>
     <string name="peertube_instance_add_exists">ఉదాహరణ ఇప్పటికే ఉంది</string>
-    <string name="settings_category_notification_title">నోటిఫికేషన్</string>
 </resources>

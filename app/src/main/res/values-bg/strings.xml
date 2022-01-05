@@ -513,7 +513,6 @@
     <string name="songs">Песни</string>
     <string name="artists">Изпълнители</string>
     <string name="albums">Албуми</string>
-    <string name="settings_category_notification_title">Известие</string>
     <string name="recent">Скорошни</string>
     <string name="metadata_category">Категория</string>
     <string name="download_has_started">Изтеглянето започна</string>
