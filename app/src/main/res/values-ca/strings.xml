@@ -126,7 +126,7 @@
     <string name="thumbnail_cache_wipe_complete_notice">S\'ha eliminat la memòria cau d\'imatges</string>
     <string name="metadata_cache_wipe_title">Elimina les metadades de la memòria cau</string>
     <string name="metadata_cache_wipe_complete_notice">S\'ha esborrat la memòria cau de metadades</string>
-    <string name="auto_queue_title">Afegeix vídeos relacionats a la cua</string>
+    <string name="auto_queue_title">Posa a la cua el següent flux</string>
     <string name="show_search_suggestions_title">Suggeriments de cerca</string>
     <string name="show_search_suggestions_summary">Mostra suggeriments durant la cerca</string>
     <string name="enable_search_history_title">Historial de cerca</string>
@@ -137,7 +137,7 @@
     <string name="background_player_playing_toast">S\'està reproduint en rerefons</string>
     <string name="popup_playing_toast">S\'està reproduint en mode emergent</string>
     <string name="notification_channel_name">Notificació del NewPipe</string>
-    <string name="notification_channel_description">Notificacions dels reproductors en rerefons o emergents del NewPipe</string>
+    <string name="notification_channel_description">Notificacions per al reproductor de NewPipe</string>
     <string name="could_not_load_thumbnails">No s\'han pogut carregar totes les miniatures</string>
     <string name="youtube_signature_deobfuscation_error">No s\'ha pogut desxifrar la signatura de l\'URL del vídeo</string>
     <string name="parsing_error">No s\'ha pogut processar el lloc web</string>
@@ -270,7 +270,7 @@
     <string name="unhook_checkbox">Desvincula (pot causar deformació)</string>
     <string name="metadata_cache_wipe_summary">Elimina totes les dades de llocs web de la memòria cau</string>
     <string name="auto_queue_summary">Acaba de reproduir la cua (sense repetició) quan s\'hi afegeixi un vídeo relacionat</string>
-    <string name="show_hold_to_append_title">Mostra els missatges d\'ajuda</string>
+    <string name="show_hold_to_append_title">Mostra l\'indicador «Mantenir per posar a la cua»</string>
     <string name="show_hold_to_append_summary">Mostra un missatge d\'ajuda quan el botó de mode en segon pla o emergent estigui premut a la pàgina de detalls d\'un vídeo</string>
     <string name="info_labels">Què ha passat:\\nPetició:\\nIdioma del contingut:\\nPaís del contingut:\\nLlengua de l\'aplicació:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
     <string name="preferred_open_action_settings_title">Acció d\'obertura preferida</string>
@@ -559,7 +559,7 @@
     <string name="show_age_restricted_content_summary">Mostra contingut que podria ser inadequat pels infants</string>
     <string name="settings_category_notification_title">Notificació</string>
     <string name="unsupported_url_dialog_message">No s\'ha pogut reconèixer l\'adreça URL. Obrir-la amb una altra aplicació\?</string>
-    <string name="auto_queue_toggle">Cua automàtica</string>
+    <string name="auto_queue_toggle">Posa a la cua automàticament</string>
     <string name="show_meta_info_summary">Desactiveu-ho per deixar de mostrar les metadades, que contenen informació addicional sobre el creador del directe, el contingut o una sol·licitud de cerca</string>
     <string name="show_meta_info_title">Mostra les metadades</string>
     <string name="clear_queue_confirmation_description">La cua de reproducció activa serà sobreescrita</string>
@@ -652,4 +652,7 @@
     <string name="start_main_player_fullscreen_title">Inicia el reproductor principal en pantalla completa</string>
     <string name="main_page_content_swipe_remove">Llisqueu els elements per eliminar-los</string>
     <string name="start_main_player_fullscreen_summary">Si la rotació automàtica està bloquejada, no inicieu vídeos al mini reproductor, sinó que aneu directament al mode de pantalla completa. Podeu accedir igualment al mini reproductor sortint de pantalla completa</string>
+    <string name="background_player_already_playing_toast">Ja s\'està reproduint en segon pla</string>
+    <string name="error_report_channel_name">Notificació d\'informe d\'error</string>
+    <string name="crash_the_player">Tancar abruptament el reproductor</string>
 </resources>
