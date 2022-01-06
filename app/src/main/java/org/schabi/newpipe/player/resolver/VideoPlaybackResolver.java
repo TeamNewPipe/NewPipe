@@ -32,11 +32,16 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     private final PlayerDataSource dataSource;
     @NonNull
     private final QualityResolver qualityResolver;
+    private SourceType streamSourceType;
 
     @Nullable
     private String playbackQuality;
 
-    private Boolean wasLastResolvedVideoAndAudioSeparated;
+    public enum SourceType {
+        LIVE_STREAM,
+        VIDEO_WITH_SEPARATED_AUDIO,
+        VIDEO_WITH_AUDIO_OR_AUDIO_ONLY
+    }
 
     public VideoPlaybackResolver(@NonNull final Context context,
                                  @NonNull final PlayerDataSource dataSource,
@@ -49,81 +54,79 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     @Override
     @Nullable
     public MediaSource resolve(@NonNull final StreamInfo info) {
-        boolean isVideoAndAudioSeparated = false;
-        try {
-            final MediaSource liveSource = maybeBuildLiveMediaSource(dataSource, info);
-            if (liveSource != null) {
-                return liveSource;
-            }
+        final MediaSource liveSource = maybeBuildLiveMediaSource(dataSource, info);
+        if (liveSource != null) {
+            streamSourceType = SourceType.LIVE_STREAM;
+            return liveSource;
+        }
 
-            final List<MediaSource> mediaSources = new ArrayList<>();
+        final List<MediaSource> mediaSources = new ArrayList<>();
 
-            // Create video stream source
-            final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
-                    info.getVideoStreams(), info.getVideoOnlyStreams(), false, true);
-            final int index;
-            if (videos.isEmpty()) {
-                index = -1;
-            } else if (playbackQuality == null) {
-                index = qualityResolver.getDefaultResolutionIndex(videos);
-            } else {
-                index = qualityResolver.getOverrideResolutionIndex(videos, getPlaybackQuality());
-            }
-            final MediaSourceTag tag = new MediaSourceTag(info, videos, index);
-            @Nullable final VideoStream video = tag.getSelectedVideoStream();
+        // Create video stream source
+        final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
+                info.getVideoStreams(), info.getVideoOnlyStreams(), false, true);
+        final int index;
+        if (videos.isEmpty()) {
+            index = -1;
+        } else if (playbackQuality == null) {
+            index = qualityResolver.getDefaultResolutionIndex(videos);
+        } else {
+            index = qualityResolver.getOverrideResolutionIndex(videos, getPlaybackQuality());
+        }
+        final MediaSourceTag tag = new MediaSourceTag(info, videos, index);
+        @Nullable final VideoStream video = tag.getSelectedVideoStream();
 
-            if (video != null) {
-                final MediaSource streamSource = buildMediaSource(dataSource, video.getUrl(),
-                        PlayerHelper.cacheKeyOf(info, video),
-                        MediaFormat.getSuffixById(video.getFormatId()), tag);
-                mediaSources.add(streamSource);
-            }
+        if (video != null) {
+            final MediaSource streamSource = buildMediaSource(dataSource, video.getUrl(),
+                    PlayerHelper.cacheKeyOf(info, video),
+                    MediaFormat.getSuffixById(video.getFormatId()), tag);
+            mediaSources.add(streamSource);
+        }
 
-            // Create optional audio stream source
-            final List<AudioStream> audioStreams = info.getAudioStreams();
-            final AudioStream audio = audioStreams.isEmpty() ? null : audioStreams.get(
-                    ListHelper.getDefaultAudioFormat(context, audioStreams));
-            // Use the audio stream if there is no video stream, or
-            // Merge with audio stream in case if video does not contain audio
-            if (audio != null && (video == null || video.isVideoOnly)) {
-                final MediaSource audioSource = buildMediaSource(dataSource, audio.getUrl(),
-                        PlayerHelper.cacheKeyOf(info, audio),
-                        MediaFormat.getSuffixById(audio.getFormatId()), tag);
-                mediaSources.add(audioSource);
-                isVideoAndAudioSeparated = true;
-            }
+        // Create optional audio stream source
+        final List<AudioStream> audioStreams = info.getAudioStreams();
+        final AudioStream audio = audioStreams.isEmpty() ? null : audioStreams.get(
+                ListHelper.getDefaultAudioFormat(context, audioStreams));
+        // Use the audio stream if there is no video stream, or
+        // Merge with audio stream in case if video does not contain audio
+        if (audio != null && (video == null || video.isVideoOnly)) {
+            final MediaSource audioSource = buildMediaSource(dataSource, audio.getUrl(),
+                    PlayerHelper.cacheKeyOf(info, audio),
+                    MediaFormat.getSuffixById(audio.getFormatId()), tag);
+            mediaSources.add(audioSource);
+            streamSourceType = SourceType.VIDEO_WITH_SEPARATED_AUDIO;
+        } else {
+            streamSourceType = SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY;
+        }
 
-            // If there is no audio or video sources, then this media source cannot be played back
-            if (mediaSources.isEmpty()) {
-                return null;
-            }
-            // Below are auxiliary media sources
+        // If there is no audio or video sources, then this media source cannot be played back
+        if (mediaSources.isEmpty()) {
+            return null;
+        }
+        // Below are auxiliary media sources
 
-            // Create subtitle sources
-            if (info.getSubtitles() != null) {
-                for (final SubtitlesStream subtitle : info.getSubtitles()) {
-                    final String mimeType = PlayerHelper.subtitleMimeTypesOf(subtitle.getFormat());
-                    if (mimeType == null) {
-                        continue;
-                    }
-                    final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
-                            .createMediaSource(
-                                    new MediaItem.Subtitle(Uri.parse(subtitle.getUrl()),
-                                            mimeType,
-                                            PlayerHelper.captionLanguageOf(context, subtitle)),
-                                    TIME_UNSET);
-                    mediaSources.add(textSource);
+        // Create subtitle sources
+        if (info.getSubtitles() != null) {
+            for (final SubtitlesStream subtitle : info.getSubtitles()) {
+                final String mimeType = PlayerHelper.subtitleMimeTypesOf(subtitle.getFormat());
+                if (mimeType == null) {
+                    continue;
                 }
+                final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
+                        .createMediaSource(
+                                new MediaItem.Subtitle(Uri.parse(subtitle.getUrl()),
+                                        mimeType,
+                                        PlayerHelper.captionLanguageOf(context, subtitle)),
+                                TIME_UNSET);
+                mediaSources.add(textSource);
             }
+        }
 
-            if (mediaSources.size() == 1) {
-                return mediaSources.get(0);
-            } else {
-                return new MergingMediaSource(mediaSources.toArray(
-                        new MediaSource[0]));
-            }
-        } finally {
-            wasLastResolvedVideoAndAudioSeparated = isVideoAndAudioSeparated;
+        if (mediaSources.size() == 1) {
+            return mediaSources.get(0);
+        } else {
+            return new MergingMediaSource(mediaSources.toArray(
+                    new MediaSource[0]));
         }
     }
 
@@ -134,8 +137,8 @@ public class VideoPlaybackResolver implements PlaybackResolver {
      * @return {@link Optional#empty()} if nothing was resolved, otherwise {@code true} or
      * {@code false}
      */
-    public Optional<Boolean> wasLastResolvedVideoAndAudioSeparated() {
-        return Optional.ofNullable(wasLastResolvedVideoAndAudioSeparated);
+    public Optional<SourceType> getStreamSourceType() {
+        return Optional.ofNullable(streamSourceType);
     }
 
     @Nullable

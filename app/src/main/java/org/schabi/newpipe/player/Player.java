@@ -178,6 +178,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
+import org.schabi.newpipe.player.resolver.VideoPlaybackResolver.SourceType;
 import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper;
 import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHolder;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -3293,8 +3294,9 @@ public final class Player implements
         if (audioPlayerSelected()) {
             return audioResolver.resolve(info);
         } else {
-            if (isAudioOnly
-                    && !videoResolver.wasLastResolvedVideoAndAudioSeparated().orElse(false)) {
+            if (isAudioOnly && videoResolver.getStreamSourceType().orElse(
+                            SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY)
+                    == SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY) {
                 // If the current info has only video streams with audio and if the stream is
                 // played as audio, we need to use the audio resolver, otherwise the video stream
                 // will be played in background.
@@ -4196,18 +4198,30 @@ public final class Player implements
         stream will be fetched and the video stream will be fetched again when the user return to a
         video player.
 
-        For audio streams: nothing is done, it's not needed to reload the player with the same
-        audio stream.
+        For audio streams and audio live streams: nothing is done, it's not needed to reload the
+        player with the same audio stream.
+
+        For video live streams: the play queue manager is not reloaded if the stream source is a
+        live source (see VideoPlaybackResolver#resolve()) and if that's not the case, the
+        requirements for video streams is applied.
 
         In the case where we don't know the index of the video renderer, the play queue manager
         is also reloaded. */
 
         final StreamType streamType = info.getStreamType();
+        final SourceType sourceType = videoResolver.getStreamSourceType()
+                .orElse(SourceType.VIDEO_WITH_SEPARATED_AUDIO);
 
+        final boolean isVideoWithSeparatedAudioOrVideoWithNoSeparatedAudioStreams =
+                sourceType == SourceType.VIDEO_WITH_SEPARATED_AUDIO
+                || (sourceType == SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY
+                        && isNullOrEmpty(info.getAudioStreams()));
         final boolean isVideoStreamTypeAndIsVideoOnlyStreamOrNoAudioStreamsAvailable =
-                (streamType == StreamType.VIDEO_STREAM || streamType == StreamType.LIVE_STREAM)
-                        && (videoResolver.wasLastResolvedVideoAndAudioSeparated().orElse(false)
-                            || isNullOrEmpty(info.getAudioStreams()));
+                streamType == StreamType.VIDEO_STREAM
+                        && isVideoWithSeparatedAudioOrVideoWithNoSeparatedAudioStreams
+                        || (streamType == StreamType.LIVE_STREAM
+                            && (sourceType == SourceType.LIVE_STREAM
+                                || isVideoWithSeparatedAudioOrVideoWithNoSeparatedAudioStreams));
 
         if (videoRenderIndex != RENDERER_UNAVAILABLE
                 && isVideoStreamTypeAndIsVideoOnlyStreamOrNoAudioStreamsAvailable) {
