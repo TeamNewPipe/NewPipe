@@ -600,24 +600,24 @@ public final class Player implements
                     }
 
                     @Override
-                    public Optional<Boolean> shouldFastForward(
+                    public FastSeekDirection getFastSeekDirection(
                             @NonNull final DisplayPortion portion
                     ) {
                         // Null indicates an invalid area or condition e.g. the middle portion
                         // or video start or end was reached during double tap seeking
                         if (invalidSeekConditions()) {
                             playerGestureListener.endMultiDoubleTap();
-                            return Optional.empty();
+                            return FastSeekDirection.NONE;
                         }
                         if (portion == DisplayPortion.LEFT
                                 // Small puffer to eliminate infinite rewind seeking
                                 && simpleExoPlayer.getCurrentPosition() > 500L) {
-                            return Optional.of(false);
+                            return FastSeekDirection.BACKWARD;
                         } else if (portion == DisplayPortion.RIGHT) {
-                            return Optional.of(true);
+                            return FastSeekDirection.FORWARD;
                         }
                         /* portion == DisplayPortion.MIDDLE */
-                        return Optional.empty();
+                        return FastSeekDirection.NONE;
                     }
 
                     @Override

@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
+import androidx.annotation.NonNull
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.END
 import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.PARENT_ID
@@ -13,7 +14,6 @@ import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.player.event.DisplayPortion
 import org.schabi.newpipe.player.event.DoubleTapListener
-import java.util.Optional
 
 class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
     ConstraintLayout(context, attrs), DoubleTapListener {
@@ -64,7 +64,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
 
     override fun onDoubleTapProgressDown(portion: DisplayPortion) {
         val shouldForward: Boolean =
-            performListener?.shouldFastForward(portion)?.orElse(null) ?: return
+            performListener?.getFastSeekDirection(portion)?.directionAsBoolean ?: return
 
         if (DEBUG)
             Log.d(
@@ -125,12 +125,22 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
     interface PerformListener {
         fun onDoubleTap()
         fun onDoubleTapEnd()
-        fun shouldFastForward(portion: DisplayPortion): Optional<Boolean>
+        /**
+         * Determines if the playback should forward/rewind or do nothing.
+         */
+        @NonNull
+        fun getFastSeekDirection(portion: DisplayPortion): FastSeekDirection
         fun seek(forward: Boolean)
+
+        enum class FastSeekDirection(val directionAsBoolean: Boolean?) {
+            NONE(null),
+            FORWARD(true),
+            BACKWARD(false);
+        }
     }
 
     companion object {
-        private const val TAG = "PlayerSeekOverlay"
+        private const val TAG = "PlayerFastSeekOverlay"
         private val DEBUG = MainActivity.DEBUG
     }
 }
