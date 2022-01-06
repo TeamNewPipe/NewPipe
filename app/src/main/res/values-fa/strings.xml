@@ -116,7 +116,7 @@
     <string name="always">همیشه</string>
     <string name="just_once">فقط یک‌بار</string>
     <string name="file">پرونده</string>
-    <string name="notification_channel_name">اعلان نیوپایپ</string>
+    <string name="notification_channel_name">آگاهی نیوپایپ</string>
     <string name="unknown_content">[ناشناخته]</string>
     <string name="import_data_title">وارد کردن پایگاه‌داده</string>
     <string name="export_data_title">صادرکردن</string>
@@ -246,8 +246,8 @@
     <string name="import_settings">می‌خواهید تنظیمات را نیز وارد کنید؟</string>
     <string name="playback_step">گام</string>
     <string name="file_deleted">پرونده پاک شد</string>
-    <string name="app_update_notification_channel_name">اعلان به‌روزرسانی کاره</string>
-    <string name="app_update_notification_channel_description">اعلان‌ها برای نسخه جدید نیوپایپ</string>
+    <string name="app_update_notification_channel_name">آگاهی به‌روزرسانی کاره</string>
+    <string name="app_update_notification_channel_description">آگاهی‌ها برای نگارش‌های جدید نیوپایپ</string>
     <string name="restore_defaults">بازنشانی پیش‌فرض‌ها</string>
     <string name="restore_defaults_confirmation">می‌خواهید پیش‌فرض‌ها را بازنشانی کنید؟</string>
     <string name="updates_setting_title">به‌روزرسانی‌ها</string>
@@ -280,7 +280,7 @@
     <string name="enable_playback_state_lists_summary">نمایش شاخص موقعیت پخش در فهرست‌ها</string>
     <string name="settings_category_clear_data_title">پاک کردن داده‌ها</string>
     <string name="resume_on_audio_focus_gain_summary">پخش بعد از قطع ناگهانی (مثل برقراری تماس) ادامه یابد</string>
-    <string name="show_hold_to_append_title">نمایش نکته «برای افزودن، نگه‌دارید»</string>
+    <string name="show_hold_to_append_title">نمایش نکته «برای صف‌گذاری، نگه‌دارید»</string>
     <string name="show_hold_to_append_summary">نمایش راهنما هنگام فشردن پس زمینه یا دکمهٔ تصویر در تصویر در «جزییات:» ویدیو</string>
     <string name="hold_to_append">برای در صف قرار دادن، نگه دارید</string>
     <string name="volume_gesture_control_title">کنترل اشاره ای صدا</string>
@@ -297,7 +297,7 @@
     <string name="title_licenses">پروانه‌های شخص سوم</string>
     <string name="copyright" formatted="true">© %1$s توسط %2$s تحت %3$s</string>
     <string name="contribution_encouragement">اگر ایده‌ای برای ترجمه، تغییر طراحی، پاک‌سازی کد و یا تغییرات واقعا سنگین کدنویسی دارید، از کمک‌تان همواره استقبال می‌کنیم. هر چه بیشتر کار کنیم، نتایج بهتری می‌گیریم!</string>
-    <string name="notification_channel_description">آگاهی‌ها برای پخش‌کنندهٔ پس‌زمینه و تصویر در تصویر نیوپایپ</string>
+    <string name="notification_channel_description">آگاهی‌ها برای پخش‌کنندهٔ نیوپایپ</string>
     <string name="empty_subscription_feed_subtitle">چیزی جز کریکت اینجا نیست</string>
     <string name="no_subscribers">فاقد مشترک</string>
     <string name="player_unrecoverable_failure">خطای عدم احیای پخش‌کننده رخ داد</string>
@@ -678,4 +678,16 @@
     <string name="show_crash_the_player_summary">نمایش یک گزینهٔ فروپاشی هنگام استفاده از پخش کننده</string>
     <string name="report_player_errors_summary">گزارش خطاهای پخش کننده با جزییات کامل به جای نشان دادن پیامی با عمر کوتاه (مناسب برای تشخیص مشکلات)</string>
     <string name="show_crash_the_player_title">نمایش «فروپاشی پخش کننده»</string>
+    <string name="no_appropriate_file_manager_message">مدیر پروندهٔ مناسبی برای این کنش یافت نشد.
+\nلطفاً مدیر پرونده‌ای نصب کرده یا در تنظیمات بارگیری، «%s» را خاموش کنید.</string>
+    <string name="error_report_channel_name">آگاهی گزارش خطا</string>
+    <string name="error_report_channel_description">آگاهی برای گزارش‌خطاها</string>
+    <string name="show_error_snackbar">نمایش یک نوار خطا</string>
+    <string name="create_error_notification">ایجاد یک آگاهی خطا</string>
+    <string name="no_appropriate_file_manager_message_android_10">مدیر پروندهٔ مناسبی برای این کنش یافت نشد.
+\nلطفاً مدیر پرونده‌ای سازگار با چارچوب‌دسترسی ذخیره‌ساز نصب کنید.</string>
+    <string name="error_report_notification_title">نیوپایپ به خطایی برخورد. برای گزارش، بزنید</string>
+    <string name="error_report_notification_toast">خطایی رخ داد. آگاهی را ببینید</string>
+    <string name="detail_pinned_comment_view_description">نظر سنجاق شده</string>
+    <string name="background_player_already_playing_toast">در حال پخش در پس‌زمینه</string>
 </resources>

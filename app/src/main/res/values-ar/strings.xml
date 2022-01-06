@@ -98,7 +98,7 @@
     <string name="undo">تراجع</string>
     <string name="play_all">تشغيل الكل</string>
     <string name="notification_channel_name">تنبيهات NewPipe</string>
-    <string name="notification_channel_description">تنبيهات مشغل NewPipe للخلفية والنوافذ المنبثقة</string>
+    <string name="notification_channel_description">تنبيهات مشغل NewPipe</string>
     <string name="unknown_content">[غير معروف]</string>
     <string name="could_not_setup_download_menu">تعذر إعداد قائمة التنزيل</string>
     <string name="app_ui_crash">تعطل التطبيق / واجهة المستخدم</string>
@@ -353,7 +353,7 @@
     <string name="brightness_gesture_control_summary">استخدام الإيماءات للتحكم بسطوع المشغّل</string>
     <string name="settings_category_updates_title">التحديثات</string>
     <string name="file_deleted">تم حذف الملف</string>
-    <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
+    <string name="app_update_notification_channel_name">تنبيه تحديث التطبيق</string>
     <string name="volume_gesture_control_title">إيماء التحكم بالصوت</string>
     <string name="events">الأحداث</string>
     <string name="app_update_notification_channel_description">إشعارات لإصدار NewPipe الجديد</string>
@@ -637,7 +637,7 @@
     <string name="georestricted_content">هذا المحتوى غير متوفر في بلدك.</string>
     <string name="crash_the_app">اغلق التطبيق قسريا</string>
     <string name="restricted_video_no_stream">هذا الفيديو مقيد بالفئة العمرية.
-\nنظرا لسياسات YouTube الجديدة المتعلقة بمقاطع الفيديو المقيدة بالفئة العمرية، لا يمكن ل NewPipe الوصول إلى أي من مقاطع الفيديو الخاصة بها وبالتالي يتعذر تشغيلها.</string>
+\nنظرا لسياسات YouTube الجديدة المتعلقة بمقاطع الفيديو المقيدة بالفئة العمرية، لا يمكن ل NewPipe الوصول إلى أي من مقاطع الفيديو الخاصة بها وبالتالي لا يمكن تشغيلها.</string>
     <string name="radio">إذاعة</string>
     <string name="featured">المميزة</string>
     <string name="recaptcha_solve">حل</string>
@@ -726,4 +726,16 @@
     <string name="show_crash_the_player_title">إظهار \"تعطل المشغل\"</string>
     <string name="crash_the_player">تحطيم المشغل</string>
     <string name="report_player_errors_summary">رفع تقرير لأخطاء المشغل بالتفصيل الكامل بدلا من إظهار رسالة اشعار قصيرة الأجل (مفيدة لتشخيص المشاكل)</string>
+    <string name="error_report_channel_name">إشعار الإبلاغ عن الأخطاء</string>
+    <string name="error_report_channel_description">التنبيهات المتعلقة بالإبلاغ عن الأخطاء</string>
+    <string name="error_report_notification_title">واجه NewPipe خطأ، اضغط للتقرير</string>
+    <string name="error_report_notification_toast">حدث خطأ ، انظر للإشعار</string>
+    <string name="create_error_notification">قم بإنشاء تنبيه بالخطأ</string>
+    <string name="no_appropriate_file_manager_message">لم يتم العثور على مدير ملفات مناسب لهذا الإجراء.
+\nالرجاء تثبيت مدير ملفات أو محاولة تعطيل \"%s\" في إعدادات التنزيل.</string>
+    <string name="show_error_snackbar">إظهار خطأ snackbar</string>
+    <string name="no_appropriate_file_manager_message_android_10">لم يتم العثور على مدير ملفات مناسب لهذا الإجراء.
+\nالرجاء تثبيت مدير ملفات متوافق مع Storage Access Framework.</string>
+    <string name="background_player_already_playing_toast">يتم تشغيله في الخلفية</string>
+    <string name="detail_pinned_comment_view_description">تعليق مثبت</string>
 </resources>

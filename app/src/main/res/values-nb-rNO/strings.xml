@@ -675,4 +675,15 @@
     <string name="manual_update_description">Se etter nye versjoner manuelt</string>
     <string name="feed_new_items">Nye informasjonskanalelementer</string>
     <string name="checking_updates_toast">Ser etter oppdateringer …</string>
+    <string name="show_crash_the_player_summary">Viser et krasjalternativ ved bruk av avspilleren</string>
+    <string name="error_report_notification_toast">Det oppstod en feil. Sjekk merknaden.</string>
+    <string name="detail_pinned_comment_view_description">Festet kommentar</string>
+    <string name="background_player_already_playing_toast">Spilles allerede i bakgrunnen</string>
+    <string name="error_report_channel_name">Feilrapport-merknad</string>
+    <string name="error_report_channel_description">Merknader for innrapportering av feil</string>
+    <string name="error_report_notification_title">NewPipe-feil. Trykk for å rapportere.</string>
+    <string name="create_error_notification">Opprett en feilmerknad</string>
+    <string name="show_error_snackbar">Vis et feil-alternativsfelt</string>
+    <string name="no_appropriate_file_manager_message">Installer en filbehandler først, eller skru av «%s» i nedlastingsinnstillingene.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Installer en filbehandler som støtter lagringstilgangsrammeverk først.</string>
 </resources>

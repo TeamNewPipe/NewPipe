@@ -25,7 +25,7 @@
     <string name="channel_unsubscribed">Canal não subscrito</string>
     <string name="msg_name">Nome do ficheiro</string>
     <string name="enable_playback_state_lists_summary">Mostrar indicadores de posição de reprodução nas listas</string>
-    <string name="notification_channel_description">Notificações para NewPipe e para os reprodutores popup</string>
+    <string name="notification_channel_description">Notificações para o reprodutor do NewPipe</string>
     <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
     <string name="show_search_suggestions_summary">Escolha as sugestões a mostrar ao pesquisar</string>
     <string name="no_valid_zip_file">Ficheiro ZIP inválido</string>
@@ -176,8 +176,8 @@
 \n3. Clique em \"Todos os dados incluídos\", depois em \"Desmarcar todos\", depois selecione apenas \"subscrições\" e clique em \"OK\".
 \n4. Clique em \"Próximo passo\" e depois em \"Criar exportação\".
 \n5. Clique no botão \"Descarregar\" após aparecer
-\n6. Clique em IMPORT FILE abaixo e selecione o ficheiro zip descarregado
-\n7. [Se a importação do zip falhar] Extraia o ficheiro .csv (geralmente em \"YouTube e YouTube Music/subscriptions/subscriptions.csv\"), clique em IMPORT FILE abaixo e selecione o ficheiro csv extraído</string>
+\n6. Clique em IMPORT FILE abaixo e selecione o ficheiro .zip descarregado
+\n7. [Se a importação do .zip falhar] Extraia o ficheiro .csv (geralmente em \"YouTube e YouTube Music/subscriptions/subscriptions.csv\"), clique em IMPORT FILE abaixo e selecione o ficheiro csv extraído</string>
     <string name="minimize_on_exit_background_description">Ativar reprodutor em segundo plano</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
     <string name="autoplay_title">Reprodução automática</string>
@@ -281,7 +281,7 @@
     <string name="post_processing">pós-processamento</string>
     <string name="overwrite_failed">não é possível sobrescrever o ficheiro</string>
     <string name="invalid_source">Fonte de conteúdo/ficheiro inexistente</string>
-    <string name="app_update_notification_channel_description">Notificações para uma nova versão do NewPipe</string>
+    <string name="app_update_notification_channel_description">Notificações para novas versões do NewPipe</string>
     <string name="action_history">Histórico</string>
     <string name="list">Lista</string>
     <string name="remove_watched_popup_title">Remover vídeos visualizados\?</string>
@@ -678,4 +678,14 @@
     <string name="report_player_errors_title">Relatar erros do reprodutor</string>
     <string name="show_crash_the_player_title">Mostrar \"travar o reprodutor\"</string>
     <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o reprodutor</string>
+    <string name="error_report_channel_name">Notificação de relatório de erros</string>
+    <string name="error_report_channel_description">Notificações para reportar erros</string>
+    <string name="error_report_notification_title">NewPipe encontrou um erro, toque para relatar</string>
+    <string name="error_report_notification_toast">Ocorreu um erro, veja a notificação</string>
+    <string name="show_error_snackbar">Mostrar um snackbar de erro</string>
+    <string name="create_error_notification">Criar uma notificação de erro</string>
+    <string name="no_appropriate_file_manager_message">Nenhum gestor de ficheiros apropriado foi encontrado para esta ação.
+\nPor favor, instale um gestor de ficheiros ou tente desativar \'%s\' nas configurações de descarregar.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Nenhum gestor de ficheiros apropriado foi encontrado para esta ação.
+\nPor favor, instale um gestor de ficheiros compatível com o Storage Access Framework.</string>
 </resources>

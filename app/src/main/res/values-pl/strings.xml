@@ -135,8 +135,8 @@
     <string name="enable_watch_history_summary">Śledź obejrzane wideo</string>
     <string name="resume_on_audio_focus_gain_title">Wznawiaj odtwarzanie</string>
     <string name="resume_on_audio_focus_gain_summary">Kontynuuj odtwarzanie po przerwaniu (np. po rozmowie telefonicznej)</string>
-    <string name="notification_channel_name">Powiadomienia NewPipe</string>
-    <string name="notification_channel_description">Powiadomienia dla NewPipe przy odtwarzaniu w tle i w trybie okienkowym</string>
+    <string name="notification_channel_name">Powiadomienie NewPipe</string>
+    <string name="notification_channel_description">Powiadomienia dla odtwarzacza NewPipe</string>
     <string name="title_activity_history">Historia</string>
     <string name="action_history">Historia</string>
     <string name="settings_category_player_title">Odtwarzacz</string>
@@ -349,7 +349,7 @@
     <string name="settings_category_updates_title">Aktualizacje</string>
     <string name="file_deleted">Plik usunięty</string>
     <string name="app_update_notification_channel_name">Powiadomienie o aktualizacji aplikacji</string>
-    <string name="app_update_notification_channel_description">Powiadomienia o nowej wersji NewPipe</string>
+    <string name="app_update_notification_channel_description">Powiadomienia o nowych wersjach NewPipe</string>
     <string name="download_to_sdcard_error_title">Pamięć zewnętrzna niedostępna</string>
     <string name="download_to_sdcard_error_message">Pobieranie na kartę SD nie jest możliwe. Zresetować lokalizację folderu zapisywania\?</string>
     <string name="saved_tabs_invalid_json">Nie udało się odczytać zapisanych kart, więc będą używane domyślne</string>
@@ -697,4 +697,16 @@
     <string name="crash_the_player">Zepsuj odtwarzacz</string>
     <string name="show_crash_the_player_title">Pokazuj „zepsuj odtwarzacz”</string>
     <string name="report_player_errors_summary">Zgłasza szczegółowo błędy odtwarzacza zamiast pokazywać krótkotrwałą wiadomość toast (przydatne do diagnozowania problemów)</string>
+    <string name="error_report_channel_name">Powiadomienie raportu o błędach</string>
+    <string name="error_report_channel_description">Powiadomienia do zgłaszania błędów</string>
+    <string name="error_report_notification_title">NewPipe napotkał błąd. Naciśnij, aby zgłosić</string>
+    <string name="error_report_notification_toast">Wystąpił błąd. Zobacz powiadomienie.</string>
+    <string name="show_error_snackbar">Pokaż snackbar z błędem</string>
+    <string name="create_error_notification">Utwórz powiadomienie o błędzie</string>
+    <string name="no_appropriate_file_manager_message">Nie znaleziono odpowiedniego menedżera plików dla tej akcji.
+\nZainstaluj menedżer plików lub spróbuj wyłączyć „%s” w ustawieniach pobierania.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Nie znaleziono odpowiedniego menedżera plików dla tej akcji.
+\nZainstaluj menedżer plików zgodny z Storage Access Framework.</string>
+    <string name="background_player_already_playing_toast">Już jest odtwarzane w tle</string>
+    <string name="detail_pinned_comment_view_description">Przypięty komentarz</string>
 </resources>
