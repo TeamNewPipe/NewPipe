@@ -686,4 +686,6 @@
     <string name="error_report_channel_description">Hata raporları için bildirimler</string>
     <string name="show_crash_the_player_summary">Oynatıcı kullanırken çöktürme seçeneği gösterir</string>
     <string name="crash_the_player">Oynatıcıyı çöktür</string>
+    <string name="background_player_already_playing_toast">Zaten arka planda oynuyor</string>
+    <string name="detail_pinned_comment_view_description">Sabitlenmiş yorum</string>
 </resources>
