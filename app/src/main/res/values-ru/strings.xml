@@ -27,7 +27,6 @@
     <string name="content_language_title">Язык контента по умолчанию</string>
     <string name="settings_category_video_audio_title">Видео и аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>
-    <string name="list_thumbnail_view_description">Миниатюра видео-превью</string>
     <string name="detail_thumbnail_view_description">Воспроизвести видео, длительность:</string>
     <string name="detail_uploader_thumbnail_view_description">Миниатюра аватара пользователя</string>
     <string name="detail_dislikes_img_view_description">Не понравилось</string>

@@ -37,7 +37,6 @@
     <string name="settings_category_appearance_title">Εμφάνιση</string>
     <string name="background_player_playing_toast">Αναπαραγωγή στο παρασκήνιο</string>
     <string name="network_error">Σφάλμα δικτύου</string>
-    <string name="list_thumbnail_view_description">Μικρογραφία προεπισκόπησης βίντεο</string>
     <string name="detail_thumbnail_view_description">Αναπαραγωγή βίντεο, διάρκεια:</string>
     <string name="detail_uploader_thumbnail_view_description">Μικρογραφία εικόνας προφίλ του χρήστη</string>
     <string name="detail_likes_img_view_description">Like</string>

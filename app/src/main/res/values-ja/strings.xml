@@ -26,7 +26,6 @@
     <string name="unsupported_url">対応していないURLです</string>
     <string name="content_language_title">デフォルトの言語</string>
     <string name="settings_category_video_audio_title">動画と音声</string>
-    <string name="list_thumbnail_view_description">動画 プレビュー サムネイル</string>
     <string name="detail_thumbnail_view_description">ビデオ再生、時間:</string>
     <string name="detail_uploader_thumbnail_view_description">投稿者アイコンのサムネイル</string>
     <string name="detail_dislikes_img_view_description">低評価</string>

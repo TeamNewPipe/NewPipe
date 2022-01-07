@@ -39,7 +39,6 @@
     <string name="download_path_audio_summary">A letöltött hangfájlok itt találhatóak</string>
     <string name="detail_likes_img_view_description">Tetszik</string>
     <string name="detail_dislikes_img_view_description">Nem tetszik</string>
-    <string name="list_thumbnail_view_description">Előnézeti kép</string>
     <string name="detail_thumbnail_view_description">Videó lejátszása, hossz:</string>
     <string name="detail_uploader_thumbnail_view_description">Fetöltő profilképe</string>
     <string name="content">Tartalom</string>

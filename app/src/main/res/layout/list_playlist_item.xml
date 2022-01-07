@@ -18,7 +18,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
-        android:contentDescription="@string/list_thumbnail_view_description"
         android:scaleType="centerCrop"
         android:src="@drawable/dummy_thumbnail_playlist"
         tools:ignore="RtlHardcoded" />
