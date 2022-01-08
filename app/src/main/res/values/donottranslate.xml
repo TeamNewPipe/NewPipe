@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="fdroid_vlc_url">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
+    <string name="fdroid_vlc_url">https://f-droid.org/packages/org.videolan.vlc/</string>
     <string name="rss_button_title">RSS</string>
     <string name="kore_package">org.xbmc.kore</string>
     <string name="peertube_instance_list_url">https://joinpeertube.org/instances#instances-list</string>
@@ -17,7 +17,7 @@
     <string name="sha1">SHA-1</string>
     <string name="recaptcha">reCAPTCHA</string>
     <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
-    <string name="donation_url">https://newpipe.net/donate</string>
+    <string name="donation_url">https://newpipe.net/donate/</string>
     <string name="website_url">https://newpipe.net/</string>
     <string name="privacy_policy_url">https://newpipe.net/legal/privacy/</string>
     <string name="service_kiosk_string">%1$s/%2$s</string>
