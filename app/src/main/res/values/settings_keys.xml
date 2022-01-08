@@ -1219,7 +1219,7 @@
     <!-- Limit mobile data usage  -->
     <string name="limit_mobile_data_usage_key" translatable="false">limit_mobile_data_usage</string>
     <string name="limit_data_usage_none_key" translatable="false">limit_data_usage_none</string>
-
+    <string name="limit_mobile_data_usage_value" translatable="false">@string/limit_data_usage_none_key</string>
     <string-array name="limit_data_usage_values_list">
         <item>@string/limit_data_usage_none_key</item>
         <item>1080p60</item>
