@@ -29,9 +29,11 @@ public final class PreferenceSearchResultHighlighter {
 
     /**
      * Highlight the specified preference.
+     * <br/>
+     * Note: This function is Thread independent (can be called from outside of the main thread).
      *
-     * @param item
-     * @param prefsFragment
+     * @param item The item to highlight
+     * @param prefsFragment The fragment where the items is located on
      */
     public static void highlight(
             final PreferenceSearchItem item,
