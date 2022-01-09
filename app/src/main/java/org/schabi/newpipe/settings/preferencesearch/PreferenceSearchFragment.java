@@ -10,13 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.SettingsPreferencesearchFragmentBinding;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Displays the search results.
@@ -26,7 +24,7 @@ public class PreferenceSearchFragment extends Fragment {
 
     private PreferenceSearcher searcher;
 
-    private SearchViewHolder viewHolder;
+    private SettingsPreferencesearchFragmentBinding binding;
     private PreferenceSearchAdapter adapter;
 
     public void setSearcher(final PreferenceSearcher searcher) {
@@ -40,17 +38,16 @@ public class PreferenceSearchFragment extends Fragment {
             @Nullable final ViewGroup container,
             @Nullable final Bundle savedInstanceState
     ) {
-        final View rootView =
-                inflater.inflate(R.layout.settings_preferencesearch_fragment, container, false);
+        // SettingsPreferenceSearchFragmentBinding.
+        binding = SettingsPreferencesearchFragmentBinding.inflate(inflater, container, false);
 
-        viewHolder = new SearchViewHolder(rootView);
-        viewHolder.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.searchResults.setLayoutManager(new LinearLayoutManager(getContext()));
 
         adapter = new PreferenceSearchAdapter();
         adapter.setOnItemClickListener(this::onItemClicked);
-        viewHolder.recyclerView.setAdapter(adapter);
+        binding.searchResults.setAdapter(adapter);
 
-        return rootView;
+        return binding.getRoot();
     }
 
     public void updateSearchResults(final String keyword) {
@@ -69,8 +66,8 @@ public class PreferenceSearchFragment extends Fragment {
     }
 
     private void setEmptyViewShown(final boolean shown) {
-        viewHolder.emptyStateView.setVisibility(shown ? View.VISIBLE : View.GONE);
-        viewHolder.recyclerView.setVisibility(shown ? View.GONE : View.VISIBLE);
+        binding.emptyStateView.setVisibility(shown ? View.VISIBLE : View.GONE);
+        binding.searchResults.setVisibility(shown ? View.GONE : View.VISIBLE);
     }
 
     public void onItemClicked(final PreferenceSearchItem item) {
@@ -80,15 +77,5 @@ public class PreferenceSearchFragment extends Fragment {
         }
 
         ((PreferenceSearchResultListener) getActivity()).onSearchResultClicked(item);
-    }
-
-    private static class SearchViewHolder {
-        private final RecyclerView recyclerView;
-        private final View emptyStateView;
-
-        SearchViewHolder(final View root) {
-            recyclerView = Objects.requireNonNull(root.findViewById(R.id.list));
-            emptyStateView = Objects.requireNonNull(root.findViewById(R.id.empty_state_view));
-        }
     }
 }
