@@ -328,6 +328,16 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             public void onScrolledDown(final RecyclerView recyclerView) {
                 onScrollToBottom();
             }
+            @Override
+            public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (!recyclerView.canScrollVertically(1)
+                        && !recyclerView.canScrollVertically(-1)
+                        && hasMoreItems() && !isLoading.get()) {
+                    loadMoreItems();
+                }
+            }
         });
     }
 
