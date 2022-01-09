@@ -690,4 +690,6 @@
     <string name="show_error_snackbar">Montrer une erreur en bas de l\'écran</string>
     <string name="no_appropriate_file_manager_message">Aucun gestionnaire de fichier approprié n\'a été trouvé pour cette action.
 \nVeuillez installer un gestionnaire de fichier ou essayez de désactiver \'%s\' dans les paramètres de téléchargement.</string>
+    <string name="detail_pinned_comment_view_description">Comentaire épinglé</string>
+    <string name="background_player_already_playing_toast">Une lecture est déjà en arrière-plan</string>
 </resources>
