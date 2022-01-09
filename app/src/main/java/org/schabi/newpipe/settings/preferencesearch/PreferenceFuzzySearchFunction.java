@@ -2,7 +2,7 @@ package org.schabi.newpipe.settings.preferencesearch;
 
 import android.text.TextUtils;
 
-import org.schabi.newpipe.settings.preferencesearch.similarity.FuzzyScore;
+import org.apache.commons.text.similarity.FuzzyScore;
 
 import java.util.Comparator;
 import java.util.Locale;

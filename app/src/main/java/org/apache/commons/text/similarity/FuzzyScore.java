@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.schabi.newpipe.settings.preferencesearch.similarity;
+package org.apache.commons.text.similarity;
 
 import java.util.Locale;
 
