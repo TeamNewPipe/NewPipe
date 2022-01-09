@@ -1,14 +1,11 @@
 package org.schabi.newpipe.settings.preferencesearch;
 
-import android.text.TextUtils;
-
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.BinaryOperator;
 import java.util.stream.Stream;
 
 public class PreferenceSearchConfiguration {

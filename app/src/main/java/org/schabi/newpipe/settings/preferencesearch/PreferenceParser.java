@@ -3,6 +3,7 @@ package org.schabi.newpipe.settings.preferencesearch;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.XmlRes;
@@ -14,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -64,6 +64,8 @@ public class PreferenceParser {
                         results.add(result);
                     }
                     if (searchConfiguration.getParserContainerElements().contains(xpp.getName())) {
+                        // This code adds breadcrumbs for certain containers (e.g. PreferenceScreen)
+                        // Example: Video and Audio > Player
                         breadcrumbs.add(result.getTitle() == null ? "" : result.getTitle());
                     }
                 } else if (xpp.getEventType() == XmlPullParser.END_TAG
