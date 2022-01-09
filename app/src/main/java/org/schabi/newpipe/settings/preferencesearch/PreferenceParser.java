@@ -39,27 +39,22 @@ public class PreferenceParser {
     }
 
     public List<PreferenceSearchItem> parse(
-            final PreferenceSearchConfiguration.SearchIndexItem item
+            @XmlRes final int resId
     ) {
-        Objects.requireNonNull(item, "item can't be null");
-
         final List<PreferenceSearchItem> results = new ArrayList<>();
-        final XmlPullParser xpp = context.getResources().getXml(item.getResId());
+        final XmlPullParser xpp = context.getResources().getXml(resId);
 
         try {
             xpp.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, true);
             xpp.setFeature(XmlPullParser.FEATURE_REPORT_NAMESPACE_ATTRIBUTES, true);
 
             final List<String> breadcrumbs = new ArrayList<>();
-            if (!TextUtils.isEmpty(item.getBreadcrumb())) {
-                breadcrumbs.add(item.getBreadcrumb());
-            }
             while (xpp.getEventType() != XmlPullParser.END_DOCUMENT) {
                 if (xpp.getEventType() == XmlPullParser.START_TAG) {
                     final PreferenceSearchItem result = parseSearchResult(
                             xpp,
                             joinBreadcrumbs(breadcrumbs),
-                            item.getResId()
+                            resId
                     );
 
                     if (!searchConfiguration.getParserIgnoreElements().contains(xpp.getName())
@@ -79,7 +74,7 @@ public class PreferenceParser {
                 xpp.next();
             }
         } catch (final Exception e) {
-            Log.w(TAG, "Failed to parse resid=" + item.getResId(), e);
+            Log.w(TAG, "Failed to parse resid=" + resId, e);
         }
         return results;
     }

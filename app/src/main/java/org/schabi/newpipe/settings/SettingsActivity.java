@@ -171,6 +171,7 @@ public class SettingsActivity extends AppCompatActivity implements
     @Override
     public boolean onPreferenceStartFragment(final PreferenceFragmentCompat caller,
                                              final Preference preference) {
+        preference.getExtras()
         showSettingsFragment(instantiateFragment(preference.getFragment()));
         return true;
     }
@@ -221,20 +222,24 @@ public class SettingsActivity extends AppCompatActivity implements
         searchContainer.findViewById(R.id.toolbar_search_clear)
                 .setOnClickListener(ev -> resetSearchText());
 
-        prepareSearchConfig();
+        ensureSearchRepresentsApplicationState();
 
         // Build search configuration using SettingsResourceRegistry
         final PreferenceSearchConfiguration config = new PreferenceSearchConfiguration();
-        SettingsResourceRegistry.getInstance().getAllEntries().stream()
-                .filter(SettingsResourceRegistry.SettingRegistryEntry::isSearchable)
-                .map(SettingsResourceRegistry.SettingRegistryEntry::getPreferencesResId)
-                .forEach(config::index);
+
 
         // Build search items
         final PreferenceParser parser = new PreferenceParser(getApplicationContext(), config);
         final PreferenceSearcher searcher = new PreferenceSearcher(config);
-        config.getFiles().stream()
+
+        // Find all searchable SettingsResourceRegistry fragments
+        SettingsResourceRegistry.getInstance().getAllEntries().stream()
+                .filter(SettingsResourceRegistry.SettingRegistryEntry::isSearchable)
+                // Get the resId
+                .map(SettingsResourceRegistry.SettingRegistryEntry::getPreferencesResId)
+                // Parse
                 .map(parser::parse)
+                // Add it to the searcher
                 .forEach(searcher::add);
 
         if (restored) {
@@ -252,7 +257,13 @@ public class SettingsActivity extends AppCompatActivity implements
         searchFragment.setSearcher(searcher);
     }
 
-    private void prepareSearchConfig() {
+    /**
+     * Ensures that the search shows the correct/available search results.
+     * <br/>
+     * Some features are e.g. only available for debug builds, these should not
+     * be found when searching inside a release.
+     */
+    private void ensureSearchRepresentsApplicationState() {
         // Check if the update settings are available
         if (!CheckForNewAppVersion.isReleaseApk(App.getApp())) {
             SettingsResourceRegistry.getInstance()

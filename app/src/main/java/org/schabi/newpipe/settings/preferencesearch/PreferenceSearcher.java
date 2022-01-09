@@ -24,7 +24,7 @@ public class PreferenceSearcher {
             return new ArrayList<>();
         }
 
-        return configuration.getSearchMatcher()
+        return configuration.getSearcher()
                 .search(allEntries.stream(), keyword)
                 .collect(Collectors.toList());
     }
