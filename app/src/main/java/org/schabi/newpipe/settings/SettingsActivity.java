@@ -171,7 +171,6 @@ public class SettingsActivity extends AppCompatActivity implements
     @Override
     public boolean onPreferenceStartFragment(final PreferenceFragmentCompat caller,
                                              final Preference preference) {
-        preference.getExtras()
         showSettingsFragment(instantiateFragment(preference.getFragment()));
         return true;
     }

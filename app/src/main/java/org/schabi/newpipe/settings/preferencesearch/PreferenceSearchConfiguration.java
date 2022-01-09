@@ -12,9 +12,6 @@ import java.util.function.BinaryOperator;
 import java.util.stream.Stream;
 
 public class PreferenceSearchConfiguration {
-    private BinaryOperator<String> breadcrumbConcat =
-            (s1, s2) -> TextUtils.isEmpty(s1) ? s2 : (s1 + " > " + s2);
-
     private PreferenceSearchFunction searcher = new PreferenceFuzzySearchFunction();
 
     private final List<String> parserIgnoreElements = Arrays.asList(
@@ -24,16 +21,8 @@ public class PreferenceSearchConfiguration {
             PreferenceScreen.class.getSimpleName());
 
 
-    public void setBreadcrumbConcat(final BinaryOperator<String> breadcrumbConcat) {
-        this.breadcrumbConcat = Objects.requireNonNull(breadcrumbConcat);
-    }
-
     public void setSearcher(final PreferenceSearchFunction searcher) {
         this.searcher = Objects.requireNonNull(searcher);
-    }
-
-    public BinaryOperator<String> getBreadcrumbConcat() {
-        return breadcrumbConcat;
     }
 
     public PreferenceSearchFunction getSearcher() {

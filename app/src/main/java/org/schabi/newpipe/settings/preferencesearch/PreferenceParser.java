@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Parses the corresponding preference-file(s).
@@ -82,7 +83,7 @@ public class PreferenceParser {
     private String joinBreadcrumbs(final List<String> breadcrumbs) {
         return breadcrumbs.stream()
                 .filter(crumb -> !TextUtils.isEmpty(crumb))
-                .reduce("", searchConfiguration.getBreadcrumbConcat());
+                .collect(Collectors.joining(" > "));
     }
 
     private String getAttribute(
