@@ -295,7 +295,7 @@ public final class Player implements
 
     private final MainPlayer service; //TODO try to remove and replace everything with context
 
-    private boolean isDefaultResolutionOverrideOrMaxVideoSizeAndFrameRateSet = false;
+    private boolean isDefaultResolutionSetForLivestreams = false;
     private boolean qualityPopupMenuBuilt = false;
     @Nullable private AnalyticsListener analyticsListener;
 
@@ -431,23 +431,15 @@ public final class Player implements
     private VideoPlaybackResolver.QualityResolver getQualityResolver() {
         return new VideoPlaybackResolver.QualityResolver() {
             @Override
-            public int getDefaultResolutionIndex(final StreamInfo streamInfo,
-                                                 final List<VideoStream> sortedVideos) {
-                if (StreamTypeUtil.isLiveStream(streamInfo.getStreamType())) {
-                    return -1;
-                }
+            public int getDefaultResolutionIndex(@NonNull final List<VideoStream> sortedVideos) {
                 return videoPlayerSelected()
                         ? ListHelper.getDefaultResolutionIndex(context, sortedVideos)
                         : ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
             }
 
             @Override
-            public int getOverrideResolutionIndex(final StreamInfo streamInfo,
-                                                  final List<VideoStream> sortedVideos,
-                                                  final String playbackQuality) {
-                if (StreamTypeUtil.isLiveStream(streamInfo.getStreamType())) {
-                    return -1;
-                }
+            public int getOverrideResolutionIndex(@NonNull final List<VideoStream> sortedVideos,
+                                                  @Nullable final String playbackQuality) {
                 return videoPlayerSelected()
                         ? getResolutionIndex(context, sortedVideos, playbackQuality)
                         : getPopupResolutionIndex(context, sortedVideos, playbackQuality);
@@ -2456,7 +2448,7 @@ public final class Player implements
         }
         maybeUpdateCurrentMetadata();
         onTextTracksChanged();
-        updateQualityPlayedAndQualityElementsForLivestreamsIfNeeded();
+        updateQualityElementsForLivestreams();
     }
 
     @Override
@@ -2880,7 +2872,7 @@ public final class Player implements
             }
         }
         qualityPopupMenuBuilt = false;
-        isDefaultResolutionOverrideOrMaxVideoSizeAndFrameRateSet = false;
+        isDefaultResolutionSetForLivestreams = false;
     }
 
     public void fastForward() {
@@ -3328,7 +3320,7 @@ public final class Player implements
     private void setDefaultResolutionForLivestreamsIfNeeded(
             @NonNull final TrackGroupArray videoTrackGroupArray,
             final int videoRendererIndex) {
-        if (isDefaultResolutionOverrideOrMaxVideoSizeAndFrameRateSet) {
+        if (isDefaultResolutionSetForLivestreams) {
             return;
         }
 
@@ -3365,19 +3357,23 @@ public final class Player implements
 
                     builder.setSelectionOverride(videoRendererIndex, videoTrackGroupArray,
                             selectionOverride);
-                    trackSelector.setParameters(builder);
-                    isDefaultResolutionOverrideOrMaxVideoSizeAndFrameRateSet = true;
-                    return;
+                    isDefaultResolutionSetForLivestreams = true;
+                    break;
                 }
             }
         }
 
-        builder.setMaxVideoSize(Integer.MAX_VALUE, defaultHeight);
-        builder.setMaxVideoFrameRate(defaultResolutionArray.length == 2
-                ? Integer.parseInt(defaultResolutionArray[1]) : 30);
+        if (!isDefaultResolutionSetForLivestreams) {
+            // No resolution for the override could not be found, set the maximum video height and
+            // frame rate according to the default quality chose by the user in Video and Audio
+            // settings
+            builder.setMaxVideoSize(Integer.MAX_VALUE, defaultHeight);
+            builder.setMaxVideoFrameRate(defaultResolutionArray.length == 2
+                    ? Integer.parseInt(defaultResolutionArray[1]) : 30);
+            isDefaultResolutionSetForLivestreams = true;
+        }
 
         trackSelector.setParameters(builder);
-        isDefaultResolutionOverrideOrMaxVideoSizeAndFrameRateSet = true;
     }
 
     @Nullable
@@ -3628,7 +3624,7 @@ public final class Player implements
      * {@link #buildLiveStreamQualityMenuIfNeeded(TrackGroupArray, int)}
      * and {@link #addAnalyticsListenerForLivestreamsIfNeeded()} to complete this.
      */
-    private void updateQualityPlayedAndQualityElementsForLivestreamsIfNeeded() {
+    private void updateQualityElementsForLivestreams() {
         if ((isAudioOnly ? audioResolver : videoResolver).isLiveSource()) {
             final int videoRendererIndex = getVideoRendererIndex();
             if (videoRendererIndex != RENDERER_UNAVAILABLE) {

@@ -68,7 +68,6 @@ public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener
         final int itemId = item.getItemId();
         if (itemId == 0) {
             // 0 is the index of the Auto item of the quality selector
-            trackSelector.setParameters(builder);
 
             // If the quality text view text contains already the auto string, it means the user
             // already selected the auto option and pressed again the auto option from the quality
@@ -113,10 +112,9 @@ public class TrackSelectionListener implements PopupMenu.OnMenuItemClickListener
                 qualityTextView.setText(getResolutionStringFromFormat(context,
                         currentPlayingFormat));
             }
-
-            trackSelector.setParameters(builder);
         }
 
+        trackSelector.setParameters(builder);
         return true;
     }
 }

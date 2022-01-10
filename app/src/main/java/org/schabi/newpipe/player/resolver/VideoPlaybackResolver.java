@@ -63,9 +63,9 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         if (videos.isEmpty()) {
             index = -1;
         } else if (playbackQuality == null) {
-            index = qualityResolver.getDefaultResolutionIndex(info, videos);
+            index = qualityResolver.getDefaultResolutionIndex(videos);
         } else {
-            index = qualityResolver.getOverrideResolutionIndex(info, videos, getPlaybackQuality());
+            index = qualityResolver.getOverrideResolutionIndex(videos, getPlaybackQuality());
         }
         final MediaSourceTag tag = new MediaSourceTag(info, videos, index);
         @Nullable final VideoStream video = tag.getSelectedVideoStream();
@@ -136,10 +136,9 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     }
 
     public interface QualityResolver {
-        int getDefaultResolutionIndex(StreamInfo streamInfo, List<VideoStream> sortedVideos);
+        int getDefaultResolutionIndex(@NonNull List<VideoStream> sortedVideos);
 
-        int getOverrideResolutionIndex(StreamInfo streamInfo,
-                                       List<VideoStream> sortedVideos,
-                                       String playbackQuality);
+        int getOverrideResolutionIndex(@NonNull List<VideoStream> sortedVideos,
+                                       @Nullable String playbackQuality);
     }
 }
