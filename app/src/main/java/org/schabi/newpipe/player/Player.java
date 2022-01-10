@@ -122,15 +122,15 @@ import com.google.android.exoplayer2.Player.PositionInfo;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
+import com.google.android.exoplayer2.analytics.AnalyticsListener;
+import com.google.android.exoplayer2.decoder.DecoderReuseEvaluation;
 import com.google.android.exoplayer2.source.BehindLiveWindowException;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.text.Cue;
-import com.google.android.exoplayer2.trackselection.BaseTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.CaptionStyleCompat;
@@ -295,6 +295,10 @@ public final class Player implements
 
     private final MainPlayer service; //TODO try to remove and replace everything with context
 
+    private boolean isDefaultResolutionOverrideOrMaxVideoSizeAndFrameRateSet = false;
+    private boolean qualityPopupMenuBuilt = false;
+    @Nullable private AnalyticsListener analyticsListener;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Player states
     //////////////////////////////////////////////////////////////////////////*/
@@ -311,8 +315,8 @@ public final class Player implements
     private boolean isVerticalVideo = false;
     private boolean fragmentIsVisible = false;
 
-    private List<VideoStream> availableStreams;
-    private int selectedStreamIndex;
+    private List<VideoStream> availableVideoStreams;
+    private int selectedVideoStreamIndex;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -340,9 +344,6 @@ public final class Player implements
     private PopupMenu qualityPopupMenu;
     private PopupMenu playbackSpeedPopupMenu;
     private PopupMenu captionPopupMenu;
-
-    private boolean isDefaultResolutionOverrideOrMaxVideoSizeAndFrameRateSet = false;
-    private boolean qualityPopupMenuBuiltForLivestreams = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Popup player
@@ -858,6 +859,18 @@ public final class Player implements
         }
         destroyPlayer();
         unregisterBroadcastReceiver();
+
+        // Prevent a crash which happen if the user click an item of a popup menu after the player
+        // is destroyed
+
+        if (qualityPopupMenu != null) {
+            qualityPopupMenu.dismiss();
+            qualityPopupMenu = null;
+        }
+        if (captionPopupMenu != null) {
+            captionPopupMenu.dismiss();
+            captionPopupMenu = null;
+        }
 
         databaseUpdateDisposable.clear();
         progressUpdateDisposable.set(null);
@@ -2443,7 +2456,7 @@ public final class Player implements
         }
         maybeUpdateCurrentMetadata();
         onTextTracksChanged();
-        updateQualityPlayedStringAndQualityElementsForLivestreamsIfNeeded(trackSelections);
+        updateQualityPlayedAndQualityElementsForLivestreamsIfNeeded();
     }
 
     @Override
@@ -2828,13 +2841,14 @@ public final class Player implements
         /* If current playback has run for PLAY_PREV_ACTIVATION_LIMIT_MILLIS milliseconds,
          * restart current track. Also restart the track if the current track
          * is the first in a queue.*/
-        if (simpleExoPlayer.getCurrentPosition() > PLAY_PREV_ACTIVATION_LIMIT_MILLIS
-                || playQueue.getIndex() == 0) {
+        if ((simpleExoPlayer.getCurrentPosition() > PLAY_PREV_ACTIVATION_LIMIT_MILLIS
+                || playQueue.getIndex() == 0) && !simpleExoPlayer.isCurrentWindowLive()) {
             seekToDefault();
             playQueue.offsetIndex(0);
         } else {
             saveStreamProgressState();
             playQueue.offsetIndex(-1);
+            resetAnalyticsListenerAndQualityPopupMenu();
         }
         triggerProgressUpdate();
     }
@@ -2849,7 +2863,24 @@ public final class Player implements
 
         saveStreamProgressState();
         playQueue.offsetIndex(+1);
+        resetAnalyticsListenerAndQualityPopupMenu();
         triggerProgressUpdate();
+    }
+
+    private void resetAnalyticsListenerAndQualityPopupMenu() {
+        if ((isAudioOnly ? audioResolver : videoResolver).isLiveSource()
+                && analyticsListener != null) {
+            simpleExoPlayer.removeAnalyticsListener(analyticsListener);
+            analyticsListener = null;
+        }
+        if (qualityPopupMenu != null) {
+            final Menu menu = qualityPopupMenu.getMenu();
+            if (menu.size() != 0) {
+                menu.clear();
+            }
+        }
+        qualityPopupMenuBuilt = false;
+        isDefaultResolutionOverrideOrMaxVideoSizeAndFrameRateSet = false;
     }
 
     public void fastForward() {
@@ -3351,9 +3382,9 @@ public final class Player implements
 
     @Nullable
     public VideoStream getSelectedVideoStream() {
-        return (selectedStreamIndex >= 0 && availableStreams != null
-                && availableStreams.size() > selectedStreamIndex)
-                ? availableStreams.get(selectedStreamIndex) : null;
+        return (selectedVideoStreamIndex >= 0 && availableVideoStreams != null
+                && availableVideoStreams.size() > selectedVideoStreamIndex)
+                ? availableVideoStreams.get(selectedVideoStreamIndex) : null;
     }
 
     private void updateStreamRelatedViews() {
@@ -3388,7 +3419,17 @@ public final class Player implements
                         + info.getVideoOnlyStreams().size() != 0) {
                     // In the case where live streams are extracted as video streams by the
                     // extractor
-                    buildVideoQualityMenu();
+                    final List<VideoStream> sortedAvailableStreams =
+                            currentMetadata.getSortedAvailableVideoStreams();
+                    if (availableVideoStreams != null
+                            && !availableVideoStreams.equals(sortedAvailableStreams)) {
+                        qualityPopupMenuBuilt = false;
+                    }
+
+                    availableVideoStreams = sortedAvailableStreams;
+                    selectedVideoStreamIndex = currentMetadata.getSelectedVideoStreamIndex();
+                    updateQualityPlayedForVideos();
+                    buildVideoQualityMenuIfNeeded();
                     binding.qualityTextView.setVisibility(View.VISIBLE);
                 }
 
@@ -3402,10 +3443,16 @@ public final class Player implements
                     break;
                 }
 
-                availableStreams = currentMetadata.getSortedAvailableVideoStreams();
-                selectedStreamIndex = currentMetadata.getSelectedVideoStreamIndex();
-                buildVideoQualityMenu();
-
+                final List<VideoStream> sortedAvailableStreams =
+                        currentMetadata.getSortedAvailableVideoStreams();
+                if (availableVideoStreams != null
+                        && !availableVideoStreams.equals(sortedAvailableStreams)) {
+                    qualityPopupMenuBuilt = false;
+                }
+                availableVideoStreams = sortedAvailableStreams;
+                selectedVideoStreamIndex = currentMetadata.getSelectedVideoStreamIndex();
+                updateQualityPlayedForVideos();
+                buildVideoQualityMenuIfNeeded();
                 binding.qualityTextView.setVisibility(View.VISIBLE);
                 binding.surfaceView.setVisibility(View.VISIBLE);
             default:
@@ -3454,30 +3501,30 @@ public final class Player implements
 
 
     /**
-     * Build the quality menu for video streams.
+     * Build the quality menu for video streams, if needed.
      *
      * <p>
      * This method loops into the streams we get from the extractor and them to the quality
      * selector. The resolution and the container format/mime type of streams are shown.
      * </p>
      */
-    private void buildVideoQualityMenu() {
-        if (qualityPopupMenu == null || currentMetadata == null) {
+    private void buildVideoQualityMenuIfNeeded() {
+        if (currentMetadata == null || qualityPopupMenu == null || qualityPopupMenuBuilt) {
             return;
         }
-        qualityPopupMenu.getMenu().removeGroup(POPUP_MENU_ID_QUALITY);
 
-        for (int i = 0; i < availableStreams.size(); i++) {
-            final VideoStream videoStream = availableStreams.get(i);
-            qualityPopupMenu.getMenu().add(POPUP_MENU_ID_QUALITY, i, Menu.NONE, MediaFormat
-                    .getNameById(videoStream.getFormatId()) + " " + videoStream.resolution);
+        final Menu menu = qualityPopupMenu.getMenu();
+        menu.removeGroup(POPUP_MENU_ID_QUALITY);
+
+        for (int i = 0; i < availableVideoStreams.size(); i++) {
+            final VideoStream videoStream = availableVideoStreams.get(i);
+            menu.add(POPUP_MENU_ID_QUALITY, i, Menu.NONE, MediaFormat.getNameById(
+                    videoStream.getFormatId()) + " " + videoStream.resolution);
         }
 
-        if (getSelectedVideoStream() != null) {
-            binding.qualityTextView.setText(getSelectedVideoStream().resolution);
-        }
         qualityPopupMenu.setOnMenuItemClickListener(this);
         qualityPopupMenu.setOnDismissListener(this);
+        qualityPopupMenuBuilt = true;
     }
 
     /**
@@ -3499,8 +3546,7 @@ public final class Player implements
     private void buildLiveStreamQualityMenuIfNeeded(
             @NonNull final TrackGroupArray videoTrackGroupArray,
             final int videoRendererIndex) {
-        if (qualityPopupMenuBuiltForLivestreams || qualityPopupMenu == null
-                || currentMetadata == null) {
+        if (currentMetadata == null || qualityPopupMenu == null || qualityPopupMenuBuilt) {
             return;
         }
 
@@ -3534,90 +3580,75 @@ public final class Player implements
                 context, trackSelector, videoRendererIndex, binding.qualityTextView);
         qualityPopupMenu.setOnMenuItemClickListener(trackSelectionListener);
         qualityPopupMenu.setOnDismissListener(this);
-        qualityPopupMenuBuiltForLivestreams = true;
+        qualityPopupMenuBuilt = false;
     }
 
     /**
-     * Return if the {@link TrackGroup} of a {@link BaseTrackSelection} passed as the first
-     * parameter is one of the video {@link TrackGroup TrackGroups}.
-     * @param trackSelectionTrackGroup the {@link TrackGroup} of a {@link BaseTrackSelection} to
-     *                                 check, which cannot be null
-     * @param videoTrackGroups         the {@link TrackGroupArray} of the video
-     *                                 {@link TrackGroup TrackGroups}, which cannot be null
-     * @return {@code true} if {@code trackSelectionTrackGroup} is one of the
-     * {@code videoTrackGroups}, {@code false} otherwise
+     * Add an {@link AnalyticsListener} on livestreams, in order to update the quality played with
+     * the automatic mode.
      */
-    private boolean isSameVideoTrackGroup(
-            @NonNull final TrackGroup trackSelectionTrackGroup,
-            @NonNull final TrackGroupArray videoTrackGroups) {
-        for (int i = 0; i < videoTrackGroups.length; i++) {
-            if (videoTrackGroups.get(i) == trackSelectionTrackGroup) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Update the quality played string for livestreams and quality elements, if needed.
-     *
-     * <p>
-     * This method will also update, for the first time it's called, the default resolution,
-     * according to user settings, with
-     * {@link #setDefaultResolutionForLivestreamsIfNeeded(TrackGroupArray, int)} and will build
-     * the popup quality menu {@link #buildLiveStreamQualityMenuIfNeeded(TrackGroupArray, int)}.
-     * </p>
-     * @param trackSelections the {@link TrackSelectionArray} of ExoPlayer's track selections,
-     *                        which cannot be null
-     */
-    private void updateQualityPlayedStringAndQualityElementsForLivestreamsIfNeeded(
-            @NonNull final TrackSelectionArray trackSelections) {
-        if (!(isAudioOnly ? audioResolver : videoResolver).isLiveSource()) {
-            return;
-        }
-        for (int i = 0; i < trackSelections.length; i++) {
-            final TrackSelection trackSelection = trackSelections.get(i);
-            if (trackSelection instanceof BaseTrackSelection) {
-                final int videoRendererIndex = getVideoRendererIndex();
-                if (videoRendererIndex != RENDERER_UNAVAILABLE) {
-                    final BaseTrackSelection exoTrackSelection =
-                            ((BaseTrackSelection) trackSelection);
-                    final MappingTrackSelector.MappedTrackInfo currentMappedTrackInfo =
-                            Objects.requireNonNull(trackSelector
-                                    .getCurrentMappedTrackInfo());
-                    final TrackGroup exoTrackSelectionTrackGroup = exoTrackSelection
-                            .getTrackGroup();
-                    final boolean isVideoTrackGroup = isSameVideoTrackGroup(
-                            exoTrackSelectionTrackGroup, currentMappedTrackInfo
-                                    .getTrackGroups(videoRendererIndex));
-
-                    if (isVideoTrackGroup) {
+    private void addAnalyticsListenerForLivestreamsIfNeeded() {
+        if (analyticsListener == null) {
+            analyticsListener = new AnalyticsListener() {
+                @Override
+                public void onVideoInputFormatChanged(
+                        @NonNull final EventTime eventTime,
+                        @NonNull final Format format,
+                        @Nullable final DecoderReuseEvaluation decoderReuseEvaluation) {
+                    final int videoRendererIndex = getVideoRendererIndex();
+                    if (videoRendererIndex != RENDERER_UNAVAILABLE) {
                         final TrackGroupArray videoTrackGroupArray = Objects
-                                .requireNonNull(currentMappedTrackInfo).getTrackGroups(
+                                .requireNonNull(Objects.requireNonNull(trackSelector
+                                        .getCurrentMappedTrackInfo())).getTrackGroups(
                                         videoRendererIndex);
-
-                        setDefaultResolutionForLivestreamsIfNeeded(videoTrackGroupArray,
-                                videoRendererIndex);
-                        buildLiveStreamQualityMenuIfNeeded(videoTrackGroupArray,
-                                videoRendererIndex);
 
                         if (trackSelector.getParameters().hasSelectionOverride(
                                 videoRendererIndex, videoTrackGroupArray)) {
                             binding.qualityTextView.setText(
-                                    getResolutionStringFromFormat(context,
-                                            exoTrackSelection.getSelectedFormat()));
+                                    getResolutionStringFromFormat(context, format));
                         } else {
                             binding.qualityTextView.setText(context.getString(
                                     R.string.auto_quality_selected,
                                     context.getString(R.string.auto_quality),
-                                    getResolutionStringFromFormat(context,
-                                            exoTrackSelection.getSelectedFormat())));
+                                    getResolutionStringFromFormat(context, format)));
                         }
-
-                        break;
                     }
                 }
+            };
+            simpleExoPlayer.addAnalyticsListener(analyticsListener);
+        }
+    }
+
+    /**
+     * Update the quality played string, the quality popup menu and build the quality popup menu
+     * for livestreams, if needed.
+     *
+     * This method will call
+     * {@link #setDefaultResolutionForLivestreamsIfNeeded(TrackGroupArray, int)},
+     * {@link #buildLiveStreamQualityMenuIfNeeded(TrackGroupArray, int)}
+     * and {@link #addAnalyticsListenerForLivestreamsIfNeeded()} to complete this.
+     */
+    private void updateQualityPlayedAndQualityElementsForLivestreamsIfNeeded() {
+        if ((isAudioOnly ? audioResolver : videoResolver).isLiveSource()) {
+            final int videoRendererIndex = getVideoRendererIndex();
+            if (videoRendererIndex != RENDERER_UNAVAILABLE) {
+                final MappingTrackSelector.MappedTrackInfo currentMappedTrackInfo = trackSelector
+                        .getCurrentMappedTrackInfo();
+                final TrackGroupArray videoTrackGroupArray = Objects.requireNonNull(
+                        currentMappedTrackInfo).getTrackGroups(videoRendererIndex);
+
+                setDefaultResolutionForLivestreamsIfNeeded(videoTrackGroupArray,
+                        videoRendererIndex);
+                buildLiveStreamQualityMenuIfNeeded(videoTrackGroupArray, videoRendererIndex);
+                addAnalyticsListenerForLivestreamsIfNeeded();
             }
+        }
+    }
+
+    private void updateQualityPlayedForVideos() {
+        final VideoStream selectedVideoStream = getSelectedVideoStream();
+        if (selectedVideoStream != null) {
+            binding.qualityTextView.setText(selectedVideoStream.resolution);
         }
     }
 
@@ -3714,7 +3745,6 @@ public final class Player implements
         if (captionPopupMenu == null) {
             return;
         }
-        captionPopupMenu.getMenu().removeGroup(POPUP_MENU_ID_CAPTION);
 
         final String userPreferredLanguage =
                 prefs.getString(context.getString(R.string.caption_user_set_key), null);
@@ -3756,7 +3786,8 @@ public final class Player implements
                 }
                 return true;
             });
-            // apply caption language from previous user preference
+
+            // Apply caption language from previous user preference
             if (userPreferredLanguage != null
                     && (captionLanguage.equals(userPreferredLanguage)
                     || (searchForAutogenerated && captionLanguage.startsWith(userPreferredLanguage))
@@ -3787,13 +3818,13 @@ public final class Player implements
 
         if (menuItem.getGroupId() == POPUP_MENU_ID_QUALITY) {
             final int menuItemIndex = menuItem.getItemId();
-            if (selectedStreamIndex == menuItemIndex || availableStreams == null
-                    || availableStreams.size() <= menuItemIndex) {
+            if (selectedVideoStreamIndex == menuItemIndex || availableVideoStreams == null
+                    || availableVideoStreams.size() <= menuItemIndex) {
                 return true;
             }
 
             saveStreamProgressState(); //TODO added, check if good
-            final String newResolution = availableStreams.get(menuItemIndex).resolution;
+            final String newResolution = availableVideoStreams.get(menuItemIndex).resolution;
             setRecovery();
             setPlaybackQuality(newResolution);
             reloadPlayQueueManager();
@@ -3820,9 +3851,14 @@ public final class Player implements
             Log.d(TAG, "onDismiss() called with: menu = [" + menu + "]");
         }
         isSomePopupMenuVisible = false; //TODO check if this works
-        if (getSelectedVideoStream() != null) {
-            binding.qualityTextView.setText(getSelectedVideoStream().resolution);
+
+        if (!(isAudioOnly ? audioResolver : videoResolver).isLiveSource()) {
+            final VideoStream videoStream = getSelectedVideoStream();
+            if (videoStream != null) {
+                binding.qualityTextView.setText(videoStream.resolution);
+            }
         }
+
         if (isPlaying()) {
             hideControls(DEFAULT_CONTROLS_DURATION, 0);
             hideSystemUIIfNeeded();
@@ -3836,11 +3872,13 @@ public final class Player implements
         qualityPopupMenu.show();
         isSomePopupMenuVisible = true;
 
-        final VideoStream videoStream = getSelectedVideoStream();
-        if (videoStream != null) {
-            final String qualityText = MediaFormat.getNameById(videoStream.getFormatId()) + " "
-                    + videoStream.resolution;
-            binding.qualityTextView.setText(qualityText);
+        if (!(isAudioOnly ? audioResolver : videoResolver).isLiveSource()) {
+            final VideoStream videoStream = getSelectedVideoStream();
+            if (videoStream != null) {
+                final String qualityText = MediaFormat.getNameById(videoStream.getFormatId()) + " "
+                        + videoStream.resolution;
+                binding.qualityTextView.setText(qualityText);
+            }
         }
 
         saveWasPlaying();
@@ -3899,11 +3937,12 @@ public final class Player implements
     }
 
     private void onTextTracksChanged() {
-        final int textRenderer = getCaptionRendererIndex();
-
         if (binding == null) {
             return;
         }
+
+        final int textRenderer = getCaptionRendererIndex();
+        captionPopupMenu.getMenu().clear();
         if (trackSelector.getCurrentMappedTrackInfo() == null
                 || textRenderer == RENDERER_UNAVAILABLE) {
             binding.captionTextView.setVisibility(View.GONE);
@@ -3918,8 +3957,19 @@ public final class Player implements
         for (int i = 0; i < textTracks.length; i++) {
             final TrackGroup textTrack = textTracks.get(i);
             if (textTrack.length > 0) {
-                availableLanguages.add(textTrack.getFormat(0).language);
+                final String language = textTrack.getFormat(0).language;
+                // We are not able to select the preferred caption language when it's null
+                // TODO: use selection override for captions instead of the preferred text language
+                //  so we can enable the selection of unknown languages
+                if (language != null) {
+                    availableLanguages.add(language);
+                }
             }
+        }
+
+        if (availableLanguages.isEmpty()) {
+            binding.captionTextView.setVisibility(View.GONE);
+            return;
         }
 
         // Normalize mismatching language strings
@@ -4481,11 +4531,11 @@ public final class Player implements
 
     private boolean isLive() {
         try {
-            return !exoPlayerIsNull() && simpleExoPlayer.isCurrentWindowDynamic();
+            return !exoPlayerIsNull() && simpleExoPlayer.isCurrentWindowLive();
         } catch (final IndexOutOfBoundsException e) {
             // Why would this even happen =(... but lets log it anyway, better safe than sorry
             if (DEBUG) {
-                Log.d(TAG, "player.isCurrentWindowDynamic() failed: ", e);
+                Log.d(TAG, "player.isCurrentWindowLive() failed: ", e);
             }
             return false;
         }
