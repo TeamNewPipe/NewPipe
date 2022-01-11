@@ -3350,7 +3350,7 @@ public final class Player implements
             for (int j = trackGroup.length - 1; j >= 0; j--) {
                 final Format videoFormat = trackGroup.getFormat(j);
                 if ((defaultHeight == -1 || videoFormat.height <= defaultHeight)
-                        && (defaultFrameRate <= -1 || videoFormat.frameRate == defaultFrameRate)) {
+                        && (defaultFrameRate <= -1 || videoFormat.frameRate <= defaultFrameRate)) {
                     final DefaultTrackSelector.SelectionOverride selectionOverride =
                             new DefaultTrackSelector.SelectionOverride(
                                     videoRendererIndex, j);
