@@ -664,7 +664,7 @@
         <item quantity="other">%s descargas concluídas</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Deslizar itens para removê-los</string>
-    <string name="start_main_player_fullscreen_summary">Não iniciar vídeos no reprodutor mini, mas ir diretamente para ecrã completo se a rotação automática estiver bloqueada. Ainda pode aceder o reprodutor mini se sair do modo de ecrã completo.</string>
+    <string name="start_main_player_fullscreen_summary">Não iniciar vídeos no reprodutor mini, mas ir diretamente ao ecrã completo se a rotação automática estiver bloqueada. Ainda pode aceder o reprodutor mini se sair do modo de ecrã completo</string>
     <string name="start_main_player_fullscreen_title">Iniciar reprodutor principal em ecrã completo</string>
     <string name="enqueued_next">Enfileirado o próximo</string>
     <string name="enqueue_next_stream">Enfileirar o próximo</string>
@@ -688,4 +688,6 @@
 \nPor favor, instale um gestor de ficheiros ou tente desativar \'%s\' nas configurações de descarregar.</string>
     <string name="no_appropriate_file_manager_message_android_10">Nenhum gestor de ficheiros apropriado foi encontrado para esta ação.
 \nPor favor, instale um gestor de ficheiros compatível com o Storage Access Framework.</string>
+    <string name="detail_pinned_comment_view_description">Comentário fixado</string>
+    <string name="background_player_already_playing_toast">Já está a reproduzir em segundo plano</string>
 </resources>
