@@ -1,0 +1,1 @@
+NewPipe nenaudoja jokių Google struktūrinių bibliotekų ar YouTube API. Ji tik analizuoja svetainę, kad gautų reikiamą informaciją. Todėl šią programėlę galima naudoti įrenginiuose, kuriuose nėra įdiegtos Google paslaugos. Be to, norint naudoti NewPipe, jums nereikia YouTube paskyros ir visa tai yra FLOSS (nemokama/libre/atvirojo kodo programinė įranga).

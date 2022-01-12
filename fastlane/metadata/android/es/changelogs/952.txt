@@ -1,0 +1,7 @@
+Mejorado
+• Reproducción automática disponible para todos los servicios (no sólo para YouTube)
+
+Arreglado
+• Streams relacionados, gracias al soporte de las nuevas continuaciones de YouTube
+• Videos con restricción de edad en YouTube
+• [Android TV] Superposición de los destacados de foco persistente

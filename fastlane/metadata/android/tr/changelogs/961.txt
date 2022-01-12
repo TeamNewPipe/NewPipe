@@ -1,0 +1,12 @@
+• [YouTube] Mix desteği
+• [YouTube] Genel yayıncılar ve Covid-19 hakkındaki bilgileri görüntüle
+• [media.ccc.de] Son videolar eklendi
+• Somalice çeviri eklendi
+
+• Birçok dahili iyileştirme
+
+• Oynatıcı içinden video paylaşımı düzeltildi
+• Boş ReCaptcha webview düzeltildi
+• Listeden bir akışı kaldırırken meydana gelen çökme düzeltildi
+• [PeerTube] İlgili akışlar düzeltildi
+• [YouTube] YouTube Music araması düzeltildi

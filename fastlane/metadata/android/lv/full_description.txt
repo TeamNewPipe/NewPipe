@@ -1,0 +1,1 @@
+NewPipe neizmanto nekādas Google bibliotēkas vai YouTube API. Tā tikai apstrāda vietni lai iegūtu nepieciešamo informāciju. Tāpēc šo lietotni var izmantot ierīces kurām nav Google pakalpojumi uzstadīti. Arī nav nepieciešams YouTube konts lai izmantotu NewPipe, un tas ir FLOSS.

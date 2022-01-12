@@ -7,27 +7,27 @@ import androidx.room.PrimaryKey
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity.Companion.FEED_LAST_UPDATED_TABLE
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity.Companion.SUBSCRIPTION_ID
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
-import java.util.*
+import java.time.OffsetDateTime
 
 @Entity(
-        tableName = FEED_LAST_UPDATED_TABLE,
-        foreignKeys = [
-            ForeignKey(
-                    entity = SubscriptionEntity::class,
-                    parentColumns = [SubscriptionEntity.SUBSCRIPTION_UID],
-                    childColumns = [SUBSCRIPTION_ID],
-                    onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE, deferred = true)
-        ]
+    tableName = FEED_LAST_UPDATED_TABLE,
+    foreignKeys = [
+        ForeignKey(
+            entity = SubscriptionEntity::class,
+            parentColumns = [SubscriptionEntity.SUBSCRIPTION_UID],
+            childColumns = [SUBSCRIPTION_ID],
+            onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE, deferred = true
+        )
+    ]
 )
 data class FeedLastUpdatedEntity(
-        @PrimaryKey
-        @ColumnInfo(name = SUBSCRIPTION_ID)
-        var subscriptionId: Long,
+    @PrimaryKey
+    @ColumnInfo(name = SUBSCRIPTION_ID)
+    var subscriptionId: Long,
 
-        @ColumnInfo(name = LAST_UPDATED)
-        var lastUpdated: Date? = null
+    @ColumnInfo(name = LAST_UPDATED)
+    var lastUpdated: OffsetDateTime? = null
 ) {
-
     companion object {
         const val FEED_LAST_UPDATED_TABLE = "feed_last_updated"
 

@@ -2,10 +2,10 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
+import androidx.preference.PreferenceManager;
 
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
@@ -38,6 +38,8 @@ public final class ServiceHelper {
                 return R.drawable.place_holder_gadse;
             case 3:
                 return R.drawable.place_holder_peertube;
+            case 4:
+                return R.drawable.place_holder_bandcamp;
             default:
                 return R.drawable.place_holder_circle;
         }
@@ -48,6 +50,7 @@ public final class ServiceHelper {
             case "all":
                 return c.getString(R.string.all);
             case "videos":
+            case "sepia_videos":
             case "music_videos":
                 return c.getString(R.string.videos_string);
             case "channels":
@@ -117,7 +120,7 @@ public final class ServiceHelper {
         int serviceId;
         try {
             serviceId = NewPipe.getService(serviceName).getServiceId();
-        } catch (ExtractionException e) {
+        } catch (final ExtractionException e) {
             serviceId = DEFAULT_FALLBACK_SERVICE.getServiceId();
         }
 
@@ -128,7 +131,7 @@ public final class ServiceHelper {
         String serviceName;
         try {
             serviceName = NewPipe.getService(serviceId).getServiceInfo().getName();
-        } catch (ExtractionException e) {
+        } catch (final ExtractionException e) {
             serviceName = DEFAULT_FALLBACK_SERVICE.getServiceInfo().getName();
         }
 
@@ -136,7 +139,7 @@ public final class ServiceHelper {
     }
 
     public static void setSelectedServiceId(final Context context, final String serviceName) {
-        int serviceId = NewPipe.getIdOfService(serviceName);
+        final int serviceId = NewPipe.getIdOfService(serviceName);
         if (serviceId == -1) {
             setSelectedServicePreferences(context,
                     DEFAULT_FALLBACK_SERVICE.getServiceInfo().getName());
@@ -170,29 +173,29 @@ public final class ServiceHelper {
 
     public static void initService(final Context context, final int serviceId) {
         if (serviceId == ServiceList.PeerTube.getServiceId()) {
-            SharedPreferences sharedPreferences = PreferenceManager
+            final SharedPreferences sharedPreferences = PreferenceManager
                     .getDefaultSharedPreferences(context);
-            String json = sharedPreferences.getString(context.getString(
+            final String json = sharedPreferences.getString(context.getString(
                     R.string.peertube_selected_instance_key), null);
             if (null == json) {
                 return;
             }
 
-            JsonObject jsonObject = null;
+            final JsonObject jsonObject;
             try {
                 jsonObject = JsonParser.object().from(json);
-            } catch (JsonParserException e) {
+            } catch (final JsonParserException e) {
                 return;
             }
-            String name = jsonObject.getString("name");
-            String url = jsonObject.getString("url");
-            PeertubeInstance instance = new PeertubeInstance(url, name);
+            final String name = jsonObject.getString("name");
+            final String url = jsonObject.getString("url");
+            final PeertubeInstance instance = new PeertubeInstance(url, name);
             ServiceList.PeerTube.setInstance(instance);
         }
     }
 
     public static void initServices(final Context context) {
-        for (StreamingService s : ServiceList.all()) {
+        for (final StreamingService s : ServiceList.all()) {
             initService(context, s.getServiceId());
         }
     }

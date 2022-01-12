@@ -1,0 +1,2 @@
+Đây là bản hotfix cập nhật NewPipe để sửa lỗi dịch vụ SoundCloud.
+API v2 của SoundCloud sẽ được dùng trong phần extractor; khả năng phát hiện client ID không hợp lệ đã được cải thiện.

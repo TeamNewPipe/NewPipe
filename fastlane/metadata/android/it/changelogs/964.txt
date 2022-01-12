@@ -1,0 +1,8 @@
+• I capitoli sono ora supportati nei controlli del riproduttore video
+• [PeerTube] Aggiunta la ricerca Sepia
+• Riaggiunto il bottone di condivisione e migliorate le schede nella pagina dei dettagli del video
+• Non ripristinare la luminosità se il gesto è disabilitato
+• Aggiunta un'azione rapida per riprodurre su kodi
+• Miglioramenti e sistemazione di bug per i menu di condivisione
+• Con il video è a schermo intero, metti in pausa o riproduci premendo spazio
+• [media.ccc.de] Miglioramenti vari

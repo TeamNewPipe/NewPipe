@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
@@ -19,9 +20,8 @@ import org.schabi.newpipe.util.FallbackViewHolder;
 
 import java.util.List;
 
-import io.reactivex.Observer;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * Created by Christian Schabesberger on 01.08.16.
@@ -115,9 +115,6 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 break;
             case ERROR:
                 final ErrorEvent errorEvent = (ErrorEvent) message;
-                if (!errorEvent.isSkippable()) {
-                    notifyItemRemoved(errorEvent.getErrorIndex());
-                }
                 notifyItemChanged(errorEvent.getErrorIndex());
                 notifyItemChanged(errorEvent.getQueueIndex());
                 break;
@@ -185,8 +182,10 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return ITEM_VIEW_TYPE_ID;
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, final int type) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
+                                                      final int type) {
         switch (type) {
             case FOOTER_VIEW_TYPE_ID:
                 return new HFHolder(footer);
@@ -200,7 +199,8 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder,
+                                 final int position) {
         if (holder instanceof PlayQueueItemHolder) {
             final PlayQueueItemHolder itemHolder = (PlayQueueItemHolder) holder;
 
@@ -210,7 +210,6 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             // Check if the current item should be selected/highlighted
             final boolean isSelected = playQueue.getIndex() == position;
-            itemHolder.itemSelected.setVisibility(isSelected ? View.VISIBLE : View.INVISIBLE);
             itemHolder.itemView.setSelected(isSelected);
         } else if (holder instanceof HFHolder && position == playQueue.getStreams().size()
                 && footer != null && showFooter) {
@@ -218,7 +217,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
     }
 
-    public class HFHolder extends RecyclerView.ViewHolder {
+    public static class HFHolder extends RecyclerView.ViewHolder {
         public View view;
 
         public HFHolder(final View v) {

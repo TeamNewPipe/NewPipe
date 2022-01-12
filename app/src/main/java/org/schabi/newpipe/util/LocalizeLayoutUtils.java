@@ -7,15 +7,23 @@ import android.view.View;
 public final class LocalizeLayoutUtils {
     private LocalizeLayoutUtils() { }
 
-    public static int getLayoutPosition(final boolean isRTL, final int count, final int position) {
-        return isRTL
+    private static Boolean isRTL = null;
+
+    public static int getLayoutPosition(final boolean isRtl, final int count, final int position) {
+        return isRtl
                 ? count - 1 - position
                 : position;
     }
 
     public static boolean isRTL(final Context context) {
-        Configuration config = context.getResources().getConfiguration();
+        if (isRTL != null) {
+            return isRTL;
+        }
 
-        return config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+        final Configuration config = context.getResources().getConfiguration();
+
+        isRTL = config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+
+        return isRTL;
     }
 }

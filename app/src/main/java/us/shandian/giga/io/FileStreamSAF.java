@@ -3,8 +3,9 @@ package us.shandian.giga.io;
 import android.content.ContentResolver;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
-import androidx.annotation.NonNull;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.streams.io.SharpStream;
 
@@ -107,10 +108,12 @@ public class FileStreamSAF extends SharpStream {
         return true;
     }
 
+    @Override
     public boolean canSetLength() {
         return true;
     }
 
+    @Override
     public boolean canSeek() {
         return true;
     }
@@ -130,10 +133,12 @@ public class FileStreamSAF extends SharpStream {
         out.write(buffer, offset, count);
     }
 
+    @Override
     public void setLength(long length) throws IOException {
         channel.truncate(length);
     }
 
+    @Override
     public void seek(long offset) throws IOException {
         channel.position(offset);
     }

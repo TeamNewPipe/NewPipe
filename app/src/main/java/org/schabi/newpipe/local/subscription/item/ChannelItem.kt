@@ -1,24 +1,22 @@
 package org.schabi.newpipe.local.subscription.item
 
 import android.content.Context
-import com.nostra13.universalimageloader.core.ImageLoader
-import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
-import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.list_channel_item.*
+import android.widget.ImageView
+import android.widget.TextView
+import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Item
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
-import org.schabi.newpipe.util.ImageDisplayConstants
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.OnClickGesture
-
+import org.schabi.newpipe.util.PicassoHelper
 
 class ChannelItem(
-        private val infoItem: ChannelInfoItem,
-        private val subscriptionId: Long = -1L,
-        var itemVersion: ItemVersion = ItemVersion.NORMAL,
-        var gesturesListener: OnClickGesture<ChannelInfoItem>? = null
-) : Item() {
-
+    private val infoItem: ChannelInfoItem,
+    private val subscriptionId: Long = -1L,
+    var itemVersion: ItemVersion = ItemVersion.NORMAL,
+    var gesturesListener: OnClickGesture<ChannelInfoItem>? = null
+) : Item<GroupieViewHolder>() {
     override fun getId(): Long = if (subscriptionId == -1L) super.getId() else subscriptionId
 
     enum class ItemVersion { NORMAL, MINI, GRID }
@@ -30,16 +28,22 @@ class ChannelItem(
     }
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        viewHolder.itemTitleView.text = infoItem.name
-        viewHolder.itemAdditionalDetails.text = getDetailLine(viewHolder.root.context)
-        if (itemVersion == ItemVersion.NORMAL) viewHolder.itemChannelDescriptionView.text = infoItem.description
+        val itemTitleView = viewHolder.root.findViewById<TextView>(R.id.itemTitleView)
+        val itemAdditionalDetails = viewHolder.root.findViewById<TextView>(R.id.itemAdditionalDetails)
+        val itemChannelDescriptionView = viewHolder.root.findViewById<TextView>(R.id.itemChannelDescriptionView)
+        val itemThumbnailView = viewHolder.root.findViewById<ImageView>(R.id.itemThumbnailView)
 
-        ImageLoader.getInstance().displayImage(infoItem.thumbnailUrl, viewHolder.itemThumbnailView,
-                ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS)
+        itemTitleView.text = infoItem.name
+        itemAdditionalDetails.text = getDetailLine(viewHolder.root.context)
+        if (itemVersion == ItemVersion.NORMAL) {
+            itemChannelDescriptionView.text = infoItem.description
+        }
+
+        PicassoHelper.loadThumbnail(infoItem.thumbnailUrl).into(itemThumbnailView)
 
         gesturesListener?.run {
-            viewHolder.containerView.setOnClickListener { selected(infoItem) }
-            viewHolder.containerView.setOnLongClickListener { held(infoItem); true }
+            viewHolder.root.setOnClickListener { selected(infoItem) }
+            viewHolder.root.setOnLongClickListener { held(infoItem); true }
         }
     }
 
@@ -50,11 +54,9 @@ class ChannelItem(
             context.getString(R.string.subscribers_count_not_available)
         }
 
-        if (itemVersion == ItemVersion.NORMAL) {
-            if (infoItem.streamCount >= 0) {
-                val formattedVideoAmount = Localization.localizeStreamCount(context, infoItem.streamCount)
-                details = Localization.concatenateStrings(details, formattedVideoAmount)
-            }
+        if (itemVersion == ItemVersion.NORMAL && infoItem.streamCount >= 0) {
+            val formattedVideoAmount = Localization.localizeStreamCount(context, infoItem.streamCount)
+            details = Localization.concatenateStrings(details, formattedVideoAmount)
         }
         return details
     }

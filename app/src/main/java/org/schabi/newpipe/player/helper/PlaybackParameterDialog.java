@@ -1,9 +1,11 @@
 package org.schabi.newpipe.player.helper;
 
+import static org.schabi.newpipe.player.Player.DEBUG;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -14,12 +16,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.SliderStrategy;
-
-import static org.schabi.newpipe.player.BasePlayer.DEBUG;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class PlaybackParameterDialog extends DialogFragment {
     // Minimum allowable range in ExoPlayer
@@ -92,8 +92,10 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     public static PlaybackParameterDialog newInstance(final double playbackTempo,
                                                       final double playbackPitch,
-                                                      final boolean playbackSkipSilence) {
-        PlaybackParameterDialog dialog = new PlaybackParameterDialog();
+                                                      final boolean playbackSkipSilence,
+                                                      final Callback callback) {
+        final PlaybackParameterDialog dialog = new PlaybackParameterDialog();
+        dialog.callback = callback;
         dialog.initialTempo = playbackTempo;
         dialog.initialPitch = playbackPitch;
 
@@ -111,9 +113,9 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Override
     public void onAttach(final Context context) {
         super.onAttach(context);
-        if (context != null && context instanceof Callback) {
+        if (context instanceof Callback) {
             callback = (Callback) context;
-        } else {
+        } else if (callback == null) {
             dismiss();
         }
     }
@@ -155,14 +157,13 @@ public class PlaybackParameterDialog extends DialogFragment {
         setupControlViews(view);
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireActivity())
-                .setTitle(R.string.playback_speed_control)
                 .setView(view)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, (dialogInterface, i) ->
                         setPlaybackParameters(initialTempo, initialPitch, initialSkipSilence))
                 .setNeutralButton(R.string.playback_reset, (dialogInterface, i) ->
                         setPlaybackParameters(DEFAULT_TEMPO, DEFAULT_PITCH, DEFAULT_SKIP_SILENCE))
-                .setPositiveButton(R.string.finish, (dialogInterface, i) ->
+                .setPositiveButton(R.string.ok, (dialogInterface, i) ->
                         setCurrentPlaybackParameters());
 
         return dialogBuilder.create();
@@ -185,8 +186,8 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private void setupTempoControl(@NonNull final View rootView) {
         tempoSlider = rootView.findViewById(R.id.tempoSeekbar);
-        TextView tempoMinimumText = rootView.findViewById(R.id.tempoMinimumText);
-        TextView tempoMaximumText = rootView.findViewById(R.id.tempoMaximumText);
+        final TextView tempoMinimumText = rootView.findViewById(R.id.tempoMinimumText);
+        final TextView tempoMaximumText = rootView.findViewById(R.id.tempoMaximumText);
         tempoCurrentText = rootView.findViewById(R.id.tempoCurrentText);
         tempoStepUpText = rootView.findViewById(R.id.tempoStepUp);
         tempoStepDownText = rootView.findViewById(R.id.tempoStepDown);
@@ -210,8 +211,8 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private void setupPitchControl(@NonNull final View rootView) {
         pitchSlider = rootView.findViewById(R.id.pitchSeekbar);
-        TextView pitchMinimumText = rootView.findViewById(R.id.pitchMinimumText);
-        TextView pitchMaximumText = rootView.findViewById(R.id.pitchMaximumText);
+        final TextView pitchMinimumText = rootView.findViewById(R.id.pitchMinimumText);
+        final TextView pitchMaximumText = rootView.findViewById(R.id.pitchMaximumText);
         pitchCurrentText = rootView.findViewById(R.id.pitchCurrentText);
         pitchStepDownText = rootView.findViewById(R.id.pitchStepDown);
         pitchStepUpText = rootView.findViewById(R.id.pitchStepUp);
@@ -237,12 +238,13 @@ public class PlaybackParameterDialog extends DialogFragment {
         unhookingCheckbox = rootView.findViewById(R.id.unhookCheckbox);
         if (unhookingCheckbox != null) {
             // restore whether pitch and tempo are unhooked or not
-            unhookingCheckbox.setChecked(PreferenceManager.getDefaultSharedPreferences(getContext())
+            unhookingCheckbox.setChecked(PreferenceManager
+                    .getDefaultSharedPreferences(requireContext())
                     .getBoolean(getString(R.string.playback_unhook_key), true));
 
             unhookingCheckbox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
                 // save whether pitch and tempo are unhooked or not
-                PreferenceManager.getDefaultSharedPreferences(getContext())
+                PreferenceManager.getDefaultSharedPreferences(requireContext())
                         .edit()
                         .putBoolean(getString(R.string.playback_unhook_key), isChecked)
                         .apply();
@@ -267,12 +269,12 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private void setupStepSizeSelector(@NonNull final View rootView) {
-        TextView stepSizeOnePercentText = rootView.findViewById(R.id.stepSizeOnePercent);
-        TextView stepSizeFivePercentText = rootView.findViewById(R.id.stepSizeFivePercent);
-        TextView stepSizeTenPercentText = rootView.findViewById(R.id.stepSizeTenPercent);
-        TextView stepSizeTwentyFivePercentText = rootView
+        final TextView stepSizeOnePercentText = rootView.findViewById(R.id.stepSizeOnePercent);
+        final TextView stepSizeFivePercentText = rootView.findViewById(R.id.stepSizeFivePercent);
+        final TextView stepSizeTenPercentText = rootView.findViewById(R.id.stepSizeTenPercent);
+        final TextView stepSizeTwentyFivePercentText = rootView
                 .findViewById(R.id.stepSizeTwentyFivePercent);
-        TextView stepSizeOneHundredPercentText = rootView
+        final TextView stepSizeOneHundredPercentText = rootView
                 .findViewById(R.id.stepSizeOneHundredPercent);
 
         if (stepSizeOnePercentText != null) {

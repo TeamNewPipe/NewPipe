@@ -1,0 +1,12 @@
+### Förbättringar
+- Stängde av burgarmeny ikonens animation #1486
+- Ångra radering av nedladdningar #1472
+- Nedladdningsalternativ i delningsmenyn #1498
+- La till delningsalternativet i menyn för långa tryckningar #1454
+- Och mer...
+
+### Fixade
+- Fixade #1440 Trasig layout för videoinformation #1491
+- Visningshistorik fix #1497
+- #1495, genom att uppdatera metadata (miniatyrbild, titel och videoantal) så snart användaren får tillgång till spellistan. - #1475
+- Och mer...

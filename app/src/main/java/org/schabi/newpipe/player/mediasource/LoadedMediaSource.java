@@ -5,6 +5,8 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.drm.DrmSessionEventListener;
 import com.google.android.exoplayer2.source.MediaPeriod;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MediaSourceEventListener;
@@ -36,14 +38,19 @@ public class LoadedMediaSource implements ManagedMediaSource {
     }
 
     @Override
-    public void prepareSource(final SourceInfoRefreshListener listener,
+    public void prepareSource(final MediaSourceCaller mediaSourceCaller,
                               @Nullable final TransferListener mediaTransferListener) {
-        source.prepareSource(listener, mediaTransferListener);
+        source.prepareSource(mediaSourceCaller, mediaTransferListener);
     }
 
     @Override
     public void maybeThrowSourceInfoRefreshError() throws IOException {
         source.maybeThrowSourceInfoRefreshError();
+    }
+
+    @Override
+    public void enable(final MediaSourceCaller caller) {
+        source.enable(caller);
     }
 
     @Override
@@ -58,8 +65,13 @@ public class LoadedMediaSource implements ManagedMediaSource {
     }
 
     @Override
-    public void releaseSource(final SourceInfoRefreshListener listener) {
-        source.releaseSource(listener);
+    public void disable(final MediaSourceCaller caller) {
+        source.disable(caller);
+    }
+
+    @Override
+    public void releaseSource(final MediaSourceCaller mediaSourceCaller) {
+        source.releaseSource(mediaSourceCaller);
     }
 
     @Override
@@ -71,6 +83,38 @@ public class LoadedMediaSource implements ManagedMediaSource {
     @Override
     public void removeEventListener(final MediaSourceEventListener eventListener) {
         source.removeEventListener(eventListener);
+    }
+
+    /**
+     * Adds a {@link DrmSessionEventListener} to the list of listeners which are notified of DRM
+     * events for this media source.
+     *
+     * @param handler       A handler on the which listener events will be posted.
+     * @param eventListener The listener to be added.
+     */
+    @Override
+    public void addDrmEventListener(final Handler handler,
+                                    final DrmSessionEventListener eventListener) {
+        source.addDrmEventListener(handler, eventListener);
+    }
+
+    /**
+     * Removes a {@link DrmSessionEventListener} from the list of listeners which are notified of
+     * DRM events for this media source.
+     *
+     * @param eventListener The listener to be removed.
+     */
+    @Override
+    public void removeDrmEventListener(final DrmSessionEventListener eventListener) {
+        source.removeDrmEventListener(eventListener);
+    }
+
+    /**
+     * Returns the {@link MediaItem} whose media is provided by the source.
+     */
+    @Override
+    public MediaItem getMediaItem() {
+        return source.getMediaItem();
     }
 
     @Override

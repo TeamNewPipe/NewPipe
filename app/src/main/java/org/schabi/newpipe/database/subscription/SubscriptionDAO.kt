@@ -1,8 +1,12 @@
 package org.schabi.newpipe.database.subscription
 
-import androidx.room.*
-import io.reactivex.Flowable
-import io.reactivex.Maybe
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Transaction
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Maybe
 import org.schabi.newpipe.database.BasicDAO
 
 @Dao
@@ -15,6 +19,51 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
 
     @Query("SELECT * FROM subscriptions ORDER BY name COLLATE NOCASE ASC")
     abstract override fun getAll(): Flowable<List<SubscriptionEntity>>
+
+    @Query(
+        """
+        SELECT * FROM subscriptions
+
+        WHERE name LIKE '%' || :filter || '%'
+
+        ORDER BY name COLLATE NOCASE ASC
+        """
+    )
+    abstract fun getSubscriptionsFiltered(filter: String): Flowable<List<SubscriptionEntity>>
+
+    @Query(
+        """
+        SELECT * FROM subscriptions s
+
+        LEFT JOIN feed_group_subscription_join fgs
+        ON s.uid = fgs.subscription_id
+
+        WHERE (fgs.subscription_id IS NULL OR fgs.group_id = :currentGroupId)
+
+        ORDER BY name COLLATE NOCASE ASC
+        """
+    )
+    abstract fun getSubscriptionsOnlyUngrouped(
+        currentGroupId: Long
+    ): Flowable<List<SubscriptionEntity>>
+
+    @Query(
+        """
+        SELECT * FROM subscriptions s
+
+        LEFT JOIN feed_group_subscription_join fgs
+        ON s.uid = fgs.subscription_id
+
+        WHERE (fgs.subscription_id IS NULL OR fgs.group_id = :currentGroupId)
+        AND s.name LIKE '%' || :filter || '%'
+
+        ORDER BY name COLLATE NOCASE ASC
+        """
+    )
+    abstract fun getSubscriptionsOnlyUngroupedFiltered(
+        currentGroupId: Long,
+        filter: String
+    ): Flowable<List<SubscriptionEntity>>
 
     @Query("SELECT * FROM subscriptions WHERE url LIKE :url AND service_id = :serviceId")
     abstract fun getSubscriptionFlowable(serviceId: Int, url: String): Flowable<List<SubscriptionEntity>>
@@ -48,7 +97,7 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
                 entity.uid = uidFromInsert
             } else {
                 val subscriptionIdFromDb = getSubscriptionIdInternal(entity.serviceId, entity.url)
-                        ?: throw IllegalStateException("Subscription cannot be null just after insertion.")
+                    ?: throw IllegalStateException("Subscription cannot be null just after insertion.")
                 entity.uid = subscriptionIdFromDb
 
                 update(entity)

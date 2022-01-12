@@ -1,0 +1,4 @@
+0.17.2-dagi o'zgarishlar
+
+Tuzatish
+• Hech qanday video mavjud emasligini aniqlang

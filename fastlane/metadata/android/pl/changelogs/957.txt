@@ -1,0 +1,7 @@
+• Ujednolicono akcje kolejkowania w jedną
+• Nowy gest przy użyciu dwóch palców, służący do zamykania odtwarzacza
+• Zezwolono na usuwanie plików cookie reCAPTCHA
+• Możliwość nie kolorowania powiadomienia
+• Poprawiono sposób otwierania szczegółów wideo, aby naprawić nieskończone buforowanie, błędne zachowanie podczas udostępniania do NewPipe i inne niespójności
+• Naprawiono awarię podczas przewijania do przodu/do tyłu
+i wiele innych

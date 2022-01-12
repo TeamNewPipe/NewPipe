@@ -7,9 +7,9 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
-import io.reactivex.Single;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RemotePlaylistManager {
 
@@ -42,7 +42,7 @@ public class RemotePlaylistManager {
 
     public Single<Integer> onUpdate(final long playlistId, final PlaylistInfo playlistInfo) {
         return Single.fromCallable(() -> {
-            PlaylistRemoteEntity playlist = new PlaylistRemoteEntity(playlistInfo);
+            final PlaylistRemoteEntity playlist = new PlaylistRemoteEntity(playlistInfo);
             playlist.setUid(playlistId);
             return playlistRemoteTable.update(playlist);
         }).subscribeOn(Schedulers.io());

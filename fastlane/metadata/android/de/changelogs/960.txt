@@ -1,0 +1,4 @@
+• Verbesserte Beschreibung der Option "Datenbank exportieren" in den Einstellungen.
+• Das Parsen von YouTube-Kommentaren wurde behoben.
+• Anzeige des Namens des Dienstes media.ccc.de korrigiert.
+• Aktualisierte Übersetzungen.

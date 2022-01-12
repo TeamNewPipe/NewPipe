@@ -18,6 +18,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.settings.NewPipeSettings;
 
 public final class PermissionHelper {
     public static final int DOWNLOAD_DIALOG_REQUEST_CODE = 778;
@@ -26,10 +27,12 @@ public final class PermissionHelper {
     private PermissionHelper() { }
 
     public static boolean checkStoragePermissions(final Activity activity, final int requestCode) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if (!checkReadStoragePermissions(activity, requestCode)) {
-                return false;
-            }
+        if (NewPipeSettings.useStorageAccessFramework(activity)) {
+            return true; // Storage permissions are not needed for SAF
+        }
+
+        if (!checkReadStoragePermissions(activity, requestCode)) {
+            return false;
         }
         return checkWriteStoragePermissions(activity, requestCode);
     }
@@ -101,12 +104,12 @@ public final class PermissionHelper {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static boolean checkSystemAlertWindowPermission(final Context context) {
         if (!Settings.canDrawOverlays(context)) {
-            Intent i = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+            final Intent i = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:" + context.getPackageName()));
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             try {
                 context.startActivity(i);
-            } catch (ActivityNotFoundException ignored) {
+            } catch (final ActivityNotFoundException ignored) {
             }
             return false;
         } else {
@@ -116,12 +119,13 @@ public final class PermissionHelper {
 
     public static boolean isPopupEnabled(final Context context) {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-                || PermissionHelper.checkSystemAlertWindowPermission(context);
+                || checkSystemAlertWindowPermission(context);
     }
 
     public static void showPopupEnablementToast(final Context context) {
-        Toast toast = Toast.makeText(context, R.string.msg_popup_permission, Toast.LENGTH_LONG);
-        TextView messageView = toast.getView().findViewById(android.R.id.message);
+        final Toast toast
+                = Toast.makeText(context, R.string.msg_popup_permission, Toast.LENGTH_LONG);
+        final TextView messageView = toast.getView().findViewById(android.R.id.message);
         if (messageView != null) {
             messageView.setGravity(Gravity.CENTER);
         }

@@ -1,0 +1,1 @@
+Giao diện của trang web YouTube đã được cập nhật khi phiên bản này đã được release. Giao diện trang YouTube cũ sẽ không còn vào được từ tháng 3, vì vậy bạn phải cập nhật NewPipe.

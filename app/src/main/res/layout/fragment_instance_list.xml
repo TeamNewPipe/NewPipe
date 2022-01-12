@@ -6,19 +6,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/instanceHelpTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:autoLink="web"
-        android:text="@string/peertube_instance_url_help"/>
+        android:text="@string/peertube_instance_url_help" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/instances"
-        android:layout_below="@id/instanceHelpTV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/instanceHelpTV"
         tools:listitem="@layout/item_instance" />
 
     <!-- LOADING INDICATOR-->
@@ -44,6 +44,6 @@
         android:focusable="true"
         app:backgroundTint="?attr/colorPrimary"
         app:fabSize="auto"
-        app:srcCompat="?attr/ic_add" />
+        app:srcCompat="@drawable/ic_add" />
 
 </RelativeLayout>

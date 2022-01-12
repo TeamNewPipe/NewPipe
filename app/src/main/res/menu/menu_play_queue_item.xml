@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_item_remove"
+        android:title="@string/play_queue_remove" />
+    <item
+        android:id="@+id/menu_item_details"
+        android:title="@string/play_queue_stream_detail" />
+    <item
+        android:id="@+id/menu_item_append_playlist"
+        android:title="@string/add_to_playlist" />
+    <item
+        android:id="@+id/menu_item_channel_details"
+        android:title="@string/show_channel_details" />
+    <item
+        android:id="@+id/menu_item_share"
+        android:title="@string/share" />
+</menu>

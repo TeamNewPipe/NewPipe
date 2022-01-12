@@ -1,0 +1,10 @@
+### Améliorations
+* Notification maj GitHub (#1608 par @krtkush)
+* Améliorations téléchargeur (#1944 par @kapodamy) :
+  * icônes blanches manquantes ; utilisation d'une méthode pour changer leurs couleurs
+  * vérification si l'itérateur est initialisé (#2031)
+  * réessayer les téléchargements post-processing failed dans le nouveau muxer
+  * nouveau muxer MPEG-4 corrigeant les flux non synchrones (#2039)
+
+### Corrections
+* Flux YouTube en direct s'arrêtent (#1996 par @yausername)

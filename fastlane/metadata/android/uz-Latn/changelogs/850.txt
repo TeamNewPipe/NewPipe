@@ -1,0 +1,1 @@
+Ushbu versiyada YouTube veb-saytining versiyasi yangilandi. Eski veb-sayt versiyasi mart oyida to'xtatiladi va shuning uchun siz NewPipe-ni yangilashingiz kerak.

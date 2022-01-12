@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -17,9 +16,9 @@
         android:layout_marginBottom="@dimen/subscription_import_export_item_icon_margin"
         android:scaleType="fitCenter"
         tools:ignore="ContentDescription,RtlHardcoded"
-        tools:src="@drawable/place_holder_youtube"/>
+        tools:src="@drawable/place_holder_youtube" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@android:id/text1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/subscription_import_export_item_height"

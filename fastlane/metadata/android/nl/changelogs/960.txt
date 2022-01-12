@@ -1,0 +1,4 @@
+• Verbeterde beschrijving van de export database optie in de instellingen.
+• Probleem opgelost met parsen van YouTube-reacties.
+• Probleem opgelost met de weergavenaam van de media.ccc.de service.
+• Vertalingen bijgewerkt.

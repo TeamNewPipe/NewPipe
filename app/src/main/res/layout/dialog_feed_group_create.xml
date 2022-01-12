@@ -7,7 +7,6 @@
     android:orientation="vertical">
 
     <FrameLayout
-        android:id="@+id/panels_root"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -30,7 +29,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription"
-                tools:src="?attr/ic_asterisk" />
+                tools:src="@drawable/ic_asterisk" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/group_name_input_container"
@@ -38,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:gravity="center_vertical"
-                android:hint="@string/feed_group_dialog_name_input"
+                android:hint="@string/name"
                 android:paddingTop="6dp"
                 android:paddingBottom="6dp"
                 app:errorEnabled="true"
@@ -46,7 +45,7 @@
                 app:layout_constraintStart_toEndOf="@+id/icon_preview"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <EditText
+                <org.schabi.newpipe.views.NewPipeEditText
                     android:id="@+id/group_name_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -58,7 +57,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/selected_subscription_count_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,49 +101,61 @@
             android:id="@+id/subscriptions_selector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/subscriptions_header_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="12dp">
+                android:layout_height="?attr/actionBarSize"
+                android:gravity="center_vertical"
+                android:theme="@style/ContrastToolbarTheme">
 
-                <TextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:id="@+id/subscriptions_header_info_container"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="start|center_vertical"
-                    android:text="@string/tab_subscriptions"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/subscriptions_selector_header_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="start|center_vertical"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="12sp"
-                    tools:text="1 selected" />
-            </LinearLayout>
+                    <org.schabi.newpipe.views.NewPipeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|center_vertical"
+                        android:text="@string/tab_subscriptions"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <org.schabi.newpipe.views.NewPipeTextView
+                        android:id="@+id/subscriptions_header_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|center_vertical"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        tools:text="1 selected" />
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/subscriptions_header_search_container"
+                    layout="@layout/toolbar_search_layout"
+                    android:visibility="gone" />
+
+            </androidx.appcompat.widget.Toolbar>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/subscriptions_selector_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:padding="2dp"
                 tools:itemCount="200"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:listitem="@layout/picker_subscription_item"
                 tools:spanCount="4" />
         </LinearLayout>
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/delete_screen_message"
             style="@style/TextAppearance.AppCompat.Subhead"
             android:layout_width="wrap_content"
@@ -182,8 +193,8 @@
             android:layout_centerVertical="true"
             android:minWidth="0dp"
             android:scaleType="centerInside"
-            android:src="?attr/ic_delete"
             android:visibility="gone"
+            app:srcCompat="@drawable/ic_delete"
             tools:ignore="ContentDescription"
             tools:visibility="visible" />
 
@@ -193,7 +204,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/confirm_button"
-            android:text="@android:string/cancel" />
+            android:text="@string/cancel" />
 
         <Button
             android:id="@+id/confirm_button"

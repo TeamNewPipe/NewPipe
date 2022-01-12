@@ -1,0 +1,3 @@
+[YouTube] Fix zoekfunctionaliteit voor sommige gebruikers
+[YouTube] Fix willekeurige decoderingsfouten
+[SoundCloud] URLs eindigend op slash worden nu correct verwerkt

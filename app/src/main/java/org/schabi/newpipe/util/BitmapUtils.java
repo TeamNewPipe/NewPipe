@@ -14,14 +14,14 @@ public final class BitmapUtils {
             return null;
         }
 
-        float sourceWidth = inputBitmap.getWidth();
-        float sourceHeight = inputBitmap.getHeight();
+        final float sourceWidth = inputBitmap.getWidth();
+        final float sourceHeight = inputBitmap.getHeight();
 
-        float xScale = newWidth / sourceWidth;
-        float yScale = newHeight / sourceHeight;
+        final float xScale = newWidth / sourceWidth;
+        final float yScale = newHeight / sourceHeight;
 
-        float newXScale;
-        float newYScale;
+        final float newXScale;
+        final float newYScale;
 
         if (yScale > xScale) {
             newXScale = xScale / yScale;
@@ -31,15 +31,14 @@ public final class BitmapUtils {
             newYScale = yScale / xScale;
         }
 
-        float scaledWidth = newXScale * sourceWidth;
-        float scaledHeight = newYScale * sourceHeight;
+        final float scaledWidth = newXScale * sourceWidth;
+        final float scaledHeight = newYScale * sourceHeight;
 
-        int left = (int) ((sourceWidth - scaledWidth) / 2);
-        int top = (int) ((sourceHeight - scaledHeight) / 2);
-        int width = (int) scaledWidth;
-        int height = (int) scaledHeight;
+        final int left = (int) ((sourceWidth - scaledWidth) / 2);
+        final int top = (int) ((sourceHeight - scaledHeight) / 2);
+        final int width = (int) scaledWidth;
+        final int height = (int) scaledHeight;
 
         return Bitmap.createBitmap(inputBitmap, left, top, width, height);
     }
-
 }

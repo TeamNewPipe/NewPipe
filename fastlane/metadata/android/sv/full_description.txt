@@ -1,0 +1,1 @@
+NewPipe använder inte något av Googles ramverksbibliotek, eller YouTubes API. Den parsar bara webbplatsen för att få tag på den information den behöver. Därför kan denna app användas på enheter som inte har Google Services installerat. Du behöver inte heller ha ett YouTube-konto för att använda NewPipe, och det är FLOSS (free/libre/open-source software).

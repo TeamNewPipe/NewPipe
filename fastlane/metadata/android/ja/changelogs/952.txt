@@ -1,0 +1,7 @@
+改善
+• 全てのサービスで自動再生が利用可能
+
+修正
+• Fixed related streams by supporting YouTube's new continuations
+• 年齢制限のあるYouTube動画を修正
+• [Android TV] Fixed lingering focus highlight overlay

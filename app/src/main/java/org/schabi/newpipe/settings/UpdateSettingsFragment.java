@@ -1,30 +1,48 @@
 package org.schabi.newpipe.settings;
 
-import android.os.Bundle;
+import static org.schabi.newpipe.CheckForNewAppVersion.startNewVersionCheckService;
 
-import androidx.annotation.Nullable;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.preference.Preference;
 
 import org.schabi.newpipe.R;
 
 public class UpdateSettingsFragment extends BasePreferenceFragment {
-    private Preference.OnPreferenceChangeListener updatePreferenceChange
-            = (preference, newValue) -> {
+    private final Preference.OnPreferenceChangeListener updatePreferenceChange
+            = (preference, checkForUpdates) -> {
         defaultPreferences.edit()
-                .putBoolean(getString(R.string.update_app_key), (boolean) newValue).apply();
+                .putBoolean(getString(R.string.update_app_key), (boolean) checkForUpdates).apply();
+
+        if ((boolean) checkForUpdates) {
+            checkNewVersionNow();
+        }
         return true;
     };
 
-    @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private final Preference.OnPreferenceClickListener manualUpdateClick
+            = preference -> {
+        Toast.makeText(getContext(), R.string.checking_updates_toast, Toast.LENGTH_SHORT).show();
+        checkNewVersionNow();
+        return true;
+    };
 
-        String updateToggleKey = getString(R.string.update_app_key);
-        findPreference(updateToggleKey).setOnPreferenceChangeListener(updatePreferenceChange);
+    private void checkNewVersionNow() {
+        // Search for updates immediately when update checks are enabled.
+        // Reset the expire time. This is necessary to check for an update immediately.
+        defaultPreferences.edit()
+                .putLong(getString(R.string.update_expiry_key), 0).apply();
+        startNewVersionCheckService();
     }
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         addPreferencesFromResource(R.xml.update_settings);
+
+        findPreference(getString(R.string.update_app_key))
+                .setOnPreferenceChangeListener(updatePreferenceChange);
+        findPreference(getString(R.string.manual_update_key))
+                .setOnPreferenceClickListener(manualUpdateClick);
     }
 }

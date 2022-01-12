@@ -1,0 +1,10 @@
+• Errenkadatze ekintzak bateratu
+• Bi hatz keinua erreproduktorea ixteko
+• reCAPTCHA cookieak garbitu daitezke
+• Jakinarazpena ez koloreztatzeko aukera
+• Bideoen xehetasunak nola irekitzen diren hobetu buffer infinitua konpontzeko, portaera arraroa NewPiperekin partekatzean eta bestelakoak
+• Azkartu YouTube bideoak, konpondu adinez mugatutakoak
+• Konpondu aurreratze/atzeratze azkarra
+• Ez berrantolatu zerrendak miniaturak arrastatuz
+• Gogoratu beti popupen propietateak
+• Gehitu Santali hizkuntza

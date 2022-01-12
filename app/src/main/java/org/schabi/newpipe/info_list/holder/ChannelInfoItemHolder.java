@@ -56,8 +56,8 @@ public class ChannelInfoItemHolder extends ChannelMiniInfoItemHolder {
         String details = super.getDetailLine(item);
 
         if (item.getStreamCount() >= 0) {
-            String formattedVideoAmount = Localization.localizeStreamCount(itemBuilder.getContext(),
-                    item.getStreamCount());
+            final String formattedVideoAmount = Localization.localizeStreamCount(
+                    itemBuilder.getContext(), item.getStreamCount());
 
             if (!details.isEmpty()) {
                 details += " • " + formattedVideoAmount;

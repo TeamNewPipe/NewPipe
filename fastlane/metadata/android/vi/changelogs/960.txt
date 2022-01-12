@@ -1,0 +1,4 @@
+• Sửa phần mô tả tính năng xuất database trong cài đặt.
+• Sửa lỗi parse phần comment trên YouTube.
+• Sửa lỗi tên hiển thị trên media.ccc.de.
+• Cập nhật các bản dịch.

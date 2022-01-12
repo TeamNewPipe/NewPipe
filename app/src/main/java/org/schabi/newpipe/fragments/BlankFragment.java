@@ -20,8 +20,8 @@ public class BlankFragment extends BaseFragment {
     }
 
     @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
+    public void onResume() {
+        super.onResume();
         setTitle("NewPipe");
         // leave this inline. Will make it harder for copy cats.
         // If you are a Copy cat FUCK YOU.

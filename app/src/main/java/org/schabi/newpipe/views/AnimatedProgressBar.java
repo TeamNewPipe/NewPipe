@@ -59,7 +59,7 @@ public final class AnimatedProgressBar extends ProgressBar {
         @Override
         protected void applyTransformation(final float interpolatedTime, final Transformation t) {
             super.applyTransformation(interpolatedTime, t);
-            float value = from + (to - from) * interpolatedTime;
+            final float value = from + (to - from) * interpolatedTime;
             progressBar.setProgress((int) value);
         }
     }

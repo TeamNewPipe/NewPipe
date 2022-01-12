@@ -1,0 +1,15 @@
+Novità e Miglioramenti:
+• Ripristinata opzione per nascondere la copertina nella notifica e sul blocco schermo
+• Trascina verso il basso per aggiornare i feed
+• Prestazioni migliorate nelle liste locali
+
+Correzioni:
+• Crash all'avvio e dopo che NewPipr è stato rimosso dalla RAM
+• Crash all'avvio quando manca la connessione internet
+• Gesto per luminosità e volume
+• [YouTube] Sistemate le playlist lunghe
+
+Altro:
+• Pulizia e miglioramenti del codice
+• Dipendenze aggiornate
+• Traduzioni aggiornate

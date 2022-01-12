@@ -1,0 +1,8 @@
+### Mejoras
+- Importar/exportar configuraciones #1333 
+- Reducción de sobreescritura (mejora de rendimiento) #1371 
+- Pequeñas mejoras de código #1375 
+- Agregado todo lo referente al RGPD #1420
+
+### Arreglos
+- Descargas: Solución al fallo generado al recuperar descargas no finalizadas por medio de archivos .giga #1407

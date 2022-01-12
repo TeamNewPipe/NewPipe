@@ -9,7 +9,8 @@ import org.junit.Test
 class UrlFinderTest {
     @Test fun `first url from long text`() {
         val expected = "https://www.youtube.com/playlist?list=PLabcdefghij-ABCDEFGHIJ1234567890_"
-        val result = UrlFinder.firstUrlFromInput("""
+        val result = UrlFinder.firstUrlFromInput(
+            """
             |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
             |Eu tincidunt tortor aliquam nulla. URL: https://www.youtube.com/playlist?list=PLabcdefghij-ABCDEFGHIJ1234567890_ Sed dictum consequat dui. 
             |Pharetra diam sit amet nisl suscipit adipiscing bibendum est. 
@@ -18,13 +19,15 @@ class UrlFinderTest {
             |Dapibus ultrices in iaculis nunc sed augue lacus viverra. Nisl purus in mollis nunc. 
             |Viverra nibh cras pulvinar mattis. ####!@!@!@!#### Not this one: https://www.youtube.com/playlist?list=SHOULD_NOT Nunc sed blandit libero volutpat. 
             |Nisl tincidunt eget nullam non nisi est sit amet. Purus in massa tempor nec feugiat nisl pretium fusce id. 
-            |Vulputate eu scelerisque felis imperdiet proin fermentum leo vel.""".trimMargin())
+            |Vulputate eu scelerisque felis imperdiet proin fermentum leo vel.""".trimMargin()
+        )
 
         assertEquals(expected, result)
     }
 
     @Test fun `no url from long text`() {
-        val result = UrlFinder.firstUrlFromInput("""
+        val result = UrlFinder.firstUrlFromInput(
+            """
             |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
             |Eu tincidunt tortor aliquam nulla. Sed dictum consequat dui. Pharetra diam sit amet nisl suscipit adipiscing bibendum est. 
             |Volutpat sed cras ornare arcu dui vivamus. Nulla posuere sollicitudin aliquam ultrices sagittis. 
@@ -32,7 +35,8 @@ class UrlFinderTest {
             |Dapibus ultrices in iaculis nunc sed augue lacus viverra. Nisl purus in mollis nunc. 
             |Viverra nibh cras pulvinar mattis. Not this one: sed blandit libero volutpat. 
             |Nisl tincidunt eget nullam non nisi est sit amet. Purus in massa tempor nec feugiat nisl pretium fusce id. 
-            |Vulputate eu scelerisque felis imperdiet proin fermentum leo vel.""".trimMargin())
+            |Vulputate eu scelerisque felis imperdiet proin fermentum leo vel.""".trimMargin()
+        )
 
         assertEquals(null, result)
     }
@@ -44,14 +48,20 @@ class UrlFinderTest {
     }
 
     @Test fun `normal urls`() {
-        assertEquals("https://www.youtube.com/playlist?list=PLabcdefghij-ABCDEFGHIJ1234567890_",
-                UrlFinder.firstUrlFromInput("https://www.youtube.com/playlist?list=PLabcdefghij-ABCDEFGHIJ1234567890_"))
+        assertEquals(
+            "https://www.youtube.com/playlist?list=PLabcdefghij-ABCDEFGHIJ1234567890_",
+            UrlFinder.firstUrlFromInput("https://www.youtube.com/playlist?list=PLabcdefghij-ABCDEFGHIJ1234567890_")
+        )
 
-        assertEquals("https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                UrlFinder.firstUrlFromInput("https://www.youtube.com/watch?v=dQw4w9WgXcQ"))
+        assertEquals(
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            UrlFinder.firstUrlFromInput("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+        )
 
-        assertEquals("http://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                UrlFinder.firstUrlFromInput("http://www.youtube.com/watch?v=dQw4w9WgXcQ"))
+        assertEquals(
+            "http://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            UrlFinder.firstUrlFromInput("http://www.youtube.com/watch?v=dQw4w9WgXcQ")
+        )
 
         assertEquals("https://www.google.com", UrlFinder.firstUrlFromInput("https://www.google.com"))
         assertEquals("http://www.google.com/test/", UrlFinder.firstUrlFromInput("http://www.google.com/test/"))
@@ -79,21 +89,33 @@ class UrlFinderTest {
     }
 
     @Test fun `random prefixes and suffixes`() {
-        assertEquals("https://www.youtube.com/playlist?list=PLabcdefghij-ABCDEFGHIJ1234567890_",
-                UrlFinder.firstUrlFromInput("$#!@#@!#https://www.youtube.com/playlist?list=PLabcdefghij-ABCDEFGHIJ1234567890_ @@@@@@@@@@@"))
+        assertEquals(
+            "https://www.youtube.com/playlist?list=PLabcdefghij-ABCDEFGHIJ1234567890_",
+            UrlFinder.firstUrlFromInput("$#!@#@!#https://www.youtube.com/playlist?list=PLabcdefghij-ABCDEFGHIJ1234567890_ @@@@@@@@@@@")
+        )
 
-        assertEquals("https://www.youtube.com/playlist?list=PLabcdefghij-ABCDEFGHIJ1234567890_",
-                UrlFinder.firstUrlFromInput("(___\"https://www.youtube.com/playlist?list=PLabcdefghij-ABCDEFGHIJ1234567890_\")))_"))
+        assertEquals(
+            "https://www.youtube.com/playlist?list=PLabcdefghij-ABCDEFGHIJ1234567890_",
+            UrlFinder.firstUrlFromInput("(___\"https://www.youtube.com/playlist?list=PLabcdefghij-ABCDEFGHIJ1234567890_\")))_")
+        )
 
-        assertEquals("https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                UrlFinder.firstUrlFromInput("              https://www.youtube.com/watch?v=dQw4w9WgXcQ           "))
+        assertEquals(
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            UrlFinder.firstUrlFromInput("              https://www.youtube.com/watch?v=dQw4w9WgXcQ           ")
+        )
 
-        assertEquals("https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                UrlFinder.firstUrlFromInput(" ------_---__-https://www.youtube.com/watch?v=dQw4w9WgXcQ !!!!!!"))
+        assertEquals(
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            UrlFinder.firstUrlFromInput(" ------_---__-https://www.youtube.com/watch?v=dQw4w9WgXcQ !!!!!!")
+        )
 
-        assertEquals("https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                UrlFinder.firstUrlFromInput("****https://www.youtube.com/watch?v=dQw4w9WgXcQ _"))
-        assertEquals("https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                UrlFinder.firstUrlFromInput("https://www.youtube.com/watch?v=dQw4w9WgXcQ\"Not PartOfTheUrl"))
+        assertEquals(
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            UrlFinder.firstUrlFromInput("****https://www.youtube.com/watch?v=dQw4w9WgXcQ _")
+        )
+        assertEquals(
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            UrlFinder.firstUrlFromInput("https://www.youtube.com/watch?v=dQw4w9WgXcQ\"Not PartOfTheUrl")
+        )
     }
 }

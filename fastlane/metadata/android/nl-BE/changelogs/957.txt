@@ -1,0 +1,10 @@
+• Eén maken van specifieke in wachtrij plaatsen opties
+• Tweevinger-beweging om speler te sluiten
+• Toelaten om reCAPTCHA cookies te verwijderen
+• Optie om notificatie niet te kleuren
+• Verbeter weergeven van video details om oneindige buffering en problemen bij delen naar NewPipe op te lossen
+• Versnel YouTube video's en fix leeftijdsbeperkte video's
+• Los crash op bij door- en terugspoelen
+• Voorkom herordenen lijsten bij slepen thumbnails
+• Onthoud pop-up eigenschappen
+• Voeg taal Santali toe

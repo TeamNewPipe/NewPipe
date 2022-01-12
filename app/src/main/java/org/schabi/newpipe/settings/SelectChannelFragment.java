@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,27 +9,26 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
 import java.util.Vector;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * Created by Christian Schabesberger on 26.09.17.
@@ -54,15 +52,8 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class SelectChannelFragment extends DialogFragment {
-    /**
-     * This contains the base display options for images.
-     */
-    private static final DisplayImageOptions DISPLAY_IMAGE_OPTIONS
-            = new DisplayImageOptions.Builder().cacheInMemory(true).build();
 
-    private final ImageLoader imageLoader = ImageLoader.getInstance();
-
-    private OnSelectedLisener onSelectedLisener = null;
+    private OnSelectedListener onSelectedListener = null;
     private OnCancelListener onCancelListener = null;
 
     private ProgressBar progressBar;
@@ -71,8 +62,8 @@ public class SelectChannelFragment extends DialogFragment {
 
     private List<SubscriptionEntity> subscriptions = new Vector<>();
 
-    public void setOnSelectedLisener(final OnSelectedLisener listener) {
-        onSelectedLisener = listener;
+    public void setOnSelectedListener(final OnSelectedListener listener) {
+        onSelectedListener = listener;
     }
 
     public void setOnCancelListener(final OnCancelListener listener) {
@@ -84,12 +75,18 @@ public class SelectChannelFragment extends DialogFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(STYLE_NO_TITLE, ThemeHelper.getMinWidthDialogTheme(requireContext()));
+    }
+
+    @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.select_channel_fragment, container, false);
+        final View v = inflater.inflate(R.layout.select_channel_fragment, container, false);
         recyclerView = v.findViewById(R.id.items_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        SelectChannelAdapter channelAdapter = new SelectChannelAdapter();
+        final SelectChannelAdapter channelAdapter = new SelectChannelAdapter();
         recyclerView.setAdapter(channelAdapter);
 
         progressBar = v.findViewById(R.id.progressBar);
@@ -99,7 +96,7 @@ public class SelectChannelFragment extends DialogFragment {
         emptyView.setVisibility(View.GONE);
 
 
-        SubscriptionManager subscriptionManager = new SubscriptionManager(getContext());
+        final SubscriptionManager subscriptionManager = new SubscriptionManager(requireContext());
         subscriptionManager.subscriptions().toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -113,7 +110,7 @@ public class SelectChannelFragment extends DialogFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCancel(final DialogInterface dialogInterface) {
+    public void onCancel(@NonNull final DialogInterface dialogInterface) {
         super.onCancel(dialogInterface);
         if (onCancelListener != null) {
             onCancelListener.onCancel();
@@ -121,9 +118,9 @@ public class SelectChannelFragment extends DialogFragment {
     }
 
     private void clickedItem(final int position) {
-        if (onSelectedLisener != null) {
-            SubscriptionEntity entry = subscriptions.get(position);
-            onSelectedLisener
+        if (onSelectedListener != null) {
+            final SubscriptionEntity entry = subscriptions.get(position);
+            onSelectedListener
                     .onChannelSelected(entry.getServiceId(), entry.getUrl(), entry.getName());
         }
         dismiss();
@@ -147,16 +144,17 @@ public class SelectChannelFragment extends DialogFragment {
     private Observer<List<SubscriptionEntity>> getSubscriptionObserver() {
         return new Observer<List<SubscriptionEntity>>() {
             @Override
-            public void onSubscribe(final Disposable d) { }
+            public void onSubscribe(@NonNull final Disposable disposable) { }
 
             @Override
-            public void onNext(final List<SubscriptionEntity> newSubscriptions) {
+            public void onNext(@NonNull final List<SubscriptionEntity> newSubscriptions) {
                 displayChannels(newSubscriptions);
             }
 
             @Override
-            public void onError(final Throwable exception) {
-                SelectChannelFragment.this.onError(exception);
+            public void onError(@NonNull final Throwable exception) {
+                ErrorUtil.showUiErrorSnackbar(SelectChannelFragment.this,
+                        "Loading subscription", exception);
             }
 
             @Override
@@ -165,20 +163,10 @@ public class SelectChannelFragment extends DialogFragment {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Error
-    //////////////////////////////////////////////////////////////////////////*/
-
-    protected void onError(final Throwable e) {
-        final Activity activity = getActivity();
-        ErrorActivity.reportError(activity, e, activity.getClass(), null, ErrorActivity.ErrorInfo
-                .make(UserAction.UI_ERROR, "none", "", R.string.app_ui_crash));
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
     // Interfaces
     //////////////////////////////////////////////////////////////////////////*/
 
-    public interface OnSelectedLisener {
+    public interface OnSelectedListener {
         void onChannelSelected(int serviceId, String url, String name);
     }
 
@@ -188,26 +176,21 @@ public class SelectChannelFragment extends DialogFragment {
 
     private class SelectChannelAdapter
             extends RecyclerView.Adapter<SelectChannelAdapter.SelectChannelItemHolder> {
+        @NonNull
         @Override
         public SelectChannelItemHolder onCreateViewHolder(final ViewGroup parent,
                                                           final int viewType) {
-            View item = LayoutInflater.from(parent.getContext())
+            final View item = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.select_channel_item, parent, false);
             return new SelectChannelItemHolder(item);
         }
 
         @Override
         public void onBindViewHolder(final SelectChannelItemHolder holder, final int position) {
-            SubscriptionEntity entry = subscriptions.get(position);
+            final SubscriptionEntity entry = subscriptions.get(position);
             holder.titleView.setText(entry.getName());
-            holder.view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View view) {
-                    clickedItem(position);
-                }
-            });
-            imageLoader.displayImage(entry.getAvatarUrl(), holder.thumbnailView,
-                    DISPLAY_IMAGE_OPTIONS);
+            holder.view.setOnClickListener(view -> clickedItem(position));
+            PicassoHelper.loadAvatar(entry.getAvatarUrl()).into(holder.thumbnailView);
         }
 
         @Override

@@ -9,7 +9,7 @@ import androidx.room.Index;
 
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 
-import java.util.Date;
+import java.time.OffsetDateTime;
 
 import static androidx.room.ForeignKey.CASCADE;
 import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.JOIN_STREAM_ID;
@@ -37,12 +37,12 @@ public class StreamHistoryEntity {
 
     @NonNull
     @ColumnInfo(name = STREAM_ACCESS_DATE)
-    private Date accessDate;
+    private OffsetDateTime accessDate;
 
     @ColumnInfo(name = STREAM_REPEAT_COUNT)
     private long repeatCount;
 
-    public StreamHistoryEntity(final long streamUid, @NonNull final Date accessDate,
+    public StreamHistoryEntity(final long streamUid, @NonNull final OffsetDateTime accessDate,
                                final long repeatCount) {
         this.streamUid = streamUid;
         this.accessDate = accessDate;
@@ -50,7 +50,7 @@ public class StreamHistoryEntity {
     }
 
     @Ignore
-    public StreamHistoryEntity(final long streamUid, @NonNull final Date accessDate) {
+    public StreamHistoryEntity(final long streamUid, @NonNull final OffsetDateTime accessDate) {
         this(streamUid, accessDate, 1);
     }
 
@@ -62,11 +62,12 @@ public class StreamHistoryEntity {
         this.streamUid = streamUid;
     }
 
-    public Date getAccessDate() {
+    @NonNull
+    public OffsetDateTime getAccessDate() {
         return accessDate;
     }
 
-    public void setAccessDate(@NonNull final Date accessDate) {
+    public void setAccessDate(@NonNull final OffsetDateTime accessDate) {
         this.accessDate = accessDate;
     }
 

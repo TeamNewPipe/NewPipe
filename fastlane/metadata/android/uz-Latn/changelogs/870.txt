@@ -1,0 +1,2 @@
+Bu SoundCloud-dan yana katta qiyinchiliklarsiz foydalanishga ruxsat berish uchun NewPipe-ni yangilaydigan tuzatish.
+Endi ekstraktorda SoundCloud-ning v2 API-si ishlatiladi va yaroqsiz mijoz identifikatorlarini aniqlash yaxshilandi.

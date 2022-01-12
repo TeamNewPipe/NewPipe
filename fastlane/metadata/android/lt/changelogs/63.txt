@@ -1,0 +1,8 @@
+### Patobulinimai
+- Importavimo / eksportavimo nustatymai # 1333
+- Sumažintas "ovrdraw" (veikumo patobulinimas) # 1371
+- Nedideli kodo patobulinimai # 1375
+- Viską apie GDPR # 1420
+
+### Ištaisyta
+- Downloader: ištaisykitas nebaigtų atsisiuntimų iš .giga failų įkėlimas #1407

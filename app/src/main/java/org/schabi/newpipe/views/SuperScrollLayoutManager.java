@@ -64,12 +64,12 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
     @Nullable
     @Override
     public View onInterceptFocusSearch(@NonNull final View focused, final int direction) {
-        View focusedItem = findContainingItemView(focused);
+        final View focusedItem = findContainingItemView(focused);
         if (focusedItem == null) {
             return super.onInterceptFocusSearch(focused, direction);
         }
 
-        int listDirection = getAbsoluteDirection(direction);
+        final int listDirection = getAbsoluteDirection(direction);
         if (listDirection == 0) {
             return super.onInterceptFocusSearch(focused, direction);
         }
@@ -82,9 +82,9 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
         // Fortunately we can intercept focus search and implement our own logic, based purely
         // on position along the LinearLayoutManager axis
 
-        ViewGroup recycler = (ViewGroup) focusedItem.getParent();
+        final ViewGroup recycler = (ViewGroup) focusedItem.getParent();
 
-        int sourcePosition = getPosition(focusedItem);
+        final int sourcePosition = getPosition(focusedItem);
         if (sourcePosition == 0 && listDirection < 0) {
             return super.onInterceptFocusSearch(focused, direction);
         }
@@ -100,7 +100,7 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
                 : View.FOCUSABLES_ALL);
 
         try {
-            for (View view : focusables) {
+            for (final View view : focusables) {
                 if (view == focused || view == recycler) {
                     continue;
                 }
@@ -111,7 +111,7 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
                     continue;
                 }
 
-                int candidate = getDistance(sourcePosition, view, listDirection);
+                final int candidate = getDistance(sourcePosition, view, listDirection);
                 if (candidate < 0) {
                     continue;
                 }
@@ -162,12 +162,12 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
     }
 
     private int getDistance(final int sourcePosition, final View candidate, final int direction) {
-        View itemView = findContainingItemView(candidate);
+        final View itemView = findContainingItemView(candidate);
         if (itemView == null) {
             return -1;
         }
 
-        int position = getPosition(itemView);
+        final int position = getPosition(itemView);
 
         return direction * (position - sourcePosition);
     }

@@ -1,0 +1,3 @@
+Correction d'une boucle infinie de crash lors de l'ouverture du système de reportage des erreurs.
+Mise à jour de la liste des instances PeerTube qui peuvent être ouvertes automatiquement par NewPipe.
+Mise à jour des traductions.

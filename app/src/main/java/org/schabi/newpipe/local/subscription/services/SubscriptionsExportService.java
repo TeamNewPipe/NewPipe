@@ -20,26 +20,28 @@
 package org.schabi.newpipe.local.subscription.services;
 
 import android.content.Intent;
-import android.text.TextUtils;
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
+import org.schabi.newpipe.streams.io.SharpOutputStream;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 
@@ -50,12 +52,12 @@ public class SubscriptionsExportService extends BaseImportExportService {
      * A {@link LocalBroadcastManager local broadcast} will be made with this action
      * when the export is successfully completed.
      */
-    public static final String EXPORT_COMPLETE_ACTION = "org.schabi.newpipe.local.subscription"
+    public static final String EXPORT_COMPLETE_ACTION = App.PACKAGE_NAME + ".local.subscription"
             + ".services.SubscriptionsExportService.EXPORT_COMPLETE";
 
     private Subscription subscription;
-    private File outFile;
-    private FileOutputStream outputStream;
+    private StoredFileHelper outFile;
+    private OutputStream outputStream;
 
     @Override
     public int onStartCommand(final Intent intent, final int flags, final int startId) {
@@ -63,18 +65,18 @@ public class SubscriptionsExportService extends BaseImportExportService {
             return START_NOT_STICKY;
         }
 
-        final String path = intent.getStringExtra(KEY_FILE_PATH);
-        if (TextUtils.isEmpty(path)) {
+        final Uri path = intent.getParcelableExtra(KEY_FILE_PATH);
+        if (path == null) {
             stopAndReportError(new IllegalStateException(
-                    "Exporting to a file, but the path is empty or null"),
+                    "Exporting to a file, but the path is null"),
                     "Exporting subscriptions");
             return START_NOT_STICKY;
         }
 
         try {
-            outFile = new File(path);
-            outputStream = new FileOutputStream(outFile);
-        } catch (FileNotFoundException e) {
+            outFile = new StoredFileHelper(this, path, "application/json");
+            outputStream = new SharpOutputStream(outFile.getStream());
+        } catch (final IOException e) {
             handleError(e);
             return START_NOT_STICKY;
         }
@@ -109,7 +111,7 @@ public class SubscriptionsExportService extends BaseImportExportService {
                 .map(subscriptionEntities -> {
                     final List<SubscriptionItem> result
                             = new ArrayList<>(subscriptionEntities.size());
-                    for (SubscriptionEntity entity : subscriptionEntities) {
+                    for (final SubscriptionEntity entity : subscriptionEntities) {
                         result.add(new SubscriptionItem(entity.getServiceId(), entity.getUrl(),
                                 entity.getName()));
                     }
@@ -121,8 +123,8 @@ public class SubscriptionsExportService extends BaseImportExportService {
                 .subscribe(getSubscriber());
     }
 
-    private Subscriber<File> getSubscriber() {
-        return new Subscriber<File>() {
+    private Subscriber<StoredFileHelper> getSubscriber() {
+        return new Subscriber<StoredFileHelper>() {
             @Override
             public void onSubscribe(final Subscription s) {
                 subscription = s;
@@ -130,7 +132,7 @@ public class SubscriptionsExportService extends BaseImportExportService {
             }
 
             @Override
-            public void onNext(final File file) {
+            public void onNext(final StoredFileHelper file) {
                 if (DEBUG) {
                     Log.d(TAG, "startExport() success: file = " + file);
                 }
@@ -152,7 +154,7 @@ public class SubscriptionsExportService extends BaseImportExportService {
         };
     }
 
-    private Function<List<SubscriptionItem>, File> exportToFile() {
+    private Function<List<SubscriptionItem>, StoredFileHelper> exportToFile() {
         return subscriptionItems -> {
             ImportExportJsonHelper.writeTo(subscriptionItems, outputStream, eventListener);
             return outFile;

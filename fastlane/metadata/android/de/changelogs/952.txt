@@ -1,0 +1,7 @@
+Verbesserungen
+• Autoplay ist nun für alle Services verfügbar (nicht nur für YouTube)
+
+Reparaturen
+• Verwandte Streams wurden behoben, indem die neuen Streamfortsetzungen von YouTube unterstützt werden
+• Altersbeschränkte Videos repariert
+• [Android TV] Überlagerung von Fokus-Hervorhebungen behoben

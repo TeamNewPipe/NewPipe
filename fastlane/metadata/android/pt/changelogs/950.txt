@@ -1,0 +1,4 @@
+Este lançamento traz três pequenas correções:
+- Acesso de armazenamento no Android 10+ corrigido
+- Quiosques de abertura corrigido
+- Análise de duração vídeos longos corrigido

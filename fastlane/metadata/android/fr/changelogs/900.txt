@@ -1,0 +1,14 @@
+Ajouts
+- Groupes d'abonnement et flux triés
+- Bouton "Mute" dans les lecteurs
+
+Améliorations
+- Ouverture des liens music.youtube.com et media.ccc.de dans NewPipe
+- Déplacement de deux paramètres de Apparence vers Contenu
+- Cacher les options 5,15,25 secs si la recherche inexacte est activée
+
+Corrections
+- Certaines vidéos WebM ne sont pas navigables
+- Sauvegarde de la base de données sur Android P
+- Crash lors du partage d'un fichier téléchargé
+- Tonnes de problèmes d'extraction sur YouTube...

@@ -5,13 +5,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.preference.PreferenceManager;
+import android.icu.text.CompactDecimalFormat;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
+import androidx.preference.PreferenceManager;
 
 import org.ocpsoft.prettytime.PrettyTime;
 import org.ocpsoft.prettytime.units.Decade;
@@ -21,11 +23,12 @@ import org.schabi.newpipe.extractor.localization.ContentCountry;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -52,14 +55,10 @@ import java.util.Locale;
 
 public final class Localization {
 
-    private static final String DOT_SEPARATOR = " • ";
+    public static final String DOT_SEPARATOR = " • ";
     private static PrettyTime prettyTime;
 
     private Localization() { }
-
-    public static void init(final Context context) {
-        initPrettyTime(context);
-    }
 
     @NonNull
     public static String concatenateStrings(final String... strings) {
@@ -110,19 +109,19 @@ public final class Localization {
     }
 
     public static Locale getPreferredLocale(final Context context) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
-        String languageCode = sp.getString(context.getString(R.string.content_language_key),
+        final String languageCode = sp.getString(context.getString(R.string.content_language_key),
                 context.getString(R.string.default_localization_key));
 
         try {
             if (languageCode.length() == 2) {
                 return new Locale(languageCode);
             } else if (languageCode.contains("_")) {
-                String country = languageCode.substring(languageCode.indexOf("_"));
+                final String country = languageCode.substring(languageCode.indexOf("_"));
                 return new Locale(languageCode.substring(0, 2), country);
             }
-        } catch (Exception ignored) {
+        } catch (final Exception ignored) {
         }
 
         return Locale.getDefault();
@@ -133,17 +132,20 @@ public final class Localization {
     }
 
     public static String localizeNumber(final Context context, final double number) {
-        NumberFormat nf = NumberFormat.getInstance(getAppLocale(context));
+        final NumberFormat nf = NumberFormat.getInstance(getAppLocale(context));
         return nf.format(number);
     }
 
-    public static String formatDate(final Date date, final Context context) {
-        return DateFormat.getDateInstance(DateFormat.MEDIUM, getAppLocale(context)).format(date);
+    public static String formatDate(final OffsetDateTime offsetDateTime, final Context context) {
+        return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+                .withLocale(getAppLocale(context)).format(offsetDateTime
+                        .atZoneSameInstant(ZoneId.systemDefault()));
     }
 
     @SuppressLint("StringFormatInvalid")
-    public static String localizeUploadDate(final Context context, final Date date) {
-        return context.getString(R.string.upload_date_text, formatDate(date, context));
+    public static String localizeUploadDate(final Context context,
+                                            final OffsetDateTime offsetDateTime) {
+        return context.getString(R.string.upload_date_text, formatDate(offsetDateTime, context));
     }
 
     public static String localizeViewCount(final Context context, final long viewCount) {
@@ -184,7 +186,12 @@ public final class Localization {
     }
 
     public static String shortCount(final Context context, final long count) {
-        double value = (double) count;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return CompactDecimalFormat.getInstance(getAppLocale(context),
+                    CompactDecimalFormat.CompactStyle.SHORT).format(count);
+        }
+
+        final double value = (double) count;
         if (count >= 1000000000) {
             return localizeNumber(context, round(value / 1000000000, 1))
                     + context.getString(R.string.short_billion);
@@ -219,6 +226,16 @@ public final class Localization {
                 shortCount(context, subscriberCount));
     }
 
+    public static String downloadCount(final Context context, final int downloadCount) {
+        return getQuantity(context, R.plurals.download_finished_notification, 0,
+                downloadCount, shortCount(context, downloadCount));
+    }
+
+    public static String deletedDownloadCount(final Context context, final int deletedCount) {
+        return getQuantity(context, R.plurals.deleted_downloads_toast, 0,
+                deletedCount, shortCount(context, deletedCount));
+    }
+
     private static String getQuantity(final Context context, @PluralsRes final int pluralId,
                                       @StringRes final int zeroCaseStringId, final long count,
                                       final String formattedCount) {
@@ -230,8 +247,8 @@ public final class Localization {
         // is not the responsibility of this method handle long numbers
         // (it probably will fall in the "other" category,
         // or some language have some specific rule... then we have to change it)
-        int safeCount = count > Integer.MAX_VALUE ? Integer.MAX_VALUE : count < Integer.MIN_VALUE
-                ? Integer.MIN_VALUE : (int) count;
+        final int safeCount = count > Integer.MAX_VALUE ? Integer.MAX_VALUE
+                : count < Integer.MIN_VALUE ? Integer.MIN_VALUE : (int) count;
         return context.getResources().getQuantityString(pluralId, safeCount, formattedCount);
     }
 
@@ -294,41 +311,39 @@ public final class Localization {
     // Pretty Time
     //////////////////////////////////////////////////////////////////////////*/
 
-    private static void initPrettyTime(final Context context) {
-        prettyTime = new PrettyTime(getAppLocale(context));
+    public static void initPrettyTime(final PrettyTime time) {
+        prettyTime = time;
         // Do not use decades as YouTube doesn't either.
         prettyTime.removeUnit(Decade.class);
     }
 
-    private static PrettyTime getPrettyTime() {
-        return prettyTime;
+    public static PrettyTime resolvePrettyTime(final Context context) {
+        return new PrettyTime(getAppLocale(context));
     }
 
-    public static String relativeTime(final Calendar calendarTime) {
-        String time = getPrettyTime().formatUnrounded(calendarTime);
-        return time.startsWith("-") ? time.substring(1) : time;
-        //workaround fix for russian showing -1 day ago, -19hrs ago…
+    public static String relativeTime(final OffsetDateTime offsetDateTime) {
+        return prettyTime.formatUnrounded(offsetDateTime);
     }
 
     private static void changeAppLanguage(final Locale loc, final Resources res) {
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
+        final DisplayMetrics dm = res.getDisplayMetrics();
+        final Configuration conf = res.getConfiguration();
         conf.setLocale(loc);
         res.updateConfiguration(conf, dm);
     }
 
     public static Locale getAppLocale(final Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         String lang = prefs.getString(context.getString(R.string.app_language_key), "en");
-        Locale loc;
+        final Locale loc;
         if (lang.equals(context.getString(R.string.default_localization_key))) {
             loc = Locale.getDefault();
         } else if (lang.matches(".*-.*")) {
             //to differentiate different versions of the language
             //for example, pt (portuguese in Portugal) and pt-br (portuguese in Brazil)
-            String[] localisation = lang.split("-");
+            final String[] localisation = lang.split("-");
             lang = localisation[0];
-            String country = localisation[1];
+            final String country = localisation[1];
             loc = new Locale(lang, country);
         } else {
             loc = new Locale(lang);
@@ -342,5 +357,20 @@ public final class Localization {
 
     private static double round(final double value, final int places) {
         return new BigDecimal(value).setScale(places, RoundingMode.HALF_UP).doubleValue();
+    }
+
+    /**
+     * Workaround to match normalized captions like english to English or deutsch to Deutsch.
+     * @param list the list to search into
+     * @param toFind the string to look for
+     * @return whether the string was found or not
+     */
+    public static boolean containsCaseInsensitive(final List<String> list, final String toFind) {
+        for (final String i : list) {
+            if (i.equalsIgnoreCase(toFind)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

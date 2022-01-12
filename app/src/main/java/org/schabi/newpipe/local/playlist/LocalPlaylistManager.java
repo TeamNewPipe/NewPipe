@@ -15,11 +15,11 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Completable;
-import io.reactivex.Flowable;
-import io.reactivex.Maybe;
-import io.reactivex.Single;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class LocalPlaylistManager {
     private final AppDatabase database;
@@ -61,7 +61,7 @@ public class LocalPlaylistManager {
                                      final List<StreamEntity> streams,
                                      final int indexOffset) {
 
-        List<PlaylistStreamEntity> joinEntities = new ArrayList<>(streams.size());
+        final List<PlaylistStreamEntity> joinEntities = new ArrayList<>(streams.size());
         final List<Long> streamIds = streamTable.upsertAll(streams);
         for (int index = 0; index < streamIds.size(); index++) {
             joinEntities.add(new PlaylistStreamEntity(playlistId, streamIds.get(index),
@@ -71,7 +71,7 @@ public class LocalPlaylistManager {
     }
 
     public Completable updateJoin(final long playlistId, final List<Long> streamIds) {
-        List<PlaylistStreamEntity> joinEntities = new ArrayList<>(streamIds.size());
+        final List<PlaylistStreamEntity> joinEntities = new ArrayList<>(streamIds.size());
         for (int i = 0; i < streamIds.size(); i++) {
             joinEntities.add(new PlaylistStreamEntity(playlistId, streamIds.get(i), i));
         }
@@ -115,7 +115,7 @@ public class LocalPlaylistManager {
                 .firstElement()
                 .filter(playlistEntities -> !playlistEntities.isEmpty())
                 .map(playlistEntities -> {
-                    PlaylistEntity playlist = playlistEntities.get(0);
+                    final PlaylistEntity playlist = playlistEntities.get(0);
                     if (name != null) {
                         playlist.setName(name);
                     }
@@ -126,4 +126,10 @@ public class LocalPlaylistManager {
                 }).subscribeOn(Schedulers.io());
     }
 
+    public Maybe<Boolean> hasPlaylists() {
+        return playlistTable.getCount()
+                .firstElement()
+                .map(count -> count > 0)
+                .subscribeOn(Schedulers.io());
+    }
 }

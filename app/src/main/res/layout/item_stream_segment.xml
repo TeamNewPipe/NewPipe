@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selector"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:paddingStart="16dp"
+    android:paddingTop="4dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="4dp">
+
+    <ImageView
+        android:id="@+id/previewImage"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/play_queue_thumbnail_width"
+        android:scaleType="centerCrop"
+        android:src="@drawable/dummy_thumbnail"
+        app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/previewImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/previewImage"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/PlayQueueItemTitle"
+            android:textSize="@dimen/video_item_search_title_text_size"
+            tools:text="Lorem ipusum is widely used to create long sample text which is used here too" />
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/textViewChannel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/PlayQueueItemSubtitle"
+            android:textSize="@dimen/video_item_search_title_text_size"
+
+            tools:text="Lorem ipsum creator" />
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/textViewStartSeconds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textAppearance="@style/PlayQueueItemSubtitle"
+            android:textSize="@dimen/video_item_search_upload_date_text_size"
+            tools:text="04:26" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

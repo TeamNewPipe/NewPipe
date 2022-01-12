@@ -35,7 +35,7 @@ public class ManagedMediaSourcePlaylist {
     @Nullable
     public ManagedMediaSource get(final int index) {
         return (index < 0 || index >= size())
-                ? null : (ManagedMediaSource) internalSource.getMediaSource(index);
+                ? null : (ManagedMediaSource) internalSource.getMediaSource(index).getTag();
     }
 
     @NonNull

@@ -6,33 +6,38 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.SimpleCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.TouchCallback
-import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import icepick.Icepick
 import icepick.State
-import kotlinx.android.synthetic.main.dialog_feed_group_reorder.*
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
+import org.schabi.newpipe.databinding.DialogFeedGroupReorderBinding
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialogViewModel.DialogEvent.ProcessingEvent
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupReorderDialogViewModel.DialogEvent.SuccessEvent
 import org.schabi.newpipe.local.subscription.item.FeedGroupReorderItem
 import org.schabi.newpipe.util.ThemeHelper
-import java.util.*
+import java.util.Collections
 import kotlin.collections.ArrayList
+import kotlin.collections.List
+import kotlin.collections.map
+import kotlin.collections.sortedBy
 
 class FeedGroupReorderDialog : DialogFragment() {
+    private var _binding: DialogFeedGroupReorderBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var viewModel: FeedGroupReorderDialogViewModel
 
     @State
     @JvmField
     var groupOrderedIdList = ArrayList<Long>()
-    private val groupAdapter = GroupAdapter<GroupieViewHolder>()
+    private val groupAdapter = GroupieAdapter()
     private val itemTouchHelper = ItemTouchHelper(getItemTouchCallback())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,23 +53,32 @@ class FeedGroupReorderDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding = DialogFeedGroupReorderBinding.bind(view)
 
-        viewModel = ViewModelProviders.of(this).get(FeedGroupReorderDialogViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(FeedGroupReorderDialogViewModel::class.java)
         viewModel.groupsLiveData.observe(viewLifecycleOwner, Observer(::handleGroups))
-        viewModel.dialogEventLiveData.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                ProcessingEvent -> disableInput()
-                SuccessEvent -> dismiss()
+        viewModel.dialogEventLiveData.observe(
+            viewLifecycleOwner,
+            Observer {
+                when (it) {
+                    ProcessingEvent -> disableInput()
+                    SuccessEvent -> dismiss()
+                }
             }
-        })
+        )
 
-        feed_groups_list.layoutManager = LinearLayoutManager(requireContext())
-        feed_groups_list.adapter = groupAdapter
-        itemTouchHelper.attachToRecyclerView(feed_groups_list)
+        binding.feedGroupsList.layoutManager = LinearLayoutManager(requireContext())
+        binding.feedGroupsList.adapter = groupAdapter
+        itemTouchHelper.attachToRecyclerView(binding.feedGroupsList)
 
-        confirm_button.setOnClickListener {
+        binding.confirmButton.setOnClickListener {
             viewModel.updateOrder(groupOrderedIdList)
         }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -86,17 +100,20 @@ class FeedGroupReorderDialog : DialogFragment() {
     }
 
     private fun disableInput() {
-        confirm_button?.isEnabled = false
+        _binding?.confirmButton?.isEnabled = false
         isCancelable = false
     }
 
     private fun getItemTouchCallback(): SimpleCallback {
         return object : TouchCallback() {
 
-            override fun onMove(recyclerView: RecyclerView, source: RecyclerView.ViewHolder,
-                                target: RecyclerView.ViewHolder): Boolean {
-                val sourceIndex = source.adapterPosition
-                val targetIndex = target.adapterPosition
+            override fun onMove(
+                recyclerView: RecyclerView,
+                source: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                val sourceIndex = source.bindingAdapterPosition
+                val targetIndex = target.bindingAdapterPosition
 
                 groupAdapter.notifyItemMoved(sourceIndex, targetIndex)
                 Collections.swap(groupOrderedIdList, sourceIndex, targetIndex)

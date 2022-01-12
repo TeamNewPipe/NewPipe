@@ -1,28 +1,34 @@
-<!-- Hey there. Thank you so much for improving NewPipe. Please take a moment to fill out the following suggestion on how to structure this PR description. Having roughly the same layout helps everyone considerably :)-->
+<!-- Hey there. Thank you so much for improving NewPipe, and filling out the details. Having roughly the same layout helps everyone considerably :)-->
 
 #### What is it?
-- [ ] Bug fix (user facing)
+- [ ] Bugfix (user facing)
 - [ ] Feature (user facing)
-- [ ] Code base improvement (dev facing)
+- [ ] Codebase improvement (dev facing)
 - [ ] Meta improvement to the project (dev facing)
 
 #### Description of the changes in your PR
-<!-- While bullet points are the norm in this section, feel free to write a text instead if you can't fit it in a list -->
+<!-- While bullet points are the norm in this section, feel free to write free-form text instead of a list -->
 - record videos
 - create clones
 - take over the world
 
+#### Before/After Screenshots/Screen Record
+<!-- If your PR changes the app's UI in any way, please include screenshots or a video showing exactly what changed, so that developers and users can pinpoint it easily. Delete this if it doesn't apply to your PR.-->
+- Before:
+- After:
+
 #### Fixes the following issue(s)
-<!-- Also add reddit or other links which are relevant to your change. -->
-- 
+<!-- Prefix issues with "Fixes" so that GitHub closes them when the PR is merged (note that each "Fixes #" should be in its own item). Also add any other relevant links. -->
+- Fixes #
 
 #### Relies on the following changes
-<!-- Delete this if it doesn't apply to you. -->
+<!-- Delete this if it doesn't apply to your PR. -->
 - 
 
-#### Testing apk
-<!-- Ensure that you have your changes on a new branch which has a meaningful name. This name will be used as a suffix for the app ID to allow installing and testing multiple versions of NewPipe. Do NOT name your branches like "patch-0" and "feature-1". For example, if your PR implements a bug fix for comments, an appropriate branch name would be "commentfix". -->
-debug.zip
+#### APK testing 
+<!-- Use a new, meaningfully named branch. The name is used as a suffix for the app ID to allow installing and testing multiple versions of NewPipe, e.g. "commentfix", if your PR implements a bugfix for comments. (No names like "patch-0" and "feature-1".)  -->
+<!-- Remove the following line if you directly link the APK created by the CI pipeline. Directly linking is preferred if you need to let users test.-->
+The APK can be found by going to the "Checks" tab below the title. On the left pane, click on "CI", scroll down to "artifacts" and click "app" to download the zip file which contains the debug APK of this PR.
 
-#### Agreement
-- [ ] I carefully read the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md) and agree to them.
+#### Due diligence
+- [ ] I read the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/HEAD/.github/CONTRIBUTING.md).

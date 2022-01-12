@@ -69,7 +69,7 @@ public interface PlaybackListener {
     MediaSource sourceOf(PlayQueueItem item, StreamInfo info);
 
     /**
-     * Called when the play queue can no longer to played or used.
+     * Called when the play queue can no longer be played or used.
      * Currently, this means the play queue is empty and complete.
      * Signals to the listener that it should shutdown.
      * <p>
@@ -77,4 +77,13 @@ public interface PlaybackListener {
      * </p>
      */
     void onPlaybackShutdown();
+
+    /**
+     * Called whenever the play queue was edited (items were added, deleted or moved),
+     * use this to e.g. update notification buttons or fragment ui.
+     * <p>
+     * May be called at any time.
+     * </p>
+     */
+    void onPlayQueueEdited();
 }

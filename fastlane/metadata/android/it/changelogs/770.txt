@@ -1,0 +1,4 @@
+Modifiche su 0.17.2
+
+Correzioni
+• Risolto il problema con nessun video disponibile

@@ -1,0 +1,10 @@
+• La till "spela nästa" i menyn för långtryckning
+• Tillägg av prefix för sökvägen till YouTube shorts i avsiktsfiltret
+• Fixade Inställningar import
+• Byte position för förloppsindikatorn med spelarknapparna på Köskärmen
+• Olika korrigeringar gällande MediasessionManager
+• Fixade att förloppsindikatorn inte var färdig efter videons slut
+• Inaktiverade mediatunnling på RealtekATV
+• Och mer...
+
+För att se ytterligare ändringar, se ändringsloggen (och blogginlägget) under fliken Länkar nedan.

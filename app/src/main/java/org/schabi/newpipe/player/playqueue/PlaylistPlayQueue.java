@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player.playqueue;
 
+import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
@@ -7,8 +8,8 @@ import org.schabi.newpipe.util.ExtractorHelper;
 
 import java.util.List;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public final class PlaylistPlayQueue extends AbstractInfoPlayQueue<PlaylistInfo, PlaylistInfoItem> {
     public PlaylistPlayQueue(final PlaylistInfoItem item) {
@@ -16,15 +17,15 @@ public final class PlaylistPlayQueue extends AbstractInfoPlayQueue<PlaylistInfo,
     }
 
     public PlaylistPlayQueue(final PlaylistInfo info) {
-        this(info.getServiceId(), info.getUrl(), info.getNextPageUrl(), info.getRelatedItems(), 0);
+        this(info.getServiceId(), info.getUrl(), info.getNextPage(), info.getRelatedItems(), 0);
     }
 
     public PlaylistPlayQueue(final int serviceId,
                              final String url,
-                             final String nextPageUrl,
+                             final Page nextPage,
                              final List<StreamInfoItem> streams,
                              final int index) {
-        super(serviceId, url, nextPageUrl, streams, index);
+        super(serviceId, url, nextPage, streams, index);
     }
 
     @Override
@@ -40,7 +41,7 @@ public final class PlaylistPlayQueue extends AbstractInfoPlayQueue<PlaylistInfo,
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(getHeadListObserver());
         } else {
-            ExtractorHelper.getMorePlaylistItems(this.serviceId, this.baseUrl, this.nextUrl)
+            ExtractorHelper.getMorePlaylistItems(this.serviceId, this.baseUrl, this.nextPage)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(getNextPageObserver());

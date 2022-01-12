@@ -1,0 +1,4 @@
+Bản cập nhật này có ba phần sửa lỗi nhỏ:
+• Sửa lỗi quyền truy cập bộ nhớ trên Android 10+
+• Sửa lỗi mở các trang kiosk
+• Sửa lỗi parse độ dài video cho các video dài

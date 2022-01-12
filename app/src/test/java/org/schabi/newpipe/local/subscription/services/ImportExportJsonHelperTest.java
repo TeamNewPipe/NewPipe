@@ -20,35 +20,35 @@ import static org.junit.Assert.fail;
 public class ImportExportJsonHelperTest {
     @Test
     public void testEmptySource() throws Exception {
-        String emptySource =
+        final String emptySource =
                 "{\"app_version\":\"0.11.6\",\"app_version_int\": 47,\"subscriptions\":[]}";
 
-        List<SubscriptionItem> items = ImportExportJsonHelper.readFrom(new ByteArrayInputStream(
-                emptySource.getBytes(StandardCharsets.UTF_8)), null);
+        final List<SubscriptionItem> items = ImportExportJsonHelper.readFrom(
+                new ByteArrayInputStream(emptySource.getBytes(StandardCharsets.UTF_8)), null);
         assertTrue(items.isEmpty());
     }
 
     @Test
     public void testInvalidSource() {
-        List<String> invalidList = Arrays.asList(
+        final List<String> invalidList = Arrays.asList(
                 "{}",
                 "",
                 null,
                 "gibberish");
 
-        for (String invalidContent : invalidList) {
+        for (final String invalidContent : invalidList) {
             try {
                 if (invalidContent != null) {
-                    byte[] bytes = invalidContent.getBytes(StandardCharsets.UTF_8);
+                    final byte[] bytes = invalidContent.getBytes(StandardCharsets.UTF_8);
                     ImportExportJsonHelper.readFrom((new ByteArrayInputStream(bytes)), null);
                 } else {
                     ImportExportJsonHelper.readFrom(null, null);
                 }
 
                 fail("didn't throw exception");
-            } catch (Exception e) {
-                boolean isExpectedException = e
-                        instanceof SubscriptionExtractor.InvalidSourceException;
+            } catch (final Exception e) {
+                final boolean isExpectedException
+                        = e instanceof SubscriptionExtractor.InvalidSourceException;
                 assertTrue("\"" + e.getClass().getSimpleName()
                         + "\" is not the expected exception", isExpectedException);
             }
@@ -91,7 +91,7 @@ public class ImportExportJsonHelperTest {
         final List<SubscriptionItem> itemsFromFile = ImportExportJsonHelper.readFrom(
                 inputStream, null);
 
-        if (itemsFromFile == null || itemsFromFile.isEmpty()) {
+        if (itemsFromFile.isEmpty()) {
             fail("ImportExportJsonHelper.readFrom(input) returned a null or empty list");
         }
 
@@ -116,7 +116,7 @@ public class ImportExportJsonHelperTest {
         final List<SubscriptionItem> secondReadItems = ImportExportJsonHelper.readFrom(
                 inputStream, null);
 
-        if (secondReadItems == null || secondReadItems.isEmpty()) {
+        if (secondReadItems.isEmpty()) {
             fail("second call to readFrom returned an empty list");
         }
 

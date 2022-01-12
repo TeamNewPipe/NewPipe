@@ -1,0 +1,3 @@
+[YouTube] Corrigida a busca para alguns usuários
+[YouTube] Corrigida falhas de decriptação aleatórias
+[SoundCloud] URLs que terminam com barra agora estão sendo abertas corretamente

@@ -1,0 +1,14 @@
+Ajouts
+- Support commentaires de SoundCloud
+- Mode restreint de YouTube
+- Détails de la chaîne parentale de PeerTube
+
+Améliorations
+- Bouton Kore uniquement pour les services supportés
+- Blocage des gestes débutant sur la barre de navigation ou d'état
+- Couleur de fond des boutons réessai & abonnement
+
+Corrections
+- Gel de la boîte de dialogue de téléchargement
+- "Ouvrir dans le navigateur" s'ouvre réellement dans le navigateur
+- Crash à l'ouverture des vidéos et "Impossible de lire ce flux"

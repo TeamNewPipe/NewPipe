@@ -20,7 +20,7 @@ public class LayoutManagerSmoothScroller extends LinearLayoutManager {
     @Override
     public void smoothScrollToPosition(final RecyclerView recyclerView,
                                        final RecyclerView.State state, final int position) {
-        RecyclerView.SmoothScroller smoothScroller
+        final RecyclerView.SmoothScroller smoothScroller
                 = new TopSnappedSmoothScroller(recyclerView.getContext());
         smoothScroller.setTargetPosition(position);
         startSmoothScroll(smoothScroller);

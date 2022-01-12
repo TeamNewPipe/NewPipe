@@ -1,0 +1,8 @@
+• yangi dastur: batafsil sahifada videolarni ijro etish, pleyerni kamaytirish uchun pastga suring
+• MediaStyle bildirishnomalari: bildirishnomalarda moslashtiriladigan harakatlar, ish faoliyatini yaxshilash
+• NewPipe-ni ish stoli ilovasi sifatida ishlatishda asosiy o'lchamlarni o'zgartirish
+
+• Qidiruv takliflarini yaxshilash
+• Standart video sifatini 720p60 (ilova ichidagi pleer) va 480p (pop-up pleer) ga oshirish
+
+• bir necha xatolarni tuzatish va boshqalar

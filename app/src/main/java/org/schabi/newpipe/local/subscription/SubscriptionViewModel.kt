@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.xwray.groupie.Group
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.item.ChannelItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupCardItem
@@ -22,22 +22,22 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
     val feedGroupsLiveData: LiveData<List<Group>> = mutableFeedGroupsLiveData
 
     private var feedGroupItemsDisposable = feedDatabaseManager.groups()
-            .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
-            .map { it.map(::FeedGroupCardItem) }
-            .subscribeOn(Schedulers.io())
-            .subscribe(
-                    { mutableFeedGroupsLiveData.postValue(it) },
-                    { mutableStateLiveData.postValue(SubscriptionState.ErrorState(it)) }
-            )
+        .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
+        .map { it.map(::FeedGroupCardItem) }
+        .subscribeOn(Schedulers.io())
+        .subscribe(
+            { mutableFeedGroupsLiveData.postValue(it) },
+            { mutableStateLiveData.postValue(SubscriptionState.ErrorState(it)) }
+        )
 
     private var stateItemsDisposable = subscriptionManager.subscriptions()
-            .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
-            .map { it.map { entity -> ChannelItem(entity.toChannelInfoItem(), entity.uid, ChannelItem.ItemVersion.MINI) } }
-            .subscribeOn(Schedulers.io())
-            .subscribe(
-                    { mutableStateLiveData.postValue(SubscriptionState.LoadedState(it)) },
-                    { mutableStateLiveData.postValue(SubscriptionState.ErrorState(it)) }
-            )
+        .throttleLatest(DEFAULT_THROTTLE_TIMEOUT, TimeUnit.MILLISECONDS)
+        .map { it.map { entity -> ChannelItem(entity.toChannelInfoItem(), entity.uid, ChannelItem.ItemVersion.MINI) } }
+        .subscribeOn(Schedulers.io())
+        .subscribe(
+            { mutableStateLiveData.postValue(SubscriptionState.LoadedState(it)) },
+            { mutableStateLiveData.postValue(SubscriptionState.ErrorState(it)) }
+        )
 
     override fun onCleared() {
         super.onCleared()

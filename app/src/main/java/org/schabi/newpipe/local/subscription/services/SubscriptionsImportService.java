@@ -19,7 +19,11 @@
 
 package org.schabi.newpipe.local.subscription.services;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+import static org.schabi.newpipe.streams.io.StoredFileHelper.DEFAULT_MIME;
+
 import android.content.Intent;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -29,31 +33,30 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
+import org.schabi.newpipe.ktx.ExceptionUtils;
+import org.schabi.newpipe.streams.io.SharpInputStream;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Constants;
-import org.schabi.newpipe.util.ExceptionUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import io.reactivex.Flowable;
-import io.reactivex.Notification;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
-
-import static org.schabi.newpipe.MainActivity.DEBUG;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Notification;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SubscriptionsImportService extends BaseImportExportService {
     public static final int CHANNEL_URL_MODE = 0;
@@ -66,7 +69,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
      * A {@link LocalBroadcastManager local broadcast} will be made with this action
      * when the import is successfully completed.
      */
-    public static final String IMPORT_COMPLETE_ACTION = "org.schabi.newpipe.local.subscription"
+    public static final String IMPORT_COMPLETE_ACTION = App.PACKAGE_NAME + ".local.subscription"
             + ".services.SubscriptionsImportService.IMPORT_COMPLETE";
 
     /**
@@ -87,6 +90,8 @@ public class SubscriptionsImportService extends BaseImportExportService {
     private String channelUrl;
     @Nullable
     private InputStream inputStream;
+    @Nullable
+    private String inputStreamType;
 
     @Override
     public int onStartCommand(final Intent intent, final int flags, final int startId) {
@@ -100,17 +105,30 @@ public class SubscriptionsImportService extends BaseImportExportService {
         if (currentMode == CHANNEL_URL_MODE) {
             channelUrl = intent.getStringExtra(KEY_VALUE);
         } else {
-            final String filePath = intent.getStringExtra(KEY_VALUE);
-            if (TextUtils.isEmpty(filePath)) {
+            final Uri uri = intent.getParcelableExtra(KEY_VALUE);
+            if (uri == null) {
                 stopAndReportError(new IllegalStateException(
-                        "Importing from input stream, but file path is empty or null"),
+                        "Importing from input stream, but file path is null"),
                         "Importing subscriptions");
                 return START_NOT_STICKY;
             }
 
             try {
-                inputStream = new FileInputStream(new File(filePath));
-            } catch (FileNotFoundException e) {
+                final StoredFileHelper fileHelper = new StoredFileHelper(this, uri, DEFAULT_MIME);
+                inputStream = new SharpInputStream(fileHelper.getStream());
+                inputStreamType = fileHelper.getType();
+
+                if (inputStreamType == null || inputStreamType.equals(DEFAULT_MIME)) {
+                    // mime type could not be determined, just take file extension
+                    final String name = fileHelper.getName();
+                    final int pointIndex = name.lastIndexOf('.');
+                    if (pointIndex == -1 || pointIndex >= name.length() - 1) {
+                        inputStreamType = DEFAULT_MIME; // no extension, will fail in the extractor
+                    } else {
+                        inputStreamType = name.substring(pointIndex + 1);
+                    }
+                }
+            } catch (final IOException e) {
                 handleError(e);
                 return START_NOT_STICKY;
             }
@@ -187,7 +205,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
                                 .getChannelInfo(subscriptionItem.getServiceId(),
                                         subscriptionItem.getUrl(), true)
                                 .blockingGet());
-                    } catch (Throwable e) {
+                    } catch (final Throwable e) {
                         return Notification.createOnError(e);
                     }
                 })
@@ -239,15 +257,15 @@ public class SubscriptionsImportService extends BaseImportExportService {
     private Consumer<Notification<ChannelInfo>> getNotificationsConsumer() {
         return notification -> {
             if (notification.isOnNext()) {
-                String name = notification.getValue().getName();
+                final String name = notification.getValue().getName();
                 eventListener.onItemCompleted(!TextUtils.isEmpty(name) ? name : "");
             } else if (notification.isOnError()) {
                 final Throwable error = notification.getError();
                 final Throwable cause = error.getCause();
                 if (error instanceof IOException) {
-                    throw (IOException) error;
+                    throw error;
                 } else if (cause instanceof IOException) {
-                    throw (IOException) cause;
+                    throw cause;
                 } else if (ExceptionUtils.isNetworkRelated(error)) {
                     throw new IOException(error);
                 }
@@ -260,7 +278,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
     private Function<List<Notification<ChannelInfo>>, List<SubscriptionEntity>> upsertBatch() {
         return notificationList -> {
             final List<ChannelInfo> infoList = new ArrayList<>(notificationList.size());
-            for (Notification<ChannelInfo> n : notificationList) {
+            for (final Notification<ChannelInfo> n : notificationList) {
                 if (n.isOnNext()) {
                     infoList.add(n.getValue());
                 }
@@ -277,9 +295,12 @@ public class SubscriptionsImportService extends BaseImportExportService {
     }
 
     private Flowable<List<SubscriptionItem>> importFromInputStream() {
+        Objects.requireNonNull(inputStream);
+        Objects.requireNonNull(inputStreamType);
+
         return Flowable.fromCallable(() -> NewPipe.getService(currentServiceId)
                 .getSubscriptionExtractor()
-                .fromInputStream(inputStream));
+                .fromInputStream(inputStream, inputStreamType));
     }
 
     private Flowable<List<SubscriptionItem>> importFromPreviousExport() {

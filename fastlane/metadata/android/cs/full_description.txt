@@ -1,0 +1,1 @@
+NewPipe nepoužívá žádné knihovny Google Framework nebo YouTube API. Analyzuje pouze YouTube website, aby získala ty informace, které potřebuje. Proto lze tuto aplikaci použít na zařízeních bez softwaru Google Services. Stejně tak nepotřebujete k používání NewPipe žádný YouTube účet a aplikace je FLOSS.

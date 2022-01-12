@@ -59,7 +59,7 @@ public final class InfoCache {
     }
 
     private static void removeStaleCache() {
-        for (Map.Entry<String, CacheData> entry : InfoCache.LRU_CACHE.snapshot().entrySet()) {
+        for (final Map.Entry<String, CacheData> entry : InfoCache.LRU_CACHE.snapshot().entrySet()) {
             final CacheData data = entry.getValue();
             if (data != null && data.isExpired()) {
                 InfoCache.LRU_CACHE.remove(entry.getKey());

@@ -1,0 +1,12 @@
+Nuevo
+Reconocimiento de marcas de tiempo y hashtags en descripción
+Añadido ajuste manual del modo tableta
+Añadida la posibilidad de ocultar elementos ya reproducidos en feed
+
+Mejorado
+Soporte adecuado para el sistema de acceso al almacenamiento (SAF)
+Mejor manejo de los errores en canales no disponibles y eliminados
+El menú de compartir para usuarios de Android 10+ ahora muestra el título del contenido
+Actualizadas instancias de Invidious y soporte para enlaces de Piped
+
+... y otras correcciones

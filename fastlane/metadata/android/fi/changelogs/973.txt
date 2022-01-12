@@ -1,0 +1,4 @@
+Pikakorjaus
+* Korjattu esikatselukuvien ja otsikoiden leikkautuminen johtuen väärästä laskelmasta montako videota mahtuu riville
+* Korjattu latausnäkymän katoaminen itsestään, jos se avattiin jakamisvalikosta
+* Päivitetty kirjasto ulkoisten aktiviteettien avaamiseen kuten SAF-tiedostovalitsimeen

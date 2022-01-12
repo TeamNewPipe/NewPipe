@@ -8,5 +8,5 @@
         android:width="80dp"
         android:height="80dp"
         android:gravity="center"
-        android:drawable="@drawable/splash_forground"/>
+        android:drawable="@drawable/splash_foreground"/>
 </layer-list>

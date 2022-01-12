@@ -6,8 +6,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
@@ -51,7 +49,6 @@ import org.schabi.newpipe.util.OnClickGesture;
 
 public class InfoItemBuilder {
     private final Context context;
-    private final ImageLoader imageLoader = ImageLoader.getInstance();
 
     private OnClickGesture<StreamInfoItem> onStreamSelectedListener;
     private OnClickGesture<ChannelInfoItem> onChannelSelectedListener;
@@ -70,7 +67,8 @@ public class InfoItemBuilder {
     public View buildView(@NonNull final ViewGroup parent, @NonNull final InfoItem infoItem,
                           final HistoryRecordManager historyRecordManager,
                           final boolean useMiniVariant) {
-        InfoItemHolder holder = holderFromInfoType(parent, infoItem.getInfoType(), useMiniVariant);
+        final InfoItemHolder holder
+                = holderFromInfoType(parent, infoItem.getInfoType(), useMiniVariant);
         holder.updateFromItem(infoItem, historyRecordManager);
         return holder.itemView;
     }
@@ -98,10 +96,6 @@ public class InfoItemBuilder {
 
     public Context getContext() {
         return context;
-    }
-
-    public ImageLoader getImageLoader() {
-        return imageLoader;
     }
 
     public OnClickGesture<StreamInfoItem> getOnStreamSelectedListener() {

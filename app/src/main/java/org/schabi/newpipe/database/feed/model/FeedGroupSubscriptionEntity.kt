@@ -11,29 +11,31 @@ import org.schabi.newpipe.database.feed.model.FeedGroupSubscriptionEntity.Compan
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 
 @Entity(
-        tableName = FEED_GROUP_SUBSCRIPTION_TABLE,
-        primaryKeys = [GROUP_ID, SUBSCRIPTION_ID],
-        indices = [Index(SUBSCRIPTION_ID)],
-        foreignKeys = [
-            ForeignKey(
-                    entity = FeedGroupEntity::class,
-                    parentColumns = [FeedGroupEntity.ID],
-                    childColumns = [GROUP_ID],
-                    onDelete = CASCADE, onUpdate = CASCADE, deferred = true),
+    tableName = FEED_GROUP_SUBSCRIPTION_TABLE,
+    primaryKeys = [GROUP_ID, SUBSCRIPTION_ID],
+    indices = [Index(SUBSCRIPTION_ID)],
+    foreignKeys = [
+        ForeignKey(
+            entity = FeedGroupEntity::class,
+            parentColumns = [FeedGroupEntity.ID],
+            childColumns = [GROUP_ID],
+            onDelete = CASCADE, onUpdate = CASCADE, deferred = true
+        ),
 
-            ForeignKey(
-                    entity = SubscriptionEntity::class,
-                    parentColumns = [SubscriptionEntity.SUBSCRIPTION_UID],
-                    childColumns = [SUBSCRIPTION_ID],
-                    onDelete = CASCADE, onUpdate = CASCADE, deferred = true)
-        ]
+        ForeignKey(
+            entity = SubscriptionEntity::class,
+            parentColumns = [SubscriptionEntity.SUBSCRIPTION_UID],
+            childColumns = [SUBSCRIPTION_ID],
+            onDelete = CASCADE, onUpdate = CASCADE, deferred = true
+        )
+    ]
 )
 data class FeedGroupSubscriptionEntity(
-        @ColumnInfo(name = GROUP_ID)
-        var feedGroupId: Long,
+    @ColumnInfo(name = GROUP_ID)
+    var feedGroupId: Long,
 
-        @ColumnInfo(name = SUBSCRIPTION_ID)
-        var subscriptionId: Long
+    @ColumnInfo(name = SUBSCRIPTION_ID)
+    var subscriptionId: Long
 ) {
 
     companion object {

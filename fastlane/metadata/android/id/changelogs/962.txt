@@ -1,0 +1,2 @@
+Menambahkan "recent" video ke layanan media.cc.de.
+Menambahkan live streams ke layanan media.cc.de dan dukungan live stream.

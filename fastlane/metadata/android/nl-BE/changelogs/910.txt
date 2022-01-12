@@ -1,0 +1,1 @@
+Probleem met databank migratie opgelost dat ervoor zorgde dat NewPipe niet kon opstarten in sommige zeldzame gevallen.

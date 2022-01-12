@@ -1,0 +1,2 @@
+# Sửa lỗi
+- Hotfix tiếp lỗi không thể giải mã.

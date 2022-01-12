@@ -39,9 +39,9 @@ public class SecondaryStreamHelper<T extends Stream> {
                 return null;
         }
 
-        boolean m4v = videoStream.getFormat() == MediaFormat.MPEG_4;
+        final boolean m4v = videoStream.getFormat() == MediaFormat.MPEG_4;
 
-        for (AudioStream audio : audioStreams) {
+        for (final AudioStream audio : audioStreams) {
             if (audio.getFormat() == (m4v ? MediaFormat.M4A : MediaFormat.WEBMA)) {
                 return audio;
             }
@@ -53,7 +53,7 @@ public class SecondaryStreamHelper<T extends Stream> {
 
         // retry, but this time in reverse order
         for (int i = audioStreams.size() - 1; i >= 0; i--) {
-            AudioStream audio = audioStreams.get(i);
+            final AudioStream audio = audioStreams.get(i);
             if (audio.getFormat() == MediaFormat.WEBMA_OPUS) {
                 return audio;
             }

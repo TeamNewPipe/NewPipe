@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
@@ -7,7 +8,7 @@
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:padding="@dimen/video_item_search_padding">
+    android:padding="@dimen/comments_vertical_padding">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/itemThumbnailView"
@@ -16,27 +17,36 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginEnd="@dimen/video_item_search_image_right_margin"
-        android:contentDescription="@string/list_thumbnail_view_description"
         android:focusable="false"
         android:src="@drawable/buddy"
         tools:ignore="RtlHardcoded" />
 
-    <TextView
+    <ImageView
+        android:id="@+id/detail_pinned_view"
+        android:layout_width="@dimen/video_item_detail_pinned_image_width"
+        android:layout_height="@dimen/video_item_detail_pinned_image_height"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="@dimen/video_item_detail_pinned_right_margin"
+        android:layout_toEndOf="@+id/itemThumbnailView"
+        android:contentDescription="@string/detail_pinned_comment_view_description"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_pin"
+        tools:visibility="visible" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemTitleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="@dimen/video_item_search_image_right_margin"
-        android:textAlignment="viewStart"
-        android:textDirection="anyRtl"
-        android:layout_toEndOf="@+id/itemThumbnailView"
+        android:layout_toEndOf="@+id/detail_pinned_view"
         android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/comment_item_title_text_size"
         tools:text="Author Name, Lorem ipsum" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemCommentContentView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,9 +65,9 @@
         android:layout_below="@id/itemCommentContentView"
         android:layout_toEndOf="@+id/itemThumbnailView"
         android:contentDescription="@string/detail_likes_img_view_description"
-        android:src="?attr/thumbs_up" />
+        app:srcCompat="@drawable/ic_thumb_up" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/detail_thumbs_up_count_view"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/video_item_detail_like_image_height"
@@ -70,6 +80,18 @@
         tools:ignore="RtlHardcoded"
         tools:text="12M" />
 
+    <ImageView
+        android:id="@+id/detail_heart_image_view"
+        android:layout_width="@dimen/video_item_detail_heart_image_size"
+        android:layout_height="@dimen/video_item_detail_heart_image_size"
+        android:layout_below="@id/itemCommentContentView"
+        android:layout_marginStart="@dimen/video_item_detail_heart_margin"
+        android:layout_toEndOf="@+id/detail_thumbs_up_count_view"
+        android:contentDescription="@string/detail_heart_img_view_description"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:srcCompat="@drawable/ic_heart" />
+
 
     <!--we can uncomment below code if we need dislike button and count in future-->
 
@@ -81,10 +103,10 @@
         android:layout_marginStart="12dp"
         android:layout_toEndOf="@id/detail_thumbs_up_count_view"
         android:contentDescription="@string/detail_dislikes_img_view_description"
-        android:src="?attr/thumbs_down"
+        app:srcCompat="?attr/thumbs_down"
         tools:ignore="RtlHardcoded" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/detail_thumbs_down_count_view"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/video_item_detail_like_image_height"
@@ -98,13 +120,13 @@
         tools:ignore="RtlHardcoded"
         tools:text="10K" />-->
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemPublishedTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/itemCommentContentView"
         android:layout_marginStart="12dp"
-        android:layout_toEndOf="@id/detail_thumbs_up_count_view"
+        android:layout_toEndOf="@id/detail_heart_image_view"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_upload_date_text_size"

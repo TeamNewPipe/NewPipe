@@ -19,15 +19,20 @@
 
 package org.schabi.newpipe.util;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.preference.PreferenceManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.util.TypedValue;
-import android.view.ContextThemeWrapper;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -35,11 +40,15 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
 public final class ThemeHelper {
-    private ThemeHelper() { }
+    private ThemeHelper() {
+    }
 
     /**
      * Apply the selected theme (on NewPipe settings) in the context
      * with the default style (see {@link #setTheme(Context, int)}).
+     *
+     * ThemeHelper.setDayNightMode should be called before
+     * the applying theme for the first time in session
      *
      * @param context context that the theme will be applied
      */
@@ -50,6 +59,9 @@ public final class ThemeHelper {
     /**
      * Apply the selected theme (on NewPipe settings) in the context,
      * themed according with the styles defined for the service .
+     *
+     * ThemeHelper.setDayNightMode should be called before
+     * the applying theme for the first time in session
      *
      * @param context   context that the theme will be applied
      * @param serviceId the theme will be styled to the service with this id,
@@ -66,31 +78,12 @@ public final class ThemeHelper {
      * @return whether the light theme is selected
      */
     public static boolean isLightThemeSelected(final Context context) {
-        return getSelectedThemeString(context).equals(context.getResources()
-                .getString(R.string.light_theme_key));
-    }
+        final String selectedThemeKey = getSelectedThemeKey(context);
+        final Resources res = context.getResources();
 
-
-    /**
-     * Create and return a wrapped context with the default selected theme set.
-     *
-     * @param baseContext the base context for the wrapper
-     * @return a wrapped-styled context
-     */
-    public static Context getThemedContext(final Context baseContext) {
-        return new ContextThemeWrapper(baseContext, getThemeForService(baseContext, -1));
-    }
-
-    /**
-     * Return the selected theme without being styled to any service.
-     * See {@link #getThemeForService(Context, int)}.
-     *
-     * @param context context to get the selected theme
-     * @return the selected style (the default one)
-     */
-    @StyleRes
-    public static int getDefaultTheme(final Context context) {
-        return getThemeForService(context, -1);
+        return selectedThemeKey.equals(res.getString(R.string.light_theme_key))
+                || (selectedThemeKey.equals(res.getString(R.string.auto_device_theme_key))
+                && !isDeviceDarkThemeEnabled(context));
     }
 
     /**
@@ -126,85 +119,94 @@ public final class ThemeHelper {
      */
     @StyleRes
     public static int getThemeForService(final Context context, final int serviceId) {
-        String lightTheme = context.getResources().getString(R.string.light_theme_key);
-        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
-        String blackTheme = context.getResources().getString(R.string.black_theme_key);
+        final Resources res = context.getResources();
+        final String lightThemeKey = res.getString(R.string.light_theme_key);
+        final String blackThemeKey = res.getString(R.string.black_theme_key);
+        final String automaticDeviceThemeKey = res.getString(R.string.auto_device_theme_key);
 
-        String selectedTheme = getSelectedThemeString(context);
+        final String selectedThemeKey = getSelectedThemeKey(context);
 
-        int defaultTheme = R.style.DarkTheme;
-        if (selectedTheme.equals(lightTheme)) {
-            defaultTheme = R.style.LightTheme;
-        } else if (selectedTheme.equals(blackTheme)) {
-            defaultTheme = R.style.BlackTheme;
-        } else if (selectedTheme.equals(darkTheme)) {
-            defaultTheme = R.style.DarkTheme;
+
+        int baseTheme = R.style.DarkTheme; // default to dark theme
+        if (selectedThemeKey.equals(lightThemeKey)) {
+            baseTheme = R.style.LightTheme;
+        } else if (selectedThemeKey.equals(blackThemeKey)) {
+            baseTheme = R.style.BlackTheme;
+        } else if (selectedThemeKey.equals(automaticDeviceThemeKey)) {
+
+            if (isDeviceDarkThemeEnabled(context)) {
+                // use the dark theme variant preferred by the user
+                final String selectedNightThemeKey = getSelectedNightThemeKey(context);
+                if (selectedNightThemeKey.equals(blackThemeKey)) {
+                    baseTheme = R.style.BlackTheme;
+                } else {
+                    baseTheme = R.style.DarkTheme;
+                }
+            } else {
+                // there is only one day theme
+                baseTheme = R.style.LightTheme;
+            }
         }
 
         if (serviceId <= -1) {
-            return defaultTheme;
+            return baseTheme;
         }
 
         final StreamingService service;
         try {
             service = NewPipe.getService(serviceId);
-        } catch (ExtractionException ignored) {
-            return defaultTheme;
+        } catch (final ExtractionException ignored) {
+            return baseTheme;
         }
 
-        String themeName = "DarkTheme";
-        if (selectedTheme.equals(lightTheme)) {
+        String themeName = "DarkTheme"; // default
+        if (baseTheme == R.style.LightTheme) {
             themeName = "LightTheme";
-        } else if (selectedTheme.equals(blackTheme)) {
+        } else if (baseTheme == R.style.BlackTheme) {
             themeName = "BlackTheme";
-        } else if (selectedTheme.equals(darkTheme)) {
-            themeName = "DarkTheme";
         }
 
         themeName += "." + service.getServiceInfo().getName();
-        int resourceId = context
-                .getResources()
+        final int resourceId = context.getResources()
                 .getIdentifier(themeName, "style", context.getPackageName());
 
         if (resourceId > 0) {
             return resourceId;
         }
-
-        return defaultTheme;
+        return baseTheme;
     }
 
     @StyleRes
     public static int getSettingsThemeStyle(final Context context) {
-        String lightTheme = context.getResources().getString(R.string.light_theme_key);
-        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
-        String blackTheme = context.getResources().getString(R.string.black_theme_key);
+        final Resources res = context.getResources();
+        final String lightTheme = res.getString(R.string.light_theme_key);
+        final String blackTheme = res.getString(R.string.black_theme_key);
+        final String automaticDeviceTheme = res.getString(R.string.auto_device_theme_key);
 
-        String selectedTheme = getSelectedThemeString(context);
+
+        final String selectedTheme = getSelectedThemeKey(context);
 
         if (selectedTheme.equals(lightTheme)) {
             return R.style.LightSettingsTheme;
         } else if (selectedTheme.equals(blackTheme)) {
             return R.style.BlackSettingsTheme;
-        } else if (selectedTheme.equals(darkTheme)) {
-            return R.style.DarkSettingsTheme;
+        } else if (selectedTheme.equals(automaticDeviceTheme)) {
+            if (isDeviceDarkThemeEnabled(context)) {
+                // use the dark theme variant preferred by the user
+                final String selectedNightTheme = getSelectedNightThemeKey(context);
+                if (selectedNightTheme.equals(blackTheme)) {
+                    return R.style.BlackSettingsTheme;
+                } else {
+                    return R.style.DarkSettingsTheme;
+                }
+            } else {
+                // there is only one day theme
+                return R.style.LightSettingsTheme;
+            }
         } else {
-            // Fallback
+            // default to dark theme
             return R.style.DarkSettingsTheme;
         }
-    }
-
-    /**
-     * Get a resource id from a resource styled according to the context's theme.
-     *
-     * @param context Android app context
-     * @param attr    attribute reference of the resource
-     * @return resource ID
-     */
-    public static int resolveResourceIdFromAttr(final Context context, @AttrRes final int attr) {
-        TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr});
-        int attributeResourceId = a.getResourceId(0, 0);
-        a.recycle();
-        return attributeResourceId;
     }
 
     /**
@@ -225,22 +227,137 @@ public final class ThemeHelper {
         return value.data;
     }
 
-    private static String getSelectedThemeString(final Context context) {
-        String themeKey = context.getString(R.string.theme_key);
-        String defaultTheme = context.getResources().getString(R.string.default_theme_value);
+    private static String getSelectedThemeKey(final Context context) {
+        final String themeKey = context.getString(R.string.theme_key);
+        final String defaultTheme = context.getResources().getString(R.string.default_theme_value);
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(themeKey, defaultTheme);
     }
 
+    private static String getSelectedNightThemeKey(final Context context) {
+        final String nightThemeKey = context.getString(R.string.night_theme_key);
+        final String defaultNightTheme = context.getResources()
+                .getString(R.string.default_night_theme_value);
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(nightThemeKey, defaultNightTheme);
+    }
+
     /**
-     * This will get the R.drawable.* resource to which attr is currently pointing to.
+     * Sets the title to the activity, if the activity is an {@link AppCompatActivity} and has an
+     * action bar.
      *
-     * @param attr    a R.attribute.* resource value
-     * @param context the context to use
-     * @return a R.drawable.* resource value
+     * @param activity the activity to set the title of
+     * @param title    the title to set to the activity
      */
-    public static int getIconByAttr(final int attr, final Context context) {
-        return context.obtainStyledAttributes(new int[]{attr})
-                .getResourceId(0, -1);
+    public static void setTitleToAppCompatActivity(@Nullable final Activity activity,
+                                                   final CharSequence title) {
+        if (activity instanceof AppCompatActivity) {
+            final ActionBar actionBar = ((AppCompatActivity) activity).getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setTitle(title);
+            }
+        }
+    }
+
+    /**
+     * Get the device theme
+     * <p>
+     * It will return true if the device 's theme is dark, false otherwise.
+     * <p>
+     * From https://developer.android.com/guide/topics/ui/look-and-feel/darktheme#java
+     *
+     * @param context the context to use
+     * @return true:dark theme, false:light or unknown
+     */
+    public static boolean isDeviceDarkThemeEnabled(final Context context) {
+        final int deviceTheme = context.getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK;
+        switch (deviceTheme) {
+            case Configuration.UI_MODE_NIGHT_YES:
+                return true;
+            case Configuration.UI_MODE_NIGHT_UNDEFINED:
+            case Configuration.UI_MODE_NIGHT_NO:
+            default:
+                return false;
+        }
+    }
+
+    public static void setDayNightMode(final Context context) {
+        setDayNightMode(context, ThemeHelper.getSelectedThemeKey(context));
+    }
+
+    public static void setDayNightMode(final Context context, final String selectedThemeKey) {
+        final Resources res = context.getResources();
+
+        if (selectedThemeKey.equals(res.getString(R.string.light_theme_key))) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else if (selectedThemeKey.equals(res.getString(R.string.dark_theme_key))
+                || selectedThemeKey.equals(res.getString(R.string.black_theme_key))) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        }
+    }
+
+
+    /**
+     * Returns whether the grid layout or the list layout should be used. If the user set "auto"
+     * mode in settings, decides based on screen orientation (landscape) and size.
+     *
+     * @param context the context to use
+     * @return true:use grid layout, false:use list layout
+     */
+    public static boolean shouldUseGridLayout(final Context context) {
+        final String listMode = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.list_view_mode_key),
+                        context.getString(R.string.list_view_mode_value));
+
+        if (listMode.equals(context.getString(R.string.list_view_mode_list_key))) {
+            return false;
+        } else if (listMode.equals(context.getString(R.string.list_view_mode_grid_key))) {
+            return true;
+        } else {
+            final Configuration configuration = context.getResources().getConfiguration();
+            return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+                    && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
+        }
+    }
+
+    /**
+     * Calculates the number of grid channel info items that can fit horizontally on the screen.
+     *
+     * @param context the context to use
+     * @return the span count of grid channel info items
+     */
+    public static int getGridSpanCountChannels(final Context context) {
+        return getGridSpanCount(context,
+                context.getResources().getDimensionPixelSize(R.dimen.channel_item_grid_min_width));
+    }
+
+    /**
+     * Calculates the number of grid stream info items that can fit horizontally on the screen. The
+     * width of a grid stream info item is obtained from the thumbnail width plus the right and left
+     * paddings.
+     *
+     * @param context the context to use
+     * @return the span count of grid stream info items
+     */
+    public static int getGridSpanCountStreams(final Context context) {
+        final Resources res = context.getResources();
+        return getGridSpanCount(context,
+                res.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width)
+                        + res.getDimensionPixelSize(R.dimen.video_item_search_padding) * 2);
+    }
+
+    /**
+     * Calculates the number of grid items that can fit horizontally on the screen based on the
+     * minimum width.
+     *
+     * @param context the context to use
+     * @param minWidth the minimum width of items in the grid
+     * @return the span count of grid list items
+     */
+    public static int getGridSpanCount(final Context context, final int minWidth) {
+        return Math.max(1, context.getResources().getDisplayMetrics().widthPixels / minWidth);
     }
 }

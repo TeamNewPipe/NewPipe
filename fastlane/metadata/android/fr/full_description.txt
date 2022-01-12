@@ -1,0 +1,1 @@
+NewPipe n’utilise aucune bibliothèque logicielle de Google ni l’API de YouTube. Il analyse seulement le site Web afin de récupérer les informations nécessaires. Par conséquent, cette application peut être utilisée sur les appareils sans les services Google. De plus, vous n’avez pas besoin d’un compte YouTube pour utiliser NewPipe, et c’est un logiciel libre.

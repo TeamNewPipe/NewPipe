@@ -1,0 +1,16 @@
+Nuovo
+• Supporto commenti SoundCloud
+• "Mod. con Restrizioni" di YouTube
+• Mostra dettagli canale genitore PeerTube
+
+Migliorato
+• Mostra pulsante Kore solo per dispositivi supportati
+• Gesti bloccati quando si tocca la Barra di Navigazione o la Barra di Stato
+• Cambiato colresfondo pulsanti "Riptova" e "Iscriviti" in base al servizio
+
+Aggiustato
+• Congelamento fin. dialogo download
+• Pulsante "Apri nel Browser" funziona correttamente
+• Crash ed errori all'apertura di alcuni video
+
+altro

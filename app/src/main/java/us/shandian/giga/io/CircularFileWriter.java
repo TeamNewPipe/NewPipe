@@ -7,6 +7,7 @@ import org.schabi.newpipe.streams.io.SharpStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Objects;
 
 public class CircularFileWriter extends SharpStream {
 
@@ -15,7 +16,7 @@ public class CircularFileWriter extends SharpStream {
     private final static int NOTIFY_BYTES_INTERVAL = 64 * 1024;// 64 KiB
     private final static int THRESHOLD_AUX_LENGTH = 15 * 1024 * 1024;// 15 MiB
 
-    private OffsetChecker callback;
+    private final OffsetChecker callback;
 
     public ProgressReport onProgress;
     public WriteErrorHandle onWriteError;
@@ -27,9 +28,7 @@ public class CircularFileWriter extends SharpStream {
     private BufferedFile aux;
 
     public CircularFileWriter(SharpStream target, File temp, OffsetChecker checker) throws IOException {
-        if (checker == null) {
-            throw new NullPointerException("checker is null");
-        }
+        Objects.requireNonNull(checker);
 
         if (!temp.exists()) {
             if (!temp.createNewFile()) {

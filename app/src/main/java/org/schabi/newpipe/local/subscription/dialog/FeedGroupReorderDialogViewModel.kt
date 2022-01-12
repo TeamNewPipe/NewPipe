@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import io.reactivex.Completable
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 
@@ -21,9 +21,9 @@ class FeedGroupReorderDialogViewModel(application: Application) : AndroidViewMod
     private var actionProcessingDisposable: Disposable? = null
 
     private var groupsDisposable = feedDatabaseManager.groups()
-            .limit(1)
-            .subscribeOn(Schedulers.io())
-            .subscribe(mutableGroupsLiveData::postValue)
+        .take(1)
+        .subscribeOn(Schedulers.io())
+        .subscribe(mutableGroupsLiveData::postValue)
 
     override fun onCleared() {
         super.onCleared()
@@ -40,8 +40,8 @@ class FeedGroupReorderDialogViewModel(application: Application) : AndroidViewMod
             mutableDialogEventLiveData.value = DialogEvent.ProcessingEvent
 
             actionProcessingDisposable = completable
-                    .subscribeOn(Schedulers.io())
-                    .subscribe { mutableDialogEventLiveData.postValue(DialogEvent.SuccessEvent) }
+                .subscribeOn(Schedulers.io())
+                .subscribe { mutableDialogEventLiveData.postValue(DialogEvent.SuccessEvent) }
         }
     }
 

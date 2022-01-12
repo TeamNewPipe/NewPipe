@@ -1,0 +1,7 @@
+Améliorations
+• La lecture automatique est maintenant disponible pour tous les services (et plus seulement pour YouTube)
+
+Corrections
+• Correction des flux suggérés par l’ajout de la prise en charge des nouvelles continuations de YouTube
+• Correction des vidéos YouTube avec restriction d’âge
+• [Android TV] Correction de la persistance du surlignement de la cible de saisie sur le texte d’avant-plan

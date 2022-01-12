@@ -1,0 +1,12 @@
+• [YouTube] Mix-Unterstützung
+• [YouTube] Anzeige von Infos zu öffentlich-rechtlichen Sendern und Covid-19
+• [media.ccc.de] Neue Videos hinzugefügt
+• Somali-Übersetzung hinzugefügt
+
+• Viele interne Verbesserungen
+
+• Fehler beim Teilen von Videos aus dem Player heraus behoben
+• Leere ReCaptcha-Webansicht behoben
+• Absturz behoben, der beim Entfernen eines Streams aus einer Liste auftrat
+• [PeerTube] Verwandte Streams korrigiert
+• [YouTube] Fehler bei YouTube-Musiksuche behoben

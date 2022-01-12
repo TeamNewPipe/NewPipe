@@ -1,0 +1,4 @@
+Correções
+• Corrigidas as miniaturas e títulos sendo cortados no layout de grelha, devido a um cálculo incorreto de quantos vídeos cabem numa linha
+• Corrigida a caixa de diálogo de descarregamento que desaparece sem fazer nada se for aberta a partir do menu de partilha
+• Atualizada a biblioteca relacionada à abertura de atividades externas, como o seletor de ficheiros do Storage Access Framework

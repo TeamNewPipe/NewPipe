@@ -12,24 +12,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.text.util.LinkifyCompat;
 
-import com.nononsenseapps.filepicker.Utils;
-
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Constants;
-import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 
 import java.util.Collections;
@@ -44,8 +47,6 @@ import static org.schabi.newpipe.local.subscription.services.SubscriptionsImport
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE;
 
 public class SubscriptionsImportFragment extends BaseFragment {
-    private static final int REQUEST_IMPORT_FILE_CODE = 666;
-
     @State
     int currentServiceId = Constants.NO_SERVICE_ID;
 
@@ -63,8 +64,11 @@ public class SubscriptionsImportFragment extends BaseFragment {
     private EditText inputText;
     private Button inputButton;
 
+    private final ActivityResultLauncher<Intent> requestImportFileLauncher =
+            registerForActivityResult(new StartActivityForResult(), this::requestImportFileResult);
+
     public static SubscriptionsImportFragment getInstance(final int serviceId) {
-        SubscriptionsImportFragment instance = new SubscriptionsImportFragment();
+        final SubscriptionsImportFragment instance = new SubscriptionsImportFragment();
         instance.setInitialData(serviceId);
         return instance;
     }
@@ -83,20 +87,19 @@ public class SubscriptionsImportFragment extends BaseFragment {
 
         setupServiceVariables();
         if (supportedSources.isEmpty() && currentServiceId != Constants.NO_SERVICE_ID) {
-            ErrorActivity.reportError(activity, Collections.emptyList(), null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE,
+            ErrorUtil.showSnackbar(activity,
+                    new ErrorInfo(new String[]{}, UserAction.SUBSCRIPTION_IMPORT_EXPORT,
                             NewPipe.getNameOfService(currentServiceId),
-                            "Service don't support importing", R.string.general_error));
+                            "Service does not support importing subscriptions",
+                            R.string.general_error));
             activity.finish();
         }
     }
 
     @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            setTitle(getString(R.string.import_title));
-        }
+    public void onResume() {
+        super.onResume();
+        setTitle(getString(R.string.import_title));
     }
 
     @Nullable
@@ -140,7 +143,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
             setInfoText("");
         }
 
-        ActionBar supportActionBar = activity.getSupportActionBar();
+        final ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayShowTitleEnabled(true);
             setTitle(getString(R.string.import_title));
@@ -172,23 +175,26 @@ public class SubscriptionsImportFragment extends BaseFragment {
     }
 
     public void onImportFile() {
-        startActivityForResult(FilePickerActivityHelper.chooseSingleFile(activity),
-                REQUEST_IMPORT_FILE_CODE);
+        NoFileManagerSafeGuard.launchSafe(
+                requestImportFileLauncher,
+                // leave */* mime type to support all services
+                // with different mime types and file extensions
+                StoredFileHelper.getPicker(activity, "*/*"),
+                TAG,
+                getContext()
+        );
     }
 
-    @Override
-    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (data == null) {
+    private void requestImportFileResult(final ActivityResult result) {
+        if (result.getData() == null) {
             return;
         }
 
-        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_IMPORT_FILE_CODE
-                && data.getData() != null) {
-            final String path = Utils.getFileForUri(data.getData()).getAbsolutePath();
+        if (result.getResultCode() == Activity.RESULT_OK && result.getData().getData() != null) {
             ImportConfirmationDialog.show(this,
                     new Intent(activity, SubscriptionsImportService.class)
-                            .putExtra(KEY_MODE, INPUT_STREAM_MODE).putExtra(KEY_VALUE, path)
+                            .putExtra(KEY_MODE, INPUT_STREAM_MODE)
+                            .putExtra(KEY_VALUE, result.getData().getData())
                             .putExtra(Constants.KEY_SERVICE_ID, currentServiceId));
         }
     }
@@ -206,7 +212,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
                 relatedUrl = extractor.getRelatedUrl();
                 instructionsString = ServiceHelper.getImportInstructions(currentServiceId);
                 return;
-            } catch (ExtractionException ignored) {
+            } catch (final ExtractionException ignored) {
             }
         }
 

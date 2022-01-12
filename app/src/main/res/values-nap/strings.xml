@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">Truova</string>
+    <string name="open_in_popup_mode">Arape comme fenesta popup</string>
+    <string name="open_in_browser">Arape ncopp\'\'o browser</string>
+    <string name="cancel">Chiure</string>
+    <string name="install">Installa</string>
+    <string name="upload_date_text">Pubblicato \'o %1$s</string>
+    <string name="download_path_audio_title">Cartella addo\' scarrecà \'e suone</string>
+    <string name="download_path_dialog_title">Sciglie \'a cartella p\' \'e file video</string>
+    <string name="download_path_summary">\'E video scarrecate so\' cunservate ccà</string>
+    <string name="download_path_title">Cartella addo\' scarrecà \'e video</string>
+    <string name="controls_add_to_playlist_title">Mitte dinto</string>
+    <string name="controls_popup_title">Popup</string>
+    <string name="controls_background_title">Sfundo</string>
+    <string name="tab_choose">Sciglie \'a scheda</string>
+    <string name="tab_bookmarks">Raccolte salvate</string>
+    <string name="tab_subscriptions">Iscrizzione</string>
+    <string name="show_info">Vire informazione</string>
+    <string name="channel_unsubscribed">Desecritte d\' \'o canale</string>
+    <string name="use_external_video_player_title">Utilizze \'nu lettore video esterno</string>
+    <string name="use_external_audio_player_title">Utilizze \'nu lettore video esterno</string>
+    <string name="subscribed_button_title">Iscritte</string>
+    <string name="unsubscribe">Desecrivete</string>
+    <string name="subscribe_button_title">Iscrivete</string>
+    <string name="use_external_video_player_summary">Leve l\'audio cu alcune risuluzioni</string>
+    <string name="share_dialog_title">Condividi cu</string>
+    <string name="search_showing_result_for">Resultati pe\': %s</string>
+    <string name="did_you_mean">Vulive ricere \"%1$s\"\?</string>
+    <string name="settings">Impostazioni</string>
+    <string name="controls_download_desc">Scarica \'o flusso d\' \'o file</string>
+    <string name="download">Scarica</string>
+    <string name="share">Condividi</string>
+    <string name="no_player_found_toast">Nisciuno lettore truvato (può installà VLC p\' \'o reprodurre).</string>
+    <string name="no_player_found">Nisciuno lettore truvato. Vuo\' installà VLC\?</string>
+    <string name="main_bg_subtitle">Priemme \"Truova\" p\'accummencià</string>
+</resources>

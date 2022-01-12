@@ -1,0 +1,3 @@
+[YouTube] Sửa lỗi tìm kiếm cho một số người dùng
+[YouTube] Sửa lỗi xảy ra ngẫu nhiên cho hàm giải mã
+[SoundCloud] URL kết thúc với dấu gạch chéo (/) giờ đã đọc được bình thường

@@ -1,0 +1,13 @@
+• [YouTube] Support des Mix
+• [YouTube] Affichage des informations à propos du Covid et des chaines de service public
+• [media.ccc.de] Support des vidéos récentes
+• Traduction en Somalien
+
+• Beaucoup d'améliorations internes
+
+Corrections :
+• Partager des vidéos depuis le lecteur
+• Page ReCaptcha blanche
+• Crash lors de la suppression d'un élément d'une liste
+• [PeerTube] Vidéos liées
+• [YouTube] Moteur de recherche YouTube Music

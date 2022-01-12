@@ -22,8 +22,7 @@
 
     <!-- https://checkstyle.org/config_filters.html#SuppressionFilter -->
     <module name="SuppressionFilter">
-        <property name="file" value="${org.checkstyle.sun.suppressionfilter.config}"
-                  default="checkstyle-suppressions.xml" />
+        <property name="file" value="${config_loc}/checkstyle-suppressions.xml" />
         <property name="optional" value="true"/>
     </module>
 
@@ -66,6 +65,8 @@
     <!--   <property name="headerFile" value="${checkstyle.header.file}"/> -->
     <!--   <property name="fileExtensions" value="java"/> -->
     <!-- </module> -->
+
+    <module name="SuppressWarningsFilter" />
 
     <module name="TreeWalker">
         <!-- Checks for Javadoc comments.                     -->
@@ -152,6 +153,10 @@
         <module name="MultipleVariableDeclarations"/>
         <module name="SimplifyBooleanExpression"/>
         <module name="SimplifyBooleanReturn"/>
+        <module name="FinalLocalVariable">
+            <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/>
+            <property name="validateEnhancedForLoopVariable" value="true"/>
+        </module>
 
         <!-- Checks for class design                         -->
         <!-- See https://checkstyle.org/config_design.html -->
@@ -173,6 +178,8 @@
             <property name="severity" value="warning"/>
         </module>-->
         <module name="UpperEll"/>
+
+        <module name="SuppressWarningsHolder" />
 
         <!-- https://checkstyle.org/config_filters.html#SuppressionXpathFilter -->
         <module name="SuppressionXpathFilter">

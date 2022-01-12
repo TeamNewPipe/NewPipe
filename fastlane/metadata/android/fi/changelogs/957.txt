@@ -1,0 +1,10 @@
+• Yhdistetty tietyt jonotoiminnot
+• Kahden sormen ele soittimen sulkemiseksi
+• Valinta reCAPTCHA-evästeiden tyhjentämiseksi
+• Ilmoitusvärin muokkaus
+• Korjattu videon tietojen avaaminen, buginen käyttäytyminen NewPipeen jaettaessa ja muita epäjohdonmukaisuuksia
+• Nopeutettu YouTube-videoita ja korjattu ikärajoitettuja
+• Korjattu kaatuminen eteen-/taaksekelattaessa
+• Ei uudelleenjärjestä listoja raahaatessa esikatselukuvia
+• Ponnahdusikkunan ominaisuudet muistetaan aina
+• Lisätty santalin kieli

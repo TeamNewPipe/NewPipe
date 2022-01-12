@@ -1,0 +1,10 @@
+• Muayyan elementlarni bittaga birlashtirish
+• Ijroni yopish uchun ikkita barmoq harakati
+• reCAPTCHA cookie-fayllarini tozalash
+• Bildirishnomani rangsizlantirish imkoniyati
+• NewPipe-ga ulashishda cheksiz buferlash
+• YouTube videolarini tezlashtirish va yoshi cheklanganlarni tuzatish
+• Fix crashni tez oldinga / orqaga qaytarishda to'g'rilash
+• Kichik rasmlarni tortib ro'yxatlarni qayta tartibga solmaslik
+• Har doim popup funksiyalarini eslang
+• Santal tilini qo'shish

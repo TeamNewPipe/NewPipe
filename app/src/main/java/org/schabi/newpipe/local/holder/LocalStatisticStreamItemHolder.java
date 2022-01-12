@@ -11,17 +11,15 @@ import androidx.core.content.ContextCompat;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
-import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.AnimationUtils;
-import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
-import java.text.DateFormat;
-import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 /*
@@ -71,10 +69,10 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
     }
 
     private String getStreamInfoDetailLine(final StreamStatisticsEntry entry,
-                                           final DateFormat dateFormat) {
+                                           final DateTimeFormatter dateTimeFormatter) {
         final String watchCount = Localization
                 .shortViewCount(itemBuilder.getContext(), entry.getWatchCount());
-        final String uploadDate = dateFormat.format(entry.getLatestAccessDate());
+        final String uploadDate = dateTimeFormatter.format(entry.getLatestAccessDate());
         final String serviceName = NewPipe.getNameOfService(entry.getStreamEntity().getServiceId());
         return Localization.concatenateStrings(watchCount, uploadDate, serviceName);
     }
@@ -82,7 +80,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
     @Override
     public void updateFromItem(final LocalItem localItem,
                                final HistoryRecordManager historyRecordManager,
-                               final DateFormat dateFormat) {
+                               final DateTimeFormatter dateTimeFormatter) {
         if (!(localItem instanceof StreamStatisticsEntry)) {
             return;
         }
@@ -98,15 +96,11 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
 
-            StreamStateEntity state = historyRecordManager
-                    .loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{
-                add(localItem);
-            }}).blockingGet().get(0);
-            if (state != null) {
+            if (item.getProgressMillis() > 0) {
                 itemProgressView.setVisibility(View.VISIBLE);
                 itemProgressView.setMax((int) item.getStreamEntity().getDuration());
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
-                        .toSeconds(state.getProgressTime()));
+                        .toSeconds(item.getProgressMillis()));
             } else {
                 itemProgressView.setVisibility(View.GONE);
             }
@@ -116,12 +110,12 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         }
 
         if (itemAdditionalDetails != null) {
-            itemAdditionalDetails.setText(getStreamInfoDetailLine(item, dateFormat));
+            itemAdditionalDetails.setText(getStreamInfoDetailLine(item, dateTimeFormatter));
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        itemBuilder.displayImage(item.getStreamEntity().getThumbnailUrl(), itemThumbnailView,
-                ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
+        PicassoHelper.loadThumbnail(item.getStreamEntity().getThumbnailUrl())
+                .into(itemThumbnailView);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnItemSelectedListener() != null) {
@@ -146,22 +140,18 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         }
         final StreamStatisticsEntry item = (StreamStatisticsEntry) localItem;
 
-        StreamStateEntity state = historyRecordManager
-                .loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{
-            add(localItem);
-        }}).blockingGet().get(0);
-        if (state != null && item.getStreamEntity().getDuration() > 0) {
+        if (item.getProgressMillis() > 0 && item.getStreamEntity().getDuration() > 0) {
             itemProgressView.setMax((int) item.getStreamEntity().getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
                 itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS
-                        .toSeconds(state.getProgressTime()));
+                        .toSeconds(item.getProgressMillis()));
             } else {
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS
-                        .toSeconds(state.getProgressTime()));
-                AnimationUtils.animateView(itemProgressView, true, 500);
+                        .toSeconds(item.getProgressMillis()));
+                ViewUtils.animate(itemProgressView, true, 500);
             }
         } else if (itemProgressView.getVisibility() == View.VISIBLE) {
-            AnimationUtils.animateView(itemProgressView, false, 500);
+            ViewUtils.animate(itemProgressView, false, 500);
         }
     }
 }

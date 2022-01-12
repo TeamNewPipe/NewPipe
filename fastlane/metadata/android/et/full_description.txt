@@ -1,0 +1,1 @@
+NewPipe ei kasuta Google-i raamistiku teeke ega YouTube APIt. See ainult sõelub veebilehelt vajamineva info. Seega saab rakendust kasutada ka seadmes, millesse ei ole paigaldatud Google teenuseid (Google Services). Lisaks ei ole NewPipe kasutamisel vaja YouTube'i kontot ja ta on FLOSS.

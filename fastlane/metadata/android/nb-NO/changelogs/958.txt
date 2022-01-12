@@ -1,0 +1,15 @@
+Nytt og forbedret:
+• Skjuling av miniatyrbilde på låseskjermen er tilbake
+• Trykk for å gjenoppfriske strøm
+• Forbedret ytelse ved innhenting av lokale lister
+
+Fikset:
+• Krasj ved oppstart av NewPipe etter at det ble fjernet fra minne
+• Krasj ved oppstart når det ikke finnes noen internett-tilkobling
+• Repsektering av lys- og lyd- og håndvendingsinnstillinger
+• [YouTube] Lange spillelister
+
+Annet:
+• Kodeopprydding og interne forbedringer
+• Avhengighetsoppdateringer
+• Oversettelser

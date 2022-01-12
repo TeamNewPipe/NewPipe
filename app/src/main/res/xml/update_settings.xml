@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:key="general_preferences"
     android:title="@string/settings_category_updates_title">
 
-    <SwitchPreference
-        app:iconSpaceReserved="false"
+    <SwitchPreferenceCompat
         android:defaultValue="true"
         android:key="@string/update_app_key"
+        android:summary="@string/updates_setting_description"
         android:title="@string/updates_setting_title"
-        android:summary="@string/updates_setting_description"/>
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <Preference
+        android:key="@string/manual_update_key"
+        android:summary="@string/manual_update_description"
+        android:title="@string/manual_update_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
 
 </PreferenceScreen>

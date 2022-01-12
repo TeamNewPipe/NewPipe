@@ -23,9 +23,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import us.shandian.giga.util.Utility;
 
 /**
@@ -111,7 +111,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
         String qualityString;
 
         if (stream instanceof VideoStream) {
-            VideoStream videoStream = ((VideoStream) stream);
+            final VideoStream videoStream = ((VideoStream) stream);
             qualityString = videoStream.getResolution();
 
             if (secondaryStreams != null) {
@@ -123,7 +123,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
                 }
             }
         } else if (stream instanceof AudioStream) {
-            AudioStream audioStream = ((AudioStream) stream);
+            final AudioStream audioStream = ((AudioStream) stream);
             qualityString = audioStream.getAverageBitrate() > 0
                     ? audioStream.getAverageBitrate() + "kbps"
                     : audioStream.getFormat().getName();
@@ -137,10 +137,11 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
         }
 
         if (streamsWrapper.getSizeInBytes(position) > 0) {
-            SecondaryStreamHelper secondary = secondaryStreams == null ? null
+            final SecondaryStreamHelper secondary = secondaryStreams == null ? null
                     : secondaryStreams.get(position);
             if (secondary != null) {
-                long size = secondary.getSizeInBytes() + streamsWrapper.getSizeInBytes(position);
+                final long size
+                        = secondary.getSizeInBytes() + streamsWrapper.getSizeInBytes(position);
                 sizeView.setText(Utility.formatBytes(size));
             } else {
                 sizeView.setText(streamsWrapper.getFormattedSize(position));
@@ -204,7 +205,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
                 final StreamSizeWrapper<X> streamsWrapper) {
             final Callable<Boolean> fetchAndSet = () -> {
                 boolean hasChanged = false;
-                for (X stream : streamsWrapper.getStreamsList()) {
+                for (final X stream : streamsWrapper.getStreamsList()) {
                     if (streamsWrapper.getSizeInBytes(stream) > -2) {
                         continue;
                     }

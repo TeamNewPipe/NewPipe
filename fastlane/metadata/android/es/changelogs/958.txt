@@ -1,0 +1,15 @@
+Nuevo/ Mejoras:
+• Opción de ocultar miniatura en pantalla de bloqueo
+• Deslizar para actualizar el feed
+• Rendimiento mejorado para listas
+
+Arreglos:
+• Crasheos cuando se iniciaba la app tras cerrarla en RAM
+• Crasheos cuando no había internet
+• Gestos de brillo y volumen
+• [YouTube] listas largas
+
+Otros:
+• Limpieza en código y mejoras internas
+• Dependencias actualizadas
+• Traducciones

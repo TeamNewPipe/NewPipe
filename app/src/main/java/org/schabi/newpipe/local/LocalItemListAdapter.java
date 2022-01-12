@@ -26,7 +26,8 @@ import org.schabi.newpipe.util.FallbackViewHolder;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.OnClickGesture;
 
-import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +70,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private final LocalItemBuilder localItemBuilder;
     private final ArrayList<LocalItem> localItems;
     private final HistoryRecordManager recordManager;
-    private final DateFormat dateFormat;
+    private final DateTimeFormatter dateTimeFormatter;
 
     private boolean showFooter = false;
     private boolean useGridVariant = false;
@@ -80,8 +81,8 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         recordManager = new HistoryRecordManager(context);
         localItemBuilder = new LocalItemBuilder(context);
         localItems = new ArrayList<>();
-        dateFormat = DateFormat.getDateInstance(DateFormat.SHORT,
-                Localization.getPreferredLocale(context));
+        dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
+                .withLocale(Localization.getPreferredLocale(context));
     }
 
     public void setSelectedListener(final OnClickGesture<LocalItem> listener) {
@@ -101,7 +102,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                     + localItems.size() + ", data.size() = " + data.size());
         }
 
-        int offsetStart = sizeConsideringHeader();
+        final int offsetStart = sizeConsideringHeader();
         localItems.addAll(data);
 
         if (DEBUG) {
@@ -113,7 +114,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         notifyItemRangeInserted(offsetStart, data.size());
 
         if (footer != null && showFooter) {
-            int footerNow = sizeConsideringHeader();
+            final int footerNow = sizeConsideringHeader();
             notifyItemMoved(offsetStart, footerNow);
 
             if (DEBUG) {
@@ -125,8 +126,19 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public void removeItem(final LocalItem data) {
         final int index = localItems.indexOf(data);
-        localItems.remove(index);
-        notifyItemRemoved(index + (header != null ? 1 : 0));
+        if (index != -1) {
+            localItems.remove(index);
+            notifyItemRemoved(index + (header != null ? 1 : 0));
+        } else {
+            // this happens when
+            // 1) removeItem is called on infoItemDuplicate as in showStreamItemDialog of
+            // LocalPlaylistFragment in this case need to implement delete object by it's duplicate
+
+            // OR
+
+            // 2)data not in itemList and UI is still not updated so notifyDataSetChanged()
+            notifyDataSetChanged();
+        }
     }
 
     public boolean swapItems(final int fromAdapterPosition, final int toAdapterPosition) {
@@ -158,7 +170,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void setHeader(final View header) {
-        boolean changed = header != this.header;
+        final boolean changed = header != this.header;
         this.header = header;
         if (changed) {
             notifyDataSetChanged();
@@ -303,7 +315,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
 
             ((LocalItemHolder) holder)
-                    .updateFromItem(localItems.get(position), recordManager, dateFormat);
+                    .updateFromItem(localItems.get(position), recordManager, dateTimeFormatter);
         } else if (holder instanceof HeaderFooterHolder && position == 0 && header != null) {
             ((HeaderFooterHolder) holder).view = header;
         } else if (holder instanceof HeaderFooterHolder && position == sizeConsideringHeader()
@@ -316,7 +328,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position,
                                  @NonNull final List<Object> payloads) {
         if (!payloads.isEmpty() && holder instanceof LocalItemHolder) {
-            for (Object payload : payloads) {
+            for (final Object payload : payloads) {
                 if (payload instanceof StreamStateEntity) {
                     ((LocalItemHolder) holder).updateState(localItems
                             .get(header == null ? position : position - 1), recordManager);

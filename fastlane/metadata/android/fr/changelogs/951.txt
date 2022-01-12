@@ -1,0 +1,15 @@
+Ajouts
+- Recherche dans sélecteur d'abonnement
+- Filtre pour abonnements non groupés
+- Onglet "Playlist" à la page principale
+- Avance/retour dans la file du lecteur en arrière-plan/pop-up
+- Affichage suggestions de recherche
+
+Améliorations
+- Retrait métadonnées dans fichiers multiplexés
+- Ne pas retirer les flux qui ont échoué de la file
+- Couleurs barres d'outils et d'état similaires
+
+Corrections
+- Correction de la désynchronisation audio/vidéo
+- [PeerTube] Gestion des commentaires supprimés

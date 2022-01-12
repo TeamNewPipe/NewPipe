@@ -1,44 +1,48 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
+import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.jsoup.helper.StringUtil;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.util.AndroidTvUtils;
 import org.schabi.newpipe.util.CommentTextOnTouchListener;
-import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.external_communication.TimestampExtractor;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.PicassoHelper;
 
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CommentsMiniInfoItemHolder extends InfoItemHolder {
+    private static final String TAG = "CommentsMiniIIHolder";
+
     private static final int COMMENT_DEFAULT_LINES = 2;
     private static final int COMMENT_EXPANDED_LINES = 1000;
-    private static final Pattern PATTERN = Pattern.compile("(\\d+:)?(\\d+)?:(\\d+)");
 
+    private final int commentHorizontalPadding;
+    private final int commentVerticalPadding;
+
+    private final RelativeLayout itemRoot;
     public final CircleImageView itemThumbnailView;
     private final TextView itemContentView;
     private final TextView itemLikesCountView;
-    private final TextView itemDislikesCountView;
     private final TextView itemPublishedTime;
 
     private String commentText;
@@ -47,20 +51,21 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private final Linkify.TransformFilter timestampLink = new Linkify.TransformFilter() {
         @Override
         public String transformUrl(final Matcher match, final String url) {
-            int timestamp = 0;
-            String hours = match.group(1);
-            String minutes = match.group(2);
-            String seconds = match.group(3);
-            if (hours != null) {
-                timestamp += (Integer.parseInt(hours.replace(":", "")) * 3600);
+            try {
+                final TimestampExtractor.TimestampMatchDTO timestampMatchDTO =
+                        TimestampExtractor.getTimestampFromMatcher(match, commentText);
+
+                if (timestampMatchDTO == null) {
+                    return url;
+                }
+
+                return streamUrl + url.replace(
+                        match.group(0),
+                        "#timestamp=" + timestampMatchDTO.seconds());
+            } catch (final Exception ex) {
+                Log.e(TAG, "Unable to process url='" + url + "' as timestampLink", ex);
+                return url;
             }
-            if (minutes != null) {
-                timestamp += (Integer.parseInt(minutes.replace(":", "")) * 60);
-            }
-            if (seconds != null) {
-                timestamp += (Integer.parseInt(seconds));
-            }
-            return streamUrl + url.replace(match.group(0), "#timestamp=" + timestamp);
         }
     };
 
@@ -68,11 +73,16 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                                final ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
 
+        itemRoot = itemView.findViewById(R.id.itemRoot);
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
-        itemDislikesCountView = itemView.findViewById(R.id.detail_thumbs_down_count_view);
         itemPublishedTime = itemView.findViewById(R.id.itemPublishedTime);
         itemContentView = itemView.findViewById(R.id.itemCommentContentView);
+
+        commentHorizontalPadding = (int) infoItemBuilder.getContext()
+                .getResources().getDimension(R.dimen.comments_horizontal_padding);
+        commentVerticalPadding = (int) infoItemBuilder.getContext()
+                .getResources().getDimension(R.dimen.comments_vertical_padding);
     }
 
     public CommentsMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder,
@@ -88,10 +98,17 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         }
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
 
-        itemBuilder.getImageLoader()
-                .displayImage(item.getAuthorThumbnail(),
-                        itemThumbnailView,
-                        ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
+        PicassoHelper.loadAvatar(item.getUploaderAvatarUrl()).into(itemThumbnailView);
+        if (PicassoHelper.getShouldLoadImages()) {
+            itemThumbnailView.setVisibility(View.VISIBLE);
+            itemRoot.setPadding(commentVerticalPadding, commentVerticalPadding,
+                    commentVerticalPadding, commentVerticalPadding);
+        } else {
+            itemThumbnailView.setVisibility(View.GONE);
+            itemRoot.setPadding(commentHorizontalPadding, commentVerticalPadding,
+                    commentHorizontalPadding, commentVerticalPadding);
+        }
+
 
         itemThumbnailView.setOnClickListener(view -> openCommentAuthor(item));
 
@@ -109,15 +126,19 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         }
 
         if (item.getLikeCount() >= 0) {
-            itemLikesCountView.setText(String.valueOf(item.getLikeCount()));
+            itemLikesCountView.setText(
+                    Localization.shortCount(
+                            itemBuilder.getContext(),
+                            item.getLikeCount()));
         } else {
             itemLikesCountView.setText("-");
         }
 
-        if (item.getPublishedTime() != null) {
-            itemPublishedTime.setText(Localization.relativeTime(item.getPublishedTime().date()));
+        if (item.getUploadDate() != null) {
+            itemPublishedTime.setText(Localization.relativeTime(item.getUploadDate()
+                    .offsetDateTime()));
         } else {
-            itemPublishedTime.setText(item.getTextualPublishedTime());
+            itemPublishedTime.setText(item.getTextualUploadDate());
         }
 
         itemView.setOnClickListener(view -> {
@@ -129,32 +150,28 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
 
         itemView.setOnLongClickListener(view -> {
-            if (!AndroidTvUtils.isTv()) {
-                ClipboardManager clipboardManager = (ClipboardManager) itemBuilder.getContext()
-                        .getSystemService(Context.CLIPBOARD_SERVICE);
-                clipboardManager.setPrimaryClip(ClipData.newPlainText(null, commentText));
-                Toast.makeText(itemBuilder.getContext(), R.string.msg_copied, Toast.LENGTH_SHORT)
-                        .show();
-            } else {
+            if (DeviceUtils.isTv(itemBuilder.getContext())) {
                 openCommentAuthor(item);
+            } else {
+                ShareUtils.copyToClipboard(itemBuilder.getContext(), commentText);
             }
             return true;
         });
     }
 
     private void openCommentAuthor(final CommentsInfoItem item) {
-        if (StringUtil.isBlank(item.getAuthorEndpoint())) {
+        if (TextUtils.isEmpty(item.getUploaderUrl())) {
             return;
         }
+        final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
         try {
-            final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
             NavigationHelper.openChannelFragment(
                     activity.getSupportFragmentManager(),
                     item.getServiceId(),
-                    item.getAuthorEndpoint(),
-                    item.getAuthorName());
-        } catch (Exception e) {
-            ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
+                    item.getUploaderUrl(),
+                    item.getUploaderName());
+        } catch (final Exception e) {
+            ErrorUtil.showUiErrorSnackbar(activity, "Opening channel fragment", e);
         }
     }
 
@@ -171,7 +188,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             return false;
         }
 
-        URLSpan[] urls = itemContentView.getUrls();
+        final URLSpan[] urls = itemContentView.getUrls();
 
         return urls != null && urls.length != 0;
     }
@@ -188,12 +205,13 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         boolean hasEllipsis = false;
 
         if (itemContentView.getLineCount() > COMMENT_DEFAULT_LINES) {
-            int endOfLastLine = itemContentView.getLayout().getLineEnd(COMMENT_DEFAULT_LINES - 1);
+            final int endOfLastLine
+                    = itemContentView.getLayout().getLineEnd(COMMENT_DEFAULT_LINES - 1);
             int end = itemContentView.getText().toString().lastIndexOf(' ', endOfLastLine - 2);
             if (end == -1) {
                 end = Math.max(endOfLastLine - 2, 0);
             }
-            String newVal = itemContentView.getText().subSequence(0, end) + " …";
+            final String newVal = itemContentView.getText().subSequence(0, end) + " …";
             itemContentView.setText(newVal);
             hasEllipsis = true;
         }
@@ -225,7 +243,14 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     }
 
     private void linkify() {
-        Linkify.addLinks(itemContentView, Linkify.WEB_URLS);
-        Linkify.addLinks(itemContentView, PATTERN, null, null, timestampLink);
+        Linkify.addLinks(
+                itemContentView,
+                Linkify.WEB_URLS);
+        Linkify.addLinks(
+                itemContentView,
+                TimestampExtractor.TIMESTAMPS_PATTERN,
+                null,
+                null,
+                timestampLink);
     }
 }

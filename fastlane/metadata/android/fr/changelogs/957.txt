@@ -1,0 +1,10 @@
+• Unification des actions spécifiques à la liste d’attente
+• Geste à deux doigts pour fermer le lecteur
+• Option de suppression des cookies reCAPTCHA
+• Option pour ne pas coloriser les notifications
+• Correction de la tamponisation infinie
+• Accélération des vidéos YouTube et correction de celles avec restriction d’âge
+• Correction de l’avance et retour rapide
+• Pas réarrangement des listant en glissant les miniatures
+• Toujours mémoriser les propriétés du lecteur flottant
+• Ajout du Santali

@@ -30,7 +30,7 @@ class FeedGroupCarouselDecoration(context: Context) : RecyclerView.ItemDecoratio
 
         outRect.set(0, marginTopBottom, 0, marginTopBottom)
 
-        if(isRTL) {
+        if (isRTL) {
             outRect.right = marginBetweenItems
 
             if (childAdapterPosition == 0) {

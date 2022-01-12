@@ -1,0 +1,4 @@
+Ushbu versiya uchta kichik tuzatishni keltirib chiqaradi:
+• Android 10+ operatsion tizimida saqlashga ruxsat berilgan
+• Ruxsat etilgan ochiladigan kiosklar
+• Uzoq videoning aniqlangan davomiyligini tahlil qilish

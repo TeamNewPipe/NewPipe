@@ -1,0 +1,1 @@
+NewPipe 不使用任何 Google 框架函式庫或是 YouTube API，僅透過剖析網頁來取得需要的資訊。因此這個應用程式可以在沒有安裝 Google 服務的裝置上運作。同時，您也不需要 YouTube 帳號，就能使用 NewPipe，它是自由與開放原始碼軟體。

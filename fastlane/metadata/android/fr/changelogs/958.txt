@@ -1,0 +1,13 @@
+Nouveautés :
+• Tirer pour actualiser les abonnements
+• Option pour masquer la miniature sur l'écran de verrouillage de nouveau dispo.
+• Amélioration du chargement des listes locales (playlists, historique…)
+
+Corrigé :
+• Crash au démarrage quand NewPipe n'était plus dans la RAM
+• Crash au démarrage quand l'appareil n'était pas connecté à internet
+• Paramètres de luminosité et de volume
+• [YouTube] Listes de lecture longues
+
+Autres :
+• Mise à jour des traductions

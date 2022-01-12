@@ -1,0 +1,33 @@
+# گزارش دگرگونی v0.13.7
+
+### تعیمر شده
+- تعمیر مشکلات پالایهٔ چینش v0.13.6
+
+# گزارش دگرگونی v0.13.6
+
+### بهبودها
+
+- #1486
+- #1472
+- #1498
+- #1454
+- #1354
+- #1510
+- #1392
+  - playback speed control dialog.
+  - toggle to fast-forward.
+  - media source resolution.
+  - remote playlist metadata.
+  - UI fixes: #1383
+- new extractor
+
+### Fixes
+
+- #1491
+- #1497
+  - #1495.
+  - #1475.
+  -. #1463 (Fixed #640)
+  - #1509.
+  - [#1412].
+  - Fixed player.

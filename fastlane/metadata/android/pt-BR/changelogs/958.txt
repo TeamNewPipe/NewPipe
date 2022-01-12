@@ -1,0 +1,14 @@
+Novo e melhorado:
+• Re-adicionada opção para ocultar miniatura na tela de bloqueio
+• Puxe para atualizar a feed
+• Melhor desempenho ao buscar listas locais
+
+Corrigido:
+• Crash ao iniciar o NewPipe depois de ser removido da RAM
+• Crash na inicialização quando não há conexão com a internet
+• Respeitando as configurações de brilho e gestos de volume
+• [YouTube] longas listas de reprodução
+
+Outros:
+• Limpeza de códigos e várias melhorias internas
+• Atualizações de dependência e tradução

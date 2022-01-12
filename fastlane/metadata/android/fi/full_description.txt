@@ -1,0 +1,1 @@
+NewPipe ei käytä mitään Google-kirjastoja tai YouTuben API:a. Se ainoastaan käsittelee verkkosivuja saadakseen tarvitsemansa informaation. Siksi tätä sovellusta voidaan käyttää laitteilla ilman Google Palveluiden asentamista. Et myöskään tarvitse YouTube-tiliä käyttääksesi NewPipea, ja se on FLOSS.

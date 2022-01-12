@@ -9,18 +9,18 @@ import androidx.room.Update;
 import java.util.Collection;
 import java.util.List;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 
 @Dao
 public interface BasicDAO<Entity> {
     /* Inserts */
-    @Insert(onConflict = OnConflictStrategy.FAIL)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     long insert(Entity entity);
 
-    @Insert(onConflict = OnConflictStrategy.FAIL)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     List<Long> insertAll(Entity... entities);
 
-    @Insert(onConflict = OnConflictStrategy.FAIL)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     List<Long> insertAll(Collection<Entity> entities);
 
     /* Searches */

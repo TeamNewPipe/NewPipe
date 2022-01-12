@@ -14,9 +14,9 @@ public class PlayQueuePlaybackController extends DefaultControlDispatcher {
     @Override
     public boolean dispatchSetPlayWhenReady(final Player player, final boolean playWhenReady) {
         if (playWhenReady) {
-            callback.onPlay();
+            callback.play();
         } else {
-            callback.onPause();
+            callback.pause();
         }
         return true;
     }

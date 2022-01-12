@@ -1,0 +1,1 @@
+El NewPipe no fa servir cap tipus de llibreria de Google o la API de YouTube. El que fa és analitzar el lloc web amb tal d'obtenir l'informació necessària. D'aquesta manera l'aplicació pot utilitzar-se sense tenir els Serveis de Google instal·lats. Tampoc cal un compte de YouTube per fer servir NewPipe. NewPipe és programari lliure, gratuït i de codi obert.

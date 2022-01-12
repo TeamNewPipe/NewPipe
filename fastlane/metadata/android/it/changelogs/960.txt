@@ -1,0 +1,4 @@
+• Migliorata la descrizione dell'opzione per l'esportazione del database nelle impostazioni.
+• Sistemato il parsing dei commenti per YouTube.
+• Sistemato il nome mostrato per il servizio media.ccc.de.
+• Traduzioni aggiornate.

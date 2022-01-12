@@ -1,0 +1,8 @@
+• Hỗ trợ chapter trong bảng điều khiển trình phát
+• [PeerTube] Thêm trình search Sepia
+• Thêm lại nút share trong giao diện chi tiết video; chuyển mô tả stream vào tab layout
+• Tắt khôi phục độ sáng màn hình nếu cử chỉ chỉnh độ sáng đã tắt
+• Thêm danh sách mục phát video cho Kodi
+• Sửa lỗi crash khi không có trình duyệt mặc định được chọn trên một số thiết bị; cải thiện menu chia sẻ
+• Nhấn phát/dừng trong trình phát toàn màn hình bằng phím cách vật lý
+• [media.ccc.de] Sửa lỗi và cải thiện chung

@@ -1,0 +1,10 @@
+• Voeg specifieke enqeue-acties samen
+• 2-vinger-beweging om de speler te sluiten
+• Wis reCAPTHA-cookies
+• Optie om meldingen niet te kleuren
+• Verbeter hoe video-details worden geopend om oneindig bufferen, instabiel gedrag bij het delen met NewPipe en andere onvolkomenheden op te lossen
+• Versnel YouTube-videos en repareer die met leeftijdsbeperkingen
+• Los crash bij versnellen/terugspoelen op
+• Herschik lijsten niet bij het slepen van thumbnails
+• Onthoud popup-eigenschappen nooit
+• Santali

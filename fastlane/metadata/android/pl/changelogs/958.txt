@@ -1,0 +1,13 @@
+Nowości i ulepszenia:
+• Dodano ponownie opcję ukrycia miniaturki filmu z ekranu blokady
+• Naciśnij, aby odświeżyć kanał "Co nowego"
+• Ulepszono wydajność podczas pobierania list lokalnych
+
+Naprawiono:
+• Naprawiono awarię podczas uruchamiania NewPipe po usunięciu go z pamięci RAM
+• Naprawiono awarię podczas uruchamiania, gdy nie ma połączenia z Internetem
+
+Pozostałe:
+• Porządki i kilka wewnętrznych ulepszeń w kodzie programu
+• Aktualizacje zależności i tłumaczeń
+i wiele innych

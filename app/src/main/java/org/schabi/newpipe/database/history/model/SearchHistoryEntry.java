@@ -6,7 +6,7 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
+import java.time.OffsetDateTime;
 
 import static org.schabi.newpipe.database.history.model.SearchHistoryEntry.SEARCH;
 
@@ -24,7 +24,7 @@ public class SearchHistoryEntry {
     private long id;
 
     @ColumnInfo(name = CREATION_DATE)
-    private Date creationDate;
+    private OffsetDateTime creationDate;
 
     @ColumnInfo(name = SERVICE_ID)
     private int serviceId;
@@ -32,7 +32,8 @@ public class SearchHistoryEntry {
     @ColumnInfo(name = SEARCH)
     private String search;
 
-    public SearchHistoryEntry(final Date creationDate, final int serviceId, final String search) {
+    public SearchHistoryEntry(final OffsetDateTime creationDate, final int serviceId,
+                              final String search) {
         this.serviceId = serviceId;
         this.creationDate = creationDate;
         this.search = search;
@@ -46,11 +47,11 @@ public class SearchHistoryEntry {
         this.id = id;
     }
 
-    public Date getCreationDate() {
+    public OffsetDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(final Date creationDate) {
+    public void setCreationDate(final OffsetDateTime creationDate) {
         this.creationDate = creationDate;
     }
 

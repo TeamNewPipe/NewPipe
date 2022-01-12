@@ -1,0 +1,9 @@
+Améliorations
+
+- Ajout de la date de publication et du nombre de visionnages sur les éléments de la grille des diffusions
+- Améliorations pour le dessin de la mise en page de l'en-tête
+
+Corrections
+
+- Bouton de mise en sourdine entraînant des plantages sur l'API 19
+- Téléchargement de longues vidéos 1080p 60fps

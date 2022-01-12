@@ -1,0 +1,8 @@
+### Améliorations
+- Importation/exportation des paramètres #1333 
+- Réduction overdraw (amélioration des performances) #1371 
+- Petites améliorations du code #1375 
+- GDPR #1420
+
+### Corrections
+- Téléchargeur : Correction d'un plantage lors du chargement de téléchargements inachevés de fichiers .giga #1407

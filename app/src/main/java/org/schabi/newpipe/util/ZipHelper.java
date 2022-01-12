@@ -1,12 +1,17 @@
 package org.schabi.newpipe.util;
 
+import org.schabi.newpipe.streams.io.SharpInputStream;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
+
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 
 /**
  * Created by Christian Schabesberger on 28.01.18.
@@ -44,61 +49,67 @@ public final class ZipHelper {
      */
     public static void addFileToZip(final ZipOutputStream outZip, final String file,
                                     final String name) throws Exception {
-        byte[] data = new byte[BUFFER_SIZE];
-        FileInputStream fi = new FileInputStream(file);
-        BufferedInputStream inputStream = new BufferedInputStream(fi, BUFFER_SIZE);
-        ZipEntry entry = new ZipEntry(name);
-        outZip.putNextEntry(entry);
-        int count;
-        while ((count = inputStream.read(data, 0, BUFFER_SIZE)) != -1) {
-            outZip.write(data, 0, count);
+        final byte[] data = new byte[BUFFER_SIZE];
+        try (FileInputStream fi = new FileInputStream(file);
+             BufferedInputStream inputStream = new BufferedInputStream(fi, BUFFER_SIZE)) {
+            final ZipEntry entry = new ZipEntry(name);
+            outZip.putNextEntry(entry);
+            int count;
+            while ((count = inputStream.read(data, 0, BUFFER_SIZE)) != -1) {
+                outZip.write(data, 0, count);
+            }
         }
-        inputStream.close();
     }
 
     /**
-     * This will extract data from Zipfiles.
+     * This will extract data from ZipInputStream.
      * Caution this will override the original file.
      *
-     * @param filePath The path of the zip
+     * @param zipFile The zip file
      * @param file The path of the file on the disk where the data should be extracted to.
      * @param name The path of the file inside the zip.
      * @return will return true if the file was found within the zip file
      * @throws Exception
      */
-    public static boolean extractFileFromZip(final String filePath, final String file,
+    public static boolean extractFileFromZip(final StoredFileHelper zipFile, final String file,
                                              final String name) throws Exception {
+        try (ZipInputStream inZip = new ZipInputStream(new BufferedInputStream(
+                new SharpInputStream(zipFile.getStream())))) {
+            final byte[] data = new byte[BUFFER_SIZE];
+            boolean found = false;
+            ZipEntry ze;
 
-        ZipInputStream inZip = new ZipInputStream(
-                new BufferedInputStream(
-                        new FileInputStream(filePath)));
-
-        byte[] data = new byte[BUFFER_SIZE];
-
-        boolean found = false;
-
-        ZipEntry ze;
-        while ((ze = inZip.getNextEntry()) != null) {
-            if (ze.getName().equals(name)) {
-                found = true;
-                // delete old file first
-                File oldFile = new File(file);
-                if (oldFile.exists()) {
-                    if (!oldFile.delete()) {
-                        throw new Exception("Could not delete " + file);
+            while ((ze = inZip.getNextEntry()) != null) {
+                if (ze.getName().equals(name)) {
+                    found = true;
+                    // delete old file first
+                    final File oldFile = new File(file);
+                    if (oldFile.exists()) {
+                        if (!oldFile.delete()) {
+                            throw new Exception("Could not delete " + file);
+                        }
                     }
-                }
 
-                FileOutputStream outFile = new FileOutputStream(file);
-                int count = 0;
-                while ((count = inZip.read(data)) != -1) {
-                    outFile.write(data, 0, count);
-                }
+                    try (FileOutputStream outFile = new FileOutputStream(file)) {
+                        int count = 0;
+                        while ((count = inZip.read(data)) != -1) {
+                            outFile.write(data, 0, count);
+                        }
+                    }
 
-                outFile.close();
-                inZip.closeEntry();
+                    inZip.closeEntry();
+                }
             }
+            return found;
         }
-        return found;
+    }
+
+    public static boolean isValidZipFile(final StoredFileHelper file) {
+        try (ZipInputStream ignored = new ZipInputStream(new BufferedInputStream(
+                new SharpInputStream(file.getStream())))) {
+            return true;
+        } catch (final IOException ioe) {
+            return false;
+        }
     }
 }

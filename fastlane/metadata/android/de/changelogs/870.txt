@@ -1,0 +1,2 @@
+Dies ist eine Hotfix-Version, die es NewPipe erneut erlaubt, SoundCloud ohne gröbere Probleme zu nutzen.
+Der Extraktor nutzt nun die v2 API von SoundCloud und die Detektion ungültiger Client-IDs wurde verbessert.

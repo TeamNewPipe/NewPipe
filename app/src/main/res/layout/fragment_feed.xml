@@ -25,7 +25,7 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/refresh_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
                 android:textSize="14sp"
                 tools:text="@tools:sample/lorem/random" />
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/refresh_subtitle_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="6dp"
             android:layout_marginEnd="12dp"
-            app:srcCompat="?attr/ic_refresh"
+            app:srcCompat="@drawable/ic_refresh"
             tools:ignore="ContentDescription" />
 
         <View
@@ -70,18 +70,37 @@
             android:background="?attr/separator_color" />
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/items_list"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/refresh_root_view"
-        android:scrollbars="vertical"
+        android:layout_below="@+id/refresh_root_view">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/items_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:visibility="gone"
+            tools:listitem="@layout/list_stream_item"
+            tools:visibility="visible" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <Button
+        android:id="@+id/new_items_loaded_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/swipeRefreshLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5sp"
+        android:text="@string/feed_new_items"
+        android:textSize="12sp"
+        android:theme="@style/ServiceColoredButton"
         android:visibility="gone"
-        tools:listitem="@layout/list_stream_item"
         tools:visibility="visible" />
 
     <LinearLayout
-        android:id="@+id/loading_panel_root"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -99,7 +118,7 @@
             android:visibility="gone"
             tools:visibility="visible" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/loading_progress_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -115,7 +134,7 @@
     <!--ERROR PANEL-->
     <include
         android:id="@+id/error_panel"
-        layout="@layout/error_retry"
+        layout="@layout/error_panel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -136,5 +155,5 @@
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:layout_alignParentTop="true"
-        android:background="?attr/toolbar_shadow_drawable" />
+        android:background="?attr/toolbar_shadow" />
 </RelativeLayout>

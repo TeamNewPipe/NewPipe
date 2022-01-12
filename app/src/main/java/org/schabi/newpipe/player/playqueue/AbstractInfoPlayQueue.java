@@ -2,18 +2,20 @@ package org.schabi.newpipe.player.playqueue;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
+import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import io.reactivex.SingleObserver;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.rxjava3.core.SingleObserver;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> extends PlayQueue {
     boolean isInitial;
@@ -21,7 +23,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
 
     final int serviceId;
     final String baseUrl;
-    String nextUrl;
+    Page nextPage;
 
     private transient Disposable fetchReactor;
 
@@ -29,16 +31,16 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
         this(item.getServiceId(), item.getUrl(), null, Collections.emptyList(), 0);
     }
 
-    AbstractInfoPlayQueue(final int serviceId, final String url, final String nextPageUrl,
+    AbstractInfoPlayQueue(final int serviceId, final String url, final Page nextPage,
                           final List<StreamInfoItem> streams, final int index) {
         super(index, extractListItems(streams));
 
         this.baseUrl = url;
-        this.nextUrl = nextPageUrl;
+        this.nextPage = nextPage;
         this.serviceId = serviceId;
 
         this.isInitial = streams.isEmpty();
-        this.isComplete = !isInitial && (nextPageUrl == null || nextPageUrl.isEmpty());
+        this.isComplete = !isInitial && !Page.isValid(nextPage);
     }
 
     protected abstract String getTag();
@@ -66,7 +68,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
                 if (!result.hasNextPage()) {
                     isComplete = true;
                 }
-                nextUrl = result.getNextPageUrl();
+                nextPage = result.getNextPage();
 
                 append(extractListItems(result.getRelatedItems()));
 
@@ -100,7 +102,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
                 if (!result.hasNextPage()) {
                     isComplete = true;
                 }
-                nextUrl = result.getNextPageUrl();
+                nextPage = result.getNextPage();
 
                 append(extractListItems(result.getItems()));
 
@@ -126,9 +128,9 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
         fetchReactor = null;
     }
 
-    private static List<PlayQueueItem> extractListItems(final List<StreamInfoItem> infos) {
-        List<PlayQueueItem> result = new ArrayList<>();
-        for (final InfoItem stream : infos) {
+    private static List<PlayQueueItem> extractListItems(final List<StreamInfoItem> infoItems) {
+        final List<PlayQueueItem> result = new ArrayList<>();
+        for (final InfoItem stream : infoItems) {
             if (stream instanceof StreamInfoItem) {
                 result.add(new PlayQueueItem((StreamInfoItem) stream));
             }

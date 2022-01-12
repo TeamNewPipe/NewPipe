@@ -1,0 +1,3 @@
+Hata bildiricisini açtıktan sonra oluşan sonsuz çökme döngüsü düzeltildi.
+NewPipe tarafından otomatik olarak açılabilen PeerTube örnekleri listesi güncellendi.
+Çeviriler güncellendi.

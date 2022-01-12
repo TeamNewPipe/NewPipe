@@ -1,0 +1,21 @@
+新增
+•允许不支持P2P的PeerTube(＃2201)：
+观看和下载PeerTube视频
+在设置中添加实例服务器以访问所有PeerTube(在访问某些服务器时,Android4.4/7.1上的SSL握手可能有问题)
+•下载器(#2679)：
+计算下载ETA
+以ogg下载opus(webm文件)
+长时间暂停后,恢复过期链接
+改进
+使用本地化Kiosk,改善所有主页标签的性能#2742
+使用extractor#2713中的新本地化和下载器实现
+翻译“默认kiosk”字符串
+为暗黑主题适配导航栏#2569
+修复
+修复悬浮窗播放器按下另一根手指后无法移动#2772
+允许播放列表缺少上传者,并修复相关崩溃#2724,Extractor#219 
+在Android4.4上启用TLS1.1/1.2,与MediaCCC和某些PeerTube服务器连接时,修复TLS握手#2792
+[SoundCloud]修复了client_id提取Extractor#217与音频流提取
+开发
+更新ExoPlayer为2.10.8 #2791,#2816
+更新Gradle到3.5.1,添加Kotlin支持#2714

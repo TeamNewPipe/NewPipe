@@ -1,0 +1,3 @@
+Naprawiono niekończącą się pętlę awarii po otwarciu raportu o błędach.
+Zaktualizowana lista instancji PeerTube, które mogą być otwierane automatycznie przez NewPipe.
+Zaktualizowano tłumaczenia.

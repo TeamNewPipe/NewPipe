@@ -1,0 +1,4 @@
+Cette version apporte trois petites corrections :
+ – correction de l’accès au stockage pour Android 10+
+ – correction de l’ouverture des kiosques
+ – correction de la durée d’analyse des longues vidéos

@@ -1,0 +1,1 @@
+Corretta l'estrazione della funzione di decifrazione di YouTube.

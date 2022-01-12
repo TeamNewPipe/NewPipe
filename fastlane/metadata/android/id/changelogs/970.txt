@@ -1,0 +1,11 @@
+Baru
+• Menampilkan metadata konten (tag, kategori, lisensi, ...) dibawah deskripi
+• Penambahan opsi "Tampilkan rincian channel" dalam daftar putar non-lokal
+• Penambahan opsi "Buka di peramban web" ke menu tekan-lama
+
+Diperbaiki
+• Perbaikan crash rotasi di halaman rincian video
+• Perbaikan tombol "Putar dengan Kodi" di pemutar selalu meminta memasang Kore
+• Perbaikan dan peningkatan pengaturan path impor dan ekspor
+• [Youtube] Perbaikan perhitungan komentar suka
+Dan banyak lagi

@@ -1,0 +1,16 @@
+Yangi
+• SoundCloud sharhini qo'llash
+• YouTube cheklangan rejim sozlamalarini qo'shish
+• PeerTube ota-ona kanalining tafsilotlarini ko'rsatish
+
+Yaxshilangan
+• Kore tugmasini xizmatlar uchun ko'rsatish
+• Navigatsiya paneli yoki StatusBar pleyer imo-ishoralarini bloklash
+• Fon rangini o'zgartirish
+
+Ruxsat etilgan
+• Yuklab olish dialogining muzlatilishini tuzatish
+• Brauzerda ochish tugmasi endi brauzerda ochiladi
+• Videolarni ochishda xatolikni tuzatish va "Ushbu oqim ijro etilmadi"
+
+va boshqalar

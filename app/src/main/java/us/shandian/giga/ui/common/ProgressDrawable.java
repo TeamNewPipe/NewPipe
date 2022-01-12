@@ -26,7 +26,7 @@ public class ProgressDrawable extends Drawable {
 
     public ProgressDrawable() {
         mMarqueeLine = null;// marquee disabled
-        mMarqueeProgress = 0f;
+        mMarqueeProgress = 0.0f;
         mMarqueeSize = 0;
         mMarqueeNext = 0;
     }
@@ -83,8 +83,8 @@ public class ProgressDrawable extends Drawable {
             // render marquee
             width += size * 2;
             Path marquee = new Path();
-            for (float i = -size; i < width; i += size) {
-                marquee.addPath(mMarqueeLine, i + mMarqueeProgress, 0);
+            for (int i = -size; i < width; i += size) {
+                marquee.addPath(mMarqueeLine, ((float)i + mMarqueeProgress), 0);
             }
             marquee.close();
 
@@ -122,7 +122,7 @@ public class ProgressDrawable extends Drawable {
     }
 
     private void setupMarquee(int width, int height) {
-        mMarqueeSize = (int) ((width * 10f) / 100f);// the size is 10% of the width
+        mMarqueeSize = (int) ((width * 10.0f) / 100.0f);// the size is 10% of the width
 
         mMarqueeLine.rewind();
         mMarqueeLine.moveTo(-mMarqueeSize, -mMarqueeSize);

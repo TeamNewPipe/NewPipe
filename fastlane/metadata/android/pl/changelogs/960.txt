@@ -1,0 +1,4 @@
+• Poprawiony opis opcji eksportu bazy danych w ustawieniach.
+• Naprawiono parsowanie komentarzy z YouTube.
+• Naprawiono wyświetlaną nazwę usługi media.ccc.de.
+• Zaktualizowane tłumaczenia.

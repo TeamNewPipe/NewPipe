@@ -1,0 +1,9 @@
+• nieuwe applicatieflow: speel video af op detailpagina, swipe naar beneden om speler te minimaliseren
+• MediaStyle notificaties: personaliseerbare acties in meldingen, performantieverbeteringen
+• basis herschalen voor NewPipe als bureaublad-app
+
+• toon dialoog met opties om te openen na niet-ondersteunde URL melding
+• Verbeter zoeksuggestie-ervaring wanneer externe niet opgehaald kunnen worden
+• Verhoog standaard videokwaliteit speler naar 720p60 (in-app) en 480p (pop-up)
+
+• hoop bugs opgelost

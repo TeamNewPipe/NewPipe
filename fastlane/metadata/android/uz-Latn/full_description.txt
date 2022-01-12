@@ -1,0 +1,1 @@
+NewPipe hech qanday Google ramka kutubxonalaridan yoki YouTube API-dan foydalanmaydi. U faqat kerakli ma'lumotlarni olish uchun veb-saytni tahlil qiladi. Shuning uchun ushbu dasturdan Google Services o'rnatilmagan qurilmalarda foydalanish mumkin. Bundan tashqari, NewPipe-dan foydalanish uchun sizga hech qanday YouTube hisob qaydnomasi kerak emas va bu FLOSS.

@@ -2,47 +2,50 @@ package org.schabi.newpipe.settings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.StringRes;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.util.ThemeHelper;
+
+import java.util.Objects;
 
 public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
-    protected final boolean DEBUG = MainActivity.DEBUG;
+    protected static final boolean DEBUG = MainActivity.DEBUG;
 
     SharedPreferences defaultPreferences;
 
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
-        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(requireActivity());
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onViewCreated(@NonNull final View rootView,
+                              @Nullable final Bundle savedInstanceState) {
+        super.onViewCreated(rootView, savedInstanceState);
         setDivider(null);
-        updateTitle();
+        ThemeHelper.setTitleToAppCompatActivity(getActivity(), getPreferenceScreen().getTitle());
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        updateTitle();
+        ThemeHelper.setTitleToAppCompatActivity(getActivity(), getPreferenceScreen().getTitle());
     }
 
-    private void updateTitle() {
-        if (getActivity() instanceof AppCompatActivity) {
-            ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.setTitle(getPreferenceScreen().getTitle());
-            }
-        }
+    @NonNull
+    public final Preference requirePreference(@StringRes final int resId) {
+        final Preference preference = findPreference(getString(resId));
+        Objects.requireNonNull(preference);
+        return preference;
     }
 }

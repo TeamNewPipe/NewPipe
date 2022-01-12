@@ -1,0 +1,1 @@
+Hindi gumagamit ang NewPipe ng kahit anong Google framework libraries o ang YouTube API. Pinaparse niya lang ang website upang makakalap ng impormasyong kinakailangan nito. Samakatuwid ang app na ito ay puwedeng gamitin sa mga device na walang naka install na Google Services. Hindi mo rin kailangan ng YouTube account upang magamit ang NewPipe at saka ito ay FLOSS.

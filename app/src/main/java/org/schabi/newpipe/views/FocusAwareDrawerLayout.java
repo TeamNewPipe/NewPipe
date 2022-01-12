@@ -55,9 +55,10 @@ public final class FocusAwareDrawerLayout extends DrawerLayout {
         boolean hasOpenPanels = false;
 
         for (int i = 0; i < getChildCount(); ++i) {
-            View child = getChildAt(i);
+            final View child = getChildAt(i);
 
-            DrawerLayout.LayoutParams lp = (DrawerLayout.LayoutParams) child.getLayoutParams();
+            final DrawerLayout.LayoutParams lp
+                    = (DrawerLayout.LayoutParams) child.getLayoutParams();
 
             if (lp.gravity != 0 && isDrawerVisible(child)) {
                 hasOpenPanels = true;
@@ -82,9 +83,10 @@ public final class FocusAwareDrawerLayout extends DrawerLayout {
         View content = null;
 
         for (int i = 0; i < getChildCount(); ++i) {
-            View child = getChildAt(i);
+            final View child = getChildAt(i);
 
-            DrawerLayout.LayoutParams lp = (DrawerLayout.LayoutParams) child.getLayoutParams();
+            final DrawerLayout.LayoutParams lp
+                    = (DrawerLayout.LayoutParams) child.getLayoutParams();
 
             if (lp.gravity == 0) {
                 content = child;

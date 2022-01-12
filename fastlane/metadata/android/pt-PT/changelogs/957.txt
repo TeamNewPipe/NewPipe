@@ -1,0 +1,10 @@
+- Unir ações específicas de inquérito em uma
+- Gesto de dois dedos para fechar o jogador
+- Permitir a limpeza de cookies reCAPTCHA
+- Opção de não colorir a notificação
+- Melhorar como os detalhes do vídeo são abertos para não por no buffer infinitamente
+- Acelerar os vídeos do YouTube e corrigir os de idade restrita
+- Reparação de colisão em avanço/retrocesso rápido
+- Não reordenar as listas a arrastar as miniaturas
+- Lembrar sempre das propriedades popup
+- Acrescentar a língua Santali

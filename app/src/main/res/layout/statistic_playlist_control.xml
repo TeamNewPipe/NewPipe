@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,9 +10,9 @@
         android:id="@+id/sortButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
         android:clickable="true"
-        android:focusable="true"
-        android:background="?attr/selectableItemBackground">
+        android:focusable="true">
 
         <ImageView
             android:id="@+id/sortButtonIcon"
@@ -22,10 +22,10 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            android:src="?attr/filter"
-            tools:ignore="ContentDescription,RtlHardcoded"/>
+            app:srcCompat="@drawable/ic_filter_list"
+            tools:ignore="ContentDescription,RtlHardcoded" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/sortButtonText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -35,9 +35,11 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="15sp"
             android:textStyle="bold"
-            tools:ignore="RtlHardcoded"/>
+            tools:ignore="RtlHardcoded" />
     </RelativeLayout>
 
-    <include layout="@layout/playlist_control" />
+    <include
+        android:id="@+id/playlist_control"
+        layout="@layout/playlist_control" />
 
 </LinearLayout>

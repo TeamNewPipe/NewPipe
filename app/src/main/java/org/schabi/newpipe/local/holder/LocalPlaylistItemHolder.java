@@ -7,10 +7,10 @@ import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
 
-import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
 
 public class LocalPlaylistItemHolder extends PlaylistItemHolder {
     public LocalPlaylistItemHolder(final LocalItemBuilder infoItemBuilder, final ViewGroup parent) {
@@ -25,7 +25,7 @@ public class LocalPlaylistItemHolder extends PlaylistItemHolder {
     @Override
     public void updateFromItem(final LocalItem localItem,
                                final HistoryRecordManager historyRecordManager,
-                               final DateFormat dateFormat) {
+                               final DateTimeFormatter dateTimeFormatter) {
         if (!(localItem instanceof PlaylistMetadataEntry)) {
             return;
         }
@@ -36,9 +36,8 @@ public class LocalPlaylistItemHolder extends PlaylistItemHolder {
                 itemStreamCountView.getContext(), item.streamCount));
         itemUploaderView.setVisibility(View.INVISIBLE);
 
-        itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView,
-                ImageDisplayConstants.DISPLAY_PLAYLIST_OPTIONS);
+        PicassoHelper.loadPlaylistThumbnail(item.thumbnailUrl).into(itemThumbnailView);
 
-        super.updateFromItem(localItem, historyRecordManager, dateFormat);
+        super.updateFromItem(localItem, historyRecordManager, dateTimeFormatter);
     }
 }

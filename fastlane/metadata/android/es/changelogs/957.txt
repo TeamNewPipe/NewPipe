@@ -1,0 +1,10 @@
+• Unificacion de acciones de cola
+• Gesto de 2 dedos para cerrar el reproductor
+• Permitir borrado de cookies reCAPTCHA
+• Descolorizar la notificación
+• Mejoras en detalles de video para prevenir carga infinita, bugs al compartir y otras inconsistencias
+• Acelerar videos y arreglo de los de edad restringida
+• Arreglo en crasheo cuando se recorría en el video
+• No reordenar listas agarrando miniaturas
+• Recordar opciones del pop up
+• Añadido el lenguaje Santali

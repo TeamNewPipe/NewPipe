@@ -1,0 +1,4 @@
+Diese Version enthält drei kleine Änderungen:
+• Speicherzugriff für Android 10+ behoben
+• Öffnen des Kiosks behoben
+• Laden von langen Videos verbessert

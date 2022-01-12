@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?colorPrimary"
-        android:nextFocusDown="@+id/drawer_header_action_button">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?colorPrimary"
+    android:nextFocusDown="@+id/drawer_header_action_button">
 
     <ImageView
         android:layout_width="match_parent"
@@ -37,14 +36,13 @@
             tools:ignore="UseCompoundDrawables">
 
             <ImageView
-                android:id="@+id/drawer_header_newpipe_icon"
                 android:layout_width="@dimen/drawer_header_newpipe_icon_size"
                 android:layout_height="@dimen/drawer_header_newpipe_icon_size"
                 android:layout_marginEnd="@dimen/drawer_header_newpipe_icon_title_space"
-                app:srcCompat="@drawable/splash_forground"
+                app:srcCompat="@drawable/splash_foreground"
                 tools:ignore="ContentDescription" />
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/drawer_header_newpipe_title"
                 android:layout_width="@dimen/drawer_header_newpipe_title_default_width"
                 android:layout_height="match_parent"
@@ -59,8 +57,7 @@
                 app:autoSizeMaxTextSize="@dimen/drawer_header_newpipe_title_max_text_size"
                 app:autoSizeMinTextSize="@dimen/drawer_header_newpipe_title_min_text_size"
                 app:autoSizeTextType="uniform"
-                tools:ignore="UnusedAttribute"
-                tools:text="NewPipe" />
+                tools:ignore="UnusedAttribute" />
         </LinearLayout>
 
         <LinearLayout
@@ -89,9 +86,9 @@
                     android:scaleType="fitCenter"
                     app:tint="@color/drawer_header_font_color"
                     tools:ignore="ContentDescription"
-                    tools:srcCompat="@drawable/youtube" />
+                    tools:srcCompat="@drawable/place_holder_youtube" />
 
-                <TextView
+                <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/drawer_header_service_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -107,7 +104,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="4dp"
-                app:srcCompat="@drawable/ic_arrow_drop_down_white_24dp"
+                app:srcCompat="@drawable/ic_arrow_drop_down"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
     </LinearLayout>

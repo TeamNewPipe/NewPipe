@@ -6,7 +6,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
 
@@ -22,7 +22,6 @@ import org.schabi.newpipe.util.ListHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.google.android.exoplayer2.C.SELECTION_FLAG_AUTOSELECT;
 import static com.google.android.exoplayer2.C.TIME_UNSET;
 
 public class VideoPlaybackResolver implements PlaybackResolver {
@@ -52,7 +51,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
             return liveSource;
         }
 
-        List<MediaSource> mediaSources = new ArrayList<>();
+        final List<MediaSource> mediaSources = new ArrayList<>();
 
         // Create video stream source
         final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
@@ -101,12 +100,12 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                 if (mimeType == null) {
                     continue;
                 }
-
-                final Format textFormat = Format.createTextSampleFormat(null, mimeType,
-                        SELECTION_FLAG_AUTOSELECT,
-                        PlayerHelper.captionLanguageOf(context, subtitle));
                 final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
-                        .createMediaSource(Uri.parse(subtitle.getURL()), textFormat, TIME_UNSET);
+                        .createMediaSource(
+                                new MediaItem.Subtitle(Uri.parse(subtitle.getUrl()),
+                                        mimeType,
+                                        PlayerHelper.captionLanguageOf(context, subtitle)),
+                                TIME_UNSET);
                 mediaSources.add(textSource);
             }
         }
@@ -115,7 +114,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
             return mediaSources.get(0);
         } else {
             return new MergingMediaSource(mediaSources.toArray(
-                    new MediaSource[mediaSources.size()]));
+                    new MediaSource[0]));
         }
     }
 

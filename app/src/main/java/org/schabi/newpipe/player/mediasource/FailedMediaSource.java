@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.source.BaseMediaSource;
 import com.google.android.exoplayer2.source.MediaPeriod;
 import com.google.android.exoplayer2.upstream.Allocator;
@@ -52,6 +53,14 @@ public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSo
 
     private boolean canRetry() {
         return System.currentTimeMillis() >= retryTimestamp;
+    }
+
+    /**
+     * Returns the {@link MediaItem} whose media is provided by the source.
+     */
+    @Override
+    public MediaItem getMediaItem() {
+        return MediaItem.fromUri(playQueueItem.getUrl());
     }
 
     @Override

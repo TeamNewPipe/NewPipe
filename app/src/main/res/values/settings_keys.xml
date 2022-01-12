@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources translatable="false">
+<resources xmlns:tools="http://schemas.android.com/tools" translatable="false">
+    <!-- App versioning -->
+    <string name="last_used_preferences_version" translatable="false">last_used_preferences_version</string>
+
     <!-- Service -->
     <string-array name="service_list" translatable="false">
         <item>@string/youtube</item>
@@ -9,7 +12,6 @@
     <string name="default_service_value" translatable="false">@string/youtube</string>
 
     <string name="saved_tabs_key" translatable="false">saved_tabs_key</string>
-    <string name="feed_last_updated_key" translatable="false">feed_last_updated</string>
 
     <!-- Key values -->
     <string name="download_path_video_key" translatable="false">download_path</string>
@@ -17,8 +19,6 @@
 
     <string name="use_external_video_player_key" translatable="false">use_external_video_player</string>
     <string name="use_external_audio_player_key" translatable="false">use_external_audio_player</string>
-    <string name="autoplay_through_intent_key" translatable="false">autoplay_through_intent</string>
-    <string name="use_old_player_key" translatable="false">use_oldplayer</string>
 
     <string name="volume_gesture_control_key" translatable="false">volume_gesture_control</string>
     <string name="brightness_gesture_control_key" translatable="false">brightness_gesture_control</string>
@@ -28,12 +28,17 @@
     <string name="auto_queue_key" translatable="false">auto_queue_key</string>
     <string name="screen_brightness_key" translatable="false">screen_brightness_key</string>
     <string name="screen_brightness_timestamp_key" translatable="false">screen_brightness_timestamp_key</string>
+    <string name="clear_queue_confirmation_key" translatable="false">clear_queue_confirmation_key</string>
+
+    <string name="popup_saved_width_key" translatable="false">popup_saved_width</string>
+    <string name="popup_saved_x_key" translatable="false">popup_saved_x</string>
+    <string name="popup_saved_y_key" translatable="false">popup_saved_y</string>
 
     <string name="seek_duration_key" translatable="false">seek_duration</string>
     <string name="seek_duration_default_value" translatable="false">10000</string>
     <string-array name="seek_duration_description" translatable="false">
-    <!--   They are overridden in VideoAudioSettingsFragment.java if the translation
-    (seconds) exist. Otherwise this array is picked-->
+        <!--   They are overridden in VideoAudioSettingsFragment.java if the translation
+        (seconds) exist. Otherwise this array is picked-->
         <item>5 seconds</item>
         <item>10 seconds</item>
         <item>15 seconds</item>
@@ -51,7 +56,7 @@
     </string-array>
 
     <string name="minimize_on_exit_key" translatable="false">minimize_on_exit_key</string>
-    <string name="minimize_on_exit_value" translatable="false">@string/minimize_on_exit_none_key</string>
+    <string name="minimize_on_exit_value" translatable="false">@string/minimize_on_exit_background_key</string>
     <string name="minimize_on_exit_none_key" translatable="false">minimize_on_exit_none_key</string>
     <string name="minimize_on_exit_background_key" translatable="false">minimize_on_exit_background_key</string>
     <string name="minimize_on_exit_popup_key" translatable="false">minimize_on_exit_popup_key</string>
@@ -66,11 +71,44 @@
         <item>@string/minimize_on_exit_popup_description</item>
     </string-array>
 
+    <string name="start_main_player_fullscreen_key" translatable="false">start_main_player_fullscreen_key</string>
+
+    <string name="autoplay_key" translatable="false">autoplay_key</string>
+    <string name="autoplay_value" translatable="false">@string/autoplay_wifi_key</string>
+    <string name="autoplay_always_key" translatable="false">autoplay_always_key</string>
+    <string name="autoplay_wifi_key" translatable="false">autoplay_wifi_key</string>
+    <string name="autoplay_never_key" translatable="false">autoplay_never_key</string>
+    <string-array name="autoplay_type_key" translatable="false">
+        <item>@string/autoplay_always_key</item>
+        <item>@string/autoplay_wifi_key</item>
+        <item>@string/autoplay_never_key</item>
+    </string-array>
+    <string-array name="autoplay_type_description" translatable="false">
+        <item>@string/always</item>
+        <item>@string/wifi_only</item>
+        <item>@string/never</item>
+    </string-array>
+
+    <string name="seekbar_preview_thumbnail_key" translatable="false">seekbar_preview_thumbnail_key</string>
+    <string name="seekbar_preview_thumbnail_high_quality" translatable="false">seekbar_preview_thumbnail_high_quality</string>
+    <string name="seekbar_preview_thumbnail_low_quality" translatable="false">seekbar_preview_thumbnail_low_quality</string>
+    <string name="seekbar_preview_thumbnail_none" translatable="false">seekbar_preview_thumbnail_none</string>
+    <string-array name="seekbar_preview_thumbnail_type_key" translatable="false">
+        <item>@string/seekbar_preview_thumbnail_high_quality</item>
+        <item>@string/seekbar_preview_thumbnail_low_quality</item>
+        <item>@string/seekbar_preview_thumbnail_none</item>
+    </string-array>
+    <string-array name="seekbar_preview_thumbnail_type_description" translatable="false">
+        <item>@string/high_quality_larger</item>
+        <item>@string/low_quality_smaller</item>
+        <item>@string/dont_show</item>
+    </string-array>
+
     <string name="default_resolution_key" translatable="false">default_resolution</string>
-    <string name="default_resolution_value" translatable="false">360p</string>
+    <string name="default_resolution_value" translatable="false">720p60</string>
     <string name="show_higher_resolutions_key" translatable="false">show_higher_resolutions</string>
     <string name="default_popup_resolution_key" translatable="false">default_popup_resolution</string>
-    <string name="default_popup_resolution_value" translatable="false">360p</string>
+    <string name="default_popup_resolution_value" translatable="false">480p</string>
     <string name="best_resolution_key" translatable="false">best_resolution</string>
 
     <string-array name="resolution_list_values" translatable="false">
@@ -96,6 +134,19 @@
         <item>144p</item>
     </string-array>
 
+    <string name="scale_to_square_image_in_notifications_key" translatable="false">scale_to_square_image_in_notifications</string>
+
+    <string name="notification_slot_0_key" translatable="false">notification_slot_0_key</string>
+    <string name="notification_slot_1_key" translatable="false" tools:ignore="Typos">notification_slot_1_key</string>
+    <string name="notification_slot_2_key" translatable="false">notification_slot_2_key</string>
+    <string name="notification_slot_3_key" translatable="false">notification_slot_3_key</string>
+    <string name="notification_slot_4_key" translatable="false">notification_slot_4_key</string>
+
+    <string name="notification_slot_compact_0_key" translatable="false">notification_slot_compact_0_key</string>
+    <string name="notification_slot_compact_1_key" translatable="false" tools:ignore="Typos">notification_slot_compact_1_key</string>
+    <string name="notification_slot_compact_2_key" translatable="false">notification_slot_compact_2_key</string>
+
+    <string name="notification_colorize_key" translatable="false">notification_colorize_key</string>
 
     <string name="video_mp4_key" translatable="false">video_mp4</string>
     <string name="video_webm_key" translatable="false">video_webm</string>
@@ -126,29 +177,47 @@
         <item>@string/audio_webm_key</item>
     </string-array>
 
-    <string name="last_orientation_landscape_key" translatable="false">last_orientation_landscape_key</string>
-
     <string name="last_resize_mode" translatable="false">last_resize_mode</string>
 
     <!-- DEBUG ONLY -->
     <string name="debug_pref_screen_key" translatable="false">debug_pref_screen_key</string>
     <string name="allow_heap_dumping_key" translatable="false">allow_heap_dumping_key</string>
+    <string name="show_memory_leaks_key" translatable="false">show_memory_leaks_key</string>
     <string name="allow_disposed_exceptions_key" translatable="false">allow_disposed_exceptions_key</string>
-    <string name="show_original_time_ago_key" translatable="false">show_original_time_ago_text_key</string>
+    <string name="show_original_time_ago_key" translatable="false">show_original_time_ago_key</string>
+    <string name="disable_media_tunneling_key" translatable="false">disable_media_tunneling_key</string>
+    <string name="show_image_indicators_key" translatable="false">show_image_indicators_key</string>
+    <string name="show_crash_the_player_key" translatable="false">show_crash_the_player_key</string>
+    <string name="crash_the_app_key" translatable="false">crash_the_app_key</string>
+    <string name="show_error_snackbar_key" translatable="false">show_error_snackbar_key</string>
+    <string name="create_error_notification_key" translatable="false">create_error_notification_key</string>
 
     <!-- THEMES -->
     <string name="theme_key" translatable="false">theme</string>
+    <string name="night_theme_key" translatable="false">night_theme</string>
     <string name="light_theme_key" translatable="false">light_theme</string>
     <string name="dark_theme_key" translatable="false">dark_theme</string>
     <string name="black_theme_key" translatable="false">black_theme</string>
-    <string name="default_theme_value" translatable="false">@string/dark_theme_key</string>
+    <string name="auto_device_theme_key" translatable="false">auto_device_theme</string>
+    <string name="default_theme_value" translatable="false">@string/auto_device_theme_key</string>
+    <string name="default_night_theme_value" translatable="false">@string/dark_theme_key</string>
     <string-array name="theme_values_list" translatable="false">
         <item>@string/light_theme_key</item>
         <item>@string/dark_theme_key</item>
         <item>@string/black_theme_key</item>
+        <item>@string/auto_device_theme_key</item>
     </string-array>
     <string-array name="theme_description_list" translatable="false">
         <item>@string/light_theme_title</item>
+        <item>@string/dark_theme_title</item>
+        <item>@string/black_theme_title</item>
+        <item>@string/auto_device_theme_title</item>
+    </string-array>
+    <string-array name="night_theme_values_list" translatable="false">
+        <item>@string/dark_theme_key</item>
+        <item>@string/black_theme_key</item>
+    </string-array>
+    <string-array name="night_theme_description_list" translatable="false">
         <item>@string/dark_theme_title</item>
         <item>@string/black_theme_title</item>
     </string-array>
@@ -159,9 +228,21 @@
 
     <!-- Content & History -->
     <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
+    <string name="show_local_search_suggestions_key" translatable="false">show_local_search_suggestions</string>
+    <string name="show_remote_search_suggestions_key" translatable="false">show_remote_search_suggestions</string>
+    <string-array name="show_search_suggestions_value_list" translatable="false">
+        <item>@string/show_local_search_suggestions_key</item>
+        <item>@string/show_remote_search_suggestions_key</item>
+    </string-array>
+    <string-array name="show_search_suggestions_description_list" translatable="false">
+        <item>@string/local_search_suggestions</item>
+        <item>@string/remote_search_suggestions</item>
+    </string-array>
     <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
-    <string name="show_next_video_key" translatable="false">show_next_video</string>
     <string name="show_comments_key" translatable="false">show_comments</string>
+    <string name="show_next_video_key" translatable="false">show_next_video</string>
+    <string name="show_description_key" translatable="false">show_description</string>
+    <string name="show_meta_info_key" translatable="false">show_meta_info</string>
     <string name="stream_info_selected_tab_key" translatable="false">stream_info_selected_tab</string>
     <string name="show_hold_to_append_key" translatable="false">show_hold_to_append</string>
     <string name="content_language_key" translatable="false">content_language</string>
@@ -170,7 +251,7 @@
     <string name="peertube_instance_list_key" translatable="false">peertube_instance_list</string>
     <string name="content_country_key" translatable="false">content_country</string>
     <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
-    <string name="use_tor_key" translatable="false">use_tor</string>
+    <string name="youtube_restricted_mode_enabled" translatable="false">youtube_restricted_mode_enabled</string>
     <string name="enable_search_history_key" translatable="false">enable_search_history</string>
     <string name="enable_watch_history_key" translatable="false">enable_watch_history</string>
     <string name="main_page_content_key" translatable="false">main_page_content</string>
@@ -182,10 +263,12 @@
     <string name="playback_skip_silence_key" translatable="false">playback_skip_silence_key</string>
 
     <string name="app_language_key" translatable="false">app_language_key</string>
-    <string name="enable_lock_screen_video_thumbnail_key" translatable="false">enable_lock_screen_video_thumbnail</string>
 
     <string name="feed_update_threshold_key" translatable="false">feed_update_threshold_key</string>
     <string name="feed_update_threshold_default_value" translatable="false">300</string>
+    <string name="feed_show_played_items_key" translatable="false">feed_show_played_items</string>
+
+    <string name="show_thumbnail_key" translatable="false">show_thumbnail_key</string>
 
     <!-- Values will be localized in runtime -->
     <string-array name="feed_update_threshold_options" translatable="false">
@@ -209,8 +292,11 @@
     </string-array>
     <string name="feed_use_dedicated_fetch_method_key" translatable="false">feed_use_dedicated_fetch_method</string>
 
+    <string name="import_export_data_path" translatable="false">import_export_data_path</string>
     <string name="import_data" translatable="false">import_data</string>
     <string name="export_data" translatable="false">export_data</string>
+
+    <string name="clear_cookie_key" translatable="false">clear_cookie</string>
 
     <string name="download_thumbnail_key" translatable="false">download_thumbnail_key</string>
 
@@ -218,6 +304,11 @@
     <string name="clear_views_history_key" translatable="false">clear_play_history</string>
     <string name="clear_playback_states_key" translatable="false">clear_playback_states</string>
     <string name="clear_search_history_key" translatable="false">clear_search_history</string>
+
+    <string name="last_used_download_type" translatable="false">@string/last_download_type_video_key</string>
+    <string name="last_download_type_video_key" translatable="false">last_dl_type_video</string>
+    <string name="last_download_type_audio_key" translatable="false">last_dl_type_audio</string>
+    <string name="last_download_type_subtitle_key" translatable="false">last_dl_type_subtitle</string>
 
     <string name="downloads_storage_ask" translatable="false">downloads_storage_ask</string>
     <string name="storage_use_saf" translatable="false">storage_use_saf</string>
@@ -272,6 +363,7 @@
     <string name="background_player_key" translatable="false">background_player</string>
     <string name="popup_player_key" translatable="false">popup_player</string>
     <string name="download_key" translatable="false">download</string>
+    <string name="add_to_playlist_key" translatable="false">add_to_playlist</string>
     <string name="always_ask_open_action_key" translatable="false">always_ask_player</string>
 
     <string-array name="preferred_open_action_description_list" translatable="false">
@@ -280,6 +372,7 @@
         <item>@string/background_player</item>
         <item>@string/popup_player</item>
         <item>@string/download</item>
+        <item>@string/add_to_playlist</item>
         <item>@string/always_ask_open_action</item>
     </string-array>
     <string-array name="preferred_open_action_values_list" translatable="false">
@@ -288,12 +381,15 @@
         <item>@string/background_player_key</item>
         <item>@string/popup_player_key</item>
         <item>@string/download_key</item>
+        <item>@string/add_to_playlist_key</item>
         <item>@string/always_ask_open_action_key</item>
     </string-array>
 
     <!-- Updates -->
     <string name="update_app_key" translatable="false">update_app_key</string>
+    <string name="manual_update_key">manual_update_key</string>
     <string name="update_pref_screen_key" translatable="false">update_pref_screen_key</string>
+    <string name="update_expiry_key" translatable="false">update_expiry_key</string>
 
     <!-- Localizations   -->
     <string name="default_localization_key" translatable="false">system</string>
@@ -323,7 +419,6 @@
         <item>is</item>
         <item>it</item>
         <item>sw</item>
-        <item>lv</item>
         <item>lt</item>
         <item>hu</item>
         <item>nl</item>
@@ -403,7 +498,6 @@
         <item>Íslenska</item>
         <item>Italiano</item>
         <item>Kiswahili</item>
-        <item>Latviešu valoda</item>
         <item>Lietuvių</item>
         <item>Magyar</item>
         <item>Nederlands</item>
@@ -967,12 +1061,17 @@
         <item>@string/default_localization_key</item>
         <item>ace</item>
         <item>ar</item>
+        <item>ar-ly</item>
         <item>az</item>
         <item>ast</item>
         <item>be</item>
-        <item>bg-bd</item>
+        <item>ber</item>
+        <item>bg</item>
         <item>bn</item>
+        <item>bn-bd</item>
+        <item>bn-in</item>
         <item>ca</item>
+        <item>ckb</item>
         <item>cs</item>
         <item>da</item>
         <item>de</item>
@@ -996,6 +1095,9 @@
         <item>in</item>
         <item>it</item>
         <item>ja</item>
+        <item>jv</item>
+        <item>kab</item>
+        <item>kmr</item>
         <item>ko</item>
         <item>ku</item>
         <item>lt</item>
@@ -1008,13 +1110,16 @@
         <item>oc</item>
         <item>pa</item>
         <item>pl</item>
-        <item>pr</item>
         <item>pt</item>
         <item>pt-br</item>
+        <item>pt-pt</item>
         <item>ro</item>
         <item>ru</item>
+        <item>sat</item>
+        <item>sc</item>
         <item>sk</item>
         <item>sl</item>
+        <item>so</item>
         <item>sq</item>
         <item>sr</item>
         <item>sv</item>
@@ -1022,8 +1127,10 @@
         <item>te</item>
         <item>th</item>
         <item>tr</item>
+        <item>tzm</item>
         <item>uk</item>
         <item>ur</item>
+        <item>uz</item>
         <item>vi</item>
         <item>zh-cn</item>
         <item>zh-hk</item>
@@ -1033,12 +1140,17 @@
         <item>@string/systems_language</item>
         <item>Basa Acèh</item>
         <item>العربية</item>
+        <item>العربية (ليبيا)</item>
         <item>Azərbaycan dili</item>
         <item>Asturianu</item>
         <item>Беларуская</item>
+        <item>ⵜⴰⵎⴰⵣⵉⵖⵜ</item>
         <item>български език</item>
         <item>বাংলা</item>
+        <item>বাংলা (বাংলাদেশ)</item>
+        <item>বাংলা (भारत)</item>
         <item>Català</item>
+        <item>کوردیی سۆرانی</item>
         <item>Čeština</item>
         <item>Dansk</item>
         <item>Deutsch</item>
@@ -1062,6 +1174,9 @@
         <item>Bahasa Indonesia</item>
         <item>Italiano</item>
         <item>日本語</item>
+        <item>ꦧꦱꦗꦮ</item>
+        <item>Taqbaylit</item>
+        <item>Kurmancî</item>
         <item>한국어</item>
         <item>کوردی</item>
         <item>Lietuvių kalba</item>
@@ -1074,13 +1189,16 @@
         <item>Occitan</item>
         <item>ਪੰਜਾਬੀ</item>
         <item>Polski</item>
-        <item>Pirate Language</item>
-        <item>Português (PT)</item>
+        <item>Português</item>
         <item>Português (BR)</item>
+        <item>Português (PT)</item>
         <item>Română</item>
         <item>русский язык</item>
+        <item>ᱥᱟᱱᱛᱟᱲᱤ</item>
+        <item>sardu</item>
         <item>Slovenčina</item>
         <item>Slovenščina</item>
+        <item>Soomaali</item>
         <item>Shqip</item>
         <item>Српски</item>
         <item>Svenska</item>
@@ -1088,8 +1206,10 @@
         <item>తెలుగు</item>
         <item>ไทย</item>
         <item>Türkçe</item>
+        <item>Tamaziɣt</item>
         <item>українська мова</item>
         <item>اردو</item>
+        <item>O‘zbek</item>
         <item>Tiếng Việt</item>
         <item>简体中文</item>
         <item>繁體中文（廣東話）</item>
@@ -1129,6 +1249,22 @@
         <item>@string/auto</item>
         <item>@string/list</item>
         <item>@string/grid</item>
+    </string-array>
+
+    <string name="tablet_mode_key" translatable="false">tablet_mode</string>
+
+    <string name="tablet_mode_auto_key" translatable="false">auto</string>
+    <string name="tablet_mode_on_key" translatable="false">on</string>
+    <string name="tablet_mode_off_key" translatable="false">off</string>
+    <string-array name="tablet_mode_values" translatable="false">
+        <item>@string/tablet_mode_auto_key</item>
+        <item>@string/tablet_mode_on_key</item>
+        <item>@string/tablet_mode_off_key</item>
+    </string-array>
+    <string-array name="tablet_mode_description" translatable="false">
+        <item>@string/auto</item>
+        <item>@string/on</item>
+        <item>@string/off</item>
     </string-array>
 
     <string name="recaptcha_cookies_key" translatable="false">recaptcha_cookies_key</string>

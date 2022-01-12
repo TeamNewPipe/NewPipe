@@ -7,64 +7,67 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
-import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
-import com.xwray.groupie.kotlinandroidextensions.Item
-import kotlinx.android.synthetic.main.feed_import_export_group.*
+import com.xwray.groupie.viewbinding.BindableItem
+import com.xwray.groupie.viewbinding.GroupieViewHolder
 import org.schabi.newpipe.R
+import org.schabi.newpipe.databinding.FeedImportExportGroupBinding
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.exceptions.ExtractionException
-import org.schabi.newpipe.util.AnimationUtils
+import org.schabi.newpipe.ktx.animateRotation
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.ThemeHelper
 import org.schabi.newpipe.views.CollapsibleView
 
 class FeedImportExportItem(
-        val onImportPreviousSelected: () -> Unit,
-        val onImportFromServiceSelected: (Int) -> Unit,
-        val onExportSelected: () -> Unit,
-        var isExpanded: Boolean = false
-) : Item() {
+    val onImportPreviousSelected: () -> Unit,
+    val onImportFromServiceSelected: (Int) -> Unit,
+    val onExportSelected: () -> Unit,
+    var isExpanded: Boolean = false
+) : BindableItem<FeedImportExportGroupBinding>() {
     companion object {
         const val REFRESH_EXPANDED_STATUS = 123
     }
 
-    override fun bind(viewHolder: GroupieViewHolder, position: Int, payloads: MutableList<Any>) {
+    override fun bind(viewBinding: FeedImportExportGroupBinding, position: Int, payloads: MutableList<Any>) {
         if (payloads.contains(REFRESH_EXPANDED_STATUS)) {
-            viewHolder.import_export_options.apply { if (isExpanded) expand() else collapse() }
+            viewBinding.importExportOptions.apply { if (isExpanded) expand() else collapse() }
             return
         }
 
-        super.bind(viewHolder, position, payloads)
+        super.bind(viewBinding, position, payloads)
     }
 
     override fun getLayout(): Int = R.layout.feed_import_export_group
 
-    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        if (viewHolder.import_from_options.childCount == 0) setupImportFromItems(viewHolder.import_from_options)
-        if (viewHolder.export_to_options.childCount == 0) setupExportToItems(viewHolder.export_to_options)
+    override fun bind(viewBinding: FeedImportExportGroupBinding, position: Int) {
+        if (viewBinding.importFromOptions.childCount == 0) setupImportFromItems(viewBinding.importFromOptions)
+        if (viewBinding.exportToOptions.childCount == 0) setupExportToItems(viewBinding.exportToOptions)
 
-        expandIconListener?.let { viewHolder.import_export_options.removeListener(it) }
+        expandIconListener?.let { viewBinding.importExportOptions.removeListener(it) }
         expandIconListener = CollapsibleView.StateListener { newState ->
-            AnimationUtils.animateRotation(viewHolder.import_export_expand_icon,
-                    250, if (newState == CollapsibleView.COLLAPSED) 0 else 180)
+            viewBinding.importExportExpandIcon.animateRotation(
+                250, if (newState == CollapsibleView.COLLAPSED) 0 else 180
+            )
         }
 
-        viewHolder.import_export_options.currentState = if (isExpanded) CollapsibleView.EXPANDED else CollapsibleView.COLLAPSED
-        viewHolder.import_export_expand_icon.rotation = if (isExpanded) 180F else 0F
-        viewHolder.import_export_options.ready()
+        viewBinding.importExportOptions.currentState = if (isExpanded) CollapsibleView.EXPANDED else CollapsibleView.COLLAPSED
+        viewBinding.importExportExpandIcon.rotation = if (isExpanded) 180F else 0F
+        viewBinding.importExportOptions.ready()
 
-        viewHolder.import_export_options.addListener(expandIconListener)
-        viewHolder.import_export.setOnClickListener {
-            viewHolder.import_export_options.switchState()
-            isExpanded = viewHolder.import_export_options.currentState == CollapsibleView.EXPANDED
+        viewBinding.importExportOptions.addListener(expandIconListener)
+        viewBinding.importExport.setOnClickListener {
+            viewBinding.importExportOptions.switchState()
+            isExpanded = viewBinding.importExportOptions.currentState == CollapsibleView.EXPANDED
         }
     }
 
-    override fun unbind(viewHolder: GroupieViewHolder) {
+    override fun unbind(viewHolder: GroupieViewHolder<FeedImportExportGroupBinding>) {
         super.unbind(viewHolder)
-        expandIconListener?.let { viewHolder.import_export_options.removeListener(it) }
+        expandIconListener?.let { viewHolder.binding.importExportOptions.removeListener(it) }
         expandIconListener = null
     }
+
+    override fun initializeViewBinding(view: View) = FeedImportExportGroupBinding.bind(view)
 
     private var expandIconListener: CollapsibleView.StateListener? = null
 
@@ -81,8 +84,10 @@ class FeedImportExportItem(
     }
 
     private fun setupImportFromItems(listHolder: ViewGroup) {
-        val previousBackupItem = addItemView(listHolder.context.getString(R.string.previous_export),
-                ThemeHelper.resolveResourceIdFromAttr(listHolder.context, R.attr.ic_backup), listHolder)
+        val previousBackupItem = addItemView(
+            listHolder.context.getString(R.string.previous_export),
+            R.drawable.ic_backup, listHolder
+        )
         previousBackupItem.setOnClickListener { onImportPreviousSelected() }
 
         val iconColor = if (ThemeHelper.isLightThemeSelected(listHolder.context)) Color.BLACK else Color.WHITE
@@ -104,13 +109,14 @@ class FeedImportExportItem(
             } catch (e: ExtractionException) {
                 throw RuntimeException("Services array contains an entry that it's not a valid service name ($serviceName)", e)
             }
-
         }
     }
 
     private fun setupExportToItems(listHolder: ViewGroup) {
-        val previousBackupItem = addItemView(listHolder.context.getString(R.string.file),
-                ThemeHelper.resolveResourceIdFromAttr(listHolder.context, R.attr.ic_save), listHolder)
+        val previousBackupItem = addItemView(
+            listHolder.context.getString(R.string.file),
+            R.drawable.ic_save, listHolder
+        )
         previousBackupItem.setOnClickListener { onExportSelected() }
     }
 }

@@ -3,12 +3,10 @@ package org.schabi.newpipe.player.playqueue.events;
 public class ErrorEvent implements PlayQueueEvent {
     private final int errorIndex;
     private final int queueIndex;
-    private final boolean skippable;
 
-    public ErrorEvent(final int errorIndex, final int queueIndex, final boolean skippable) {
+    public ErrorEvent(final int errorIndex, final int queueIndex) {
         this.errorIndex = errorIndex;
         this.queueIndex = queueIndex;
-        this.skippable = skippable;
     }
 
     @Override
@@ -22,9 +20,5 @@ public class ErrorEvent implements PlayQueueEvent {
 
     public int getQueueIndex() {
         return queueIndex;
-    }
-
-    public boolean isSkippable() {
-        return skippable;
     }
 }

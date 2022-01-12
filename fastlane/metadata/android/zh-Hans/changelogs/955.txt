@@ -1,0 +1,3 @@
+[YouTube] 修复了一些用户遇到的搜索问题
+[YouTube] 修复随机出现的解密错误
+[SoundCloud] 以斜杠结尾的url现在可以正确解析了

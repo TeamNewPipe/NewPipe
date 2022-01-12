@@ -1,0 +1,15 @@
+Yangi
+• YouTube Music-da qidirish
+• Asosiy Android TV-ni qo'llab-quvvatlash
+
+Yaxshilangan
+• Ko'rilgan videolarni pleylistdan olib tashlash
+• Yaxshilangan popup pleyer o'lchamini o'zgartirish
+• Orqa fonda streamni yoqish
+• Ishlov berish hajmi yaxshilandi
+
+Ruxsat etilgan
+• Yosh cheklangan tarkib sozlamalari ishlamayapti
+• reCAPTCHA-larning ayrim turlari aniqlandi
+• Pleylist "bo'sh" bo'lsa, xatcho'plarni ochishda xato yuz berdi
+• Obunalar saralash tugmachasining aniq ko'rinishi
