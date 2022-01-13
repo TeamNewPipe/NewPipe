@@ -189,7 +189,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 final Tab tab = tabsList.get(
                         LocalizeLayoutUtils.getLayoutPosition(
                                 isRTL,
-                                tabIcons.size(),
+                                tabsList.size(),
                                 i)
                 );
 
