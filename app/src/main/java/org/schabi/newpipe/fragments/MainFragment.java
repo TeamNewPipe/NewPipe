@@ -161,7 +161,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         tabsList.clear();
         tabsList.addAll(tabsManager.getTabs());
 
-        final boolean isRTL = LocalizeLayoutUtils.isRTL(this.getContext());
+        final boolean isRTL = LocalizeLayoutUtils.isRTL(getContext());
 
         if (pagerAdapter == null || !pagerAdapter.sameTabs(tabsList)) {
             pagerAdapter = new SelectedTabsPagerAdapter(requireContext(),
@@ -244,7 +244,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         public Fragment getItem(final int position) {
             final Tab tab = internalTabsList.get(
                     LocalizeLayoutUtils.getLayoutPosition(
-                            this.isRTL,
+                            isRTL,
                             internalTabsList.size(),
                             position)
             );

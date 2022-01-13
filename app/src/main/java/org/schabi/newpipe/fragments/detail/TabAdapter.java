@@ -101,6 +101,6 @@ public class TabAdapter extends FragmentPagerAdapter {
     }
 
     private int getLayoutPosition(final int position) {
-        return LocalizeLayoutUtils.getLayoutPosition(this.isRTL, mFragmentList.size(), position);
+        return LocalizeLayoutUtils.getLayoutPosition(isRTL, mFragmentList.size(), position);
     }
 }
