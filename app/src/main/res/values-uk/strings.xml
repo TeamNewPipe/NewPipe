@@ -370,7 +370,7 @@
     <string name="paused">призупинено</string>
     <string name="queued">додано в чергу</string>
     <string name="post_processing">пост-обробка</string>
-    <string name="enqueue">Черга</string>
+    <string name="enqueue">Додати у чергу</string>
     <string name="permission_denied">Дію заборонено системою</string>
     <string name="download_failed">Помилка завантаження</string>
     <string name="generate_unique_name">Згенерувати унікальну назву</string>
@@ -596,8 +596,8 @@
     <string name="featured">Рекомендовані</string>
     <string name="crash_the_app">Збій застосунку</string>
     <string name="show_original_time_ago_title">Початковий час оприлюднення</string>
-    <string name="enqueued">Додано в чергу</string>
-    <string name="enqueue_stream">Додати в чергу</string>
+    <string name="enqueued">Додано у чергу</string>
+    <string name="enqueue_stream">Додати у чергу</string>
     <string name="recaptcha_solve">Розв\'язати</string>
     <string name="msg_calculating_hash">Обчислення гешу</string>
     <string name="clear_cookie_summary">Очистити збережені під час вирішення reCAPTCHA реп\'яшки (cookies)</string>
