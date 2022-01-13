@@ -366,7 +366,7 @@
     <string name="paused">peatatud</string>
     <string name="queued">järjekorras</string>
     <string name="post_processing">järeltöötlus</string>
-    <string name="enqueue">Esitusjärjekord</string>
+    <string name="enqueue">Lisa esitusjärjekorda</string>
     <string name="permission_denied">Tegevus keelati süsteemi poolt</string>
     <string name="download_failed">Allalaadimine nurjus</string>
     <string name="generate_unique_name">Loo kordumatu nimi</string>
