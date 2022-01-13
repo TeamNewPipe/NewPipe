@@ -537,7 +537,7 @@
     <string name="queued">queued</string>
     <string name="post_processing">post-processing</string>
     <string name="recovering">recovering</string>
-    <string name="enqueue">Queue</string>
+    <string name="enqueue">Enqueue</string>
     <string name="permission_denied">Action denied by the system</string>
     <string name="checking_updates_toast">Checking for updates…</string>
     <!-- download notifications -->
