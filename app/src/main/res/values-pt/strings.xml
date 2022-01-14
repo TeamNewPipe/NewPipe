@@ -363,7 +363,7 @@
     <string name="paused">em pausa</string>
     <string name="queued">na fila</string>
     <string name="post_processing">pós-processamento</string>
-    <string name="enqueue">Fila</string>
+    <string name="enqueue">Enfileirar</string>
     <string name="permission_denied">Ação recusada pelo sistema</string>
     <string name="download_failed">Falha ao descarregar</string>
     <string name="generate_unique_name">Gerar nome único</string>
