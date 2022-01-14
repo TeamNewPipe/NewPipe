@@ -358,7 +358,7 @@
     <string name="paused">已暫停</string>
     <string name="queued">已排入佇列</string>
     <string name="post_processing">正在後處理</string>
-    <string name="enqueue">佇列</string>
+    <string name="enqueue">排入佇列</string>
     <string name="permission_denied">動作被系統拒絕</string>
     <string name="download_failed">下載失敗</string>
     <string name="generate_unique_name">生成獨特的名稱</string>
