@@ -366,7 +366,7 @@
     <string name="paused">pausatuta</string>
     <string name="queued">ilaran</string>
     <string name="post_processing">post-prozesua</string>
-    <string name="enqueue">Gehitu ilarara</string>
+    <string name="enqueue">Enkargatu</string>
     <string name="permission_denied">Ekintza sistemak ukatu du</string>
     <string name="download_failed">Deskargak huts egin du</string>
     <string name="generate_unique_name">Sortu izen bakana</string>
