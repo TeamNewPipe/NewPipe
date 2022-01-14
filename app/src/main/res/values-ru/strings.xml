@@ -371,7 +371,7 @@
     <string name="missions_header_finished">Завершено</string>
     <string name="paused">приостановлено</string>
     <string name="queued">в очереди</string>
-    <string name="enqueue">Очередь</string>
+    <string name="enqueue">Добавить в очередь</string>
     <string name="permission_denied">Действие запрещено системой</string>
     <string name="download_failed">Ошибка загрузки</string>
     <string name="overwrite">Перезаписать</string>
