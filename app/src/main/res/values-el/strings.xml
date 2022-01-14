@@ -366,7 +366,7 @@
     <string name="paused">σε παύση</string>
     <string name="queued">σε ουρά</string>
     <string name="post_processing">σε μετεπεξεργασία</string>
-    <string name="enqueue">Ουρά</string>
+    <string name="enqueue">Προσθήκη σε ουρά</string>
     <string name="permission_denied">Η ενέργεια απορρίφθηκε από το σύστημα</string>
     <string name="download_failed">Η λήψη απέτυχε</string>
     <string name="generate_unique_name">Δημιουργία μοναδικού ονόματος</string>
