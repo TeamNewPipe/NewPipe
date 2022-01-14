@@ -347,7 +347,7 @@
     <string name="brightness_gesture_control_title">Kontrola jasności gestami</string>
     <string name="brightness_gesture_control_summary">Używaj gestów do sterowania jasnością odtwarzacza</string>
     <string name="settings_category_updates_title">Aktualizacje</string>
-    <string name="file_deleted">Plik usunięty</string>
+    <string name="file_deleted">Usunięto plik</string>
     <string name="app_update_notification_channel_name">Powiadomienie o aktualizacji aplikacji</string>
     <string name="app_update_notification_channel_description">Powiadomienia o nowych wersjach NewPipe</string>
     <string name="download_to_sdcard_error_title">Pamięć zewnętrzna niedostępna</string>
@@ -405,7 +405,7 @@
     <string name="enable_playback_state_lists_title">Pozycje odtwarzania na listach</string>
     <string name="enable_playback_state_lists_summary">Pokazuj wskaźniki pozycji odtwarzania na listach</string>
     <string name="settings_category_clear_data_title">Wyczyść dane</string>
-    <string name="watch_history_states_deleted">Pozycje odtwarzania usunięte</string>
+    <string name="watch_history_states_deleted">Usunięto pozycje odtwarzania</string>
     <string name="missing_file">Plik usunięty albo przeniesiony</string>
     <string name="overwrite_unrelated_warning">Plik z tą nazwą już istnieje</string>
     <string name="overwrite_failed">nie można nadpisać pliku</string>
@@ -413,7 +413,7 @@
     <string name="error_postprocessing_stopped">NewPipe został zamknięty podczas pracy nad plikiem</string>
     <string name="error_insufficient_storage">Brak miejsca na urządzeniu</string>
     <string name="error_progress_lost">Utracono postęp, ponieważ plik został usunięty</string>
-    <string name="confirm_prompt">Czy chcesz wyczyścić historię pobierania lub usunąć wszystkie pobrane pliki\?</string>
+    <string name="confirm_prompt">Czy chcesz wyczyścić historię pobierania, czy usunąć wszystkie pobrane pliki\?</string>
     <string name="enable_queue_limit">Ogranicz kolejkę pobierania</string>
     <string name="enable_queue_limit_desc">Tylko jedno pobieranie zostanie uruchomione w tym samym czasie</string>
     <string name="start_downloads">Rozpocznij pobieranie</string>
