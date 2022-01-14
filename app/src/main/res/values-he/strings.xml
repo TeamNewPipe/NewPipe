@@ -144,7 +144,7 @@
     <string name="checksum">גיבוב לאימות</string>
     <string name="ok">אישור</string>
     <string name="msg_name">שם קובץ</string>
-    <string name="msg_threads">תת־דיונים</string>
+    <string name="msg_threads">תהליכי משנה</string>
     <string name="msg_error">שגיאה</string>
     <string name="msg_running">NewPipe בהורדה</string>
     <string name="msg_running_detail">יש לגעת לפרטים נוספים</string>
@@ -371,7 +371,7 @@
     <string name="paused">מושהה</string>
     <string name="queued">בתור</string>
     <string name="post_processing">עיבוד מאוחר</string>
-    <string name="enqueue">תור</string>
+    <string name="enqueue">הוספה לתור</string>
     <string name="permission_denied">הפעולה נדחתה על ידי המערכת</string>
     <string name="download_failed">ההורדה נכשלה</string>
     <string name="generate_unique_name">יצירת שם ייחודי</string>
