@@ -112,7 +112,7 @@ ext {
     leakCanaryVersion = '2.5'
     stethoVersion = '1.6.0'
     mockitoVersion = '4.0.0'
-    assertJVersion= '3.22.0'
+    assertJVersion = '3.22.0'
 }
 
 configurations {
