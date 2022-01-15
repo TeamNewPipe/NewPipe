@@ -145,43 +145,6 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    public void setInfoItemList(final List<? extends InfoItem> data) {
-        infoItemList.clear();
-        infoItemList.addAll(data);
-        notifyDataSetChanged();
-    }
-
-    public void addInfoItem(@Nullable final InfoItem data) {
-        if (data == null) {
-            return;
-        }
-        if (DEBUG) {
-            Log.d(TAG, "addInfoItem() before > infoItemList.size() = "
-                    + infoItemList.size() + ", thread = " + Thread.currentThread());
-        }
-
-        final int positionInserted = sizeConsideringHeaderOffset();
-        infoItemList.add(data);
-
-        if (DEBUG) {
-            Log.d(TAG, "addInfoItem() after > position = " + positionInserted + ", "
-                    + "infoItemList.size() = " + infoItemList.size() + ", "
-                    + "header = " + header + ", footer = " + footer + ", "
-                    + "showFooter = " + showFooter);
-        }
-        notifyItemInserted(positionInserted);
-
-        if (footer != null && showFooter) {
-            final int footerNow = sizeConsideringHeaderOffset();
-            notifyItemMoved(positionInserted, footerNow);
-
-            if (DEBUG) {
-                Log.d(TAG, "addInfoItem() footer from " + positionInserted
-                        + " to " + footerNow);
-            }
-        }
-    }
-
     public void clearStreamItemList() {
         if (infoItemList.isEmpty()) {
             return;
@@ -226,7 +189,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return i;
     }
 
-    public ArrayList<InfoItem> getItemsList() {
+    public List<InfoItem> getItemsList() {
         return infoItemList;
     }
 
@@ -335,29 +298,23 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
 
             ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position), recordManager);
-        } else if (holder instanceof HFHolder && position == 0 && header != null) {
-            ((HFHolder) holder).view = header;
-        } else if (holder instanceof HFHolder && position == sizeConsideringHeaderOffset()
-                && footer != null && showFooter) {
-            ((HFHolder) holder).view = footer;
         }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position,
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder,
+                                 final int position,
                                  @NonNull final List<Object> payloads) {
-        if (!payloads.isEmpty() && holder instanceof InfoItemHolder) {
-            for (final Object payload : payloads) {
-                if (payload instanceof StreamStateEntity) {
-                    ((InfoItemHolder) holder).updateState(infoItemList
-                            .get(header == null ? position : position - 1), recordManager);
-                } else if (payload instanceof Boolean) {
-                    ((InfoItemHolder) holder).updateState(infoItemList
-                            .get(header == null ? position : position - 1), recordManager);
-                }
-            }
-        } else {
+        if (payloads.isEmpty() || !(holder instanceof InfoItemHolder)) {
             onBindViewHolder(holder, position);
+            return;
+        }
+
+        for (final Object payload : payloads) {
+            if (payload instanceof StreamStateEntity || payload instanceof Boolean) {
+                ((InfoItemHolder) holder).updateState(infoItemList
+                        .get(header == null ? position : position - 1), recordManager);
+            }
         }
     }
 
@@ -372,11 +329,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public static class HFHolder extends RecyclerView.ViewHolder {
-        public View view;
-
         HFHolder(final View v) {
             super(v);
-            view = v;
         }
     }
 }
