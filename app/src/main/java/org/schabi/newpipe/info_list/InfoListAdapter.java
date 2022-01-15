@@ -212,6 +212,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return count;
     }
 
+    @SuppressWarnings("FinalParameters")
     @Override
     public int getItemViewType(int position) {
         if (DEBUG) {
@@ -284,6 +285,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    @SuppressWarnings("FinalParameters")
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
         if (DEBUG) {
