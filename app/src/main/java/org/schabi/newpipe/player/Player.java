@@ -2517,8 +2517,34 @@ public final class Player implements
         Log.e(TAG, "ExoPlayer - onPlayerError() called with:", error);
 
         saveStreamProgressState();
+        boolean isBehindLiveWindowException = false;
 
-        // create error notification
+        switch (error.type) {
+            case ExoPlaybackException.TYPE_SOURCE:
+                isBehindLiveWindowException = processSourceError(error.getSourceException());
+                if (!isBehindLiveWindowException) {
+                    createErrorNotification(error);
+                }
+                break;
+            case ExoPlaybackException.TYPE_UNEXPECTED:
+                createErrorNotification(error);
+                setRecovery();
+                reloadPlayQueueManager();
+                break;
+            case ExoPlaybackException.TYPE_REMOTE:
+            case ExoPlaybackException.TYPE_RENDERER:
+            default:
+                createErrorNotification(error);
+                onPlaybackShutdown();
+                break;
+        }
+
+        if (fragmentListener != null && !isBehindLiveWindowException) {
+            fragmentListener.onPlayerError(error);
+        }
+    }
+
+    private void createErrorNotification(@NonNull final ExoPlaybackException error) {
         final ErrorInfo errorInfo;
         if (currentMetadata == null) {
             errorInfo = new ErrorInfo(error, UserAction.PLAY_STREAM,
@@ -2530,37 +2556,36 @@ public final class Player implements
                     currentMetadata.getMetadata());
         }
         ErrorUtil.createNotification(context, errorInfo);
-
-        switch (error.type) {
-            case ExoPlaybackException.TYPE_SOURCE:
-                processSourceError(error.getSourceException());
-                break;
-            case ExoPlaybackException.TYPE_UNEXPECTED:
-                setRecovery();
-                reloadPlayQueueManager();
-                break;
-            case ExoPlaybackException.TYPE_REMOTE:
-            case ExoPlaybackException.TYPE_RENDERER:
-            default:
-                onPlaybackShutdown();
-                break;
-        }
-
-        if (fragmentListener != null) {
-            fragmentListener.onPlayerError(error);
-        }
     }
 
-    private void processSourceError(final IOException error) {
+    /**
+     * Process an {@link IOException} returned by {@link ExoPlaybackException#getSourceException()}
+     * for {@link ExoPlaybackException#TYPE_SOURCE} exceptions.
+     *
+     * <p>
+     * This method sets the recovery position and sends an error message to the play queue if the
+     * exception is not a {@link BehindLiveWindowException}.
+     * </p>
+     * @param error the source error which was thrown by ExoPlayer
+     * @return whether the exception thrown is a {@link BehindLiveWindowException} ({@code false}
+     * is always returned if ExoPlayer or the play queue is null)
+     */
+    private boolean processSourceError(final IOException error) {
         if (exoPlayerIsNull() || playQueue == null) {
-            return;
+            return false;
         }
+
         setRecovery();
 
         if (error instanceof BehindLiveWindowException) {
-            reloadPlayQueueManager();
+            simpleExoPlayer.seekToDefaultPosition();
+            simpleExoPlayer.prepare();
+            // Inform the user that we are reloading the stream by switching to the buffering state
+            onBuffering();
+            return true;
         } else {
             playQueue.error();
+            return false;
         }
     }
     //endregion
