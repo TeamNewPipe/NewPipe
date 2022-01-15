@@ -66,7 +66,7 @@
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Foutrapport</string>
     <string name="app_ui_crash">App/UI gecrasht</string>
-    <string name="info_labels">Wat:\\nVerzoek:\\nTaal van inhoud:\\nTaal van land:\\nTaal van Applicatie:\\nDienst:\\nGMT-tijd:\\nPakket:\\nVersie:\\nVersie van besturingssysteem:</string>
+    <string name="info_labels">Wat:\\nVerzoek:\\nTaal van inhoud:\\nTaal van land:\\nTaal van Toepassing:\\nDienst:\\nGMT-tijd:\\nPakket:\\nVersie:\\nVersie van besturingssysteem:</string>
     <string name="start">Begin</string>
     <string name="pause">Pauzeren</string>
     <string name="delete">Verwijderen</string>
@@ -292,7 +292,7 @@
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
     <string name="metadata_cache_wipe_complete_notice">Metagegevens-cache gewist</string>
     <string name="playback_speed_control">Afspeelsnelheidbesturing</string>
-    <string name="playback_tempo">Tempo</string>
+    <string name="playback_tempo">Snelheid</string>
     <string name="playback_pitch">Toon</string>
     <string name="unhook_checkbox">Ontlinken (kan ruis veroorzaken)</string>
     <string name="preferred_open_action_settings_title">Voorkeursactie voor openen</string>
@@ -340,7 +340,7 @@
     <string name="volume_gesture_control_summary">Gebruik gebaren om het volume van de speler aan te passen</string>
     <string name="brightness_gesture_control_title">Gebaarbesturing voor helderheid</string>
     <string name="brightness_gesture_control_summary">Gebruik gebaren om de helderheid van de speler aan te passen</string>
-    <string name="settings_category_updates_title">Updates</string>
+    <string name="settings_category_updates_title">Bijwerken</string>
     <string name="file_deleted">Bestand verwijderd</string>
     <string name="app_update_notification_channel_name">App update melding</string>
     <string name="app_update_notification_channel_description">Meldingen voor nieuwe New Pipe versies</string>
@@ -351,7 +351,7 @@
     <string name="restore_defaults_confirmation">Wil je de standaardinstellingen herstellen\?</string>
     <string name="subscribers_count_not_available">Aantal abonnees niet beschikbaar</string>
     <string name="main_page_content_summary">Welke tabbladen worden weergegeven op de hoofdpagina</string>
-    <string name="updates_setting_title">Updates</string>
+    <string name="updates_setting_title">Bijwerken</string>
     <string name="updates_setting_description">Toon een melding om de applicatie te updaten wanneer er een nieuwe versie beschikbaar is</string>
     <string name="list_view_mode">Lijstweergavemodus</string>
     <string name="list">Lijst</string>
