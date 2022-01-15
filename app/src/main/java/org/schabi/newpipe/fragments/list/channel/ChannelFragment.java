@@ -183,13 +183,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         }
     }
 
-    private void openRssFeed() {
-        final ChannelInfo info = currentInfo;
-        if (info != null) {
-            ShareUtils.openUrlInBrowser(requireContext(), info.getFeedUrl(), false);
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
@@ -197,7 +190,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                 NavigationHelper.openSettings(requireContext());
                 break;
             case R.id.menu_item_rss:
-                openRssFeed();
+                if (currentInfo != null) {
+                    ShareUtils.openUrlInBrowser(
+                            requireContext(), currentInfo.getFeedUrl(), false);
+                }
                 break;
             case R.id.menu_item_openInBrowser:
                 if (currentInfo != null) {
@@ -516,12 +512,11 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     }
 
     private PlayQueue getPlayQueue(final int index) {
-        final List<StreamInfoItem> streamItems = new ArrayList<>();
-        for (final InfoItem i : infoListAdapter.getItemsList()) {
-            if (i instanceof StreamInfoItem) {
-                streamItems.add((StreamInfoItem) i);
-            }
-        }
+        final List<StreamInfoItem> streamItems = infoListAdapter.getItemsList().stream()
+                .filter(StreamInfoItem.class::isInstance)
+                .map(StreamInfoItem.class::cast)
+                .collect(Collectors.toList());
+
         return new ChannelPlayQueue(currentInfo.getServiceId(), currentInfo.getUrl(),
                 currentInfo.getNextPage(), streamItems, index);
     }

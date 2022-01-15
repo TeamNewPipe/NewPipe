@@ -413,7 +413,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     }
 
     private Subscriber<List<PlaylistRemoteEntity>> getPlaylistBookmarkSubscriber() {
-        return new Subscriber<List<PlaylistRemoteEntity>>() {
+        return new Subscriber<>() {
             @Override
             public void onSubscribe(final Subscription s) {
                 if (bookmarkReactor != null) {

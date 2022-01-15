@@ -26,12 +26,11 @@ import org.schabi.newpipe.util.RelatedItemInfo;
 import java.io.Serializable;
 
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String INFO_KEY = "related_info_key";
-    private final CompositeDisposable disposables = new CompositeDisposable();
+
     private RelatedItemInfo relatedItemInfo;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -55,11 +54,6 @@ public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAttach(@NonNull final Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
@@ -67,9 +61,6 @@ public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        disposables.clear();
     }
 
     @Override
@@ -128,7 +119,6 @@ public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
         }
         ViewUtils.slideUp(requireView(), 120, 96, 0.06f);
 
-        disposables.clear();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -137,11 +127,13 @@ public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
 
     @Override
     public void setTitle(final String title) {
+        // Nothing to do - override parent
     }
 
     @Override
     public void onCreateOptionsMenu(@NonNull final Menu menu,
                                     @NonNull final MenuInflater inflater) {
+        // Nothing to do - override parent
     }
 
     private void setInitialData(final StreamInfo info) {
