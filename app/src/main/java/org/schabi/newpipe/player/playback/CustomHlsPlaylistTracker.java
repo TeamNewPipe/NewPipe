@@ -411,6 +411,7 @@ public final class CustomHlsPlaylistTracker implements HlsPlaylistTracker,
         return anyExclusionFailed;
     }
 
+    @SuppressWarnings("squid:S2259")
     private HlsMediaPlaylist getLatestPlaylistSnapshot(
             @Nullable final HlsMediaPlaylist oldPlaylist,
             @NonNull final HlsMediaPlaylist loadedPlaylist) {
@@ -684,6 +685,7 @@ public final class CustomHlsPlaylistTracker implements HlsPlaylistTracker,
                     mediaPlaylistLoadable.type);
         }
 
+        @SuppressWarnings("squid:S2259")
         private void processLoadedPlaylist(final HlsMediaPlaylist loadedPlaylist,
                                            final LoadEventInfo loadEventInfo) {
             final HlsMediaPlaylist oldPlaylist = playlistSnapshot;
