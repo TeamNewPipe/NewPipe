@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
@@ -65,7 +66,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
         super.onResume();
         // Check if it was loading when the fragment was stopped/paused,
         if (wasLoading.getAndSet(false)) {
-            if (hasMoreItems() && infoListAdapter.getItemsList().size() > 0) {
+            if (hasMoreItems() && !infoListAdapter.getItemsList().isEmpty()) {
                 loadMoreItems();
             } else {
                 doInitialLoadLogic();
@@ -105,6 +106,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     // Load and handle
     //////////////////////////////////////////////////////////////////////////*/
 
+    @Override
     protected void doInitialLoadLogic() {
         if (DEBUG) {
             Log.d(TAG, "doInitialLoadLogic() called");
@@ -144,6 +146,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
                     currentInfo = result;
                     currentNextPage = result.getNextPage();
                     handleResult(result);
+                    ifMoreItemsLoadableLoadUntilScrollable();
                 }, throwable ->
                         showError(new ErrorInfo(throwable, errorUserAction,
                                 "Start loading: " + url, serviceId)));
@@ -158,7 +161,8 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
      */
     protected abstract Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic();
 
-    protected void loadMoreItems() {
+    @Override
+    protected void loadMoreItems(@Nullable final Runnable initialDataLoadCallback) {
         isLoading.set(true);
 
         if (currentWorker != null) {
@@ -171,9 +175,12 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally(this::allowDownwardFocusScroll)
-                .subscribe((@NonNull ListExtractor.InfoItemsPage InfoItemsPage) -> {
+                .subscribe(infoItemsPage -> {
                     isLoading.set(false);
-                    handleNextItems(InfoItemsPage);
+                    handleNextItems(infoItemsPage);
+                    if (initialDataLoadCallback != null) {
+                        initialDataLoadCallback.run();
+                    }
                 }, (@NonNull Throwable throwable) ->
                         dynamicallyShowErrorPanelOrSnackbar(new ErrorInfo(throwable,
                                 errorUserAction, "Loading more items: " + url, serviceId)));
@@ -223,7 +230,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
         setTitle(name);
 
         if (infoListAdapter.getItemsList().isEmpty()) {
-            if (result.getRelatedItems().size() > 0) {
+            if (!result.getRelatedItems().isEmpty()) {
                 infoListAdapter.addInfoItemList(result.getRelatedItems());
                 showListFooter(hasMoreItems());
             } else {
@@ -240,7 +247,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
             final List<Throwable> errors = new ArrayList<>(result.getErrors());
             // handling ContentNotSupportedException not to show the error but an appropriate string
             // so that crashes won't be sent uselessly and the user will understand what happened
-            errors.removeIf(throwable -> throwable instanceof ContentNotSupportedException);
+            errors.removeIf(ContentNotSupportedException.class::isInstance);
 
             if (!errors.isEmpty()) {
                 dynamicallyShowErrorPanelOrSnackbar(new ErrorInfo(result.getErrors(),

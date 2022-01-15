@@ -868,12 +868,15 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((searchResult, throwable) -> isLoading.set(false))
-                .subscribe(this::handleResult, this::onItemError);
+                .subscribe(result -> {
+                    handleResult(result);
+                    ifMoreItemsLoadableLoadUntilScrollable();
+                }, this::onItemError);
 
     }
 
     @Override
-    protected void loadMoreItems() {
+    protected void loadMoreItems(@Nullable final Runnable initialDataLoadCallback) {
         if (!Page.isValid(nextPage)) {
             return;
         }
@@ -891,7 +894,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((nextItemsResult, throwable) -> isLoading.set(false))
-                .subscribe(this::handleNextItems, this::onItemError);
+                .subscribe(itemsPage -> {
+                    handleNextItems(itemsPage);
+                    if (initialDataLoadCallback != null) {
+                        initialDataLoadCallback.run();
+                    }
+                }, this::onItemError);
     }
 
     @Override

@@ -271,7 +271,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     @Override
     protected void initListeners() {
         super.initListeners();
-        infoListAdapter.setOnStreamSelectedListener(new OnClickGesture<StreamInfoItem>() {
+        infoListAdapter.setOnStreamSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final StreamInfoItem selectedItem) {
                 onStreamSelected(selectedItem);
@@ -418,7 +418,66 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     // Load and handle
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected abstract void loadMoreItems();
+    /**
+     * If more items are loadable and the itemList is not scrollable -> load more data.
+     * <br/>
+     * Should be called once the initial items inside {@link #startLoading(boolean)}
+     * has been loaded and added to the {@link #itemsList}.
+     * <br/>
+     * Otherwise the loading indicator is always shown but no data can be loaded
+     * because the view is not scrollable; see also #1974.
+     */
+    protected void ifMoreItemsLoadableLoadUntilScrollable() {
+        ifMoreItemsLoadableLoadUntilScrollable(0);
+    }
+
+    /**
+     * If more items are loadable and the itemList is not scrollable -> load more data.
+     *
+     * @param recursiveCallCount Amount of recursive calls that occurred
+     * @see #ifMoreItemsLoadableLoadUntilScrollable()
+     */
+    protected void ifMoreItemsLoadableLoadUntilScrollable(final int recursiveCallCount) {
+        // Try to prevent malfunction / stackoverflow
+        if (recursiveCallCount > 100) {
+            Log.w(TAG, "loadEnoughInitialData - Too many recursive calls - Aborting");
+            return;
+        }
+        if (!hasMoreItems()) {
+            if (DEBUG) {
+                Log.d(TAG, "loadEnoughInitialData - OK: No more items to load");
+            }
+            return;
+        }
+        if (itemsList.canScrollVertically(1)
+                || itemsList.canScrollVertically(-1)) {
+            if (DEBUG) {
+                Log.d(TAG, "loadEnoughInitial - OK: itemList is scrollable");
+            }
+            return;
+        }
+        if (DEBUG) {
+            Log.d(TAG, "loadEnoughInitialData - View is not scrollable "
+                    + "but it could load more items -> Loading more");
+        }
+        loadMoreItems(() ->
+                ifMoreItemsLoadableLoadUntilScrollable(recursiveCallCount + 1));
+    }
+
+    /**
+     * Loads more items.
+     * @param initialDataLoadCallback
+     *          Callback used in {@link #ifMoreItemsLoadableLoadUntilScrollable()}.
+     *          <br/>
+     *          Execute it once the data was loaded and added to the {@link #itemsList}.
+     *          <br/>
+     *          Might be <code>null</code>.
+     */
+    protected abstract void loadMoreItems(@Nullable Runnable initialDataLoadCallback);
+
+    protected void loadMoreItems() {
+        loadMoreItems(null);
+    }
 
     protected abstract boolean hasMoreItems();
 
