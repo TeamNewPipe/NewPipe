@@ -16,6 +16,8 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.DefaultLoadErrorHandlingPolicy;
 import com.google.android.exoplayer2.upstream.TransferListener;
 
+import org.schabi.newpipe.player.playback.CustomHlsPlaylistTracker;
+
 public class PlayerDataSource {
     private static final int MANIFEST_MINIMUM_RETRY = 5;
     private static final int EXTRACTOR_MINIMUM_RETRY = Integer.MAX_VALUE;
@@ -44,8 +46,9 @@ public class PlayerDataSource {
     public HlsMediaSource.Factory getLiveHlsMediaSourceFactory() {
         return new HlsMediaSource.Factory(cachelessDataSourceFactory)
                 .setAllowChunklessPreparation(true)
-                .setLoadErrorHandlingPolicy(
-                        new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY));
+                .setLoadErrorHandlingPolicy(new DefaultLoadErrorHandlingPolicy(
+                        MANIFEST_MINIMUM_RETRY))
+                .setPlaylistTrackerFactory(CustomHlsPlaylistTracker.FACTORY);
     }
 
     public DashMediaSource.Factory getLiveDashMediaSourceFactory() {
