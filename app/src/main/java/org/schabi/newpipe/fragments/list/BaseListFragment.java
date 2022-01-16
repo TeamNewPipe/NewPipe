@@ -304,28 +304,36 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             }
         });
 
-        infoListAdapter.setOnCommentsSelectedListener(new OnClickGesture<CommentsInfoItem>() {
+        infoListAdapter.setOnCommentsSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final CommentsInfoItem selectedItem) {
                 onItemSelected(selectedItem);
             }
         });
+    }
 
+    /**
+     * Remove all listeners and add the initial scroll listener to the {@link #itemsList}.
+     * <br/>
+     * Which tries to load more items when not enough are in the view (not scrollable)
+     * and more are available.
+     * <br/>
+     * Note: This method only works because "This callback will also be called if visible
+     * item range changes after a layout calculation. In that case, dx and dy will be 0."
+     * - which might be unexpected because no actual scrolling occurs...
+     * <br/>
+     * This listener will be replaced by DefaultItemListOnScrolledDownListener when
+     * <ul>
+     *     <li>the view was actually scrolled</li>
+     *     <li>the view is scrollable</li>
+     *     <li>no more items can be loaded</li>
+     * </ul>
+     */
+    protected void setItemsListInitialScrollListener() {
+        if (DEBUG) {
+            Log.d(TAG, "setItemsListInitialScrollListener called");
+        }
         itemsList.clearOnScrollListeners();
-
-        /*
-         * Add initial scroll listener - which tries to load more items when not enough
-         * are in the view (not scrollable) and more are available.
-         *
-         * Note: This method only works because "This callback will also be called if visible
-         * item range changes after a layout calculation. In that case, dx and dy will be 0."
-         * - which might be unexpected because no actual scrolling occurs...
-         *
-         * This listener will be replaced by DefaultItemListOnScrolledDownListener when
-         * * the view was actually scrolled
-         * * the view is scrollable
-         * * No more items can be loaded
-         */
         itemsList.addOnScrollListener(new DefaultItemListOnScrolledDownListener() {
             @Override
             public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
@@ -360,7 +368,6 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             }
 
             private void useNormalScrollListener() {
-                log("Unregistering and using normal listener");
                 itemsList.removeOnScrollListener(this);
                 itemsList.addOnScrollListener(new DefaultItemListOnScrolledDownListener());
             }
@@ -466,6 +473,12 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     /*//////////////////////////////////////////////////////////////////////////
     // Load and handle
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    protected void startLoading(final boolean forceLoad) {
+        setItemsListInitialScrollListener();
+        super.startLoading(forceLoad);
+    }
 
     protected abstract void loadMoreItems();
 
