@@ -112,6 +112,7 @@ ext {
     leakCanaryVersion = '2.5'
     stethoVersion = '1.6.0'
     mockitoVersion = '4.0.0'
+    assertJVersion = '3.22.0'
 }
 
 configurations {
@@ -290,6 +291,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:1.1.3"
     androidTestImplementation "androidx.test:runner:1.4.0"
     androidTestImplementation "androidx.room:room-testing:${androidxRoomVersion}"
+    androidTestImplementation "org.assertj:assertj-core:${assertJVersion}"
 }
 
 static String getGitWorkingBranch() {
