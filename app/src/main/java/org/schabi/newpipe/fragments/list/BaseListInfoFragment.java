@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
@@ -146,7 +145,6 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
                     currentInfo = result;
                     currentNextPage = result.getNextPage();
                     handleResult(result);
-                    ifMoreItemsLoadableLoadUntilScrollable();
                 }, throwable ->
                         showError(new ErrorInfo(throwable, errorUserAction,
                                 "Start loading: " + url, serviceId)));
@@ -162,7 +160,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     protected abstract Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic();
 
     @Override
-    protected void loadMoreItems(@Nullable final Runnable initialDataLoadCallback) {
+    protected void loadMoreItems() {
         isLoading.set(true);
 
         if (currentWorker != null) {
@@ -178,9 +176,6 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
                 .subscribe(infoItemsPage -> {
                     isLoading.set(false);
                     handleNextItems(infoItemsPage);
-                    if (initialDataLoadCallback != null) {
-                        initialDataLoadCallback.run();
-                    }
                 }, (@NonNull Throwable throwable) ->
                         dynamicallyShowErrorPanelOrSnackbar(new ErrorInfo(throwable,
                                 errorUserAction, "Loading more items: " + url, serviceId)));
