@@ -17,10 +17,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewbinding.ViewBinding;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.databinding.PignateFooterBinding;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
@@ -44,6 +42,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Queue;
+import java.util.function.Supplier;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
@@ -215,12 +214,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Nullable
-    protected ViewBinding getListHeader() {
+    protected Supplier<View> getListHeaderSupplier() {
         return null;
-    }
-
-    protected ViewBinding getListFooter() {
-        return PignateFooterBinding.inflate(activity.getLayoutInflater(), itemsList, false);
     }
 
     protected RecyclerView.LayoutManager getListLayoutManager() {
@@ -247,11 +242,10 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
 
         infoListAdapter.setUseGridVariant(useGrid);
-        infoListAdapter.setFooter(getListFooter().getRoot());
 
-        final ViewBinding listHeader = getListHeader();
-        if (listHeader != null) {
-            infoListAdapter.setHeader(listHeader.getRoot());
+        final Supplier<View> listHeaderSupplier = getListHeaderSupplier();
+        if (listHeaderSupplier != null) {
+            infoListAdapter.setHeaderSupplier(listHeaderSupplier);
         }
 
         itemsList.setAdapter(infoListAdapter);
@@ -447,7 +441,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         if (itemsList.canScrollVertically(1)
                 || itemsList.canScrollVertically(-1)) {
             if (DEBUG) {
-                Log.d(TAG, "loadEnoughInitial - OK: itemList is scrollable");
+                Log.d(TAG, "loadEnoughInitialData - OK: itemList is scrollable");
             }
             return;
         }
