@@ -139,7 +139,7 @@
     <string name="download_thumbnail_summary">Desative para parar o carregamento de miniaturas, poupar dados e utilização da memória. As alterações limpam a cache de imagens do disco e da memória</string>
     <string name="did_you_mean">Será que queria dizer \"%1$s\"\?</string>
     <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da aplicação se existir uma nova versão</string>
-    <string name="enqueue">Fila</string>
+    <string name="enqueue">Enfileirar</string>
     <string name="no_one_watching">Ninguém está a ver</string>
     <string name="delete_downloaded_files">Remover ficheiros descarregados</string>
     <string name="app_language_title">Idioma da aplicação</string>
