@@ -229,7 +229,7 @@
     <string name="create_playlist">Nouvelle liste de lecture</string>
     <string name="rename_playlist">Renommer</string>
     <string name="name">Nom</string>
-    <string name="add_to_playlist">Ajouter à la liste de lecture</string>
+    <string name="add_to_playlist">Ajouter à une liste de lecture</string>
     <string name="set_as_playlist_thumbnail">Définir comme miniature de la liste de lecture</string>
     <string name="bookmark_playlist">Enregister la liste de lecture</string>
     <string name="unbookmark_playlist">Supprimer le signet</string>
@@ -569,7 +569,7 @@
     <string name="notification_scale_to_square_image_title">Redimensionner la miniature au format 1:1</string>
     <string name="show_memory_leaks">Afficher les fuites de mémoire</string>
     <string name="enqueued">Ajouté à la file d’attente</string>
-    <string name="enqueue_stream">Ajouter à la file d’attente</string>
+    <string name="enqueue_stream">Ajouter à la file de lecture</string>
     <string name="clear_cookie_summary">Effacer les cookies que NewPipe garde lorsque vous résolvez un reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Les cookies reCAPTCHA ont été effacés</string>
     <string name="clear_cookie_title">Effacer les cookies reCAPTCHA</string>
