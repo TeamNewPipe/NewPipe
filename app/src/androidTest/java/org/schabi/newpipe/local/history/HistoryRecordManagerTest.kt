@@ -53,11 +53,12 @@ class HistoryRecordManagerTest {
 
     @Test
     fun deleteSearchHistory() {
+        val now = OffsetDateTime.now()
         val entries = listOf(
-            SearchHistoryEntry(OffsetDateTime.now(), 0, "A"),
-            SearchHistoryEntry(OffsetDateTime.now(), 2, "A"),
-            SearchHistoryEntry(OffsetDateTime.now(), 1, "B"),
-            SearchHistoryEntry(OffsetDateTime.now(), 0, "B"),
+            SearchHistoryEntry(now.minusSeconds(1), 0, "A"),
+            SearchHistoryEntry(now.minusSeconds(2), 2, "A"),
+            SearchHistoryEntry(now.minusSeconds(3), 1, "B"),
+            SearchHistoryEntry(now.minusSeconds(4), 0, "B"),
         )
 
         // make sure all 4 were inserted
