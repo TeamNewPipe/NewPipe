@@ -1,9 +1,9 @@
 package org.schabi.newpipe.local.history
 
 import androidx.test.core.app.ApplicationProvider
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -45,10 +45,10 @@ class HistoryRecordManagerTest {
         // that the number of Lists it returns is exactly 1, we can only check if the first List is
         // correct. Why on earth has a Flowable been used instead of a Single for getAll()?!?
         val entities = database.searchHistoryDAO().all.blockingFirst()
-        assertEquals(1, entities.size)
-        assertEquals(1, entities[0].id)
-        assertEquals(0, entities[0].serviceId)
-        assertEquals("Hello", entities[0].search)
+        assertThat(entities).hasSize(1)
+        assertThat(entities[0].id).isEqualTo(1)
+        assertThat(entities[0].serviceId).isEqualTo(0)
+        assertThat(entities[0].search).isEqualTo("Hello")
     }
 
     @Test
@@ -62,25 +62,25 @@ class HistoryRecordManagerTest {
 
         // make sure all 4 were inserted
         database.searchHistoryDAO().insertAll(entries)
-        assertEquals(entries.size, database.searchHistoryDAO().all.blockingFirst().size)
+        assertThat(database.searchHistoryDAO().all.blockingFirst()).hasSameSizeAs(entries)
 
         // try to delete only "A" entries, "B" entries should be untouched
         manager.deleteSearchHistory("A").test().await().assertValue(2)
         val entities = database.searchHistoryDAO().all.blockingFirst()
-        assertEquals(2, entities.size)
-        assertTrue(entries[2].hasEqualValues(entities[0]))
-        assertTrue(entries[3].hasEqualValues(entities[1]))
+        assertThat(entities).hasSize(2)
+        assertThat(entities).usingElementComparator { o1, o2 -> if (o1.hasEqualValues(o2)) 0 else 1 }
+            .containsExactly(*entries.subList(2, 4).toTypedArray())
 
         // assert that nothing happens if we delete a search query that does exist in the db
         manager.deleteSearchHistory("A").test().await().assertValue(0)
         val entities2 = database.searchHistoryDAO().all.blockingFirst()
-        assertEquals(2, entities2.size)
-        assertTrue(entries[2].hasEqualValues(entities2[0]))
-        assertTrue(entries[3].hasEqualValues(entities2[1]))
+        assertThat(entities2).hasSize(2)
+        assertThat(entities2).usingElementComparator { o1, o2 -> if (o1.hasEqualValues(o2)) 0 else 1 }
+            .containsExactly(*entries.subList(2, 4).toTypedArray())
 
         // delete all remaining entries
         manager.deleteSearchHistory("B").test().await().assertValue(2)
-        assertEquals(0, database.searchHistoryDAO().all.blockingFirst().size)
+        assertThat(database.searchHistoryDAO().all.blockingFirst()).isEmpty()
     }
 
     @Test
@@ -93,11 +93,11 @@ class HistoryRecordManagerTest {
 
         // make sure all 3 were inserted
         database.searchHistoryDAO().insertAll(entries)
-        assertEquals(entries.size, database.searchHistoryDAO().all.blockingFirst().size)
+        assertThat(database.searchHistoryDAO().all.blockingFirst()).hasSameSizeAs(entries)
 
         // should remove everything
         manager.deleteCompleteSearchHistory().test().await().assertValue(entries.size)
-        assertEquals(0, database.searchHistoryDAO().all.blockingFirst().size)
+        assertThat(database.searchHistoryDAO().all.blockingFirst()).isEmpty()
     }
 
     @Test
@@ -111,11 +111,12 @@ class HistoryRecordManagerTest {
 
         // make sure correct number of searches is returned and in correct order
         val searches = manager.getRelatedSearches("", 6, 4).blockingFirst()
-        assertEquals(4, searches.size)
-        assertEquals(RELATED_SEARCHES_ENTRIES[6].search, searches[0]) // A (even if in two places)
-        assertEquals(RELATED_SEARCHES_ENTRIES[4].search, searches[1]) // B
-        assertEquals(RELATED_SEARCHES_ENTRIES[5].search, searches[2]) // AA
-        assertEquals(RELATED_SEARCHES_ENTRIES[2].search, searches[3]) // BA
+        assertThat(searches).containsExactly(
+            RELATED_SEARCHES_ENTRIES[6].search, // A (even if in two places)
+            RELATED_SEARCHES_ENTRIES[4].search, // B
+            RELATED_SEARCHES_ENTRIES[5].search, // AA
+            RELATED_SEARCHES_ENTRIES[2].search, // BA
+        )
     }
 
     @Test
@@ -129,14 +130,15 @@ class HistoryRecordManagerTest {
 
         // make sure correct number of searches is returned and in correct order
         val searches = manager.getRelatedSearches("A", 3, 5).blockingFirst()
-        assertEquals(3, searches.size)
-        assertEquals(RELATED_SEARCHES_ENTRIES[6].search, searches[0]) // A (even if in two places)
-        assertEquals(RELATED_SEARCHES_ENTRIES[5].search, searches[1]) // AA
-        assertEquals(RELATED_SEARCHES_ENTRIES[1].search, searches[2]) // BA
+        assertThat(searches).containsExactly(
+            RELATED_SEARCHES_ENTRIES[6].search, // A (even if in two places)
+            RELATED_SEARCHES_ENTRIES[5].search, // AA
+            RELATED_SEARCHES_ENTRIES[1].search, // BA
+        )
 
         // also make sure that the string comparison is case insensitive
         val searches2 = manager.getRelatedSearches("a", 3, 5).blockingFirst()
-        assertEquals(searches, searches2)
+        assertThat(searches).isEqualTo(searches2)
     }
 
     companion object {
