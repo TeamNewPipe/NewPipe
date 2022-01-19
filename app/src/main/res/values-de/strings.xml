@@ -370,7 +370,7 @@
     <string name="paused">pausiert</string>
     <string name="queued">eingereiht</string>
     <string name="post_processing">Nachbearbeitung</string>
-    <string name="enqueue">Warteschlange</string>
+    <string name="enqueue">In Wiedergabe einreihen</string>
     <string name="permission_denied">System verweigert den Zugriff</string>
     <string name="download_failed">Herunterladen fehlgeschlagen</string>
     <string name="generate_unique_name">Eindeutigen Namen erzeugen</string>
