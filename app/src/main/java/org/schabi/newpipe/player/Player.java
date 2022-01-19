@@ -635,6 +635,7 @@ public final class Player implements
         final boolean isMuted = intent.getBooleanExtra(IS_MUTED, isMuted());
 
         /*
+         * TODO As seen in #7427 this does not work:
          * There are 3 situations when playback shouldn't be started from scratch (zero timestamp):
          * 1. User pressed on a timestamp link and the same video should be rewound to the timestamp
          * 2. User changed a player from, for example. main to popup, or from audio to main, etc

@@ -1098,6 +1098,11 @@ public final class VideoDetailFragment
 
         toggleFullscreenIfInFullscreenMode();
 
+        if (isPlayerAvailable()) {
+            // FIXME Workaround #7427
+            player.setRecovery();
+        }
+
         if (!useExternalAudioPlayer) {
             openNormalBackgroundPlayer(append);
         } else {
@@ -1114,6 +1119,9 @@ public final class VideoDetailFragment
         // See UI changes while remote playQueue changes
         if (!isPlayerAvailable()) {
             playerHolder.startService(false, this);
+        } else {
+            // FIXME Workaround #7427
+            player.setRecovery();
         }
 
         toggleFullscreenIfInFullscreenMode();
