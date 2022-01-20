@@ -136,7 +136,7 @@
     <string name="content_language_title">Llengua per defecte dels continguts</string>
     <string name="background_player_playing_toast">S\'està reproduint en rerefons</string>
     <string name="popup_playing_toast">S\'està reproduint en mode emergent</string>
-    <string name="notification_channel_name">Notificació del NewPipe</string>
+    <string name="notification_channel_name">Notificació de NewPipe</string>
     <string name="notification_channel_description">Notificacions per al reproductor de NewPipe</string>
     <string name="could_not_load_thumbnails">No s\'han pogut carregar totes les miniatures</string>
     <string name="youtube_signature_deobfuscation_error">No s\'ha pogut desxifrar la signatura de l\'URL del vídeo</string>
@@ -655,4 +655,36 @@
     <string name="background_player_already_playing_toast">Ja s\'està reproduint en segon pla</string>
     <string name="error_report_channel_name">Notificació d\'informe d\'error</string>
     <string name="crash_the_player">Tancar abruptament el reproductor</string>
+    <string name="manual_update_title">Comprovar si hi ha actualitzacions</string>
+    <string name="manual_update_description">Comprovar manualment si hi ha noves versions</string>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Baixada finalitzada</item>
+        <item quantity="other">%s baixades finalitzades</item>
+    </plurals>
+    <string name="seekbar_preview_thumbnail_title">Vista prèvia de les miniatures de la barra de cerca</string>
+    <string name="no_appropriate_file_manager_message_android_10">No s\'ha trobat cap gestor de fitxers adequat per a aquesta acció.
+\nInstal·leu un gestor de fitxers compatible amb l\'entorn d\'accés d\'emmagatzematge.</string>
+    <string name="no_appropriate_file_manager_message">No s\'ha trobat cap gestor de fitxers adequat per a aquesta acció.
+\nInstal·leu un gestor de fitxers o intenteu desactivar «%s» als paràmetres de baixada.</string>
+    <string name="error_report_notification_toast">S\'ha produït un error, consulteu la notificació</string>
+    <string name="enqueued_next">Afegit el següent vídeo a la cua</string>
+    <string name="error_report_notification_title">NewPipe ha trobat un error, toca per informar</string>
+    <string name="enqueue_next_stream">Posa a la cua el següent vídeo</string>
+    <string name="create_error_notification">Crear una notificació d\'error</string>
+    <string name="error_show_channel_details">Error en mostrar els detalls del canal</string>
+    <string name="error_report_channel_description">Notificacions per informar d\'errors</string>
+    <string name="show_error_snackbar">Mostra una barra d\'errors</string>
+    <string name="checking_updates_toast">S\'estan comprovant les actualitzacions…</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">S\'ha suprimit %1$s baixada</item>
+        <item quantity="other">S\'han suprimit %1$s baixades</item>
+    </plurals>
+    <string name="downloads_storage_use_saf_summary_api_19">El \"Sistema d\'Accés a l\'Emmagatzematge\" no està implementat a Android KitKat i a versions anteriors</string>
+    <string name="downloads_storage_use_saf_summary_api_29">A partir de l\'Android 10 només s\'admet el \"Sistema d\'Accés a l\'Emmagatzematge\"</string>
+    <string name="feed_new_items">Elements de feed nous</string>
+    <string name="feed_load_error_fast_unknown">El mode d\'alimentació ràpida no proporciona més informació sobre això.</string>
+    <string name="detail_pinned_comment_view_description">Comentari fixat</string>
+    <string name="show_crash_the_player_title">Mostrar \"tancar de forma violenta el reproductor\"</string>
+    <string name="show_crash_the_player_summary">Mostra una opció de fallada quan s\'utilitza el reproductor</string>
+    <string name="show_image_indicators_summary">Mostra les cintes de color Picasso a la part superior de les imatges que indiquen la seva font: vermell per a la xarxa, blau per al disc i verd per a la memòria</string>
 </resources>
