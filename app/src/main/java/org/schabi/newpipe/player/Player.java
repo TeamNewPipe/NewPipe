@@ -197,10 +197,11 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.ExpandableSurfaceView;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -3314,6 +3315,13 @@ public final class Player implements
      * then the maximum resolution limit and the maximum frame rate will be set.
      * </p>
      *
+     * <p>
+     * Note that the best way should be to create a custom
+     * {@link com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection} instead
+     * because it will never load the automatically selected stream but that's a bit more complex
+     * to implement this.
+     * </p>
+     *
      * @param videoTrackGroupArray the video {@link TrackGroupArray}, which cannot be null
      * @param videoRendererIndex   the video renderer index
      */
@@ -3340,10 +3348,9 @@ public final class Player implements
         final int defaultFrameRate = defaultResolutionArray.length == 2
                 ? Integer.parseInt(defaultResolutionArray[1]) : -1;
 
-        final DefaultTrackSelector.Parameters selectionParameters = trackSelector
-                .getParameters();
-        final DefaultTrackSelector.ParametersBuilder builder = selectionParameters
-                .buildUpon().clearSelectionOverrides();
+        final DefaultTrackSelector.Parameters selectionParameters = trackSelector.getParameters();
+        final DefaultTrackSelector.ParametersBuilder builder = selectionParameters.buildUpon()
+                .clearSelectionOverrides();
 
         for (int i = 0; i < videoTrackGroupArray.length; i++) {
             final TrackGroup trackGroup = videoTrackGroupArray.get(i);
@@ -3351,12 +3358,8 @@ public final class Player implements
                 final Format videoFormat = trackGroup.getFormat(j);
                 if ((defaultHeight == -1 || videoFormat.height <= defaultHeight)
                         && (defaultFrameRate <= -1 || videoFormat.frameRate <= defaultFrameRate)) {
-                    final DefaultTrackSelector.SelectionOverride selectionOverride =
-                            new DefaultTrackSelector.SelectionOverride(
-                                    videoRendererIndex, j);
-
                     builder.setSelectionOverride(videoRendererIndex, videoTrackGroupArray,
-                            selectionOverride);
+                            new DefaultTrackSelector.SelectionOverride(videoRendererIndex, j));
                     isDefaultResolutionSetForLivestreams = true;
                     break;
                 }
@@ -3368,8 +3371,7 @@ public final class Player implements
             // frame rate according to the default quality chose by the user in Video and Audio
             // settings
             builder.setMaxVideoSize(Integer.MAX_VALUE, defaultHeight);
-            builder.setMaxVideoFrameRate(defaultResolutionArray.length == 2
-                    ? Integer.parseInt(defaultResolutionArray[1]) : 30);
+            builder.setMaxVideoFrameRate(defaultFrameRate != -1 ? defaultFrameRate : 30);
             isDefaultResolutionSetForLivestreams = true;
         }
 
@@ -3377,7 +3379,7 @@ public final class Player implements
     }
 
     @Nullable
-    public VideoStream getSelectedVideoStream() {
+    private VideoStream getSelectedVideoStream() {
         return (selectedVideoStreamIndex >= 0 && availableVideoStreams != null
                 && availableVideoStreams.size() > selectedVideoStreamIndex)
                 ? availableVideoStreams.get(selectedVideoStreamIndex) : null;
@@ -3584,35 +3586,39 @@ public final class Player implements
      * the automatic mode.
      */
     private void addAnalyticsListenerForLivestreamsIfNeeded() {
-        if (analyticsListener == null) {
-            analyticsListener = new AnalyticsListener() {
-                @Override
-                public void onVideoInputFormatChanged(
-                        @NonNull final EventTime eventTime,
-                        @NonNull final Format format,
-                        @Nullable final DecoderReuseEvaluation decoderReuseEvaluation) {
-                    final int videoRendererIndex = getVideoRendererIndex();
-                    if (videoRendererIndex != RENDERER_UNAVAILABLE) {
-                        final TrackGroupArray videoTrackGroupArray = Objects
-                                .requireNonNull(Objects.requireNonNull(trackSelector
-                                        .getCurrentMappedTrackInfo())).getTrackGroups(
-                                        videoRendererIndex);
-
-                        if (trackSelector.getParameters().hasSelectionOverride(
-                                videoRendererIndex, videoTrackGroupArray)) {
-                            binding.qualityTextView.setText(
-                                    getResolutionStringFromFormat(context, format));
-                        } else {
-                            binding.qualityTextView.setText(context.getString(
-                                    R.string.auto_quality_selected,
-                                    context.getString(R.string.auto_quality),
-                                    getResolutionStringFromFormat(context, format)));
-                        }
-                    }
-                }
-            };
-            simpleExoPlayer.addAnalyticsListener(analyticsListener);
+        if (analyticsListener != null) {
+            return;
         }
+
+        analyticsListener = new AnalyticsListener() {
+            @Override
+            public void onVideoInputFormatChanged(
+                    @NonNull final EventTime eventTime,
+                    @NonNull final Format format,
+                    @Nullable final DecoderReuseEvaluation decoderReuseEvaluation) {
+                final int videoRendererIndex = getVideoRendererIndex();
+                if (videoRendererIndex == RENDERER_UNAVAILABLE) {
+                    return;
+                }
+
+                final TrackGroupArray videoTrackGroupArray = Objects.requireNonNull(
+                        trackSelector.getCurrentMappedTrackInfo()).getTrackGroups(
+                                videoRendererIndex);
+
+                final String resolution = getResolutionStringFromFormat(context, format);
+                if (trackSelector.getParameters().hasSelectionOverride(
+                        videoRendererIndex, videoTrackGroupArray)) {
+                    binding.qualityTextView.setText(resolution);
+                } else {
+                    binding.qualityTextView.setText(context.getString(
+                            R.string.auto_quality_selected,
+                            context.getString(R.string.auto_quality),
+                            resolution));
+                }
+            }
+        };
+
+        simpleExoPlayer.addAnalyticsListener(analyticsListener);
     }
 
     /**
@@ -3673,30 +3679,27 @@ public final class Player implements
      * @return the resolution string described above
      */
     @NonNull
-    public static String getResolutionStringFromFormat(
-            @NonNull final Context context,
-            @NonNull final Format format) {
-        final StringBuilder resolutionStringBuilder = new StringBuilder();
-        final int formatHeight = format.height;
+    public static String getResolutionStringFromFormat(@NonNull final Context context,
+                                                       @NonNull final Format format) {
 
+        final int formatHeight = format.height;
         if (formatHeight != Format.NO_VALUE) {
+            final StringBuilder resolutionStringBuilder = new StringBuilder();
             resolutionStringBuilder.append(formatHeight);
             resolutionStringBuilder.append("p");
             final int formatFrameRate = (int) format.frameRate;
             if (formatFrameRate > 30) {
                 resolutionStringBuilder.append(formatFrameRate);
             }
-        } else {
-            final int formatBitrate = format.bitrate;
-            if (formatBitrate != Format.NO_VALUE) {
-                resolutionStringBuilder.append(formatBitrate);
-                resolutionStringBuilder.append("bps");
-            } else {
-                resolutionStringBuilder.append(context.getString(R.string.unknown_quality));
-            }
+            return resolutionStringBuilder.toString();
         }
 
-        return resolutionStringBuilder.toString();
+        final int formatBitrate = format.bitrate;
+        if (formatBitrate != Format.NO_VALUE) {
+            return formatBitrate + "bps";
+        }
+
+        return context.getString(R.string.unknown_quality);
     }
 
     /**
@@ -3849,10 +3852,7 @@ public final class Player implements
         isSomePopupMenuVisible = false; //TODO check if this works
 
         if (!(isAudioOnly ? audioResolver : videoResolver).isLiveSource()) {
-            final VideoStream videoStream = getSelectedVideoStream();
-            if (videoStream != null) {
-                binding.qualityTextView.setText(videoStream.resolution);
-            }
+            updateQualityPlayedForVideos();
         }
 
         if (isPlaying()) {
@@ -3949,19 +3949,15 @@ public final class Player implements
                 .getTrackGroups(textRenderer);
 
         // Extract all loaded languages
-        final List<String> availableLanguages = new ArrayList<>(textTracks.length);
-        for (int i = 0; i < textTracks.length; i++) {
-            final TrackGroup textTrack = textTracks.get(i);
-            if (textTrack.length > 0) {
-                final String language = textTrack.getFormat(0).language;
+        final List<String> availableLanguages = IntStream.range(0, textTracks.length)
+                .mapToObj(textTracks::get)
+                .filter(textTrack -> textTrack.length > 0)
+                .map(textTrack -> textTrack.getFormat(0).language)
                 // We are not able to select the preferred caption language when it's null
                 // TODO: use selection override for captions instead of the preferred text language
                 //  so we can enable the selection of unknown languages
-                if (language != null) {
-                    availableLanguages.add(language);
-                }
-            }
-        }
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
 
         if (availableLanguages.isEmpty()) {
             binding.captionTextView.setVisibility(View.GONE);
