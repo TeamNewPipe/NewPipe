@@ -9,6 +9,7 @@ import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
+import com.google.android.exoplayer2.source.hls.playlist.DefaultHlsPlaylistTracker;
 import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource;
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.upstream.DataSource;
@@ -16,12 +17,13 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.DefaultLoadErrorHandlingPolicy;
 import com.google.android.exoplayer2.upstream.TransferListener;
 
-import org.schabi.newpipe.player.playback.CustomHlsPlaylistTracker;
-
 public class PlayerDataSource {
+
+    public static final int LIVE_STREAM_EDGE_GAP_MILLIS = 10000;
+
+    private static final double PLAYLIST_STUCK_TARGET_DURATION_COEFFICIENT = 15;
     private static final int MANIFEST_MINIMUM_RETRY = 5;
     private static final int EXTRACTOR_MINIMUM_RETRY = Integer.MAX_VALUE;
-    public static final int LIVE_STREAM_EDGE_GAP_MILLIS = 10000;
 
     private final DataSource.Factory cacheDataSourceFactory;
     private final DataSource.Factory cachelessDataSourceFactory;
@@ -48,7 +50,11 @@ public class PlayerDataSource {
                 .setAllowChunklessPreparation(true)
                 .setLoadErrorHandlingPolicy(new DefaultLoadErrorHandlingPolicy(
                         MANIFEST_MINIMUM_RETRY))
-                .setPlaylistTrackerFactory(CustomHlsPlaylistTracker.FACTORY);
+                .setPlaylistTrackerFactory((dataSourceFactory, loadErrorHandlingPolicy,
+                                            playlistParserFactory) ->
+                        new DefaultHlsPlaylistTracker(dataSourceFactory, loadErrorHandlingPolicy,
+                                playlistParserFactory, PLAYLIST_STUCK_TARGET_DURATION_COEFFICIENT)
+                );
     }
 
     public DashMediaSource.Factory getLiveDashMediaSourceFactory() {

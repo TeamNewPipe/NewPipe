@@ -2517,29 +2517,30 @@ public final class Player implements
         Log.e(TAG, "ExoPlayer - onPlayerError() called with:", error);
 
         saveStreamProgressState();
-        boolean isBehindLiveWindowException = false;
+        boolean isCatchableException = false;
 
         switch (error.type) {
             case ExoPlaybackException.TYPE_SOURCE:
-                isBehindLiveWindowException = processSourceError(error.getSourceException());
-                if (!isBehindLiveWindowException) {
-                    createErrorNotification(error);
-                }
+                isCatchableException = processSourceError(error.getSourceException());
                 break;
             case ExoPlaybackException.TYPE_UNEXPECTED:
-                createErrorNotification(error);
                 setRecovery();
                 reloadPlayQueueManager();
                 break;
             case ExoPlaybackException.TYPE_REMOTE:
             case ExoPlaybackException.TYPE_RENDERER:
             default:
-                createErrorNotification(error);
                 onPlaybackShutdown();
                 break;
         }
 
-        if (fragmentListener != null && !isBehindLiveWindowException) {
+        if (isCatchableException) {
+            return;
+        }
+
+        createErrorNotification(error);
+
+        if (fragmentListener != null) {
             fragmentListener.onPlayerError(error);
         }
     }
@@ -2583,10 +2584,10 @@ public final class Player implements
             // Inform the user that we are reloading the stream by switching to the buffering state
             onBuffering();
             return true;
-        } else {
-            playQueue.error();
-            return false;
         }
+
+        playQueue.error();
+        return false;
     }
     //endregion
 
