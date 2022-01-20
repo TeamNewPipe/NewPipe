@@ -12,7 +12,9 @@ import org.schabi.newpipe.database.AppDatabase
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry
 import org.schabi.newpipe.testUtil.TestDatabase
 import org.schabi.newpipe.testUtil.TrampolineSchedulerRule
+import java.time.LocalDateTime
 import java.time.OffsetDateTime
+import java.time.ZoneOffset
 import java.util.concurrent.TimeUnit
 
 class HistoryRecordManagerTest {
@@ -53,12 +55,11 @@ class HistoryRecordManagerTest {
 
     @Test
     fun deleteSearchHistory() {
-        val now = OffsetDateTime.now()
         val entries = listOf(
-            SearchHistoryEntry(now.minusSeconds(1), 0, "A"),
-            SearchHistoryEntry(now.minusSeconds(2), 2, "A"),
-            SearchHistoryEntry(now.minusSeconds(3), 1, "B"),
-            SearchHistoryEntry(now.minusSeconds(4), 0, "B"),
+            SearchHistoryEntry(time.minusSeconds(1), 0, "A"),
+            SearchHistoryEntry(time.minusSeconds(2), 2, "A"),
+            SearchHistoryEntry(time.minusSeconds(3), 1, "B"),
+            SearchHistoryEntry(time.minusSeconds(4), 0, "B"),
         )
 
         // make sure all 4 were inserted
@@ -87,9 +88,9 @@ class HistoryRecordManagerTest {
     @Test
     fun deleteCompleteSearchHistory() {
         val entries = listOf(
-            SearchHistoryEntry(OffsetDateTime.now(), 1, "A"),
-            SearchHistoryEntry(OffsetDateTime.now(), 2, "B"),
-            SearchHistoryEntry(OffsetDateTime.now(), 0, "C"),
+            SearchHistoryEntry(time.minusSeconds(1), 1, "A"),
+            SearchHistoryEntry(time.minusSeconds(2), 2, "B"),
+            SearchHistoryEntry(time.minusSeconds(3), 0, "C"),
         )
 
         // make sure all 3 were inserted
@@ -143,14 +144,16 @@ class HistoryRecordManagerTest {
     }
 
     companion object {
-        val RELATED_SEARCHES_ENTRIES = listOf(
-            SearchHistoryEntry(OffsetDateTime.now().minusSeconds(7), 2, "AC"),
-            SearchHistoryEntry(OffsetDateTime.now().minusSeconds(6), 0, "ABC"),
-            SearchHistoryEntry(OffsetDateTime.now().minusSeconds(5), 1, "BA"),
-            SearchHistoryEntry(OffsetDateTime.now().minusSeconds(4), 3, "A"),
-            SearchHistoryEntry(OffsetDateTime.now().minusSeconds(2), 0, "B"),
-            SearchHistoryEntry(OffsetDateTime.now().minusSeconds(3), 2, "AA"),
-            SearchHistoryEntry(OffsetDateTime.now().minusSeconds(1), 1, "A"),
+        private val time = OffsetDateTime.of(LocalDateTime.of(2000, 1, 1, 1, 1), ZoneOffset.UTC)
+
+        private val RELATED_SEARCHES_ENTRIES = listOf(
+            SearchHistoryEntry(time.minusSeconds(7), 2, "AC"),
+            SearchHistoryEntry(time.minusSeconds(6), 0, "ABC"),
+            SearchHistoryEntry(time.minusSeconds(5), 1, "BA"),
+            SearchHistoryEntry(time.minusSeconds(4), 3, "A"),
+            SearchHistoryEntry(time.minusSeconds(2), 0, "B"),
+            SearchHistoryEntry(time.minusSeconds(3), 2, "AA"),
+            SearchHistoryEntry(time.minusSeconds(1), 1, "A"),
         )
     }
 }
