@@ -24,7 +24,7 @@ class HistoryRecordManagerTest {
     val trampolineScheduler = TrampolineSchedulerRule()
 
     @get:Rule
-    val timeout = Timeout(1, TimeUnit.SECONDS)
+    val timeout = Timeout(10, TimeUnit.SECONDS)
 
     @Before
     fun setup() {
