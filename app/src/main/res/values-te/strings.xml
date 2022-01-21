@@ -107,7 +107,7 @@
     <string name="msg_running_detail">వివరాల కోసం నొక్కండి</string>
     <string name="msg_wait">దయచేసి వేచి ఉండండి…</string>
     <string name="msg_copied">క్లిప్బోర్డ్కు కాపీ చేయబడింది</string>
-    <string name="no_available_dir">దయచేసి అందుబాటులో ఉన్న డౌన్లోడ్ ఫోల్డర్ను ఎంచుకోండి</string>
+    <string name="no_available_dir">డౌన్లోడ్ ఫోల్డర్ను అమరికలలో తరువాత ఎంచుకోండి</string>
     <string name="settings_category_downloads_title">డౌన్లోడ్</string>
     <string name="settings_file_charset_title">ఫైల్ పేర్లలో అనుమతించిన అక్షరాలు</string>
     <string name="settings_file_replacement_character_summary">చెల్లని అక్షరాలు ఈ విలువతో భర్తీ చేయబడతాయి</string>
@@ -129,7 +129,7 @@
     <string name="blank_page_summary">ఖాళీ పేజీ</string>
     <string name="channel_page_summary">ఛానెల్ పేజీ</string>
     <string name="select_a_channel">ఛానెల్ని ఎంచుకోండి</string>
-    <string name="no_channel_subscribed_yet">ఇంకా ఛానెల్ ఏదీ చందా చేయలేదు</string>
+    <string name="no_channel_subscribed_yet">ఇంకా ఏ ఛానెల్ సభ్యత్వం లేదు</string>
     <string name="trending">ట్రెండింగ్</string>
     <string name="top_50">టాప్ 50</string>
     <string name="new_and_hot">క్రొత్తది మరియు వేడి</string>
@@ -289,7 +289,7 @@
     <string name="delete_view_history_alert">మొత్తం వీక్షణ చరిత్రను తొలగించాలా\?</string>
     <string name="clear_playback_states_title">ప్లేబ్యాక్ స్థానాలను తొలగించండి</string>
     <string name="download_to_sdcard_error_title">బాహ్య నిల్వ అందుబాటులో లేదు</string>
-    <string name="app_ui_crash">యాప్/UI క్రాష్ అయింది</string>
+    <string name="app_ui_crash">యాప్/UI విఫలమైనది</string>
     <string name="audio_streams_empty">ఆడియో స్ట్రీమ్‌లు ఏవీ కనుగొనబడలేదు</string>
     <string name="invalid_directory">అటువంటి ఫోల్డర్ లేదు</string>
     <string name="permission_display_over_apps">ఇతర యాప్‌లలో ప్రదర్శించడానికి అనుమతి ఇవ్వండి</string>
@@ -410,4 +410,17 @@
     <string name="video_player">చలనచిత్ర ప్లేయర్</string>
     <string name="background_player">తేలియాడే ప్లేయర్</string>
     <string name="processing_may_take_a_moment">ప్రాసెస్ చేస్తోంది... కొంత సమయం పట్టవచ్చు</string>
+    <string name="playlist_thumbnail_change_success">వినోదజాబితా సూక్ష్మచిత్రం మార్చబడింది.</string>
+    <string name="caption_none">శీర్షికలు లేవు</string>
+    <string name="playlist_creation_success">వినోదజాబితా రూపొందించబడింది</string>
+    <string name="playlist_add_stream_success">వినోదజాబితా చేయబడింది</string>
+    <string name="unmute">అన్‌మ్యూట్ చేయండి</string>
+    <string name="set_as_playlist_thumbnail">వినోదజాబితాకు సూక్ష్మచిత్రంగా మార్చుము</string>
+    <string name="bookmark_playlist">వినోదజాబితాను ఇష్టంశంగా మార్చుము</string>
+    <string name="unbookmark_playlist">ఇష్టంశాన్ని తొలగించండి</string>
+    <string name="delete_playlist_prompt">ఇష్టంశాన్ని నాశనం చేయాలా\?</string>
+    <string name="resize_fit">తగినది</string>
+    <string name="resize_fill">పూరించండి</string>
+    <string name="resize_zoom">పరివీక్షణ</string>
+    <string name="switch_to_popup">తేలియాడే విధంగా మార్చు</string>
 </resources>
