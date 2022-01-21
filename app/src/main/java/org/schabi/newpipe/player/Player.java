@@ -603,17 +603,25 @@ public final class Player implements
                     public FastSeekDirection getFastSeekDirection(
                             @NonNull final DisplayPortion portion
                     ) {
-                        // Null indicates an invalid area or condition e.g. the middle portion
-                        // or video start or end was reached during double tap seeking
-                        if (invalidSeekConditions()) {
+                        if (exoPlayerIsNull()) {
+                            // Abort seeking
                             playerGestureListener.endMultiDoubleTap();
                             return FastSeekDirection.NONE;
                         }
-                        if (portion == DisplayPortion.LEFT
-                                // Small puffer to eliminate infinite rewind seeking
-                                && simpleExoPlayer.getCurrentPosition() > 500L) {
+                        if (portion == DisplayPortion.LEFT) {
+                            // Check if we can rewind
+                            // Small puffer to eliminate infinite rewind seeking
+                            if (simpleExoPlayer.getCurrentPosition() < 500L) {
+                                return FastSeekDirection.NONE;
+                            }
                             return FastSeekDirection.BACKWARD;
                         } else if (portion == DisplayPortion.RIGHT) {
+                            // Check if the can fast-forward
+                            if (currentState == STATE_COMPLETED
+                                    || simpleExoPlayer.getCurrentPosition()
+                                    >= simpleExoPlayer.getDuration()) {
+                                return FastSeekDirection.NONE;
+                            }
                             return FastSeekDirection.FORWARD;
                         }
                         /* portion == DisplayPortion.MIDDLE */
@@ -628,14 +636,6 @@ public final class Player implements
                         } else {
                             fastRewind();
                         }
-                    }
-
-                    private boolean invalidSeekConditions() {
-                        return exoPlayerIsNull()
-                            || simpleExoPlayer.getPlaybackState()
-                                == com.google.android.exoplayer2.Player.STATE_ENDED
-                            || simpleExoPlayer.getCurrentPosition() >= simpleExoPlayer.getDuration()
-                            || currentState == STATE_COMPLETED;
                     }
                 });
         playerGestureListener.doubleTapControls(binding.fastSeekOverlay);
