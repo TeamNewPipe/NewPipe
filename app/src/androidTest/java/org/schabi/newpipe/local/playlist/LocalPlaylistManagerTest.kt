@@ -20,9 +20,6 @@ class LocalPlaylistManagerTest {
     @get:Rule
     val trampolineScheduler = TrampolineSchedulerRule()
 
-    @get:Rule
-    val timeout = Timeout(1, TimeUnit.SECONDS)
-
     @Before
     fun setup() {
         database = TestDatabase.createReplacingNewPipeDatabase()
