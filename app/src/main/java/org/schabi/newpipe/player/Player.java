@@ -609,14 +609,14 @@ public final class Player implements
                             return FastSeekDirection.NONE;
                         }
                         if (portion == DisplayPortion.LEFT) {
-                            // Check if we can rewind
+                            // Check if it's possible to rewind
                             // Small puffer to eliminate infinite rewind seeking
                             if (simpleExoPlayer.getCurrentPosition() < 500L) {
                                 return FastSeekDirection.NONE;
                             }
                             return FastSeekDirection.BACKWARD;
                         } else if (portion == DisplayPortion.RIGHT) {
-                            // Check if the can fast-forward
+                            // Check if it's possible to fast-forward
                             if (currentState == STATE_COMPLETED
                                     || simpleExoPlayer.getCurrentPosition()
                                     >= simpleExoPlayer.getDuration()) {
