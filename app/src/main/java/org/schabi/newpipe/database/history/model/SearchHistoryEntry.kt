@@ -12,11 +12,11 @@ import java.time.OffsetDateTime
     indices = [Index(value = [SearchHistoryEntry.SEARCH])]
 )
 data class SearchHistoryEntry(
-    @field:ColumnInfo(name = CREATION_DATE) var creationDate: OffsetDateTime,
+    @field:ColumnInfo(name = CREATION_DATE) var creationDate: OffsetDateTime?,
     @field:ColumnInfo(
         name = SERVICE_ID
     ) var serviceId: Int,
-    @field:ColumnInfo(name = SEARCH) var search: String
+    @field:ColumnInfo(name = SEARCH) var search: String?
 ) {
     @ColumnInfo(name = ID)
     @PrimaryKey(autoGenerate = true)
