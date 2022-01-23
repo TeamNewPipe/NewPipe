@@ -264,8 +264,9 @@
         android:layout_alignParentBottom="true"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layoutDirection="ltr">
 
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/current_time"
@@ -305,8 +306,8 @@
             android:layout_height="match_parent"
             android:background="?attr/selectableItemBackground"
             android:gravity="center"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
             android:text="@string/duration_live"
             android:textAllCaps="true"
             android:textColor="?attr/colorAccent"
