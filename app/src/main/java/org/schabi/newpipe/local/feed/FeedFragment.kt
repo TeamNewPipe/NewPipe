@@ -271,7 +271,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     override fun onDestroyView() {
         // Ensure that all animations are canceled
-        feedBinding.newItemsLoadedButton?.clearAnimation()
+        tryGetNewItemsLoadedButton()?.clearAnimation()
 
         feedBinding.itemsList.adapter = null
         _feedBinding = null

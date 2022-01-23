@@ -52,6 +52,7 @@ jobs:
   test-android:
     # macos has hardware acceleration. See android-emulator-runner action
     runs-on: macos-latest
+    timeout-minutes: 20
     strategy:
       matrix:
         # api-level 19 is min sdk, but throws errors related to desugaring
