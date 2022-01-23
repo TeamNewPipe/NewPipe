@@ -669,8 +669,6 @@
     <string name="manual_update_title">Se etter oppdateringer</string>
     <string name="processing_may_take_a_moment">Behandler … Kan ta sin tid</string>
     <string name="crash_the_player">Krasj avspilleren</string>
-    <string name="report_player_errors_title">Rapporter avspillerfeil</string>
-    <string name="report_player_errors_summary">Sirlig rapportering av feil, istedenfor å kun vise et lite oppsprett en stund (nyttig i avlusningsøyemed)</string>
     <string name="show_crash_the_player_title">Vis «Krasj spilleren»</string>
     <string name="manual_update_description">Se etter nye versjoner manuelt</string>
     <string name="feed_new_items">Nye informasjonskanalelementer</string>

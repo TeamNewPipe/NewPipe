@@ -661,9 +661,7 @@
     <string name="manual_update_description">手動檢查新版本</string>
     <string name="checking_updates_toast">正在檢查更新……</string>
     <string name="feed_new_items">新 feed 項目</string>
-    <string name="report_player_errors_title">回報播放器錯誤</string>
     <string name="crash_the_player">播放器當機</string>
-    <string name="report_player_errors_summary">完整回報播放器錯誤，而非顯示短暫的 toast 訊息（用於診斷問題）</string>
     <string name="show_crash_the_player_title">顯示「播放器當機」</string>
     <string name="show_crash_the_player_summary">使用播放器時顯示當機選項</string>
     <string name="error_report_channel_name">錯誤回報通知</string>

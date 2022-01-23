@@ -674,8 +674,6 @@
     <string name="checking_updates_toast">A procurar atualizações…</string>
     <string name="feed_new_items">Novos itens</string>
     <string name="crash_the_player">Travar o reprodutor</string>
-    <string name="report_player_errors_summary">Relata os erros do reprodutor com todos os detalhes em vez de mostrar uma mensagem de notificação por pouco tempo (útil para diagnosticar problemas)</string>
-    <string name="report_player_errors_title">Relatar erros do reprodutor</string>
     <string name="show_crash_the_player_title">Mostrar \"travar o reprodutor\"</string>
     <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o reprodutor</string>
     <string name="error_report_channel_name">Notificação de relatório de erros</string>

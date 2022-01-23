@@ -674,10 +674,8 @@
     <string name="checking_updates_toast">Söker efter uppdateringar…</string>
     <string name="feed_new_items">Nya flödes objekt</string>
     <string name="show_crash_the_player_title">Visa \"krascha spelaren\"</string>
-    <string name="report_player_errors_title">Rapportera spelarfel</string>
     <string name="crash_the_player">Krascha spelaren</string>
     <string name="show_crash_the_player_summary">Visar ett kraschalternativ vid användning av spelaren</string>
-    <string name="report_player_errors_summary">Rapporterar spelarfel i detalj i stället för att visa ett kortvarigt popup-meddelande (användbart för att diagnostisera problem)</string>
     <string name="error_report_channel_name">Felrapport-avisering</string>
     <string name="error_report_channel_description">Avisering för att rapportera fel</string>
     <string name="error_report_notification_title">NewPipe stötte på ett fel, tryck för att rapportera</string>

@@ -198,9 +198,7 @@
     <string name="peertube_instance_add_https_only">HTTPS URLలకు మాత్రమే మద్దతు ఉంది</string>
     <string name="notification_action_1_title">రెండవ చర్య బటన్</string>
     <string name="notification_action_3_title">నాల్గవ చర్య బటన్</string>
-    <string name="report_player_errors_summary">స్వల్పకాలిక టోస్ట్ సందేశాన్ని చూపించే బదులు పూర్తి వివరాలతో ప్లేయర్ లోపాలను నివేదిస్తుంది (సమస్యలను నిర్ధారించడానికి ఉపయోగపడుతుంది)</string>
     <string name="crash_the_player">ప్లేయర్ క్రాష్ చేయండి</string>
-    <string name="report_player_errors_title">ప్లేయర్ లోపాలను నివేదించండి</string>
     <string name="notification_action_0_title">మొదటి చర్య బటన్</string>
     <string name="notification_action_4_title">ఐదవ చర్య బటన్</string>
     <string name="notification_actions_at_most_three">మీరు కాంపాక్ట్ నోటిఫికేషన్‌లో చూపడానికి గరిష్టంగా మూడు చర్యలను ఎంచుకోవచ్చు!</string>

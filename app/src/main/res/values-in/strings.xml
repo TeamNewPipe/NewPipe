@@ -663,8 +663,6 @@
     <string name="feed_new_items">Item feed baru</string>
     <string name="show_crash_the_player_title">Tampilkan \"hentikan pemain video\"</string>
     <string name="show_crash_the_player_summary">Menampilkan opsi penghentian ketika menggunakan pemain video</string>
-    <string name="report_player_errors_summary">Melaporkan kesalahan pemain video dalam detail yang penuh daripada menampilkan pesan toast yang muncul sebentar (berguna untuk memeriksa masalah)</string>
-    <string name="report_player_errors_title">Laporkan kesalahan pemain video</string>
     <string name="crash_the_player">Hentikan pemain video</string>
     <string name="error_report_channel_description">Notifikasi untuk melaporkan kegalatan</string>
     <string name="error_report_channel_name">Notifikasi laporan kegalatan</string>

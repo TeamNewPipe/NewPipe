@@ -668,10 +668,8 @@
     <string name="main_page_content_swipe_remove">Veeg items om ze te verwijderen</string>
     <string name="start_main_player_fullscreen_summary">Start geen video\'s in de minispeler, maar ga direct naar de volledige schermmodus, als automatisch draaien is vergrendeld. Je hebt nog steeds toegang tot de minispeler door de volledige schermmodus af te sluiten</string>
     <string name="start_main_player_fullscreen_title">Start hoofdspeler als volledig scherm</string>
-    <string name="report_player_errors_summary">Rapporteer fouten van de speler in volledig detail in plaats van een kortstondige toastmelding te tonen (handig voor het diagnosticeren van problemen)</string>
     <string name="processing_may_take_a_moment">Verwerken... Dit kan even duren</string>
     <string name="crash_the_player">Crash de speler</string>
-    <string name="report_player_errors_title">Rapporteer fouten van de speler</string>
     <string name="show_crash_the_player_title">Toon \"crash de speler\"</string>
     <string name="show_crash_the_player_summary">Toon een crash overzicht bij gebruik van de speler</string>
     <string name="manual_update_description">Controleer handmatig op nieuwe versies</string>

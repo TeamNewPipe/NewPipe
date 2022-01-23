@@ -675,8 +675,6 @@
     <string name="feed_new_items">Νέα αντικείμενα τροφοδοσίας</string>
     <string name="show_crash_the_player_title">Εμφάνιση «κατάρρευσης αναπαραγωγέα»</string>
     <string name="show_crash_the_player_summary">Εμφανίζει μια επιλογή κατάρρευσης κατά τη χρήση του αναπαραγωγέα</string>
-    <string name="report_player_errors_title">Αναφορά σφαλμάτων αναπαραγωγέα</string>
-    <string name="report_player_errors_summary">Αναφορά σφαλμάτων αναπαραγωγέα με λεπτομέρειες αντί για ένα σύντομο μήνυμα (χρήσιμο για διάγνωση προβλημάτων)</string>
     <string name="crash_the_player">Κατάρρευση αναπαραγωγέα</string>
     <string name="error_report_channel_name">Ειδοποίηση αναφοράς σφάλματος</string>
     <string name="error_report_channel_description">Ειδοποιήσεις για την αναφορά σφαλμάτων</string>

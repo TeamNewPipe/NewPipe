@@ -673,9 +673,7 @@
     <string name="manual_update_description">Verifica manualmente la presenza di nuove versioni</string>
     <string name="checking_updates_toast">Controllo aggiornamenti…</string>
     <string name="feed_new_items">Nuovi elementi feed</string>
-    <string name="report_player_errors_title">Segnala errori del lettore multimediale</string>
     <string name="show_crash_the_player_summary">Quando il lettore multimediale è in uso, mostra un\'opzione per farlo crashare</string>
-    <string name="report_player_errors_summary">Invece di mostrare un messaggio popup di breve durata, gli errori del lettore multimediale saranno visualizzati in modo dettagliato (utile per diagnosticare i problemi)</string>
     <string name="show_crash_the_player_title">Mostra \"Fai crashare il lettore\"</string>
     <string name="crash_the_player">Fai crashare il lettore</string>
     <string name="error_report_notification_title">NewPipe ha riscontrato un errore, tocca per segnalarlo</string>

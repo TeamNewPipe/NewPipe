@@ -721,11 +721,9 @@
     <string name="manual_update_description">التحقق يدويا من وجود إصدارات جديدة</string>
     <string name="checking_updates_toast">جاري التحقق من وجود تحديثات…</string>
     <string name="feed_new_items">عناصر تغذية جديدة</string>
-    <string name="report_player_errors_title">الإبلاغ عن أخطاء المشغل</string>
     <string name="show_crash_the_player_summary">إظهار خيار تعطل عند استخدام المشغل</string>
     <string name="show_crash_the_player_title">إظهار \"تعطل المشغل\"</string>
     <string name="crash_the_player">تحطيم المشغل</string>
-    <string name="report_player_errors_summary">رفع تقرير لأخطاء المشغل بالتفصيل الكامل بدلا من إظهار رسالة اشعار قصيرة الأجل (مفيدة لتشخيص المشاكل)</string>
     <string name="error_report_channel_name">إشعار الإبلاغ عن الأخطاء</string>
     <string name="error_report_channel_description">التنبيهات المتعلقة بالإبلاغ عن الأخطاء</string>
     <string name="error_report_notification_title">واجه NewPipe خطأ، اضغط للتقرير</string>

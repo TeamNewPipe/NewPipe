@@ -675,8 +675,6 @@
     <string name="checking_updates_toast">Vérification des mises à jour…</string>
     <string name="manual_update_title">Vérifier les mises à jours</string>
     <string name="feed_new_items">Nouveaux éléments du flux</string>
-    <string name="report_player_errors_summary">Signaler les erreurs du lecteur de manière détaillée au lieu de montrer un bref message éphémère (utile pour diagnostiquer les problèmes)</string>
-    <string name="report_player_errors_title">Signaler les erreurs du lecteur</string>
     <string name="crash_the_player">Faire planter le lecteur</string>
     <string name="show_crash_the_player_title">Afficher « Faire planter le lecteur »</string>
     <string name="show_crash_the_player_summary">Montrer une option de plantage lors de l\'utilisation du lecteur</string>

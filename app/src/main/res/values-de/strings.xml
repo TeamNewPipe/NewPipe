@@ -675,9 +675,7 @@
     <string name="feed_new_items">Neue Feed-Elemente</string>
     <string name="show_crash_the_player_title">\"Absturz des Players\" anzeigen</string>
     <string name="crash_the_player">Absturz des Players</string>
-    <string name="report_player_errors_summary">Meldet Playerfehler mit allen Details, anstatt eine kurzlebige Popupmeldung anzuzeigen (nützlich für die Diagnose von Problemen)</string>
     <string name="show_crash_the_player_summary">Zeigt eine Absturzoption an, wenn der Player verwendet wird</string>
-    <string name="report_player_errors_title">Playerfehler melden</string>
     <string name="error_report_channel_name">Benachrichtigung über Fehlerberichte</string>
     <string name="error_report_channel_description">Benachrichtigungen zur Meldung von Fehlern</string>
     <string name="error_report_notification_title">Bei NewPipe ist ein Fehler aufgetreten. Zum Melden antippen</string>

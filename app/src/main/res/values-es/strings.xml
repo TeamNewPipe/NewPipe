@@ -677,9 +677,7 @@
     <string name="checking_updates_toast">Buscando actualizaciones…</string>
     <string name="feed_new_items">Nuevos elementos en el muro</string>
     <string name="crash_the_player">Cerrar abruptamente el reproductor</string>
-    <string name="report_player_errors_title">Informar de errores del reproductor</string>
     <string name="show_crash_the_player_summary">Muestra una opción de cierre abrupto al usar el reproductor</string>
-    <string name="report_player_errors_summary">Informar de errores del reproductor con detalle en lugar de mostrar un mensaje emergente efímero (útil para diagnosticar problemas)</string>
     <string name="show_crash_the_player_title">Mostrar \"Cerrar abruptamente el reproductor\"</string>
     <string name="error_report_channel_description">Notificaciones para informar errores</string>
     <string name="error_report_channel_name">Notificación de informe de errores</string>

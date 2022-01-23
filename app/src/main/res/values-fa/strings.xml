@@ -674,9 +674,7 @@
     <string name="checking_updates_toast">بررسی کردن به‌روز رسانی‌ها…</string>
     <string name="feed_new_items">موارد خوراک جدید</string>
     <string name="crash_the_player">فروپاشی پخش‌کننده</string>
-    <string name="report_player_errors_title">گزارش خطاهای پخش کننده</string>
     <string name="show_crash_the_player_summary">نمایش یک گزینهٔ فروپاشی هنگام استفاده از پخش کننده</string>
-    <string name="report_player_errors_summary">گزارش خطاهای پخش کننده با جزییات کامل به جای نشان دادن پیامی با عمر کوتاه (مناسب برای تشخیص مشکلات)</string>
     <string name="show_crash_the_player_title">نمایش «فروپاشی پخش کننده»</string>
     <string name="no_appropriate_file_manager_message">مدیر پروندهٔ مناسبی برای این کنش یافت نشد.
 \nلطفاً مدیر پرونده‌ای نصب کرده یا در تنظیمات بارگیری، «%s» را خاموش کنید.</string>

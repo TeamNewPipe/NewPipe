@@ -690,9 +690,7 @@
     <string name="feed_new_items">Нові записи стрічки</string>
     <string name="show_crash_the_player_title">Показати «збій програвача»</string>
     <string name="show_crash_the_player_summary">Показує параметр збою під час використання програвача</string>
-    <string name="report_player_errors_title">Повідомити про помилки програвача</string>
     <string name="crash_the_player">Збій програвача</string>
-    <string name="report_player_errors_summary">Повне повідомлення про помилки програвача замість, короткого звіту (корисно для діагностики проблем)</string>
     <string name="error_report_channel_name">Сповіщення про звіт про помилку</string>
     <string name="error_report_channel_description">Сповіщення для звітів про помилки</string>
     <string name="error_report_notification_title">Сталася помилка NewPipe, торкніться, щоб звітувати</string>

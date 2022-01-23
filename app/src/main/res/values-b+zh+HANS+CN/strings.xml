@@ -661,11 +661,9 @@
     <string name="checking_updates_toast">检查更新中…</string>
     <string name="manual_update_title">检查更新</string>
     <string name="feed_new_items">新订阅源条目</string>
-    <string name="report_player_errors_summary">完整报告播放器错误，而不是弹出一个临时Toast（对诊断应用很有用）</string>
     <string name="show_crash_the_player_title">显示\"使播放器崩溃\"</string>
     <string name="show_crash_the_player_summary">在使用播放器时显示一个崩溃选项</string>
     <string name="crash_the_player">使播放器崩溃</string>
-    <string name="report_player_errors_title">报告播放器错误</string>
     <string name="error_report_channel_name">错误报告通知</string>
     <string name="error_report_channel_description">提示报告错误的通知</string>
     <string name="error_report_notification_toast">发生错误，详见通知</string>
