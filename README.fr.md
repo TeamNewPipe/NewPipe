@@ -13,7 +13,7 @@
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
-<p align="center"><a href="#captures-d'écran">Captures d'écran</a> &bull; <a href="#description">Description</a> &bull; <a href="#fonctionnalités">Fonctionnalités</a> &bull; <a href="#installation-et-mise-à-jour">Installation et mise à jour</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donation">Donation</a> &bull; <a href="#license">License</a></p>
+<p align="center"><a href="#captures-décran">Captures d'écran</a> &bull; <a href="#description">Description</a> &bull; <a href="#fonctionnalités">Fonctionnalités</a> &bull; <a href="#installation-et-mise-à-jour">Installation et mise à jour</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donation">Donation</a> &bull; <a href="#license">License</a></p>
 <p align="center"><a href="https://newpipe.net">Site Internet</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Presse</a></p>
 <hr>
 
