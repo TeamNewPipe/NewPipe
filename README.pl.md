@@ -40,7 +40,7 @@
 
 ## Opis
 
-NewPipe nie używa żadnych bibliotek Google, ani API YouTube. Strony są jedynie analizowane aby zdobyć wymagane informacje, dzięki czemu ta aplikacja może być zainstalowana na urządzeniach bez Usług Google Play. Konto YouTube nie jest wymagane aby używać NewPipe, które jest wolnym oprogramowaniem copyleft.
+NewPipe nie używa żadnych bibliotek Google ani API YouTube. Strony są jedynie analizowane aby zdobyć wymagane informacje, dzięki czemu ta aplikacja może zostać zainstalowana na urządzeniach bez Usług Google Play. Konto YouTube nie jest wymagane aby używać NewPipe, które jest wolnym oprogramowaniem copyleft.
 
 ### Funkcje
 
