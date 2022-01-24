@@ -75,7 +75,7 @@ NewPipe nie używa żadnych bibliotek Google, ani API YouTube. Strony są jedyni
 
 ### Wspierane usługi
 
-NewPipe wspiera wiele usług. Nasza [dokumentacja](https://teamnewpipe.github.io/documentation/) dostarcza więcej informacji o tym jak nowe usługi mogą zostać dodane do aplikacji i extractora. Please get in touch with us if you intend to add a new one. Obecnie wspierane usługi to:
+NewPipe wspiera wiele usług. Nasza [dokumentacja](https://teamnewpipe.github.io/documentation/) dostarcza więcej informacji o tym jak nowe usługi mogą zostać dodane do aplikacji i extractora. Proszę skontaktuj się z nami jeśli masz zamiar dodać jakąś nową usługę. Obecnie wspierane usługi to:
 
 * YouTube
 * SoundCloud \[beta\]
@@ -93,26 +93,26 @@ Możesz zainstalować NewPipe za pomocą tych metod:
  3. Zaktualizuj poprzez F-Droid. Jest to najwolniejsza metoda aktualizacji, ponieważ F-Droid musi rozpoznać zmiany, zbudować APK, podpisać go i dopiero wypuścić aktualizację do użytkowników.
  4. Zbuduj debug APK samemu. Jest to najszybszy sposób na zdobycie najnowszych funkcji, ale jest to o wiele, wiele bardziej skomplikowane, dlatego rekomendujemy używania jednej z powyższych metod.
 
-We recommend method 1 for most users. APKs installed using method 1 or 2 are compatible with each other, but not with those installed using method 3. This is due to the same signing key (ours) being used for 1 and 2, but a different signing key (F-Droid's) being used for 3. Building a debug APK using method 4 excludes a key entirely. Signing keys help ensure that a user isn't tricked into installing a malicious update to an app.
+Dla większości użytkowników rekomendujemy metodę 1. Pliki APK zainstalowane za pomocą metod 1 lub 2 są ze sobą kompatybilne, lecz nie są z tymi zainstalowanymi metodą 3. Dzieje się tak ponieważ ten sam (nasz) klucz jest używany do podpisania APK z metod 1 i 2, ale APK z metody 3 podpisany jest innym kluczem (F-Droid). Budowanie debuk APK z metody 4 nie uwzględnia klucza. Klucze podpisu zapewniają, że użytkownik omylnie nie zainstaluje złośliwej aktualizacji żadnej aplikacji.
 
-In the meanwhile, if you want to switch sources for some reason (e.g. NewPipe's core functionality breaks and F-Droid doesn't have the latest update yet), we recommend following this procedure:
-1. Back up your data via Settings > Content > Export Database so you keep your history, subscriptions, and playlists
-2. Uninstall NewPipe
-3. Download the APK from the new source and install it
-4. Import the data from step 1 via Settings > Content > Import Database
+W międzyczasie, jeśli z jakiegoś powodu chcesz zmienić źródło (np. rdzenna funkcjonalność NewPipe psuje się a F-Droid nie ma jeszcze najnowszej aktualizacji), rekomendujemy użyć następującej procedury:
+1. Zrób kopię danych wchodząc w Ustawienia > Zawartość > Eksportuj dane dzięki czemu zachowasz swoją historię, subskrypcje i playlisty
+2. Odinstaluj NewPipe
+3. Pobierz APK z nowego źródła i zainstaluj go
+4. Przywróć dane z kroku 1 wchodząc w Ustawienia > Zawartość > Importuj dane
 
 ## Wkład
-Whether you have ideas, translations, design changes, code cleaning, or real heavy code changes, help is always welcome.
-The more is done the better it gets!
+Jeśli masz jakieś pomysły, tłumaczenia, zmiany designu, oczyszczony kod, lub wielkie zmiany w kodzie, pomoc jest zawsze mile widziana.
+Im więcej jest zrobione, tym lepsza staje się aplikacja!
 
-If you'd like to get involved, check our [contribution notes](.github/CONTRIBUTING.md).
+Jeśli chcesz pomóc, przeczytaj [Notkę o wkładzie](.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />
 </a>
 
 ## Wesprzyj
-If you like NewPipe we'd be happy about a donation. You can either send bitcoin or donate via Bountysource or Liberapay. For further info on donating to NewPipe, please visit our [website](https://newpipe.net/donate).
+Jeśli podoba Ci się NewPipe, bardzo ucieszylibyśmy się z dotacji. Możesz wysłać bitcoin lub przekazać darowiznę przez Bountysource lub Liberapay. Po więcej informacji o darowiznach dla NewPipe, proszę zobacz naszą [stronę](https://newpipe.net/donate).
 
 <table>
   <tr>
@@ -140,8 +140,8 @@ Dlatego też, ta aplikacja nie zbiera żadnych informacji bez twojej zgody. Poli
 ## Licencja
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
-NewPipe to wolne oprogramowanie: You can use, study share and improve it at your
-will. Specifically you can redistribute and/or modify it under the terms of the
-[GNU General Public License](https://www.gnu.org/licenses/gpl.html) as
-published by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.  
+NewPipe to wolne oprogramowanie: Możesz używać, uczyć się, udostępniać i ulepszać je do woli. 
+Możesz udostępniać i/lub modyfikować je na zasadach licencji
+[GNU General Public License](https://www.gnu.org/licenses/gpl.html) 
+publikowaną przez Free Software Foundation, wersję 3 Licencji, lub
+(twój wybór) każdną nowszą wersję.  
