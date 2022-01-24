@@ -84,9 +84,6 @@ NewPipe supporte plusieurs services. Notre [documentation](https://teamnewpipe.g
 * Les instances PeerTube \[bêta\]
 * Bandcamp \[bêta\]
 
-<!-- Hidden span to keep old links compatible. -->
-<span id="updates"></span>
-
 ## Installation et mise à jour
 Vous pouvez installer NewPipe en utilisant l'une de ces méthodes :
  1. Ajoutez notre repository à F-Droid et installez l'application de là. Les instructions sont ici : https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
