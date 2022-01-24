@@ -63,7 +63,6 @@
     <string name="app_ui_crash">Збій застосунку/інтерфейсу</string>
     <string name="your_comment">Ваш коментар (англійською):</string>
     <string name="error_details_headline">Деталі:</string>
-    <string name="list_thumbnail_view_description">Зображення відео перед його переглядом</string>
     <string name="detail_thumbnail_view_description">Відтворити відео, тривалість:</string>
     <string name="video">Відео</string>
     <string name="audio">Аудіо</string>

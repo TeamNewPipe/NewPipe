@@ -444,7 +444,6 @@
     <string name="feed_update_threshold_summary">Tempo após a última atualização antes de a subscrição ser considerada desatualizada - %s</string>
     <string name="search">Pesquisar</string>
     <string name="settings_category_updates_title">Atualizações</string>
-    <string name="list_thumbnail_view_description">Miniatura do vídeo</string>
     <string name="updates_setting_title">Atualizações</string>
     <string name="start_downloads">Iniciar transferências</string>
     <string name="enable_search_history_summary">Guardar termos de pesquisa localmente</string>

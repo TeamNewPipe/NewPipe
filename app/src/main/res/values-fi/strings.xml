@@ -95,7 +95,6 @@
     <string name="what_happened_headline">Mitä tapahtui:</string>
     <string name="your_comment">Sinun viesti (englanniksi):</string>
     <string name="error_details_headline">Yksityiskohdat:</string>
-    <string name="list_thumbnail_view_description">Videon esikatselukuva</string>
     <string name="detail_thumbnail_view_description">Toista video, kesto:</string>
     <string name="detail_uploader_thumbnail_view_description">Lataajan hahmokuvake</string>
     <string name="detail_likes_img_view_description">Tykkäykset</string>

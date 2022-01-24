@@ -105,7 +105,6 @@
     <string name="player_recoverable_failure">מתבצעת החלמה משגיאת נגן</string>
     <string name="your_comment">ההערה שלך (באנגלית):</string>
     <string name="error_details_headline">פרטים:</string>
-    <string name="list_thumbnail_view_description">תמונה ממוזערת לתצוגה המקדימה של הסרטון</string>
     <string name="detail_thumbnail_view_description">נגינת סרטון, משך:</string>
     <string name="detail_uploader_thumbnail_view_description">תמונה ייצוגית של המפרסם</string>
     <string name="detail_likes_img_view_description">אהבו</string>

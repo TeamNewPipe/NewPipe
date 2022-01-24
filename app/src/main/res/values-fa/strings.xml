@@ -58,7 +58,6 @@
     <string name="what_happened_headline">چه روی داد:</string>
     <string name="your_comment">توضیح شما (به انگلیسی):</string>
     <string name="error_details_headline">جزییات:</string>
-    <string name="list_thumbnail_view_description">بندانگشتی پیش‌نمایش ویدیو</string>
     <string name="detail_thumbnail_view_description">پخش ویدیو، مدت زمان:</string>
     <string name="detail_uploader_thumbnail_view_description">بندانگشتی کاربر بارگذاری کننده</string>
     <string name="detail_likes_img_view_description">پسندها</string>

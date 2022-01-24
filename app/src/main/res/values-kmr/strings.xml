@@ -65,7 +65,6 @@
     <string name="detail_likes_img_view_description">Evîn</string>
     <string name="detail_uploader_thumbnail_view_description">Nîgariya avatar ya barkêşker</string>
     <string name="detail_thumbnail_view_description">Vîdeo, demdirêj bilîze:</string>
-    <string name="list_thumbnail_view_description">Pêşniyara vîdyoyê wêneyê piçûk</string>
     <string name="error_details_headline">Hûrî:</string>
     <string name="your_comment">Şîroveya we (bi Îngilîzî):</string>
     <string name="info_labels">Çi:\\nRequest:\\nContent Language:\\nContent Welat:\\nApp Language:\\nService:\\nGMT Dem:\\nPackage:\\nVersion:\\nOS version:</string>

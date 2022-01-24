@@ -140,7 +140,6 @@
     <string name="info_labels">Што:\\nБарање:\\nЈазик на Содрж.:\\nУслуга:\\nGMT Час:\\nПакет:\\nВерзија:\\nВерз. на ОС:</string>
     <string name="your_comment">Ваш коментар (на Англиски):</string>
     <string name="error_details_headline">Детали:</string>
-    <string name="list_thumbnail_view_description">Сликичка за преглед на видеото</string>
     <string name="detail_thumbnail_view_description">Сликичка за преглед на видеото</string>
     <string name="detail_uploader_thumbnail_view_description">Икона од аватарот на објавителот</string>
     <string name="detail_likes_img_view_description">Допаѓања</string>

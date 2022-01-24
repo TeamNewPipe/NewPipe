@@ -171,7 +171,6 @@
     <string name="what_happened_headline">Hvad skete der:</string>
     <string name="your_comment">Din kommentar (på engelsk):</string>
     <string name="error_details_headline">Detaljer:</string>
-    <string name="list_thumbnail_view_description">Videominiaturebillede</string>
     <string name="detail_thumbnail_view_description">Videominiaturebillede</string>
     <string name="detail_uploader_thumbnail_view_description">Uploaders profilbillede</string>
     <string name="detail_likes_img_view_description">Synes godt om</string>

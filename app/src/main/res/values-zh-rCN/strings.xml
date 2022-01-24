@@ -155,7 +155,6 @@
     <string name="info_labels">详情：\\n请求：\\n内容语言：\\n服务：\\nGMT时间：\\n包：\\n版本：\\n操作系统版本：</string>
     <string name="your_comment">您的注释（请用英文）：</string>
     <string name="error_details_headline">详细信息：</string>
-    <string name="list_thumbnail_view_description">视频预览缩略图</string>
     <string name="detail_thumbnail_view_description">播放视频，时长：</string>
     <string name="detail_uploader_thumbnail_view_description">视频上传者的头像缩略图</string>
     <string name="short_billion">字节</string>

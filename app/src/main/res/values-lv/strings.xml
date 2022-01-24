@@ -153,7 +153,6 @@
     <string name="detail_likes_img_view_description">Patīk</string>
     <string name="detail_uploader_thumbnail_view_description">Autora avatāra attēls</string>
     <string name="detail_thumbnail_view_description">Atskaņot video, ilgums:</string>
-    <string name="list_thumbnail_view_description">Video priekšskatījuma attēls</string>
     <string name="error_details_headline">Detaļas:</string>
     <string name="your_comment">Jūsu komentārs (Angliski):</string>
     <string name="info_labels">Kas:\\nRequest:\\nContent Valoda:\\nContent Valsts:\\nApp Valoda:\\nService:\\nGMT Laiks:\\nPackage:\\nVersion:\\nOS versija:</string>

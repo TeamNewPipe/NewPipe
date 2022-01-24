@@ -157,9 +157,8 @@ public final class NavigationHelper {
             return;
         }
 
-        if (PlayerHolder.getInstance().getType() != PlayerType.POPUP) {
-            Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
+
         final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
         intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.POPUP.ordinal());
         ContextCompat.startForegroundService(context, intent);
@@ -168,12 +167,7 @@ public final class NavigationHelper {
     public static void playOnBackgroundPlayer(final Context context,
                                               final PlayQueue queue,
                                               final boolean resumePlayback) {
-        Toast.makeText(
-                context,
-                PlayerHolder.getInstance().getType() == PlayerType.AUDIO
-                    ? R.string.background_player_already_playing_toast
-                    : R.string.background_player_playing_toast,
-                Toast.LENGTH_SHORT)
+        Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT)
                 .show();
 
         final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);

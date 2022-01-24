@@ -313,7 +313,6 @@
     <string name="detail_likes_img_view_description">Pëlqimet</string>
     <string name="detail_uploader_thumbnail_view_description">Pamja statike e fotos së ngarkuesit</string>
     <string name="detail_thumbnail_view_description">Luaje videon, kohëzgjatja:</string>
-    <string name="list_thumbnail_view_description">Pamjet statike të parapamjes së videove</string>
     <string name="error_details_headline">Detajet:</string>
     <string name="your_comment">Komenti juaj (në Anglisht):</string>
     <string name="info_labels">Çfarë:\\nKërkesa:\\nGjuha e përmbajtjes:\\nShteti i pëmbajtjes:\\nGjuha e aplikacionit:\\nShërbimi:\\nKoha në GMT:\\nPaketa:\\nVersioni:\\nVersioni i sistemit operativ:</string>

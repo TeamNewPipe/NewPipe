@@ -37,7 +37,6 @@
     <string name="settings_category_appearance_title">Utseende</string>
     <string name="background_player_playing_toast">Spiller i bakgrunnen</string>
     <string name="network_error">Nettverksfeil</string>
-    <string name="list_thumbnail_view_description">Video-forhåndsvisning i miniatyrbilde</string>
     <string name="detail_thumbnail_view_description">Spill av video, varighet:</string>
     <string name="detail_uploader_thumbnail_view_description">Opplasterens avatar</string>
     <string name="detail_likes_img_view_description">Nikk</string>

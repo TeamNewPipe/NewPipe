@@ -458,7 +458,6 @@
     <string name="detail_drag_description">Arrastra pa reordenar</string>
     <string name="detail_uploader_thumbnail_view_description">Avatar del xubidor</string>
     <string name="detail_thumbnail_view_description">Reproducción d\'un videu, duración:</string>
-    <string name="list_thumbnail_view_description">Miniatura del videu</string>
     <string name="your_comment">Un comentariu (n\'inglés):</string>
     <string name="what_happened_headline">Qué pasó:</string>
     <string name="error_snackbar_action">Informar</string>

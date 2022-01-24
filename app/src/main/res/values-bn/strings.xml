@@ -116,7 +116,6 @@
     <string name="detail_likes_img_view_description">পছন্দ</string>
     <string name="detail_uploader_thumbnail_view_description">আপলোডারের অবয়বের প্রতিচ্ছবি</string>
     <string name="detail_thumbnail_view_description">ভিডিও চালাও, সময়ঃ</string>
-    <string name="list_thumbnail_view_description">ভিডিও প্রাকদর্শন প্রতিচ্ছবি</string>
     <string name="error_details_headline">বর্ণনা:</string>
     <string name="your_comment">তোমার মন্তব্য (ইংরেজিতে):</string>
     <string name="info_labels">কি:\\nঅনুরোধ:\\nকন্টেন্ট ভাষা:\\nসার্ভিস:\\nসময়(GMT এ):\\nপ্যাকেজ:\\nসংস্করণ:\\nওএস সংস্করণ:\\nআইপি পরিসর:</string>

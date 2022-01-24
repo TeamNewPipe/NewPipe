@@ -141,7 +141,6 @@
     <string name="info_labels">Wat:\\nVerzoek:\\nTaal van inhoud:\\nLand:\\nTaal van applicatie:\\nDienst:\\nGMT tijd:\\nPakket:\\nVersie:\\nVersie van besturingssysteem:</string>
     <string name="your_comment">Uw opmerking (in het Engels):</string>
     <string name="error_details_headline">Details:</string>
-    <string name="list_thumbnail_view_description">Videovoorbeeldminiatuur</string>
     <string name="detail_thumbnail_view_description">Speel video, tijd:</string>
     <string name="detail_uploader_thumbnail_view_description">Avatarminiatuur van uploader</string>
     <string name="detail_likes_img_view_description">Duimen</string>

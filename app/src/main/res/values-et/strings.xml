@@ -148,7 +148,6 @@
     <string name="info_labels">Mis:\\nPäring:\\nSisu keel:\\nSisu maa:\\nRakenduse keel:\\nTeenus:\\nGMT aeg:\\nPakett:\\nVersioon:\\nOS versioon:</string>
     <string name="your_comment">Oma kommentaar (inglise keeles):</string>
     <string name="error_details_headline">Üksikasjad:</string>
-    <string name="list_thumbnail_view_description">Video eelvaate pisipilt</string>
     <string name="detail_thumbnail_view_description">Esita video, kestus:</string>
     <string name="detail_uploader_thumbnail_view_description">Üleslaadiaja avatari pisipilt</string>
     <string name="detail_likes_img_view_description">Meeldib</string>

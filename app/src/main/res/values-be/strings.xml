@@ -153,7 +153,6 @@
     <string name="info_labels">Што:\\nЗапыт:\\nМова кантэнту:\\nСэрвіс:\\nЧас па Грынвічы:\\nПакет:\\nВерсія:\\nВерсія АС:</string>
     <string name="your_comment">Ваш каментар (English):</string>
     <string name="error_details_headline">Падрабязнасці:</string>
-    <string name="list_thumbnail_view_description">Мініяцюра відэа-прэв\'ю</string>
     <string name="detail_thumbnail_view_description">Мініяцюра відэа-прэв\'ю</string>
     <string name="detail_uploader_thumbnail_view_description">Мініяцюра аватара карыстальніка</string>
     <string name="detail_likes_img_view_description">Спадабалася</string>

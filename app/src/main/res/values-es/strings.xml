@@ -42,7 +42,6 @@
     <string name="parsing_error">No se pudo analizar el sitio web</string>
     <string name="show_next_and_similar_title">Mostrar vídeos \'Siguientes\' y \'Similares\'</string>
     <string name="content_language_title">Idioma predefinido del contenido</string>
-    <string name="list_thumbnail_view_description">Miniatura de previsualización del vídeo</string>
     <string name="detail_thumbnail_view_description">Reproducir vídeo; duración:</string>
     <string name="detail_likes_img_view_description">Me gusta</string>
     <string name="detail_dislikes_img_view_description">No me gusta</string>

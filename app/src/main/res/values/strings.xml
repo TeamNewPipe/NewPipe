@@ -7,7 +7,6 @@
     <string name="install">Install</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
-    <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="mark_as_watched">Mark as watched</string>
     <string name="open_in_popup_mode">Open in popup mode</string>
@@ -23,7 +22,6 @@
     <string name="use_external_video_player_title">Use external video player</string>
     <string name="use_external_video_player_summary">Removes audio at some resolutions</string>
     <string name="use_external_audio_player_title">Use external audio player</string>
-    <string name="rss_button_title" translatable="false">RSS</string>
     <string name="subscribe_button_title">Subscribe</string>
     <string name="subscribed_button_title">Subscribed</string>
     <string name="unsubscribe">Unsubscribe</string>
@@ -49,7 +47,6 @@
     <string name="show_higher_resolutions_summary">Only some devices can play 2K/4K videos</string>
     <string name="play_with_kodi_title">Play with Kodi</string>
     <string name="kore_not_found">Install missing Kore app?</string>
-    <string name="kore_package" translatable="false">org.xbmc.kore</string>
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
     <string name="crash_the_player">Crash the player</string>
@@ -132,7 +129,6 @@
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="peertube_instance_url_summary">Select your favorite PeerTube instances</string>
     <string name="peertube_instance_url_help">Find the instances you like on %s</string>
-    <string name="peertube_instance_list_url" translatable="false">https://joinpeertube.org/instances#instances-list</string>
     <string name="peertube_instance_add_title">Add instance</string>
     <string name="peertube_instance_add_help">Enter instance URL</string>
     <string name="peertube_instance_add_fail">Could not validate instance</string>
@@ -148,7 +144,6 @@
     <string name="settings_category_player_notification_title">Player notification</string>
     <string name="settings_category_player_notification_summary">Configure current playing stream notification</string>
     <string name="background_player_playing_toast">Playing in background</string>
-    <string name="background_player_already_playing_toast">Already playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Show age restricted content</string>
@@ -182,19 +177,14 @@
     <string name="just_once">Just Once</string>
     <string name="file">File</string>
     <string name="notifications">Notifications</string>
-    <string name="notification_channel_id" translatable="false">newpipe</string>
     <string name="notification_channel_name">NewPipe notification</string>
     <string name="notification_channel_description">Notifications for NewPipe\'s player</string>
-    <string name="app_update_notification_channel_id" translatable="false">newpipeAppUpdate</string>
     <string name="app_update_notification_channel_name">App update notification</string>
     <string name="app_update_notification_channel_description">Notifications for new NewPipe versions</string>
-    <string name="hash_channel_id" translatable="false">newpipeHash</string>
     <string name="hash_channel_name">Video hash notification</string>
     <string name="hash_channel_description">Notifications for video hashing progress</string>
-    <string name="streams_notification_channel_id" translatable="false">newpipeNewStreams</string>
     <string name="streams_notification_channel_name">New streams</string>
     <string name="streams_notification_channel_description">Notifications about new streams for subscriptions</string>
-    <string name="error_report_channel_id" translatable="false">newpipeErrorReport</string>
     <string name="error_report_channel_name">Error report notification</string>
     <string name="error_report_channel_description">Notifications to report errors</string>
     <string name="unknown_content">[Unknown]</string>
@@ -253,7 +243,6 @@
     <string name="error_report_notification_title">NewPipe encountered an error, tap to report</string>
     <string name="error_report_notification_toast">An error occurred, see the notification</string>
     <string name="sorry_string">Sorry, that should not have happened.</string>
-    <string name="guru_meditation" translatable="false">Guru Meditation.</string>
     <string name="error_report_button_text">Report this error via e-mail</string>
     <string name="copy_for_github">Copy formatted report</string>
     <string name="error_report_open_issue_button_text">Report on GitHub</string>
@@ -266,7 +255,6 @@
     <string name="your_comment">Your comment (in English):</string>
     <string name="error_details_headline">Details:</string>
     <!-- Content descriptions (for better accessibility) -->
-    <string name="list_thumbnail_view_description">Video preview thumbnail</string>
     <string name="detail_thumbnail_view_description">Play video, duration:</string>
     <string name="detail_uploader_thumbnail_view_description">Uploader\'s avatar thumbnail</string>
     <string name="detail_likes_img_view_description">Likes</string>
@@ -275,8 +263,6 @@
     <string name="related_items_tab_description">Related items</string>
     <string name="description_tab_description">Description</string>
     <string name="search_no_results">No results</string>
-    <string name="empty_view_no_videos" translatable="false">@string/no_videos</string>
-    <string name="empty_view_no_comments" translatable="false">@string/no_comments</string>
     <string name="empty_subscription_feed_subtitle">Nothing here but crickets</string>
     <string name="detail_drag_description">Drag to reorder</string>
     <string name="video">Video</string>
@@ -311,8 +297,6 @@
     <string name="no_videos">No videos</string>
     <string name="more_than_100_videos">100+ videos</string>
     <string name="infinite_videos">∞ videos</string>
-    <string name="more_than_100_videos_mini" translatable="false">100+</string>
-    <string name="infinite_videos_mini" translatable="false">∞</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>
         <item quantity="other">%s videos</item>
@@ -344,11 +328,7 @@
     <string name="no_dir_yet">No download folder set yet, choose the default download folder now</string>
     <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
     <string name="one_item_deleted">1 item deleted.</string>
-    <!-- Checksum types -->
-    <string name="md5" translatable="false">MD5</string>
-    <string name="sha1" translatable="false">SHA-1</string>
     <!-- reCAPTCHA -->
-    <string name="recaptcha" translatable="false">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA challenge</string>
     <string name="subtitle_activity_recaptcha">Press \"Done\" when solved</string>
     <string name="recaptcha_request_toast">reCAPTCHA challenge requested</string>
@@ -371,18 +351,14 @@
     <string name="app_description">Libre lightweight streaming on Android.</string>
     <string name="contribution_title">Contribute</string>
     <string name="contribution_encouragement">Whether you have ideas of; translation, design changes, code cleaning, or real heavy code changes—help is always welcome. The more is done the better it gets!</string>
-    <string name="github_url" translatable="false">https://github.com/TeamNewPipe/NewPipe</string>
     <string name="view_on_github">View on GitHub</string>
     <string name="donation_title">Donate</string>
     <string name="donation_encouragement">NewPipe is developed by volunteers spending their free time bringing you the best user experience. Give back to help developers make NewPipe even better while they enjoy a cup of coffee.</string>
-    <string name="donation_url" translatable="false">https://newpipe.net/donate</string>
     <string name="give_back">Give back</string>
     <string name="website_title">Website</string>
     <string name="website_encouragement">Visit the NewPipe Website for more info and news.</string>
-    <string name="website_url" translatable="false">https://newpipe.net/</string>
     <string name="privacy_policy_title">NewPipe\'s Privacy Policy</string>
     <string name="privacy_policy_encouragement">The NewPipe project takes your privacy very seriously. Therefore, the app does not collect any data without your consent.\nNewPipe\'s privacy policy explains in detail what data is sent and stored when you send a crash report.</string>
-    <string name="privacy_policy_url" translatable="false">https://newpipe.net/legal/privacy/</string>
     <string name="read_privacy_policy">Read privacy policy</string>
     <string name="app_license_title">NewPipe\'s License</string>
     <string name="app_license">NewPipe is copyleft libre software: You can use, study share and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
@@ -422,7 +398,6 @@
     <string name="recently_added">Recently added</string>
     <string name="most_liked">Most liked</string>
     <string name="conferences">Conferences</string>
-    <string name="service_kiosk_string" translatable="false">%1$s/%2$s</string>
     <!-- Play Queue -->
     <string name="title_activity_play_queue">Play queue</string>
     <string name="play_queue_remove">Remove</string>
@@ -439,10 +414,7 @@
     <!-- Drawer -->
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>
-    <string name="youtube" translatable="false">YouTube</string>
-    <string name="soundcloud" translatable="false">SoundCloud</string>
     <!-- Preferred player -->
-    <string name="preferred_open_action_share_menu_title" translatable="false">@string/app_name</string>
     <string name="preferred_open_action_settings_title">Preferred \'open\' action</string>
     <string name="preferred_open_action_settings_summary">Default action when opening content — %s</string>
     <string name="video_player">Video player</string>
@@ -477,7 +449,6 @@
     <string name="caption_setting_title">Captions</string>
     <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect</string>
     <!-- Debug Settings -->
-    <string name="leakcanary" translatable="false">LeakCanary</string>
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
     <string name="show_memory_leaks">Show memory leaks</string>
     <string name="enable_disposed_exceptions_title">Report out-of-lifecycle errors</string>
@@ -523,7 +494,6 @@
     <!-- Limit mobile data usage  -->
     <string name="limit_data_usage_none_description">No limit</string>
     <string name="limit_mobile_data_usage_title">Limit resolution when using mobile data</string>
-    <string name="limit_mobile_data_usage_value" translatable="false">@string/limit_data_usage_none_key</string>
     <string-array name="limit_data_usage_description_list">
         <item>@string/limit_data_usage_none_description</item>
         <item>1080p60</item>

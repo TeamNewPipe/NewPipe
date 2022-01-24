@@ -169,7 +169,6 @@
     <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Kandungan:\\nNegara Kandungan:\\nBahasa Aplikasi:\\nPerkhidmatan:\\nWaktu GMT:\\nPakej:\\nVersi:\\nVersi OS:</string>
     <string name="your_comment">Ulasan anda (dalam bahasa Inggeris):</string>
     <string name="error_details_headline">Butiran:</string>
-    <string name="list_thumbnail_view_description">Thumbnail pratonton video</string>
     <string name="detail_thumbnail_view_description">Main video, tempoh masa:</string>
     <string name="detail_uploader_thumbnail_view_description">Thumbnail avatar pemuatnaik</string>
     <string name="detail_likes_img_view_description">Suka</string>

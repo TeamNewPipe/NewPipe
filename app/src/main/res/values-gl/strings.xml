@@ -152,7 +152,6 @@
     <string name="info_labels">Que: \\n Solicitar: \\n Idioma de contido: \\n País de contido: \\n Idioma do aplicativo: \\nServicio: \\n Tempo GMT: \\n Paquete: \\n Versión: \\n versión de nOS:</string>
     <string name="your_comment">O teu comentario (en inglés):</string>
     <string name="error_details_headline">Detalles:</string>
-    <string name="list_thumbnail_view_description">Miniatura do vídeo</string>
     <string name="detail_thumbnail_view_description">Reproducir o vídeo, duración:</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura do avatar do autor</string>
     <string name="detail_likes_img_view_description">Gosto</string>
