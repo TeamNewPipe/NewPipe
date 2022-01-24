@@ -80,7 +80,7 @@ NewPipe wspiera wiele usług. Nasza [dokumentacja](https://teamnewpipe.github.io
 * YouTube
 * SoundCloud \[beta\]
 * media.ccc.de \[beta\]
-* PeerTube instances \[beta\]
+* Instancje PeerTube \[beta\]
 * Bandcamp \[beta\]
 
 <!-- Hidden span to keep old links compatible. -->
