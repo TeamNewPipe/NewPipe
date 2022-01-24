@@ -254,7 +254,7 @@
     <string name="feed_use_dedicated_fetch_method_summary">A disponimentu in unos cantos servìtzios, de sòlitu est meda prus lestru ma diat pòdere frunire unu nùmeru limitadu de elementos e, fatu-fatu, informatziones no intreas (es. peruna longària, casta de elementu, indicadore de istadu in direta)</string>
     <string name="feed_use_dedicated_fetch_method_title">Recùperu dae una fonte de cuntenutos dedicada, cando est a disponimentu</string>
     <string name="feed_update_threshold_option_always_update">Agiorna semper</string>
-    <string name="feed_update_threshold_summary">Tempus chi depet colare a pustis de s\'ùrtimu agiornamentu, in antis chi un\'abbonamebèngiat cunsiderada tropu betza — %s</string>
+    <string name="feed_update_threshold_summary">Tempus chi depet colare a pustis de s\'ùrtimu agiornamentu, in antis chi un\'abbonamentu bèngiat cunsideradu tropu betzu — %s</string>
     <string name="feed_update_threshold_title">Lìmite de agiornamentu de sa fonte de cuntenutos</string>
     <string name="settings_category_feed_title">Fonte de cuntenutos</string>
     <string name="feed_create_new_group_button_title">Nou</string>
@@ -338,7 +338,7 @@
     <string name="generate_unique_name">Ingendra unu nùmene ùnivocu</string>
     <string name="download_failed">Iscarrigamentu fallidu</string>
     <string name="permission_denied">Atzione vietada dae su sistema</string>
-    <string name="enqueue">Elencu</string>
+    <string name="enqueue">Pone in lista</string>
     <string name="recovering">recuperende</string>
     <string name="post_processing">post-protzessamentu</string>
     <string name="paused">in pàusa</string>
