@@ -93,7 +93,7 @@ Możesz zainstalować NewPipe za pomocą jednej z tych metod:
  3. Zaktualizuj poprzez F-Droid. Jest to najwolniejsza metoda aktualizacji, ponieważ F-Droid musi rozpoznać zmiany, zbudować APK, podpisać go i dopiero wypuścić aktualizację do użytkowników.
  4. Zbuduj debug APK samemu. Jest to najszybszy sposób na zdobycie najnowszych funkcji, ale jest to o wiele, wiele bardziej skomplikowane, dlatego rekomendujemy używania jednej z powyższych metod.
 
-Dla większości użytkowników rekomendujemy metodę 1. Pliki APK zainstalowane za pomocą metod 1 lub 2 są ze sobą kompatybilne, lecz nie są z tymi zainstalowanymi metodą 3. Dzieje się tak ponieważ ten sam (nasz) klucz jest używany do podpisania APK z metod 1 i 2, ale APK z metody 3 podpisany jest innym kluczem (F-Droid). Budowanie debuk APK z metody 4 nie uwzględnia klucza. Klucze podpisu zapewniają, że użytkownik omylnie nie zainstaluje złośliwej aktualizacji żadnej aplikacji.
+Dla większości użytkowników rekomendujemy metodę 1. Pliki APK zainstalowane za pomocą metod 1 lub 2 są ze sobą kompatybilne, lecz nie są kompatybilne z tymi zainstalowanymi metodą 3. Dzieje się tak ponieważ ten sam (nasz) klucz jest używany do podpisania APK z metod 1 i 2, ale APK z metody 3 podpisany jest innym kluczem (F-Droida). Budowanie debug APK z metody 4 w ogóle nie uwzględnia klucza. Klucze podpisu zapewniają, że użytkownik omylnie nie zainstaluje złośliwej aktualizacji żadnej aplikacji.
 
 W międzyczasie, jeśli z jakiegoś powodu chcesz zmienić źródło (np. rdzenna funkcjonalność NewPipe psuje się a F-Droid nie ma jeszcze najnowszej aktualizacji), rekomendujemy użyć następującej procedury:
 1. Zrób kopię danych wchodząc w Ustawienia > Zawartość > Eksportuj dane dzięki czemu zachowasz swoją historię, subskrypcje i playlisty
