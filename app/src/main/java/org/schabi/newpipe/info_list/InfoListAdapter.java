@@ -79,7 +79,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private final LayoutInflater layoutInflater;
     private final InfoItemBuilder infoItemBuilder;
-    private final ArrayList<InfoItem> infoItemList;
+    private final List<InfoItem> infoItemList;
     private final HistoryRecordManager recordManager;
 
     private boolean useMiniVariant = false;
@@ -134,7 +134,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (DEBUG) {
             Log.d(TAG, "addInfoItemList() after > offsetStart = " + offsetStart + ", "
                     + "infoItemList.size() = " + infoItemList.size() + ", "
-                    + "header = " + hasHeader() + ", "
+                    + "hasHeader = " + hasHeader() + ", "
                     + "showFooter = " + showFooter);
         }
         notifyItemRangeInserted(offsetStart, data.size());
@@ -211,7 +211,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (DEBUG) {
             Log.d(TAG, "getItemCount() called with: "
                     + "count = " + count + ", infoItemList.size() = " + infoItemList.size() + ", "
-                    + "header = " + hasHeader() + ", "
+                    + "hasHeader = " + hasHeader() + ", "
                     + "showFooter = " + showFooter);
         }
         return count;
@@ -296,21 +296,18 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    @SuppressWarnings("FinalParameters")
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder,
+                                 final int position) {
         if (DEBUG) {
             Log.d(TAG, "onBindViewHolder() called with: "
                     + "holder = [" + holder.getClass().getSimpleName() + "], "
                     + "position = [" + position + "]");
         }
         if (holder instanceof InfoItemHolder) {
-            // If header isn't null, offset the items by -1
-            if (hasHeader()) {
-                position--;
-            }
-
-            ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position), recordManager);
+            ((InfoItemHolder) holder).updateFromItem(
+                    // If header is present, offset the items by -1
+                    infoItemList.get(hasHeader() ? position - 1 : position), recordManager);
         }
     }
 
@@ -318,6 +315,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder,
                                  final int position,
                                  @NonNull final List<Object> payloads) {
+        // an empty payload requires a full update (see RecyclerView javadoc)
         if (payloads.isEmpty() || !(holder instanceof InfoItemHolder)) {
             onBindViewHolder(holder, position);
             return;
