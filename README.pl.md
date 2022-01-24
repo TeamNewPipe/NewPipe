@@ -19,7 +19,7 @@
 
 *Przeczytaj w innych językach: [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl_PL.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md).*
 
-<b>UWAGA: TO JEST WERSJA BETA, WIĘC MOŻESZ NAPOTKAĆ BŁEDY. JEŚLI TAK SIĘ STANIE, OTWÓRZ NOWY "ISSUE" NA GITHUBIE.</b>
+<b>UWAGA: TO JEST WERSJA BETA, WIĘC MOŻESZ NAPOTKAĆ BŁĘDY. JEŚLI TAK SIĘ STANIE, OTWÓRZ NOWY "ISSUE" NA GITHUBIE.</b>
 
 <b>PUBLIKOWANIE NEWPIPE LUB JAKIEGOKOLWIEK JEGO FORKU W SKLEPIE PLAY NARUSZA ICH ZASADY I WARUNKI.</b>
 
