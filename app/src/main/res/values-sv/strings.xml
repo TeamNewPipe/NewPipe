@@ -362,7 +362,7 @@
     <string name="paused">pausad</string>
     <string name="queued">köad</string>
     <string name="post_processing">efterbehandling</string>
-    <string name="enqueue">Kö</string>
+    <string name="enqueue">Köa</string>
     <string name="permission_denied">Åtgärden nekas av systemet</string>
     <string name="download_failed">Hämtningen misslyckades</string>
     <string name="generate_unique_name">Generera unikt namn</string>
