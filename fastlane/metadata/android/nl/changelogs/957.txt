@@ -1,4 +1,4 @@
-• Voeg specifieke enqeue-acties samen
+• Voeg specifieke wachtrij-acties samen
 • 2-vinger-beweging om de speler te sluiten
 • Wis reCAPTHA-cookies
 • Optie om meldingen niet te kleuren
