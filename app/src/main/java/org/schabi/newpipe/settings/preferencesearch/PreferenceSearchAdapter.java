@@ -4,12 +4,11 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.SettingsPreferencesearchListItemResultBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,37 +21,38 @@ class PreferenceSearchAdapter
 
     @NonNull
     @Override
-    public PreferenceSearchAdapter.PreferenceViewHolder onCreateViewHolder(
+    public PreferenceViewHolder onCreateViewHolder(
             @NonNull final ViewGroup parent,
             final int viewType
     ) {
         return new PreferenceViewHolder(
-            LayoutInflater
-                .from(parent.getContext())
-                .inflate(R.layout.settings_preferencesearch_list_item_result, parent, false));
+                SettingsPreferencesearchListItemResultBinding.inflate(
+                        LayoutInflater.from(parent.getContext()),
+                        parent,
+                        false));
     }
 
     @Override
     public void onBindViewHolder(
-            @NonNull final PreferenceSearchAdapter.PreferenceViewHolder holder,
+            @NonNull final PreferenceViewHolder holder,
             final int position
     ) {
         final PreferenceSearchItem item = dataset.get(position);
 
-        holder.title.setText(item.getTitle());
+        holder.binding.title.setText(item.getTitle());
 
         if (TextUtils.isEmpty(item.getSummary())) {
-            holder.summary.setVisibility(View.GONE);
+            holder.binding.summary.setVisibility(View.GONE);
         } else {
-            holder.summary.setVisibility(View.VISIBLE);
-            holder.summary.setText(item.getSummary());
+            holder.binding.summary.setVisibility(View.VISIBLE);
+            holder.binding.summary.setText(item.getSummary());
         }
 
         if (TextUtils.isEmpty(item.getBreadcrumbs())) {
-            holder.breadcrumbs.setVisibility(View.GONE);
+            holder.binding.breadcrumbs.setVisibility(View.GONE);
         } else {
-            holder.breadcrumbs.setVisibility(View.VISIBLE);
-            holder.breadcrumbs.setText(item.getBreadcrumbs());
+            holder.binding.breadcrumbs.setVisibility(View.VISIBLE);
+            holder.binding.breadcrumbs.setText(item.getBreadcrumbs());
         }
 
         holder.itemView.setOnClickListener(v -> {
@@ -77,15 +77,11 @@ class PreferenceSearchAdapter
     }
 
     static class PreferenceViewHolder extends RecyclerView.ViewHolder {
-        final TextView title;
-        final TextView summary;
-        final TextView breadcrumbs;
+        final SettingsPreferencesearchListItemResultBinding binding;
 
-        PreferenceViewHolder(final View v) {
-            super(v);
-            title = v.findViewById(R.id.title);
-            summary = v.findViewById(R.id.summary);
-            breadcrumbs = v.findViewById(R.id.breadcrumbs);
+        PreferenceViewHolder(final SettingsPreferencesearchListItemResultBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }
