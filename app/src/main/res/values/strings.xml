@@ -539,11 +539,6 @@
     <string name="enable_streams_notifications_title">New streams notifications</string>
     <string name="enable_streams_notifications_summary">Notify about new streams from subscriptions</string>
     <string name="streams_notifications_interval_title">Checking frequency</string>
-    <string name="every_hour">Every hour</string>
-    <string name="every_two_hours">Every 2 hours</string>
-    <string name="every_three_hours">Every 3 hours</string>
-    <string name="twice_per_day">Twice per day</string>
-    <string name="every_day">Every day</string>
     <string name="streams_notifications_network_title">Required network connection</string>
     <string name="any_network">Any network</string>
     <!-- Updates Settings -->

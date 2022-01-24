@@ -703,11 +703,6 @@
     <string name="streams_notifications_interval_title">Частота проверки</string>
     <string name="enable_streams_notifications_title">Уведомлять о новых видео</string>
     <string name="enable_streams_notifications_summary">Получать уведомления о новых видео из каналов, на которые Вы подписаны</string>
-    <string name="every_hour">Каждый час</string>
-    <string name="every_two_hours">Каждые 2 часа</string>
-    <string name="every_three_hours">Каждые 3 часа</string>
-    <string name="twice_per_day">Дважды в день</string>
-    <string name="every_day">Каждый день</string>
     <string name="streams_notifications_network_title">Тип подключения</string>
     <string name="any_network">Любая сеть</string>
     <string name="notifications_disabled">Уведомления отключены</string>

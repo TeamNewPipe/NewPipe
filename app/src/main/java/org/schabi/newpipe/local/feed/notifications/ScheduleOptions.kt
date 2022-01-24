@@ -19,10 +19,10 @@ data class ScheduleOptions(
         fun from(context: Context): ScheduleOptions {
             val preferences = PreferenceManager.getDefaultSharedPreferences(context)
             return ScheduleOptions(
-                interval = TimeUnit.HOURS.toMillis(
+                interval = TimeUnit.SECONDS.toMillis(
                     preferences.getString(
                         context.getString(R.string.streams_notifications_interval_key),
-                        context.getString(R.string.streams_notifications_interval_default)
+                        null
                     )?.toLongOrNull() ?: context.getString(
                         R.string.streams_notifications_interval_default
                     ).toLong()

@@ -1271,20 +1271,26 @@
     <string name="recaptcha_cookies_key" translatable="false">recaptcha_cookies_key</string>
     <string name="enable_streams_notifications" translatable="false">enable_streams_notifications</string>
     <string name="streams_notifications_interval_key" translatable="false">streams_notifications_interval</string>
-    <string name="streams_notifications_interval_default" translatable="false">3</string>
-    <string-array name="streams_notifications_interval_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>12</item>
-        <item>24</item>
-    </string-array>
+    <string name="streams_notifications_interval_default" translatable="false">14400</string>
+    <!-- Values will be localized in runtime -->
     <string-array name="streams_notifications_interval_description">
-        <item>@string/every_hour</item>
-        <item>@string/every_two_hours</item>
-        <item>@string/every_three_hours</item>
-        <item>@string/twice_per_day</item>
-        <item>@string/every_day</item>
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>2 hours</item>
+        <item>4 hours</item>
+        <item>12 hours</item>
+        <item>1 day</item>
+    </string-array>
+    <!-- Notifications check frequency in seconds -->
+    <string-array name="streams_notifications_interval_values">
+        <item>900</item>
+        <item>1800</item>
+        <item>3600</item>
+        <item>7200</item>
+        <item>14400</item>
+        <item>43200</item>
+        <item>86400</item>
     </string-array>
     <string name="streams_notifications_network_key" translatable="false">streams_notifications_network</string>
     <string name="streams_notifications_network_any" translatable="false">any</string>
