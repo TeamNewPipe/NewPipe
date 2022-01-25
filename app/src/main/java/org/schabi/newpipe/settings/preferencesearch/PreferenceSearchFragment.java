@@ -38,7 +38,6 @@ public class PreferenceSearchFragment extends Fragment {
             @Nullable final ViewGroup container,
             @Nullable final Bundle savedInstanceState
     ) {
-        // SettingsPreferenceSearchFragmentBinding.
         binding = SettingsPreferencesearchFragmentBinding.inflate(inflater, container, false);
 
         binding.searchResults.setLayoutManager(new LinearLayoutManager(getContext()));
