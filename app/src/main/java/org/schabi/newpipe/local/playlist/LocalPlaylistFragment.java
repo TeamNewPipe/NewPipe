@@ -55,8 +55,10 @@ import org.schabi.newpipe.util.StreamDialogEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -99,6 +101,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private AtomicBoolean isModified;
     /* Is the playlist currently being processed to remove watched videos */
     private boolean isRemovingWatched = false;
+    /* Is the playlist currently being processed to remove duplicate streams */
+    private boolean isRemovingDuplicateStreams = false;
 
     public static LocalPlaylistFragment getInstance(final long playlistId, final String name) {
         final LocalPlaylistFragment instance = new LocalPlaylistFragment();
@@ -367,10 +371,81 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             }
         } else if (item.getItemId() == R.id.menu_item_rename_playlist) {
             createRenameDialog();
-        } else {
-            return super.onOptionsItemSelected(item);
+        } else if (item.getItemId() == R.id.menu_item_remove_duplicates) {
+            if (!isRemovingDuplicateStreams) {
+                new AlertDialog.Builder(requireContext())
+                        .setMessage(R.string.remove_duplicates_popup_warning)
+                        .setTitle(R.string.remove_duplicates_popup_title)
+                        .setPositiveButton(R.string.yes,
+                                (DialogInterface d, int id) -> removeDuplicateStreams())
+                        .setNegativeButton(R.string.cancel,
+                                (DialogInterface d, int id) -> d.cancel())
+                        .create()
+                        .show();
+            } else {
+                return super.onOptionsItemSelected(item);
+            }
         }
         return true;
+    }
+
+    public void removeDuplicateStreams() {
+        if (isRemovingDuplicateStreams) {
+            return;
+        }
+        isRemovingDuplicateStreams = true;
+        showLoading();
+
+        disposables.add(playlistManager.getPlaylistStreams(playlistId)
+                .subscribeOn(Schedulers.io())
+                .map((List<PlaylistStreamEntry> playlist) -> {
+                    // Playlist data
+                    final Iterator<PlaylistStreamEntry> playlistIter = playlist.iterator();
+
+                    // Remove duplicates, Functionality data
+                    final List<PlaylistStreamEntry> uniquePlaylistItems = new ArrayList<>();
+                    final Set<Long> uniquePlaylistItemStreamIds = new HashSet<>();
+                    boolean thumbnailVideoRemoved = false;
+
+                    while (playlistIter.hasNext()) {
+                        final PlaylistStreamEntry playlistItem = playlistIter.next();
+                        final Long playlistItemStreamId = playlistItem.getStreamId();
+
+                        if (!uniquePlaylistItemStreamIds.contains(playlistItemStreamId)) {
+                            uniquePlaylistItems.add(playlistItem);
+                            uniquePlaylistItemStreamIds.add(playlistItemStreamId);
+                        } else if (!thumbnailVideoRemoved
+                                && playlistManager.getPlaylistThumbnail(playlistId)
+                                .equals(playlistItem.getStreamEntity().getThumbnailUrl())) {
+                            thumbnailVideoRemoved = true;
+                        }
+                    }
+
+                    return Flowable.just(uniquePlaylistItems, thumbnailVideoRemoved);
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(flow -> {
+                    final List<PlaylistStreamEntry> uniquePlaylistItems =
+                            (List<PlaylistStreamEntry>) flow.blockingFirst();
+                    final boolean thumbnailVideoRemoved = (Boolean) flow.blockingLast();
+
+                    itemListAdapter.clearStreamItemList();
+                    itemListAdapter.addItems(uniquePlaylistItems);
+                    saveChanges();
+
+                    if (thumbnailVideoRemoved) {
+                        updateThumbnailUrl();
+                    }
+
+                    final long videoCount = itemListAdapter.getItemsList().size();
+                    setVideoCount(videoCount);
+                    if (videoCount == 0) {
+                        showEmptyState();
+                    }
+
+                    hideLoading();
+                    isRemovingDuplicateStreams = false;
+                }));
     }
 
     public void removeWatchedStreams(final boolean removePartiallyWatched) {
@@ -840,4 +915,3 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         return new SinglePlayQueue(streamInfoItems, index);
     }
 }
-

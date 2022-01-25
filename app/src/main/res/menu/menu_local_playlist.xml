@@ -10,4 +10,9 @@
         android:id="@+id/menu_item_remove_watched"
         android:title="@string/remove_watched"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_item_remove_duplicates"
+        android:title="@string/remove_duplicates"
+        app:showAsAction="never" />
+
 </menu>
