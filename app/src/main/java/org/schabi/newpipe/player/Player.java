@@ -260,7 +260,8 @@ public final class Player implements
     // Playback
     //////////////////////////////////////////////////////////////////////////*/
 
-    private PlayQueue playQueue;
+    // play queue might be null e.g. while player is starting
+    @Nullable private PlayQueue playQueue;
     private PlayQueueAdapter playQueueAdapter;
     private StreamSegmentAdapter segmentAdapter;
 
@@ -4202,6 +4203,7 @@ public final class Player implements
     }
 
 
+    @Nullable
     public PlayQueue getPlayQueue() {
         return playQueue;
     }

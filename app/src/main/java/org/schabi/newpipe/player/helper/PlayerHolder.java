@@ -38,12 +38,12 @@ public final class PlayerHolder {
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final String TAG = PlayerHolder.class.getSimpleName();
 
-    private PlayerServiceExtendedEventListener listener;
+    @Nullable private PlayerServiceExtendedEventListener listener;
 
     private final PlayerServiceConnection serviceConnection = new PlayerServiceConnection();
     private boolean bound;
-    private MainPlayer playerService;
-    private Player player;
+    @Nullable private MainPlayer playerService;
+    @Nullable private Player player;
 
     /**
      * Returns the current {@link MainPlayer.PlayerType} of the {@link MainPlayer} service,
@@ -75,7 +75,11 @@ public final class PlayerHolder {
     }
 
     public int getQueueSize() {
-        return isPlayerOpen() ? player.getPlayQueue().size() : 0;
+        if (player == null || player.getPlayQueue() == null) {
+            // player play queue might be null e.g. while player is starting
+            return 0;
+        }
+        return player.getPlayQueue().size();
     }
 
     public void setListener(@Nullable final PlayerServiceExtendedEventListener newListener) {
