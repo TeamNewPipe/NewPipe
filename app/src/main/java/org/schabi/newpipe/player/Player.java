@@ -586,7 +586,8 @@ public final class Player implements
      */
     private void setupPlayerSeekOverlay() {
         binding.fastSeekOverlay
-                .seekSeconds((int) (retrieveSeekDurationFromPreferences(this) / 1000.0f))
+                .seekSecondsSupplier(
+                        () -> (int) (retrieveSeekDurationFromPreferences(this) / 1000.0f))
                 .performListener(new PlayerFastSeekOverlay.PerformListener() {
 
                     @Override
