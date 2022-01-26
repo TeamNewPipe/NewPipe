@@ -14,7 +14,6 @@ import org.schabi.newpipe.testUtil.TrampolineSchedulerRule
 import java.time.LocalDateTime
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
-import kotlin.collections.ArrayList
 
 class HistoryRecordManagerTest {
 
@@ -101,10 +100,9 @@ class HistoryRecordManagerTest {
     private fun insertShuffledRelatedSearches(relatedSearches: Collection<SearchHistoryEntry>) {
 
         // shuffle to make sure the order of items returned by queries depends only on
-        // SearchHistoryEntry.creationDate, not on the actual insertion time
-        val copiedRelatedSearchesEntries = ArrayList(relatedSearches)
-        copiedRelatedSearchesEntries.shuffle()
-        database.searchHistoryDAO().insertAll(copiedRelatedSearchesEntries)
+        // SearchHistoryEntry.creationDate, not on the actual insertion time, so that we can
+        // verify that the `ORDER BY` clause does its job
+        database.searchHistoryDAO().insertAll(relatedSearches.shuffled())
 
         // make sure all entries were inserted
         assertEquals(
