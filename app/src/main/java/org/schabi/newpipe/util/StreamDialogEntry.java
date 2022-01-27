@@ -41,22 +41,22 @@ public enum StreamDialogEntry {
      * Info: Add this entry within showStreamDialog.
      */
     enqueue(R.string.enqueue_stream, (fragment, item) -> {
-        fetchItemInfoIfSparse(fragment, item, fullItem ->
+        fetchItemInfoIfSparse(fragment.getContext(), item, fullItem ->
                 NavigationHelper.enqueueOnPlayer(fragment.getContext(), fullItem));
     }),
 
     enqueue_next(R.string.enqueue_next_stream, (fragment, item) -> {
-        fetchItemInfoIfSparse(fragment, item, fullItem ->
+        fetchItemInfoIfSparse(fragment.getContext(), item, fullItem ->
                 NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), fullItem));
     }),
 
     start_here_on_background(R.string.start_here_on_background, (fragment, item) -> {
-        fetchItemInfoIfSparse(fragment, item, fullItem ->
+        fetchItemInfoIfSparse(fragment.getContext(), item, fullItem ->
                 NavigationHelper.playOnBackgroundPlayer(fragment.getContext(), fullItem, true));
     }),
 
     start_here_on_popup(R.string.start_here_on_popup, (fragment, item) -> {
-        fetchItemInfoIfSparse(fragment, item, fullItem ->
+        fetchItemInfoIfSparse(fragment.getContext(), item, fullItem ->
                 NavigationHelper.playOnPopupPlayer(fragment.getContext(), fullItem, true));
     }),
 
@@ -205,7 +205,7 @@ public enum StreamDialogEntry {
     // helper functions                        //
     /////////////////////////////////////////////
 
-    private static void fetchItemInfoIfSparse(final Fragment fragment,
+    private static void fetchItemInfoIfSparse(final Context context,
             final StreamInfoItem item,
             final Consumer<SinglePlayQueue> callback) {
         if (!(item.getStreamType() == StreamType.LIVE_STREAM
@@ -221,7 +221,7 @@ public enum StreamDialogEntry {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(result -> {
                         final HistoryRecordManager recordManager =
-                                new HistoryRecordManager(fragment.getContext());
+                                new HistoryRecordManager(context);
                         recordManager.saveStreamState(result, 0)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
