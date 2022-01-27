@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.databinding.PignateFooterBinding;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
@@ -308,24 +307,6 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ((InfoItemHolder) holder).updateFromItem(
                     // If header is present, offset the items by -1
                     infoItemList.get(hasHeader() ? position - 1 : position), recordManager);
-        }
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder,
-                                 final int position,
-                                 @NonNull final List<Object> payloads) {
-        // an empty payload requires a full update (see RecyclerView javadoc)
-        if (payloads.isEmpty() || !(holder instanceof InfoItemHolder)) {
-            onBindViewHolder(holder, position);
-            return;
-        }
-
-        for (final Object payload : payloads) {
-            if (payload instanceof StreamStateEntity || payload instanceof Boolean) {
-                ((InfoItemHolder) holder).updateState(
-                        infoItemList.get(hasHeader() ? position - 1 : position), recordManager);
-            }
         }
     }
 
