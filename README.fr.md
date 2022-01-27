@@ -74,7 +74,7 @@ Les sites internets ne sont analysés que pour récupérer les informations néc
 * Voir des vidéos en direct
 * Afficher les commentaires
 
-### Supported Services
+### Services Supportés
 
 NewPipe supporte plusieurs services. Notre [documentation](https://teamnewpipe.github.io/documentation/) donne plus d'informations concernant l'ajout d'un nouveau service à l'application et à l'extracteur. Merci de nous contacter si vous avez l'intention d'en rajouter un nouveau. Pour l'instant, les services supportés sont:
 
@@ -87,7 +87,7 @@ NewPipe supporte plusieurs services. Notre [documentation](https://teamnewpipe.g
 ## Installation et mise à jour
 Vous pouvez installer NewPipe en utilisant l'une de ces méthodes :
  1. Ajoutez notre repository à F-Droid et installez l'application de là. Les instructions sont ici : https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
- 2. Téléchargez-la depuis [les publications d'applications sur GitHub](https://github.com/TeamNewPipe/NewPipe/releases) et l'installer.
+ 2. Téléchargez-la depuis [les publications d'applications sur GitHub](https://github.com/TeamNewPipe/NewPipe/releases) et installez-là.
  3. Mettre à jour via F-Droid. C'est la méthode la plus lente pour avoir les mises à jour car F-Droid doit reconnaître les changements, construire l'application elle-même, la signer et ensuite la publier auprès des utilisateurs.
  4. Construire une verision de débogage soi-même. C'est la méthode la plus rapide pour avoir les nouvelles fonctionnalités sur votre appareil, mais c'est plus compliqué, donc nous vous recommandons d'utiliser une autre méthode.
 
@@ -110,7 +110,7 @@ Si vous souhaitez participer, regardez nos [notes de contribution](.github/CONTR
 </a>
 
 ## Donation
-Si vous aimez NewPipe, nous serions heureux d'une donation. Vous pouvez envoyer du bitcoin, ou donner via Bountysource ou Liberapay. Pour plus d'informations concernant les donations pour NewPipe, merci de visiter notre [site internet](https://newpipe.net/donate).
+Si vous aimez NewPipe, nous serions heureux d'une donation. Vous pouvez envoyer du Bitcoin, ou donner via Bountysource ou Liberapay. Pour plus d'informations concernant les donations pour NewPipe, merci de visiter notre [site internet](https://newpipe.net/donate).
 
 <table>
   <tr>
@@ -130,11 +130,11 @@ Si vous aimez NewPipe, nous serions heureux d'une donation. Vous pouvez envoyer 
   </tr>
 </table>
 
-## Police de Confidentialité
+## Politique de Confidentialité
 
 Le projet NewPipe vise à fournir une expérience privée et anonyme en utilisant des services internet.
 Ainsi, l'application ne collecte aucune donnée sans votre consentement.
-La police de confidentialité de NewPipe explique en détail quelles données sont envoyées et sauvegardées lorsque vous envoyez un rapport de plantage, ou commentez sur notre blog. Vous pouvez trouver ce document [ici](https://newpipe.net/legal/privacy/).
+La politique de confidentialité de NewPipe explique en détail quelles données sont envoyées et sauvegardées lorsque vous envoyez un rapport de plantage, ou commentez sur notre blog. Vous pouvez trouver ce document [ici](https://newpipe.net/legal/privacy/).
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
