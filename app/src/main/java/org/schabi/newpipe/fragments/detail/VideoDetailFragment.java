@@ -1570,12 +1570,14 @@ public final class VideoDetailFragment
             if (info.getDislikeCount() == -1) {
                 new Thread(() -> {
                     info.setDislikeCount(ReturnYoutubeDislikeUtils.getDislikes(info));
-                    activity.runOnUiThread(() -> {
-                        binding.detailThumbsDownCountView.setText(Localization
-                                .shortCount(activity, info.getDislikeCount()));
-                        binding.detailThumbsDownCountView.setVisibility(View.VISIBLE);
-                        binding.detailThumbsDownImgView.setVisibility(View.VISIBLE);
-                    });
+                    if (info.getDislikeCount() >= 0) {
+                        activity.runOnUiThread(() -> {
+                            binding.detailThumbsDownCountView.setText(Localization
+                                    .shortCount(activity, info.getDislikeCount()));
+                            binding.detailThumbsDownCountView.setVisibility(View.VISIBLE);
+                            binding.detailThumbsDownImgView.setVisibility(View.VISIBLE);
+                        });
+                    }
                 }).start();
             }
             if (info.getDislikeCount() >= 0) {
