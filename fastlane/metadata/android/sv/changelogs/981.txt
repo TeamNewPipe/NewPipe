@@ -1,0 +1,2 @@
+Tog bort stödet för MediaParser för att åtgärda fel i återupptagningen av uppspelning efter buffring på Android 11+. 
+Inaktiverade media tunneling på Philips QM16XE för att åtgärda uppspelningsproblem.

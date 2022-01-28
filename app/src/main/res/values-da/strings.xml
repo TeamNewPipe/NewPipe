@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Tryk søg for at komme i gang</string>
+    <string name="main_bg_subtitle">Tryk på forstørrelsesglasset for at komme i gang.</string>
     <string name="upload_date_text">Udgivet %1$s</string>
-    <string name="no_player_found">Ingen streamafspiller blev fundet. Vil du installere VLC\?</string>
+    <string name="no_player_found">Ingen streamafspiller blev fundet. Installer VLC\?</string>
     <string name="no_player_found_toast">Ingen streamafspiller fundet (du kan installere VLC for at afspille den).</string>
     <string name="install">Installer</string>
     <string name="cancel">Annuller</string>

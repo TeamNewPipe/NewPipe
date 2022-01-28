@@ -1,0 +1,2 @@
+移除了对MediaParser的支持，以解决在Android 11+上缓冲后恢复播放失败的问题。
+在Philips QM16XE上禁用了媒体隧道，以解决播放问题。
