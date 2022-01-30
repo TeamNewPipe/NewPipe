@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,14 +50,9 @@ public class SelectKioskFragment extends DialogFragment {
     private SelectKioskAdapter selectKioskAdapter = null;
 
     private OnSelectedListener onSelectedListener = null;
-    private OnCancelListener onCancelListener = null;
 
     public void setOnSelectedListener(final OnSelectedListener listener) {
         onSelectedListener = listener;
-    }
-
-    public void setOnCancelListener(final OnCancelListener listener) {
-        onCancelListener = listener;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -91,14 +85,6 @@ public class SelectKioskFragment extends DialogFragment {
     // Handle actions
     //////////////////////////////////////////////////////////////////////////*/
 
-    @Override
-    public void onCancel(@NonNull final DialogInterface dialogInterface) {
-        super.onCancel(dialogInterface);
-        if (onCancelListener != null) {
-            onCancelListener.onCancel();
-        }
-    }
-
     private void clickedItem(final SelectKioskAdapter.Entry entry) {
         if (onSelectedListener != null) {
             onSelectedListener.onKioskSelected(entry.serviceId, entry.kioskId, entry.kioskName);
@@ -112,10 +98,6 @@ public class SelectKioskFragment extends DialogFragment {
 
     public interface OnSelectedListener {
         void onKioskSelected(int serviceId, String kioskId, String kioskName);
-    }
-
-    public interface OnCancelListener {
-        void onCancel();
     }
 
     private class SelectKioskAdapter
