@@ -197,6 +197,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -4179,8 +4180,8 @@ public final class Player implements
 
         // The current metadata may be null sometimes (for e.g. when using an unstable connection
         // in livestreams) so we will be not able to execute the block below.
-        // Reload the play queue manager in this case, which is the behavior when the video stream
-        // played is not video only or when we don't know the index of the video renderer.
+        // Reload the play queue manager in this case, which is the behavior when we don't know the
+        // index of the video renderer or playQueueManagerReloadingNeeded returns true.
         if (currentMetadata == null) {
             reloadPlayQueueManager();
             setRecovery();
@@ -4190,41 +4191,22 @@ public final class Player implements
         final int videoRenderIndex = getVideoRendererIndex();
         final StreamInfo info = currentMetadata.getMetadata();
 
-        /* For video streams: we don't want to stream in background the video stream so if the
-        video stream played is not a video-only stream and if there is an audio stream available,
-        play this audio stream in background by reloading the play queue manager.
-        Otherwise the video renderer will be just disabled (because there is no
-        other stream for it to play the audio): if the video stream is video-only, only the audio
-        stream will be fetched and the video stream will be fetched again when the user return to a
-        video player.
+        // In the case we don't know the source type, fallback to the one with video with audio or
+        // audio-only source.
+        final SourceType sourceType = videoResolver.getStreamSourceType().orElse(
+                SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
 
-        For audio streams and audio live streams: nothing is done, it's not needed to reload the
-        player with the same audio stream.
+        if (playQueueManagerReloadingNeeded(sourceType, info, videoRenderIndex)) {
+            reloadPlayQueueManager();
+        } else {
+            final StreamType streamType = info.getStreamType();
+            if (streamType == StreamType.AUDIO_STREAM
+                    || streamType == StreamType.AUDIO_LIVE_STREAM) {
+                // Nothing to do more than setting the recovery position
+                setRecovery();
+                return;
+            }
 
-        For video live streams: the play queue manager is not reloaded if the stream source is a
-        live source (see VideoPlaybackResolver#resolve()) and if that's not the case, the
-        requirements for video streams is applied.
-
-        In the case where we don't know the index of the video renderer, the play queue manager
-        is also reloaded. */
-
-        final StreamType streamType = info.getStreamType();
-        final SourceType sourceType = videoResolver.getStreamSourceType()
-                .orElse(SourceType.VIDEO_WITH_SEPARATED_AUDIO);
-
-        final boolean isVideoWithSeparatedAudioOrVideoWithNoSeparatedAudioStreams =
-                sourceType == SourceType.VIDEO_WITH_SEPARATED_AUDIO
-                || (sourceType == SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY
-                        && isNullOrEmpty(info.getAudioStreams()));
-        final boolean isVideoStreamTypeAndIsVideoOnlyStreamOrNoAudioStreamsAvailable =
-                streamType == StreamType.VIDEO_STREAM
-                        && isVideoWithSeparatedAudioOrVideoWithNoSeparatedAudioStreams
-                        || (streamType == StreamType.LIVE_STREAM
-                            && (sourceType == SourceType.LIVE_STREAM
-                                || isVideoWithSeparatedAudioOrVideoWithNoSeparatedAudioStreams));
-
-        if (videoRenderIndex != RENDERER_UNAVAILABLE
-                && isVideoStreamTypeAndIsVideoOnlyStreamOrNoAudioStreamsAvailable) {
             final TrackGroupArray videoTrackGroupArray = Objects.requireNonNull(
                     trackSelector.getCurrentMappedTrackInfo()).getTrackGroups(videoRenderIndex);
             if (videoEnabled) {
@@ -4238,12 +4220,71 @@ public final class Player implements
                 trackSelector.setParameters(trackSelector.buildUponParameters()
                         .setSelectionOverride(videoRenderIndex, videoTrackGroupArray, null));
             }
-        } else if (streamType != StreamType.AUDIO_STREAM
-                && streamType != StreamType.AUDIO_LIVE_STREAM) {
-            reloadPlayQueueManager();
         }
 
         setRecovery();
+    }
+
+    /**
+     * Return whether the play queue manager needs to be reloaded when switching player type.
+     *
+     * <p>
+     * The play queue manager needs to be reloaded if the video renderer index is not known and if
+     * the content is not an audio content, but also if none of the following cases is met:
+     *
+     * <ul>
+     *     <li>the content is an {@link StreamType#AUDIO_STREAM audio stream} or an
+     *     {@link StreamType#AUDIO_LIVE_STREAM audio live stream};</li>
+     *     <li>the content is a {@link StreamType#LIVE_STREAM live stream} and the source type is a
+     *     {@link SourceType#LIVE_STREAM live source};</li>
+     *     <li>the content's source is {@link SourceType#VIDEO_WITH_SEPARATED_AUDIO a video stream
+     *     with a separated audio source} or has no audio-only streams available <b>and</b> is a
+     *     {@link StreamType#LIVE_STREAM live stream} or a
+     *     {@link StreamType#LIVE_STREAM live stream}.
+     *     </li>
+     * </ul>
+     * </p>
+     *
+     * @param sourceType         the {@link SourceType} of the stream
+     * @param streamInfo         the {@link StreamInfo} of the stream
+     * @param videoRendererIndex the video renderer index of the video source, if that's a video
+     *                           source (or {@link #RENDERER_UNAVAILABLE})
+     * @return whether the play queue manager needs to be reloaded
+     */
+    private boolean playQueueManagerReloadingNeeded(final SourceType sourceType,
+                                                    @NonNull final StreamInfo streamInfo,
+                                                    final int videoRendererIndex) {
+        final StreamType streamType = streamInfo.getStreamType();
+
+        if (videoRendererIndex == RENDERER_UNAVAILABLE && streamType != StreamType.AUDIO_STREAM
+                && streamType != StreamType.AUDIO_LIVE_STREAM) {
+            return true;
+        }
+
+        // The content is an audio stream, an audio live stream, or a live stream with a live
+        // source: it's not needed to reload the play queue manager because the stream source will
+        // be the same
+        if ((streamType == StreamType.AUDIO_STREAM || streamType == StreamType.AUDIO_LIVE_STREAM)
+                || (streamType == StreamType.LIVE_STREAM
+                        && sourceType == SourceType.LIVE_STREAM)) {
+            return false;
+        }
+
+        // The content's source is a video with separated audio or a video with audio -> the video
+        // and its fetch may be disabled
+        // The content's source is a video with embedded audio and the content has no separated
+        // audio stream available: it's probably not needed to reload the play queue manager
+        // because the stream source will be probably the same as the current played
+        if (sourceType == SourceType.VIDEO_WITH_SEPARATED_AUDIO
+                || (sourceType == SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY
+                    && isNullOrEmpty(streamInfo.getAudioStreams()))) {
+            // It's not needed to reload the play queue manager only if the content's stream type
+            // is a video stream or a live stream
+            return streamType != StreamType.VIDEO_STREAM && streamType != StreamType.LIVE_STREAM;
+        }
+
+        // Other cases: the play queue manager reload is needed
+        return true;
     }
     //endregion
 
@@ -4483,16 +4524,18 @@ public final class Player implements
         final MappingTrackSelector.MappedTrackInfo mappedTrackInfo = trackSelector
                 .getCurrentMappedTrackInfo();
 
-        if (mappedTrackInfo != null) {
-            for (int i = 0; i < mappedTrackInfo.getRendererCount(); i++) {
-                final TrackGroupArray trackGroups = mappedTrackInfo.getTrackGroups(i);
-                if (!trackGroups.isEmpty()
-                        && simpleExoPlayer.getRendererType(i) == C.TRACK_TYPE_VIDEO) {
-                    return i;
-                }
-            }
+        if (mappedTrackInfo == null) {
+            return RENDERER_UNAVAILABLE;
         }
 
-        return RENDERER_UNAVAILABLE;
+        // Check every renderer
+        return IntStream.range(0, mappedTrackInfo.getRendererCount())
+                // Check the renderer is a video renderer and has at least one track
+                .filter(i -> !mappedTrackInfo.getTrackGroups(i).isEmpty()
+                        && simpleExoPlayer.getRendererType(i) == C.TRACK_TYPE_VIDEO)
+                // Return the first index found (there is at most one renderer per renderer type)
+                .findFirst()
+                // No video renderer index with at least one track found: return unavailable index
+                .orElse(RENDERER_UNAVAILABLE);
     }
 }
