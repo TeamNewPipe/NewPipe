@@ -21,6 +21,12 @@ public class PlayerDataSource {
 
     public static final int LIVE_STREAM_EDGE_GAP_MILLIS = 10000;
 
+    /**
+     * An approximately 4.3 times greater value than the
+     * {@link DefaultHlsPlaylistTracker#DEFAULT_PLAYLIST_STUCK_TARGET_DURATION_COEFFICIENT default}
+     * to ensure that (very) low latency livestreams which got stuck for a moment don't crash too
+     * early.
+     */
     private static final double PLAYLIST_STUCK_TARGET_DURATION_COEFFICIENT = 15;
     private static final int MANIFEST_MINIMUM_RETRY = 5;
     private static final int EXTRACTOR_MINIMUM_RETRY = Integer.MAX_VALUE;
