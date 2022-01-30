@@ -17,7 +17,7 @@
 <p align="center"><a href="https://newpipe.net">網站</a> &bull; <a href="https://newpipe.net/blog/">部落格</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">媒體</a></p>
 <hr>
 
-*其他語言: [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md)*
+*其他語言: [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md)*
 
 <b>警告：這是測試版本，可能會發生錯誤。如果遇到錯誤，請在我們的 GITHUB REPO 開 ISSUE 回報。</b>
 
