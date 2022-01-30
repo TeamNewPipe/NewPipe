@@ -1,0 +1,2 @@
+Eliminada la compatibilidad con MediaParser para poder solucionar problemas de reanudación de la reproducción tras el almacenamiento en búfer en Android 11+.
+Deshabilitado el túnel de medios en Philips QM16XE para poder solucionar problemas de reproducción.

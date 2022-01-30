@@ -97,14 +97,23 @@ class HistoryRecordManagerTest {
         assertThat(database.searchHistoryDAO().all.blockingFirst()).isEmpty()
     }
 
-    @Test
-    fun getRelatedSearches_emptyQuery() {
+    private fun insertShuffledRelatedSearches(relatedSearches: Collection<SearchHistoryEntry>) {
+
+        // shuffle to make sure the order of items returned by queries depends only on
+        // SearchHistoryEntry.creationDate, not on the actual insertion time, so that we can
+        // verify that the `ORDER BY` clause does its job
+        database.searchHistoryDAO().insertAll(relatedSearches.shuffled())
+
         // make sure all entries were inserted
-        database.searchHistoryDAO().insertAll(RELATED_SEARCHES_ENTRIES)
         assertEquals(
-            RELATED_SEARCHES_ENTRIES.size,
+            relatedSearches.size,
             database.searchHistoryDAO().all.blockingFirst().size
         )
+    }
+
+    @Test
+    fun getRelatedSearches_emptyQuery() {
+        insertShuffledRelatedSearches(RELATED_SEARCHES_ENTRIES)
 
         // make sure correct number of searches is returned and in correct order
         val searches = manager.getRelatedSearches("", 6, 4).blockingFirst()
@@ -117,13 +126,28 @@ class HistoryRecordManagerTest {
     }
 
     @Test
-    fun getRelatedSearched_nonEmptyQuery() {
-        // make sure all entries were inserted
-        database.searchHistoryDAO().insertAll(RELATED_SEARCHES_ENTRIES)
-        assertEquals(
-            RELATED_SEARCHES_ENTRIES.size,
-            database.searchHistoryDAO().all.blockingFirst().size
+    fun getRelatedSearches_emptyQuery_manyDuplicates() {
+        insertShuffledRelatedSearches(
+            listOf(
+                SearchHistoryEntry(time.minusSeconds(9), 3, "A"),
+                SearchHistoryEntry(time.minusSeconds(8), 3, "AB"),
+                SearchHistoryEntry(time.minusSeconds(7), 3, "A"),
+                SearchHistoryEntry(time.minusSeconds(6), 3, "A"),
+                SearchHistoryEntry(time.minusSeconds(5), 3, "BA"),
+                SearchHistoryEntry(time.minusSeconds(4), 3, "A"),
+                SearchHistoryEntry(time.minusSeconds(3), 3, "A"),
+                SearchHistoryEntry(time.minusSeconds(2), 0, "A"),
+                SearchHistoryEntry(time.minusSeconds(1), 2, "AA"),
+            )
         )
+
+        val searches = manager.getRelatedSearches("", 9, 3).blockingFirst()
+        assertThat(searches).containsExactly("AA", "A", "BA")
+    }
+
+    @Test
+    fun getRelatedSearched_nonEmptyQuery() {
+        insertShuffledRelatedSearches(RELATED_SEARCHES_ENTRIES)
 
         // make sure correct number of searches is returned and in correct order
         val searches = manager.getRelatedSearches("A", 3, 5).blockingFirst()
