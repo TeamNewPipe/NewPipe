@@ -411,7 +411,7 @@ abstract class BasePlayerGestureListener(
     var doubleTapControls: DoubleTapListener? = null
         private set
 
-    val isDoubleTapEnabled: Boolean
+    private val isDoubleTapEnabled: Boolean
         get() = doubleTapDelay > 0
 
     var isDoubleTapping = false
@@ -457,10 +457,6 @@ abstract class BasePlayerGestureListener(
         isDoubleTapping = false
         doubleTapHandler.removeCallbacks(doubleTapRunnable)
         doubleTapControls?.onDoubleTapFinished()
-    }
-
-    fun enableMultiDoubleTap(enable: Boolean) = apply {
-        doubleTapDelay = if (enable) DOUBLE_TAP_DELAY else 0
     }
 
     // ///////////////////////////////////////////////////////////////////
