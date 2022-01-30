@@ -415,6 +415,7 @@
     <string name="sponsor_block_clear_whitelist_key" translatable="false">sponsor_block_clear_whitelist</string>
 
     <!-- Extras -->
+    <string name="enable_return_youtube_dislike_key" translatable="false">enable_return_youtube_dislike</string>
     <string name="enable_local_player_key" translatable="false">enable_local_player</string>
     <string name="force_auto_fullscreen_key" translatable="false">force_auto_fullscreen</string>
     <string name="disable_error_reports_key" translatable="false">disable_error_reports</string>

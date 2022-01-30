@@ -89,7 +89,7 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
-import org.schabi.newpipe.util.ReturnYoutubeDislikeUtils;
+import org.schabi.newpipe.util.ReturnYouTubeDislikeUtils;
 import org.schabi.newpipe.util.VideoSegment;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.ListHelper;
@@ -1569,7 +1569,7 @@ public final class VideoDetailFragment
         } else {
             if (info.getDislikeCount() == -1) {
                 new Thread(() -> {
-                    info.setDislikeCount(ReturnYoutubeDislikeUtils.getDislikes(info));
+                    info.setDislikeCount(ReturnYouTubeDislikeUtils.getDislikes(getContext(), info));
                     if (info.getDislikeCount() >= 0) {
                         activity.runOnUiThread(() -> {
                             binding.detailThumbsDownCountView.setText(Localization

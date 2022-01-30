@@ -778,4 +778,6 @@
     <string name="force_auto_fullscreen_summary">If enabled, when the device is set to landscape, force fullscreen mode even if the device is a tablet or TV.</string>
     <string name="disable_error_reports_title">Disable Error Reporting</string>
     <string name="disable_error_reports_summary">Prevent all error reporting screens from appearing. This may result in the app behaving unexpectedly. <b>USE AT YOUR OWN RISK!</b></string>
+    <string name="enable_return_youtube_dislike_title">Show Dislike Count</string>
+    <string name="enable_return_youtube_dislike_summary">Use the ReturnYouTubeDislike API to show the amount of dislikes for a video. This only works for YouTube videos.\n<b>WARNING: Your IP address will be visible to the API. Use at your own risk!</b></string>
 </resources>

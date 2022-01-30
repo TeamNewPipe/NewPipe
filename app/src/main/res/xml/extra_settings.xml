@@ -33,5 +33,12 @@
             android:key="@string/disable_error_reports_key"
             android:summary="@string/disable_error_reports_summary"
             android:title="@string/disable_error_reports_title"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="false"
+            android:key="@string/enable_return_youtube_dislike_key"
+            android:summary="@string/enable_return_youtube_dislike_summary"
+            android:title="@string/enable_return_youtube_dislike_title"/>
     </PreferenceCategory>
 </PreferenceScreen>
