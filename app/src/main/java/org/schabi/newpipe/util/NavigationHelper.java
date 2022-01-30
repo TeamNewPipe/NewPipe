@@ -284,9 +284,9 @@ public final class NavigationHelper {
             if (stream.getFormat() != null) {
                 mimeType = stream.getFormat().getMimeType();
             } else {
-                if (stream.getClass() == AudioStream.class) {
+                if (stream instanceof AudioStream) {
                     mimeType = "audio/*";
-                } else if (stream.getClass() == VideoStream.class) {
+                } else if (stream instanceof VideoStream) {
                     mimeType = "video/*";
                 } else {
                     // This should never be reached, because subtitles are not opened in external
