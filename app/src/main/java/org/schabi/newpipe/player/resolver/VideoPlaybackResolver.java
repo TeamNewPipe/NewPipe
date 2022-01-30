@@ -124,9 +124,6 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                 final MediaFormat mediaFormat = subtitle.getFormat();
                 if (mediaFormat != null) {
                     final String mimeType = PlayerHelper.subtitleMimeTypesOf(mediaFormat);
-                    if (mimeType == null) {
-                        continue;
-                    }
                     mediaSources.add(dataSource.getSingleSampleMediaSourceFactory()
                             .createMediaSource(new MediaItem.Subtitle(
                                     Uri.parse(subtitle.getContent()), mimeType,
