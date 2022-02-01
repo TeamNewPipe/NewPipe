@@ -50,18 +50,18 @@ body:
       required: true
 
   - type: textarea
-    id: actual-behavior
-    attributes:
-      label: Actual behavior
-      description: |
-        Tell us what happens with the steps given above.
-
-  - type: textarea
     id: expected-behavior
     attributes:
       label: Expected behavior
       description: |
         Tell us what you expect to happen.
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual behavior
+      description: |
+        Tell us what happens with the steps given above.
 
   - type: textarea
     id: screen-media
