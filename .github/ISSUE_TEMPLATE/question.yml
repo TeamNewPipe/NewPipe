@@ -1,0 +1,34 @@
+name: Question
+description: Ask about anything NewPipe-related
+labels: [question]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this issue! :hugs:
+        
+        However note the following before opening an issue:
+        * IF YOU DON'T FILL IN THE TEMPLATE PROPERLY, YOUR ISSUE IS LIABLE TO BE CLOSED.
+        * If you feel tired/lazy right now, open your issue some other time. We'll wait.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Checklist"
+      options:
+        - label: "I checked, but didn't find any duplicates ([open](https://github.com/TeamNewPipe/NewPipe/issues) OR [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed)) of this issue in the repo"
+          required: true
+        - label: "I have read the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/dev/.github/CONTRIBUTING.md)"
+          required: true
+
+  - type: textarea
+    id: what-is-the-question
+    attributes:
+      label: What's your question(s)?
+    validations:
+      required: true
+      
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Additional information

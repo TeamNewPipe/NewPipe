@@ -1,0 +1,98 @@
+name: Bug report
+description: Create a bug report to help us improve
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this issue! :hugs:
+        
+        However note the following before opening an issue:
+        * IF YOU DON'T FILL IN THE TEMPLATE PROPERLY, YOUR ISSUE IS LIABLE TO BE CLOSED.
+        * If you feel tired/lazy right now, open your issue some other time. We'll wait.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Checklist"
+      options:
+        - label: "I am able to reproduce the bug with the [latest version](https://github.com/TeamNewPipe/NewPipe/releases/latest)"
+          required: true
+        - label: "I checked, but didn't find any duplicates ([open](https://github.com/TeamNewPipe/NewPipe/issues) OR [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed)) of this issue in the repo"
+          required: true
+        - label: "I have read the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/dev/.github/CONTRIBUTING.md)"
+          required: true
+        - label: "This issue contains only one bug. I will open one issue for every bug report I want to file."
+          required: true
+
+  - type: input
+    id: version
+    attributes:
+     label: Affected version
+     description: "What version are you currently using?"
+     placeholder: "x.xx.x - Can be seen in the app under the 'About'-section"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce the bug
+      description: |
+        What did you do that the bug shows up?
+        
+        If you can't cause the bug to show up again reliably (and hence don't have a proper set of steps to give us), please still try to give as many details as possible on how you think you encountered the bug.
+      placeholder: |
+        1. Go to '...'
+        2. Press on '....'
+        3. Swipe down to '....'
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual behavior
+      description: |
+        Tell us what happens with the steps given above.
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: |
+        Tell us what you expect to happen.
+
+  - type: textarea
+    id: screen-media
+    attributes:
+      label: Screenshots/Screen recordings
+      description: |
+        A picture or video is worth a thousand words.
+        
+        If applicable, add screenshots or a screen recording to help explain your problem.
+        GitHub supports uploading them directly in the text box.
+        If your file is too big for Github to accept, try to compress it (ZIP-file) or feel free to paste a link from an image/video hoster here instead.
+        
+        :heavy_exclamation_mark: DON'T POST SCREENSHOTS OF THE ERROR PAGE.
+        Instead paste the text in the "Logs"-section below.
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: |
+        If your bug includes a crash (where you're shown the Error Report page with a bunch of info), tap on "Copy formatted report" at the bottom and paste it here.
+
+  - type: textarea
+    id: device-info
+    attributes:
+      label: Device / System information
+      value: |
+        - Android version/Custom ROM version: 
+        - Device model: 
+
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Additional information

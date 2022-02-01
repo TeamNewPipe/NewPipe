@@ -1,0 +1,48 @@
+name: Feature request
+description: Suggest an idea for this project
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this issue! :hugs:
+        
+        However note the following before opening an issue:
+        * IF YOU DON'T FILL IN THE TEMPLATE PROPERLY, YOUR ISSUE IS LIABLE TO BE CLOSED.
+        * If you feel tired/lazy right now, open your issue some other time. We'll wait.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Checklist"
+      options:
+        - label: "I checked, but didn't find any duplicates ([open](https://github.com/TeamNewPipe/NewPipe/issues) OR [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed)) of this issue in the repo"
+          required: true
+        - label: "I have read the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/dev/.github/CONTRIBUTING.md)"
+          required: true
+        - label: "This issue contains only one feature request. I will open one issue for every feature I want to request."
+          required: true
+
+
+  - type: textarea
+    id: what-feature-is-requested
+    attributes:
+      label: What feature do you want?
+      description: |
+        Explain how you want the app's look or behavior to change to suit your needs.
+    validations:
+      required: true
+
+  - type: textarea
+    id: why-is-the-feature-requested
+    attributes:
+      label: Why do you want this feature?
+      description: |
+        Describe any problem or limitation you come across while using the app which would be solved by this feature.
+    validations:
+      required: true
+      
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Additional information
