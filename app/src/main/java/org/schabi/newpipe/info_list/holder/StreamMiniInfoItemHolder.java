@@ -102,6 +102,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
                 switch (clicked_item.getItemId()) {
                     case R.id.menu_item_select:
                         itemBuilder.getOnStreamSelectedListener().held(item);
+                        return true;
                     default:
                         return false;
                 }
