@@ -75,6 +75,7 @@ fun View.animate(
     }
     animate().setListener(null).cancel()
     isVisible = true
+
     when (animationType) {
         AnimationType.ALPHA -> animateAlpha(enterOrExit, duration, delay, execOnEnd)
         AnimationType.SCALE_AND_ALPHA -> animateScaleAndAlpha(enterOrExit, duration, delay, execOnEnd)

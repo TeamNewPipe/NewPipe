@@ -44,8 +44,6 @@ import java.util.List;
 import static org.schabi.newpipe.settings.tabs.Tab.typeFrom;
 
 public class ChooseTabsFragment extends Fragment {
-    private static final int MENU_ITEM_RESTORE_ID = 123456;
-
     private TabsManager tabsManager;
 
     private final List<Tab> tabList = new ArrayList<>();
@@ -110,21 +108,14 @@ public class ChooseTabsFragment extends Fragment {
                                     @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
-        final MenuItem restoreItem = menu.add(Menu.NONE, MENU_ITEM_RESTORE_ID, Menu.NONE,
-                R.string.restore_defaults);
+        final MenuItem restoreItem = menu.add(R.string.restore_defaults);
         restoreItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         restoreItem.setIcon(AppCompatResources.getDrawable(requireContext(),
                 R.drawable.ic_settings_backup_restore));
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        if (item.getItemId() == MENU_ITEM_RESTORE_ID) {
+        restoreItem.setOnMenuItemClickListener(ev -> {
             restoreDefaults();
             return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        });
     }
 
     /*//////////////////////////////////////////////////////////////////////////

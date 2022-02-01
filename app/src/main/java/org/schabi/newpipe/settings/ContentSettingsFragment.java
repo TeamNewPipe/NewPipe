@@ -1,5 +1,8 @@
 package org.schabi.newpipe.settings;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +24,6 @@ import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorUtil;
-import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
@@ -37,9 +39,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
-
-import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
     private static final String ZIP_MIME_TYPE = "application/zip";
@@ -70,7 +69,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         importExportDataPathKey = getString(R.string.import_export_data_path);
         youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
 
-        addPreferencesFromResource(R.xml.content_settings);
+        addPreferencesFromResourceRegistry();
 
         final Preference importDataPreference = requirePreference(R.string.import_data);
         importDataPreference.setOnPreferenceClickListener((Preference p) -> {
@@ -104,21 +103,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         initialSelectedContentCountry = org.schabi.newpipe.util.Localization
                 .getPreferredContentCountry(requireContext());
         initialLanguage = defaultPreferences.getString(getString(R.string.app_language_key), "en");
-
-        final Preference clearCookiePref = requirePreference(R.string.clear_cookie_key);
-        clearCookiePref.setOnPreferenceClickListener(preference -> {
-            defaultPreferences.edit()
-                    .putString(getString(R.string.recaptcha_cookies_key), "").apply();
-            DownloaderImpl.getInstance().setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, "");
-            Toast.makeText(getActivity(), R.string.recaptcha_cookies_cleared,
-                    Toast.LENGTH_SHORT).show();
-            clearCookiePref.setVisible(false);
-            return true;
-        });
-
-        if (defaultPreferences.getString(getString(R.string.recaptcha_cookies_key), "").isEmpty()) {
-            clearCookiePref.setVisible(false);
-        }
 
         findPreference(getString(R.string.download_thumbnail_key)).setOnPreferenceChangeListener(
                 (preference, newValue) -> {

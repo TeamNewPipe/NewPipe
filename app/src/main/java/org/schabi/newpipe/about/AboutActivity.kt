@@ -185,7 +185,11 @@ class AboutActivity : AppCompatActivity() {
             SoftwareComponent(
                 "RxJava", "2016 - 2020", "RxJava Contributors",
                 "https://github.com/ReactiveX/RxJava", StandardLicenses.APACHE2
-            )
+            ),
+            SoftwareComponent(
+                "SearchPreference", "2018", "ByteHamster",
+                "https://github.com/ByteHamster/SearchPreference", StandardLicenses.MIT
+            ),
         )
         private const val POS_ABOUT = 0
         private const val POS_LICENSE = 1
