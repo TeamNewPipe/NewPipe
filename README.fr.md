@@ -13,7 +13,7 @@
 <a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"></a>
 </p>
 <hr>
-<p align="center"><a href="#captures-décran">Captures d'écran</a> &bull; <a href="#description">Description</a> &bull; <a href="#fonctionnalités">Fonctionnalités</a> &bull; <a href="#installation-et-mise-à-jour">Installation et mise à jour</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donation">Donation</a> &bull; <a href="#license">License</a></p>
+<p align="center"><a href="#captures-décran">Captures d'écran</a> &bull; <a href="#description">Description</a> &bull; <a href="#fonctionnalités">Fonctionnalités</a> &bull; <a href="#installation-et-mise-à-jour">Installation et mise à jour</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#don">Don</a> &bull; <a href="#license">License</a></p>
 <p align="center"><a href="https://newpipe.net">Site Internet</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Presse</a></p>
 <hr>
 
@@ -47,18 +47,18 @@ Les sites internets ne sont analysés que pour récupérer les informations néc
 
 * Rechercher des vidéos
 * Pas de compte nécessaire
-* Afficher les informations générales à propos de vidéos
-* Voir des vidéos YouTube
+* Afficher les informations à propos des vidéos
+* Regarder des vidéos YouTube
 * Écouter des vidéos YouTube
 * Mode flottant (lecteur flottant)
 * Choisir le lecteur avec lequel voir la vidéo
 * Télécharger des vidéos
 * Télécharger seulement le son des vidéos
 * Ouvrir une vidéo avec Kodi
-* Voir les vidéos suivantes/relatées
-* Rechercher sur YouTube dans un langage specifique 
+* Voir les vidéos suivantes/similaires
+* Rechercher sur YouTube dans une langue specifique 
 * Voir/Bloquer des contenus soumis à une restriction d'âge
-* Afficher des informations générales à propos des chaînes
+* Afficher les informations à propos des chaînes
 * Rechercher des chaînes
 * Regarder les vidéos d'une chaîne
 * Supporte Orbot/Tor (pas encore directement)
@@ -68,7 +68,7 @@ Les sites internets ne sont analysés que pour récupérer les informations néc
 * Rechercher dans l'historique
 * Rechercher/Voir des listes de lecture
 * Mettre et voir les listes de lecture en file d'attente
-* Mettre des vidéos en queue
+* Mettre des vidéos en file d'attente
 * Listes de lecture locales
 * Sous-titres
 * Voir des vidéos en direct
@@ -89,11 +89,11 @@ Vous pouvez installer NewPipe en utilisant l'une de ces méthodes :
  1. Ajoutez notre repository à F-Droid et installez l'application de là. Les instructions sont ici : https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
  2. Téléchargez-la depuis [les publications d'applications sur GitHub](https://github.com/TeamNewPipe/NewPipe/releases) et installez-là.
  3. Mettre à jour via F-Droid. C'est la méthode la plus lente pour avoir les mises à jour car F-Droid doit reconnaître les changements, construire l'application elle-même, la signer et ensuite la publier auprès des utilisateurs.
- 4. Construire une verision de débogage soi-même. C'est la méthode la plus rapide pour avoir les nouvelles fonctionnalités sur votre appareil, mais c'est plus compliqué, donc nous vous recommandons d'utiliser une autre méthode.
+ 4. Construire une version de débogage soi-même. C'est la méthode la plus rapide pour avoir les nouvelles fonctionnalités sur votre appareil, mais c'est plus compliqué, donc nous vous recommandons d'utiliser une autre méthode.
 
-Nous recommandons la première méthode pour la majorité des utilisateurs. Les fichiers APKs installés en utilisant les méthodes 1 et 2 sont compatibles entre eux, mais pas avec ceux installés via la méthode 3. Cela est dû à l'utilisation de la même clé de signature (la nôtre) pour les méthodes 1 et 2, et une clé de signature différente (celle de F-Droid) pour la méthode 3. Construire une version de débogage en utilisant la méthode 4 exclue totalement la clé de signature. Les clés de signures permettent de vérifier que l'utilisateur ne se trompe pas en installant une mise à jour malveillante de l'application.
+Nous recommandons la première méthode pour la majorité des utilisateurs. Les fichiers APKs installés en utilisant les méthodes 1 et 2 sont compatibles entre eux, mais pas avec ceux installés via la méthode 3. Cela est dû à l'utilisation de la même clé de signature (la nôtre) pour les méthodes 1 et 2, et une clé de signature différente (celle de F-Droid) pour la méthode 3. Construire une version de débogage en utilisant la méthode 4 exclue totalement la clé de signature. Les clés de signatures permettent de vérifier que l'utilisateur ne se trompe pas en installant une mise à jour malveillante de l'application.
 
-En attendant, si vous souhaitez changer de source (par exemple les fonctionnalités principales de NewPipe sont cassées et F-Droid n'a pas encore la mise à jour qui les corrigent), nous vous recommandons d'utiliser la procédure suivante :
+En attendant, si vous souhaitez changer de source (par exemple les fonctionnalités principales de NewPipe ne fonctionnent plus et F-Droid n'a pas encore la mise à jour qui les corrige), nous vous recommandons d'utiliser la procédure suivante :
 1. Sauvegardez vos données via Paramètres > Contenu > Exporter la base de données, ainsi, vous conservez votre historique, vos abonnements et vos listes de lecture.
 2. Désinstallez NewPipe.
 3. Téléchargez le fichier APK depuis la nouvelle source et installez-le.
@@ -101,7 +101,7 @@ En attendant, si vous souhaitez changer de source (par exemple les fonctionnalit
 
 ## Contribution
 Si vous avez des idées, des traductions, des changements de design, des nettoyages de code, ou de grands changements de code, l'aide est toujours appréciée !
-Plus est fait, mieux c'est !
+Plus il y en a, mieux c'est !
 
 Si vous souhaitez participer, regardez nos [notes de contribution](.github/CONTRIBUTING.md).
 
@@ -109,8 +109,8 @@ Si vous souhaitez participer, regardez nos [notes de contribution](.github/CONTR
 <img src="https://hosted.weblate.org/widgets/newpipe/fr/287x66-grey.png" alt="Statut de la traduction" />
 </a>
 
-## Donation
-Si vous aimez NewPipe, nous serions heureux d'une donation. Vous pouvez envoyer du Bitcoin, ou donner via Bountysource ou Liberapay. Pour plus d'informations concernant les donations pour NewPipe, merci de visiter notre [site internet](https://newpipe.net/donate).
+## Don
+Si vous aimez NewPipe, nous serions heureux d'un don. Vous pouvez envoyer du Bitcoin, ou donner via Bountysource ou Liberapay. Pour plus d'informations concernant les dons, merci de visiter notre [site internet](https://newpipe.net/donate).
 
 <table>
   <tr>
