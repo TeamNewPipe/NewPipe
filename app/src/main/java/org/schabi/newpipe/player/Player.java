@@ -2517,23 +2517,11 @@ public final class Player implements
         Log.e(TAG, "ExoPlayer - onPlayerError() called with:", error);
 
         saveStreamProgressState();
-
-        // create error notification
-        final ErrorInfo errorInfo;
-        if (currentMetadata == null) {
-            errorInfo = new ErrorInfo(error, UserAction.PLAY_STREAM,
-                    "Player error[type=" + error.type + "] occurred, currentMetadata is null");
-        } else {
-            errorInfo = new ErrorInfo(error, UserAction.PLAY_STREAM,
-                    "Player error[type=" + error.type + "] occurred while playing "
-                            + currentMetadata.getMetadata().getUrl(),
-                    currentMetadata.getMetadata());
-        }
-        ErrorUtil.createNotification(context, errorInfo);
+        boolean isCatchableException = false;
 
         switch (error.type) {
             case ExoPlaybackException.TYPE_SOURCE:
-                processSourceError(error.getSourceException());
+                isCatchableException = processSourceError(error.getSourceException());
                 break;
             case ExoPlaybackException.TYPE_UNEXPECTED:
                 setRecovery();
@@ -2546,22 +2534,60 @@ public final class Player implements
                 break;
         }
 
+        if (isCatchableException) {
+            return;
+        }
+
+        createErrorNotification(error);
+
         if (fragmentListener != null) {
             fragmentListener.onPlayerError(error);
         }
     }
 
-    private void processSourceError(final IOException error) {
-        if (exoPlayerIsNull() || playQueue == null) {
-            return;
+    private void createErrorNotification(@NonNull final ExoPlaybackException error) {
+        final ErrorInfo errorInfo;
+        if (currentMetadata == null) {
+            errorInfo = new ErrorInfo(error, UserAction.PLAY_STREAM,
+                    "Player error[type=" + error.type + "] occurred, currentMetadata is null");
+        } else {
+            errorInfo = new ErrorInfo(error, UserAction.PLAY_STREAM,
+                    "Player error[type=" + error.type + "] occurred while playing "
+                            + currentMetadata.getMetadata().getUrl(),
+                    currentMetadata.getMetadata());
         }
+        ErrorUtil.createNotification(context, errorInfo);
+    }
+
+    /**
+     * Process an {@link IOException} returned by {@link ExoPlaybackException#getSourceException()}
+     * for {@link ExoPlaybackException#TYPE_SOURCE} exceptions.
+     *
+     * <p>
+     * This method sets the recovery position and sends an error message to the play queue if the
+     * exception is not a {@link BehindLiveWindowException}.
+     * </p>
+     * @param error the source error which was thrown by ExoPlayer
+     * @return whether the exception thrown is a {@link BehindLiveWindowException} ({@code false}
+     * is always returned if ExoPlayer or the play queue is null)
+     */
+    private boolean processSourceError(final IOException error) {
+        if (exoPlayerIsNull() || playQueue == null) {
+            return false;
+        }
+
         setRecovery();
 
         if (error instanceof BehindLiveWindowException) {
-            reloadPlayQueueManager();
-        } else {
-            playQueue.error();
+            simpleExoPlayer.seekToDefaultPosition();
+            simpleExoPlayer.prepare();
+            // Inform the user that we are reloading the stream by switching to the buffering state
+            onBuffering();
+            return true;
         }
+
+        playQueue.error();
+        return false;
     }
     //endregion
 
