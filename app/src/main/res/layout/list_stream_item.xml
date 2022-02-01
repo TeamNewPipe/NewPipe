@@ -47,7 +47,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/video_item_search_title_text_size"
         app:layout_constraintBottom_toTopOf="@+id/itemUploaderView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/itemContextMenuButton"
         app:layout_constraintStart_toEndOf="@+id/itemThumbnailView"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
@@ -90,5 +90,17 @@
         app:layout_constraintEnd_toEndOf="@+id/itemThumbnailView"
         app:layout_constraintStart_toStartOf="@+id/itemThumbnailView"
         app:layout_constraintTop_toBottomOf="@+id/itemThumbnailView" />
+
+    <ImageButton
+        android:id="@+id/itemContextMenuButton"
+        android:layout_width="40dp"
+        android:layout_height="70dp"
+        android:background="?attr/selectableItemBackground"
+        android:padding="10dp"
+        android:src="@drawable/ic_more_vert"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/itemVideoTitleView"
+        tools:layout_editor_absoluteY="2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

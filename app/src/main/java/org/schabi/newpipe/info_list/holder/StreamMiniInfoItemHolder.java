@@ -2,7 +2,9 @@ package org.schabi.newpipe.info_list.holder;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -27,6 +29,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
     public final TextView itemUploaderView;
     public final TextView itemDurationView;
     private final AnimatedProgressBar itemProgressView;
+    private final ImageButton itemContextMenuButton;
 
     StreamMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
                              final ViewGroup parent) {
@@ -37,6 +40,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         itemUploaderView = itemView.findViewById(R.id.itemUploaderView);
         itemDurationView = itemView.findViewById(R.id.itemDurationView);
         itemProgressView = itemView.findViewById(R.id.itemProgressView);
+        itemContextMenuButton = itemView.findViewById(R.id.itemContextMenuButton);
     }
 
     public StreamMiniInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
@@ -89,6 +93,21 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             if (itemBuilder.getOnStreamSelectedListener() != null) {
                 itemBuilder.getOnStreamSelectedListener().selected(item);
             }
+        });
+
+        itemContextMenuButton.setOnClickListener(view -> {
+            final PopupMenu itemContextMenu = new PopupMenu(view.getContext(), view);
+
+            itemContextMenu.setOnMenuItemClickListener(clicked_item -> {
+                switch (clicked_item.getItemId()) {
+                    case R.id.menu_item_select:
+                        itemBuilder.getOnStreamSelectedListener().held(item);
+                    default:
+                        return false;
+                }
+            });
+            itemContextMenu.inflate(R.menu.stream_context_menu);
+            itemContextMenu.show();
         });
 
         switch (item.getStreamType()) {

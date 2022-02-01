@@ -49,6 +49,7 @@
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/itemThumbnailView"
         android:layout_toRightOf="@+id/itemThumbnailView"
+        android:layout_toLeftOf="@id/itemContextMenuButton"
         android:ellipsize="end"
         android:maxLines="2"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -62,6 +63,7 @@
         android:layout_below="@+id/itemVideoTitleView"
         android:layout_toEndOf="@+id/itemThumbnailView"
         android:layout_toRightOf="@+id/itemThumbnailView"
+        android:layout_toLeftOf="@id/itemContextMenuButton"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_uploader_text_size"
@@ -77,5 +79,16 @@
         android:layout_alignEnd="@id/itemThumbnailView"
         android:layout_marginTop="-2dp"
         android:progressDrawable="?progress_horizontal_drawable" />
+
+    <ImageButton
+        android:id="@+id/itemContextMenuButton"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:padding="10dp"
+        android:src="@drawable/ic_more_vert"
+        android:visibility="visible" />
 
 </RelativeLayout>
