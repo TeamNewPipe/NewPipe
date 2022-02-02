@@ -260,7 +260,7 @@ dependencies {
     implementation "com.nononsenseapps:filepicker:4.2.1"
 
     // Crash reporting
-    implementation "ch.acra:acra-core:5.7.0"
+    implementation "ch.acra:acra-core:5.8.4"
 
     // Properly restarting
     implementation 'com.jakewharton:process-phoenix:2.1.2'
