@@ -1,4 +1,4 @@
-<p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">輕巧的 Android 串流前端</h4>
 
@@ -17,7 +17,7 @@
 <p align="center"><a href="https://newpipe.net">網站</a> &bull; <a href="https://newpipe.net/blog/">部落格</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">媒體</a></p>
 <hr>
 
-*其他語言: [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md)*
+*其他語言: [English](../README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md)*
 
 <b>警告：這是測試版本，可能會發生錯誤。如果遇到錯誤，請在我們的 GITHUB REPO 開 ISSUE 回報。</b>
 
@@ -26,18 +26,18 @@
 <span id="screenshots"></span>
 ## 截圖
 
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_03.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_03.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_04.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_04.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_05.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_05.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_06.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_06.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_07.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_07.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_08.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_08.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_09.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_09.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png)
-[<img src="fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png" width=405>](fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png)
-[<img src="fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png" width=405>](fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_01.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_02.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_03.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_03.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_04.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_04.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_05.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_05.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_06.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_06.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_07.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_07.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_08.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_08.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_09.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_09.png)
+[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png)
+[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png)
+[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png)
 
 <span id="description"></span>
 ## 說明
@@ -109,7 +109,7 @@ NewPipe 支援多種服務。我們的[使用文件](https://teamnewpipe.github.
 ## 貢獻
 若你有任何想法、翻譯、設計、整理原始碼或大範圍的原始碼改動，我們歡迎任何幫助。
 
-若你想參與，請閱讀[貢獻須知（英文）](.github/CONTRIBUTING.md)。
+若你想參與，請閱讀[貢獻須知（英文）](../.github/CONTRIBUTING.md)。
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />
@@ -122,17 +122,17 @@ NewPipe 支援多種服務。我們的[使用文件](https://teamnewpipe.github.
 <table>
   <tr>
     <td><img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin"></td>
-    <td><img src="assets/bitcoin_qr_code.png" alt="Bitcoin QR code" width="100px"></td>
+    <td><img src="../assets/bitcoin_qr_code.png" alt="Bitcoin QR code" width="100px"></td>
     <td><samp>16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh</samp></td>
   </tr>
   <tr>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="assets/liberapay_qr_code.png" alt="Visit NewPipe at liberapay.com" width="100px"></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></a></td>
+    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="../assets/liberapay_qr_code.png" alt="Visit NewPipe at liberapay.com" width="100px"></a></td>
+    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="../assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></a></td>
   </tr>
   <tr>
     <td><a href="https://www.bountysource.com/teams/newpipe"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bountysource.png/320px-Bountysource.png" alt="Bountysource" width="190px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="assets/bountysource_qr_code.png" alt="Visit NewPipe at bountysource.com" width="100px"></a></td>
+    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="../assets/bountysource_qr_code.png" alt="Visit NewPipe at bountysource.com" width="100px"></a></td>
     <td><a href="https://www.bountysource.com/teams/newpipe/issues"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f" height="30px" alt="Check out how many bounties you can earn."></a></td>
   </tr>
 </table>
