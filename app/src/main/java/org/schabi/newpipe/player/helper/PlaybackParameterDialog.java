@@ -82,8 +82,6 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Nullable
     private TextView tempoStepUpText;
     @Nullable
-    private RelativeLayout pitchControl;
-    @Nullable
     private SeekBar pitchSlider;
     @Nullable
     private TextView pitchCurrentText;
@@ -92,8 +90,6 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Nullable
     private TextView pitchStepUpText;
     @Nullable
-    private RelativeLayout semitoneControl;
-    @Nullable
     private SeekBar semitoneSlider;
     @Nullable
     private TextView semitoneCurrentText;
@@ -101,8 +97,6 @@ public class PlaybackParameterDialog extends DialogFragment {
     private TextView semitoneStepDownText;
     @Nullable
     private TextView semitoneStepUpText;
-    @Nullable
-    private View separatorStepSizeSelector;
     @Nullable
     private CheckBox unhookingCheckbox;
     @Nullable
@@ -213,11 +207,13 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private void togglePitchSliderType(@NonNull final View rootView) {
+        @Nullable
+        final RelativeLayout pitchControl = rootView.findViewById(R.id.pitchControl);
+        @Nullable
+        final RelativeLayout semitoneControl = rootView.findViewById(R.id.semitoneControl);
 
-        pitchControl = rootView.findViewById(R.id.pitchControl);
-        semitoneControl = rootView.findViewById(R.id.semitoneControl);
-
-        separatorStepSizeSelector = rootView.findViewById(R.id.separatorStepSizeSelector);
+        @Nullable
+        final View separatorStepSizeSelector = rootView.findViewById(R.id.separatorStepSizeSelector);
         final RelativeLayout.LayoutParams params =
                 (RelativeLayout.LayoutParams) separatorStepSizeSelector.getLayoutParams();
         if (pitchControl != null && semitoneControl != null && unhookingCheckbox != null) {
@@ -364,10 +360,14 @@ public class PlaybackParameterDialog extends DialogFragment {
                     setPlaybackParameters(
                             getCurrentTempo(),
                             getCurrentPitch(),
-                            percentToSemitones(getCurrentPitch()),
+                            Integer.min(12,
+                                    Integer.max(-12, percentToSemitones(getCurrentPitch())
+                            )),
                             getCurrentSkipSilence()
                     );
-                    setSemitoneSlider(percentToSemitones(getCurrentPitch()));
+                    setSemitoneSlider(Integer.min(12,
+                            Integer.max(-12, percentToSemitones(getCurrentPitch()))
+                    ));
                 } else {
                     setPlaybackParameters(
                             getCurrentTempo(),
@@ -546,7 +546,7 @@ public class PlaybackParameterDialog extends DialogFragment {
             @Override
             public void onProgressChanged(final SeekBar seekBar, final int progress,
                                           final boolean fromUser) {
-                // semitone slider supplies values 0 to 25, subtraction by 12 is required
+                // semitone slider supplies values 0 to 24, subtraction by 12 is required
                 final int currentSemitones = progress - 12;
                 if (fromUser) { // this change is first in chain
                     onSemitoneSliderUpdated(currentSemitones);
@@ -569,9 +569,6 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private void onTempoSliderUpdated(final double newTempo) {
-        if (unhookingCheckbox == null) {
-            return;
-        }
         if (!unhookingCheckbox.isChecked()) {
             setSliders(newTempo);
         } else {
@@ -580,9 +577,6 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private void onPitchSliderUpdated(final double newPitch) {
-        if (unhookingCheckbox == null) {
-            return;
-        }
         if (!unhookingCheckbox.isChecked()) {
             setSliders(newPitch);
         } else {
@@ -591,9 +585,6 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private void onSemitoneSliderUpdated(final int newSemitone) {
-        if (unhookingCheckbox == null) {
-            return;
-        }
         setSemitoneSlider(newSemitone);
     }
 
