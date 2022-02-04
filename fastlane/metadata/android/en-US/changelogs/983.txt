@@ -1,0 +1,9 @@
+New fast forward / rewind behaviour
+Made settings searchable
+Highlight pinned comments as such
+Added FSFE PeerTube instance to URL opener
+Improved error reporting and new error notification
+Fixed first item always played in the play queue when reloading play queue manager
+Wait longer for server to provide livestream parts before failing
+Fixed order of local search results
+Fixed empty fields in play queue by loading full stream info if needed
