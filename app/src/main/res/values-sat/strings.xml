@@ -60,4 +60,8 @@
     <string name="notification_action_1_title">ᱫᱚᱥᱟᱨ ᱠᱟᱹᱢᱤ ᱵᱩᱛᱟᱹᱢ</string>
     <string name="notification_action_0_title">ᱢᱟᱲᱟᱝ ᱠᱟᱹᱢᱤ ᱵᱩᱛᱟᱹᱢ</string>
     <string name="notification_scale_to_square_image_title">ᱛᱷᱟᱹᱢᱵᱽᱱᱮᱞ ᱫᱚ ᱑:᱑ ᱮᱥᱯᱮᱠᱼᱴ ᱨᱮᱥᱤᱭᱚ ᱨᱮ ᱢᱟᱯ ᱢᱮ</string>
+    <string name="ok">ᱴᱷᱤᱠ</string>
+    <string name="play_audio">ᱥᱟᱰᱮ</string>
+    <string name="mark_as_watched">ᱧᱮᱞ ᱠᱟᱱ ᱞᱮᱠᱷᱟ ᱪᱤᱱᱦᱟᱹ ᱠᱟᱜ ᱢᱮ</string>
+    <string name="crash_the_player">ᱯᱞᱮᱭᱚᱨ ᱠᱨᱟᱥ ᱠᱟᱜ ᱢᱮ</string>
 </resources>

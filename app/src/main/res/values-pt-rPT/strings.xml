@@ -25,7 +25,7 @@
     <string name="channel_unsubscribed">Canal não subscrito</string>
     <string name="msg_name">Nome do ficheiro</string>
     <string name="enable_playback_state_lists_summary">Mostrar indicadores de posição de reprodução nas listas</string>
-    <string name="notification_channel_description">Notificações para NewPipe e para os reprodutores popup</string>
+    <string name="notification_channel_description">Notificações para o reprodutor do NewPipe</string>
     <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
     <string name="show_search_suggestions_summary">Escolha as sugestões a mostrar ao pesquisar</string>
     <string name="no_valid_zip_file">Ficheiro ZIP inválido</string>
@@ -139,7 +139,7 @@
     <string name="download_thumbnail_summary">Desative para parar o carregamento de miniaturas, poupar dados e utilização da memória. As alterações limpam a cache de imagens do disco e da memória</string>
     <string name="did_you_mean">Será que queria dizer \"%1$s\"\?</string>
     <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da aplicação se existir uma nova versão</string>
-    <string name="enqueue">Fila</string>
+    <string name="enqueue">Enfileirar</string>
     <string name="no_one_watching">Ninguém está a ver</string>
     <string name="delete_downloaded_files">Remover ficheiros descarregados</string>
     <string name="app_language_title">Idioma da aplicação</string>
@@ -176,8 +176,8 @@
 \n3. Clique em \"Todos os dados incluídos\", depois em \"Desmarcar todos\", depois selecione apenas \"subscrições\" e clique em \"OK\".
 \n4. Clique em \"Próximo passo\" e depois em \"Criar exportação\".
 \n5. Clique no botão \"Descarregar\" após aparecer
-\n6. Clique em IMPORT FILE abaixo e selecione o ficheiro zip descarregado
-\n7. [Se a importação do zip falhar] Extraia o ficheiro .csv (geralmente em \"YouTube e YouTube Music/subscriptions/subscriptions.csv\"), clique em IMPORT FILE abaixo e selecione o ficheiro csv extraído</string>
+\n6. Clique em IMPORT FILE abaixo e selecione o ficheiro .zip descarregado
+\n7. [Se a importação do .zip falhar] Extraia o ficheiro .csv (geralmente em \"YouTube e YouTube Music/subscriptions/subscriptions.csv\"), clique em IMPORT FILE abaixo e selecione o ficheiro csv extraído</string>
     <string name="minimize_on_exit_background_description">Ativar reprodutor em segundo plano</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
     <string name="autoplay_title">Reprodução automática</string>
@@ -281,7 +281,7 @@
     <string name="post_processing">pós-processamento</string>
     <string name="overwrite_failed">não é possível sobrescrever o ficheiro</string>
     <string name="invalid_source">Fonte de conteúdo/ficheiro inexistente</string>
-    <string name="app_update_notification_channel_description">Notificações para uma nova versão do NewPipe</string>
+    <string name="app_update_notification_channel_description">Notificações para novas versões do NewPipe</string>
     <string name="action_history">Histórico</string>
     <string name="list">Lista</string>
     <string name="remove_watched_popup_title">Remover vídeos visualizados\?</string>
@@ -444,7 +444,6 @@
     <string name="feed_update_threshold_summary">Tempo após a última atualização antes de a subscrição ser considerada desatualizada - %s</string>
     <string name="search">Pesquisar</string>
     <string name="settings_category_updates_title">Atualizações</string>
-    <string name="list_thumbnail_view_description">Miniatura do vídeo</string>
     <string name="updates_setting_title">Atualizações</string>
     <string name="start_downloads">Iniciar transferências</string>
     <string name="enable_search_history_summary">Guardar termos de pesquisa localmente</string>
@@ -665,7 +664,7 @@
         <item quantity="other">%s descargas concluídas</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Deslizar itens para removê-los</string>
-    <string name="start_main_player_fullscreen_summary">Não iniciar vídeos no reprodutor mini, mas ir diretamente para ecrã completo se a rotação automática estiver bloqueada. Ainda pode aceder o reprodutor mini se sair do modo de ecrã completo.</string>
+    <string name="start_main_player_fullscreen_summary">Não iniciar vídeos no reprodutor mini, mas ir diretamente ao ecrã completo se a rotação automática estiver bloqueada. Ainda pode aceder o reprodutor mini se sair do modo de ecrã completo</string>
     <string name="start_main_player_fullscreen_title">Iniciar reprodutor principal em ecrã completo</string>
     <string name="enqueued_next">Enfileirado o próximo</string>
     <string name="enqueue_next_stream">Enfileirar o próximo</string>
@@ -675,8 +674,18 @@
     <string name="checking_updates_toast">A procurar atualizações…</string>
     <string name="feed_new_items">Novos itens</string>
     <string name="crash_the_player">Travar o reprodutor</string>
-    <string name="report_player_errors_summary">Relata os erros do reprodutor com todos os detalhes em vez de mostrar uma mensagem de notificação por pouco tempo (útil para diagnosticar problemas)</string>
-    <string name="report_player_errors_title">Relatar erros do reprodutor</string>
     <string name="show_crash_the_player_title">Mostrar \"travar o reprodutor\"</string>
     <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o reprodutor</string>
+    <string name="error_report_channel_name">Notificação de relatório de erros</string>
+    <string name="error_report_channel_description">Notificações para reportar erros</string>
+    <string name="error_report_notification_title">NewPipe encontrou um erro, toque para relatar</string>
+    <string name="error_report_notification_toast">Ocorreu um erro, veja a notificação</string>
+    <string name="show_error_snackbar">Mostrar um snackbar de erro</string>
+    <string name="create_error_notification">Criar uma notificação de erro</string>
+    <string name="no_appropriate_file_manager_message">Nenhum gestor de ficheiros apropriado foi encontrado para esta ação.
+\nPor favor, instale um gestor de ficheiros ou tente desativar \'%s\' nas configurações de descarregar.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Nenhum gestor de ficheiros apropriado foi encontrado para esta ação.
+\nPor favor, instale um gestor de ficheiros compatível com o Storage Access Framework.</string>
+    <string name="detail_pinned_comment_view_description">Comentário fixado</string>
+    <string name="background_player_already_playing_toast">Já está a reproduzir em segundo plano</string>
 </resources>

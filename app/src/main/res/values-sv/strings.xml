@@ -79,7 +79,7 @@
     <string name="detail_likes_img_view_description">Gillar</string>
     <string name="detail_dislikes_img_view_description">Ogillar</string>
     <string name="subscribe_button_title">Prenumerera</string>
-    <string name="subscribed_button_title">Prenumererad</string>
+    <string name="subscribed_button_title">Prenumererar</string>
     <string name="channel_unsubscribed">Prenumeration avslutad</string>
     <string name="subscription_change_failed">Kunde inte ändra prenumeration</string>
     <string name="subscription_update_failed">Kunde inte uppdatera prenumeration</string>
@@ -98,8 +98,8 @@
     <string name="settings_category_history_title">Historik och cacheminne</string>
     <string name="undo">Ångra</string>
     <string name="play_all">Spela alla</string>
-    <string name="notification_channel_name">NewPipe-avisering</string>
-    <string name="notification_channel_description">Aviseringar för NewPipes bakgrunds- och popup-spelare</string>
+    <string name="notification_channel_name">NewPipe avisering</string>
+    <string name="notification_channel_description">Aviseringar för NewPipes spelare</string>
     <string name="unknown_content">[Okänd]</string>
     <string name="youtube_signature_deobfuscation_error">Kunde inte dekryptera video URL signatur</string>
     <string name="player_stream_failure">Misslyckades med att spela denna ström</string>
@@ -107,7 +107,6 @@
     <string name="player_recoverable_failure">Återhämtar sig från spelarfel</string>
     <string name="error_report_button_text">Rapportera detta fel via e-post</string>
     <string name="info_labels">Vad:\\nBegäran:\\nInnehållsspråk:\\nInnehållsland:\\nApp-språk:\\nTjänst:\\nGMT-tid:\\nPaket:\\nVersion:\\nOS-version:</string>
-    <string name="list_thumbnail_view_description">Videons miniatyrbild</string>
     <string name="detail_thumbnail_view_description">Spela video, längd:</string>
     <string name="detail_uploader_thumbnail_view_description">Uppladdarens avatar-miniatyrbild</string>
     <string name="search_no_results">Inga resultat</string>
@@ -344,7 +343,7 @@
     <string name="settings_category_updates_title">Uppdateringar</string>
     <string name="file_deleted">Fil raderad</string>
     <string name="app_update_notification_channel_name">Avisering för appuppdatering</string>
-    <string name="app_update_notification_channel_description">Aviseringar för nya NewPipe-versioner</string>
+    <string name="app_update_notification_channel_description">Aviseringar för nya NewPipe versioner</string>
     <string name="download_to_sdcard_error_title">Extern lagring otillgänglig</string>
     <string name="saved_tabs_invalid_json">Fel vid läsning av sparade flikar, använder standardflikar</string>
     <string name="restore_defaults">Återställ standardvärden</string>
@@ -363,7 +362,7 @@
     <string name="paused">pausad</string>
     <string name="queued">köad</string>
     <string name="post_processing">efterbehandling</string>
-    <string name="enqueue">Kö</string>
+    <string name="enqueue">Köa</string>
     <string name="permission_denied">Åtgärden nekas av systemet</string>
     <string name="download_failed">Hämtningen misslyckades</string>
     <string name="generate_unique_name">Generera unikt namn</string>
@@ -494,7 +493,7 @@
 \nÄr du säker\? Detta kan inte ångras!</string>
     <string name="remove_watched_popup_title">Ta bort tittade videor\?</string>
     <string name="remove_watched">Ta bort tittade</string>
-    <string name="systems_language">Systems standard</string>
+    <string name="systems_language">Systemstandard</string>
     <string name="app_language_title">Appspråk</string>
     <string name="choose_instance_prompt">Välj en instans</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" möjliggör hämtningar till ett externt SD-kort</string>
@@ -675,8 +674,18 @@
     <string name="checking_updates_toast">Söker efter uppdateringar…</string>
     <string name="feed_new_items">Nya flödes objekt</string>
     <string name="show_crash_the_player_title">Visa \"krascha spelaren\"</string>
-    <string name="report_player_errors_title">Rapportera spelarfel</string>
     <string name="crash_the_player">Krascha spelaren</string>
     <string name="show_crash_the_player_summary">Visar ett kraschalternativ vid användning av spelaren</string>
-    <string name="report_player_errors_summary">Rapporterar spelarfel i detalj i stället för att visa ett kortvarigt popup-meddelande (användbart för att diagnostisera problem)</string>
+    <string name="error_report_channel_name">Felrapport-avisering</string>
+    <string name="error_report_channel_description">Avisering för att rapportera fel</string>
+    <string name="error_report_notification_title">NewPipe stötte på ett fel, tryck för att rapportera</string>
+    <string name="error_report_notification_toast">Ett fel uppstod, se aviseringen</string>
+    <string name="show_error_snackbar">Visa en fel snackbar</string>
+    <string name="create_error_notification">Skapa en fel avisering</string>
+    <string name="no_appropriate_file_manager_message">Ingen lämplig filhanterare hittades för denna åtgärd.
+\nInstallera en filhanterare eller testa att inaktivera \'%s\' i nedladdningsinställningarna.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Ingen lämplig filhanterare hittades för denna åtgärd.
+\nInstallera en filhanterare som är kompatibel med Storage Access Framework.</string>
+    <string name="background_player_already_playing_toast">Spelas redan i bakgrunden</string>
+    <string name="detail_pinned_comment_view_description">Fäst kommentar</string>
 </resources>

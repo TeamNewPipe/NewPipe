@@ -3,7 +3,7 @@
     <string name="audio">Áudio</string>
     <string name="youtube_signature_deobfuscation_error">Não foi possível decodificar assinatura da URL do vídeo</string>
     <string name="your_comment">Seu comentário (em inglês):</string>
-    <string name="what_happened_headline">O que ocorreu:</string>
+    <string name="what_happened_headline">O que aconteceu:</string>
     <string name="what_device_headline">Informação:</string>
     <string name="video">Vídeo</string>
     <string name="black_theme_title">Preto (AMOLED)</string>
@@ -16,7 +16,7 @@
     <string name="default_audio_format_title">Formato de áudio padrão</string>
     <string name="default_resolution_title">Resolução padrão</string>
     <string name="delete">Excluir</string>
-    <string name="detail_dislikes_img_view_description">Não curtidas</string>
+    <string name="detail_dislikes_img_view_description">Não gostei</string>
     <string name="detail_likes_img_view_description">Curtidas</string>
     <string name="download">Baixar</string>
     <string name="download_dialog_title">Baixar</string>
@@ -70,7 +70,6 @@
     <string name="download_path_summary">Vídeos baixados são salvos aqui</string>
     <string name="download_path_title">Pasta para vídeos baixados</string>
     <string name="kore_not_found">Instalar o aplicativo Kore\?</string>
-    <string name="list_thumbnail_view_description">Miniatura de visualização do vídeo</string>
     <string name="main_bg_subtitle">Toque na lupa para começar.</string>
     <string name="msg_threads">Threads</string>
     <string name="no_available_dir">Por favor, defina uma pasta de download depois nas configurações</string>
@@ -83,7 +82,7 @@
     <string name="use_external_audio_player_title">Usar player de áudio externo</string>
     <string name="use_external_video_player_title">Usar player de vídeo externo</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir com Kodi\"</string>
-    <string name="info_labels">Ocorrido:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo:\\nIdioma do app:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do Sistema Operacional:</string>
+    <string name="info_labels">O que aconteceu:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo:\\nIdioma do app:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do Sistema Operacional:</string>
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="default_popup_resolution_title">Resolução padrão do popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
@@ -131,7 +130,7 @@
     <string name="subscription_update_failed">Não foi possível atualizar inscrição</string>
     <string name="tab_subscriptions">Inscrições</string>
     <string name="fragment_feed_title">Novidades</string>
-    <string name="resume_on_audio_focus_gain_title">Retomar vídeo</string>
+    <string name="resume_on_audio_focus_gain_title">Continuar reprodução</string>
     <string name="resume_on_audio_focus_gain_summary">Continua vídeo após interrupções (ex: ligações)</string>
     <string name="enable_search_history_title">Histórico de pesquisa</string>
     <string name="enable_search_history_summary">Armazena histórico de pesquisa localmente</string>
@@ -139,8 +138,8 @@
     <string name="enable_watch_history_summary">Armazena histórico de vídeos assistidos</string>
     <string name="title_activity_history">Histórico</string>
     <string name="action_history">Histórico</string>
-    <string name="notification_channel_name">Notificações do NewPipe</string>
-    <string name="notification_channel_description">Notificações para players popup e em segundo plano do NewPipe</string>
+    <string name="notification_channel_name">Notificação do NewPipe</string>
+    <string name="notification_channel_description">Notificações para o player do NewPipe</string>
     <string name="settings_category_player_behavior_title">Comportamento</string>
     <string name="settings_category_history_title">Histórico e cache</string>
     <string name="undo">Desfazer</string>
@@ -268,17 +267,17 @@
 \n
 \n1. Acesse este link: %1$s
 \n2. Faça login quando solicitado
-\n3. Clique em \"Todos os dados incluídos\", em seguida, em \"Desmarque todos\", em seguida, selecione apenas \"assinaturas\" e clique em \"OK\"
+\n3. Clique em \"Todos os dados incluídos\", depois em \"Desmarcar todos\", em seguida, selecione apenas \"assinaturas\" e clique em \"OK\"
 \n4. Clique em \"Próximo passo\" e em seguida, em \"Criar exportação\"
 \n5. Clique no botão \"Baixar\" quando ele aparecer
-\n6. Clique em Importar Arquivo abaixo e selecione o arquivo zip baixado
-\n7. Caso a importação do arquivo zip falhe: Extraia o arquivo .csv (normalmente em \"YouTube e YouTube Music/subscriptions/subscriptions.csv\", clique em Importar Arquivo abaixo e selecione o arquivo cvs extraído</string>
+\n6. Clique em IMPORTAR ARQUIVO abaixo e selecione o arquivo .zip baixado
+\n7. Caso a importação do arquivo .zip falhe: Extraia o arquivo .csv (geralmente em \"YouTube e YouTube Music/subscriptions/subscriptions.csv\", clique em IMPORTAR ARQUIVO abaixo e selecione o arquivo csv extraído</string>
     <string name="import_soundcloud_instructions">Importe um perfil do SoundCloud digitando o URL ou seu ID:
 \n
-\n1. Ative o \"modo desktop\" no navegador (o site não está disponível em aparelhos celulares)
+\n1. Ative o \"modo desktop\" em um navegador (o site não está disponível em aparelhos celulares)
 \n2. Acesse este URL: %1$s
 \n3. Faça login quando solicitado
-\n4. Copie o URL do perfil que voçê foi redirecionado.</string>
+\n4. Copie o URL do perfil que você foi redirecionado.</string>
     <string name="import_soundcloud_instructions_hint">seuID, soundcloud.com/seuid</string>
     <string name="import_network_expensive_warning">Tenha em mente que esta operação poderá consumir muitos dados.
 \n
@@ -289,9 +288,9 @@
     <string name="metadata_cache_wipe_summary">Remove todos os dados de páginas em cache</string>
     <string name="metadata_cache_wipe_complete_notice">Cache de metadados limpo</string>
     <string name="playback_speed_control">Controles de velocidade de reprodução</string>
-    <string name="playback_tempo">Ritmo</string>
+    <string name="playback_tempo">Velocidade</string>
     <string name="download_thumbnail_summary">Desative para não carregar miniaturas e economizar no uso de dados e memória. A alteração limpa todo o cache de imagens em memória e em disco</string>
-    <string name="playback_pitch">Altura</string>
+    <string name="playback_pitch">Afinação</string>
     <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
     <string name="preferred_open_action_settings_title">Ação de \'abrir\' preferida</string>
     <string name="preferred_open_action_settings_summary">Ação padrão ao abrir conteúdo — %s</string>
@@ -327,7 +326,7 @@
     <string name="minimize_on_exit_none_description">Nenhum</string>
     <string name="minimize_on_exit_background_description">Minimizar para segundo plano</string>
     <string name="minimize_on_exit_popup_description">Minimizar para player popup</string>
-    <string name="skip_silence_checkbox">Avanço rápido durante silêncio</string>
+    <string name="skip_silence_checkbox">Avançar durante o silêncio</string>
     <string name="playback_step">Passo</string>
     <string name="playback_reset">Redefinir</string>
     <string name="channels">Canais</string>
@@ -344,8 +343,8 @@
     <string name="settings_category_updates_title">Atualizações</string>
     <string name="events">Eventos</string>
     <string name="file_deleted">Arquivo excluído</string>
-    <string name="app_update_notification_channel_name">Notificação de atualização</string>
-    <string name="app_update_notification_channel_description">Notificação de novas versões do NewPipe</string>
+    <string name="app_update_notification_channel_name">Notificação de atualização do aplicativo</string>
+    <string name="app_update_notification_channel_description">Notificações para novas versões do NewPipe</string>
     <string name="download_to_sdcard_error_title">Armazenamento externo indisponível</string>
     <string name="download_to_sdcard_error_message">Não é possível baixar para o cartão SD externo. Redefinir o local da pasta de download\?</string>
     <string name="saved_tabs_invalid_json">Não foi possível carregar as abas salvas, carregando as abas padrão</string>
@@ -411,7 +410,7 @@
     <string name="error_timeout">Tempo limite de conexão</string>
     <string name="confirm_prompt">Excluir todo o histórico de downloads ou excluir todos os arquivos baixados\?</string>
     <string name="enable_queue_limit">Limitar fila de downloads</string>
-    <string name="enable_queue_limit_desc">Um download será feito ao mesmo tempo</string>
+    <string name="enable_queue_limit_desc">Um download será feito por vez</string>
     <string name="start_downloads">Iniciar downloads</string>
     <string name="pause_downloads">Pausar downloads</string>
     <string name="downloads_storage_ask_title">Perguntar onde salvar o arquivo</string>
@@ -438,7 +437,7 @@
     <string name="seek_duration_title">Duração do salto para avançar/retroceder</string>
     <string name="peertube_instance_url_title">Instâncias do PeerTube</string>
     <string name="peertube_instance_url_summary">Escolha suas instâncias do PeerTube favoritas</string>
-    <string name="peertube_instance_url_help">Procure instâncias que gosta em %s</string>
+    <string name="peertube_instance_url_help">Encontre as instâncias que gosta em %s</string>
     <string name="peertube_instance_add_title">Adicionar instância</string>
     <string name="peertube_instance_add_help">Insira o link da instância</string>
     <string name="peertube_instance_add_fail">Erro ao validar a instância</string>
@@ -507,7 +506,7 @@
 \n• Buscar todo o conteúdo do canal inscrito, que é lento mas completo.
 \n• Usar um endpoint de serviço dedicado, que é rápido mas geralmente incompleto.
 \n
-\nA diferença entre os dois é que o rápido geralmente falta alguma informação, como a duração ou tipo do item (não consegue distinguir entre as lives e os vídeos normais) e pode retornar menos itens.
+\nA diferença entre os dois é que no rápido geralmente falta alguma informação, como a duração ou tipo do item (não consegue distinguir entre as lives e os vídeos normais) e pode retornar menos itens.
 \n
 \nO YouTube é um exemplo de serviço que oferece o modo rápido com seu feed RSS.
 \n
@@ -579,7 +578,7 @@
     <string name="show_thumbnail_title">Mostrar miniatura</string>
     <string name="msg_calculating_hash">Calculando hash</string>
     <string name="hash_channel_description">Notificações para o progresso do hash do vídeo</string>
-    <string name="hash_channel_name">Notificação de Hash do Vídeo</string>
+    <string name="hash_channel_name">Notificação de hash do vídeo</string>
     <string name="show_meta_info_summary">Desative para ocultar as caixas de informações de metadados com informações adicionais sobre o criador, conteúdo do stream ou uma solicitação de pesquisa</string>
     <string name="show_meta_info_title">Mostrar informação de metadados</string>
     <string name="recent">Recentes</string>
@@ -593,12 +592,12 @@
     <string name="no_app_to_open_intent">Nenhum aplicativo em seu dispositivo pode abrir isso</string>
     <string name="crash_the_app">O aplicativo parou</string>
     <string name="paid_content">Este conteúdo está disponível apenas para usuários que pagaram, portanto não pode ser transmitido ou baixado pelo NewPipe.</string>
-    <string name="youtube_music_premium_content">Este vídeo está disponível apenas para assinantes do YouTube Music Premium, portanto não pode ser transmitido ou baixado por NewPipe.</string>
+    <string name="youtube_music_premium_content">Este vídeo está disponível apenas para assinantes do YouTube Music Premium, portanto não pode ser transmitido ou baixado pelo NewPipe.</string>
     <string name="private_content">Este conteúdo é privado, portanto não pode ser transmitido ou baixado pelo NewPipe.</string>
     <string name="soundcloud_go_plus_content">Esta é uma faixa do SoundCloud Go+, pelo menos no seu país, portanto não pode ser transmitida ou baixada pelo NewPipe.</string>
     <string name="georestricted_content">Este conteúdo não está disponível em seu país.</string>
     <string name="restricted_video_no_stream">Este vídeo tem restrição de idade.
-\nDevido às novas políticas do YouTube sobre vídeos com restrição de idade, o NewPipe não pode acessar nenhuma de suas streams de vídeo e assim ele não pode ser exibido.</string>
+\nDevido às novas políticas do YouTube sobre vídeos com restrição de idade, o NewPipe não pode acessar nenhum de seus streams de vídeo e assim ele não pode ser exibido.</string>
     <string name="radio">Rádio</string>
     <string name="featured">Destaque</string>
     <string name="recaptcha_solve">Resolvido</string>
@@ -615,7 +614,7 @@
     <string name="metadata_privacy_unlisted">Não Listado</string>
     <string name="metadata_privacy_public">Público</string>
     <string name="metadata_age_limit">Limite de Idade</string>
-    <string name="metadata_thumbnail_url">URL da Capa</string>
+    <string name="metadata_thumbnail_url">URL da Miniatura</string>
     <string name="metadata_host">Hospedado em</string>
     <string name="metadata_support">Suporte</string>
     <string name="metadata_language">Idioma</string>
@@ -647,10 +646,10 @@
     <string name="low_quality_smaller">Baixa qualidade (menor)</string>
     <string name="high_quality_larger">Alta qualidade (maior)</string>
     <string name="seekbar_preview_thumbnail_title">Pré visualização da miniatura da barra de busca</string>
-    <string name="comments_are_disabled">Comentários estão desabilitados</string>
+    <string name="comments_are_disabled">Os comentários estão desabilitados</string>
     <string name="mark_as_watched">Marcar como visto</string>
     <string name="detail_heart_img_view_description">Curtido pelo criador</string>
-    <string name="show_image_indicators_summary">Exibir fitas coloridas de Picasso no topo das imagens indicando sua fonte: vermelho para rede, azul para disco e verde para memória</string>
+    <string name="show_image_indicators_summary">Exibir fitas coloridas no topo das imagens indicando sua fonte: vermelho para rede, azul para disco e verde para memória</string>
     <string name="loading_channel_details">Carregando detalhes do canal…</string>
     <string name="error_show_channel_details">Erro ao exibir detalhes do canal</string>
     <plurals name="deleted_downloads_toast">
@@ -665,7 +664,7 @@
     <string name="enqueued_next">Adicionado na próxima posição da fila</string>
     <string name="enqueue_next_stream">Adicionar a próxima posição da fila</string>
     <string name="main_page_content_swipe_remove">Deslize items para remove-los</string>
-    <string name="start_main_player_fullscreen_summary">Não inicia os vídeos no player reduzido, mas muda direto para o modo de tela cheia, se a rotação automatica estiver travada. Você ainda consegue acessar o player reduzido saindo da tela cheia</string>
+    <string name="start_main_player_fullscreen_summary">Não inicia os vídeos no player reduzido, mas muda direto para o modo de tela cheia, se a rotação automática estiver travada. Você ainda consegue acessar o player reduzido saindo da tela cheia</string>
     <string name="start_main_player_fullscreen_title">Iniciar o player principal em tela cheia</string>
     <string name="remote_search_suggestions">Sugestões de busca remotas</string>
     <string name="local_search_suggestions">Sugestões de busca locais</string>
@@ -674,9 +673,19 @@
     <string name="manual_update_description">Procurar manualmente por novas versões</string>
     <string name="checking_updates_toast">Procurando por atualizações…</string>
     <string name="crash_the_player">Travar o player</string>
-    <string name="report_player_errors_summary">Reporta os erros do player em detalhes completos, em vez de mostrar uma mensagem de notificação de curta duração (útil para diagnosticar problemas)</string>
     <string name="show_crash_the_player_title">Mostrar \"travar o player\"</string>
-    <string name="report_player_errors_title">Reportar erros do player</string>
     <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o player</string>
     <string name="feed_new_items">Novos itens do feed</string>
+    <string name="error_report_channel_name">Notificação de relatório de erro</string>
+    <string name="error_report_channel_description">Notificações para reportar erros</string>
+    <string name="error_report_notification_title">O NewPipe encontrou um erro, toque para reportar</string>
+    <string name="create_error_notification">Crie uma notificação de erro</string>
+    <string name="no_appropriate_file_manager_message_android_10">Nenhum gerenciador de arquivos apropriado foi encontrado para esta ação.
+\nInstale um gerenciador de arquivos compatível com o Storage Access Framework.</string>
+    <string name="error_report_notification_toast">Ocorreu um erro, consulte a notificação</string>
+    <string name="show_error_snackbar">Mostrar um snackbar de erro</string>
+    <string name="no_appropriate_file_manager_message">Nenhum gerenciador de arquivos apropriado foi encontrado para esta ação.
+\nInstale um gerenciador de arquivos ou tente desativar \'%s\' nas configurações de download.</string>
+    <string name="background_player_already_playing_toast">Já está tocando em segundo plano</string>
+    <string name="detail_pinned_comment_view_description">Comentário fixado</string>
 </resources>

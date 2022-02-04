@@ -28,6 +28,11 @@ public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
         super.onCreate(savedInstanceState);
     }
 
+    protected void addPreferencesFromResourceRegistry() {
+        addPreferencesFromResource(
+                SettingsResourceRegistry.getInstance().getPreferencesResId(this.getClass()));
+    }
+
     @Override
     public void onViewCreated(@NonNull final View rootView,
                               @Nullable final Bundle savedInstanceState) {

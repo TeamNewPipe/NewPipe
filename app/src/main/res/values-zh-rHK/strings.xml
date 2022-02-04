@@ -31,7 +31,6 @@
     <string name="settings_category_appearance_title">外觀</string>
     <string name="background_player_playing_toast">背景播放</string>
     <string name="network_error">網絡問題</string>
-    <string name="list_thumbnail_view_description">影片預覽縮圖</string>
     <string name="detail_thumbnail_view_description">影片預覽縮圖</string>
     <string name="detail_uploader_thumbnail_view_description">上載者的個人頭像縮圖</string>
     <string name="detail_likes_img_view_description">讚好</string>
@@ -113,7 +112,7 @@
     <string name="tab_licenses">特許</string>
     <string name="app_description">在 Android 上運作自由輕便的 Youtube 前端。</string>
     <string name="view_on_github">檢視我們的 GitHub</string>
-    <string name="app_license_title">NewPipe 的特許</string>
+    <string name="app_license_title">NewPipe 嘅授權協議</string>
     <string name="contribution_encouragement">無論您僅想分享您對 NewPipe 的一些構思，還是願意設計和翻譯程式介面，甚至想幫我們整理或重新編寫原始碼，我們都無任歡迎。貢獻更多，應用程式便會變得更好！</string>
     <string name="read_full_license">檢閱特許</string>
     <string name="contribution_title">貢獻</string>
@@ -244,4 +243,159 @@
     <string name="restore_defaults_confirmation">您係咪要還原返做預設嗰個樣？</string>
     <string name="copy_for_github">複製執咗格式嘅報告</string>
     <string name="search_no_results">乜都搵唔到</string>
+    <string name="name">名稱</string>
+    <string name="accept">接受</string>
+    <string name="close">關閉</string>
+    <string name="download_failed">下載失敗</string>
+    <plurals name="download_finished_notification">
+        <item quantity="other">完成咗 %s 個下載</item>
+    </plurals>
+    <string name="generate_unique_name">產生獨一無二嘅名稱</string>
+    <string name="import_file_title">匯入檔案</string>
+    <string name="export_ongoing">匯出緊…</string>
+    <string name="previous_export">先前嘅匯出</string>
+    <string name="import_network_expensive_warning">惟請注意：呢項操作可能相當消耗網絡數據。
+\n
+\n您係咪要繼續？</string>
+    <string name="never">幾時都唔使</string>
+    <string name="auto">自動</string>
+    <string name="low_quality_smaller">低畫質 (較細)</string>
+    <string name="dont_show">唔顯示</string>
+    <string name="app_update_notification_content_text">撳一下去下載</string>
+    <string name="no_views">無觀看次數</string>
+    <plurals name="listening">
+        <item quantity="other">%s 個人聽緊</item>
+    </plurals>
+    <string name="dismiss">明白</string>
+    <string name="queued">排緊隊</string>
+    <string name="post_processing">後期處理緊</string>
+    <string name="paused">暫停咗</string>
+    <string name="limit_data_usage_none_description">無限制</string>
+    <string name="playlist_no_uploader">自動產生 (搵唔到上載者)</string>
+    <string name="settings_file_replacement_character_title">代替字元</string>
+    <string name="no_valid_zip_file">個 ZIP 檔無效</string>
+    <string name="most_liked">最多讚</string>
+    <string name="export_complete_toast">匯出咗</string>
+    <plurals name="views">
+        <item quantity="other">%s 次觀看</item>
+    </plurals>
+    <string name="no_one_watching">無人睇緊</string>
+    <plurals name="videos">
+        <item quantity="other">%s 部影片</item>
+    </plurals>
+    <string name="no_comments">無留言</string>
+    <string name="msg_calculating_hash">計算緊雜湊</string>
+    <string name="settings_file_charset_title">檔名准用啲咩字元</string>
+    <string name="settings_file_replacement_character_summary">無效嘅字元會用呢一楷嚟代替</string>
+    <string name="website_encouragement">去 NewPipe 網站睇更多資訊同最新消息。</string>
+    <string name="read_privacy_policy">閱讀私隱政策</string>
+    <string name="import_complete_toast">匯入咗</string>
+    <string name="preferred_player_fetcher_notification_title">攞緊資訊…</string>
+    <string name="resize_fill">填滿</string>
+    <string name="resize_zoom">縮放</string>
+    <string name="subscriptions_import_unsuccessful">匯入唔到訂閱</string>
+    <string name="playback_tempo">節奏</string>
+    <string name="playback_speed_control">播放速度控掣</string>
+    <string name="systems_language">系統預設噉樣</string>
+    <string name="manual_update_title">檢查有冇更新</string>
+    <string name="app_language_title">個 App 用咩文</string>
+    <string name="remove_watched">睇咗嗰啲剷咗佢</string>
+    <string name="remove_watched_popup_title">係咪要剷走睇咗嘅影片？</string>
+    <string name="website_title">網站</string>
+    <string name="privacy_policy_title">NewPipe 嘅私隱政策</string>
+    <string name="rename_playlist">改過個名</string>
+    <string name="playback_pitch">音高</string>
+    <string name="missions_header_finished">完成咗</string>
+    <string name="no_videos">無影片</string>
+    <string name="video_player">影片播放器</string>
+    <string name="wifi_only">僅限用 Wi-Fi 嘅時候</string>
+    <string name="high_quality_larger">高畫質 (較大)</string>
+    <string name="no_subscribers">無訂閱者</string>
+    <plurals name="subscribers">
+        <item quantity="other">%s 位訂閱者</item>
+    </plurals>
+    <string name="subscribers_count_not_available">訂閱者人數不詳</string>
+    <plurals name="watching">
+        <item quantity="other">%s 個人睇緊</item>
+    </plurals>
+    <string name="no_one_listening">無人聽緊</string>
+    <string name="more_than_100_videos">100+ 部影片</string>
+    <string name="infinite_videos">∞ 部影片</string>
+    <string name="comments_are_disabled">未開放留言</string>
+    <string name="create">建立</string>
+    <string name="no_dir_yet">未設定下載資料夾，請立即揀選預設嘅下載資料</string>
+    <string name="one_item_deleted">刪除咗 1 個項目。</string>
+    <string name="recaptcha_solve">執執佢</string>
+    <string name="toast_no_player">未裝 app 嚟播放呢個檔案</string>
+    <string name="recaptcha_done_button">搞掂</string>
+    <string name="privacy_policy_encouragement">NewPipe 專案非常認真看待您嘅私隱。因此，呢個 app 未徵得您嘅同意係唔會收集任何資料。
+\nNewPipe 嘅私隱政策，詳加解釋當您傳送彈 app 報告嘅時候有咩資料會傳送同保存。</string>
+    <string name="title_last_played">最近播放</string>
+    <string name="title_most_played">最常播放</string>
+    <string name="main_page_content">頭版內容</string>
+    <string name="main_page_content_summary">頭版要擺放邊啲分頁</string>
+    <string name="main_page_content_swipe_remove">滑走啲項目去剷走佢</string>
+    <string name="blank_page_summary">空白頁</string>
+    <string name="localization_changes_requires_app_restart">重新開過個 app 之後就會轉新語言</string>
+    <string name="trending">時興</string>
+    <string name="top_50">頭位 50</string>
+    <string name="new_and_hot">最新同大熱</string>
+    <string name="could_not_import_all_files">警告：未能匯入晒全部檔案。</string>
+    <string name="override_current_data">噉樣做會冚咗您而家嘅設定個囉噃。</string>
+    <string name="import_settings">您想唔想匯入埋啲設定？</string>
+    <string name="error_unable_to_load_comments">載入唔到留言</string>
+    <string name="recently_added">最近新加</string>
+    <string name="play_queue_remove">剷咗佢</string>
+    <string name="play_queue_stream_detail">詳細資料</string>
+    <string name="unmute">唔使靜音</string>
+    <string name="background_player">背景播放器</string>
+    <string name="popup_player">浮面播放器</string>
+    <string name="always_ask_open_action">幾時都問</string>
+    <string name="preferred_player_fetcher_notification_message">載入緊請求嘅內容</string>
+    <string name="caption_setting_title">字幕</string>
+    <string name="caption_none">無字幕</string>
+    <string name="caption_auto_generated">自動產生</string>
+    <string name="resize_fit">貼合</string>
+    <string name="import_title">匯入</string>
+    <string name="import_from">由邊處匯入：</string>
+    <string name="export_to">匯出去邊處：</string>
+    <string name="import_ongoing">匯入緊…</string>
+    <string name="skip_silence_checkbox">無聲嘅時候快轉</string>
+    <string name="playback_reset">重設</string>
+    <string name="start_accept_privacy_policy">為符合歐盟嘅《通用數據保障條例》(GDPR) 規範，我哋謹請您注意 NewPipe 嘅私隱政策。請仔細閱讀。
+\n您必須接受先可以傳送錯誤報告畀我哋。</string>
+    <string name="decline">拒絕</string>
+    <string name="limit_mobile_data_usage_title">用流動數據嘅時候限制解像度</string>
+    <string name="updates_setting_title">更新</string>
+    <string name="updates_setting_description">出咗新版本嘅時候，顯示通知提示升級個 app</string>
+    <string name="manual_update_description">手動檢查下有冇新版本</string>
+    <string name="app_update_notification_content_title">NewPipe 出咗更新！</string>
+    <string name="missions_header_pending">仲等緊</string>
+    <string name="recovering">恢復緊</string>
+    <string name="permission_denied">動作被系統拒絕咗</string>
+    <string name="checking_updates_toast">檢查緊有冇更新…</string>
+    <string name="overwrite">覆寫</string>
+    <plurals name="hours">
+        <item quantity="other">%d 個鐘</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="other">%d 日</item>
+    </plurals>
+    <string name="fragment_feed_title">有咩新嘢</string>
+    <plurals name="seconds">
+        <item quantity="other">%d 秒</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="other">%d 分鐘</item>
+    </plurals>
+    <string name="rename">改過個名</string>
+    <string name="charset_letters_and_digits">字母同數目字</string>
+    <string name="charset_most_special_characters">大部份特殊字元</string>
+    <string name="settings_category_downloads_title">下載</string>
+    <string name="donation_title">課金</string>
+    <string name="subscriptions_export_unsuccessful">匯出唔到訂閱</string>
+    <string name="caption_setting_description">修改播放器字幕啲字嘅大細同背景款式。要重新開過個 app 先會生效</string>
+    <string name="subtitle_activity_recaptcha">執好就撳一下「搞掂」</string>
+    <string name="mute">靜音</string>
+    <string name="processing_may_take_a_moment">處理緊… 可能要等等</string>
 </resources>

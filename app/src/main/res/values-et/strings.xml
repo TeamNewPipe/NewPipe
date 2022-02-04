@@ -103,7 +103,7 @@
     <string name="just_once">Üks kord</string>
     <string name="file">Fail</string>
     <string name="notification_channel_name">NewPipe teavitus</string>
-    <string name="notification_channel_description">Teavitused NewPipe tausta- ja hüpikpleierile</string>
+    <string name="notification_channel_description">Teavitused NewPipe pleierile</string>
     <string name="unknown_content">[Tundmatu]</string>
     <string name="switch_to_background">Lülita taustale</string>
     <string name="switch_to_popup">Lülita hüpikpleierile</string>
@@ -148,7 +148,6 @@
     <string name="info_labels">Mis:\\nPäring:\\nSisu keel:\\nSisu maa:\\nRakenduse keel:\\nTeenus:\\nGMT aeg:\\nPakett:\\nVersioon:\\nOS versioon:</string>
     <string name="your_comment">Oma kommentaar (inglise keeles):</string>
     <string name="error_details_headline">Üksikasjad:</string>
-    <string name="list_thumbnail_view_description">Video eelvaate pisipilt</string>
     <string name="detail_thumbnail_view_description">Esita video, kestus:</string>
     <string name="detail_uploader_thumbnail_view_description">Üleslaadiaja avatari pisipilt</string>
     <string name="detail_likes_img_view_description">Meeldib</string>
@@ -288,8 +287,8 @@
 \n3. Klõpsa \"Kõigi andmetega\", vali \"Tühista kõik\", vali ainult \"Tellimused\" ja klõpsa \"OK\".
 \n4. Klõpsa \"Järgmine samm\" ja seejärel \"Loo eksport\".
 \n5. Klõpsa nupul \"Laadi alla\" siis, kui ta ilmub.
-\n6. Klõpsi siitsamast \"Impordi fail\" linki ning vali allalaaditud zip fail.
-\n7. Kui zip faili importimine ei toimi, siis paki .csv fail lahti (tavaliselt on see fail \"YouTube ja YouTube Muusika/tellimused/tellimused\" või \"YouTube and YouTube Music/subscriptions/subscriptions\") ja klõpsi siitsamast \"Impordi fail\" linki ning vali lahtipakitud csv fail.</string>
+\n6. Klõpsi siitsamast \"Impordi fail\" linki ning vali allalaaditud .zip fail.
+\n7. Kui .zip faili importimine ei toimi, siis paki .csv fail lahti (tavaliselt on see fail \"YouTube ja YouTube Muusika/tellimused/tellimused\" või \"YouTube and YouTube Music/subscriptions/subscriptions\") ja klõpsi siitsamast \"Impordi fail\" linki ning vali lahtipakitud csv fail.</string>
     <string name="import_network_expensive_warning">See toiming võib põhjustada suurt võrguliiklust.
 \n
 \nKas jätkata?</string>
@@ -317,7 +316,7 @@
     <string name="enable_disposed_exceptions_title">Teavita elutsüklist väljas vigadest</string>
     <string name="import_soundcloud_instructions">Impordi SoundCloudi profiil trükkides URL või oma ID:
 \n
-\n1. Luba \"töölaua režiim\" veebilehitsejas (lmobiilsete seadmete jaoks leht pole kättesaadav)
+\n1. Luba \"töölaua režiim\" veebilehitsejas (mobiilsete seadmete jaoks leht pole kättesaadav)
 \n2. Ava URL: %1$s
 \n3. Logi sisse
 \n4. Kopeeri suunatud profiili URL.</string>
@@ -344,8 +343,8 @@
     <string name="settings_category_updates_title">Uuendused</string>
     <string name="events">Sündmused</string>
     <string name="file_deleted">Fail kustutati</string>
-    <string name="app_update_notification_channel_name">Rakenduse värskenduse teatis</string>
-    <string name="app_update_notification_channel_description">NewPipe uuest versioonist teavitamine</string>
+    <string name="app_update_notification_channel_name">Rakenduse värskenduse teavitus</string>
+    <string name="app_update_notification_channel_description">Teavitus NewPipe uuetest versioonidest</string>
     <string name="download_to_sdcard_error_title">Väline andmekandja pole saadaval</string>
     <string name="download_to_sdcard_error_message">Allalaadimine välisele SD-kaardile ei ole võimalik. Kas lähtestada allalaadimiste kataloogi asukoht\?</string>
     <string name="saved_tabs_invalid_json">Tõrge salvestatud vahekaaride lugemisel; kasutatakse vaikeväärtusi</string>
@@ -367,7 +366,7 @@
     <string name="paused">peatatud</string>
     <string name="queued">järjekorras</string>
     <string name="post_processing">järeltöötlus</string>
-    <string name="enqueue">Esitusjärjekord</string>
+    <string name="enqueue">Lisa esitusjärjekorda</string>
     <string name="permission_denied">Tegevus keelati süsteemi poolt</string>
     <string name="download_failed">Allalaadimine nurjus</string>
     <string name="generate_unique_name">Loo kordumatu nimi</string>
@@ -674,4 +673,19 @@
     <string name="manual_update_title">Kontrolli uuendusi</string>
     <string name="manual_update_description">Kontrolli uuendusi käsitsi</string>
     <string name="feed_new_items">Uued andmevoo kirjed</string>
+    <string name="show_crash_the_player_title">Näita „jooksuta meediamängija kokku“ nupukest</string>
+    <string name="show_crash_the_player_summary">Näitab valikut meediamängija kokkujooksutamiseks</string>
+    <string name="error_report_notification_title">NewPipe töös tekkis viga, sellest teavitamiseks klõpsi</string>
+    <string name="crash_the_player">Jooksuta meediamängija kokku</string>
+    <string name="show_error_snackbar">Näita veateate akent</string>
+    <string name="background_player_already_playing_toast">Meedia esitamine taustal toimib juba</string>
+    <string name="error_report_channel_name">Teavitus vigadest</string>
+    <string name="error_report_channel_description">Teavitused vigadest informeerimiseks</string>
+    <string name="error_report_notification_toast">Tekkis viga, vaata vastavat teadet</string>
+    <string name="create_error_notification">Koosta veateade</string>
+    <string name="no_appropriate_file_manager_message">Selle tegevuse jaoks ei leidunud sobilikku failihaldurit.
+\nPalun paigalda nutiseadmesse failihaldur või proovi allalaadimiste seadistustest „%s“ välja lülitada.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Selle tegevuse jaoks ei leidunud sobilikku failihaldurit.
+\nPalun paigalda nutiseadmesse failihaldur, mis järgib Storage Access Framework reeglistikku.</string>
+    <string name="detail_pinned_comment_view_description">Esiletõstetud kommentaar</string>
 </resources>

@@ -42,7 +42,6 @@
     <string name="parsing_error">No se pudo analizar el sitio web</string>
     <string name="show_next_and_similar_title">Mostrar vídeos \'Siguientes\' y \'Similares\'</string>
     <string name="content_language_title">Idioma predefinido del contenido</string>
-    <string name="list_thumbnail_view_description">Miniatura de previsualización del vídeo</string>
     <string name="detail_thumbnail_view_description">Reproducir vídeo; duración:</string>
     <string name="detail_likes_img_view_description">Me gusta</string>
     <string name="detail_dislikes_img_view_description">No me gusta</string>
@@ -140,7 +139,7 @@
     <string name="title_activity_history">Historial</string>
     <string name="action_history">Historial</string>
     <string name="notification_channel_name">Notificación de NewPipe</string>
-    <string name="notification_channel_description">Notificaciones para reproductores en segundo plano y emergentes de NewPipe</string>
+    <string name="notification_channel_description">Notificaciones para el reproductor de NewPipe</string>
     <string name="settings_category_player_title">Reproductor</string>
     <string name="settings_category_player_behavior_title">Funcionamiento</string>
     <string name="settings_category_history_title">Historial y caché</string>
@@ -397,7 +396,7 @@
     <string name="settings_category_updates_title">Actualizaciones</string>
     <string name="events">Eventos</string>
     <string name="app_update_notification_channel_name">Notificación de actualización de la aplicación</string>
-    <string name="app_update_notification_channel_description">Notificaciones de versiones nuevas de NewPipe</string>
+    <string name="app_update_notification_channel_description">Notificaciones de nuevas versiones de NewPipe</string>
     <string name="download_to_sdcard_error_title">Almacenamiento externo no disponible</string>
     <string name="download_to_sdcard_error_message">No es posible descargar a una tarjeta SD externa. \¿Restablecer la ubicación de la carpeta de descarga\?</string>
     <string name="saved_tabs_invalid_json">No se pudo leer las pestañas guardadas, se usarán las pestañas predefinidas</string>
@@ -590,7 +589,7 @@
     <string name="related_items_tab_description">Transmisiones relacionadas</string>
     <string name="comments_tab_description">Comentarios</string>
     <string name="hash_channel_description">Notificaciones sobre el progreso del hashing del vídeo</string>
-    <string name="hash_channel_name">Notificación del hash de vídeo</string>
+    <string name="hash_channel_name">Notificación de hash de vídeo</string>
     <string name="show_meta_info_title">Mostrar metainformación</string>
     <string name="show_description_title">Mostrar descripción</string>
     <string name="open_with">Abrir con</string>
@@ -678,8 +677,18 @@
     <string name="checking_updates_toast">Buscando actualizaciones…</string>
     <string name="feed_new_items">Nuevos elementos en el muro</string>
     <string name="crash_the_player">Cerrar abruptamente el reproductor</string>
-    <string name="report_player_errors_title">Informar de errores del reproductor</string>
     <string name="show_crash_the_player_summary">Muestra una opción de cierre abrupto al usar el reproductor</string>
-    <string name="report_player_errors_summary">Informar de errores del reproductor con detalle en lugar de mostrar un mensaje emergente efímero (útil para diagnosticar problemas)</string>
     <string name="show_crash_the_player_title">Mostrar \"Cerrar abruptamente el reproductor\"</string>
+    <string name="error_report_channel_description">Notificaciones para informar errores</string>
+    <string name="error_report_channel_name">Notificación de informe de errores</string>
+    <string name="error_report_notification_title">NewPipe ha detectado un error, pulse aquí para informar</string>
+    <string name="error_report_notification_toast">Se produjo un error, vea la notificación</string>
+    <string name="create_error_notification">Crear una notificación de error</string>
+    <string name="show_error_snackbar">Mostrar un snackbar de error</string>
+    <string name="no_appropriate_file_manager_message">No se encontró ningún gestor de archivos adecuado para esta acción.
+\nPor favor instale un gestor de archivos o intente deshabilitar \"%s\" en lo ajustes de descargas.</string>
+    <string name="no_appropriate_file_manager_message_android_10">No se encontró ningún gestor de archivos adecuado para esta acción.
+\nPor favor instale un gestor de archivos compatible con \"Sistema de Acceso al Almacenamiento\".</string>
+    <string name="detail_pinned_comment_view_description">Comentario fijado</string>
+    <string name="background_player_already_playing_toast">Ya se reproduce en segundo plano</string>
 </resources>

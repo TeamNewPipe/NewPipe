@@ -63,7 +63,6 @@
         android:layout_width="@dimen/video_item_search_thumbnail_image_width"
         android:layout_height="@dimen/video_item_search_thumbnail_image_height"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
-        android:contentDescription="@string/list_thumbnail_view_description"
         android:src="@drawable/buddy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/itemTitleView"

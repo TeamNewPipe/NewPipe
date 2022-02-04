@@ -42,7 +42,6 @@
     <string name="youtube_signature_deobfuscation_error">Nebylo možné dekódovat URL videa</string>
     <string name="parsing_error">Nebylo možné analyzovat stránku</string>
     <string name="content_not_available">Obsah není k dispozici</string>
-    <string name="list_thumbnail_view_description">Náhled videa</string>
     <string name="detail_thumbnail_view_description">Přehrát video, délka:</string>
     <string name="detail_uploader_thumbnail_view_description">Náhled avataru uploadera</string>
     <string name="detail_likes_img_view_description">To se mi líbí</string>
@@ -124,7 +123,7 @@
     <string name="best_resolution">Nejlepší rozlišení</string>
     <string name="undo">Vrátit</string>
     <string name="notification_channel_name">Oznámení NewPipe</string>
-    <string name="notification_channel_description">Oznámení pro NewPipe přehrávače v pozadí a v okně</string>
+    <string name="notification_channel_description">Oznámení pro NewPipe přehrávač</string>
     <string name="search_no_results">Žádné výsledky</string>
     <string name="empty_subscription_feed_subtitle">Je tu sranda jak v márnici</string>
     <string name="short_billion">mld.</string>
@@ -165,7 +164,7 @@
     <string name="contribution_title">Podílet se</string>
     <string name="title_activity_history">Historie</string>
     <string name="action_history">Historie</string>
-    <string name="show_hold_to_append_title">Zobrazovat tip \"Podržet pro přidání\"</string>
+    <string name="show_hold_to_append_title">Zobrazit tip \"Podržet pro vložení do fronty\"</string>
     <string name="show_hold_to_append_summary">Ukázat tip po stisku na pozadí nebo na popup tlačítko v \"Podrobnostech\" o videu</string>
     <string name="play_all">Přehrát vše</string>
     <string name="player_stream_failure">Tento stream nelze přehrát</string>
@@ -259,7 +258,7 @@
     <string name="metadata_cache_wipe_title">Vymazat metadata v mezipaměti</string>
     <string name="metadata_cache_wipe_summary">Odebrat všechna data uložená v mezipaměti</string>
     <string name="metadata_cache_wipe_complete_notice">Mezipaměť metadat vymazána</string>
-    <string name="auto_queue_title">Automatická fronta dalšího streamu</string>
+    <string name="auto_queue_title">Další stream automaticky vložit do fronty</string>
     <string name="auto_queue_summary">Pokračovat konečnou (neopakující se) frontu playbacku připojením souvisejícího streamu</string>
     <string name="file">Soubor</string>
     <string name="invalid_directory">Neexistující složka</string>
@@ -276,15 +275,15 @@
     <string name="previous_export">Předchozí export</string>
     <string name="subscriptions_import_unsuccessful">Odběry nelze importovat</string>
     <string name="subscriptions_export_unsuccessful">Odběry nelze exportovat</string>
-    <string name="import_youtube_instructions">Importovat YouTube odběry stáhnutím exportního souboru:
+    <string name="import_youtube_instructions">Importovat YouTube odběry z Google:
 \n
 \n1. Přejděte na tuto URL adresu: %1$s
 \n2. Na vyžádání se přihlašte
-\n3. Klikněte na \"Jsou zahrnuta všechna data z YouTube\" pak na \"Zrušit výběr všech\" a pak vyberte jen \"odběry\" a klikněte na OK
+\n3. Klikněte na \"Jsou zahrnuta všechna data\", \"Zrušit výběr všech\" a pak vyberte jen \"odběry\" a klikněte na OK
 \n4. Klikněte na \"Další krok\" a pak na \"Vytvořit export\"
 \n5. Vyčkejte než se objeví tlačítko \"Stáhnout\" a klikněte na něj
 \n6. Klikněte IMPORTOVAT SOUBOR a vyberte stažený .zip soubor z předchozího kroku
-\n7. [Pokud se import .zip souboru nezdaří] Rozbalte soubor subscriptions.csv (měl by se nacházet v adresáři \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), stiskněte IMPORTOVAT SOUBOR níže a vyberte rozbalený soubor subscriptions.csv</string>
+\n7. [Pokud se import .zip souboru nezdaří] Rozbalte soubor .csv (měl by to být soubor \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), stiskněte IMPORTOVAT SOUBOR níže a vyberte rozbalený csv soubor</string>
     <string name="import_soundcloud_instructions">Importovat SoundCloud profil zadáním URL adresy nebo vašeho ID: 
 \n 
 \n1. Ve svém prohlížeči povolte \"režim pro PC\" (pro mobilní zařízení není stránka dostupná) 
@@ -347,7 +346,7 @@
     <string name="settings_category_updates_title">Aktualizace</string>
     <string name="file_deleted">Soubor smazán</string>
     <string name="app_update_notification_channel_name">Oznámení o aktualizaci aplikace</string>
-    <string name="app_update_notification_channel_description">Oznámení o nové verzi NewPipe</string>
+    <string name="app_update_notification_channel_description">Oznámení o nových verzích NewPipe</string>
     <string name="download_to_sdcard_error_title">Externí úložiště není k dispozici</string>
     <string name="saved_tabs_invalid_json">Nelze načíst uložené karty, takže se použijí výchozí karty</string>
     <string name="restore_defaults">Obnovit do výchozího nastavení</string>
@@ -682,4 +681,23 @@
     <string name="main_page_content_swipe_remove">Tažením položky odstraníte</string>
     <string name="start_main_player_fullscreen_title">Spustit hlavní přehrávač na celé obrazovce</string>
     <string name="processing_may_take_a_moment">Zpracovávám... může trvat moment</string>
+    <string name="manual_update_description">Ručně zkontrolovat zda je k dispozici nová verze</string>
+    <string name="manual_update_title">Kontrola aktualizací</string>
+    <string name="error_report_notification_title">NewPipe narazil na problém, klikněte pro nahlášení</string>
+    <string name="error_report_notification_toast">Došlo k chybě, více v oznámení</string>
+    <string name="create_error_notification">Vytvořit oznámení o chybě</string>
+    <string name="checking_updates_toast">Kontrola aktualizací…</string>
+    <string name="show_crash_the_player_title">Ukázat \"Zřícení přehávače\"</string>
+    <string name="background_player_already_playing_toast">Hraje již v pozadí</string>
+    <string name="feed_new_items">Nové položky feedů</string>
+    <string name="no_appropriate_file_manager_message_android_10">Pro tuto akci nebyl nalezen žádný vhodný správce souborů.
+\nProsím, nainstalujte správce souborů kompatibilní se Storage Access Framework.</string>
+    <string name="error_report_channel_name">Oznámení o hlášení chyb</string>
+    <string name="error_report_channel_description">Oznámení za účelem hlášení chyb</string>
+    <string name="no_appropriate_file_manager_message">Pro tuto akci nebyl nalezen žádný vhodný správce souborů.
+\nProsím, nainstalujte správce souborů nebo zkuste vypnout %s v nastaveních stahování.</string>
+    <string name="show_crash_the_player_summary">Ukáže volbu pro zřícení během používání přehrávače</string>
+    <string name="show_error_snackbar">Ukázat krátké oznámení o chybě</string>
+    <string name="detail_pinned_comment_view_description">Připnutý komentář</string>
+    <string name="crash_the_player">Zřícení přehrávače</string>
 </resources>

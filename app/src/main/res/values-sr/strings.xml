@@ -26,7 +26,6 @@
     <string name="show_next_and_similar_title">Прикажи „следећи“ и „слични“ видео</string>
     <string name="content_language_title">Подразумевани језик садржаја</string>
     <string name="settings_category_video_audio_title">Видео и аудио</string>
-    <string name="list_thumbnail_view_description">Сличица видео прегледа</string>
     <string name="detail_thumbnail_view_description">Пусти видео, трајање:</string>
     <string name="detail_uploader_thumbnail_view_description">Аватар пошиљаоца</string>
     <string name="detail_dislikes_img_view_description">Несвиђања</string>
@@ -661,6 +660,5 @@
     <string name="processing_may_take_a_moment">Обрађујем… Може потрајати пар тренутака</string>
     <string name="show_image_indicators_title">Приказуј указиваче слике</string>
     <string name="start_main_player_fullscreen_summary">Не покрећи видео у малом прозору, већ пређи одмах у пун приказ заслона, уколико је обртање приказа закључано. И даље можете приступити малом приказу извођача изласком из пуног приказа</string>
-    <string name="report_player_errors_title">Пријави грешке програма извођача видеа</string>
     <string name="start_main_player_fullscreen_title">Покрени пуни главни приказ извођача</string>
 </resources>

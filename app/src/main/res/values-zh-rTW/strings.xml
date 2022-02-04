@@ -34,7 +34,6 @@
     <string name="settings_category_appearance_title">外觀</string>
     <string name="background_player_playing_toast">背景播放中</string>
     <string name="network_error">網路錯誤</string>
-    <string name="list_thumbnail_view_description">影片預覽縮圖</string>
     <string name="detail_thumbnail_view_description">播放影片，持續時間：</string>
     <string name="detail_uploader_thumbnail_view_description">發佈者的個人頭像縮圖</string>
     <string name="detail_likes_img_view_description">喜歡</string>
@@ -125,7 +124,7 @@
     <string name="settings_category_history_title">歷史記錄與快取</string>
     <string name="undo">復原</string>
     <string name="notification_channel_name">NewPipe 通知</string>
-    <string name="notification_channel_description">NewPipe 背景播放與懸浮模式播放器的通知</string>
+    <string name="notification_channel_description">NewPipe 播放器的通知</string>
     <string name="search_no_results">沒有結果</string>
     <string name="empty_subscription_feed_subtitle">這裡空空如也</string>
     <string name="no_subscribers">無訂閱者</string>
@@ -359,7 +358,7 @@
     <string name="paused">已暫停</string>
     <string name="queued">已排入佇列</string>
     <string name="post_processing">正在後處理</string>
-    <string name="enqueue">佇列</string>
+    <string name="enqueue">排入佇列</string>
     <string name="permission_denied">動作被系統拒絕</string>
     <string name="download_failed">下載失敗</string>
     <string name="generate_unique_name">生成獨特的名稱</string>
@@ -662,9 +661,19 @@
     <string name="manual_update_description">手動檢查新版本</string>
     <string name="checking_updates_toast">正在檢查更新……</string>
     <string name="feed_new_items">新 feed 項目</string>
-    <string name="report_player_errors_title">回報播放器錯誤</string>
     <string name="crash_the_player">播放器當機</string>
-    <string name="report_player_errors_summary">完整回報播放器錯誤，而非顯示短暫的 toast 訊息（用於診斷問題）</string>
     <string name="show_crash_the_player_title">顯示「播放器當機」</string>
     <string name="show_crash_the_player_summary">使用播放器時顯示當機選項</string>
+    <string name="error_report_channel_name">錯誤回報通知</string>
+    <string name="error_report_channel_description">回報錯誤的通知</string>
+    <string name="show_error_snackbar">顯示錯誤 SnackBar</string>
+    <string name="create_error_notification">建立錯誤通知</string>
+    <string name="no_appropriate_file_manager_message_android_10">找不到適合此動作的檔案管理程式。
+\n請安裝相容於儲存空間存取框架的檔案管理員。</string>
+    <string name="no_appropriate_file_manager_message">找不到適合此動作的檔案管理程式。
+\n請安裝檔案管理程式或在下載設定嘗試停用「%s」。</string>
+    <string name="error_report_notification_title">NewPipe 遇到錯誤，點擊以回報</string>
+    <string name="error_report_notification_toast">發生錯誤，請檢視通知</string>
+    <string name="detail_pinned_comment_view_description">釘選留言</string>
+    <string name="background_player_already_playing_toast">已經在背景播放</string>
 </resources>

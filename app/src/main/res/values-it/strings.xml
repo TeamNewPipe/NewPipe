@@ -26,7 +26,6 @@
     <string name="unsupported_url">URL non supportato</string>
     <string name="content_language_title">Lingua predefinita per i contenuti</string>
     <string name="settings_category_video_audio_title">Video e audio</string>
-    <string name="list_thumbnail_view_description">Copertina di anteprima video</string>
     <string name="detail_thumbnail_view_description">Riproduci video, durata:</string>
     <string name="detail_uploader_thumbnail_view_description">Immagine dell\'utente</string>
     <string name="detail_dislikes_img_view_description">Non mi piace</string>
@@ -143,8 +142,8 @@
     <string name="settings_category_player_behavior_title">Comportamento</string>
     <string name="settings_category_history_title">Cronologia e cache</string>
     <string name="undo">Annulla</string>
-    <string name="notification_channel_name">Notifiche NewPipe</string>
-    <string name="notification_channel_description">Notifiche per lettore in sottofondo e popup</string>
+    <string name="notification_channel_name">Notifica NewPipe</string>
+    <string name="notification_channel_description">Notifiche per il lettore multimediale di NewPipe</string>
     <string name="search_no_results">Nessun risultato</string>
     <string name="no_subscribers">Nessun iscritto</string>
     <plurals name="subscribers">
@@ -343,8 +342,8 @@
     <string name="brightness_gesture_control_summary">Utilizza i gesti per controllare la luminosità del lettore multimediale</string>
     <string name="settings_category_updates_title">Aggiornamenti</string>
     <string name="file_deleted">File eliminato</string>
-    <string name="app_update_notification_channel_name">Notifiche di aggiornamenti dell\'applicazione</string>
-    <string name="app_update_notification_channel_description">Notifiche per una nuova versione di NewPipe</string>
+    <string name="app_update_notification_channel_name">Notifiche per aggiornamenti dell\'app</string>
+    <string name="app_update_notification_channel_description">Notifiche per le nuove versioni di NewPipe</string>
     <string name="download_to_sdcard_error_title">Archiviazione esterna non disponibile</string>
     <string name="download_to_sdcard_error_message">Impossibile scaricare sulla scheda SD esterna. Ripristinare la posizione della cartella dei download\?</string>
     <string name="saved_tabs_invalid_json">Impossibile leggere le schede salvate, verranno usate quelle predefinite</string>
@@ -578,7 +577,7 @@
     <string name="show_thumbnail_summary">Utilizza le copertine come sfondo della schermata di blocco e per le notifiche</string>
     <string name="show_thumbnail_title">Mostra copertina</string>
     <string name="msg_calculating_hash">Calcolo dell\'hash</string>
-    <string name="hash_channel_name">Notifica Hash Video</string>
+    <string name="hash_channel_name">Notifica hash video</string>
     <string name="hash_channel_description">Notifiche per lo stato di avanzamento dell\'hashing video</string>
     <string name="recent">Recente</string>
     <string name="show_meta_info_summary">Disattiva per nascondere i riquadri con informazioni aggiuntive sul contenuto, sul suo autore o su una richiesta di ricerca</string>
@@ -674,9 +673,19 @@
     <string name="manual_update_description">Verifica manualmente la presenza di nuove versioni</string>
     <string name="checking_updates_toast">Controllo aggiornamenti…</string>
     <string name="feed_new_items">Nuovi elementi feed</string>
-    <string name="report_player_errors_title">Segnala errori del lettore multimediale</string>
     <string name="show_crash_the_player_summary">Quando il lettore multimediale è in uso, mostra un\'opzione per farlo crashare</string>
-    <string name="report_player_errors_summary">Invece di mostrare un messaggio popup di breve durata, gli errori del lettore multimediale saranno visualizzati in modo dettagliato (utile per diagnosticare i problemi)</string>
     <string name="show_crash_the_player_title">Mostra \"Fai crashare il lettore\"</string>
     <string name="crash_the_player">Fai crashare il lettore</string>
+    <string name="error_report_notification_title">NewPipe ha riscontrato un errore, tocca per segnalarlo</string>
+    <string name="show_error_snackbar">Mostra un messaggio di errore</string>
+    <string name="no_appropriate_file_manager_message">Non è stato trovato alcun gestore di file appropriato per questa azione.
+\nInstallane uno prova a disattivare \"%s\" nelle impostazioni di download.</string>
+    <string name="error_report_channel_name">Notifica per segnalazione errori</string>
+    <string name="error_report_channel_description">Notifiche per segnalare errori</string>
+    <string name="error_report_notification_toast">Si è verificato un errore, vedi la notifica</string>
+    <string name="create_error_notification">Crea una notifica di errore</string>
+    <string name="no_appropriate_file_manager_message_android_10">Non è stato trovato alcun gestore di file appropriato per questa azione.
+\nInstallane uno compatibile con Storage Access Framework.</string>
+    <string name="detail_pinned_comment_view_description">Commento in primo piano</string>
+    <string name="background_player_already_playing_toast">Già in riproduzione in sottofondo</string>
 </resources>

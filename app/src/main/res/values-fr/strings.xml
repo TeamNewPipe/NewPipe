@@ -25,7 +25,6 @@
     <string name="show_next_and_similar_title">Afficher les vidéos « Suivantes » et « Similaires »</string>
     <string name="unsupported_url">URL non pris en charge</string>
     <string name="settings_category_video_audio_title">Vidéo et audio</string>
-    <string name="list_thumbnail_view_description">Miniature d’aperçu vidéo</string>
     <string name="detail_thumbnail_view_description">Lecture vidéo, durée :</string>
     <string name="detail_dislikes_img_view_description">Je n’aime pas</string>
     <string name="detail_likes_img_view_description">J’aime</string>
@@ -143,7 +142,7 @@
     <string name="settings_category_player_title">Lecteur</string>
     <string name="settings_category_player_behavior_title">Comportement</string>
     <string name="settings_category_history_title">Historique et cache</string>
-    <string name="notification_channel_description">Notifications pour les lecteurs en arrière-plan et flottant de NewPipe</string>
+    <string name="notification_channel_description">Notifications pour le lecteur de NewPipe</string>
     <string name="search_no_results">Aucun résultat</string>
     <string name="empty_subscription_feed_subtitle">Aucun contenu</string>
     <string name="no_subscribers">Aucun abonné</string>
@@ -344,7 +343,7 @@
     <string name="settings_category_updates_title">Mises à jour</string>
     <string name="file_deleted">Fichier supprimé</string>
     <string name="app_update_notification_channel_name">Notification de mise à jour de l’application</string>
-    <string name="app_update_notification_channel_description">Notifications pour une nouvelle version de NewPipe</string>
+    <string name="app_update_notification_channel_description">Notifications pour des nouvelles versions de NewPipe</string>
     <string name="download_to_sdcard_error_title">Stockage externe indisponible</string>
     <string name="restore_defaults">Restaurer les valeurs par défaut</string>
     <string name="restore_defaults_confirmation">Voulez-vous restaurer les valeurs par défaut \?</string>
@@ -676,9 +675,19 @@
     <string name="checking_updates_toast">Vérification des mises à jour…</string>
     <string name="manual_update_title">Vérifier les mises à jours</string>
     <string name="feed_new_items">Nouveaux éléments du flux</string>
-    <string name="report_player_errors_summary">Reporter les erreurs du lecteur en détail au lieu de montrer un bref message éphémère (utile pour diagnostiquer les problèmes)</string>
-    <string name="report_player_errors_title">Reporter des erreurs du lecteur</string>
-    <string name="crash_the_player">Couper le lecteur</string>
-    <string name="show_crash_the_player_title">Montrer \"Couper le lecteur\"</string>
-    <string name="show_crash_the_player_summary">Montrer une option couper lors de l\'utilisation du lecteur</string>
+    <string name="crash_the_player">Faire planter le lecteur</string>
+    <string name="show_crash_the_player_title">Afficher « Faire planter le lecteur »</string>
+    <string name="show_crash_the_player_summary">Montrer une option de plantage lors de l\'utilisation du lecteur</string>
+    <string name="error_report_channel_name">Notification de rapport d\'erreur</string>
+    <string name="error_report_channel_description">Notifications pour signaler les erreurs</string>
+    <string name="error_report_notification_title">NewPipe a rencontré une erreur, appuyez pour la signaler</string>
+    <string name="error_report_notification_toast">Une erreur s\'est produite, voir la notification</string>
+    <string name="create_error_notification">Créer une notification d\'erreur</string>
+    <string name="no_appropriate_file_manager_message_android_10">Aucun gestionnaire de fichiers approprié n\'a été trouvé pour cette action.
+\nVeuillez installer un gestionnaire de fichiers compatible avec l\'Infrastructure d\'accès au stockage.</string>
+    <string name="show_error_snackbar">Montrer une erreur en bas de l\'écran</string>
+    <string name="no_appropriate_file_manager_message">Aucun gestionnaire de fichier approprié n\'a été trouvé pour cette action.
+\nVeuillez installer un gestionnaire de fichiers ou essayez de désactiver \'%s\' dans les paramètres de téléchargement.</string>
+    <string name="detail_pinned_comment_view_description">Commentaire épinglé</string>
+    <string name="background_player_already_playing_toast">Une lecture est déjà en arrière-plan</string>
 </resources>

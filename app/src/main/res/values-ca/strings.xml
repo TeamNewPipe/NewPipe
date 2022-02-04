@@ -126,7 +126,7 @@
     <string name="thumbnail_cache_wipe_complete_notice">S\'ha eliminat la memòria cau d\'imatges</string>
     <string name="metadata_cache_wipe_title">Elimina les metadades de la memòria cau</string>
     <string name="metadata_cache_wipe_complete_notice">S\'ha esborrat la memòria cau de metadades</string>
-    <string name="auto_queue_title">Afegeix vídeos relacionats a la cua</string>
+    <string name="auto_queue_title">Posa a la cua el següent flux</string>
     <string name="show_search_suggestions_title">Suggeriments de cerca</string>
     <string name="show_search_suggestions_summary">Mostra suggeriments durant la cerca</string>
     <string name="enable_search_history_title">Historial de cerca</string>
@@ -136,8 +136,8 @@
     <string name="content_language_title">Llengua per defecte dels continguts</string>
     <string name="background_player_playing_toast">S\'està reproduint en rerefons</string>
     <string name="popup_playing_toast">S\'està reproduint en mode emergent</string>
-    <string name="notification_channel_name">Notificació del NewPipe</string>
-    <string name="notification_channel_description">Notificacions dels reproductors en rerefons o emergents del NewPipe</string>
+    <string name="notification_channel_name">Notificació de NewPipe</string>
+    <string name="notification_channel_description">Notificacions per al reproductor de NewPipe</string>
     <string name="could_not_load_thumbnails">No s\'han pogut carregar totes les miniatures</string>
     <string name="youtube_signature_deobfuscation_error">No s\'ha pogut desxifrar la signatura de l\'URL del vídeo</string>
     <string name="parsing_error">No s\'ha pogut processar el lloc web</string>
@@ -161,7 +161,6 @@
     <string name="what_happened_headline">Què ha passat:</string>
     <string name="your_comment">Comentari (en anglès):</string>
     <string name="error_details_headline">Detalls:</string>
-    <string name="list_thumbnail_view_description">Miniatura de previsualització del vídeo</string>
     <string name="detail_thumbnail_view_description">Reprodueix el vídeo, duració:</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura de l\'avatar del propietari</string>
     <string name="detail_likes_img_view_description">M\'agrada</string>
@@ -271,7 +270,7 @@
     <string name="unhook_checkbox">Desvincula (pot causar deformació)</string>
     <string name="metadata_cache_wipe_summary">Elimina totes les dades de llocs web de la memòria cau</string>
     <string name="auto_queue_summary">Acaba de reproduir la cua (sense repetició) quan s\'hi afegeixi un vídeo relacionat</string>
-    <string name="show_hold_to_append_title">Mostra els missatges d\'ajuda</string>
+    <string name="show_hold_to_append_title">Mostra l\'indicador «Mantenir per posar a la cua»</string>
     <string name="show_hold_to_append_summary">Mostra un missatge d\'ajuda quan el botó de mode en segon pla o emergent estigui premut a la pàgina de detalls d\'un vídeo</string>
     <string name="info_labels">Què ha passat:\\nPetició:\\nIdioma del contingut:\\nPaís del contingut:\\nLlengua de l\'aplicació:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
     <string name="preferred_open_action_settings_title">Acció d\'obertura preferida</string>
@@ -560,7 +559,7 @@
     <string name="show_age_restricted_content_summary">Mostra contingut que podria ser inadequat pels infants</string>
     <string name="settings_category_notification_title">Notificació</string>
     <string name="unsupported_url_dialog_message">No s\'ha pogut reconèixer l\'adreça URL. Obrir-la amb una altra aplicació\?</string>
-    <string name="auto_queue_toggle">Cua automàtica</string>
+    <string name="auto_queue_toggle">Posa a la cua automàticament</string>
     <string name="show_meta_info_summary">Desactiveu-ho per deixar de mostrar les metadades, que contenen informació addicional sobre el creador del directe, el contingut o una sol·licitud de cerca</string>
     <string name="show_meta_info_title">Mostra les metadades</string>
     <string name="clear_queue_confirmation_description">La cua de reproducció activa serà sobreescrita</string>
@@ -653,4 +652,39 @@
     <string name="start_main_player_fullscreen_title">Inicia el reproductor principal en pantalla completa</string>
     <string name="main_page_content_swipe_remove">Llisqueu els elements per eliminar-los</string>
     <string name="start_main_player_fullscreen_summary">Si la rotació automàtica està bloquejada, no inicieu vídeos al mini reproductor, sinó que aneu directament al mode de pantalla completa. Podeu accedir igualment al mini reproductor sortint de pantalla completa</string>
+    <string name="background_player_already_playing_toast">Ja s\'està reproduint en segon pla</string>
+    <string name="error_report_channel_name">Notificació d\'informe d\'error</string>
+    <string name="crash_the_player">Tancar abruptament el reproductor</string>
+    <string name="manual_update_title">Comprovar si hi ha actualitzacions</string>
+    <string name="manual_update_description">Comprovar manualment si hi ha noves versions</string>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Baixada finalitzada</item>
+        <item quantity="other">%s baixades finalitzades</item>
+    </plurals>
+    <string name="seekbar_preview_thumbnail_title">Vista prèvia de les miniatures de la barra de cerca</string>
+    <string name="no_appropriate_file_manager_message_android_10">No s\'ha trobat cap gestor de fitxers adequat per a aquesta acció.
+\nInstal·leu un gestor de fitxers compatible amb l\'entorn d\'accés d\'emmagatzematge.</string>
+    <string name="no_appropriate_file_manager_message">No s\'ha trobat cap gestor de fitxers adequat per a aquesta acció.
+\nInstal·leu un gestor de fitxers o intenteu desactivar «%s» als paràmetres de baixada.</string>
+    <string name="error_report_notification_toast">S\'ha produït un error, consulteu la notificació</string>
+    <string name="enqueued_next">Afegit el següent vídeo a la cua</string>
+    <string name="error_report_notification_title">NewPipe ha trobat un error, toca per informar</string>
+    <string name="enqueue_next_stream">Posa a la cua el següent vídeo</string>
+    <string name="create_error_notification">Crear una notificació d\'error</string>
+    <string name="error_show_channel_details">Error en mostrar els detalls del canal</string>
+    <string name="error_report_channel_description">Notificacions per informar d\'errors</string>
+    <string name="show_error_snackbar">Mostra una barra d\'errors</string>
+    <string name="checking_updates_toast">S\'estan comprovant les actualitzacions…</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">S\'ha suprimit %1$s baixada</item>
+        <item quantity="other">S\'han suprimit %1$s baixades</item>
+    </plurals>
+    <string name="downloads_storage_use_saf_summary_api_19">El \"Sistema d\'Accés a l\'Emmagatzematge\" no està implementat a Android KitKat i a versions anteriors</string>
+    <string name="downloads_storage_use_saf_summary_api_29">A partir de l\'Android 10 només s\'admet el \"Sistema d\'Accés a l\'Emmagatzematge\"</string>
+    <string name="feed_new_items">Elements de feed nous</string>
+    <string name="feed_load_error_fast_unknown">El mode d\'alimentació ràpida no proporciona més informació sobre això.</string>
+    <string name="detail_pinned_comment_view_description">Comentari fixat</string>
+    <string name="show_crash_the_player_title">Mostrar \"tancar de forma violenta el reproductor\"</string>
+    <string name="show_crash_the_player_summary">Mostra una opció de fallada quan s\'utilitza el reproductor</string>
+    <string name="show_image_indicators_summary">Mostra les cintes de color Picasso a la part superior de les imatges que indiquen la seva font: vermell per a la xarxa, blau per al disc i verd per a la memòria</string>
 </resources>

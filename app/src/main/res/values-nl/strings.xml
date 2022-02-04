@@ -28,7 +28,6 @@
     <string name="use_external_video_player_title">Externe videospeler gebruiken</string>
     <string name="use_external_audio_player_title">Externe audiospeler gebruiken</string>
     <string name="settings_category_video_audio_title">Video en audio</string>
-    <string name="list_thumbnail_view_description">Videovoorbeeldminiatuur</string>
     <string name="detail_thumbnail_view_description">Speel video, tijd:</string>
     <string name="detail_uploader_thumbnail_view_description">Gebruikersafbeelding van uploader</string>
     <string name="detail_dislikes_img_view_description">Vind-ik-niet-leuks</string>
@@ -67,7 +66,7 @@
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Foutrapport</string>
     <string name="app_ui_crash">App/UI gecrasht</string>
-    <string name="info_labels">Wat:\\nVerzoek:\\nTaal van inhoud:\\nTaal van land:\\nTaal van Applicatie:\\nDienst:\\nTijd in GMT:\\nPakket:\\nVersie:\\nVersie van besturingssysteem:</string>
+    <string name="info_labels">Wat:\\nVerzoek:\\nTaal van inhoud:\\nTaal van land:\\nTaal van Toepassing:\\nDienst:\\nGMT-tijd:\\nPakket:\\nVersie:\\nVersie van besturingssysteem:</string>
     <string name="start">Begin</string>
     <string name="pause">Pauzeren</string>
     <string name="delete">Verwijderen</string>
@@ -138,7 +137,7 @@
     <string name="resume_on_audio_focus_gain_title">Hervat afspelen</string>
     <string name="resume_on_audio_focus_gain_summary">Ga verder met afspelen na onderbrekingen (b.v. telefoongesprekken)</string>
     <string name="notification_channel_name">NewPipe Melding</string>
-    <string name="notification_channel_description">Meldingen voor NewPipe-achtergrond- en pop-upspelers</string>
+    <string name="notification_channel_description">Meldingen voor NewPipe speler</string>
     <string name="title_activity_history">Geschiedenis</string>
     <string name="action_history">Geschiedenis</string>
     <string name="settings_category_player_title">Speler</string>
@@ -293,7 +292,7 @@
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
     <string name="metadata_cache_wipe_complete_notice">Metagegevens-cache gewist</string>
     <string name="playback_speed_control">Afspeelsnelheidbesturing</string>
-    <string name="playback_tempo">Tempo</string>
+    <string name="playback_tempo">Snelheid</string>
     <string name="playback_pitch">Toon</string>
     <string name="unhook_checkbox">Ontlinken (kan ruis veroorzaken)</string>
     <string name="preferred_open_action_settings_title">Voorkeursactie voor openen</string>
@@ -341,10 +340,10 @@
     <string name="volume_gesture_control_summary">Gebruik gebaren om het volume van de speler aan te passen</string>
     <string name="brightness_gesture_control_title">Gebaarbesturing voor helderheid</string>
     <string name="brightness_gesture_control_summary">Gebruik gebaren om de helderheid van de speler aan te passen</string>
-    <string name="settings_category_updates_title">Updates</string>
+    <string name="settings_category_updates_title">Bijwerken</string>
     <string name="file_deleted">Bestand verwijderd</string>
-    <string name="app_update_notification_channel_name">App Update Melding</string>
-    <string name="app_update_notification_channel_description">Meldingen voor nieuwe versies van NewPipe</string>
+    <string name="app_update_notification_channel_name">App update melding</string>
+    <string name="app_update_notification_channel_description">Meldingen voor nieuwe New Pipe versies</string>
     <string name="download_to_sdcard_error_title">Externe opslag niet beschikbaar</string>
     <string name="download_to_sdcard_error_message">Downloaden naar externe SD-kaart is niet mogelijk. Download map opnieuw instellen\?</string>
     <string name="saved_tabs_invalid_json">Fout bij het lezen van de opgeslagen tabbladen, waardoor standaardtabbladen worden gebruikt</string>
@@ -352,7 +351,7 @@
     <string name="restore_defaults_confirmation">Wil je de standaardinstellingen herstellen\?</string>
     <string name="subscribers_count_not_available">Aantal abonnees niet beschikbaar</string>
     <string name="main_page_content_summary">Welke tabbladen worden weergegeven op de hoofdpagina</string>
-    <string name="updates_setting_title">Updates</string>
+    <string name="updates_setting_title">Bijwerken</string>
     <string name="updates_setting_description">Toon een melding om de applicatie te updaten wanneer er een nieuwe versie beschikbaar is</string>
     <string name="list_view_mode">Lijstweergavemodus</string>
     <string name="list">Lijst</string>
@@ -485,7 +484,7 @@
     <string name="feed_group_dialog_empty_selection">Geen abonnement geselecteerd</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d geselecteerd</item>
-        <item quantity="other">%d geselecteerd</item>
+        <item quantity="other">%d geselecteerde</item>
     </plurals>
     <string name="feed_group_dialog_empty_name">Lege groepsnaam</string>
     <string name="feed_group_dialog_delete_message">Wilt u deze groep verwijderen\?</string>
@@ -553,7 +552,7 @@
     <string name="clear_queue_confirmation_title">Vraag bevestiging alvorens de wachtrij te wissen</string>
     <string name="notification_action_nothing">Niets</string>
     <string name="notification_action_buffering">Aan het bufferen</string>
-    <string name="notification_action_shuffle">Shuffle</string>
+    <string name="notification_action_shuffle">Willekeurig afspelen</string>
     <string name="notification_action_repeat">Herhaal</string>
     <string name="notification_actions_at_most_three">Je kan maximaal drie acties selecteren om te tonen in de compacte notificatie!</string>
     <string name="notification_actions_summary">Pas elke notificatieactie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte notificatie door gebruik te maken van de selectievakjes aan de rechterkant</string>
@@ -580,7 +579,7 @@
     <string name="recent">Recente</string>
     <string name="msg_calculating_hash">Hash berekenen</string>
     <string name="hash_channel_description">Meldingen over de voortgang van video hashing</string>
-    <string name="hash_channel_name">Video Hash Melding</string>
+    <string name="hash_channel_name">Video hash melding</string>
     <string name="show_meta_info_summary">Schakel dit uit om meta-informatie vakken te verbergen met aanvullende informatie over de maker van de stream, streaminhoud of een zoekopdracht</string>
     <string name="show_meta_info_title">Laat meta informatie zien</string>
     <string name="description_tab_description">Beschrijving</string>
@@ -628,7 +627,7 @@
     <string name="disable_media_tunneling_title">Media tunneling uitschakelen</string>
     <string name="off">Uit</string>
     <string name="on">Aan</string>
-    <string name="tablet_mode_title">Tablet mode</string>
+    <string name="tablet_mode_title">Tablet modus</string>
     <string name="open_website_license">Open website</string>
     <string name="service_provides_reason">%s geeft de volgende reden:</string>
     <string name="account_terminated">Account getermineerd</string>
@@ -669,14 +668,24 @@
     <string name="main_page_content_swipe_remove">Veeg items om ze te verwijderen</string>
     <string name="start_main_player_fullscreen_summary">Start geen video\'s in de minispeler, maar ga direct naar de volledige schermmodus, als automatisch draaien is vergrendeld. Je hebt nog steeds toegang tot de minispeler door de volledige schermmodus af te sluiten</string>
     <string name="start_main_player_fullscreen_title">Start hoofdspeler als volledig scherm</string>
-    <string name="report_player_errors_summary">Rapporteer fouten van de speler in volledig detail in plaats van een kortstondige toastmelding te tonen (handig voor het diagnosticeren van problemen)</string>
     <string name="processing_may_take_a_moment">Verwerken... Dit kan even duren</string>
     <string name="crash_the_player">Crash de speler</string>
-    <string name="report_player_errors_title">Rapporteer fouten van de speler</string>
     <string name="show_crash_the_player_title">Toon \"crash de speler\"</string>
     <string name="show_crash_the_player_summary">Toon een crash overzicht bij gebruik van de speler</string>
     <string name="manual_update_description">Controleer handmatig op nieuwe versies</string>
     <string name="manual_update_title">Controleer op updates</string>
     <string name="checking_updates_toast">Bezig met controleren op updates…</string>
     <string name="feed_new_items">Nieuwe feed items</string>
+    <string name="error_report_channel_name">Foutmelding</string>
+    <string name="error_report_channel_description">Beschrijving van foutmeldingen</string>
+    <string name="error_report_notification_title">NewPipe meldt fout, tik voor bericht</string>
+    <string name="error_report_notification_toast">Foutmelding</string>
+    <string name="create_error_notification">Maak een foutmelding</string>
+    <string name="background_player_already_playing_toast">Speelt al op de achtergrond</string>
+    <string name="show_error_snackbar">Korte foutmelding weergeven</string>
+    <string name="no_appropriate_file_manager_message">Er is geen geschikte bestandsbeheerder gevonden voor deze actie.
+\nInstalleer een bestandsbeheerder of probeer \'%s\' uit te schakelen in de download instellingen.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Er is geen geschikte bestandsbeheerder gevonden voor deze actie.
+\nInstalleer een bestandsbeheerder die compatibel is met het Storage Access Framework.</string>
+    <string name="detail_pinned_comment_view_description">Vastgemaakt commentaar</string>
 </resources>

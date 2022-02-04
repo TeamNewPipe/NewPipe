@@ -52,6 +52,7 @@ jobs:
   test-android:
     # macos has hardware acceleration. See android-emulator-runner action
     runs-on: macos-latest
+    timeout-minutes: 20
     strategy:
       matrix:
         # api-level 19 is min sdk, but throws errors related to desugaring
@@ -73,6 +74,13 @@ jobs:
           # workaround to emulator bug: https://github.com/ReactiveCircus/android-emulator-runner/issues/160
           emulator-build: 7425822
           script: ./gradlew connectedCheck --stacktrace
+        
+      - name: Upload test report when tests fail # because the printed out stacktrace (console) is too short, see also #7553
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: android-test-report-api${{ matrix.api-level }}
+          path: app/build/reports/androidTests/connected/**
 
   sonar:
     runs-on: ubuntu-latest

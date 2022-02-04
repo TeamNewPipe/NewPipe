@@ -27,7 +27,6 @@
     <string name="content_language_title">Язык контента по умолчанию</string>
     <string name="settings_category_video_audio_title">Видео и аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>
-    <string name="list_thumbnail_view_description">Миниатюра видео-превью</string>
     <string name="detail_thumbnail_view_description">Воспроизвести видео, длительность:</string>
     <string name="detail_uploader_thumbnail_view_description">Миниатюра аватара пользователя</string>
     <string name="detail_dislikes_img_view_description">Не понравилось</string>
@@ -135,7 +134,7 @@
     <string name="resume_on_audio_focus_gain_title">Возобновить при фокусе</string>
     <string name="resume_on_audio_focus_gain_summary">Возобновлять воспроизведение после перерывов (например, телефонных звонков)</string>
     <string name="notification_channel_name">Уведомление NewPipe</string>
-    <string name="notification_channel_description">Уведомление для NewPipe в фоне и во всплывающем окне</string>
+    <string name="notification_channel_description">Уведомления для плеера NewPipe</string>
     <string name="settings_category_downloads_title">Загрузки</string>
     <string name="settings_file_charset_title">Допустимые символы имён файлов</string>
     <string name="settings_file_replacement_character_summary">Заменяет недопустимые символы</string>&gt;
@@ -363,8 +362,8 @@
     <string name="volume_gesture_control_title">Жест громкости</string>
     <string name="settings_category_updates_title">Обновления</string>
     <string name="file_deleted">Файл удалён</string>
-    <string name="app_update_notification_channel_name">Уведомление об обновлении</string>
-    <string name="app_update_notification_channel_description">Уведомления о новой версии NewPipe</string>
+    <string name="app_update_notification_channel_name">Уведомление об обновлении приложения</string>
+    <string name="app_update_notification_channel_description">Уведомления о новых версиях NewPipe</string>
     <string name="updates_setting_title">Обновления</string>
     <string name="updates_setting_description">Показать уведомление при наличии новой версии</string>
     <string name="app_update_notification_content_title">Доступно обновление NewPipe!</string>
@@ -372,7 +371,7 @@
     <string name="missions_header_finished">Завершено</string>
     <string name="paused">приостановлено</string>
     <string name="queued">в очереди</string>
-    <string name="enqueue">Очередь</string>
+    <string name="enqueue">Добавить в очередь</string>
     <string name="permission_denied">Действие запрещено системой</string>
     <string name="download_failed">Ошибка загрузки</string>
     <string name="overwrite">Перезаписать</string>
@@ -590,7 +589,7 @@
     <string name="show_thumbnail_summary">Использовать миниатюру для фона уведомлений и экрана блокировки</string>
     <string name="show_thumbnail_title">Показать миниатюру</string>
     <string name="hash_channel_description">Показать уведомление при хэшировании видео</string>
-    <string name="hash_channel_name">Уведомление о хэшировании</string>
+    <string name="hash_channel_name">Уведомление о хэшировании видео</string>
     <string name="msg_calculating_hash">Вычисляется хэш</string>
     <string name="recent">Недавнее</string>
     <string name="show_meta_info_summary">Отключите, чтобы скрыть поля метаданных (автор потока, содержимое потока или поисковый запрос)</string>
@@ -690,9 +689,19 @@
     <string name="manual_update_title">Проверить обновления</string>
     <string name="checking_updates_toast">Проверка обновлений…</string>
     <string name="feed_new_items">Новое на канале</string>
-    <string name="report_player_errors_title">Отчёт об ошибках плеера</string>
-    <string name="report_player_errors_summary">Подробные отчёты об ошибках плеера вместо коротких всплывающих сообщений (полезно при диагностике проблем)</string>
     <string name="show_crash_the_player_title">Показать \"Вызвать сбой плеера\"</string>
     <string name="show_crash_the_player_summary">Показать функцию вызова сбоя при работе плеера</string>
     <string name="crash_the_player">Вызвать сбой плеера</string>
+    <string name="error_report_channel_name">Уведомление отчёта об ошибке</string>
+    <string name="error_report_channel_description">Уведомления для отчётов об ошибках</string>
+    <string name="error_report_notification_title">NewPipe столкнулся с ошибкой, нажмите для отчёта</string>
+    <string name="error_report_notification_toast">Произошла ошибка, подробнее в уведомлении</string>
+    <string name="show_error_snackbar">Показать ошибку снекбара</string>
+    <string name="create_error_notification">Создать уведомление об ошибке</string>
+    <string name="no_appropriate_file_manager_message">Для этого действия не найдено подходящего файлового менеджера.
+\nПожалуйста, установите файловый менеджер, или попробуйте отключить \'%s\' в настройках загрузок.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Для этого действия не найдено подходящего файлового менеджера.
+\nПожалуйста, установите файловый менеджер, совместимый со Storage Access Framework (SAF).</string>
+    <string name="background_player_already_playing_toast">Уже проигрывается в фоне</string>
+    <string name="detail_pinned_comment_view_description">Закреплённый комментарий</string>
 </resources>

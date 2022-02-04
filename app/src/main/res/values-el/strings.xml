@@ -37,7 +37,6 @@
     <string name="settings_category_appearance_title">Εμφάνιση</string>
     <string name="background_player_playing_toast">Αναπαραγωγή στο παρασκήνιο</string>
     <string name="network_error">Σφάλμα δικτύου</string>
-    <string name="list_thumbnail_view_description">Μικρογραφία προεπισκόπησης βίντεο</string>
     <string name="detail_thumbnail_view_description">Αναπαραγωγή βίντεο, διάρκεια:</string>
     <string name="detail_uploader_thumbnail_view_description">Μικρογραφία εικόνας προφίλ του χρήστη</string>
     <string name="detail_likes_img_view_description">Like</string>
@@ -131,7 +130,7 @@
     <string name="just_once">Μόνο μία φορά</string>
     <string name="file">Αρχείο</string>
     <string name="notification_channel_name">Ειδοποίηση NewPipe</string>
-    <string name="notification_channel_description">Ειδοποιήσεις αναπαραγωγής παρασκηνίου και αναδυόμενου παραθύρου</string>
+    <string name="notification_channel_description">Ειδοποιήσεις του αναπαραγωγέα του NewPipe</string>
     <string name="unknown_content">[Άγνωστο]</string>
     <string name="switch_to_background">Αλλαγή σε Παρασκήνιο</string>
     <string name="switch_to_popup">Αλλαγή σε Αναδυόμενο Παράθυρο</string>
@@ -344,7 +343,7 @@
     <string name="settings_category_updates_title">Ενημερώσεις</string>
     <string name="events">Συμβάντα</string>
     <string name="file_deleted">Το αρχείο διαγράφηκε</string>
-    <string name="app_update_notification_channel_name">Ειδοποίηση Ενημέρωσης Εφαρμογής</string>
+    <string name="app_update_notification_channel_name">Ειδοποίηση ενημέρωσης εφαρμογής</string>
     <string name="app_update_notification_channel_description">Ειδοποίηση για νεότερη έκδοση του NewPipe</string>
     <string name="download_to_sdcard_error_title">Εξωτερική μνήμη αποθήκευσης μη διαθέσιμη</string>
     <string name="download_to_sdcard_error_message">Η αποθήκευση στην SD κάρτα δεν είναι δυνατή. Επαναφορά στην αρχική τοποθεσία λήψης;</string>
@@ -367,7 +366,7 @@
     <string name="paused">σε παύση</string>
     <string name="queued">σε ουρά</string>
     <string name="post_processing">σε μετεπεξεργασία</string>
-    <string name="enqueue">Ουρά</string>
+    <string name="enqueue">Προσθήκη σε ουρά</string>
     <string name="permission_denied">Η ενέργεια απορρίφθηκε από το σύστημα</string>
     <string name="download_failed">Η λήψη απέτυχε</string>
     <string name="generate_unique_name">Δημιουργία μοναδικού ονόματος</string>
@@ -676,7 +675,17 @@
     <string name="feed_new_items">Νέα αντικείμενα τροφοδοσίας</string>
     <string name="show_crash_the_player_title">Εμφάνιση «κατάρρευσης αναπαραγωγέα»</string>
     <string name="show_crash_the_player_summary">Εμφανίζει μια επιλογή κατάρρευσης κατά τη χρήση του αναπαραγωγέα</string>
-    <string name="report_player_errors_title">Αναφορά σφαλμάτων αναπαραγωγέα</string>
-    <string name="report_player_errors_summary">Αναφορά σφαλμάτων αναπαραγωγέα με λεπτομέρειες αντί για ένα σύντομο μήνυμα (χρήσιμο για διάγνωση προβλημάτων)</string>
     <string name="crash_the_player">Κατάρρευση αναπαραγωγέα</string>
+    <string name="error_report_channel_name">Ειδοποίηση αναφοράς σφάλματος</string>
+    <string name="error_report_channel_description">Ειδοποιήσεις για την αναφορά σφαλμάτων</string>
+    <string name="error_report_notification_toast">Συνέβη ένα σφάλμα. Δείτε την ειδοποίηση</string>
+    <string name="create_error_notification">Δημιουργία ειδοποίησης σφάλματος</string>
+    <string name="no_appropriate_file_manager_message">Δε βρέθηκε κατάλληλος διαχειριστής αρχείων για αυτή την ενέργεια.
+\nΕγκαταστήστε έναν ή δοκιμάστε να απενεργοποιήσετε το \'%s\' στις ρυθμίσεις λήψεων.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Δε βρέθηκε κατάλληλος διαχειριστής αρχείων για αυτή την ενέργεια.
+\nΕγκαταστήστε έναν συμβατό με το Πλαίσιο Πρόσβασης Αποθήκευσης.</string>
+    <string name="error_report_notification_title">Το NewPipe παρουσίασε ένα σφάλμα. Πατήστε για αναφορά</string>
+    <string name="show_error_snackbar">Εμφάνιση μιας snackbar σφάλματος</string>
+    <string name="background_player_already_playing_toast">Αναπαράγεται ήδη στο παρασκήνιο</string>
+    <string name="detail_pinned_comment_view_description">Καρφιτσωμένο σχόλιο</string>
 </resources>

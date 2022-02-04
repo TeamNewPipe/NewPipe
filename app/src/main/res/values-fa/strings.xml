@@ -14,12 +14,12 @@
     <string name="share_dialog_title">هم‌رسانی با</string>
     <string name="use_external_video_player_title">استفاده از پخش‌کنندهٔ ویدیوی خارجی</string>
     <string name="use_external_audio_player_title">استفاده از پخش‌کنندهٔ صدای خارجی</string>
-    <string name="download_path_title">پوشه بارگیری ویدیو</string>
-    <string name="download_path_summary">ویدیوهای بارگیری شده اینجا ذخیره می‌شوند</string>
-    <string name="download_path_dialog_title">پوشه بارگیری ویدیوها را انتخاب کنید</string>
-    <string name="download_path_audio_title">پوشه بارگیری صدا</string>
-    <string name="download_path_audio_summary">صداهای بارگیری شده در این‌جا ذخیره می‌شوند</string>
-    <string name="download_path_audio_dialog_title">پوشه بارگیری صداها را انتخاب کنید</string>
+    <string name="download_path_title">شاخهٔ بارگیری ویدیو</string>
+    <string name="download_path_summary">پرونده‌های ویدیویی بارگرفته این‌جا ذخیره می‌شوند</string>
+    <string name="download_path_dialog_title">گزینش شاخه برای بارگیری پرونده‌های ویدیویی</string>
+    <string name="download_path_audio_title">شاخهٔ بارگیری صدا</string>
+    <string name="download_path_audio_summary">پرونده‌های صوتی بارگرفته این‌جا ذخیره می‌شوند</string>
+    <string name="download_path_audio_dialog_title">گزینش شاخهٔ بارگیری برای پرونده‌های صوتی</string>
     <string name="default_resolution_title">وضوح پیش‌گزیده</string>
     <string name="play_with_kodi_title">پخش با کودی</string>
     <string name="kore_not_found">کارهٔ کُره (Kore) پیدا نشد. نصب شود؟</string>
@@ -58,7 +58,6 @@
     <string name="what_happened_headline">چه روی داد:</string>
     <string name="your_comment">توضیح شما (به انگلیسی):</string>
     <string name="error_details_headline">جزییات:</string>
-    <string name="list_thumbnail_view_description">بندانگشتی پیش‌نمایش ویدیو</string>
     <string name="detail_thumbnail_view_description">پخش ویدیو، مدت زمان:</string>
     <string name="detail_uploader_thumbnail_view_description">بندانگشتی کاربر بارگذاری کننده</string>
     <string name="detail_likes_img_view_description">پسندها</string>
@@ -79,9 +78,9 @@
     <string name="msg_wait">لطفاً صبر کنید…</string>
     <string name="msg_copied">در حافظه رونوشت شد</string>
     <string name="no_available_dir">پوشه بارگیری را بعدا در تنظیمات مشخص کنید</string>
-    <string name="no_player_found_toast">هیچ پخش کننده جریانی پیدا نشد (شما می‌توانید برنامه وی‌ال‌سی را برای پخش آن نصب کنید).</string>
-    <string name="controls_download_desc">بارگیری پرونده جریان</string>
-    <string name="use_external_video_player_summary">حذف صدا در برخی کیفیت‌ها</string>
+    <string name="no_player_found_toast">هیچ پخش کنندهٔ جریانی پیدا نشد (می‌توانید برای پخشش وی‌ال‌سی را نصب کنید).</string>
+    <string name="controls_download_desc">بارگیری پروندهٔ جریان</string>
+    <string name="use_external_video_player_summary">صدا را در برخی وضوح‌ها برمی‌دارد</string>
     <string name="subscribe_button_title">اشتراک</string>
     <string name="subscribed_button_title">مشترک شده</string>
     <string name="channel_unsubscribed">اشتراک کانال لغو شد</string>
@@ -89,11 +88,11 @@
     <string name="subscription_update_failed">ناتوانی در به‌روزرسانی اشتراک</string>
     <string name="show_info">نمایش اطلاعات</string>
     <string name="tab_subscriptions">اشتراک‌ها</string>
-    <string name="tab_bookmarks">فهرست‌های پخش دارای نشانک</string>
+    <string name="tab_bookmarks">سیاههٔ پخش‌های نشان شده</string>
     <string name="fragment_feed_title">موارد جدید</string>
-    <string name="controls_background_title">پس زمینه</string>
+    <string name="controls_background_title">پس‌زمینه</string>
     <string name="controls_add_to_playlist_title">افزودن به</string>
-    <string name="show_higher_resolutions_title">نمایش کیفیت بالاتر</string>
+    <string name="show_higher_resolutions_title">نمایش وضوح‌های بالاتر</string>
     <string name="show_higher_resolutions_summary">تنها برخی دستگاه‌ها توانایی پخش ویدیوهای 2K و 4K را دارند</string>
     <string name="default_video_format_title">قالب ویدیویی پیش‌گزیده</string>
     <string name="black_theme_title">سیاه</string>
@@ -117,7 +116,7 @@
     <string name="always">همیشه</string>
     <string name="just_once">فقط یک‌بار</string>
     <string name="file">پرونده</string>
-    <string name="notification_channel_name">اعلان نیوپایپ</string>
+    <string name="notification_channel_name">آگاهی نیوپایپ</string>
     <string name="unknown_content">[ناشناخته]</string>
     <string name="import_data_title">وارد کردن پایگاه‌داده</string>
     <string name="export_data_title">صادرکردن</string>
@@ -226,14 +225,14 @@
     <string name="caption_none">بدون توضیحات</string>
     <string name="caption_setting_title">توضحیات</string>
     <string name="unsubscribe">لغو اشتراک</string>
-    <string name="tab_choose">انتخاب زبانه</string>
+    <string name="tab_choose">گزینش زبانه</string>
     <string name="enable_watch_history_title">تاریخچه تماشا</string>
     <string name="settings_category_history_title">تاریخچه و حافظه نهان</string>
     <string name="settings_category_debug_title">اشکال‌زدایی</string>
     <string name="settings_category_updates_title">به‌روزرسانی‌ها</string>
-    <string name="open_in_popup_mode">گشودن در حالت تصویر در تصویر</string>
-    <string name="default_popup_resolution_title">دقّت پیش‌گزیدهٔ تصویر در تصویر</string>
-    <string name="controls_popup_title">تصویر در تصویر</string>
+    <string name="open_in_popup_mode">گشودن در حالت تصویردرتصویر</string>
+    <string name="default_popup_resolution_title">وضوح پیش‌گزیدهٔ تصویردرتصویر</string>
+    <string name="controls_popup_title">تصویردرتصویر</string>
     <string name="popup_remember_size_pos_title">به یاد داشتن ویژگی‌های تصویر در تصویر</string>
     <string name="popup_remember_size_pos_summary">به یاد داشتن آخرین اندازه و موقعیت تصویر در تصویر</string>
     <string name="use_inexact_seek_title">زمان فعلی پخش کننده را به صورت تقریبی و سریع جلو ببر</string>
@@ -247,8 +246,8 @@
     <string name="import_settings">می‌خواهید تنظیمات را نیز وارد کنید؟</string>
     <string name="playback_step">گام</string>
     <string name="file_deleted">پرونده پاک شد</string>
-    <string name="app_update_notification_channel_name">اعلان به‌روزرسانی کاره</string>
-    <string name="app_update_notification_channel_description">اعلان‌ها برای نسخه جدید نیوپایپ</string>
+    <string name="app_update_notification_channel_name">آگاهی به‌روزرسانی کاره</string>
+    <string name="app_update_notification_channel_description">آگاهی‌ها برای نگارش‌های جدید نیوپایپ</string>
     <string name="restore_defaults">بازنشانی پیش‌فرض‌ها</string>
     <string name="restore_defaults_confirmation">می‌خواهید پیش‌فرض‌ها را بازنشانی کنید؟</string>
     <string name="updates_setting_title">به‌روزرسانی‌ها</string>
@@ -260,7 +259,7 @@
     <string name="app_update_notification_content_text">برای بارگیری، لمس کنید</string>
     <string name="missions_header_finished">تمام</string>
     <string name="missions_header_pending">در انتظار</string>
-    <string name="enqueue">صف</string>
+    <string name="enqueue">صف‌گذاری</string>
     <string name="download_failed">بارگیری ناموفق بود</string>
     <string name="error_http_not_found">یافت نشد</string>
     <string name="error_postprocessing_failed">شکست در پساپردازش</string>
@@ -281,7 +280,7 @@
     <string name="enable_playback_state_lists_summary">نمایش شاخص موقعیت پخش در فهرست‌ها</string>
     <string name="settings_category_clear_data_title">پاک کردن داده‌ها</string>
     <string name="resume_on_audio_focus_gain_summary">پخش بعد از قطع ناگهانی (مثل برقراری تماس) ادامه یابد</string>
-    <string name="show_hold_to_append_title">نمایش نکته «برای افزودن، نگه‌دارید»</string>
+    <string name="show_hold_to_append_title">نمایش نکته «برای صف‌گذاری، نگه‌دارید»</string>
     <string name="show_hold_to_append_summary">نمایش راهنما هنگام فشردن پس زمینه یا دکمهٔ تصویر در تصویر در «جزییات:» ویدیو</string>
     <string name="hold_to_append">برای در صف قرار دادن، نگه دارید</string>
     <string name="volume_gesture_control_title">کنترل اشاره ای صدا</string>
@@ -298,7 +297,7 @@
     <string name="title_licenses">پروانه‌های شخص سوم</string>
     <string name="copyright" formatted="true">© %1$s توسط %2$s تحت %3$s</string>
     <string name="contribution_encouragement">اگر ایده‌ای برای ترجمه، تغییر طراحی، پاک‌سازی کد و یا تغییرات واقعا سنگین کدنویسی دارید، از کمک‌تان همواره استقبال می‌کنیم. هر چه بیشتر کار کنیم، نتایج بهتری می‌گیریم!</string>
-    <string name="notification_channel_description">آگاهی‌ها برای پخش‌کنندهٔ پس‌زمینه و تصویر در تصویر نیوپایپ</string>
+    <string name="notification_channel_description">آگاهی‌ها برای پخش‌کنندهٔ نیوپایپ</string>
     <string name="empty_subscription_feed_subtitle">چیزی جز کریکت اینجا نیست</string>
     <string name="no_subscribers">فاقد مشترک</string>
     <string name="player_unrecoverable_failure">خطای عدم احیای پخش‌کننده رخ داد</string>
@@ -371,7 +370,7 @@
     <string name="paused">متوقف</string>
     <string name="queued">در صف</string>
     <string name="post_processing">در حال پساپردازش</string>
-    <string name="permission_denied">این کنش توسط سیستم متوقف شد</string>
+    <string name="permission_denied">کنش به دست سامانه متوقف شد</string>
     <string name="generate_unique_name">تولید نام یگانه</string>
     <string name="overwrite">بازنویسی</string>
     <string name="download_already_running">یک بارگیری دیگر با همین نام در جریان است</string>
@@ -440,8 +439,8 @@
     <string name="feed_create_new_group_button_title">جدید</string>
     <string name="feed_group_dialog_delete_message">می‌خواهید این گروه را پاک کنید؟</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="one">%d مورد انتخاب شده</item>
-        <item quantity="other">%d مورد انتخاب شده</item>
+        <item quantity="one">%d مورد گزیده</item>
+        <item quantity="other">%d مورد گزیده</item>
     </plurals>
     <string name="feed_processing_message">پردازش خوراک…</string>
     <string name="feed_notification_loading">بارگیری خوراک…</string>
@@ -551,9 +550,9 @@
     <string name="clear_queue_confirmation_summary">تغییر پخش کننده می‌تواند باعث جایگزین شدن صف شود</string>
     <string name="clear_queue_confirmation_title">پیش از پاک کردن صف، سوال شود</string>
     <string name="notification_action_nothing">هیچ</string>
-    <string name="notification_action_shuffle">برزنی</string>
+    <string name="notification_action_shuffle">بُرزنی</string>
     <string name="notification_action_repeat">تکرار</string>
-    <string name="notification_actions_at_most_three">حداکثر تا سه کنش را می‌توانید برای نمایش در اعلان فشرده انتخاب کنید!</string>
+    <string name="notification_actions_at_most_three">می‌توانید تا سه کنش را برای نمایش در آگاهی فشرده برگزینید!</string>
     <string name="notification_actions_summary">هر کنش آگاهی را با لمس کردنش ویرایش کنید. با استفاده از جعبه‌های تیک، تا سه کنش را برای نمایش در آگاهی فشرده بگزینید</string>
     <string name="notification_action_4_title">پنجمین دکمه کنشی</string>
     <string name="notification_action_3_title">چهارمین دکمه کنشی</string>
@@ -611,7 +610,7 @@
     <string name="night_theme_title">زمینهٔ شب</string>
     <string name="notification_colorize_title">رنگی کردن آگاهی</string>
     <string name="open_with">گشودن با</string>
-    <string name="mark_as_watched">نشانه به عنوان دیده‌شده</string>
+    <string name="mark_as_watched">نشانه به عنوان دیده شده</string>
     <string name="show_image_indicators_summary">نمایش روبان‌های رنگی پیکاسو در بالای تصویرها کهنشانگر منبعشان است: قرمز برای شبکه ، آبی برای دیسک و سبز برای حافظه</string>
     <string name="notification_colorize_summary">درخواست از اندروید برای سفارشی‌سازی رنگ آگاهی براساس رنگ اصلی در بندانگشتی (توجّه داشته باشید که روی همهٔ افزاره‌ها در دسترس نیست)</string>
     <string name="restricted_video">این ویدیو محدود به سن است.
@@ -675,8 +674,18 @@
     <string name="checking_updates_toast">بررسی کردن به‌روز رسانی‌ها…</string>
     <string name="feed_new_items">موارد خوراک جدید</string>
     <string name="crash_the_player">فروپاشی پخش‌کننده</string>
-    <string name="report_player_errors_title">گزارش خطاهای پخش کننده</string>
     <string name="show_crash_the_player_summary">نمایش یک گزینهٔ فروپاشی هنگام استفاده از پخش کننده</string>
-    <string name="report_player_errors_summary">گزارش خطاهای پخش کننده با جزییات کامل به جای نشان دادن پیامی با عمر کوتاه (مناسب برای تشخیص مشکلات)</string>
     <string name="show_crash_the_player_title">نمایش «فروپاشی پخش کننده»</string>
+    <string name="no_appropriate_file_manager_message">مدیر پروندهٔ مناسبی برای این کنش یافت نشد.
+\nلطفاً مدیر پرونده‌ای نصب کرده یا در تنظیمات بارگیری، «%s» را خاموش کنید.</string>
+    <string name="error_report_channel_name">آگاهی گزارش خطا</string>
+    <string name="error_report_channel_description">آگاهی برای گزارش‌خطاها</string>
+    <string name="show_error_snackbar">نمایش یک نوار خطا</string>
+    <string name="create_error_notification">ایجاد یک آگاهی خطا</string>
+    <string name="no_appropriate_file_manager_message_android_10">مدیر پروندهٔ مناسبی برای این کنش یافت نشد.
+\nلطفاً مدیر پرونده‌ای سازگار با چارچوب‌دسترسی ذخیره‌ساز نصب کنید.</string>
+    <string name="error_report_notification_title">نیوپایپ به خطایی برخورد. برای گزارش، بزنید</string>
+    <string name="error_report_notification_toast">خطایی رخ داد. آگاهی را ببینید</string>
+    <string name="detail_pinned_comment_view_description">نظر سنجاق شده</string>
+    <string name="background_player_already_playing_toast">در حال پخش در پس‌زمینه</string>
 </resources>

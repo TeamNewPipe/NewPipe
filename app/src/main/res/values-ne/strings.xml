@@ -174,7 +174,6 @@
     <string name="info_labels">के:\\nअनुरोध:\\nसामग्री भाषा: \\nसेवा:\\nGMT समय:\\nप्याकेज:\\nसंस्करण: \\nOS संस्करण:</string>
     <string name="your_comment">तपाईंको टिप्पणी (अंग्रेजी मा):</string>
     <string name="error_details_headline">विवरण:</string>
-    <string name="list_thumbnail_view_description">सामग्री वर्णन (राम्रो पहुँच लागि)</string>
     <string name="detail_thumbnail_view_description">प्ले भिडियो, अवधि:</string>
     <string name="detail_uploader_thumbnail_view_description">अपलोडरको अवतार थम्बनेल</string>
     <string name="detail_likes_img_view_description">मनपर्दो</string>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Tryk søg for at komme i gang</string>
+    <string name="main_bg_subtitle">Tryk på forstørrelsesglasset for at komme i gang.</string>
     <string name="upload_date_text">Udgivet %1$s</string>
-    <string name="no_player_found">Ingen streamafspiller blev fundet. Vil du installere VLC\?</string>
+    <string name="no_player_found">Ingen streamafspiller blev fundet. Installer VLC\?</string>
     <string name="no_player_found_toast">Ingen streamafspiller fundet (du kan installere VLC for at afspille den).</string>
     <string name="install">Installer</string>
     <string name="cancel">Annuller</string>
@@ -171,7 +171,6 @@
     <string name="what_happened_headline">Hvad skete der:</string>
     <string name="your_comment">Din kommentar (på engelsk):</string>
     <string name="error_details_headline">Detaljer:</string>
-    <string name="list_thumbnail_view_description">Videominiaturebillede</string>
     <string name="detail_thumbnail_view_description">Videominiaturebillede</string>
     <string name="detail_uploader_thumbnail_view_description">Uploaders profilbillede</string>
     <string name="detail_likes_img_view_description">Synes godt om</string>

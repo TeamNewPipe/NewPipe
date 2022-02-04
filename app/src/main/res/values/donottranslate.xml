@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fdroid_vlc_url">https://f-droid.org/packages/org.videolan.vlc/</string>
+    <string name="rss_button_title">RSS</string>
+    <string name="kore_package">org.xbmc.kore</string>
+    <string name="peertube_instance_list_url">https://joinpeertube.org/instances#instances-list</string>
+    <string name="notification_channel_id">newpipe</string>
+    <string name="app_update_notification_channel_id">newpipeAppUpdate</string>
+    <string name="hash_channel_id">newpipeHash</string>
+    <string name="error_report_channel_id">newpipeErrorReport</string>
+    <string name="guru_meditation">Guru Meditation.</string>
+    <string name="empty_view_no_videos">@string/no_videos</string>
+    <string name="empty_view_no_comments">@string/no_comments</string>
+    <string name="more_than_100_videos_mini">100+</string>
+    <string name="infinite_videos_mini">∞</string>
+    <string name="md5">MD5</string>
+    <string name="sha1">SHA-1</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
+    <string name="donation_url">https://newpipe.net/donate/</string>
+    <string name="website_url">https://newpipe.net/</string>
+    <string name="privacy_policy_url">https://newpipe.net/legal/privacy/</string>
+    <string name="service_kiosk_string">%1$s/%2$s</string>
+    <string name="youtube">YouTube</string>
+    <string name="soundcloud">SoundCloud</string>
+    <string name="preferred_open_action_share_menu_title">@string/app_name</string>
+    <string name="leakcanary">LeakCanary</string>
+</resources>

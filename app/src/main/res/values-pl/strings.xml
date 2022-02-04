@@ -59,7 +59,6 @@
     <string name="info_labels">Co:\\nŻądanie:\\nJęzyk treści:\\nKraj treści:\\nJęzyk aplikacji:\\nUsługa:\\nCzas GMT:\\nPakiet:\\nWersja:\\nWersja systemu:</string>
     <string name="your_comment">Twój komentarz (po angielsku):</string>
     <string name="error_details_headline">Szczegóły:</string>
-    <string name="list_thumbnail_view_description">Miniatura podglądu wideo</string>
     <string name="detail_thumbnail_view_description">Odtwarzane wideo, czas trwania:</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura awatara przesyłającego</string>
     <string name="detail_likes_img_view_description">Polubienia</string>
@@ -136,8 +135,8 @@
     <string name="enable_watch_history_summary">Śledź obejrzane wideo</string>
     <string name="resume_on_audio_focus_gain_title">Wznawiaj odtwarzanie</string>
     <string name="resume_on_audio_focus_gain_summary">Kontynuuj odtwarzanie po przerwaniu (np. po rozmowie telefonicznej)</string>
-    <string name="notification_channel_name">Powiadomienia NewPipe</string>
-    <string name="notification_channel_description">Powiadomienia dla NewPipe przy odtwarzaniu w tle i w trybie okienkowym</string>
+    <string name="notification_channel_name">Powiadomienie NewPipe</string>
+    <string name="notification_channel_description">Powiadomienia dla odtwarzacza NewPipe</string>
     <string name="title_activity_history">Historia</string>
     <string name="action_history">Historia</string>
     <string name="settings_category_player_title">Odtwarzacz</string>
@@ -348,9 +347,9 @@
     <string name="brightness_gesture_control_title">Kontrola jasności gestami</string>
     <string name="brightness_gesture_control_summary">Używaj gestów do sterowania jasnością odtwarzacza</string>
     <string name="settings_category_updates_title">Aktualizacje</string>
-    <string name="file_deleted">Plik usunięty</string>
+    <string name="file_deleted">Usunięto plik</string>
     <string name="app_update_notification_channel_name">Powiadomienie o aktualizacji aplikacji</string>
-    <string name="app_update_notification_channel_description">Powiadomienia o nowej wersji NewPipe</string>
+    <string name="app_update_notification_channel_description">Powiadomienia o nowych wersjach NewPipe</string>
     <string name="download_to_sdcard_error_title">Pamięć zewnętrzna niedostępna</string>
     <string name="download_to_sdcard_error_message">Pobieranie na kartę SD nie jest możliwe. Zresetować lokalizację folderu zapisywania\?</string>
     <string name="saved_tabs_invalid_json">Nie udało się odczytać zapisanych kart, więc będą używane domyślne</string>
@@ -406,7 +405,7 @@
     <string name="enable_playback_state_lists_title">Pozycje odtwarzania na listach</string>
     <string name="enable_playback_state_lists_summary">Pokazuj wskaźniki pozycji odtwarzania na listach</string>
     <string name="settings_category_clear_data_title">Wyczyść dane</string>
-    <string name="watch_history_states_deleted">Pozycje odtwarzania usunięte</string>
+    <string name="watch_history_states_deleted">Usunięto pozycje odtwarzania</string>
     <string name="missing_file">Plik usunięty albo przeniesiony</string>
     <string name="overwrite_unrelated_warning">Plik z tą nazwą już istnieje</string>
     <string name="overwrite_failed">nie można nadpisać pliku</string>
@@ -414,7 +413,7 @@
     <string name="error_postprocessing_stopped">NewPipe został zamknięty podczas pracy nad plikiem</string>
     <string name="error_insufficient_storage">Brak miejsca na urządzeniu</string>
     <string name="error_progress_lost">Utracono postęp, ponieważ plik został usunięty</string>
-    <string name="confirm_prompt">Czy chcesz wyczyścić historię pobierania lub usunąć wszystkie pobrane pliki\?</string>
+    <string name="confirm_prompt">Czy chcesz wyczyścić historię pobierania, czy usunąć wszystkie pobrane pliki\?</string>
     <string name="enable_queue_limit">Ogranicz kolejkę pobierania</string>
     <string name="enable_queue_limit_desc">Tylko jedno pobieranie zostanie uruchomione w tym samym czasie</string>
     <string name="start_downloads">Rozpocznij pobieranie</string>
@@ -693,9 +692,19 @@
     <string name="manual_update_description">Ręcznie sprawdź dostępność nowych wersji</string>
     <string name="manual_update_title">Sprawdź dostępność aktualizacji</string>
     <string name="feed_new_items">Nowe pozycje kanału</string>
-    <string name="report_player_errors_title">Zgłaszaj błędy odtwarzacza</string>
     <string name="show_crash_the_player_summary">Pokazuje opcję psucia podczas korzystania z odtwarzacza</string>
     <string name="crash_the_player">Zepsuj odtwarzacz</string>
     <string name="show_crash_the_player_title">Pokazuj „zepsuj odtwarzacz”</string>
-    <string name="report_player_errors_summary">Zgłasza szczegółowo błędy odtwarzacza zamiast pokazywać krótkotrwałą wiadomość toast (przydatne do diagnozowania problemów)</string>
+    <string name="error_report_channel_name">Powiadomienie raportu o błędach</string>
+    <string name="error_report_channel_description">Powiadomienia do zgłaszania błędów</string>
+    <string name="error_report_notification_title">NewPipe napotkał błąd. Naciśnij, aby zgłosić</string>
+    <string name="error_report_notification_toast">Wystąpił błąd. Zobacz powiadomienie.</string>
+    <string name="show_error_snackbar">Pokaż snackbar z błędem</string>
+    <string name="create_error_notification">Utwórz powiadomienie o błędzie</string>
+    <string name="no_appropriate_file_manager_message">Nie znaleziono odpowiedniego menedżera plików dla tej akcji.
+\nZainstaluj menedżer plików lub spróbuj wyłączyć „%s” w ustawieniach pobierania.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Nie znaleziono odpowiedniego menedżera plików dla tej akcji.
+\nZainstaluj menedżer plików zgodny z Storage Access Framework.</string>
+    <string name="background_player_already_playing_toast">Już jest odtwarzane w tle</string>
+    <string name="detail_pinned_comment_view_description">Przypięty komentarz</string>
 </resources>

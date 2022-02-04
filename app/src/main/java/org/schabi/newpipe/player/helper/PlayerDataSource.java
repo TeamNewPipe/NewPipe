@@ -9,6 +9,7 @@ import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
+import com.google.android.exoplayer2.source.hls.playlist.DefaultHlsPlaylistTracker;
 import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource;
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.upstream.DataSource;
@@ -17,9 +18,18 @@ import com.google.android.exoplayer2.upstream.DefaultLoadErrorHandlingPolicy;
 import com.google.android.exoplayer2.upstream.TransferListener;
 
 public class PlayerDataSource {
+
+    public static final int LIVE_STREAM_EDGE_GAP_MILLIS = 10000;
+
+    /**
+     * An approximately 4.3 times greater value than the
+     * {@link DefaultHlsPlaylistTracker#DEFAULT_PLAYLIST_STUCK_TARGET_DURATION_COEFFICIENT default}
+     * to ensure that (very) low latency livestreams which got stuck for a moment don't crash too
+     * early.
+     */
+    private static final double PLAYLIST_STUCK_TARGET_DURATION_COEFFICIENT = 15;
     private static final int MANIFEST_MINIMUM_RETRY = 5;
     private static final int EXTRACTOR_MINIMUM_RETRY = Integer.MAX_VALUE;
-    public static final int LIVE_STREAM_EDGE_GAP_MILLIS = 10000;
 
     private final DataSource.Factory cacheDataSourceFactory;
     private final DataSource.Factory cachelessDataSourceFactory;
@@ -44,8 +54,13 @@ public class PlayerDataSource {
     public HlsMediaSource.Factory getLiveHlsMediaSourceFactory() {
         return new HlsMediaSource.Factory(cachelessDataSourceFactory)
                 .setAllowChunklessPreparation(true)
-                .setLoadErrorHandlingPolicy(
-                        new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY));
+                .setLoadErrorHandlingPolicy(new DefaultLoadErrorHandlingPolicy(
+                        MANIFEST_MINIMUM_RETRY))
+                .setPlaylistTrackerFactory((dataSourceFactory, loadErrorHandlingPolicy,
+                                            playlistParserFactory) ->
+                        new DefaultHlsPlaylistTracker(dataSourceFactory, loadErrorHandlingPolicy,
+                                playlistParserFactory, PLAYLIST_STUCK_TARGET_DURATION_COEFFICIENT)
+                );
     }
 
     public DashMediaSource.Factory getLiveDashMediaSourceFactory() {

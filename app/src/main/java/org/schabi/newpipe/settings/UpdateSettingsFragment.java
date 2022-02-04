@@ -38,7 +38,7 @@ public class UpdateSettingsFragment extends BasePreferenceFragment {
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.update_settings);
+        addPreferencesFromResourceRegistry();
 
         findPreference(getString(R.string.update_app_key))
                 .setOnPreferenceChangeListener(updatePreferenceChange);

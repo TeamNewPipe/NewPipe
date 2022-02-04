@@ -26,7 +26,6 @@
     <string name="unsupported_url">Nicht unterstützte URL</string>
     <string name="settings_category_video_audio_title">Video und Audio</string>
     <string name="content_language_title">Bevorzugte Sprache des Inhalts</string>
-    <string name="list_thumbnail_view_description">Video-Vorschaubild</string>
     <string name="detail_thumbnail_view_description">Video abspielen, Dauer:</string>
     <string name="detail_uploader_thumbnail_view_description">Avatarbild des Benutzers</string>
     <string name="detail_dislikes_img_view_description">Gefällt mir nicht</string>
@@ -140,7 +139,7 @@
     <string name="subscription_update_failed">Abonnement konnte nicht aktualisiert werden</string>
     <string name="resume_on_audio_focus_gain_summary">Nach Unterbrechungen (z.B. Telefonaten) Wiedergabe fortsetzen</string>
     <string name="notification_channel_name">NewPipe-Benachrichtigung</string>
-    <string name="notification_channel_description">Benachrichtigungen für NewPipe-Hintergrund- und Pop-up Wiedergabe</string>
+    <string name="notification_channel_description">Benachrichtigungen für den NewPipe-Player</string>
     <string name="settings_category_player_behavior_title">Verhalten</string>
     <string name="settings_category_history_title">Verlauf und Cache</string>
     <string name="undo">Rückgängig machen</string>
@@ -345,8 +344,8 @@
     <string name="brightness_gesture_control_summary">Gesten verwenden, um die Helligkeit einzustellen</string>
     <string name="settings_category_updates_title">Aktualisierungen</string>
     <string name="file_deleted">Datei gelöscht</string>
-    <string name="app_update_notification_channel_name">Aktualisierungsbenachrichtigung</string>
-    <string name="app_update_notification_channel_description">Benachrichtigung bei neuer NewPipe-Version</string>
+    <string name="app_update_notification_channel_name">Benachrichtigung über App-Update</string>
+    <string name="app_update_notification_channel_description">Benachrichtigungen über neue NewPipe-Versionen</string>
     <string name="download_to_sdcard_error_title">Kein externer Speicher verfügbar</string>
     <string name="download_to_sdcard_error_message">Herunterladen auf externe SD-Karte ist nicht möglich. Downloadordner zurücksetzen\?</string>
     <string name="saved_tabs_invalid_json">Konnte gespeicherte Tabs nicht lesen, daher werden die Voreinstellungen genutzt</string>
@@ -371,7 +370,7 @@
     <string name="paused">pausiert</string>
     <string name="queued">eingereiht</string>
     <string name="post_processing">Nachbearbeitung</string>
-    <string name="enqueue">Warteschlange</string>
+    <string name="enqueue">In Wiedergabe einreihen</string>
     <string name="permission_denied">System verweigert den Zugriff</string>
     <string name="download_failed">Herunterladen fehlgeschlagen</string>
     <string name="generate_unique_name">Eindeutigen Namen erzeugen</string>
@@ -583,8 +582,8 @@
     <string name="show_thumbnail_summary">Vorschaubild für Sperrbildschirmhintergrund und Benachrichtigungen verwenden</string>
     <string name="show_thumbnail_title">Vorschaubild anzeigen</string>
     <string name="msg_calculating_hash">Hash wird berechnet</string>
-    <string name="hash_channel_description">Benachrichtigungen für den Video-hashing Fortschritt</string>
-    <string name="hash_channel_name">Video Hash Benachrichtigung</string>
+    <string name="hash_channel_description">Benachrichtigungen über den Hashing-Fortschritt von Videos</string>
+    <string name="hash_channel_name">Video-Hash Benachrichtigung</string>
     <string name="recent">Letzte</string>
     <string name="show_meta_info_title">Metadaten anzeigen</string>
     <string name="show_meta_info_summary">Deaktiviere diese Option, um Meta-Infofelder mit zusätzlichen Informationen zum Stream-Ersteller, zum Stream-Inhalt oder zu einer Suchanforderung auszublenden</string>
@@ -676,7 +675,17 @@
     <string name="feed_new_items">Neue Feed-Elemente</string>
     <string name="show_crash_the_player_title">\"Absturz des Players\" anzeigen</string>
     <string name="crash_the_player">Absturz des Players</string>
-    <string name="report_player_errors_summary">Meldet Playerfehler mit allen Details, anstatt eine kurzlebige Popupmeldung anzuzeigen (nützlich für die Diagnose von Problemen)</string>
     <string name="show_crash_the_player_summary">Zeigt eine Absturzoption an, wenn der Player verwendet wird</string>
-    <string name="report_player_errors_title">Playerfehler melden</string>
+    <string name="error_report_channel_name">Benachrichtigung über Fehlerberichte</string>
+    <string name="error_report_channel_description">Benachrichtigungen zur Meldung von Fehlern</string>
+    <string name="error_report_notification_title">Bei NewPipe ist ein Fehler aufgetreten. Zum Melden antippen</string>
+    <string name="error_report_notification_toast">Ein Fehler ist aufgetreten, siehe die Benachrichtigung</string>
+    <string name="create_error_notification">Eine Fehlermeldung erstellen</string>
+    <string name="show_error_snackbar">Fehler-Kurzmeldung anzeigen</string>
+    <string name="no_appropriate_file_manager_message">Es wurde kein geeigneter Dateimanager für diese Aktion gefunden.
+\nBitte installiere einen Dateimanager oder versuche, \'%s\' in den Downloadeinstellungen zu deaktivieren.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Es wurde kein geeigneter Dateimanager für diese Aktion gefunden.
+\nBitte installiere einen Storage Access Framework kompatiblen Dateimanager.</string>
+    <string name="background_player_already_playing_toast">Wird bereits im Hintergrund abgespielt</string>
+    <string name="detail_pinned_comment_view_description">Angehefteter Kommentar</string>
 </resources>

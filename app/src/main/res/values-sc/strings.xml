@@ -7,7 +7,7 @@
 \n3. Incarca in \"Totu sos datos incluidos\", a pustis in \"Boga sa seletzione a totus\" e a pustis galu ischerta petzi \"iscritziones\" e incarca \"AB\"
 \n4. Incarca in \"Passu imbeniente\" e a pustis in \"Crea un\'esportatzione\"
 \n5. Cando aparit, incarca in su butone \"Iscarrigamentu\"
-\n6. Incarca in IMPORTA SU DOCUMENTU in suta e ischerta su documentu zip iscarrigadu
+\n6. Incarca in IMPORTA SU DOCUMENTU in suta e ischerta su documentu .zip iscarrigadu
 \n6. [Si s\'importatzione fallit] Estrae su documentu .csv (de sòlitu tenet su nùmene\"\"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), incarca in IMPORTA SU DOCUMENTU in suta e ischerta su documentu csv estratu</string>
     <string name="subscriptions_export_unsuccessful">Esportatzione de s\'iscritzione fallida</string>
     <string name="subscriptions_import_unsuccessful">Importatzione de s\'iscritzione fallida</string>
@@ -180,7 +180,6 @@
     <string name="detail_likes_img_view_description">Agradessimentos</string>
     <string name="detail_uploader_thumbnail_view_description">Miniadura de s\'avatar de su carrigadore</string>
     <string name="detail_thumbnail_view_description">Riprodui su vìdeu, longària:</string>
-    <string name="list_thumbnail_view_description">Miniadura de anteprima de su vìdeu</string>
     <string name="error_details_headline">Detàllios:</string>
     <string name="your_comment">Su cummentu tuo (in inglesu):</string>
     <string name="what_happened_headline">Ite est acontèssidu:</string>
@@ -255,7 +254,7 @@
     <string name="feed_use_dedicated_fetch_method_summary">A disponimentu in unos cantos servìtzios, de sòlitu est meda prus lestru ma diat pòdere frunire unu nùmeru limitadu de elementos e, fatu-fatu, informatziones no intreas (es. peruna longària, casta de elementu, indicadore de istadu in direta)</string>
     <string name="feed_use_dedicated_fetch_method_title">Recùperu dae una fonte de cuntenutos dedicada, cando est a disponimentu</string>
     <string name="feed_update_threshold_option_always_update">Agiorna semper</string>
-    <string name="feed_update_threshold_summary">Tempus chi depet colare a pustis de s\'ùrtimu agiornamentu, in antis chi un\'abbonamebèngiat cunsiderada tropu betza — %s</string>
+    <string name="feed_update_threshold_summary">Tempus chi depet colare a pustis de s\'ùrtimu agiornamentu, in antis chi un\'abbonamentu bèngiat cunsideradu tropu betzu — %s</string>
     <string name="feed_update_threshold_title">Lìmite de agiornamentu de sa fonte de cuntenutos</string>
     <string name="settings_category_feed_title">Fonte de cuntenutos</string>
     <string name="feed_create_new_group_button_title">Nou</string>
@@ -339,7 +338,7 @@
     <string name="generate_unique_name">Ingendra unu nùmene ùnivocu</string>
     <string name="download_failed">Iscarrigamentu fallidu</string>
     <string name="permission_denied">Atzione vietada dae su sistema</string>
-    <string name="enqueue">Elencu</string>
+    <string name="enqueue">Pone in lista</string>
     <string name="recovering">recuperende</string>
     <string name="post_processing">post-protzessamentu</string>
     <string name="paused">in pàusa</string>
@@ -403,9 +402,9 @@
     <string name="switch_to_popup">Cola a sa ventanedda</string>
     <string name="switch_to_background">Cola a s\'isfundu</string>
     <string name="unknown_content">[Disconnotu]</string>
-    <string name="app_update_notification_channel_description">Notìficas pro una versione noa de NewPipe</string>
+    <string name="app_update_notification_channel_description">Notìficas pro sas versiones noas de NewPipe</string>
     <string name="app_update_notification_channel_name">Notìfica de agiornamentu de s\'aplicatzione</string>
-    <string name="notification_channel_description">Notìficas pro sos riproduidores in s\'isfundu e a ventanedda de NewPipe</string>
+    <string name="notification_channel_description">Notìficas pro su riproduidore de NewPipe</string>
     <string name="notification_channel_name">Notìficas de NewPipe</string>
     <string name="file">Documentu</string>
     <string name="just_once">Una borta ebbia</string>
@@ -455,7 +454,7 @@
     <string name="default_content_country_title">Istadu predefinidu pro sos cuntenutos</string>
     <string name="unsupported_url">URL non suportadu</string>
     <string name="show_hold_to_append_summary">Ammustra un\'impòsitu cando incarcas in su butone de isfundu o de sa ventanedda in sa pàgina de sos detàllios de unu vìdeu</string>
-    <string name="show_hold_to_append_title">Ammustra s\'impòsitu \"Mantene incarcadu pro pònnere in elencu\"</string>
+    <string name="show_hold_to_append_title">Ammustra s\'impòsitu \"Mantene incarcadu pro pònnere in lista\"</string>
     <string name="show_next_and_similar_title">Ammustra sos vìdeos imbenientes e simigiantes</string>
     <string name="autoplay_title">Riprodutzione automàtica</string>
     <string name="download_dialog_title">Iscàrriga</string>
@@ -477,7 +476,7 @@
     <string name="volume_gesture_control_summary">Imprea sos gestos pro controllare su volume de su riproduidore</string>
     <string name="volume_gesture_control_title">Gestos de controllu de su volume</string>
     <string name="auto_queue_summary">Sighi a riproduire (chene ripetitziones) annanghende unu vìdeu correladu a sa lista</string>
-    <string name="auto_queue_title">Annanghe automaticamente unu cuntenutu a sa lista</string>
+    <string name="auto_queue_title">Annanghe in automàticu su flussu imbeniente a sa lista</string>
     <string name="metadata_cache_wipe_complete_notice">Memòria temporànea de sos metadatos iscarrigada</string>
     <string name="metadata_cache_wipe_summary">Boga totu sos datos de sa pàgina web in sa memòria temporànea</string>
     <string name="metadata_cache_wipe_title">Iscantzella sos metadatos in sa memòria temporànea</string>
@@ -546,7 +545,7 @@
     <string name="autoplay_summary">Incumintza cun sa riprodutzione automaticamente — %s</string>
     <string name="title_activity_play_queue">Lista de riprodutzione</string>
     <string name="unsupported_url_dialog_message">Reconnoschimentu de s\'URL fallidu. Lu cheres abèrrere cun un\'àtera aplicatzione\?</string>
-    <string name="auto_queue_toggle">Annanghe a sa lista automaticamente</string>
+    <string name="auto_queue_toggle">Annanghidura automàtica a sa lista</string>
     <string name="clear_queue_confirmation_description">Sa lista dae su riproduidore ativu at a èssere remplasada</string>
     <string name="clear_queue_confirmation_summary">Colende dae unu riproduidore a s\'àteru dias pòdere remplasare sa lista tua</string>
     <string name="clear_queue_confirmation_title">Pedi una cunfirma in antis de iscantzellare una lista</string>
@@ -673,4 +672,20 @@
     <string name="manual_update_title">Chirca agiornamentos</string>
     <string name="manual_update_description">Verìfica in manera manuale pro versiones noas</string>
     <string name="checking_updates_toast">Controllende sos agiornamentos…</string>
+    <string name="error_report_notification_title">NewPipe at rilevadu un\'errore, toca pro lu sinnalare</string>
+    <string name="error_report_notification_toast">B\'at àpidu un\'errore, pòmpia sa notìfica</string>
+    <string name="show_error_snackbar">Ammustra una barra de errore</string>
+    <string name="error_report_channel_description">Notìficas pro sinnalare errores</string>
+    <string name="error_report_channel_name">Notìfica de sinnalatzione de errores</string>
+    <string name="show_crash_the_player_summary">Ammustra un\'optzione pro fàghere serrare de repente su riproduidore cando l\'impreas</string>
+    <string name="create_error_notification">Crea una notìfica de errore</string>
+    <string name="feed_new_items">Elementos noos de su flussu</string>
+    <string name="no_appropriate_file_manager_message">No est istadu agatadu perunu gestore de documentos pro custa atzione.
+\nPro praghere installa·nde unu o proa a inabilitare \'%s\' in sas impostatziones de iscarrigamentu.</string>
+    <string name="show_crash_the_player_title">Ammustra \"faghe serrare su riproduidore\"</string>
+    <string name="no_appropriate_file_manager_message_android_10">No est istadu agatadu perunu gestore de documentos pro custa atzione.
+\nPro praghere installa unu gestore de documentos cumpatìbile cun su \"Sistema de Atzessu a s\'Archiviatzione\".</string>
+    <string name="crash_the_player">Faghe serrare su riproduidore</string>
+    <string name="detail_pinned_comment_view_description">Cummentu apicadu</string>
+    <string name="background_player_already_playing_toast">Giai in riprodutzione in s\'isfundu</string>
 </resources>

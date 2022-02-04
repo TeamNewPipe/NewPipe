@@ -55,7 +55,6 @@
     <string name="what_happened_headline">Yang terjadi:</string>
     <string name="your_comment">Komentar Anda (dalam bahasa Inggris):</string>
     <string name="error_details_headline">Detail:</string>
-    <string name="list_thumbnail_view_description">Thumbnail pratinjau video</string>
     <string name="detail_thumbnail_view_description">Putar video, durasi:</string>
     <string name="detail_likes_img_view_description">Suka</string>
     <string name="detail_uploader_thumbnail_view_description">Thumbnail avatar pengunggah</string>
@@ -154,7 +153,7 @@
     <string name="always">Selalu</string>
     <string name="just_once">Hanya Sekali</string>
     <string name="file">Berkas</string>
-    <string name="notification_channel_description">Notifikasi untuk pemutar latar belakang dan popup NewPipe</string>
+    <string name="notification_channel_description">Notifikasi untuk pemutar NewPipe</string>
     <string name="unknown_content">[Tidak diketahui]</string>
     <string name="switch_to_background">Alihkan ke Latar Belakang</string>
     <string name="switch_to_popup">Alihkan ke Popup</string>
@@ -286,11 +285,12 @@
     <string name="import_youtube_instructions">Impor langganan YouTube dari Google takeout:
 \n
 \n1. Kunjungi URL ini: %1$s
-\n2. Masuk ketika ditanya
+\n2. Masuk ketika ditanyakan
 \n3. Klik \"Semua data disertakan\", lalu \"Batalkan semua pilihan\", lalu hanya pilih \"langganan\" dan klik \"OKE\"
 \n4. Klik \"Langkah berikutnya\" dan kemudian \"Buat ekspor\"
-\n5. Klik tombol \"Unduh\" dan
-\n6. Dari unduhan zip takeout ekstrak berkas .json (biasanya di bawah \"YouTube and YouTube Music/subscriptions/subscriptions.json\") dan impor di sini</string>
+\n5. Klik tombol \"Unduh\"
+\n6. Klik IMPOR FILE di bawah dan pilih file .zip yang terunduh
+\n7. [Jika impor .zip gagal] Ekstrak file .csv (biasanya di \"YouTube dan YouTube Music/langganan/langganan.csv\"), klik IMPOR FILE di bawah dan pilih file csv yang diekstrak</string>
     <string name="import_soundcloud_instructions">Impor profil SoundCloud dengan mengetik URL atau ID Anda:
 \n
 \n1. Aktifkan \"mode desktop\" di peramban web (situs tidak tersedia untuk perangkat seluler)
@@ -337,8 +337,8 @@
     <string name="settings_category_updates_title">Pembaruan</string>
     <string name="events">Acara</string>
     <string name="file_deleted">Berkas dihapus</string>
-    <string name="app_update_notification_channel_name">Notifikasi Pembaruan Apl</string>
-    <string name="app_update_notification_channel_description">Notifikasi untuk versi NewPipe baru</string>
+    <string name="app_update_notification_channel_name">Notifikasi pembaruan apl</string>
+    <string name="app_update_notification_channel_description">Notifikasi untuk versi-versi NewPipe baru</string>
     <string name="download_to_sdcard_error_title">Penyimpanan eksternal tidak tersedia</string>
     <string name="download_to_sdcard_error_message">Tidak bisa mengunduh ke kartu SD eksternal. Atur ulang lokasi folder unduhan\?</string>
     <string name="saved_tabs_invalid_json">Tidak bisa membaca tab yang disimpan, beralih menggunakan tab bawaan</string>
@@ -571,7 +571,7 @@
     <string name="show_meta_info_summary">Nonaktifkan untuk menyembunyikan kotak info dengan informasi tambahan tentang kreator, konten stream atau pencarian</string>
     <string name="show_meta_info_title">Tampilkan info meta</string>
     <string name="hash_channel_description">Notifikasi untuk laju pemrosesan hash video</string>
-    <string name="hash_channel_name">Notifikasi Hash Video</string>
+    <string name="hash_channel_name">Notifikasi hash video</string>
     <string name="no_app_to_open_intent">Tidak ada apl di perangkat Anda yang bisa membuka ini</string>
     <string name="chapters">Chapter</string>
     <string name="description_tab_description">Deskripsi</string>
@@ -581,8 +581,8 @@
     <string name="show_description_title">Tampilkan deskripsi</string>
     <string name="open_with">Buka dengan</string>
     <string name="paid_content">Konten ini hanya tersedia untuk pengguna yang telah membayar, sehingga tidak bisa diputar atau diunduh oleh NewPipe.</string>
-    <string name="youtube_music_premium_content">Video ini hanya tersedia untuk anggota Premium YouTube Music, sehingga tidak bisa diputar atau diunduh oleh NewPipe.</string>
-    <string name="private_content">Konten ini bersifat pribadi, jadi tidak bisa diputar ataupun diunduh oleh NewPipe.</string>
+    <string name="youtube_music_premium_content">Video ini hanya tersedia untuk anggota YouTube Music Premium, sehingga tidak bisa diputar atau diunduh oleh NewPipe.</string>
+    <string name="private_content">Konten ini privat, sehingga tidak bisa diputar atau diunduh oleh NewPipe.</string>
     <string name="soundcloud_go_plus_content">Ini adalah sebuah trek SoundCloud Go +, setidaknya di negara Anda, sehingga tidak bisa diputar atau diunduh oleh NewPipe.</string>
     <string name="georestricted_content">Konten ini tidak tersedia di negara Anda.</string>
     <string name="crash_the_app">Hentikan aplikasi</string>
@@ -663,7 +663,17 @@
     <string name="feed_new_items">Item feed baru</string>
     <string name="show_crash_the_player_title">Tampilkan \"hentikan pemain video\"</string>
     <string name="show_crash_the_player_summary">Menampilkan opsi penghentian ketika menggunakan pemain video</string>
-    <string name="report_player_errors_summary">Melaporkan kesalahan pemain video dalam detail yang penuh daripada menampilkan pesan toast yang muncul sebentar (berguna untuk memeriksa masalah)</string>
-    <string name="report_player_errors_title">Laporkan kesalahan pemain video</string>
     <string name="crash_the_player">Hentikan pemain video</string>
+    <string name="error_report_channel_description">Notifikasi untuk melaporkan kegalatan</string>
+    <string name="error_report_channel_name">Notifikasi laporan kegalatan</string>
+    <string name="error_report_notification_toast">Sebuah kegalatan terjadi, lihat notifikasinya</string>
+    <string name="show_error_snackbar">Menampilkan sebuah snackbar kegalatan</string>
+    <string name="create_error_notification">Buat sebuah notifikasi kegalatan</string>
+    <string name="no_appropriate_file_manager_message">Tidak ada manajer file yang ditemukan untuk tindakan ini.
+\nMohon instal sebuah manajer file atau coba menonaktifkan \'%s\' di pengaturan unduhan.</string>
+    <string name="error_report_notification_title">NewPipe mengalami sebuah kegalatan, ketuk untuk melaporkan</string>
+    <string name="no_appropriate_file_manager_message_android_10">Tidak ada manajer file yang ditemukan untuk tindakan ini.
+\nMohon instal sebuah manajer file yang kompatibel dengan Storage Access Framework.</string>
+    <string name="detail_pinned_comment_view_description">Komentar dipin</string>
+    <string name="background_player_already_playing_toast">Sudah diputar di latar belakang</string>
 </resources>

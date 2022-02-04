@@ -38,6 +38,7 @@
     <dimen name="channel_avatar_size">90dp</dimen>
     <dimen name="sub_channel_avatar_size">45dp</dimen>
     <!-- Paddings & Margins -->
+    <dimen name="video_item_detail_pinned_right_margin">8dp</dimen>
     <dimen name="video_item_detail_like_margin">8dp</dimen>
     <dimen name="video_item_detail_error_panel_margin">4dp</dimen>
 

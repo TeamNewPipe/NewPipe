@@ -11,8 +11,8 @@
     <string name="settings">Налаштування</string>
     <string name="did_you_mean">Ви мали на увазі: «%1$s»\?</string>
     <string name="share_dialog_title">Поширити через</string>
-    <string name="use_external_video_player_title">Викор. зовнішній відеопрогравач</string>
-    <string name="use_external_audio_player_title">Викор. зовнішній аудіопрогравач</string>
+    <string name="use_external_video_player_title">Зовнішній відеопрогравач</string>
+    <string name="use_external_audio_player_title">Зовнішній аудіопрогравач</string>
     <string name="download_path_title">Тека для завантаження відео</string>
     <string name="download_path_dialog_title">Виберіть теку для завантаження відеофайлів</string>
     <string name="download_path_audio_dialog_title">Виберіть теку для завантаження аудіофайлів</string>
@@ -35,7 +35,7 @@
     <string name="content_language_title">Переважна мова вмісту</string>
     <string name="settings_category_video_audio_title">Відео та звук</string>
     <string name="settings_category_appearance_title">Зовнішній вигляд</string>
-    <string name="background_player_playing_toast">Відтворення на тлі</string>
+    <string name="background_player_playing_toast">Відтворення у фоновому режимі</string>
     <string name="content">Вміст</string>
     <string name="show_age_restricted_content_title">Вміст із віковими обмеженнями</string>
     <string name="duration_live">Наживо</string>
@@ -63,7 +63,6 @@
     <string name="app_ui_crash">Збій застосунку/інтерфейсу</string>
     <string name="your_comment">Ваш коментар (англійською):</string>
     <string name="error_details_headline">Деталі:</string>
-    <string name="list_thumbnail_view_description">Зображення відео перед його переглядом</string>
     <string name="detail_thumbnail_view_description">Відтворити відео, тривалість:</string>
     <string name="video">Відео</string>
     <string name="audio">Аудіо</string>
@@ -86,7 +85,7 @@
     <string name="no_available_dir">Вкажіть теку для завантажень пізніше в налаштуваннях</string>
     <string name="no_player_found_toast">Програвач потокового відео не знайдений (ви можете встановити VLC для програвання).</string>
     <string name="open_in_popup_mode">Відкрити у віконному режимі</string>
-    <string name="use_external_video_player_summary">Прибирає звук при певних роздільних здатностях</string>
+    <string name="use_external_video_player_summary">Прибирає звук за певної роздільності</string>
     <string name="subscribe_button_title">Підписатися</string>
     <string name="subscribed_button_title">Ви підписалися</string>
     <string name="channel_unsubscribed">Ви відписалися від каналу</string>
@@ -94,7 +93,7 @@
     <string name="subscription_update_failed">Не вдалося оновити підписку</string>
     <string name="tab_subscriptions">Підписки</string>
     <string name="fragment_feed_title">Новинки</string>
-    <string name="controls_background_title">На тлі</string>
+    <string name="controls_background_title">У фоновому режимі</string>
     <string name="controls_popup_title">У вікні</string>
     <string name="default_popup_resolution_title">Типова роздільність вікна</string>
     <string name="show_higher_resolutions_summary">Не всі пристрої можуть відтворювати 2K/4K-відео</string>
@@ -128,14 +127,14 @@
     <string name="always">Завжди</string>
     <string name="just_once">Лише раз</string>
     <string name="notification_channel_name">Сповіщення NewPipe</string>
-    <string name="notification_channel_description">Сповіщення для програвачів NewPipe на тлі й у вікні</string>
+    <string name="notification_channel_description">Сповіщення для програвачів NewPipe</string>
     <string name="unknown_content">[Невідомо]</string>
     <string name="switch_to_background">Перейти у фоновий режим</string>
     <string name="switch_to_popup">Перемкнути у вікно</string>
     <string name="switch_to_main">Перемкнути на головну</string>
     <string name="import_data_title">Імпортувати базу даних</string>
     <string name="export_data_title">Експортувати базу даних</string>
-    <string name="import_data_summary">Поточні підписки, списки відтворення, історія і (за бажанням) налаштування буде замінено</string>
+    <string name="import_data_summary">Поточні підписки, добірки, історія і (за бажанням) налаштування буде замінено</string>
     <string name="export_data_summary">Експорт підписок, списків відтворення, історії та налаштувань</string>
     <string name="player_stream_failure">Не вдалося відтворити цей потік</string>
     <string name="player_recoverable_failure">Відновлення після помилки програвача</string>
@@ -256,8 +255,8 @@
     <string name="enable_leak_canary_summary">Моніторинг втрат пам\'яті може призвести до нереагування застосунку під час запису дампу</string>
     <string name="enable_disposed_exceptions_title">Звітувати про помилки життєвого циклу застосунку</string>
     <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx-винятків, які відбуваються за межами фрагменту або діяльності життєвого циклу після усунення</string>
-    <string name="use_inexact_seek_title">Викор. швидкий неточний пошук</string>
-    <string name="use_inexact_seek_summary">Неточний пошук дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю</string>
+    <string name="use_inexact_seek_title">Швидкий неточний пошук</string>
+    <string name="use_inexact_seek_summary">Швидше, але не точне перемотування. Перехід на 5, 15 або 25 секунд не працюватиме</string>
     <string name="auto_queue_title">Автододавання в чергу наступної трансляції</string>
     <string name="auto_queue_summary">Продовжити при завершені (не повторюваної) черги, додавши повʼязаний запис</string>
     <string name="file">Файл</string>
@@ -334,13 +333,13 @@
     <string name="skip_silence_checkbox">Пропускати тихі проміжки</string>
     <string name="playback_step">Крок</string>
     <string name="playback_reset">Скинути</string>
-    <string name="minimize_on_exit_title">Зменшити при перемиканні програм</string>
-    <string name="minimize_on_exit_summary">Дія при перемиканні до інших програм від головного відеопрогравача — %s</string>
+    <string name="minimize_on_exit_title">Зменшити при перемиканні застосунку</string>
+    <string name="minimize_on_exit_summary">Дія при перемиканні до інших застосунків з основного відеопрогравача — %s</string>
     <string name="minimize_on_exit_none_description">Нічого</string>
-    <string name="minimize_on_exit_background_description">Зменшити до програвача на тлі</string>
+    <string name="minimize_on_exit_background_description">Зменшити до програвача у фоновому режимі</string>
     <string name="minimize_on_exit_popup_description">Зменшити до програвача у вікні</string>
     <string name="channels">Канали</string>
-    <string name="playlists">Списки відтворення</string>
+    <string name="playlists">Добірки</string>
     <string name="tracks">Доріжки</string>
     <string name="users">Користувачі</string>
     <string name="list_view_mode">Режим перегляду списком</string>
@@ -356,7 +355,7 @@
     <string name="events">Події</string>
     <string name="file_deleted">Файл видалено</string>
     <string name="app_update_notification_channel_name">Сповіщення про оновлення застосунку</string>
-    <string name="app_update_notification_channel_description">Сповіщення про нову версію NewPipe</string>
+    <string name="app_update_notification_channel_description">Сповіщення про нові версії NewPipe</string>
     <string name="download_to_sdcard_error_title">Зовнішнє сховище недоступне</string>
     <string name="restore_defaults">Відновити типові налаштування</string>
     <string name="restore_defaults_confirmation">Відновити типові значення\?</string>
@@ -371,7 +370,7 @@
     <string name="paused">призупинено</string>
     <string name="queued">додано в чергу</string>
     <string name="post_processing">пост-обробка</string>
-    <string name="enqueue">Черга</string>
+    <string name="enqueue">Додати у чергу</string>
     <string name="permission_denied">Дію заборонено системою</string>
     <string name="download_failed">Помилка завантаження</string>
     <string name="generate_unique_name">Згенерувати унікальну назву</string>
@@ -380,8 +379,8 @@
     <string name="overwrite_finished_warning">Завантажений файл з такою назвою вже існує</string>
     <string name="download_already_running">Файл з такою назвою вже завантажується</string>
     <string name="show_error">Показати помилку</string>
-    <string name="error_path_creation">Цільову теку не можливо створити</string>
-    <string name="error_file_creation">Файл не можливо створити</string>
+    <string name="error_path_creation">Неможливо створити цільову теку</string>
+    <string name="error_file_creation">Неможливо створити файл</string>
     <string name="error_ssl_exception">Захищене з\'єднання не встановлено</string>
     <string name="error_unknown_host">Сервер не знайдено</string>
     <string name="error_connect_host">Не вдалося з\'єднатися із сервером</string>
@@ -397,10 +396,10 @@
     <string name="saved_tabs_invalid_json">Помилка зчитування збережених вкладок. Використовуються типові вкладки</string>
     <string name="main_page_content_summary">Вкладки, показані на головній сторінці</string>
     <string name="updates_setting_description">Показувати сповіщення з пропозицією оновити застосунок за наявності нової версії</string>
-    <string name="pause_downloads_on_mobile_desc">Корисно під час перемикання на мобільні дані, хоча деякі завантаження не можливо призупинити</string>
+    <string name="pause_downloads_on_mobile_desc">Корисно під час перемикання на мобільні дані, хоча деякі завантаження неможливо призупинити</string>
     <string name="show_comments_title">Показувати коментарі</string>
     <string name="show_comments_summary">Вимкніть, щоб сховати коментарі</string>
-    <string name="autoplay_title">Самовідтворення</string>
+    <string name="autoplay_title">Автовідтворення</string>
     <string name="no_comments">Коментарі відсутні</string>
     <string name="error_unable_to_load_comments">Не вдалося завантажити коментарі</string>
     <string name="close">Закрити</string>
@@ -597,15 +596,15 @@
     <string name="featured">Рекомендовані</string>
     <string name="crash_the_app">Збій застосунку</string>
     <string name="show_original_time_ago_title">Початковий час оприлюднення</string>
-    <string name="enqueued">Додано в чергу</string>
-    <string name="enqueue_stream">Додати в чергу</string>
+    <string name="enqueued">Додано у чергу</string>
+    <string name="enqueue_stream">Додати у чергу</string>
     <string name="recaptcha_solve">Розв\'язати</string>
     <string name="msg_calculating_hash">Обчислення гешу</string>
     <string name="clear_cookie_summary">Очистити збережені під час вирішення reCAPTCHA реп\'яшки (cookies)</string>
     <string name="recaptcha_cookies_cleared">Реп\'яшки (cookies) reCAPTCHA видалено</string>
     <string name="clear_cookie_title">Очистити реп\'яшки (cookies) reCAPTCHA</string>
     <string name="hash_channel_description">Сповіщення про перебіг відеогешування</string>
-    <string name="hash_channel_name">Сповіщення про відеогешування</string>
+    <string name="hash_channel_name">Сповіщення про відеохешування</string>
     <string name="restricted_video_no_stream">Це відео має вікові обмеження.
 \nЗгідно з новою політикою YouTube щодо відео з віковими обмеженнями NewPipe не може мати доступ до жодного потоку цього відео і, таким чином, не має можливості відтворити його.</string>
     <string name="show_age_restricted_content_summary">Показувати вміст, який, можливо, не підходить для дітей, бо має вікове обмеження (наприклад, 18+)</string>
@@ -643,7 +642,7 @@
     <string name="description_select_enable">Дозволити виділяти текст в описі</string>
     <string name="description_select_note">Тепер можна виділяти текст в описі. Зауважте, що сторінка може мигати і посилання можуть не працювати в режимі виділення.</string>
     <string name="service_provides_reason">%s подає таку причину:</string>
-    <string name="feed_load_error_account_info">Не можливо завантажити стрічку для «%s».</string>
+    <string name="feed_load_error_account_info">Неможливо завантажити стрічку для «%s».</string>
     <string name="feed_load_error">Помилка завантаження стрічки</string>
     <string name="feed_load_error_terminated">Обліковий запис автора припинено.
 \nNewPipe не зможе завантажити цей канал у майбутньому.
@@ -691,7 +690,17 @@
     <string name="feed_new_items">Нові записи стрічки</string>
     <string name="show_crash_the_player_title">Показати «збій програвача»</string>
     <string name="show_crash_the_player_summary">Показує параметр збою під час використання програвача</string>
-    <string name="report_player_errors_title">Повідомити про помилки програвача</string>
     <string name="crash_the_player">Збій програвача</string>
-    <string name="report_player_errors_summary">Повне повідомлення про помилки програвача замість, короткого звіту (корисно для діагностики проблем)</string>
+    <string name="error_report_channel_name">Сповіщення про звіт про помилку</string>
+    <string name="error_report_channel_description">Сповіщення для звітів про помилки</string>
+    <string name="error_report_notification_title">Сталася помилка NewPipe, торкніться, щоб звітувати</string>
+    <string name="error_report_notification_toast">Сталася помилка. Перегляньте сповіщення</string>
+    <string name="no_appropriate_file_manager_message">Для цієї дії не знайдено відповідного файлового менеджера.
+\nУстановіть файловий менеджер або спробуйте вимкнути «%s» у налаштуваннях завантажень.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Для цієї дії не знайдено відповідного файлового менеджера.
+\nУстановіть файловий менеджер, сумісний зі Storage Access Framework.</string>
+    <string name="show_error_snackbar">Показати панель помилок</string>
+    <string name="create_error_notification">Створити сповіщення про помилку</string>
+    <string name="background_player_already_playing_toast">Уже відтворюється у фоновому режимі</string>
+    <string name="detail_pinned_comment_view_description">Закріплений коментар</string>
 </resources>

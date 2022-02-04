@@ -26,7 +26,6 @@
     <string name="unsupported_url">対応していないURLです</string>
     <string name="content_language_title">デフォルトの言語</string>
     <string name="settings_category_video_audio_title">動画と音声</string>
-    <string name="list_thumbnail_view_description">動画 プレビュー サムネイル</string>
     <string name="detail_thumbnail_view_description">ビデオ再生、時間:</string>
     <string name="detail_uploader_thumbnail_view_description">投稿者アイコンのサムネイル</string>
     <string name="detail_dislikes_img_view_description">低評価</string>
@@ -278,9 +277,9 @@
     <string name="title_most_played">最も再生された動画</string>
     <string name="resize_zoom">拡大</string>
     <string name="controls_add_to_playlist_title">プレイリスト</string>
-    <string name="show_hold_to_append_title">「長押しして追加」のヒントを表示</string>
+    <string name="show_hold_to_append_title">「長押ししてキュー」のヒントを表示</string>
     <string name="tracks">トラック</string>
-    <string name="notification_channel_description">NewPipe のバックグラウンドおよびポップアッププレイヤーの通知</string>
+    <string name="notification_channel_description">NewPipe のプレイヤーの通知</string>
     <string name="new_and_hot">新着と人気</string>
     <string name="hold_to_append">長押ししてキューに追加</string>
     <string name="start_here_on_popup">ポップアップで連続再生を開始</string>
@@ -661,8 +660,20 @@
     <string name="enqueue_next_stream">次をキューに追加</string>
     <string name="enqueued_next">次をキューに追加しました</string>
     <string name="detail_heart_img_view_description">クリエイターの心をこめて</string>
-    <string name="report_player_errors_summary">プレーヤーのエラーを、短時間のトーストメッセージではなく、詳細に報告する（問題の診断に役立ちます）</string>
-    <string name="report_player_errors_title">プレイヤーのエラーを報告</string>
     <string name="show_crash_the_player_title">\"プレイヤーがクラッシュ\"を表示</string>
     <string name="crash_the_player">プレイヤーがクラッシュ</string>
+    <string name="feed_new_items">新しいフィードアイテム</string>
+    <string name="error_report_channel_name">エラー報告通知</string>
+    <string name="error_report_notification_toast">エラーが発生しました。通知をご覧ください</string>
+    <string name="error_report_notification_title">NewPipe はエラーに遭遇しました。タップして報告</string>
+    <string name="show_error_snackbar">スナックバーにエラーを表示</string>
+    <string name="background_player_already_playing_toast">既にバックグラウンドで再生されています</string>
+    <string name="detail_pinned_comment_view_description">固定されたコメント</string>
+    <string name="no_appropriate_file_manager_message_android_10">この動作に適切なファイルマネージャが見つかりませんでした。
+\nStorage Access Frameworkと互換性のあるファイルマネージャをインストールしてください。</string>
+    <string name="no_appropriate_file_manager_message">この動作に適切なファイルマネージャが見つかりませんでした。
+\nファイルマネージャをインストールするか、ダウンロード設定で\'%s\'を無効にすることをお試しください。</string>
+    <string name="show_crash_the_player_summary">プレイヤー使用時にクラッシュオプションを表示</string>
+    <string name="create_error_notification">エラー通知を作成</string>
+    <string name="error_report_channel_description">エラーを報告する通知</string>
 </resources>

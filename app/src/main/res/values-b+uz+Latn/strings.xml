@@ -289,7 +289,6 @@
     <string name="detail_likes_img_view_description">Layklar</string>
     <string name="detail_uploader_thumbnail_view_description">Yuklovchining avatar eskizi</string>
     <string name="detail_thumbnail_view_description">Videoni ijro etish muddati, davomiyligi:</string>
-    <string name="list_thumbnail_view_description">Videoni oldindan ko\'rish uchun eskiz</string>
     <string name="error_details_headline">Detallar:</string>
     <string name="your_comment">Sizning sharhingiz (ingliz tilida):</string>
     <string name="info_labels">Nima: \\n So\'rov: \\nTarkib tili: \\nTarkib mamlakati: \\nIlova tili: \\ nXizmat: \\ nGMT vaqti: \\ nPaket: \\ nVersion: \\ nOS versiyasi:</string>

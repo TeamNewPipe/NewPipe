@@ -37,7 +37,6 @@
     <string name="settings_category_appearance_title">Utseende</string>
     <string name="background_player_playing_toast">Spiller i bakgrunnen</string>
     <string name="network_error">Nettverksfeil</string>
-    <string name="list_thumbnail_view_description">Video-forhåndsvisning i miniatyrbilde</string>
     <string name="detail_thumbnail_view_description">Spill av video, varighet:</string>
     <string name="detail_uploader_thumbnail_view_description">Opplasterens avatar</string>
     <string name="detail_likes_img_view_description">Nikk</string>
@@ -670,10 +669,19 @@
     <string name="manual_update_title">Se etter oppdateringer</string>
     <string name="processing_may_take_a_moment">Behandler … Kan ta sin tid</string>
     <string name="crash_the_player">Krasj avspilleren</string>
-    <string name="report_player_errors_title">Rapporter avspillerfeil</string>
-    <string name="report_player_errors_summary">Sirlig rapportering av feil, istedenfor å kun vise et lite oppsprett en stund (nyttig i avlusningsøyemed)</string>
     <string name="show_crash_the_player_title">Vis «Krasj spilleren»</string>
     <string name="manual_update_description">Se etter nye versjoner manuelt</string>
     <string name="feed_new_items">Nye informasjonskanalelementer</string>
     <string name="checking_updates_toast">Ser etter oppdateringer …</string>
+    <string name="show_crash_the_player_summary">Viser et krasjalternativ ved bruk av avspilleren</string>
+    <string name="error_report_notification_toast">Det oppstod en feil. Sjekk merknaden.</string>
+    <string name="detail_pinned_comment_view_description">Festet kommentar</string>
+    <string name="background_player_already_playing_toast">Spilles allerede i bakgrunnen</string>
+    <string name="error_report_channel_name">Feilrapport-merknad</string>
+    <string name="error_report_channel_description">Merknader for innrapportering av feil</string>
+    <string name="error_report_notification_title">NewPipe-feil. Trykk for å rapportere.</string>
+    <string name="create_error_notification">Opprett en feilmerknad</string>
+    <string name="show_error_snackbar">Vis et feil-alternativsfelt</string>
+    <string name="no_appropriate_file_manager_message">Installer en filbehandler først, eller skru av «%s» i nedlastingsinnstillingene.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Installer en filbehandler som støtter lagringstilgangsrammeverk først.</string>
 </resources>

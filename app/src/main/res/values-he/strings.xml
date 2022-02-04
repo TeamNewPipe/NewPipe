@@ -98,14 +98,13 @@
     <string name="undo">ביטול</string>
     <string name="play_all">לנגן הכול</string>
     <string name="notification_channel_name">התראה מ־NewPipe</string>
-    <string name="notification_channel_description">התראות עבור נגן הרקע והנגן הצף של NewPipe</string>
+    <string name="notification_channel_description">התראות עבור הנגן של NewPipe</string>
     <string name="unknown_content">[לא ידוע]</string>
     <string name="player_stream_failure">נגינת התזרים לא הצליחה</string>
     <string name="player_unrecoverable_failure">אירעה תקלה בנגן ממנה לא ניתן להשתקם</string>
     <string name="player_recoverable_failure">מתבצעת החלמה משגיאת נגן</string>
     <string name="your_comment">ההערה שלך (באנגלית):</string>
     <string name="error_details_headline">פרטים:</string>
-    <string name="list_thumbnail_view_description">תמונה ממוזערת לתצוגה המקדימה של הסרטון</string>
     <string name="detail_thumbnail_view_description">נגינת סרטון, משך:</string>
     <string name="detail_uploader_thumbnail_view_description">תמונה ייצוגית של המפרסם</string>
     <string name="detail_likes_img_view_description">אהבו</string>
@@ -145,7 +144,7 @@
     <string name="checksum">גיבוב לאימות</string>
     <string name="ok">אישור</string>
     <string name="msg_name">שם קובץ</string>
-    <string name="msg_threads">תת־דיונים</string>
+    <string name="msg_threads">תהליכי משנה</string>
     <string name="msg_error">שגיאה</string>
     <string name="msg_running">NewPipe בהורדה</string>
     <string name="msg_running_detail">יש לגעת לפרטים נוספים</string>
@@ -266,8 +265,8 @@
 \n3. ללחוץ על „All data included”, ואז על „Deselect all”, לאחר מכן לבחור רק את „subscriptions” וללחוץ על „OK”
 \n4. ללחוץ על „Next step” ואז על „Create export”
 \n5. ללחוץ על כפתור ה־„Download” כשהוא מופיע
-\n6. ללחוץ על „ייבוא קובץ” להלן ולבחור בקובץ ה־zip שהורדת
-\n7. (אם ייבוא ה־zip נכשל) יש לחלץ את קובץ ה־‎.csv (בדרך כלל תחת „YouTube and YouTube Music/subscriptions/subscriptions.csv”), ללחוץ על „ייבוא קובץ” להלן וללחוץ על קובץ ה־csv שחולץ</string>
+\n6. ללחוץ על „ייבוא קובץ” להלן ולבחור בקובץ ה־‎.zip שהורדת
+\n7. (אם ייבוא ה־‎.zip נכשל) יש לחלץ את קובץ ה־‎.csv (בדרך כלל תחת „YouTube and YouTube Music/subscriptions/subscriptions.csv”), ללחוץ על „ייבוא קובץ” להלן וללחוץ על קובץ ה־csv שחולץ</string>
     <string name="playback_tempo">קצב</string>
     <string name="use_inexact_seek_title">שימוש בחיפוש מהיר ולא מדויק</string>
     <string name="use_inexact_seek_summary">חיפוש גס מאפשר לנגן לחפש נקודת זמן מהר יותר, ברמת דיוק נמוכה יותר. חיפוש של 5, 15 או 25 שניות לא עובד עם ההגדרה הזאת</string>
@@ -337,7 +336,7 @@
     <string name="settings_category_updates_title">עדכונים</string>
     <string name="file_deleted">קובץ נמחק</string>
     <string name="app_update_notification_channel_name">התראת עדכון יישומון</string>
-    <string name="app_update_notification_channel_description">התראות על גרסה חדשה של NewPipe</string>
+    <string name="app_update_notification_channel_description">התראות על גרסאות חדשות של NewPipe</string>
     <string name="download_to_sdcard_error_title">האחסון החיצוני אינו זמין</string>
     <string name="download_to_sdcard_error_message">אין אפשרות להוריד לכרטיס SD. לאפס את מיקום תיקיית ההורדה\?</string>
     <string name="saved_tabs_invalid_json">לא ניתן לקרוא לשוניות שמורות, לכן נעשה שימוש באלו של ברירת המחדל</string>
@@ -372,7 +371,7 @@
     <string name="paused">מושהה</string>
     <string name="queued">בתור</string>
     <string name="post_processing">עיבוד מאוחר</string>
-    <string name="enqueue">תור</string>
+    <string name="enqueue">הוספה לתור</string>
     <string name="permission_denied">הפעולה נדחתה על ידי המערכת</string>
     <string name="download_failed">ההורדה נכשלה</string>
     <string name="generate_unique_name">יצירת שם ייחודי</string>
@@ -567,7 +566,7 @@
     <string name="autoplay_summary">להתחיל לנגן אוטומטית — %s</string>
     <string name="title_activity_play_queue">לנגן את התור</string>
     <string name="unsupported_url_dialog_message">לא ניתן לזהות את הכתובת. לפתוח אותה ביישומון אחר\?</string>
-    <string name="auto_queue_toggle">תור אוטומטי</string>
+    <string name="auto_queue_toggle">הוספה אוטומטית לתור</string>
     <string name="clear_queue_confirmation_description">התור מהנגן הפעיל יוחלף</string>
     <string name="clear_queue_confirmation_summary">מעבר מנגן אחד למשנהו עלול להחליף את התור שלך</string>
     <string name="clear_queue_confirmation_title">לבקש אישור לפני מחיקת התור</string>
@@ -700,7 +699,17 @@
     <string name="feed_new_items">פריטים חדשים בהזנה</string>
     <string name="crash_the_player">להקריס את הנגן</string>
     <string name="show_crash_the_player_title">הצגת „להקריס את הנגן”</string>
-    <string name="report_player_errors_title">דיווח על שגיאות בנגן</string>
-    <string name="report_player_errors_summary">מדווח על שגיאות בנגן בפירוט מלא במקום להציג הודעה שקופצת למסך לזמן קצר (יעיל לניתוח תקלות)</string>
     <string name="show_crash_the_player_summary">הצגת אפשרות קריסה בעת שימוש בנגן</string>
+    <string name="error_report_channel_description">התראות לדיווח על שגיאות</string>
+    <string name="show_error_snackbar">הצגת חלונית בזק עם שגיאה</string>
+    <string name="create_error_notification">יצירת התראת שגיאה</string>
+    <string name="error_report_notification_title">NewPipe נתקל בשגיאה, לחיצה תדווח על כך</string>
+    <string name="error_report_notification_toast">אירעה שגיאה, נא לקרוא את ההתראה</string>
+    <string name="no_appropriate_file_manager_message">לא נמצא מנהל קבצים מתאים לפעולה זו.
+\nנא להתקין מנהל קבצים או לנסות להשבית את ‚%s’ בהגדרות ההורדה.</string>
+    <string name="error_report_channel_name">התראת דיווח שגיאה</string>
+    <string name="no_appropriate_file_manager_message_android_10">לא נמצאו מנהלי קבצים שמתאימים לפעולה הזאת.
+\nנא להתקין מנהל קבצים שתומך בתשתית גישה לאחסון.</string>
+    <string name="background_player_already_playing_toast">כבר מתנגן ברקע</string>
+    <string name="detail_pinned_comment_view_description">הערה ננעצה</string>
 </resources>

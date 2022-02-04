@@ -24,7 +24,6 @@
     <string name="unsupported_url">URLak ez du euskarririk</string>
     <string name="content_language_title">Edukiaren hizkuntz lehenetsia</string>
     <string name="settings_category_video_audio_title">Bideoa eta audioa</string>
-    <string name="list_thumbnail_view_description">Bideoaren aurreikuspen argazkitxoa</string>
     <string name="detail_thumbnail_view_description">Erreproduzitu bideoa, iraupena:</string>
     <string name="detail_uploader_thumbnail_view_description">Igotzailearen abatarraren iruditxoa</string>
     <string name="detail_dislikes_img_view_description">Ez dute gustoko</string>
@@ -142,7 +141,7 @@
     <string name="settings_category_player_behavior_title">Portaera</string>
     <string name="settings_category_history_title">Historia eta cache-a</string>
     <string name="undo">Desegin</string>
-    <string name="notification_channel_description">Atzeko planoko eta laster-leihoko NewPipe erreproduzigailuen jakinarazpenak</string>
+    <string name="notification_channel_description">NewPipe erreproduzigailuaren jakinarazpenak</string>
     <string name="search_no_results">Emaitzarik ez</string>
     <string name="empty_subscription_feed_subtitle">Kilkerrak besterik ez daude hemen</string>
     <string name="no_subscribers">Harpidedunik ez</string>
@@ -218,7 +217,7 @@
     <string name="metadata_cache_wipe_title">Ezabatu cacheko metadatuak</string>
     <string name="metadata_cache_wipe_summary">Kendu cachetik webguneen datu guztiak</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatuen cachea ezabatuta</string>
-    <string name="auto_queue_title">Gehitu ilarara hurrengo jarioa</string>
+    <string name="auto_queue_title">Gehitu hurrengo jarioa ilarara</string>
     <string name="auto_queue_summary">Jarraitu bukaerako (errepikapenik gabe) ilara erlazionatutako jario bat gehituz</string>
     <string name="settings_category_debug_title">Arazketa</string>
     <string name="file">Fitxategia</string>
@@ -293,7 +292,7 @@
 \n4. Egin klik \"Hurrengo pausua\"-n eta \"Sortu esportazioa\"
 \n5. Egin klik \"Deskargatu\" botoian agertzen denean
 \n6. Egin klik INPORTATU FITXATEGIA botoian eta hautatu deskargatutako zip fitxategia
-\n6. [Zip inportazioak huts egiten badu] Erauzi .csv fitxategia deskargatutako takeout zip-etik (normalean \"Youtube eta Youtube Music/harpidetzak/harpidetzak.csv\"), egin klik INPORTATU FITXATEGIA botoian eta hautatu erauzitako csv fitxategia</string>
+\n7. [.zip inportazioak huts egiten badu] Erauzi .csv fitxategia deskargatutako takeout zip-etik (normalean \"Youtube eta Youtube Music/harpidetzak/harpidetzak.csv\"), egin klik INPORTATU FITXATEGIA botoian eta hautatu erauzitako csv fitxategia</string>
     <string name="import_soundcloud_instructions">Inportatu SoundCloud profila URL-a edo zure ID-a idatziz:
 \n
 \n1. Gaitu \"mahaigain modua\" web nabigatzailean (gunea ez dabil mugikorretan)
@@ -344,7 +343,7 @@
     <string name="settings_category_updates_title">Eguneraketak</string>
     <string name="events">Gertaerak</string>
     <string name="file_deleted">Fitxategia ezabatu da</string>
-    <string name="app_update_notification_channel_name">Aplikazioaren eguneraketaren jakinarazpena</string>
+    <string name="app_update_notification_channel_name">Aplikazioaren eguneraketen jakinarazpena</string>
     <string name="app_update_notification_channel_description">NewPipe aplikazioaren bertsio berrien jakinarazpena</string>
     <string name="download_to_sdcard_error_title">Kanpo biltegiratzea ez dago eskuragarri</string>
     <string name="download_to_sdcard_error_message">Ezin da SD txartel batera deskargatu. Deskargen karpeta berrezarri nahi duzu\?</string>
@@ -367,7 +366,7 @@
     <string name="paused">pausatuta</string>
     <string name="queued">ilaran</string>
     <string name="post_processing">post-prozesua</string>
-    <string name="enqueue">Gehitu ilarara</string>
+    <string name="enqueue">Enkargatu</string>
     <string name="permission_denied">Ekintza sistemak ukatu du</string>
     <string name="download_failed">Deskargak huts egin du</string>
     <string name="generate_unique_name">Sortu izen bakana</string>
@@ -669,4 +668,24 @@
     <string name="start_main_player_fullscreen_title">Hasi erreproduzitzaile nagusia pantaila osoan</string>
     <string name="enqueued_next">Isatsari bideo hau erantsita</string>
     <string name="enqueue_next_stream">Gehitu bideo hau isatsari</string>
+    <string name="show_crash_the_player_title">Erakutsi \"itxi erreproduzigailua\"</string>
+    <string name="processing_may_take_a_moment">Prozesatzen... Itxoin mesedez</string>
+    <string name="background_player_already_playing_toast">Atzeko planoan erreproduzitzen dagoeneko</string>
+    <string name="error_report_channel_name">Erroreen txostenen jakinarazpena</string>
+    <string name="error_report_channel_description">Jakinarazpenak erroreen berri emateko</string>
+    <string name="error_report_notification_title">NewPipe-k errore bat aurkitu du, sakatu berri emateko</string>
+    <string name="error_report_notification_toast">Errore bat gertatu da, ikusi jakinarazpena</string>
+    <string name="manual_update_title">Bilatu eguneraketak</string>
+    <string name="manual_update_description">Bilatu bertsio berriak eskuz</string>
+    <string name="feed_new_items">Elementu berriak jarioan</string>
+    <string name="no_appropriate_file_manager_message_android_10">Ez da fitxategi kudeatzaile bat aurkitu ekintza honetarako.
+\nMesedez, instalatu Storage Access Framework-ekin bateragarria den fitxategi kudeatzaile bat.</string>
+    <string name="detail_pinned_comment_view_description">Ainguratutako iruzkina</string>
+    <string name="crash_the_player">Itxi erreproduzigailua</string>
+    <string name="checking_updates_toast">Eguneraketak bilatzen…</string>
+    <string name="no_appropriate_file_manager_message">Ez da fitxategi kudeatzaile bat aurkitu ekintza honetarako.
+\nMesedez, instalatu fitxategi kudeatzaile bat edo saiatu \'%s\' desgaitzen deskarga ezarpenetan.</string>
+    <string name="show_crash_the_player_summary">Erreproduzigailua erabiltzean ustekabean ixteko aukera ematen du</string>
+    <string name="show_error_snackbar">Erakutsi errore barra bat</string>
+    <string name="create_error_notification">Sortu errore jakinarazpen bat</string>
 </resources>
