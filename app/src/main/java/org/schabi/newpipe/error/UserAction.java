@@ -15,6 +15,7 @@ public enum UserAction {
     SEARCHED("searched"),
     GET_SUGGESTIONS("get suggestions"),
     REQUESTED_STREAM("requested stream"),
+    QUEUED_SPARSE_STREAM("queued sparse stream"),
     REQUESTED_CHANNEL("requested channel"),
     REQUESTED_PLAYLIST("requested playlist"),
     REQUESTED_KIOSK("requested kiosk"),
