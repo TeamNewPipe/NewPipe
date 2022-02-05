@@ -207,13 +207,11 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private void togglePitchSliderType(@NonNull final View rootView) {
-        @Nullable
         final RelativeLayout pitchControl = rootView.findViewById(R.id.pitchControl);
-        @Nullable
         final RelativeLayout semitoneControl = rootView.findViewById(R.id.semitoneControl);
 
-        @Nullable
-        final View separatorStepSizeSelector = rootView.findViewById(R.id.separatorStepSizeSelector);
+        final View separatorStepSizeSelector =
+                rootView.findViewById(R.id.separatorStepSizeSelector);
         final RelativeLayout.LayoutParams params =
                 (RelativeLayout.LayoutParams) separatorStepSizeSelector.getLayoutParams();
         if (pitchControl != null && semitoneControl != null && unhookingCheckbox != null) {
