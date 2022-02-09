@@ -7,19 +7,23 @@ on:
       - dev
       - master
     paths-ignore:
-      - 'README*.md'
+      - 'README.md'
+      - 'doc/**'
       - 'fastlane/**'
       - 'assets/**'
       - '.github/**/*.md'
+      - '.github/FUNDING.yml'
   push:
     branches:
       - dev
       - master
     paths-ignore:
-      - 'README*.md'
+      - 'README.md'
+      - 'doc/**'
       - 'fastlane/**'
       - 'assets/**'
       - '.github/**/*.md'
+      - '.github/FUNDING.yml'
 
 jobs:
   build-and-test-jvm:
