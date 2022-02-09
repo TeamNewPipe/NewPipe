@@ -25,7 +25,7 @@ module.exports = async ({github, context}) => {
     }
 
     // Regex for finding images (simple variant) ![ALT_TEXT](https://*.githubusercontent.com/<number>/<variousHexStringsAnd->.<fileExtension>)
-    const REGEX_IMAGE_LOOKUP = /\!\[(.{0,})\]\((https:\/\/[-a-z0-9]{1,}\.githubusercontent\.com\/\d+\/[-0-9a-f]{32,}\.(jpg|gif|png))\)/gm;
+    const REGEX_IMAGE_LOOKUP = /\!\[(.*)\]\((https:\/\/[-a-z0-9]+\.githubusercontent\.com\/\d+\/[-0-9a-f]{32,512}\.(jpg|gif|png))\)/gm;
 
     // Check if we found something
     let foundSimpleImages = REGEX_IMAGE_LOOKUP.test(initialBody);
