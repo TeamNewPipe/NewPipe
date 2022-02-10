@@ -24,6 +24,9 @@ import java.util.function.Consumer;
 
 import okhttp3.OkHttpClient;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public final class PicassoHelper {
     public static final String PLAYER_THUMBNAIL_TAG = "PICASSO_PLAYER_THUMBNAIL_TAG";
     private static final String PLAYER_THUMBNAIL_TRANSFORMATION_KEY
@@ -158,6 +161,10 @@ public final class PicassoHelper {
                 });
     }
 
+    @Nullable
+    public static Bitmap getImageFromCacheIfPresent(@NonNull final String imageUrl) {
+        return picassoCache.get(imageUrl);
+    }
 
     public static void loadNotificationIcon(final String url,
                                             final Consumer<Bitmap> bitmapConsumer) {
