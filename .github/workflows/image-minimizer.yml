@@ -25,5 +25,5 @@ jobs:
         timeout-minutes: 3
         with:
           script: |
-            const script = require('.github/workflows/image-minimizer.js')
-            await script({github, context})
+            const script = require('.github/workflows/image-minimizer.js');
+            await script({github, context});
