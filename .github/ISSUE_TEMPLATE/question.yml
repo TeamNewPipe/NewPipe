@@ -6,19 +6,19 @@ body:
     attributes:
       value: |
         Thanks for taking the time to fill out this issue! :hugs:
-        
-        However note the following before opening an issue:
-        * IF YOU DON'T FILL IN THE TEMPLATE PROPERLY, YOUR ISSUE IS LIABLE TO BE CLOSED.
-        * If you feel tired/lazy right now, open your issue some other time. We'll wait.
+
+        Note that you can also ask questions on our [IRC channel](https://web.libera.chat/#newpipe).
 
   - type: checkboxes
     id: checklist
     attributes:
       label: "Checklist"
       options:
-        - label: "I checked, but didn't find any duplicates ([open](https://github.com/TeamNewPipe/NewPipe/issues) OR [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed)) of this issue in the repo"
+        - label: "I made sure that there are *no existing issues*, neither [open](https://github.com/TeamNewPipe/NewPipe/issues) nor [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed), which I could contribute my information to."
           required: true
-        - label: "I have read the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/dev/.github/CONTRIBUTING.md)"
+        - label: "I am going to take the time to to fill in all the required details. I know that the question will be dismissed otherwise."
+          required: true
+        - label: "I have read and understood the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/dev/.github/CONTRIBUTING.md)."
           required: true
 
   - type: textarea
@@ -32,3 +32,4 @@ body:
     id: additional-information
     attributes:
       label: Additional information
+      description: Any other information you'd like to include, for instance, sketches, mockups, etc.

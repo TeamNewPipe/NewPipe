@@ -5,29 +5,31 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this issue! :hugs:
-        
-        However note the following before opening an issue:
-        * IF YOU DON'T FILL IN THE TEMPLATE PROPERLY, YOUR ISSUE IS LIABLE TO BE CLOSED.
-        * If you feel tired/lazy right now, open your issue some other time. We'll wait.
+        Thank you for making NewPipe better by suggesting a feature. :hugs:
 
+        Your ideas are highly welcome! It's a tool for you, the users, after all.
+        
   - type: checkboxes
     id: checklist
     attributes:
       label: "Checklist"
       options:
-        - label: "I checked, but didn't find any duplicates ([open](https://github.com/TeamNewPipe/NewPipe/issues) OR [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed)) of this issue in the repo"
+        - label: "I made sure that there are *no existing issues*, neither [open](https://github.com/TeamNewPipe/NewPipe/issues) nor [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed), which I could contribute my information to."
           required: true
-        - label: "I have read the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/dev/.github/CONTRIBUTING.md)"
+        - label: "This is a request for NewPipe itself. Requests for any new service need to be suggested at [NewPipeExtractor](https://github.com/TeamNewPipe/NewPipeExtractor/issues)."
+          required: true
+        - label: "I am going to take the time to to fill in all the required details. I know that the feature request will be dismissed otherwise."
           required: true
         - label: "This issue contains only one feature request. I will open one issue for every feature I want to request."
+          required: true
+        - label: "I have read and understood the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/dev/.github/CONTRIBUTING.md)."
           required: true
 
 
   - type: textarea
-    id: what-feature-is-requested
+    id: feature-description
     attributes:
-      label: What feature do you want?
+      label: Feature description
       description: |
         Explain how you want the app's look or behavior to change to suit your needs.
     validations:
@@ -46,3 +48,4 @@ body:
     id: additional-information
     attributes:
       label: Additional information
+      description: Any other information you'd like to include, for instance, sketches, mockups, etc.
