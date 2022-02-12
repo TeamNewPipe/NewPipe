@@ -30,7 +30,7 @@ body:
     attributes:
      label: Affected version
      description: "In which NewPipe version did you encounter the bug?"
-     placeholder: "x.xx.x - Can be seen in the app under the 'About'-section"
+     placeholder: "x.xx.x - Can be seen in the app from the 'About' section in the sidebar"
     validations:
       required: true
 
@@ -72,10 +72,10 @@ body:
         
         If applicable, add screenshots or a screen recording to help explain your problem.
         GitHub supports uploading them directly in the text box.
-        If your file is too big for Github to accept, try to compress it (ZIP-file) or feel free to paste a link from an image/video hoster here instead.
+        If your file is too big for Github to accept, try to compress it (ZIP-file) or feel free to paste a link to an image/video hoster here instead.
         
         :heavy_exclamation_mark: DON'T POST SCREENSHOTS OF THE ERROR PAGE.
-        Instead paste the text in the "Logs"-section below.
+        Instead, follow the instructions in the "Logs" section below.
 
   - type: textarea
     id: logs
@@ -97,7 +97,7 @@ body:
     attributes:
      label: Affected device model
      description: |
-      With what device did you encounter the bug?
+      On what device did you encounter the bug?
      placeholder: "Example: Huawei P20 lite (ANE-LX1) / Samsung Galaxy S20"
 
   - type: textarea
