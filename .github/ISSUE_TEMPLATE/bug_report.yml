@@ -5,9 +5,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for making NewPipe better by reporting a bug. :hugs:
+        Thank you for helping to make NewPipe better by reporting a bug. :hugs:
 
-        Please fill in as much information as possible about your bug so that we don't have to play "information ping-pong" but can help you immediately.
+        Please fill in as much information as possible about your bug so that we don't have to play "information ping-pong" and can help you immediately.
 
   - type: checkboxes
     id: checklist
@@ -16,9 +16,9 @@ body:
       options:
         - label: "I am able to reproduce the bug with the [latest version](https://github.com/TeamNewPipe/NewPipe/releases/latest)."
           required: true
-        - label: "I made sure that there are *no existing issues*, neither [open](https://github.com/TeamNewPipe/NewPipe/issues) nor [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed), which I could contribute my information to."
+        - label: "I made sure that there are *no existing issues* - [open](https://github.com/TeamNewPipe/NewPipe/issues) or [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed) - which I could contribute my information to."
           required: true
-        - label: "I am going to take the time to to fill in all the required details. I know that the bug report will be dismissed otherwise."
+        - label: "I am going to take the time to to fill in all the required details. I understand that the bug report will be dismissed otherwise."
           required: true
         - label: "This issue contains only one bug. I will open one issue for every bug report I want to file."
           required: true
@@ -26,10 +26,10 @@ body:
           required: true
 
   - type: input
-    id: version
+    id: app-version
     attributes:
      label: Affected version
-     description: "What version are you currently using?"
+     description: "In which version did you encounter the bug?"
      placeholder: "x.xx.x - Can be seen in the app under the 'About'-section"
     validations:
       required: true
@@ -39,7 +39,7 @@ body:
     attributes:
       label: Steps to reproduce the bug
       description: |
-        What did you do that the bug shows up?
+        What did you do for the bug to show up?
         
         If you can't cause the bug to show up again reliably (and hence don't have a proper set of steps to give us), please still try to give as many details as possible on how you think you encountered the bug.
       placeholder: |
@@ -84,16 +84,30 @@ body:
       description: |
         If your bug includes a crash (where you're shown the Error Report page with a bunch of info), tap on "Copy formatted report" at the bottom and paste it here.
 
-  - type: textarea
-    id: device-info
+  - type: input
+    id: device-os-info
     attributes:
-      label: Device / System information
-      value: |
-        - Android version/Custom ROM version: 
-        - Device model: 
+     label: Affected Android/Custom ROM version
+     description: |
+      With which operating system (+ version) did you encounter the bug?
+     placeholder: "Example: Android 12 / LineageOS 18.1"
+
+  - type: input
+    id: device-model-info
+    attributes:
+     label: Affected device model
+     description: |
+      With which device did you encounter the bug?
+     placeholder: "Example: Huawei P20 lite (ANE-LX1) / Samsung Galaxy S20"
 
   - type: textarea
     id: additional-information
     attributes:
       label: Additional information
-      description: Any other information you'd like to include, for instance, sketches, mockups, etc.
+      description: |
+        Any other information you'd like to include, for instance that 
+        * the affected device is a TV or foldable
+        * you have disabled all animations on your device
+        * your cat disabled your network connection
+        * ...
+

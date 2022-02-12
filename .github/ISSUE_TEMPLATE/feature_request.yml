@@ -5,20 +5,20 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for making NewPipe better by suggesting a feature. :hugs:
+        Thank you for helping to make  NewPipe better by suggesting a feature. :hugs:
 
-        Your ideas are highly welcome! It's a tool for you, the users, after all.
+        Your ideas are highly welcome! The app is made for you, the users, after all.
         
   - type: checkboxes
     id: checklist
     attributes:
       label: "Checklist"
       options:
-        - label: "I made sure that there are *no existing issues*, neither [open](https://github.com/TeamNewPipe/NewPipe/issues) nor [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed), which I could contribute my information to."
+        - label: "I made sure that there are *no existing issues* - [open](https://github.com/TeamNewPipe/NewPipe/issues) or [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed) - which I could contribute my information to."
           required: true
-        - label: "This is a request for NewPipe itself. Requests for any new service need to be suggested at [NewPipeExtractor](https://github.com/TeamNewPipe/NewPipeExtractor/issues)."
+        - label: "I'm aware that this is a request for NewPipe itself and that requests for adding a new service need to be made at [NewPipeExtractor](https://github.com/TeamNewPipe/NewPipeExtractor/issues)."
           required: true
-        - label: "I am going to take the time to to fill in all the required details. I know that the feature request will be dismissed otherwise."
+        - label: "I am going to take the time to to fill in all the required details. I understand that the feature request will be dismissed otherwise."
           required: true
         - label: "This issue contains only one feature request. I will open one issue for every feature I want to request."
           required: true
@@ -48,4 +48,4 @@ body:
     id: additional-information
     attributes:
       label: Additional information
-      description: Any other information you'd like to include, for instance, sketches, mockups, etc.
+      description: Any other information you'd like to include, for instance sketches, mockups, pictures of cats, etc.
