@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for helping to make  NewPipe better by suggesting a feature. :hugs:
+        Thank you for helping to make NewPipe better by suggesting a feature. :hugs:
 
         Your ideas are highly welcome! The app is made for you, the users, after all.
         
@@ -18,7 +18,7 @@ body:
           required: true
         - label: "I'm aware that this is a request for NewPipe itself and that requests for adding a new service need to be made at [NewPipeExtractor](https://github.com/TeamNewPipe/NewPipeExtractor/issues)."
           required: true
-        - label: "I have taken the time to to fill in all the required details. I understand that the feature request will be dismissed otherwise."
+        - label: "I have taken the time to fill in all the required details. I understand that the feature request will be dismissed otherwise."
           required: true
         - label: "This issue contains only one feature request."
           required: true
