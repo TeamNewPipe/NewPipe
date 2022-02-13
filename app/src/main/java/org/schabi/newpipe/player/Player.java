@@ -3294,24 +3294,25 @@ public final class Player implements
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
         if (audioPlayerSelected()) {
             return audioResolver.resolve(info);
-        } else {
-            if (isAudioOnly && videoResolver.getStreamSourceType().orElse(
-                            SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY)
-                    == SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY) {
-                // If the current info has only video streams with audio and if the stream is
-                // played as audio, we need to use the audio resolver, otherwise the video stream
-                // will be played in background.
-                return audioResolver.resolve(info);
-            }
-
-            // Even if the stream is played in background, we need to use the video resolver if the
-            // info played is separated video-only and audio-only streams; otherwise, if the audio
-            // resolver was called when the app was in background, the app will only stream audio
-            // when the user come back to the app and will never fetch the video stream.
-            // Note that the video is not fetched when the app is in background because the video
-            // renderer is fully disabled (see useVideoSource method).
-            return videoResolver.resolve(info);
         }
+
+        if (isAudioOnly && videoResolver.getStreamSourceType().orElse(
+                SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY)
+                == SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY) {
+            // If the current info has only video streams with audio and if the stream is played as
+            // audio, we need to use the audio resolver, otherwise the video stream will be played
+            // in background.
+            return audioResolver.resolve(info);
+        }
+
+        // Even if the stream is played in background, we need to use the video resolver if the
+        // info played is separated video-only and audio-only streams; otherwise, if the audio
+        // resolver was called when the app was in background, the app will only stream audio when
+        // the user come back to the app and will never fetch the video stream.
+        // Note that the video is not fetched when the app is in background because the video
+        // renderer is fully disabled (see useVideoSource method), except for HLS streams
+        // (see https://github.com/google/ExoPlayer/issues/9282).
+        return videoResolver.resolve(info);
     }
 
     public void disablePreloadingOfCurrentTrack() {
