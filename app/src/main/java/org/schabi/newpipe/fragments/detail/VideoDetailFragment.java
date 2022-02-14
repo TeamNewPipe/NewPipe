@@ -500,6 +500,10 @@ public final class VideoDetailFragment
                 break;
             case R.id.detail_thumbnail_root_layout:
                 autoPlayEnabled = true; // forcefully start playing
+                // FIXME Workaround #7427
+                if (isPlayerAvailable()) {
+                    player.setRecovery();
+                }
                 openVideoPlayerAutoFullscreen();
                 break;
             case R.id.detail_title_root_layout:
