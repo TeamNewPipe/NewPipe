@@ -8,8 +8,8 @@ module.exports = async ({github, context}) => {
     const IMG_MAX_HEIGHT_PX = 600;
     // maximum width of GitHub issues/comments
     const IMG_MAX_WIDTH_PX = 800;
-    // all images that have a lower aspect ration (-> have a smaller width) than this will be minimized
-    const MIN_ASPECT_RATION = IMG_MAX_WIDTH_PX / IMG_MAX_HEIGHT_PX
+    // all images that have a lower aspect ratio (-> have a smaller width) than this will be minimized
+    const MIN_ASPECT_RATIO = IMG_MAX_WIDTH_PX / IMG_MAX_HEIGHT_PX
 
     // Get the body of the image
     let initialBody = null;
@@ -76,7 +76,7 @@ module.exports = async ({github, context}) => {
             }
             console.log(`Probing resulted in ${probeResult.width}x${probeResult.height}px`);
             
-            shouldModify = probeResult.height > IMG_MAX_HEIGHT_PX && (probeResult.width / probeResult.height) < MIN_ASPECT_RATION;
+            shouldModify = probeResult.height > IMG_MAX_HEIGHT_PX && (probeResult.width / probeResult.height) < MIN_ASPECT_RATIO;
         } catch(e) {
             console.log('Probing failed:', e);
             // Immediately abort
