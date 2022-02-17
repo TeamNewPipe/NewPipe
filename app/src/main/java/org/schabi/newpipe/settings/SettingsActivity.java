@@ -2,6 +2,7 @@ package org.schabi.newpipe.settings;
 
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -228,7 +229,9 @@ public class SettingsActivity extends AppCompatActivity implements
 
 
         // Build search items
-        final PreferenceParser parser = new PreferenceParser(getApplicationContext(), config);
+        final Context searchContext = getApplicationContext();
+        assureCorrectAppLanguage(searchContext);
+        final PreferenceParser parser = new PreferenceParser(searchContext, config);
         final PreferenceSearcher searcher = new PreferenceSearcher(config);
 
         // Find all searchable SettingsResourceRegistry fragments
