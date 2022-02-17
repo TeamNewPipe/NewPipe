@@ -48,7 +48,8 @@
                 android:text="--%"
                 android:textColor="?attr/colorAccent"
                 android:textStyle="bold"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText"
+                tools:text="-5%" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -72,7 +73,8 @@
                     android:gravity="center"
                     android:text="-.--x"
                     android:textColor="?attr/colorAccent"
-                    tools:ignore="HardcodedText"/>
+                    tools:ignore="HardcodedText"
+                    tools:text="1.00x" />
 
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/tempoCurrentText"
@@ -83,7 +85,8 @@
                     android:text="---%"
                     android:textColor="?attr/colorAccent"
                     android:textStyle="bold"
-                    tools:ignore="HardcodedText"/>
+                    tools:ignore="HardcodedText"
+                    tools:text="100%" />
 
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/tempoMaximumText"
@@ -96,7 +99,8 @@
                     android:gravity="center"
                     android:text="---%"
                     android:textColor="?attr/colorAccent"
-                    tools:ignore="HardcodedText"/>
+                    tools:ignore="HardcodedText"
+                    tools:text="300%" />
 
                 <androidx.appcompat.widget.AppCompatSeekBar
                     android:id="@+id/tempoSeekbar"
@@ -124,7 +128,8 @@
                 android:text="+-%"
                 android:textColor="?attr/colorAccent"
                 android:textStyle="bold"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText"
+                tools:text="+5%" />
         </RelativeLayout>
 
         <View
@@ -171,7 +176,8 @@
                 android:text="--%"
                 android:textColor="?attr/colorAccent"
                 android:textStyle="bold"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText"
+                tools:text="-5%" />
 
             <RelativeLayout
                 android:id="@+id/pitchDisplay"
@@ -196,7 +202,8 @@
                     android:gravity="center"
                     android:text="---%"
                     android:textColor="?attr/colorAccent"
-                    tools:ignore="HardcodedText"/>
+                    tools:ignore="HardcodedText"
+                    tools:text="25%" />
 
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/pitchCurrentText"
@@ -207,7 +214,8 @@
                     android:text="---%"
                     android:textColor="?attr/colorAccent"
                     android:textStyle="bold"
-                    tools:ignore="HardcodedText"/>
+                    tools:ignore="HardcodedText"
+                    tools:text="100%" />
 
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/pitchMaximumText"
@@ -220,7 +228,8 @@
                     android:gravity="center"
                     android:text="---%"
                     android:textColor="?attr/colorAccent"
-                    tools:ignore="HardcodedText"/>
+                    tools:ignore="HardcodedText"
+                    tools:text="300%" />
 
                 <androidx.appcompat.widget.AppCompatSeekBar
                     android:id="@+id/pitchSeekbar"
@@ -248,7 +257,8 @@
                 android:text="+-%"
                 android:textColor="?attr/colorAccent"
                 android:textStyle="bold"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText"
+                tools:text="+5%" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -274,7 +284,7 @@
                 android:textColor="?attr/colorAccent"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText" />
 
             <RelativeLayout
                 android:id="@+id/semitoneDisplay"
@@ -309,7 +319,7 @@
                     android:gravity="center"
                     android:textColor="?attr/colorAccent"
                     android:textStyle="bold"
-                    tools:ignore="HardcodedText"/>
+                    tools:text="0" />
 
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/semitoneMaximumText"
@@ -322,7 +332,7 @@
                     android:gravity="center"
                     android:text="+12"
                     android:textColor="?attr/colorAccent"
-                    tools:ignore="HardcodedText"/>
+                    tools:ignore="HardcodedText" />
 
                 <androidx.appcompat.widget.AppCompatSeekBar
                     android:id="@+id/semitoneSeekbar"
@@ -352,7 +362,7 @@
                 android:textColor="?attr/colorAccent"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText" />
         </RelativeLayout>
 
         <View
