@@ -310,10 +310,24 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                 onItemSelected(selectedItem);
             }
         });
+
+        // Ensure that there is always a scroll listener (e.g. when rotating the device)
+        useNormalItemListScrollListener();
     }
 
     /**
-     * Remove all listeners and add the initial scroll listener to the {@link #itemsList}.
+     * Removes all listeners and adds the normal scroll listener to the {@link #itemsList}.
+     */
+    protected void useNormalItemListScrollListener() {
+        if (DEBUG) {
+            Log.d(TAG, "useNormalItemListScrollListener called");
+        }
+        itemsList.clearOnScrollListeners();
+        itemsList.addOnScrollListener(new DefaultItemListOnScrolledDownListener());
+    }
+
+    /**
+     * Removes all listeners and adds the initial scroll listener to the {@link #itemsList}.
      * <br/>
      * Which tries to load more items when not enough are in the view (not scrollable)
      * and more are available.
@@ -329,9 +343,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
      *     <li>no more items can be loaded</li>
      * </ul>
      */
-    protected void setItemsListInitialScrollListener() {
+    protected void useInitialItemListLoadScrollListener() {
         if (DEBUG) {
-            Log.d(TAG, "setItemsListInitialScrollListener called");
+            Log.d(TAG, "useInitialItemListLoadScrollListener called");
         }
         itemsList.clearOnScrollListeners();
         itemsList.addOnScrollListener(new DefaultItemListOnScrolledDownListener() {
@@ -342,7 +356,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                 if (dy != 0) {
                     log("Vertical scroll occurred");
 
-                    useNormalScrollListener();
+                    useNormalItemListScrollListener();
                     return;
                 }
                 if (isLoading.get()) {
@@ -352,14 +366,14 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                 if (!hasMoreItems()) {
                     log("No more items to load");
 
-                    useNormalScrollListener();
+                    useNormalItemListScrollListener();
                     return;
                 }
                 if (itemsList.canScrollVertically(1)
                         || itemsList.canScrollVertically(-1)) {
                     log("View is scrollable");
 
-                    useNormalScrollListener();
+                    useNormalItemListScrollListener();
                     return;
                 }
 
@@ -367,14 +381,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                 loadMoreItems();
             }
 
-            private void useNormalScrollListener() {
-                itemsList.removeOnScrollListener(this);
-                itemsList.addOnScrollListener(new DefaultItemListOnScrolledDownListener());
-            }
-
             private void log(final String msg) {
                 if (DEBUG) {
-                    Log.d(TAG, "itemListInitScrollListener - " + msg);
+                    Log.d(TAG, "initItemListLoadScrollListener - " + msg);
                 }
             }
         });
@@ -476,7 +485,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
 
     @Override
     protected void startLoading(final boolean forceLoad) {
-        setItemsListInitialScrollListener();
+        useInitialItemListLoadScrollListener();
         super.startLoading(forceLoad);
     }
 
