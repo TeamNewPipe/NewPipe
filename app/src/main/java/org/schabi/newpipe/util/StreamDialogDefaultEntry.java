@@ -1,21 +1,15 @@
 package org.schabi.newpipe.util;
 
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.util.StreamDialogEntry.fetchItemInfoIfSparse;
 import static org.schabi.newpipe.util.StreamDialogEntry.openChannelFragment;
 
 import android.net.Uri;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
-import org.schabi.newpipe.error.ErrorInfo;
-import org.schabi.newpipe.error.ErrorUtil;
-import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -25,7 +19,6 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 import java.util.Collections;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * <p>
@@ -44,32 +37,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  * </p>
  */
 public enum StreamDialogDefaultEntry {
-    SHOW_CHANNEL_DETAILS(R.string.show_channel_details, (fragment, item) -> {
-        if (isNullOrEmpty(item.getUploaderUrl())) {
-            final int serviceId = item.getServiceId();
-            final String url = item.getUrl();
-            Toast.makeText(fragment.getContext(), R.string.loading_channel_details,
-                    Toast.LENGTH_SHORT).show();
-            ExtractorHelper.getStreamInfo(serviceId, url, false)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(result -> {
-                        NewPipeDatabase.getInstance(fragment.requireContext()).streamDAO()
-                                .setUploaderUrl(serviceId, url, result.getUploaderUrl())
-                                .subscribeOn(Schedulers.io()).subscribe();
-                        openChannelFragment(fragment, item, result.getUploaderUrl());
-                    }, throwable -> ErrorUtil.openActivity(
-                            fragment.requireContext(),
-                            new ErrorInfo(
-                                    throwable,
-                                    UserAction.REQUESTED_CHANNEL,
-                                    url,
-                                    serviceId
-                            )));
-        } else {
-            openChannelFragment(fragment, item, item.getUploaderUrl());
-        }
-    }),
+    SHOW_CHANNEL_DETAILS(R.string.show_channel_details, (fragment, item) ->
+        SaveUploaderUrlHelper.saveUploaderUrlIfNeeded(fragment, item,
+                uploaderUrl -> openChannelFragment(fragment, item, uploaderUrl))
+    ),
 
     /**
      * Enqueues the stream automatically to the current PlayerType.
