@@ -1,4 +1,4 @@
-package org.schabi.newpipe.info_list;
+package org.schabi.newpipe.info_list.dialog;
 
 import static org.schabi.newpipe.MainActivity.DEBUG;
 
@@ -24,8 +24,6 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.player.helper.PlayerHolder;
-import org.schabi.newpipe.util.StreamDialogDefaultEntry;
-import org.schabi.newpipe.util.StreamDialogEntry;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 
 import java.util.ArrayList;

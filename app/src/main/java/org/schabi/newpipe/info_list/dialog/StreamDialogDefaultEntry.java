@@ -1,7 +1,7 @@
-package org.schabi.newpipe.util;
+package org.schabi.newpipe.info_list.dialog;
 
-import static org.schabi.newpipe.util.StreamDialogEntry.fetchItemInfoIfSparse;
-import static org.schabi.newpipe.util.StreamDialogEntry.openChannelFragment;
+import static org.schabi.newpipe.info_list.dialog.StreamDialogEntry.fetchItemInfoIfSparse;
+import static org.schabi.newpipe.info_list.dialog.StreamDialogEntry.openChannelFragment;
 
 import android.net.Uri;
 
@@ -13,6 +13,8 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.SaveUploaderUrlHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
@@ -23,7 +25,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 /**
  * <p>
  *     This enum provides entries that are accepted
- *     by the {@link org.schabi.newpipe.info_list.InfoItemDialog.Builder}.
+ *     by the {@link InfoItemDialog.Builder}.
  * </p>
  * <p>
  *     These entries contain a String {@link #resource} which is displayed in the dialog and
@@ -31,7 +33,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
  *     when the entry is selected (via <code>onClick()</code>).
  *     <br/>
  *     They action can be overridden by using the Builder's
- *     {@link org.schabi.newpipe.info_list.InfoItemDialog.Builder#setAction(
+ *     {@link InfoItemDialog.Builder#setAction(
  *     StreamDialogDefaultEntry, StreamDialogEntry.StreamDialogEntryAction)}
  *     method.
  * </p>
