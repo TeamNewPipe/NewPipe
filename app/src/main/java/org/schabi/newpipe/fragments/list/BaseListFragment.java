@@ -3,7 +3,6 @@ package org.schabi.newpipe.fragments.list;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -30,8 +29,8 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
-import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
@@ -403,13 +402,11 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     }
 
     protected void showInfoItemDialog(final StreamInfoItem item) {
-        final Context context = getContext();
-        final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || activity == null) {
-            return;
+        try {
+            new InfoItemDialog.Builder(getActivity(), getContext(), this, item).create().show();
+        } catch (final IllegalArgumentException e) {
+            InfoItemDialog.Builder.reportErrorDuringInitialization(e, item);
         }
-
-        new InfoItemDialog.Builder(activity, context, this, item).create().show();
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -3,7 +3,6 @@ package org.schabi.newpipe.fragments.list.playlist;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -137,20 +136,20 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     @Override
     protected void showInfoItemDialog(final StreamInfoItem item) {
         final Context context = getContext();
-        final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || activity == null) {
-            return;
+        try {
+            final InfoItemDialog.Builder dialogBuilder =
+                    new InfoItemDialog.Builder(getActivity(), context, this, item);
+
+            dialogBuilder
+                    .setAction(
+                            StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
+                            (f, infoItem) -> NavigationHelper.playOnBackgroundPlayer(
+                                    context, getPlayQueueStartingAt(infoItem), true))
+                    .create()
+                    .show();
+        } catch (final IllegalArgumentException e) {
+            InfoItemDialog.Builder.reportErrorDuringInitialization(e, item);
         }
-
-        final InfoItemDialog.Builder dialogBuilder =
-                new InfoItemDialog.Builder(activity, context, this, item);
-
-        dialogBuilder.setAction(StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
-                (fragment, infoItem) -> NavigationHelper.playOnBackgroundPlayer(
-                        context, getPlayQueueStartingAt(infoItem), true));
-
-        dialogBuilder.create().show();
-
     }
 
     @Override

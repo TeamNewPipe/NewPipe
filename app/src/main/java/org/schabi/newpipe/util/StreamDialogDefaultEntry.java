@@ -1,13 +1,14 @@
 package org.schabi.newpipe.util;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
+import static org.schabi.newpipe.util.StreamDialogEntry.fetchItemInfoIfSparse;
+import static org.schabi.newpipe.util.StreamDialogEntry.openChannelFragment;
 
 import android.net.Uri;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-import androidx.fragment.app.Fragment;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
@@ -15,11 +16,9 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
@@ -73,32 +72,45 @@ public enum StreamDialogDefaultEntry {
     }),
 
     /**
-     * Enqueues the stream automatically to the current PlayerType.<br>
-     * <br>
-     * Info: Add this entry within showStreamDialog.
+     * Enqueues the stream automatically to the current PlayerType.
      */
     ENQUEUE(R.string.enqueue_stream, (fragment, item) ->
-        NavigationHelper.enqueueOnPlayer(fragment.getContext(), new SinglePlayQueue(item))
+            fetchItemInfoIfSparse(fragment.requireContext(), item, singlePlayQueue ->
+                NavigationHelper.enqueueOnPlayer(fragment.getContext(), singlePlayQueue))
     ),
 
+    /**
+     * Enqueues the stream automatically to the current PlayerType
+     * after the currently playing stream.
+     */
     ENQUEUE_NEXT(R.string.enqueue_next_stream, (fragment, item) ->
-        NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), new SinglePlayQueue(item))
+            fetchItemInfoIfSparse(fragment.requireContext(), item, singlePlayQueue ->
+                NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), singlePlayQueue))
     ),
 
     START_HERE_ON_BACKGROUND(R.string.start_here_on_background, (fragment, item) ->
-            NavigationHelper.playOnBackgroundPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), true)),
+            fetchItemInfoIfSparse(fragment.requireContext(), item, singlePlayQueue ->
+                NavigationHelper.playOnBackgroundPlayer(
+                        fragment.getContext(), singlePlayQueue, true))),
 
     START_HERE_ON_POPUP(R.string.start_here_on_popup, (fragment, item) ->
-            NavigationHelper.playOnPopupPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), true)),
+            fetchItemInfoIfSparse(fragment.requireContext(), item, singlePlayQueue ->
+                NavigationHelper.playOnPopupPlayer(fragment.getContext(), singlePlayQueue, true))),
 
     SET_AS_PLAYLIST_THUMBNAIL(R.string.set_as_playlist_thumbnail, (fragment, item) -> {
-    }), // has to be set manually
+        throw new UnsupportedOperationException("This needs to be implemented manually "
+                + "by using InfoItemDialog.Builder.setAction()");
+    }),
 
     DELETE(R.string.delete, (fragment, item) -> {
-    }), // has to be set manually
+        throw new UnsupportedOperationException("This needs to be implemented manually "
+                + "by using InfoItemDialog.Builder.setAction()");
+    }),
 
+    /**
+     * Opens a {@link PlaylistDialog} to either append the stream to a playlist
+     * or create a new playlist if there are no local playlists.
+     */
     APPEND_PLAYLIST(R.string.add_to_playlist, (fragment, item) ->
         PlaylistDialog.createCorrespondingDialog(
                 fragment.getContext(),
@@ -154,12 +166,4 @@ public enum StreamDialogDefaultEntry {
         return new StreamDialogEntry(resource, action);
     }
 
-    private static void openChannelFragment(@NonNull final Fragment fragment,
-                                            @NonNull final StreamInfoItem item,
-                                            final String uploaderUrl) {
-        // For some reason `getParentFragmentManager()` doesn't work, but this does.
-        NavigationHelper.openChannelFragment(
-                fragment.requireActivity().getSupportFragmentManager(),
-                item.getServiceId(), uploaderUrl, item.getUploaderName());
-    }
 }

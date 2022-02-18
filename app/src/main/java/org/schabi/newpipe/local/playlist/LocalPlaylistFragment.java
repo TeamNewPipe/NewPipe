@@ -3,7 +3,6 @@ package org.schabi.newpipe.local.playlist;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -740,33 +739,38 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     protected void showInfoItemDialog(final PlaylistStreamEntry item) {
-        final Context context = getContext();
-        final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || activity == null) {
-            return;
-        }
         final StreamInfoItem infoItem = item.toStreamInfoItem();
 
-        final InfoItemDialog.Builder dialogBuilder =
-                new InfoItemDialog.Builder(activity, context, this, infoItem);
+        try {
+            final Context context = getContext();
+            final InfoItemDialog.Builder dialogBuilder =
+                    new InfoItemDialog.Builder(getActivity(), context, this, infoItem);
 
-        // add entries in the middle
-        dialogBuilder.addAllEntries(
-                StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
-                StreamDialogDefaultEntry.DELETE
-        );
+            // add entries in the middle
+            dialogBuilder.addAllEntries(
+                    StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
+                    StreamDialogDefaultEntry.DELETE
+            );
 
-        // set custom actions; all entries modified here have already been added within the builder
-        dialogBuilder.setAction(StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
-                (fragment, infoItemDuplicate) -> NavigationHelper.playOnBackgroundPlayer(
-                        context, getPlayQueueStartingAt(item), true));
-        dialogBuilder.setAction(StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
-                (fragment, infoItemDuplicate) ->
-                        changeThumbnailUrl(item.getStreamEntity().getThumbnailUrl()));
-        dialogBuilder.setAction(StreamDialogDefaultEntry.DELETE,
-                (fragment, infoItemDuplicate) -> deleteItem(item));
-
-        dialogBuilder.create().show();
+            // set custom actions
+            // all entries modified below have already been added within the builder
+            dialogBuilder
+                    .setAction(
+                            StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
+                            (f, i) -> NavigationHelper.playOnBackgroundPlayer(
+                                    context, getPlayQueueStartingAt(item), true))
+                    .setAction(
+                            StreamDialogDefaultEntry.SET_AS_PLAYLIST_THUMBNAIL,
+                            (f, i) ->
+                                    changeThumbnailUrl(item.getStreamEntity().getThumbnailUrl()))
+                    .setAction(
+                            StreamDialogDefaultEntry.DELETE,
+                            (f, i) -> deleteItem(item))
+                    .create()
+                    .show();
+        } catch (final IllegalArgumentException e) {
+            InfoItemDialog.Builder.reportErrorDuringInitialization(e, infoItem);
+        }
     }
 
     private void setInitialData(final long pid, final String title) {

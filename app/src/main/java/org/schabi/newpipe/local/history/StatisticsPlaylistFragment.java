@@ -1,6 +1,5 @@
 package org.schabi.newpipe.local.history;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -326,26 +325,28 @@ public class StatisticsPlaylistFragment
 
     private void showInfoItemDialog(final StreamStatisticsEntry item) {
         final Context context = getContext();
-        final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || activity == null) {
-            return;
-        }
         final StreamInfoItem infoItem = item.toStreamInfoItem();
 
-        final InfoItemDialog.Builder dialogBuilder =
-                new InfoItemDialog.Builder(activity, context, this, infoItem);
+        try {
+            final InfoItemDialog.Builder dialogBuilder =
+                    new InfoItemDialog.Builder(getActivity(), context, this, infoItem);
 
-        // set entries in the middle; the others are added automatically
-        dialogBuilder.addEntry(StreamDialogDefaultEntry.DELETE);
-
-        // set custom actions
-        dialogBuilder.setAction(StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
-                (fragment, infoItemDuplicate) -> NavigationHelper
-                        .playOnBackgroundPlayer(context, getPlayQueueStartingAt(item), true));
-        dialogBuilder.setAction(StreamDialogDefaultEntry.DELETE, (fragment, infoItemDuplicate) ->
-                deleteEntry(Math.max(itemListAdapter.getItemsList().indexOf(item), 0)));
-
-        dialogBuilder.create().show();
+            // set entries in the middle; the others are added automatically
+            dialogBuilder
+                    .addEntry(StreamDialogDefaultEntry.DELETE)
+                    .setAction(
+                            StreamDialogDefaultEntry.DELETE,
+                            (f, i) -> deleteEntry(
+                                    Math.max(itemListAdapter.getItemsList().indexOf(item), 0)))
+                    .setAction(
+                            StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
+                            (f, i) -> NavigationHelper.playOnBackgroundPlayer(
+                                    context, getPlayQueueStartingAt(item), true))
+                    .create()
+                    .show();
+        } catch (final IllegalArgumentException e) {
+            InfoItemDialog.Builder.reportErrorDuringInitialization(e, infoItem);
+        }
     }
 
     private void deleteEntry(final int index) {

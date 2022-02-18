@@ -1,8 +1,12 @@
 package org.schabi.newpipe.info_list;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,7 +15,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.player.helper.PlayerHolder;
@@ -21,13 +30,15 @@ import org.schabi.newpipe.util.external_communication.KoreUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Dialog for a {@link StreamInfoItem}.
- * The dialog'S content are actions that can be performed on the {@link StreamInfoItem}.
+ * The dialog's content are actions that can be performed on the {@link StreamInfoItem}.
  * This dialog is mostly used for longpress context menus.
  */
 public final class InfoItemDialog {
+    private static final String TAG = Build.class.getSimpleName();
     /**
      * Ideally, {@link InfoItemDialog} would extend {@link AlertDialog}.
      * However, extending {@link AlertDialog} requires many additional lines
@@ -42,6 +53,7 @@ public final class InfoItemDialog {
                            @NonNull final StreamInfoItem info,
                            @NonNull final List<StreamDialogEntry> entries) {
 
+        // Create the dialog's title
         final View bannerView = View.inflate(activity, R.layout.dialog_title, null);
         bannerView.setSelected(true);
 
@@ -56,9 +68,11 @@ public final class InfoItemDialog {
             detailsView.setVisibility(View.GONE);
         }
 
+        // Get the entry's descriptions which are displayed in the dialog
         final String[] items = entries.stream()
                 .map(entry -> entry.getString(activity)).toArray(String[]::new);
 
+        // Call an entry's action / onClick method when the entry is selected.
         final DialogInterface.OnClickListener action = (d, index) ->
             entries.get(index).action.onClick(fragment, info);
 
@@ -96,7 +110,7 @@ public final class InfoItemDialog {
          * <pre>
          *     + - - - - - - - - - - - - - - - - - - - - - -+
          *     | ENQUEUE                                    |
-         *     | ENQUEUE_HERE                               |
+         *     | ENQUEUE_NEXT                               |
          *     | START_ON_BACKGROUND                        |
          *     | START_ON_POPUP                             |
          *     + - - - - - - - - - - - - - - - - - - - - - -+
@@ -118,10 +132,12 @@ public final class InfoItemDialog {
          * @param context
          * @param fragment
          * @param infoItem the item for this dialog; all entries and their actions work with
-         *                this {@link org.schabi.newpipe.extractor.InfoItem}
+         *                this {@link StreamInfoItem}
+         * @throws IllegalArgumentException if <code>activity, context</code>
+         *         or resources is <code>null</code>
          */
-        public Builder(@NonNull final Activity activity,
-                       @NonNull final Context context,
+        public Builder(final Activity activity,
+                       final Context context,
                        @NonNull final Fragment fragment,
                        @NonNull final StreamInfoItem infoItem) {
             this(activity, context, fragment, infoItem, true);
@@ -135,7 +151,7 @@ public final class InfoItemDialog {
          * <pre>
          *     + - - - - - - - - - - - - - - - - - - - - - -+
          *     | ENQUEUE                                    |
-         *     | ENQUEUE_HERE                               |
+         *     | ENQUEUE_NEXT                               |
          *     | START_ON_BACKGROUND                        |
          *     | START_ON_POPUP                             |
          *     + - - - - - - - - - - - - - - - - - - - - - -+
@@ -164,12 +180,21 @@ public final class InfoItemDialog {
          *        <br/>
          *        Entries added with {@link #addEntry(StreamDialogDefaultEntry)} and
          *        {@link #addAllEntries(StreamDialogDefaultEntry...)} are added in between.
+         * @throws IllegalArgumentException if <code>activity, context</code>
+         * or resources is <code>null</code>
          */
-        public Builder(@NonNull final Activity activity,
-                       @NonNull final Context context,
+        public Builder(final Activity activity,
+                       final Context context,
                        @NonNull final Fragment fragment,
                        @NonNull final StreamInfoItem infoItem,
                        final boolean addDefaultEntriesAutomatically) {
+            if (activity == null || context == null || context.getResources() == null) {
+                if (DEBUG) {
+                    Log.d(TAG, "activity, context or resources is null: activity = "
+                            + activity + ", context = " + context);
+                }
+                throw new IllegalArgumentException("activity, context or resources is null");
+            }
             this.activity = activity;
             this.context = context;
             this.fragment = fragment;
@@ -180,14 +205,24 @@ public final class InfoItemDialog {
             }
         }
 
-        public void addEntry(@NonNull final StreamDialogDefaultEntry entry) {
+        /**
+         * Adds a new entry and appends it to the current entry list.
+         * @param entry the entry to add
+         * @return the current {@link Builder} instance
+         */
+        public Builder addEntry(@NonNull final StreamDialogDefaultEntry entry) {
             entries.add(entry.toStreamDialogEntry());
+            return this;
         }
 
-        public void addAllEntries(@NonNull final StreamDialogDefaultEntry... newEntries) {
-            for (final StreamDialogDefaultEntry entry: newEntries) {
-                this.entries.add(entry.toStreamDialogEntry());
-            }
+        /**
+         * Adds new entries. These are appended to the current entry list.
+         * @param newEntries the entries to add
+         * @return the current {@link Builder} instance
+         */
+        public Builder addAllEntries(@NonNull final StreamDialogDefaultEntry... newEntries) {
+            Stream.of(newEntries).forEach(this::addEntry);
+            return this;
         }
 
         /**
@@ -197,23 +232,26 @@ public final class InfoItemDialog {
          * does not have an effect.</p>
          * @param entry the entry to change
          * @param action the action to perform when the entry is selected
+         * @return the current {@link Builder} instance
          */
-        public void setAction(@NonNull final StreamDialogDefaultEntry entry,
+        public Builder setAction(@NonNull final StreamDialogDefaultEntry entry,
                               @NonNull final StreamDialogEntry.StreamDialogEntryAction action) {
             for (int i = 0; i < entries.size(); i++) {
                 if (entries.get(i).resource == entry.resource) {
                     entries.set(i, new StreamDialogEntry(entry.resource, action));
-                    return;
+                    return this;
                 }
             }
+            return this;
         }
 
         /**
          * Adds {@link StreamDialogDefaultEntry#ENQUEUE} if the player is open and
          * {@link StreamDialogDefaultEntry#ENQUEUE_NEXT} if there are multiple streams
          * in the play queue.
+         * @return the current {@link Builder} instance
          */
-        public void addEnqueueEntriesIfNeeded() {
+        public Builder addEnqueueEntriesIfNeeded() {
             if (PlayerHolder.getInstance().isPlayerOpen()) {
                 addEntry(StreamDialogDefaultEntry.ENQUEUE);
 
@@ -221,26 +259,30 @@ public final class InfoItemDialog {
                     addEntry(StreamDialogDefaultEntry.ENQUEUE_NEXT);
                 }
             }
+            return this;
         }
 
         /**
          * Adds the {@link StreamDialogDefaultEntry#START_HERE_ON_BACKGROUND}.
          * If the {@link #infoItem} is not a pure audio (live) stream,
          * {@link StreamDialogDefaultEntry#START_HERE_ON_POPUP} is added, too.
+         * @return the current {@link Builder} instance
          */
-        public void addStartHereEntries() {
+        public Builder addStartHereEntries() {
             addEntry(StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND);
             if (infoItem.getStreamType() != StreamType.AUDIO_STREAM
                     && infoItem.getStreamType() != StreamType.AUDIO_LIVE_STREAM) {
                 addEntry(StreamDialogDefaultEntry.START_HERE_ON_POPUP);
             }
+            return this;
         }
 
         /**
          * Adds {@link StreamDialogDefaultEntry.MARK_AS_WATCHED} if the watch history is enabled
          * and the stream is not a livestream.
+         * @return the current {@link Builder} instance
          */
-        public void addMarkAsWatchedEntryIfNeeded() {
+        public Builder addMarkAsWatchedEntryIfNeeded() {
             final boolean isWatchHistoryEnabled = PreferenceManager
                     .getDefaultSharedPreferences(context)
                     .getBoolean(context.getString(R.string.enable_watch_history_key), false);
@@ -249,12 +291,18 @@ public final class InfoItemDialog {
                     && infoItem.getStreamType() != StreamType.AUDIO_LIVE_STREAM) {
                 addEntry(StreamDialogDefaultEntry.MARK_AS_WATCHED);
             }
+            return this;
         }
 
-        public void addPlayWithKodiEntryIfNeeded() {
+        /**
+         * Adds the {@link StreamDialogDefaultEntry.PLAY_WITH_KODI} entry if it is needed.
+         * @return the current {@link Builder} instance
+         */
+        public Builder addPlayWithKodiEntryIfNeeded() {
             if (KoreUtils.shouldShowPlayWithKodi(context, infoItem.getServiceId())) {
                 addEntry(StreamDialogDefaultEntry.PLAY_WITH_KODI);
             }
+            return this;
         }
 
         /**
@@ -262,16 +310,19 @@ public final class InfoItemDialog {
          * <br/>
          * This method adds the "enqueue" (see {@link #addEnqueueEntriesIfNeeded()})
          * and "start here" (see {@link #addStartHereEntries()} entries.
+         * @return the current {@link Builder} instance
          */
-        public void addDefaultBeginningEntries() {
+        public Builder addDefaultBeginningEntries() {
             addEnqueueEntriesIfNeeded();
             addStartHereEntries();
+            return this;
         }
 
         /**
          * Add the entries which are usually at the bottom of the action list.
+         * @return the current {@link Builder} instance
          */
-        public void addDefaultEndEntries() {
+        public Builder addDefaultEndEntries() {
             addAllEntries(
                     StreamDialogDefaultEntry.APPEND_PLAYLIST,
                     StreamDialogDefaultEntry.SHARE,
@@ -280,6 +331,7 @@ public final class InfoItemDialog {
             addPlayWithKodiEntryIfNeeded();
             addMarkAsWatchedEntryIfNeeded();
             addEntry(StreamDialogDefaultEntry.SHOW_CHANNEL_DETAILS);
+            return this;
         }
 
         /**
@@ -291,6 +343,15 @@ public final class InfoItemDialog {
                 addDefaultEndEntries();
             }
             return new InfoItemDialog(this.activity, this.fragment, this.infoItem, this.entries);
+        }
+
+        public static void reportErrorDuringInitialization(final Throwable throwable,
+                                                           final InfoItem item) {
+            ErrorUtil.showSnackbar(App.getApp().getBaseContext(), new ErrorInfo(
+                    throwable,
+                    UserAction.OPEN_INFO_ITEM_DIALOG,
+                    "none",
+                    item.getServiceId()));
         }
     }
 }
