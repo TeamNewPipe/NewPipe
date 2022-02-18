@@ -1,0 +1,7 @@
+Verbeterd
+- Bewaren en terugzetten of tempo en toonhoogte zijn ontgrendeld of niet
+- Ondersteuning display-uitsparing in speler 
+- Afronden van aantal keer bekeken en aantal abonnees
+- Optimalisatie van YouTube om minder data te gebruiken
+
+Meer dan 15 YouTube gerelateerde bugs zijn opgelost in deze versie.

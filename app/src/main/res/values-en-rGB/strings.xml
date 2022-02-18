@@ -16,8 +16,9 @@
 \n2. Log in when asked
 \n3. Click on ‘All data included’, then on ‘Deselect all’, then select only ‘subscriptions’ and click ‘OK’
 \n4. Click on ‘Next step’ and then on ‘Create export’
-\n5. Click on the ‘Download’ button after it appears and
-\n6. From the downloaded takeout zip extract the .json file (usually under ‘YouTube and YouTube Music/subscriptions/subscriptions.json’) and import it here.</string>
+\n5. Click on the ‘Download’ button after it appears
+\n6. Click on IMPORT FILE below and select the downloaded .zip file
+\n7. [If the .zip import fails] Extract the .csv file (usually under ‘YouTube and YouTube Music/subscriptions/subscriptions.csv’), click on IMPORT FILE below and select the extracted csv file</string>
     <string name="subtitle_activity_recaptcha">Press ‘Done’ when solved</string>
     <string name="restricted_video">This video is age restricted.
 \n

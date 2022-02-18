@@ -685,4 +685,19 @@
     <string name="manual_update_description">Ručne skontrolovať nové verzie</string>
     <string name="checking_updates_toast">Kontrolujú sa aktualizácie…</string>
     <string name="feed_new_items">Nové položky informačného kanála</string>
+    <string name="no_appropriate_file_manager_message">Pre túto akciu sa nenašiel vhodný správca súborov.
+\nNainštalujte si správcu súborov alebo skúste vypnúť \'%s\' v nastaveniach sťahovania.</string>
+    <string name="show_crash_the_player_title">Zobraziť „zlyhanie prehrávača“</string>
+    <string name="leak_canary_not_available">LeakCanary nie je k dispozícii</string>
+    <string name="no_appropriate_file_manager_message_android_10">Pre túto akciu sa nenašiel vhodný správca súborov.
+\nNainštalujte správcu súborov kompatibilného s rozhraním Storage Access Framework.</string>
+    <string name="detail_pinned_comment_view_description">Pripnutý komentár</string>
+    <string name="crash_the_player">Zlyhanie prehrávača</string>
+    <string name="error_report_channel_name">Nahlásenie chyby</string>
+    <string name="error_report_channel_description">Hlásenie chýb</string>
+    <string name="error_report_notification_title">V NewPipe sa vyskytla chyba, klepnutím ju nahláste</string>
+    <string name="error_report_notification_toast">Vyskytla sa chyba, pozrite si upozornenie</string>
+    <string name="show_crash_the_player_summary">Zobrazí možnosť zlyhania pri používaní prehrávača</string>
+    <string name="show_error_snackbar">Zobraziť krátke oznámenie chyby</string>
+    <string name="create_error_notification">Oznámte chybu</string>
 </resources>

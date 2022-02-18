@@ -676,4 +676,5 @@
     <string name="error_report_notification_toast">發生錯誤，請檢視通知</string>
     <string name="detail_pinned_comment_view_description">釘選留言</string>
     <string name="background_player_already_playing_toast">已經在背景播放</string>
+    <string name="leak_canary_not_available">LeakCanary 無法使用</string>
 </resources>

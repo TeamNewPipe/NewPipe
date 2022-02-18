@@ -688,4 +688,5 @@
 \nInstallane uno compatibile con Storage Access Framework.</string>
     <string name="detail_pinned_comment_view_description">Commento in primo piano</string>
     <string name="background_player_already_playing_toast">Già in riproduzione in sottofondo</string>
+    <string name="leak_canary_not_available">LeakCanary non è disponibile</string>
 </resources>

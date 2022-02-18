@@ -175,10 +175,10 @@
     </plurals>
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
     <string name="donation_title">Dotacja</string>
-    <string name="donation_encouragement">NewPipe jest rozwijany przez wolontariuszy, którzy poświęcają swój wolny czas, by zapewnić Ci jak najlepsze wrażenia podczas korzystania z aplikacji. To dobry moment, aby wesprzeć programistów i sprawić, by program był jeszcze lepszy, delektując się filiżanką kawy.</string>
+    <string name="donation_encouragement">NewPipe jest rozwijany przez wolontariuszy, którzy poświęcają swój wolny czas, zapewniając Ci najlepsze wrażenia z użytkowania. To dobry moment na wsparcie programistów i sprawienie, aby NewPipe był jeszcze lepszy, podczas gdy oni będą mogli delektować się filiżanką kawy.</string>
     <string name="give_back">Wspomóż</string>
     <string name="website_title">Strona internetowa</string>
-    <string name="website_encouragement">By otrzymać więcej informacji oraz najnowsze wiadomości o NewPipe, odwiedź naszą stronę.</string>
+    <string name="website_encouragement">Odwiedź stronę NewPipe, aby uzyskać więcej informacji i najnowsze wiadomości.</string>
     <string name="delete_item_search_history">Czy chcesz usunąć tę pozycję z historii wyszukiwania?</string>
     <string name="main_page_content">Zawartość strony głównej</string>
     <string name="blank_page_summary">Pusta strona</string>
@@ -355,7 +355,7 @@
     <string name="saved_tabs_invalid_json">Nie udało się odczytać zapisanych kart, więc będą używane domyślne</string>
     <string name="restore_defaults">Przywróć domyślne</string>
     <string name="restore_defaults_confirmation">Czy chcesz przywrócić ustawienia domyślne\?</string>
-    <string name="subscribers_count_not_available">Liczba subskrybentów jest niedostępna</string>
+    <string name="subscribers_count_not_available">Liczba subskrybentów niedostępna</string>
     <string name="main_page_content_summary">Karty wyświetlane na stronie głównej</string>
     <string name="updates_setting_title">Aktualizacje</string>
     <string name="updates_setting_description">Pokazuj powiadomienie zachęcające do pobrania aktualizacji aplikacji, gdy jest dostępna nowa wersja</string>
@@ -639,7 +639,7 @@
     <string name="metadata_tags">Tagi</string>
     <string name="metadata_category">Kategoria</string>
     <string name="open_website_license">Otwórz stronę</string>
-    <string name="description_select_note">Teraz możesz zaznaczyć tekst wewnątrz opisu. Pamiętaj, że strona może migotać, a łącza mogą nie być klikane w trybie zaznaczania.</string>
+    <string name="description_select_note">Teraz możesz zaznaczyć tekst wewnątrz opisu. Pamiętaj, że strona może migotać, a łącza mogą nie być klikalne w trybie zaznaczania.</string>
     <string name="service_provides_reason">%s podaje ten powód:</string>
     <string name="account_terminated">Konto zamknięte</string>
     <string name="feed_load_error_fast_unknown">Tryb szybki dla ładowania kanału nie dostarcza więcej informacji na ten temat.</string>
@@ -694,7 +694,7 @@
     <string name="feed_new_items">Nowe pozycje kanału</string>
     <string name="show_crash_the_player_summary">Pokazuje opcję psucia podczas korzystania z odtwarzacza</string>
     <string name="crash_the_player">Zepsuj odtwarzacz</string>
-    <string name="show_crash_the_player_title">Pokazuj „zepsuj odtwarzacz”</string>
+    <string name="show_crash_the_player_title">Pokazuj „Zepsuj odtwarzacz”</string>
     <string name="error_report_channel_name">Powiadomienie raportu o błędach</string>
     <string name="error_report_channel_description">Powiadomienia do zgłaszania błędów</string>
     <string name="error_report_notification_title">NewPipe napotkał błąd. Naciśnij, aby zgłosić</string>
@@ -707,4 +707,5 @@
 \nZainstaluj menedżer plików zgodny z Storage Access Framework.</string>
     <string name="background_player_already_playing_toast">Już jest odtwarzane w tle</string>
     <string name="detail_pinned_comment_view_description">Przypięty komentarz</string>
+    <string name="leak_canary_not_available">LeakCanary jest niedostępne</string>
 </resources>

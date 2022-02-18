@@ -272,7 +272,7 @@
     <string name="give_back">支援する</string>
     <string name="privacy_policy_encouragement">NewPipe プロジェクトはあなたのプライバシーを非常に大切にしています。あなたの同意がない限り、アプリはいかなるデータも収集しません。
 \nNewPipe のプライバシー・ポリシーでは、クラッシュリポート送信時にどのような種類のデータが送信・記録されるかを詳細に説明しています。</string>
-    <string name="app_license">NewPipe はコピーレフトなソフトウェアです。あなたは自由にそれを使用し、研究し、そして改善することができます。あなたは、GNU フリーソフトウェア財団が公開する GNU General Public ライセンス バージョン3以降の下に、自由に再配布・修正を行うことができます。</string>
+    <string name="app_license">NewPipe はコピーレフトなソフトウェアです。あなたは自由にそれを使用し、研究し、共有し、そして改善することができます。あなたは、GNU フリーソフトウェア財団が公開する GNU General Public ライセンス バージョン3以降の下に、自由に再配布・修正を行うことができます。</string>
     <string name="title_last_played">最終再生日時</string>
     <string name="title_most_played">最も再生された動画</string>
     <string name="resize_zoom">拡大</string>
@@ -676,4 +676,5 @@
     <string name="show_crash_the_player_summary">プレイヤー使用時にクラッシュオプションを表示</string>
     <string name="create_error_notification">エラー通知を作成</string>
     <string name="error_report_channel_description">エラーを報告する通知</string>
+    <string name="leak_canary_not_available">LeakCanaryが利用不可能です</string>
 </resources>

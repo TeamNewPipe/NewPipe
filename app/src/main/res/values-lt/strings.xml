@@ -134,7 +134,7 @@
     <string name="undo">Atgal</string>
     <string name="play_all">Groti viską</string>
     <string name="notification_channel_name">NewPipe pranešimai</string>
-    <string name="notification_channel_description">Foninio ir langelio rėžimo grotuvų pranešimai</string>
+    <string name="notification_channel_description">NewPipe grotuvo pranešimai</string>
     <string name="unknown_content">[Nežinoma]</string>
     <string name="player_stream_failure">Srauto atkurti nepavyko</string>
     <string name="player_unrecoverable_failure">Įvyko nepataisoma grotuvo klaida</string>
@@ -310,7 +310,7 @@
     <string name="clear_cookie_title">Išvalyti reCAPTCHA slapukus</string>
     <string name="hash_channel_description">Pranešimas apie video maišos progresą</string>
     <string name="hash_channel_name">Video maišos pranešimas</string>
-    <string name="app_update_notification_channel_description">Pranešimas apie naują NewPipe versija</string>
+    <string name="app_update_notification_channel_description">Pranešimas apie naują NewPipe versiją</string>
     <string name="app_update_notification_channel_name">Programos atnaujinimo pranešimas</string>
     <string name="file">Failą</string>
     <string name="file_deleted">Failas pašalintas</string>
@@ -470,7 +470,7 @@
     <string name="close">Užverti</string>
     <string name="stop">Sustabdyti</string>
     <string name="overwrite">Perrašyti</string>
-    <string name="enqueue">Eilė</string>
+    <string name="enqueue">Į eilę</string>
     <string name="post_processing">apdorojama</string>
     <string name="queued">eilėje</string>
     <string name="paused">sustabdyta</string>
@@ -685,4 +685,19 @@
     <string name="manual_update_description">Tikrinti ar yra atnaujinimų rankiniu būdu</string>
     <string name="checking_updates_toast">Tikrinti ar yra atnaujinimų…</string>
     <string name="feed_new_items">Nauji sklaidos kanalo elementai</string>
+    <string name="leak_canary_not_available">LeakCanary neprieinama</string>
+    <string name="show_crash_the_player_summary">Naudojant grotuvą rodo lūžio parinkty</string>
+    <string name="show_error_snackbar">Rodyti klaidos juostą</string>
+    <string name="detail_pinned_comment_view_description">Prisegtas komentaras</string>
+    <string name="no_appropriate_file_manager_message_android_10">Nerasta tinkama failų tvarkyklė.
+\nĮdiekite „Storage Access Framework“ suderinamą su šia failų tvarkykle.</string>
+    <string name="error_report_channel_description">Pranešimai pranešimui apie klaidas</string>
+    <string name="show_crash_the_player_title">Rodyti „grotuvas užlūžo“</string>
+    <string name="create_error_notification">Sukurti klaidos pranešimą</string>
+    <string name="error_report_notification_title">NewPipe susidūrė su klaida, paspauskite norėdami pranešti</string>
+    <string name="no_appropriate_file_manager_message">Šiam veiksmui nerastas tinkama failų tvarkyklė.
+\nĮdiekite failų tvarkyklę arba pabandykite išjungti „%s“ parsiuntimo nustatymuose.</string>
+    <string name="crash_the_player">Užlūžo</string>
+    <string name="error_report_channel_name">Klaidos pranešimo pranešimas</string>
+    <string name="error_report_notification_toast">Įvyko klaida, peržiūrėti pranešimą</string>
 </resources>

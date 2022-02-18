@@ -1,0 +1,1 @@
+Fixade kontrollen av en ny NewPipe-version. Denna kontroll utfördes ibland för tidigt och ledde därför till att appen kraschade. Detta bör vara åtgärdat nu.

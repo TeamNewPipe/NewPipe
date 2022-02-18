@@ -21,7 +21,7 @@
     <string name="clear">Մաքրել</string>
     <string name="upload_date_text">Հրապարակվել է %1$s</string>
     <string name="install">Տեղադրել</string>
-    <string name="cancel">Վերացնել</string>
+    <string name="cancel">Չեղարկել</string>
     <string name="open_in_browser">Բացել բրաուզերում</string>
     <string name="download_path_audio_title">Ձայնային բեռնման պանակ</string>
     <string name="download_path_dialog_title">Ընտրեք ներբեռնման թղթապանակը տեսաֆայլերի համար</string>
@@ -131,4 +131,17 @@
     <string name="always">Միշտ</string>
     <string name="download_dialog_title">Բեռնել</string>
     <string name="enable_playback_state_lists_title">Ցանկերում դիրքերը</string>
+    <string name="auto_queue_toggle">Ինքնանվագարկում</string>
+    <string name="clear_views_history_title">Մաքրել դիտման պատմությունը</string>
+    <string name="clear_download_history">Մաքրել ներբեռնման պատմությունը</string>
+    <string name="play_audio">Աուդիո</string>
+    <string name="mark_as_watched">Նշել որպես դիտված</string>
+    <string name="notification_action_repeat">Կրկնել</string>
+    <string name="settings_category_player_title">Նվագարկիչ</string>
+    <string name="settings_category_history_title">Պատմություն և քեշ</string>
+    <string name="night_theme_title">Գիշերային ոճ</string>
+    <string name="stop">Կանգ</string>
+    <string name="title_activity_history">Պատմություն</string>
+    <string name="action_history">Պատմություն</string>
+    <string name="trending">Թրենդային</string>
 </resources>

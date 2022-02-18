@@ -712,4 +712,5 @@
 \nנא להתקין מנהל קבצים שתומך בתשתית גישה לאחסון.</string>
     <string name="background_player_already_playing_toast">כבר מתנגן ברקע</string>
     <string name="detail_pinned_comment_view_description">הערה ננעצה</string>
+    <string name="leak_canary_not_available">LeakCanary אינה זמינה</string>
 </resources>

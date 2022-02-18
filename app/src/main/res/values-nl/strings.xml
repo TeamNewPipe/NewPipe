@@ -310,7 +310,7 @@
     <string name="delete_search_history_alert">De gehele zoekgeschiedenis wissen\?</string>
     <string name="search_history_deleted">Zoekgeschiedenis gewist</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
-    <string name="app_license">NewPipe is vrije software: je kan het gebruiken, bestuderen, delen en verbeteren zoveel je maar wil. Je kan het opnieuw uitgeven en/of aanpassen volgens de voorwaarden van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) om het even welke latere versie.</string>
+    <string name="app_license">NewPipe is vrije software: je kan het gebruiken, bestuderen, delen en verbeteren zoveel je maar wilt. Je kan het opnieuw uitgeven en/of aanpassen volgens de voorwaarden van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) om het even welke latere versie.</string>
     <string name="import_settings">Wil je ook de instellingen importeren?</string>
     <string name="privacy_policy_title">NewPipe\'s privacybeleid</string>
     <string name="privacy_policy_encouragement">Het NewPipe-project neemt privacy serieus. Daarom verzamelt de app geen gegevens zonder jouw toestemming. 
@@ -688,4 +688,5 @@
     <string name="no_appropriate_file_manager_message_android_10">Er is geen geschikte bestandsbeheerder gevonden voor deze actie.
 \nInstalleer een bestandsbeheerder die compatibel is met het Storage Access Framework.</string>
     <string name="detail_pinned_comment_view_description">Vastgemaakt commentaar</string>
+    <string name="leak_canary_not_available">LeakCanary is niet beschikbaar</string>
 </resources>

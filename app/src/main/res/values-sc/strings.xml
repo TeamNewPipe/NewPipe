@@ -688,4 +688,5 @@
     <string name="crash_the_player">Faghe serrare su riproduidore</string>
     <string name="detail_pinned_comment_view_description">Cummentu apicadu</string>
     <string name="background_player_already_playing_toast">Giai in riprodutzione in s\'isfundu</string>
+    <string name="leak_canary_not_available">LeakCanary no est a disponimentu</string>
 </resources>
