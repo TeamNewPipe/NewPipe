@@ -89,6 +89,31 @@
         <item>@string/never</item>
     </string-array>
 
+	<string name="back_behavior_key" translatable="false">back_behavior_key</string>
+    <string name="back_behavior_value" translatable="false">@string/back_behavior_prev_any_key</string>
+    <string name="back_behavior_prev_any_key" translatable="false">back_behavior_prev_any_key</string>
+    <string name="back_behavior_prev_playlist_key" translatable="false">back_behavior_prev_playlist_key</string>
+    <string name="back_behavior_hide_key" translatable="false">back_behavior_hide_key</string>
+    <string name="back_behavior_hide_or_close_key" translatable="false">back_behavior_hide_or_close_key</string>
+    <string name="back_behavior_close_key" translatable="false">back_behavior_close_key</string>
+    <string name="back_behavior_close_fullscreen_key" translatable="false">back_behavior_close_fullscreen_key</string>
+    <string-array name="back_behavior_action_key" translatable="false">
+        <item>@string/back_behavior_prev_any_key</item>
+        <item>@string/back_behavior_prev_playlist_key</item>
+        <item>@string/back_behavior_hide_key</item>
+        <item>@string/back_behavior_hide_or_close_key</item>
+        <item>@string/back_behavior_close_key</item>
+        <item>@string/back_behavior_close_fullscreen_key</item>
+    </string-array>
+    <string-array name="back_behavior_action_description" translatable="false">
+        <item>@string/back_behavior_prev_any_description</item>
+        <item>@string/back_behavior_prev_playlist_description</item>
+        <item>@string/back_behavior_hide_description</item>
+        <item>@string/back_behavior_hide_or_close_description</item>
+        <item>@string/back_behavior_close_description</item>
+        <item>@string/back_behavior_close_fullscreen_description</item>
+    </string-array>
+
     <string name="seekbar_preview_thumbnail_key">seekbar_preview_thumbnail_key</string>
     <string name="seekbar_preview_thumbnail_high_quality">seekbar_preview_thumbnail_high_quality</string>
     <string name="seekbar_preview_thumbnail_low_quality">seekbar_preview_thumbnail_low_quality</string>

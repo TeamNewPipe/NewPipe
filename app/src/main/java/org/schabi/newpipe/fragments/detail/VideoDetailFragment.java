@@ -755,6 +755,28 @@ public final class VideoDetailFragment
             Log.d(TAG, "onBackPressed() called");
         }
 
+        // User can choose a behavior of the back button.
+        // We go down and check if it's OK to stop at some point based on the user's
+        // preference.
+        // For example, if the user always wants to minimize into the mini player
+        // when the backstack is empty, we have to ensure that:
+        // - nothing is in the backstack
+        // - nothing is in the PlayQueue's history
+        // - the player is in non-fullscreen mode.
+        // Otherwise it takes priority and the minimize action will not happen right now
+        final int behavior = PlayerHelper.getBackBehavior(activity);
+
+        if (behavior == PlayerHelper.BackBehavior.BACK_BEHAVIOR_CLOSE_FULLSCREEN) {
+            if (!isPlayerAvailable() || player.videoPlayerSelected()) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                requireView().postDelayed(this::rotateScreenOnPhoneIfInLandscape, 500);
+            } else {
+                // Since it's not a video playing we can't close the player
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            }
+            return true;
+        }
+
         // If we are in fullscreen mode just exit from it via first back press
         if (isPlayerAvailable() && player.isFullscreen()) {
             if (!DeviceUtils.isTablet(activity)) {
@@ -762,6 +784,21 @@ public final class VideoDetailFragment
             }
             restoreDefaultOrientation();
             setAutoPlay(false);
+            return true;
+        }
+
+        if (behavior == PlayerHelper.BackBehavior.BACK_BEHAVIOR_CLOSE) {
+            if (!isPlayerAvailable() || player.videoPlayerSelected()) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            } else {
+                // Since it's not a video playing we can't close the player
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            }
+            return true;
+        }
+
+        if (behavior == PlayerHelper.BackBehavior.BACK_BEHAVIOR_HIDE) {
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             return true;
         }
 
@@ -773,10 +810,30 @@ public final class VideoDetailFragment
             return true; // no code here, as previous() was used in the if
         }
 
-        // That means that we are on the start of the stack,
+        // If we passed previous check at the top `player.getPlayQueue().previous()`
+        // then we can be sure that queue have no more streams in the history.
+        // If the user chose BACK_BEHAVIOR_PREV_PLAYLIST behavior
+        // we have to minimize the player into the mini player here
+        if (behavior == PlayerHelper.BackBehavior.BACK_BEHAVIOR_PREV_PLAYLIST) {
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            return true;
+        }
+
+        // That means that we are on the start of the stack
         if (stack.size() <= 1) {
             restoreDefaultOrientation();
-            return false; // let MainActivity handle the onBack (e.g. to minimize the mini player)
+
+            if (behavior == PlayerHelper.BackBehavior.BACK_BEHAVIOR_HIDE_OR_CLOSE) {
+                if (!isPlayerAvailable() || player.getPlayQueue() == null
+                        || (player.videoPlayerSelected()
+                        && !player.getPlayQueue().equals(playQueue))) {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                    return true;
+                }
+            }
+
+            // let MainActivity handle the onBack (e.g. to minimize the mini player)
+            return false;
         }
 
         // Remove top
@@ -1089,6 +1146,15 @@ public final class VideoDetailFragment
         // return to non-fullscreen mode
         if (isPlayerAvailable() && player.isFullscreen()) {
             player.toggleFullscreen();
+        }
+    }
+
+    private void rotateScreenOnPhoneIfInLandscape() {
+        if (!DeviceUtils.isTablet(activity)
+                && !DeviceUtils.isTv(activity)
+                && DeviceUtils.isLandscape(requireContext())
+                && globalScreenOrientationLocked(activity)) {
+            onScreenRotationButtonClicked();
         }
     }
 
@@ -2188,6 +2254,10 @@ public final class VideoDetailFragment
      * Remove unneeded information while waiting for a next task
      * */
     private void cleanUp() {
+        // On every clean up operation we want to be in non-fullscreen mode,
+        // since it returns UI into it's initial look when nothing is played
+        toggleFullscreenIfInFullscreenMode();
+
         // New beginning
         stack.clear();
         if (currentWorker != null) {

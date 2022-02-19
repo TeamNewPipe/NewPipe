@@ -516,6 +516,15 @@
     <string name="minimize_on_exit_none_description">None</string>
     <string name="minimize_on_exit_background_description">Minimize to background player</string>
     <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
+    <!-- Back button behaviour in a fragment -->
+    <string name="back_behavior_title">Back behavior in the player</string>
+    <string name="back_behavior_summary">What to do when the back button is pressed while inside a player — %s</string>
+    <string name="back_behavior_prev_any_description">Open previous video from backstack of opened videos</string>
+    <string name="back_behavior_prev_playlist_description">Open previous video only if belonging to a playlist</string>
+    <string name="back_behavior_hide_description">Minimize into the mini player</string>
+    <string name="back_behavior_hide_or_close_description">Minimize into the mini player if something is playing, close otherwise</string>
+    <string name="back_behavior_close_description">Close the video player</string>
+    <string name="back_behavior_close_fullscreen_description">Close the video player even in fullscreen</string>
     <!-- Autoplay behavior -->
     <string name="autoplay_summary">Start playback automatically — %s</string>
     <string name="wifi_only">Only on Wi-Fi</string>

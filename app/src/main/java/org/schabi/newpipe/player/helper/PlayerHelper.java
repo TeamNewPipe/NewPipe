@@ -8,6 +8,12 @@ import static org.schabi.newpipe.player.Player.PLAYER_TYPE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI;
+import static org.schabi.newpipe.player.helper.PlayerHelper.BackBehavior.BACK_BEHAVIOR_PREV_ANY;
+import static org.schabi.newpipe.player.helper.PlayerHelper.BackBehavior.BACK_BEHAVIOR_PREV_PLAYLIST;
+import static org.schabi.newpipe.player.helper.PlayerHelper.BackBehavior.BACK_BEHAVIOR_HIDE;
+import static org.schabi.newpipe.player.helper.PlayerHelper.BackBehavior.BACK_BEHAVIOR_HIDE_OR_CLOSE;
+import static org.schabi.newpipe.player.helper.PlayerHelper.BackBehavior.BACK_BEHAVIOR_CLOSE;
+import static org.schabi.newpipe.player.helper.PlayerHelper.BackBehavior.BACK_BEHAVIOR_CLOSE_FULLSCREEN;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
@@ -93,6 +99,19 @@ public final class PlayerHelper {
         int MINIMIZE_ON_EXIT_MODE_NONE = 0;
         int MINIMIZE_ON_EXIT_MODE_BACKGROUND = 1;
         int MINIMIZE_ON_EXIT_MODE_POPUP = 2;
+    }
+
+    @Retention(SOURCE)
+    @IntDef({BACK_BEHAVIOR_PREV_ANY, BACK_BEHAVIOR_PREV_PLAYLIST,
+            BACK_BEHAVIOR_HIDE, BACK_BEHAVIOR_HIDE_OR_CLOSE,
+            BACK_BEHAVIOR_CLOSE, BACK_BEHAVIOR_CLOSE_FULLSCREEN})
+    public @interface BackBehavior {
+        int BACK_BEHAVIOR_PREV_ANY = 0;
+        int BACK_BEHAVIOR_PREV_PLAYLIST = 1;
+        int BACK_BEHAVIOR_HIDE = 2;
+        int BACK_BEHAVIOR_HIDE_OR_CLOSE = 3;
+        int BACK_BEHAVIOR_CLOSE = 4;
+        int BACK_BEHAVIOR_CLOSE_FULLSCREEN = 5;
     }
 
     private PlayerHelper() { }
@@ -264,6 +283,26 @@ public final class PlayerHelper {
             return MINIMIZE_ON_EXIT_MODE_NONE;
         } else {
             return MINIMIZE_ON_EXIT_MODE_BACKGROUND; // default
+        }
+    }
+
+    @BackBehavior
+    public static int getBackBehavior(@NonNull final Context context) {
+        final String action = getPreferences(context)
+                .getString(context.getString(R.string.back_behavior_key),
+                        context.getString(R.string.back_behavior_value));
+        if (action.equals(context.getString(R.string.back_behavior_prev_any_key))) {
+            return BACK_BEHAVIOR_PREV_ANY; // default
+        } else if (action.equals(context.getString(R.string.back_behavior_prev_playlist_key))) {
+            return BACK_BEHAVIOR_PREV_PLAYLIST;
+        } else if (action.equals(context.getString(R.string.back_behavior_hide_key))) {
+            return BACK_BEHAVIOR_HIDE;
+        } else if (action.equals(context.getString(R.string.back_behavior_hide_or_close_key))) {
+            return BACK_BEHAVIOR_HIDE_OR_CLOSE;
+        } else if (action.equals(context.getString(R.string.back_behavior_close_key))) {
+            return BACK_BEHAVIOR_CLOSE;
+        } else {
+            return BACK_BEHAVIOR_CLOSE_FULLSCREEN;
         }
     }
 

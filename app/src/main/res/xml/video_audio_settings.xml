@@ -139,6 +139,15 @@
             app:iconSpaceReserved="false" />
 
         <ListPreference
+            android:defaultValue="@string/back_behavior_value"
+            android:entries="@array/back_behavior_action_description"
+            android:entryValues="@array/back_behavior_action_key"
+            android:key="@string/back_behavior_key"
+            android:summary="@string/back_behavior_summary"
+            android:title="@string/back_behavior_title"
+            app:iconSpaceReserved="false" />
+
+        <ListPreference
             android:defaultValue="@string/autoplay_value"
             android:entries="@array/autoplay_type_description"
             android:entryValues="@array/autoplay_type_key"
