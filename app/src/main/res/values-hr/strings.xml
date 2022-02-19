@@ -92,7 +92,6 @@
     <string name="info_labels">Što:\\nZahtjev:\\nJezik sadržaja:\\nZemlja sadržaja:\\nJezik programa:\\nUsluga:\\nGMT vrijeme:\\nPaket:\\nVerzija:\\nVerzija OS-a:</string>
     <string name="your_comment">Vaš komentar (na engleskom):</string>
     <string name="error_details_headline">Detalji:</string>
-    <string name="list_thumbnail_view_description">Sličica pregleda videozapisa</string>
     <string name="detail_thumbnail_view_description">Pokreni video, trajanje:</string>
     <string name="detail_uploader_thumbnail_view_description">Profilna slika prenositelja</string>
     <string name="detail_likes_img_view_description">Goreglasovi</string>
@@ -140,7 +139,7 @@
     <string name="title_activity_history">Povijest</string>
     <string name="action_history">Povijest</string>
     <string name="notification_channel_name">NewPipe obavijest</string>
-    <string name="notification_channel_description">Obavijesti za NewPipe pozadinske i skočne reproduktore</string>
+    <string name="notification_channel_description">Obavijesti za NewPipe reproduktore</string>
     <string name="settings_category_player_title">Reproduktor</string>
     <string name="settings_category_player_behavior_title">Ponašanje</string>
     <string name="settings_category_history_title">Povijest i predmemorija</string>
@@ -281,8 +280,8 @@
 \n3. Pritisni „Uključeni svi podaci”, zatim „Poništi odabir svih”, a zatim odaberi samo „pretplate” i pritisni „U redu”
 \n4. Pritisni na „Nastavi”, a zatim „Stvori izvoz”
 \n5. Pritisni na „Preuzmi”
-\n6. Dolje pritisni na UVEZI DATOEKU i odaberi zip datoteku za peuzimanje
-\n7. [Ako uvoz zip datoteke ne uspije] Izdvoji .csv datoteku (pod \"YouTube and YouTube Music/subscriptions/subscriptions.json\"). Dolje pritisni UVEZI DATOTEKU i odaberi izdvojenu csv datoteku</string>
+\n6. Dolje pritisni na UVEZI DATOEKU i odaberi .zip datoteku za peuzimanje
+\n7. [Ako uvoz .zip datoteke ne uspije] Izdvoji .csv datoteku (pod \"YouTube and YouTube Music/subscriptions/subscriptions.json\"). Dolje pritisni UVEZI DATOTEKU i odaberi izdvojenu csv datoteku</string>
     <string name="import_soundcloud_instructions_hint">vašID, soundcloud.com/vašID</string>
     <string name="import_network_expensive_warning">Uzmite u obzir da ova operacija može uzrokovat veliku potrošnju prometa.
 \n
@@ -305,7 +304,7 @@
     <string name="settings_category_updates_title">Ažuriranja</string>
     <string name="events">Događaji</string>
     <string name="file_deleted">Datoteka obrisana</string>
-    <string name="app_update_notification_channel_description">Obavijest za novu verziju NewPipe-a</string>
+    <string name="app_update_notification_channel_description">Obavijest za nove NewPipe verzije</string>
     <string name="clear_search_history_summary">Briše povijest ključnih riječi pretraživanja</string>
     <string name="download_to_sdcard_error_title">Vanjska pohrana nije dostupna</string>
     <string name="updates_setting_title">Ažuriranja</string>
@@ -685,4 +684,11 @@
     <string name="local_search_suggestions">Prijedlozi lokalne pretrage</string>
     <string name="manual_update_title">Traži nove verzije</string>
     <string name="start_main_player_fullscreen_summary">Nemoj pokretati videa u mini reproduktoru, već se izravno pokreni cjeloekranski prikaz, ako je automatsko okretanje zaključano. Mini reproduktoru i dalje možeš pristupiti izlaskom iz cjeloekranskog prikaza</string>
+    <string name="feed_new_items">Novi feedovi</string>
+    <string name="error_report_channel_name">Obavijest o prijavi greške</string>
+    <string name="error_report_channel_description">Obavijesti za prijavu grešaka</string>
+    <string name="create_error_notification">Stvori obavijest o grešci</string>
+    <string name="error_report_notification_title">NewPipe je naišao na grešku, dodirni za prijavu</string>
+    <string name="error_report_notification_toast">Došlo je do greške, pogledaj obavijest</string>
+    <string name="crash_the_player">Prekini rad playera</string>
 </resources>

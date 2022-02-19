@@ -45,7 +45,6 @@
     <string name="parsing_error">Nu s-a putut analiza site-ul web</string>
     <string name="content_not_available">Conținut indisponibil</string>
     <string name="could_not_setup_download_menu">Nu s-a putut configura meniul de descărcare</string>
-    <string name="list_thumbnail_view_description">Miniatura de previzualizare video</string>
     <string name="detail_thumbnail_view_description">Redare video, durata:</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura avatarului autorului</string>
     <string name="detail_likes_img_view_description">Au apreciat</string>
@@ -682,4 +681,18 @@
     <string name="show_image_indicators_title">Afișați indicatorii de imagine</string>
     <string name="disable_media_tunneling_summary">Dezactivați tunelarea media dacă întâmpinați un ecran negru sau blocaje la redarea video</string>
     <string name="processing_may_take_a_moment">Procesarea.. Poate dura un moment</string>
+    <string name="manual_update_title">Verifică dacă există actualizări</string>
+    <string name="manual_update_description">Verifică manual dacă există versiuni noi</string>
+    <string name="background_player_already_playing_toast">Se redă deja pe fundal</string>
+    <string name="detail_pinned_comment_view_description">Comentariu lipit</string>
+    <string name="error_report_channel_name">Notificare cu raport de eroare</string>
+    <string name="show_crash_the_player_summary">Afișează opțiunea de a întrerupe atunci când utilizați playerul</string>
+    <string name="error_report_notification_toast">A apărut o eroare, verifică notificarea</string>
+    <string name="error_report_notification_title">NewPipe a întămpinat o eroare, apăsați ca să raportați</string>
+    <string name="checking_updates_toast">Se verifică actualizări…</string>
+    <string name="error_report_channel_description">Notificări pentru a raporta erori</string>
+    <string name="create_error_notification">Crează o notificare de eroare</string>
+    <string name="show_crash_the_player_title">Arată \"închiderea bruscă a player-ului video\"</string>
+    <string name="show_error_snackbar">Arată o eroare de tip snackbar</string>
+    <string name="feed_new_items">Elemente de flux noi</string>
 </resources>

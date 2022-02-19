@@ -21,6 +21,7 @@ import androidx.preference.SwitchPreferenceCompat;
 import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 
@@ -53,7 +54,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.download_settings);
+        addPreferencesFromResourceRegistry();
 
         downloadPathVideoPreference = getString(R.string.download_path_video_key);
         downloadPathAudioPreference = getString(R.string.download_path_audio_key);
@@ -214,7 +215,12 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     }
 
     private void launchDirectoryPicker(final ActivityResultLauncher<Intent> launcher) {
-        launcher.launch(StoredDirectoryHelper.getPicker(ctx));
+        NoFileManagerSafeGuard.launchSafe(
+                launcher,
+                StoredDirectoryHelper.getPicker(ctx),
+                TAG,
+                ctx
+        );
     }
 
     private void requestDownloadVideoPathResult(final ActivityResult result) {

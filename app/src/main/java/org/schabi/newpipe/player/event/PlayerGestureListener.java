@@ -1,5 +1,12 @@
 package org.schabi.newpipe.player.event;
 
+import static org.schabi.newpipe.ktx.AnimationType.ALPHA;
+import static org.schabi.newpipe.ktx.AnimationType.SCALE_AND_ALPHA;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.player.Player.DEFAULT_CONTROLS_DURATION;
+import static org.schabi.newpipe.player.Player.DEFAULT_CONTROLS_HIDE_TIME;
+import static org.schabi.newpipe.player.Player.STATE_PLAYING;
+
 import android.app.Activity;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -8,21 +15,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.content.res.AppCompatResources;
 
-import org.jetbrains.annotations.NotNull;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-
-import static org.schabi.newpipe.ktx.AnimationType.ALPHA;
-import static org.schabi.newpipe.ktx.AnimationType.SCALE_AND_ALPHA;
-import static org.schabi.newpipe.ktx.ViewUtils.animate;
-import static org.schabi.newpipe.player.Player.DEFAULT_CONTROLS_DURATION;
-import static org.schabi.newpipe.player.Player.DEFAULT_CONTROLS_HIDE_TIME;
-import static org.schabi.newpipe.player.Player.STATE_PLAYING;
 
 /**
  * GestureListener for the player
@@ -45,8 +45,8 @@ public class PlayerGestureListener
     }
 
     @Override
-    public void onDoubleTap(@NotNull final MotionEvent event,
-                            @NotNull final DisplayPortion portion) {
+    public void onDoubleTap(@NonNull final MotionEvent event,
+                            @NonNull final DisplayPortion portion) {
         if (DEBUG) {
             Log.d(TAG, "onDoubleTap called with playerType = ["
                     + player.getPlayerType() + "], portion = [" + portion + "]");
@@ -55,17 +55,15 @@ public class PlayerGestureListener
             player.hideControls(0, 0);
         }
 
-        if (portion == DisplayPortion.LEFT) {
-            player.fastRewind();
+        if (portion == DisplayPortion.LEFT || portion == DisplayPortion.RIGHT) {
+            startMultiDoubleTap(event);
         } else if (portion == DisplayPortion.MIDDLE) {
             player.playPause();
-        } else if (portion == DisplayPortion.RIGHT) {
-            player.fastForward();
         }
     }
 
     @Override
-    public void onSingleTap(@NotNull final MainPlayer.PlayerType playerType) {
+    public void onSingleTap(@NonNull final MainPlayer.PlayerType playerType) {
         if (DEBUG) {
             Log.d(TAG, "onSingleTap called with playerType = [" + player.getPlayerType() + "]");
         }
@@ -85,10 +83,10 @@ public class PlayerGestureListener
     }
 
     @Override
-    public void onScroll(@NotNull final MainPlayer.PlayerType playerType,
-                         @NotNull final DisplayPortion portion,
-                         @NotNull final MotionEvent initialEvent,
-                         @NotNull final MotionEvent movingEvent,
+    public void onScroll(@NonNull final MainPlayer.PlayerType playerType,
+                         @NonNull final DisplayPortion portion,
+                         @NonNull final MotionEvent initialEvent,
+                         @NonNull final MotionEvent movingEvent,
                          final float distanceX, final float distanceY) {
         if (DEBUG) {
             Log.d(TAG, "onScroll called with playerType = ["
@@ -197,8 +195,8 @@ public class PlayerGestureListener
     }
 
     @Override
-    public void onScrollEnd(@NotNull final MainPlayer.PlayerType playerType,
-                            @NotNull final MotionEvent event) {
+    public void onScrollEnd(@NonNull final MainPlayer.PlayerType playerType,
+                            @NonNull final MotionEvent event) {
         if (DEBUG) {
             Log.d(TAG, "onScrollEnd called with playerType = ["
                 + player.getPlayerType() + "]");
@@ -232,10 +230,10 @@ public class PlayerGestureListener
         if (DEBUG) {
             Log.d(TAG, "onPopupResizingStart called");
         }
-        player.showAndAnimateControl(-1, true);
         player.getLoadingPanel().setVisibility(View.GONE);
 
         player.hideControls(0, 0);
+        animate(player.getFastSeekOverlay(), false, 0);
         animate(player.getCurrentDisplaySeek(), false, 0, ALPHA, 0);
     }
 

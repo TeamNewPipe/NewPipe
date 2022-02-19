@@ -119,7 +119,6 @@
     <string name="info_labels">क्या:\\nमांग:\\nविषयवस्तु की भाषा:\\nसेवा:\\nजीएमटी समय:\\nपैकेज:\\nसंस्करण:\\nOS संस्करण:</string>
     <string name="your_comment">आपकी टिप्पणी:</string>
     <string name="error_details_headline">विवरण:</string>
-    <string name="list_thumbnail_view_description">विडियो के thumbnail के पूर्व दर्शन</string>
     <string name="detail_thumbnail_view_description">वीडियो चलाये, समय :</string>
     <string name="detail_uploader_thumbnail_view_description">अपलोडर के thumbnail वाले फोटो</string>
     <string name="detail_likes_img_view_description">पसंद</string>

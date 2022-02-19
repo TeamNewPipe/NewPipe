@@ -1,5 +1,10 @@
 package org.schabi.newpipe.fragments.list.search;
 
+import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
+import static java.util.Arrays.asList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +25,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -29,17 +33,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.TooltipCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.databinding.FragmentSearchBinding;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -61,6 +63,7 @@ import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.KeyboardUtil;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 
@@ -68,12 +71,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -83,11 +85,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
-
-import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
-import static java.util.Arrays.asList;
-import static org.schabi.newpipe.ktx.ViewUtils.animate;
-import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
 
 public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.InfoItemsPage<?>>
         implements BackPressable {
@@ -225,8 +222,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         try {
             service = NewPipe.getService(serviceId);
         } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(this,
-                    "Getting service for id " + serviceId, e);
+            ErrorUtil.showUiErrorSnackbar(this, "Getting service for id " + serviceId, e);
         }
     }
 
@@ -673,31 +669,15 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (DEBUG) {
             Log.d(TAG, "showKeyboardSearch() called");
         }
-        if (searchEditText == null) {
-            return;
-        }
-
-        if (searchEditText.requestFocus()) {
-            final InputMethodManager imm = ContextCompat.getSystemService(activity,
-                    InputMethodManager.class);
-            imm.showSoftInput(searchEditText, InputMethodManager.SHOW_FORCED);
-        }
+        KeyboardUtil.showKeyboard(activity, searchEditText);
     }
 
     private void hideKeyboardSearch() {
         if (DEBUG) {
             Log.d(TAG, "hideKeyboardSearch() called");
         }
-        if (searchEditText == null) {
-            return;
-        }
 
-        final InputMethodManager imm = ContextCompat.getSystemService(activity,
-                InputMethodManager.class);
-        imm.hideSoftInputFromWindow(searchEditText.getWindowToken(),
-                InputMethodManager.RESULT_UNCHANGED_SHOWN);
-
-        searchEditText.clearFocus();
+        KeyboardUtil.hideKeyboard(activity, searchEditText);
     }
 
     private void showDeleteSuggestionDialog(final SuggestionItem item) {
@@ -727,7 +707,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public boolean onBackPressed() {
         if (suggestionsPanelVisible
-                && infoListAdapter.getItemsList().size() > 0
+                && !infoListAdapter.getItemsList().isEmpty()
                 && !isLoading.get()) {
             hideSuggestionsPanel();
             hideKeyboardSearch();
@@ -743,13 +723,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         return historyRecordManager
                 .getRelatedSearches(query, similarQueryLimit, 25)
                 .toObservable()
-                .map(searchHistoryEntries -> {
-                    final Set<SuggestionItem> result = new HashSet<>(); // remove duplicates
-                    for (final SearchHistoryEntry entry : searchHistoryEntries) {
-                        result.add(new SuggestionItem(true, entry.getSearch()));
-                    }
-                    return new ArrayList<>(result);
-                });
+                .map(searchHistoryEntries ->
+                    searchHistoryEntries.stream()
+                            .map(entry -> new SuggestionItem(true, entry))
+                            .collect(Collectors.toList()));
     }
 
     private Observable<List<SuggestionItem>> getRemoteSuggestionsObservable(final String query) {

@@ -2,7 +2,7 @@
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">A libre lightweight streaming frontend for Android.</h4>
 
-<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"></a></p>
+<p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="Get it on F-Droid" height=80/></a></p>
 
 <p align="center">
 <a href="https://github.com/TeamNewPipe/NewPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/TeamNewPipe/NewPipe.svg" ></a>
@@ -17,7 +17,7 @@
 <p align="center"><a href="https://newpipe.net">Website</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
 <hr>
 
-*Read this in other languages: [English](README.md), [Español](README.es.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md).*
+*Read this in other languages: [English](README.md), [Español](doc/README.es.md), [한국어](doc/README.ko.md), [Soomaali](doc/README.so.md), [Português Brasil](doc/README.pt_BR.md), [Polski](doc/README.pl.md), [日本語](doc/README.ja.md), [Română](doc/README.ro.md), [Türkçe](doc/README.tr.md), [正體中文](doc/README.zh_TW.md).*
 
 <b>WARNING: THIS IS A BETA VERSION, THEREFORE YOU MAY ENCOUNTER BUGS. IF YOU DO, OPEN AN ISSUE VIA OUR GITHUB REPOSITORY.</b>
 
@@ -140,7 +140,7 @@ Therefore, the app does not collect any data without your consent. NewPipe's pri
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
-NewPipe is Free Software: You can use, study share and improve it at your
+NewPipe is Free Software: You can use, study, share, and improve it at
 will. Specifically you can redistribute and/or modify it under the terms of the
 [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as
 published by the Free Software Foundation, either version 3 of the License, or

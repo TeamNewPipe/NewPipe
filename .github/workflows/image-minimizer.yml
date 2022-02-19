@@ -1,0 +1,29 @@
+name: Image Minimizer
+
+on:
+  issue_comment:
+    types: [created, edited]
+  issues:
+    types: [opened, edited]
+
+jobs:
+  try-minimize:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install probe-image-size
+        run: npm i probe-image-size@7.2.3 --ignore-scripts
+
+      - name: Minimize simple images
+        uses: actions/github-script@v5
+        timeout-minutes: 3
+        with:
+          script: |
+            const script = require('.github/workflows/image-minimizer.js');
+            await script({github, context});

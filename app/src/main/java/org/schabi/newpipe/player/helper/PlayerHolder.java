@@ -35,15 +35,15 @@ public final class PlayerHolder {
         return PlayerHolder.instance;
     }
 
-    private final boolean DEBUG = MainActivity.DEBUG;
-    private final String TAG = PlayerHolder.class.getSimpleName();
+    private static final boolean DEBUG = MainActivity.DEBUG;
+    private static final String TAG = PlayerHolder.class.getSimpleName();
 
-    private PlayerServiceExtendedEventListener listener;
+    @Nullable private PlayerServiceExtendedEventListener listener;
 
     private final PlayerServiceConnection serviceConnection = new PlayerServiceConnection();
-    public boolean bound;
-    private MainPlayer playerService;
-    private Player player;
+    private boolean bound;
+    @Nullable private MainPlayer playerService;
+    @Nullable private Player player;
 
     /**
      * Returns the current {@link MainPlayer.PlayerType} of the {@link MainPlayer} service,
@@ -70,8 +70,25 @@ public final class PlayerHolder {
         return player != null;
     }
 
+    /**
+     * Use this method to only allow the user to manipulate the play queue (e.g. by enqueueing via
+     * the stream long press menu) when there actually is a play queue to manipulate.
+     * @return true only if the player is open and its play queue is ready (i.e. it is not null)
+     */
+    public boolean isPlayQueueReady() {
+        return player != null && player.getPlayQueue() != null;
+    }
+
+    public boolean isBound() {
+        return bound;
+    }
+
     public int getQueueSize() {
-        return isPlayerOpen() ? player.getPlayQueue().size() : 0;
+        if (player == null || player.getPlayQueue() == null) {
+            // player play queue might be null e.g. while player is starting
+            return 0;
+        }
+        return player.getPlayQueue().size();
     }
 
     public void setListener(@Nullable final PlayerServiceExtendedEventListener newListener) {
@@ -148,7 +165,7 @@ public final class PlayerHolder {
             }
             startPlayerListener();
         }
-    };
+    }
 
     private void bind(final Context context) {
         if (DEBUG) {

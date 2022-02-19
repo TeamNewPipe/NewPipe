@@ -35,8 +35,8 @@ import androidx.core.app.ServiceCompat;
 
 import org.reactivestreams.Publisher;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.ktx.ExceptionUtils;
@@ -153,7 +153,7 @@ public abstract class BaseImportExportService extends Service {
 
     protected void stopAndReportError(final Throwable throwable, final String request) {
         stopService();
-        ErrorActivity.reportError(this, new ErrorInfo(
+        ErrorUtil.createNotification(this, new ErrorInfo(
                 throwable, UserAction.SUBSCRIPTION_IMPORT_EXPORT, request));
     }
 

@@ -1,0 +1,1 @@
+Corrigida a verificação se existe uma nova versão do NewPipe. Esta verificação era muitas vezes executada demasiado cedo, o que levava a uma falha da aplicação. Agora isto deve estar corrigido.

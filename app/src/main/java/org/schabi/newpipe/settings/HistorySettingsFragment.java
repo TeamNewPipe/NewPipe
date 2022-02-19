@@ -8,9 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
+import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.InfoCache;
@@ -29,7 +31,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.history_settings);
+        addPreferencesFromResourceRegistry();
 
         cacheWipeKey = getString(R.string.metadata_cache_wipe_key);
         viewsHistoryClearKey = getString(R.string.clear_views_history_key);
@@ -37,6 +39,21 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
         searchHistoryClearKey = getString(R.string.clear_search_history_key);
         recordManager = new HistoryRecordManager(getActivity());
         disposables = new CompositeDisposable();
+
+        final Preference clearCookiePref = requirePreference(R.string.clear_cookie_key);
+        clearCookiePref.setOnPreferenceClickListener(preference -> {
+            defaultPreferences.edit()
+                    .putString(getString(R.string.recaptcha_cookies_key), "").apply();
+            DownloaderImpl.getInstance().setCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY, "");
+            Toast.makeText(getActivity(), R.string.recaptcha_cookies_cleared,
+                    Toast.LENGTH_SHORT).show();
+            clearCookiePref.setEnabled(false);
+            return true;
+        });
+
+        if (defaultPreferences.getString(getString(R.string.recaptcha_cookies_key), "").isEmpty()) {
+            clearCookiePref.setEnabled(false);
+        }
     }
 
     @Override
@@ -64,7 +81,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                 .subscribe(
                         howManyDeleted -> Toast.makeText(context,
                                 R.string.watch_history_states_deleted,  Toast.LENGTH_SHORT).show(),
-                        throwable -> ErrorActivity.reportError(context,
+                        throwable -> ErrorUtil.openActivity(context,
                                 new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
                                         "Delete playback states")));
     }
@@ -76,7 +93,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                 .subscribe(
                         howManyDeleted -> Toast.makeText(context,
                                 R.string.watch_history_deleted, Toast.LENGTH_SHORT).show(),
-                        throwable -> ErrorActivity.reportError(context,
+                        throwable -> ErrorUtil.openActivity(context,
                                 new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
                                         "Delete from history")));
     }
@@ -87,7 +104,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         howManyDeleted -> { },
-                        throwable -> ErrorActivity.reportError(context,
+                        throwable -> ErrorUtil.openActivity(context,
                                 new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
                                         "Clear orphaned records")));
     }
@@ -99,7 +116,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                 .subscribe(
                         howManyDeleted -> Toast.makeText(context,
                                 R.string.search_history_deleted, Toast.LENGTH_SHORT).show(),
-                        throwable -> ErrorActivity.reportError(context,
+                        throwable -> ErrorUtil.openActivity(context,
                                 new ErrorInfo(throwable, UserAction.DELETE_FROM_HISTORY,
                                         "Delete search history")));
     }

@@ -77,7 +77,6 @@
     <string name="info_labels">Cái gì:\\nYêu cầu:\\nNgôn ngữ của nội dung:\\nVùng miền (quốc gia) của nội dung:\\nNgôn ngữ của ứng dụng:\\nDịch vụ:\\nThời gian GMT:\\nTên gói:\\nPhiên bản:\\nPhiên bản hệ điều hành:</string>
     <string name="your_comment">Nhận xét của bạn (bằng tiếng Anh):</string>
     <string name="error_details_headline">Chi tiết:</string>
-    <string name="list_thumbnail_view_description">Hình thu nhỏ xem trước video</string>
     <string name="detail_thumbnail_view_description">Xem video, thời lượng:</string>
     <string name="detail_uploader_thumbnail_view_description">Hình thu nhỏ của avatar người tải lên</string>
     <string name="detail_likes_img_view_description">Lượt thích</string>
@@ -148,7 +147,7 @@
     <string name="enable_watch_history_summary">Theo dõi các video đã xem</string>
     <string name="resume_on_audio_focus_gain_title">Tiếp tục phát</string>
     <string name="resume_on_audio_focus_gain_summary">Tiếp tục phát sau khi bị gián đoạn (ví dụ: cuộc gọi điện thoại)</string>
-    <string name="show_hold_to_append_title">Hiển thị mẹo \"Giữ để nối thêm\"</string>
+    <string name="show_hold_to_append_title">Hiển thị mẹo \"Giữ để thêm vào hàng đợi\"</string>
     <string name="show_hold_to_append_summary">Hiển thị mẹo khi nhấn nút phát trong nền hoặc phát trên popup trong trang \"Chi tiết\"</string>
     <string name="default_content_country_title">Quốc gia nội dung mặc định</string>
     <string name="settings_category_player_title">Phát</string>
@@ -164,7 +163,7 @@
     <string name="just_once">Chỉ một lần</string>
     <string name="file">Tập tin</string>
     <string name="notification_channel_name">Thông báo NewPipe</string>
-    <string name="notification_channel_description">Thông báo cho trình phát popup và trình phát nền</string>
+    <string name="notification_channel_description">Thông báo cho trình phát của NewPipe</string>
     <string name="unknown_content">[Không xác định]</string>
     <string name="switch_to_background">Chuyển sang nền</string>
     <string name="switch_to_popup">Chuyển sang Popup</string>
@@ -657,4 +656,21 @@
     <string name="enqueued_next">Đã cho mục tiếp vào hàng đợi</string>
     <string name="enqueue_next_stream">Cho mục tiếp vào hàng đợi</string>
     <string name="processing_may_take_a_moment">Đang thực hiện...Có thể mất một lúc</string>
+    <string name="error_report_channel_name">Thông báo báo cáo lỗi</string>
+    <string name="error_report_channel_description">Thông báo để báo cáo lỗi</string>
+    <string name="error_report_notification_title">NewPipe đã gặp lỗi, nhấn để báo cáo</string>
+    <string name="error_report_notification_toast">Có lỗi xảy ra, hãy xem thông báo</string>
+    <string name="show_crash_the_player_title">Hiện \"làm trình phát dừng\"</string>
+    <string name="show_crash_the_player_summary">Hiện tùy chọn dừng đột ngột khi sử dụng trình phát</string>
+    <string name="show_error_snackbar">Hiện thanh báo lỗi</string>
+    <string name="create_error_notification">Tạo thông báo lỗi</string>
+    <string name="manual_update_title">Kiểm tra cập nhật</string>
+    <string name="manual_update_description">Kiểm tra phiên bản mới theo cách thủ công</string>
+    <string name="checking_updates_toast">Đang kiểm tra cập nhật…</string>
+    <string name="feed_new_items">Mục feed mới</string>
+    <string name="crash_the_player">Làm trình phát dừng</string>
+    <string name="no_appropriate_file_manager_message_android_10">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động.
+\nVui lòng cài đặt ứng dụng quản lý tệp tương thích với Storage Access Framework.</string>
+    <string name="no_appropriate_file_manager_message">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động.
+\nVui lòng cài đặt ứng dụng quản lý tệp hoặc tắt \'%s\' trong cài đặt tải xuống.</string>
 </resources>

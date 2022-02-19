@@ -1,0 +1,6 @@
+Crash verholpen die optrad bij het opnieuw ordenen van kanaalgroepen.
+Probleem opgelost met het ophalen van meer YouTube-video's van kanalen en afspeellijsten.
+Probleem opgelost met het krijgen van YouTube-opmerkingen.
+Ondersteuning toegevoegd voor / watch /, / v / en / w / subpaden in YouTube-URL's.
+Vaste extractie van SoundCloud-client-ID en geografisch beperkte inhoud.
+Noord-Koerdische lokalisatie toegevoegd.

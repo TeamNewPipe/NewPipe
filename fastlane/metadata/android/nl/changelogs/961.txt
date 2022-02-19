@@ -1,0 +1,12 @@
+• [YouTube] Mix ondersteuning
+• [YouTube] Weergave info over publieke omroepen en Covid-19
+• [media.ccc.de] Recente videos toegevoegd
+• Somalische vertaling toegevoegd
+
+• Veel interne verbeteringen
+
+• Het delen van videos van binnen de speler opgelost
+• Lege ReCaptcha webview opgelost
+• Crash opgelost die voorkwam wanneer een stream was verwijderd van een lijst
+• [PeerTube] Gerelateerde streams opgelost
+• [YouTube] Opgelost: YouTube Muziek zoeken

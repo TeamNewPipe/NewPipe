@@ -1,0 +1,113 @@
+name: Bug report
+description: Create a bug report to help us improve
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping to make NewPipe better by reporting a bug. :hugs:
+
+        Please fill in as much information as possible about your bug so that we don't have to play "information ping-pong" and can help you immediately.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Checklist"
+      options:
+        - label: "I am able to reproduce the bug with the [latest version](https://github.com/TeamNewPipe/NewPipe/releases/latest)."
+          required: true
+        - label: "I made sure that there are *no existing issues* - [open](https://github.com/TeamNewPipe/NewPipe/issues) or [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed) - which I could contribute my information to."
+          required: true
+        - label: "I have taken the time to fill in all the required details. I understand that the bug report will be dismissed otherwise."
+          required: true
+        - label: "This issue contains only one bug."
+          required: true
+        - label: "I have read and understood the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/dev/.github/CONTRIBUTING.md)."
+          required: true
+
+  - type: input
+    id: app-version
+    attributes:
+     label: Affected version
+     description: "In which NewPipe version did you encounter the bug?"
+     placeholder: "x.xx.x - Can be seen in the app from the 'About' section in the sidebar"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce the bug
+      description: |
+        What did you do for the bug to show up?
+        
+        If you can't cause the bug to show up again reliably (and hence don't have a proper set of steps to give us), please still try to give as many details as possible on how you think you encountered the bug.
+      placeholder: |
+        1. Go to '...'
+        2. Press on '....'
+        3. Swipe down to '....'
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: |
+        Tell us what you expect to happen.
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual behavior
+      description: |
+        Tell us what happens with the steps given above.
+
+  - type: textarea
+    id: screen-media
+    attributes:
+      label: Screenshots/Screen recordings
+      description: |
+        A picture or video is worth a thousand words.
+        
+        If applicable, add screenshots or a screen recording to help explain your problem.
+        GitHub supports uploading them directly in the text box.
+        If your file is too big for Github to accept, try to compress it (ZIP-file) or feel free to paste a link to an image/video hoster here instead.
+        
+        :heavy_exclamation_mark: DON'T POST SCREENSHOTS OF THE ERROR PAGE.
+        Instead, follow the instructions in the "Logs" section below.
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: |
+        If your bug includes a crash (where you're shown the Error Report page with a bunch of info), tap on "Copy formatted report" at the bottom and paste it here.
+
+  - type: input
+    id: device-os-info
+    attributes:
+     label: Affected Android/Custom ROM version
+     description: |
+      With what operating system (+ version) did you encounter the bug?
+     placeholder: "Example: Android 12 / LineageOS 18.1"
+
+  - type: input
+    id: device-model-info
+    attributes:
+     label: Affected device model
+     description: |
+      On what device did you encounter the bug?
+     placeholder: "Example: Huawei P20 lite (ANE-LX1) / Samsung Galaxy S20"
+
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Additional information
+      description: |
+        Any other information you'd like to include, for instance that 
+        * the affected device is foldable or a TV
+        * you have disabled all animations on your device
+        * your cat disabled your network connection
+        * ...
+

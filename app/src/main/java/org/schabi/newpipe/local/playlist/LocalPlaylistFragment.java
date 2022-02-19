@@ -753,7 +753,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
 
-        if (PlayerHolder.getInstance().isPlayerOpen()) {
+        if (PlayerHolder.getInstance().isPlayQueueReady()) {
             entries.add(StreamDialogEntry.enqueue);
 
             if (PlayerHolder.getInstance().getQueueSize() > 1) {

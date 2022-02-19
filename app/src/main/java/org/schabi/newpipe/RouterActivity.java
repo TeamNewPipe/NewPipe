@@ -37,8 +37,8 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
 import org.schabi.newpipe.databinding.SingleChoiceDialogViewBinding;
 import org.schabi.newpipe.download.DownloadDialog;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.Info;
@@ -231,7 +231,7 @@ public class RouterActivity extends AppCompatActivity {
         } else if (errorInfo.getThrowable() instanceof ContentNotSupportedException) {
             Toast.makeText(context, R.string.content_not_supported, Toast.LENGTH_LONG).show();
         } else {
-            ErrorActivity.reportError(context, errorInfo);
+            ErrorUtil.createNotification(context, errorInfo);
         }
 
         if (context instanceof RouterActivity) {

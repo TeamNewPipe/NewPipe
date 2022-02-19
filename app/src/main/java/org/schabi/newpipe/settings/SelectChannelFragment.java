@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
-import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -153,7 +153,7 @@ public class SelectChannelFragment extends DialogFragment {
 
             @Override
             public void onError(@NonNull final Throwable exception) {
-                ErrorActivity.reportUiErrorInSnackbar(SelectChannelFragment.this,
+                ErrorUtil.showUiErrorSnackbar(SelectChannelFragment.this,
                         "Loading subscription", exception);
             }
 

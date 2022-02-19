@@ -1,0 +1,2 @@
+Suppression du support de MediaParser pour corriger les échec des lectures après le transfère en mémoire tampon sur Android 11+.
+Désactivation de la tunnelisation de media sur les Philips QM16XE pour corriger les problèmes de lectures.

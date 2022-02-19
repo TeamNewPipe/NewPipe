@@ -21,7 +21,6 @@
     <string name="install">تثبيت</string>
     <string name="kore_not_found">تطبيق Kore غير موجود. هل تريد تثبيته؟</string>
     <string name="light_theme_title">فاتح</string>
-    <string name="list_thumbnail_view_description">صور معاينة الفيديو</string>
     <string name="network_error">خطأ في الشبكة</string>
     <string name="no_player_found">لم يتم العثور على مشغل بث. تثبيت VLC؟</string>
     <string name="open_in_browser">افتح في المتصفح</string>
@@ -99,7 +98,7 @@
     <string name="undo">تراجع</string>
     <string name="play_all">تشغيل الكل</string>
     <string name="notification_channel_name">تنبيهات NewPipe</string>
-    <string name="notification_channel_description">تنبيهات مشغل NewPipe للخلفية والنوافذ المنبثقة</string>
+    <string name="notification_channel_description">تنبيهات مشغل NewPipe</string>
     <string name="unknown_content">[غير معروف]</string>
     <string name="could_not_setup_download_menu">تعذر إعداد قائمة التنزيل</string>
     <string name="app_ui_crash">تعطل التطبيق / واجهة المستخدم</string>
@@ -108,7 +107,7 @@
     <string name="player_recoverable_failure">استرداد المشغل من الخطأ</string>
     <string name="sorry_string">عذرًا، لم ينبغِ أن يحدث ذلك.</string>
     <string name="error_report_button_text">الإبلاغ عن هذا الخطأ عبر البريد الإلكتروني</string>
-    <string name="error_snackbar_message">عذرا، حدث خطأ ما.</string>
+    <string name="error_snackbar_message">عذرًا، حدث خطأ ما.</string>
     <string name="error_snackbar_action">أبلِغ</string>
     <string name="what_device_headline">معلومات:</string>
     <string name="what_happened_headline">ماذا حدث:</string>
@@ -158,7 +157,7 @@
     <string name="tab_licenses">التراخيص</string>
     <string name="app_description">تطبيق مجاني خفيف البث على أندرويد.</string>
     <string name="contribution_title">ساهم</string>
-    <string name="contribution_encouragement">إذا كانت لديك أفكار؛ أو ترجمة، أو تغييرات تخص التصميم، أو تنظيف و تحسين الشفرة البرمجية ، أو تعديلات عميقة عليها، فتذكر أنّ مساعدتك دائما موضع ترحيب. وكلما أتممنا شيئا كلما كان ذلك أفضل !</string>
+    <string name="contribution_encouragement">إذا كانت لديك أفكار؛ أو ترجمة، أو تغييرات تخص التصميم، أو تنظيف و تحسين الشفرة البرمجية، أو تعديلات عميقة عليها، فتذكر أنّ مساعدتك دائما موضع ترحيب. وكلما أتممنا شيئا كلما كان ذلك أفضل!</string>
     <string name="view_on_github">عرض على GitHub</string>
     <string name="donation_title">تبرع</string>
     <string name="donation_encouragement">يتم تطوير NewPipe من قبل متطوعين يقضون وقت فراغهم لتقديم أفضل تجربة لك. حان الوقت لرد المساعدة مع المطورين وجعل NewPipe أكثر و أفضل بينما يستمتعون بفنجان من القهوة.</string>
@@ -215,7 +214,7 @@
     <string name="import_data_title">استيراد قاعدة البيانات</string>
     <string name="export_data_title">تصدير قاعدة البيانات</string>
     <string name="import_data_summary">يلغي السجل الحالي والاشتراكات وقوائم التشغيل والإعدادات (اختياريًا)</string>
-    <string name="export_data_summary">تصديرالسجل، وقوائم تشغيل، والإعدادات، والاشتراكات</string>
+    <string name="export_data_summary">تصدير السجل، وقوائم تشغيل، والإعدادات، والاشتراكات</string>
     <string name="show_info">عرض المعلومات</string>
     <string name="controls_add_to_playlist_title">إضافة إلى</string>
     <string name="settings_category_debug_title">تحليل</string>
@@ -239,7 +238,7 @@
     <string name="delete_playlist_prompt">هل تريد حذف قائمة التشغيل هذه؟</string>
     <string name="playlist_creation_success">تم إنشاء قائمة التشغيل</string>
     <string name="playlist_add_stream_success">تمت إضافتها إلى قائمة التشغيل</string>
-    <string name="resize_fill">ملئ الشاشة</string>
+    <string name="resize_fill">ملء الشاشة</string>
     <string name="resize_zoom">تكبير</string>
     <string name="controls_download_desc">تنزيل ملف البث</string>
     <string name="tab_bookmarks">الإشارات المرجعية</string>
@@ -256,9 +255,9 @@
     <string name="resize_fit">تناسب مع الشاشة</string>
     <string name="caption_auto_generated">توليد تلقائي</string>
     <string name="import_title">إستيراد</string>
-    <string name="import_from">إستعادة مِن</string>
+    <string name="import_from">استعادة مِن</string>
     <string name="export_to">تصدير إلى</string>
-    <string name="import_ongoing">عملية الإستعادة جارية …</string>
+    <string name="import_ongoing">عملية الاستعادة جارية …</string>
     <string name="export_ongoing">عملية التصدير جارية …</string>
     <string name="import_file_title">إستيراد ملف</string>
     <string name="import_soundcloud_instructions_hint">معرفك, soundcloud.com/هويتك</string>
@@ -291,7 +290,7 @@
     <string name="no_streams_available_download">لا يوجد بث متاح للتنزيل</string>
     <string name="one_item_deleted">تم حذف عنصر واحد.</string>
     <string name="toast_no_player">لم يتم تثبيت أي تطبيق لتشغيل هذا الملف</string>
-    <string name="app_license">NewPipe هو برنامج مفتوح المصدر و بحقوق متروكة: يمكنك استخدام الكود ودراسته وتحسينه كما شئت. و على وجه التحديد يمكنك إعادة توزيعه / أو تعديله تحت شروط رخصة GNU العمومية والتي نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (باختيارك) أي إصدار جديد.</string>
+    <string name="app_license">NewPipe هو برنامج مفتوح المصدر وبحقوق متروكة: يمكنك استخدام الكود ودراسته وتحسينه كما شئت. وعلى وجه التحديد يمكنك إعادة توزيعه / أو تعديله تحت شروط رخصة GNU العمومية والتي نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (باختيارك) أي إصدار جديد.</string>
     <string name="title_last_played">آخر ما تم تشغيله</string>
     <string name="title_most_played">الأكثر تشغيلا</string>
     <string name="override_current_data">هذا سوف يُزيل إعداداتك الحالية.</string>
@@ -326,10 +325,10 @@
     <string name="unhook_checkbox">إلغاء الإرتباط (قد يسبب تشويه)</string>
     <string name="import_settings">هل تريد أيضا استيراد الإعدادات؟</string>
     <string name="privacy_policy_title">سياسة خصوصية NewPipe</string>
-    <string name="privacy_policy_encouragement">يأخذ مشروع NewPipe خصوصيتك على محمل الجد. لذلك ، لا يجمع التطبيق أي بيانات دون موافقتك.
+    <string name="privacy_policy_encouragement">يأخذ مشروع NewPipe خصوصيتك على محمل الجد. لذلك، لا يجمع التطبيق أي بيانات دون موافقتك.
 \nتوضح سياسة خصوصية NewPipe بالتفصيل البيانات التي يتم إرسالها وتخزينها عند إرسال تقرير الأعطال.</string>
     <string name="read_privacy_policy">الإطلاع على سياسة الخصوصية</string>
-    <string name="start_accept_privacy_policy">من أجل الامتثال للائحة الأوروبية العامة لحماية البيانات (GDPR) ، فإننا نلفت انتباهك إلى سياسة خصوصية NewPipe. يرجى قراءتها بعناية.
+    <string name="start_accept_privacy_policy">من أجل الامتثال للائحة الأوروبية العامة لحماية البيانات (GDPR)، فإننا نلفت انتباهك إلى سياسة خصوصية NewPipe. يرجى قراءتها بعناية.
 \nو يجب عليك قبولها لإرسال تقرير الأخطاء إلينا.</string>
     <string name="accept">قبول</string>
     <string name="decline">رفض</string>
@@ -354,7 +353,7 @@
     <string name="brightness_gesture_control_summary">استخدام الإيماءات للتحكم بسطوع المشغّل</string>
     <string name="settings_category_updates_title">التحديثات</string>
     <string name="file_deleted">تم حذف الملف</string>
-    <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
+    <string name="app_update_notification_channel_name">تنبيه تحديث التطبيق</string>
     <string name="volume_gesture_control_title">إيماء التحكم بالصوت</string>
     <string name="events">الأحداث</string>
     <string name="app_update_notification_channel_description">إشعارات لإصدار NewPipe الجديد</string>
@@ -379,7 +378,7 @@
     <string name="paused">متوقف</string>
     <string name="queued">في قائمة الانتظار</string>
     <string name="post_processing">قيد المعالجة</string>
-    <string name="enqueue">طابور</string>
+    <string name="enqueue">قائمة الانتظار</string>
     <string name="permission_denied">تم رفضها من قبل النظام</string>
     <string name="download_failed">فشل التنزيل</string>
     <string name="generate_unique_name">إنشاء اسم فريد</string>
@@ -412,7 +411,7 @@
     <string name="enable_playback_state_lists_title">المواضع في القوائم</string>
     <string name="enable_playback_state_lists_summary">إظهار مؤشّرات وضع التشغيل في القوائم</string>
     <string name="settings_category_clear_data_title">امسح البيانات</string>
-    <string name="watch_history_states_deleted">تم حذف وضع التشغيل</string>
+    <string name="watch_history_states_deleted">تم حذف كل مواقف التشغيل</string>
     <string name="missing_file">نقل الملف أو حذفه</string>
     <string name="overwrite_unrelated_warning">يوجد ملف بهذا الاسم مسبقاً</string>
     <string name="overwrite_failed">لا يمكن الكتابة فوق الملف</string>
@@ -421,11 +420,11 @@
     <string name="error_insufficient_storage">لم يتبقى مساحة في الجهاز</string>
     <string name="error_progress_lost">تم فقد التقدم بسبب حذف الملف</string>
     <string name="error_timeout">انتهى وقت الاتصال</string>
-    <string name="confirm_prompt">هل تريد محو سجل التنزيل أو حذف جميع الملفات التي تم تنزيلها؟</string>
+    <string name="confirm_prompt">هل تريد محو سجل التنزيل، أم تريد حذف جميع الملفات التي تم تنزيلها؟</string>
     <string name="enable_queue_limit">حد قائمة انتظار التنزيل</string>
     <string name="enable_queue_limit_desc">سيتم تشغيل تنزيل واحد في نفس الوقت</string>
     <string name="start_downloads">بدء التنزيلات</string>
-    <string name="pause_downloads">إيقاف التحميل مؤقتا</string>
+    <string name="pause_downloads">إيقاف التحميل مؤقتًا</string>
     <string name="downloads_storage_ask_title">اسأل عن مكان التنزيل</string>
     <string name="downloads_storage_ask_summary">سيتم سؤالك عن مكان حفظ كل تنزيل.
 \nتمكين منتقي مجلد النظام (SAF) إذا كنت تريد التنزيل إلى بطاقة SD خارجية</string>
@@ -434,7 +433,7 @@
     <string name="clear_playback_states_title">حذف مواقف التشغيل</string>
     <string name="clear_playback_states_summary">حذف كل مواقف التشغيل</string>
     <string name="delete_playback_states_alert">حذف كل مواقف التشغيل؟</string>
-    <string name="drawer_header_description">تبديل الخدمة ، المحدد حاليًا:</string>
+    <string name="drawer_header_description">تبديل الخدمة، المحدد حاليًا:</string>
     <string name="default_kiosk_page_summary">الكشك الافتراضي</string>
     <string name="no_one_watching">لا توجد مشاهدة</string>
     <string name="no_one_listening">لا أحد يستمع</string>
@@ -466,7 +465,7 @@
     <string name="local">محلي</string>
     <string name="recently_added">أُضيف مؤخرًا</string>
     <string name="most_liked">الأكثر إعجابًا</string>
-    <string name="playlist_no_uploader">تم إنشاؤه-تلقائيًا (لم يتم العثور على برنامج تحميل)</string>
+    <string name="playlist_no_uploader">مُنشأة تلقائيًا (لم يتم العثور على رافع)</string>
     <string name="recovering">استرد</string>
     <string name="error_download_resource_gone">لا يمكن استرداد هذا التنزيل</string>
     <string name="choose_instance_prompt">اختيار مثيل</string>
@@ -481,21 +480,21 @@
     <string name="videos_string">الفيديوهات</string>
     <plurals name="seconds">
         <item quantity="zero">%d ثانية</item>
-        <item quantity="one">%d ثواني</item>
-        <item quantity="two">%d ثواني</item>
+        <item quantity="one">%d ثانية</item>
+        <item quantity="two">%d ثانية</item>
         <item quantity="few">%d ثواني</item>
-        <item quantity="many">%d ثواني</item>
-        <item quantity="other">%d ثواني</item>
+        <item quantity="many">%d ثانية</item>
+        <item quantity="other">%d ثانية</item>
     </plurals>
-    <string name="feed_use_dedicated_fetch_method_help_text">هل تعتقد تحميل تغذية بطيء جدا؟ إذا كان الأمر كذلك ، فحاول تمكين التحميل السريع (يمكنك تغييره في الإعدادات أو بالضغط على الزر أدناه).
+    <string name="feed_use_dedicated_fetch_method_help_text">هل تعتقد أن تحميل التغذية بطيءٌ جدًا؟ إذا كان الأمر كذلك، فحاول تمكين التحميل السريع (يمكنك تغييره في الإعدادات أو بالضغط على الزر أدناه).
 \n
 \nيقدم NewPipe استراتيجيتين لتحميل الخلاصة:
-\n• جلب قناة الاشتراك بأكملها ، وهي بطيئة ولكنها كاملة.
-\n• استخدام نقطة نهاية خدمة مخصصة ، وهي سريعة ولكنها عادة لا تكتمل.
+\n• جلب قناة الاشتراك بأكملها، وهي بطيئة ولكنها كاملة.
+\n• استخدام نقطة نهاية خدمة مخصصة، وهي سريعة ولكنها عادةً لا تكتمل.
 \n
-\nالفرق بين الاثنين هو أن العنصر السريع عادة ما يفتقر إلى بعض المعلومات ، مثل مدة العنصر أو نوعه (لا يمكن التمييز بين مقاطع الفيديو المباشرة والأخرى العادية) وقد يعيد عناصر أقل.
+\nالفرق بين الاثنين هو أن العنصر السريع عادة ما يفتقر إلى بعض المعلومات، مثل مدة العنصر أو نوعه (لا يمكن التمييز بين مقاطع الفيديو المباشرة والأخرى العادية) وقد يعيد عناصر أقل.
 \n
-\n يوتيوب هو مثال على الخدمة التي تقدمها هذه طريقة سريعة مع تغذية RSS الخاصة بها.
+\nيوتيوب هو مثال على الخدمة التي تقدمها هذه طريقة سريعة مع تغذية RSS الخاصة بها.
 \n
 \nلذا فإن الاختيار يتلخص في ما تفضله: السرعة أو المعلومات الدقيقة.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">تعطيل الوضع السريع</string>
@@ -526,35 +525,35 @@
     <string name="feed_groups_header_title">مجموعات القنوات</string>
     <plurals name="days">
         <item quantity="zero">%d يوم</item>
-        <item quantity="one">%d أيام</item>
+        <item quantity="one">%d يوم</item>
         <item quantity="two">%d أيام</item>
         <item quantity="few">%d أيام</item>
-        <item quantity="many">%d أيام</item>
-        <item quantity="other">%d أيام</item>
+        <item quantity="many">%d يومًا</item>
+        <item quantity="other">%d يومًا</item>
     </plurals>
     <plurals name="hours">
         <item quantity="zero">%d ساعة</item>
-        <item quantity="one">%d ساعات</item>
-        <item quantity="two">%d ساعات</item>
+        <item quantity="one">%d ساعة</item>
+        <item quantity="two">%d ساعة</item>
         <item quantity="few">%d ساعات</item>
-        <item quantity="many">%d ساعات</item>
-        <item quantity="other">%d ساعات</item>
+        <item quantity="many">%d ساعة</item>
+        <item quantity="other">%d ساعة</item>
     </plurals>
     <plurals name="minutes">
         <item quantity="zero">%d دقيقة</item>
-        <item quantity="one">%d الدقائق</item>
-        <item quantity="two">%d الدقائق</item>
-        <item quantity="few">%d الدقائق</item>
-        <item quantity="many">%d الدقائق</item>
-        <item quantity="other">%d الدقائق</item>
+        <item quantity="one">%d دقيقة</item>
+        <item quantity="two">%d دقيقة</item>
+        <item quantity="few">%d دقائق</item>
+        <item quantity="many">%d دقيقة</item>
+        <item quantity="other">%d دقيقة</item>
     </plurals>
     <string name="new_seek_duration_toast">نظرا لقيود مشغل ExoPlayer مدة التقديم تم ضبطها الى %d ثانية</string>
     <string name="unmute">إلغاء كتم الصوت</string>
     <string name="mute">كتم الصوت</string>
     <string name="help">مساعدة</string>
-    <string name="content_not_supported">هذا المحتوى ليس مدعوم من قبل NewPipe.
+    <string name="content_not_supported">هذا المحتوى ليس مدعومًا من قبل NewPipe.
 \n
-\nنأمل أن يكون مدعوما في التحديثات القادمة.</string>
+\nنأمل أن يكون مدعومًا في التحديثات القادمة.</string>
     <string name="infinite_videos">∞ فيديو</string>
     <string name="more_than_100_videos">+100 فيديو</string>
     <string name="artists">الفنانين</string>
@@ -578,7 +577,7 @@
     <string name="feed_group_show_only_ungrouped_subscriptions">إظهار الاشتراكات غير المجمعة فقط</string>
     <string name="no_playlist_bookmarked_yet">لا توجد إشارات مرجعية لقائمة التشغيل حتى الآن</string>
     <string name="select_a_playlist">اختر قائمة تشغيل</string>
-    <string name="error_report_open_github_notice">يرجى مراجعة ما إذا توجد بالفعل مشكلة تناقش التحطم الموجود بالفعل.عند إنشاء تذاكر مكررة، فإنك تستغرق منا وقتًا يمكن أن نقضيه في إصلاح الخطأ الفعلي.</string>
+    <string name="error_report_open_github_notice">يرجى مراجعة ما إذا توجد بالفعل مشكلة تناقش التحطم الموجود بالفعل. عند إنشاء تذاكر مكررة، فإنك تستغرق منا وقتًا يمكن أن نقضيه في إصلاح الخطأ الفعلي.</string>
     <string name="error_report_open_issue_button_text">تقرير على GitHub</string>
     <string name="copy_for_github">نسخ التقرير مُنسق</string>
     <string name="search_showing_result_for">عرض نتائج ل: %s</string>
@@ -595,7 +594,7 @@
     <string name="notification_action_nothing">لا شيء</string>
     <string name="notification_action_buffering">جارٍ التحميل</string>
     <string name="notification_action_shuffle">خلط</string>
-    <string name="notification_action_repeat">كرّر</string>
+    <string name="notification_action_repeat">تكرار</string>
     <string name="notification_actions_at_most_three">يمكنك تحديد ثلاثة إجراءات كحد أقصى لإظهارها في الإشعار المضغوط!</string>
     <string name="notification_actions_summary">قم بتحرير كل إشعار أدناه من خلال النقر عليه. حدد ما يصل إلى ثلاثة منها لتظهر في الإشعار المضغوط باستخدام مربعات الاختيار الموجودة على اليمين</string>
     <string name="notification_action_4_title">زر الإجراء الخامس</string>
@@ -619,7 +618,7 @@
     <string name="show_thumbnail_title">إظهار الصورة المصغرة</string>
     <string name="show_meta_info_summary">قم بإيقاف التشغيل لإخفاء مربعات المعلومات الوصفية بمعلومات إضافية حول منشئ، البث أو محتوى البث أو طلب البحث</string>
     <string name="show_meta_info_title">إظهار معلومات التعريف</string>
-    <string name="recent">الأخيرة</string>
+    <string name="recent">حديثة</string>
     <string name="msg_calculating_hash">حساب التجزئة</string>
     <string name="hash_channel_description">إشعارات لتقدم تجزئة الفيديو</string>
     <string name="hash_channel_name">إشعار تجزئة الفيديو</string>
@@ -632,19 +631,19 @@
     <string name="show_description_title">إظهار الوصف</string>
     <string name="open_with">فتح مع</string>
     <string name="paid_content">يتوفر هذا المحتوى فقط للمستخدمين الذين قاموا بالدفع، لذلك لا يمكن بثه أو تنزيله عبر NewPipe.</string>
-    <string name="youtube_music_premium_content">يتوفر هذا الفيديو فقط لأعضاء YouTube Music Premium ، لذلك لا يمكن بثه أو تنزيله من قبل NewPipe.</string>
+    <string name="youtube_music_premium_content">يتوفر هذا الفيديو فقط لأعضاء YouTube Music Premium، لذلك لا يمكن بثه أو تنزيله من قبل NewPipe.</string>
     <string name="private_content">هذا المحتوى خاص، لذلك لا يمكن دفقه أو تنزيله بواسطة NewPipe.</string>
-    <string name="soundcloud_go_plus_content">هذا هو مسار SoundCloud Go+ ، على الأقل في بلدك ، لذلك لا يمكن بثها أو تنزيلها من قبل NewPipe.</string>
+    <string name="soundcloud_go_plus_content">هذا مسار SoundCloud Go+، على الأقل في بلدك، لذلك لا يمكن دفقه أو تنزيله بواسطة NewPipe.</string>
     <string name="georestricted_content">هذا المحتوى غير متوفر في بلدك.</string>
     <string name="crash_the_app">اغلق التطبيق قسريا</string>
     <string name="restricted_video_no_stream">هذا الفيديو مقيد بالفئة العمرية.
-\nنظرا لسياسات YouTube الجديدة المتعلقة بمقاطع الفيديو المقيدة بالفئة العمرية، لا يمكن ل NewPipe الوصول إلى أي من مقاطع الفيديو الخاصة بها وبالتالي يتعذر تشغيلها.</string>
+\nنظرا لسياسات YouTube الجديدة المتعلقة بمقاطع الفيديو المقيدة بالفئة العمرية، لا يمكن لـNewPipe الوصول إلى أي من مقاطع الفيديو الخاصة بها وبالتالي لا يمكن تشغيلها.</string>
     <string name="radio">إذاعة</string>
     <string name="featured">المميزة</string>
     <string name="recaptcha_solve">حل</string>
     <string name="download_has_started">بدأ التنزيل</string>
     <string name="select_night_theme_toast">يمكنك اختيار نسقك الليلي المفضل أدناه</string>
-    <string name="night_theme_summary">حدد موضوعك الليلي المفضل - %s</string>
+    <string name="night_theme_summary">حدد موضوعك الليلي المفضل — %s</string>
     <string name="auto_device_theme_title">تلقائي (سمة الجهاز)</string>
     <string name="night_theme_title">الثيم الليلي</string>
     <string name="show_channel_details">إظهار تفاصيل القناة</string>
@@ -654,14 +653,14 @@
     <string name="metadata_privacy_private">خاص</string>
     <string name="metadata_privacy_unlisted">غير مدرج</string>
     <string name="metadata_privacy_public">عامة</string>
-    <string name="metadata_thumbnail_url">عنوان URL للصورة المصغرة</string>
+    <string name="metadata_thumbnail_url">رابط الصورة المصغرة</string>
     <string name="metadata_host">المضيف</string>
     <string name="metadata_support">الدعم</string>
     <string name="metadata_language">اللغة</string>
     <string name="metadata_age_limit">الحد العمري</string>
     <string name="metadata_privacy">الخصوصيّة</string>
     <string name="metadata_licence">الرخصة</string>
-    <string name="metadata_tags">الفئة</string>
+    <string name="metadata_tags">الوسوم</string>
     <string name="metadata_category">الصنف</string>
     <string name="description_select_disable">تعطيل تحديد النص في الوصف</string>
     <string name="description_select_enable">تمكين تحديد نص في الوصف</string>
@@ -673,12 +672,12 @@
     <string name="feed_load_error_terminated">حساب منشئ المحتوى قد تم إنهائه.
 \nلن يتمكن NewPipe من تحميل هذه الخلاصة في المستقبل.
 \nهل تريد إلغاء الاشتراك من هذه القناة؟</string>
-    <string name="feed_load_error_account_info">تعذر تحميل تغذية ل \'%s\'.</string>
+    <string name="feed_load_error_account_info">تعذر تحميل تغذية لـ\'%s\'.</string>
     <string name="feed_load_error">خطأ في تحميل الخلاصة</string>
-    <string name="downloads_storage_use_saf_summary_api_29">بدءًا من Android 10 ، يتم دعم \"Storage Access Framework\" فقط</string>
-    <string name="downloads_storage_use_saf_summary_api_19">لا يتم دعم \"Storage Access Framework\" على Android KitKat والإصدارات الأقدم</string>
+    <string name="downloads_storage_use_saf_summary_api_29">بدءًا من Android 10، يتم دعم \"Storage Access Framework\" فقط</string>
+    <string name="downloads_storage_use_saf_summary_api_19">\"Storage Access Framework\" غير مدعوم على Android KitKat والإصدارات الأقدم</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">سيتم سؤالك عن مكان حفظ كل تنزيل</string>
-    <string name="no_dir_yet">لم يتم تعيين مجلد التحميل ، الرجاء اختيار مجلد التحميل الافتراضي الآن</string>
+    <string name="no_dir_yet">لم يتم تعيين مجلد التحميل، الرجاء اختيار مجلد التحميل الافتراضي الآن</string>
     <string name="off">إيقاف</string>
     <string name="on">تشغيل</string>
     <string name="tablet_mode_title">وضع الجهاز اللوحي</string>
@@ -689,7 +688,7 @@
     <string name="high_quality_larger">جودة عالية (أكبر)</string>
     <string name="seekbar_preview_thumbnail_title">معاينة مصغرة على شريط التمرير</string>
     <string name="mark_as_watched">علّمه كفيديو تمت مشاهدته</string>
-    <string name="detail_heart_img_view_description">اعجب بها منشئ المحتوى</string>
+    <string name="detail_heart_img_view_description">أعجب بها منشئ المحتوى</string>
     <string name="loading_channel_details">جاري تحميل تفاصيل القناة…</string>
     <string name="error_show_channel_details">خطأ في عرض تفاصيل القناة</string>
     <string name="show_image_indicators_summary">أظهر أشرطة ملونة لبيكاسو أعلى الصور تشير إلى مصدرها: الأحمر للشبكة والأزرق للقرص والأخضر للذاكرة</string>
@@ -698,12 +697,12 @@
     <string name="local_search_suggestions">اقتراحات البحث المحلية</string>
     <string name="main_page_content_swipe_remove">اسحب العناصر لإزالتها</string>
     <plurals name="deleted_downloads_toast">
-        <item quantity="zero">اكتمل %1$s التنزيل</item>
-        <item quantity="one">اكتمل %1$s التنزيل</item>
-        <item quantity="two">اكتمل %1$s التنزيل</item>
-        <item quantity="few">اكتملت %1$s التنزيلات</item>
-        <item quantity="many">اكتملت %1$s التنزيلات</item>
-        <item quantity="other">اكتملت %1$s التنزيلات</item>
+        <item quantity="zero">اكتمل %1$s تنزيل</item>
+        <item quantity="one">اكتمل %1$s تنزيل</item>
+        <item quantity="two">اكتمل %1$s تنزيل</item>
+        <item quantity="few">اكتملت %1$s تنزيلات</item>
+        <item quantity="many">اكتمل %1$s تنزيل</item>
+        <item quantity="other">اكتمل %1$s تنزيل</item>
     </plurals>
     <plurals name="download_finished_notification">
         <item quantity="zero">اكتمل التنزيل</item>
@@ -722,9 +721,20 @@
     <string name="manual_update_description">التحقق يدويا من وجود إصدارات جديدة</string>
     <string name="checking_updates_toast">جاري التحقق من وجود تحديثات…</string>
     <string name="feed_new_items">عناصر تغذية جديدة</string>
-    <string name="report_player_errors_title">الإبلاغ عن أخطاء المشغل</string>
     <string name="show_crash_the_player_summary">إظهار خيار تعطل عند استخدام المشغل</string>
     <string name="show_crash_the_player_title">إظهار \"تعطل المشغل\"</string>
     <string name="crash_the_player">تحطيم المشغل</string>
-    <string name="report_player_errors_summary">رفع تقرير لأخطاء المشغل بالتفصيل الكامل بدلا من إظهار رسالة اشعار قصيرة الأجل (مفيدة لتشخيص المشاكل)</string>
+    <string name="error_report_channel_name">إشعار الإبلاغ عن الأخطاء</string>
+    <string name="error_report_channel_description">التنبيهات المتعلقة بالإبلاغ عن الأخطاء</string>
+    <string name="error_report_notification_title">واجه NewPipe خطأ، اضغط للتقرير</string>
+    <string name="error_report_notification_toast">حدث خطأ، انظر للإشعار</string>
+    <string name="create_error_notification">قم بإنشاء تنبيه بالخطأ</string>
+    <string name="no_appropriate_file_manager_message">لم يتم العثور على مدير ملفات مناسب لهذا الإجراء.
+\nالرجاء تثبيت مدير ملفات أو محاولة تعطيل \"%s\" في إعدادات التنزيل.</string>
+    <string name="show_error_snackbar">إظهار خطأ snackbar</string>
+    <string name="no_appropriate_file_manager_message_android_10">لم يتم العثور على مدير ملفات مناسب لهذا الإجراء.
+\nالرجاء تثبيت مدير ملفات متوافق مع Storage Access Framework.</string>
+    <string name="background_player_already_playing_toast">يتم تشغيله في الخلفية</string>
+    <string name="detail_pinned_comment_view_description">تعليق مثبت</string>
+    <string name="leak_canary_not_available">LeakCanary غير متوفر</string>
 </resources>

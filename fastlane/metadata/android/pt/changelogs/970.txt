@@ -1,0 +1,11 @@
+Novo
+- Mostrar metadados de conteúdo (marcações, categorias, licença, ...) abaixo da descrição
+- Adicionado "Mostrar detalhes do canal" opção em listas de reprodução remotas (não locais)
+- Adicionado "Abrir no browser" opção para o menu de pressão longa
+
+Fixo
+- Fixação da falha de rotação na página de detalhes do vídeo
+- Fixo botão "Reproduzir com Kodi" no reprodutor sempre pede instalar Kore
+- Caminhos de importação e exportação fixos e melhorados
+- [YouTube] Fixo comentário e contagem
+...

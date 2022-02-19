@@ -1,17 +1,14 @@
 package org.schabi.newpipe.local.playlist
 
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.Timeout
 import org.schabi.newpipe.database.AppDatabase
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamType
+import org.schabi.newpipe.testUtil.TestDatabase
 import org.schabi.newpipe.testUtil.TrampolineSchedulerRule
-import java.util.concurrent.TimeUnit
 
 class LocalPlaylistManagerTest {
 
@@ -21,18 +18,9 @@ class LocalPlaylistManagerTest {
     @get:Rule
     val trampolineScheduler = TrampolineSchedulerRule()
 
-    @get:Rule
-    val timeout = Timeout(10, TimeUnit.SECONDS)
-
     @Before
     fun setup() {
-        database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            AppDatabase::class.java
-        )
-            .allowMainThreadQueries()
-            .build()
-
+        database = TestDatabase.createReplacingNewPipeDatabase()
         manager = LocalPlaylistManager(database)
     }
 

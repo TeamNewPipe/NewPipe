@@ -1,0 +1,7 @@
+Optie voor kanaaldetails toegevoegd aan menu lang indrukken.
+Functionaliteit toegevoegd om de naam van de afspeellijst te hernoemen vanuit de afspeellijstinterface.
+Laat de gebruiker pauzeren terwijl een video wordt gebufferd.
+Het witte thema geoptimaliseerd.
+Overlappende lettertypen opgelost bij gebruik van een grotere lettergrootte.
+Opgelost: geen video op Formuler- en Zephier-apparaten.
+Verschillende crashes opgelost.

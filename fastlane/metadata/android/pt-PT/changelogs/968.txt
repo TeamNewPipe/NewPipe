@@ -1,0 +1,7 @@
+Adicionada a opção de detalhes do canal ao menu de pressão prolongada.
+Adicionada funcionalidade para renomear o nome da lista de reprodução da interface da lista de reprodução.
+Permitir que o utilizador faça uma pausa enquanto um vídeo está a ser gravado no buffer.
+Polido o tema branco.
+Corrigida a sobreposição de fontes quando se utiliza uma fonte de tamanho maior.
+Corrigido nenhum vídeo em dispositivos Formuler e Zephier.
+Corrigidas várias falhas.

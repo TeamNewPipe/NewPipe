@@ -2,12 +2,11 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.net.Uri;
-import android.widget.Toast;
+import android.util.Log;
 
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
@@ -21,11 +20,10 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 public enum StreamDialogEntry {
     //////////////////////////////////////
@@ -33,28 +31,8 @@ public enum StreamDialogEntry {
     //////////////////////////////////////
 
     show_channel_details(R.string.show_channel_details, (fragment, item) -> {
-        if (isNullOrEmpty(item.getUploaderUrl())) {
-            final int serviceId = item.getServiceId();
-            final String url = item.getUrl();
-            Toast.makeText(fragment.getContext(), R.string.loading_channel_details,
-                    Toast.LENGTH_SHORT).show();
-            ExtractorHelper.getStreamInfo(serviceId, url, false)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(result -> {
-                        NewPipeDatabase.getInstance(fragment.requireContext()).streamDAO()
-                                .setUploaderUrl(serviceId, url, result.getUploaderUrl())
-                                .subscribeOn(Schedulers.io()).subscribe();
-                        openChannelFragment(fragment, item, result.getUploaderUrl());
-                    }, throwable -> Toast.makeText(
-                            // TODO: Open the Error Activity
-                            fragment.getContext(),
-                            R.string.error_show_channel_details,
-                            Toast.LENGTH_SHORT
-                    ).show());
-        } else {
-            openChannelFragment(fragment, item, item.getUploaderUrl());
-        }
+        SaveUploaderUrlHelper.saveUploaderUrlIfNeeded(fragment, item,
+                uploaderUrl -> openChannelFragment(fragment, item, uploaderUrl));
     }),
 
     /**
@@ -63,20 +41,24 @@ public enum StreamDialogEntry {
      * Info: Add this entry within showStreamDialog.
      */
     enqueue(R.string.enqueue_stream, (fragment, item) -> {
-        NavigationHelper.enqueueOnPlayer(fragment.getContext(), new SinglePlayQueue(item));
+        fetchItemInfoIfSparse(fragment, item, fullItem ->
+                NavigationHelper.enqueueOnPlayer(fragment.getContext(), fullItem));
     }),
 
     enqueue_next(R.string.enqueue_next_stream, (fragment, item) -> {
-        NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), new SinglePlayQueue(item));
+        fetchItemInfoIfSparse(fragment, item, fullItem ->
+                NavigationHelper.enqueueNextOnPlayer(fragment.getContext(), fullItem));
     }),
 
-    start_here_on_background(R.string.start_here_on_background, (fragment, item) ->
-            NavigationHelper.playOnBackgroundPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), true)),
+    start_here_on_background(R.string.start_here_on_background, (fragment, item) -> {
+        fetchItemInfoIfSparse(fragment, item, fullItem ->
+                NavigationHelper.playOnBackgroundPlayer(fragment.getContext(), fullItem, true));
+    }),
 
-    start_here_on_popup(R.string.start_here_on_popup, (fragment, item) ->
-            NavigationHelper.playOnPopupPlayer(fragment.getContext(),
-                    new SinglePlayQueue(item), true)),
+    start_here_on_popup(R.string.start_here_on_popup, (fragment, item) -> {
+        fetchItemInfoIfSparse(fragment, item, fullItem ->
+                NavigationHelper.playOnPopupPlayer(fragment.getContext(), fullItem, true));
+    }),
 
     set_as_playlist_thumbnail(R.string.set_as_playlist_thumbnail, (fragment, item) -> {
     }), // has to be set manually
@@ -217,5 +199,40 @@ public enum StreamDialogEntry {
         NavigationHelper.openChannelFragment(
                 fragment.requireActivity().getSupportFragmentManager(),
                 item.getServiceId(), uploaderUrl, item.getUploaderName());
+    }
+
+    /////////////////////////////////////////////
+    // helper functions                        //
+    /////////////////////////////////////////////
+
+    private static void fetchItemInfoIfSparse(final Fragment fragment,
+            final StreamInfoItem item,
+            final Consumer<SinglePlayQueue> callback) {
+        if (!(item.getStreamType() == StreamType.LIVE_STREAM
+                || item.getStreamType() == StreamType.AUDIO_LIVE_STREAM)
+                && item.getDuration() < 0) {
+            // Sparse item: fetched by fast fetch
+            ExtractorHelper.getStreamInfo(
+                    item.getServiceId(),
+                    item.getUrl(),
+                    false
+            )
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(result -> {
+                        final HistoryRecordManager recordManager =
+                                new HistoryRecordManager(fragment.getContext());
+                        recordManager.saveStreamState(result, 0)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .doOnError(throwable -> Log.e("StreamDialogEntry",
+                                        throwable.toString()))
+                                .subscribe();
+
+                        callback.accept(new SinglePlayQueue(result));
+                    }, throwable -> Log.e("StreamDialogEntry", throwable.toString()));
+        } else {
+            callback.accept(new SinglePlayQueue(item));
+        }
     }
 }

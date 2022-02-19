@@ -1,0 +1,2 @@
+- Hervatten van afspelen opgelost
+- Verbeteringen om ervoor te zorgen dat de service die bepaalt of NewPipe moet controleren op nieuwe versiecontroles niet op de achtergrond wordt gestart

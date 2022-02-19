@@ -1,0 +1,10 @@
+- Optie: speler direct in volledig scherm openen
+- Optie: keuze welke zoeksuggesties laten zien
+- Donker thema nu donkerder + donker splash-scherm
+- Verbeterde bestandskiezer: ongewenst wordt grijs
+- Import YouTube-abonnementen opgelost
+- Om een stream opnieuw te bekijken, nu opnieuw op de knop replay tikken
+- Geluidssessie sluiten vastgezet
+- [Android TV] Lange zoekbalksprongen verholpen bij gebruik DPad
+
+Om meer wijzigingen te zien, bekijk de changelog (en blog post) op de Links tab hieronder.

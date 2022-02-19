@@ -24,8 +24,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.databinding.PlaylistHeaderBinding;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
@@ -149,7 +149,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
 
-        if (PlayerHolder.getInstance().isPlayerOpen()) {
+        if (PlayerHolder.getInstance().isPlayQueueReady()) {
             entries.add(StreamDialogEntry.enqueue);
 
             if (PlayerHolder.getInstance().getQueueSize() > 1) {
@@ -268,7 +268,10 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 ShareUtils.openUrlInBrowser(requireContext(), url);
                 break;
             case R.id.menu_item_share:
-                ShareUtils.shareText(requireContext(), name, url, currentInfo.getThumbnailUrl());
+                if (currentInfo != null) {
+                    ShareUtils.shareText(requireContext(), name, url,
+                            currentInfo.getThumbnailUrl());
+                }
                 break;
             case R.id.menu_item_bookmark:
                 onBookmarkClicked();
@@ -310,7 +313,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                         NavigationHelper.openChannelFragment(getFM(), result.getServiceId(),
                                 result.getUploaderUrl(), result.getUploaderName());
                     } catch (final Exception e) {
-                        ErrorActivity.reportUiErrorInSnackbar(this, "Opening channel fragment", e);
+                        ErrorUtil.showUiErrorSnackbar(this, "Opening channel fragment", e);
                     }
                 });
             }
