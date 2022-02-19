@@ -30,6 +30,7 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.util.external_communication.TextLinkifier;
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -84,11 +85,12 @@ public final class ExtractorHelper {
                                 .fromQuery(searchString, contentFilter, sortFilter)));
     }
 
-    public static Single<InfoItemsPage> getMoreSearchItems(final int serviceId,
-                                                           final String searchString,
-                                                           final List<String> contentFilter,
-                                                           final String sortFilter,
-                                                           final Page page) {
+    public static Single<InfoItemsPage<InfoItem>> getMoreSearchItems(
+            final int serviceId,
+            final String searchString,
+            final List<String> contentFilter,
+            final String sortFilter,
+            final Page page) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
                 SearchInfo.getMoreItems(NewPipe.getService(serviceId),
@@ -124,8 +126,9 @@ public final class ExtractorHelper {
                         ChannelInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
-    public static Single<InfoItemsPage> getMoreChannelItems(final int serviceId, final String url,
-                                                            final Page nextPage) {
+    public static Single<InfoItemsPage<StreamInfoItem>> getMoreChannelItems(final int serviceId,
+                                                                            final String url,
+                                                                            final Page nextPage) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
                 ChannelInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage));
@@ -155,15 +158,17 @@ public final class ExtractorHelper {
                         CommentsInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
-    public static Single<InfoItemsPage> getMoreCommentItems(final int serviceId,
-                                                            final CommentsInfo info,
-                                                            final Page nextPage) {
+    public static Single<InfoItemsPage<CommentsInfoItem>> getMoreCommentItems(
+            final int serviceId,
+            final CommentsInfo info,
+            final Page nextPage) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
                 CommentsInfo.getMoreItems(NewPipe.getService(serviceId), info, nextPage));
     }
 
-    public static Single<PlaylistInfo> getPlaylistInfo(final int serviceId, final String url,
+    public static Single<PlaylistInfo> getPlaylistInfo(final int serviceId,
+                                                       final String url,
                                                        final boolean forceLoad) {
         checkServiceId(serviceId);
         return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.PLAYLIST,
@@ -171,8 +176,9 @@ public final class ExtractorHelper {
                         PlaylistInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
-    public static Single<InfoItemsPage> getMorePlaylistItems(final int serviceId, final String url,
-                                                             final Page nextPage) {
+    public static Single<InfoItemsPage<StreamInfoItem>> getMorePlaylistItems(final int serviceId,
+                                                                             final String url,
+                                                                             final Page nextPage) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
                 PlaylistInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage));
@@ -184,8 +190,9 @@ public final class ExtractorHelper {
                 Single.fromCallable(() -> KioskInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
-    public static Single<InfoItemsPage> getMoreKioskItems(final int serviceId, final String url,
-                                                          final Page nextPage) {
+    public static Single<InfoItemsPage<StreamInfoItem>> getMoreKioskItems(final int serviceId,
+                                                                          final String url,
+                                                                          final Page nextPage) {
         return Single.fromCallable(() ->
                 KioskInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage));
     }

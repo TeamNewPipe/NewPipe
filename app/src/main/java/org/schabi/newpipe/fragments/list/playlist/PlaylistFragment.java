@@ -64,7 +64,7 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
+public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, PlaylistInfo> {
 
     private static final String PICASSO_PLAYLIST_TAG = "PICASSO_PLAYLIST_TAG";
 
@@ -249,7 +249,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
+    protected Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
         return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextPage);
     }
 
