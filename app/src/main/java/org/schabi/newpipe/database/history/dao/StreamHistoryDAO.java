@@ -3,6 +3,7 @@ package org.schabi.newpipe.database.history.dao;
 import androidx.annotation.Nullable;
 import androidx.room.Dao;
 import androidx.room.Query;
+import androidx.room.RewriteQueriesToDropUnusedColumns;
 
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
@@ -67,6 +68,7 @@ public abstract class StreamHistoryDAO implements HistoryDAO<StreamHistoryEntity
     @Query("DELETE FROM " + STREAM_HISTORY_TABLE + " WHERE " + JOIN_STREAM_ID + " = :streamId")
     public abstract int deleteStreamHistory(long streamId);
 
+    @RewriteQueriesToDropUnusedColumns
     @Query("SELECT * FROM " + STREAM_TABLE
 
             // Select the latest entry and watch count for each stream id on history table
