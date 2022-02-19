@@ -1,0 +1,1 @@
+Löste problemet med att YouTube inte fungerade korrekt i EU. Detta berodde på ett nytt system för cookies och samtycke till sekretess som kräver att NewPipe ställde in en CONSENT cookie.

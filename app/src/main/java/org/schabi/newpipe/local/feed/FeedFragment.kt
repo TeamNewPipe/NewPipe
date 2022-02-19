@@ -362,7 +362,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         if (context == null || context.resources == null || activity == null) return
 
         val entries = ArrayList<StreamDialogEntry>()
-        if (PlayerHolder.getInstance().isPlayerOpen) {
+        if (PlayerHolder.getInstance().isPlayQueueReady) {
             entries.add(StreamDialogEntry.enqueue)
 
             if (PlayerHolder.getInstance().queueSize > 1) {

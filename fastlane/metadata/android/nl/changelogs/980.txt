@@ -1,0 +1,13 @@
+Nieuw
+• Optie "Toevoegen aan afspeellijst" toegevoegd aan menu delen
+• Ondersteuning toegevoegd voor y2u.be en PeerTube verkorte links
+
+Verbeterd
+• Afspeelsnelheid-Controls compacter gemaakt
+• Feed markeert nu nieuwe items
+• "Toon bekeken items" optie in de feed is nu opgeslagen
+
+Opgelost
+• YouTube vind-ik-leuks en niet-leuks extractie opgelost
+• Automatisch opnieuw afspelen na terugkeer uit de achtergrond is nu opgelost
+En nog veel meer

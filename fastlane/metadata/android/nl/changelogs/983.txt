@@ -1,0 +1,9 @@
+Toegevoegd: nieuwe 'dubbel-tik-naar-doorzoeken' UI en gedrag
+Instellingen doorzoekbaar maken
+Gepinde commentaren als zodanig markeren
+Open-met-app ondersteuning toevoegen voor FSFE's PeerTube instantie
+Foutmeldingen toevoegen
+Herstel herhaling van het eerste wachtrij-item bij verandering van speler
+Langer wachten bij buffering tijdens livestreams alvorens te falen
+Volgorde van lokale zoekresultaten verbeteren
+Herstel lege itemvelden in afspeelwachtrij

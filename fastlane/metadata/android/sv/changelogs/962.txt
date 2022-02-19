@@ -1,0 +1,2 @@
+Lade till "senaste" videor till media.ccc.de tjänsten.
+Lade till live sändningar till tjänsten media.ccc.de och stöd för live sändningar.

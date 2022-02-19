@@ -361,7 +361,7 @@
     <string name="privacy_policy_encouragement">The NewPipe project takes your privacy very seriously. Therefore, the app does not collect any data without your consent.\nNewPipe\'s privacy policy explains in detail what data is sent and stored when you send a crash report.</string>
     <string name="read_privacy_policy">Read privacy policy</string>
     <string name="app_license_title">NewPipe\'s License</string>
-    <string name="app_license">NewPipe is copyleft libre software: You can use, study share and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
+    <string name="app_license">NewPipe is copyleft libre software: You can use, study, share, and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="read_full_license">Read license</string>
     <!-- History -->
     <string name="title_activity_history">History</string>
@@ -449,6 +449,7 @@
     <string name="caption_setting_title">Captions</string>
     <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect</string>
     <!-- Debug Settings -->
+    <string name="leak_canary_not_available">LeakCanary is not available</string>
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
     <string name="show_memory_leaks">Show memory leaks</string>
     <string name="enable_disposed_exceptions_title">Report out-of-lifecycle errors</string>
@@ -459,7 +460,7 @@
     <string name="disable_media_tunneling_summary">Disable media tunneling if you experience a black screen or stuttering on video playback</string>
     <string name="show_image_indicators_title">Show image indicators</string>
     <string name="show_image_indicators_summary">Show Picasso colored ribbons on top of images indicating their source: red for network, blue for disk and green for memory</string>
-    <string name="show_crash_the_player_title">Show \"crash the player\"</string>
+    <string name="show_crash_the_player_title">Show \"Crash the player\"</string>
     <string name="show_crash_the_player_summary">Shows a crash option when using the player</string>
     <string name="check_new_streams">Run check for new streams</string>
     <string name="crash_the_app">Crash the app</string>
@@ -475,7 +476,15 @@
     <string name="previous_export">Previous export</string>
     <string name="subscriptions_import_unsuccessful">Could not import subscriptions</string>
     <string name="subscriptions_export_unsuccessful">Could not export subscriptions</string>
-    <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout:\n\n1. Go to this URL: %1$s\n2. Log in when asked\n3. Click on \"All data included\", then on \"Deselect all\", then select only \"subscriptions\" and click \"OK\"\n4. Click on \"Next step\" and then on \"Create export\"\n5. Click on the \"Download\" button after it appears\n6. Click on IMPORT FILE below and select the downloaded zip file\n7. [If the zip import fails] Extract the .csv file (usually under \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), click on IMPORT FILE below and select the extracted csv file</string>
+    <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout:
+\n
+\n1. Go to this URL: %1$s
+\n2. Log in when asked
+\n3. Click on \"All data included\", then on \"Deselect all\", then select only \"subscriptions\" and click \"OK\"
+\n4. Click on \"Next step\" and then on \"Create export\"
+\n5. Click on the \"Download\" button after it appears
+\n6. Click on IMPORT FILE below and select the downloaded .zip file
+\n7. [If the .zip import fails] Extract the .csv file (usually under \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), click on IMPORT FILE below and select the extracted csv file</string>
     <string name="import_soundcloud_instructions">Import a SoundCloud profile by typing either the URL or your ID:\n\n1. Enable \"desktop mode\" in a web-browser (the site is not available for mobile devices)\n2. Go to this URL: %1$s\n3. Log in when asked\n4. Copy the profile URL you were redirected to.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">Keep in mind this operation can be network expensive.\n\nDo you want to continue?</string>
@@ -544,7 +553,7 @@
     <string name="queued">queued</string>
     <string name="post_processing">post-processing</string>
     <string name="recovering">recovering</string>
-    <string name="enqueue">Queue</string>
+    <string name="enqueue">Enqueue</string>
     <string name="permission_denied">Action denied by the system</string>
     <string name="checking_updates_toast">Checking for updates…</string>
     <!-- download notifications -->

@@ -126,7 +126,7 @@
     <string name="thumbnail_cache_wipe_complete_notice">S\'ha eliminat la memòria cau d\'imatges</string>
     <string name="metadata_cache_wipe_title">Elimina les metadades de la memòria cau</string>
     <string name="metadata_cache_wipe_complete_notice">S\'ha esborrat la memòria cau de metadades</string>
-    <string name="auto_queue_title">Afegeix vídeos relacionats a la cua</string>
+    <string name="auto_queue_title">Posa a la cua el següent flux</string>
     <string name="show_search_suggestions_title">Suggeriments de cerca</string>
     <string name="show_search_suggestions_summary">Mostra suggeriments durant la cerca</string>
     <string name="enable_search_history_title">Historial de cerca</string>
@@ -136,8 +136,8 @@
     <string name="content_language_title">Llengua per defecte dels continguts</string>
     <string name="background_player_playing_toast">S\'està reproduint en rerefons</string>
     <string name="popup_playing_toast">S\'està reproduint en mode emergent</string>
-    <string name="notification_channel_name">Notificació del NewPipe</string>
-    <string name="notification_channel_description">Notificacions dels reproductors en rerefons o emergents del NewPipe</string>
+    <string name="notification_channel_name">Notificació de NewPipe</string>
+    <string name="notification_channel_description">Notificacions per al reproductor de NewPipe</string>
     <string name="could_not_load_thumbnails">No s\'han pogut carregar totes les miniatures</string>
     <string name="youtube_signature_deobfuscation_error">No s\'ha pogut desxifrar la signatura de l\'URL del vídeo</string>
     <string name="parsing_error">No s\'ha pogut processar el lloc web</string>
@@ -270,7 +270,7 @@
     <string name="unhook_checkbox">Desvincula (pot causar deformació)</string>
     <string name="metadata_cache_wipe_summary">Elimina totes les dades de llocs web de la memòria cau</string>
     <string name="auto_queue_summary">Acaba de reproduir la cua (sense repetició) quan s\'hi afegeixi un vídeo relacionat</string>
-    <string name="show_hold_to_append_title">Mostra els missatges d\'ajuda</string>
+    <string name="show_hold_to_append_title">Mostra l\'indicador «Mantenir per posar a la cua»</string>
     <string name="show_hold_to_append_summary">Mostra un missatge d\'ajuda quan el botó de mode en segon pla o emergent estigui premut a la pàgina de detalls d\'un vídeo</string>
     <string name="info_labels">Què ha passat:\\nPetició:\\nIdioma del contingut:\\nPaís del contingut:\\nLlengua de l\'aplicació:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
     <string name="preferred_open_action_settings_title">Acció d\'obertura preferida</string>
@@ -285,7 +285,8 @@
 \n3. Premeu \"Totes les dades incloses\", després \"Dessel·lecciona-ho tot\", llavors sel·leccioneu només \"Subscripcions\" i finalment premeu \"D\'acord\".
 \n4. Premeu \"Pas següent\" i llavors a \"Crea una exportació\"
 \n5. Premeu el botó \"Baixa\" un cop hagi aparegut
-\n6. Del fitxer comprimit baixat, extreieu-ne el fitxer subscripcions.json (es troba a \"Takeout/YouTube i YouTube Music/subscripcions/subscripcions.json\") i importeu-lo aquí.</string>
+\n6. Premeu a IMPORTA EL FITXER i sel·leccioneu el fitxer .zip descarregat
+\n7. [En cas que la importació del fitxer .zip hagi fallat] extreieu-ne el fitxer subscripcions.csv (es troba generalment a \"Takeout/YouTube i YouTube Music/subscripcions/subscripcions.csv\"), premeu a IMPORTA EL FITXER i sel·leccioneu el fitxer .csv extret.</string>
     <string name="import_soundcloud_instructions">Importeu un perfil del SoundCloud mitjançant l\'URL o l\'identificador del vostre perfil: 
 \n 
 \n1. Activeu el «Mode d\'ordinador» en un navegador (el lloc web no està disponible per a dispositius mòbils) 
@@ -401,7 +402,8 @@
     <string name="enable_queue_limit">Limita la cua de baixades</string>
     <string name="start_downloads">Inicia les baixades</string>
     <string name="pause_downloads">Pausa les baixades</string>
-    <string name="downloads_storage_ask_summary">Si us demanarà la ubicació de cada baixada</string>
+    <string name="downloads_storage_ask_summary">Se us demanarà la ubicació de cada baixada.
+\nHeu d\'activar el SAF si voleu descarregar-ho a una targeta SD externa</string>
     <string name="enable_playback_state_lists_title">Posicions a les llistes</string>
     <string name="enable_playback_state_lists_summary">Mostra els indicadors de posició de reproducció a les llistes</string>
     <string name="settings_category_clear_data_title">Neteja les dades</string>
@@ -414,9 +416,8 @@
     <string name="watch_history_states_deleted">S\'ha esborrat les posicions de reproducció</string>
     <string name="missing_file">El fitxer s\'ha mogut o suprimit</string>
     <string name="enable_queue_limit_desc">Només una baixada alhora</string>
-    <string name="downloads_storage_use_saf_title">Utilitza SAF</string>
-    <string name="downloads_storage_use_saf_summary">El SAF (Storage Access Framework; estructura d\'accés a l\'emmagatzematge) us permet realitzar baixades a una memòria externa com una targeta SD.
-\nAlguns dispositius no en són compatibles</string>
+    <string name="downloads_storage_use_saf_title">Fes servir el SAF</string>
+    <string name="downloads_storage_use_saf_summary">El SAF (Storage Access Framework; estructura d\'accés a l\'emmagatzematge) us permet realitzar baixades a una memòria externa com una targeta SD.</string>
     <string name="clear_playback_states_title">Esborra les posicions de reproducció</string>
     <string name="clear_playback_states_summary">Esborra totes les posicions de reproducció</string>
     <string name="delete_playback_states_alert">Voleu suprimir tots els punts de reproducció\?</string>
@@ -482,7 +483,7 @@
 \nEn definitiva, l\'elecció depèn de si preferiu rapidesa a assegurar-vos que l\'informació és precisa.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desactiva el mode ràpid</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activa el mode ràpid</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Disponible en alguns serveis, normalment és més ràpid, però podria només incloure un nombre limitat de contingut i sovint informació incomplerta (per exemple, sense durada, tipus…).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponible en alguns serveis, normalment és més ràpid, però podria només incloure un nombre limitat de contingut i sovint informació incomplerta (per exemple, sense durada, tipus…)</string>
     <string name="feed_use_dedicated_fetch_method_title">Recupera des d\'un feed dedicat si és possible</string>
     <string name="feed_update_threshold_option_always_update">Actualitza sempre</string>
     <string name="feed_update_threshold_summary">Temps que ha de passar perquè una subscripció es consideri obsoleta — %s</string>
@@ -558,7 +559,7 @@
     <string name="youtube_restricted_mode_enabled_summary">YouTube proporciona un \"mode restringit\" que amaga contingut potencialment inadequat per a infants</string>
     <string name="show_age_restricted_content_summary">Mostra contingut que podria ser inadequat pels infants</string>
     <string name="unsupported_url_dialog_message">No s\'ha pogut reconèixer l\'adreça URL. Obrir-la amb una altra aplicació\?</string>
-    <string name="auto_queue_toggle">Cua automàtica</string>
+    <string name="auto_queue_toggle">Posa a la cua automàticament</string>
     <string name="show_meta_info_summary">Desactiveu-ho per deixar de mostrar les metadades, que contenen informació addicional sobre el creador del directe, el contingut o una sol·licitud de cerca</string>
     <string name="show_meta_info_title">Mostra les metadades</string>
     <string name="clear_queue_confirmation_description">La cua de reproducció activa serà sobreescrita</string>
@@ -651,4 +652,40 @@
     <string name="start_main_player_fullscreen_title">Inicia el reproductor principal en pantalla completa</string>
     <string name="main_page_content_swipe_remove">Llisqueu els elements per eliminar-los</string>
     <string name="start_main_player_fullscreen_summary">Si la rotació automàtica està bloquejada, no inicieu vídeos al mini reproductor, sinó que aneu directament al mode de pantalla completa. Podeu accedir igualment al mini reproductor sortint de pantalla completa</string>
+    <string name="background_player_already_playing_toast">Ja s\'està reproduint en segon pla</string>
+    <string name="error_report_channel_name">Notificació d\'informe d\'error</string>
+    <string name="crash_the_player">Tancar abruptament el reproductor</string>
+    <string name="manual_update_title">Comprovar si hi ha actualitzacions</string>
+    <string name="manual_update_description">Comprovar manualment si hi ha noves versions</string>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Baixada finalitzada</item>
+        <item quantity="other">%s baixades finalitzades</item>
+    </plurals>
+    <string name="seekbar_preview_thumbnail_title">Vista prèvia de les miniatures de la barra de cerca</string>
+    <string name="no_appropriate_file_manager_message_android_10">No s\'ha trobat cap gestor de fitxers adequat per a aquesta acció.
+\nInstal·leu un gestor de fitxers compatible amb l\'entorn d\'accés d\'emmagatzematge.</string>
+    <string name="no_appropriate_file_manager_message">No s\'ha trobat cap gestor de fitxers adequat per a aquesta acció.
+\nInstal·leu un gestor de fitxers o intenteu desactivar «%s» als paràmetres de baixada.</string>
+    <string name="error_report_notification_toast">S\'ha produït un error, consulteu la notificació</string>
+    <string name="enqueued_next">Afegit el següent vídeo a la cua</string>
+    <string name="error_report_notification_title">NewPipe ha trobat un error, toca per informar</string>
+    <string name="enqueue_next_stream">Posa a la cua el següent vídeo</string>
+    <string name="create_error_notification">Crear una notificació d\'error</string>
+    <string name="error_show_channel_details">Error en mostrar els detalls del canal</string>
+    <string name="error_report_channel_description">Notificacions per informar d\'errors</string>
+    <string name="show_error_snackbar">Mostra una barra d\'errors</string>
+    <string name="checking_updates_toast">S\'estan comprovant les actualitzacions…</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">S\'ha suprimit %1$s baixada</item>
+        <item quantity="other">S\'han suprimit %1$s baixades</item>
+    </plurals>
+    <string name="downloads_storage_use_saf_summary_api_19">El \"Sistema d\'Accés a l\'Emmagatzematge\" no està implementat a Android KitKat i a versions anteriors</string>
+    <string name="downloads_storage_use_saf_summary_api_29">A partir de l\'Android 10 només s\'admet el \"Sistema d\'Accés a l\'Emmagatzematge\"</string>
+    <string name="feed_new_items">Elements de feed nous</string>
+    <string name="feed_load_error_fast_unknown">El mode d\'alimentació ràpida no proporciona més informació sobre això.</string>
+    <string name="detail_pinned_comment_view_description">Comentari fixat</string>
+    <string name="show_crash_the_player_title">Mostrar \"tancar de forma violenta el reproductor\"</string>
+    <string name="show_crash_the_player_summary">Mostra una opció de fallada quan s\'utilitza el reproductor</string>
+    <string name="show_image_indicators_summary">Mostra les cintes de color Picasso a la part superior de les imatges que indiquen la seva font: vermell per a la xarxa, blau per al disc i verd per a la memòria</string>
+    <string name="leak_canary_not_available">El LeakCanary no està disponible</string>
 </resources>

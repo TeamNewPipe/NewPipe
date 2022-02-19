@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Tekan \"Cari\" untuk bermula</string>
+    <string name="main_bg_subtitle">Tekan kanta kaca \"Cari\" untuk bermula</string>
     <string name="upload_date_text">Diterbitkan pada %1$s</string>
     <string name="no_player_found">Tiada pemain strim ditemui. Muat turun VLC\?</string>
     <string name="no_player_found_toast">Tiada pemain strim yang ditemui (anda boleh memasang VLC untuk memainkan).</string>
@@ -43,7 +43,7 @@
     <string name="show_higher_resolutions_title">Papar resolusi yang lebih tinggi</string>
     <string name="show_higher_resolutions_summary">Hanya peranti tertentu yang boleh bermain video 2K/4K</string>
     <string name="play_with_kodi_title">Main dengan Kodi</string>
-    <string name="kore_not_found">App Kore tidak dijumpai. Pasangkan\?</string>
+    <string name="kore_not_found">Pasangkan aplikasi Kore yang tidak dijumpai\?</string>
     <string name="show_play_with_kodi_title">Paparkan opsyen \"Main dengan Kodi\"</string>
     <string name="show_play_with_kodi_summary">Paparkan opsyen untuk memain video dengan Kodi</string>
     <string name="play_audio">Audio</string>
@@ -441,4 +441,6 @@
     <string name="overwrite_failed">tidak boleh tulis ganti fail</string>
     <string name="overwrite_unrelated_warning">Fail dengan nama yang sama sudah ada</string>
     <string name="dont_show">Jangan tunjuk</string>
+    <string name="unmute">Nyahbisu</string>
+    <string name="notification_colorize_summary">Minta Android menyesuaikan warna pemberitahuan sesuai dengan warna utama di thumbnail (perhatikan bahawa ini tidak tersedia dalam semua perangkat)</string>
 </resources>
