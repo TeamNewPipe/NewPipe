@@ -17,10 +17,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewbinding.ViewBinding;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.databinding.PignateFooterBinding;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
@@ -44,6 +42,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Queue;
+import java.util.function.Supplier;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
@@ -77,11 +76,6 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         if (infoListAdapter == null) {
             infoListAdapter = new InfoListAdapter(activity);
         }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
     }
 
     @Override
@@ -220,12 +214,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Nullable
-    protected ViewBinding getListHeader() {
+    protected Supplier<View> getListHeaderSupplier() {
         return null;
-    }
-
-    protected ViewBinding getListFooter() {
-        return PignateFooterBinding.inflate(activity.getLayoutInflater(), itemsList, false);
     }
 
     protected RecyclerView.LayoutManager getListLayoutManager() {
@@ -252,11 +242,10 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
 
         infoListAdapter.setUseGridVariant(useGrid);
-        infoListAdapter.setFooter(getListFooter().getRoot());
 
-        final ViewBinding listHeader = getListHeader();
-        if (listHeader != null) {
-            infoListAdapter.setHeader(listHeader.getRoot());
+        final Supplier<View> listHeaderSupplier = getListHeaderSupplier();
+        if (listHeaderSupplier != null) {
+            infoListAdapter.setHeaderSupplier(listHeaderSupplier);
         }
 
         itemsList.setAdapter(infoListAdapter);
@@ -271,7 +260,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     @Override
     protected void initListeners() {
         super.initListeners();
-        infoListAdapter.setOnStreamSelectedListener(new OnClickGesture<StreamInfoItem>() {
+        infoListAdapter.setOnStreamSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final StreamInfoItem selectedItem) {
                 onStreamSelected(selectedItem);
@@ -315,20 +304,96 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             }
         });
 
-        infoListAdapter.setOnCommentsSelectedListener(new OnClickGesture<CommentsInfoItem>() {
+        infoListAdapter.setOnCommentsSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final CommentsInfoItem selectedItem) {
                 onItemSelected(selectedItem);
             }
         });
 
+        // Ensure that there is always a scroll listener (e.g. when rotating the device)
+        useNormalItemListScrollListener();
+    }
+
+    /**
+     * Removes all listeners and adds the normal scroll listener to the {@link #itemsList}.
+     */
+    protected void useNormalItemListScrollListener() {
+        if (DEBUG) {
+            Log.d(TAG, "useNormalItemListScrollListener called");
+        }
         itemsList.clearOnScrollListeners();
-        itemsList.addOnScrollListener(new OnScrollBelowItemsListener() {
+        itemsList.addOnScrollListener(new DefaultItemListOnScrolledDownListener());
+    }
+
+    /**
+     * Removes all listeners and adds the initial scroll listener to the {@link #itemsList}.
+     * <br/>
+     * Which tries to load more items when not enough are in the view (not scrollable)
+     * and more are available.
+     * <br/>
+     * Note: This method only works because "This callback will also be called if visible
+     * item range changes after a layout calculation. In that case, dx and dy will be 0."
+     * - which might be unexpected because no actual scrolling occurs...
+     * <br/>
+     * This listener will be replaced by DefaultItemListOnScrolledDownListener when
+     * <ul>
+     *     <li>the view was actually scrolled</li>
+     *     <li>the view is scrollable</li>
+     *     <li>no more items can be loaded</li>
+     * </ul>
+     */
+    protected void useInitialItemListLoadScrollListener() {
+        if (DEBUG) {
+            Log.d(TAG, "useInitialItemListLoadScrollListener called");
+        }
+        itemsList.clearOnScrollListeners();
+        itemsList.addOnScrollListener(new DefaultItemListOnScrolledDownListener() {
             @Override
-            public void onScrolledDown(final RecyclerView recyclerView) {
-                onScrollToBottom();
+            public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (dy != 0) {
+                    log("Vertical scroll occurred");
+
+                    useNormalItemListScrollListener();
+                    return;
+                }
+                if (isLoading.get()) {
+                    log("Still loading data -> Skipping");
+                    return;
+                }
+                if (!hasMoreItems()) {
+                    log("No more items to load");
+
+                    useNormalItemListScrollListener();
+                    return;
+                }
+                if (itemsList.canScrollVertically(1)
+                        || itemsList.canScrollVertically(-1)) {
+                    log("View is scrollable");
+
+                    useNormalItemListScrollListener();
+                    return;
+                }
+
+                log("Loading more data");
+                loadMoreItems();
+            }
+
+            private void log(final String msg) {
+                if (DEBUG) {
+                    Log.d(TAG, "initItemListLoadScrollListener - " + msg);
+                }
             }
         });
+    }
+
+    class DefaultItemListOnScrolledDownListener extends OnScrollBelowItemsListener {
+        @Override
+        public void onScrolledDown(final RecyclerView recyclerView) {
+            onScrollToBottom();
+        }
     }
 
     private void onStreamSelected(final StreamInfoItem selectedItem) {
@@ -417,6 +482,12 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     /*//////////////////////////////////////////////////////////////////////////
     // Load and handle
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    protected void startLoading(final boolean forceLoad) {
+        useInitialItemListLoadScrollListener();
+        super.startLoading(forceLoad);
+    }
 
     protected abstract void loadMoreItems();
 
