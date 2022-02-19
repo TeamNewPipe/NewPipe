@@ -593,8 +593,7 @@ public final class Player implements
      */
     private void setupPlayerSeekOverlay() {
         binding.fastSeekOverlay
-                .seekSecondsSupplier(
-                        () -> (int) (retrieveSeekDurationFromPreferences(this) / 1000.0f))
+                .seekSecondsSupplier(() -> retrieveSeekDurationFromPreferences(this) / 1000)
                 .performListener(new PlayerFastSeekOverlay.PerformListener() {
 
                     @Override
@@ -607,6 +606,7 @@ public final class Player implements
                         animate(binding.fastSeekOverlay, false, SEEK_OVERLAY_DURATION);
                     }
 
+                    @NonNull
                     @Override
                     public FastSeekDirection getFastSeekDirection(
                             @NonNull final DisplayPortion portion
