@@ -4,20 +4,18 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-abstract class AbstractInfoPlayQueue<T extends ListInfo<StreamInfoItem>, U extends InfoItem>
+abstract class AbstractInfoPlayQueue<T extends ListInfo<StreamInfoItem>>
         extends PlayQueue {
     boolean isInitial;
     private boolean isComplete;
@@ -28,12 +26,15 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo<StreamInfoItem>, U exten
 
     private transient Disposable fetchReactor;
 
-    AbstractInfoPlayQueue(final U item) {
-        this(item.getServiceId(), item.getUrl(), null, Collections.emptyList(), 0);
+    protected AbstractInfoPlayQueue(final T info) {
+        this(info.getServiceId(), info.getUrl(), info.getNextPage(), info.getRelatedItems(), 0);
     }
 
-    AbstractInfoPlayQueue(final int serviceId, final String url, final Page nextPage,
-                          final List<StreamInfoItem> streams, final int index) {
+    protected AbstractInfoPlayQueue(final int serviceId,
+                                    final String url,
+                                    final Page nextPage,
+                                    final List<StreamInfoItem> streams,
+                                    final int index) {
         super(index, extractListItems(streams));
 
         this.baseUrl = url;
