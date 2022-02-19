@@ -73,7 +73,7 @@
     <string name="resume_on_audio_focus_gain_summary">Continuar reproducindo o vídeo despois das interrupcións (como, por exemplo, as chamadas)</string>
     <string name="download_dialog_title">Descarregar</string>
     <string name="show_next_and_similar_title">Mostrar vídeos \"seguintes\" e \"semellantes\"</string>
-    <string name="show_hold_to_append_title">Mostrar a suxestión \"Manteña presionado para engadir á cola\"</string>
+    <string name="show_hold_to_append_title">Mostrar a suxestión \"Manteña presionado para engadir á fila\"</string>
     <string name="show_hold_to_append_summary">Amosar o consello ao premer o fondo ou o botón emerxente \"Detalles:\" no vídeo</string>
     <string name="unsupported_url">URL non soportado</string>
     <string name="default_content_country_title">País predeterminado para o contido</string>
@@ -86,7 +86,7 @@
     <string name="background_player_playing_toast">Reproducindo en segundo plano</string>
     <string name="popup_playing_toast">Reproducindo en modo «popup»</string>
     <string name="content">Contido</string>
-    <string name="show_age_restricted_content_title">Contido restrinxido para certa idade</string>
+    <string name="show_age_restricted_content_title">Mostrar contido con restrición de idade</string>
     <string name="duration_live">En directo</string>
     <string name="downloads">Descargas</string>
     <string name="downloads_title">Descargas</string>
@@ -106,15 +106,15 @@
     <string name="just_once">Só unha vez</string>
     <string name="file">Ficheiro</string>
     <string name="notification_channel_name">Notificación do NewPipe</string>
-    <string name="notification_channel_description">Notificacións para os reprodutores de fondo e reprodutores emerxentes de NewPipe</string>
+    <string name="notification_channel_description">Notificacións para o reprodutor de NewPipe</string>
     <string name="unknown_content">[Descoñecido]</string>
     <string name="switch_to_background">Mudar para o segundo plano</string>
     <string name="switch_to_popup">Mudar para o «popup»</string>
     <string name="switch_to_main">Mudar para principal</string>
     <string name="import_data_title">Importar base de datos</string>
     <string name="export_data_title">Exportar base de datos</string>
-    <string name="import_data_summary">Anula o teu historial e subscricións actuais</string>
-    <string name="export_data_summary">Exportar historial, subscricións e listas de reprodución</string>
+    <string name="import_data_summary">Anula o seu historial, subscricións, listas de reprodución e (opcionalmente) configuracións</string>
+    <string name="export_data_summary">Exportar historial, subscricións, listas de reprodución e configuración</string>
     <string name="clear_views_history_title">Limpar historial de reproducións</string>
     <string name="clear_views_history_summary">Elimina o historial de transmisións reproducidas e as posicións da reprodución</string>
     <string name="delete_view_history_alert">Eliminar todo o historial de reproducións\?</string>
@@ -145,7 +145,7 @@
     <string name="no_streams_available_download">Non hai emisións para descargar</string>
     <string name="sorry_string">Deculpe, isto non debería ter acontecido.</string>
     <string name="error_report_button_text">Informar deste erro por enderezo electrónico</string>
-    <string name="error_snackbar_message">Desculpe, ocorreron algúns erros.</string>
+    <string name="error_snackbar_message">Desculpe, algo foi mal.</string>
     <string name="error_snackbar_action">Informe</string>
     <string name="what_device_headline">Información:</string>
     <string name="what_happened_headline">Que ocorreu:</string>
@@ -227,7 +227,7 @@
 \nA política de privacidade do NewPipe explica con máis detalle que datos son enviados e gardados cando envía un relatorio de erros.</string>
     <string name="read_privacy_policy">Ler a política de privacidade</string>
     <string name="app_license_title">Licenza do NewPipe</string>
-    <string name="app_license">NewPipe é un software libre copyleft: Podes usar, estudar compartir e melloralo a vontade. En concreto, pode redistribuír e / ou modificala segundo os termos da Licenza Pública Xeral GNU publicada pola Free Software Foundation, xa sexa a versión 3 da licenza, ou (na súa opción) calquera outra versión posterior.</string>
+    <string name="app_license">NewPipe é un software libre copyleft: Pode usar, estudar compartir e melloralo a vontade. En concreto, pode redistribuír e / ou modificala segundo os termos da Licenza Pública Xeral GNU publicada pola Free Software Foundation, xa sexa a versión 3 da licenza, ou (na súa opción) calquera outra versión posterior.</string>
     <string name="read_full_license">Ler a licenza</string>
     <string name="title_activity_history">Historial</string>
     <string name="action_history">Historial</string>
@@ -494,7 +494,7 @@
     <string name="subscribers_count_not_available">Non hai dispoñible conta de subscritores</string>
     <string name="drawer_header_description">Cambiar o servizo actualmente seleccionado:</string>
     <string name="error_report_open_github_notice">Verifique se xa existe un problema que fala do seu fallo. Ao crear billetes duplicados, gasta o tempo que nós poderiamos gastar en solucionar o erro real.</string>
-    <string name="error_report_open_issue_button_text">Informar dun erro en GitHub</string>
+    <string name="error_report_open_issue_button_text">Reportar en GitHub</string>
     <string name="copy_for_github">Copia o informe con formato</string>
     <string name="permission_display_over_apps">Dar permiso para mostrar noutros aplicativos</string>
     <string name="restore_defaults_confirmation">Quere restaurar os valores predeterminados\?</string>
@@ -508,7 +508,7 @@
     <string name="delete_playback_states_alert">Eliminas todas as posicións de reprodución\?</string>
     <string name="clear_playback_states_summary">Elimina todas as posicións de reprodución</string>
     <string name="clear_playback_states_title">Elimina as posicións de reprodución</string>
-    <string name="app_update_notification_channel_description">Notificacións para a nova versión de NewPipe</string>
+    <string name="app_update_notification_channel_description">Notificacións para as novas versións de NewPipe</string>
     <string name="app_update_notification_channel_name">Notificación da actualización do aplicativo</string>
     <string name="file_deleted">Ficheiro eliminado</string>
     <string name="artists">Artistas</string>
@@ -518,8 +518,8 @@
     <string name="videos_string">Vídeos</string>
     <string name="restricted_video">Este vídeo está restrinxido por idade.
 \n
-\nSe desexa visualizalo, habilite \"%1$s\" nos axustes.</string>
-    <string name="youtube_restricted_mode_enabled_title">Modo restrinxido de YouTube</string>
+\nSe desexa visualizalo, habilite \"%1$s\" nas opcións.</string>
+    <string name="youtube_restricted_mode_enabled_title">Activar modo restrinxido de YouTube</string>
     <string name="settings_category_updates_title">Actualizacións</string>
     <string name="peertube_instance_add_exists">A instancia xa existe</string>
     <string name="peertube_instance_add_fail">Non se puido validar a instancia</string>
@@ -542,7 +542,7 @@
     <string name="search_showing_result_for">Amosando resultados para: %s</string>
     <string name="notification_action_buffering">Procesando</string>
     <string name="notification_action_repeat">Repetir</string>
-    <string name="notification_actions_at_most_three">Podes seleccionar como máximo tres accións para amosar na notificación compacta!</string>
+    <string name="notification_actions_at_most_three">Pode seleccionar como máximo tres accións para amosar na notificación compacta!</string>
     <string name="notification_action_0_title">Primeiro botón de acción</string>
     <string name="notification_action_1_title">Segundo botón de acción</string>
     <string name="notification_action_2_title">Terceiro botón de acción</string>
@@ -566,7 +566,7 @@
     <string name="metadata_category">Categoría</string>
     <string name="description_select_disable">Deshabilitar a selección do texto da descrición</string>
     <string name="description_select_enable">Habilitar a selección do texto na descrición</string>
-    <string name="description_select_note">Agora podes seleccionar o texto na descrición. Teña en conta que a páxina pode cintilar e as ligazóns poden non ser clicábeis no modo selección.</string>
+    <string name="description_select_note">Agora pode seleccionar o texto na descrición. Teña en conta que a páxina pode cintilar e as ligazóns poden non ser clicábeis no modo selección.</string>
     <string name="auto_device_theme_title">Automático (Tema do dispositivo)</string>
     <string name="radio">Radio</string>
     <string name="service_provides_reason">%s dá este motivo:</string>
@@ -617,7 +617,7 @@
     <string name="on">Prendido</string>
     <string name="metadata_host">Provedor</string>
     <string name="featured">Destacado</string>
-    <string name="paid_content">Este contido só está dispoñíbel para usuarios que pagaran por el, así que non pode ser transmitido ou decarregado por NewPipe.</string>
+    <string name="paid_content">Este contido só está dispoñíbel para usuarios que pagaran por el, así que non pode ser transmitido ou descarregado por NewPipe.</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Será preguntado onde desexa gardar cada descarga</string>
     <string name="dont_show">Non mostrar</string>
     <string name="low_quality_smaller">Baixa calidade (máis pequeno)</string>
@@ -656,4 +656,20 @@
     <string name="clear_queue_confirmation_summary">Cambiar dun reprodutor a outro pode substituír a súa cola</string>
     <string name="notification_action_shuffle">Barallar</string>
     <string name="notification_actions_summary">Edite cada acción da notificación premendo nela. Seleccione ata tres delas para seren mostradas na notificación compacta usando as checkboxes da dereita</string>
+    <string name="enqueue_next_stream">Enfileirar o seguinte vídeo</string>
+    <string name="start_main_player_fullscreen_title">Inciar reprodutor principal en pantalla completa</string>
+    <string name="start_main_player_fullscreen_summary">Non iniciar vídeos no reprodutor mini, mais cambiar a pantalla completa directamente, se a rotación estiver bloqueada. Aínda pode acceder o reprodutor mini ao saír da pantalla completa</string>
+    <string name="main_page_content_swipe_remove">Deslice os elementos para removelos</string>
+    <string name="no_appropriate_file_manager_message">Non foi atopado ningún xestor de arquivos adecuado para esta acción.
+\nPor favor instale un ou tente deshabilitar \'%s\' nas opcións de descarregamento.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Non foi atopado ningún xestor de arquivos adecuado para esta acción.
+\nPor favor instale un compatíbel co Sistema de Acceso ao Almacenamento.</string>
+    <string name="detail_heart_img_view_description">Valorado polo creador</string>
+    <string name="error_report_notification_toast">Ocorreu un erro, vexa a notificación</string>
+    <string name="auto_queue_toggle">Auto-enfileirar</string>
+    <string name="soundcloud_go_plus_content">Esta é unha pista de SoundCloud Go+, polo menos no seu país, así que non pode ser transmitida ou descarregada por NewPipe.</string>
+    <string name="error_report_channel_name">Notificación de relatorio de erros</string>
+    <string name="error_report_channel_description">Notificacións para reportar erros</string>
+    <string name="error_report_notification_title">NewPipe atopou un erro, presione para reportar</string>
+    <string name="detail_pinned_comment_view_description">Comentario fixado</string>
 </resources>

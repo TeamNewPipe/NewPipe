@@ -396,4 +396,5 @@
     <string name="notification_action_2_title">Tredje handlingstast</string>
     <string name="search_showing_result_for">Viser resultater for: %s</string>
     <string name="open_with">Åben med</string>
+    <string name="leak_canary_not_available">LeakCanary er ikke tilgængelig</string>
 </resources>

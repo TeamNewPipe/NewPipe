@@ -191,7 +191,7 @@
     <string name="no_views">بینراو نییە</string>
     <string name="invalid_file">ئەو فایله‌ بوونی نییە یان دەسەڵاتی خوێندنەوە و نوسینی لاوازە</string>
     <string name="parsing_error">ناتوانرێت ماڵپەڕ شیبکرێتەوە</string>
-    <string name="settings_file_charset_title">ڕه‌نووسه‌ ڕێ پێدراوه‌كانله‌ فایله‌ ناوییه‌كاندا</string>
+    <string name="settings_file_charset_title">ڕه‌نووسه‌ ڕێپێدراوه‌كان له‌ فایله‌ ناوییه‌كاندا</string>
     <string name="import_soundcloud_instructions_hint">ئایدییەکەت ، soundcloud.com/yourid</string>
     <string name="help">یارمەتی</string>
     <string name="fragment_feed_title">چی نوێ هه‌یه‌</string>
@@ -462,9 +462,9 @@
     <string name="settings_file_replacement_character_title">ڕه‌نووسی جێگۆڕین</string>
     <string name="settings">ڕێكخستنه‌كان</string>
     <string name="missions_header_finished">دابه‌زێنراو</string>
-    <string name="import_youtube_instructions">بۆ هاورده‌ كردنی بەژداربوونەکانی یوتوب له‌ گووگڵه‌وه‌:
+    <string name="import_youtube_instructions">بۆ هاورده‌كردنی بەژداربوونەکانی یوتوب له‌ گووگڵه‌وه‌:
 \n
-\n1. ئەم بەستەرە بکەوە: %1$s
+\n1. ئەم بەستەرە بکەرەوە: %1$s
 \n2. بچۆرەژوورەوە گەر داوای‌ کرد
 \n3. كرته‌ بكه‌ له‌ \"All data included\"، پاشان كرته‌ بكه‌ له‌ \"Deselect all\" ، پاشان ته‌نیا \"subscriptions\" هه‌ڵبژێره‌ پاشان كرته‌ له‌ \"OK\" بكه‌
 \n4. كرته‌ بكه‌ له‌ \"Next step\" و دواتر له‌ \"Create export\"
@@ -682,4 +682,10 @@
     <string name="feed_new_items">بابەتە نوێیەکانی فیید</string>
     <string name="detail_pinned_comment_view_description">لێدوانی هەڵواسراو</string>
     <string name="crash_the_player">کڕاش کردنی لێدەر</string>
+    <string name="show_error_snackbar">پیشاندانی هەڵەی سناکباڕ</string>
+    <string name="no_appropriate_file_manager_message">هیچ ڕێکخەرێکی فایلی گونجاو نەدۆزرایەوە بۆ ئەم کردارە.
+\nتکایە ڕێکخەری فایلییەک دابمەزرێنە لۆ هەوڵدانی ناکاراکردنی \'%s\' لە ڕێکخستنەکانی دابەزاندندا.</string>
+    <string name="leak_canary_not_available">LeakCanary بەردەست نییە</string>
+    <string name="no_appropriate_file_manager_message_android_10">هیچ ڕێکخەرێکی فایلی گونجاو نەدۆزرایەوە بۆ ئەم کردارە.
+\nتکایە ڕێکخەرێکی فایلی دابمەزرێنە کە گونجاوبێت لەگەڵ دەسەڵاتی گەیشتن بە بیرگە.</string>
 </resources>

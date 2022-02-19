@@ -78,8 +78,8 @@
     <string name="clear">Pyyhi</string>
     <string name="best_resolution">Paras resoluutio</string>
     <string name="undo">Peru</string>
-    <string name="notification_channel_name">NewPipe Ilmoitus</string>
-    <string name="notification_channel_description">Ilmoitukset NewPipen tausta- ja ponnahdusikkunasoittimille</string>
+    <string name="notification_channel_name">NewPipe ilmoitus</string>
+    <string name="notification_channel_description">Ilmoitukset NewPipen soittimille</string>
     <string name="general_error">Virhe</string>
     <string name="network_error">Verkkovirhe</string>
     <string name="could_not_load_thumbnails">Kaikkia esikatselukuvia ei voitu ladata</string>
@@ -304,7 +304,7 @@
 \n3. Klikkaa \"Kaikki Youtube-data valittuna\", sitten \"Poista kaikki valinnat\", sitten ainoastaan \"tilaukset\" ja klikkaa \"OK\"
 \n4. Klikkaa \"Seuraava vaihe\" ja \"Luo vienti\"
 \n5. Klikkaa \"Lataa\"-painiketta tämän ilmestyessä
-\n6. Klikkaa TUO TIEDOSTO alhaalta ja valitse ladattu tiedosto
+\n6. Klikkaa TUO TIEDOSTO alhaalta ja valitse ladattu .zip-tiedosto
 \n7. [Jos zip-tiedoston tuonti epäonnistuu] Pura .csv-tiedosto (yleensä sijainnissa \"Youtube ja Youtube Musiikki/tilaukset/tilaukset.csv\") ja klikkaa TUO TIEDOSTO alhaalta ja valitse purettu csv-tiedosto</string>
     <string name="import_soundcloud_instructions">Tuo SoundCloud-profiili kirjoittamalla joko osoite tai ID:si:
 \n
@@ -337,7 +337,7 @@
     <string name="unsubscribe">Peru tilaus</string>
     <string name="tab_choose">Valitse välilehti</string>
     <string name="missions_header_finished">Valmis</string>
-    <string name="enqueue">Jono</string>
+    <string name="enqueue">Lisää jonoon</string>
     <string name="seek_duration_title">Eteen-/taaksepäinkelauksen aika-askeleen pituus</string>
     <string name="recently_added">Hiljattain lisätyt</string>
     <string name="local">Paikalliset</string>
@@ -369,7 +369,7 @@
     <string name="download_to_sdcard_error_message">Lataaminen ulkoiselle SD-kortille ei ole mahdollista. Nollataanko latauskansion sijainti\?</string>
     <string name="download_to_sdcard_error_title">Ulkoinen tallennustila ei käytettävissä</string>
     <string name="help">Ohje</string>
-    <string name="app_update_notification_channel_description">Ilmoitukset uudesta NewPipe-versiosta</string>
+    <string name="app_update_notification_channel_description">Ilmoitukset uusista NewPipe-versioista</string>
     <string name="app_update_notification_channel_name">Sovelluspäivitysilmoitus</string>
     <string name="file_deleted">Tiedosto poistettu</string>
     <string name="artists">Esittäjät</string>
@@ -672,4 +672,20 @@
     <string name="manual_update_title">Tarkista päivitykset</string>
     <string name="manual_update_description">Tarkista manuaalisesti onko uusia versioita saatavilla</string>
     <string name="checking_updates_toast">Tarkistetaan päivityksiä…</string>
+    <string name="error_report_channel_description">Ilmoitukset, joilla raportoidaan virheistä</string>
+    <string name="detail_pinned_comment_view_description">Kiinnitetty kommentti</string>
+    <string name="error_report_channel_name">Virheraportti-ilmoitus</string>
+    <string name="error_report_notification_title">NewPipe kohtasi virheen, näpäytä raportoidaksesi</string>
+    <string name="error_report_notification_toast">Tapahtui virhe, katso ilmoitus</string>
+    <string name="create_error_notification">Luo virheilmoitus</string>
+    <string name="leak_canary_not_available">LeakCanary ei ole saatavilla</string>
+    <string name="show_crash_the_player_title">Näytä \"Kaada soitin\"</string>
+    <string name="crash_the_player">Kaada soitin</string>
+    <string name="no_appropriate_file_manager_message_android_10">Toiminnolle ei löytynyt sopivaa tiedostonhallintaohjelmaa.
+\nAsenna tiedostonhallintaohjelma, joka on yhteensopiva Storage Access Frameworkin kanssa.</string>
+    <string name="no_appropriate_file_manager_message">Toiminnolle ei löytynyt sopivaa tiedostonhallintaohjelmaa.
+\nAsenna tiedostonhallintaohjelma tai kokeile asettaa \'%s\' pois käytöstä latausasetuksista.</string>
+    <string name="show_crash_the_player_summary">Näytä soitinta käytettäessä soittimen kaatamisen vaihtoehto</string>
+    <string name="show_error_snackbar">Näytä virheen ponnahdusilmoitus</string>
+    <string name="feed_new_items">Uudet syötteet</string>
 </resources>

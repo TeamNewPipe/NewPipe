@@ -1,0 +1,17 @@
+Nieuw
+- Toon een thumbnail preview tijdens zoeken
+- Detecteer uitgeschakeld commentaar
+- Markeer een feed-item als bekeken
+- Reactie-harten tonen
+
+Verbeterd
+- Verbeter metadata en tags lay-out
+- Pas servicekleuren toe op UI-onderdelen
+
+Opgelost
+- Miniatuur in mini player
+- Eindeloze buffering bij dubbele wachtrij-items
+- Enkele spelerfouten als rotatie en sneller sluiten
+- ReCAPTCHA die op de achtergrond geladen blijft
+- Klikken uitschakelen tijdens verversen van feed
+- Enkele downloader crashes

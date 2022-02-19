@@ -1,0 +1,15 @@
+Verbeteringen:
+• Opnieuw toegevoegd, functie om miniatuur te verbergen op vergrendelscherm
+• Veeg naar beneden om feed te verversen
+• Verbeterd ophalen van lokale lijsten
+
+Gemaakt:
+• Crash bij start van NewPipe nadat verwijdering uit RAM geheugen
+• Crash bij start van NewPipe zonder internetverbinding
+• Helderheid- en volume-instellingen worden beter gerespecteerd
+• [YouTube] Lange speellijst hersteld
+
+Overig:
+• Code opgeruimd
+• Afhankelijkheid updates
+• Update vertalingen

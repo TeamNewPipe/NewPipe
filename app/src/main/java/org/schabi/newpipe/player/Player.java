@@ -572,14 +572,20 @@ public final class Player implements
         });
 
         // PlaybackControlRoot already consumed window insets but we should pass them to
-        // player_overlays too. Without it they will be off-centered
+        // player_overlays and fast_seek_overlay too. Without it they will be off-centered.
         binding.playbackControlRoot.addOnLayoutChangeListener(
-                (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) ->
-                        binding.playerOverlays.setPadding(
-                                v.getPaddingLeft(),
-                                v.getPaddingTop(),
-                                v.getPaddingRight(),
-                                v.getPaddingBottom()));
+                (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+                    binding.playerOverlays.setPadding(
+                            v.getPaddingLeft(),
+                            v.getPaddingTop(),
+                            v.getPaddingRight(),
+                            v.getPaddingBottom());
+                    binding.fastSeekOverlay.setPadding(
+                            v.getPaddingLeft(),
+                            v.getPaddingTop(),
+                            v.getPaddingRight(),
+                            v.getPaddingBottom());
+                });
     }
 
     /**

@@ -285,7 +285,8 @@
 \n3. Premeu \"Totes les dades incloses\", després \"Dessel·lecciona-ho tot\", llavors sel·leccioneu només \"Subscripcions\" i finalment premeu \"D\'acord\".
 \n4. Premeu \"Pas següent\" i llavors a \"Crea una exportació\"
 \n5. Premeu el botó \"Baixa\" un cop hagi aparegut
-\n6. Del fitxer comprimit baixat, extreieu-ne el fitxer subscripcions.json (es troba a \"Takeout/YouTube i YouTube Music/subscripcions/subscripcions.json\") i importeu-lo aquí.</string>
+\n6. Premeu a IMPORTA EL FITXER i sel·leccioneu el fitxer .zip descarregat
+\n7. [En cas que la importació del fitxer .zip hagi fallat] extreieu-ne el fitxer subscripcions.csv (es troba generalment a \"Takeout/YouTube i YouTube Music/subscripcions/subscripcions.csv\"), premeu a IMPORTA EL FITXER i sel·leccioneu el fitxer .csv extret.</string>
     <string name="import_soundcloud_instructions">Importeu un perfil del SoundCloud mitjançant l\'URL o l\'identificador del vostre perfil: 
 \n 
 \n1. Activeu el «Mode d\'ordinador» en un navegador (el lloc web no està disponible per a dispositius mòbils) 
@@ -401,7 +402,8 @@
     <string name="enable_queue_limit">Limita la cua de baixades</string>
     <string name="start_downloads">Inicia les baixades</string>
     <string name="pause_downloads">Pausa les baixades</string>
-    <string name="downloads_storage_ask_summary">Si us demanarà la ubicació de cada baixada</string>
+    <string name="downloads_storage_ask_summary">Se us demanarà la ubicació de cada baixada.
+\nHeu d\'activar el SAF si voleu descarregar-ho a una targeta SD externa</string>
     <string name="enable_playback_state_lists_title">Posicions a les llistes</string>
     <string name="enable_playback_state_lists_summary">Mostra els indicadors de posició de reproducció a les llistes</string>
     <string name="settings_category_clear_data_title">Neteja les dades</string>
@@ -414,9 +416,8 @@
     <string name="watch_history_states_deleted">S\'ha esborrat les posicions de reproducció</string>
     <string name="missing_file">El fitxer s\'ha mogut o suprimit</string>
     <string name="enable_queue_limit_desc">Només una baixada alhora</string>
-    <string name="downloads_storage_use_saf_title">Utilitza SAF</string>
-    <string name="downloads_storage_use_saf_summary">El SAF (Storage Access Framework; estructura d\'accés a l\'emmagatzematge) us permet realitzar baixades a una memòria externa com una targeta SD.
-\nAlguns dispositius no en són compatibles</string>
+    <string name="downloads_storage_use_saf_title">Fes servir el SAF</string>
+    <string name="downloads_storage_use_saf_summary">El SAF (Storage Access Framework; estructura d\'accés a l\'emmagatzematge) us permet realitzar baixades a una memòria externa com una targeta SD.</string>
     <string name="clear_playback_states_title">Esborra les posicions de reproducció</string>
     <string name="clear_playback_states_summary">Esborra totes les posicions de reproducció</string>
     <string name="delete_playback_states_alert">Voleu suprimir tots els punts de reproducció\?</string>
@@ -482,7 +483,7 @@
 \nEn definitiva, l\'elecció depèn de si preferiu rapidesa a assegurar-vos que l\'informació és precisa.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desactiva el mode ràpid</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activa el mode ràpid</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Disponible en alguns serveis, normalment és més ràpid, però podria només incloure un nombre limitat de contingut i sovint informació incomplerta (per exemple, sense durada, tipus…).</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Disponible en alguns serveis, normalment és més ràpid, però podria només incloure un nombre limitat de contingut i sovint informació incomplerta (per exemple, sense durada, tipus…)</string>
     <string name="feed_use_dedicated_fetch_method_title">Recupera des d\'un feed dedicat si és possible</string>
     <string name="feed_update_threshold_option_always_update">Actualitza sempre</string>
     <string name="feed_update_threshold_summary">Temps que ha de passar perquè una subscripció es consideri obsoleta — %s</string>
@@ -687,4 +688,5 @@
     <string name="show_crash_the_player_title">Mostrar \"tancar de forma violenta el reproductor\"</string>
     <string name="show_crash_the_player_summary">Mostra una opció de fallada quan s\'utilitza el reproductor</string>
     <string name="show_image_indicators_summary">Mostra les cintes de color Picasso a la part superior de les imatges que indiquen la seva font: vermell per a la xarxa, blau per al disc i verd per a la memòria</string>
+    <string name="leak_canary_not_available">El LeakCanary no està disponible</string>
 </resources>

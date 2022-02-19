@@ -20,7 +20,7 @@
     <string name="download_path_audio_title">Ses indirme klasörü</string>
     <string name="download_path_audio_summary">İndirilen ses dosyaları burada depolanır</string>
     <string name="download_path_audio_dialog_title">Ses dosyaları için indirme klasörünü seç</string>
-    <string name="default_resolution_title">Öntanımlı çözünürlük</string>
+    <string name="default_resolution_title">Varsayılan çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Eksik Kore uygulaması yüklensin mi\?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile oynat\" seçeneğini göster</string>
@@ -283,7 +283,7 @@
 \nSürdürmek istiyor musunuz\?</string>
     <string name="download_thumbnail_title">Küçük resimleri yükle</string>
     <string name="download_thumbnail_summary">Küçük resimlerin yüklenmesini önleyerek veri ve hafıza kullanımından tasarruf etmek için kapatın. Değişiklikler, hem bellek içi hem de diskteki resim önbelleğini temizler</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği silindi</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği temizlendi</string>
     <string name="metadata_cache_wipe_title">Önbelleğe alınmış üstverileri temizle</string>
     <string name="metadata_cache_wipe_summary">Önbelleğe alınmış tüm web sayfası verilerini kaldır</string>
     <string name="metadata_cache_wipe_complete_notice">Üstveri önbelleği temizlendi</string>
@@ -425,8 +425,8 @@
     <string name="default_kiosk_page_summary">Öntanımlı Kiosk</string>
     <string name="no_one_watching">Kimse izlemiyor</string>
     <plurals name="watching">
-        <item quantity="one">%s izliyor</item>
-        <item quantity="other">%s izliyor</item>
+        <item quantity="one">%s izleyen</item>
+        <item quantity="other">%s izleyen</item>
     </plurals>
     <string name="no_one_listening">Kimse dinlemiyor</string>
     <plurals name="listening">
@@ -688,4 +688,5 @@
     <string name="crash_the_player">Oynatıcıyı çöktür</string>
     <string name="background_player_already_playing_toast">Zaten arka planda oynuyor</string>
     <string name="detail_pinned_comment_view_description">Sabitlenmiş yorum</string>
+    <string name="leak_canary_not_available">LeakCanary mevcut değil</string>
 </resources>

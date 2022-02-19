@@ -115,7 +115,7 @@
     <string name="missions_header_pending">等待中</string>
     <string name="paused">已暂停</string>
     <string name="queued">已加入队列</string>
-    <string name="enqueue">排队</string>
+    <string name="enqueue">加入队列</string>
     <string name="permission_denied">操作已被系统拒绝</string>
     <string name="download_failed">下载失败</string>
     <string name="no_comments">没有评论</string>
@@ -676,4 +676,5 @@
     <string name="error_report_notification_title">NewPipe 遇到了一个错误，点击此处报告此错误</string>
     <string name="background_player_already_playing_toast">已经在后台播放</string>
     <string name="detail_pinned_comment_view_description">置顶评论</string>
+    <string name="leak_canary_not_available">LeakCanary 不可用</string>
 </resources>

@@ -688,4 +688,5 @@
 \nInstallera en filhanterare som är kompatibel med Storage Access Framework.</string>
     <string name="background_player_already_playing_toast">Spelas redan i bakgrunden</string>
     <string name="detail_pinned_comment_view_description">Fäst kommentar</string>
+    <string name="leak_canary_not_available">LeakCanary är inte tillgänglig</string>
 </resources>

@@ -691,4 +691,5 @@
 \nPor favor instale un gestor de archivos compatible con \"Sistema de Acceso al Almacenamiento\".</string>
     <string name="detail_pinned_comment_view_description">Comentario fijado</string>
     <string name="background_player_already_playing_toast">Ya se reproduce en segundo plano</string>
+    <string name="leak_canary_not_available">LeakCanary no está disponible</string>
 </resources>

@@ -318,7 +318,7 @@
     <string name="delete_search_history_alert">Видалити всю історію пошуку\?</string>
     <string name="search_history_deleted">Історію пошуку видалено</string>
     <string name="one_item_deleted">Видалено 1 елемент.</string>
-    <string name="app_license">NewPipe є вільним копілефт застосунком: ви можете використовувати, поширювати та вдосконалювати його на власний розсуд. Зокрема, ви можете розповсюджувати та/або змінювати її за умов дотримання вимог GNU General Public License 3-ї версії або (на ваш вибір) будь-якої пізнішої версії, опублікованої Free Software Foundation.</string>
+    <string name="app_license">NewPipe є вільним (копілефт) застосунком: ви можете використовувати, поширювати та вдосконалювати його на власний розсуд. Зокрема ви можете розповсюджувати та/або змінювати його за умов дотримання вимог GNU General Public License 3-ї версії або (на ваш вибір) будь-якої пізнішої версії, опублікованої Free Software Foundation.</string>
     <string name="import_settings">Імпортувати разом з налаштуваннями\?</string>
     <string name="privacy_policy_title">Політика приватності NewPipe</string>
     <string name="privacy_policy_encouragement">Проєкт NewPipe дуже серйозно ставиться до вашої приватності. Тому застосунок не збирає ніяких даних без вашої згоди.
@@ -688,7 +688,7 @@
     <string name="manual_update_description">Перевірка нових версій вручну</string>
     <string name="checking_updates_toast">Перевірка оновлень…</string>
     <string name="feed_new_items">Нові записи стрічки</string>
-    <string name="show_crash_the_player_title">Показати «збій програвача»</string>
+    <string name="show_crash_the_player_title">Показати «Збій програвача»</string>
     <string name="show_crash_the_player_summary">Показує параметр збою під час використання програвача</string>
     <string name="crash_the_player">Збій програвача</string>
     <string name="error_report_channel_name">Сповіщення про звіт про помилку</string>
@@ -703,4 +703,5 @@
     <string name="create_error_notification">Створити сповіщення про помилку</string>
     <string name="background_player_already_playing_toast">Уже відтворюється у фоновому режимі</string>
     <string name="detail_pinned_comment_view_description">Закріплений коментар</string>
+    <string name="leak_canary_not_available">LeakCanary недоступний</string>
 </resources>

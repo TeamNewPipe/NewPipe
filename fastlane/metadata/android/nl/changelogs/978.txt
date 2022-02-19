@@ -1,0 +1,1 @@
+Het uitvoeren van de controle op een nieuwe NewPipe versie is verbeterd. Deze controle werd soms te vroeg uitgevoerd en leidde daardoor tot een crash van de app. Dat zou nu verholpen moeten zijn.

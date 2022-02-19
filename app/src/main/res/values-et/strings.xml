@@ -312,7 +312,7 @@
     <string name="give_back">Anneta</string>
     <string name="privacy_policy_encouragement">NewPipe võtab privaatsust väga tõsiselt. Seetõttu ei kogu rakendus ilma nõusolekuta mingeid andmeid.
 \nNewPipe privaatsuspoliitika selgitab üksikasjalikult, milliseid andmeid saadetakse ja kogutakse veateate saatmisel.</string>
-    <string name="app_license">NewPipe vaba avatud koodiga tarkvara. Seada võib kasutada, uurida, jagada ja parandada. Täpsemalt - seda võib levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või hilisem) tingimustele.</string>
+    <string name="app_license">NewPipe vaba avatud koodiga tarkvara. Seada võid kasutada, uurida, jagada ja parandada nii, nagu õigemaks pead. Täpsemalt - seda võid levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või sinu valikul hilisema versiooni) tingimustele.</string>
     <string name="enable_disposed_exceptions_title">Teavita elutsüklist väljas vigadest</string>
     <string name="import_soundcloud_instructions">Impordi SoundCloudi profiil trükkides URL või oma ID:
 \n
@@ -673,7 +673,7 @@
     <string name="manual_update_title">Kontrolli uuendusi</string>
     <string name="manual_update_description">Kontrolli uuendusi käsitsi</string>
     <string name="feed_new_items">Uued andmevoo kirjed</string>
-    <string name="show_crash_the_player_title">Näita „jooksuta meediamängija kokku“ nupukest</string>
+    <string name="show_crash_the_player_title">Näita „Jooksuta meediamängija kokku“ nupukest</string>
     <string name="show_crash_the_player_summary">Näitab valikut meediamängija kokkujooksutamiseks</string>
     <string name="error_report_notification_title">NewPipe töös tekkis viga, sellest teavitamiseks klõpsi</string>
     <string name="crash_the_player">Jooksuta meediamängija kokku</string>
@@ -688,4 +688,5 @@
     <string name="no_appropriate_file_manager_message_android_10">Selle tegevuse jaoks ei leidunud sobilikku failihaldurit.
 \nPalun paigalda nutiseadmesse failihaldur, mis järgib Storage Access Framework reeglistikku.</string>
     <string name="detail_pinned_comment_view_description">Esiletõstetud kommentaar</string>
+    <string name="leak_canary_not_available">LeakCanary pole saadaval</string>
 </resources>

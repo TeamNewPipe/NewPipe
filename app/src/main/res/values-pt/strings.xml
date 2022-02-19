@@ -68,7 +68,7 @@
     <string name="start">Iniciar</string>
     <string name="pause">Pausa</string>
     <string name="delete">Eliminar</string>
-    <string name="checksum">Checksum</string>
+    <string name="checksum">Soma de controlo</string>
     <string name="msg_name">Nome do ficheiro</string>
     <string name="msg_error">Erro</string>
     <string name="msg_running_detail">Toque para detalhes</string>
@@ -79,7 +79,7 @@
     <string name="msg_threads">Processos</string>
     <string name="msg_running">Descarga NewPipe</string>
     <string name="app_ui_crash">Aplicação terminou em erro</string>
-    <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo\\nIdioma da app\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do SO:</string>
+    <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo\\nIdioma da aplicação\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nSO Versão:</string>
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="black_theme_title">Preto</string>
     <string name="all">Tudo</string>
@@ -97,7 +97,7 @@
     <string name="default_popup_resolution_title">Resolução padrão para janela popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
     <string name="show_higher_resolutions_summary">Apenas alguns dispositivos conseguem reproduzir vídeos em 2K/4K</string>
-    <string name="controls_popup_title">Popup</string>
+    <string name="controls_popup_title">popup</string>
     <string name="popup_remember_size_pos_title">Lembrar propriedades do popup</string>
     <string name="clear">Limpar</string>
     <string name="controls_background_title">Segundo plano</string>
@@ -421,7 +421,7 @@
     <string name="clear_playback_states_title">Limpar posições de reprodução</string>
     <string name="clear_playback_states_summary">Remove todas as posições de reprodução</string>
     <string name="delete_playback_states_alert">Remover todas as posições de reprodução\?</string>
-    <string name="drawer_header_description">Alternar serviço, agora selecionado:</string>
+    <string name="drawer_header_description">Alternar serviço atualmente selecionado:</string>
     <string name="default_kiosk_page_summary">\'Kiosk\' padrão</string>
     <string name="no_one_watching">Ninguém está a ver</string>
     <plurals name="watching">
@@ -674,7 +674,7 @@
     <string name="checking_updates_toast">A procurar atualizações…</string>
     <string name="feed_new_items">Novos itens</string>
     <string name="crash_the_player">Travar o reprodutor</string>
-    <string name="show_crash_the_player_title">Mostrar \"travar o reprodutor\"</string>
+    <string name="show_crash_the_player_title">Mostrar \"Travar o reprodutor\"</string>
     <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o reprodutor</string>
     <string name="error_report_channel_name">Notificação de relatório de erros</string>
     <string name="error_report_channel_description">Notificações para reportar erros</string>
@@ -688,4 +688,5 @@
 \nPor favor, instale um gestor de ficheiros compatível com o Storage Access Framework.</string>
     <string name="background_player_already_playing_toast">Já está a reproduzir em segundo plano</string>
     <string name="detail_pinned_comment_view_description">Comentário fixado</string>
+    <string name="leak_canary_not_available">LeakCanary não está disponível</string>
 </resources>

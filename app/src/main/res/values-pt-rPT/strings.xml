@@ -688,4 +688,5 @@
 \nPor favor, instale um gestor de ficheiros compatível com o Storage Access Framework.</string>
     <string name="detail_pinned_comment_view_description">Comentário fixado</string>
     <string name="background_player_already_playing_toast">Já está a reproduzir em segundo plano</string>
+    <string name="leak_canary_not_available">LeakCanary não está disponível</string>
 </resources>

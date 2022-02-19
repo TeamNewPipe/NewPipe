@@ -676,4 +676,5 @@
 \nMohon instal sebuah manajer file yang kompatibel dengan Storage Access Framework.</string>
     <string name="detail_pinned_comment_view_description">Komentar dipin</string>
     <string name="background_player_already_playing_toast">Sudah diputar di latar belakang</string>
+    <string name="leak_canary_not_available">LeakCanary tidak tersedia</string>
 </resources>
