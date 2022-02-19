@@ -9,8 +9,8 @@ import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -132,10 +132,6 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo<StreamInfoItem>>
     }
 
     private static List<PlayQueueItem> extractListItems(final List<StreamInfoItem> infoItems) {
-        final List<PlayQueueItem> result = new ArrayList<>();
-        for (final StreamInfoItem stream : infoItems) {
-            result.add(new PlayQueueItem(stream));
-        }
-        return result;
+        return infoItems.stream().map(PlayQueueItem::new).collect(Collectors.toList());
     }
 }
