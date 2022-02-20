@@ -34,6 +34,7 @@ import androidx.preference.PreferenceManager;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.RepeatMode;
 import com.google.android.exoplayer2.SeekParameters;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.ExoTrackSelection;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
@@ -389,6 +390,19 @@ public final class PlayerHelper {
         // 0: Screen orientation is locked
         return android.provider.Settings.System.getInt(
                 context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 0;
+    }
+
+    public static int getProgressiveLoadIntervalBytes(@NonNull final Context context) {
+        final String preferredIntervalBytes = getPreferences(context).getString(
+                context.getString(R.string.progressive_load_interval_key),
+                context.getString(R.string.progressive_load_interval_default_value));
+
+        if (context.getString(R.string.progressive_load_interval_default_value)
+                .equals(preferredIntervalBytes)) {
+            return ProgressiveMediaSource.DEFAULT_LOADING_CHECK_INTERVAL_BYTES;
+        }
+        // Keeping the same KiB unit used by ProgressiveMediaSource
+        return Integer.parseInt(preferredIntervalBytes) * 1024;
     }
 
     ////////////////////////////////////////////////////////////////////////////
