@@ -14,7 +14,6 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
-import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.function.Consumer;
 
@@ -40,15 +39,6 @@ public class StreamDialogEntry {
 
     public interface StreamDialogEntryAction {
         void onClick(Fragment fragment, StreamInfoItem infoItem);
-    }
-
-    public static void openChannelFragment(@NonNull final Fragment fragment,
-                                            @NonNull final StreamInfoItem item,
-                                            final String uploaderUrl) {
-        // For some reason `getParentFragmentManager()` doesn't work, but this does.
-        NavigationHelper.openChannelFragment(
-                fragment.requireActivity().getSupportFragmentManager(),
-                item.getServiceId(), uploaderUrl, item.getUploaderName());
     }
 
     /**

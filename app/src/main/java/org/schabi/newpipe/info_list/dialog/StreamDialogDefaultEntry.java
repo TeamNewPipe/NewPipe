@@ -1,7 +1,7 @@
 package org.schabi.newpipe.info_list.dialog;
 
 import static org.schabi.newpipe.info_list.dialog.StreamDialogEntry.fetchItemInfoIfSparse;
-import static org.schabi.newpipe.info_list.dialog.StreamDialogEntry.openChannelFragment;
+import static org.schabi.newpipe.util.NavigationHelper.openChannelFragment;
 
 import android.net.Uri;
 
