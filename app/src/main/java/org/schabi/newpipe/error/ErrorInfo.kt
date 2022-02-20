@@ -2,6 +2,8 @@ package org.schabi.newpipe.error
 
 import android.os.Parcelable
 import androidx.annotation.StringRes
+import com.google.android.exoplayer2.ExoPlaybackException
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Info
@@ -21,10 +23,13 @@ class ErrorInfo(
     val userAction: UserAction,
     val serviceName: String,
     val request: String,
-    val messageStringId: Int,
-    @Transient // no need to store throwable, all data for report is in other variables
-    var throwable: Throwable? = null
+    val messageStringId: Int
 ) : Parcelable {
+
+    // no need to store throwable, all data for report is in other variables
+    // also, the throwable might not be serializable, see TeamNewPipe/NewPipe#7302
+    @IgnoredOnParcel
+    var throwable: Throwable? = null
 
     private constructor(
         throwable: Throwable,
@@ -36,9 +41,10 @@ class ErrorInfo(
         userAction,
         serviceName,
         request,
-        getMessageStringId(throwable, userAction),
-        throwable
-    )
+        getMessageStringId(throwable, userAction)
+    ) {
+        this.throwable = throwable
+    }
 
     private constructor(
         throwable: List<Throwable>,
@@ -50,9 +56,10 @@ class ErrorInfo(
         userAction,
         serviceName,
         request,
-        getMessageStringId(throwable.firstOrNull(), userAction),
-        throwable.firstOrNull()
-    )
+        getMessageStringId(throwable.firstOrNull(), userAction)
+    ) {
+        this.throwable = throwable.firstOrNull()
+    }
 
     // constructors with single throwable
     constructor(throwable: Throwable, userAction: UserAction, request: String) :
@@ -102,6 +109,13 @@ class ErrorInfo(
                 throwable is ContentNotSupportedException -> R.string.content_not_supported
                 throwable is DeobfuscateException -> R.string.youtube_signature_deobfuscation_error
                 throwable is ExtractionException -> R.string.parsing_error
+                throwable is ExoPlaybackException -> {
+                    when (throwable.type) {
+                        ExoPlaybackException.TYPE_SOURCE -> R.string.player_stream_failure
+                        ExoPlaybackException.TYPE_UNEXPECTED -> R.string.player_recoverable_failure
+                        else -> R.string.player_unrecoverable_failure
+                    }
+                }
                 action == UserAction.UI_ERROR -> R.string.app_ui_crash
                 action == UserAction.REQUESTED_COMMENTS -> R.string.error_unable_to_load_comments
                 action == UserAction.SUBSCRIPTION_CHANGE -> R.string.subscription_change_failed

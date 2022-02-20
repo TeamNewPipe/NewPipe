@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
@@ -171,7 +171,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                     item.getUploaderUrl(),
                     item.getUploaderName());
         } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(activity, "Opening channel fragment", e);
+            ErrorUtil.showUiErrorSnackbar(activity, "Opening channel fragment", e);
         }
     }
 

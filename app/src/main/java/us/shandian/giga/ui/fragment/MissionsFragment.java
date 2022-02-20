@@ -32,6 +32,7 @@ import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 
@@ -46,6 +47,7 @@ import us.shandian.giga.ui.adapter.MissionAdapter;
 
 public class MissionsFragment extends Fragment {
 
+    private static final String TAG = "MissionsFragment";
     private static final int SPAN_SIZE = 2;
 
     private SharedPreferences mPrefs;
@@ -257,9 +259,13 @@ public class MissionsFragment extends Fragment {
             initialPath = Uri.parse(initialSavePath.getAbsolutePath());
         }
 
-        requestDownloadSaveAsLauncher.launch(
+        NoFileManagerSafeGuard.launchSafe(
+                requestDownloadSaveAsLauncher,
                 StoredFileHelper.getNewPicker(mContext, mission.storage.getName(),
-                        mission.storage.getType(), initialPath));
+                        mission.storage.getType(), initialPath),
+                TAG,
+                mContext
+        );
     }
 
     @Override

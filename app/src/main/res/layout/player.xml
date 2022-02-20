@@ -54,11 +54,21 @@
         tools:ignore="ContentDescription"
         tools:visibility="visible" />
 
+    <View
+        android:id="@+id/playbackControlsShadow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_alignBottom="@+id/playbackControlRoot"
+        android:background="@color/video_overlay_color"
+        tools:visibility="visible" />
+
+    <!-- transparent background is needed for selectableItemBackgroundBorderless to work -->
     <RelativeLayout
         android:id="@+id/playbackControlRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/video_overlay_color"
+        android:background="@color/transparent_background_color"
         android:fitsSystemWindows="true"
         android:visibility="gone"
         tools:visibility="visible">
@@ -663,24 +673,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/controlAnimationView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/background_oval_black_transparent"
-                android:padding="15dp"
-                android:visibility="gone"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/ic_fast_rewind"
-                tools:visibility="visible" />
-        </LinearLayout>
-
         <RelativeLayout
             android:id="@+id/loading_panel"
             android:layout_width="match_parent"
@@ -779,5 +771,12 @@
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:visibility="gone" />
+
+    <org.schabi.newpipe.views.player.PlayerFastSeekOverlay
+        android:id="@+id/fast_seek_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:visibility="invisible" /> <!-- Required for the first appearance fading correctly -->
 
 </RelativeLayout>

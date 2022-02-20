@@ -26,7 +26,7 @@ public class UpdateSettingsFragment extends BasePreferenceFragment {
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.update_settings);
+        addPreferencesFromResourceRegistry();
 
         final String updateToggleKey = getString(R.string.update_app_key);
         findPreference(updateToggleKey).setOnPreferenceChangeListener(updatePreferenceChange);

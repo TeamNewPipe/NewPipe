@@ -18,10 +18,21 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
-        android:contentDescription="@string/list_thumbnail_view_description"
         android:focusable="false"
         android:src="@drawable/buddy"
         tools:ignore="RtlHardcoded" />
+
+    <ImageView
+        android:id="@+id/detail_pinned_view"
+        android:layout_width="@dimen/video_item_detail_pinned_image_width"
+        android:layout_height="@dimen/video_item_detail_pinned_image_height"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/video_item_detail_pinned_right_margin"
+        android:layout_toEndOf="@+id/itemThumbnailView"
+        android:contentDescription="@string/detail_pinned_comment_view_description"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_pin"
+        tools:visibility="visible" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemTitleView"
@@ -29,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="@dimen/video_item_search_image_right_margin"
-        android:layout_toEndOf="@+id/itemThumbnailView"
+        android:layout_toEndOf="@+id/detail_pinned_view"
         android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"

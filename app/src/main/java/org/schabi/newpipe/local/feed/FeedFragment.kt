@@ -271,7 +271,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     override fun onDestroyView() {
         // Ensure that all animations are canceled
-        feedBinding.newItemsLoadedButton?.clearAnimation()
+        tryGetNewItemsLoadedButton()?.clearAnimation()
 
         feedBinding.itemsList.adapter = null
         _feedBinding = null
@@ -362,7 +362,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         if (context == null || context.resources == null || activity == null) return
 
         val entries = ArrayList<StreamDialogEntry>()
-        if (PlayerHolder.getInstance().isPlayerOpen) {
+        if (PlayerHolder.getInstance().isPlayQueueReady) {
             entries.add(StreamDialogEntry.enqueue)
 
             if (PlayerHolder.getInstance().queueSize > 1) {

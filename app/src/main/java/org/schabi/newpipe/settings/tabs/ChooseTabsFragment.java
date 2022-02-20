@@ -27,8 +27,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.settings.SelectChannelFragment;
@@ -44,8 +44,6 @@ import java.util.List;
 import static org.schabi.newpipe.settings.tabs.Tab.typeFrom;
 
 public class ChooseTabsFragment extends Fragment {
-    private static final int MENU_ITEM_RESTORE_ID = 123456;
-
     private TabsManager tabsManager;
 
     private final List<Tab> tabList = new ArrayList<>();
@@ -110,21 +108,14 @@ public class ChooseTabsFragment extends Fragment {
                                     @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
-        final MenuItem restoreItem = menu.add(Menu.NONE, MENU_ITEM_RESTORE_ID, Menu.NONE,
-                R.string.restore_defaults);
+        final MenuItem restoreItem = menu.add(R.string.restore_defaults);
         restoreItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         restoreItem.setIcon(AppCompatResources.getDrawable(requireContext(),
                 R.drawable.ic_settings_backup_restore));
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        if (item.getItemId() == MENU_ITEM_RESTORE_ID) {
+        restoreItem.setOnMenuItemClickListener(ev -> {
             restoreDefaults();
             return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        });
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -182,7 +173,7 @@ public class ChooseTabsFragment extends Fragment {
         final Tab.Type type = typeFrom(tabId);
 
         if (type == null) {
-            ErrorActivity.reportErrorInSnackbar(this,
+            ErrorUtil.showSnackbar(this,
                     new ErrorInfo(new IllegalStateException("Tab id not found: " + tabId),
                             UserAction.SOMETHING_ELSE, "Choosing tabs on settings"));
             return;

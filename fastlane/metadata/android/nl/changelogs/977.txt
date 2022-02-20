@@ -1,0 +1,10 @@
+- Toegevoegd: "volgende afspelen" knop aan lang-drukken menu
+- Padvoorvoegsel voor YouTube-shorts toegevoegd aan intentiefilter
+- Hersteld: import instellingen
+- Verwissel zoekbalk positie met speler knoppen in wachtrij scherm
+- Diverse fixes MediasessionManager
+- Hersteld: zoekbalk niet voltooid na einde video
+- Media tunneling uitgeschakeld op RealtekATV
+- Vergroot aanklikbaar gebied spelersknoppen bij geminimaliseerde speler
+
+Voor meer wijzigingen: changelog (en blog post) links-tab hieronder

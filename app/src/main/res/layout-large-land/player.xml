@@ -54,11 +54,21 @@
         tools:ignore="ContentDescription"
         tools:visibility="visible" />
 
+    <View
+        android:id="@+id/playbackControlsShadow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/playbackControlRoot"
+        android:background="@color/video_overlay_color"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <!-- transparent background is needed for selectableItemBackgroundBorderless to work -->
     <RelativeLayout
         android:id="@+id/playbackControlRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/video_overlay_color"
+        android:background="@color/transparent_background_color"
         android:fitsSystemWindows="true"
         android:visibility="gone"
         tools:visibility="visible">
@@ -484,8 +494,8 @@
                     android:padding="@dimen/player_main_buttons_padding"
                     android:scaleType="fitCenter"
                     android:visibility="gone"
-                    app:tint="@color/white"
                     app:srcCompat="@drawable/ic_fullscreen"
+                    app:tint="@color/white"
                     tools:ignore="ContentDescription,RtlHardcoded"
                     tools:visibility="visible" />
             </LinearLayout>
@@ -508,8 +518,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitCenter"
-                app:tint="@color/white"
                 app:srcCompat="@drawable/ic_previous"
+                app:tint="@color/white"
                 tools:ignore="ContentDescription" />
 
 
@@ -520,8 +530,8 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitCenter"
-                app:tint="@color/white"
                 app:srcCompat="@drawable/ic_pause"
+                app:tint="@color/white"
                 tools:ignore="ContentDescription" />
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -534,8 +544,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitCenter"
-                app:tint="@color/white"
                 app:srcCompat="@drawable/ic_next"
+                app:tint="@color/white"
                 tools:ignore="ContentDescription" />
 
         </LinearLayout>
@@ -587,8 +597,8 @@
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
-                app:tint="@color/white"
-                app:srcCompat="@drawable/ic_close" />
+                app:srcCompat="@drawable/ic_close"
+                app:tint="@color/white" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/repeatButton"
@@ -651,24 +661,6 @@
         android:id="@+id/player_overlays"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/controlAnimationView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/background_oval_black_transparent"
-                android:padding="15dp"
-                android:visibility="gone"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/ic_fast_rewind"
-                tools:visibility="visible" />
-        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/loading_panel"
@@ -768,5 +760,12 @@
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:visibility="gone" />
+
+    <org.schabi.newpipe.views.player.PlayerFastSeekOverlay
+        android:id="@+id/fast_seek_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:visibility="invisible" /> <!-- Required for the first appearance fading correctly -->
 
 </RelativeLayout>

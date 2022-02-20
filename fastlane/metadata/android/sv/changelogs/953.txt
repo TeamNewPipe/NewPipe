@@ -1,0 +1,1 @@
+Fixade extraktion av YouTubes dekrypteringsfunktion.

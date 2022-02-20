@@ -147,7 +147,6 @@
     <string name="info_labels">ਕੀ:\\nRequest:\\nContent ਭਾਸ਼ਾ/ਬੋਲੀ:\\nContent Country:\\nApp ਭਾਸ਼ਾ/ਬੋਲੀ:\\nService:\\nGMT ਸਮਾਂ:\\nPackage:\\nVersion:\\nOS version:</string>
     <string name="your_comment">ਤੁਹਾਡੀ ਟਿੱਪਣੀ (ਅੰਗਰੇਜ਼ੀ ਵਿਚ):</string>
     <string name="error_details_headline">ਵੇਰਵੇ:</string>
-    <string name="list_thumbnail_view_description">ਵੀਡੀਓ preview thumbnail</string>
     <string name="detail_thumbnail_view_description">ਵਿਡੀਉ ਚਲਾਓ, ਮਿਆਦ:</string>
     <string name="detail_uploader_thumbnail_view_description">ਅਪਲੋਡਰ ਦਾ ਅਵਤਾਰ thumbnail</string>
     <string name="detail_likes_img_view_description">ਪਸੰਦ</string>

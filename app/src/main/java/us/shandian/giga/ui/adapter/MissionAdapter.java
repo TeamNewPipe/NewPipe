@@ -43,8 +43,8 @@ import org.schabi.newpipe.App;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.LocalPlayerActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.Localization;
@@ -607,9 +607,9 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             service = ErrorInfo.SERVICE_NONE;
         }
 
-        ErrorActivity.reportError(mContext,
+        ErrorUtil.createNotification(mContext,
                 new ErrorInfo(ErrorInfo.Companion.throwableToStringList(mission.errObject), action,
-                        service, request.toString(), reason, null));
+                        service, request.toString(), reason));
     }
 
     public void clearFinishedDownloads(boolean delete) {

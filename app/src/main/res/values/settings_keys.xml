@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" translatable="false">
     <!-- App versioning -->
-    <string name="last_used_preferences_version" translatable="false">last_used_preferences_version</string>
+    <string name="last_used_preferences_version">last_used_preferences_version</string>
 
     <!-- Service -->
-    <string-array name="service_list" translatable="false">
+    <string-array name="service_list">
         <item>@string/youtube</item>
         <item>@string/soundcloud</item>
     </string-array>
-    <string name="current_service_key" translatable="false">service</string>
-    <string name="default_service_value" translatable="false">@string/youtube</string>
+    <string name="current_service_key">service</string>
+    <string name="default_service_value">@string/youtube</string>
 
-    <string name="saved_tabs_key" translatable="false">saved_tabs_key</string>
+    <string name="saved_tabs_key">saved_tabs_key</string>
 
     <!-- Key values -->
-    <string name="download_path_video_key" translatable="false">download_path</string>
-    <string name="download_path_audio_key" translatable="false">download_path_audio</string>
+    <string name="download_path_video_key">download_path</string>
+    <string name="download_path_audio_key">download_path_audio</string>
 
-    <string name="use_external_video_player_key" translatable="false">use_external_video_player</string>
-    <string name="use_external_audio_player_key" translatable="false">use_external_audio_player</string>
+    <string name="use_external_video_player_key">use_external_video_player</string>
+    <string name="use_external_audio_player_key">use_external_audio_player</string>
 
-    <string name="volume_gesture_control_key" translatable="false">volume_gesture_control</string>
-    <string name="brightness_gesture_control_key" translatable="false">brightness_gesture_control</string>
-    <string name="resume_on_audio_focus_gain_key" translatable="false">resume_on_audio_focus_gain</string>
-    <string name="popup_remember_size_pos_key" translatable="false">popup_remember_size_pos_key</string>
-    <string name="use_inexact_seek_key" translatable="false">use_inexact_seek_key</string>
-    <string name="auto_queue_key" translatable="false">auto_queue_key</string>
-    <string name="screen_brightness_key" translatable="false">screen_brightness_key</string>
-    <string name="screen_brightness_timestamp_key" translatable="false">screen_brightness_timestamp_key</string>
-    <string name="clear_queue_confirmation_key" translatable="false">clear_queue_confirmation_key</string>
+    <string name="volume_gesture_control_key">volume_gesture_control</string>
+    <string name="brightness_gesture_control_key">brightness_gesture_control</string>
+    <string name="resume_on_audio_focus_gain_key">resume_on_audio_focus_gain</string>
+    <string name="popup_remember_size_pos_key">popup_remember_size_pos_key</string>
+    <string name="use_inexact_seek_key">use_inexact_seek_key</string>
+    <string name="auto_queue_key">auto_queue_key</string>
+    <string name="screen_brightness_key">screen_brightness_key</string>
+    <string name="screen_brightness_timestamp_key">screen_brightness_timestamp_key</string>
+    <string name="clear_queue_confirmation_key">clear_queue_confirmation_key</string>
 
-    <string name="popup_saved_width_key" translatable="false">popup_saved_width</string>
-    <string name="popup_saved_x_key" translatable="false">popup_saved_x</string>
-    <string name="popup_saved_y_key" translatable="false">popup_saved_y</string>
+    <string name="popup_saved_width_key">popup_saved_width</string>
+    <string name="popup_saved_x_key">popup_saved_x</string>
+    <string name="popup_saved_y_key">popup_saved_y</string>
 
-    <string name="seek_duration_key" translatable="false">seek_duration</string>
-    <string name="seek_duration_default_value" translatable="false">10000</string>
-    <string-array name="seek_duration_description" translatable="false">
+    <string name="seek_duration_key">seek_duration</string>
+    <string name="seek_duration_default_value">10000</string>
+    <string-array name="seek_duration_description">
         <!--   They are overridden in VideoAudioSettingsFragment.java if the translation
         (seconds) exist. Otherwise this array is picked-->
         <item>5 seconds</item>
@@ -46,7 +46,7 @@
         <item>25 seconds</item>
         <item>30 seconds</item>
     </string-array>
-    <string-array name="seek_duration_value" translatable="false">
+    <string-array name="seek_duration_value">
         <item>5000</item>
         <item>10000</item>
         <item>15000</item>
@@ -55,65 +55,63 @@
         <item>30000</item>
     </string-array>
 
-    <string name="minimize_on_exit_key" translatable="false">minimize_on_exit_key</string>
-    <string name="minimize_on_exit_value" translatable="false">@string/minimize_on_exit_background_key</string>
-    <string name="minimize_on_exit_none_key" translatable="false">minimize_on_exit_none_key</string>
-    <string name="minimize_on_exit_background_key" translatable="false">minimize_on_exit_background_key</string>
-    <string name="minimize_on_exit_popup_key" translatable="false">minimize_on_exit_popup_key</string>
-    <string-array name="minimize_on_exit_action_key" translatable="false">
+    <string name="minimize_on_exit_key">minimize_on_exit_key</string>
+    <string name="minimize_on_exit_value">@string/minimize_on_exit_background_key</string>
+    <string name="minimize_on_exit_none_key">minimize_on_exit_none_key</string>
+    <string name="minimize_on_exit_background_key">minimize_on_exit_background_key</string>
+    <string name="minimize_on_exit_popup_key">minimize_on_exit_popup_key</string>
+    <string-array name="minimize_on_exit_action_key">
         <item>@string/minimize_on_exit_none_key</item>
         <item>@string/minimize_on_exit_background_key</item>
         <item>@string/minimize_on_exit_popup_key</item>
     </string-array>
-    <string-array name="minimize_on_exit_action_description" translatable="false">
+    <string-array name="minimize_on_exit_action_description">
         <item>@string/minimize_on_exit_none_description</item>
         <item>@string/minimize_on_exit_background_description</item>
         <item>@string/minimize_on_exit_popup_description</item>
     </string-array>
 
-    <string name="start_main_player_fullscreen_key" translatable="false">start_main_player_fullscreen_key</string>
+    <string name="start_main_player_fullscreen_key">start_main_player_fullscreen_key</string>
 
-    <string name="autoplay_key" translatable="false">autoplay_key</string>
-    <string name="autoplay_value" translatable="false">@string/autoplay_wifi_key</string>
-    <string name="autoplay_always_key" translatable="false">autoplay_always_key</string>
-    <string name="autoplay_wifi_key" translatable="false">autoplay_wifi_key</string>
-    <string name="autoplay_never_key" translatable="false">autoplay_never_key</string>
-    <string-array name="autoplay_type_key" translatable="false">
+    <string name="autoplay_key">autoplay_key</string>
+    <string name="autoplay_value">@string/autoplay_wifi_key</string>
+    <string name="autoplay_always_key">autoplay_always_key</string>
+    <string name="autoplay_wifi_key">autoplay_wifi_key</string>
+    <string name="autoplay_never_key">autoplay_never_key</string>
+    <string-array name="autoplay_type_key">
         <item>@string/autoplay_always_key</item>
         <item>@string/autoplay_wifi_key</item>
         <item>@string/autoplay_never_key</item>
     </string-array>
-    <string-array name="autoplay_type_description" translatable="false">
+    <string-array name="autoplay_type_description">
         <item>@string/always</item>
         <item>@string/wifi_only</item>
         <item>@string/never</item>
     </string-array>
 
-    <string name="report_player_errors_key" translatable="false">report_player_errors_key</string>
-
-    <string name="seekbar_preview_thumbnail_key" translatable="false">seekbar_preview_thumbnail_key</string>
-    <string name="seekbar_preview_thumbnail_high_quality" translatable="false">seekbar_preview_thumbnail_high_quality</string>
-    <string name="seekbar_preview_thumbnail_low_quality" translatable="false">seekbar_preview_thumbnail_low_quality</string>
-    <string name="seekbar_preview_thumbnail_none" translatable="false">seekbar_preview_thumbnail_none</string>
-    <string-array name="seekbar_preview_thumbnail_type_key" translatable="false">
+    <string name="seekbar_preview_thumbnail_key">seekbar_preview_thumbnail_key</string>
+    <string name="seekbar_preview_thumbnail_high_quality">seekbar_preview_thumbnail_high_quality</string>
+    <string name="seekbar_preview_thumbnail_low_quality">seekbar_preview_thumbnail_low_quality</string>
+    <string name="seekbar_preview_thumbnail_none">seekbar_preview_thumbnail_none</string>
+    <string-array name="seekbar_preview_thumbnail_type_key">
         <item>@string/seekbar_preview_thumbnail_high_quality</item>
         <item>@string/seekbar_preview_thumbnail_low_quality</item>
         <item>@string/seekbar_preview_thumbnail_none</item>
     </string-array>
-    <string-array name="seekbar_preview_thumbnail_type_description" translatable="false">
+    <string-array name="seekbar_preview_thumbnail_type_description">
         <item>@string/high_quality_larger</item>
         <item>@string/low_quality_smaller</item>
         <item>@string/dont_show</item>
     </string-array>
 
-    <string name="default_resolution_key" translatable="false">default_resolution</string>
-    <string name="default_resolution_value" translatable="false">720p60</string>
-    <string name="show_higher_resolutions_key" translatable="false">show_higher_resolutions</string>
-    <string name="default_popup_resolution_key" translatable="false">default_popup_resolution</string>
-    <string name="default_popup_resolution_value" translatable="false">480p</string>
-    <string name="best_resolution_key" translatable="false">best_resolution</string>
+    <string name="default_resolution_key">default_resolution</string>
+    <string name="default_resolution_value">720p60</string>
+    <string name="show_higher_resolutions_key">show_higher_resolutions</string>
+    <string name="default_popup_resolution_key">default_popup_resolution</string>
+    <string name="default_popup_resolution_value">480p</string>
+    <string name="best_resolution_key">best_resolution</string>
 
-    <string-array name="resolution_list_values" translatable="false">
+    <string-array name="resolution_list_values">
         <item>@string/best_resolution_key</item>
         <item>1080p60</item>
         <item>1080p</item>
@@ -124,7 +122,7 @@
         <item>240p</item>
         <item>144p</item>
     </string-array>
-    <string-array name="resolution_list_description" translatable="false">
+    <string-array name="resolution_list_description">
         <item>@string/best_resolution</item>
         <item>1080p60</item>
         <item>1080p</item>
@@ -136,142 +134,144 @@
         <item>144p</item>
     </string-array>
 
-    <string name="scale_to_square_image_in_notifications_key" translatable="false">scale_to_square_image_in_notifications</string>
+    <string name="scale_to_square_image_in_notifications_key">scale_to_square_image_in_notifications</string>
 
-    <string name="notification_slot_0_key" translatable="false">notification_slot_0_key</string>
-    <string name="notification_slot_1_key" translatable="false" tools:ignore="Typos">notification_slot_1_key</string>
-    <string name="notification_slot_2_key" translatable="false">notification_slot_2_key</string>
-    <string name="notification_slot_3_key" translatable="false">notification_slot_3_key</string>
-    <string name="notification_slot_4_key" translatable="false">notification_slot_4_key</string>
+    <string name="notification_slot_0_key">notification_slot_0_key</string>
+    <string name="notification_slot_1_key" tools:ignore="Typos">notification_slot_1_key</string>
+    <string name="notification_slot_2_key">notification_slot_2_key</string>
+    <string name="notification_slot_3_key">notification_slot_3_key</string>
+    <string name="notification_slot_4_key">notification_slot_4_key</string>
 
-    <string name="notification_slot_compact_0_key" translatable="false">notification_slot_compact_0_key</string>
-    <string name="notification_slot_compact_1_key" translatable="false" tools:ignore="Typos">notification_slot_compact_1_key</string>
-    <string name="notification_slot_compact_2_key" translatable="false">notification_slot_compact_2_key</string>
+    <string name="notification_slot_compact_0_key">notification_slot_compact_0_key</string>
+    <string name="notification_slot_compact_1_key" tools:ignore="Typos">notification_slot_compact_1_key</string>
+    <string name="notification_slot_compact_2_key">notification_slot_compact_2_key</string>
 
-    <string name="notification_colorize_key" translatable="false">notification_colorize_key</string>
+    <string name="notification_colorize_key">notification_colorize_key</string>
 
-    <string name="video_mp4_key" translatable="false">video_mp4</string>
-    <string name="video_webm_key" translatable="false">video_webm</string>
-    <string name="video_3gp_key" translatable="false">video_3gp</string>
-    <string name="default_video_format_key" translatable="false">default_video_format</string>
-    <string name="default_video_format_value" translatable="false">@string/video_mp4_key</string>
-    <string-array name="video_format_description_list" translatable="false">
+    <string name="video_mp4_key">video_mp4</string>
+    <string name="video_webm_key">video_webm</string>
+    <string name="video_3gp_key">video_3gp</string>
+    <string name="default_video_format_key">default_video_format</string>
+    <string name="default_video_format_value">@string/video_mp4_key</string>
+    <string-array name="video_format_description_list">
         <item>MPEG-4</item>
         <item>WebM</item>
         <item>3GP</item>
     </string-array>
-    <string-array name="video_format_values_list" translatable="false">
+    <string-array name="video_format_values_list">
         <item>@string/video_mp4_key</item>
         <item>@string/video_webm_key</item>
         <item>@string/video_3gp_key</item>
     </string-array>
 
-    <string name="default_audio_format_key" translatable="false">default_audio_format</string>
-    <string name="default_audio_format_value" translatable="false">@string/audio_m4a_key</string>
-    <string name="audio_m4a_key" translatable="false">audio_m4a</string>
-    <string name="audio_webm_key" translatable="false">audio_webm</string>
-    <string-array name="audio_format_description_list" translatable="false">
+    <string name="default_audio_format_key">default_audio_format</string>
+    <string name="default_audio_format_value">@string/audio_m4a_key</string>
+    <string name="audio_m4a_key">audio_m4a</string>
+    <string name="audio_webm_key">audio_webm</string>
+    <string-array name="audio_format_description_list">
         <item>M4A</item>
         <item>WebM</item>
     </string-array>
-    <string-array name="audio_format_values_list" translatable="false">
+    <string-array name="audio_format_values_list">
         <item>@string/audio_m4a_key</item>
         <item>@string/audio_webm_key</item>
     </string-array>
 
-    <string name="last_resize_mode" translatable="false">last_resize_mode</string>
+    <string name="last_resize_mode">last_resize_mode</string>
 
     <!-- DEBUG ONLY -->
-    <string name="debug_pref_screen_key" translatable="false">debug_pref_screen_key</string>
-    <string name="allow_heap_dumping_key" translatable="false">allow_heap_dumping_key</string>
-    <string name="show_memory_leaks_key" translatable="false">show_memory_leaks_key</string>
-    <string name="allow_disposed_exceptions_key" translatable="false">allow_disposed_exceptions_key</string>
-    <string name="show_original_time_ago_key" translatable="false">show_original_time_ago_key</string>
-    <string name="disable_media_tunneling_key" translatable="false">disable_media_tunneling_key</string>
-    <string name="crash_the_app_key" translatable="false">crash_the_app_key</string>
-    <string name="show_image_indicators_key" translatable="false">show_image_indicators_key</string>
-    <string name="show_crash_the_player_key" translatable="false">show_crash_the_player_key</string>
+    <string name="debug_pref_screen_key">debug_pref_screen_key</string>
+    <string name="allow_heap_dumping_key">allow_heap_dumping_key</string>
+    <string name="show_memory_leaks_key">show_memory_leaks_key</string>
+    <string name="allow_disposed_exceptions_key">allow_disposed_exceptions_key</string>
+    <string name="show_original_time_ago_key">show_original_time_ago_key</string>
+    <string name="disable_media_tunneling_key">disable_media_tunneling_key</string>
+    <string name="show_image_indicators_key">show_image_indicators_key</string>
+    <string name="show_crash_the_player_key">show_crash_the_player_key</string>
+    <string name="crash_the_app_key">crash_the_app_key</string>
+    <string name="show_error_snackbar_key">show_error_snackbar_key</string>
+    <string name="create_error_notification_key">create_error_notification_key</string>
 
     <!-- THEMES -->
-    <string name="theme_key" translatable="false">theme</string>
-    <string name="night_theme_key" translatable="false">night_theme</string>
-    <string name="light_theme_key" translatable="false">light_theme</string>
-    <string name="dark_theme_key" translatable="false">dark_theme</string>
-    <string name="black_theme_key" translatable="false">black_theme</string>
-    <string name="auto_device_theme_key" translatable="false">auto_device_theme</string>
-    <string name="default_theme_value" translatable="false">@string/auto_device_theme_key</string>
-    <string name="default_night_theme_value" translatable="false">@string/dark_theme_key</string>
-    <string-array name="theme_values_list" translatable="false">
+    <string name="theme_key">theme</string>
+    <string name="night_theme_key">night_theme</string>
+    <string name="light_theme_key">light_theme</string>
+    <string name="dark_theme_key">dark_theme</string>
+    <string name="black_theme_key">black_theme</string>
+    <string name="auto_device_theme_key">auto_device_theme</string>
+    <string name="default_theme_value">@string/auto_device_theme_key</string>
+    <string name="default_night_theme_value">@string/dark_theme_key</string>
+    <string-array name="theme_values_list">
         <item>@string/light_theme_key</item>
         <item>@string/dark_theme_key</item>
         <item>@string/black_theme_key</item>
         <item>@string/auto_device_theme_key</item>
     </string-array>
-    <string-array name="theme_description_list" translatable="false">
+    <string-array name="theme_description_list">
         <item>@string/light_theme_title</item>
         <item>@string/dark_theme_title</item>
         <item>@string/black_theme_title</item>
         <item>@string/auto_device_theme_title</item>
     </string-array>
-    <string-array name="night_theme_values_list" translatable="false">
+    <string-array name="night_theme_values_list">
         <item>@string/dark_theme_key</item>
         <item>@string/black_theme_key</item>
     </string-array>
-    <string-array name="night_theme_description_list" translatable="false">
+    <string-array name="night_theme_description_list">
         <item>@string/dark_theme_title</item>
         <item>@string/black_theme_title</item>
     </string-array>
 
     <!-- Caption Size -->
-    <string name="caption_settings_key" translatable="false">caption_settings_key</string>
-    <string name="caption_user_set_key" translatable="false">caption_user_set_key</string>
+    <string name="caption_settings_key">caption_settings_key</string>
+    <string name="caption_user_set_key">caption_user_set_key</string>
 
     <!-- Content & History -->
-    <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
-    <string name="show_local_search_suggestions_key" translatable="false">show_local_search_suggestions</string>
-    <string name="show_remote_search_suggestions_key" translatable="false">show_remote_search_suggestions</string>
-    <string-array name="show_search_suggestions_value_list" translatable="false">
+    <string name="show_search_suggestions_key">show_search_suggestions</string>
+    <string name="show_local_search_suggestions_key">show_local_search_suggestions</string>
+    <string name="show_remote_search_suggestions_key">show_remote_search_suggestions</string>
+    <string-array name="show_search_suggestions_value_list">
         <item>@string/show_local_search_suggestions_key</item>
         <item>@string/show_remote_search_suggestions_key</item>
     </string-array>
-    <string-array name="show_search_suggestions_description_list" translatable="false">
+    <string-array name="show_search_suggestions_description_list">
         <item>@string/local_search_suggestions</item>
         <item>@string/remote_search_suggestions</item>
     </string-array>
-    <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
-    <string name="show_comments_key" translatable="false">show_comments</string>
-    <string name="show_next_video_key" translatable="false">show_next_video</string>
-    <string name="show_description_key" translatable="false">show_description</string>
-    <string name="show_meta_info_key" translatable="false">show_meta_info</string>
-    <string name="stream_info_selected_tab_key" translatable="false">stream_info_selected_tab</string>
-    <string name="show_hold_to_append_key" translatable="false">show_hold_to_append</string>
-    <string name="content_language_key" translatable="false">content_language</string>
-    <string name="peertube_instance_setup_key" translatable="false">peertube_instance_setup</string>
-    <string name="peertube_selected_instance_key" translatable="false">peertube_selected_instance</string>
-    <string name="peertube_instance_list_key" translatable="false">peertube_instance_list</string>
-    <string name="content_country_key" translatable="false">content_country</string>
-    <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
-    <string name="youtube_restricted_mode_enabled" translatable="false">youtube_restricted_mode_enabled</string>
-    <string name="enable_search_history_key" translatable="false">enable_search_history</string>
-    <string name="enable_watch_history_key" translatable="false">enable_watch_history</string>
-    <string name="main_page_content_key" translatable="false">main_page_content</string>
-    <string name="enable_playback_resume_key" translatable="false">enable_playback_resume</string>
-    <string name="enable_playback_state_lists_key" translatable="false">enable_playback_state_lists</string>
-    <string name="playback_unhook_key" translatable="false">playback_unhook_key</string>
-    <string name="playback_speed_key" translatable="false">playback_speed_key</string>
-    <string name="playback_pitch_key" translatable="false">playback_pitch_key</string>
-    <string name="playback_skip_silence_key" translatable="false">playback_skip_silence_key</string>
+    <string name="show_play_with_kodi_key">show_play_with_kodi</string>
+    <string name="show_comments_key">show_comments</string>
+    <string name="show_next_video_key">show_next_video</string>
+    <string name="show_description_key">show_description</string>
+    <string name="show_meta_info_key">show_meta_info</string>
+    <string name="stream_info_selected_tab_key">stream_info_selected_tab</string>
+    <string name="show_hold_to_append_key">show_hold_to_append</string>
+    <string name="content_language_key">content_language</string>
+    <string name="peertube_instance_setup_key">peertube_instance_setup</string>
+    <string name="peertube_selected_instance_key">peertube_selected_instance</string>
+    <string name="peertube_instance_list_key">peertube_instance_list</string>
+    <string name="content_country_key">content_country</string>
+    <string name="show_age_restricted_content">show_age_restricted_content</string>
+    <string name="youtube_restricted_mode_enabled">youtube_restricted_mode_enabled</string>
+    <string name="enable_search_history_key">enable_search_history</string>
+    <string name="enable_watch_history_key">enable_watch_history</string>
+    <string name="main_page_content_key">main_page_content</string>
+    <string name="enable_playback_resume_key">enable_playback_resume</string>
+    <string name="enable_playback_state_lists_key">enable_playback_state_lists</string>
+    <string name="playback_unhook_key">playback_unhook_key</string>
+    <string name="playback_speed_key">playback_speed_key</string>
+    <string name="playback_pitch_key">playback_pitch_key</string>
+    <string name="playback_skip_silence_key">playback_skip_silence_key</string>
 
-    <string name="app_language_key" translatable="false">app_language_key</string>
+    <string name="app_language_key">app_language_key</string>
 
-    <string name="feed_update_threshold_key" translatable="false">feed_update_threshold_key</string>
-    <string name="feed_update_threshold_default_value" translatable="false">300</string>
-    <string name="feed_show_played_items_key" translatable="false">feed_show_played_items</string>
+    <string name="feed_update_threshold_key">feed_update_threshold_key</string>
+    <string name="feed_update_threshold_default_value">300</string>
+    <string name="feed_show_played_items_key">feed_show_played_items</string>
 
-    <string name="show_thumbnail_key" translatable="false">show_thumbnail_key</string>
+    <string name="show_thumbnail_key">show_thumbnail_key</string>
 
     <!-- Values will be localized in runtime -->
-    <string-array name="feed_update_threshold_options" translatable="false">
+    <string-array name="feed_update_threshold_options">
         <item>@string/feed_update_threshold_option_always_update</item>
         <item>5 minutes</item>
         <item>15 minutes</item>
@@ -281,7 +281,7 @@
         <item>1 day</item>
     </string-array>
     <!-- Threshold values in seconds -->
-    <string-array name="feed_update_threshold_values" translatable="false">
+    <string-array name="feed_update_threshold_values">
         <item>0</item>
         <item>300</item>
         <item>900</item>
@@ -290,53 +290,53 @@
         <item>43200</item>
         <item>86400</item>
     </string-array>
-    <string name="feed_use_dedicated_fetch_method_key" translatable="false">feed_use_dedicated_fetch_method</string>
+    <string name="feed_use_dedicated_fetch_method_key">feed_use_dedicated_fetch_method</string>
 
-    <string name="import_export_data_path" translatable="false">import_export_data_path</string>
-    <string name="import_data" translatable="false">import_data</string>
-    <string name="export_data" translatable="false">export_data</string>
+    <string name="import_export_data_path">import_export_data_path</string>
+    <string name="import_data">import_data</string>
+    <string name="export_data">export_data</string>
 
-    <string name="clear_cookie_key" translatable="false">clear_cookie</string>
+    <string name="clear_cookie_key">clear_cookie</string>
 
-    <string name="download_thumbnail_key" translatable="false">download_thumbnail_key</string>
+    <string name="download_thumbnail_key">download_thumbnail_key</string>
 
-    <string name="metadata_cache_wipe_key" translatable="false">cache_wipe_key</string>
-    <string name="clear_views_history_key" translatable="false">clear_play_history</string>
-    <string name="clear_playback_states_key" translatable="false">clear_playback_states</string>
-    <string name="clear_search_history_key" translatable="false">clear_search_history</string>
+    <string name="metadata_cache_wipe_key">cache_wipe_key</string>
+    <string name="clear_views_history_key">clear_play_history</string>
+    <string name="clear_playback_states_key">clear_playback_states</string>
+    <string name="clear_search_history_key">clear_search_history</string>
 
-    <string name="last_used_download_type" translatable="false">@string/last_download_type_video_key</string>
-    <string name="last_download_type_video_key" translatable="false">last_dl_type_video</string>
-    <string name="last_download_type_audio_key" translatable="false">last_dl_type_audio</string>
-    <string name="last_download_type_subtitle_key" translatable="false">last_dl_type_subtitle</string>
+    <string name="last_used_download_type">@string/last_download_type_video_key</string>
+    <string name="last_download_type_video_key">last_dl_type_video</string>
+    <string name="last_download_type_audio_key">last_dl_type_audio</string>
+    <string name="last_download_type_subtitle_key">last_dl_type_subtitle</string>
 
-    <string name="downloads_storage_ask" translatable="false">downloads_storage_ask</string>
-    <string name="storage_use_saf" translatable="false">storage_use_saf</string>
+    <string name="downloads_storage_ask">downloads_storage_ask</string>
+    <string name="storage_use_saf">storage_use_saf</string>
 
     <!-- FileName Downloads  -->
-    <string name="settings_file_charset_key" translatable="false">file_rename_charset</string>
-    <string name="settings_file_replacement_character_key" translatable="false">file_replacement_character</string>
-    <string name="settings_file_replacement_character_default_value" translatable="false">_</string>
+    <string name="settings_file_charset_key">file_rename_charset</string>
+    <string name="settings_file_replacement_character_key">file_replacement_character</string>
+    <string name="settings_file_replacement_character_default_value">_</string>
 
 
-    <string name="charset_letters_and_digits_value" translatable="false">CHARSET_LETTERS_AND_DIGITS</string>
-    <string name="charset_most_special_value" translatable="false">CHARSET_MOST_SPECIAL</string>
+    <string name="charset_letters_and_digits_value">CHARSET_LETTERS_AND_DIGITS</string>
+    <string name="charset_most_special_value">CHARSET_MOST_SPECIAL</string>
 
-    <string-array name="settings_filename_charset" translatable="false">
+    <string-array name="settings_filename_charset">
         <item>@string/charset_letters_and_digits_value</item>
         <item>@string/charset_most_special_value</item>
     </string-array>
 
-    <string-array name="settings_filename_charset_name" translatable="false">
+    <string-array name="settings_filename_charset_name">
         <item>@string/charset_letters_and_digits</item>
         <item>@string/charset_most_special_characters</item>
     </string-array>
 
-    <string name="default_file_charset_value" translatable="false">@string/charset_most_special_value</string>
+    <string name="default_file_charset_value">@string/charset_most_special_value</string>
 
-    <string name="downloads_maximum_retry" translatable="false">downloads_max_retry</string>
-    <string name="downloads_maximum_retry_default" translatable="false">3</string>
-    <string-array name="downloads_maximum_retry_list" translatable="false">
+    <string name="downloads_maximum_retry">downloads_max_retry</string>
+    <string name="downloads_maximum_retry_default">3</string>
+    <string-array name="downloads_maximum_retry_list">
         <item translatable="true">@string/minimize_on_exit_none_description</item>
         <item>1</item>
         <item>2</item>
@@ -348,25 +348,25 @@
         <item>15</item>
     </string-array>
 
-    <string name="downloads_cross_network" translatable="false">cross_network_downloads</string>
-    <string name="downloads_queue_limit" translatable="false">downloads_queue_limit</string>
+    <string name="downloads_cross_network">cross_network_downloads</string>
+    <string name="downloads_queue_limit">downloads_queue_limit</string>
 
-    <string name="default_download_threads" translatable="false">default_download_threads</string>
+    <string name="default_download_threads">default_download_threads</string>
 
     <!-- Preferred action on open (open from external app) -->
-    <string name="preferred_open_action_key" translatable="false">preferred_open_action_key</string>
-    <string name="preferred_open_action_default" translatable="false">@string/always_ask_open_action_key</string>
-    <string name="preferred_open_action_last_selected_key" translatable="false">preferred_open_action_last_selected</string>
+    <string name="preferred_open_action_key">preferred_open_action_key</string>
+    <string name="preferred_open_action_default">@string/always_ask_open_action_key</string>
+    <string name="preferred_open_action_last_selected_key">preferred_open_action_last_selected</string>
 
-    <string name="show_info_key" translatable="false">show_info</string>
-    <string name="video_player_key" translatable="false">video_player</string>
-    <string name="background_player_key" translatable="false">background_player</string>
-    <string name="popup_player_key" translatable="false">popup_player</string>
-    <string name="download_key" translatable="false">download</string>
-    <string name="add_to_playlist_key" translatable="false">add_to_playlist</string>
-    <string name="always_ask_open_action_key" translatable="false">always_ask_player</string>
+    <string name="show_info_key">show_info</string>
+    <string name="video_player_key">video_player</string>
+    <string name="background_player_key">background_player</string>
+    <string name="popup_player_key">popup_player</string>
+    <string name="download_key">download</string>
+    <string name="add_to_playlist_key">add_to_playlist</string>
+    <string name="always_ask_open_action_key">always_ask_player</string>
 
-    <string-array name="preferred_open_action_description_list" translatable="false">
+    <string-array name="preferred_open_action_description_list">
         <item>@string/show_info</item>
         <item>@string/video_player</item>
         <item>@string/background_player</item>
@@ -375,7 +375,7 @@
         <item>@string/add_to_playlist</item>
         <item>@string/always_ask_open_action</item>
     </string-array>
-    <string-array name="preferred_open_action_values_list" translatable="false">
+    <string-array name="preferred_open_action_values_list">
         <item>@string/show_info_key</item>
         <item>@string/video_player_key</item>
         <item>@string/background_player_key</item>
@@ -386,10 +386,10 @@
     </string-array>
 
     <!-- Updates -->
-    <string name="update_app_key" translatable="false">update_app_key</string>
+    <string name="update_app_key">update_app_key</string>
     <string name="manual_update_key">manual_update_key</string>
-    <string name="update_pref_screen_key" translatable="false">update_pref_screen_key</string>
-    <string name="update_expiry_key" translatable="false">update_expiry_key</string>
+    <string name="update_pref_screen_key">update_pref_screen_key</string>
+    <string name="update_expiry_key">update_expiry_key</string>
 
     <!-- SponsorBlock -->
     <string name="sponsor_block_home_page_key" translatable="false">sponsor_block_home_page</string>
@@ -421,9 +421,9 @@
     <string name="disable_error_reports_key" translatable="false">disable_error_reports</string>
 
     <!-- Localizations   -->
-    <string name="default_localization_key" translatable="false">system</string>
+    <string name="default_localization_key">system</string>
     <!-- alternatively, load these from some local android data store -->
-    <string-array name="language_codes" translatable="false">
+    <string-array name="language_codes">
         <item>@string/default_localization_key</item>
         <item>af</item>
         <item>az</item>
@@ -502,7 +502,7 @@
         <item>ja</item>
         <item>ko</item>
     </string-array>
-    <string-array name="language_names" translatable="false">
+    <string-array name="language_names">
         <item>@string/systems_language</item>
         <item>Afrikaans</item>
         <item>Azərbaycan</item>
@@ -583,7 +583,7 @@
     </string-array>
 
 
-    <string-array name="country_names" translatable="false">
+    <string-array name="country_names">
         <item>@string/systems_language</item>
         <item>Afghanistan</item>
         <item>Aland Islands</item>
@@ -834,7 +834,7 @@
         <item>Zimbabwe</item>
     </string-array>
 
-    <string-array name="country_codes" translatable="false">
+    <string-array name="country_codes">
         <item>@string/default_localization_key</item>
         <item>AF</item>
         <item>AX</item>
@@ -1086,7 +1086,7 @@
     </string-array>
 
     <!--The next two arrays are set to change the app language-->
-    <string-array name="app_language_code" translatable="false">
+    <string-array name="app_language_code">
         <item>@string/default_localization_key</item>
         <item>ace</item>
         <item>ar</item>
@@ -1165,7 +1165,7 @@
         <item>zh-hk</item>
         <item>zh-tw</item>
     </string-array>
-    <string-array name="app_language_name" translatable="false">
+    <string-array name="app_language_name">
         <item>@string/systems_language</item>
         <item>Basa Acèh</item>
         <item>العربية</item>
@@ -1246,9 +1246,9 @@
     </string-array>
 
     <!-- Limit mobile data usage  -->
-    <string name="limit_mobile_data_usage_key" translatable="false">limit_mobile_data_usage</string>
-    <string name="limit_data_usage_none_key" translatable="false">limit_data_usage_none</string>
-
+    <string name="limit_mobile_data_usage_key">limit_mobile_data_usage</string>
+    <string name="limit_data_usage_none_key">limit_data_usage_none</string>
+    <string name="limit_mobile_data_usage_value">@string/limit_data_usage_none_key</string>
     <string-array name="limit_data_usage_values_list">
         <item>@string/limit_data_usage_none_key</item>
         <item>1080p60</item>
@@ -1261,40 +1261,40 @@
         <item>144p</item>
     </string-array>
 
-    <string name="list_view_mode_key" translatable="false">list_view_mode</string>
-    <string name="list_view_mode_value" translatable="false">@string/list_view_mode_auto_key</string>
+    <string name="list_view_mode_key">list_view_mode</string>
+    <string name="list_view_mode_value">@string/list_view_mode_auto_key</string>
 
     <!-- TODO: Use these across the app instead of hardcoding it -->
-    <string name="list_view_mode_auto_key" translatable="false">auto</string>
-    <string name="list_view_mode_list_key" translatable="false">list</string>
-    <string name="list_view_mode_grid_key" translatable="false">grid</string>
+    <string name="list_view_mode_auto_key">auto</string>
+    <string name="list_view_mode_list_key">list</string>
+    <string name="list_view_mode_grid_key">grid</string>
 
-    <string-array name="list_view_mode_values" translatable="false">
+    <string-array name="list_view_mode_values">
         <item>@string/list_view_mode_auto_key</item>
         <item>@string/list_view_mode_list_key</item>
         <item>@string/list_view_mode_grid_key</item>
     </string-array>
-    <string-array name="list_view_mode_description" translatable="false">
+    <string-array name="list_view_mode_description">
         <item>@string/auto</item>
         <item>@string/list</item>
         <item>@string/grid</item>
     </string-array>
 
-    <string name="tablet_mode_key" translatable="false">tablet_mode</string>
+    <string name="tablet_mode_key">tablet_mode</string>
 
-    <string name="tablet_mode_auto_key" translatable="false">auto</string>
-    <string name="tablet_mode_on_key" translatable="false">on</string>
-    <string name="tablet_mode_off_key" translatable="false">off</string>
-    <string-array name="tablet_mode_values" translatable="false">
+    <string name="tablet_mode_auto_key">auto</string>
+    <string name="tablet_mode_on_key">on</string>
+    <string name="tablet_mode_off_key">off</string>
+    <string-array name="tablet_mode_values">
         <item>@string/tablet_mode_auto_key</item>
         <item>@string/tablet_mode_on_key</item>
         <item>@string/tablet_mode_off_key</item>
     </string-array>
-    <string-array name="tablet_mode_description" translatable="false">
+    <string-array name="tablet_mode_description">
         <item>@string/auto</item>
         <item>@string/on</item>
         <item>@string/off</item>
     </string-array>
 
-    <string name="recaptcha_cookies_key" translatable="false">recaptcha_cookies_key</string>
+    <string name="recaptcha_cookies_key">recaptcha_cookies_key</string>
 </resources>

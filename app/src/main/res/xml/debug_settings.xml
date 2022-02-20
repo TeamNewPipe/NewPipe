@@ -51,10 +51,9 @@
 
     <SwitchPreferenceCompat
         android:defaultValue="false"
-        android:key="@string/report_player_errors_key"
-        android:summary="@string/report_player_errors_summary"
-        android:title="@string/report_player_errors_title"
-        app:singleLineTitle="false"
+        android:key="@string/show_crash_the_player_key"
+        android:summary="@string/show_crash_the_player_summary"
+        android:title="@string/show_crash_the_player_title"
         app:iconSpaceReserved="false" />
 
     <Preference
@@ -63,12 +62,15 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
-    <SwitchPreferenceCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:defaultValue="false"
-        android:key="@string/show_crash_the_player_key"
-        android:summary="@string/show_crash_the_player_summary"
-        android:title="@string/show_crash_the_player_title"
+    <Preference
+        android:key="@string/show_error_snackbar_key"
+        android:title="@string/show_error_snackbar"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <Preference
+        android:key="@string/create_error_notification_key"
+        android:title="@string/create_error_notification"
+        app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 </PreferenceScreen>

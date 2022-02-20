@@ -77,6 +77,13 @@ public final class CheckForNewAppVersion {
         notificationManager.notify(2000, notificationBuilder.build());
     }
 
+    public static boolean isReleaseApk(@NonNull final App app) {
+        // TODO: hope this isn't gonna be an issue
+        //return getCertificateSHA1Fingerprint(app).equals(RELEASE_CERT_PUBLIC_KEY_SHA1);
+
+        return true;
+    }
+
     private static boolean isConnected(@NonNull final App app) {
         final ConnectivityManager connectivityManager =
                 ContextCompat.getSystemService(app, ConnectivityManager.class);

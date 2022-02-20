@@ -1,0 +1,4 @@
+Deze release bevat drie kleine oplossingen:
+• Opslagtoegang op Android 10+
+• Kiosken openen
+• Analyseren van lange video's met een vaste duur

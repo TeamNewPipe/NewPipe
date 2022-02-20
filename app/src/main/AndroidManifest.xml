@@ -335,6 +335,7 @@
                 <data android:host="video.ploud.fr" />
                 <data android:host="video.lqdn.fr" />
                 <data android:host="skeptikon.fr" />
+                <data android:host="media.fsfe.org" />
 
                 <data android:pathPrefix="/videos/" /> <!-- it contains playlists -->
                 <data android:pathPrefix="/w/" /> <!-- short video URLs -->
