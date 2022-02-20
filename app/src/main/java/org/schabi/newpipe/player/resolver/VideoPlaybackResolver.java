@@ -131,11 +131,10 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     }
 
     /**
-     * Determine if the last resolved {@link StreamInfo} had separated audio and video streams (or
-     * only audio).
+     * Returns the last resolved {@link StreamInfo}'s {@link SourceType source type}.
      *
-     * @return {@link Optional#empty()} if nothing was resolved, otherwise {@code true} or
-     * {@code false}
+     * @return {@link Optional#empty()} if nothing was resolved, otherwise the {@link SourceType}
+     * of the last resolved {@link StreamInfo} inside an {@link Optional}
      */
     public Optional<SourceType> getStreamSourceType() {
         return Optional.ofNullable(streamSourceType);
