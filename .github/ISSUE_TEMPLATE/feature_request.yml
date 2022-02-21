@@ -14,7 +14,7 @@ body:
     attributes:
       label: "Checklist"
       options:
-        - label: "I made sure that there are *no existing issues* - [open](https://github.com/TeamNewPipe/NewPipe/issues) or [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed) - which I could contribute my information to."
+        - label: "I made sure that there are *no existing issues* - [open](https://github.com/polymorphicshade/NewPipe/issues) or [closed](https://github.com/polymorphicshade/NewPipe/issues?q=is%3Aissue+is%3Aclosed) - which I could contribute my information to."
           required: true
         - label: "I'm aware that this is a request for NewPipe itself and that requests for adding a new service need to be made at [NewPipeExtractor](https://github.com/TeamNewPipe/NewPipeExtractor/issues)."
           required: true
@@ -22,7 +22,7 @@ body:
           required: true
         - label: "This issue contains only one feature request."
           required: true
-        - label: "I have read and understood the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/dev/.github/CONTRIBUTING.md)."
+        - label: "I have read and understood the [contribution guidelines](https://github.com/polymorphicshade/NewPipe/blob/dev/.github/CONTRIBUTING.md)."
           required: true
 
 
@@ -41,6 +41,17 @@ body:
       label: Why do you want this feature?
       description: |
         Describe any problem or limitation you come across while using the app which would be solved by this feature.
+    validations:
+      required: true
+
+  - type: textarea
+    id: why-relevant-to-fork
+    attributes:
+      label: Why ist the feature relevant to this fork?
+      description: |
+        Describe why your feature is relevant to the features this fork aims to provide over regular NewPipe or demonstrate that [upstream](https://github.com/TeamNewPipe/NewPipe/issues) is *explicitly* against implementing your feature for *non-technical reasons*.
+
+        (This is not the place for stale upstream feature requests!)
     validations:
       required: true
       
