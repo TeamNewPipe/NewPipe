@@ -17,7 +17,7 @@ android {
         minSdk 19
         targetSdk 29
         versionCode 983
-        versionName "0.22.0"
+        versionName "0.22.0_r1"
 
         multiDexEnabled true
 
