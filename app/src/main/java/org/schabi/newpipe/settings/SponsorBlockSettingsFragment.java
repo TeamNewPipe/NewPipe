@@ -19,7 +19,7 @@ public class SponsorBlockSettingsFragment extends BasePreferenceFragment {
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.sponsor_block_settings);
+        addPreferencesFromResourceRegistry();
 
         final Preference sponsorBlockWebsitePreference =
                 findPreference(getString(R.string.sponsor_block_home_page_key));

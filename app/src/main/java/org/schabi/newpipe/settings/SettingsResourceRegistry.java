@@ -39,8 +39,8 @@ public final class SettingsResourceRegistry {
         add(NotificationSettingsFragment.class, R.xml.notification_settings);
         add(UpdateSettingsFragment.class, R.xml.update_settings);
         add(VideoAudioSettingsFragment.class, R.xml.video_audio_settings);
-        add(VideoAudioSettingsFragment.class, R.xml.sponsor_block_settings);
-        add(VideoAudioSettingsFragment.class, R.xml.extra_settings);
+        add(SponsorBlockSettingsFragment.class, R.xml.sponsor_block_settings);
+        add(ExtraSettingsFragment.class, R.xml.extra_settings);
     }
 
     private SettingRegistryEntry add(

@@ -21,7 +21,7 @@ public class SponsorBlockCategoriesSettingsFragment extends BasePreferenceFragme
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.sponsor_block_category_settings);
+        addPreferencesFromResourceRegistry();
 
         final Preference resetPreference =
                 findPreference(getString(R.string.sponsor_block_category_reset_key));
