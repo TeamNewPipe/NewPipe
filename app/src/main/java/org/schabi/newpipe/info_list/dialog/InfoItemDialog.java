@@ -86,7 +86,7 @@ public final class InfoItemDialog {
     }
 
     /**
-     * <p>Builder to generate a {@link InfoItemDialog}.</p>
+     * <p>Builder to generate a {@link InfoItemDialog} for a {@link StreamInfoItem}.</p>
      * Use {@link #addEntry(StreamDialogDefaultEntry)}
      * and {@link #addAllEntries(StreamDialogDefaultEntry...)} to add options to the dialog.
      * <br>
@@ -102,7 +102,8 @@ public final class InfoItemDialog {
         private final boolean addDefaultEntriesAutomatically;
 
         /**
-         * <p>Create a Builder instance that automatically adds the some default entries
+         * <p>Create a {@link Builder builder} instance for a {@link StreamInfoItem}
+         * that automatically adds the some default entries
          * at the top and bottom of the dialog.</p>
          * The dialog has the following structure:
          * <pre>
@@ -142,7 +143,7 @@ public final class InfoItemDialog {
         }
 
         /**
-         * <p>Create an instance of this Builder.</p>
+         * <p>Create an instance of this {@link Builder} for a {@link StreamInfoItem}.</p>
          * <p>If {@code addDefaultEntriesAutomatically} is set to {@code true},
          * some default entries are added to the top and bottom of the dialog.</p>
          * The dialog has the following structure:
