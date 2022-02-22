@@ -532,8 +532,11 @@ public abstract class PlayQueue implements Serializable {
             return false;
         }
         for (int i = 0; i < size(); i++) {
-            // Check is based on URL
-            if (!streams.get(i).getUrl().equals(other.streams.get(i).getUrl())) {
+            final PlayQueueItem stream = streams.get(i);
+            final PlayQueueItem otherStream = other.streams.get(i);
+            // Check is based on serviceId and URL
+            if (stream.getServiceId() != otherStream.getServiceId()
+                    || !stream.getUrl().equals(otherStream.getUrl())) {
                 return false;
             }
         }
