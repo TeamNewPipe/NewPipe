@@ -175,8 +175,9 @@ public final class PlayerHelper {
         final String resolution = videoStream.getResolution();
         final MediaFormat mediaFormat = videoStream.getFormat();
         if (resolution.equals(RESOLUTION_UNKNOWN) && mediaFormat == null) {
-            final String content = videoStream.getContent();
-            cacheKey += " " + content.substring(20 * content.length() / 100);
+            // The hash code is only used in the cache key in the case when the resolution and the
+            // media format are unknown
+            cacheKey += " " + videoStream.hashCode();
         } else {
             if (mediaFormat != null) {
                 cacheKey += " " + videoStream.getFormat().getName();
@@ -197,6 +198,8 @@ public final class PlayerHelper {
         final int averageBitrate = audioStream.getAverageBitrate();
         final MediaFormat mediaFormat = audioStream.getFormat();
         if (averageBitrate == UNKNOWN_BITRATE && mediaFormat == null) {
+            // The hash code is only used in the cache key in the case when the resolution and the
+            // media format are unknown
             cacheKey += " " + audioStream.hashCode();
         } else {
             if (mediaFormat != null) {

@@ -18,6 +18,9 @@ import com.google.android.exoplayer2.source.dash.manifest.DashManifestParser;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.source.hls.playlist.HlsPlaylist;
 import com.google.android.exoplayer2.source.hls.playlist.HlsPlaylistParser;
+import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
+import com.google.android.exoplayer2.source.smoothstreaming.manifest.SsManifest;
+import com.google.android.exoplayer2.source.smoothstreaming.manifest.SsManifestParser;
 
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.services.youtube.ItagItem;
@@ -39,8 +42,8 @@ import java.util.Objects;
 public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
 
     @Nullable
-    default MediaSource maybeBuildLiveMediaSource(@NonNull final PlayerDataSource dataSource,
-                                                  @NonNull final StreamInfo info) {
+    static MediaSource maybeBuildLiveMediaSource(@NonNull final PlayerDataSource dataSource,
+                                                 @NonNull final StreamInfo info) {
         final StreamType streamType = info.getStreamType();
         if (!StreamTypeUtil.isLiveStream(streamType)) {
             return null;
@@ -57,10 +60,10 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
     }
 
     @NonNull
-    default MediaSource buildLiveMediaSource(@NonNull final PlayerDataSource dataSource,
-                                             @NonNull final String sourceUrl,
-                                             @C.ContentType final int type,
-                                             @NonNull final MediaSourceTag metadata) {
+    static MediaSource buildLiveMediaSource(@NonNull final PlayerDataSource dataSource,
+                                            @NonNull final String sourceUrl,
+                                            @C.ContentType final int type,
+                                            @NonNull final MediaSourceTag metadata) {
         final MediaSourceFactory factory;
         switch (type) {
             case C.TYPE_SS:
@@ -81,30 +84,34 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                         .setTag(metadata)
                         .setUri(Uri.parse(sourceUrl))
                         .setLiveTargetOffsetMs(PlayerDataSource.LIVE_STREAM_EDGE_GAP_MILLIS)
-                        .build()
-        );
+                        .build());
     }
 
     @NonNull
-    default MediaSource buildMediaSource(@NonNull final PlayerDataSource dataSource,
-                                         @NonNull final Stream stream,
-                                         @NonNull final StreamInfo streamInfo,
-                                         @NonNull final String cacheKey,
-                                         @NonNull final MediaSourceTag metadata)
+    static MediaSource buildMediaSource(@NonNull final PlayerDataSource dataSource,
+                                        @NonNull final Stream stream,
+                                        @NonNull final StreamInfo streamInfo,
+                                        @NonNull final String cacheKey,
+                                        @NonNull final MediaSourceTag metadata)
             throws IOException {
         final DeliveryMethod deliveryMethod = stream.getDeliveryMethod();
-        if (deliveryMethod.equals(DeliveryMethod.PROGRESSIVE_HTTP)) {
-            return buildProgressiveMediaSource(dataSource, stream, cacheKey, metadata);
-        } else if (deliveryMethod.equals(DeliveryMethod.HLS)) {
-            return buildHlsMediaSource(dataSource, stream, cacheKey, metadata);
-        } else if (deliveryMethod.equals(DeliveryMethod.DASH)) {
-            return buildDashMediaSource(dataSource, stream, streamInfo, cacheKey, metadata);
-        } else {
-            throw new IllegalArgumentException("Unsupported delivery type" + deliveryMethod);
+        switch (deliveryMethod) {
+            case PROGRESSIVE_HTTP:
+                return buildProgressiveMediaSource(dataSource, stream, cacheKey, metadata);
+            case DASH:
+                return buildDashMediaSource(dataSource, stream, streamInfo, cacheKey, metadata);
+            case HLS:
+                return buildHlsMediaSource(dataSource, stream, cacheKey, metadata);
+            case SS:
+                return buildSSMediaSource(dataSource, stream, cacheKey, metadata);
+            // Torrents streams are not supported by ExoPlayer
+            default:
+                throw new IllegalArgumentException("Unsupported delivery type" + deliveryMethod);
         }
     }
 
-    default <T extends Stream> ProgressiveMediaSource buildProgressiveMediaSource(
+    @NonNull
+    static <T extends Stream> ProgressiveMediaSource buildProgressiveMediaSource(
             @NonNull final PlayerDataSource dataSource,
             @NonNull final T stream,
             @NonNull final String cacheKey,
@@ -125,7 +132,7 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         }
     }
 
-    default <T extends Stream> DashMediaSource buildDashMediaSource(
+    static <T extends Stream> DashMediaSource buildDashMediaSource(
             @NonNull final PlayerDataSource dataSource,
             @NonNull final T stream,
             @NonNull final StreamInfo streamInfo,
@@ -152,11 +159,12 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                 // generation
                 content = stream.getContent();
             }
-            return createDashMediaSource(dataSource, content, stream, cacheKey, metadata);
+            return createDashMediaSourceFromRawManifest(dataSource, content, stream, cacheKey,
+                    metadata);
         }
     }
 
-    default <T extends Stream> String generateDashManifestOfYoutubeDashStream(
+    static <T extends Stream> String generateDashManifestOfYoutubeDashStream(
             @NonNull final StreamInfo streamInfo,
             @NonNull final T stream) throws IOException {
         final String content;
@@ -192,8 +200,7 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
             try {
                 final ItagItem itagItem = Objects.requireNonNull(stream.getItagItem());
                 content = YoutubeDashManifestCreator
-                        .createDashManifestFromPostLiveStreamDvrStreamingUrl(
-                                stream.getContent(),
+                        .createDashManifestFromPostLiveStreamDvrStreamingUrl(stream.getContent(),
                                 itagItem,
                                 itagItem.getTargetDurationSec(),
                                 streamInfo.getDuration());
@@ -209,7 +216,8 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         return content;
     }
 
-    default <T extends Stream> DashMediaSource createDashMediaSource(
+    @NonNull
+    static <T extends Stream> DashMediaSource createDashMediaSourceFromRawManifest(
             @NonNull final PlayerDataSource dataSource,
             @NonNull final String content,
             @NonNull final T stream,
@@ -238,16 +246,18 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                         .build());
     }
 
-    default <T extends Stream> HlsMediaSource buildHlsMediaSource(
+    @NonNull
+    static <T extends Stream> HlsMediaSource buildHlsMediaSource(
             @NonNull final PlayerDataSource dataSource,
             @NonNull final T stream,
             @NonNull final String cacheKey,
             @NonNull final MediaSourceTag metadata) throws IOException {
         final boolean isUrlStream = stream.isUrl();
         if (isUrlStream && isNullOrEmpty(stream.getContent())) {
-            throw new IOException("Try to generate a DASH media source from an empty string or "
+            throw new IOException("Try to generate an HLS media source from an empty string or "
                     + "from a null object");
         }
+
         if (isUrlStream) {
             return dataSource.getHlsMediaSourceFactory(null).createMediaSource(
                     new MediaItem.Builder()
@@ -275,6 +285,52 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
             return dataSource.getHlsMediaSourceFactory(
                     new NewPipeHlsPlaylistParserFactory(hlsPlaylist))
                     .createMediaSource(new MediaItem.Builder()
+                            .setTag(metadata)
+                            .setUri(Uri.parse(stream.getContent()))
+                            .setCustomCacheKey(cacheKey)
+                            .build());
+        }
+    }
+
+    @NonNull
+    static <T extends Stream> SsMediaSource buildSSMediaSource(
+            @NonNull final PlayerDataSource dataSource,
+            @NonNull final T stream,
+            @NonNull final String cacheKey,
+            @NonNull final MediaSourceTag metadata) throws IOException {
+        final boolean isUrlStream = stream.isUrl();
+        if (isUrlStream && isNullOrEmpty(stream.getContent())) {
+            throw new IOException("Try to generate an SmoothStreaming media source from an empty "
+                    + "string or from a null object");
+        }
+
+        if (isUrlStream) {
+            return dataSource.getSSMediaSourceFactory().createMediaSource(
+                    new MediaItem.Builder()
+                            .setTag(metadata)
+                            .setUri(Uri.parse(stream.getContent()))
+                            .setCustomCacheKey(cacheKey)
+                            .build());
+        } else {
+            String baseUrl = stream.getBaseUrl();
+            if (baseUrl == null) {
+                baseUrl = "";
+            }
+
+            final Uri uri = Uri.parse(baseUrl);
+
+            final SsManifest smoothStreamingManifest;
+            try {
+                final ByteArrayInputStream hlsManifestInput = new ByteArrayInputStream(
+                        stream.getContent().getBytes(StandardCharsets.UTF_8));
+                smoothStreamingManifest = new SsManifestParser().parse(uri, hlsManifestInput);
+            } catch (final IOException e) {
+                throw new IOException("Error when parsing manual SmoothStreaming manifest", e);
+            }
+
+            return dataSource.getSSMediaSourceFactory().createMediaSource(
+                    smoothStreamingManifest,
+                    new MediaItem.Builder()
                             .setTag(metadata)
                             .setUri(Uri.parse(stream.getContent()))
                             .setCustomCacheKey(cacheKey)

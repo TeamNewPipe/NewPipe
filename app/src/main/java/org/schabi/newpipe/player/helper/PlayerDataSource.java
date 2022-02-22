@@ -47,10 +47,7 @@ public class PlayerDataSource {
     }
 
     public SsMediaSource.Factory getLiveSsMediaSourceFactory() {
-        return new SsMediaSource.Factory(
-                new DefaultSsChunkSource.Factory(cachelessDataSourceFactory),
-                cachelessDataSourceFactory)
-                .setLivePresentationDelayMs(LIVE_STREAM_EDGE_GAP_MILLIS);
+        return getSSMediaSourceFactory().setLivePresentationDelayMs(LIVE_STREAM_EDGE_GAP_MILLIS);
     }
 
     public HlsMediaSource.Factory getLiveHlsMediaSourceFactory() {
@@ -86,6 +83,12 @@ public class PlayerDataSource {
 
     public ProgressiveMediaSource.Factory getProgressiveMediaSourceFactory() {
         return new ProgressiveMediaSource.Factory(cacheDataSourceFactory);
+    }
+
+    public SsMediaSource.Factory getSSMediaSourceFactory() {
+        return new SsMediaSource.Factory(
+                new DefaultSsChunkSource.Factory(cachelessDataSourceFactory),
+                cachelessDataSourceFactory);
     }
 
     public SingleSampleMediaSource.Factory getSingleSampleMediaSourceFactory() {

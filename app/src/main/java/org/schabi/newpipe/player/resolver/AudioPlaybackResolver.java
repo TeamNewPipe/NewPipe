@@ -37,7 +37,7 @@ public class AudioPlaybackResolver implements PlaybackResolver {
     @Override
     @Nullable
     public MediaSource resolve(@NonNull final StreamInfo info) {
-        final MediaSource liveSource = maybeBuildLiveMediaSource(dataSource, info);
+        final MediaSource liveSource = PlaybackResolver.maybeBuildLiveMediaSource(dataSource, info);
         if (liveSource != null) {
             return liveSource;
         }
@@ -54,8 +54,8 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         final MediaSourceTag tag = new MediaSourceTag(info);
 
         try {
-            return buildMediaSource(dataSource, audio, info, PlayerHelper.cacheKeyOf(info, audio),
-                    tag);
+            return PlaybackResolver.buildMediaSource(
+                    dataSource, audio, info, PlayerHelper.cacheKeyOf(info, audio), tag);
         } catch (final IOException e) {
             Log.e(TAG, "Unable to create audio source:", e);
             return null;
