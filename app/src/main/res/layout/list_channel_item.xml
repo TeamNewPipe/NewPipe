@@ -58,17 +58,19 @@
         app:layout_constraintTop_toBottomOf="@+id/itemChannelDescriptionView"
         tools:text="10M subscribers • 1000 videos" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/itemThumbnailView"
-        android:layout_width="@dimen/video_item_search_thumbnail_image_width"
-        android:layout_height="@dimen/video_item_search_thumbnail_image_height"
-        android:layout_marginRight="@dimen/video_item_search_image_right_margin"
+        android:layout_width="@dimen/video_item_search_avatar_image_width"
+        android:layout_height="@dimen/video_item_search_avatar_image_height"
+        android:layout_marginLeft="@dimen/video_item_search_avatar_left_margin"
+        android:layout_marginRight="@dimen/video_item_search_avatar_right_margin"
         android:src="@drawable/buddy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/itemTitleView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/CircularImageView"
         tools:ignore="RtlHardcoded" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

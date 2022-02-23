@@ -253,14 +253,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
 
-                                <de.hdodenhof.circleimageview.CircleImageView
+                                <com.google.android.material.imageview.ShapeableImageView
                                     android:id="@+id/detail_uploader_thumbnail_view"
                                     android:layout_width="@dimen/video_item_detail_uploader_image_size"
                                     android:layout_height="@dimen/video_item_detail_uploader_image_size"
                                     android:contentDescription="@string/detail_uploader_thumbnail_view_description"
-                                    android:src="@drawable/buddy" />
+                                    android:src="@drawable/buddy"
+                                    app:shapeAppearance="@style/CircularImageView" />
 
-                                <de.hdodenhof.circleimageview.CircleImageView
+                                <com.google.android.material.imageview.ShapeableImageView
                                     android:id="@+id/detail_sub_channel_thumbnail_view"
                                     android:layout_width="@dimen/video_item_detail_sub_channel_image_size"
                                     android:layout_height="@dimen/video_item_detail_sub_channel_image_size"
@@ -268,6 +269,7 @@
                                     android:contentDescription="@string/detail_sub_channel_thumbnail_view_description"
                                     android:src="@drawable/buddy"
                                     android:visibility="gone"
+                                    app:shapeAppearance="@style/CircularImageView"
                                     tools:ignore="RtlHardcoded"
                                     tools:visibility="visible" />
 

@@ -118,10 +118,6 @@ class AboutActivity : AppCompatActivity() {
                 "https://developer.android.com/jetpack", StandardLicenses.APACHE2
             ),
             SoftwareComponent(
-                "CircleImageView", "2014 - 2020", "Henning Dodenhof",
-                "https://github.com/hdodenhof/CircleImageView", StandardLicenses.APACHE2
-            ),
-            SoftwareComponent(
                 "ExoPlayer", "2014 - 2020", "Google, Inc.",
                 "https://github.com/google/ExoPlayer", StandardLicenses.APACHE2
             ),
