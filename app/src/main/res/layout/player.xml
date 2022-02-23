@@ -58,9 +58,9 @@
         android:id="@+id/playbackControlsShadow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         android:layout_alignBottom="@+id/playbackControlRoot"
         android:background="@color/video_overlay_color"
+        android:visibility="gone"
         tools:visibility="visible" />
 
     <!-- transparent background is needed for selectableItemBackgroundBorderless to work -->
@@ -480,8 +480,8 @@
                     android:padding="@dimen/player_main_buttons_padding"
                     android:scaleType="fitCenter"
                     android:visibility="gone"
-                    app:tint="@color/white"
                     app:srcCompat="@drawable/ic_fullscreen"
+                    app:tint="@color/white"
                     tools:ignore="ContentDescription,RtlHardcoded"
                     tools:visibility="visible" />
             </LinearLayout>
@@ -504,8 +504,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitCenter"
-                app:tint="@color/white"
                 app:srcCompat="@drawable/ic_previous"
+                app:tint="@color/white"
                 tools:ignore="ContentDescription" />
 
 
@@ -516,8 +516,8 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitCenter"
-                app:tint="@color/white"
                 app:srcCompat="@drawable/ic_pause"
+                app:tint="@color/white"
                 tools:ignore="ContentDescription" />
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -530,8 +530,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitCenter"
-                app:tint="@color/white"
                 app:srcCompat="@drawable/ic_next"
+                app:tint="@color/white"
                 tools:ignore="ContentDescription" />
 
         </LinearLayout>
@@ -582,8 +582,8 @@
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
-                app:tint="@color/white"
-                app:srcCompat="@drawable/ic_close" />
+                app:srcCompat="@drawable/ic_close"
+                app:tint="@color/white" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/repeatButton"
@@ -621,12 +621,12 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/itemsListHeaderDuration"
                 style="@style/TextAppearance.AppCompat.Medium"
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/shuffleButton"
                 android:layout_toStartOf="@id/itemsListClose"
+                android:layout_toEndOf="@id/shuffleButton"
+                android:gravity="center"
                 android:textColor="@android:color/white" />
         </RelativeLayout>
 
