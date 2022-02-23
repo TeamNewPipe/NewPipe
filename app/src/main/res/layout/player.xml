@@ -85,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:baselineAligned="false"
+                android:descendantFocusability="afterDescendants"
                 android:gravity="top"
                 android:orientation="vertical"
                 android:paddingStart="@dimen/player_main_controls_padding"
@@ -96,6 +97,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"
+                    android:descendantFocusability="afterDescendants"
                     android:gravity="top"
                     android:minHeight="45dp"
                     tools:ignore="RtlHardcoded">
@@ -438,6 +440,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="2dp"
                     android:layout_weight="1"
+                    android:nextFocusDown="@id/screenRotationButton"
                     tools:progress="25"
                     tools:secondaryProgress="50" />
 
@@ -473,6 +476,7 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:focusable="true"
+                    android:nextFocusUp="@id/playbackSeekBar"
                     android:padding="@dimen/player_main_buttons_padding"
                     android:scaleType="fitCenter"
                     android:visibility="gone"
