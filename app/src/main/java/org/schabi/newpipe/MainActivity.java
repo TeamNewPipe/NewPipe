@@ -577,6 +577,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        //https://developer.android.com/about/versions/12/behavior-changes-all#back-press
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            super.onBackPressed();
+            return;
+        }
         if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
             finish();
         } else {
