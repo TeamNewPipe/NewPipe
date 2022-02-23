@@ -81,10 +81,6 @@ public final class PicassoHelper {
         picassoInstance.cancelTag(tag);
     }
 
-    public static void cancelRequest(final Target target) {
-        picassoInstance.cancelRequest(target);
-    }
-
     public static void setIndicatorsEnabled(final boolean enabled) {
         picassoInstance.setIndicatorsEnabled(enabled); // useful for debugging
     }

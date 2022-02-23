@@ -90,7 +90,12 @@ class SubscriptionManager(context: Context) {
         if (info is FeedInfo) {
             subscriptionEntity.name = info.name
         } else if (info is ChannelInfo) {
-            subscriptionEntity.setData(info.name, info.avatarUrl, info.description, info.subscriberCount)
+            subscriptionEntity.setData(
+                info.name,
+                info.avatarUrl,
+                info.description,
+                info.subscriberCount
+            )
         }
 
         subscriptionTable.update(subscriptionEntity)
@@ -115,7 +120,7 @@ class SubscriptionManager(context: Context) {
 
     /**
      * Fetches the list of videos for the provided channel and saves them in the database, so that
-     * they will be considered as "old"/"already seen" streams and the user will never notified
+     * they will be considered as "old"/"already seen" streams and the user will never be notified
      * about any one of them.
      */
     private fun rememberAllStreams(subscription: SubscriptionEntity): Completable {

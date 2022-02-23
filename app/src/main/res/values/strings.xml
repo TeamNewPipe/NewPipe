@@ -721,7 +721,5 @@
     <string name="get_notified">Get notified</string>
     <string name="you_successfully_subscribed">You now subscribed to this channel</string>
     <string name="enumeration_comma">,</string>
-    <string name="notification_title_pattern" translatable="false">%s • %s</string>
-    <string name="streams_notifications_channels_summary" translatable="false">%d/%d</string>
     <string name="toggle_all">Toggle all</string>
 </resources>

@@ -14,6 +14,7 @@ import androidx.preference.PreferenceManager
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
+import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.PicassoHelper
 
@@ -39,13 +40,7 @@ class NotificationHelper(val context: Context) {
             context,
             context.getString(R.string.streams_notification_channel_id)
         )
-            .setContentTitle(
-                context.getString(
-                    R.string.notification_title_pattern,
-                    data.name,
-                    summary
-                )
-            )
+            .setContentTitle(Localization.concatenateStrings(data.name, summary))
             .setContentText(
                 data.listInfo.relatedItems.joinToString(
                     context.getString(R.string.enumeration_comma)
@@ -62,9 +57,7 @@ class NotificationHelper(val context: Context) {
 
         // Build style
         val style = NotificationCompat.InboxStyle()
-        for (stream in newStreams) {
-            style.addLine(stream.name)
-        }
+        newStreams.forEach { style.addLine(it.name) }
         style.setSummaryText(summary)
         style.setBigContentTitle(data.name)
         builder.setStyle(style)
