@@ -102,7 +102,7 @@ ext {
 
     androidxLifecycleVersion = '2.3.1'
     androidxRoomVersion = '2.3.0'
-    androidxWorkVersion = '2.5.0'
+    androidxWorkVersion = '2.7.1'
 
     icepickVersion = '3.2.0'
     exoPlayerVersion = '2.14.2'
