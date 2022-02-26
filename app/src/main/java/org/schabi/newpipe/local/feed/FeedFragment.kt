@@ -452,8 +452,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 }.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
-                        {
-                            subscriptionEntity ->
+                        { subscriptionEntity ->
                             handleFeedNotAvailable(
                                 subscriptionEntity,
                                 t.cause,

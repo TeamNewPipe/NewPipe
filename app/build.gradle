@@ -193,7 +193,7 @@ dependencies {
 
 /** Checkstyle **/
     checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"
-    ktlint 'com.pinterest:ktlint:0.43.2'
+    ktlint 'com.pinterest:ktlint:0.44.0'
 
 /** Kotlin **/
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}"
