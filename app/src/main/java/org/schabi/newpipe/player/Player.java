@@ -580,11 +580,17 @@ public final class Player implements
                             v.getPaddingTop(),
                             v.getPaddingRight(),
                             v.getPaddingBottom());
-                    binding.fastSeekOverlay.setPadding(
-                            v.getPaddingLeft(),
-                            v.getPaddingTop(),
-                            v.getPaddingRight(),
-                            v.getPaddingBottom());
+
+                    // If we added padding to the fast seek overlay, too, it would not go under the
+                    // system ui. Instead we apply negative margins equal to the window insets of
+                    // the opposite side, so that the view covers all of the player (overflowing on
+                    // some sides) and its center coincides with the center of other controls.
+                    final RelativeLayout.LayoutParams fastSeekParams = (RelativeLayout.LayoutParams)
+                            binding.fastSeekOverlay.getLayoutParams();
+                    fastSeekParams.leftMargin = -v.getPaddingRight();
+                    fastSeekParams.topMargin = -v.getPaddingBottom();
+                    fastSeekParams.rightMargin = -v.getPaddingLeft();
+                    fastSeekParams.bottomMargin = -v.getPaddingTop();
                 });
     }
 
@@ -593,8 +599,7 @@ public final class Player implements
      */
     private void setupPlayerSeekOverlay() {
         binding.fastSeekOverlay
-                .seekSecondsSupplier(
-                        () -> (int) (retrieveSeekDurationFromPreferences(this) / 1000.0f))
+                .seekSecondsSupplier(() -> retrieveSeekDurationFromPreferences(this) / 1000)
                 .performListener(new PlayerFastSeekOverlay.PerformListener() {
 
                     @Override
@@ -607,6 +612,7 @@ public final class Player implements
                         animate(binding.fastSeekOverlay, false, SEEK_OVERLAY_DURATION);
                     }
 
+                    @NonNull
                     @Override
                     public FastSeekDirection getFastSeekDirection(
                             @NonNull final DisplayPortion portion

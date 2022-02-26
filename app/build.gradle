@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdk 31
     buildToolsVersion '30.0.3'
 
     defaultConfig {
@@ -16,8 +16,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdk 19
         targetSdk 29
-        versionCode 983
-        versionName "0.22.0"
+        versionCode 984
+        versionName "0.22.1"
 
         multiDexEnabled true
 
@@ -260,7 +260,7 @@ dependencies {
     implementation "com.nononsenseapps:filepicker:4.2.1"
 
     // Crash reporting
-    implementation "ch.acra:acra-core:5.7.0"
+    implementation "ch.acra:acra-core:5.8.4"
 
     // Properly restarting
     implementation 'com.jakewharton:process-phoenix:2.1.2'

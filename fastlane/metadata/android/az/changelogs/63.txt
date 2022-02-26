@@ -1,0 +1,8 @@
+### Təkmilləşdirmələr 
+-İdxal/ixrac parametrləri #1333 
+-Həddindən artıq çəkilişi azaldın (performansın yaxşılaşdırılması) #1371 
+- Kiçik kod təkmilləşdirmələri #1375 
+- GDPR #1420 haqqında hər şeyi əlavə edin 
+
+### Sabit 
+- Yükləyici: .giga fayllarından bitməmiş endirmələrin yüklənməsi zamanı yaranan nasazlığı aradan qaldırın #1407

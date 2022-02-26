@@ -1,0 +1,8 @@
+• Installatie op externe opslag toestaan
+• [Bandcamp] Ondersteuning voor het tonen van de eerste drie commentaren op een stream
+• Toon alleen 'download is gestart' toast wanneer download is gestart
+• Stel reCaptcha-cookie niet in wanneer er geen cookie is opgeslagen
+• [Speler] Verbeter cache prestatie
+• [Speler] Fix: speler die niet automatisch speelt
+• Vorige Snackbalken verwijderen bij het verwijderen van downloads
+• Hersteld dat objecten die niet in de lijst staan, verwijderd moeten worden

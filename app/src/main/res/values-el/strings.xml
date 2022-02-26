@@ -71,7 +71,7 @@
     <string name="title_activity_history">Ιστορικό</string>
     <string name="action_history">Ιστορικό</string>
     <string name="show_info">Εμφάνιση πληροφοριών</string>
-    <string name="main_bg_subtitle">Πατήστε το μεγενθυτικό φακό για να ξεκινήσετε.</string>
+    <string name="main_bg_subtitle">Πατήστε το μεγεθυντικό φακό για να ξεκινήσετε.</string>
     <string name="no_player_found_toast">Δε βρέθηκε πρόγραμμα αναπαραγωγής ροής δεδομένων (μπορείτε να εγκαταστήσετε το VLC για να κάνετε αναπαραγωγή).</string>
     <string name="controls_download_desc">Λήψη του αρχείου ροής</string>
     <string name="use_external_video_player_summary">Αφαιρείται ο ήχος από κάποιες αναλύσεις</string>
