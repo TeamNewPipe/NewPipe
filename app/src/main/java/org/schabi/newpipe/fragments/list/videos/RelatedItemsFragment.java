@@ -15,6 +15,7 @@ import androidx.preference.PreferenceManager;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.RelatedItemsHeaderBinding;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
@@ -26,7 +27,7 @@ import java.util.function.Supplier;
 
 import io.reactivex.rxjava3.core.Single;
 
-public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
+public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, RelatedItemInfo>
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String INFO_KEY = "related_info_key";
 
@@ -86,7 +87,7 @@ public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
     }
 
     @Override
-    protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
+    protected Single<ListExtractor.InfoItemsPage<InfoItem>> loadMoreItemsLogic() {
         return Single.fromCallable(ListExtractor.InfoItemsPage::emptyPage);
     }
 

@@ -272,7 +272,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             }
         });
 
-        infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
+        infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final ChannelInfoItem selectedItem) {
                 try {
@@ -288,7 +288,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
             }
         });
 
-        infoListAdapter.setOnPlaylistSelectedListener(new OnClickGesture<PlaylistInfoItem>() {
+        infoListAdapter.setOnPlaylistSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final PlaylistInfoItem selectedItem) {
                 try {
