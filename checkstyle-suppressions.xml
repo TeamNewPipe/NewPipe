@@ -8,8 +8,8 @@
     lines="232,304"/>
 
   <suppress checks="FinalParameters"
-    files="ListHelper.java"
-    lines="280,312"/>
+    files="InfoListAdapter.java"
+    lines="253,325"/>
 
   <suppress checks="EmptyBlock"
     files="ContentSettingsFragment.java"

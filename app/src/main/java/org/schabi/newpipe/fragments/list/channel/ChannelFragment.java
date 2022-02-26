@@ -64,7 +64,7 @@ import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
+public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, ChannelInfo>
         implements View.OnClickListener {
 
     private static final int BUTTON_DEBOUNCE_INTERVAL = 100;
@@ -374,7 +374,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
+    protected Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
         return ExtractorHelper.getMoreChannelItems(serviceId, url, currentNextPage);
     }
 

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
@@ -137,7 +138,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
         }
 
         if (streamsWrapper.getSizeInBytes(position) > 0) {
-            final SecondaryStreamHelper secondary = secondaryStreams == null ? null
+            final SecondaryStreamHelper<U> secondary = secondaryStreams == null ? null
                     : secondaryStreams.get(position);
             if (secondary != null) {
                 final long size
@@ -153,16 +154,11 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
 
         if (stream instanceof SubtitlesStream) {
             formatNameView.setText(((SubtitlesStream) stream).getLanguageTag());
+        } else if (stream.getFormat() == MediaFormat.WEBMA_OPUS) {
+            // noinspection AndroidLintSetTextI18n
+            formatNameView.setText("opus");
         } else {
-            switch (stream.getFormat()) {
-                case WEBMA_OPUS:
-                    // noinspection AndroidLintSetTextI18n
-                    formatNameView.setText("opus");
-                    break;
-                default:
-                    formatNameView.setText(stream.getFormat().getName());
-                    break;
-            }
+            formatNameView.setText(stream.getFormat().getName());
         }
 
         qualityView.setText(qualityString);

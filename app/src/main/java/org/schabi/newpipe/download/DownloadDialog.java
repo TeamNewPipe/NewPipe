@@ -151,7 +151,7 @@ public class DownloadDialog extends DialogFragment
     public static DownloadDialog newInstance(final Context context, final StreamInfo info) {
         final ArrayList<VideoStream> streamsList = new ArrayList<>(ListHelper
                 .getSortedStreamVideosList(context, info.getVideoStreams(),
-                        info.getVideoOnlyStreams(), false));
+                        info.getVideoOnlyStreams(), false, false));
         final int selectedStreamIndex = ListHelper.getDefaultResolutionIndex(context, streamsList);
 
         final DownloadDialog instance = newInstance(info);
