@@ -1,6 +1,7 @@
 package org.schabi.newpipe.info_list.holder;
 
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
@@ -11,10 +12,8 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class ChannelMiniInfoItemHolder extends InfoItemHolder {
-    public final CircleImageView itemThumbnailView;
+    public final ImageView itemThumbnailView;
     public final TextView itemTitleView;
     private final TextView itemAdditionalDetailView;
 

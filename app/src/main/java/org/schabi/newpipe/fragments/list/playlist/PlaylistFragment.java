@@ -6,6 +6,7 @@ import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingSc
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,6 +20,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.shape.CornerFamily;
+import com.google.android.material.shape.ShapeAppearanceModel;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -328,9 +333,14 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 && (YoutubeParsingHelper.isYoutubeMixId(result.getId())
                 || YoutubeParsingHelper.isYoutubeMusicMixId(result.getId()))) {
             // this is an auto-generated playlist (e.g. Youtube mix), so a radio is shown
-            headerBinding.uploaderAvatarView.setDisableCircularTransformation(true);
-            headerBinding.uploaderAvatarView.setBorderColor(
-                    getResources().getColor(R.color.transparent_background_color));
+            final ShapeAppearanceModel model = ShapeAppearanceModel.builder()
+                    .setAllCorners(CornerFamily.ROUNDED, 0f)
+                    .build(); // this turns the image back into a square
+            headerBinding.uploaderAvatarView.setShapeAppearanceModel(model);
+            headerBinding.uploaderAvatarView.setStrokeColor(
+                    ColorStateList.valueOf(ContextCompat.getColor(
+                            requireContext(), R.color.transparent_background_color))
+            );
             headerBinding.uploaderAvatarView.setImageDrawable(
                     AppCompatResources.getDrawable(requireContext(),
                     R.drawable.ic_radio)

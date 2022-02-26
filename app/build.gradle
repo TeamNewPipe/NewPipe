@@ -246,8 +246,6 @@ dependencies {
     implementation "com.github.lisawray.groupie:groupie:${groupieVersion}"
     implementation "com.github.lisawray.groupie:groupie-viewbinding:${groupieVersion}"
 
-    // Circular ImageView
-    implementation "de.hdodenhof:circleimageview:3.1.0"
     // Image loading
     //noinspection GradleDependency --> 2.8 is the last version, not 2.71828!
     implementation "com.squareup.picasso:picasso:2.8"
