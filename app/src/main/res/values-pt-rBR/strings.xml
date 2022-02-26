@@ -410,7 +410,7 @@
     <string name="error_timeout">Tempo limite de conexão</string>
     <string name="confirm_prompt">Excluir todo o histórico de downloads ou excluir todos os arquivos baixados\?</string>
     <string name="enable_queue_limit">Limitar fila de downloads</string>
-    <string name="enable_queue_limit_desc">Um download será feito por vez</string>
+    <string name="enable_queue_limit_desc">Faz downloads um de cada vez</string>
     <string name="start_downloads">Iniciar downloads</string>
     <string name="pause_downloads">Pausar downloads</string>
     <string name="downloads_storage_ask_title">Perguntar onde salvar o arquivo</string>

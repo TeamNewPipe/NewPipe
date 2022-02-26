@@ -52,7 +52,7 @@
     <string name="duration_live">En direct</string>
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
     <string name="youtube_signature_deobfuscation_error">Impossible de déchiffrer la signature URL de la vidéo</string>
-    <string name="sorry_string">Désolé, cela n\'aurait pas dû se produire.</string>
+    <string name="sorry_string">Désolé, cela n’aurait pas dû se produire.</string>
     <string name="error_report_button_text">Signaler cette erreur par courriel</string>
     <string name="what_device_headline">Information :</string>
     <string name="what_happened_headline">Ce qui s’est passé :</string>
@@ -73,7 +73,7 @@
     <string name="checksum">Somme de contrôle</string>
     <string name="ok">OK</string>
     <string name="msg_name">Nom du fichier</string>
-    <string name="msg_threads">Nombre de connexions simultanées</string>
+    <string name="msg_threads">Connexions simultanées</string>
     <string name="msg_error">Erreur</string>
     <string name="msg_running">NewPipe télécharge</string>
     <string name="msg_running_detail">Appuyer pour plus de détails</string>
@@ -668,8 +668,8 @@
     <string name="main_page_content_swipe_remove">Balayez un élément pour le supprimer</string>
     <string name="start_main_player_fullscreen_summary">Ne pas lancer les vidéos dans le mini lecteur mais directement en plein écran si la rotation automatique est verrouillée. Vous pouvez toujours accéder au mini-lecteur en quittant le mode plein écran</string>
     <string name="start_main_player_fullscreen_title">Lancer le lecteur principal en plein écran</string>
-    <string name="enqueue_next_stream">Mettre en file d’attente la suivante</string>
-    <string name="enqueued_next">Placé comme suivant dans liste de lecture</string>
+    <string name="enqueue_next_stream">Ajouter à la liste de lecture</string>
+    <string name="enqueued_next">Suivant dans la liste de lecture</string>
     <string name="processing_may_take_a_moment">Traitement en cours… Veuillez patienter</string>
     <string name="manual_update_description">Vérifier manuellement de nouvelles versions</string>
     <string name="checking_updates_toast">Vérification des mises à jour…</string>
@@ -685,7 +685,7 @@
     <string name="create_error_notification">Créer une notification d\'erreur</string>
     <string name="no_appropriate_file_manager_message_android_10">Aucun gestionnaire de fichiers approprié n\'a été trouvé pour cette action.
 \nVeuillez installer un gestionnaire de fichiers compatible avec l\'Infrastructure d\'accès au stockage.</string>
-    <string name="show_error_snackbar">Afficher une barre d\'erreur</string>
+    <string name="show_error_snackbar">Afficher une barre d’erreur</string>
     <string name="no_appropriate_file_manager_message">Aucun gestionnaire de fichier approprié n\'a été trouvé pour cette action.
 \nVeuillez installer un gestionnaire de fichiers ou essayez de désactiver \'%s\' dans les paramètres de téléchargement.</string>
     <string name="detail_pinned_comment_view_description">Commentaire épinglé</string>

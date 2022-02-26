@@ -316,7 +316,7 @@
     <string name="search_history_deleted">Usunięto historię wyszukiwania</string>
     <string name="one_item_deleted">Usunięto jedną pozycję.</string>
     <string name="toast_no_player">Brak zainstalowanej aplikacji do odtworzenia tego pliku</string>
-    <string name="app_license">NewPipe jest wolnym i bezpłatnym oprogramowaniem: Możesz używać, udostępniać i ulepszać je do woli. W szczególności możesz je redystrybuować i/lub modyfikować zgodnie z warunkami GNU General Public License opublikowanej przez Free Software Fundation w wersji 3 albo (według Twojego wyboru) jakąkolwiek późniejszą wersją.</string>
+    <string name="app_license">NewPipe jest wolnym i bezpłatnym oprogramowaniem: Możesz używać, udostępniać i ulepszać je do woli. W szczególności możesz je redystrybuować i/lub modyfikować zgodnie z warunkami GNU General Public License, opublikowanej przez Free Software Fundation, w wersji 3 albo (według Twojego wyboru) jakiejkolwiek późniejszej wersji.</string>
     <string name="import_settings">Czy chcesz zaimportować również ustawienia?</string>
     <string name="privacy_policy_title">Polityka prywatności NewPipe</string>
     <string name="privacy_policy_encouragement">Projekt NewPipe bardzo poważnie traktuje Twoją prywatność, dlatego aplikacja nie gromadzi żadnych danych bez Twojej zgody.
@@ -377,11 +377,11 @@
     <string name="overwrite_finished_warning">Pobrany plik o tej nazwie już istnieje</string>
     <string name="download_already_running">Trwa już pobieranie pliku o tej samej nazwie</string>
     <string name="show_error">Pokaż błąd</string>
-    <string name="error_file_creation">Nie można utworzyć pliku</string>
-    <string name="error_path_creation">Nie można utworzyć folderu docelowego</string>
+    <string name="error_file_creation">Nie udało się utworzyć pliku</string>
+    <string name="error_path_creation">Nie udało się utworzyć folderu docelowego</string>
     <string name="error_ssl_exception">Nie udało się nawiązać bezpiecznego połączenia</string>
     <string name="error_unknown_host">Nie udało się znaleźć serwera</string>
-    <string name="error_connect_host">Nie można połączyć się z serwerem</string>
+    <string name="error_connect_host">Nie udało się połączyć z serwerem</string>
     <string name="error_http_no_content">Serwer nie wysyła danych</string>
     <string name="error_http_unsupported_range">Serwer nie akceptuje pobierania wielowątkowego, spróbuj ponownie za pomocą @string/msg_threads = 1</string>
     <string name="error_http_not_found">Nie znaleziono</string>
@@ -408,7 +408,7 @@
     <string name="watch_history_states_deleted">Usunięto pozycje odtwarzania</string>
     <string name="missing_file">Plik usunięty albo przeniesiony</string>
     <string name="overwrite_unrelated_warning">Plik z tą nazwą już istnieje</string>
-    <string name="overwrite_failed">nie można nadpisać pliku</string>
+    <string name="overwrite_failed">Nie udało się nadpisać pliku</string>
     <string name="download_already_pending">Plik o tej samej nazwie oczekuje na pobranie</string>
     <string name="error_postprocessing_stopped">NewPipe został zamknięty podczas pracy nad plikiem</string>
     <string name="error_insufficient_storage">Brak miejsca na urządzeniu</string>
@@ -457,7 +457,7 @@
     <string name="most_liked">Najbardziej lubiane</string>
     <string name="playlist_no_uploader">Wygenerowana automatycznie (nie znaleziono przesyłającego)</string>
     <string name="recovering">odzyskiwanie</string>
-    <string name="error_download_resource_gone">Nie można odzyskać tego pobrania</string>
+    <string name="error_download_resource_gone">Nie udało się odzyskać tego pobrania</string>
     <string name="choose_instance_prompt">Wybierz serwer</string>
     <string name="clear_download_history">Wyczyść historię pobierania</string>
     <string name="delete_downloaded_files">Usuń pobrane pliki</string>
@@ -481,7 +481,7 @@
 \n• Pobieranie całego kanału subskrypcji, co jest powolne, ale kompletne.
 \n• Korzystanie z dedykowanego punktu końcowego usługi, co jest szybkie, ale zwykle nie jest kompletne.
 \n
-\nRóżnica między nimi polega na tym, że w szybkim zwykle brakuje pewnych informacji, takich jak czas trwania lub typ pozycji (nie można odróżnić wideo na żywo od zwykłych) i może zwrócić mniej pozycji.
+\nRóżnica między nimi polega na tym, że w szybkim zwykle brakuje pewnych informacji, takich jak czas trwania lub typ pozycji (nie można odróżnić wideo na żywo od zwykłych), i może zwrócić mniej pozycji.
 \n
 \nYouTube jest przykładem usługi, która oferuje tę szybką metodę z kanałem RSS.
 \n
@@ -639,7 +639,7 @@
     <string name="metadata_tags">Tagi</string>
     <string name="metadata_category">Kategoria</string>
     <string name="open_website_license">Otwórz stronę</string>
-    <string name="description_select_note">Teraz możesz zaznaczyć tekst wewnątrz opisu. Pamiętaj, że strona może migotać, a łącza mogą nie być klikalne w trybie zaznaczania.</string>
+    <string name="description_select_note">Teraz możesz zaznaczyć tekst wewnątrz opisu. Pamiętaj, że w trybie zaznaczania strona może migotać i linki nie będą klikalne.</string>
     <string name="service_provides_reason">%s podaje ten powód:</string>
     <string name="account_terminated">Konto zamknięte</string>
     <string name="feed_load_error_fast_unknown">Tryb szybki dla ładowania kanału nie dostarcza więcej informacji na ten temat.</string>

@@ -1,0 +1,9 @@
+Neue UI und Verhalten beim doppelten Antippen zum Suchen hinzufügen
+Einstellungen durchsuchbar machen
+Angepinnte Kommentare als solche markieren
+Open-With-App Unterstützung für FSFEs PeerTube-Instanz hinzufügen
+Hinzufügen von Fehlerbenachrichtigungen
+Replay des ersten Warteschlangenelements bei Spielerwechsel korrigieren
+Längeres Warten beim Puffern während Livestreams, bevor ein Fehler auftritt
+Reihenfolge der lokalen Suchergebnisse korrigieren
+Leere Felder in der Warteschlange beheben
