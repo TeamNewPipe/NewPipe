@@ -68,25 +68,21 @@ import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
-import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty
 import org.schabi.newpipe.fragments.BaseStateFragment
-import org.schabi.newpipe.info_list.InfoItemDialog
+import org.schabi.newpipe.info_list.dialog.InfoItemDialog
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.animateHideRecyclerViewAllowingScrolling
 import org.schabi.newpipe.ktx.slideUp
 import org.schabi.newpipe.local.feed.item.StreamItem
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.local.subscription.SubscriptionManager
-import org.schabi.newpipe.player.helper.PlayerHolder
 import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
-import org.schabi.newpipe.util.StreamDialogEntry
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountStreams
 import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import java.time.OffsetDateTime
-import java.util.ArrayList
 import java.util.function.Consumer
 
 class FeedFragment : BaseStateFragment<FeedState>() {
@@ -356,53 +352,12 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         feedBinding.loadingProgressBar.max = progressState.maxProgress
     }
 
-    private fun showStreamDialog(item: StreamInfoItem) {
+    private fun showInfoItemDialog(item: StreamInfoItem) {
         val context = context
         val activity: Activity? = getActivity()
         if (context == null || context.resources == null || activity == null) return
 
-        val entries = ArrayList<StreamDialogEntry>()
-        if (PlayerHolder.getInstance().isPlayQueueReady) {
-            entries.add(StreamDialogEntry.enqueue)
-
-            if (PlayerHolder.getInstance().queueSize > 1) {
-                entries.add(StreamDialogEntry.enqueue_next)
-            }
-        }
-
-        if (item.streamType == StreamType.AUDIO_STREAM) {
-            entries.addAll(
-                listOf(
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share,
-                    StreamDialogEntry.open_in_browser
-                )
-            )
-        } else {
-            entries.addAll(
-                listOf(
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.start_here_on_popup,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share,
-                    StreamDialogEntry.open_in_browser
-                )
-            )
-        }
-
-        // show "mark as watched" only when watch history is enabled
-        if (StreamDialogEntry.shouldAddMarkAsWatched(item.streamType, context)) {
-            entries.add(
-                StreamDialogEntry.mark_as_watched
-            )
-        }
-        entries.add(StreamDialogEntry.show_channel_details)
-
-        StreamDialogEntry.setEnabledEntries(entries)
-        InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context)) { _, which ->
-            StreamDialogEntry.clickOn(which, this, item)
-        }.show()
+        InfoItemDialog.Builder(activity, context, this, item).create().show()
     }
 
     private val listenerStreamItem = object : OnItemClickListener, OnItemLongClickListener {
@@ -418,7 +373,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
         override fun onItemLongClick(item: Item<*>, view: View): Boolean {
             if (item is StreamItem && !isRefreshing) {
-                showStreamDialog(item.streamWithState.stream.toStreamInfoItem())
+                showInfoItemDialog(item.streamWithState.stream.toStreamInfoItem())
                 return true
             }
             return false

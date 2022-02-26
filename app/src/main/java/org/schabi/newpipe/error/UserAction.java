@@ -28,8 +28,8 @@ public enum UserAction {
     DOWNLOAD_FAILED("download failed"),
     PREFERENCES_MIGRATION("migration of preferences"),
     SHARE_TO_NEWPIPE("share to newpipe"),
-    CHECK_FOR_NEW_APP_VERSION("check for new app version");
-
+    CHECK_FOR_NEW_APP_VERSION("check for new app version"),
+    OPEN_INFO_ITEM_DIALOG("open info item dialog");
 
     private final String message;
 
