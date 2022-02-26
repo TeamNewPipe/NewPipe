@@ -1,0 +1,14 @@
+Nieuw
+Herken tijdstempels en hashtags in beschrijving
+Handmatige tablet-modus instelling
+Mogelijkheid afgespeelde items in een feed te verbergen
+
+Verbeterd
+Ondersteuning van Storage Access Framework
+Foutafhandeling van niet-beschikbare en beëindigde kanalen
+De Android share sheet voor Android 10+ gebruikers toont nu de titel van de inhoud
+Invidious instanties. Ondersteuning voor Piped links
+
+Bugfix
+[YouTube] Leeftijdsbeperkte inhoud
+Voorkom uitgelekt venster Uitzondering bij openen keuzedialoog

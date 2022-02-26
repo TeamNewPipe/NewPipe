@@ -1,0 +1,6 @@
+Charge assez d’items dans les listes pour remplir l’écran et corriger le défilement sur les tablettes et les télés
+Corrige les plantages lors du défilement des listes
+L’arc de superposition de l’avance rapide est désormais sous l’interface du système
+Revient sur les modifications des découpes lors de la lecture en multi-fenêtres, qui causent la régression du lecteur mal positionné sur certains appareils
+Met à jour compileSdk à la version 31
+Met à jour la bibliothèque de rapports d’erreur
