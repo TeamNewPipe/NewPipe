@@ -101,7 +101,7 @@ ext {
     checkstyleVersion = '9.2.1'
 
     androidxLifecycleVersion = '2.3.1'
-    androidxRoomVersion = '2.4.1'
+    androidxRoomVersion = '2.4.2'
 
     icepickVersion = '3.2.0'
     exoPlayerVersion = '2.14.2'
@@ -201,7 +201,7 @@ dependencies {
 /** AndroidX **/
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.documentfile:documentfile:1.0.1'
     implementation 'androidx.fragment:fragment-ktx:1.3.6'
