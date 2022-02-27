@@ -13,13 +13,8 @@ import androidx.preference.PreferenceManager;
 import com.jakewharton.processphoenix.ProcessPhoenix;
 
 import org.acra.ACRA;
-import org.acra.config.ACRAConfigurationException;
-import org.acra.config.CoreConfiguration;
 import org.acra.config.CoreConfigurationBuilder;
-import org.schabi.newpipe.error.ErrorInfo;
-import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.ReCaptchaActivity;
-import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.ktx.ExceptionUtils;
@@ -210,16 +205,9 @@ public class App extends MultiDexApplication {
             return;
         }
 
-        try {
-            final CoreConfiguration acraConfig = new CoreConfigurationBuilder(this)
-                    .setBuildConfigClass(BuildConfig.class)
-                    .build();
-            ACRA.init(this, acraConfig);
-        } catch (final ACRAConfigurationException exception) {
-            exception.printStackTrace();
-            ErrorUtil.openActivity(this, new ErrorInfo(exception,
-                    UserAction.SOMETHING_ELSE, "Could not initialize ACRA crash report"));
-        }
+        final CoreConfigurationBuilder acraConfig = new CoreConfigurationBuilder(this)
+                .withBuildConfigClass(BuildConfig.class);
+        ACRA.init(this, acraConfig);
     }
 
     private void initNotificationChannels() {

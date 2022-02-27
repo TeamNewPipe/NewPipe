@@ -1,0 +1,7 @@
+Ora nelle liste vengono caricati abbastanza elementi per riempire l'intero schermo, evitando caricamenti infiniti su tablet e TV
+Sistemati crash a caso nello scorrere le liste
+L'arco dell'avanzamento rapido ora va anche sotto l'interfaccia di sistema
+Annullati i cambiamenti alla gestione dei bordi dello schermo in modalità multi-finestra: il player era talvolta fuori posto
+Incrementato compileSdk da 30 a 31
+Aggiornata la libreria di segnalazione degli errori
+Ristrutturato del codice nel player
