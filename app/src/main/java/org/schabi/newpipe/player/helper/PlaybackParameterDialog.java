@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -37,6 +38,7 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private static final double DEFAULT_TEMPO = 1.00f;
     private static final double DEFAULT_PITCH = 1.00f;
+    private static final int DEFAULT_SEMITONES = 0;
     private static final double DEFAULT_STEP = STEP_TWENTY_FIVE_PERCENT_VALUE;
     private static final boolean DEFAULT_SKIP_SILENCE = false;
 
@@ -64,9 +66,11 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private double initialTempo = DEFAULT_TEMPO;
     private double initialPitch = DEFAULT_PITCH;
+    private int initialSemitones = DEFAULT_SEMITONES;
     private boolean initialSkipSilence = DEFAULT_SKIP_SILENCE;
     private double tempo = DEFAULT_TEMPO;
     private double pitch = DEFAULT_PITCH;
+    private int semitones = DEFAULT_SEMITONES;
     private double stepSize = DEFAULT_STEP;
 
     @Nullable
@@ -86,9 +90,19 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Nullable
     private TextView pitchStepUpText;
     @Nullable
+    private SeekBar semitoneSlider;
+    @Nullable
+    private TextView semitoneCurrentText;
+    @Nullable
+    private TextView semitoneStepDownText;
+    @Nullable
+    private TextView semitoneStepUpText;
+    @Nullable
     private CheckBox unhookingCheckbox;
     @Nullable
     private CheckBox skipSilenceCheckbox;
+    @Nullable
+    private CheckBox adjustBySemitonesCheckbox;
 
     public static PlaybackParameterDialog newInstance(final double playbackTempo,
                                                       final double playbackPitch,
@@ -101,6 +115,7 @@ public class PlaybackParameterDialog extends DialogFragment {
 
         dialog.tempo = playbackTempo;
         dialog.pitch = playbackPitch;
+        dialog.semitones = dialog.percentToSemitones(playbackPitch);
 
         dialog.initialSkipSilence = playbackSkipSilence;
         return dialog;
@@ -127,9 +142,11 @@ public class PlaybackParameterDialog extends DialogFragment {
         if (savedInstanceState != null) {
             initialTempo = savedInstanceState.getDouble(INITIAL_TEMPO_KEY, DEFAULT_TEMPO);
             initialPitch = savedInstanceState.getDouble(INITIAL_PITCH_KEY, DEFAULT_PITCH);
+            initialSemitones = percentToSemitones(initialPitch);
 
             tempo = savedInstanceState.getDouble(TEMPO_KEY, DEFAULT_TEMPO);
             pitch = savedInstanceState.getDouble(PITCH_KEY, DEFAULT_PITCH);
+            semitones = percentToSemitones(pitch);
             stepSize = savedInstanceState.getDouble(STEP_SIZE_KEY, DEFAULT_STEP);
         }
     }
@@ -160,9 +177,11 @@ public class PlaybackParameterDialog extends DialogFragment {
                 .setView(view)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, (dialogInterface, i) ->
-                        setPlaybackParameters(initialTempo, initialPitch, initialSkipSilence))
+                        setPlaybackParameters(initialTempo, initialPitch,
+                                initialSemitones, initialSkipSilence))
                 .setNeutralButton(R.string.playback_reset, (dialogInterface, i) ->
-                        setPlaybackParameters(DEFAULT_TEMPO, DEFAULT_PITCH, DEFAULT_SKIP_SILENCE))
+                        setPlaybackParameters(DEFAULT_TEMPO, DEFAULT_PITCH,
+                                DEFAULT_SEMITONES, DEFAULT_SKIP_SILENCE))
                 .setPositiveButton(R.string.ok, (dialogInterface, i) ->
                         setCurrentPlaybackParameters());
 
@@ -176,12 +195,47 @@ public class PlaybackParameterDialog extends DialogFragment {
     private void setupControlViews(@NonNull final View rootView) {
         setupHookingControl(rootView);
         setupSkipSilenceControl(rootView);
+        setupAdjustBySemitonesControl(rootView);
 
         setupTempoControl(rootView);
         setupPitchControl(rootView);
+        setupSemitoneControl(rootView);
+
+        togglePitchSliderType(rootView);
 
         setStepSize(stepSize);
-        setupStepSizeSelector(rootView);
+    }
+
+    private void togglePitchSliderType(@NonNull final View rootView) {
+        final RelativeLayout pitchControl = rootView.findViewById(R.id.pitchControl);
+        final RelativeLayout semitoneControl = rootView.findViewById(R.id.semitoneControl);
+
+        final View separatorStepSizeSelector =
+                rootView.findViewById(R.id.separatorStepSizeSelector);
+        final RelativeLayout.LayoutParams params =
+                (RelativeLayout.LayoutParams) separatorStepSizeSelector.getLayoutParams();
+        if (pitchControl != null && semitoneControl != null && unhookingCheckbox != null) {
+            if (getCurrentAdjustBySemitones()) {
+                // replaces pitchControl slider with semitoneControl slider
+                pitchControl.setVisibility(View.GONE);
+                semitoneControl.setVisibility(View.VISIBLE);
+                params.addRule(RelativeLayout.BELOW, R.id.semitoneControl);
+
+                // forces unhook for semitones
+                unhookingCheckbox.setChecked(true);
+                unhookingCheckbox.setEnabled(false);
+
+                setupTempoStepSizeSelector(rootView);
+            } else {
+                semitoneControl.setVisibility(View.GONE);
+                pitchControl.setVisibility(View.VISIBLE);
+                params.addRule(RelativeLayout.BELOW, R.id.pitchControl);
+
+                // (re)enables hooking selection
+                unhookingCheckbox.setEnabled(true);
+                setupCombinedStepSizeSelector(rootView);
+            }
+        }
     }
 
     private void setupTempoControl(@NonNull final View rootView) {
@@ -234,23 +288,40 @@ public class PlaybackParameterDialog extends DialogFragment {
         }
     }
 
+    private void setupSemitoneControl(@NonNull final View rootView) {
+        semitoneSlider = rootView.findViewById(R.id.semitoneSeekbar);
+        semitoneCurrentText = rootView.findViewById(R.id.semitoneCurrentText);
+        semitoneStepDownText = rootView.findViewById(R.id.semitoneStepDown);
+        semitoneStepUpText = rootView.findViewById(R.id.semitoneStepUp);
+
+        if (semitoneCurrentText != null) {
+            semitoneCurrentText.setText(getSignedSemitonesString(semitones));
+        }
+
+        if (semitoneSlider != null) {
+            setSemitoneSlider(semitones);
+            semitoneSlider.setOnSeekBarChangeListener(getOnSemitoneChangedListener());
+        }
+
+    }
+
     private void setupHookingControl(@NonNull final View rootView) {
         unhookingCheckbox = rootView.findViewById(R.id.unhookCheckbox);
         if (unhookingCheckbox != null) {
-            // restore whether pitch and tempo are unhooked or not
+            // restores whether pitch and tempo are unhooked or not
             unhookingCheckbox.setChecked(PreferenceManager
                     .getDefaultSharedPreferences(requireContext())
                     .getBoolean(getString(R.string.playback_unhook_key), true));
 
             unhookingCheckbox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
-                // save whether pitch and tempo are unhooked or not
+                // saves whether pitch and tempo are unhooked or not
                 PreferenceManager.getDefaultSharedPreferences(requireContext())
                         .edit()
                         .putBoolean(getString(R.string.playback_unhook_key), isChecked)
                         .apply();
 
                 if (!isChecked) {
-                    // when unchecked, slide back to the minimum of current tempo or pitch
+                    // when unchecked, slides back to the minimum of current tempo or pitch
                     final double minimum = Math.min(getCurrentPitch(), getCurrentTempo());
                     setSliders(minimum);
                     setCurrentPlaybackParameters();
@@ -265,6 +336,46 @@ public class PlaybackParameterDialog extends DialogFragment {
             skipSilenceCheckbox.setChecked(initialSkipSilence);
             skipSilenceCheckbox.setOnCheckedChangeListener((compoundButton, isChecked) ->
                     setCurrentPlaybackParameters());
+        }
+    }
+
+    private void setupAdjustBySemitonesControl(@NonNull final View rootView) {
+        adjustBySemitonesCheckbox = rootView.findViewById(R.id.adjustBySemitonesCheckbox);
+        if (adjustBySemitonesCheckbox != null) {
+            // restores whether semitone adjustment is used or not
+            adjustBySemitonesCheckbox.setChecked(PreferenceManager
+                .getDefaultSharedPreferences(requireContext())
+                .getBoolean(getString(R.string.playback_adjust_by_semitones_key), true));
+
+            // stores whether semitone adjustment is used or not
+            adjustBySemitonesCheckbox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+                PreferenceManager.getDefaultSharedPreferences(requireContext())
+                    .edit()
+                    .putBoolean(getString(R.string.playback_adjust_by_semitones_key), isChecked)
+                    .apply();
+                togglePitchSliderType(rootView);
+                if (isChecked) {
+                    setPlaybackParameters(
+                            getCurrentTempo(),
+                            getCurrentPitch(),
+                            Integer.min(12,
+                                    Integer.max(-12, percentToSemitones(getCurrentPitch())
+                            )),
+                            getCurrentSkipSilence()
+                    );
+                    setSemitoneSlider(Integer.min(12,
+                            Integer.max(-12, percentToSemitones(getCurrentPitch()))
+                    ));
+                } else {
+                    setPlaybackParameters(
+                            getCurrentTempo(),
+                            semitonesToPercent(getCurrentSemitones()),
+                            getCurrentSemitones(),
+                            getCurrentSkipSilence()
+                    );
+                    setPitchSlider(semitonesToPercent(getCurrentSemitones()));
+                }
+            });
         }
     }
 
@@ -310,6 +421,22 @@ public class PlaybackParameterDialog extends DialogFragment {
         }
     }
 
+    private void setupTempoStepSizeSelector(@NonNull final View rootView) {
+        final TextView playbackStepTypeText = rootView.findViewById(R.id.playback_step_type);
+        if (playbackStepTypeText != null) {
+            playbackStepTypeText.setText(R.string.playback_tempo_step);
+        }
+        setupStepSizeSelector(rootView);
+    }
+
+    private void setupCombinedStepSizeSelector(@NonNull final View rootView) {
+        final TextView playbackStepTypeText = rootView.findViewById(R.id.playback_step_type);
+        if (playbackStepTypeText != null) {
+            playbackStepTypeText.setText(R.string.playback_step);
+        }
+        setupStepSizeSelector(rootView);
+    }
+
     private void setStepSize(final double stepSize) {
         this.stepSize = stepSize;
 
@@ -341,6 +468,20 @@ public class PlaybackParameterDialog extends DialogFragment {
             pitchStepDownText.setText(getStepDownPercentString(stepSize));
             pitchStepDownText.setOnClickListener(view -> {
                 onPitchSliderUpdated(getCurrentPitch() - stepSize);
+                setCurrentPlaybackParameters();
+            });
+        }
+
+        if (semitoneStepDownText != null) {
+            semitoneStepDownText.setOnClickListener(view -> {
+                onSemitoneSliderUpdated(getCurrentSemitones() - 1);
+                setCurrentPlaybackParameters();
+            });
+        }
+
+        if (semitoneStepUpText != null) {
+            semitoneStepUpText.setOnClickListener(view -> {
+                onSemitoneSliderUpdated(getCurrentSemitones() + 1);
                 setCurrentPlaybackParameters();
             });
         }
@@ -398,10 +539,34 @@ public class PlaybackParameterDialog extends DialogFragment {
         };
     }
 
+    private SeekBar.OnSeekBarChangeListener getOnSemitoneChangedListener() {
+        return new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(final SeekBar seekBar, final int progress,
+                                          final boolean fromUser) {
+                // semitone slider supplies values 0 to 24, subtraction by 12 is required
+                final int currentSemitones = progress - 12;
+                if (fromUser) { // this change is first in chain
+                    onSemitoneSliderUpdated(currentSemitones);
+                    // line below also saves semitones as pitch percentages
+                    onPitchSliderUpdated(semitonesToPercent(currentSemitones));
+                    setCurrentPlaybackParameters();
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(final SeekBar seekBar) {
+                // Do Nothing.
+            }
+
+            @Override
+            public void onStopTrackingTouch(final SeekBar seekBar) {
+                // Do Nothing.
+            }
+        };
+    }
+
     private void onTempoSliderUpdated(final double newTempo) {
-        if (unhookingCheckbox == null) {
-            return;
-        }
         if (!unhookingCheckbox.isChecked()) {
             setSliders(newTempo);
         } else {
@@ -410,14 +575,15 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private void onPitchSliderUpdated(final double newPitch) {
-        if (unhookingCheckbox == null) {
-            return;
-        }
         if (!unhookingCheckbox.isChecked()) {
             setSliders(newPitch);
         } else {
             setPitchSlider(newPitch);
         }
+    }
+
+    private void onSemitoneSliderUpdated(final int newSemitone) {
+        setSemitoneSlider(newSemitone);
     }
 
     private void setSliders(final double newValue) {
@@ -439,25 +605,49 @@ public class PlaybackParameterDialog extends DialogFragment {
         pitchSlider.setProgress(strategy.progressOf(newPitch));
     }
 
+    private void setSemitoneSlider(final int newSemitone) {
+        if (semitoneSlider == null) {
+            return;
+        }
+        semitoneSlider.setProgress(newSemitone + 12);
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Helper
     //////////////////////////////////////////////////////////////////////////*/
 
     private void setCurrentPlaybackParameters() {
-        setPlaybackParameters(getCurrentTempo(), getCurrentPitch(), getCurrentSkipSilence());
+        if (getCurrentAdjustBySemitones()) {
+            setPlaybackParameters(
+                    getCurrentTempo(),
+                    semitonesToPercent(getCurrentSemitones()),
+                    getCurrentSemitones(),
+                    getCurrentSkipSilence()
+            );
+        } else {
+            setPlaybackParameters(
+                    getCurrentTempo(),
+                    getCurrentPitch(),
+                    percentToSemitones(getCurrentPitch()),
+                    getCurrentSkipSilence()
+            );
+        }
     }
 
     private void setPlaybackParameters(final double newTempo, final double newPitch,
-                                       final boolean skipSilence) {
-        if (callback != null && tempoCurrentText != null && pitchCurrentText != null) {
+                                       final int newSemitones, final boolean skipSilence) {
+        if (callback != null && tempoCurrentText != null
+                && pitchCurrentText != null && semitoneCurrentText != null) {
             if (DEBUG) {
                 Log.d(TAG, "Setting playback parameters to "
                         + "tempo=[" + newTempo + "], "
-                        + "pitch=[" + newPitch + "]");
+                        + "pitch=[" + newPitch + "], "
+                        + "semitones=[" + newSemitones + "]");
             }
 
             tempoCurrentText.setText(PlayerHelper.formatSpeed(newTempo));
             pitchCurrentText.setText(PlayerHelper.formatPitch(newPitch));
+            semitoneCurrentText.setText(getSignedSemitonesString(newSemitones));
             callback.onPlaybackParameterChanged((float) newTempo, (float) newPitch, skipSilence);
         }
     }
@@ -470,12 +660,21 @@ public class PlaybackParameterDialog extends DialogFragment {
         return pitchSlider == null ? pitch : strategy.valueOf(pitchSlider.getProgress());
     }
 
+    private int getCurrentSemitones() {
+        // semitoneSlider is absolute, that's why - 12
+        return semitoneSlider == null ? semitones : semitoneSlider.getProgress() - 12;
+    }
+
     private double getCurrentStepSize() {
         return stepSize;
     }
 
     private boolean getCurrentSkipSilence() {
         return skipSilenceCheckbox != null && skipSilenceCheckbox.isChecked();
+    }
+
+    private boolean getCurrentAdjustBySemitones() {
+        return adjustBySemitonesCheckbox != null && adjustBySemitonesCheckbox.isChecked();
     }
 
     @NonNull
@@ -493,8 +692,21 @@ public class PlaybackParameterDialog extends DialogFragment {
         return PlayerHelper.formatPitch(percent);
     }
 
+    @NonNull
+    private static String getSignedSemitonesString(final int semitones) {
+        return semitones > 0 ? "+" + semitones : "" + semitones;
+    }
+
     public interface Callback {
         void onPlaybackParameterChanged(float playbackTempo, float playbackPitch,
                                         boolean playbackSkipSilence);
+    }
+
+    public double semitonesToPercent(final int inSemitones) {
+        return Math.pow(2, inSemitones / 12.0);
+    }
+
+    public int percentToSemitones(final double inPercent) {
+        return (int) Math.round(12 * Math.log(inPercent) / Math.log(2));
     }
 }

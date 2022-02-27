@@ -238,6 +238,7 @@
         <item>@string/local_search_suggestions</item>
         <item>@string/remote_search_suggestions</item>
     </string-array>
+    <string name="playback_adjust_by_semitones_key">playback_adjust_by_semitones_key</string>
     <string name="show_play_with_kodi_key">show_play_with_kodi</string>
     <string name="show_comments_key">show_comments</string>
     <string name="show_next_video_key">show_next_video</string>
