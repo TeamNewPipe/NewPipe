@@ -3215,6 +3215,9 @@ public final class Player implements
                         binding.itemsListPanel.setTranslationY(
                                 -binding.itemsListPanel.getHeight() * 5);
                     });
+
+            // clear focus, otherwise a white rectangle remains on top of the player
+            binding.itemsListClose.clearFocus();
             binding.playPauseButton.requestFocus();
         }
     }
