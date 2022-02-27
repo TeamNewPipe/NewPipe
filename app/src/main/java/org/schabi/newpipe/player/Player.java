@@ -3815,8 +3815,9 @@ public final class Player implements
             case KeyEvent.KEYCODE_DPAD_DOWN:
             case KeyEvent.KEYCODE_DPAD_RIGHT:
             case KeyEvent.KEYCODE_DPAD_CENTER:
-                if (binding.getRoot().hasFocus() && !binding.playbackControlRoot.hasFocus()) {
-                    // do not interfere with focus in playlist etc.
+                if ((binding.getRoot().hasFocus() && !binding.playbackControlRoot.hasFocus())
+                        || isQueueVisible) {
+                    // do not interfere with focus in playlist and play queue etc.
                     return false;
                 }
 
@@ -3824,15 +3825,13 @@ public final class Player implements
                     return true;
                 }
 
-                if (!isControlsVisible()) {
-                    if (!isQueueVisible) {
-                        binding.playPauseButton.requestFocus();
-                    }
+                if (isControlsVisible()) {
+                    hideControls(DEFAULT_CONTROLS_DURATION, DPAD_CONTROLS_HIDE_TIME);
+                } else {
+                    binding.playPauseButton.requestFocus();
                     showControlsThenHide();
                     showSystemUIPartially();
                     return true;
-                } else {
-                    hideControls(DEFAULT_CONTROLS_DURATION, DPAD_CONTROLS_HIDE_TIME);
                 }
                 break;
         }
