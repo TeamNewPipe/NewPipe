@@ -7,12 +7,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.CheckBox;
+import android.view.LayoutInflater;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -20,6 +18,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.DialogPlaybackParameterBinding;
 import org.schabi.newpipe.util.SliderStrategy;
 
 import java.util.Objects;
@@ -72,18 +71,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     @State
     boolean skipSilence = DEFAULT_SKIP_SILENCE;
 
-    private SeekBar tempoSlider;
-    private TextView tempoCurrentText;
-    private TextView tempoStepDownText;
-    private TextView tempoStepUpText;
-
-    private SeekBar pitchSlider;
-    private TextView pitchCurrentText;
-    private TextView pitchStepDownText;
-    private TextView pitchStepUpText;
-
-    private CheckBox unhookingCheckbox;
-    private CheckBox skipSilenceCheckbox;
+    private DialogPlaybackParameterBinding binding;
 
     public static PlaybackParameterDialog newInstance(
             final double playbackTempo,
@@ -110,7 +98,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAttach(final Context context) {
+    public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
         if (context instanceof Callback) {
             callback = (Callback) context;
@@ -120,7 +108,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     @Override
-    public void onSaveInstanceState(final Bundle outState) {
+    public void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
         Icepick.saveInstanceState(this, outState);
     }
@@ -135,12 +123,12 @@ public class PlaybackParameterDialog extends DialogFragment {
         assureCorrectAppLanguage(getContext());
         Icepick.restoreInstanceState(this, savedInstanceState);
 
-        final View view = View.inflate(getContext(), R.layout.dialog_playback_parameter, null);
-        initUI(view);
+        binding = DialogPlaybackParameterBinding.inflate(LayoutInflater.from(getContext()));
+        initUI();
         initUIData();
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireActivity())
-                .setView(view)
+                .setView(binding.getRoot())
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
                     setAndUpdateTempo(initialTempo);
@@ -163,37 +151,21 @@ public class PlaybackParameterDialog extends DialogFragment {
     // Control Views
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void initUI(@NonNull final View rootView) {
+    private void initUI() {
         // Tempo
-        tempoSlider = Objects.requireNonNull(rootView.findViewById(R.id.tempoSeekbar));
-        tempoCurrentText = Objects.requireNonNull(rootView.findViewById(R.id.tempoCurrentText));
-        tempoStepUpText = Objects.requireNonNull(rootView.findViewById(R.id.tempoStepUp));
-        tempoStepDownText = Objects.requireNonNull(rootView.findViewById(R.id.tempoStepDown));
-
-        setText(rootView, R.id.tempoMinimumText, PlayerHelper::formatSpeed, MINIMUM_PLAYBACK_VALUE);
-        setText(rootView, R.id.tempoMaximumText, PlayerHelper::formatSpeed, MAXIMUM_PLAYBACK_VALUE);
+        setText(binding.tempoMinimumText, PlayerHelper::formatSpeed, MINIMUM_PLAYBACK_VALUE);
+        setText(binding.tempoMaximumText, PlayerHelper::formatSpeed, MAXIMUM_PLAYBACK_VALUE);
 
         // Pitch
-        pitchSlider = Objects.requireNonNull(rootView.findViewById(R.id.pitchSeekbar));
-        pitchCurrentText = Objects.requireNonNull(rootView.findViewById(R.id.pitchCurrentText));
-        pitchStepUpText = Objects.requireNonNull(rootView.findViewById(R.id.pitchStepUp));
-        pitchStepDownText = Objects.requireNonNull(rootView.findViewById(R.id.pitchStepDown));
-
-        setText(rootView, R.id.pitchMinimumText, PlayerHelper::formatPitch, MINIMUM_PLAYBACK_VALUE);
-        setText(rootView, R.id.pitchMaximumText, PlayerHelper::formatPitch, MAXIMUM_PLAYBACK_VALUE);
+        setText(binding.pitchMinimumText, PlayerHelper::formatPitch, MINIMUM_PLAYBACK_VALUE);
+        setText(binding.pitchMaximumText, PlayerHelper::formatPitch, MAXIMUM_PLAYBACK_VALUE);
 
         // Steps
-        setupStepTextView(rootView, R.id.stepSizeOnePercent, STEP_1_PERCENT_VALUE);
-        setupStepTextView(rootView, R.id.stepSizeFivePercent, STEP_5_PERCENT_VALUE);
-        setupStepTextView(rootView, R.id.stepSizeTenPercent, STEP_10_PERCENT_VALUE);
-        setupStepTextView(rootView, R.id.stepSizeTwentyFivePercent, STEP_25_PERCENT_VALUE);
-        setupStepTextView(rootView, R.id.stepSizeOneHundredPercent, STEP_100_PERCENT_VALUE);
-
-        // Bottom controls
-        unhookingCheckbox =
-                Objects.requireNonNull(rootView.findViewById(R.id.unhookCheckbox));
-        skipSilenceCheckbox =
-                Objects.requireNonNull(rootView.findViewById(R.id.skipSilenceCheckbox));
+        setupStepTextView(binding.stepSizeOnePercent, STEP_1_PERCENT_VALUE);
+        setupStepTextView(binding.stepSizeFivePercent, STEP_5_PERCENT_VALUE);
+        setupStepTextView(binding.stepSizeTenPercent, STEP_10_PERCENT_VALUE);
+        setupStepTextView(binding.stepSizeTwentyFivePercent, STEP_25_PERCENT_VALUE);
+        setupStepTextView(binding.stepSizeOneHundredPercent, STEP_100_PERCENT_VALUE);
     }
 
     private TextView setText(
@@ -205,59 +177,47 @@ public class PlaybackParameterDialog extends DialogFragment {
         return textView;
     }
 
-    private TextView setText(
-            final View rootView,
-            @IdRes final int idRes,
-            final DoubleFunction<String> formatter,
-            final double value
-    ) {
-        final TextView textView = rootView.findViewById(idRes);
-        setText(textView, formatter, value);
-        return textView;
-    }
-
     private void setupStepTextView(
-            final View rootView,
-            @IdRes final int idRes,
+            final TextView textView,
             final double stepSizeValue
     ) {
-        setText(rootView, idRes, PlaybackParameterDialog::getPercentString, stepSizeValue)
+        setText(textView, PlaybackParameterDialog::getPercentString, stepSizeValue)
                 .setOnClickListener(view -> setAndUpdateStepSize(stepSizeValue));
     }
 
     private void initUIData() {
         // Tempo
-        tempoSlider.setMax(QUADRATIC_STRATEGY.progressOf(MAXIMUM_PLAYBACK_VALUE));
+        binding.tempoSeekbar.setMax(QUADRATIC_STRATEGY.progressOf(MAXIMUM_PLAYBACK_VALUE));
         setAndUpdateTempo(tempo);
-        tempoSlider.setOnSeekBarChangeListener(
+        binding.tempoSeekbar.setOnSeekBarChangeListener(
                 getTempoOrPitchSeekbarChangeListener(this::onTempoSliderUpdated));
 
         registerOnStepClickListener(
-                tempoStepDownText, tempo, -1, this::onTempoSliderUpdated);
+                binding.tempoStepDown, tempo, -1, this::onTempoSliderUpdated);
         registerOnStepClickListener(
-                tempoStepUpText, tempo, 1, this::onTempoSliderUpdated);
+                binding.tempoStepUp, tempo, 1, this::onTempoSliderUpdated);
 
         // Pitch
-        pitchSlider.setMax(QUADRATIC_STRATEGY.progressOf(MAXIMUM_PLAYBACK_VALUE));
+        binding.pitchSeekbar.setMax(QUADRATIC_STRATEGY.progressOf(MAXIMUM_PLAYBACK_VALUE));
         setAndUpdatePitch(pitch);
-        pitchSlider.setOnSeekBarChangeListener(
+        binding.pitchSeekbar.setOnSeekBarChangeListener(
                 getTempoOrPitchSeekbarChangeListener(this::onPitchSliderUpdated));
 
         registerOnStepClickListener(
-                pitchStepDownText, pitch, -1, this::onPitchSliderUpdated);
+                binding.pitchStepDown, pitch, -1, this::onPitchSliderUpdated);
         registerOnStepClickListener(
-                pitchStepUpText, pitch, 1, this::onPitchSliderUpdated);
+                binding.pitchStepUp, pitch, 1, this::onPitchSliderUpdated);
 
         // Steps
         setAndUpdateStepSize(stepSize);
 
         // Bottom controls
         // restore whether pitch and tempo are unhooked or not
-        unhookingCheckbox.setChecked(PreferenceManager
+        binding.unhookCheckbox.setChecked(PreferenceManager
                 .getDefaultSharedPreferences(requireContext())
                 .getBoolean(getString(R.string.playback_unhook_key), true));
 
-        unhookingCheckbox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+        binding.unhookCheckbox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
             // save whether pitch and tempo are unhooked or not
             PreferenceManager.getDefaultSharedPreferences(requireContext())
                     .edit()
@@ -271,7 +231,7 @@ public class PlaybackParameterDialog extends DialogFragment {
         });
 
         setAndUpdateSkipSilence(skipSilence);
-        skipSilenceCheckbox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+        binding.skipSilenceCheckbox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
             skipSilence = isChecked;
             updateCallback();
         });
@@ -291,16 +251,16 @@ public class PlaybackParameterDialog extends DialogFragment {
     private void setAndUpdateStepSize(final double newStepSize) {
         this.stepSize = newStepSize;
 
-        tempoStepUpText.setText(getStepUpPercentString(newStepSize));
-        tempoStepDownText.setText(getStepDownPercentString(newStepSize));
+        binding.tempoStepUp.setText(getStepUpPercentString(newStepSize));
+        binding.tempoStepDown.setText(getStepDownPercentString(newStepSize));
 
-        pitchStepUpText.setText(getStepUpPercentString(newStepSize));
-        pitchStepDownText.setText(getStepDownPercentString(newStepSize));
+        binding.pitchStepUp.setText(getStepUpPercentString(newStepSize));
+        binding.pitchStepDown.setText(getStepDownPercentString(newStepSize));
     }
 
     private void setAndUpdateSkipSilence(final boolean newSkipSilence) {
         this.skipSilence = newSkipSilence;
-        skipSilenceCheckbox.setChecked(newSkipSilence);
+        binding.skipSilenceCheckbox.setChecked(newSkipSilence);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -333,7 +293,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private void onTempoSliderUpdated(final double newTempo) {
-        if (!unhookingCheckbox.isChecked()) {
+        if (!binding.unhookCheckbox.isChecked()) {
             setSliders(newTempo);
         } else {
             setAndUpdateTempo(newTempo);
@@ -341,7 +301,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private void onPitchSliderUpdated(final double newPitch) {
-        if (!unhookingCheckbox.isChecked()) {
+        if (!binding.unhookCheckbox.isChecked()) {
             setSliders(newPitch);
         } else {
             setAndUpdatePitch(newPitch);
@@ -355,14 +315,14 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private void setAndUpdateTempo(final double newTempo) {
         this.tempo = newTempo;
-        tempoSlider.setProgress(QUADRATIC_STRATEGY.progressOf(tempo));
-        setText(tempoCurrentText, PlayerHelper::formatSpeed, tempo);
+        binding.tempoSeekbar.setProgress(QUADRATIC_STRATEGY.progressOf(tempo));
+        setText(binding.tempoCurrentText, PlayerHelper::formatSpeed, tempo);
     }
 
     private void setAndUpdatePitch(final double newPitch) {
         this.pitch = newPitch;
-        pitchSlider.setProgress(QUADRATIC_STRATEGY.progressOf(pitch));
-        setText(pitchCurrentText, PlayerHelper::formatPitch, pitch);
+        binding.pitchSeekbar.setProgress(QUADRATIC_STRATEGY.progressOf(pitch));
+        setText(binding.pitchCurrentText, PlayerHelper::formatPitch, pitch);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
