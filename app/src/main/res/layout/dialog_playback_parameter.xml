@@ -29,7 +29,7 @@
         <RelativeLayout
             android:id="@+id/tempoControl"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/tempoControlText"
             android:layout_marginTop="3dp"
             android:orientation="horizontal">
@@ -146,203 +146,207 @@
             android:textStyle="bold" />
 
         <RelativeLayout
-            android:id="@+id/pitchControl"
+            android:id="@+id/pitchControlContainer"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/pitchControlText"
-            android:layout_marginTop="3dp"
-            android:orientation="horizontal">
-
-            <org.schabi.newpipe.views.NewPipeTextView
-                android:id="@+id/pitchStepDown"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:text="--%"
-                android:textColor="?attr/colorAccent"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText"
-                tools:text="-5%" />
+            android:layout_marginTop="3dp">
 
             <RelativeLayout
-                android:id="@+id/pitchDisplay"
+                android:id="@+id/pitchPercentControl"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_toStartOf="@+id/pitchStepUp"
-                android:layout_toEndOf="@+id/pitchStepDown"
                 android:orientation="horizontal">
 
                 <org.schabi.newpipe.views.NewPipeTextView
-                    android:id="@+id/pitchMinimumText"
+                    android:id="@+id/pitchPercentStepDown"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="4dp"
+                    android:layout_centerVertical="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="center"
-                    android:text="---%"
-                    android:textColor="?attr/colorAccent"
-                    tools:ignore="HardcodedText"
-                    tools:text="25%" />
-
-                <org.schabi.newpipe.views.NewPipeTextView
-                    android:id="@+id/pitchCurrentText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:text="---%"
+                    android:text="--%"
                     android:textColor="?attr/colorAccent"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText"
-                    tools:text="100%" />
+                    tools:text="-5%" />
+
+                <RelativeLayout
+                    android:id="@+id/pitchPercentDisplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_toStartOf="@+id/pitchPercentStepUp"
+                    android:layout_toEndOf="@+id/pitchPercentStepDown"
+                    android:orientation="horizontal">
+
+                    <org.schabi.newpipe.views.NewPipeTextView
+                        android:id="@+id/pitchPercentMinimumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="4dp"
+                        android:gravity="center"
+                        android:text="---%"
+                        android:textColor="?attr/colorAccent"
+                        tools:ignore="HardcodedText"
+                        tools:text="25%" />
+
+                    <org.schabi.newpipe.views.NewPipeTextView
+                        android:id="@+id/pitchPercentCurrentText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:text="---%"
+                        android:textColor="?attr/colorAccent"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText"
+                        tools:text="100%" />
+
+                    <org.schabi.newpipe.views.NewPipeTextView
+                        android:id="@+id/pitchPercentMaximumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="4dp"
+                        android:gravity="center"
+                        android:text="---%"
+                        android:textColor="?attr/colorAccent"
+                        tools:ignore="HardcodedText"
+                        tools:text="300%" />
+
+                    <androidx.appcompat.widget.AppCompatSeekBar
+                        android:id="@+id/pitchPercentSeekbar"
+                        style="@style/Widget.AppCompat.SeekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/pitchPercentCurrentText"
+                        android:paddingBottom="4dp"
+                        tools:progress="50" />
+                </RelativeLayout>
 
                 <org.schabi.newpipe.views.NewPipeTextView
-                    android:id="@+id/pitchMaximumText"
+                    android:id="@+id/pitchPercentStepUp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginEnd="4dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="center"
-                    android:text="---%"
+                    android:text="+-%"
                     android:textColor="?attr/colorAccent"
+                    android:textStyle="bold"
                     tools:ignore="HardcodedText"
-                    tools:text="300%" />
-
-                <androidx.appcompat.widget.AppCompatSeekBar
-                    android:id="@+id/pitchSeekbar"
-                    style="@style/Widget.AppCompat.SeekBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/pitchCurrentText"
-                    android:paddingBottom="4dp"
-                    tools:progress="50" />
+                    tools:text="+5%" />
             </RelativeLayout>
 
-            <org.schabi.newpipe.views.NewPipeTextView
-                android:id="@+id/pitchStepUp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="4dp"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:text="+-%"
-                android:textColor="?attr/colorAccent"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText"
-                tools:text="+5%" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/semitoneControl"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@id/pitchControlText"
-            android:layout_marginTop="4dp"
-            android:orientation="horizontal">
-
-            <org.schabi.newpipe.views.NewPipeTextView
-                android:id="@+id/semitoneStepDown"
-                android:layout_width="24dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:text="♭"
-                android:textColor="?attr/colorAccent"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
-
             <RelativeLayout
-                android:id="@+id/semitoneDisplay"
+                android:id="@+id/pitchSemitoneControl"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_toStartOf="@+id/semitoneStepUp"
-                android:layout_toEndOf="@+id/semitoneStepDown"
                 android:orientation="horizontal">
 
                 <org.schabi.newpipe.views.NewPipeTextView
-                    android:id="@+id/semitoneMinimumText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/pitchSemitoneStepDown"
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="4dp"
+                    android:layout_centerVertical="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="center"
-                    android:text="-12"
+                    android:text="♭"
                     android:textColor="?attr/colorAccent"
-                    tools:ignore="HardcodedText"/>
-
-                <org.schabi.newpipe.views.NewPipeTextView
-                    android:id="@+id/semitoneCurrentText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:textColor="?attr/colorAccent"
+                    android:textSize="24sp"
                     android:textStyle="bold"
-                    tools:text="0" />
-
-                <org.schabi.newpipe.views.NewPipeTextView
-                    android:id="@+id/semitoneMaximumText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="4dp"
-                    android:gravity="center"
-                    android:text="+12"
-                    android:textColor="?attr/colorAccent"
                     tools:ignore="HardcodedText" />
 
-                <androidx.appcompat.widget.AppCompatSeekBar
-                    android:id="@+id/semitoneSeekbar"
-                    style="@style/Widget.AppCompat.SeekBar"
+                <RelativeLayout
+                    android:id="@+id/pitchSemitoneDisplay"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/semitoneCurrentText"
-                    android:max="24"
-                    android:paddingBottom="4dp"
-                    android:progress="12" />
-            </RelativeLayout>
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_toStartOf="@+id/pitchSemitoneStepUp"
+                    android:layout_toEndOf="@+id/pitchSemitoneStepDown"
+                    android:orientation="horizontal">
 
-            <org.schabi.newpipe.views.NewPipeTextView
-                android:id="@+id/semitoneStepUp"
-                android:layout_width="24dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="4dp"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:text="♯"
-                android:textColor="?attr/colorAccent"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+                    <org.schabi.newpipe.views.NewPipeTextView
+                        android:id="@+id/pitchSemitoneMinimumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="4dp"
+                        android:gravity="center"
+                        android:text="-12"
+                        android:textColor="?attr/colorAccent"
+                        tools:ignore="HardcodedText" />
+
+                    <org.schabi.newpipe.views.NewPipeTextView
+                        android:id="@+id/pitchSemitoneCurrentText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:textColor="?attr/colorAccent"
+                        android:textStyle="bold"
+                        tools:text="0" />
+
+                    <org.schabi.newpipe.views.NewPipeTextView
+                        android:id="@+id/pitchSemitoneMaximumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="4dp"
+                        android:gravity="center"
+                        android:text="+12"
+                        android:textColor="?attr/colorAccent"
+                        tools:ignore="HardcodedText" />
+
+                    <androidx.appcompat.widget.AppCompatSeekBar
+                        android:id="@+id/pitchSemitoneSeekbar"
+                        style="@style/Widget.AppCompat.SeekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/pitchSemitoneCurrentText"
+                        android:max="24"
+                        android:paddingBottom="4dp"
+                        android:progress="12" />
+                </RelativeLayout>
+
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/pitchSemitoneStepUp"
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="4dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="♯"
+                    android:textColor="?attr/colorAccent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+            </RelativeLayout>
         </RelativeLayout>
 
         <View
             android:id="@+id/separatorStepSizeSelector"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/semitoneControl"
+            android:layout_below="@+id/pitchControlContainer"
             android:layout_marginStart="12dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="12dp"
