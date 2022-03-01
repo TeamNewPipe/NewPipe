@@ -78,6 +78,8 @@
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
     <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision. Seeking for 5, 15 or 25 seconds doesn\'t work with this</string>
     <string name="seek_duration_title">Fast-forward/-rewind seek duration</string>
+    <string name="progressive_load_interval_title">Playback load interval size</string>
+    <string name="progressive_load_interval_summary">Change the load interval size (currently %s). A lower value may speed up initial video loading. Changes require a player restart.</string>
     <string name="clear_queue_confirmation_title">Ask for confirmation before clearing a queue</string>
     <string name="clear_queue_confirmation_summary">Switching from one player to another may replace your queue</string>
     <string name="clear_queue_confirmation_description">The active player queue will be replaced</string>
@@ -717,4 +719,6 @@
     <!-- Show Channel Details -->
     <string name="error_show_channel_details">Error at Show Channel Details</string>
     <string name="loading_channel_details">Loading Channel Details…</string>
+    <!-- Progressive Load Interval -->
+    <string name="progressive_load_interval_default">ExoPlayer default</string>
 </resources>

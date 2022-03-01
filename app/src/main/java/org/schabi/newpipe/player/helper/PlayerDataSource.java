@@ -31,11 +31,13 @@ public class PlayerDataSource {
     private static final int MANIFEST_MINIMUM_RETRY = 5;
     private static final int EXTRACTOR_MINIMUM_RETRY = Integer.MAX_VALUE;
 
+    private final int continueLoadingCheckIntervalBytes;
     private final DataSource.Factory cacheDataSourceFactory;
     private final DataSource.Factory cachelessDataSourceFactory;
 
     public PlayerDataSource(@NonNull final Context context, @NonNull final String userAgent,
                             @NonNull final TransferListener transferListener) {
+        continueLoadingCheckIntervalBytes = PlayerHelper.getProgressiveLoadIntervalBytes(context);
         cacheDataSourceFactory = new CacheFactory(context, userAgent, transferListener);
         cachelessDataSourceFactory
                 = new DefaultDataSourceFactory(context, userAgent, transferListener);
@@ -91,6 +93,7 @@ public class PlayerDataSource {
 
     public ProgressiveMediaSource.Factory getExtractorMediaSourceFactory() {
         return new ProgressiveMediaSource.Factory(cacheDataSourceFactory)
+                .setContinueLoadingCheckIntervalBytes(continueLoadingCheckIntervalBytes)
                 .setLoadErrorHandlingPolicy(
                         new DefaultLoadErrorHandlingPolicy(EXTRACTOR_MINIMUM_RETRY));
     }
