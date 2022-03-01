@@ -61,6 +61,16 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
+    <ListPreference
+        android:defaultValue="@string/progressive_load_interval_default_value"
+        android:entries="@array/progressive_load_interval_descriptions"
+        android:entryValues="@array/progressive_load_interval_values"
+        android:key="@string/progressive_load_interval_key"
+        android:summary="@string/progressive_load_interval_summary"
+        android:title="@string/progressive_load_interval_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
         android:title="@string/settings_category_player_title"
@@ -203,16 +213,6 @@
             android:key="@string/seek_duration_key"
             android:summary="%s"
             android:title="@string/seek_duration_title"
-            app:singleLineTitle="false"
-            app:iconSpaceReserved="false" />
-
-        <ListPreference
-            android:defaultValue="@string/progressive_load_interval_default_value"
-            android:entries="@array/progressive_load_interval_descriptions"
-            android:entryValues="@array/progressive_load_interval_values"
-            android:key="@string/progressive_load_interval_key"
-            android:summary="@string/progressive_load_interval_summary"
-            android:title="@string/progressive_load_interval_title"
             app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
