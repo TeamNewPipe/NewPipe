@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tempoControlText"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="1dp"
             android:orientation="horizontal">
 
             <org.schabi.newpipe.views.NewPipeTextView
@@ -101,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tempoCurrentText"
-                    android:paddingBottom="4dp"
+                    android:paddingBottom="2dp"
                     tools:progress="50" />
             </RelativeLayout>
 
@@ -129,9 +129,9 @@
             android:layout_height="1dp"
             android:layout_below="@id/tempoControl"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="6dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="4dp"
             android:background="?attr/separator_color" />
 
         <org.schabi.newpipe.views.NewPipeTextView
@@ -150,7 +150,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/pitchControlText"
-            android:layout_marginTop="3dp">
+            android:layout_marginTop="1dp">
 
             <RelativeLayout
                 android:id="@+id/pitchPercentControl"
@@ -226,7 +226,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/pitchPercentCurrentText"
-                        android:paddingBottom="4dp"
+                        android:paddingBottom="2dp"
                         tools:progress="50" />
                 </RelativeLayout>
 
@@ -319,7 +319,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/pitchSemitoneCurrentText"
                         android:max="24"
-                        android:paddingBottom="4dp"
+                        android:paddingBottom="2dp"
                         android:progress="12" />
                 </RelativeLayout>
 
@@ -348,9 +348,9 @@
             android:layout_height="1dp"
             android:layout_below="@+id/pitchControlContainer"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="4dp"
             android:background="?attr/separator_color" />
 
         <LinearLayout
@@ -433,9 +433,9 @@
             android:layout_height="1dp"
             android:layout_below="@+id/stepSizeSelector"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="4dp"
             android:background="?attr/separator_color" />
 
         <LinearLayout
