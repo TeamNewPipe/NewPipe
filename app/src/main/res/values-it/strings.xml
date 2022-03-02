@@ -87,7 +87,6 @@
     <string name="short_million">M</string>
     <string name="short_billion">Mrd</string>
     <string name="recaptcha_request_toast">È richiesta la risoluzione del reCAPTCHA</string>
-    <string name="yes">Sì</string>
     <string name="open_in_popup_mode">Apri in modalità popup</string>
     <string name="popup_playing_toast">Riproduzione in modalità popup</string>
     <string name="disabled">Disattivato</string>

@@ -191,7 +191,7 @@ public class PeertubeInstanceListFragment extends Fragment {
                 .setTitle(R.string.restore_defaults)
                 .setMessage(R.string.restore_defaults_confirmation)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.yes, (dialog, which) -> {
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
                     sharedPreferences.edit().remove(savedInstanceListKey).apply();
                     selectInstance(PeertubeInstance.defaultInstance);
                     updateInstanceList();

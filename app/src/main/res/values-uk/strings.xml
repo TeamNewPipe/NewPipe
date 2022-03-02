@@ -58,7 +58,6 @@
     <string name="downloads_title">Завантаження</string>
     <string name="error_report_title">Звіт про помилку</string>
     <string name="all">Усе</string>
-    <string name="yes">Так</string>
     <string name="disabled">Вимкнено</string>
     <string name="app_ui_crash">Збій застосунку/інтерфейсу</string>
     <string name="your_comment">Ваш коментар (англійською):</string>

@@ -395,7 +395,6 @@
     <string name="max_retry_msg">Tentativas máximas</string>
     <string name="title_activity_history">Histórico</string>
     <string name="playback_pitch">Velocidade</string>
-    <string name="yes">Sim</string>
     <string name="error_download_resource_gone">Não é possível recuperar esta descarga</string>
     <string name="rename_playlist">Mudar nome</string>
     <string name="feed_group_dialog_empty_selection">Nenhuma subscrição selecionada</string>
