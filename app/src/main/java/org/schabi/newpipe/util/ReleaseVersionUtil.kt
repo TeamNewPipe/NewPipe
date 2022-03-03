@@ -94,7 +94,6 @@ object ReleaseVersionUtil {
         )
     }
 
-    @JvmStatic
     fun isLastUpdateCheckExpired(expiry: Long): Boolean {
         return Instant.ofEpochSecond(expiry).isBefore(Instant.now())
     }
@@ -104,7 +103,6 @@ object ReleaseVersionUtil {
      *
      * @return Epoch second of expiry date time
      */
-    @JvmStatic
     fun coerceUpdateCheckExpiry(expiryString: String?): Long {
         val now = ZonedDateTime.now()
         return expiryString?.let {
