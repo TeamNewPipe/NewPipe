@@ -86,7 +86,6 @@
     <string name="recaptcha_request_toast">Défi reCAPTCHA demandé</string>
     <string name="open_in_popup_mode">Ouvrir en mode pop-up</string>
     <string name="popup_playing_toast">Lecture en mode flottant</string>
-    <string name="yes">Oui</string>
     <string name="disabled">Désactivés</string>
     <string name="info_labels">Quoi :\\nRequest :\\nContent Language :\\nContent Country :\\nApp Language :\\nService :\\nGMT Time :\\nPackage :\\nVersion :\\nOS version :</string>
     <string name="short_thousand">k</string>

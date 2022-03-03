@@ -95,7 +95,6 @@
         <item quantity="one">%s filmeto</item>
         <item quantity="other">%s filmetoj</item>
     </plurals>
-    <string name="yes">Jes</string>
     <string name="msg_popup_permission">Tiu permeso estas necesa por
 \nmalfermi en ŝprucfenestra modo</string>
     <string name="popup_playing_toast">Ludante en ŝprucfenestra modo</string>

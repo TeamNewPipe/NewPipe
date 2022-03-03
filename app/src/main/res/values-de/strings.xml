@@ -88,7 +88,6 @@
     <string name="black_theme_title">Schwarz</string>
     <string name="title_activity_recaptcha">reCAPTCHA-Aufgabe</string>
     <string name="recaptcha_request_toast">reCAPTCHA-Aufgabe angefordert</string>
-    <string name="yes">Ja</string>
     <string name="all">Alle</string>
     <string name="disabled">Deaktiviert</string>
     <string name="open_in_popup_mode">Im Pop-up-Modus öffnen</string>

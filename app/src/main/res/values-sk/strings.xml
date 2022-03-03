@@ -87,7 +87,6 @@
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
     <string name="recaptcha_request_toast">Požiadavka reCAPTCHA</string>
-    <string name="yes">Áno</string>
     <string name="open_in_popup_mode">Spustiť v okne</string>
     <string name="msg_popup_permission">Tieto práva sú potrebné pre
 \nprehrávanie v mini okne</string>

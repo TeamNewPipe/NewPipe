@@ -90,7 +90,6 @@
     <string name="default_video_format_title">Formato de vídeo padrão</string>
     <string name="popup_playing_toast">Reproduzindo em modo popup</string>
     <string name="all">Tudo</string>
-    <string name="yes">Sim</string>
     <string name="disabled">Desativado</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>

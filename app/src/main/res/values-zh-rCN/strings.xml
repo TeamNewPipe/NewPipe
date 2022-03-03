@@ -28,7 +28,6 @@
     <string name="unsupported_url">不支持的 URL</string>
     <string name="settings_category_appearance_title">外观</string>
     <string name="all">全部</string>
-    <string name="yes">是</string>
     <string name="network_error">网络错误</string>
     <plurals name="videos">
         <item quantity="other">%s 个视频</item>
