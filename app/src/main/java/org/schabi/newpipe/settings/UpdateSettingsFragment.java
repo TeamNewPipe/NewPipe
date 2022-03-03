@@ -33,7 +33,7 @@ public class UpdateSettingsFragment extends BasePreferenceFragment {
         // Reset the expire time. This is necessary to check for an update immediately.
         defaultPreferences.edit()
                 .putLong(getString(R.string.update_expiry_key), 0).apply();
-        startNewVersionCheckService();
+        startNewVersionCheckService(getContext());
     }
 
     @Override

@@ -1,7 +1,7 @@
 package org.schabi.newpipe;
 
-import android.app.IntentService;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -9,6 +9,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.JobIntentService;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.preference.PreferenceManager;
@@ -23,14 +24,12 @@ import org.schabi.newpipe.util.ReleaseVersionUtil;
 
 import java.io.IOException;
 
-public final class CheckForNewAppVersion extends IntentService {
-    public CheckForNewAppVersion() {
-        super("CheckForNewAppVersion");
-    }
+public final class CheckForNewAppVersion extends JobIntentService {
 
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final String TAG = CheckForNewAppVersion.class.getSimpleName();
     private static final String NEWPIPE_API_URL = "https://newpipe.net/api/data.json";
+    private static final int JOB_ID = -17000;
 
     /**
      * Method to compare the current and latest available app version.
@@ -147,14 +146,13 @@ public final class CheckForNewAppVersion extends IntentService {
      * </ul>
      * <b>Must not be executed</b> when the app is in background.
      */
-    public static void startNewVersionCheckService() {
-        final Intent intent = new Intent(App.getApp().getApplicationContext(),
-                CheckForNewAppVersion.class);
-        App.getApp().startService(intent);
+    public static void startNewVersionCheckService(final Context context) {
+        enqueueWork(context, CheckForNewAppVersion.class, JOB_ID,
+                new Intent(context, CheckForNewAppVersion.class));
     }
 
     @Override
-    protected void onHandleIntent(@Nullable final Intent intent) {
+    protected void onHandleWork(@Nullable final Intent intent) {
         try {
             checkNewVersion();
         } catch (final IOException e) {

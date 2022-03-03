@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
             // Start the service which is checking all conditions
             // and eventually searching for a new version.
             // The service searching for a new NewPipe version must not be started in background.
-            CheckForNewAppVersion.startNewVersionCheckService();
+            CheckForNewAppVersion.startNewVersionCheckService(app);
         }
     }
 

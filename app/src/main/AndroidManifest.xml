@@ -383,7 +383,8 @@
             android:exported="false" />
         <service
             android:name=".CheckForNewAppVersion"
-            android:exported="false" />
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <!-- opting out of sending metrics to Google in Android System WebView -->
         <meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
