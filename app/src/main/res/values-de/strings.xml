@@ -648,8 +648,6 @@
     <string name="feed_toggle_show_played_items">Angesehene Elemente anzeigen</string>
     <string name="mark_as_watched">Als gesehen markieren</string>
     <string name="detail_heart_img_view_description">Vom Ersteller mit Herz versehen</string>
-    <string name="loading_channel_details">Kanaldetails werden geladen…</string>
-    <string name="error_show_channel_details">Fehler beim Anzeigen der Kanaldetails</string>
     <string name="show_image_indicators_summary">Farbige Picasso-Bänder über den Bildern anzeigen, die deren Quelle angeben: rot für Netzwerk, blau für Festplatte und grün für Speicher</string>
     <string name="show_image_indicators_title">Bildindikatoren anzeigen</string>
     <string name="remote_search_suggestions">Entfernte Suchvorschläge</string>

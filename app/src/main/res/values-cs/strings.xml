@@ -658,8 +658,6 @@
     <string name="comments_are_disabled">Komentáře jsou vypnuty</string>
     <string name="detail_heart_img_view_description">Srdíčko od tvůrce</string>
     <string name="mark_as_watched">Označit jako zhlédnuté</string>
-    <string name="loading_channel_details">Načítání podrobností kanálu…</string>
-    <string name="error_show_channel_details">Chyba při zobrazení prodrobností kanálu</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s stažení smazáno</item>
         <item quantity="few">%1$s stažení smazána</item>

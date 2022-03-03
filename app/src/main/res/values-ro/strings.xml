@@ -619,8 +619,6 @@
     <string name="enqueued_next">Următorul pus în coadă</string>
     <string name="enqueue_next_stream">Adăugați în coadă pe următorul</string>
     <string name="mark_as_watched">Marcare ca vizionat</string>
-    <string name="loading_channel_details">Încărcare Detalii canal…</string>
-    <string name="error_show_channel_details">Eroare la Afișare detalii canal</string>
     <string name="off">Oprit</string>
     <string name="on">Pornit</string>
     <string name="tablet_mode_title">Mod tabletă</string>

@@ -649,8 +649,6 @@
     <string name="mark_as_watched">Marcar como visto</string>
     <string name="detail_heart_img_view_description">Curtido pelo criador</string>
     <string name="show_image_indicators_summary">Exibir fitas coloridas no topo das imagens indicando sua fonte: vermelho para rede, azul para disco e verde para memória</string>
-    <string name="loading_channel_details">Carregando detalhes do canal…</string>
-    <string name="error_show_channel_details">Erro ao exibir detalhes do canal</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s download apagado</item>
         <item quantity="other">%1$s downloads apagados</item>

@@ -659,8 +659,6 @@
     <string name="description_select_note">Sada možeš odabrati tekst u opisu. Napomena: stranica će možda treperiti i možda nećeš moći kliknuti poveznice u načinu rada za odabir teksta.</string>
     <string name="service_provides_reason">%s daje ovaj razlog:</string>
     <string name="processing_may_take_a_moment">Obrada... Pričekajte trenutak</string>
-    <string name="error_show_channel_details">Pogreška pri prikazu detalja kanala</string>
-    <string name="loading_channel_details">Učitavanje detalja o kanalu…</string>
     <string name="main_page_content_swipe_remove">Povucite stavke da biste ih uklonili</string>
     <string name="show_image_indicators_title">Prikazati indikatore slike</string>
     <plurals name="download_finished_notification">

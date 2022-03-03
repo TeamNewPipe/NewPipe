@@ -647,10 +647,8 @@
     <string name="select_night_theme_toast">Du kan välja det natt-tema du föredrar nedan</string>
     <string name="night_theme_summary">Välj det natt-tema du föredrar — %s</string>
     <string name="seekbar_preview_thumbnail_title">Sökradens förhandsvisningsminiatyr</string>
-    <string name="loading_channel_details">Laddar kanaldetaljer…</string>
     <string name="show_image_indicators_title">Visa bildindikatorer</string>
     <string name="local_search_suggestions">Lokala sökningsförslag</string>
-    <string name="error_show_channel_details">Kunde inte visa kanaldetaljer</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Tog bort %1$s nedladdning</item>
         <item quantity="other">Tog bort %1$s nedladdningar</item>
