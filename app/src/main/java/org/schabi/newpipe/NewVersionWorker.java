@@ -8,11 +8,14 @@ import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.JobIntentService;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.preference.PreferenceManager;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
+import androidx.work.WorkRequest;
+import androidx.work.Worker;
+import androidx.work.WorkerParameters;
 
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
@@ -24,12 +27,16 @@ import org.schabi.newpipe.util.ReleaseVersionUtil;
 
 import java.io.IOException;
 
-public final class CheckForNewAppVersion extends JobIntentService {
+public final class NewVersionWorker extends Worker {
 
     private static final boolean DEBUG = MainActivity.DEBUG;
-    private static final String TAG = CheckForNewAppVersion.class.getSimpleName();
+    private static final String TAG = NewVersionWorker.class.getSimpleName();
     private static final String NEWPIPE_API_URL = "https://newpipe.net/api/data.json";
-    private static final int JOB_ID = -17000;
+
+    public NewVersionWorker(@NonNull final Context context,
+                            @NonNull final WorkerParameters workerParams) {
+        super(context, workerParams);
+    }
 
     /**
      * Method to compare the current and latest available app version.
@@ -130,7 +137,7 @@ public final class CheckForNewAppVersion extends JobIntentService {
     }
 
     /**
-     * Start a new service which
+     * Start a new worker which
      * checks if all conditions for performing a version check are met,
      * fetches the API endpoint {@link #NEWPIPE_API_URL} containing info
      * about the latest NewPipe version
@@ -144,22 +151,25 @@ public final class CheckForNewAppVersion extends JobIntentService {
      * <li>The app did not recently check for updates.
      * We do not want to make unnecessary connections and DOS our servers.</li>
      * </ul>
-     * <b>Must not be executed</b> when the app is in background.
      */
-    public static void startNewVersionCheckService(final Context context) {
-        enqueueWork(context, CheckForNewAppVersion.class, JOB_ID,
-                new Intent(context, CheckForNewAppVersion.class));
+    public static void enqueueNewVersionCheckingWork(final Context context) {
+        final WorkRequest workRequest =
+                new OneTimeWorkRequest.Builder(NewVersionWorker.class).build();
+        WorkManager.getInstance(context).enqueue(workRequest);
     }
 
+    @NonNull
     @Override
-    protected void onHandleWork(@Nullable final Intent intent) {
+    public Result doWork() {
         try {
             checkNewVersion();
         } catch (final IOException e) {
             Log.w(TAG, "Could not fetch NewPipe API: probably network problem", e);
+            return Result.failure();
         } catch (final ReCaptchaException e) {
             Log.e(TAG, "ReCaptchaException should never happen here.", e);
+            return Result.failure();
         }
-
+        return Result.success();
     }
 }

@@ -173,10 +173,9 @@ public class MainActivity extends AppCompatActivity {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
 
         if (prefs.getBoolean(app.getString(R.string.update_app_key), true)) {
-            // Start the service which is checking all conditions
+            // Start the worker which is checking all conditions
             // and eventually searching for a new version.
-            // The service searching for a new NewPipe version must not be started in background.
-            CheckForNewAppVersion.startNewVersionCheckService(app);
+            NewVersionWorker.enqueueNewVersionCheckingWork(app);
         }
     }
 

@@ -1,12 +1,11 @@
 package org.schabi.newpipe.settings;
 
-import static org.schabi.newpipe.CheckForNewAppVersion.startNewVersionCheckService;
-
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.preference.Preference;
 
+import org.schabi.newpipe.NewVersionWorker;
 import org.schabi.newpipe.R;
 
 public class UpdateSettingsFragment extends BasePreferenceFragment {
@@ -33,7 +32,7 @@ public class UpdateSettingsFragment extends BasePreferenceFragment {
         // Reset the expire time. This is necessary to check for an update immediately.
         defaultPreferences.edit()
                 .putLong(getString(R.string.update_expiry_key), 0).apply();
-        startNewVersionCheckService(getContext());
+        NewVersionWorker.enqueueNewVersionCheckingWork(getContext());
     }
 
     @Override
