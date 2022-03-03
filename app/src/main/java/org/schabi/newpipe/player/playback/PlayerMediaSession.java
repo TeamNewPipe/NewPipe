@@ -88,6 +88,7 @@ public class PlayerMediaSession implements MediaSessionCallback {
     @Override
     public void play() {
         player.play();
+        // hide the player controls even if the play command came from the media session
         player.hideControls(0, 0);
     }
 
