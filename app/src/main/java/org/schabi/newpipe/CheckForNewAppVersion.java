@@ -73,7 +73,6 @@ public final class CheckForNewAppVersion extends IntentService {
         final App app = App.getApp();
 
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
-        final NewVersionManager manager = new NewVersionManager();
 
         // Check if the current apk is a github one or not.
         if (!ReleaseVersionUtil.isReleaseApk()) {
@@ -83,24 +82,23 @@ public final class CheckForNewAppVersion extends IntentService {
         // Check if the last request has happened a certain time ago
         // to reduce the number of API requests.
         final long expiry = prefs.getLong(app.getString(R.string.update_expiry_key), 0);
-        if (!manager.isExpired(expiry)) {
+        if (!ReleaseVersionUtil.isLastUpdateCheckExpired(expiry)) {
             return;
         }
 
         // Make a network request to get latest NewPipe data.
         final Response response = DownloaderImpl.getInstance().get(NEWPIPE_API_URL);
-        handleResponse(response, manager);
+        handleResponse(response);
     }
 
-    private void handleResponse(@NonNull final Response response,
-                                @NonNull final NewVersionManager manager) {
+    private void handleResponse(@NonNull final Response response) {
         final App app = App.getApp();
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
         try {
             // Store a timestamp which needs to be exceeded,
             // before a new request to the API is made.
-            final long newExpiry = manager
-                    .coerceExpiry(response.getHeader("expires"));
+            final long newExpiry = ReleaseVersionUtil
+                    .coerceUpdateCheckExpiry(response.getHeader("expires"));
             prefs.edit()
                     .putLong(app.getString(R.string.update_expiry_key), newExpiry)
                     .apply();
