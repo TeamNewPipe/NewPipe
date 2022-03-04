@@ -84,8 +84,6 @@ public class PlaybackParameterDialog extends DialogFragment {
     @State
     double pitchPercent = DEFAULT_PITCH_PERCENT;
     @State
-    double stepSize = DEFAULT_STEP;
-    @State
     boolean skipSilence = DEFAULT_SKIP_SILENCE;
 
     private DialogPlaybackParameterBinding binding;
@@ -228,13 +226,10 @@ public class PlaybackParameterDialog extends DialogFragment {
                 this::onPitchPercentSliderUpdated);
 
         // Steps
-        setupStepTextView(binding.stepSizeOnePercent, STEP_1_PERCENT_VALUE);
-        setupStepTextView(binding.stepSizeFivePercent, STEP_5_PERCENT_VALUE);
-        setupStepTextView(binding.stepSizeTenPercent, STEP_10_PERCENT_VALUE);
-        setupStepTextView(binding.stepSizeTwentyFivePercent, STEP_25_PERCENT_VALUE);
-        setupStepTextView(binding.stepSizeOneHundredPercent, STEP_100_PERCENT_VALUE);
-
-        setAndUpdateStepSize(stepSize);
+        getStepSizeComponentMappings()
+                .forEach(this::setupStepTextView);
+        // Initialize UI
+        setStepSizeToUI(getCurrentStepSize());
 
         // Bottom controls
         bindCheckboxWithBoolPref(
@@ -263,13 +258,12 @@ public class PlaybackParameterDialog extends DialogFragment {
         );
     }
 
-    private TextView setText(
+    private void setText(
             final TextView textView,
             final DoubleFunction<String> formatter,
             final double value
     ) {
         Objects.requireNonNull(textView).setText(formatter.apply(value));
-        return textView;
     }
 
     private void registerOnStepClickListener(
@@ -280,7 +274,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     ) {
         stepTextView.setOnClickListener(view -> {
             newValueConsumer.accept(
-                    currentValueSupplier.getAsDouble() + 1 * stepSize * direction);
+                    currentValueSupplier.getAsDouble() + 1 * getCurrentStepSize() * direction);
             updateCallback();
         });
     }
@@ -315,16 +309,22 @@ public class PlaybackParameterDialog extends DialogFragment {
         binding.pitchPercentStepDown.setText(getStepDownPercentString(newStepSize));
     }
 
+    private double getCurrentStepSize() {
+        return PreferenceManager.getDefaultSharedPreferences(requireContext())
+                .getFloat(getString(R.string.adjustment_step_key), (float) DEFAULT_STEP);
+    }
+
     private void setAndUpdateSkipSilence(final boolean newSkipSilence) {
         this.skipSilence = newSkipSilence;
         binding.skipSilenceCheckbox.setChecked(newSkipSilence);
     }
 
+    @SuppressWarnings("SameParameterValue") // this method was written to be reusable
     private void bindCheckboxWithBoolPref(
             @NonNull final CheckBox checkBox,
             @StringRes final int resId,
             final boolean defaultValue,
-            @Nullable final Consumer<Boolean> onInitialValueOrValueChange
+            @NonNull final Consumer<Boolean> onInitialValueOrValueChange
     ) {
         final boolean prefValue = PreferenceManager
                 .getDefaultSharedPreferences(requireContext())
@@ -332,9 +332,7 @@ public class PlaybackParameterDialog extends DialogFragment {
 
         checkBox.setChecked(prefValue);
 
-        if (onInitialValueOrValueChange != null) {
-            onInitialValueOrValueChange.accept(prefValue);
-        }
+        onInitialValueOrValueChange.accept(prefValue);
 
         checkBox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
             // save whether pitch and tempo are unhooked or not
@@ -343,9 +341,7 @@ public class PlaybackParameterDialog extends DialogFragment {
                     .putBoolean(getString(resId), isChecked)
                     .apply();
 
-            if (onInitialValueOrValueChange != null) {
-                onInitialValueOrValueChange.accept(isChecked);
-            }
+            onInitialValueOrValueChange.accept(isChecked);
         });
     }
 
