@@ -48,7 +48,7 @@ import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static org.schabi.newpipe.util.Localization.containsCaseInsensitive;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
-
+import android.animation.ObjectAnimator;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
@@ -1065,7 +1065,7 @@ public final class Player implements
             binding.bottomControls.bringToFront();
             closeItemsList();
         } else if (videoPlayerSelected()) {
-            binding.fullScreenButton.setVisibility(View.GONE);
+            binding.fullScreenButton.setVisibility(View.VISIBLE);
             setupScreenRotationButton();
             binding.resizeTextView.setVisibility(View.VISIBLE);
             binding.getRoot().findViewById(R.id.metadataView).setVisibility(View.VISIBLE);
@@ -1313,12 +1313,6 @@ public final class Player implements
         PicassoHelper.loadScaledDownThumbnail(context, url).into(new Target() {
             @Override
             public void onBitmapLoaded(final Bitmap bitmap, final Picasso.LoadedFrom from) {
-                if (DEBUG) {
-                    Log.d(TAG, "Thumbnail - onLoadingComplete() called with: url = [" + url
-                            + "], " + "loadedImage = [" + bitmap + " -> " + bitmap.getWidth() + "x"
-                            + bitmap.getHeight() + "], from = [" + from + "]");
-                }
-
                 currentThumbnail = bitmap;
                 NotificationUtil.getInstance()
                         .createNotificationIfNeededAndUpdate(Player.this, false);
@@ -1328,7 +1322,6 @@ public final class Player implements
 
             @Override
             public void onBitmapFailed(final Exception e, final Drawable errorDrawable) {
-                Log.e(TAG, "Thumbnail - onBitmapFailed() called with: url = [" + url + "]", e);
                 currentThumbnail = null;
                 NotificationUtil.getInstance()
                         .createNotificationIfNeededAndUpdate(Player.this, false);

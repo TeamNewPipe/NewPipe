@@ -58,6 +58,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
 
         initTap = false
 
+        secondsView.stop()
         secondsView.stopAnimation()
     }
 
@@ -104,6 +105,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
         if (initTap) performListener?.onDoubleTapEnd()
         initTap = false
 
+        secondsView.stop()
         secondsView.stopAnimation()
     }
 
