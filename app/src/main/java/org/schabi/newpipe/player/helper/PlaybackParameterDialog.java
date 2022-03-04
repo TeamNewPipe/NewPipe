@@ -172,7 +172,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Control Views
+    // UI Initialization and Control
     //////////////////////////////////////////////////////////////////////////*/
 
     private void initUI() {
@@ -265,8 +265,7 @@ public class PlaybackParameterDialog extends DialogFragment {
                 isChecked -> {
                     if (!isChecked) {
                         // when unchecked, slide back to the minimum of current tempo or pitch
-                        setSliders(Math.min(pitchPercent, tempo));
-                        updateCallback();
+                        ensureHookIsValidAndUpdateCallBack();
                     }
                 });
 
@@ -277,6 +276,8 @@ public class PlaybackParameterDialog extends DialogFragment {
         });
     }
 
+    // -- General formatting --
+
     private void setText(
             final TextView textView,
             final DoubleFunction<String> formatter,
@@ -284,6 +285,8 @@ public class PlaybackParameterDialog extends DialogFragment {
     ) {
         Objects.requireNonNull(textView).setText(formatter.apply(value));
     }
+
+    // -- Steps --
 
     private void registerOnStepClickListener(
             final TextView stepTextView,
@@ -309,6 +312,8 @@ public class PlaybackParameterDialog extends DialogFragment {
             updateCallback();
         });
     }
+
+    // -- Pitch --
 
     private void setupPitchControlModeTextView(
             final boolean semitones,
@@ -367,6 +372,9 @@ public class PlaybackParameterDialog extends DialogFragment {
                 this.onPitchPercentSliderUpdated(newPitchPercent);
                 updateCallback();
             }
+        } else if (!binding.unhookCheckbox.isChecked()) {
+            // When changing to percent it's possible that tempo is != pitch
+            ensureHookIsValidAndUpdateCallBack();
         }
     }
 
@@ -376,6 +384,8 @@ public class PlaybackParameterDialog extends DialogFragment {
                         getString(R.string.playback_adjust_by_semitones_key),
                         PITCH_CTRL_MODE_PERCENT);
     }
+
+    // -- Steps (Set) --
 
     private void setupStepTextView(
             final double stepSizeValue,
@@ -430,6 +440,8 @@ public class PlaybackParameterDialog extends DialogFragment {
                 .getFloat(getString(R.string.adjustment_step_key), (float) DEFAULT_STEP);
     }
 
+    // -- Additional options --
+
     private void setAndUpdateSkipSilence(final boolean newSkipSilence) {
         this.skipSilence = newSkipSilence;
         binding.skipSilenceCheckbox.setChecked(newSkipSilence);
@@ -459,6 +471,18 @@ public class PlaybackParameterDialog extends DialogFragment {
 
             onInitialValueOrValueChange.accept(isChecked);
         });
+    }
+
+    /**
+     * Ensures that the slider hook is valid and if not sets and updates the sliders accordingly.
+     * <br/>
+     * You have to ensure by yourself that the hooking is active.
+     */
+    private void ensureHookIsValidAndUpdateCallBack() {
+        if (tempo != pitchPercent) {
+            setSliders(Math.min(tempo, pitchPercent));
+            updateCallback();
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
