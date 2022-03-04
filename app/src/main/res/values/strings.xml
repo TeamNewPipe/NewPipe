@@ -497,9 +497,7 @@
     <string name="playback_pitch">Pitch</string>
     <string name="unhook_checkbox">Unhook (may cause distortion)</string>
     <string name="skip_silence_checkbox">Fast-forward during silence</string>
-    <string name="adjust_by_semitones_checkbox">Adjust pitch by musical semitones</string>
     <string name="playback_step">Step</string>
-    <string name="playback_tempo_step">Tempo step</string>
     <string name="playback_reset">Reset</string>
     <string name="percent">Percent</string>
     <string name="semitone">Semitone</string>
