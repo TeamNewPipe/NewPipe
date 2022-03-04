@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -129,9 +130,9 @@
             android:layout_height="1dp"
             android:layout_below="@id/tempoControl"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="5dp"
             android:background="?attr/separator_color" />
 
         <org.schabi.newpipe.views.NewPipeTextView
@@ -252,7 +253,8 @@
                 android:id="@+id/pitchSemitoneControl"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:visibility="gone">
 
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/pitchSemitoneStepDown"
@@ -299,7 +301,8 @@
                         android:gravity="center"
                         android:textColor="?attr/colorAccent"
                         android:textStyle="bold"
-                        tools:text="0" />
+                        tools:text="0"
+                        tools:ignore="RelativeOverlap" />
 
                     <org.schabi.newpipe.views.NewPipeTextView
                         android:id="@+id/pitchSemitoneMaximumText"
@@ -348,9 +351,9 @@
             android:layout_height="1dp"
             android:layout_below="@+id/pitchControlContainer"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="5dp"
             android:background="?attr/separator_color" />
 
         <LinearLayout
@@ -380,7 +383,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:textColor="?attr/colorAccent" />
+                android:textColor="?attr/colorAccent"
+                tools:text="1%" />
 
             <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/stepSizeFivePercent"
@@ -391,7 +395,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:textColor="?attr/colorAccent" />
+                android:textColor="?attr/colorAccent"
+                tools:text="5%" />
 
             <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/stepSizeTenPercent"
@@ -402,7 +407,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:textColor="?attr/colorAccent" />
+                android:textColor="?attr/colorAccent"
+                tools:text="10%" />
 
             <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/stepSizeTwentyFivePercent"
@@ -413,9 +419,10 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:textColor="?attr/colorAccent" />
+                android:textColor="?attr/colorAccent"
+                tools:text="25%" />
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/stepSizeOneHundredPercent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -424,7 +431,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:textColor="?attr/colorAccent" />
+                android:textColor="?attr/colorAccent"
+                tools:text="100%" />
         </LinearLayout>
 
         <View
@@ -433,9 +441,9 @@
             android:layout_height="1dp"
             android:layout_below="@+id/stepSizeSelector"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="5dp"
             android:background="?attr/separator_color" />
 
         <LinearLayout
