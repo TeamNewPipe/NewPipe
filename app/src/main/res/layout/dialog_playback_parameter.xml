@@ -146,11 +146,59 @@
             android:textColor="?attr/colorAccent"
             android:textStyle="bold" />
 
+        <ImageView
+            android:id="@+id/pitchToogleControlModes"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_below="@id/separatorPitch"
+            android:layout_alignParentEnd="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:srcCompat="@drawable/ic_expand_more"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:id="@+id/pitchControlModeTabs"
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:layout_below="@id/pitchControlText"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="22dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/pitchControlModePercent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/percent"
+                android:textColor="?attr/colorAccent" />
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/pitchControlModeSemitone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/semitone"
+                android:textColor="?attr/colorAccent" />
+
+        </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/pitchControlContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/pitchControlText"
+            android:layout_below="@id/pitchControlModeTabs"
             android:layout_marginTop="1dp">
 
             <RelativeLayout
@@ -471,15 +519,6 @@
                 android:focusable="true"
                 android:text="@string/skip_silence_checkbox" />
 
-            <CheckBox
-                android:id="@+id/adjustBySemitonesCheckbox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:clickable="true"
-                android:focusable="true"
-                android:maxLines="1"
-                android:text="@string/adjust_by_semitones_checkbox" />
         </LinearLayout>
 
         <!-- END HERE -->

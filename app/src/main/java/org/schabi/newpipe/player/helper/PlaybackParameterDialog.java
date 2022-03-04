@@ -1,10 +1,14 @@
 package org.schabi.newpipe.player.helper;
 
+import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
 import static org.schabi.newpipe.player.Player.DEBUG;
+import static org.schabi.newpipe.util.DrawableResolver.resolveDrawable;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,8 +26,11 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.DialogPlaybackParameterBinding;
+import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.util.SliderStrategy;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
@@ -39,6 +46,9 @@ public class PlaybackParameterDialog extends DialogFragment {
     // Minimum allowable range in ExoPlayer
     private static final double MIN_PLAYBACK_VALUE = 0.10f;
     private static final double MAX_PLAYBACK_VALUE = 3.00f;
+
+    private static final boolean PITCH_CTRL_MODE_PERCENT = false;
+    private static final boolean PITCH_CTRL_MODE_SEMITONE = true;
 
     private static final double STEP_1_PERCENT_VALUE = 0.01f;
     private static final double STEP_5_PERCENT_VALUE = 0.05f;
@@ -188,6 +198,22 @@ public class PlaybackParameterDialog extends DialogFragment {
                 1,
                 this::onTempoSliderUpdated);
 
+        // Pitch
+        binding.pitchToogleControlModes.setOnClickListener(v -> {
+            final boolean isCurrentlyVisible =
+                    binding.pitchControlModeTabs.getVisibility() == View.GONE;
+            binding.pitchControlModeTabs.setVisibility(isCurrentlyVisible
+                    ? View.VISIBLE
+                    : View.GONE);
+            animateRotation(binding.pitchToogleControlModes,
+                    Player.DEFAULT_CONTROLS_DURATION,
+                    isCurrentlyVisible ? 180 : 0);
+        });
+
+        getPitchControlModeComponentMappings()
+                .forEach(this::setupPitchControlModeTextView);
+        changePitchControlMode(isCurrentPitchControlModeSemitone());
+
         // Pitch - Percent
         setText(binding.pitchPercentMinimumText, PlayerHelper::formatPitch, MIN_PLAYBACK_VALUE);
         setText(binding.pitchPercentMaximumText, PlayerHelper::formatPitch, MAX_PLAYBACK_VALUE);
@@ -249,13 +275,6 @@ public class PlaybackParameterDialog extends DialogFragment {
             skipSilence = isChecked;
             updateCallback();
         });
-
-        bindCheckboxWithBoolPref(
-                binding.adjustBySemitonesCheckbox,
-                R.string.playback_adjust_by_semitones_key,
-                false,
-                this::showPitchSemitonesOrPercent
-        );
     }
 
     private void setText(
@@ -291,17 +310,114 @@ public class PlaybackParameterDialog extends DialogFragment {
         });
     }
 
-    private void setupStepTextView(
-            final TextView textView,
-            final double stepSizeValue
+    private void setupPitchControlModeTextView(
+            final boolean semitones,
+            final TextView textView
     ) {
-        setText(textView, PlaybackParameterDialog::getPercentString, stepSizeValue)
-                .setOnClickListener(view -> setAndUpdateStepSize(stepSizeValue));
+        textView.setOnClickListener(view -> {
+            PreferenceManager.getDefaultSharedPreferences(requireContext())
+                    .edit()
+                    .putBoolean(getString(R.string.playback_adjust_by_semitones_key), semitones)
+                    .apply();
+
+            changePitchControlMode(semitones);
+        });
     }
 
-    private void setAndUpdateStepSize(final double newStepSize) {
-        this.stepSize = newStepSize;
+    private Map<Boolean, TextView> getPitchControlModeComponentMappings() {
+        final Map<Boolean, TextView> mappings = new HashMap<>();
+        mappings.put(PITCH_CTRL_MODE_PERCENT, binding.pitchControlModePercent);
+        mappings.put(PITCH_CTRL_MODE_SEMITONE, binding.pitchControlModeSemitone);
+        return mappings;
+    }
 
+    private void changePitchControlMode(final boolean semitones) {
+        // Bring all textviews into a normal state
+        final Map<Boolean, TextView> pitchCtrlModeComponentMapping =
+                getPitchControlModeComponentMappings();
+        pitchCtrlModeComponentMapping.forEach((v, textView) -> textView.setBackground(
+                resolveDrawable(requireContext(), R.attr.selectableItemBackground)));
+
+        // Mark the selected textview
+        final TextView textView = pitchCtrlModeComponentMapping.get(semitones);
+        if (textView != null) {
+            textView.setBackground(new LayerDrawable(new Drawable[]{
+                    resolveDrawable(requireContext(), R.attr.dashed_border),
+                    resolveDrawable(requireContext(), R.attr.selectableItemBackground)
+            }));
+        }
+
+        // Show or hide component
+        binding.pitchPercentControl.setVisibility(semitones ? View.GONE : View.VISIBLE);
+        binding.pitchSemitoneControl.setVisibility(semitones ? View.VISIBLE : View.GONE);
+
+        if (semitones) {
+            // Recalculate pitch percent when changing to semitone
+            // (as it could be an invalid semitone value)
+            final double newPitchPercent = calcValidPitch(pitchPercent);
+
+            // If the values differ set the new pitch
+            if (this.pitchPercent != newPitchPercent) {
+                if (DEBUG) {
+                    Log.d(TAG, "Bringing pitchPercent to correct corresponding semitone: "
+                            + "currentPitchPercent = " + pitchPercent + ", "
+                            + "newPitchPercent = " + newPitchPercent
+                    );
+                }
+                this.onPitchPercentSliderUpdated(newPitchPercent);
+                updateCallback();
+            }
+        }
+    }
+
+    private boolean isCurrentPitchControlModeSemitone() {
+        return PreferenceManager.getDefaultSharedPreferences(requireContext())
+                .getBoolean(
+                        getString(R.string.playback_adjust_by_semitones_key),
+                        PITCH_CTRL_MODE_PERCENT);
+    }
+
+    private void setupStepTextView(
+            final double stepSizeValue,
+            final TextView textView
+    ) {
+        setText(textView, PlaybackParameterDialog::getPercentString, stepSizeValue);
+        textView.setOnClickListener(view -> {
+            PreferenceManager.getDefaultSharedPreferences(requireContext())
+                    .edit()
+                    .putFloat(getString(R.string.adjustment_step_key), (float) stepSizeValue)
+                    .apply();
+
+            setStepSizeToUI(stepSizeValue);
+        });
+    }
+
+    private Map<Double, TextView> getStepSizeComponentMappings() {
+        final Map<Double, TextView> mappings = new HashMap<>();
+        mappings.put(STEP_1_PERCENT_VALUE, binding.stepSizeOnePercent);
+        mappings.put(STEP_5_PERCENT_VALUE, binding.stepSizeFivePercent);
+        mappings.put(STEP_10_PERCENT_VALUE, binding.stepSizeTenPercent);
+        mappings.put(STEP_25_PERCENT_VALUE, binding.stepSizeTwentyFivePercent);
+        mappings.put(STEP_100_PERCENT_VALUE, binding.stepSizeOneHundredPercent);
+        return mappings;
+    }
+
+    private void setStepSizeToUI(final double newStepSize) {
+        // Bring all textviews into a normal state
+        final Map<Double, TextView> stepSiteComponentMapping = getStepSizeComponentMappings();
+        stepSiteComponentMapping.forEach((v, textView) -> textView.setBackground(
+                resolveDrawable(requireContext(), R.attr.selectableItemBackground)));
+
+        // Mark the selected textview
+        final TextView textView = stepSiteComponentMapping.get(newStepSize);
+        if (textView != null) {
+            textView.setBackground(new LayerDrawable(new Drawable[]{
+                    resolveDrawable(requireContext(), R.attr.dashed_border),
+                    resolveDrawable(requireContext(), R.attr.selectableItemBackground)
+            }));
+        }
+
+        // Bind to the corresponding control components
         binding.tempoStepUp.setText(getStepUpPercentString(newStepSize));
         binding.tempoStepDown.setText(getStepDownPercentString(newStepSize));
 
@@ -343,29 +459,6 @@ public class PlaybackParameterDialog extends DialogFragment {
 
             onInitialValueOrValueChange.accept(isChecked);
         });
-    }
-
-    private void showPitchSemitonesOrPercent(final boolean semitones) {
-        binding.pitchPercentControl.setVisibility(semitones ? View.GONE : View.VISIBLE);
-        binding.pitchSemitoneControl.setVisibility(semitones ? View.VISIBLE : View.GONE);
-
-        if (semitones) {
-            // Recalculate pitch percent when changing to semitone
-            // (as it could be an invalid semitone value)
-            final double newPitchPercent = calcValidPitch(pitchPercent);
-
-            // If the values differ set the new pitch
-            if (this.pitchPercent != newPitchPercent) {
-                if (DEBUG) {
-                    Log.d(TAG, "Bringing pitchPercent to correct corresponding semitone: "
-                            + "currentPitchPercent = " + pitchPercent + ", "
-                            + "newPitchPercent = " + newPitchPercent
-                    );
-                }
-                this.onPitchPercentSliderUpdated(newPitchPercent);
-                updateCallback();
-            }
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -447,7 +540,7 @@ public class PlaybackParameterDialog extends DialogFragment {
         final double calcPitch =
                 Math.max(MIN_PLAYBACK_VALUE, Math.min(MAX_PLAYBACK_VALUE, newPitch));
 
-        if (!binding.adjustBySemitonesCheckbox.isChecked()) {
+        if (!isCurrentPitchControlModeSemitone()) {
             return calcPitch;
         }
 
