@@ -56,6 +56,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
+import java.util.Collections;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
@@ -237,6 +240,9 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
             case R.id.menu_item_bookmark:
                 onBookmarkClicked();
                 break;
+            case R.id.menu_item_shufflePlay:
+                onShuffleClicked();
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -358,6 +364,29 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         );
     }
 
+    private PlayQueue getRandomPlayQueue() {
+        final List<StreamInfoItem> infoItems = new ArrayList<>();
+        final List<InfoItem> processingList = infoListAdapter.getItemsList();
+        final List<Integer> range = IntStream
+                .rangeClosed(0, processingList.size() - 1)
+                .boxed()
+                .collect(Collectors.toList());
+        Collections.shuffle(range);
+        for (final int i : range) {
+            final Object target = infoListAdapter.getItemsList().get(i);
+            if (target instanceof StreamInfoItem) {
+                infoItems.add((StreamInfoItem) target);
+            }
+        }
+        return new PlaylistPlayQueue(
+                currentInfo.getServiceId(),
+                currentInfo.getUrl(),
+                currentInfo.getNextPage(),
+                infoItems,
+                0
+        );
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
@@ -446,6 +475,11 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         }
 
         disposables.add(action);
+    }
+    private void onShuffleClicked() {
+
+        NavigationHelper.playOnBackgroundPlayer(activity, getRandomPlayQueue(), false);
+
     }
 
     private void updateBookmarkButtons() {

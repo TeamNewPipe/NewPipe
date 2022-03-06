@@ -16,7 +16,11 @@
         android:visible="true"
         app:showAsAction="ifRoom"
         tools:visible="true" />
-
+    <item
+        android:id="@+id/menu_item_shufflePlay"
+        android:orderInCategory="2"
+        android:title="@string/shufflePlay"
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="1"
@@ -28,4 +32,5 @@
         android:orderInCategory="2"
         android:title="@string/open_in_browser"
         app:showAsAction="never" />
+
 </menu>
