@@ -75,7 +75,7 @@ import org.schabi.newpipe.local.feed.item.StreamItem
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.DeviceUtils
-import org.schabi.newpipe.util.DrawableResolver.Companion.resolveDrawable
+import org.schabi.newpipe.util.DrawableResolver.resolveDrawable
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountStreams
