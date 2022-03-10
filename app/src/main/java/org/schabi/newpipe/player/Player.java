@@ -167,6 +167,8 @@ import org.schabi.newpipe.player.helper.MediaSessionManager;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.player.listeners.view.PlaybackSpeedListener;
+import org.schabi.newpipe.player.listeners.view.QualityTextListener;
 import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
@@ -530,9 +532,12 @@ public final class Player implements
     }
 
     private void initListeners() {
+        binding.qualityTextView.setOnClickListener(
+                new QualityTextListener(this, qualityPopupMenu));
+        binding.playbackSpeed.setOnClickListener(
+                new PlaybackSpeedListener(this, playbackSpeedPopupMenu));
+
         binding.playbackSeekBar.setOnSeekBarChangeListener(this);
-        binding.playbackSpeed.setOnClickListener(this);
-        binding.qualityTextView.setOnClickListener(this);
         binding.captionTextView.setOnClickListener(this);
         binding.resizeTextView.setOnClickListener(this);
         binding.playbackLiveSync.setOnClickListener(this);
@@ -1926,7 +1931,7 @@ public final class Player implements
         }, delay);
     }
 
-    private void showHideShadow(final boolean show, final long duration) {
+    public void showHideShadow(final boolean show, final long duration) {
         animate(binding.playbackControlsShadow, show, duration, AnimationType.ALPHA, 0, null);
         animate(binding.playerTopShadow, show, duration, AnimationType.ALPHA, 0, null);
         animate(binding.playerBottomShadow, show, duration, AnimationType.ALPHA, 0, null);
@@ -3742,11 +3747,7 @@ public final class Player implements
         if (DEBUG) {
             Log.d(TAG, "onClick() called with: v = [" + v + "]");
         }
-        if (v.getId() == binding.qualityTextView.getId()) {
-            onQualitySelectorClicked();
-        } else if (v.getId() == binding.playbackSpeed.getId()) {
-            onPlaybackSpeedClicked();
-        } else if (v.getId() == binding.resizeTextView.getId()) {
+        if (v.getId() == binding.resizeTextView.getId()) {
             onResizeClicked();
         } else if (v.getId() == binding.captionTextView.getId()) {
             onCaptionClicked();
@@ -4446,6 +4447,10 @@ public final class Player implements
         return isSomePopupMenuVisible;
     }
 
+    public void setSomePopupMenuVisible(final boolean somePopupMenuVisible) {
+        isSomePopupMenuVisible = somePopupMenuVisible;
+    }
+
     public ImageButton getPlayPauseButton() {
         return binding.playPauseButton;
     }
@@ -4527,6 +4532,11 @@ public final class Player implements
     public PlayQueueAdapter getPlayQueueAdapter() {
         return playQueueAdapter;
     }
+
+    public PlayerBinding getBinding() {
+        return binding;
+    }
+
     //endregion
 
 
