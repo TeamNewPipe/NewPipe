@@ -3612,37 +3612,6 @@ public final class Player implements
         }
     }
 
-    private void onQualitySelectorClicked() {
-        if (DEBUG) {
-            Log.d(TAG, "onQualitySelectorClicked() called");
-        }
-        qualityPopupMenu.show();
-        isSomePopupMenuVisible = true;
-
-        final VideoStream videoStream = getSelectedVideoStream();
-        if (videoStream != null) {
-            final String qualityText = MediaFormat.getNameById(videoStream.getFormatId()) + " "
-                    + videoStream.resolution;
-            binding.qualityTextView.setText(qualityText);
-        }
-
-        saveWasPlaying();
-    }
-
-    private void onPlaybackSpeedClicked() {
-        if (DEBUG) {
-            Log.d(TAG, "onPlaybackSpeedClicked() called");
-        }
-        if (videoPlayerSelected()) {
-            PlaybackParameterDialog.newInstance(getPlaybackSpeed(), getPlaybackPitch(),
-                    getPlaybackSkipSilence(), this::setPlaybackParameters)
-                    .show(getParentActivity().getSupportFragmentManager(), null);
-        } else {
-            playbackSpeedPopupMenu.show();
-            isSomePopupMenuVisible = true;
-        }
-    }
-
     private void onCaptionClicked() {
         if (DEBUG) {
             Log.d(TAG, "onCaptionClicked() called");
