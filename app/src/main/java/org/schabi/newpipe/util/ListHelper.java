@@ -1,8 +1,8 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.content.SharedPreferences;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -14,12 +14,17 @@ import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
+import java.util.stream.Collectors;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.HashSet;
 import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public final class ListHelper {
     // Video format in order of quality. 0=lowest quality, n=highest quality
@@ -33,8 +38,8 @@ public final class ListHelper {
     private static final List<MediaFormat> AUDIO_FORMAT_EFFICIENCY_RANKING =
             Arrays.asList(MediaFormat.WEBMA, MediaFormat.M4A, MediaFormat.MP3);
 
-    private static final List<String> HIGH_RESOLUTION_LIST
-            = Arrays.asList("1440p", "2160p", "1440p60", "2160p60");
+    private static final Set<String> HIGH_RESOLUTION_LIST
+            = new HashSet<>(Arrays.asList("1440p", "2160p", "1440p60", "2160p60"));
 
     private ListHelper() { }
 
@@ -226,13 +231,29 @@ public final class ListHelper {
             }
         }
 
+        final List<List<VideoStream>> videoStreamsOrdered =
+                preferVideoOnlyStreams
+                        ? Arrays.asList(videoStreams, videoOnlyStreams)
+                        : Arrays.asList(videoOnlyStreams, videoStreams);
+
+        final List<VideoStream> allInitialStreams = videoStreamsOrdered.stream()
+                // Ignore lists that are null
+                .filter(Objects::nonNull)
+                .flatMap(List::stream)
+                // Filter out higher resolutions (or not if high resolutions should always be shown)
+                .filter(stream -> showHigherResolutions
+                        || !HIGH_RESOLUTION_LIST.contains(stream.getResolution()))
+                .collect(Collectors.toList());
+
+        final HashMap<String, VideoStream> hashMap = new HashMap<>();
+
         // Add all to the hashmap
-        for (final VideoStream videoStream : retList) {
+        for (final VideoStream videoStream : allInitialStreams) {
             hashMap.put(videoStream.getResolution(), videoStream);
         }
 
         // Override the values when the key == resolution, with the defaultFormat
-        for (final VideoStream videoStream : retList) {
+        for (final VideoStream videoStream : allInitialStreams) {
             if (videoStream.getFormat() == defaultFormat) {
                 hashMap.put(videoStream.getResolution(), videoStream);
             }
@@ -241,7 +262,8 @@ public final class ListHelper {
         retList.clear();
         retList.addAll(hashMap.values());
         sortStreamList(retList, ascendingOrder);
-        return retList;
+//        return retList;
+        return sortStreamList(new ArrayList<>(hashMap.values()), ascendingOrder);
     }
 
     /**
