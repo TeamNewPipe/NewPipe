@@ -629,13 +629,14 @@ public final class VideoDetailFragment
             // remove ripple effects from detail controls
             final int transparent = ContextCompat.getColor(requireContext(),
                     R.color.transparent_background_color);
+
+            binding.detailControlsPopup         .setBackgroundColor(transparent);
+            binding.detailControlsShare         .setBackgroundColor(transparent);
+            binding.detailControlsDownload      .setBackgroundColor(transparent);
+            binding.detailControlsBackground    .setBackgroundColor(transparent);
+            binding.detailControlsPlayWithKodi  .setBackgroundColor(transparent);
+            binding.detailControlsOpenInBrowser .setBackgroundColor(transparent);
             binding.detailControlsPlaylistAppend.setBackgroundColor(transparent);
-            binding.detailControlsBackground.    setBackgroundColor(transparent);
-            binding.detailControlsPopup.         setBackgroundColor(transparent);
-            binding.detailControlsDownload.      setBackgroundColor(transparent);
-            binding.detailControlsShare.         setBackgroundColor(transparent);
-            binding.detailControlsOpenInBrowser. setBackgroundColor(transparent);
-            binding.detailControlsPlayWithKodi.  setBackgroundColor(transparent);
         }
     }
 
@@ -643,10 +644,10 @@ public final class VideoDetailFragment
     protected void initListeners() {
         super.initListeners();
 
-        binding.detailTitleRootLayout.setOnClickListener(this);
-        binding.detailTitleRootLayout.setOnLongClickListener(this);
-        binding.detailUploaderRootLayout.setOnClickListener(this);
-        binding.detailUploaderRootLayout.setOnLongClickListener(this);
+        binding.detailTitleRootLayout    .setOnClickListener(this);
+        binding.detailTitleRootLayout    .setOnLongClickListener(this);
+        binding.detailUploaderRootLayout .setOnClickListener(this);
+        binding.detailUploaderRootLayout .setOnLongClickListener(this);
         binding.detailThumbnailRootLayout.setOnClickListener(this);
 
         binding.detailControlsBackground.setOnClickListener(this);
@@ -668,10 +669,10 @@ public final class VideoDetailFragment
             );
         }
 
-        binding.overlayThumbnail.      setOnClickListener(this);
-        binding.overlayCloseButton.    setOnClickListener(this);
-        binding.overlayButtonsLayout.  setOnClickListener(this);
-        binding.overlayMetadataLayout. setOnClickListener(this);
+        binding.overlayThumbnail      .setOnClickListener(this);
+        binding.overlayCloseButton    .setOnClickListener(this);
+        binding.overlayButtonsLayout  .setOnClickListener(this);
+        binding.overlayMetadataLayout .setOnClickListener(this);
         binding.overlayPlayPauseButton.setOnClickListener(this);
 
 
