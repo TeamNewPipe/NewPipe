@@ -17,7 +17,7 @@ import java.util.List;
 import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> extends PlayQueue {
+abstract class AbstractInfoPlayQueue<T extends ListInfo<StreamInfoItem>, U extends InfoItem> extends PlayQueue {
     boolean isInitial;
     private boolean isComplete;
 
@@ -51,7 +51,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
     }
 
     SingleObserver<T> getHeadListObserver() {
-        return new SingleObserver<T>() {
+        return new SingleObserver<>() {
             @Override
             public void onSubscribe(@NonNull final Disposable d) {
                 if (isComplete || !isInitial || (fetchReactor != null
@@ -130,10 +130,8 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
 
     private static List<PlayQueueItem> extractListItems(final List<StreamInfoItem> infoItems) {
         final List<PlayQueueItem> result = new ArrayList<>();
-        for (final InfoItem stream : infoItems) {
-            if (stream instanceof StreamInfoItem) {
-                result.add(new PlayQueueItem((StreamInfoItem) stream));
-            }
+        for (final StreamInfoItem stream : infoItems) {
+            result.add(new PlayQueueItem(stream));
         }
         return result;
     }
