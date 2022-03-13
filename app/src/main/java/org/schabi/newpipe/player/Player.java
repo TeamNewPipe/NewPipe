@@ -1,5 +1,21 @@
 package org.schabi.newpipe.player;
 
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_BAD_HTTP_STATUS;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_CLEARTEXT_NOT_PERMITTED;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_FILE_NOT_FOUND;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_FAILED;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_NO_PERMISSION;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_READ_POSITION_OUT_OF_RANGE;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_UNSPECIFIED;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_PARSING_CONTAINER_MALFORMED;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_PARSING_CONTAINER_UNSUPPORTED;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_PARSING_MANIFEST_MALFORMED;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_PARSING_MANIFEST_UNSUPPORTED;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_TIMEOUT;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_UNSPECIFIED;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_AUTO_TRANSITION;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_INTERNAL;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_REMOVE;
@@ -112,20 +128,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
-import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.PositionInfo;
 import com.google.android.exoplayer2.RenderersFactory;
-import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.SeekParameters;
 import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.source.BehindLiveWindowException;
+import com.google.android.exoplayer2.TracksInfo;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.text.Cue;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.CaptionStyleCompat;
 import com.google.android.exoplayer2.ui.SubtitleView;
@@ -145,6 +161,7 @@ import org.schabi.newpipe.databinding.PlayerPopupCloseOverlayBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamSegment;
@@ -168,7 +185,7 @@ import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.listeners.view.PlaybackSpeedClickListener;
 import org.schabi.newpipe.player.listeners.view.QualityClickListener;
-import org.schabi.newpipe.player.playback.CustomTrackSelector;
+import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.player.playback.PlayerMediaSession;
@@ -180,7 +197,6 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemBuilder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
-import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver.SourceType;
 import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper;
@@ -196,8 +212,8 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.ExpandableSurfaceView;
 import org.schabi.newpipe.views.player.PlayerFastSeekOverlay;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -278,19 +294,19 @@ public final class Player implements
     @Nullable private MediaSourceManager playQueueManager;
 
     @Nullable private PlayQueueItem currentItem;
-    @Nullable private MediaSourceTag currentMetadata;
+    @Nullable private MediaItemTag currentMetadata;
     @Nullable private Bitmap currentThumbnail;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
     //////////////////////////////////////////////////////////////////////////*/
 
-    private SimpleExoPlayer simpleExoPlayer;
+    private ExoPlayer simpleExoPlayer;
     private AudioReactor audioReactor;
     private MediaSessionManager mediaSessionManager;
     @Nullable private SurfaceHolderCallback surfaceHolderCallback;
 
-    @NonNull private final CustomTrackSelector trackSelector;
+    @NonNull private final DefaultTrackSelector trackSelector;
     @NonNull private final LoadController loadController;
     @NonNull private final RenderersFactory renderFactory;
 
@@ -415,7 +431,7 @@ public final class Player implements
 
         setupBroadcastReceiver();
 
-        trackSelector = new CustomTrackSelector(context, PlayerHelper.getQualitySelector());
+        trackSelector = new DefaultTrackSelector(context, PlayerHelper.getQualitySelector());
         final PlayerDataSource dataSource = new PlayerDataSource(context, DownloaderImpl.USER_AGENT,
                 new DefaultBandwidthMeter.Builder(context).build());
         loadController = new LoadController();
@@ -498,7 +514,7 @@ public final class Player implements
             Log.d(TAG, "initPlayer() called with: playOnReady = [" + playOnReady + "]");
         }
 
-        simpleExoPlayer = new SimpleExoPlayer.Builder(context, renderFactory)
+        simpleExoPlayer = new ExoPlayer.Builder(context, renderFactory)
                 .setTrackSelector(trackSelector)
                 .setLoadControl(loadController)
                 .build();
@@ -1642,8 +1658,7 @@ public final class Player implements
     }
 
     public boolean getPlaybackSkipSilence() {
-        return !exoPlayerIsNull() && simpleExoPlayer.getAudioComponent() != null
-                && simpleExoPlayer.getAudioComponent().getSkipSilenceEnabled();
+        return !exoPlayerIsNull() && simpleExoPlayer.getSkipSilenceEnabled();
     }
 
     public PlaybackParameters getPlaybackParameters() {
@@ -1669,9 +1684,7 @@ public final class Player implements
         savePlaybackParametersToPrefs(this, roundedSpeed, roundedPitch, skipSilence);
         simpleExoPlayer.setPlaybackParameters(
                 new PlaybackParameters(roundedSpeed, roundedPitch));
-        if (simpleExoPlayer.getAudioComponent() != null) {
-            simpleExoPlayer.getAudioComponent().setSkipSilenceEnabled(skipSilence);
-        }
+        simpleExoPlayer.setSkipSilenceEnabled(skipSilence);
     }
     //endregion
 
@@ -1950,10 +1963,12 @@ public final class Player implements
         final boolean showNext = playQueue.getIndex() + 1 != playQueue.getStreams().size();
         final boolean showQueue = playQueue.getStreams().size() > 1 && !popupPlayerSelected();
         boolean showSegment = false;
-        if (currentMetadata != null) {
-            showSegment = !currentMetadata.getMetadata().getStreamSegments().isEmpty()
-                    && !popupPlayerSelected();
-        }
+        showSegment = /*only when stream has segment and playing in fullscreen player*/
+                !popupPlayerSelected()
+                        && !getCurrentStreamInfo()
+                        .map(StreamInfo::getStreamSegments)
+                        .map(List::isEmpty)
+                        .orElse(/*no stream info=*/true);
 
         binding.playPreviousButton.setVisibility(showPrev ? View.VISIBLE : View.INVISIBLE);
         binding.playPreviousButton.setAlpha(showPrev ? 1.0f : 0.0f);
@@ -1993,9 +2008,30 @@ public final class Player implements
     // Playback states
     //////////////////////////////////////////////////////////////////////////*/
     //region Playback states
+    @Override
+    public void onPlayWhenReadyChanged(final boolean playWhenReady, final int reason) {
+        if (DEBUG) {
+            Log.d(TAG, "ExoPlayer - onPlayWhenReadyChanged() called with: "
+                    + "playWhenReady = [" + playWhenReady + "], "
+                    + "reason = [" + reason + "]");
+        }
+        final int playbackState = simpleExoPlayer == null
+                ? com.google.android.exoplayer2.Player.STATE_IDLE
+                : simpleExoPlayer.getPlaybackState();
+        updatePlaybackState(playWhenReady, playbackState);
+    }
 
-    @Override // exoplayer listener
-    public void onPlayerStateChanged(final boolean playWhenReady, final int playbackState) {
+    @Override
+    public void onPlaybackStateChanged(final int playbackState) {
+        if (DEBUG) {
+            Log.d(TAG, "ExoPlayer - onPlaybackStateChanged() called with: "
+                    + "playbackState = [" + playbackState + "]");
+        }
+        final boolean playWhenReady = simpleExoPlayer != null && simpleExoPlayer.getPlayWhenReady();
+        updatePlaybackState(playWhenReady, playbackState);
+    }
+
+    private void updatePlaybackState(final boolean playWhenReady, final int playbackState) {
         if (DEBUG) {
             Log.d(TAG, "ExoPlayer - onPlayerStateChanged() called with: "
                     + "playWhenReady = [" + playWhenReady + "], "
@@ -2004,7 +2040,7 @@ public final class Player implements
 
         if (currentState == STATE_PAUSED_SEEK) {
             if (DEBUG) {
-                Log.d(TAG, "ExoPlayer - onPlayerStateChanged() is currently blocked");
+                Log.d(TAG, "updatePlaybackState() is currently blocked");
             }
             return;
         }
@@ -2019,8 +2055,6 @@ public final class Player implements
                 }
                 break;
             case com.google.android.exoplayer2.Player.STATE_READY: //3
-                maybeUpdateCurrentMetadata();
-                maybeCorrectSeekPosition();
                 if (!isPrepared) {
                     isPrepared = true;
                     onPrepared(playWhenReady);
@@ -2037,18 +2071,11 @@ public final class Player implements
 
     @Override // exoplayer listener
     public void onIsLoadingChanged(final boolean isLoading) {
-        if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - onLoadingChanged() called with: "
-                    + "isLoading = [" + isLoading + "]");
-        }
-
         if (!isLoading && currentState == STATE_PAUSED && isProgressLoopRunning()) {
             stopProgressLoop();
         } else if (isLoading && !isProgressLoopRunning()) {
             startProgressLoop();
         }
-
-        maybeUpdateCurrentMetadata();
     }
 
     @Override // own playback listener
@@ -2460,27 +2487,37 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region ExoPlayer listeners (that didn't fit in other categories)
 
-    @Override
-    public void onTimelineChanged(@NonNull final Timeline timeline, final int reason) {
-        if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - onTimelineChanged() called with "
-                    + "timeline size = [" + timeline.getWindowCount() + "], "
-                    + "reason = [" + reason + "]");
-        }
-
-        maybeUpdateCurrentMetadata();
-        // force recreate notification to ensure seek bar is shown when preparation finishes
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, true);
+    public void onEvents(@NonNull final com.google.android.exoplayer2.Player player,
+                         @NonNull final com.google.android.exoplayer2.Player.Events events) {
+        Listener.super.onEvents(player, events);
+        MediaItemTag.from(player.getCurrentMediaItem()).ifPresent(tag -> {
+            if (tag == currentMetadata) {
+                return;
+            }
+            currentMetadata = tag;
+            if (!tag.getErrors().isEmpty()) {
+                final ErrorInfo errorInfo = new ErrorInfo(
+                        tag.getErrors().get(0),
+                        UserAction.PLAY_STREAM,
+                        "Loading failed for [" + tag.getTitle() + "]: " + tag.getStreamUrl(),
+                        tag.getServiceId());
+                ErrorUtil.createNotification(context, errorInfo);
+            }
+            tag.getMaybeStreamInfo().ifPresent(info -> {
+                if (DEBUG) {
+                    Log.d(TAG, "ExoPlayer - onEvents() update stream info: " + info.getName());
+                }
+                updateMetadataWith(info);
+            });
+        });
     }
 
     @Override
-    public void onTracksChanged(@NonNull final TrackGroupArray trackGroups,
-                                @NonNull final TrackSelectionArray trackSelections) {
+    public void onTracksInfoChanged(@NonNull final TracksInfo tracksInfo) {
         if (DEBUG) {
             Log.d(TAG, "ExoPlayer - onTracksChanged(), "
-                    + "track group size = " + trackGroups.length);
+                    + "track group size = " + tracksInfo.getTrackGroupInfos().size());
         }
-        maybeUpdateCurrentMetadata();
         onTextTracksChanged();
     }
 
@@ -2499,20 +2536,32 @@ public final class Player implements
                                         @DiscontinuityReason final int discontinuityReason) {
         if (DEBUG) {
             Log.d(TAG, "ExoPlayer - onPositionDiscontinuity() called with "
+                    + "oldPositionIndex = [" + oldPosition.mediaItemIndex + "], "
+                    + "oldPositionMs = [" + oldPosition.positionMs + "], "
+                    + "newPositionIndex = [" + newPosition.mediaItemIndex + "], "
+                    + "newPositionMs = [" + newPosition.positionMs + "], "
                     + "discontinuityReason = [" + discontinuityReason + "]");
         }
         if (playQueue == null) {
             return;
         }
 
+        if (newPosition.contentPositionMs == 0 &&
+                simpleExoPlayer.getTotalBufferedDuration() < 500L) {
+            Log.d(TAG, "Playback - skipping to initial keyframe.");
+            simpleExoPlayer.setSeekParameters(SeekParameters.CLOSEST_SYNC);
+            simpleExoPlayer.seekTo(1L);
+            simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
+        }
+
         // Refresh the playback if there is a transition to the next video
-        final int newWindowIndex = simpleExoPlayer.getCurrentWindowIndex();
+        final int newIndex = newPosition.mediaItemIndex;
         switch (discontinuityReason) {
             case DISCONTINUITY_REASON_AUTO_TRANSITION:
             case DISCONTINUITY_REASON_REMOVE:
                 // When player is in single repeat mode and a period transition occurs,
                 // we need to register a view count here since no metadata has changed
-                if (getRepeatMode() == REPEAT_MODE_ONE && newWindowIndex == playQueue.getIndex()) {
+                if (getRepeatMode() == REPEAT_MODE_ONE && newIndex == playQueue.getIndex()) {
                     registerStreamViewed();
                     break;
                 }
@@ -2525,16 +2574,15 @@ public final class Player implements
                 }
             case DISCONTINUITY_REASON_SEEK_ADJUSTMENT:
             case DISCONTINUITY_REASON_INTERNAL:
-                if (playQueue.getIndex() != newWindowIndex) {
+                // Player index may be invalid when playback is blocked
+                if (getCurrentState() != STATE_BLOCKED && newIndex != playQueue.getIndex()) {
                     saveStreamProgressStateCompleted(); // current stream has ended
-                    playQueue.setIndex(newWindowIndex);
+                    playQueue.setIndex(newIndex);
                 }
                 break;
             case DISCONTINUITY_REASON_SKIP:
                 break; // only makes Android Studio linter happy, as there are no ads
         }
-
-        maybeUpdateCurrentMetadata();
     }
 
     @Override
@@ -2557,95 +2605,82 @@ public final class Player implements
     //region Errors
     /**
      * Process exceptions produced by {@link com.google.android.exoplayer2.ExoPlayer ExoPlayer}.
-     * <p>There are multiple types of errors:</p>
-     * <ul>
-     * <li>{@link ExoPlaybackException#TYPE_SOURCE TYPE_SOURCE}</li>
-     * <li>{@link ExoPlaybackException#TYPE_UNEXPECTED TYPE_UNEXPECTED}:
-     * If a runtime error occurred, then we can try to recover it by restarting the playback
-     * after setting the timestamp recovery.</li>
-     * <li>{@link ExoPlaybackException#TYPE_RENDERER TYPE_RENDERER}:
-     * If the renderer failed, treat the error as unrecoverable.</li>
-     * </ul>
      *
-     * @see #processSourceError(IOException)
-     * @see com.google.android.exoplayer2.Player.Listener#onPlayerError(ExoPlaybackException)
-     */
+     * @see com.google.android.exoplayer2.Player.Listener#onPlayerError(PlaybackException)
+     * */
+    @SuppressLint("SwitchIntDef")
     @Override
-    public void onPlayerError(@NonNull final ExoPlaybackException error) {
+    public void onPlayerError(@NonNull final PlaybackException error) {
         Log.e(TAG, "ExoPlayer - onPlayerError() called with:", error);
 
+        setRecovery();
         saveStreamProgressState();
         boolean isCatchableException = false;
 
-        switch (error.type) {
-            case ExoPlaybackException.TYPE_SOURCE:
-                isCatchableException = processSourceError(error.getSourceException());
+        switch (error.errorCode) {
+            case ERROR_CODE_BEHIND_LIVE_WINDOW:
+                isCatchableException = true;
+                simpleExoPlayer.seekToDefaultPosition();
+                simpleExoPlayer.prepare();
+                // Inform the user that we are reloading the stream by
+                // switching to the buffering state
+                onBuffering();
                 break;
-            case ExoPlaybackException.TYPE_UNEXPECTED:
+            case ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE:
+            case ERROR_CODE_IO_BAD_HTTP_STATUS:
+            case ERROR_CODE_IO_FILE_NOT_FOUND:
+            case ERROR_CODE_IO_NO_PERMISSION:
+            case ERROR_CODE_IO_CLEARTEXT_NOT_PERMITTED:
+            case ERROR_CODE_IO_READ_POSITION_OUT_OF_RANGE:
+            case ERROR_CODE_PARSING_CONTAINER_MALFORMED:
+            case ERROR_CODE_PARSING_MANIFEST_MALFORMED:
+            case ERROR_CODE_PARSING_CONTAINER_UNSUPPORTED:
+            case ERROR_CODE_PARSING_MANIFEST_UNSUPPORTED:
+                // Source errors, signal on playQueue and move on:
+                if (!exoPlayerIsNull() && playQueue != null) {
+                    isCatchableException = true;
+                    playQueue.error();
+                }
+                break;
+            case ERROR_CODE_TIMEOUT:
+            case ERROR_CODE_IO_UNSPECIFIED:
+            case ERROR_CODE_IO_NETWORK_CONNECTION_FAILED:
+            case ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT:
+                // Don't create notification on timeout/networking errors:
+                isCatchableException = true;
+            case ERROR_CODE_UNSPECIFIED:
+                // Reload playback on unexpected errors:
                 setRecovery();
                 reloadPlayQueueManager();
                 break;
-            case ExoPlaybackException.TYPE_REMOTE:
-            case ExoPlaybackException.TYPE_RENDERER:
             default:
+                // API, remote and renderer errors belong here:
                 onPlaybackShutdown();
                 break;
         }
 
-        if (isCatchableException) {
-            return;
+        if (!isCatchableException) {
+            createErrorNotification(error);
         }
 
-        createErrorNotification(error);
-
         if (fragmentListener != null) {
-            fragmentListener.onPlayerError(error);
+            fragmentListener.onPlayerError(error, isCatchableException);
         }
     }
 
-    private void createErrorNotification(@NonNull final ExoPlaybackException error) {
+    private void createErrorNotification(@NonNull final PlaybackException error) {
         final ErrorInfo errorInfo;
         if (currentMetadata == null) {
             errorInfo = new ErrorInfo(error, UserAction.PLAY_STREAM,
-                    "Player error[type=" + error.type + "] occurred, currentMetadata is null");
+                    "Player error[type=" + error.getErrorCodeName()
+                            + "] occurred, currentMetadata is null");
         } else {
             errorInfo = new ErrorInfo(error, UserAction.PLAY_STREAM,
-                    "Player error[type=" + error.type + "] occurred while playing "
-                            + currentMetadata.getMetadata().getUrl(),
-                    currentMetadata.getMetadata());
+                    "Player error[type=" + error.getErrorCodeName()
+                            + "] occurred while playing " + currentMetadata.getStreamUrl(),
+                    currentMetadata.getServiceId());
         }
         ErrorUtil.createNotification(context, errorInfo);
-    }
-
-    /**
-     * Process an {@link IOException} returned by {@link ExoPlaybackException#getSourceException()}
-     * for {@link ExoPlaybackException#TYPE_SOURCE} exceptions.
-     *
-     * <p>
-     * This method sets the recovery position and sends an error message to the play queue if the
-     * exception is not a {@link BehindLiveWindowException}.
-     * </p>
-     * @param error the source error which was thrown by ExoPlayer
-     * @return whether the exception thrown is a {@link BehindLiveWindowException} ({@code false}
-     * is always returned if ExoPlayer or the play queue is null)
-     */
-    private boolean processSourceError(final IOException error) {
-        if (exoPlayerIsNull() || playQueue == null) {
-            return false;
-        }
-
-        setRecovery();
-
-        if (error instanceof BehindLiveWindowException) {
-            simpleExoPlayer.seekToDefaultPosition();
-            simpleExoPlayer.prepare();
-            // Inform the user that we are reloading the stream by switching to the buffering state
-            onBuffering();
-            return true;
-        }
-
-        playQueue.error();
-        return false;
     }
     //endregion
 
@@ -2693,7 +2728,7 @@ public final class Player implements
         }
 
         final Timeline currentTimeline = simpleExoPlayer.getCurrentTimeline();
-        final int currentWindowIndex = simpleExoPlayer.getCurrentWindowIndex();
+        final int currentWindowIndex = simpleExoPlayer.getCurrentMediaItemIndex();
         if (currentTimeline.isEmpty() || currentWindowIndex < 0
                 || currentWindowIndex >= currentTimeline.getWindowCount()) {
             return false;
@@ -2705,10 +2740,10 @@ public final class Player implements
     }
 
     @Override // own playback listener
-    public void onPlaybackSynchronize(@NonNull final PlayQueueItem item) {
+    public void onPlaybackSynchronize(@NonNull final PlayQueueItem item, final boolean wasBlocked) {
         if (DEBUG) {
-            Log.d(TAG, "Playback - onPlaybackSynchronize() called with "
-                    + "item=[" + item.getTitle() + "], url=[" + item.getUrl() + "]");
+            Log.d(TAG, "Playback - onPlaybackSynchronize(was blocked: " + wasBlocked
+                    + ") called with item=[" + item.getTitle() + "], url=[" + item.getUrl() + "]");
         }
         if (exoPlayerIsNull() || playQueue == null) {
             return;
@@ -2718,7 +2753,7 @@ public final class Player implements
         final boolean hasPlayQueueItemChanged = currentItem != item;
 
         final int currentPlayQueueIndex = playQueue.indexOf(item);
-        final int currentPlaylistIndex = simpleExoPlayer.getCurrentWindowIndex();
+        final int currentPlaylistIndex = simpleExoPlayer.getCurrentMediaItemIndex();
         final int currentPlaylistSize = simpleExoPlayer.getCurrentTimeline().getWindowCount();
 
         // If nothing to synchronize
@@ -2740,8 +2775,7 @@ public final class Player implements
                     + "index=[" + currentPlayQueueIndex + "] with "
                     + "playlist length=[" + currentPlaylistSize + "]");
 
-        } else if (currentPlaylistIndex != currentPlayQueueIndex || onPlaybackInitial
-                || !isPlaying()) {
+        } else if (wasBlocked || currentPlaylistIndex != currentPlayQueueIndex) {
             if (DEBUG) {
                 Log.d(TAG, "Playback - Rewinding to correct "
                         + "index=[" + currentPlayQueueIndex + "], "
@@ -2755,28 +2789,6 @@ public final class Player implements
             } else {
                 simpleExoPlayer.seekToDefaultPosition(currentPlayQueueIndex);
             }
-        }
-    }
-
-    private void maybeCorrectSeekPosition() {
-        if (playQueue == null || exoPlayerIsNull() || currentMetadata == null) {
-            return;
-        }
-
-        final PlayQueueItem currentSourceItem = playQueue.getItem();
-        if (currentSourceItem == null) {
-            return;
-        }
-
-        final StreamInfo currentInfo = currentMetadata.getMetadata();
-        final long presetStartPositionMillis = currentInfo.getStartPosition() * 1000;
-        if (presetStartPositionMillis > 0L) {
-            // Has another start position?
-            if (DEBUG) {
-                Log.d(TAG, "Playback - Seeking to preset start "
-                        + "position=[" + presetStartPositionMillis + "]");
-            }
-            seekTo(presetStartPositionMillis);
         }
     }
 
@@ -2941,24 +2953,24 @@ public final class Player implements
     //region StreamInfo history: views and progress
 
     private void registerStreamViewed() {
-        if (currentMetadata != null) {
-            databaseUpdateDisposable.add(recordManager.onViewed(currentMetadata.getMetadata())
-                    .onErrorComplete().subscribe());
-        }
+        getCurrentStreamInfo().ifPresent(info -> {
+            databaseUpdateDisposable
+                    .add(recordManager.onViewed(info).onErrorComplete().subscribe());
+        });
     }
 
     private void saveStreamProgressState(final long progressMillis) {
-        if (currentMetadata == null
+        if (!getCurrentStreamInfo().isPresent()
                 || !prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
             return;
         }
         if (DEBUG) {
             Log.d(TAG, "saveStreamProgressState() called with: progressMillis=" + progressMillis
-                    + ", currentMetadata=[" + currentMetadata.getMetadata().getName() + "]");
+                    + ", currentMetadata=[" + getCurrentStreamInfo().get().getName() + "]");
         }
 
         databaseUpdateDisposable
-                .add(recordManager.saveStreamState(currentMetadata.getMetadata(), progressMillis)
+                .add(recordManager.saveStreamState(getCurrentStreamInfo().get(), progressMillis)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(e -> {
                     if (DEBUG) {
@@ -2971,7 +2983,7 @@ public final class Player implements
 
     public void saveStreamProgressState() {
         if (exoPlayerIsNull() || currentMetadata == null || playQueue == null
-                || playQueue.getIndex() != simpleExoPlayer.getCurrentWindowIndex()) {
+                || playQueue.getIndex() != simpleExoPlayer.getCurrentMediaItemIndex()) {
             // Make sure play queue and current window index are equal, to prevent saving state for
             // the wrong stream on discontinuity (e.g. when the stream just changed but the
             // playQueue index and currentMetadata still haven't updated)
@@ -2984,10 +2996,10 @@ public final class Player implements
     }
 
     public void saveStreamProgressStateCompleted() {
-        if (currentMetadata != null) {
+        getCurrentStreamInfo().ifPresent(info -> {
             // current stream has ended, so the progress is its duration (+1 to overcome rounding)
-            saveStreamProgressState((currentMetadata.getMetadata().getDuration() + 1) * 1000);
-        }
+            saveStreamProgressState((info.getDuration() + 1) * 1000);
+        });
     }
     //endregion
 
@@ -2998,8 +3010,7 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Metadata
 
-    private void onMetadataChanged(@NonNull final MediaSourceTag tag) {
-        final StreamInfo info = tag.getMetadata();
+    private void onMetadataChanged(@NonNull final StreamInfo info) {
         if (DEBUG) {
             Log.d(TAG, "Playback - onMetadataChanged() called, playing: " + info.getName());
         }
@@ -3009,12 +3020,10 @@ public final class Player implements
         updateStreamRelatedViews();
         showHideKodiButton();
 
-        binding.titleTextView.setText(tag.getMetadata().getName());
-        binding.channelTextView.setText(tag.getMetadata().getUploaderName());
+        binding.titleTextView.setText(info.getName());
+        binding.channelTextView.setText(info.getUploaderName());
 
-        this.seekbarPreviewThumbnailHolder.resetFrom(
-                this.getContext(),
-                tag.getMetadata().getPreviewFrames());
+        this.seekbarPreviewThumbnailHolder.resetFrom(this.getContext(), info.getPreviewFrames());
 
         NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
 
@@ -3024,9 +3033,7 @@ public final class Player implements
                 getVideoTitle(),
                 getUploaderName(),
                 showThumbnail ? Optional.ofNullable(getThumbnail()) : Optional.empty(),
-                StreamTypeUtil.isLiveStream(tag.getMetadata().getStreamType())
-                        ? -1
-                        : tag.getMetadata().getDuration()
+                StreamTypeUtil.isLiveStream(info.getStreamType()) ? -1 : info.getDuration()
         );
 
         notifyMetadataUpdateToListeners();
@@ -3043,40 +3050,21 @@ public final class Player implements
         }
     }
 
-    private void maybeUpdateCurrentMetadata() {
+    private void updateMetadataWith(@NonNull final StreamInfo streamInfo) {
         if (exoPlayerIsNull()) {
             return;
         }
 
-        final MediaSourceTag metadata;
-        try {
-            final MediaItem currentMediaItem = simpleExoPlayer.getCurrentMediaItem();
-            if (currentMediaItem == null || currentMediaItem.playbackProperties == null
-                    || currentMediaItem.playbackProperties.tag == null) {
-                return;
-            }
-            metadata = (MediaSourceTag) currentMediaItem.playbackProperties.tag;
-        } catch (final IndexOutOfBoundsException | ClassCastException ex) {
-            if (DEBUG) {
-                Log.d(TAG, "Could not update metadata", ex);
-            }
-            return;
-        }
-
-        maybeAutoQueueNextStream(metadata);
-
-        if (currentMetadata == metadata) {
-            return;
-        }
-        currentMetadata = metadata;
-        onMetadataChanged(metadata);
+        maybeAutoQueueNextStream(streamInfo);
+        onMetadataChanged(streamInfo);
+        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, true);
     }
 
     @NonNull
     private String getVideoUrl() {
         return currentMetadata == null
                 ? context.getString(R.string.unknown_content)
-                : currentMetadata.getMetadata().getUrl();
+                : currentMetadata.getStreamUrl();
     }
 
     @NonNull
@@ -3084,7 +3072,7 @@ public final class Player implements
         final int timeSeconds = binding.playbackSeekBar.getProgress() / 1000;
         String videoUrl = getVideoUrl();
         if (!isLive() && timeSeconds >= 0 && currentMetadata != null
-                && currentMetadata.getMetadata().getServiceId() == YouTube.getServiceId()) {
+                && currentMetadata.getServiceId() == YouTube.getServiceId()) {
             // Timestamp doesn't make sense in a live stream so drop it
             videoUrl += ("&t=" + timeSeconds);
         }
@@ -3095,14 +3083,14 @@ public final class Player implements
     public String getVideoTitle() {
         return currentMetadata == null
                 ? context.getString(R.string.unknown_content)
-                : currentMetadata.getMetadata().getName();
+                : currentMetadata.getTitle();
     }
 
     @NonNull
     public String getUploaderName() {
         return currentMetadata == null
                 ? context.getString(R.string.unknown_content)
-                : currentMetadata.getMetadata().getUploaderName();
+                : currentMetadata.getUploaderName();
     }
 
     @Nullable
@@ -3122,14 +3110,14 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Play queue, segments and streams
 
-    private void maybeAutoQueueNextStream(@NonNull final MediaSourceTag metadata) {
+    private void maybeAutoQueueNextStream(@NonNull final StreamInfo info) {
         if (playQueue == null || playQueue.getIndex() != playQueue.size() - 1
                 || getRepeatMode() != REPEAT_MODE_OFF
                 || !PlayerHelper.isAutoQueueEnabled(context)) {
             return;
         }
         // auto queue when starting playback on the last item when not repeating
-        final PlayQueue autoQueue = PlayerHelper.autoQueueOf(metadata.getMetadata(),
+        final PlayQueue autoQueue = PlayerHelper.autoQueueOf(info,
                 playQueue.getStreams());
         if (autoQueue != null) {
             playQueue.append(autoQueue.getStreams());
@@ -3232,9 +3220,7 @@ public final class Player implements
             itemTouchHelper.attachToRecyclerView(null);
         }
 
-        if (currentMetadata != null) {
-            segmentAdapter.setItems(currentMetadata.getMetadata());
-        }
+        getCurrentStreamInfo().ifPresent(segmentAdapter::setItems);
 
         binding.shuffleButton.setVisibility(View.GONE);
         binding.repeatButton.setVisibility(View.GONE);
@@ -3288,7 +3274,9 @@ public final class Player implements
 
     private int getNearestStreamSegmentPosition(final long playbackPosition) {
         int nearestPosition = 0;
-        final List<StreamSegment> segments = currentMetadata.getMetadata().getStreamSegments();
+        final List<StreamSegment> segments = getCurrentStreamInfo()
+                .map(StreamInfo::getStreamSegments)
+                .orElse(Collections.emptyList());
 
         for (int i = 0; i < segments.size(); i++) {
             if (segments.get(i).getStartTimeSeconds() * 1000L > playbackPosition) {
@@ -3379,10 +3367,10 @@ public final class Player implements
     }
 
     private void updateStreamRelatedViews() {
-        if (currentMetadata == null) {
+        if (!getCurrentStreamInfo().isPresent()) {
             return;
         }
-        final StreamInfo info = currentMetadata.getMetadata();
+        final StreamInfo info = getCurrentStreamInfo().get();
 
         binding.qualityTextView.setVisibility(View.GONE);
         binding.playbackSpeed.setVisibility(View.GONE);
@@ -3410,12 +3398,15 @@ public final class Player implements
                 break;
 
             case VIDEO_STREAM:
-                if (info.getVideoStreams().size() + info.getVideoOnlyStreams().size() == 0) {
+                if (currentMetadata == null
+                        || !currentMetadata.getMaybeQuality().isPresent()
+                        || info.getVideoStreams().size() + info.getVideoOnlyStreams().size() == 0) {
                     break;
                 }
 
-                availableStreams = currentMetadata.getSortedAvailableVideoStreams();
-                selectedStreamIndex = currentMetadata.getSelectedVideoStreamIndex();
+                availableStreams = currentMetadata.getMaybeQuality().get().getSortedVideoStreams();
+                selectedStreamIndex =
+                        currentMetadata.getMaybeQuality().get().getSelectedVideoStreamIndex();
                 buildQualityMenu();
 
                 binding.qualityTextView.setVisibility(View.VISIBLE);
@@ -3535,8 +3526,8 @@ public final class Player implements
             captionItem.setOnMenuItemClickListener(menuItem -> {
                 final int textRendererIndex = getCaptionRendererIndex();
                 if (textRendererIndex != RENDERER_UNAVAILABLE) {
-                    trackSelector.setPreferredTextLanguage(captionLanguage);
                     trackSelector.setParameters(trackSelector.buildUponParameters()
+                            .setPreferredTextLanguage(captionLanguage)
                             .setRendererDisabled(textRendererIndex, false));
                     prefs.edit().putString(context.getString(R.string.caption_user_set_key),
                             captionLanguage).apply();
@@ -3551,8 +3542,8 @@ public final class Player implements
                     userPreferredLanguage.substring(0, userPreferredLanguage.indexOf('(')))))) {
                 final int textRendererIndex = getCaptionRendererIndex();
                 if (textRendererIndex != RENDERER_UNAVAILABLE) {
-                    trackSelector.setPreferredTextLanguage(captionLanguage);
                     trackSelector.setParameters(trackSelector.buildUponParameters()
+                            .setPreferredTextLanguage(captionLanguage)
                             .setRendererDisabled(textRendererIndex, false));
                 }
                 searchForAutogenerated = false;
@@ -3679,7 +3670,10 @@ public final class Player implements
         }
 
         // Normalize mismatching language strings
-        final String preferredLanguage = trackSelector.getPreferredTextLanguage();
+        final List<String> preferredLanguages =
+                trackSelector.getParameters().preferredTextLanguages;
+        final String preferredLanguage =
+                preferredLanguages.isEmpty() ? null : preferredLanguages.get(0);
         // Build UI
         buildCaptionMenu(availableLanguages);
         if (trackSelector.getParameters().getRendererDisabled(textRenderer)
@@ -3886,10 +3880,9 @@ public final class Player implements
     }
 
     private void onOpenInBrowserClicked() {
-        if (currentMetadata != null) {
-            ShareUtils.openUrlInBrowser(getParentActivity(),
-                    currentMetadata.getMetadata().getOriginalUrl());
-        }
+        getCurrentStreamInfo().map(Info::getOriginalUrl).ifPresent(originalUrl -> {
+            ShareUtils.openUrlInBrowser(Objects.requireNonNull(getParentActivity()), originalUrl);
+        });
     }
     //endregion
 
@@ -4145,12 +4138,14 @@ public final class Player implements
     }
 
     private void notifyMetadataUpdateToListeners() {
-        if (fragmentListener != null && currentMetadata != null) {
-            fragmentListener.onMetadataUpdate(currentMetadata.getMetadata(), playQueue);
-        }
-        if (activityListener != null && currentMetadata != null) {
-            activityListener.onMetadataUpdate(currentMetadata.getMetadata(), playQueue);
-        }
+        getCurrentStreamInfo().ifPresent(info -> {
+            if (fragmentListener != null) {
+                fragmentListener.onMetadataUpdate(info, playQueue);
+            }
+            if (activityListener != null) {
+                activityListener.onMetadataUpdate(info, playQueue);
+            }
+        });
     }
 
     private void notifyPlaybackUpdateToListeners() {
@@ -4201,14 +4196,14 @@ public final class Player implements
         // in livestreams) so we will be not able to execute the block below.
         // Reload the play queue manager in this case, which is the behavior when we don't know the
         // index of the video renderer or playQueueManagerReloadingNeeded returns true.
-        if (currentMetadata == null) {
+        if (!getCurrentStreamInfo().isPresent()) {
             reloadPlayQueueManager();
             setRecovery();
             return;
         }
 
         final int videoRenderIndex = getVideoRendererIndex();
-        final StreamInfo info = currentMetadata.getMetadata();
+        final StreamInfo info = getCurrentStreamInfo().get();
 
         // In the case we don't know the source type, fallback to the one with video with audio or
         // audio-only source.
@@ -4313,6 +4308,10 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Getters
 
+    private Optional<StreamInfo> getCurrentStreamInfo() {
+        return Optional.ofNullable(currentMetadata).flatMap(MediaItemTag::getMaybeStreamInfo);
+    }
+
     public int getCurrentState() {
         return currentState;
     }
@@ -4322,8 +4321,7 @@ public final class Player implements
     }
 
     public boolean isStopped() {
-        return exoPlayerIsNull()
-                || simpleExoPlayer.getPlaybackState() == SimpleExoPlayer.STATE_IDLE;
+        return exoPlayerIsNull() || simpleExoPlayer.getPlaybackState() == ExoPlayer.STATE_IDLE;
     }
 
     public boolean isPlaying() {
@@ -4340,7 +4338,7 @@ public final class Player implements
 
     private boolean isLive() {
         try {
-            return !exoPlayerIsNull() && simpleExoPlayer.isCurrentWindowDynamic();
+            return !exoPlayerIsNull() && simpleExoPlayer.isCurrentMediaItemDynamic();
         } catch (final IndexOutOfBoundsException e) {
             // Why would this even happen =(... but lets log it anyway, better safe than sorry
             if (DEBUG) {
@@ -4519,9 +4517,13 @@ public final class Player implements
             surfaceHolderCallback = new SurfaceHolderCallback(context, simpleExoPlayer);
             binding.surfaceView.getHolder().addCallback(surfaceHolderCallback);
             final Surface surface = binding.surfaceView.getHolder().getSurface();
-            // initially set the surface manually otherwise
-            // onRenderedFirstFrame() will not be called
-            simpleExoPlayer.setVideoSurface(surface);
+            // ensure player is using an unreleased surface, which the surfaceView might not be
+            // when starting playback on background or during player switching
+            if (surface.isValid()) {
+                // initially set the surface manually otherwise
+                // onRenderedFirstFrame() will not be called
+                simpleExoPlayer.setVideoSurface(surface);
+            }
         } else {
             simpleExoPlayer.setVideoSurfaceView(binding.surfaceView);
         }

@@ -1,7 +1,6 @@
 package org.schabi.newpipe.player.mediasource;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.source.MediaSource;
 
@@ -28,10 +27,4 @@ public interface ManagedMediaSource extends MediaSource {
      * @return whether this source is for the specified stream
      */
     boolean isStreamEqual(@NonNull PlayQueueItem stream);
-
-    @Nullable
-    @Override
-    default Object getTag() {
-        return this;
-    }
 }

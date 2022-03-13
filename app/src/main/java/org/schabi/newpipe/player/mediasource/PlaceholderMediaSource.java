@@ -1,28 +1,37 @@
 package org.schabi.newpipe.player.mediasource;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.source.BaseMediaSource;
+import com.google.android.exoplayer2.Timeline;
+import com.google.android.exoplayer2.source.CompositeMediaSource;
 import com.google.android.exoplayer2.source.MediaPeriod;
+import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.upstream.Allocator;
-import com.google.android.exoplayer2.upstream.TransferListener;
 
+import org.schabi.newpipe.player.mediaitem.PlaceholderTag;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
-public class PlaceholderMediaSource extends BaseMediaSource implements ManagedMediaSource {
+import androidx.annotation.NonNull;
+
+final class PlaceholderMediaSource
+        extends CompositeMediaSource<Void> implements ManagedMediaSource {
+    public static final PlaceholderMediaSource COPY = new PlaceholderMediaSource();
+    private static final MediaItem MEDIA_ITEM = PlaceholderTag.EMPTY.withExtras(COPY).asMediaItem();
+
+    private PlaceholderMediaSource() { }
     /**
      * Returns the {@link MediaItem} whose media is provided by the source.
      */
     @Override
     public MediaItem getMediaItem() {
-        return null;
+        return MEDIA_ITEM;
     }
 
-    // Do nothing, so this will stall the playback
     @Override
-    public void maybeThrowSourceInfoRefreshError() { }
+    protected void onChildSourceInfoRefreshed(final Void id,
+                                              final MediaSource mediaSource,
+                                              final Timeline timeline) {
+        /* Do nothing, no timeline updates will stall playback */
+    }
 
     @Override
     public MediaPeriod createPeriod(final MediaPeriodId id, final Allocator allocator,
@@ -32,12 +41,6 @@ public class PlaceholderMediaSource extends BaseMediaSource implements ManagedMe
 
     @Override
     public void releasePeriod(final MediaPeriod mediaPeriod) { }
-
-    @Override
-    protected void prepareSourceInternal(@Nullable final TransferListener mediaTransferListener) { }
-
-    @Override
-    protected void releaseSourceInternal() { }
 
     @Override
     public boolean shouldBeReplacedWith(@NonNull final PlayQueueItem newIdentity,

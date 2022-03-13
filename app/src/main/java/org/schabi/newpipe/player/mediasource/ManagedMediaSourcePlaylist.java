@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.ShuffleOrder;
 
+import org.schabi.newpipe.player.mediaitem.MediaItemTag;
+
 public class ManagedMediaSourcePlaylist {
     @NonNull
     private final ConcatenatingMediaSource internalSource;
@@ -34,8 +36,14 @@ public class ManagedMediaSourcePlaylist {
      */
     @Nullable
     public ManagedMediaSource get(final int index) {
-        return (index < 0 || index >= size())
-                ? null : (ManagedMediaSource) internalSource.getMediaSource(index).getTag();
+        if (index < 0 || index >= size()) {
+            return null;
+        }
+
+        return MediaItemTag
+                .from(internalSource.getMediaSource(index).getMediaItem())
+                .flatMap(tag -> tag.getMaybeExtras(ManagedMediaSource.class))
+                .orElse(null);
     }
 
     @NonNull
@@ -54,7 +62,7 @@ public class ManagedMediaSourcePlaylist {
      * @see #append(ManagedMediaSource)
      */
     public synchronized void expand() {
-        append(new PlaceholderMediaSource());
+        append(PlaceholderMediaSource.COPY);
     }
 
     /**
@@ -115,10 +123,10 @@ public class ManagedMediaSourcePlaylist {
     public synchronized void invalidate(final int index,
                                         @Nullable final Handler handler,
                                         @Nullable final Runnable finalizingAction) {
-        if (get(index) instanceof PlaceholderMediaSource) {
+        if (get(index) == PlaceholderMediaSource.COPY) {
             return;
         }
-        update(index, new PlaceholderMediaSource(), handler, finalizingAction);
+        update(index, PlaceholderMediaSource.COPY, handler, finalizingAction);
     }
 
     /**
