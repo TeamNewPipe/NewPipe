@@ -52,7 +52,7 @@
     <string name="show_search_suggestions_summary">Odaberi prijedloge koji se prikazuju pri traženju</string>
     <string name="enable_search_history_title">Povijest pretraživanja</string>
     <string name="enable_search_history_summary">Svaku pretragu spremi lokalno</string>
-    <string name="enable_watch_history_title">Prati povijest</string>
+    <string name="enable_watch_history_title">Pregledna Povijest</string>
     <string name="enable_watch_history_summary">Spremaj povijest gledanja</string>
     <string name="resume_on_audio_focus_gain_title">Nastavi reprodukciju</string>
     <string name="resume_on_audio_focus_gain_summary">Nastavi reproducirati nakon prekidanja (npr. telefonski pozivi)</string>

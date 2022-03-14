@@ -227,7 +227,7 @@
     <string name="export_complete_toast">Wyeksportowano</string>
     <string name="import_complete_toast">Zaimportowano</string>
     <string name="no_valid_zip_file">Nieprawidłowy plik ZIP</string>
-    <string name="could_not_import_all_files">Ostrzeżenie: Nie udało się zaimportować wszystkich plików.</string>
+    <string name="could_not_import_all_files">Ostrzeżenie: Nie udało się zaimportować wszystkich plików</string>
     <string name="override_current_data">Zastąpi to obecne ustawienia.</string>
     <string name="drawer_open">Otwórz menu</string>
     <string name="drawer_close">Zamknij menu</string>
@@ -242,8 +242,8 @@
     <string name="unbookmark_playlist">Usuń z ulubionych</string>
     <string name="delete_playlist_prompt">Czy usunąć tę playlistę\?</string>
     <string name="playlist_creation_success">Playlista utworzona</string>
-    <string name="playlist_add_stream_success">Dodano do playlisty.</string>
-    <string name="playlist_thumbnail_change_success">Miniatura playlisty zmieniona.</string>
+    <string name="playlist_add_stream_success">Dodano do playlisty</string>
+    <string name="playlist_thumbnail_change_success">Miniatura playlisty zmieniona</string>
     <string name="caption_none">Bez napisów</string>
     <string name="resize_fit">Dopasuj</string>
     <string name="resize_fill">Wypełnij</string>
@@ -646,7 +646,7 @@
 \nNewPipe nie będzie w stanie załadować tego kanału w przyszłości.
 \nCzy chcesz anulować subskrypcję tego kanału\?</string>
     <string name="feed_load_error_account_info">Nie udało się załadować kanału dla „%s”.</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Począwszy od systemu Android 10, obsługiwany jest tylko systemowy selektor folderów (SAF)</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Począwszy od Androida 10 obsługiwany jest tylko systemowy selektor folderów (SAF)</string>
     <string name="downloads_storage_use_saf_summary_api_19">Systemowy selektor folderów (SAF) nie jest obsługiwany przez system Android KitKat i niższy</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Zostaniesz zapytany(-na), gdzie zapisać każdy pobierany plik</string>
     <string name="no_dir_yet">Nie ustawiono jeszcze folderu zapisywania, wybierz domyślny teraz</string>
@@ -697,7 +697,7 @@
     <string name="error_report_channel_name">Powiadomienie raportu o błędach</string>
     <string name="error_report_channel_description">Powiadomienia do zgłaszania błędów</string>
     <string name="error_report_notification_title">NewPipe napotkał błąd. Naciśnij, aby zgłosić</string>
-    <string name="error_report_notification_toast">Wystąpił błąd. Zobacz powiadomienie.</string>
+    <string name="error_report_notification_toast">Wystąpił błąd, zobacz powiadomienie</string>
     <string name="show_error_snackbar">Pokaż snackbar z błędem</string>
     <string name="create_error_notification">Utwórz powiadomienie o błędzie</string>
     <string name="no_appropriate_file_manager_message">Nie znaleziono odpowiedniego menedżera plików dla tej akcji.
@@ -707,4 +707,9 @@
     <string name="background_player_already_playing_toast">Już jest odtwarzane w tle</string>
     <string name="detail_pinned_comment_view_description">Przypięty komentarz</string>
     <string name="leak_canary_not_available">LeakCanary jest niedostępne</string>
+    <string name="progressive_load_interval_title">Rozmiar interwału ładowania odtwarzania</string>
+    <string name="progressive_load_interval_summary">Zmień rozmiar interwału ładowania (aktualnie %s). Niższa wartość może przyspieszyć początkowe ładowanie wideo. Zmiany wymagają ponownego uruchomienia odtwarzacza</string>
+    <string name="progressive_load_interval_default">domyślny ExoPlayera</string>
+    <string name="adjust_by_semitones_checkbox">Dostosuj wysokość półtonami</string>
+    <string name="playback_tempo_step">Krok tempa</string>
 </resources>
