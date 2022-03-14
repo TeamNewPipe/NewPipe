@@ -647,7 +647,7 @@
     <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' nie je podporovaný v systéme Android KitKat a ani v starších verziách</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Pri každom sťahovaní sa zobrazí výzva kam uložiť súbor</string>
     <string name="no_dir_yet">Nie je nastavený adresár na sťahovanie, nastavte ho teraz</string>
-    <string name="mark_as_watched">Označiť ako pozorované</string>
+    <string name="mark_as_watched">Označiť ako videné</string>
     <string name="loading_channel_details">Načítavanie podrobností o kanáli…</string>
     <string name="error_show_channel_details">Chyba pri zobrazení podrobností kanála</string>
     <string name="off">Vypnuté</string>
