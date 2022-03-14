@@ -195,7 +195,7 @@
     <string name="hold_to_append">Przytrzymaj, aby zakolejkować</string>
     <string name="start_here_on_background">Zacznij odtwarzać w tle</string>
     <string name="start_here_on_popup">Zacznij odtwarzać w trybie okienkowym</string>
-    <string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieni (żeby odtworzyć, możesz zainstalować VLC).</string>
+    <string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieni (żeby odtworzyć, możesz zainstalować VLC)</string>
     <string name="default_content_country_title">Domyślny kraj treści</string>
     <string name="always">Zawsze</string>
     <string name="just_once">Tylko raz</string>
@@ -607,8 +607,8 @@
     <string name="crash_the_app">Awaria aplikacji</string>
     <string name="paid_content">Ta zawartość dostępna jest tylko dla użytkowników, którzy za nią zapłacili. Nie może ona być strumieniowana ani pobierana przez NewPipe.</string>
     <string name="youtube_music_premium_content">To wideo dostępne jest tylko dla subskrybentów usługi YouTube Music Premium. Nie może ono być strumieniowane ani pobierane przez NewPipe.</string>
-    <string name="private_content">Ta zawartość jest prywatna, więc nie może być strumieniowana ani pobierana przez NewPipe.</string>
-    <string name="georestricted_content">Ta treść nie jest dostępna w Twoim kraju.</string>
+    <string name="private_content">Ta zawartość jest prywatna, więc nie może być strumieniowana ani pobierana przez NewPipe</string>
+    <string name="georestricted_content">Ta treść nie jest dostępna w Twoim kraju</string>
     <string name="restricted_video_no_stream">To wideo ma ograniczenia wiekowe.
 \nZe względu na nowe zasady YouTube odnośnie ograniczeń wiekowych, NewPipe nie ma dostępu do żadnego z jego strumieni wideo i dlatego nie jest w stanie go odtworzyć.</string>
     <string name="soundcloud_go_plus_content">To jest utwór SoundCloud Go+ (przynajmniej w Twoim kraju). Nie może on być strumieniowany lub pobierany przez NewPipe.</string>
