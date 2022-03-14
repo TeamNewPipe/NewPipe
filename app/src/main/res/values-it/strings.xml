@@ -689,4 +689,6 @@
     <string name="background_player_already_playing_toast">Già in riproduzione in sottofondo</string>
     <string name="leak_canary_not_available">LeakCanary non è disponibile</string>
     <string name="adjust_by_semitones_checkbox">Regola il tono secondo i semitoni musicali</string>
+    <string name="progressive_load_interval_default">ExoPlayer predefinito</string>
+    <string name="progressive_load_interval_summary">Cambia la dimensione dell\'intervallo da caricare (attualmente %s). Un basso valore potrebbe velocizzare il caricamento iniziale del video. Il cambiamento richiede un riavvio del player.</string>
 </resources>
