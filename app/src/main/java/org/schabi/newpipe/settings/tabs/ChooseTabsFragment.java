@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -107,12 +105,8 @@ public class ChooseTabsFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull final Menu menu,
                                     @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
-        final MenuItem restoreItem = menu.add(R.string.restore_defaults);
-        restoreItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        restoreItem.setIcon(AppCompatResources.getDrawable(requireContext(),
-                R.drawable.ic_settings_backup_restore));
-        restoreItem.setOnMenuItemClickListener(ev -> {
+        inflater.inflate(R.menu.menu_chooser_fragment, menu);
+        menu.findItem(R.id.menu_item_restore_default).setOnMenuItemClickListener(item -> {
             restoreDefaults();
             return true;
         });
