@@ -545,9 +545,7 @@
         <RelativeLayout
             android:id="@+id/itemsListControl"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:clickable="true"
-            android:focusable="true">
+            android:layout_height="60dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/itemsListHeaderTitle"
