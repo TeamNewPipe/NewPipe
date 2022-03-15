@@ -40,23 +40,25 @@ public final class SparseItemUtil {
      * lightweight method to fetch info, but the info might be incomplete (see
      * {@link org.schabi.newpipe.local.feed.service.FeedLoadService} for more details).
      *
-     * @param context the Android context
-     * @param item the item which is checked and eventually loaded completely
-     * @param callback the callback to call with the single play queue built from the original item
-     *                 if all info was available, otherwise from the fetched {@link
+     * @param context  Android context
+     * @param item     item which is checked and eventually loaded completely
+     * @param callback callback to call with the single play queue built from the original item if
+     *                 all info was available, otherwise from the fetched {@link
      *                 org.schabi.newpipe.extractor.stream.StreamInfo}
      */
     public static void fetchItemInfoIfSparse(@NonNull final Context context,
                                              @NonNull final StreamInfoItem item,
                                              @NonNull final Consumer<SinglePlayQueue> callback) {
-        if ((!(item.getStreamType() == LIVE_STREAM || item.getStreamType() == AUDIO_LIVE_STREAM)
-                && item.getDuration() < 0) || isNullOrEmpty(item.getUploaderUrl())) {
-            fetchStreamInfoAndSaveToDatabase(context, item.getServiceId(), item.getUrl(),
-                    streamInfo -> callback.accept(new SinglePlayQueue(streamInfo)));
-        } else {
-            // all info is already there, no need to fetch
+        if (((item.getStreamType() == LIVE_STREAM || item.getStreamType() == AUDIO_LIVE_STREAM)
+                || item.getDuration() >= 0) && !isNullOrEmpty(item.getUploaderUrl())) {
+            // if the duration is >= 0 (provided that the item is not a livestream) and there is an
+            // uploader url, probably all info is already there, so there is no need to fetch it
             callback.accept(new SinglePlayQueue(item));
         }
+
+        // either the duration or the uploader url are not available, so fetch more info
+        fetchStreamInfoAndSaveToDatabase(context, item.getServiceId(), item.getUrl(),
+                streamInfo -> callback.accept(new SinglePlayQueue(streamInfo)));
     }
 
     /**
@@ -65,13 +67,13 @@ public final class SparseItemUtil {
      * org.schabi.newpipe.extractor.feed.FeedExtractor}). A toast is shown if loading details is
      * required.
      *
-     * @param context the Android context
-     * @param serviceId the serviceId of the item
-     * @param url the item url
-     * @param uploaderUrl the uploaderUrl of the item; if null or empty will be fetched
-     * @param callback the callback called with either the original uploaderUrl, if it was a valid
-     *                 url, otherwise with the uploader url obtained by fetching the {@link
-     *                 org.schabi.newpipe.extractor.stream.StreamInfo} corresponding to the item
+     * @param context     Android context
+     * @param serviceId   serviceId of the item
+     * @param url         item url
+     * @param uploaderUrl uploaderUrl of the item; if null or empty will be fetched
+     * @param callback    callback to be called with either the original uploaderUrl, if it was a
+     *                    valid url, otherwise with the uploader url obtained by fetching the {@link
+     *                    org.schabi.newpipe.extractor.stream.StreamInfo} corresponding to the item
      */
     public static void fetchUploaderUrlIfSparse(@NonNull final Context context,
                                                 final int serviceId,
@@ -91,12 +93,12 @@ public final class SparseItemUtil {
      * the database and calls the callback on the main thread with the result. A toast will be shown
      * to the user about loading stream details, so this needs to be called on the main thread.
      *
-     * @param context the Android context
-     * @param serviceId the service id of the stream to load
-     * @param url the url of the stream to load
-     * @param callback the callback to call with the result
+     * @param context   Android context
+     * @param serviceId service id of the stream to load
+     * @param url       url of the stream to load
+     * @param callback  callback to be called with the result
      */
-    private static void fetchStreamInfoAndSaveToDatabase(final Context context,
+    private static void fetchStreamInfoAndSaveToDatabase(@NonNull final Context context,
                                                          final int serviceId,
                                                          @NonNull final String url,
                                                          final Consumer<StreamInfo> callback) {
