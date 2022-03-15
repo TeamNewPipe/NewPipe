@@ -28,6 +28,7 @@ import static org.schabi.newpipe.player.MainPlayer.ACTION_REPEAT;
 import static org.schabi.newpipe.player.MainPlayer.ACTION_SHUFFLE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
+import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_PIP;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
 import static org.schabi.newpipe.player.helper.PlayerHelper.buildCloseOverlayLayoutParams;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
@@ -4110,6 +4111,7 @@ public final class Player implements
         if (videoPlayerSelected() && (isPlaying() || isLoading())) {
             switch (getMinimizeOnExitAction(context)) {
                 case MINIMIZE_ON_EXIT_MODE_BACKGROUND:
+                case MINIMIZE_ON_EXIT_MODE_PIP:
                     useVideoSource(false);
                     break;
                 case MINIMIZE_ON_EXIT_MODE_POPUP:

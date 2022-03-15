@@ -72,6 +72,7 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.player.PictureInPictureControl;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
@@ -96,6 +97,8 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private static final PictureInPictureControl PIP_CONTROL =
+            PictureInPictureControl.MainPlayerPictureInPicture.CONTROLLER;
     @SuppressWarnings("ConstantConditions")
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
 
@@ -839,5 +842,16 @@ public class MainActivity extends AppCompatActivity {
         final int sheetState = bottomSheetBehavior.getState();
         return sheetState == BottomSheetBehavior.STATE_HIDDEN
                 || sheetState == BottomSheetBehavior.STATE_COLLAPSED;
+    }
+
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        final Fragment fragmentPlayer = getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_player_holder);
+        final boolean bottomSheetCollapsed = bottomSheetHiddenOrCollapsed();
+        if (fragmentPlayer != null && !bottomSheetCollapsed) {
+            PIP_CONTROL.onUserLeaveHint(this);
+        }
     }
 }

@@ -439,6 +439,7 @@
     <string name="resize_fill">Fill</string>
     <string name="resize_zoom">Zoom</string>
     <string name="caption_auto_generated">Auto-generated</string>
+    <string name="pip_mode_unsupported">The Android version of this device does not support PIP Mode.</string>
     <!-- Caption Settings -->
     <string name="caption_setting_title">Captions</string>
     <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect</string>
@@ -521,6 +522,7 @@
     <string name="minimize_on_exit_none_description">None</string>
     <string name="minimize_on_exit_background_description">Minimize to background player</string>
     <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
+    <string name="minimize_on_exit_pip_description">Minimize to PIP (Android 8+) - Feature in test, use at your own risk</string>
     <!-- Autoplay behavior -->
     <string name="autoplay_summary">Start playback automatically — %s</string>
     <string name="wifi_only">Only on Wi-Fi</string>

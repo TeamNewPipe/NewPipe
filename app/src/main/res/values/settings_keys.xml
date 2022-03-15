@@ -77,15 +77,18 @@
     <string name="minimize_on_exit_none_key">minimize_on_exit_none_key</string>
     <string name="minimize_on_exit_background_key">minimize_on_exit_background_key</string>
     <string name="minimize_on_exit_popup_key">minimize_on_exit_popup_key</string>
+    <string name="minimize_on_exit_pip_key">minimize_on_exit_pip_key</string>
     <string-array name="minimize_on_exit_action_key">
         <item>@string/minimize_on_exit_none_key</item>
         <item>@string/minimize_on_exit_background_key</item>
         <item>@string/minimize_on_exit_popup_key</item>
+        <item>@string/minimize_on_exit_pip_key</item>
     </string-array>
     <string-array name="minimize_on_exit_action_description">
         <item>@string/minimize_on_exit_none_description</item>
         <item>@string/minimize_on_exit_background_description</item>
         <item>@string/minimize_on_exit_popup_description</item>
+        <item>@string/minimize_on_exit_pip_description</item>
     </string-array>
 
     <string name="start_main_player_fullscreen_key">start_main_player_fullscreen_key</string>

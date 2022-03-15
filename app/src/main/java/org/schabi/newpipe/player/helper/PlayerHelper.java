@@ -10,6 +10,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLA
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
+import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_PIP;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
@@ -89,11 +90,12 @@ public final class PlayerHelper {
 
     @Retention(SOURCE)
     @IntDef({MINIMIZE_ON_EXIT_MODE_NONE, MINIMIZE_ON_EXIT_MODE_BACKGROUND,
-            MINIMIZE_ON_EXIT_MODE_POPUP})
+            MINIMIZE_ON_EXIT_MODE_POPUP, MINIMIZE_ON_EXIT_MODE_PIP})
     public @interface MinimizeMode {
         int MINIMIZE_ON_EXIT_MODE_NONE = 0;
         int MINIMIZE_ON_EXIT_MODE_BACKGROUND = 1;
         int MINIMIZE_ON_EXIT_MODE_POPUP = 2;
+        int MINIMIZE_ON_EXIT_MODE_PIP = 3;
     }
 
     private PlayerHelper() { }
@@ -263,6 +265,8 @@ public final class PlayerHelper {
             return MINIMIZE_ON_EXIT_MODE_POPUP;
         } else if (action.equals(context.getString(R.string.minimize_on_exit_none_key))) {
             return MINIMIZE_ON_EXIT_MODE_NONE;
+        } else if (action.equals(context.getString(R.string.minimize_on_exit_pip_key))) {
+            return MINIMIZE_ON_EXIT_MODE_PIP;
         } else {
             return MINIMIZE_ON_EXIT_MODE_BACKGROUND; // default
         }

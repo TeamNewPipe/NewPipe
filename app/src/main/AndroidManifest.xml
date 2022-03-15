@@ -28,7 +28,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:supportsPictureInPicture="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
