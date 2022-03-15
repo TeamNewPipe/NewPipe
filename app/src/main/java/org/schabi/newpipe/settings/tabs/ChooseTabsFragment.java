@@ -136,7 +136,7 @@ public class ChooseTabsFragment extends Fragment {
                 .setTitle(R.string.restore_defaults)
                 .setMessage(R.string.restore_defaults_confirmation)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.yes, (dialog, which) -> {
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
                     tabsManager.resetTabs();
                     updateTabList();
                     selectedTabsAdapter.notifyDataSetChanged();

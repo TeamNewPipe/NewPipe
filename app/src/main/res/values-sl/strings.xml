@@ -87,7 +87,6 @@
     <string name="short_thousand">k</string>
     <string name="short_million">mio</string>
     <string name="short_billion">mrd</string>
-    <string name="yes">Da</string>
     <string name="open_in_popup_mode">Odpri v pojavnem načinu</string>
     <string name="msg_popup_permission">To dovoljenje je potrebno za odpiranje 
 \nv pojavnem načinu</string>

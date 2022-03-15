@@ -23,8 +23,6 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.jakewharton.rxbinding4.widget.RxTextView;
 
-import org.schabi.newpipe.App;
-import org.schabi.newpipe.CheckForNewAppVersion;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.SettingsLayoutBinding;
@@ -37,6 +35,7 @@ import org.schabi.newpipe.settings.preferencesearch.PreferenceSearchResultListen
 import org.schabi.newpipe.settings.preferencesearch.PreferenceSearcher;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KeyboardUtil;
+import org.schabi.newpipe.util.ReleaseVersionUtil;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
 
@@ -267,7 +266,7 @@ public class SettingsActivity extends AppCompatActivity implements
      */
     private void ensureSearchRepresentsApplicationState() {
         // Check if the update settings are available
-        if (!CheckForNewAppVersion.isReleaseApk(App.getApp())) {
+        if (!ReleaseVersionUtil.isReleaseApk()) {
             SettingsResourceRegistry.getInstance()
                     .getEntryByPreferencesResId(R.xml.update_settings)
                     .setSearchable(false);

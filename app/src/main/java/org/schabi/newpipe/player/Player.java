@@ -105,6 +105,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -138,6 +139,7 @@ import com.squareup.picasso.Target;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.databinding.PlayerPopupCloseOverlayBinding;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -152,6 +154,7 @@ import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.info_list.StreamSegmentAdapter;
 import org.schabi.newpipe.ktx.AnimationType;
+import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainPlayer.PlayerType;
 import org.schabi.newpipe.player.event.DisplayPortion;
@@ -197,6 +200,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -541,6 +545,7 @@ public final class Player implements
         binding.segmentsButton.setOnClickListener(this);
         binding.repeatButton.setOnClickListener(this);
         binding.shuffleButton.setOnClickListener(this);
+        binding.addToPlaylistButton.setOnClickListener(this);
 
         binding.playPauseButton.setOnClickListener(this);
         binding.playPreviousButton.setOnClickListener(this);
@@ -2390,6 +2395,32 @@ public final class Player implements
 
 
     /*//////////////////////////////////////////////////////////////////////////
+    // Playlist append
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Playlist append
+
+    public void onAddToPlaylistClicked(@NonNull final FragmentManager fragmentManager) {
+        if (DEBUG) {
+            Log.d(TAG, "onAddToPlaylistClicked() called");
+        }
+
+        if (getPlayQueue() != null) {
+            PlaylistDialog.createCorrespondingDialog(
+                    getContext(),
+                    getPlayQueue()
+                            .getStreams()
+                            .stream()
+                            .map(StreamEntity::new)
+                            .collect(Collectors.toList()),
+                    dialog -> dialog.show(fragmentManager, TAG)
+            );
+        }
+    }
+    //endregion
+
+
+
+    /*//////////////////////////////////////////////////////////////////////////
     // Mute / Unmute
     //////////////////////////////////////////////////////////////////////////*/
     //region Mute / Unmute
@@ -3131,6 +3162,7 @@ public final class Player implements
         binding.itemsListHeaderDuration.setVisibility(View.VISIBLE);
         binding.shuffleButton.setVisibility(View.VISIBLE);
         binding.repeatButton.setVisibility(View.VISIBLE);
+        binding.addToPlaylistButton.setVisibility(View.VISIBLE);
 
         hideControls(0, 0);
         binding.itemsListPanel.requestFocus();
@@ -3168,6 +3200,7 @@ public final class Player implements
         binding.itemsListHeaderDuration.setVisibility(View.GONE);
         binding.shuffleButton.setVisibility(View.GONE);
         binding.repeatButton.setVisibility(View.GONE);
+        binding.addToPlaylistButton.setVisibility(View.GONE);
 
         hideControls(0, 0);
         binding.itemsListPanel.requestFocus();
@@ -3196,6 +3229,7 @@ public final class Player implements
 
         binding.shuffleButton.setVisibility(View.GONE);
         binding.repeatButton.setVisibility(View.GONE);
+        binding.addToPlaylistButton.setVisibility(View.GONE);
         binding.itemsListClose.setOnClickListener(view -> closeItemsList());
     }
 
@@ -3733,6 +3767,11 @@ public final class Player implements
         } else if (v.getId() == binding.shuffleButton.getId()) {
             onShuffleClicked();
             return;
+        } else if (v.getId() == binding.addToPlaylistButton.getId()) {
+            if (getParentActivity() != null) {
+                onAddToPlaylistClicked(getParentActivity().getSupportFragmentManager());
+            }
+            return;
         } else if (v.getId() == binding.moreOptionsButton.getId()) {
             onMoreOptionsClicked();
         } else if (v.getId() == binding.share.getId()) {
@@ -3799,6 +3838,10 @@ public final class Player implements
             case KeyEvent.KEYCODE_SPACE:
                 if (isFullscreen) {
                     playPause();
+                    if (isPlaying()) {
+                        hideControls(0, 0);
+                    }
+                    return true;
                 }
                 break;
             case KeyEvent.KEYCODE_BACK:

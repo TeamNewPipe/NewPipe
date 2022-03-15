@@ -350,7 +350,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 new AlertDialog.Builder(requireContext())
                         .setMessage(R.string.remove_watched_popup_warning)
                         .setTitle(R.string.remove_watched_popup_title)
-                        .setPositiveButton(R.string.yes,
+                        .setPositiveButton(R.string.ok,
                                 (DialogInterface d, int id) -> removeWatchedStreams(false))
                         .setNeutralButton(
                                 R.string.remove_watched_popup_yes_and_partially_watched_videos,
