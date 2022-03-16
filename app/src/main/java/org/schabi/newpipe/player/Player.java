@@ -166,8 +166,8 @@ import org.schabi.newpipe.player.helper.LoadController;
 import org.schabi.newpipe.player.helper.MediaSessionManager;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.player.listeners.view.PlaybackSpeedListener;
-import org.schabi.newpipe.player.listeners.view.QualityTextListener;
+import org.schabi.newpipe.player.listeners.view.PlaybackSpeedClickListener;
+import org.schabi.newpipe.player.listeners.view.QualityClickListener;
 import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
@@ -532,9 +532,9 @@ public final class Player implements
 
     private void initListeners() {
         binding.qualityTextView.setOnClickListener(
-                new QualityTextListener(this, qualityPopupMenu));
+                new QualityClickListener(this, qualityPopupMenu));
         binding.playbackSpeed.setOnClickListener(
-                new PlaybackSpeedListener(this, playbackSpeedPopupMenu));
+                new PlaybackSpeedClickListener(this, playbackSpeedPopupMenu));
 
         binding.playbackSeekBar.setOnSeekBarChangeListener(this);
         binding.captionTextView.setOnClickListener(this);
@@ -3772,23 +3772,33 @@ public final class Player implements
             context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
         }
 
-        if (currentState != STATE_COMPLETED) {
-            controlsVisibilityHandler.removeCallbacksAndMessages(null);
-            showHideShadow(true, DEFAULT_CONTROLS_DURATION);
-            animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
-                    AnimationType.ALPHA, 0, () -> {
-                        if (currentState == STATE_PLAYING && !isSomePopupMenuVisible) {
-                            if (v.getId() == binding.playPauseButton.getId()
-                                    // Hide controls in fullscreen immediately
-                                    || (v.getId() == binding.screenRotationButton.getId()
-                                    && isFullscreen)) {
-                                hideControls(0, 0);
-                            } else {
-                                hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-                            }
-                        }
-                    });
+        afterOnClick(v);
+    }
+
+    /**
+     * Function that should be executed after a click occured on the player UI.
+     * @param v – The view that was clicked
+     */
+    public void afterOnClick(@NonNull final View v) {
+        if (currentState == STATE_COMPLETED) {
+            return;
         }
+
+        controlsVisibilityHandler.removeCallbacksAndMessages(null);
+        showHideShadow(true, DEFAULT_CONTROLS_DURATION);
+        animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
+                AnimationType.ALPHA, 0, () -> {
+                    if (currentState == STATE_PLAYING && !isSomePopupMenuVisible) {
+                        if (v.getId() == binding.playPauseButton.getId()
+                                // Hide controls in fullscreen immediately
+                                || (v.getId() == binding.screenRotationButton.getId()
+                                && isFullscreen)) {
+                            hideControls(0, 0);
+                        } else {
+                            hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                        }
+                    }
+                });
     }
 
     @Override
