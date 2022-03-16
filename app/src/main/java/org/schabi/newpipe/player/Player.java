@@ -545,11 +545,15 @@ public final class Player implements
         gestureDetector = new GestureDetectorCompat(context, playerGestureListener);
         binding.getRoot().setOnTouchListener(playerGestureListener);
 
-        binding.queueButton.setOnClickListener(this);
-        binding.segmentsButton.setOnClickListener(this);
-        binding.repeatButton.setOnClickListener(this);
-        binding.shuffleButton.setOnClickListener(this);
-        binding.addToPlaylistButton.setOnClickListener(this);
+        binding.queueButton.setOnClickListener(v -> onQueueClicked());
+        binding.segmentsButton.setOnClickListener(v -> onSegmentsClicked());
+        binding.repeatButton.setOnClickListener(v -> onRepeatClicked());
+        binding.shuffleButton.setOnClickListener(v -> onShuffleClicked());
+        binding.addToPlaylistButton.setOnClickListener(v -> {
+            if (getParentActivity() != null) {
+                onAddToPlaylistClicked(getParentActivity().getSupportFragmentManager());
+            }
+        });
 
         binding.playPauseButton.setOnClickListener(this);
         binding.playPreviousButton.setOnClickListener(this);
@@ -3727,23 +3731,6 @@ public final class Player implements
             playPrevious();
         } else if (v.getId() == binding.playNextButton.getId()) {
             playNext();
-        } else if (v.getId() == binding.queueButton.getId()) {
-            onQueueClicked();
-            return;
-        } else if (v.getId() == binding.segmentsButton.getId()) {
-            onSegmentsClicked();
-            return;
-        } else if (v.getId() == binding.repeatButton.getId()) {
-            onRepeatClicked();
-            return;
-        } else if (v.getId() == binding.shuffleButton.getId()) {
-            onShuffleClicked();
-            return;
-        } else if (v.getId() == binding.addToPlaylistButton.getId()) {
-            if (getParentActivity() != null) {
-                onAddToPlaylistClicked(getParentActivity().getSupportFragmentManager());
-            }
-            return;
         } else if (v.getId() == binding.moreOptionsButton.getId()) {
             onMoreOptionsClicked();
         } else if (v.getId() == binding.share.getId()) {
