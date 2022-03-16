@@ -164,9 +164,10 @@ import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.LoadController;
 import org.schabi.newpipe.player.helper.MediaSessionManager;
-import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.player.listeners.view.PlaybackSpeedClickListener;
+import org.schabi.newpipe.player.listeners.view.QualityClickListener;
 import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
@@ -530,9 +531,12 @@ public final class Player implements
     }
 
     private void initListeners() {
+        binding.qualityTextView.setOnClickListener(
+                new QualityClickListener(this, qualityPopupMenu));
+        binding.playbackSpeed.setOnClickListener(
+                new PlaybackSpeedClickListener(this, playbackSpeedPopupMenu));
+
         binding.playbackSeekBar.setOnSeekBarChangeListener(this);
-        binding.playbackSpeed.setOnClickListener(this);
-        binding.qualityTextView.setOnClickListener(this);
         binding.captionTextView.setOnClickListener(this);
         binding.resizeTextView.setOnClickListener(this);
         binding.playbackLiveSync.setOnClickListener(this);
@@ -541,11 +545,15 @@ public final class Player implements
         gestureDetector = new GestureDetectorCompat(context, playerGestureListener);
         binding.getRoot().setOnTouchListener(playerGestureListener);
 
-        binding.queueButton.setOnClickListener(this);
-        binding.segmentsButton.setOnClickListener(this);
-        binding.repeatButton.setOnClickListener(this);
-        binding.shuffleButton.setOnClickListener(this);
-        binding.addToPlaylistButton.setOnClickListener(this);
+        binding.queueButton.setOnClickListener(v -> onQueueClicked());
+        binding.segmentsButton.setOnClickListener(v -> onSegmentsClicked());
+        binding.repeatButton.setOnClickListener(v -> onRepeatClicked());
+        binding.shuffleButton.setOnClickListener(v -> onShuffleClicked());
+        binding.addToPlaylistButton.setOnClickListener(v -> {
+            if (getParentActivity() != null) {
+                onAddToPlaylistClicked(getParentActivity().getSupportFragmentManager());
+            }
+        });
 
         binding.playPauseButton.setOnClickListener(this);
         binding.playPreviousButton.setOnClickListener(this);
@@ -1926,7 +1934,7 @@ public final class Player implements
         }, delay);
     }
 
-    private void showHideShadow(final boolean show, final long duration) {
+    public void showHideShadow(final boolean show, final long duration) {
         animate(binding.playbackControlsShadow, show, duration, AnimationType.ALPHA, 0, null);
         animate(binding.playerTopShadow, show, duration, AnimationType.ALPHA, 0, null);
         animate(binding.playerBottomShadow, show, duration, AnimationType.ALPHA, 0, null);
@@ -3607,37 +3615,6 @@ public final class Player implements
         }
     }
 
-    private void onQualitySelectorClicked() {
-        if (DEBUG) {
-            Log.d(TAG, "onQualitySelectorClicked() called");
-        }
-        qualityPopupMenu.show();
-        isSomePopupMenuVisible = true;
-
-        final VideoStream videoStream = getSelectedVideoStream();
-        if (videoStream != null) {
-            final String qualityText = MediaFormat.getNameById(videoStream.getFormatId()) + " "
-                    + videoStream.resolution;
-            binding.qualityTextView.setText(qualityText);
-        }
-
-        saveWasPlaying();
-    }
-
-    private void onPlaybackSpeedClicked() {
-        if (DEBUG) {
-            Log.d(TAG, "onPlaybackSpeedClicked() called");
-        }
-        if (videoPlayerSelected()) {
-            PlaybackParameterDialog.newInstance(getPlaybackSpeed(), getPlaybackPitch(),
-                    getPlaybackSkipSilence(), this::setPlaybackParameters)
-                    .show(getParentActivity().getSupportFragmentManager(), null);
-        } else {
-            playbackSpeedPopupMenu.show();
-            isSomePopupMenuVisible = true;
-        }
-    }
-
     private void onCaptionClicked() {
         if (DEBUG) {
             Log.d(TAG, "onCaptionClicked() called");
@@ -3742,11 +3719,7 @@ public final class Player implements
         if (DEBUG) {
             Log.d(TAG, "onClick() called with: v = [" + v + "]");
         }
-        if (v.getId() == binding.qualityTextView.getId()) {
-            onQualitySelectorClicked();
-        } else if (v.getId() == binding.playbackSpeed.getId()) {
-            onPlaybackSpeedClicked();
-        } else if (v.getId() == binding.resizeTextView.getId()) {
+        if (v.getId() == binding.resizeTextView.getId()) {
             onResizeClicked();
         } else if (v.getId() == binding.captionTextView.getId()) {
             onCaptionClicked();
@@ -3758,23 +3731,6 @@ public final class Player implements
             playPrevious();
         } else if (v.getId() == binding.playNextButton.getId()) {
             playNext();
-        } else if (v.getId() == binding.queueButton.getId()) {
-            onQueueClicked();
-            return;
-        } else if (v.getId() == binding.segmentsButton.getId()) {
-            onSegmentsClicked();
-            return;
-        } else if (v.getId() == binding.repeatButton.getId()) {
-            onRepeatClicked();
-            return;
-        } else if (v.getId() == binding.shuffleButton.getId()) {
-            onShuffleClicked();
-            return;
-        } else if (v.getId() == binding.addToPlaylistButton.getId()) {
-            if (getParentActivity() != null) {
-                onAddToPlaylistClicked(getParentActivity().getSupportFragmentManager());
-            }
-            return;
         } else if (v.getId() == binding.moreOptionsButton.getId()) {
             onMoreOptionsClicked();
         } else if (v.getId() == binding.share.getId()) {
@@ -3803,23 +3759,33 @@ public final class Player implements
             context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
         }
 
-        if (currentState != STATE_COMPLETED) {
-            controlsVisibilityHandler.removeCallbacksAndMessages(null);
-            showHideShadow(true, DEFAULT_CONTROLS_DURATION);
-            animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
-                    AnimationType.ALPHA, 0, () -> {
-                        if (currentState == STATE_PLAYING && !isSomePopupMenuVisible) {
-                            if (v.getId() == binding.playPauseButton.getId()
-                                    // Hide controls in fullscreen immediately
-                                    || (v.getId() == binding.screenRotationButton.getId()
-                                    && isFullscreen)) {
-                                hideControls(0, 0);
-                            } else {
-                                hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-                            }
-                        }
-                    });
+        manageControlsAfterOnClick(v);
+    }
+
+    /**
+     * Manages the controls after a click occurred on the player UI.
+     * @param v – The view that was clicked
+     */
+    public void manageControlsAfterOnClick(@NonNull final View v) {
+        if (currentState == STATE_COMPLETED) {
+            return;
         }
+
+        controlsVisibilityHandler.removeCallbacksAndMessages(null);
+        showHideShadow(true, DEFAULT_CONTROLS_DURATION);
+        animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
+                AnimationType.ALPHA, 0, () -> {
+                    if (currentState == STATE_PLAYING && !isSomePopupMenuVisible) {
+                        if (v.getId() == binding.playPauseButton.getId()
+                                // Hide controls in fullscreen immediately
+                                || (v.getId() == binding.screenRotationButton.getId()
+                                && isFullscreen)) {
+                            hideControls(0, 0);
+                        } else {
+                            hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                        }
+                    }
+                });
     }
 
     @Override
@@ -4446,6 +4412,10 @@ public final class Player implements
         return isSomePopupMenuVisible;
     }
 
+    public void setSomePopupMenuVisible(final boolean somePopupMenuVisible) {
+        isSomePopupMenuVisible = somePopupMenuVisible;
+    }
+
     public ImageButton getPlayPauseButton() {
         return binding.playPauseButton;
     }
@@ -4527,6 +4497,11 @@ public final class Player implements
     public PlayQueueAdapter getPlayQueueAdapter() {
         return playQueueAdapter;
     }
+
+    public PlayerBinding getBinding() {
+        return binding;
+    }
+
     //endregion
 
 
