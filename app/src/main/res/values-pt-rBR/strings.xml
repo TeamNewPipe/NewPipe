@@ -90,7 +90,6 @@
     <string name="default_video_format_title">Formato de vídeo padrão</string>
     <string name="popup_playing_toast">Reproduzindo em modo popup</string>
     <string name="all">Tudo</string>
-    <string name="yes">Sim</string>
     <string name="disabled">Desativado</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
@@ -410,7 +409,7 @@
     <string name="error_timeout">Tempo limite de conexão</string>
     <string name="confirm_prompt">Excluir todo o histórico de downloads ou excluir todos os arquivos baixados\?</string>
     <string name="enable_queue_limit">Limitar fila de downloads</string>
-    <string name="enable_queue_limit_desc">Um download será feito por vez</string>
+    <string name="enable_queue_limit_desc">Faz downloads um de cada vez</string>
     <string name="start_downloads">Iniciar downloads</string>
     <string name="pause_downloads">Pausar downloads</string>
     <string name="downloads_storage_ask_title">Perguntar onde salvar o arquivo</string>
@@ -673,7 +672,7 @@
     <string name="manual_update_description">Procurar manualmente por novas versões</string>
     <string name="checking_updates_toast">Procurando por atualizações…</string>
     <string name="crash_the_player">Travar o player</string>
-    <string name="show_crash_the_player_title">Mostrar \"travar o player\"</string>
+    <string name="show_crash_the_player_title">Mostrar \"Travar o player\"</string>
     <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o player</string>
     <string name="feed_new_items">Novos itens do feed</string>
     <string name="error_report_channel_name">Notificação de relatório de erro</string>
@@ -688,4 +687,5 @@
 \nInstale um gerenciador de arquivos ou tente desativar \'%s\' nas configurações de download.</string>
     <string name="background_player_already_playing_toast">Já está tocando em segundo plano</string>
     <string name="detail_pinned_comment_view_description">Comentário fixado</string>
+    <string name="leak_canary_not_available">O LeakCanary não está disponível</string>
 </resources>

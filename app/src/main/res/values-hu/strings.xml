@@ -111,7 +111,6 @@
     <string name="settings_category_debug_title">Hibaelhárítás</string>
     <string name="popup_playing_toast">Lejátszás felugró ablakban</string>
     <string name="all">Összes</string>
-    <string name="yes">Igen</string>
     <string name="disabled">Letiltva</string>
     <string name="clear">Törlés</string>
     <string name="best_resolution">Legjobb felbontás</string>
@@ -688,4 +687,5 @@
     </plurals>
     <string name="detail_pinned_comment_view_description">Rögzített megjegyzés</string>
     <string name="background_player_already_playing_toast">Már megy a lejátszás a háttérben</string>
+    <string name="leak_canary_not_available">LeakCanary nem elérhető</string>
 </resources>

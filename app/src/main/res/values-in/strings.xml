@@ -86,7 +86,6 @@
     <string name="short_thousand">r</string>
     <string name="short_million">J</string>
     <string name="short_billion">T</string>
-    <string name="yes">Ya</string>
     <string name="open_in_popup_mode">Buka dalam mode popup</string>
     <string name="msg_popup_permission">Izin ini dibutuhkan untuk
 \nmembuka di mode sembul</string>
@@ -661,7 +660,7 @@
     <string name="manual_update_description">Periksa manual untuk versi baru</string>
     <string name="checking_updates_toast">Memeriksa pembaruan…</string>
     <string name="feed_new_items">Item feed baru</string>
-    <string name="show_crash_the_player_title">Tampilkan \"hentikan pemain video\"</string>
+    <string name="show_crash_the_player_title">Tampilkan \"Mogokkan pemutar\"</string>
     <string name="show_crash_the_player_summary">Menampilkan opsi penghentian ketika menggunakan pemain video</string>
     <string name="crash_the_player">Hentikan pemain video</string>
     <string name="error_report_channel_description">Notifikasi untuk melaporkan kegalatan</string>
@@ -676,4 +675,5 @@
 \nMohon instal sebuah manajer file yang kompatibel dengan Storage Access Framework.</string>
     <string name="detail_pinned_comment_view_description">Komentar dipin</string>
     <string name="background_player_already_playing_toast">Sudah diputar di latar belakang</string>
+    <string name="leak_canary_not_available">LeakCanary tidak tersedia</string>
 </resources>

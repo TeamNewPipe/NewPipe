@@ -21,6 +21,7 @@ import org.schabi.newpipe.util.ListHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.google.android.exoplayer2.C.TIME_UNSET;
 
@@ -31,9 +32,16 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     private final PlayerDataSource dataSource;
     @NonNull
     private final QualityResolver qualityResolver;
+    private SourceType streamSourceType;
 
     @Nullable
     private String playbackQuality;
+
+    public enum SourceType {
+        LIVE_STREAM,
+        VIDEO_WITH_SEPARATED_AUDIO,
+        VIDEO_WITH_AUDIO_OR_AUDIO_ONLY
+    }
 
     public VideoPlaybackResolver(@NonNull final Context context,
                                  @NonNull final PlayerDataSource dataSource,
@@ -48,6 +56,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     public MediaSource resolve(@NonNull final StreamInfo info) {
         final MediaSource liveSource = maybeBuildLiveMediaSource(dataSource, info);
         if (liveSource != null) {
+            streamSourceType = SourceType.LIVE_STREAM;
             return liveSource;
         }
 
@@ -55,7 +64,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
 
         // Create video stream source
         final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
-                info.getVideoStreams(), info.getVideoOnlyStreams(), false);
+                info.getVideoStreams(), info.getVideoOnlyStreams(), false, true);
         final int index;
         if (videos.isEmpty()) {
             index = -1;
@@ -85,6 +94,9 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                     PlayerHelper.cacheKeyOf(info, audio),
                     MediaFormat.getSuffixById(audio.getFormatId()), tag);
             mediaSources.add(audioSource);
+            streamSourceType = SourceType.VIDEO_WITH_SEPARATED_AUDIO;
+        } else {
+            streamSourceType = SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY;
         }
 
         // If there is no audio or video sources, then this media source cannot be played back
@@ -116,6 +128,16 @@ public class VideoPlaybackResolver implements PlaybackResolver {
             return new MergingMediaSource(mediaSources.toArray(
                     new MediaSource[0]));
         }
+    }
+
+    /**
+     * Returns the last resolved {@link StreamInfo}'s {@link SourceType source type}.
+     *
+     * @return {@link Optional#empty()} if nothing was resolved, otherwise the {@link SourceType}
+     * of the last resolved {@link StreamInfo} inside an {@link Optional}
+     */
+    public Optional<SourceType> getStreamSourceType() {
+        return Optional.ofNullable(streamSourceType);
     }
 
     @Nullable

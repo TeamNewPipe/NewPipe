@@ -1,0 +1,5 @@
+Hotfix
+• Bufferproblemen veroorzaakt door YouTube-beperking oplossen
+• Extractie van YouTube-opmerkingen en crashes met uitgeschakelde reacties oplossen
+• YouTube-muziekzoekopdracht repareren
+• PeerTube-livestreams repareren

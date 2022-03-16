@@ -1,0 +1,1 @@
+Probleem opgelost dat YouTube niet goed werkte in de EU. Dit werd veroorzaakt door een nieuw cookie- en privacy-toestemmingssysteem waarvoor NewPipe een TOESTEMMINGS- cookie moet plaatsen.

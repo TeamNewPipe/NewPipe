@@ -1,0 +1,4 @@
+• Förbättrad beskrivning av exportdatabasalternativet i inställningar.
+• Fixade analys av YouTube-kommentarer.
+• Fixade visningsnamn för media.ccc.de tjänsten.
+• Uppdaterade översättningar.

@@ -2,6 +2,7 @@ package org.schabi.newpipe.database.playlist.dao;
 
 import androidx.room.Dao;
 import androidx.room.Query;
+import androidx.room.RewriteQueriesToDropUnusedColumns;
 import androidx.room.Transaction;
 
 import org.schabi.newpipe.database.BasicDAO;
@@ -52,6 +53,7 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
             + " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId")
     Flowable<Integer> getMaximumIndexOf(long playlistId);
 
+    @RewriteQueriesToDropUnusedColumns
     @Transaction
     @Query("SELECT * FROM " + STREAM_TABLE + " INNER JOIN "
             // get ids of streams of the given playlist

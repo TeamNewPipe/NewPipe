@@ -1,5 +1,9 @@
 package org.schabi.newpipe.player;
 
+import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
+import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -23,11 +27,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.PlaybackParameters;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.ActivityPlayerQueueControlBinding;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
-import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -41,13 +43,6 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
-import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public final class PlayQueueActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,
@@ -129,7 +124,7 @@ public final class PlayQueueActivity extends AppCompatActivity
                 NavigationHelper.openSettings(this);
                 return true;
             case R.id.action_append_playlist:
-                appendAllToPlaylist();
+                player.onAddToPlaylistClicked(getSupportFragmentManager());
                 return true;
             case R.id.action_playback_speed:
                 openPlaybackParameterDialog();
@@ -441,24 +436,6 @@ public final class PlayQueueActivity extends AppCompatActivity
         }
         queueControlBinding.seekDisplay.setVisibility(View.GONE);
         seeking = false;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////
-    // Playlist append
-    ////////////////////////////////////////////////////////////////////////////
-
-    private void appendAllToPlaylist() {
-        if (player != null && player.getPlayQueue() != null) {
-            openPlaylistAppendDialog(player.getPlayQueue().getStreams());
-        }
-    }
-
-    private void openPlaylistAppendDialog(final List<PlayQueueItem> playQueueItems) {
-        PlaylistDialog.createCorrespondingDialog(
-                getApplicationContext(),
-                playQueueItems.stream().map(StreamEntity::new).collect(Collectors.toList()),
-                dialog -> dialog.show(getSupportFragmentManager(), TAG)
-        );
     }
 
     ////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,11 @@
+Nieuw
+• Toon inhoud metadata (tags, categorieën, licentie, ...) onder de beschrijving
+• "Toon kanaal details" optie in afspeellijsten op afstand (niet-lokaal)
+• "Open in browser" optie toegevoegd aan lange-druk menu
+
+Fix
+• Rotatie crash op video detail pagina opgelost
+• "Play with Kodi" knop in speler vraagt altijd om Kore te installeren
+• Im- en export paden hersteld en verbeterd
+• [YouTube] Aantal reacties als opgelost
+En nog veel meer

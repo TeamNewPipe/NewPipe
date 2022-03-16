@@ -395,7 +395,6 @@
     <string name="max_retry_msg">Tentativas máximas</string>
     <string name="title_activity_history">Histórico</string>
     <string name="playback_pitch">Velocidade</string>
-    <string name="yes">Sim</string>
     <string name="error_download_resource_gone">Não é possível recuperar esta descarga</string>
     <string name="rename_playlist">Mudar nome</string>
     <string name="feed_group_dialog_empty_selection">Nenhuma subscrição selecionada</string>
@@ -688,4 +687,5 @@
 \nPor favor, instale um gestor de ficheiros compatível com o Storage Access Framework.</string>
     <string name="detail_pinned_comment_view_description">Comentário fixado</string>
     <string name="background_player_already_playing_toast">Já está a reproduzir em segundo plano</string>
+    <string name="leak_canary_not_available">LeakCanary não está disponível</string>
 </resources>

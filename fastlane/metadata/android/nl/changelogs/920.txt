@@ -1,0 +1,9 @@
+Verbeterd
+
+• Uploaddatum en weergave telling toegevoegd voor items in het stroomraster
+• Verbeteringen voor de lay-out van de koppen
+
+Opgelost
+
+• Vaste demp-knop veroorzaakt crashes op API 19
+• Probleem opgelost met het downloaden van lange 1080p 60fps-video's

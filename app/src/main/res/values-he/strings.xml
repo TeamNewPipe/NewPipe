@@ -58,7 +58,6 @@
     <string name="downloads_title">הורדות</string>
     <string name="error_report_title">דוח שגיאה</string>
     <string name="all">הכול</string>
-    <string name="yes">כן</string>
     <string name="disabled">מושבת</string>
     <string name="clear">ניקוי</string>
     <string name="general_error">שגיאה</string>
@@ -712,4 +711,5 @@
 \nנא להתקין מנהל קבצים שתומך בתשתית גישה לאחסון.</string>
     <string name="background_player_already_playing_toast">כבר מתנגן ברקע</string>
     <string name="detail_pinned_comment_view_description">הערה ננעצה</string>
+    <string name="leak_canary_not_available">LeakCanary אינה זמינה</string>
 </resources>

@@ -1,0 +1,7 @@
+Ładowanie wystarczającej liczby początkowych pozycji na listach, aby wypełnić cały ekran, oraz naprawiono przewijanie na tabletach i telewizorach
+Naprawiono losowe awarie podczas przewijania list
+Przesunięto nakładkę szybkiego przewijania odtwarzacza pod interfejs systemu
+Cofnięto zmiany przy odtwarzaniu w trybie wielu okien powodujące błędy na niektórych telefonach
+Podwyższono compileSdk z 30 do 31
+Zaktualizowano bibliotekę raportowania błędów
+Refaktoryzacja kodu odtwarzacza

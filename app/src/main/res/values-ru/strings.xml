@@ -86,7 +86,6 @@
     <string name="black_theme_title">Чёрная</string>
     <string name="popup_remember_size_pos_title">Помнить параметры окна</string>
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
-    <string name="yes">Да</string>
     <string name="clear">Очистить</string>
     <string name="all">Всё</string>
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия пакета:\\nВерсия ОС:</string>
@@ -704,4 +703,5 @@
 \nПожалуйста, установите файловый менеджер, совместимый со Storage Access Framework (SAF).</string>
     <string name="background_player_already_playing_toast">Уже проигрывается в фоне</string>
     <string name="detail_pinned_comment_view_description">Закреплённый комментарий</string>
+    <string name="leak_canary_not_available">LeakCanary недоступна</string>
 </resources>

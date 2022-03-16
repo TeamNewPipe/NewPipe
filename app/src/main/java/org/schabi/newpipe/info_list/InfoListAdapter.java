@@ -2,6 +2,7 @@ package org.schabi.newpipe.info_list;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -10,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.schabi.newpipe.database.stream.model.StreamStateEntity;
+import org.schabi.newpipe.databinding.PignateFooterBinding;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
@@ -34,6 +35,7 @@ import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 /*
  * Created by Christian Schabesberger on 01.08.16.
@@ -74,18 +76,20 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int MINI_COMMENT_HOLDER_TYPE = 0x400;
     private static final int COMMENT_HOLDER_TYPE = 0x401;
 
+    private final LayoutInflater layoutInflater;
     private final InfoItemBuilder infoItemBuilder;
-    private final ArrayList<InfoItem> infoItemList;
+    private final List<InfoItem> infoItemList;
     private final HistoryRecordManager recordManager;
 
     private boolean useMiniVariant = false;
     private boolean useGridVariant = false;
     private boolean showFooter = false;
-    private View header = null;
-    private View footer = null;
+
+    private Supplier<View> headerSupplier = null;
 
     public InfoListAdapter(final Context context) {
-        this.recordManager = new HistoryRecordManager(context);
+        layoutInflater = LayoutInflater.from(context);
+        recordManager = new HistoryRecordManager(context);
         infoItemBuilder = new InfoItemBuilder(context);
         infoItemList = new ArrayList<>();
     }
@@ -129,54 +133,17 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (DEBUG) {
             Log.d(TAG, "addInfoItemList() after > offsetStart = " + offsetStart + ", "
                     + "infoItemList.size() = " + infoItemList.size() + ", "
-                    + "header = " + header + ", footer = " + footer + ", "
+                    + "hasHeader = " + hasHeader() + ", "
                     + "showFooter = " + showFooter);
         }
         notifyItemRangeInserted(offsetStart, data.size());
 
-        if (footer != null && showFooter) {
+        if (showFooter) {
             final int footerNow = sizeConsideringHeaderOffset();
             notifyItemMoved(offsetStart, footerNow);
 
             if (DEBUG) {
                 Log.d(TAG, "addInfoItemList() footer from " + offsetStart
-                        + " to " + footerNow);
-            }
-        }
-    }
-
-    public void setInfoItemList(final List<? extends InfoItem> data) {
-        infoItemList.clear();
-        infoItemList.addAll(data);
-        notifyDataSetChanged();
-    }
-
-    public void addInfoItem(@Nullable final InfoItem data) {
-        if (data == null) {
-            return;
-        }
-        if (DEBUG) {
-            Log.d(TAG, "addInfoItem() before > infoItemList.size() = "
-                    + infoItemList.size() + ", thread = " + Thread.currentThread());
-        }
-
-        final int positionInserted = sizeConsideringHeaderOffset();
-        infoItemList.add(data);
-
-        if (DEBUG) {
-            Log.d(TAG, "addInfoItem() after > position = " + positionInserted + ", "
-                    + "infoItemList.size() = " + infoItemList.size() + ", "
-                    + "header = " + header + ", footer = " + footer + ", "
-                    + "showFooter = " + showFooter);
-        }
-        notifyItemInserted(positionInserted);
-
-        if (footer != null && showFooter) {
-            final int footerNow = sizeConsideringHeaderOffset();
-            notifyItemMoved(positionInserted, footerNow);
-
-            if (DEBUG) {
-                Log.d(TAG, "addInfoItem() footer from " + positionInserted
                         + " to " + footerNow);
             }
         }
@@ -190,16 +157,16 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
-    public void setHeader(final View header) {
-        final boolean changed = header != this.header;
-        this.header = header;
+    public void setHeaderSupplier(@Nullable final Supplier<View> headerSupplier) {
+        final boolean changed = headerSupplier != this.headerSupplier;
+        this.headerSupplier = headerSupplier;
         if (changed) {
             notifyDataSetChanged();
         }
     }
 
-    public void setFooter(final View view) {
-        this.footer = view;
+    protected boolean hasHeader() {
+        return this.headerSupplier != null;
     }
 
     public void showFooter(final boolean show) {
@@ -219,48 +186,49 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private int sizeConsideringHeaderOffset() {
-        final int i = infoItemList.size() + (header != null ? 1 : 0);
+        final int i = infoItemList.size() + (hasHeader() ? 1 : 0);
         if (DEBUG) {
             Log.d(TAG, "sizeConsideringHeaderOffset() called → " + i);
         }
         return i;
     }
 
-    public ArrayList<InfoItem> getItemsList() {
+    public List<InfoItem> getItemsList() {
         return infoItemList;
     }
 
     @Override
     public int getItemCount() {
         int count = infoItemList.size();
-        if (header != null) {
+        if (hasHeader()) {
             count++;
         }
-        if (footer != null && showFooter) {
+        if (showFooter) {
             count++;
         }
 
         if (DEBUG) {
             Log.d(TAG, "getItemCount() called with: "
                     + "count = " + count + ", infoItemList.size() = " + infoItemList.size() + ", "
-                    + "header = " + header + ", footer = " + footer + ", "
+                    + "hasHeader = " + hasHeader() + ", "
                     + "showFooter = " + showFooter);
         }
         return count;
     }
 
+    @SuppressWarnings("FinalParameters")
     @Override
     public int getItemViewType(int position) {
         if (DEBUG) {
             Log.d(TAG, "getItemViewType() called with: position = [" + position + "]");
         }
 
-        if (header != null && position == 0) {
+        if (hasHeader() && position == 0) {
             return HEADER_TYPE;
-        } else if (header != null) {
+        } else if (hasHeader()) {
             position--;
         }
-        if (footer != null && position == infoItemList.size() && showFooter) {
+        if (position == infoItemList.size() && showFooter) {
             return FOOTER_TYPE;
         }
         final InfoItem item = infoItemList.get(position);
@@ -290,10 +258,16 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     + "parent = [" + parent + "], type = [" + type + "]");
         }
         switch (type) {
+            // #4475 and #3368
+            // Always create a new instance otherwise the same instance
+            // is sometimes reused which causes a crash
             case HEADER_TYPE:
-                return new HFHolder(header);
+                return new HFHolder(headerSupplier.get());
             case FOOTER_TYPE:
-                return new HFHolder(footer);
+                return new HFHolder(PignateFooterBinding
+                        .inflate(layoutInflater, parent, false)
+                        .getRoot()
+                );
             case MINI_STREAM_HOLDER_TYPE:
                 return new StreamMiniInfoItemHolder(infoItemBuilder, parent);
             case STREAM_HOLDER_TYPE:
@@ -322,42 +296,17 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder,
+                                 final int position) {
         if (DEBUG) {
             Log.d(TAG, "onBindViewHolder() called with: "
                     + "holder = [" + holder.getClass().getSimpleName() + "], "
                     + "position = [" + position + "]");
         }
         if (holder instanceof InfoItemHolder) {
-            // If header isn't null, offset the items by -1
-            if (header != null) {
-                position--;
-            }
-
-            ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position), recordManager);
-        } else if (holder instanceof HFHolder && position == 0 && header != null) {
-            ((HFHolder) holder).view = header;
-        } else if (holder instanceof HFHolder && position == sizeConsideringHeaderOffset()
-                && footer != null && showFooter) {
-            ((HFHolder) holder).view = footer;
-        }
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position,
-                                 @NonNull final List<Object> payloads) {
-        if (!payloads.isEmpty() && holder instanceof InfoItemHolder) {
-            for (final Object payload : payloads) {
-                if (payload instanceof StreamStateEntity) {
-                    ((InfoItemHolder) holder).updateState(infoItemList
-                            .get(header == null ? position : position - 1), recordManager);
-                } else if (payload instanceof Boolean) {
-                    ((InfoItemHolder) holder).updateState(infoItemList
-                            .get(header == null ? position : position - 1), recordManager);
-                }
-            }
-        } else {
-            onBindViewHolder(holder, position);
+            ((InfoItemHolder) holder).updateFromItem(
+                    // If header is present, offset the items by -1
+                    infoItemList.get(hasHeader() ? position - 1 : position), recordManager);
         }
     }
 
@@ -371,12 +320,9 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         };
     }
 
-    public static class HFHolder extends RecyclerView.ViewHolder {
-        public View view;
-
+    static class HFHolder extends RecyclerView.ViewHolder {
         HFHolder(final View v) {
             super(v);
-            view = v;
         }
     }
 }

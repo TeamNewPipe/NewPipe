@@ -1,0 +1,4 @@
+Hotfix
+• Åtgärda miniatyrer och titlar som klipptes av i rutnätslayouten på grund av en felaktig beräkning av hur många videor som får plats på en rad
+• Fixa att nedladdningsdialogrutan försvinner utan att göra något om den öppnas från delningsmenyn
+• Uppdatera ett bibliotek relaterat till att öppna externa aktiviteter som filväljaren Storage Access Framework

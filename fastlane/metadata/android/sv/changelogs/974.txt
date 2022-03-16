@@ -1,0 +1,5 @@
+Hotfix
+• Åtgärda buffringsproblem som orsakas av YouTube strypning
+• Åtgärda extraktion av YouTube kommentarer och kraschar med inaktiverade kommentarer
+• Fixade YouTube musiksökning
+• Fixade PeerTube live sändningar

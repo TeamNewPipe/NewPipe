@@ -88,7 +88,6 @@
     <string name="black_theme_title">Schwarz</string>
     <string name="title_activity_recaptcha">reCAPTCHA-Aufgabe</string>
     <string name="recaptcha_request_toast">reCAPTCHA-Aufgabe angefordert</string>
-    <string name="yes">Ja</string>
     <string name="all">Alle</string>
     <string name="disabled">Deaktiviert</string>
     <string name="open_in_popup_mode">Im Pop-up-Modus öffnen</string>
@@ -600,7 +599,7 @@
     <string name="youtube_music_premium_content">Dieses Video ist nur für YouTube Music Premium-Mitglieder verfügbar und kann daher nicht von NewPipe gestreamt oder heruntergeladen werden.</string>
     <string name="soundcloud_go_plus_content">Dies ist ein SoundCloud Go+ Track, zumindest in deinem Land, kann er von NewPipe nicht gestreamt oder heruntergeladen werden.</string>
     <string name="georestricted_content">Dieser Inhalt ist in deinem Land nicht verfügbar.</string>
-    <string name="crash_the_app">Absturz der App</string>
+    <string name="crash_the_app">App abstürzen lassen</string>
     <string name="restricted_video_no_stream">Dieses Video ist altersbeschränkt.
 \nAufgrund neuer YouTube-Richtlinien mit altersbeschränkten Videos kann NewPipe auf keinen dieser Videostreams zugreifen und ist daher nicht in der Lage, es abzuspielen.</string>
     <string name="radio">Radio</string>
@@ -673,8 +672,8 @@
     <string name="checking_updates_toast">Suche nach Aktualisierungen…</string>
     <string name="manual_update_description">Manuelle Prüfung auf neue Versionen</string>
     <string name="feed_new_items">Neue Feed-Elemente</string>
-    <string name="show_crash_the_player_title">\"Absturz des Players\" anzeigen</string>
-    <string name="crash_the_player">Absturz des Players</string>
+    <string name="show_crash_the_player_title">\"Player abstürzen lassen\" anzeigen</string>
+    <string name="crash_the_player">Player abstürzen lassen</string>
     <string name="show_crash_the_player_summary">Zeigt eine Absturzoption an, wenn der Player verwendet wird</string>
     <string name="error_report_channel_name">Benachrichtigung über Fehlerberichte</string>
     <string name="error_report_channel_description">Benachrichtigungen zur Meldung von Fehlern</string>
@@ -688,4 +687,5 @@
 \nBitte installiere einen Storage Access Framework kompatiblen Dateimanager.</string>
     <string name="background_player_already_playing_toast">Wird bereits im Hintergrund abgespielt</string>
     <string name="detail_pinned_comment_view_description">Angehefteter Kommentar</string>
+    <string name="leak_canary_not_available">LeakCanary ist nicht verfügbar</string>
 </resources>

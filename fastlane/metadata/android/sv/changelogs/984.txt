@@ -1,0 +1,7 @@
+Ladda in tillräckligt många inledande objekt i listor för att fylla hela skärmen och för att åtgärda rullning på surfplattor och TV-apparater
+Fixa slumpmässiga krascher vid rullning i listor
+Lät spelarens snabbsöks funktion gå under systemets användargränssnitt
+Tog bort ändringar av utskärningar när man spelar i flera fönster, vilket orsakade en felplacerad spelare på vissa telefoner
+Öka compileSdk från 30 till 31
+Uppdatera biblioteket för felrapportering
+Refaktorisering av viss kod i spelaren
