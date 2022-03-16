@@ -1,7 +1,8 @@
 package org.schabi.newpipe.info_list.dialog;
 
-import static org.schabi.newpipe.info_list.dialog.StreamDialogEntry.fetchItemInfoIfSparse;
 import static org.schabi.newpipe.util.NavigationHelper.openChannelFragment;
+import static org.schabi.newpipe.util.SparseItemUtil.fetchItemInfoIfSparse;
+import static org.schabi.newpipe.util.SparseItemUtil.fetchUploaderUrlIfSparse;
 
 import android.net.Uri;
 
@@ -14,7 +15,6 @@ import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.SaveUploaderUrlHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
@@ -40,8 +40,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
  */
 public enum StreamDialogDefaultEntry {
     SHOW_CHANNEL_DETAILS(R.string.show_channel_details, (fragment, item) ->
-        SaveUploaderUrlHelper.saveUploaderUrlIfNeeded(fragment, item,
-                uploaderUrl -> openChannelFragment(fragment, item, uploaderUrl))
+            fetchUploaderUrlIfSparse(fragment.requireContext(), item.getServiceId(), item.getUrl(),
+                    item.getUploaderUrl(), url -> openChannelFragment(fragment, item, url))
     ),
 
     /**

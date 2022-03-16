@@ -601,7 +601,6 @@
 \nDegut a la nova política d\'edat de YouTube, el NewPipe no pot accedir a aquest contingut i per tant no pot reproduir-lo.</string>
     <string name="show_description_summary">Desactiveu per amagar la descripció i la informació addicional del vídeo</string>
     <string name="disable_media_tunneling_title">Desactiva l\'entunelament del contingut</string>
-    <string name="loading_channel_details">Carregant detalls del canal…</string>
     <string name="off">Desactiva</string>
     <string name="on">Activa</string>
     <string name="tablet_mode_title">Mode tablet</string>
@@ -671,7 +670,6 @@
     <string name="error_report_notification_title">NewPipe ha trobat un error, toca per informar</string>
     <string name="enqueue_next_stream">Posa a la cua el següent vídeo</string>
     <string name="create_error_notification">Crear una notificació d\'error</string>
-    <string name="error_show_channel_details">Error en mostrar els detalls del canal</string>
     <string name="error_report_channel_description">Notificacions per informar d\'errors</string>
     <string name="show_error_snackbar">Mostra una barra d\'errors</string>
     <string name="checking_updates_toast">S\'estan comprovant les actualitzacions…</string>

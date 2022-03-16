@@ -646,8 +646,6 @@
     <string name="high_quality_larger">Kalitate handia (handiagoa)</string>
     <string name="seekbar_preview_thumbnail_title">Seekbarren miniaturen aurrebista</string>
     <string name="comments_are_disabled">Iruzkinak desaktibatuta daude</string>
-    <string name="loading_channel_details">Kanalaren xehetasunak kargatzen…</string>
-    <string name="error_show_channel_details">Errorea kanalaren xehetasunak erakustean</string>
     <string name="detail_heart_img_view_description">Sortzaileak baloratua</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Deskarga %1$s ezabatuta</item>

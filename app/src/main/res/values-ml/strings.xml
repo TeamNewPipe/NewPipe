@@ -611,8 +611,6 @@
     <string name="detail_heart_img_view_description">സ്നേഹത്തോടെ സൃഷ്ടാവ്</string>
     <string name="description_select_disable">ഡിസ്ക്രിപ്ഷനിലെ ടെക്സ്റ്റ്‌ സെലക്ട്‌ ചെയ്യുവാൻ അനുവദിക്കാതെ ഇരിക്കുക</string>
     <string name="description_select_enable">ഡിസ്ക്രിപ്ഷനിലെ ടെക്സ്റ്റ്‌ സെലക്ട്‌ ചെയ്യാൻ അനുവദിക്കുക</string>
-    <string name="loading_channel_details">ചാനൽ വിശദാംശങ്ങൾ ലോഡ് ചെയ്യുന്നു…</string>
-    <string name="error_show_channel_details">ചാനൽ വിശദാംശങ്ങൾ കാണിക്കുന്നതിൽ പിശക് സംഭവിച്ചു</string>
     <string name="off">ഓഫ്‌</string>
     <string name="on">ഓൺ</string>
     <string name="open_website_license">വെബ്സൈറ്റ് തുറക്കുക</string>

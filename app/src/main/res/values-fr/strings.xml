@@ -650,8 +650,6 @@
     <string name="seekbar_preview_thumbnail_title">Prévisualisation de la barre de progression sur la miniature</string>
     <string name="mark_as_watched">Marquer comme visionné</string>
     <string name="detail_heart_img_view_description">Apprécié par le créateur</string>
-    <string name="loading_channel_details">Chargement des détails du canal…</string>
-    <string name="error_show_channel_details">Erreur lors de l’affichage des détails du canal</string>
     <string name="show_image_indicators_title">Afficher les indicateurs d’image</string>
     <string name="remote_search_suggestions">Suggestions de recherche distante</string>
     <string name="local_search_suggestions">Suggestions de recherche locale</string>

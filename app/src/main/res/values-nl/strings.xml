@@ -641,8 +641,6 @@
     <string name="downloads_storage_use_saf_summary_api_19">Het \'Storage Access Framework\' is niet ondersteund op Android KitKat en lager</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">U wordt gevraagd waar elk bestand wordt opgeslagen</string>
     <string name="no_dir_yet">Nog geen downloadfolder gekozen, kies de standaard downloadfolder</string>
-    <string name="loading_channel_details">Kanaaldetails laden…</string>
-    <string name="error_show_channel_details">Error tijdens tonen van kanaal details</string>
     <string name="detail_heart_img_view_description">Geliefd door de maker</string>
     <string name="dont_show">Niet laten zien</string>
     <string name="low_quality_smaller">Lage kwaliteit (kleiner)</string>

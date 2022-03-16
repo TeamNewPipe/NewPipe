@@ -637,8 +637,6 @@
     <string name="comments_are_disabled">Bình luận đang bị tắt</string>
     <string name="detail_heart_img_view_description">Đã được người tạo gắn tim</string>
     <string name="mark_as_watched">Đánh dấu là đã xem</string>
-    <string name="loading_channel_details">Đang tải chi tiết kênh…</string>
-    <string name="error_show_channel_details">Lỗi tại Hiện chi tiết kênh</string>
     <string name="show_image_indicators_summary">Hiện ruy băng được tô màu Picasso ở trên cùng các hình ảnh và chỉ ra nguồn của chúng: đỏ đối với mạng, xanh lam đối với ổ đĩa và xanh lá đối với bộ nhớ</string>
     <string name="show_image_indicators_title">Hiện dấu chỉ hình ảnh</string>
     <string name="remote_search_suggestions">Đề xuất tìm kiếm trên mạng</string>

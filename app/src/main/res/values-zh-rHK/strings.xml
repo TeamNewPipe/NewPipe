@@ -459,7 +459,6 @@
     <string name="error_http_unsupported_range">伺服器唔接受多執行緒下載，請改用 @string/msg_threads = 1 再試下啦</string>
     <string name="error_connect_host">連接唔到伺服器</string>
     <string name="playlist_page_summary">播放清單頁面</string>
-    <string name="loading_channel_details">載入緊頻道詳情…</string>
     <string name="hold_to_append">撳住就輪候</string>
     <string name="error_path_creation">目的地資料夾建立唔到</string>
     <string name="error_ssl_exception">建立唔到安全連線</string>
@@ -525,7 +524,6 @@
     <string name="detail_heart_img_view_description">創作者畀咗心心</string>
     <string name="open_website_license">開啟網站</string>
     <string name="off">關</string>
-    <string name="error_show_channel_details">顯示頻道詳情嘅時候有問題</string>
     <string name="metadata_host">主機</string>
     <string name="show_hold_to_append_summary">喺影片「詳情：」度撳一下「幕後播」或者「浮面播」個掣嘅時候顯示提示</string>
     <string name="title_activity_history">紀錄</string>
