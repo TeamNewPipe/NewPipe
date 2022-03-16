@@ -42,6 +42,6 @@ class PlaybackSpeedClickListener(
             player.isSomePopupMenuVisible = true
         }
 
-        player.afterOnClick(v)
+        player.manageControlsAfterOnClick(v)
     }
 }

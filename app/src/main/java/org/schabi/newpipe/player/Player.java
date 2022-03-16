@@ -3759,14 +3759,14 @@ public final class Player implements
             context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
         }
 
-        afterOnClick(v);
+        manageControlsAfterOnClick(v);
     }
 
     /**
-     * Function that should be executed after a click occured on the player UI.
+     * Manages the controls after a click occurred on the player UI.
      * @param v – The view that was clicked
      */
-    public void afterOnClick(@NonNull final View v) {
+    public void manageControlsAfterOnClick(@NonNull final View v) {
         if (currentState == STATE_COMPLETED) {
             return;
         }

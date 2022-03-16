@@ -36,6 +36,6 @@ class QualityClickListener(
         }
 
         player.saveWasPlaying()
-        player.afterOnClick(v)
+        player.manageControlsAfterOnClick(v)
     }
 }
