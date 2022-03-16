@@ -1,0 +1,8 @@
+### Îmbunătățiri
+- A fost adăugată posibilitatea de a limita calitatea video în cazul în care se utilizează date mobile. #1339
+- Memorizare luminozitate pentru sesiune #1442
+- Îmbunătățirea performanțelor de descărcare pentru procesoarele mai slabe #1431
+- Adăugare suport (în lucru) pentru sesiunea media #1433
+
+### Fix
+- Corectarea blocării la deschiderea descărcărilor (corecția este acum disponibilă pentru versiunile de lansare) #1441
