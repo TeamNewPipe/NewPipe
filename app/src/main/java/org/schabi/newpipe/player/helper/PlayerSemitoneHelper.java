@@ -9,7 +9,7 @@ package org.schabi.newpipe.player.helper;
  * </a>
  */
 public final class PlayerSemitoneHelper {
-    public static final int TONES = 12;
+    public static final int SEMITONE_COUNT = 12;
 
     private PlayerSemitoneHelper() {
         // No impl
@@ -24,14 +24,15 @@ public final class PlayerSemitoneHelper {
     }
 
     public static double semitonesToPercent(final int semitones) {
-        return Math.pow(2, ensureSemitonesInRange(semitones) / (double) TONES);
+        return Math.pow(2, ensureSemitonesInRange(semitones) / (double) SEMITONE_COUNT);
     }
 
     public static int percentToSemitones(final double percent) {
-        return ensureSemitonesInRange((int) Math.round(TONES * Math.log(percent) / Math.log(2)));
+        return ensureSemitonesInRange(
+                (int) Math.round(SEMITONE_COUNT * Math.log(percent) / Math.log(2)));
     }
 
     private static int ensureSemitonesInRange(final int semitones) {
-        return Math.max(-TONES, Math.min(TONES, semitones));
+        return Math.max(-SEMITONE_COUNT, Math.min(SEMITONE_COUNT, semitones));
     }
 }

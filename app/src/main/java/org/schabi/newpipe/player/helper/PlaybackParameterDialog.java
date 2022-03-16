@@ -44,8 +44,8 @@ public class PlaybackParameterDialog extends DialogFragment {
     private static final String TAG = "PlaybackParameterDialog";
 
     // Minimum allowable range in ExoPlayer
-    private static final double MIN_PLAYBACK_VALUE = 0.10f;
-    private static final double MAX_PLAYBACK_VALUE = 3.00f;
+    private static final double MIN_PITCH_OR_SPEED = 0.10f;
+    private static final double MAX_PITCH_OR_SPEED = 3.00f;
 
     private static final boolean PITCH_CTRL_MODE_PERCENT = false;
     private static final boolean PITCH_CTRL_MODE_SEMITONE = true;
@@ -62,8 +62,8 @@ public class PlaybackParameterDialog extends DialogFragment {
     private static final boolean DEFAULT_SKIP_SILENCE = false;
 
     private static final SliderStrategy QUADRATIC_STRATEGY = new SliderStrategy.Quadratic(
-            MIN_PLAYBACK_VALUE,
-            MAX_PLAYBACK_VALUE,
+            MIN_PITCH_OR_SPEED,
+            MAX_PITCH_OR_SPEED,
             1.00f,
             10_000);
 
@@ -177,10 +177,10 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private void initUI() {
         // Tempo
-        setText(binding.tempoMinimumText, PlayerHelper::formatSpeed, MIN_PLAYBACK_VALUE);
-        setText(binding.tempoMaximumText, PlayerHelper::formatSpeed, MAX_PLAYBACK_VALUE);
+        setText(binding.tempoMinimumText, PlayerHelper::formatSpeed, MIN_PITCH_OR_SPEED);
+        setText(binding.tempoMaximumText, PlayerHelper::formatSpeed, MAX_PITCH_OR_SPEED);
 
-        binding.tempoSeekbar.setMax(QUADRATIC_STRATEGY.progressOf(MAX_PLAYBACK_VALUE));
+        binding.tempoSeekbar.setMax(QUADRATIC_STRATEGY.progressOf(MAX_PITCH_OR_SPEED));
         setAndUpdateTempo(tempo);
         binding.tempoSeekbar.setOnSeekBarChangeListener(
                 getTempoOrPitchSeekbarChangeListener(
@@ -215,10 +215,10 @@ public class PlaybackParameterDialog extends DialogFragment {
         changePitchControlMode(isCurrentPitchControlModeSemitone());
 
         // Pitch - Percent
-        setText(binding.pitchPercentMinimumText, PlayerHelper::formatPitch, MIN_PLAYBACK_VALUE);
-        setText(binding.pitchPercentMaximumText, PlayerHelper::formatPitch, MAX_PLAYBACK_VALUE);
+        setText(binding.pitchPercentMinimumText, PlayerHelper::formatPitch, MIN_PITCH_OR_SPEED);
+        setText(binding.pitchPercentMaximumText, PlayerHelper::formatPitch, MAX_PITCH_OR_SPEED);
 
-        binding.pitchPercentSeekbar.setMax(QUADRATIC_STRATEGY.progressOf(MAX_PLAYBACK_VALUE));
+        binding.pitchPercentSeekbar.setMax(QUADRATIC_STRATEGY.progressOf(MAX_PITCH_OR_SPEED));
         setAndUpdatePitch(pitchPercent);
         binding.pitchPercentSeekbar.setOnSeekBarChangeListener(
                 getTempoOrPitchSeekbarChangeListener(
@@ -557,12 +557,12 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private double calcValidTempo(final double newTempo) {
-        return Math.max(MIN_PLAYBACK_VALUE, Math.min(MAX_PLAYBACK_VALUE, newTempo));
+        return Math.max(MIN_PITCH_OR_SPEED, Math.min(MAX_PITCH_OR_SPEED, newTempo));
     }
 
     private double calcValidPitch(final double newPitch) {
         final double calcPitch =
-                Math.max(MIN_PLAYBACK_VALUE, Math.min(MAX_PLAYBACK_VALUE, newPitch));
+                Math.max(MIN_PITCH_OR_SPEED, Math.min(MAX_PITCH_OR_SPEED, newPitch));
 
         if (!isCurrentPitchControlModeSemitone()) {
             return calcPitch;
