@@ -3,7 +3,7 @@ package org.schabi.newpipe.player.listeners.view
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
-import android.widget.PopupMenu
+import androidx.appcompat.widget.PopupMenu
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.extractor.MediaFormat
 import org.schabi.newpipe.player.Player
