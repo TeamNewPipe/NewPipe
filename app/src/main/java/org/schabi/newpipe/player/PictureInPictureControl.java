@@ -43,16 +43,16 @@ public interface PictureInPictureControl {
 
         @Override
         public void onUserLeaveHint(@NonNull final Activity activity) {
+            if (!shouldEnterPip(activity)) {
+                return;
+            }
+
             if (pipSupported == null) {
                 pipSupported = isPipSupported(activity);
             }
 
             if (!pipSupported) {
                 showPipSupportMissing(activity);
-                return;
-            }
-
-            if (!shouldEnterPip(activity)) {
                 return;
             }
 
