@@ -27,6 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.ShareCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.view.ViewCompat;
@@ -369,22 +370,11 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     private void shareFile(Mission mission) {
         if (checkInvalidFile(mission)) return;
 
-        final Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.setType(resolveMimeType(mission));
-        shareIntent.putExtra(Intent.EXTRA_STREAM, resolveShareableUri(mission));
-        shareIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
-
-        final Intent intent = new Intent(Intent.ACTION_CHOOSER);
-        intent.putExtra(Intent.EXTRA_INTENT, shareIntent);
-        // unneeded to set a title to the chooser on Android P and higher because the system
-        // ignores this title on these versions
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
-            intent.putExtra(Intent.EXTRA_TITLE, mContext.getString(R.string.share_dialog_title));
-        }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
-
-        mContext.startActivity(intent);
+        new ShareCompat.IntentBuilder(mContext)
+                .setType(resolveMimeType(mission))
+                .setStream(resolveShareableUri(mission))
+                .setChooserTitle(R.string.share_dialog_title)
+                .startChooser();
     }
 
     /**

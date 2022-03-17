@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.Build;
 import android.text.TextUtils;
 import android.widget.Toast;
 
@@ -164,42 +163,12 @@ public final class ShareUtils {
     private static void openAppChooser(@NonNull final Context context,
                                        @NonNull final Intent intent,
                                        final boolean setTitleChooser) {
-        final Intent chooserIntent = new Intent(Intent.ACTION_CHOOSER);
-        chooserIntent.putExtra(Intent.EXTRA_INTENT, intent);
-        chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        String title = null;
         if (setTitleChooser) {
-            chooserIntent.putExtra(Intent.EXTRA_TITLE, context.getString(R.string.open_with));
+            title = context.getString(R.string.open_with);
         }
 
-        // Migrate any clip data and flags from the original intent.
-        final int permFlags;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            permFlags = intent.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION
-                    | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                    | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
-                    | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
-        } else {
-            permFlags = intent.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION
-                    | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                    | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
-        }
-        if (permFlags != 0) {
-            ClipData targetClipData = intent.getClipData();
-            if (targetClipData == null && intent.getData() != null) {
-                final ClipData.Item item = new ClipData.Item(intent.getData());
-                final String[] mimeTypes;
-                if (intent.getType() != null) {
-                    mimeTypes = new String[] {intent.getType()};
-                } else {
-                    mimeTypes = new String[] {};
-                }
-                targetClipData = new ClipData(null, mimeTypes, item);
-            }
-            if (targetClipData != null) {
-                chooserIntent.setClipData(targetClipData);
-                chooserIntent.addFlags(permFlags);
-            }
-        }
+        final Intent chooserIntent = Intent.createChooser(intent, title);
         context.startActivity(chooserIntent);
     }
 
