@@ -146,6 +146,7 @@
                 <data android:pathPrefix="/embed/" />
                 <data android:pathPrefix="/watch" />
                 <data android:pathPrefix="/attribution_link" />
+                <data android:pathPrefix="/shorts/" />
                 <!-- channel prefix -->
                 <data android:pathPrefix="/channel/" />
                 <data android:pathPrefix="/user/" />
@@ -224,6 +225,7 @@
 
                 <data android:scheme="http" />
                 <data android:scheme="https" />
+                <data android:host="tubus.eduvid.org" />
                 <data android:host="invidio.us" />
                 <data android:host="dev.invidio.us" />
                 <data android:host="www.invidio.us" />
@@ -251,6 +253,21 @@
                 <data android:host="ytb.trom.tf" />
                 <data android:host="yt.cyberhost.uk" />
                 <data android:host="y.com.cm" />
+                <data android:pathPrefix="/" />
+            </intent-filter>
+
+            <!-- y2u.be filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="y2u.be" />
                 <data android:pathPrefix="/" />
             </intent-filter>
 
@@ -309,6 +326,7 @@
                 <data android:scheme="http" />
                 <data android:scheme="https" />
 
+                <data android:host="eduvid.org" />
                 <data android:host="framatube.org" />
                 <data android:host="media.assassinate-you.net" />
                 <data android:host="peertube.co.uk" />
@@ -320,10 +338,15 @@
                 <data android:host="video.ploud.fr" />
                 <data android:host="video.lqdn.fr" />
                 <data android:host="skeptikon.fr" />
+                <data android:host="media.fsfe.org" />
 
                 <data android:pathPrefix="/videos/" /> <!-- it contains playlists -->
+                <data android:pathPrefix="/w/" /> <!-- short video URLs -->
+                <data android:pathPrefix="/w/p/" /> <!-- short playlist URLs -->
                 <data android:pathPrefix="/accounts/" />
+                <data android:pathPrefix="/a/" /> <!-- short account URLs -->
                 <data android:pathPrefix="/video-channels/" />
+                <data android:pathPrefix="/c/" /> <!-- short video-channels URLs -->
             </intent-filter>
 
             <!-- Bandcamp filter for tracks, albums and playlists -->

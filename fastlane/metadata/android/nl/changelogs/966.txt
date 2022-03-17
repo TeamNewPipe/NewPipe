@@ -1,0 +1,14 @@
+Nieuw:
+- Nieuwe dienst toegevoegd: Bandcamp
+
+Verbeterd:
+- Optie toegevoegd om de app het thema van het toestel te laten volgen
+- Voorkom sommige crashes door een verbeterd foutpaneel te tonen
+- Toon meer informatie over waarom inhoud niet beschikbaar is
+- Hardware spatie knop activeert afspelen/pauzeren
+- Toon "Download gestart" toast
+
+Opgelost:
+- Zeer kleine miniatuur in video details bij afspelen op de achtergrond
+- Lege titel in geminimaliseerde speler
+- Laatste resize modus is niet correct

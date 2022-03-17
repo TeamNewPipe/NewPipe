@@ -118,10 +118,6 @@ class AboutActivity : AppCompatActivity() {
                 "https://developer.android.com/jetpack", StandardLicenses.APACHE2
             ),
             SoftwareComponent(
-                "CircleImageView", "2014 - 2020", "Henning Dodenhof",
-                "https://github.com/hdodenhof/CircleImageView", StandardLicenses.APACHE2
-            ),
-            SoftwareComponent(
                 "ExoPlayer", "2014 - 2020", "Google, Inc.",
                 "https://github.com/google/ExoPlayer", StandardLicenses.APACHE2
             ),
@@ -185,7 +181,11 @@ class AboutActivity : AppCompatActivity() {
             SoftwareComponent(
                 "RxJava", "2016 - 2020", "RxJava Contributors",
                 "https://github.com/ReactiveX/RxJava", StandardLicenses.APACHE2
-            )
+            ),
+            SoftwareComponent(
+                "SearchPreference", "2018", "ByteHamster",
+                "https://github.com/ByteHamster/SearchPreference", StandardLicenses.MIT
+            ),
         )
         private const val POS_ABOUT = 0
         private const val POS_LICENSE = 1

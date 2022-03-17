@@ -97,7 +97,6 @@
     <string name="playlists">Плэйлісты</string>
     <string name="tracks">Дарожкі</string>
     <string name="users">Карыстальнікі</string>
-    <string name="yes">Так</string>
     <string name="disabled">Адключана</string>
     <string name="clear">Ачысціць</string>
     <string name="best_resolution">Лепшае разрозненне</string>
@@ -153,7 +152,6 @@
     <string name="info_labels">Што:\\nЗапыт:\\nМова кантэнту:\\nСэрвіс:\\nЧас па Грынвічы:\\nПакет:\\nВерсія:\\nВерсія АС:</string>
     <string name="your_comment">Ваш каментар (English):</string>
     <string name="error_details_headline">Падрабязнасці:</string>
-    <string name="list_thumbnail_view_description">Мініяцюра відэа-прэв\'ю</string>
     <string name="detail_thumbnail_view_description">Мініяцюра відэа-прэв\'ю</string>
     <string name="detail_uploader_thumbnail_view_description">Мініяцюра аватара карыстальніка</string>
     <string name="detail_likes_img_view_description">Спадабалася</string>
@@ -274,7 +272,7 @@
     <string name="create_playlist">Стварыць плэйліст</string>
     <string name="rename_playlist">Перайменаваць</string>
     <string name="name">Імя</string>
-    <string name="append_playlist">Дадаць у плэйліст</string>
+    <string name="add_to_playlist">Дадаць у плэйліст</string>
     <string name="set_as_playlist_thumbnail">На мініяцюру плэйліста</string>
     <string name="bookmark_playlist">Дадаць плэйліст у закладкі</string>
     <string name="unbookmark_playlist">Выдаліць закладку</string>

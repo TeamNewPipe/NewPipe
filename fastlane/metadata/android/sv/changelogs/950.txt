@@ -1,0 +1,4 @@
+Den här versionen innehåller tre små korrigeringar:
+• Fixade lagringsåtkomst på Android 10+
+• Fixade öppningskiosker
+• Fixade varaktighetstolkning av långa videor

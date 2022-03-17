@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.SimpleCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.TouchCallback
 import icepick.Icepick
 import icepick.State
@@ -38,7 +37,7 @@ class FeedGroupReorderDialog : DialogFragment() {
     @State
     @JvmField
     var groupOrderedIdList = ArrayList<Long>()
-    private val groupAdapter = GroupAdapter<GroupieViewHolder>()
+    private val groupAdapter = GroupieAdapter()
     private val itemTouchHelper = ItemTouchHelper(getItemTouchCallback())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -113,8 +112,8 @@ class FeedGroupReorderDialog : DialogFragment() {
                 source: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean {
-                val sourceIndex = source.adapterPosition
-                val targetIndex = target.adapterPosition
+                val sourceIndex = source.bindingAdapterPosition
+                val targetIndex = target.bindingAdapterPosition
 
                 groupAdapter.notifyItemMoved(sourceIndex, targetIndex)
                 Collections.swap(groupOrderedIdList, sourceIndex, targetIndex)

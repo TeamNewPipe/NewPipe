@@ -1,0 +1,5 @@
+Correções
+• Corrigidos os problemas de buffer causados pela limitação do YouTube
+• Corrigida a extração de comentários do YouTube e falhas com comentários desativados
+• Corrigida a pesquisa de música no YouTube
+• Corrigidas as transmissões ao vivo do PeerTube

@@ -93,7 +93,6 @@
     <string name="downloads_title">Allalaadimised</string>
     <string name="error_report_title">Vea teatamine</string>
     <string name="all">Kõik</string>
-    <string name="yes">Jah</string>
     <string name="disabled">Keelatud</string>
     <string name="clear">Kustuta</string>
     <string name="best_resolution">Parim lahutus</string>
@@ -103,7 +102,7 @@
     <string name="just_once">Üks kord</string>
     <string name="file">Fail</string>
     <string name="notification_channel_name">NewPipe teavitus</string>
-    <string name="notification_channel_description">Teavitused NewPipe tausta- ja hüpikpleierile</string>
+    <string name="notification_channel_description">Teavitused NewPipe pleierile</string>
     <string name="unknown_content">[Tundmatu]</string>
     <string name="switch_to_background">Lülita taustale</string>
     <string name="switch_to_popup">Lülita hüpikpleierile</string>
@@ -148,7 +147,6 @@
     <string name="info_labels">Mis:\\nPäring:\\nSisu keel:\\nSisu maa:\\nRakenduse keel:\\nTeenus:\\nGMT aeg:\\nPakett:\\nVersioon:\\nOS versioon:</string>
     <string name="your_comment">Oma kommentaar (inglise keeles):</string>
     <string name="error_details_headline">Üksikasjad:</string>
-    <string name="list_thumbnail_view_description">Video eelvaate pisipilt</string>
     <string name="detail_thumbnail_view_description">Esita video, kestus:</string>
     <string name="detail_uploader_thumbnail_view_description">Üleslaadiaja avatari pisipilt</string>
     <string name="detail_likes_img_view_description">Meeldib</string>
@@ -240,7 +238,7 @@
     <string name="play_queue_remove">Eemalda</string>
     <string name="play_queue_stream_detail">Üksikasjad</string>
     <string name="play_queue_audio_settings">Heli seaded</string>
-    <string name="hold_to_append">Hoia järjekorda lisamiseks</string>
+    <string name="hold_to_append">Järjekorda lisamiseks vajuta</string>
     <string name="start_here_on_background">Hakka taustal mängima</string>
     <string name="start_here_on_popup">Hakka mängima hüpikaknas</string>
     <string name="drawer_open">Ava sahtel</string>
@@ -256,7 +254,7 @@
     <string name="create_playlist">Uus esitusloend</string>
     <string name="rename_playlist">Nimeta ümber</string>
     <string name="name">Nimi</string>
-    <string name="append_playlist">Lisa esitusloendisse</string>
+    <string name="add_to_playlist">Lisa esitusloendisse</string>
     <string name="set_as_playlist_thumbnail">Määra esitusloendi pisipildiks</string>
     <string name="bookmark_playlist">Lisa esitusloend järjehoidjaks</string>
     <string name="unbookmark_playlist">Eemalda järjehoidja</string>
@@ -288,8 +286,8 @@
 \n3. Klõpsa \"Kõigi andmetega\", vali \"Tühista kõik\", vali ainult \"Tellimused\" ja klõpsa \"OK\".
 \n4. Klõpsa \"Järgmine samm\" ja seejärel \"Loo eksport\".
 \n5. Klõpsa nupul \"Laadi alla\" siis, kui ta ilmub.
-\n6. Klõpsi siitsamast \"Impordi fail\" linki ning vali allalaaditud zip fail.
-\n7. Kui zip faili importimine ei toimi, siis paki .csv fail lahti (tavaliselt on see fail \"YouTube ja YouTube Muusika/tellimused/tellimused\" või \"YouTube and YouTube Music/subscriptions/subscriptions\") ja klõpsi siitsamast \"Impordi fail\" linki ning vali lahtipakitud csv fail.</string>
+\n6. Klõpsi siitsamast \"Impordi fail\" linki ning vali allalaaditud .zip fail.
+\n7. Kui .zip faili importimine ei toimi, siis paki .csv fail lahti (tavaliselt on see fail \"YouTube ja YouTube Muusika/tellimused/tellimused\" või \"YouTube and YouTube Music/subscriptions/subscriptions\") ja klõpsi siitsamast \"Impordi fail\" linki ning vali lahtipakitud csv fail.</string>
     <string name="import_network_expensive_warning">See toiming võib põhjustada suurt võrguliiklust.
 \n
 \nKas jätkata?</string>
@@ -313,11 +311,11 @@
     <string name="give_back">Anneta</string>
     <string name="privacy_policy_encouragement">NewPipe võtab privaatsust väga tõsiselt. Seetõttu ei kogu rakendus ilma nõusolekuta mingeid andmeid.
 \nNewPipe privaatsuspoliitika selgitab üksikasjalikult, milliseid andmeid saadetakse ja kogutakse veateate saatmisel.</string>
-    <string name="app_license">NewPipe vaba avatud koodiga tarkvara. Seada võib kasutada, uurida, jagada ja parandada. Täpsemalt - seda võib levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või hilisem) tingimustele.</string>
+    <string name="app_license">NewPipe vaba avatud koodiga tarkvara. Seada võid kasutada, uurida, jagada ja parandada nii, nagu õigemaks pead. Täpsemalt - seda võid levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või sinu valikul hilisema versiooni) tingimustele.</string>
     <string name="enable_disposed_exceptions_title">Teavita elutsüklist väljas vigadest</string>
     <string name="import_soundcloud_instructions">Impordi SoundCloudi profiil trükkides URL või oma ID:
 \n
-\n1. Luba \"töölaua režiim\" veebilehitsejas (lmobiilsete seadmete jaoks leht pole kättesaadav)
+\n1. Luba \"töölaua režiim\" veebilehitsejas (mobiilsete seadmete jaoks leht pole kättesaadav)
 \n2. Ava URL: %1$s
 \n3. Logi sisse
 \n4. Kopeeri suunatud profiili URL.</string>
@@ -344,8 +342,8 @@
     <string name="settings_category_updates_title">Uuendused</string>
     <string name="events">Sündmused</string>
     <string name="file_deleted">Fail kustutati</string>
-    <string name="app_update_notification_channel_name">Rakenduse värskenduse teatis</string>
-    <string name="app_update_notification_channel_description">NewPipe uuest versioonist teavitamine</string>
+    <string name="app_update_notification_channel_name">Rakenduse värskenduse teavitus</string>
+    <string name="app_update_notification_channel_description">Teavitus NewPipe uuetest versioonidest</string>
     <string name="download_to_sdcard_error_title">Väline andmekandja pole saadaval</string>
     <string name="download_to_sdcard_error_message">Allalaadimine välisele SD-kaardile ei ole võimalik. Kas lähtestada allalaadimiste kataloogi asukoht\?</string>
     <string name="saved_tabs_invalid_json">Tõrge salvestatud vahekaaride lugemisel; kasutatakse vaikeväärtusi</string>
@@ -367,7 +365,7 @@
     <string name="paused">peatatud</string>
     <string name="queued">järjekorras</string>
     <string name="post_processing">järeltöötlus</string>
-    <string name="enqueue">Järjekord</string>
+    <string name="enqueue">Lisa esitusjärjekorda</string>
     <string name="permission_denied">Tegevus keelati süsteemi poolt</string>
     <string name="download_failed">Allalaadimine nurjus</string>
     <string name="generate_unique_name">Loo kordumatu nimi</string>
@@ -650,8 +648,6 @@
 \n
 \nNii et valik taandub sellele, mida eelistad: kiirus või täpne teave.</string>
     <string name="mark_as_watched">Märgi vaadatuks</string>
-    <string name="loading_channel_details">Laadin kanali andmeid…</string>
-    <string name="error_show_channel_details">Viga kanali lisateabe kuvamisel</string>
     <string name="show_image_indicators_summary">Näita piltide kohal Picasso värvides riba, mis märgib pildi allikat: punane tähistab võrku, sinine kohalikku andmekandjat ja roheline kohalikku mälu</string>
     <string name="show_image_indicators_title">Näita piltide allikat</string>
     <string name="remote_search_suggestions">Kaugotsingu soovitused</string>
@@ -667,4 +663,27 @@
     </plurals>
     <string name="start_main_player_fullscreen_summary">Kui ekraani pööramine on lukustatud, siis videote esitamisel ära käivita väikest vaadet, vaid käivita kohe täisekraanivaade. Viimasest väljumisel näed väikest esitusvaadet</string>
     <string name="start_main_player_fullscreen_title">Käivita meediamängija täisekraanivaates</string>
+    <string name="enqueued_next">Lisasin esitamiseks järgmisena</string>
+    <string name="enqueue_next_stream">Lisa esitamiseks järgmisena</string>
+    <string name="processing_may_take_a_moment">Töötlen andmeid… Võib kuluda mõni hetk</string>
+    <string name="checking_updates_toast">Kontrollin uuendusi…</string>
+    <string name="manual_update_title">Kontrolli uuendusi</string>
+    <string name="manual_update_description">Kontrolli uuendusi käsitsi</string>
+    <string name="feed_new_items">Uued andmevoo kirjed</string>
+    <string name="show_crash_the_player_title">Näita „Jooksuta meediamängija kokku“ nupukest</string>
+    <string name="show_crash_the_player_summary">Näitab valikut meediamängija kokkujooksutamiseks</string>
+    <string name="error_report_notification_title">NewPipe töös tekkis viga, sellest teavitamiseks klõpsi</string>
+    <string name="crash_the_player">Jooksuta meediamängija kokku</string>
+    <string name="show_error_snackbar">Näita veateate akent</string>
+    <string name="background_player_already_playing_toast">Meedia esitamine taustal toimib juba</string>
+    <string name="error_report_channel_name">Teavitus vigadest</string>
+    <string name="error_report_channel_description">Teavitused vigadest informeerimiseks</string>
+    <string name="error_report_notification_toast">Tekkis viga, vaata vastavat teadet</string>
+    <string name="create_error_notification">Koosta veateade</string>
+    <string name="no_appropriate_file_manager_message">Selle tegevuse jaoks ei leidunud sobilikku failihaldurit.
+\nPalun paigalda nutiseadmesse failihaldur või proovi allalaadimiste seadistustest „%s“ välja lülitada.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Selle tegevuse jaoks ei leidunud sobilikku failihaldurit.
+\nPalun paigalda nutiseadmesse failihaldur, mis järgib Storage Access Framework reeglistikku.</string>
+    <string name="detail_pinned_comment_view_description">Esiletõstetud kommentaar</string>
+    <string name="leak_canary_not_available">LeakCanary pole saadaval</string>
 </resources>

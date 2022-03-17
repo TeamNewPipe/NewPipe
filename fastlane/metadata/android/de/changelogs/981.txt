@@ -1,0 +1,2 @@
+Die MediaParser-Unterstützung wurde entfernt, um Probleme bei der Wiederaufnahme der Wiedergabe nach der Pufferung unter Android 11+ zu beheben.
+Media Tunneling auf Philips QM16XE deaktiviert, um Wiedergabeprobleme zu beheben.

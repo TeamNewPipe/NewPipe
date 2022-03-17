@@ -93,7 +93,6 @@
     <string name="downloads_title">Превземања</string>
     <string name="error_report_title">Извештај за грешки</string>
     <string name="all">Сите</string>
-    <string name="yes">Да</string>
     <string name="disabled">Оневозможено</string>
     <string name="clear">Избриши</string>
     <string name="best_resolution">Најдобра резолуција</string>
@@ -140,7 +139,6 @@
     <string name="info_labels">Што:\\nБарање:\\nЈазик на Содрж.:\\nУслуга:\\nGMT Час:\\nПакет:\\nВерзија:\\nВерз. на ОС:</string>
     <string name="your_comment">Ваш коментар (на Англиски):</string>
     <string name="error_details_headline">Детали:</string>
-    <string name="list_thumbnail_view_description">Сликичка за преглед на видеото</string>
     <string name="detail_thumbnail_view_description">Сликичка за преглед на видеото</string>
     <string name="detail_uploader_thumbnail_view_description">Икона од аватарот на објавителот</string>
     <string name="detail_likes_img_view_description">Допаѓања</string>
@@ -248,7 +246,7 @@
     <string name="create_playlist">Создај нова плејлиста</string>
     <string name="rename_playlist">Прекрсти плејлиста</string>
     <string name="name">Име</string>
-    <string name="append_playlist">Додај во плејлиста</string>
+    <string name="add_to_playlist">Додај во плејлиста</string>
     <string name="set_as_playlist_thumbnail">Постави како икона на плејлистата</string>
     <string name="bookmark_playlist">Обележи ја плејлистата</string>
     <string name="unbookmark_playlist">Избриши ја белешката</string>

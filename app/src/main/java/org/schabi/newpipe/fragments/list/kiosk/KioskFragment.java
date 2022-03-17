@@ -21,6 +21,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandlerFactory;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.KioskTranslator;
@@ -53,7 +54,7 @@ import io.reactivex.rxjava3.core.Single;
  * </p>
  */
 
-public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
+public class KioskFragment extends BaseListInfoFragment<StreamInfoItem, KioskInfo> {
     @State
     String kioskId = "";
     String kioskTranslatedName;
@@ -99,9 +100,12 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     }
 
     @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (useAsFrontPage && isVisibleToUser && activity != null) {
+    public void onResume() {
+        super.onResume();
+        if (!Localization.getPreferredContentCountry(requireContext()).equals(contentCountry)) {
+            reloadContent();
+        }
+        if (useAsFrontPage && activity != null) {
             try {
                 setTitle(kioskTranslatedName);
             } catch (final Exception e) {
@@ -115,15 +119,6 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_kiosk, container, false);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        if (!Localization.getPreferredContentCountry(requireContext()).equals(contentCountry)) {
-            reloadContent();
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -151,7 +146,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     }
 
     @Override
-    public Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
+    public Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
         return ExtractorHelper.getMoreKioskItems(serviceId, url, currentNextPage);
     }
 

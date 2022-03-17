@@ -25,7 +25,7 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/refresh_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
                 android:textSize="14sp"
                 tools:text="@tools:sample/lorem/random" />
 
-            <TextView
+            <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/refresh_subtitle_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,6 +87,19 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <Button
+        android:id="@+id/new_items_loaded_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/swipeRefreshLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5sp"
+        android:text="@string/feed_new_items"
+        android:textSize="12sp"
+        android:theme="@style/ServiceColoredButton"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -105,7 +118,7 @@
             android:visibility="gone"
             tools:visibility="visible" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/loading_progress_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

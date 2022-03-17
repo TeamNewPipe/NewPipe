@@ -1,0 +1,4 @@
+Hotfix
+- Thumbnails und Titel werden im Grid-Layout nicht mehr abgeschnitten, da falsch berechnet wurde, wie viele Videos in eine Reihe passen
+- Der Download-Dialog verschwindet nicht mehr, wenn er über das Freigabemenü geöffnet wird
+- Aktualisierung einer Bibliothek im Zusammenhang mit dem Öffnen von externen Aktivitäten wie dem Storage Access Framework File Picker

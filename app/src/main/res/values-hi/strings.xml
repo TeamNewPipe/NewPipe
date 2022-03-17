@@ -90,7 +90,6 @@
     <string name="downloads_title">डाउनलोड</string>
     <string name="error_report_title">त्रुटी की रिपोर्ट</string>
     <string name="all">सारे</string>
-    <string name="yes">सहमत हूँ</string>
     <string name="disabled">बंद करे</string>
     <string name="clear">साफ़</string>
     <string name="best_resolution">बेहतर विडियो की क्वालिटी</string>
@@ -119,7 +118,6 @@
     <string name="info_labels">क्या:\\nमांग:\\nविषयवस्तु की भाषा:\\nसेवा:\\nजीएमटी समय:\\nपैकेज:\\nसंस्करण:\\nOS संस्करण:</string>
     <string name="your_comment">आपकी टिप्पणी:</string>
     <string name="error_details_headline">विवरण:</string>
-    <string name="list_thumbnail_view_description">विडियो के thumbnail के पूर्व दर्शन</string>
     <string name="detail_thumbnail_view_description">वीडियो चलाये, समय :</string>
     <string name="detail_uploader_thumbnail_view_description">अपलोडर के thumbnail वाले फोटो</string>
     <string name="detail_likes_img_view_description">पसंद</string>
@@ -230,7 +228,7 @@
     <string name="create_playlist">नई प्लेलिस्ट</string>
     <string name="rename_playlist">नाम बदलें</string>
     <string name="name">नाम</string>
-    <string name="append_playlist">प्लेलिस्ट में जोड़ें</string>
+    <string name="add_to_playlist">प्लेलिस्ट में जोड़ें</string>
     <string name="set_as_playlist_thumbnail">प्लेलिस्ट थंबनेल के रूप में सेट करें</string>
     <string name="bookmark_playlist">प्लेलिस्ट बुकमार्क करें</string>
     <string name="unbookmark_playlist">बुकमार्क हटायें</string>
@@ -555,4 +553,8 @@
     <string name="peertube_instance_add_title">उदाहरण जोड़ें</string>
     <string name="peertube_instance_url_help">%s . पर अपनी पसंद के उदाहरण ढूँढ़ें</string>
     <string name="peertube_instance_url_summary">अपने पसंदीदा PeerTube उदाहरण चुनें</string>
+    <string name="start_main_player_fullscreen_title">मुख्य प्लेयर को पूर्ण स्क्रीन में शुरू करें</string>
+    <string name="start_main_player_fullscreen_summary">मिनी प्लेयर में वीडियो शुरू न करें, लेकिन ऑटो रोटेशन लॉक होने पर सीधे फुल स्क्रीन मोड पर जाएं। आप अब भी फ़ुलस्क्रीन से बाहर निकलकर मिनी प्लेयर तक पहुंच सकते हैं।</string>
+    <string name="comments_are_disabled">टिप्पणियाँ करना बंद है</string>
+    <string name="mark_as_watched">देखा हुआ चिह्नित करें</string>
 </resources>

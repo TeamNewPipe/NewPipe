@@ -16,7 +16,6 @@ import androidx.media.AudioManagerCompat;
 
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.analytics.AnalyticsListener;
-import com.google.android.exoplayer2.decoder.DecoderCounters;
 
 public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, AnalyticsListener {
 
@@ -150,15 +149,9 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAudioSessionId(final EventTime eventTime, final int audioSessionId) {
+    public void onAudioSessionIdChanged(final EventTime eventTime, final int audioSessionId) {
         notifyAudioSessionUpdate(true, audioSessionId);
     }
-
-    @Override
-    public void onAudioDisabled(final EventTime eventTime, final DecoderCounters counters) {
-        notifyAudioSessionUpdate(false, player.getAudioSessionId());
-    }
-
     private void notifyAudioSessionUpdate(final boolean active, final int audioSessionId) {
         if (!PlayerHelper.isUsingDSP()) {
             return;

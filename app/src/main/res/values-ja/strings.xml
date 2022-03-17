@@ -26,7 +26,6 @@
     <string name="unsupported_url">対応していないURLです</string>
     <string name="content_language_title">デフォルトの言語</string>
     <string name="settings_category_video_audio_title">動画と音声</string>
-    <string name="list_thumbnail_view_description">動画 プレビュー サムネイル</string>
     <string name="detail_thumbnail_view_description">ビデオ再生、時間:</string>
     <string name="detail_uploader_thumbnail_view_description">投稿者アイコンのサムネイル</string>
     <string name="detail_dislikes_img_view_description">低評価</string>
@@ -88,7 +87,6 @@
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-    <string name="yes">はい</string>
     <string name="open_in_popup_mode">ポップアップモードで開く</string>
     <string name="msg_popup_permission">ポップアップモードで開くには
 \n権限の許可が必要です</string>
@@ -221,7 +219,7 @@
     <string name="create_playlist">新規プレイリスト</string>
     <string name="rename_playlist">変更</string>
     <string name="name">プレイリスト名</string>
-    <string name="append_playlist">プレイリストに追加</string>
+    <string name="add_to_playlist">プレイリストに追加</string>
     <string name="set_as_playlist_thumbnail">プレイリストのサムネイルに設定</string>
     <string name="bookmark_playlist">プレイリストをブックマーク</string>
     <string name="unbookmark_playlist">ブックマークを削除</string>
@@ -273,14 +271,14 @@
     <string name="give_back">支援する</string>
     <string name="privacy_policy_encouragement">NewPipe プロジェクトはあなたのプライバシーを非常に大切にしています。あなたの同意がない限り、アプリはいかなるデータも収集しません。
 \nNewPipe のプライバシー・ポリシーでは、クラッシュリポート送信時にどのような種類のデータが送信・記録されるかを詳細に説明しています。</string>
-    <string name="app_license">NewPipe はコピーレフトなソフトウェアです。あなたは自由にそれを使用し、研究し、そして改善することができます。あなたは、GNU フリーソフトウェア財団が公開する GNU General Public ライセンス バージョン3以降の下に、自由に再配布・修正を行うことができます。</string>
+    <string name="app_license">NewPipe はコピーレフトなソフトウェアです。あなたは自由にそれを使用し、研究し、共有し、そして改善することができます。あなたは、GNU フリーソフトウェア財団が公開する GNU General Public ライセンス バージョン3以降の下に、自由に再配布・修正を行うことができます。</string>
     <string name="title_last_played">最終再生日時</string>
     <string name="title_most_played">最も再生された動画</string>
     <string name="resize_zoom">拡大</string>
     <string name="controls_add_to_playlist_title">プレイリスト</string>
-    <string name="show_hold_to_append_title">「長押しして追加」のヒントを表示</string>
+    <string name="show_hold_to_append_title">「長押ししてキュー」のヒントを表示</string>
     <string name="tracks">トラック</string>
-    <string name="notification_channel_description">NewPipe のバックグラウンドおよびポップアッププレイヤーの通知</string>
+    <string name="notification_channel_description">NewPipe のプレイヤーの通知</string>
     <string name="new_and_hot">新着と人気</string>
     <string name="hold_to_append">長押ししてキューに追加</string>
     <string name="start_here_on_popup">ポップアップで連続再生を開始</string>
@@ -639,8 +637,6 @@
     <string name="seekbar_preview_thumbnail_title">シークバーのサムネイルプレビュー</string>
     <string name="comments_are_disabled">コメントは無効です</string>
     <string name="mark_as_watched">視聴済みとしてマーク</string>
-    <string name="error_show_channel_details">チャンネルの詳細の表示でエラー</string>
-    <string name="loading_channel_details">チャンネルの詳細を読み込み中…</string>
     <string name="remote_search_suggestions">リモート検索候補</string>
     <string name="local_search_suggestions">ローカル検索候補</string>
     <string name="main_page_content_swipe_remove">アイテムをスワイプして削除</string>
@@ -654,4 +650,28 @@
     </plurals>
     <string name="show_image_indicators_summary">ピカソは、画像の上に、画像の出所を識別する色彩記章を表示します: 赤はネットワーク、青はディスク、緑はメモリ</string>
     <string name="show_image_indicators_title">画像に標識を表示</string>
+    <string name="processing_may_take_a_moment">処理中… 少し時間がかかるかもしれません</string>
+    <string name="manual_update_description">新しいバージョンを手動で確認します</string>
+    <string name="checking_updates_toast">アップデートを確認中…</string>
+    <string name="manual_update_title">アップデートを確認</string>
+    <string name="enqueue_next_stream">次をキューに追加</string>
+    <string name="enqueued_next">次をキューに追加しました</string>
+    <string name="detail_heart_img_view_description">クリエイターの心をこめて</string>
+    <string name="show_crash_the_player_title">\"プレイヤーがクラッシュ\"を表示</string>
+    <string name="crash_the_player">プレイヤーがクラッシュ</string>
+    <string name="feed_new_items">新しいフィードアイテム</string>
+    <string name="error_report_channel_name">エラー報告通知</string>
+    <string name="error_report_notification_toast">エラーが発生しました。通知をご覧ください</string>
+    <string name="error_report_notification_title">NewPipe はエラーに遭遇しました。タップして報告</string>
+    <string name="show_error_snackbar">スナックバーにエラーを表示</string>
+    <string name="background_player_already_playing_toast">既にバックグラウンドで再生されています</string>
+    <string name="detail_pinned_comment_view_description">固定されたコメント</string>
+    <string name="no_appropriate_file_manager_message_android_10">この動作に適切なファイルマネージャが見つかりませんでした。
+\nStorage Access Frameworkと互換性のあるファイルマネージャをインストールしてください。</string>
+    <string name="no_appropriate_file_manager_message">この動作に適切なファイルマネージャが見つかりませんでした。
+\nファイルマネージャをインストールするか、ダウンロード設定で\'%s\'を無効にすることをお試しください。</string>
+    <string name="show_crash_the_player_summary">プレイヤー使用時にクラッシュオプションを表示</string>
+    <string name="create_error_notification">エラー通知を作成</string>
+    <string name="error_report_channel_description">エラーを報告する通知</string>
+    <string name="leak_canary_not_available">LeakCanaryが利用不可能です</string>
 </resources>

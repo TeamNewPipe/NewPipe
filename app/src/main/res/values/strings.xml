@@ -7,7 +7,6 @@
     <string name="install">Install</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
-    <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="mark_as_watched">Mark as watched</string>
     <string name="open_in_popup_mode">Open in popup mode</string>
@@ -23,7 +22,6 @@
     <string name="use_external_video_player_title">Use external video player</string>
     <string name="use_external_video_player_summary">Removes audio at some resolutions</string>
     <string name="use_external_audio_player_title">Use external audio player</string>
-    <string name="rss_button_title" translatable="false">RSS</string>
     <string name="subscribe_button_title">Subscribe</string>
     <string name="subscribed_button_title">Subscribed</string>
     <string name="unsubscribe">Unsubscribe</string>
@@ -49,9 +47,9 @@
     <string name="show_higher_resolutions_summary">Only some devices can play 2K/4K videos</string>
     <string name="play_with_kodi_title">Play with Kodi</string>
     <string name="kore_not_found">Install missing Kore app?</string>
-    <string name="kore_package" translatable="false">org.xbmc.kore</string>
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
+    <string name="crash_the_player">Crash the player</string>
     <string name="notification_scale_to_square_image_title">Scale thumbnail to 1:1 aspect ratio</string>
     <string name="notification_scale_to_square_image_summary">Scale the video thumbnail shown in the notification from 16:9 to 1:1 aspect ratio (may introduce distortions)</string>
     <string name="notification_action_0_title">First action button</string>
@@ -80,6 +78,8 @@
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
     <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision. Seeking for 5, 15 or 25 seconds doesn\'t work with this</string>
     <string name="seek_duration_title">Fast-forward/-rewind seek duration</string>
+    <string name="progressive_load_interval_title">Playback load interval size</string>
+    <string name="progressive_load_interval_summary">Change the load interval size (currently %s). A lower value may speed up initial video loading. Changes require a player restart.</string>
     <string name="clear_queue_confirmation_title">Ask for confirmation before clearing a queue</string>
     <string name="clear_queue_confirmation_summary">Switching from one player to another may replace your queue</string>
     <string name="clear_queue_confirmation_description">The active player queue will be replaced</string>
@@ -89,16 +89,16 @@
     <string name="show_comments_summary">Turn off to hide comments</string>
     <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
     <string name="show_description_title">Show description</string>
-    <string name="show_description_summary">Turn off to hide video description and additional information</string>
+    <string name="show_description_summary">Turn off to hide video description and additional info</string>
     <string name="show_meta_info_title">Show meta info</string>
-    <string name="show_meta_info_summary">Turn off to hide meta info boxes with additional information about the stream creator, stream content or a search request</string>
+    <string name="show_meta_info_summary">Turn off to hide meta info boxes with additional info about the stream creator, stream content or a search request</string>
     <string name="thumbnail_cache_wipe_complete_notice">Image cache wiped</string>
     <string name="metadata_cache_wipe_title">Wipe cached metadata</string>
     <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache wiped</string>
-    <string name="auto_queue_title">Auto-queue next stream</string>
+    <string name="auto_queue_title">Auto-enqueue next stream</string>
     <string name="auto_queue_summary">Continue ending (non-repeating) playback queue by appending a related stream</string>
-    <string name="auto_queue_toggle">Auto-queue</string>
+    <string name="auto_queue_toggle">Auto-enqueuing</string>
     <string name="volume_gesture_control_title">Volume gesture control</string>
     <string name="volume_gesture_control_summary">Use gestures to control player volume</string>
     <string name="brightness_gesture_control_title">Brightness gesture control</string>
@@ -122,7 +122,7 @@
     <string name="start_main_player_fullscreen_title">Start main player in fullscreen</string>
     <string name="start_main_player_fullscreen_summary">Do not start videos in the mini player, but turn to fullscreen mode directly, if auto rotation is locked. You can still access the mini player by exiting fullscreen</string>
     <string name="autoplay_title">Autoplay</string>
-    <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
+    <string name="show_hold_to_append_title">Show \"Hold to enqueue\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when pressing the background or the popup button in video \"Details:\"</string>
     <string name="unsupported_url">Unsupported URL</string>
     <string name="unsupported_url_dialog_message">Could not recognize the URL. Open with another app?</string>
@@ -131,7 +131,6 @@
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="peertube_instance_url_summary">Select your favorite PeerTube instances</string>
     <string name="peertube_instance_url_help">Find the instances you like on %s</string>
-    <string name="peertube_instance_list_url" translatable="false">https://joinpeertube.org/instances#instances-list</string>
     <string name="peertube_instance_add_title">Add instance</string>
     <string name="peertube_instance_add_help">Enter instance URL</string>
     <string name="peertube_instance_add_fail">Could not validate instance</string>
@@ -153,7 +152,8 @@
     <string name="youtube_restricted_mode_enabled_title">Turn on YouTube\'s \"Restricted Mode\"</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube provides a \"Restricted Mode\" which hides potentially mature content</string>
     <string name="restricted_video">This video is age restricted.\n\nTurn on \"%1$s\" in the settings if you want to see it.</string>
-    <string name="restricted_video_no_stream">This video is age-restricted.\nDue to new YouTube policies with age-restricted videos, NewPipe cannot access any of its video streams and thus is unable to play it.</string>
+    <string name="restricted_video_no_stream">This video is age-restricted.
+\nDue to new YouTube policies with age-restricted videos, NewPipe cannot access any of its video streams and thus is unable to play it.</string>
     <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -168,7 +168,6 @@
     <string name="songs">Songs</string>
     <string name="albums">Albums</string>
     <string name="artists">Artists</string>
-    <string name="yes">Yes</string>
     <string name="disabled">Disabled</string>
     <string name="clear">Clear</string>
     <string name="best_resolution">Best resolution</string>
@@ -178,15 +177,14 @@
     <string name="always">Always</string>
     <string name="just_once">Just Once</string>
     <string name="file">File</string>
-    <string name="notification_channel_id" translatable="false">newpipe</string>
-    <string name="notification_channel_name">NewPipe Notification</string>
-    <string name="notification_channel_description">Notifications for NewPipe background and popup players</string>
-    <string name="app_update_notification_channel_id" translatable="false">newpipeAppUpdate</string>
-    <string name="app_update_notification_channel_name">App Update Notification</string>
-    <string name="app_update_notification_channel_description">Notifications for new NewPipe version</string>
-    <string name="hash_channel_id" translatable="false">newpipeHash</string>
-    <string name="hash_channel_name">Video Hash Notification</string>
+    <string name="notification_channel_name">NewPipe notification</string>
+    <string name="notification_channel_description">Notifications for NewPipe\'s player</string>
+    <string name="app_update_notification_channel_name">App update notification</string>
+    <string name="app_update_notification_channel_description">Notifications for new NewPipe versions</string>
+    <string name="hash_channel_name">Video hash notification</string>
     <string name="hash_channel_description">Notifications for video hashing progress</string>
+    <string name="error_report_channel_name">Error report notification</string>
+    <string name="error_report_channel_description">Notifications to report errors</string>
     <string name="unknown_content">[Unknown]</string>
     <string name="switch_to_background">Switch to Background</string>
     <string name="switch_to_popup">Switch to Popup</string>
@@ -240,8 +238,9 @@
     <string name="restore_defaults_confirmation">Restore defaults?</string>
     <string name="permission_display_over_apps">Give permission to display over other apps</string>
     <!-- error activity -->
+    <string name="error_report_notification_title">NewPipe encountered an error, tap to report</string>
+    <string name="error_report_notification_toast">An error occurred, see the notification</string>
     <string name="sorry_string">Sorry, that should not have happened.</string>
-    <string name="guru_meditation" translatable="false">Guru Meditation.</string>
     <string name="error_report_button_text">Report this error via e-mail</string>
     <string name="copy_for_github">Copy formatted report</string>
     <string name="error_report_open_issue_button_text">Report on GitHub</string>
@@ -254,7 +253,6 @@
     <string name="your_comment">Your comment (in English):</string>
     <string name="error_details_headline">Details:</string>
     <!-- Content descriptions (for better accessibility) -->
-    <string name="list_thumbnail_view_description">Video preview thumbnail</string>
     <string name="detail_thumbnail_view_description">Play video, duration:</string>
     <string name="detail_uploader_thumbnail_view_description">Uploader\'s avatar thumbnail</string>
     <string name="detail_likes_img_view_description">Likes</string>
@@ -263,8 +261,6 @@
     <string name="related_items_tab_description">Related items</string>
     <string name="description_tab_description">Description</string>
     <string name="search_no_results">No results</string>
-    <string name="empty_view_no_videos" translatable="false">@string/no_videos</string>
-    <string name="empty_view_no_comments" translatable="false">@string/no_comments</string>
     <string name="empty_subscription_feed_subtitle">Nothing here but crickets</string>
     <string name="detail_drag_description">Drag to reorder</string>
     <string name="video">Video</string>
@@ -299,8 +295,6 @@
     <string name="no_videos">No videos</string>
     <string name="more_than_100_videos">100+ videos</string>
     <string name="infinite_videos">∞ videos</string>
-    <string name="more_than_100_videos_mini" translatable="false">100+</string>
-    <string name="infinite_videos_mini" translatable="false">∞</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>
         <item quantity="other">%s videos</item>
@@ -328,11 +322,7 @@
     <string name="no_dir_yet">No download folder set yet, choose the default download folder now</string>
     <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
     <string name="one_item_deleted">1 item deleted.</string>
-    <!-- Checksum types -->
-    <string name="md5" translatable="false">MD5</string>
-    <string name="sha1" translatable="false">SHA-1</string>
     <!-- reCAPTCHA -->
-    <string name="recaptcha" translatable="false">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA challenge</string>
     <string name="subtitle_activity_recaptcha">Press \"Done\" when solved</string>
     <string name="recaptcha_request_toast">reCAPTCHA challenge requested</string>
@@ -355,18 +345,14 @@
     <string name="app_description">Libre lightweight streaming on Android.</string>
     <string name="contribution_title">Contribute</string>
     <string name="contribution_encouragement">Help with translation, design changes, code cleaning, or heavy code changes.</string>
-    <string name="github_url" translatable="false">https://github.com/TeamNewPipe/NewPipe</string>
     <string name="view_on_github">View on GitHub</string>
     <string name="donation_title">Donate</string>
     <string name="donation_encouragement">NewPipe is developed by volunteers spending their free time bringing you the best user experience. Give back to help make NewPipe even better.</string>
-    <string name="donation_url" translatable="false">https://newpipe.net/donate</string>
     <string name="give_back">Give back</string>
     <string name="website_title">Website</string>
     <string name="website_encouragement">Visit the NewPipe Website for more info and news.</string>
-    <string name="website_url" translatable="false">https://newpipe.net/</string>
     <string name="privacy_policy_title">NewPipe\'s Privacy Policy</string>
     <string name="privacy_policy_encouragement">The app does not collect any data without your consent.\nNewPipe\'s privacy policy explains in detail what data is sent and stored when you send a crash report.</string>
-    <string name="privacy_policy_url" translatable="false">https://newpipe.net/legal/privacy/</string>
     <string name="read_privacy_policy">Read privacy policy</string>
     <string name="app_license_title">NewPipe\'s License</string>
     <string name="app_license">NewPipe is copylefted libre software: Use, study and share; with all — specifically under the terms of the GPLv3 or later, as published by the FSF.</string>
@@ -406,7 +392,6 @@
     <string name="recently_added">Recently added</string>
     <string name="most_liked">Most liked</string>
     <string name="conferences">Conferences</string>
-    <string name="service_kiosk_string" translatable="false">%1$s/%2$s</string>
     <!-- Play Queue -->
     <string name="title_activity_play_queue">Play queue</string>
     <string name="play_queue_remove">Remove</string>
@@ -420,13 +405,11 @@
     <string name="enqueued_next">Enqueued next</string>
     <string name="start_here_on_background">Start playing in the background</string>
     <string name="start_here_on_popup">Start playing in a popup</string>
+    <string name="loading_stream_details">Loading stream details…</string>
     <!-- Drawer -->
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>
-    <string name="youtube" translatable="false">YouTube</string>
-    <string name="soundcloud" translatable="false">SoundCloud</string>
     <!-- Preferred player -->
-    <string name="preferred_open_action_share_menu_title" translatable="false">@string/app_name</string>
     <string name="preferred_open_action_settings_title">Preferred \'open\' action</string>
     <string name="preferred_open_action_settings_summary">Default action when opening content — %s</string>
     <string name="video_player">Video player</string>
@@ -439,7 +422,8 @@
     <string name="create_playlist">New Playlist</string>
     <string name="rename_playlist">Rename</string>
     <string name="name">Name</string>
-    <string name="append_playlist">Add to playlist</string>
+    <string name="add_to_playlist">Add to playlist</string>
+    <string name="processing_may_take_a_moment">Processing… May take a moment</string>
     <string name="mute">Mute</string>
     <string name="unmute">Unmute</string>
     <string name="set_as_playlist_thumbnail">Set as playlist thumbnail</string>
@@ -460,7 +444,7 @@
     <string name="caption_setting_title">Captions</string>
     <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect</string>
     <!-- Debug Settings -->
-    <string name="leakcanary" translatable="false">LeakCanary</string>
+    <string name="leak_canary_not_available">LeakCanary is not available</string>
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
     <string name="show_memory_leaks">Show memory leaks</string>
     <string name="enable_disposed_exceptions_title">Report out-of-lifecycle errors</string>
@@ -471,7 +455,11 @@
     <string name="disable_media_tunneling_summary">Turn off media tunneling if you experience a black screen or stuttering video playback</string>
     <string name="show_image_indicators_title">Show image indicators</string>
     <string name="show_image_indicators_summary">Show Picasso-colored ribbons on top of images indicating their source: red for network, blue for disk and green for memory</string>
+    <string name="show_crash_the_player_title">Show \"Crash the player\"</string>
+    <string name="show_crash_the_player_summary">Shows a crash option when using the player</string>
     <string name="crash_the_app">Crash the app</string>
+    <string name="show_error_snackbar">Show an error snackbar</string>
+    <string name="create_error_notification">Create an error notification</string>
     <!-- Subscriptions import/export -->
     <string name="import_title">Import</string>
     <string name="import_from">Import from</string>
@@ -482,7 +470,15 @@
     <string name="previous_export">Previous export</string>
     <string name="subscriptions_import_unsuccessful">Could not import subscriptions</string>
     <string name="subscriptions_export_unsuccessful">Could not export subscriptions</string>
-    <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout:\n\n1. Go to this URL: %1$s\n2. Log in when asked\n3. Click on \"All data included\", then on \"Deselect all\", then select only \"subscriptions\" and click \"OK\"\n4. Click on \"Next step\" and then on \"Create export\"\n5. Click on the \"Download\" button after it appears\n6. Click on IMPORT FILE below and select the downloaded zip file\n7. [If the zip import fails] Extract the .csv file (usually under \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), click on IMPORT FILE below and select the extracted csv file</string>
+    <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout:
+\n
+\n1. Go to this URL: %1$s
+\n2. Log in when asked
+\n3. Click on \"All data included\", then on \"Deselect all\", then select only \"subscriptions\" and click \"OK\"
+\n4. Click on \"Next step\" and then on \"Create export\"
+\n5. Click on the \"Download\" button after it appears
+\n6. Click on IMPORT FILE below and select the downloaded .zip file
+\n7. [If the .zip import fails] Extract the .csv file (usually under \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), click on IMPORT FILE below and select the extracted csv file</string>
     <string name="import_soundcloud_instructions">Import a SoundCloud profile by typing either the URL or your ID:\n\n1. Enable \"desktop mode\" in a web-browser (the site is not available for mobile devices)\n2. Go to this URL: %1$s\n3. Log in when asked\n4. Copy the profile URL you were redirected to.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">Continue even though it may use a lot of network data?</string>
@@ -492,16 +488,18 @@
     <string name="playback_pitch">Pitch</string>
     <string name="unhook_checkbox">Unhook (may cause distortion)</string>
     <string name="skip_silence_checkbox">Fast-forward during silence</string>
+    <string name="adjust_by_semitones_checkbox">Adjust pitch by musical semitones</string>
     <string name="playback_step">Step</string>
+    <string name="playback_tempo_step">Tempo step</string>
     <string name="playback_reset">Reset</string>
     <!-- GDPR dialog -->
-    <string name="start_accept_privacy_policy">NewPipe\'s privacy policy complies with the European General Data Protection Regulation (GDPR).\nPlease read and accept it to send us the bug report.</string>
+    <string name="start_accept_privacy_policy">NewPipe\'s privacy policy complies with the European General Data Protection Regulation (GDPR).
+\nPlease read and accept it to send us the bug report.</string>
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
     <!-- Limit mobile data usage  -->
     <string name="limit_data_usage_none_description">No limit</string>
     <string name="limit_mobile_data_usage_title">Limit resolution when using mobile data</string>
-    <string name="limit_mobile_data_usage_value" translatable="false">@string/limit_data_usage_none_key</string>
     <string-array name="limit_data_usage_description_list">
         <item>@string/limit_data_usage_none_description</item>
         <item>1080p60</item>
@@ -516,6 +514,8 @@
     <!-- Updates Settings -->
     <string name="updates_setting_title">New versions</string>
     <string name="updates_setting_description">Ask to install new versions of NewPipe</string>
+    <string name="manual_update_title">Check for new versions</string>
+    <string name="manual_update_description">Manually check for new versions</string>
     <!-- Minimize to exit action -->
     <string name="minimize_on_exit_title">Minimize on app switch</string>
     <string name="minimize_on_exit_summary">Action when switching to other app from main video player — %s</string>
@@ -544,8 +544,9 @@
     <string name="queued">queued</string>
     <string name="post_processing">post-processing</string>
     <string name="recovering">recovering</string>
-    <string name="enqueue">Queue</string>
+    <string name="enqueue">Enqueue</string>
     <string name="permission_denied">Action denied by the system</string>
+    <string name="checking_updates_toast">Checking for updates…</string>
     <!-- download notifications -->
     <string name="download_failed">Download failed</string>
     <plurals name="download_finished_notification">
@@ -566,7 +567,7 @@
     <string name="error_path_creation">The destination folder can not be created</string>
     <string name="error_ssl_exception">Could not establish a secure connection</string>
     <string name="error_unknown_host">Could not find the server</string>
-    <string name="error_connect_host">Can not connect to the server</string>
+    <string name="error_connect_host">Cannot connect to the server</string>
     <string name="error_http_no_content">The server does not send data</string>
     <string name="error_http_unsupported_range">The server does not accept multi-threaded downloads, retry with @string/msg_threads = 1</string>
     <string name="error_http_not_found">Not found</string>
@@ -579,6 +580,7 @@
     <string name="clear_download_history">Clear download history</string>
     <string name="confirm_prompt">Clear your download history, or delete all downloaded files?</string>
     <string name="delete_downloaded_files">Delete downloaded files</string>
+    <string name="delete_downloaded_files_confirm">Erase all downloaded files from disk?</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Deleted %1$s download</item>
         <item quantity="other">Deleted %1$s downloads</item>
@@ -605,7 +607,7 @@
     <string name="systems_language">System default</string>
     <string name="remove_watched">Remove watched</string>
     <string name="remove_watched_popup_title">Remove watched videos?</string>
-    <string name="remove_watched_popup_warning">Remove watched videos in this playlist?\nThis cannot be undone!</string>
+    <string name="remove_watched_popup_warning">Remove watched videos from this playlist for good?</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Yes, and partially watched videos</string>
     <string name="new_seek_duration_toast">Due to ExoPlayer constraints the seek duration was set to %d seconds</string>
     <!-- Time duration plurals -->
@@ -632,6 +634,7 @@
     <string name="feed_subscription_not_loaded_count">Not loaded: %d</string>
     <string name="feed_notification_loading">Loading feed…</string>
     <string name="feed_processing_message">Processing feed…</string>
+    <string name="feed_new_items">New feed items</string>
     <string name="feed_group_dialog_select_subscriptions">Select subscriptions</string>
     <string name="feed_group_dialog_empty_selection">No subscription selected</string>
     <plurals name="feed_group_dialog_selection_count">
@@ -651,10 +654,20 @@
     <string name="feed_load_error_terminated">The author\'s account has been terminated.\nNewPipe will not be able to load this feed in the future.\nUnsubscribe from this channel?</string>
     <string name="feed_load_error_fast_unknown">The fast feed mode does not provide more info on this.</string>
     <string name="feed_use_dedicated_fetch_method_title">Fetch from dedicated feed when available</string>
-    <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited amount of items and often incomplete information (e.g. no duration, item type, no live status)</string>
-    <string name="feed_use_dedicated_fetch_method_enable_button">Fast loading</string>
-    <string name="feed_use_dedicated_fetch_method_disable_button">Full loading</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Loading too slow? Try turning on \'Fast loading\' (in the settings, or by pressing the button below).\nThis skips downloading the entire channel, but may be imprecise.</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited amount of items and often incomplete info (e.g. no duration, item type, no live status)</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Fast mode</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Disable fast mode</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Feeds loading too slow\? Try \"Fast loading\" (in the settings or by pressing the button below).
+\n
+\nNewPipe offers two feed loading strategies:
+\n• Fetching the whole subscription channel, which is slow but complete.
+\n• Using a dedicated service endpoint, which is fast but usually not complete.
+\n
+\nThe difference between the two is that the fast one usually lacks some info, like the item\'s duration or type (can\'t distinguish between live videos and normal ones) and it may return fewer items.
+\n
+\nYouTube is an example of a service that offers this fast method with its RSS feed.
+\n
+\nSo the choice boils down to what you prefer: speed or precise info.</string>
     <string name="feed_toggle_show_played_items">Show watched items</string>
     <string name="content_not_supported">This content is not yet supported by NewPipe.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
@@ -666,6 +679,8 @@
     <string name="recent">Recent</string>
     <string name="chapters">Chapters</string>
     <string name="no_app_to_open_intent">Install an app that can open this first</string>
+    <string name="no_appropriate_file_manager_message">No appropriate file manager was found for this action.\nPlease install a file manager or try to disable \'%s\' in the download settings.</string>
+    <string name="no_appropriate_file_manager_message_android_10">No appropriate file manager was found for this action.\nPlease install a Storage Access Framework compatible file manager.</string>
     <string name="georestricted_content">This content is not available in your country.</string>
     <string name="soundcloud_go_plus_content">This is a SoundCloud Go+ track (at least in your country), so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="private_content">This content is private, so it cannot be streamed or downloaded by NewPipe.</string>
@@ -695,12 +710,12 @@
     <string name="metadata_privacy_unlisted">Unlisted</string>
     <string name="metadata_privacy_private">Private</string>
     <string name="metadata_privacy_internal">Internal</string>
+    <string name="detail_pinned_comment_view_description">Pinned comment</string>
     <string name="detail_heart_img_view_description">Hearted by creator</string>
     <string name="open_website_license">Open website</string>
     <string name="tablet_mode_title">Tablet mode</string>
     <string name="on">On</string>
     <string name="off">Off</string>
-    <!-- Show Channel Details -->
-    <string name="error_show_channel_details">Could not show channel details</string>
-    <string name="loading_channel_details">Loading channel details…</string>
+    <!-- Progressive Load Interval -->
+    <string name="progressive_load_interval_default">ExoPlayer default</string>
 </resources>

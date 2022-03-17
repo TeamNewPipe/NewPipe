@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਸਰਚ ਦਬਾਓ</string>
+    <string name="main_bg_subtitle">ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਵੱਡਦਰਸ਼ੀ ਕੱਚ ਨੂੰ ਦਬਾਓ</string>
     <string name="upload_date_text">%1$s ਨੂੰ ਜਾਰੀ ਕੀਤੀ ਗਈ</string>
     <string name="no_player_found">ਕੋਈ ਸਟ੍ਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ। ਤੁਸੀਂ ਵੀਐੱਲਸੀ ਸਥਾਪਤ ਕਰਨਾ ਚਾਹੋਗੇ\?</string>
     <string name="no_player_found_toast">ਸਟ੍ਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ (ਤੁਸੀਂ ਵੀਐੱਲਸੀ ਸਥਾਪਤ ਕਰਕੇ ਇਸਨੂੰ ਚਲਾ ਸਕਦੇ ਹੋ)।</string>
@@ -92,7 +92,6 @@
     <string name="downloads_title">ਡਾਊਨਲੋਡਸ</string>
     <string name="error_report_title">Error ਰਿਪੋਰਟ</string>
     <string name="all">ਸਾਰੇ</string>
-    <string name="yes">ਹਾਂ</string>
     <string name="disabled">ਬੰਦ ਕੀਤਾ</string>
     <string name="clear">ਮਿਟਾਓ</string>
     <string name="best_resolution">ਵਧੀਆ Resolution</string>
@@ -147,7 +146,6 @@
     <string name="info_labels">ਕੀ:\\nRequest:\\nContent ਭਾਸ਼ਾ/ਬੋਲੀ:\\nContent Country:\\nApp ਭਾਸ਼ਾ/ਬੋਲੀ:\\nService:\\nGMT ਸਮਾਂ:\\nPackage:\\nVersion:\\nOS version:</string>
     <string name="your_comment">ਤੁਹਾਡੀ ਟਿੱਪਣੀ (ਅੰਗਰੇਜ਼ੀ ਵਿਚ):</string>
     <string name="error_details_headline">ਵੇਰਵੇ:</string>
-    <string name="list_thumbnail_view_description">ਵੀਡੀਓ preview thumbnail</string>
     <string name="detail_thumbnail_view_description">ਵਿਡੀਉ ਚਲਾਓ, ਮਿਆਦ:</string>
     <string name="detail_uploader_thumbnail_view_description">ਅਪਲੋਡਰ ਦਾ ਅਵਤਾਰ thumbnail</string>
     <string name="detail_likes_img_view_description">ਪਸੰਦ</string>
@@ -259,7 +257,7 @@
     <string name="create_playlist">ਨਵੀਂ ਪਲੇ-ਲਿਸਟ</string>
     <string name="rename_playlist">ਨਾਮ ਬਦਲੋ</string>
     <string name="name">ਨਾਮ</string>
-    <string name="append_playlist">ਪਲੇ-ਸੂਚੀ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
+    <string name="add_to_playlist">ਪਲੇ-ਸੂਚੀ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
     <string name="set_as_playlist_thumbnail">ਬਤੌਰ ਪਲੇ-ਸੂਚੀ ਥਮਨੇਲ ਸੈੱਟ ਕਰੋ</string>
     <string name="bookmark_playlist">ਬੁੱਕਮਾਰਕ ਪਲੇ-ਲਿਸਟ</string>
     <string name="unbookmark_playlist">ਬੁੱਕਮਾਰਕ ਹਟਾਓ</string>

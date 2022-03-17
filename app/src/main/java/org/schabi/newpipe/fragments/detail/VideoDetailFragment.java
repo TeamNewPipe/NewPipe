@@ -52,10 +52,11 @@ import com.squareup.picasso.Callback;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.FragmentVideoDetailBinding;
 import org.schabi.newpipe.download.DownloadDialog;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.ReCaptchaActivity;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -73,8 +74,7 @@ import org.schabi.newpipe.fragments.EmptyFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.videos.RelatedItemsFragment;
 import org.schabi.newpipe.ktx.AnimationType;
-import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
-import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
+import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.MainPlayer.PlayerType;
@@ -99,6 +99,7 @@ import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -444,12 +445,11 @@ public final class VideoDetailFragment
                 break;
             case R.id.detail_controls_playlist_append:
                 if (getFM() != null && currentInfo != null) {
-
-                    final PlaylistAppendDialog d = PlaylistAppendDialog.fromStreamInfo(currentInfo);
                     disposables.add(
-                            PlaylistAppendDialog.onPlaylistFound(getContext(),
-                                    () -> d.show(getFM(), TAG),
-                                    () -> PlaylistCreationDialog.newInstance(d).show(getFM(), TAG)
+                            PlaylistDialog.createCorrespondingDialog(
+                                    getContext(),
+                                    Collections.singletonList(new StreamEntity(currentInfo)),
+                                    dialog -> dialog.show(getFM(), TAG)
                             )
                     );
                 }
@@ -500,6 +500,10 @@ public final class VideoDetailFragment
                 break;
             case R.id.detail_thumbnail_root_layout:
                 autoPlayEnabled = true; // forcefully start playing
+                // FIXME Workaround #7427
+                if (isPlayerAvailable()) {
+                    player.setRecovery();
+                }
                 openVideoPlayerAutoFullscreen();
                 break;
             case R.id.detail_title_root_layout:
@@ -533,7 +537,7 @@ public final class VideoDetailFragment
             NavigationHelper.openChannelFragment(getFM(), currentInfo.getServiceId(),
                     subChannelUrl, subChannelName);
         } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(this, "Opening channel fragment", e);
+            ErrorUtil.showUiErrorSnackbar(this, "Opening channel fragment", e);
         }
     }
 
@@ -594,6 +598,11 @@ public final class VideoDetailFragment
     // Init
     //////////////////////////////////////////////////////////////////////////*/
 
+    @Override
+    public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
+        super.onViewCreated(rootView, savedInstanceState);
+    }
+
     @Override // called from onViewCreated in {@link BaseFragment#onViewCreated}
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
@@ -603,6 +612,18 @@ public final class VideoDetailFragment
         binding.tabLayout.setupWithViewPager(binding.viewPager);
 
         binding.detailThumbnailRootLayout.requestFocus();
+
+        binding.detailControlsPlayWithKodi.setVisibility(
+                KoreUtils.shouldShowPlayWithKodi(requireContext(), serviceId)
+                        ? View.VISIBLE
+                        : View.GONE
+        );
+        binding.detailControlsCrashThePlayer.setVisibility(
+                DEBUG && PreferenceManager.getDefaultSharedPreferences(getContext())
+                        .getBoolean(getString(R.string.show_crash_the_player_key), false)
+                        ? View.VISIBLE
+                        : View.GONE
+        );
 
         if (DeviceUtils.isTv(getContext())) {
             // remove ripple effects from detail controls
@@ -638,8 +659,14 @@ public final class VideoDetailFragment
         binding.detailControlsShare.setOnClickListener(this);
         binding.detailControlsOpenInBrowser.setOnClickListener(this);
         binding.detailControlsPlayWithKodi.setOnClickListener(this);
-        binding.detailControlsPlayWithKodi.setVisibility(KoreUtils.shouldShowPlayWithKodi(
-                requireContext(), serviceId) ? View.VISIBLE : View.GONE);
+        if (DEBUG) {
+            binding.detailControlsCrashThePlayer.setOnClickListener(
+                    v -> VideoDetailPlayerCrasher.onCrashThePlayer(
+                            this.getContext(),
+                            this.player,
+                            getLayoutInflater())
+            );
+        }
 
         binding.overlayThumbnail.setOnClickListener(this);
         binding.overlayThumbnail.setOnLongClickListener(this);
@@ -662,7 +689,7 @@ public final class VideoDetailFragment
         });
 
         setupBottomPlayer();
-        if (!playerHolder.bound) {
+        if (!playerHolder.isBound()) {
             setHeightThumbnail();
         } else {
             playerHolder.startService(false, this);
@@ -1075,6 +1102,11 @@ public final class VideoDetailFragment
 
         toggleFullscreenIfInFullscreenMode();
 
+        if (isPlayerAvailable()) {
+            // FIXME Workaround #7427
+            player.setRecovery();
+        }
+
         if (!useExternalAudioPlayer) {
             openNormalBackgroundPlayer(append);
         } else {
@@ -1091,6 +1123,9 @@ public final class VideoDetailFragment
         // See UI changes while remote playQueue changes
         if (!isPlayerAvailable()) {
             playerHolder.startService(false, this);
+        } else {
+            // FIXME Workaround #7427
+            player.setRecovery();
         }
 
         toggleFullscreenIfInFullscreenMode();
@@ -1181,7 +1216,7 @@ public final class VideoDetailFragment
         addVideoPlayerView();
 
         final Intent playerIntent = NavigationHelper.getPlayerIntent(requireContext(),
-                MainPlayer.class, queue, autoPlayEnabled);
+                MainPlayer.class, queue, true, autoPlayEnabled);
         ContextCompat.startForegroundService(activity, playerIntent);
     }
 
@@ -1411,7 +1446,7 @@ public final class VideoDetailFragment
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }
                         // Rebound to the service if it was closed via notification or mini player
-                        if (!playerHolder.bound) {
+                        if (!playerHolder.isBound()) {
                             playerHolder.startService(
                                     false, VideoDetailFragment.this);
                         }
@@ -1498,6 +1533,8 @@ public final class VideoDetailFragment
         animate(binding.detailThumbnailPlayButton, true, 200);
         binding.detailVideoTitleView.setText(title);
 
+        binding.detailSubChannelThumbnailView.setVisibility(View.GONE);
+
         if (!isEmpty(info.getSubChannelName())) {
             displayBothUploaderAndSubChannel(info);
         } else if (!isEmpty(info.getUploaderName())) {
@@ -1580,6 +1617,7 @@ public final class VideoDetailFragment
                 activity,
                 info.getVideoStreams(),
                 info.getVideoOnlyStreams(),
+                false,
                 false);
         selectedVideoStreamIndex = ListHelper
                 .getDefaultResolutionIndex(activity, sortedVideoStreams);
@@ -1658,9 +1696,8 @@ public final class VideoDetailFragment
 
             downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
         } catch (final Exception e) {
-            ErrorActivity.reportErrorInSnackbar(activity,
-                    new ErrorInfo(e, UserAction.DOWNLOAD_OPEN_DIALOG, "Showing download dialog",
-                            currentInfo));
+            ErrorUtil.showSnackbar(activity, new ErrorInfo(e, UserAction.DOWNLOAD_OPEN_DIALOG,
+                    "Showing download dialog", currentInfo));
         }
     }
 
@@ -2175,12 +2212,20 @@ public final class VideoDetailFragment
             mainFragment.setDescendantFocusability(afterDescendants);
             toolbar.setDescendantFocusability(afterDescendants);
             ((ViewGroup) requireView()).setDescendantFocusability(blockDescendants);
-            mainFragment.requestFocus();
+            // Only focus the mainFragment if the mainFragment (e.g. search-results)
+            // or the toolbar (e.g. Textfield for search) don't have focus.
+            // This was done to fix problems with the keyboard input, see also #7490
+            if (!mainFragment.hasFocus() && !toolbar.hasFocus()) {
+                mainFragment.requestFocus();
+            }
         } else {
             mainFragment.setDescendantFocusability(blockDescendants);
             toolbar.setDescendantFocusability(blockDescendants);
             ((ViewGroup) requireView()).setDescendantFocusability(afterDescendants);
-            binding.detailThumbnailRootLayout.requestFocus();
+            // Only focus the player if it not already has focus
+            if (!binding.getRoot().hasFocus()) {
+                binding.detailThumbnailRootLayout.requestFocus();
+            }
         }
     }
 

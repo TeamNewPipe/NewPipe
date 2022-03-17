@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.util.KioskTranslator;
@@ -48,18 +47,12 @@ import java.util.Vector;
  */
 
 public class SelectKioskFragment extends DialogFragment {
-    private RecyclerView recyclerView = null;
     private SelectKioskAdapter selectKioskAdapter = null;
 
     private OnSelectedListener onSelectedListener = null;
-    private OnCancelListener onCancelListener = null;
 
     public void setOnSelectedListener(final OnSelectedListener listener) {
         onSelectedListener = listener;
-    }
-
-    public void setOnCancelListener(final OnCancelListener listener) {
-        onCancelListener = listener;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -76,12 +69,12 @@ public class SelectKioskFragment extends DialogFragment {
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.select_kiosk_fragment, container, false);
-        recyclerView = v.findViewById(R.id.items_list);
+        final RecyclerView recyclerView = v.findViewById(R.id.items_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         try {
             selectKioskAdapter = new SelectKioskAdapter();
         } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(this, "Selecting kiosk", e);
+            ErrorUtil.showUiErrorSnackbar(this, "Selecting kiosk", e);
         }
         recyclerView.setAdapter(selectKioskAdapter);
 
@@ -91,14 +84,6 @@ public class SelectKioskFragment extends DialogFragment {
    /*//////////////////////////////////////////////////////////////////////////
     // Handle actions
     //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onCancel(@NonNull final DialogInterface dialogInterface) {
-        super.onCancel(dialogInterface);
-        if (onCancelListener != null) {
-            onCancelListener.onCancel();
-        }
-    }
 
     private void clickedItem(final SelectKioskAdapter.Entry entry) {
         if (onSelectedListener != null) {
@@ -113,10 +98,6 @@ public class SelectKioskFragment extends DialogFragment {
 
     public interface OnSelectedListener {
         void onKioskSelected(int serviceId, String kioskId, String kioskName);
-    }
-
-    public interface OnCancelListener {
-        void onCancel();
     }
 
     private class SelectKioskAdapter

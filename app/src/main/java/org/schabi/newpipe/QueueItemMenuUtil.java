@@ -9,15 +9,19 @@ import android.widget.PopupMenu;
 
 import androidx.fragment.app.FragmentManager;
 
-import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
-import org.schabi.newpipe.local.dialog.PlaylistCreationDialog;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.SparseItemUtil;
 
 import java.util.Collections;
 
 public final class QueueItemMenuUtil {
+    private QueueItemMenuUtil() {
+    }
+
     public static void openPopupMenu(final PlayQueue playQueue,
                                      final PlayQueueItem item,
                                      final View view,
@@ -47,13 +51,25 @@ public final class QueueItemMenuUtil {
                             false);
                     return true;
                 case R.id.menu_item_append_playlist:
-                    final PlaylistAppendDialog d = PlaylistAppendDialog.fromPlayQueueItems(
-                            Collections.singletonList(item)
+                    PlaylistDialog.createCorrespondingDialog(
+                            context,
+                            Collections.singletonList(new StreamEntity(item)),
+                            dialog -> dialog.show(
+                                    fragmentManager,
+                                    "QueueItemMenuUtil@append_playlist"
+                            )
                     );
-                    PlaylistAppendDialog.onPlaylistFound(context,
-                            () -> d.show(fragmentManager, "QueueItemMenuUtil@append_playlist"),
-                            () -> PlaylistCreationDialog.newInstance(d)
-                                    .show(fragmentManager, "QueueItemMenuUtil@append_playlist"));
+
+                    return true;
+                case R.id.menu_item_channel_details:
+                    SparseItemUtil.fetchUploaderUrlIfSparse(context, item.getServiceId(),
+                            item.getUrl(), item.getUploaderUrl(),
+                            // An intent must be used here.
+                            // Opening with FragmentManager transactions is not working,
+                            // as PlayQueueActivity doesn't use fragments.
+                            uploaderUrl -> NavigationHelper.openChannelFragmentUsingIntent(
+                                    context, item.getServiceId(), uploaderUrl, item.getUploader()
+                            ));
                     return true;
                 case R.id.menu_item_share:
                     shareText(context, item.getTitle(), item.getUrl(),
@@ -65,6 +81,4 @@ public final class QueueItemMenuUtil {
 
         popupMenu.show();
     }
-
-    private QueueItemMenuUtil() { }
 }

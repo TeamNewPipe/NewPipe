@@ -1,0 +1,2 @@
+- Fixade återupptagning av uppspelning
+- Förbättringar för att se till så att tjänsten som avgör om NewPipe ska kontrollera om en ny version kontrolleras inte startas i bakgrunden

@@ -55,7 +55,6 @@
     <string name="what_happened_headline">Yang terjadi:</string>
     <string name="your_comment">Komentar Anda (dalam bahasa Inggris):</string>
     <string name="error_details_headline">Detail:</string>
-    <string name="list_thumbnail_view_description">Thumbnail pratinjau video</string>
     <string name="detail_thumbnail_view_description">Putar video, durasi:</string>
     <string name="detail_likes_img_view_description">Suka</string>
     <string name="detail_uploader_thumbnail_view_description">Thumbnail avatar pengunggah</string>
@@ -87,7 +86,6 @@
     <string name="short_thousand">r</string>
     <string name="short_million">J</string>
     <string name="short_billion">T</string>
-    <string name="yes">Ya</string>
     <string name="open_in_popup_mode">Buka dalam mode popup</string>
     <string name="msg_popup_permission">Izin ini dibutuhkan untuk
 \nmembuka di mode sembul</string>
@@ -104,7 +102,7 @@
     <string name="popup_remember_size_pos_title">Ingat properti popup</string>
     <string name="popup_remember_size_pos_summary">Ingat ukuran dan posisi terakhir popup</string>
     <string name="show_search_suggestions_title">Saran pencarian</string>
-    <string name="show_search_suggestions_summary">Tampilkan saran pencarian saat mencari</string>
+    <string name="show_search_suggestions_summary">Menampilkan saran pencarian saat mencari</string>
     <string name="best_resolution">Resolusi terbaik</string>
     <string name="settings_category_downloads_title">Unduhan</string>
     <string name="settings_file_charset_title">Karakter yang diizinkan sebagai nama berkas</string>
@@ -154,7 +152,7 @@
     <string name="always">Selalu</string>
     <string name="just_once">Hanya Sekali</string>
     <string name="file">Berkas</string>
-    <string name="notification_channel_description">Notifikasi untuk pemutar latar belakang dan popup NewPipe</string>
+    <string name="notification_channel_description">Notifikasi untuk pemutar NewPipe</string>
     <string name="unknown_content">[Tidak diketahui]</string>
     <string name="switch_to_background">Alihkan ke Latar Belakang</string>
     <string name="switch_to_popup">Alihkan ke Popup</string>
@@ -200,9 +198,9 @@
     <string name="main_page_content">Konten halaman utama</string>
     <string name="blank_page_summary">Halaman Kosong</string>
     <string name="kiosk_page_summary">Halaman Kiosk</string>
-    <string name="channel_page_summary">Halaman Kanal</string>
-    <string name="select_a_channel">Pilih kanal</string>
-    <string name="no_channel_subscribed_yet">Belum ada langganan kanal</string>
+    <string name="channel_page_summary">Halaman Channel</string>
+    <string name="select_a_channel">Pilih channel</string>
+    <string name="no_channel_subscribed_yet">Belum ada langganan channel</string>
     <string name="select_a_kiosk">Pilih kiosk</string>
     <string name="export_complete_toast">Diekspor</string>
     <string name="import_complete_toast">Diimpor</string>
@@ -229,7 +227,7 @@
     <string name="create_playlist">Daftar Putar Baru</string>
     <string name="rename_playlist">Ubah Nama</string>
     <string name="name">Nama</string>
-    <string name="append_playlist">Tambah ke daftar putar</string>
+    <string name="add_to_playlist">Tambah ke daftar putar</string>
     <string name="set_as_playlist_thumbnail">Atur sebagai thumbnail daftar putar</string>
     <string name="bookmark_playlist">Markah Daftar Putar</string>
     <string name="unbookmark_playlist">Hapus Markah</string>
@@ -286,11 +284,12 @@
     <string name="import_youtube_instructions">Impor langganan YouTube dari Google takeout:
 \n
 \n1. Kunjungi URL ini: %1$s
-\n2. Masuk ketika ditanya
+\n2. Masuk ketika ditanyakan
 \n3. Klik \"Semua data disertakan\", lalu \"Batalkan semua pilihan\", lalu hanya pilih \"langganan\" dan klik \"OKE\"
 \n4. Klik \"Langkah berikutnya\" dan kemudian \"Buat ekspor\"
-\n5. Klik tombol \"Unduh\" dan
-\n6. Dari unduhan zip takeout ekstrak berkas .json (biasanya di bawah \"YouTube and YouTube Music/subscriptions/subscriptions.json\") dan impor di sini.</string>
+\n5. Klik tombol \"Unduh\"
+\n6. Klik IMPOR FILE di bawah dan pilih file .zip yang terunduh
+\n7. [Jika impor .zip gagal] Ekstrak file .csv (biasanya di \"YouTube dan YouTube Music/langganan/langganan.csv\"), klik IMPOR FILE di bawah dan pilih file csv yang diekstrak</string>
     <string name="import_soundcloud_instructions">Impor profil SoundCloud dengan mengetik URL atau ID Anda:
 \n
 \n1. Aktifkan \"mode desktop\" di peramban web (situs tidak tersedia untuk perangkat seluler)
@@ -305,7 +304,7 @@
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Nada</string>
     <string name="unhook_checkbox">Batalkan tautan (dapat menyebabkan distorsi)</string>
-    <string name="channels">Kanal</string>
+    <string name="channels">Channel</string>
     <string name="playlists">Daftar Putar</string>
     <string name="tracks">Trek</string>
     <string name="users">Pengguna</string>
@@ -337,8 +336,8 @@
     <string name="settings_category_updates_title">Pembaruan</string>
     <string name="events">Acara</string>
     <string name="file_deleted">Berkas dihapus</string>
-    <string name="app_update_notification_channel_name">Notifikasi Pembaruan Apl</string>
-    <string name="app_update_notification_channel_description">Notifikasi untuk versi NewPipe baru</string>
+    <string name="app_update_notification_channel_name">Notifikasi pembaruan apl</string>
+    <string name="app_update_notification_channel_description">Notifikasi untuk versi-versi NewPipe baru</string>
     <string name="download_to_sdcard_error_title">Penyimpanan eksternal tidak tersedia</string>
     <string name="download_to_sdcard_error_message">Tidak bisa mengunduh ke kartu SD eksternal. Atur ulang lokasi folder unduhan\?</string>
     <string name="saved_tabs_invalid_json">Tidak bisa membaca tab yang disimpan, beralih menggunakan tab bawaan</string>
@@ -467,7 +466,7 @@
     <plurals name="days">
         <item quantity="other">%d hari</item>
     </plurals>
-    <string name="feed_groups_header_title">Grup kanal</string>
+    <string name="feed_groups_header_title">Grup channel</string>
     <string name="feed_oldest_subscription_update">Terakhir diperbarui: %s</string>
     <string name="feed_subscription_not_loaded_count">Tidak dimuat: %d</string>
     <string name="feed_notification_loading">Memuat langganan…</string>
@@ -522,7 +521,7 @@
     <string name="youtube_restricted_mode_enabled_title">Aktifkan \"Mode Terbatas\" YouTube</string>
     <string name="video_detail_by">Oleh %s</string>
     <string name="channel_created_by">Dibuat oleh %s</string>
-    <string name="detail_sub_channel_thumbnail_view_description">Thumbnail avatar kanal</string>
+    <string name="detail_sub_channel_thumbnail_view_description">Thumbnail avatar channel</string>
     <string name="error_report_open_github_notice">Harap periksa apakah masalah yang sama sudah ada atau belum. Ketika laporan Anda ternyata sudah ada, Anda membuat kami menghabiskan waktu yang seharusnya bisa kami gunakan untuk meningkatkan aplikasi menjadi lebih baik.</string>
     <string name="error_report_open_issue_button_text">Laporkan di GitHub</string>
     <string name="copy_for_github">Salin laporan dengan format</string>
@@ -571,7 +570,7 @@
     <string name="show_meta_info_summary">Nonaktifkan untuk menyembunyikan kotak info dengan informasi tambahan tentang kreator, konten stream atau pencarian</string>
     <string name="show_meta_info_title">Tampilkan info meta</string>
     <string name="hash_channel_description">Notifikasi untuk laju pemrosesan hash video</string>
-    <string name="hash_channel_name">Notifikasi Hash Video</string>
+    <string name="hash_channel_name">Notifikasi hash video</string>
     <string name="no_app_to_open_intent">Tidak ada apl di perangkat Anda yang bisa membuka ini</string>
     <string name="chapters">Chapter</string>
     <string name="description_tab_description">Deskripsi</string>
@@ -581,8 +580,8 @@
     <string name="show_description_title">Tampilkan deskripsi</string>
     <string name="open_with">Buka dengan</string>
     <string name="paid_content">Konten ini hanya tersedia untuk pengguna yang telah membayar, sehingga tidak bisa diputar atau diunduh oleh NewPipe.</string>
-    <string name="youtube_music_premium_content">Video ini hanya tersedia untuk anggota Premium YouTube Music, sehingga tidak bisa diputar atau diunduh oleh NewPipe.</string>
-    <string name="private_content">Konten ini bersifat pribadi, jadi tidak bisa diputar ataupun diunduh oleh NewPipe.</string>
+    <string name="youtube_music_premium_content">Video ini hanya tersedia untuk anggota YouTube Music Premium, sehingga tidak bisa diputar atau diunduh oleh NewPipe.</string>
+    <string name="private_content">Konten ini privat, sehingga tidak bisa diputar atau diunduh oleh NewPipe.</string>
     <string name="soundcloud_go_plus_content">Ini adalah sebuah trek SoundCloud Go +, setidaknya di negara Anda, sehingga tidak bisa diputar atau diunduh oleh NewPipe.</string>
     <string name="georestricted_content">Konten ini tidak tersedia di negara Anda.</string>
     <string name="crash_the_app">Hentikan aplikasi</string>
@@ -596,7 +595,7 @@
     <string name="recaptcha_solve">Selesaikan</string>
     <string name="night_theme_title">Tema malam</string>
     <string name="download_has_started">Pengunduhan dimulai</string>
-    <string name="show_channel_details">Tampilkan rincian channel</string>
+    <string name="show_channel_details">Tampilkan detail channel</string>
     <string name="disable_media_tunneling_summary">Nonaktifkan terowongan media (tunnel) jiaka anda mengalami sebuah layar hitam atau kerusakan dalam memutar video</string>
     <string name="disable_media_tunneling_title">Nonaktifkan terowongan media (tunnel)</string>
     <string name="metadata_privacy_internal">Internal</string>
@@ -621,7 +620,7 @@
     <string name="feed_load_error_fast_unknown">Mode langganan cepat tidak menyediakan lebih banyak info tentang ini.</string>
     <string name="feed_load_error_terminated">Akun kreator telah dinonaktifkan.
 \nNewPipe tidak akan bisa memuat langganan ini lagi.
-\nApakah Anda ingin berhenti berlangganan kanal ini\?</string>
+\nApakah Anda ingin berhenti berlangganan channel ini\?</string>
     <string name="feed_load_error_account_info">Tidak bisa memuat langganan untuk \'%s\'.</string>
     <string name="feed_load_error">Galat memuat langganan</string>
     <string name="downloads_storage_use_saf_summary_api_29">Mulai Android 10, hanya \'Storage Access Framework\' yang didukung</string>
@@ -638,4 +637,41 @@
     <string name="comments_are_disabled">Komentar dinonaktifkan</string>
     <string name="seekbar_preview_thumbnail_title">Pratinjau thumbnail bilah laju</string>
     <string name="mark_as_watched">Tandai ditonton</string>
+    <string name="start_main_player_fullscreen_title">Buka pemutar utama dalam layar penuh</string>
+    <plurals name="download_finished_notification">
+        <item quantity="other">%s unduhan selesai</item>
+    </plurals>
+    <string name="main_page_content_swipe_remove">Geser item untuk membuangnya</string>
+    <string name="detail_heart_img_view_description">Disukai oleh kreator</string>
+    <string name="local_search_suggestions">Saran pencarian lokal</string>
+    <string name="remote_search_suggestions">Saran pencarian remote</string>
+    <string name="show_image_indicators_title">Tampilkan indikator gambar</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="other">Menghapus %1$s unduhan</item>
+    </plurals>
+    <string name="enqueue_next_stream">tambahkan ke selanjutnya</string>
+    <string name="enqueued_next">telah ditambahkan ke selanjutnya</string>
+    <string name="show_image_indicators_summary">Tampilkan Ribon bewarna Picasso di atas gambar yang mengindikasikan asalnya: merah untuk jaringan, biru untuk disk dan hijau untuk memori</string>
+    <string name="start_main_player_fullscreen_summary">Jangan memulai memutar video di mini player, tapi nyalakan langsung di mode layar penuh, jika rotasi otomatis terkunci. Anda tetap dapat mengakses mini player dengan keluar dari layar penuh</string>
+    <string name="processing_may_take_a_moment">Memproses… Mungkin butuh waktu sebentar</string>
+    <string name="manual_update_title">Periksa Pembaruan</string>
+    <string name="manual_update_description">Periksa manual untuk versi baru</string>
+    <string name="checking_updates_toast">Memeriksa pembaruan…</string>
+    <string name="feed_new_items">Item feed baru</string>
+    <string name="show_crash_the_player_title">Tampilkan \"Mogokkan pemutar\"</string>
+    <string name="show_crash_the_player_summary">Menampilkan opsi penghentian ketika menggunakan pemain video</string>
+    <string name="crash_the_player">Hentikan pemain video</string>
+    <string name="error_report_channel_description">Notifikasi untuk melaporkan kegalatan</string>
+    <string name="error_report_channel_name">Notifikasi laporan kegalatan</string>
+    <string name="error_report_notification_toast">Sebuah kegalatan terjadi, lihat notifikasinya</string>
+    <string name="show_error_snackbar">Menampilkan sebuah snackbar kegalatan</string>
+    <string name="create_error_notification">Buat sebuah notifikasi kegalatan</string>
+    <string name="no_appropriate_file_manager_message">Tidak ada manajer file yang ditemukan untuk tindakan ini.
+\nMohon instal sebuah manajer file atau coba menonaktifkan \'%s\' di pengaturan unduhan.</string>
+    <string name="error_report_notification_title">NewPipe mengalami sebuah kegalatan, ketuk untuk melaporkan</string>
+    <string name="no_appropriate_file_manager_message_android_10">Tidak ada manajer file yang ditemukan untuk tindakan ini.
+\nMohon instal sebuah manajer file yang kompatibel dengan Storage Access Framework.</string>
+    <string name="detail_pinned_comment_view_description">Komentar dipin</string>
+    <string name="background_player_already_playing_toast">Sudah diputar di latar belakang</string>
+    <string name="leak_canary_not_available">LeakCanary tidak tersedia</string>
 </resources>

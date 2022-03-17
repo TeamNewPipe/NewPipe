@@ -111,7 +111,6 @@
     <string name="tracks">ट्रयाकहरु</string>
     <string name="users">प्रयोगकर्ताहरु</string>
     <string name="events">घटनाहरू</string>
-    <string name="yes">हो</string>
     <string name="disabled">अक्षम</string>
     <string name="clear">स्पष्ट</string>
     <string name="best_resolution">सर्वश्रेष्ठ रेसोलुशन</string>
@@ -174,7 +173,6 @@
     <string name="info_labels">के:\\nअनुरोध:\\nसामग्री भाषा: \\nसेवा:\\nGMT समय:\\nप्याकेज:\\nसंस्करण: \\nOS संस्करण:</string>
     <string name="your_comment">तपाईंको टिप्पणी (अंग्रेजी मा):</string>
     <string name="error_details_headline">विवरण:</string>
-    <string name="list_thumbnail_view_description">सामग्री वर्णन (राम्रो पहुँच लागि)</string>
     <string name="detail_thumbnail_view_description">प्ले भिडियो, अवधि:</string>
     <string name="detail_uploader_thumbnail_view_description">अपलोडरको अवतार थम्बनेल</string>
     <string name="detail_likes_img_view_description">मनपर्दो</string>
@@ -292,7 +290,7 @@
     <string name="create_playlist">नया प्लेलिस्ट</string>
     <string name="rename_playlist">पुनः नामकरण</string>
     <string name="name">नाम</string>
-    <string name="append_playlist">प्लेसूचीमा थप्नुहोस</string>
+    <string name="add_to_playlist">प्लेसूचीमा थप्नुहोस</string>
     <string name="set_as_playlist_thumbnail">प्लेलिस्ट थम्बनेल रूपमा सेट</string>
     <string name="bookmark_playlist">बुकमार्क प्लेलिस्ट</string>
     <string name="unbookmark_playlist">बुकमार्क हटाउ</string>

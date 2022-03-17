@@ -54,7 +54,7 @@
     <string name="set_as_playlist_thumbnail">പ്ലേലിസ്റ്റ് ലഘുചിത്രമായി സജ്ജമാക്കുക</string>
     <string name="unmute">അൺമ്യൂട്ട്</string>
     <string name="mute">മ്യൂട്ട്</string>
-    <string name="append_playlist">പ്ലേലിസ്റ്റിലേക്ക് ചേർക്കുക</string>
+    <string name="add_to_playlist">പ്ലേലിസ്റ്റിലേക്ക് ചേർക്കുക</string>
     <string name="name">പേര്</string>
     <string name="rename_playlist">പേര് മാറ്റുക</string>
     <string name="create_playlist">പുതിയ പ്ലേലിസ്റ്റ്</string>
@@ -198,7 +198,6 @@
     <string name="detail_likes_img_view_description">ലൈക്കുകൾ</string>
     <string name="detail_uploader_thumbnail_view_description">അപ്‌ലോഡറുടെ ലഘുചിത്രം</string>
     <string name="detail_thumbnail_view_description">പ്ലേ വീഡിയോ, ദൈർഘ്യം:</string>
-    <string name="list_thumbnail_view_description">വീഡിയോ ലഘുചിത്രം</string>
     <string name="error_details_headline">വിശദാംശങ്ങൾ:</string>
     <string name="your_comment">നിങ്ങളുടെ അഭിപ്രായം (ഇംഗ്ലീഷിൽ):</string>
     <string name="what_happened_headline">എന്ത് സംഭവിച്ചു:</string>
@@ -271,7 +270,6 @@
     <string name="best_resolution">മികച്ച റിസല്യൂഷൻ</string>
     <string name="clear">തെളിക്കുക</string>
     <string name="disabled">അസാധുവാക്കപ്പെട്ടു</string>
-    <string name="yes">അതെ</string>
     <string name="artists">കലാകാരന്മാർ</string>
     <string name="albums">ആൽബങ്ങൾ</string>
     <string name="songs">പാട്ടുകൾ</string>
@@ -613,8 +611,6 @@
     <string name="detail_heart_img_view_description">സ്നേഹത്തോടെ സൃഷ്ടാവ്</string>
     <string name="description_select_disable">ഡിസ്ക്രിപ്ഷനിലെ ടെക്സ്റ്റ്‌ സെലക്ട്‌ ചെയ്യുവാൻ അനുവദിക്കാതെ ഇരിക്കുക</string>
     <string name="description_select_enable">ഡിസ്ക്രിപ്ഷനിലെ ടെക്സ്റ്റ്‌ സെലക്ട്‌ ചെയ്യാൻ അനുവദിക്കുക</string>
-    <string name="loading_channel_details">ചാനൽ വിശദാംശങ്ങൾ ലോഡ് ചെയ്യുന്നു…</string>
-    <string name="error_show_channel_details">ചാനൽ വിശദാംശങ്ങൾ കാണിക്കുന്നതിൽ പിശക് സംഭവിച്ചു</string>
     <string name="off">ഓഫ്‌</string>
     <string name="on">ഓൺ</string>
     <string name="open_website_license">വെബ്സൈറ്റ് തുറക്കുക</string>
@@ -655,4 +651,7 @@
     <string name="remote_search_suggestions">റിമോട്ട് സെർച്ച്‌ നിർദ്ദേശങ്ങൾ</string>
     <string name="local_search_suggestions">ലോക്കൽ സെർച്ച്‌ നിർദേശങ്ങൾ</string>
     <string name="mark_as_watched">കണ്ടതാണെന്ന് അടയാളപ്പെടുത്തുക</string>
+    <string name="start_main_player_fullscreen_title">തുടങ്ങുന്ന പ്രേധാന പേജ് മുഴുവന്‍ സ്ക്രീനില്‍ കാണിക്കുക</string>
+    <string name="main_page_content_swipe_remove">ഐറ്റം കളയണം എന്നുണ്ടെല്‍ സ്വൈപ്പ് ചൈയ്യുക</string>
+    <string name="start_main_player_fullscreen_summary">മിനി പ്ലേയര്‍ -ല്‍ വീഡിയോ -ക്കള്‍ ഒരിക്കലും സ്റ്റാര്‍ട്ട് ചൈയ്യരുത് , പക്ഷേ നേരെ ഫുള്‍ സ്ക്രീന്‍ മോഡിലെക് മാറും .ഓട്ടോ റൊട്ടേഷന്‍ ലോക്ക് ചെയിത്തിട്ടുണ്ടെങ്കില്‍ നിലവിലെ ഫുള്‍ സ്ക്രീന്‍ നില്‍ നിന്നും മിനി പ്ലായേറിലെക് മാറാന്‍ ആകും</string>
 </resources>

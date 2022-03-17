@@ -31,6 +31,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -46,7 +47,6 @@ import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
 import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.MainPlayer.PlayerType;
-import org.schabi.newpipe.player.NotificationUtil;
 import org.schabi.newpipe.player.PlayQueueActivity;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -65,7 +65,8 @@ import com.jakewharton.processphoenix.ProcessPhoenix;
 public final class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
     public static final String SEARCH_FRAGMENT_TAG = "search_fragment_tag";
-    private static final String TAG = NotificationUtil.class.getSimpleName();
+
+    private static final String TAG = NavigationHelper.class.getSimpleName();
 
     private NavigationHelper() {
     }
@@ -77,7 +78,8 @@ public final class NavigationHelper {
     @NonNull
     public static <T> Intent getPlayerIntent(@NonNull final Context context,
                                              @NonNull final Class<T> targetClazz,
-                                             @Nullable final PlayQueue playQueue) {
+                                             @Nullable final PlayQueue playQueue,
+                                             final boolean resumePlayback) {
         final Intent intent = new Intent(context, targetClazz);
 
         if (playQueue != null) {
@@ -87,6 +89,7 @@ public final class NavigationHelper {
             }
         }
         intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.VIDEO.ordinal());
+        intent.putExtra(Player.RESUME_PLAYBACK, resumePlayback);
 
         return intent;
     }
@@ -95,8 +98,9 @@ public final class NavigationHelper {
     public static <T> Intent getPlayerIntent(@NonNull final Context context,
                                              @NonNull final Class<T> targetClazz,
                                              @Nullable final PlayQueue playQueue,
+                                             final boolean resumePlayback,
                                              final boolean playWhenReady) {
-        return getPlayerIntent(context, targetClazz, playQueue)
+        return getPlayerIntent(context, targetClazz, playQueue, resumePlayback)
                 .putExtra(Player.PLAY_WHEN_READY, playWhenReady);
     }
 
@@ -104,7 +108,14 @@ public final class NavigationHelper {
     public static <T> Intent getPlayerEnqueueIntent(@NonNull final Context context,
                                                     @NonNull final Class<T> targetClazz,
                                                     @Nullable final PlayQueue playQueue) {
-        return getPlayerIntent(context, targetClazz, playQueue)
+        // when enqueueing `resumePlayback` is always `false` since:
+        // - if there is a video already playing, the value of `resumePlayback` just doesn't make
+        //   any difference.
+        // - if there is nothing already playing, it is useful for the enqueue action to have a
+        //   slightly different behaviour than the normal play action: the latter resumes playback,
+        //   the former doesn't. (note that enqueue can be triggered when nothing is playing only
+        //   by long pressing the video detail fragment, playlist or channel controls
+        return getPlayerIntent(context, targetClazz, playQueue, false)
                 .putExtra(Player.ENQUEUE, true);
     }
 
@@ -112,7 +123,8 @@ public final class NavigationHelper {
     public static <T> Intent getPlayerEnqueueNextIntent(@NonNull final Context context,
                                                         @NonNull final Class<T> targetClazz,
                                                         @Nullable final PlayQueue playQueue) {
-        return getPlayerIntent(context, targetClazz, playQueue)
+        // see comment in `getPlayerEnqueueIntent` as to why `resumePlayback` is false
+        return getPlayerIntent(context, targetClazz, playQueue, false)
                 .putExtra(Player.ENQUEUE_NEXT, true);
     }
 
@@ -147,6 +159,7 @@ public final class NavigationHelper {
         }
 
         Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
+
         final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
         intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.POPUP.ordinal());
         ContextCompat.startForegroundService(context, intent);
@@ -157,6 +170,7 @@ public final class NavigationHelper {
                                               final boolean resumePlayback) {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT)
                 .show();
+
         final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
         intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.AUDIO.ordinal());
         ContextCompat.startForegroundService(context, intent);
@@ -201,7 +215,8 @@ public final class NavigationHelper {
     // External Players
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static void playOnExternalAudioPlayer(final Context context, final StreamInfo info) {
+    public static void playOnExternalAudioPlayer(@NonNull final Context context,
+                                                 @NonNull final StreamInfo info) {
         final int index = ListHelper.getDefaultAudioFormat(context, info.getAudioStreams());
 
         if (index == -1) {
@@ -213,9 +228,11 @@ public final class NavigationHelper {
         playOnExternalPlayer(context, info.getName(), info.getUploaderName(), audioStream);
     }
 
-    public static void playOnExternalVideoPlayer(final Context context, final StreamInfo info) {
+    public static void playOnExternalVideoPlayer(@NonNull final Context context,
+                                                 @NonNull final StreamInfo info) {
         final ArrayList<VideoStream> videoStreamsList = new ArrayList<>(
-                ListHelper.getSortedStreamVideosList(context, info.getVideoStreams(), null, false));
+                ListHelper.getSortedStreamVideosList(context, info.getVideoStreams(), null, false,
+                        false));
         final int index = ListHelper.getDefaultResolutionIndex(context, videoStreamsList);
 
         if (index == -1) {
@@ -227,8 +244,10 @@ public final class NavigationHelper {
         playOnExternalPlayer(context, info.getName(), info.getUploaderName(), videoStream);
     }
 
-    public static void playOnExternalPlayer(final Context context, final String name,
-                                            final String artist, final Stream stream) {
+    public static void playOnExternalPlayer(@NonNull final Context context,
+                                            @Nullable final String name,
+                                            @Nullable final String artist,
+                                            @NonNull final Stream stream) {
         final Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.parse(stream.getUrl()), stream.getFormat().getMimeType());
@@ -240,7 +259,8 @@ public final class NavigationHelper {
         resolveActivityOrAskToInstall(context, intent);
     }
 
-    public static void resolveActivityOrAskToInstall(final Context context, final Intent intent) {
+    public static void resolveActivityOrAskToInstall(@NonNull final Context context,
+                                                     @NonNull final Intent intent) {
         if (intent.resolveActivity(context.getPackageManager()) != null) {
             ShareUtils.openIntentInApp(context, intent, false);
         } else {
@@ -389,6 +409,15 @@ public final class NavigationHelper {
                 .commit();
     }
 
+    public static void openChannelFragment(@NonNull final Fragment fragment,
+                                           @NonNull final StreamInfoItem item,
+                                           final String uploaderUrl) {
+        // For some reason `getParentFragmentManager()` doesn't work, but this does.
+        openChannelFragment(
+                fragment.requireActivity().getSupportFragmentManager(),
+                item.getServiceId(), uploaderUrl, item.getUploaderName());
+    }
+
     public static void openPlaylistFragment(final FragmentManager fragmentManager,
                                             final int serviceId, final String url,
                                             @NonNull final String name) {
@@ -488,6 +517,27 @@ public final class NavigationHelper {
                 intent.putExtra(Player.PLAY_QUEUE_KEY, cacheKey);
             }
         }
+        context.startActivity(intent);
+    }
+
+    /**
+     * Opens {@link ChannelFragment}.
+     * Use this instead of {@link #openChannelFragment(FragmentManager, int, String, String)}
+     * when no fragments are used / no FragmentManager is available.
+     * @param context
+     * @param serviceId
+     * @param url
+     * @param title
+     */
+    public static void openChannelFragmentUsingIntent(final Context context,
+                                                      final int serviceId,
+                                                      final String url,
+                                                      @NonNull final String title) {
+        final Intent intent = getOpenIntent(context, url, serviceId,
+                StreamingService.LinkType.CHANNEL);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(Constants.KEY_TITLE, title);
+
         context.startActivity(intent);
     }
 

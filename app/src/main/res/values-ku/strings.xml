@@ -86,7 +86,6 @@
     <string name="downloads_title">دابەزاندنەکان</string>
     <string name="error_report_title">ناتوانرێ سکاڵابکرێ</string>
     <string name="all">گشتی</string>
-    <string name="yes">بەڵێ</string>
     <string name="disabled">ناکارایە</string>
     <string name="clear">پاککردنەوە</string>
     <string name="best_resolution">باشترین قەبارە</string>
@@ -127,7 +126,6 @@
     <string name="what_happened_headline">چی ڕوویدا:</string>
     <string name="your_comment">لێدوانەکەت (بە ئینگلیزی):</string>
     <string name="error_details_headline">وردەکارییەکان:</string>
-    <string name="list_thumbnail_view_description">پێشبینین ی وێنۆچکەی ڤیدیۆ</string>
     <string name="detail_thumbnail_view_description">کارپێکردنی ڤیدیۆ، ماوەی:</string>
     <string name="detail_uploader_thumbnail_view_description">وێنۆچکەی کەسی بەرزکەرەوە</string>
     <string name="detail_likes_img_view_description">بەدڵبوون</string>
@@ -212,7 +210,7 @@
     <string name="create_playlist">لیستەلێدانی نوێ</string>
     <string name="rename_playlist">ناولێنانەوە</string>
     <string name="name">ناو</string>
-    <string name="append_playlist">زیادکردن بۆ لیستەلێدان</string>
+    <string name="add_to_playlist">زیادکردن بۆ لیستەلێدان</string>
     <string name="set_as_playlist_thumbnail">دانان لەسەر وێنۆچکەی لیستەلێدان</string>
     <string name="bookmark_playlist">لیستەلێدانی نیشانەکراو</string>
     <string name="unbookmark_playlist">لادانی نیشانەکراو</string>

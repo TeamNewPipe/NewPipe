@@ -15,7 +15,7 @@
             android:background="?attr/toolbar_shadow" />
     </FrameLayout>
 
-    <View
+    <org.schabi.newpipe.views.NewPipeTextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="?attr/separator_color" />

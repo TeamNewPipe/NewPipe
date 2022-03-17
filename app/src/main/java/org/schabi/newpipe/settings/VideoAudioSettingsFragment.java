@@ -23,7 +23,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.video_audio_settings);
+        addPreferencesFromResourceRegistry();
 
         updateSeekOptions();
 

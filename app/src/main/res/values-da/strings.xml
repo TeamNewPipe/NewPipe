@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Tryk søg for at komme i gang</string>
+    <string name="main_bg_subtitle">Tryk på forstørrelsesglasset for at komme i gang.</string>
     <string name="upload_date_text">Udgivet %1$s</string>
-    <string name="no_player_found">Ingen streamafspiller blev fundet. Vil du installere VLC\?</string>
+    <string name="no_player_found">Ingen streamafspiller blev fundet. Installer VLC\?</string>
     <string name="no_player_found_toast">Ingen streamafspiller fundet (du kan installere VLC for at afspille den).</string>
     <string name="install">Installer</string>
     <string name="cancel">Annuller</string>
@@ -108,7 +108,6 @@
     </plurals>
     <string name="tracks">Numre</string>
     <string name="users">Brugere</string>
-    <string name="yes">Ja</string>
     <string name="disabled">Slået fra</string>
     <string name="clear">Slet</string>
     <string name="best_resolution">Bedste opløsning</string>
@@ -171,7 +170,6 @@
     <string name="what_happened_headline">Hvad skete der:</string>
     <string name="your_comment">Din kommentar (på engelsk):</string>
     <string name="error_details_headline">Detaljer:</string>
-    <string name="list_thumbnail_view_description">Videominiaturebillede</string>
     <string name="detail_thumbnail_view_description">Videominiaturebillede</string>
     <string name="detail_uploader_thumbnail_view_description">Uploaders profilbillede</string>
     <string name="detail_likes_img_view_description">Synes godt om</string>
@@ -270,7 +268,7 @@
     <string name="create_playlist">Ny spilleliste</string>
     <string name="rename_playlist">Omdøb</string>
     <string name="name">Navn</string>
-    <string name="append_playlist">Føj til spilleliste</string>
+    <string name="add_to_playlist">Føj til spilleliste</string>
     <string name="delete_playlist_prompt">Slet denne spilleliste\?</string>
     <string name="playlist_creation_success">Spilleliste oprettet</string>
     <string name="caption_none">Ingen undertekster</string>
@@ -397,4 +395,5 @@
     <string name="notification_action_2_title">Tredje handlingstast</string>
     <string name="search_showing_result_for">Viser resultater for: %s</string>
     <string name="open_with">Åben med</string>
+    <string name="leak_canary_not_available">LeakCanary er ikke tilgængelig</string>
 </resources>

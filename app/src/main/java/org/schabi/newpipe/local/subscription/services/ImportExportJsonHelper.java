@@ -25,7 +25,6 @@ import com.grack.nanojson.JsonAppendableWriter;
 import com.grack.nanojson.JsonArray;
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
-import com.grack.nanojson.JsonSink;
 import com.grack.nanojson.JsonWriter;
 
 import org.schabi.newpipe.BuildConfig;
@@ -125,10 +124,11 @@ public final class ImportExportJsonHelper {
     /**
      * @see #writeTo(List, OutputStream, ImportExportEventListener)
      * @param items         the list of subscriptions items
-     * @param writer        the output {@link JsonSink}
+     * @param writer        the output {@link JsonAppendableWriter}
      * @param eventListener listener for the events generated
      */
-    public static void writeTo(final List<SubscriptionItem> items, final JsonSink writer,
+    public static void writeTo(final List<SubscriptionItem> items,
+                               final JsonAppendableWriter writer,
                                @Nullable final ImportExportEventListener eventListener) {
         if (eventListener != null) {
             eventListener.onSizeReceived(items.size());

@@ -1,0 +1,14 @@
+Nieuw
+• Abonnementsgroepen en gesorteerde feeds
+• Mute-knop in spelers
+
+Verbeterd
+• Sta het openen van music.youtube.com en media.ccc.de links toe in NewPipe
+• Verplaats twee instellingen van Uiterlijk naar Inhoud
+• Verberg zoekopties van 5, 15, 25 seconden als onnauwkeurig zoeken is ingeschakeld
+
+Gemaakt
+• sommige WebM-video's kunnen niet worden gezocht 
+• Databaseback-up op Android P
+• Crasht bij het delen van een gedownload bestand
+• Tonnen YouTube-extractieprobleem en meer ...

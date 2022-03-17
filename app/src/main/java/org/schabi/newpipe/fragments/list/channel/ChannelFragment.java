@@ -1,5 +1,9 @@
 package org.schabi.newpipe.fragments.list.channel;
 
+import static org.schabi.newpipe.ktx.TextViewUtils.animateTextColor;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.ktx.ViewUtils.animateBackgroundColor;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,7 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
-import androidx.viewbinding.ViewBinding;
 
 import com.jakewharton.rxbinding4.view.RxView;
 
@@ -26,10 +29,9 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.databinding.ChannelHeaderBinding;
 import org.schabi.newpipe.databinding.FragmentChannelBinding;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
@@ -43,13 +45,14 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -61,11 +64,7 @@ import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-import static org.schabi.newpipe.ktx.TextViewUtils.animateTextColor;
-import static org.schabi.newpipe.ktx.ViewUtils.animate;
-import static org.schabi.newpipe.ktx.ViewUtils.animateBackgroundColor;
-
-public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
+public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, ChannelInfo>
         implements View.OnClickListener {
 
     private static final int BUTTON_DEBOUNCE_INTERVAL = 100;
@@ -98,11 +97,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     }
 
     @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (activity != null
-                && useAsFrontPage
-                && isVisibleToUser) {
+    public void onResume() {
+        super.onResume();
+        if (activity != null && useAsFrontPage) {
             setTitle(currentInfo != null ? currentInfo.getName() : name);
         }
     }
@@ -147,12 +144,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected ViewBinding getListHeader() {
+    protected Supplier<View> getListHeaderSupplier() {
         headerBinding = ChannelHeaderBinding
                 .inflate(activity.getLayoutInflater(), itemsList, false);
         playlistControlBinding = headerBinding.playlistControl;
 
-        return headerBinding;
+        return headerBinding::getRoot;
     }
 
     @Override
@@ -185,13 +182,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         }
     }
 
-    private void openRssFeed() {
-        final ChannelInfo info = currentInfo;
-        if (info != null) {
-            ShareUtils.openUrlInBrowser(requireContext(), info.getFeedUrl(), false);
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
@@ -199,7 +189,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                 NavigationHelper.openSettings(requireContext());
                 break;
             case R.id.menu_item_rss:
-                openRssFeed();
+                if (currentInfo != null) {
+                    ShareUtils.openUrlInBrowser(
+                            requireContext(), currentInfo.getFeedUrl(), false);
+                }
                 break;
             case R.id.menu_item_openInBrowser:
                 if (currentInfo != null) {
@@ -381,7 +374,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
+    protected Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
         return ExtractorHelper.getMoreChannelItems(serviceId, url, currentNextPage);
     }
 
@@ -409,7 +402,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                                 currentInfo.getParentChannelUrl(),
                                 currentInfo.getParentChannelName());
                     } catch (final Exception e) {
-                        ErrorActivity.reportUiErrorInSnackbar(this, "Opening channel fragment", e);
+                        ErrorUtil.showUiErrorSnackbar(this, "Opening channel fragment", e);
                     }
                 } else if (DEBUG) {
                     Log.i(TAG, "Can't open parent channel because we got no channel URL");
@@ -518,12 +511,11 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     }
 
     private PlayQueue getPlayQueue(final int index) {
-        final List<StreamInfoItem> streamItems = new ArrayList<>();
-        for (final InfoItem i : infoListAdapter.getItemsList()) {
-            if (i instanceof StreamInfoItem) {
-                streamItems.add((StreamInfoItem) i);
-            }
-        }
+        final List<StreamInfoItem> streamItems = infoListAdapter.getItemsList().stream()
+                .filter(StreamInfoItem.class::isInstance)
+                .map(StreamInfoItem.class::cast)
+                .collect(Collectors.toList());
+
         return new ChannelPlayQueue(currentInfo.getServiceId(), currentInfo.getUrl(),
                 currentInfo.getNextPage(), streamItems, index);
     }

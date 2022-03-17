@@ -1,0 +1,9 @@
+Ajoute de nouveaux interface et comportement pour la recherche par double-touche
+Rend les paramètres recherchables
+Surligne les commentaires épinglés comme tels
+Ajoute l’ouverture avec app pour l’instance PeerTube de la FSFE
+Ajoute les notifications d’erreur
+Corrige la relecture du premier item de la file lorsque le lecteur change
+Attend plus longtemps lors des directs avant d’échouer
+Corrige l’ordre des résultats d’une recherche locale
+Corrige les champs d’item vides dans la liste de lecture

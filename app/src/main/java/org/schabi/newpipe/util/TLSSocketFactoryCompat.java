@@ -10,9 +10,8 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
 
-import static org.schabi.newpipe.MainActivity.DEBUG;
+import android.util.Log;
 
 
 /**
@@ -21,6 +20,7 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
  */
 public class TLSSocketFactoryCompat extends SSLSocketFactory {
 
+    private static final String TAG = "TLSSocketFactoryCom";
 
     private static TLSSocketFactoryCompat instance = null;
 
@@ -29,14 +29,6 @@ public class TLSSocketFactoryCompat extends SSLSocketFactory {
     public TLSSocketFactoryCompat() throws KeyManagementException, NoSuchAlgorithmException {
         final SSLContext context = SSLContext.getInstance("TLS");
         context.init(null, null, null);
-        internalSSLSocketFactory = context.getSocketFactory();
-    }
-
-
-    public TLSSocketFactoryCompat(final TrustManager[] tm)
-            throws KeyManagementException, NoSuchAlgorithmException {
-        final SSLContext context = SSLContext.getInstance("TLS");
-        context.init(null, tm, new java.security.SecureRandom());
         internalSSLSocketFactory = context.getSocketFactory();
     }
 
@@ -53,9 +45,7 @@ public class TLSSocketFactoryCompat extends SSLSocketFactory {
         try {
             HttpsURLConnection.setDefaultSSLSocketFactory(getInstance());
         } catch (NoSuchAlgorithmException | KeyManagementException e) {
-            if (DEBUG) {
-                e.printStackTrace();
-            }
+            Log.e(TAG, "Unable to setAsDefault", e);
         }
     }
 

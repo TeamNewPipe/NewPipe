@@ -44,7 +44,6 @@
     <string name="detail_dislikes_img_view_description">Tarrezmes</string>
     <string name="default_video_format_title">Formatu de videu predetermináu</string>
     <string name="black_theme_title">Prietu</string>
-    <string name="yes">Sí</string>
     <string name="short_thousand">mil</string>
     <string name="short_million">mill.</string>
     <string name="short_billion">mil mill.</string>
@@ -132,7 +131,7 @@
     <string name="dismiss">Escartar</string>
     <string name="create_playlist">Llista de reproducción nueva</string>
     <string name="name">Nome</string>
-    <string name="append_playlist">Amestar a una llista de reproducción</string>
+    <string name="add_to_playlist">Amestar a una llista de reproducción</string>
     <string name="delete_playlist_prompt">¿Desanicair esta llista de reproducción\?</string>
     <string name="caption_none">Ensin sotítulos</string>
     <string name="resize_fit">Axustar</string>
@@ -458,7 +457,6 @@
     <string name="detail_drag_description">Arrastra pa reordenar</string>
     <string name="detail_uploader_thumbnail_view_description">Avatar del xubidor</string>
     <string name="detail_thumbnail_view_description">Reproducción d\'un videu, duración:</string>
-    <string name="list_thumbnail_view_description">Miniatura del videu</string>
     <string name="your_comment">Un comentariu (n\'inglés):</string>
     <string name="what_happened_headline">Qué pasó:</string>
     <string name="error_snackbar_action">Informar</string>

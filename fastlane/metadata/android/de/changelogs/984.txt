@@ -1,0 +1,7 @@
+Scrollen in Listen auf Tablets und TVs behoben
+Zufällige Abstürze beim Scrollen durch Listen behoben
+Das Overlay zum schnellen Vor- und Zurückspringen liegt jetzt unter der System-UI
+Änderungen für bessere Unterstützung von Cutouts wurden rückgängig gemacht, da diese auf einigen Geräten die Oberfläche des Players verschiebt
+compileSDK wurde von 30auf 31 erhöht
+Die Bibliothek zum Melden von Fehlern wurde aktualisiert
+Kleine Teile des Player Codes wurden umstrukturiert

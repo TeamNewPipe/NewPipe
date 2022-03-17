@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Napauta suurennuslasia aloittaaksesi.</string>
+    <string name="main_bg_subtitle">Aloita napauttamalla suurennuslasia.</string>
     <string name="upload_date_text">Julkaistu %1$s</string>
     <string name="no_player_found">Ei löytynyt suoratoistosoitinta. Asennetaanko VLC\?</string>
     <string name="install">Asenna</string>
@@ -73,13 +73,12 @@
     <string name="downloads_title">Lataukset</string>
     <string name="error_report_title">Virheraportti</string>
     <string name="all">Kaikki</string>
-    <string name="yes">Kyllä</string>
     <string name="disabled">Poistettu käytöstä</string>
     <string name="clear">Pyyhi</string>
     <string name="best_resolution">Paras resoluutio</string>
     <string name="undo">Peru</string>
-    <string name="notification_channel_name">NewPipe Ilmoitus</string>
-    <string name="notification_channel_description">Ilmoitukset NewPipen tausta- ja ponnahdusikkunasoittimille</string>
+    <string name="notification_channel_name">NewPipe ilmoitus</string>
+    <string name="notification_channel_description">Ilmoitukset NewPipen soittimille</string>
     <string name="general_error">Virhe</string>
     <string name="network_error">Verkkovirhe</string>
     <string name="could_not_load_thumbnails">Kaikkia esikatselukuvia ei voitu ladata</string>
@@ -95,7 +94,6 @@
     <string name="what_happened_headline">Mitä tapahtui:</string>
     <string name="your_comment">Sinun viesti (englanniksi):</string>
     <string name="error_details_headline">Yksityiskohdat:</string>
-    <string name="list_thumbnail_view_description">Videon esikatselukuva</string>
     <string name="detail_thumbnail_view_description">Toista video, kesto:</string>
     <string name="detail_uploader_thumbnail_view_description">Lataajan hahmokuvake</string>
     <string name="detail_likes_img_view_description">Tykkäykset</string>
@@ -194,10 +192,10 @@
     <string name="no_player_found_toast">Suoratoistosoitinta ei löytynyt (voit asentaa VLC:n toistaaksesi).</string>
     <string name="controls_download_desc">Lataa suoratoistotiedosto</string>
     <string name="show_info">Näytä lisätietoja</string>
-    <string name="tab_bookmarks">Soittolistakirjanmerkit</string>
+    <string name="tab_bookmarks">Kirjanmerkit</string>
     <string name="controls_add_to_playlist_title">Lisää soittolistaan</string>
     <string name="use_inexact_seek_title">Käytä nopeampaa epätarkkaa pikakelausta</string>
-    <string name="use_inexact_seek_summary">Epätarkka kelaus mahdollistaa videon kelauksen nopeammin huonommalla tarkkuudella. Kelaaminen 5, 15 tai 25 sekunnin erissä ei toimi tämän kanssa</string>
+    <string name="use_inexact_seek_summary">Epätarkka kelaus mahdollistaa videon kelauksen nopeammin huonommalla tarkkuudella. Kelaaminen 5, 15 tai 25 sekunnin hyppäyksin ei toimi tämän kanssa</string>
     <string name="download_thumbnail_title">Lataa esikatselukuvat</string>
     <string name="download_thumbnail_summary">Poista käytöstä estääksesi esikatselukuvien lataus. Tämä säästää dataa ja vähentää muistin käyttöä. Asetuksen muuttaminen poistaa muistissa ja levyllä olevan kuvavälimuistin</string>
     <string name="thumbnail_cache_wipe_complete_notice">Kuvavälimuisti tyhjennetty</string>
@@ -271,7 +269,7 @@
     <string name="create_playlist">Uusi soittolista</string>
     <string name="rename_playlist">Uudelleennimeä</string>
     <string name="name">Nimi</string>
-    <string name="append_playlist">Lisää soittolistaan</string>
+    <string name="add_to_playlist">Lisää soittolistaan</string>
     <string name="set_as_playlist_thumbnail">Aseta soittolistan kuvakkeeksi</string>
     <string name="bookmark_playlist">Tallenna soittolista kirjanmerkkeihin</string>
     <string name="unbookmark_playlist">Poista kirjanmerkki</string>
@@ -304,8 +302,9 @@
 \n2. Kirjaudu sisään pyydettäessä
 \n3. Klikkaa \"Kaikki Youtube-data valittuna\", sitten \"Poista kaikki valinnat\", sitten ainoastaan \"tilaukset\" ja klikkaa \"OK\"
 \n4. Klikkaa \"Seuraava vaihe\" ja \"Luo vienti\"
-\n5. Klikkaa \"Lataa\" tämän ilmestyessä
-\n6. Ladatusta zip-tiedostosta pura .json-tiedosto (yleensä sijainnissa \"Youtube ja Youtube Musiikki/tilaukset/tilaukset.json\") ja tuo se tänne.</string>
+\n5. Klikkaa \"Lataa\"-painiketta tämän ilmestyessä
+\n6. Klikkaa TUO TIEDOSTO alhaalta ja valitse ladattu .zip-tiedosto
+\n7. [Jos zip-tiedoston tuonti epäonnistuu] Pura .csv-tiedosto (yleensä sijainnissa \"Youtube ja Youtube Musiikki/tilaukset/tilaukset.csv\") ja klikkaa TUO TIEDOSTO alhaalta ja valitse purettu csv-tiedosto</string>
     <string name="import_soundcloud_instructions">Tuo SoundCloud-profiili kirjoittamalla joko osoite tai ID:si:
 \n
 \n1. Laita päälle työpöytämoodi selaimessasi (tai käytä tietokonetta, tämä sivu ei toimi mobiilisivuna)
@@ -337,7 +336,7 @@
     <string name="unsubscribe">Peru tilaus</string>
     <string name="tab_choose">Valitse välilehti</string>
     <string name="missions_header_finished">Valmis</string>
-    <string name="enqueue">Jono</string>
+    <string name="enqueue">Lisää jonoon</string>
     <string name="seek_duration_title">Eteen-/taaksepäinkelauksen aika-askeleen pituus</string>
     <string name="recently_added">Hiljattain lisätyt</string>
     <string name="local">Paikalliset</string>
@@ -369,7 +368,7 @@
     <string name="download_to_sdcard_error_message">Lataaminen ulkoiselle SD-kortille ei ole mahdollista. Nollataanko latauskansion sijainti\?</string>
     <string name="download_to_sdcard_error_title">Ulkoinen tallennustila ei käytettävissä</string>
     <string name="help">Ohje</string>
-    <string name="app_update_notification_channel_description">Ilmoitukset uudesta NewPipe-versiosta</string>
+    <string name="app_update_notification_channel_description">Ilmoitukset uusista NewPipe-versioista</string>
     <string name="app_update_notification_channel_name">Sovelluspäivitysilmoitus</string>
     <string name="file_deleted">Tiedosto poistettu</string>
     <string name="artists">Esittäjät</string>
@@ -649,10 +648,41 @@
     <string name="no_dir_yet">Latauskansiota ei vielä asetettu, valitse ensin oletuslatauskansio</string>
     <string name="comments_are_disabled">Kommentit poistettu käytöstä</string>
     <string name="mark_as_watched">Merkitse katsotuksi</string>
-    <string name="loading_channel_details">Ladataan kanavan tietoja…</string>
-    <string name="error_show_channel_details">Virhe kanavan lisätietojen näyttämisessä</string>
     <string name="show_image_indicators_summary">Näytä Picasso-värjätyt nauhat kuvien päällä osoittaakseen lähteen: punainen tarkoittaa verkkoa, sininen tarkoittaa levytilaa ja vihreä tarkoittaa muistia</string>
     <string name="show_image_indicators_title">Näytä kuvailmaisimet</string>
     <string name="remote_search_suggestions">Etähakuehdotukset</string>
     <string name="local_search_suggestions">Paikalliset hakuehdotukset</string>
+    <string name="enqueue_next_stream">Lisää seuraavaksi</string>
+    <string name="enqueued_next">Seuraavaksi jonossa</string>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Lataus valmis</item>
+        <item quantity="other">%s latausta valmiina</item>
+    </plurals>
+    <string name="start_main_player_fullscreen_title">Käynnistä pääsoitin koko näytössä</string>
+    <string name="main_page_content_swipe_remove">Pyyhkäise kohteita poistaaksesi ne</string>
+    <string name="start_main_player_fullscreen_summary">Älä käynnistä videoita minisoittimessa, vaan siirry suoraan koko näytön tilaan, jos automaattinen kierto on lukittu. Voit silti käyttää minisoitinta poistumalla koko näytön tilasta</string>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">Poistettu %1$s lataus</item>
+        <item quantity="other">Poistettu %1$s latausta</item>
+    </plurals>
+    <string name="processing_may_take_a_moment">Käsitellään… Voi kestää hetken</string>
+    <string name="manual_update_title">Tarkista päivitykset</string>
+    <string name="manual_update_description">Tarkista manuaalisesti onko uusia versioita saatavilla</string>
+    <string name="checking_updates_toast">Tarkistetaan päivityksiä…</string>
+    <string name="error_report_channel_description">Ilmoitukset, joilla raportoidaan virheistä</string>
+    <string name="detail_pinned_comment_view_description">Kiinnitetty kommentti</string>
+    <string name="error_report_channel_name">Virheraportti-ilmoitus</string>
+    <string name="error_report_notification_title">NewPipe kohtasi virheen, näpäytä raportoidaksesi</string>
+    <string name="error_report_notification_toast">Tapahtui virhe, katso ilmoitus</string>
+    <string name="create_error_notification">Luo virheilmoitus</string>
+    <string name="leak_canary_not_available">LeakCanary ei ole saatavilla</string>
+    <string name="show_crash_the_player_title">Näytä \"Kaada soitin\"</string>
+    <string name="crash_the_player">Kaada soitin</string>
+    <string name="no_appropriate_file_manager_message_android_10">Toiminnolle ei löytynyt sopivaa tiedostonhallintaohjelmaa.
+\nAsenna tiedostonhallintaohjelma, joka on yhteensopiva Storage Access Frameworkin kanssa.</string>
+    <string name="no_appropriate_file_manager_message">Toiminnolle ei löytynyt sopivaa tiedostonhallintaohjelmaa.
+\nAsenna tiedostonhallintaohjelma tai kokeile asettaa \'%s\' pois käytöstä latausasetuksista.</string>
+    <string name="show_crash_the_player_summary">Näytä soitinta käytettäessä soittimen kaatamisen vaihtoehto</string>
+    <string name="show_error_snackbar">Näytä virheen ponnahdusilmoitus</string>
+    <string name="feed_new_items">Uudet syötteet</string>
 </resources>

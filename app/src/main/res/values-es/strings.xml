@@ -42,7 +42,6 @@
     <string name="parsing_error">No se pudo analizar el sitio web</string>
     <string name="show_next_and_similar_title">Mostrar vídeos \'Siguientes\' y \'Similares\'</string>
     <string name="content_language_title">Idioma predefinido del contenido</string>
-    <string name="list_thumbnail_view_description">Miniatura de previsualización del vídeo</string>
     <string name="detail_thumbnail_view_description">Reproducir vídeo; duración:</string>
     <string name="detail_likes_img_view_description">Me gusta</string>
     <string name="detail_dislikes_img_view_description">No me gusta</string>
@@ -83,7 +82,6 @@
     <string name="info_labels">Lo sucedido:\\nPetición:\\nIdioma del contenido:\\nPaís del contenido:\\nIdioma de la aplicación:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
     <string name="black_theme_title">Negro</string>
     <string name="all">Todo</string>
-    <string name="yes">Sí</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
@@ -140,7 +138,7 @@
     <string name="title_activity_history">Historial</string>
     <string name="action_history">Historial</string>
     <string name="notification_channel_name">Notificación de NewPipe</string>
-    <string name="notification_channel_description">Notificaciones para reproductores en segundo plano y emergentes de NewPipe</string>
+    <string name="notification_channel_description">Notificaciones para el reproductor de NewPipe</string>
     <string name="settings_category_player_title">Reproductor</string>
     <string name="settings_category_player_behavior_title">Funcionamiento</string>
     <string name="settings_category_history_title">Historial y caché</string>
@@ -183,14 +181,14 @@
     <string name="unknown_content">[Desconocido]</string>
     <string name="start_here_on_background">Comenzar a reproducir en segundo plano</string>
     <string name="start_here_on_popup">Reproducir en modo emergente</string>
-    <string name="show_hold_to_append_title">Mostrar la sugerencia \"Mantener pulsado para añadir a la cola\"</string>
+    <string name="show_hold_to_append_title">Mostrar sugerencia de \"Mantener pulsado para añadir a la cola\"</string>
     <string name="new_and_hot">Nuevo y lo mejor</string>
     <string name="hold_to_append">Mantener pulsado para añadir a la cola</string>
     <string name="donation_title">Donar</string>
     <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre para brindarle la mejor experiencia. Haz una aportación para ayudarlos a crear un NewPipe mejor mientras disfrutan de una taza de café.</string>
     <string name="give_back">Dar de vuelta</string>
     <string name="website_title">Sitio web</string>
-    <string name="website_encouragement">Visite el sitio web de NewPipe para más información y noticias.</string>
+    <string name="website_encouragement">Visita el sitio web de NewPipe para más información y noticias.</string>
     <string name="default_content_country_title">País predefinido del contenido</string>
     <string name="switch_to_background">Cambiar a segundo plano</string>
     <string name="switch_to_popup">Cambiar a emergente</string>
@@ -231,7 +229,7 @@
     <string name="create_playlist">Lista de reproducción nueva</string>
     <string name="rename_playlist">Cambiar nombre</string>
     <string name="name">Nombre</string>
-    <string name="append_playlist">Añadir a la lista de reproducción</string>
+    <string name="add_to_playlist">Añadir a la lista de reproducción</string>
     <string name="set_as_playlist_thumbnail">Definir como miniatura de lista de reproducción</string>
     <string name="bookmark_playlist">Marcar lista de reproducción</string>
     <string name="unbookmark_playlist">Quitar marcador</string>
@@ -250,7 +248,7 @@
     <string name="enable_disposed_exceptions_summary">Forzar informe de excepciones no entregables de RX fuera del fragmento o del ciclo de actividad después del descarte</string>
     <string name="use_inexact_seek_title">Usar búsqueda rápida e inexacta</string>
     <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión. Buscar de a 5, 15 o 25 segundos no funciona</string>
-    <string name="auto_queue_title">Poner en cola vídeo relacionado siguiente</string>
+    <string name="auto_queue_title">Poner en cola automáticamente la siguiente transmisión</string>
     <string name="auto_queue_summary">Continuar reproducción sin repetir al añadir de forma automática un vídeo relacionado con el último visto</string>
     <string name="file">Archivo</string>
     <string name="missing_file">Archivo movido o borrado</string>
@@ -314,11 +312,11 @@
     <string name="one_item_deleted">Se ha borrado 1 elemento.</string>
     <string name="app_license">NewPipe es un software copyleft libre: puedes usarlo, estudiarlo, compartirlo y mejorarlo a voluntad. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la licencia, o (a tu elección) cualquier versión posterior.</string>
     <string name="import_settings">¿Quieres importar también los ajustes\?</string>
-    <string name="privacy_policy_title">Normativa de privacidad de NewPipe</string>
+    <string name="privacy_policy_title">Política de privacidad de NewPipe</string>
     <string name="privacy_policy_encouragement">El proyecto NewPipe toma tu privacidad muy en serio. Por ello, la aplicación no recopila ningún dato sin tu consentimiento.
-\nLa normativa de privacidad de NewPipe explica en detalle qué datos se envían y almacenan al enviar un informe de fallo.</string>
-    <string name="read_privacy_policy">Leer la normativa de privacidad</string>
-    <string name="start_accept_privacy_policy">Para cumplir con el «Reglamento general europeo de protección de datos (GDPR)», atraemos tu atención sobre la normativa de privacidad de NewPipe. Por favor léase cuidadosamente.
+\nLa política de privacidad de NewPipe explica en detalle qué datos se envían y almacenan al enviar un informe de fallo.</string>
+    <string name="read_privacy_policy">Leer política de privacidad</string>
+    <string name="start_accept_privacy_policy">Para cumplir con el «Reglamento general europeo de protección de datos (GDPR)», atraemos tu atención sobre la política de privacidad de NewPipe. Por favor léase cuidadosamente.
 \nDebes aceptarlo para enviarnos el informe de error.</string>
     <string name="accept">Aceptar</string>
     <string name="decline">Declinar</string>
@@ -397,7 +395,7 @@
     <string name="settings_category_updates_title">Actualizaciones</string>
     <string name="events">Eventos</string>
     <string name="app_update_notification_channel_name">Notificación de actualización de la aplicación</string>
-    <string name="app_update_notification_channel_description">Notificaciones de versiones nuevas de NewPipe</string>
+    <string name="app_update_notification_channel_description">Notificaciones de nuevas versiones de NewPipe</string>
     <string name="download_to_sdcard_error_title">Almacenamiento externo no disponible</string>
     <string name="download_to_sdcard_error_message">No es posible descargar a una tarjeta SD externa. \¿Restablecer la ubicación de la carpeta de descarga\?</string>
     <string name="saved_tabs_invalid_json">No se pudo leer las pestañas guardadas, se usarán las pestañas predefinidas</string>
@@ -553,7 +551,7 @@
     <string name="title_activity_play_queue">Reproducir cola</string>
     <string name="settings_category_notification_title">Notificación</string>
     <string name="unsupported_url_dialog_message">No se pudo reconocer la URL. ¿Abrir con otra aplicación\?</string>
-    <string name="auto_queue_toggle">Poner en cola</string>
+    <string name="auto_queue_toggle">Poner en cola automáticamente</string>
     <string name="clear_queue_confirmation_summary">Cambiar de un reproductor a otro puede reemplazar la cola de reproducción</string>
     <string name="clear_queue_confirmation_description">La cola de reproducción activa será reemplazada</string>
     <string name="clear_queue_confirmation_title">Pedir confirmación antes de vaciar una cola</string>
@@ -590,7 +588,7 @@
     <string name="related_items_tab_description">Transmisiones relacionadas</string>
     <string name="comments_tab_description">Comentarios</string>
     <string name="hash_channel_description">Notificaciones sobre el progreso del hashing del vídeo</string>
-    <string name="hash_channel_name">Notificación del hash de vídeo</string>
+    <string name="hash_channel_name">Notificación de hash de vídeo</string>
     <string name="show_meta_info_title">Mostrar metainformación</string>
     <string name="show_description_title">Mostrar descripción</string>
     <string name="open_with">Abrir con</string>
@@ -654,8 +652,6 @@
     <string name="detail_heart_img_view_description">Valorado por el creador</string>
     <string name="mark_as_watched">Marcar como visto</string>
     <string name="show_image_indicators_summary">Mostrar cintas de colores Picasso encima de las imágenes indicando su origen: rojo para la red, azul para el disco y verde para la memoria</string>
-    <string name="loading_channel_details">Cargando detalles del canal…</string>
-    <string name="error_show_channel_details">Error en Mostrar detalles del canal</string>
     <string name="show_image_indicators_title">Mostrar indicadores de imagen</string>
     <string name="remote_search_suggestions">Sugerencias de búsqueda remota</string>
     <string name="local_search_suggestions">Sugerencias de búsqueda local</string>
@@ -670,4 +666,27 @@
     <string name="main_page_content_swipe_remove">Desliza los elementos para removerlos</string>
     <string name="start_main_player_fullscreen_summary">Si la rotación automática está bloqueada, no inicie los videos en el mini reproductor, sino pase directamente a modo de pantalla completa. Aún podrá acceder al mini reproductor al salir del modo pantalla completa</string>
     <string name="start_main_player_fullscreen_title">Iniciar reproductor principal en pantalla completa</string>
+    <string name="enqueued_next">Añadido el siguiente vídeo a la cola</string>
+    <string name="enqueue_next_stream">Añadir el siguiente vídeo a la cola</string>
+    <string name="processing_may_take_a_moment">Procesando… Podría tomar un momento</string>
+    <string name="manual_update_title">Buscar actualizaciones</string>
+    <string name="manual_update_description">Buscar nuevas versiones manualmente</string>
+    <string name="checking_updates_toast">Buscando actualizaciones…</string>
+    <string name="feed_new_items">Nuevos elementos en el muro</string>
+    <string name="crash_the_player">Cerrar abruptamente el reproductor</string>
+    <string name="show_crash_the_player_summary">Muestra una opción de cierre abrupto al usar el reproductor</string>
+    <string name="show_crash_the_player_title">Mostrar \"Cerrar abruptamente el reproductor\"</string>
+    <string name="error_report_channel_description">Notificaciones para informar errores</string>
+    <string name="error_report_channel_name">Notificación de informe de errores</string>
+    <string name="error_report_notification_title">NewPipe ha detectado un error, pulse aquí para informar</string>
+    <string name="error_report_notification_toast">Se produjo un error, vea la notificación</string>
+    <string name="create_error_notification">Crear una notificación de error</string>
+    <string name="show_error_snackbar">Mostrar un snackbar de error</string>
+    <string name="no_appropriate_file_manager_message">No se encontró ningún gestor de archivos adecuado para esta acción.
+\nPor favor instale un gestor de archivos o intente deshabilitar \"%s\" en lo ajustes de descargas.</string>
+    <string name="no_appropriate_file_manager_message_android_10">No se encontró ningún gestor de archivos adecuado para esta acción.
+\nPor favor instale un gestor de archivos compatible con \"Sistema de Acceso al Almacenamiento\".</string>
+    <string name="detail_pinned_comment_view_description">Comentario fijado</string>
+    <string name="background_player_already_playing_toast">Ya se reproduce en segundo plano</string>
+    <string name="leak_canary_not_available">LeakCanary no está disponible</string>
 </resources>

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.BatteryManager;
 import android.os.Build;
+import android.provider.Settings;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 
@@ -33,6 +34,12 @@ public final class DeviceUtils {
     // Zephir TS43UHD-2
     private static final boolean CVT_MT5886_EU_1G = Build.VERSION.SDK_INT == 24
             && Build.DEVICE.equals("cvt_mt5886_eu_1g");
+    // Hilife TV
+    private static final boolean REALTEKATV = Build.VERSION.SDK_INT == 25
+            && Build.DEVICE.equals("RealtekATV");
+    // Philips QM16XE
+    private static final boolean QM16XE_U = Build.VERSION.SDK_INT == 23
+            && Build.DEVICE.equals("QM16XE_U");
 
     private DeviceUtils() {
     }
@@ -129,7 +136,9 @@ public final class DeviceUtils {
     public static boolean shouldSupportMediaTunneling() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
                 && !HI3798MV200
-                && !CVT_MT5886_EU_1G;
+                && !CVT_MT5886_EU_1G
+                && !REALTEKATV
+                && !QM16XE_U;
     }
 
     public static boolean isLandscape(final Context context) {
@@ -139,5 +148,12 @@ public final class DeviceUtils {
 
     public static boolean isInMultiWindow(final AppCompatActivity activity) {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && activity.isInMultiWindowMode();
+    }
+
+    public static boolean hasAnimationsAnimatorDurationEnabled(final Context context) {
+        return Settings.System.getFloat(
+                context.getContentResolver(),
+                Settings.Global.ANIMATOR_DURATION_SCALE,
+                1F) != 0F;
     }
 }

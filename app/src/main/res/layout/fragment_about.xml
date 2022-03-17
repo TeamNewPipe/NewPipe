@@ -22,7 +22,7 @@
             android:contentDescription="@string/app_name"
             app:srcCompat="@mipmap/ic_launcher" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -30,7 +30,7 @@
             android:textAppearance="@android:style/TextAppearance.Large" />
 
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/about_app_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,13 +39,13 @@
             android:textAppearance="@android:style/TextAppearance.Medium"
             tools:text="0.9.9" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"
             android:text="@string/app_description" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
@@ -65,14 +65,14 @@
             android:layout_gravity="end"
             android:text="@string/view_on_github" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:text="@string/donation_title"
             android:textAppearance="@android:style/TextAppearance.Medium" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/donation_encouragement" />
@@ -85,14 +85,14 @@
             android:layout_gravity="end"
             android:text="@string/give_back" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:text="@string/website_title"
             android:textAppearance="@android:style/TextAppearance.Medium" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/website_encouragement" />
@@ -105,14 +105,14 @@
             android:layout_gravity="end"
             android:text="@string/open_in_browser" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:text="@string/privacy_policy_title"
             android:textAppearance="@android:style/TextAppearance.Medium" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/privacy_policy_encouragement" />

@@ -1,15 +1,15 @@
-.gitignore
-.gradle
-/local.properties
+.gradle/
+local.properties
 .DS_Store
-/build
-/captures
-/app/app.iml
-/.idea
-/*.iml
+build/
+captures/
+.idea/
+*.iml
 *~
 .weblate
 *.class
+app/debug/
+app/release/
 
 # vscode / eclipse files
 *.classpath

@@ -17,7 +17,9 @@ import org.schabi.newpipe.extractor.stream.StreamType.LIVE_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.VIDEO_STREAM
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.PicassoHelper
+import org.schabi.newpipe.util.StreamTypeUtil
 import java.util.concurrent.TimeUnit
+import java.util.function.Consumer
 
 data class StreamItem(
     val streamWithState: StreamWithState,
@@ -29,6 +31,12 @@ data class StreamItem(
 
     private val stream: StreamEntity = streamWithState.stream
     private val stateProgressTime: Long? = streamWithState.stateProgressMillis
+
+    /**
+     * Will be executed at the end of the [StreamItem.bind] (with (ListStreamItemBinding,Int)).
+     * Can be used e.g. for highlighting a item.
+     */
+    var execBindEnd: Consumer<ListStreamItemBinding>? = null
 
     override fun getId(): Long = stream.uid
 
@@ -58,8 +66,6 @@ data class StreamItem(
         viewBinding.itemVideoTitleView.text = stream.title
         viewBinding.itemUploaderView.text = stream.uploader
 
-        val isLiveStream = stream.streamType == LIVE_STREAM || stream.streamType == AUDIO_LIVE_STREAM
-
         if (stream.duration > 0) {
             viewBinding.itemDurationView.text = Localization.getDurationString(stream.duration)
             viewBinding.itemDurationView.setBackgroundColor(
@@ -77,7 +83,7 @@ data class StreamItem(
             } else {
                 viewBinding.itemProgressView.visibility = View.GONE
             }
-        } else if (isLiveStream) {
+        } else if (StreamTypeUtil.isLiveStream(stream.streamType)) {
             viewBinding.itemDurationView.setText(R.string.duration_live)
             viewBinding.itemDurationView.setBackgroundColor(
                 ContextCompat.getColor(
@@ -98,6 +104,8 @@ data class StreamItem(
             viewBinding.itemAdditionalDetails.text =
                 getStreamInfoDetailLine(viewBinding.itemAdditionalDetails.context)
         }
+
+        execBindEnd?.accept(viewBinding)
     }
 
     override fun isLongClickable() = when (stream.streamType) {

@@ -31,7 +31,6 @@
     <string name="detail_likes_img_view_description">পছন্দ হয়েছে</string>
     <string name="detail_uploader_thumbnail_view_description">আপলোডারের ইউজারপিক থাম্বনেইল</string>
     <string name="detail_thumbnail_view_description">ভিডিও প্রাকদর্শন, সময়ঃ</string>
-    <string name="list_thumbnail_view_description">ভিডিও প্রাকদর্শন থাম্বনেইল</string>
     <string name="error_details_headline">বর্ণনা:</string>
     <string name="your_comment">আপনার মন্তব্য (ইংরেজিতে):</string>
     <string name="info_labels">কি:\\nঅনুরোধ:\\nকন্টেন্ট ভাষা:\\nসার্ভিস:\\nসময়(GMT এ):\\nপ্যাকেজ:\\nসংস্করণ:\\nওএস সংস্করণ:\\nআইপি পরিসর:</string>
@@ -54,7 +53,6 @@
     <string name="always">সবসময়</string>
     <string name="clear">পরিষ্কার</string>
     <string name="disabled">নিস্ক্রীয়</string>
-    <string name="yes">হ্যাঁ</string>
     <string name="all">সবগুলি</string>
     <string name="error_report_title">ত্রুটি প্রতিবেদন</string>
     <string name="downloads_title">ডাউনলোডগুলি</string>
@@ -167,7 +165,7 @@
     <string name="delete_playlist_prompt">প্লে লিস্ট ডিলিট করতে চান\?</string>
     <string name="unmute">আন মিউট</string>
     <string name="mute">মিউট</string>
-    <string name="append_playlist">প্লে লিস্ট এ যুক্ত করুন</string>
+    <string name="add_to_playlist">প্লে লিস্ট এ যুক্ত করুন</string>
     <string name="always_ask_open_action">সবসময় জিজ্ঞেস করুন</string>
     <string name="video_player">ভিডিও প্লেয়ার</string>
     <string name="drawer_close">ড্রয়ার বন্ধ করুন</string>

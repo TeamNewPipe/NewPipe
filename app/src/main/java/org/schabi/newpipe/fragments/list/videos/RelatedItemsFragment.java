@@ -1,6 +1,5 @@
 package org.schabi.newpipe.fragments.list.videos;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,11 +11,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
-import androidx.viewbinding.ViewBinding;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.RelatedItemsHeaderBinding;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
@@ -24,14 +23,14 @@ import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.util.RelatedItemInfo;
 
 import java.io.Serializable;
+import java.util.function.Supplier;
 
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
-public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
+public class RelatedItemsFragment extends BaseListInfoFragment<InfoItem, RelatedItemInfo>
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String INFO_KEY = "related_info_key";
-    private final CompositeDisposable disposables = new CompositeDisposable();
+
     private RelatedItemInfo relatedItemInfo;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -55,21 +54,10 @@ public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAttach(@NonNull final Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_related_items, container, false);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        disposables.clear();
     }
 
     @Override
@@ -79,26 +67,27 @@ public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
     }
 
     @Override
-    protected ViewBinding getListHeader() {
-        if (relatedItemInfo != null && relatedItemInfo.getRelatedItems() != null) {
-            headerBinding = RelatedItemsHeaderBinding
-                    .inflate(activity.getLayoutInflater(), itemsList, false);
-
-            final SharedPreferences pref = PreferenceManager
-                    .getDefaultSharedPreferences(requireContext());
-            final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
-            headerBinding.autoplaySwitch.setChecked(autoplay);
-            headerBinding.autoplaySwitch.setOnCheckedChangeListener((compoundButton, b) ->
-                    PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
-                            .putBoolean(getString(R.string.auto_queue_key), b).apply());
-            return headerBinding;
-        } else {
+    protected Supplier<View> getListHeaderSupplier() {
+        if (relatedItemInfo == null || relatedItemInfo.getRelatedItems() == null) {
             return null;
         }
+
+        headerBinding = RelatedItemsHeaderBinding
+                .inflate(activity.getLayoutInflater(), itemsList, false);
+
+        final SharedPreferences pref = PreferenceManager
+                .getDefaultSharedPreferences(requireContext());
+        final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
+        headerBinding.autoplaySwitch.setChecked(autoplay);
+        headerBinding.autoplaySwitch.setOnCheckedChangeListener((compoundButton, b) ->
+                PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
+                        .putBoolean(getString(R.string.auto_queue_key), b).apply());
+
+        return headerBinding::getRoot;
     }
 
     @Override
-    protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
+    protected Single<ListExtractor.InfoItemsPage<InfoItem>> loadMoreItemsLogic() {
         return Single.fromCallable(ListExtractor.InfoItemsPage::emptyPage);
     }
 
@@ -128,7 +117,6 @@ public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
         }
         ViewUtils.slideUp(requireView(), 120, 96, 0.06f);
 
-        disposables.clear();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -137,11 +125,13 @@ public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
 
     @Override
     public void setTitle(final String title) {
+        // Nothing to do - override parent
     }
 
     @Override
     public void onCreateOptionsMenu(@NonNull final Menu menu,
                                     @NonNull final MenuInflater inflater) {
+        // Nothing to do - override parent
     }
 
     private void setInitialData(final StreamInfo info) {
@@ -169,11 +159,10 @@ public class RelatedItemsFragment extends BaseListInfoFragment<RelatedItemInfo>
     @Override
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
                                           final String s) {
-        final SharedPreferences pref =
-                PreferenceManager.getDefaultSharedPreferences(requireContext());
-        final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
         if (headerBinding != null) {
-            headerBinding.autoplaySwitch.setChecked(autoplay);
+            headerBinding.autoplaySwitch.setChecked(
+                    sharedPreferences.getBoolean(
+                            getString(R.string.auto_queue_key), false));
         }
     }
 
