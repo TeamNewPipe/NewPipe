@@ -2,8 +2,8 @@ package org.schabi.newpipe.player.helper;
 
 import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
 import static org.schabi.newpipe.player.Player.DEBUG;
-import static org.schabi.newpipe.util.DrawableResolver.resolveDrawable;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+import static org.schabi.newpipe.util.ThemeHelper.resolveDrawable;
 
 import android.app.Dialog;
 import android.content.Context;
