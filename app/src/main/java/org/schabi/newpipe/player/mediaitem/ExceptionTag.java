@@ -10,6 +10,16 @@ import java.util.Optional;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/**
+ * This {@link MediaItemTag} object is designed to contain metadata for a stream
+ * that has failed to load. It supplies metadata from an underlying
+ * {@link PlayQueueItem}, which is used by the internal players to resolve actual
+ * playback info.
+ *
+ * This {@link MediaItemTag} does not contain any {@link StreamInfo} that can be
+ * used to start playback and can be detected by checking {@link ExceptionTag#getErrors()}
+ * when in generic form.
+ **/
 public final class ExceptionTag implements MediaItemTag {
     @NonNull
     private final PlayQueueItem item;

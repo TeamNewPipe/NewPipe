@@ -1,5 +1,7 @@
 package org.schabi.newpipe.player.mediaitem;
 
+import com.google.android.exoplayer2.MediaItem;
+
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
@@ -11,6 +13,12 @@ import java.util.Optional;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/**
+ * This {@link MediaItemTag} object contains metadata for a resolved stream
+ * that is ready for playback. This object guarantees the {@link StreamInfo}
+ * is available and may provide the {@link Quality} of video stream used in
+ * the {@link MediaItem}.
+ **/
 public final class StreamInfoTag implements MediaItemTag {
     @NonNull
     private final StreamInfo streamInfo;

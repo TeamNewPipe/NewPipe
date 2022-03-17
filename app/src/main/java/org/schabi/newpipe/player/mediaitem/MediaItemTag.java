@@ -4,6 +4,7 @@ import android.net.Uri;
 
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.MediaMetadata;
+import com.google.android.exoplayer2.Player;
 
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
@@ -16,6 +17,13 @@ import java.util.UUID;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/**
+ * Metadata container and accessor used by player internals.
+ *
+ * This interface ensures consistency of fetching metadata on each stream,
+ * which is encapsulated in a {@link MediaItem} and delivered via ExoPlayer's
+ * {@link Player.Listener} on event triggers to the downstream users.
+ **/
 public interface MediaItemTag {
 
     List<Throwable> getErrors();

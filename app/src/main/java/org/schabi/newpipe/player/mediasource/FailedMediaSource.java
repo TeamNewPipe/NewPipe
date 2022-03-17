@@ -23,7 +23,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class FailedMediaSource extends CompositeMediaSource<Void> implements ManagedMediaSource {
-    private static final long SILENCE_DURATION_US = TimeUnit.SECONDS.toMicros(2);
+    /**
+     * Play 2 seconds of silenced audio when a stream fails to resolve due to a known issue,
+     * such as {@link org.schabi.newpipe.extractor.exceptions.ExtractionException}.
+     *
+     * This silence duration allows user to react and have time to jump to a previous stream,
+     * while still provide a smooth playback experience. A duration lower than 1 second is
+     * not recommended, it may cause ExoPlayer to buffer for a while.
+     * */
+    public static final long SILENCE_DURATION_US = TimeUnit.SECONDS.toMicros(2);
 
     private final String TAG = "FailedMediaSource@" + Integer.toHexString(hashCode());
     private final PlayQueueItem playQueueItem;
@@ -32,7 +40,7 @@ public class FailedMediaSource extends CompositeMediaSource<Void> implements Man
     private final MediaSource source;
     private final MediaItem mediaItem;
     /**
-     * Permanently fail the play queue item associated with this source, with no hope of retrying.
+     * Fail the play queue item associated with this source, with potential future retries.
      *
      * The error will be propagated if the cause for load exception is unspecified.
      * This means the error might be caused by reasons outside of extraction (e.g. no network).

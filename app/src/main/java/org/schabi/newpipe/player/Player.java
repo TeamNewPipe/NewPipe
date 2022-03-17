@@ -133,7 +133,6 @@ import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.PositionInfo;
 import com.google.android.exoplayer2.RenderersFactory;
-import com.google.android.exoplayer2.SeekParameters;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.TracksInfo;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -2487,6 +2486,7 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region ExoPlayer listeners (that didn't fit in other categories)
 
+    @Override
     public void onEvents(@NonNull final com.google.android.exoplayer2.Player player,
                          @NonNull final com.google.android.exoplayer2.Player.Events events) {
         Listener.super.onEvents(player, events);
@@ -2546,14 +2546,6 @@ public final class Player implements
             return;
         }
 
-        if (newPosition.contentPositionMs == 0 &&
-                simpleExoPlayer.getTotalBufferedDuration() < 500L) {
-            Log.d(TAG, "Playback - skipping to initial keyframe.");
-            simpleExoPlayer.setSeekParameters(SeekParameters.CLOSEST_SYNC);
-            simpleExoPlayer.seekTo(1L);
-            simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
-        }
-
         // Refresh the playback if there is a transition to the next video
         final int newIndex = newPosition.mediaItemIndex;
         switch (discontinuityReason) {
@@ -2605,7 +2597,29 @@ public final class Player implements
     //region Errors
     /**
      * Process exceptions produced by {@link com.google.android.exoplayer2.ExoPlayer ExoPlayer}.
-     *
+     * <p>There are multiple types of errors:</p>
+     * <ul>
+     * <li>{@link PlaybackException#ERROR_CODE_BEHIND_LIVE_WINDOW BEHIND_LIVE_WINDOW}:
+     * If the playback on livestreams are lagged too far behind the current playable
+     * window. Then we seek to the latest timestamp and restart the playback.
+     * </li>
+     * <li>From {@link PlaybackException#ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE BAD_IO} to
+     * {@link PlaybackException#ERROR_CODE_PARSING_MANIFEST_UNSUPPORTED UNSUPPORTED_FORMATS}:
+     * If the stream source is validated by the extractor but not recognized by the player,
+     * then we can try to recover playback by signal an error on the {@link PlayQueue}.</li>
+     * <li>For {@link PlaybackException#ERROR_CODE_TIMEOUT PLAYER_TIMEOUT},
+     * {@link PlaybackException#ERROR_CODE_IO_UNSPECIFIED MEDIA_SOURCE_RESOLVER_TIMEOUT} and
+     * {@link PlaybackException#ERROR_CODE_IO_NETWORK_CONNECTION_FAILED NO_NETWORK}:
+     * We can keep set the recovery record and keep to player at the current state until
+     * it is ready to play by restarting the {@link MediaSourceManager}.</li>
+     * <li>On any ExoPlayer specific issue internal to its device interaction, such as
+     * {@link PlaybackException#ERROR_CODE_DECODER_INIT_FAILED DECODER_ERROR}:
+     * We terminate the playback.</li>
+     * <li>For any other unspecified issue internal: We set a recovery and try to restart
+     * the playback.</li>
+     * In the case of decoder/renderer or unspecified errors, the player will create a
+     * notification so the users are aware.
+     * </ul>
      * @see com.google.android.exoplayer2.Player.Listener#onPlayerError(PlaybackException)
      * */
     @SuppressLint("SwitchIntDef")
@@ -2648,6 +2662,9 @@ public final class Player implements
             case ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT:
                 // Don't create notification on timeout/networking errors:
                 isCatchableException = true;
+                setRecovery();
+                reloadPlayQueueManager();
+                break;
             case ERROR_CODE_UNSPECIFIED:
                 // Reload playback on unexpected errors:
                 setRecovery();
@@ -2749,7 +2766,6 @@ public final class Player implements
             return;
         }
 
-        final boolean onPlaybackInitial = currentItem == null;
         final boolean hasPlayQueueItemChanged = currentItem != item;
 
         final int currentPlayQueueIndex = playQueue.indexOf(item);
@@ -2953,10 +2969,8 @@ public final class Player implements
     //region StreamInfo history: views and progress
 
     private void registerStreamViewed() {
-        getCurrentStreamInfo().ifPresent(info -> {
-            databaseUpdateDisposable
-                    .add(recordManager.onViewed(info).onErrorComplete().subscribe());
-        });
+        getCurrentStreamInfo().ifPresent(info -> databaseUpdateDisposable
+                .add(recordManager.onViewed(info).onErrorComplete().subscribe()));
     }
 
     private void saveStreamProgressState(final long progressMillis) {
@@ -3134,7 +3148,7 @@ public final class Player implements
             return;
         }
 
-        if (playQueue.getIndex() == index && simpleExoPlayer.getCurrentWindowIndex() == index) {
+        if (playQueue.getIndex() == index && simpleExoPlayer.getCurrentMediaItemIndex() == index) {
             seekToDefault();
         } else {
             saveStreamProgressState();
@@ -3880,9 +3894,10 @@ public final class Player implements
     }
 
     private void onOpenInBrowserClicked() {
-        getCurrentStreamInfo().map(Info::getOriginalUrl).ifPresent(originalUrl -> {
-            ShareUtils.openUrlInBrowser(Objects.requireNonNull(getParentActivity()), originalUrl);
-        });
+        getCurrentStreamInfo()
+                .map(Info::getOriginalUrl)
+                .ifPresent(originalUrl -> ShareUtils.openUrlInBrowser(
+                        Objects.requireNonNull(getParentActivity()), originalUrl));
     }
     //endregion
 

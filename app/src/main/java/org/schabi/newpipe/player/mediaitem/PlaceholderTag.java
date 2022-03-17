@@ -2,6 +2,7 @@ package org.schabi.newpipe.player.mediaitem;
 
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
+import org.schabi.newpipe.util.Constants;
 
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +11,12 @@ import java.util.Optional;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/**
+ * This is a Placeholding {@link MediaItemTag}, designed as a dummy metadata object for
+ * any stream that has not been resolved.
+ *
+ * This object cannot be instantiated and does not hold real metadata of any form.
+ * */
 public final class PlaceholderTag implements MediaItemTag {
     public static final PlaceholderTag EMPTY = new PlaceholderTag(null);
     private static final String UNKNOWN_VALUE_INTERNAL = "Placeholder";
@@ -29,7 +36,7 @@ public final class PlaceholderTag implements MediaItemTag {
 
     @Override
     public int getServiceId() {
-        return -1;
+        return Constants.NO_SERVICE_ID;
     }
 
     @Override
@@ -44,7 +51,7 @@ public final class PlaceholderTag implements MediaItemTag {
 
     @Override
     public long getDurationSeconds() {
-        return -1;
+        return 0;
     }
 
     @Override
