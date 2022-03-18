@@ -44,9 +44,15 @@ public interface MediaItemTag {
 
     StreamType getStreamType();
 
-    Optional<StreamInfo> getMaybeStreamInfo();
+    @NonNull
+    default Optional<StreamInfo> getMaybeStreamInfo() {
+        return Optional.empty();
+    }
 
-    Optional<Quality> getMaybeQuality();
+    @NonNull
+    default Optional<Quality> getMaybeQuality() {
+        return Optional.empty();
+    }
 
     <T> Optional<T> getMaybeExtras(@NonNull Class<T> type);
 
@@ -86,7 +92,7 @@ public interface MediaItemTag {
                 .build();
     }
 
-    class Quality {
+    final class Quality {
         @NonNull
         private final List<VideoStream> sortedVideoStreams;
         private final int selectedVideoStreamIndex;

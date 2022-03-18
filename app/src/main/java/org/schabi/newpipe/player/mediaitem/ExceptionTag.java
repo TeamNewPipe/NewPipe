@@ -88,16 +88,6 @@ public final class ExceptionTag implements MediaItemTag {
     }
 
     @Override
-    public Optional<StreamInfo> getMaybeStreamInfo() {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Quality> getMaybeQuality() {
-        return Optional.empty();
-    }
-
-    @Override
     public <T> Optional<T> getMaybeExtras(@NonNull final Class<T> type) {
         return Optional.ofNullable(extras).map(type::cast);
     }

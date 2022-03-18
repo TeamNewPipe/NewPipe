@@ -91,11 +91,13 @@ public final class StreamInfoTag implements MediaItemTag {
         return streamInfo.getStreamType();
     }
 
+    @NonNull
     @Override
     public Optional<StreamInfo> getMaybeStreamInfo() {
         return Optional.of(streamInfo);
     }
 
+    @NonNull
     @Override
     public Optional<Quality> getMaybeQuality() {
         return Optional.ofNullable(quality);

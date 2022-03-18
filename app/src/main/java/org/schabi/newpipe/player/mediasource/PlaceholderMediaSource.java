@@ -18,9 +18,7 @@ final class PlaceholderMediaSource
     private static final MediaItem MEDIA_ITEM = PlaceholderTag.EMPTY.withExtras(COPY).asMediaItem();
 
     private PlaceholderMediaSource() { }
-    /**
-     * Returns the {@link MediaItem} whose media is provided by the source.
-     */
+
     @Override
     public MediaItem getMediaItem() {
         return MEDIA_ITEM;
@@ -30,7 +28,7 @@ final class PlaceholderMediaSource
     protected void onChildSourceInfoRefreshed(final Void id,
                                               final MediaSource mediaSource,
                                               final Timeline timeline) {
-        /* Do nothing, no timeline updates will stall playback */
+        /* Do nothing, no timeline updates or error will stall playback */
     }
 
     @Override

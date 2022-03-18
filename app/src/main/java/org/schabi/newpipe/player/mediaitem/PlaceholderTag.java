@@ -1,6 +1,5 @@
 package org.schabi.newpipe.player.mediaitem;
 
-import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.util.Constants;
 
@@ -72,16 +71,6 @@ public final class PlaceholderTag implements MediaItemTag {
     @Override
     public StreamType getStreamType() {
         return StreamType.NONE;
-    }
-
-    @Override
-    public Optional<StreamInfo> getMaybeStreamInfo() {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Quality> getMaybeQuality() {
-        return Optional.empty();
     }
 
     @Override

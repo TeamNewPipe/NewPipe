@@ -2791,7 +2791,7 @@ public final class Player implements
                     + "index=[" + currentPlayQueueIndex + "] with "
                     + "playlist length=[" + currentPlaylistSize + "]");
 
-        } else if (wasBlocked || currentPlaylistIndex != currentPlayQueueIndex) {
+        } else if (wasBlocked || currentPlaylistIndex != currentPlayQueueIndex || !isPlaying()) {
             if (DEBUG) {
                 Log.d(TAG, "Playback - Rewinding to correct "
                         + "index=[" + currentPlayQueueIndex + "], "
