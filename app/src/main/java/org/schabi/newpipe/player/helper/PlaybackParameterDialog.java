@@ -20,6 +20,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.SimpleOnSeekBarChangeListener;
 import org.schabi.newpipe.util.SliderStrategy;
 
 public class PlaybackParameterDialog extends DialogFragment {
@@ -495,10 +496,10 @@ public class PlaybackParameterDialog extends DialogFragment {
     // Sliders
     //////////////////////////////////////////////////////////////////////////*/
 
-    private SeekBar.OnSeekBarChangeListener getOnTempoChangedListener() {
-        return new SeekBar.OnSeekBarChangeListener() {
+    private SimpleOnSeekBarChangeListener getOnTempoChangedListener() {
+        return new SimpleOnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(final SeekBar seekBar, final int progress,
+            public void onProgressChanged(@NonNull final SeekBar seekBar, final int progress,
                                           final boolean fromUser) {
                 final double currentTempo = strategy.valueOf(progress);
                 if (fromUser) {
@@ -506,23 +507,13 @@ public class PlaybackParameterDialog extends DialogFragment {
                     setCurrentPlaybackParameters();
                 }
             }
-
-            @Override
-            public void onStartTrackingTouch(final SeekBar seekBar) {
-                // Do Nothing.
-            }
-
-            @Override
-            public void onStopTrackingTouch(final SeekBar seekBar) {
-                // Do Nothing.
-            }
         };
     }
 
-    private SeekBar.OnSeekBarChangeListener getOnPitchChangedListener() {
-        return new SeekBar.OnSeekBarChangeListener() {
+    private SimpleOnSeekBarChangeListener getOnPitchChangedListener() {
+        return new SimpleOnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(final SeekBar seekBar, final int progress,
+            public void onProgressChanged(@NonNull final SeekBar seekBar, final int progress,
                                           final boolean fromUser) {
                 final double currentPitch = strategy.valueOf(progress);
                 if (fromUser) { // this change is first in chain
@@ -530,23 +521,13 @@ public class PlaybackParameterDialog extends DialogFragment {
                     setCurrentPlaybackParameters();
                 }
             }
-
-            @Override
-            public void onStartTrackingTouch(final SeekBar seekBar) {
-                // Do Nothing.
-            }
-
-            @Override
-            public void onStopTrackingTouch(final SeekBar seekBar) {
-                // Do Nothing.
-            }
         };
     }
 
-    private SeekBar.OnSeekBarChangeListener getOnSemitoneChangedListener() {
-        return new SeekBar.OnSeekBarChangeListener() {
+    private SimpleOnSeekBarChangeListener getOnSemitoneChangedListener() {
+        return new SimpleOnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(final SeekBar seekBar, final int progress,
+            public void onProgressChanged(@NonNull final SeekBar seekBar, final int progress,
                                           final boolean fromUser) {
                 // semitone slider supplies values 0 to 24, subtraction by 12 is required
                 final int currentSemitones = progress - 12;
@@ -556,16 +537,6 @@ public class PlaybackParameterDialog extends DialogFragment {
                     onPitchSliderUpdated(semitonesToPercent(currentSemitones));
                     setCurrentPlaybackParameters();
                 }
-            }
-
-            @Override
-            public void onStartTrackingTouch(final SeekBar seekBar) {
-                // Do Nothing.
-            }
-
-            @Override
-            public void onStopTrackingTouch(final SeekBar seekBar) {
-                // Do Nothing.
             }
         };
     }
