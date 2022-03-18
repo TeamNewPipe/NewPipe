@@ -142,6 +142,7 @@ public class Mp4FromDashWriter {
         outStream = null;
     }
 
+    @SuppressWarnings("MethodLength")
     public void build(final SharpStream output) throws IOException {
         if (done) {
             throw new RuntimeException("already done");
