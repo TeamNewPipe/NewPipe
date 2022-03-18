@@ -3,7 +3,6 @@ package org.schabi.newpipe.player.playqueue;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
@@ -13,6 +12,8 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -109,7 +110,6 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo<StreamInfoItem>, U exten
                 fetchReactor.dispose();
                 fetchReactor = null;
             }
-
             @Override
             public void onError(@NonNull final Throwable e) {
                 Log.e(getTag(), "Error fetching more playlist, marking playlist as complete.", e);
@@ -133,6 +133,9 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo<StreamInfoItem>, U exten
         for (final StreamInfoItem stream : infoItems) {
             result.add(new PlayQueueItem(stream));
         }
-        return result;
+        if result != null
+            return result;
+        else
+            return infoItems.stream().map(PlayQueueItem::new).collect(Collectors.toList())
     }
 }
