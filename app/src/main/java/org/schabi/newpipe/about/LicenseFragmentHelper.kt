@@ -2,6 +2,7 @@ package org.schabi.newpipe.about
 
 import android.content.Context
 import android.util.Base64
+import android.view.View
 import android.webkit.WebView
 import androidx.appcompat.app.AlertDialog
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -87,7 +88,6 @@ object LicenseFragmentHelper {
         return context.getString(color).substring(3)
     }
 
-    @JvmStatic
     fun showLicense(context: Context?, license: License): Disposable {
         return if (context == null) {
             Disposable.empty()
@@ -95,26 +95,20 @@ object LicenseFragmentHelper {
             Observable.fromCallable { getFormattedLicense(context, license) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { formattedLicense: String ->
-                    val webViewData = Base64.encodeToString(
-                        formattedLicense
-                            .toByteArray(StandardCharsets.UTF_8),
-                        Base64.NO_PADDING
-                    )
-                    val webView = WebView(context)
-                    webView.loadData(webViewData, "text/html; charset=UTF-8", "base64")
-                    val alert = AlertDialog.Builder(context)
-                    alert.setTitle(license.name)
-                    alert.setView(webView)
-                    Localization.assureCorrectAppLanguage(context)
-                    alert.setNegativeButton(
-                        context.getString(R.string.ok)
-                    ) { dialog, _ -> dialog.dismiss() }
-                    alert.show()
+                .subscribe { formattedLicense ->
+                    AlertDialog.Builder(context).apply {
+                        setTitle(license.name)
+                        setView(loadLicense(context, formattedLicense))
+                        Localization.assureCorrectAppLanguage(context)
+                        setPositiveButton(R.string.ok) { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        show()
+                    }
                 }
         }
     }
-    @JvmStatic
+
     fun showLicense(context: Context?, component: SoftwareComponent): Disposable {
         return if (context == null) {
             Disposable.empty()
@@ -122,26 +116,29 @@ object LicenseFragmentHelper {
             Observable.fromCallable { getFormattedLicense(context, component.license) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { formattedLicense: String ->
-                    val webViewData = Base64.encodeToString(
-                        formattedLicense
-                            .toByteArray(StandardCharsets.UTF_8),
-                        Base64.NO_PADDING
-                    )
-                    val webView = WebView(context)
-                    webView.loadData(webViewData, "text/html; charset=UTF-8", "base64")
-                    val alert = AlertDialog.Builder(context)
-                    alert.setTitle(component.license.name)
-                    alert.setView(webView)
-                    Localization.assureCorrectAppLanguage(context)
-                    alert.setPositiveButton(
-                        R.string.dismiss
-                    ) { dialog, _ -> dialog.dismiss() }
-                    alert.setNeutralButton(R.string.open_website_license) { _, _ ->
-                        ShareUtils.openUrlInBrowser(context, component.link)
+                .subscribe { formattedLicense ->
+                    AlertDialog.Builder(context).apply {
+                        setTitle(component.license.name)
+                        setView(loadLicense(context, formattedLicense))
+                        Localization.assureCorrectAppLanguage(context)
+                        setPositiveButton(R.string.dismiss) { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        setNeutralButton(R.string.open_website_license) { _, _ ->
+                            ShareUtils.openUrlInBrowser(context, component.link)
+                        }
+                        show()
                     }
-                    alert.show()
                 }
+        }
+    }
+
+    private fun loadLicense(context: Context, formattedLicense: String): View {
+        val webViewData = Base64.encodeToString(
+            formattedLicense.toByteArray(StandardCharsets.UTF_8), Base64.NO_PADDING
+        )
+        return WebView(context).apply {
+            loadData(webViewData, "text/html; charset=UTF-8", "base64")
         }
     }
 }
