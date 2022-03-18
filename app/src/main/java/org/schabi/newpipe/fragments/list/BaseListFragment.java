@@ -27,18 +27,16 @@ import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.player.helper.PlayerHolder;
-import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
-import org.schabi.newpipe.util.StreamDialogEntry;
 import org.schabi.newpipe.views.SuperScrollLayoutManager;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -350,49 +348,20 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         if (context == null || context.getResources() == null || activity == null) {
             return;
         }
-        final List<StreamDialogEntry> entries = new ArrayList<>();
+        final InfoItemDialog.Builder dialogBuilder = new InfoItemDialog.Builder(
+                activity, this, item);
 
-        if (PlayerHolder.getInstance().isPlayQueueReady()) {
-            entries.add(StreamDialogEntry.enqueue);
-
-            if (PlayerHolder.getInstance().getQueueSize() > 1) {
-                entries.add(StreamDialogEntry.enqueue_next);
-            }
-        }
-
-        if (item.getStreamType() == StreamType.AUDIO_STREAM) {
-            entries.addAll(Arrays.asList(
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share
-            ));
-        } else {
-            entries.addAll(Arrays.asList(
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.start_here_on_popup,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share
-            ));
-        }
-        entries.add(StreamDialogEntry.open_in_browser);
-        if (KoreUtils.shouldShowPlayWithKodi(context, item.getServiceId())) {
-            entries.add(StreamDialogEntry.play_with_kodi);
-        }
-
-        // show "mark as watched" only when watch history is enabled
-        if (StreamDialogEntry.shouldAddMarkAsWatched(item.getStreamType(), context)) {
-            entries.add(
-                    StreamDialogEntry.mark_as_watched
-            );
-        }
-        if (!isNullOrEmpty(item.getUploaderUrl())) {
-            entries.add(StreamDialogEntry.show_channel_details);
-        }
-
-        StreamDialogEntry.setEnabledEntries(entries);
-
-        new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context),
-                (dialog, which) -> StreamDialogEntry.clickOn(which, this, item)).show();
+        dialogBuilder.addEnqueueEntriesIfNeeded();
+        dialogBuilder.addStartHereEntries();
+        dialogBuilder.addAllEntries(
+                StreamDialogDefaultEntry.APPEND_PLAYLIST,
+                StreamDialogDefaultEntry.SHARE,
+                StreamDialogDefaultEntry.OPEN_IN_BROWSER
+        );
+        dialogBuilder.addPlayWithKodiEntryIfNeeded();
+        dialogBuilder.addMarkAsWatchedEntryIfNeeded(item.getStreamType());
+        dialogBuilder.addChannelDetailsEntryIfPossible();
+        dialogBuilder.create().show();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
