@@ -7,17 +7,9 @@
     files="LocalItemListAdapter.java"
     lines="232,304"/>
 
-  <suppress checks="FinalParameters"
-    files="InfoListAdapter.java"
-    lines="253,325"/>
-
   <suppress checks="EmptyBlock"
     files="ContentSettingsFragment.java"
     lines="227,245"/>
-
-  <suppress checks="LineLength"
-    files="WebMWriter.java"
-    lines="156,158"/>
 
   <suppress checks="FileLength"
     files="Player.java"/>

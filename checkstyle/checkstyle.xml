@@ -22,7 +22,7 @@
 
     <!-- https://checkstyle.org/config_filters.html#SuppressionFilter -->
     <module name="SuppressionFilter">
-        <property name="file" value="${config_loc}/checkstyle-suppressions.xml" />
+        <property name="file" value="${config_loc}/suppressions.xml" />
         <property name="optional" value="true"/>
     </module>
 
@@ -180,12 +180,5 @@
         <module name="UpperEll"/>
 
         <module name="SuppressWarningsHolder" />
-
-        <!-- https://checkstyle.org/config_filters.html#SuppressionXpathFilter -->
-        <module name="SuppressionXpathFilter">
-            <property name="file" value="${org.checkstyle.sun.suppressionxpathfilter.config}"
-                      default="checkstyle-xpath-suppressions.xml" />
-            <property name="optional" value="true"/>
-        </module>
     </module>
 </module>
