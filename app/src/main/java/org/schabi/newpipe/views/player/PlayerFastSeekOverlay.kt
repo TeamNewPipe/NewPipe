@@ -41,13 +41,10 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
     fun performListener(listener: PerformListener) = apply {
         performListener = listener
     }
-
-    private var seekSecondsSupplier: () -> Int = { 0 }
-
-    fun seekSecondsSupplier(supplier: () -> Int) = apply {
-        seekSecondsSupplier = supplier
-    }
-
+    var seekSeconds: Int = 0
+        private set
+    fun seekSeconds(seconds: Int) = apply {
+        seekSeconds = seconds
     // Indicates whether this (double) tap is the first of a series
     // Decides whether to call performListener.onAnimationStart or not
     private var initTap: Boolean = false
@@ -92,8 +89,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
         }
 
         performListener?.onDoubleTap()
-
-        secondsView.seconds += seekSecondsSupplier.invoke()
+        secondsView.seconds += seekSeconds
         performListener?.seek(forward = shouldForward)
     }
 

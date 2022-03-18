@@ -214,7 +214,6 @@ public final class Player implements
     /*//////////////////////////////////////////////////////////////////////////
     // States
     //////////////////////////////////////////////////////////////////////////*/
-
     public static final int STATE_PREFLIGHT = -1;
     public static final int STATE_BLOCKED = 123;
     public static final int STATE_PLAYING = 124;
@@ -587,8 +586,7 @@ public final class Player implements
      */
     private void setupPlayerSeekOverlay() {
         binding.fastSeekOverlay
-                .seekSecondsSupplier(
-                        () -> (int) (retrieveSeekDurationFromPreferences(this) / 1000.0f))
+                .seekSeconds((int) (retrieveSeekDurationFromPreferences(this) / 1000.0f))
                 .performListener(new PlayerFastSeekOverlay.PerformListener() {
 
                     @Override
