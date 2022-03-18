@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
             drawerLayoutBinding.navigation.getMenu()
                     .add(R.id.menu_tabs_group, kioskId, 0, KioskTranslator
                             .getTranslatedKioskName(ks, this))
-                    .setIcon(KioskTranslator.getKioskIcon(ks, this));
+                    .setIcon(KioskTranslator.getKioskIcon(ks));
             kioskId++;
         }
 

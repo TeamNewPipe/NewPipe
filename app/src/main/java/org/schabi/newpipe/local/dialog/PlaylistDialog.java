@@ -97,7 +97,7 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
     }
 
     @Override
-    public void onSaveInstanceState(final Bundle outState) {
+    public void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
         if (getActivity() != null) {
             savedState = StateSaver.tryToSave(getActivity().isChangingConfigurations(),

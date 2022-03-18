@@ -342,7 +342,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         itemsList.clearOnScrollListeners();
         itemsList.addOnScrollListener(new DefaultItemListOnScrolledDownListener() {
             @Override
-            public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
+            public void onScrolled(@NonNull final RecyclerView recyclerView,
+                                   final int dx, final int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
                 if (dy != 0) {

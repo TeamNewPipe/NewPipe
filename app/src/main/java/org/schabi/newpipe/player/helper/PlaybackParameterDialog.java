@@ -125,7 +125,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAttach(final Context context) {
+    public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
         if (context instanceof Callback) {
             callback = (Callback) context;
@@ -150,7 +150,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     @Override
-    public void onSaveInstanceState(final Bundle outState) {
+    public void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putDouble(INITIAL_TEMPO_KEY, initialTempo);
         outState.putDouble(INITIAL_PITCH_KEY, initialPitch);

@@ -50,7 +50,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Item
-import com.xwray.groupie.OnAsyncUpdateListener
 import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.OnItemLongClickListener
 import icepick.State
@@ -139,7 +138,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         val factory = FeedViewModel.Factory(requireContext(), groupId)
         viewModel = ViewModelProvider(this, factory).get(FeedViewModel::class.java)
         showPlayedItems = viewModel.getShowPlayedItemsFromPreferences()
-        viewModel.stateLiveData.observe(viewLifecycleOwner, { it?.let(::handleResult) })
+        viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(::handleResult) }
 
         groupAdapter = GroupieAdapter().apply {
             setOnItemClickListener(listenerStreamItem)
@@ -393,14 +392,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         // This need to be saved in a variable as the update occurs async
         val oldOldestSubscriptionUpdate = oldestSubscriptionUpdate
 
-        groupAdapter.updateAsync(
-            loadedState.items, false,
-            OnAsyncUpdateListener {
-                oldOldestSubscriptionUpdate?.run {
-                    highlightNewItemsAfter(oldOldestSubscriptionUpdate)
-                }
+        groupAdapter.updateAsync(loadedState.items, false) {
+            oldOldestSubscriptionUpdate?.run {
+                highlightNewItemsAfter(oldOldestSubscriptionUpdate)
             }
-        )
+        }
 
         listState?.run {
             feedBinding.itemsList.layoutManager?.onRestoreInstanceState(listState)

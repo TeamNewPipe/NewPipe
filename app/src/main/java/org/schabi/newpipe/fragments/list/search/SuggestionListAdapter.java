@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
@@ -34,8 +35,10 @@ public class SuggestionListAdapter
         this.listener = listener;
     }
 
+    @NonNull
     @Override
-    public SuggestionItemHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+    public SuggestionItemHolder onCreateViewHolder(@NonNull final ViewGroup parent,
+                                                   final int viewType) {
         return new SuggestionItemHolder(LayoutInflater.from(context)
                 .inflate(R.layout.item_search_suggestion, parent, false));
     }
