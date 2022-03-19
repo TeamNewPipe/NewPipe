@@ -86,7 +86,6 @@
     <string name="black_theme_title">Чёрная</string>
     <string name="popup_remember_size_pos_title">Помнить параметры окна</string>
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
-    <string name="yes">Да</string>
     <string name="clear">Очистить</string>
     <string name="all">Всё</string>
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия пакета:\\nВерсия ОС:</string>
@@ -666,8 +665,6 @@
     <string name="seekbar_preview_thumbnail_title">Миниатюра над полосой прокрутки</string>
     <string name="detail_heart_img_view_description">Автору видео понравилось это</string>
     <string name="mark_as_watched">Пометить как проигранные</string>
-    <string name="error_show_channel_details">Не удалось отобразить сведения о канале</string>
-    <string name="loading_channel_details">Загрузка сведений о канале…</string>
     <string name="show_image_indicators_summary">Picasso: указать цветом источник изображений (красный — сеть, синий — диск, зелёный — память)</string>
     <string name="show_image_indicators_title">Цветные метки на изображениях</string>
     <string name="remote_search_suggestions">Серверные предложения поиска</string>

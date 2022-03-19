@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.grack.nanojson.JsonObject;
-import com.grack.nanojson.JsonSink;
+import com.grack.nanojson.JsonStringWriter;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem.LocalItemType;
@@ -132,7 +132,7 @@ public abstract class Tab {
     // JSON Handling
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void writeJsonOn(final JsonSink jsonSink) {
+    public void writeJsonOn(final JsonStringWriter jsonSink) {
         jsonSink.object();
 
         jsonSink.value(JSON_TAB_ID_KEY, getTabId());
@@ -141,7 +141,7 @@ public abstract class Tab {
         jsonSink.end();
     }
 
-    protected void writeDataToJson(final JsonSink writerSink) {
+    protected void writeDataToJson(final JsonStringWriter writerSink) {
         // No-op
     }
 
@@ -340,7 +340,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            final int kioskIcon = KioskTranslator.getKioskIcon(kioskId, context);
+            final int kioskIcon = KioskTranslator.getKioskIcon(kioskId);
 
             if (kioskIcon <= 0) {
                 throw new IllegalStateException("Kiosk ID is not valid: \"" + kioskId + "\"");
@@ -355,7 +355,7 @@ public abstract class Tab {
         }
 
         @Override
-        protected void writeDataToJson(final JsonSink writerSink) {
+        protected void writeDataToJson(final JsonStringWriter writerSink) {
             writerSink.value(JSON_KIOSK_SERVICE_ID_KEY, kioskServiceId)
                     .value(JSON_KIOSK_ID_KEY, kioskId);
         }
@@ -437,7 +437,7 @@ public abstract class Tab {
         }
 
         @Override
-        protected void writeDataToJson(final JsonSink writerSink) {
+        protected void writeDataToJson(final JsonStringWriter writerSink) {
             writerSink.value(JSON_CHANNEL_SERVICE_ID_KEY, channelServiceId)
                     .value(JSON_CHANNEL_URL_KEY, channelUrl)
                     .value(JSON_CHANNEL_NAME_KEY, channelName);
@@ -496,7 +496,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return KioskTranslator.getKioskIcon(getDefaultKioskId(context), context);
+            return KioskTranslator.getKioskIcon(getDefaultKioskId(context));
         }
 
         @Override
@@ -584,7 +584,7 @@ public abstract class Tab {
         }
 
         @Override
-        protected void writeDataToJson(final JsonSink writerSink) {
+        protected void writeDataToJson(final JsonStringWriter writerSink) {
             writerSink.value(JSON_PLAYLIST_SERVICE_ID_KEY, playlistServiceId)
                     .value(JSON_PLAYLIST_URL_KEY, playlistUrl)
                     .value(JSON_PLAYLIST_NAME_KEY, playlistName)

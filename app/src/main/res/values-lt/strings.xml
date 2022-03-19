@@ -58,7 +58,6 @@
     <string name="downloads_title">Atsisiuntimai</string>
     <string name="error_report_title">Klaidų ataskaita</string>
     <string name="all">Visi</string>
-    <string name="yes">Taip</string>
     <string name="disabled">Išjungta</string>
     <string name="clear">Išvalyti</string>
     <string name="best_resolution">Geriausia raiška</string>
@@ -658,8 +657,6 @@
     <string name="dont_show">Nerodyti</string>
     <string name="detail_heart_img_view_description">Širdelė nuo kurėjo</string>
     <string name="mark_as_watched">Pažymėti kaip peržiūrėtą</string>
-    <string name="loading_channel_details">Įkeliama kanalo išsami informacija…</string>
-    <string name="error_show_channel_details">Klaida rodant kanalo išsamią informaciją</string>
     <string name="show_image_indicators_summary">Rodyti „Picasso“ spalvotas juosteles ant vaizdų, nurodančių jų šaltinį: raudona tinklui, mėlyna diskui ir žalia atmintis</string>
     <string name="show_image_indicators_title">Rodyti vaizdo indikatorius</string>
     <string name="remote_search_suggestions">Nuotolinės paieškos pasiūlymai</string>

@@ -96,7 +96,6 @@
     <string name="playlists">Listas de reprodución</string>
     <string name="tracks">Pistas</string>
     <string name="users">Usuarios</string>
-    <string name="yes">Si</string>
     <string name="disabled">Desactivado</string>
     <string name="clear">Limpar</string>
     <string name="best_resolution">Mellor resolución</string>
@@ -625,8 +624,6 @@
     <string name="show_meta_info_summary">Desactivar para ocultar información adicional sobre o creador da emisión, do contido, ou da petición de procura</string>
     <string name="notification_colorize_summary">Permitir a Android personalizar a cor da notificación conforme a cor principal da miniatura (esta opción non está dispoñíbel en todos os dispositivos)</string>
     <string name="mark_as_watched">Marcar como visto</string>
-    <string name="loading_channel_details">A carregar detalles da canle…</string>
-    <string name="error_show_channel_details">Erro en Mostrar detalles da canle</string>
     <string name="download_has_started">Descarga inciada</string>
     <string name="account_terminated">Conta cancelada</string>
     <string name="feed_load_error_fast_unknown">O modo feed rápido non prové máis información sobre isto.</string>

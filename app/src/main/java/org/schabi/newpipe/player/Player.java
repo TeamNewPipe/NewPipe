@@ -73,7 +73,6 @@ import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -89,7 +88,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -99,12 +97,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -112,6 +113,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.PositionInfo;
 import com.google.android.exoplayer2.RenderersFactory;
@@ -122,6 +124,7 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.text.Cue;
+import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.CaptionStyleCompat;
@@ -136,6 +139,7 @@ import com.squareup.picasso.Target;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.databinding.PlayerPopupCloseOverlayBinding;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -144,11 +148,13 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamSegment;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.info_list.StreamSegmentAdapter;
 import org.schabi.newpipe.ktx.AnimationType;
+import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainPlayer.PlayerType;
 import org.schabi.newpipe.player.event.DisplayPortion;
@@ -158,9 +164,10 @@ import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.LoadController;
 import org.schabi.newpipe.player.helper.MediaSessionManager;
-import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.player.listeners.view.PlaybackSpeedClickListener;
+import org.schabi.newpipe.player.listeners.view.QualityClickListener;
 import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
@@ -175,6 +182,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
+import org.schabi.newpipe.player.resolver.VideoPlaybackResolver.SourceType;
 import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper;
 import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHolder;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -193,6 +201,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -521,9 +531,12 @@ public final class Player implements
     }
 
     private void initListeners() {
+        binding.qualityTextView.setOnClickListener(
+                new QualityClickListener(this, qualityPopupMenu));
+        binding.playbackSpeed.setOnClickListener(
+                new PlaybackSpeedClickListener(this, playbackSpeedPopupMenu));
+
         binding.playbackSeekBar.setOnSeekBarChangeListener(this);
-        binding.playbackSpeed.setOnClickListener(this);
-        binding.qualityTextView.setOnClickListener(this);
         binding.captionTextView.setOnClickListener(this);
         binding.resizeTextView.setOnClickListener(this);
         binding.playbackLiveSync.setOnClickListener(this);
@@ -532,10 +545,15 @@ public final class Player implements
         gestureDetector = new GestureDetectorCompat(context, playerGestureListener);
         binding.getRoot().setOnTouchListener(playerGestureListener);
 
-        binding.queueButton.setOnClickListener(this);
-        binding.segmentsButton.setOnClickListener(this);
-        binding.repeatButton.setOnClickListener(this);
-        binding.shuffleButton.setOnClickListener(this);
+        binding.queueButton.setOnClickListener(v -> onQueueClicked());
+        binding.segmentsButton.setOnClickListener(v -> onSegmentsClicked());
+        binding.repeatButton.setOnClickListener(v -> onRepeatClicked());
+        binding.shuffleButton.setOnClickListener(v -> onShuffleClicked());
+        binding.addToPlaylistButton.setOnClickListener(v -> {
+            if (getParentActivity() != null) {
+                onAddToPlaylistClicked(getParentActivity().getSupportFragmentManager());
+            }
+        });
 
         binding.playPauseButton.setOnClickListener(this);
         binding.playPreviousButton.setOnClickListener(this);
@@ -580,11 +598,17 @@ public final class Player implements
                             v.getPaddingTop(),
                             v.getPaddingRight(),
                             v.getPaddingBottom());
-                    binding.fastSeekOverlay.setPadding(
-                            v.getPaddingLeft(),
-                            v.getPaddingTop(),
-                            v.getPaddingRight(),
-                            v.getPaddingBottom());
+
+                    // If we added padding to the fast seek overlay, too, it would not go under the
+                    // system ui. Instead we apply negative margins equal to the window insets of
+                    // the opposite side, so that the view covers all of the player (overflowing on
+                    // some sides) and its center coincides with the center of other controls.
+                    final RelativeLayout.LayoutParams fastSeekParams = (RelativeLayout.LayoutParams)
+                            binding.fastSeekOverlay.getLayoutParams();
+                    fastSeekParams.leftMargin = -v.getPaddingRight();
+                    fastSeekParams.topMargin = -v.getPaddingBottom();
+                    fastSeekParams.rightMargin = -v.getPaddingLeft();
+                    fastSeekParams.bottomMargin = -v.getPaddingTop();
                 });
     }
 
@@ -593,8 +617,7 @@ public final class Player implements
      */
     private void setupPlayerSeekOverlay() {
         binding.fastSeekOverlay
-                .seekSecondsSupplier(
-                        () -> (int) (retrieveSeekDurationFromPreferences(this) / 1000.0f))
+                .seekSecondsSupplier(() -> retrieveSeekDurationFromPreferences(this) / 1000)
                 .performListener(new PlayerFastSeekOverlay.PerformListener() {
 
                     @Override
@@ -607,6 +630,7 @@ public final class Player implements
                         animate(binding.fastSeekOverlay, false, SEEK_OVERLAY_DURATION);
                     }
 
+                    @NonNull
                     @Override
                     public FastSeekDirection getFastSeekDirection(
                             @NonNull final DisplayPortion portion
@@ -658,6 +682,7 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Playback initialization via intent
 
+    @SuppressWarnings("MethodLength")
     public void handleIntent(@NonNull final Intent intent) {
         // fail fast if no play queue was provided
         final String queueCache = intent.getStringExtra(PLAY_QUEUE_KEY);
@@ -1910,7 +1935,7 @@ public final class Player implements
         }, delay);
     }
 
-    private void showHideShadow(final boolean show, final long duration) {
+    public void showHideShadow(final boolean show, final long duration) {
         animate(binding.playbackControlsShadow, show, duration, AnimationType.ALPHA, 0, null);
         animate(binding.playerTopShadow, show, duration, AnimationType.ALPHA, 0, null);
         animate(binding.playerBottomShadow, show, duration, AnimationType.ALPHA, 0, null);
@@ -2379,6 +2404,32 @@ public final class Player implements
 
 
     /*//////////////////////////////////////////////////////////////////////////
+    // Playlist append
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Playlist append
+
+    public void onAddToPlaylistClicked(@NonNull final FragmentManager fragmentManager) {
+        if (DEBUG) {
+            Log.d(TAG, "onAddToPlaylistClicked() called");
+        }
+
+        if (getPlayQueue() != null) {
+            PlaylistDialog.createCorrespondingDialog(
+                    getContext(),
+                    getPlayQueue()
+                            .getStreams()
+                            .stream()
+                            .map(StreamEntity::new)
+                            .collect(Collectors.toList()),
+                    dialog -> dialog.show(fragmentManager, TAG)
+            );
+        }
+    }
+    //endregion
+
+
+
+    /*//////////////////////////////////////////////////////////////////////////
     // Mute / Unmute
     //////////////////////////////////////////////////////////////////////////*/
     //region Mute / Unmute
@@ -2443,9 +2494,9 @@ public final class Player implements
     }
 
     @Override
-    public void onPositionDiscontinuity(
-            final PositionInfo oldPosition, final PositionInfo newPosition,
-            @DiscontinuityReason final int discontinuityReason) {
+    public void onPositionDiscontinuity(@NonNull final PositionInfo oldPosition,
+                                        @NonNull final PositionInfo newPosition,
+                                        @DiscontinuityReason final int discontinuityReason) {
         if (DEBUG) {
             Log.d(TAG, "ExoPlayer - onPositionDiscontinuity() called with "
                     + "discontinuityReason = [" + discontinuityReason + "]");
@@ -2493,7 +2544,7 @@ public final class Player implements
     }
 
     @Override
-    public void onCues(final List<Cue> cues) {
+    public void onCues(@NonNull final List<Cue> cues) {
         binding.subtitleView.onCues(cues);
     }
     //endregion
@@ -2999,18 +3050,19 @@ public final class Player implements
 
         final MediaSourceTag metadata;
         try {
-            metadata = (MediaSourceTag) simpleExoPlayer.getCurrentTag();
-        } catch (IndexOutOfBoundsException | ClassCastException error) {
+            final MediaItem currentMediaItem = simpleExoPlayer.getCurrentMediaItem();
+            if (currentMediaItem == null || currentMediaItem.playbackProperties == null
+                    || currentMediaItem.playbackProperties.tag == null) {
+                return;
+            }
+            metadata = (MediaSourceTag) currentMediaItem.playbackProperties.tag;
+        } catch (final IndexOutOfBoundsException | ClassCastException ex) {
             if (DEBUG) {
-                Log.d(TAG, "Could not update metadata: " + error.getMessage());
-                error.printStackTrace();
+                Log.d(TAG, "Could not update metadata", ex);
             }
             return;
         }
 
-        if (metadata == null) {
-            return;
-        }
         maybeAutoQueueNextStream(metadata);
 
         if (currentMetadata == metadata) {
@@ -3119,6 +3171,7 @@ public final class Player implements
         binding.itemsListHeaderDuration.setVisibility(View.VISIBLE);
         binding.shuffleButton.setVisibility(View.VISIBLE);
         binding.repeatButton.setVisibility(View.VISIBLE);
+        binding.addToPlaylistButton.setVisibility(View.VISIBLE);
 
         hideControls(0, 0);
         binding.itemsListPanel.requestFocus();
@@ -3156,6 +3209,7 @@ public final class Player implements
         binding.itemsListHeaderDuration.setVisibility(View.GONE);
         binding.shuffleButton.setVisibility(View.GONE);
         binding.repeatButton.setVisibility(View.GONE);
+        binding.addToPlaylistButton.setVisibility(View.GONE);
 
         hideControls(0, 0);
         binding.itemsListPanel.requestFocus();
@@ -3184,6 +3238,7 @@ public final class Player implements
 
         binding.shuffleButton.setVisibility(View.GONE);
         binding.repeatButton.setVisibility(View.GONE);
+        binding.addToPlaylistButton.setVisibility(View.GONE);
         binding.itemsListClose.setOnClickListener(view -> closeItemsList());
     }
 
@@ -3203,6 +3258,9 @@ public final class Player implements
                         binding.itemsListPanel.setTranslationY(
                                 -binding.itemsListPanel.getHeight() * 5);
                     });
+
+            // clear focus, otherwise a white rectangle remains on top of the player
+            binding.itemsListClose.clearFocus();
             binding.playPauseButton.requestFocus();
         }
     }
@@ -3286,7 +3344,27 @@ public final class Player implements
     @Override // own playback listener
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-        return (isAudioOnly ? audioResolver : videoResolver).resolve(info);
+        if (audioPlayerSelected()) {
+            return audioResolver.resolve(info);
+        }
+
+        if (isAudioOnly && videoResolver.getStreamSourceType().orElse(
+                SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY)
+                == SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY) {
+            // If the current info has only video streams with audio and if the stream is played as
+            // audio, we need to use the audio resolver, otherwise the video stream will be played
+            // in background.
+            return audioResolver.resolve(info);
+        }
+
+        // Even if the stream is played in background, we need to use the video resolver if the
+        // info played is separated video-only and audio-only streams; otherwise, if the audio
+        // resolver was called when the app was in background, the app will only stream audio when
+        // the user come back to the app and will never fetch the video stream.
+        // Note that the video is not fetched when the app is in background because the video
+        // renderer is fully disabled (see useVideoSource method), except for HLS streams
+        // (see https://github.com/google/ExoPlayer/issues/9282).
+        return videoResolver.resolve(info);
     }
 
     public void disablePreloadingOfCurrentTrack() {
@@ -3538,37 +3616,6 @@ public final class Player implements
         }
     }
 
-    private void onQualitySelectorClicked() {
-        if (DEBUG) {
-            Log.d(TAG, "onQualitySelectorClicked() called");
-        }
-        qualityPopupMenu.show();
-        isSomePopupMenuVisible = true;
-
-        final VideoStream videoStream = getSelectedVideoStream();
-        if (videoStream != null) {
-            final String qualityText = MediaFormat.getNameById(videoStream.getFormatId()) + " "
-                    + videoStream.resolution;
-            binding.qualityTextView.setText(qualityText);
-        }
-
-        saveWasPlaying();
-    }
-
-    private void onPlaybackSpeedClicked() {
-        if (DEBUG) {
-            Log.d(TAG, "onPlaybackSpeedClicked() called");
-        }
-        if (videoPlayerSelected()) {
-            PlaybackParameterDialog.newInstance(getPlaybackSpeed(), getPlaybackPitch(),
-                    getPlaybackSkipSilence(), this::setPlaybackParameters)
-                    .show(getParentActivity().getSupportFragmentManager(), null);
-        } else {
-            playbackSpeedPopupMenu.show();
-            isSomePopupMenuVisible = true;
-        }
-    }
-
     private void onCaptionClicked() {
         if (DEBUG) {
             Log.d(TAG, "onCaptionClicked() called");
@@ -3673,11 +3720,7 @@ public final class Player implements
         if (DEBUG) {
             Log.d(TAG, "onClick() called with: v = [" + v + "]");
         }
-        if (v.getId() == binding.qualityTextView.getId()) {
-            onQualitySelectorClicked();
-        } else if (v.getId() == binding.playbackSpeed.getId()) {
-            onPlaybackSpeedClicked();
-        } else if (v.getId() == binding.resizeTextView.getId()) {
+        if (v.getId() == binding.resizeTextView.getId()) {
             onResizeClicked();
         } else if (v.getId() == binding.captionTextView.getId()) {
             onCaptionClicked();
@@ -3689,18 +3732,6 @@ public final class Player implements
             playPrevious();
         } else if (v.getId() == binding.playNextButton.getId()) {
             playNext();
-        } else if (v.getId() == binding.queueButton.getId()) {
-            onQueueClicked();
-            return;
-        } else if (v.getId() == binding.segmentsButton.getId()) {
-            onSegmentsClicked();
-            return;
-        } else if (v.getId() == binding.repeatButton.getId()) {
-            onRepeatClicked();
-            return;
-        } else if (v.getId() == binding.shuffleButton.getId()) {
-            onShuffleClicked();
-            return;
         } else if (v.getId() == binding.moreOptionsButton.getId()) {
             onMoreOptionsClicked();
         } else if (v.getId() == binding.share.getId()) {
@@ -3729,23 +3760,33 @@ public final class Player implements
             context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
         }
 
-        if (currentState != STATE_COMPLETED) {
-            controlsVisibilityHandler.removeCallbacksAndMessages(null);
-            showHideShadow(true, DEFAULT_CONTROLS_DURATION);
-            animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
-                    AnimationType.ALPHA, 0, () -> {
-                        if (currentState == STATE_PLAYING && !isSomePopupMenuVisible) {
-                            if (v.getId() == binding.playPauseButton.getId()
-                                    // Hide controls in fullscreen immediately
-                                    || (v.getId() == binding.screenRotationButton.getId()
-                                    && isFullscreen)) {
-                                hideControls(0, 0);
-                            } else {
-                                hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-                            }
-                        }
-                    });
+        manageControlsAfterOnClick(v);
+    }
+
+    /**
+     * Manages the controls after a click occurred on the player UI.
+     * @param v – The view that was clicked
+     */
+    public void manageControlsAfterOnClick(@NonNull final View v) {
+        if (currentState == STATE_COMPLETED) {
+            return;
         }
+
+        controlsVisibilityHandler.removeCallbacksAndMessages(null);
+        showHideShadow(true, DEFAULT_CONTROLS_DURATION);
+        animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
+                AnimationType.ALPHA, 0, () -> {
+                    if (currentState == STATE_PLAYING && !isSomePopupMenuVisible) {
+                        if (v.getId() == binding.playPauseButton.getId()
+                                // Hide controls in fullscreen immediately
+                                || (v.getId() == binding.screenRotationButton.getId()
+                                && isFullscreen)) {
+                            hideControls(0, 0);
+                        } else {
+                            hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                        }
+                    }
+                });
     }
 
     @Override
@@ -3767,6 +3808,10 @@ public final class Player implements
             case KeyEvent.KEYCODE_SPACE:
                 if (isFullscreen) {
                     playPause();
+                    if (isPlaying()) {
+                        hideControls(0, 0);
+                    }
+                    return true;
                 }
                 break;
             case KeyEvent.KEYCODE_BACK:
@@ -3780,8 +3825,9 @@ public final class Player implements
             case KeyEvent.KEYCODE_DPAD_DOWN:
             case KeyEvent.KEYCODE_DPAD_RIGHT:
             case KeyEvent.KEYCODE_DPAD_CENTER:
-                if (binding.getRoot().hasFocus() && !binding.playbackControlRoot.hasFocus()) {
-                    // do not interfere with focus in playlist etc.
+                if ((binding.getRoot().hasFocus() && !binding.playbackControlRoot.hasFocus())
+                        || isQueueVisible) {
+                    // do not interfere with focus in playlist and play queue etc.
                     return false;
                 }
 
@@ -3789,15 +3835,13 @@ public final class Player implements
                     return true;
                 }
 
-                if (!isControlsVisible()) {
-                    if (!isQueueVisible) {
-                        binding.playPauseButton.requestFocus();
-                    }
+                if (isControlsVisible()) {
+                    hideControls(DEFAULT_CONTROLS_DURATION, DPAD_CONTROLS_HIDE_TIME);
+                } else {
+                    binding.playPauseButton.requestFocus();
                     showControlsThenHide();
                     showSystemUIPartially();
                     return true;
-                } else {
-                    hideControls(DEFAULT_CONTROLS_DURATION, DPAD_CONTROLS_HIDE_TIME);
                 }
                 break;
         }
@@ -4141,19 +4185,125 @@ public final class Player implements
         return (AppCompatActivity) ((ViewGroup) binding.getRoot().getParent()).getContext();
     }
 
-    private void useVideoSource(final boolean video) {
-        if (playQueue == null || isAudioOnly == !video || audioPlayerSelected()) {
+    private void useVideoSource(final boolean videoEnabled) {
+        if (playQueue == null || isAudioOnly == !videoEnabled || audioPlayerSelected()) {
             return;
         }
 
-        isAudioOnly = !video;
-        // When a user returns from background controls could be hidden
-        // but systemUI will be shown 100%. Hide it
+        isAudioOnly = !videoEnabled;
+        // When a user returns from background, controls could be hidden but SystemUI will be shown
+        // 100%. Hide it.
         if (!isAudioOnly && !isControlsVisible()) {
             hideSystemUIIfNeeded();
         }
+
+        // The current metadata may be null sometimes (for e.g. when using an unstable connection
+        // in livestreams) so we will be not able to execute the block below.
+        // Reload the play queue manager in this case, which is the behavior when we don't know the
+        // index of the video renderer or playQueueManagerReloadingNeeded returns true.
+        if (currentMetadata == null) {
+            reloadPlayQueueManager();
+            setRecovery();
+            return;
+        }
+
+        final int videoRenderIndex = getVideoRendererIndex();
+        final StreamInfo info = currentMetadata.getMetadata();
+
+        // In the case we don't know the source type, fallback to the one with video with audio or
+        // audio-only source.
+        final SourceType sourceType = videoResolver.getStreamSourceType().orElse(
+                SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
+
+        if (playQueueManagerReloadingNeeded(sourceType, info, videoRenderIndex)) {
+            reloadPlayQueueManager();
+        } else {
+            final StreamType streamType = info.getStreamType();
+            if (streamType == StreamType.AUDIO_STREAM
+                    || streamType == StreamType.AUDIO_LIVE_STREAM) {
+                // Nothing to do more than setting the recovery position
+                setRecovery();
+                return;
+            }
+
+            final TrackGroupArray videoTrackGroupArray = Objects.requireNonNull(
+                    trackSelector.getCurrentMappedTrackInfo()).getTrackGroups(videoRenderIndex);
+            if (videoEnabled) {
+                // Clearing the null selection override enable again the video stream (and its
+                // fetching).
+                trackSelector.setParameters(trackSelector.buildUponParameters()
+                        .clearSelectionOverride(videoRenderIndex, videoTrackGroupArray));
+            } else {
+                // Using setRendererDisabled still fetch the video stream in background, contrary
+                // to setSelectionOverride with a null override.
+                trackSelector.setParameters(trackSelector.buildUponParameters()
+                        .setSelectionOverride(videoRenderIndex, videoTrackGroupArray, null));
+            }
+        }
+
         setRecovery();
-        reloadPlayQueueManager();
+    }
+
+    /**
+     * Return whether the play queue manager needs to be reloaded when switching player type.
+     *
+     * <p>
+     * The play queue manager needs to be reloaded if the video renderer index is not known and if
+     * the content is not an audio content, but also if none of the following cases is met:
+     *
+     * <ul>
+     *     <li>the content is an {@link StreamType#AUDIO_STREAM audio stream} or an
+     *     {@link StreamType#AUDIO_LIVE_STREAM audio live stream};</li>
+     *     <li>the content is a {@link StreamType#LIVE_STREAM live stream} and the source type is a
+     *     {@link SourceType#LIVE_STREAM live source};</li>
+     *     <li>the content's source is {@link SourceType#VIDEO_WITH_SEPARATED_AUDIO a video stream
+     *     with a separated audio source} or has no audio-only streams available <b>and</b> is a
+     *     {@link StreamType#LIVE_STREAM live stream} or a
+     *     {@link StreamType#LIVE_STREAM live stream}.
+     *     </li>
+     * </ul>
+     * </p>
+     *
+     * @param sourceType         the {@link SourceType} of the stream
+     * @param streamInfo         the {@link StreamInfo} of the stream
+     * @param videoRendererIndex the video renderer index of the video source, if that's a video
+     *                           source (or {@link #RENDERER_UNAVAILABLE})
+     * @return whether the play queue manager needs to be reloaded
+     */
+    private boolean playQueueManagerReloadingNeeded(final SourceType sourceType,
+                                                    @NonNull final StreamInfo streamInfo,
+                                                    final int videoRendererIndex) {
+        final StreamType streamType = streamInfo.getStreamType();
+
+        if (videoRendererIndex == RENDERER_UNAVAILABLE && streamType != StreamType.AUDIO_STREAM
+                && streamType != StreamType.AUDIO_LIVE_STREAM) {
+            return true;
+        }
+
+        // The content is an audio stream, an audio live stream, or a live stream with a live
+        // source: it's not needed to reload the play queue manager because the stream source will
+        // be the same
+        if ((streamType == StreamType.AUDIO_STREAM || streamType == StreamType.AUDIO_LIVE_STREAM)
+                || (streamType == StreamType.LIVE_STREAM
+                        && sourceType == SourceType.LIVE_STREAM)) {
+            return false;
+        }
+
+        // The content's source is a video with separated audio or a video with audio -> the video
+        // and its fetch may be disabled
+        // The content's source is a video with embedded audio and the content has no separated
+        // audio stream available: it's probably not needed to reload the play queue manager
+        // because the stream source will be probably the same as the current played
+        if (sourceType == SourceType.VIDEO_WITH_SEPARATED_AUDIO
+                || (sourceType == SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY
+                    && isNullOrEmpty(streamInfo.getAudioStreams()))) {
+            // It's not needed to reload the play queue manager only if the content's stream type
+            // is a video stream or a live stream
+            return streamType != StreamType.VIDEO_STREAM && streamType != StreamType.LIVE_STREAM;
+        }
+
+        // Other cases: the play queue manager reload is needed
+        return true;
     }
     //endregion
 
@@ -4191,7 +4341,7 @@ public final class Player implements
     private boolean isLive() {
         try {
             return !exoPlayerIsNull() && simpleExoPlayer.isCurrentWindowDynamic();
-        } catch (@NonNull final IndexOutOfBoundsException e) {
+        } catch (final IndexOutOfBoundsException e) {
             // Why would this even happen =(... but lets log it anyway, better safe than sorry
             if (DEBUG) {
                 Log.d(TAG, "player.isCurrentWindowDynamic() failed: ", e);
@@ -4261,6 +4411,10 @@ public final class Player implements
 
     public boolean isSomePopupMenuVisible() {
         return isSomePopupMenuVisible;
+    }
+
+    public void setSomePopupMenuVisible(final boolean somePopupMenuVisible) {
+        isSomePopupMenuVisible = somePopupMenuVisible;
     }
 
     public ImageButton getPlayPauseButton() {
@@ -4344,6 +4498,11 @@ public final class Player implements
     public PlayQueueAdapter getPlayQueueAdapter() {
         return playQueueAdapter;
     }
+
+    public PlayerBinding getBinding() {
+        return binding;
+    }
+
     //endregion
 
 
@@ -4369,15 +4528,42 @@ public final class Player implements
     }
 
     private void cleanupVideoSurface() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // >=API23
-            if (surfaceHolderCallback != null) {
-                if (binding != null) {
-                    binding.surfaceView.getHolder().removeCallback(surfaceHolderCallback);
-                }
-                surfaceHolderCallback.release();
-                surfaceHolderCallback = null;
+        // Only for API >= 23
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && surfaceHolderCallback != null) {
+            if (binding != null) {
+                binding.surfaceView.getHolder().removeCallback(surfaceHolderCallback);
             }
+            surfaceHolderCallback.release();
+            surfaceHolderCallback = null;
         }
     }
     //endregion
+
+    /**
+     * Get the video renderer index of the current playing stream.
+     *
+     * This method returns the video renderer index of the current
+     * {@link MappingTrackSelector.MappedTrackInfo} or {@link #RENDERER_UNAVAILABLE} if the current
+     * {@link MappingTrackSelector.MappedTrackInfo} is null or if there is no video renderer index.
+     *
+     * @return the video renderer index or {@link #RENDERER_UNAVAILABLE} if it cannot be get
+     */
+    private int getVideoRendererIndex() {
+        final MappingTrackSelector.MappedTrackInfo mappedTrackInfo = trackSelector
+                .getCurrentMappedTrackInfo();
+
+        if (mappedTrackInfo == null) {
+            return RENDERER_UNAVAILABLE;
+        }
+
+        // Check every renderer
+        return IntStream.range(0, mappedTrackInfo.getRendererCount())
+                // Check the renderer is a video renderer and has at least one track
+                .filter(i -> !mappedTrackInfo.getTrackGroups(i).isEmpty()
+                        && simpleExoPlayer.getRendererType(i) == C.TRACK_TYPE_VIDEO)
+                // Return the first index found (there is at most one renderer per renderer type)
+                .findFirst()
+                // No video renderer index with at least one track found: return unavailable index
+                .orElse(RENDERER_UNAVAILABLE);
+    }
 }

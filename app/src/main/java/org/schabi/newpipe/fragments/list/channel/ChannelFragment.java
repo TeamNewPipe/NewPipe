@@ -22,7 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
-import androidx.viewbinding.ViewBinding;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.jakewharton.rxbinding4.view.RxView;
@@ -36,7 +35,6 @@ import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
@@ -51,13 +49,14 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -69,7 +68,7 @@ import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
+public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, ChannelInfo>
         implements View.OnClickListener {
 
     private static final int BUTTON_DEBOUNCE_INTERVAL = 100;
@@ -150,12 +149,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected ViewBinding getListHeader() {
+    protected Supplier<View> getListHeaderSupplier() {
         headerBinding = ChannelHeaderBinding
                 .inflate(activity.getLayoutInflater(), itemsList, false);
         playlistControlBinding = headerBinding.playlistControl;
 
-        return headerBinding;
+        return headerBinding::getRoot;
     }
 
     @Override
@@ -189,13 +188,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         }
     }
 
-    private void openRssFeed() {
-        final ChannelInfo info = currentInfo;
-        if (info != null) {
-            ShareUtils.openUrlInBrowser(requireContext(), info.getFeedUrl(), false);
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
@@ -208,7 +200,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                 setNotify(value);
                 break;
             case R.id.menu_item_rss:
-                openRssFeed();
+                if (currentInfo != null) {
+                    ShareUtils.openUrlInBrowser(
+                            requireContext(), currentInfo.getFeedUrl(), false);
+                }
                 break;
             case R.id.menu_item_openInBrowser:
                 if (currentInfo != null) {
@@ -438,7 +433,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
+    protected Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
         return ExtractorHelper.getMoreChannelItems(serviceId, url, currentNextPage);
     }
 
@@ -575,12 +570,11 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     }
 
     private PlayQueue getPlayQueue(final int index) {
-        final List<StreamInfoItem> streamItems = new ArrayList<>();
-        for (final InfoItem i : infoListAdapter.getItemsList()) {
-            if (i instanceof StreamInfoItem) {
-                streamItems.add((StreamInfoItem) i);
-            }
-        }
+        final List<StreamInfoItem> streamItems = infoListAdapter.getItemsList().stream()
+                .filter(StreamInfoItem.class::isInstance)
+                .map(StreamInfoItem.class::cast)
+                .collect(Collectors.toList());
+
         return new ChannelPlayQueue(currentInfo.getServiceId(), currentInfo.getUrl(),
                 currentInfo.getNextPage(), streamItems, index);
     }

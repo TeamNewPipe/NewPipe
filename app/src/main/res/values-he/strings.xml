@@ -58,7 +58,6 @@
     <string name="downloads_title">הורדות</string>
     <string name="error_report_title">דוח שגיאה</string>
     <string name="all">הכול</string>
-    <string name="yes">כן</string>
     <string name="disabled">מושבת</string>
     <string name="clear">ניקוי</string>
     <string name="general_error">שגיאה</string>
@@ -668,8 +667,6 @@
     <string name="seekbar_preview_thumbnail_title">תמונה מוקטנת בסרגל הנגינה</string>
     <string name="detail_heart_img_view_description">סומן בלב על ידי היוצר</string>
     <string name="mark_as_watched">סימון כנצפה</string>
-    <string name="loading_channel_details">פרטי הערוץ נטענים…</string>
-    <string name="error_show_channel_details">שגיאה בהצגת פרטי הערוץ</string>
     <string name="show_image_indicators_summary">הצגת סרטים בסגנון פיקאסו בראש התמונות לציון המקור שלהם: אדום זה מהרשת, כחול מהכונן וירוק מהזיכרון</string>
     <string name="show_image_indicators_title">הצגת מחווני תמונות</string>
     <string name="remote_search_suggestions">הצעות חיפוש מרוחקות</string>

@@ -1617,6 +1617,7 @@ public final class VideoDetailFragment
                 activity,
                 info.getVideoStreams(),
                 info.getVideoOnlyStreams(),
+                false,
                 false);
         selectedVideoStreamIndex = ListHelper
                 .getDefaultResolutionIndex(activity, sortedVideoStreams);
@@ -1994,9 +1995,7 @@ public final class VideoDetailFragment
         // Prevent jumping of the player on devices with cutout
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
-                    isMultiWindowOrFullscreen()
-                            ? WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
-                            : WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
         }
         activity.getWindow().getDecorView().setSystemUiVisibility(0);
         activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -2018,9 +2017,7 @@ public final class VideoDetailFragment
         // Prevent jumping of the player on devices with cutout
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             activity.getWindow().getAttributes().layoutInDisplayCutoutMode =
-                    isMultiWindowOrFullscreen()
-                            ? WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
-                            : WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
         }
         int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -2037,7 +2034,7 @@ public final class VideoDetailFragment
         activity.getWindow().getDecorView().setSystemUiVisibility(visibility);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                && isMultiWindowOrFullscreen()) {
+                && (isInMultiWindow || (isPlayerAvailable() && player.isFullscreen()))) {
             activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
             activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);
         }
@@ -2051,11 +2048,6 @@ public final class VideoDetailFragment
                 && bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
             hideSystemUi();
         }
-    }
-
-    private boolean isMultiWindowOrFullscreen() {
-        return DeviceUtils.isInMultiWindow(activity)
-                || (isPlayerAvailable() && player.isFullscreen());
     }
 
     private boolean playerIsNotStopped() {

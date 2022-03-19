@@ -37,7 +37,6 @@
     <string name="downloads">Baixades</string>
     <string name="downloads_title">Baixades</string>
     <string name="all">Tot</string>
-    <string name="yes">Sí</string>
     <string name="disabled">Desactivat</string>
     <string name="clear">Neteja</string>
     <string name="best_resolution">Millor resolució</string>
@@ -215,7 +214,7 @@
     <string name="playback_speed_control">Controls de la velocitat de reproducció</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">To</string>
-    <string name="main_bg_subtitle">Toca la lupa per començar.</string>
+    <string name="main_bg_subtitle">Toca \"Cerca\" per començar.</string>
     <string name="use_external_video_player_summary">Elimina l\'àudio en algunes resolucions</string>
     <string name="use_external_audio_player_title">Reproductor d\'àudio extern</string>
     <string name="download_thumbnail_summary">Desactiveu-ho per no guardar miniatures i estalviar dades i memòria. Canviant aquesta opció, s\'eliminarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge</string>
@@ -601,7 +600,6 @@
 \nDegut a la nova política d\'edat de YouTube, el NewPipe no pot accedir a aquest contingut i per tant no pot reproduir-lo.</string>
     <string name="show_description_summary">Desactiveu per amagar la descripció i la informació addicional del vídeo</string>
     <string name="disable_media_tunneling_title">Desactiva l\'entunelament del contingut</string>
-    <string name="loading_channel_details">Carregant detalls del canal…</string>
     <string name="off">Desactiva</string>
     <string name="on">Activa</string>
     <string name="tablet_mode_title">Mode tablet</string>
@@ -671,7 +669,6 @@
     <string name="error_report_notification_title">NewPipe ha trobat un error, toca per informar</string>
     <string name="enqueue_next_stream">Posa a la cua el següent vídeo</string>
     <string name="create_error_notification">Crear una notificació d\'error</string>
-    <string name="error_show_channel_details">Error en mostrar els detalls del canal</string>
     <string name="error_report_channel_description">Notificacions per informar d\'errors</string>
     <string name="show_error_snackbar">Mostra una barra d\'errors</string>
     <string name="checking_updates_toast">S\'estan comprovant les actualitzacions…</string>
@@ -684,7 +681,7 @@
     <string name="feed_new_items">Elements de feed nous</string>
     <string name="feed_load_error_fast_unknown">El mode d\'alimentació ràpida no proporciona més informació sobre això.</string>
     <string name="detail_pinned_comment_view_description">Comentari fixat</string>
-    <string name="show_crash_the_player_title">Mostrar \"tancar de forma violenta el reproductor\"</string>
+    <string name="show_crash_the_player_title">Mostra \"Força el tancament del reproductor\"</string>
     <string name="show_crash_the_player_summary">Mostra una opció de fallada quan s\'utilitza el reproductor</string>
     <string name="show_image_indicators_summary">Mostra les cintes de color Picasso a la part superior de les imatges que indiquen la seva font: vermell per a la xarxa, blau per al disc i verd per a la memòria</string>
     <string name="leak_canary_not_available">El LeakCanary no està disponible</string>

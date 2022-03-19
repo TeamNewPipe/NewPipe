@@ -64,7 +64,6 @@
     <string name="file_deleted">Ֆայլը ջնջվեց</string>
     <string name="file">Ֆայլ</string>
     <string name="songs">Երգեր</string>
-    <string name="yes">Այո</string>
     <string name="enable_search_history_title">Որոնման պատմություն</string>
     <string name="close">Փակել</string>
     <plurals name="days">

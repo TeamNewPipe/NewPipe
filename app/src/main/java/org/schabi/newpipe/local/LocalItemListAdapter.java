@@ -228,6 +228,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         return count;
     }
 
+    @SuppressWarnings("FinalParameters")
     @Override
     public int getItemViewType(int position) {
         if (DEBUG) {
@@ -300,6 +301,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
+    @SuppressWarnings("FinalParameters")
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
         if (DEBUG) {

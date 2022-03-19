@@ -17,10 +17,11 @@
         android:orientation="vertical"
         android:padding="4dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/thumbnail_view"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            app:shapeAppearance="@style/CircularImageView"
             tools:src="@drawable/buddy_channel_item" />
 
         <org.schabi.newpipe.views.NewPipeTextView

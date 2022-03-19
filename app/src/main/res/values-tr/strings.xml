@@ -86,7 +86,6 @@
     <string name="black_theme_title">Siyah</string>
     <string name="popup_playing_toast">Açılır pencere kipinde oynatılıyor</string>
     <string name="all">Tümü</string>
-    <string name="yes">Evet</string>
     <string name="disabled">Devre dışı</string>
     <string name="your_comment">Yorumunuz (İngilizce):</string>
     <string name="error_details_headline">Ayrıntılar:</string>
@@ -312,7 +311,7 @@
     <string name="privacy_policy_encouragement">NewPipe projesi, gizliliğinizi çok ciddiye alıyor. Bu nedenle, uygulama sizin izniniz olmadan herhangi bir veri toplamaz.
 \nNewPipe\'ın gizlilik ilkesi, çökme raporu gönderdiğinizde hangi verilerin gönderildiğini ve saklandığını ayrıntılı olarak açıklar.</string>
     <string name="read_privacy_policy">Gizlilik ilkesini oku</string>
-    <string name="start_accept_privacy_policy">Avrupa Genel Veri Koruma Yönetmeliğine (GDPR) uymak için, dikkatinizi NewPipe\'ın gizlilik ilkesine çekiyoruz. Lütfen dikkatlice okuyun. 
+    <string name="start_accept_privacy_policy">Avrupa Genel Veri Koruma Yönetmeliğine (GDPR) uymak için, dikkatinizi NewPipe\'ın gizlilik ilkesine çekiyoruz. Lütfen dikkatlice okuyun.
 \nBize hata bildirimini göndermek için kabul etmelisiniz.</string>
     <string name="accept">Kabul et</string>
     <string name="decline">Reddet</string>
@@ -648,8 +647,6 @@
     <string name="comments_are_disabled">Yorumlar devre dışı</string>
     <string name="detail_heart_img_view_description">Yaratıcısınca kalplendi</string>
     <string name="mark_as_watched">İzlendi olarak imle</string>
-    <string name="loading_channel_details">Kanal Ayrıntıları Yükleniyor…</string>
-    <string name="error_show_channel_details">Kanal Ayrıntılarını Göstermede Hata</string>
     <string name="show_image_indicators_summary">Resimlerin üzerinde kaynaklarını gösteren Picasso renkli şeritler göster: ağ için kırmızı, disk için mavi ve bellek için yeşil</string>
     <string name="show_image_indicators_title">Resim göstergelerini göster</string>
     <string name="remote_search_suggestions">Uzak arama önerileri</string>

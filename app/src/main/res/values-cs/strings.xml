@@ -84,7 +84,6 @@
     <string name="no_available_dir">Určete prosím složku pro stahování později v nastavení</string>
     <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu\\nZemě obsahu:\\nJazyk aplikace:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:</string>
     <string name="all">Vše</string>
-    <string name="yes">Ano</string>
     <string name="short_thousand">tis.</string>
     <string name="open_in_popup_mode">Otevřít ve vyskakovacím okně</string>
     <string name="short_million">mil.</string>
@@ -658,8 +657,6 @@
     <string name="comments_are_disabled">Komentáře jsou vypnuty</string>
     <string name="detail_heart_img_view_description">Srdíčko od tvůrce</string>
     <string name="mark_as_watched">Označit jako zhlédnuté</string>
-    <string name="loading_channel_details">Načítání podrobností kanálu…</string>
-    <string name="error_show_channel_details">Chyba při zobrazení prodrobností kanálu</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s stažení smazáno</item>
         <item quantity="few">%1$s stažení smazána</item>

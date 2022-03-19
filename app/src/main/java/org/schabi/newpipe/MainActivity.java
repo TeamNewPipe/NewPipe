@@ -20,7 +20,6 @@
 
 package org.schabi.newpipe;
 
-import static org.schabi.newpipe.CheckForNewAppVersion.startNewVersionCheckService;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.content.BroadcastReceiver;
@@ -178,10 +177,9 @@ public class MainActivity extends AppCompatActivity {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
 
         if (prefs.getBoolean(app.getString(R.string.update_app_key), true)) {
-            // Start the service which is checking all conditions
+            // Start the worker which is checking all conditions
             // and eventually searching for a new version.
-            // The service searching for a new NewPipe version must not be started in background.
-            startNewVersionCheckService();
+            NewVersionWorker.enqueueNewVersionCheckingWork(app);
         }
     }
 
@@ -231,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
             drawerLayoutBinding.navigation.getMenu()
                     .add(R.id.menu_tabs_group, kioskId, 0, KioskTranslator
                             .getTranslatedKioskName(ks, this))
-                    .setIcon(KioskTranslator.getKioskIcon(ks, this));
+                    .setIcon(KioskTranslator.getKioskIcon(ks));
             kioskId++;
         }
 

@@ -1,0 +1,2 @@
+- Wiederaufnahme der Wiedergabe behoben
+- Verbesserungen, um sicherzustellen, dass der Dienst, der bestimmt, ob NewPipe nach einer neuen Version suchen soll, nicht im Hintergrund gestartet wird

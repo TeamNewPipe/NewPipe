@@ -111,7 +111,6 @@
     <string name="settings_category_debug_title">Hibaelhárítás</string>
     <string name="popup_playing_toast">Lejátszás felugró ablakban</string>
     <string name="all">Összes</string>
-    <string name="yes">Igen</string>
     <string name="disabled">Letiltva</string>
     <string name="clear">Törlés</string>
     <string name="best_resolution">Legjobb felbontás</string>
@@ -620,7 +619,6 @@
     <string name="metadata_privacy_public">Nyilvános</string>
     <string name="metadata_privacy_unlisted">Nem listázott</string>
     <string name="off">Ki</string>
-    <string name="loading_channel_details">Csatornarészletek betöltése…</string>
     <string name="no_appropriate_file_manager_message">Nem található megfelelő fájlkezelő ehhez a művelethez.
 \nTelepítsen egy fájlkezelőt, vagy próbálja meg letiltani a következőt a letöltési beállításokban: „%s”.</string>
     <plurals name="download_finished_notification">
@@ -666,7 +664,6 @@
     <string name="metadata_category">Kategória</string>
     <string name="metadata_tags">Címkék</string>
     <string name="metadata_privacy">Adatvédelem</string>
-    <string name="error_show_channel_details">Hiba a csatornarészletek megjelenítésekor</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Gyors mód letiltása</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Igen, és távolítsa el a részben megnézett videókat is</string>
     <string name="remove_watched_popup_warning">A videók, melyeket már megnézett miután a lejátszási listához adta őket, el lesznek távolítva.

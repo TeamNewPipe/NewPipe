@@ -34,7 +34,6 @@
     <string name="downloads_title">Shkarkimet</string>
     <string name="error_report_title">Raporti i gabimit</string>
     <string name="all">Të gjitha</string>
-    <string name="yes">Po</string>
     <string name="missions_header_pending">Në pritje</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d i zgjedhur</item>

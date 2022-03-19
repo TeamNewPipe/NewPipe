@@ -87,7 +87,6 @@
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-    <string name="yes">はい</string>
     <string name="open_in_popup_mode">ポップアップモードで開く</string>
     <string name="msg_popup_permission">ポップアップモードで開くには
 \n権限の許可が必要です</string>
@@ -637,8 +636,6 @@
     <string name="seekbar_preview_thumbnail_title">シークバーのサムネイルプレビュー</string>
     <string name="comments_are_disabled">コメントは無効です</string>
     <string name="mark_as_watched">視聴済みとしてマーク</string>
-    <string name="error_show_channel_details">チャンネルの詳細の表示でエラー</string>
-    <string name="loading_channel_details">チャンネルの詳細を読み込み中…</string>
     <string name="remote_search_suggestions">リモート検索候補</string>
     <string name="local_search_suggestions">ローカル検索候補</string>
     <string name="main_page_content_swipe_remove">アイテムをスワイプして削除</string>

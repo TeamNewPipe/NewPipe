@@ -55,6 +55,23 @@
         <item>30000</item>
     </string-array>
 
+    <string name="progressive_load_interval_key">progressive_load_interval</string>
+    <string name="progressive_load_interval_default_value">default</string>
+    <string-array name="progressive_load_interval_descriptions">
+        <item>1 KiB</item>
+        <item>16 KiB</item>
+        <item>64 KiB</item>
+        <item>256 KiB</item>
+        <item>@string/progressive_load_interval_default</item>
+    </string-array>
+    <string-array name="progressive_load_interval_values">
+        <item>1</item>
+        <item>16</item>
+        <item>64</item>
+        <item>256</item>
+        <item>default</item>
+    </string-array>
+
     <string name="minimize_on_exit_key">minimize_on_exit_key</string>
     <string name="minimize_on_exit_value">@string/minimize_on_exit_background_key</string>
     <string name="minimize_on_exit_none_key">minimize_on_exit_none_key</string>
@@ -239,6 +256,7 @@
         <item>@string/local_search_suggestions</item>
         <item>@string/remote_search_suggestions</item>
     </string-array>
+    <string name="playback_adjust_by_semitones_key">playback_adjust_by_semitones_key</string>
     <string name="show_play_with_kodi_key">show_play_with_kodi</string>
     <string name="show_comments_key">show_comments</string>
     <string name="show_next_video_key">show_next_video</string>
@@ -258,6 +276,7 @@
     <string name="main_page_content_key">main_page_content</string>
     <string name="enable_playback_resume_key">enable_playback_resume</string>
     <string name="enable_playback_state_lists_key">enable_playback_state_lists</string>
+    <string name="adjustment_step_key">adjustment_step_key</string>
     <string name="playback_unhook_key">playback_unhook_key</string>
     <string name="playback_speed_key">playback_speed_key</string>
     <string name="playback_pitch_key">playback_pitch_key</string>

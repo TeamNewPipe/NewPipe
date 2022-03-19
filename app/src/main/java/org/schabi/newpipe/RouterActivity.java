@@ -633,7 +633,7 @@ public class RouterActivity extends AppCompatActivity {
                 .subscribe(result -> {
                     final List<VideoStream> sortedVideoStreams = ListHelper
                             .getSortedStreamVideosList(this, result.getVideoStreams(),
-                                    result.getVideoOnlyStreams(), false);
+                                    result.getVideoOnlyStreams(), false, false);
                     final int selectedVideoStreamIndex = ListHelper
                             .getDefaultResolutionIndex(this, sortedVideoStreams);
 

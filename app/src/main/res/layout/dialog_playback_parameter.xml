@@ -261,11 +261,115 @@
                 tools:text="+5%" />
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/semitoneControl"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/pitchControlText"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/semitoneStepDown"
+                android:layout_width="24dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="♭"
+                android:textColor="?attr/colorAccent"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <RelativeLayout
+                android:id="@+id/semitoneDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_toStartOf="@+id/semitoneStepUp"
+                android:layout_toLeftOf="@+id/semitoneStepUp"
+                android:layout_toEndOf="@+id/semitoneStepDown"
+                android:layout_toRightOf="@+id/semitoneStepDown"
+                android:orientation="horizontal">
+
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/semitoneMinimumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:gravity="center"
+                    android:text="-12"
+                    android:textColor="?attr/colorAccent"
+                    tools:ignore="HardcodedText"/>
+
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/semitoneCurrentText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textColor="?attr/colorAccent"
+                    android:textStyle="bold"
+                    tools:text="0" />
+
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/semitoneMaximumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:gravity="center"
+                    android:text="+12"
+                    android:textColor="?attr/colorAccent"
+                    tools:ignore="HardcodedText" />
+
+                <androidx.appcompat.widget.AppCompatSeekBar
+                    android:id="@+id/semitoneSeekbar"
+                    style="@style/Widget.AppCompat.SeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/semitoneCurrentText"
+                    android:max="24"
+                    android:paddingBottom="4dp"
+                    android:progress="12" />
+            </RelativeLayout>
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/semitoneStepUp"
+                android:layout_width="24dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="♯"
+                android:textColor="?attr/colorAccent"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+        </RelativeLayout>
+
         <View
             android:id="@+id/separatorStepSizeSelector"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/pitchControl"
+            android:layout_below="@+id/semitoneControl"
             android:layout_marginStart="12dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="12dp"
@@ -280,6 +384,7 @@
             android:orientation="horizontal">
 
             <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/playback_step_type"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -380,6 +485,18 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:text="@string/skip_silence_checkbox" />
+
+            <CheckBox
+                android:id="@+id/adjustBySemitonesCheckbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/skipSilenceCheckbox"
+                android:layout_centerHorizontal="true"
+                android:checked="false"
+                android:clickable="true"
+                android:focusable="true"
+                android:maxLines="1"
+                android:text="@string/adjust_by_semitones_checkbox" />
         </LinearLayout>
 
         <!-- END HERE -->

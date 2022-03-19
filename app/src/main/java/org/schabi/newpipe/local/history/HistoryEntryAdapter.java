@@ -84,7 +84,7 @@ public abstract class HistoryEntryAdapter<E, VH extends RecyclerView.ViewHolder>
     }
 
     @Override
-    public void onViewRecycled(final VH holder) {
+    public void onViewRecycled(@NonNull final VH holder) {
         super.onViewRecycled(holder);
         holder.itemView.setOnClickListener(null);
     }

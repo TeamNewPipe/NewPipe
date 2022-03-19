@@ -90,7 +90,6 @@
     <string name="black_theme_title">Negru</string>
     <string name="popup_playing_toast">Redare în mod pop-up</string>
     <string name="all">Toate</string>
-    <string name="yes">Da</string>
     <string name="disabled">Dezactivat</string>
     <string name="app_ui_crash">Aplicația/UI s-a oprit</string>
     <string name="info_labels">Ce:\\nSolicitare:\\nLimba conținutului:\\nȚara conținutului:\\nLimba aplicației:\\nServiciu:\\nOra GMT:\\nPachet:\\nVersiune: \\nVersiune SO:</string>
@@ -619,8 +618,6 @@
     <string name="enqueued_next">Următorul pus în coadă</string>
     <string name="enqueue_next_stream">Adăugați în coadă pe următorul</string>
     <string name="mark_as_watched">Marcare ca vizionat</string>
-    <string name="loading_channel_details">Încărcare Detalii canal…</string>
-    <string name="error_show_channel_details">Eroare la Afișare detalii canal</string>
     <string name="off">Oprit</string>
     <string name="on">Pornit</string>
     <string name="tablet_mode_title">Mod tabletă</string>

@@ -149,7 +149,8 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAudioSessionIdChanged(final EventTime eventTime, final int audioSessionId) {
+    public void onAudioSessionIdChanged(@NonNull final EventTime eventTime,
+                                        final int audioSessionId) {
         notifyAudioSessionUpdate(true, audioSessionId);
     }
     private void notifyAudioSessionUpdate(final boolean active, final int audioSessionId) {

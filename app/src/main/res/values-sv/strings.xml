@@ -58,7 +58,6 @@
     <string name="downloads_title">Hämtningar</string>
     <string name="error_report_title">Felrapport</string>
     <string name="all">Alla</string>
-    <string name="yes">Ja</string>
     <string name="disabled">Inaktiverad</string>
     <string name="clear">Rensa</string>
     <string name="best_resolution">Bästa upplösningen</string>
@@ -323,7 +322,7 @@
     <string name="skip_silence_checkbox">Snabbspola vid frånvaro av ljud</string>
     <string name="playback_step">Steg</string>
     <string name="playback_reset">Återställ</string>
-    <string name="start_accept_privacy_policy">För att uppfylla den Europeiska dataskyddsförordningen (GDPR) uppmärksammar vi er härmed på NewPipes sekretesspolicy. Var god läs den noggrant.
+    <string name="start_accept_privacy_policy">För att uppfylla den Europeiska dataskyddsförordningen (GDPR), uppmärksammar vi härmed NewPipes sekretesspolicy. Var god och läs den noggrant.
 \nDu måste acceptera den för att kunna skicka felrapporten.</string>
     <string name="accept">Acceptera</string>
     <string name="decline">Avböj</string>
@@ -647,10 +646,8 @@
     <string name="select_night_theme_toast">Du kan välja det natt-tema du föredrar nedan</string>
     <string name="night_theme_summary">Välj det natt-tema du föredrar — %s</string>
     <string name="seekbar_preview_thumbnail_title">Sökradens förhandsvisningsminiatyr</string>
-    <string name="loading_channel_details">Laddar kanaldetaljer…</string>
     <string name="show_image_indicators_title">Visa bildindikatorer</string>
     <string name="local_search_suggestions">Lokala sökningsförslag</string>
-    <string name="error_show_channel_details">Kunde inte visa kanaldetaljer</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Tog bort %1$s nedladdning</item>
         <item quantity="other">Tog bort %1$s nedladdningar</item>
@@ -672,7 +669,7 @@
     <string name="manual_update_description">Kolla manuellt efter nya versioner</string>
     <string name="checking_updates_toast">Söker efter uppdateringar…</string>
     <string name="feed_new_items">Nya flödes objekt</string>
-    <string name="show_crash_the_player_title">Visa \"krascha spelaren\"</string>
+    <string name="show_crash_the_player_title">Visa \"Krascha spelaren\"</string>
     <string name="crash_the_player">Krascha spelaren</string>
     <string name="show_crash_the_player_summary">Visar ett kraschalternativ vid användning av spelaren</string>
     <string name="error_report_channel_name">Felrapport-avisering</string>

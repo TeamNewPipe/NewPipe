@@ -83,7 +83,6 @@
     <string name="open_in_popup_mode">Abrir no modo popup</string>
     <string name="black_theme_title">Preto</string>
     <string name="all">Tudo</string>
-    <string name="yes">Sim</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
@@ -648,8 +647,6 @@
     <string name="low_quality_smaller">Baixa qualidade (menor)</string>
     <string name="high_quality_larger">Alta qualidade (maior)</string>
     <string name="comments_are_disabled">Comentários estão desativados</string>
-    <string name="loading_channel_details">A carregar detalhes do canal…</string>
-    <string name="error_show_channel_details">Erro em Mostrar detalhes do canal</string>
     <string name="show_image_indicators_summary">Mostrar fitas coloridas de Picasso em cima das imagens que indicam a sua fonte: vermelho para rede, azul para disco e verde para memória</string>
     <string name="show_image_indicators_title">Mostrar indicadores de imagem</string>
     <string name="remote_search_suggestions">Sugestões de pesquisa remotas</string>

@@ -116,6 +116,7 @@ public final class SettingsResourceRegistry {
             return this;
         }
 
+        @NonNull
         public Class<? extends Fragment> getFragmentClass() {
             return fragmentClass;
         }

@@ -35,6 +35,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -214,7 +215,8 @@ public final class NavigationHelper {
     // External Players
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static void playOnExternalAudioPlayer(final Context context, final StreamInfo info) {
+    public static void playOnExternalAudioPlayer(@NonNull final Context context,
+                                                 @NonNull final StreamInfo info) {
         final int index = ListHelper.getDefaultAudioFormat(context, info.getAudioStreams());
 
         if (index == -1) {
@@ -226,9 +228,11 @@ public final class NavigationHelper {
         playOnExternalPlayer(context, info.getName(), info.getUploaderName(), audioStream);
     }
 
-    public static void playOnExternalVideoPlayer(final Context context, final StreamInfo info) {
+    public static void playOnExternalVideoPlayer(@NonNull final Context context,
+                                                 @NonNull final StreamInfo info) {
         final ArrayList<VideoStream> videoStreamsList = new ArrayList<>(
-                ListHelper.getSortedStreamVideosList(context, info.getVideoStreams(), null, false));
+                ListHelper.getSortedStreamVideosList(context, info.getVideoStreams(), null, false,
+                        false));
         final int index = ListHelper.getDefaultResolutionIndex(context, videoStreamsList);
 
         if (index == -1) {
@@ -240,8 +244,10 @@ public final class NavigationHelper {
         playOnExternalPlayer(context, info.getName(), info.getUploaderName(), videoStream);
     }
 
-    public static void playOnExternalPlayer(final Context context, final String name,
-                                            final String artist, final Stream stream) {
+    public static void playOnExternalPlayer(@NonNull final Context context,
+                                            @Nullable final String name,
+                                            @Nullable final String artist,
+                                            @NonNull final Stream stream) {
         final Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.parse(stream.getUrl()), stream.getFormat().getMimeType());
@@ -253,7 +259,8 @@ public final class NavigationHelper {
         resolveActivityOrAskToInstall(context, intent);
     }
 
-    public static void resolveActivityOrAskToInstall(final Context context, final Intent intent) {
+    public static void resolveActivityOrAskToInstall(@NonNull final Context context,
+                                                     @NonNull final Intent intent) {
         if (intent.resolveActivity(context.getPackageManager()) != null) {
             ShareUtils.openIntentInApp(context, intent, false);
         } else {
@@ -400,6 +407,15 @@ public final class NavigationHelper {
                 .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
                 .commit();
+    }
+
+    public static void openChannelFragment(@NonNull final Fragment fragment,
+                                           @NonNull final StreamInfoItem item,
+                                           final String uploaderUrl) {
+        // For some reason `getParentFragmentManager()` doesn't work, but this does.
+        openChannelFragment(
+                fragment.requireActivity().getSupportFragmentManager(),
+                item.getServiceId(), uploaderUrl, item.getUploaderName());
     }
 
     public static void openPlaylistFragment(final FragmentManager fragmentManager,

@@ -21,7 +21,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
@@ -51,8 +50,6 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class PeertubeInstanceListFragment extends Fragment {
-    private static final int MENU_ITEM_RESTORE_ID = 123456;
-
     private final List<PeertubeInstance> instanceList = new ArrayList<>();
     private PeertubeInstance selectedInstance;
     private String savedInstanceListKey;
@@ -142,17 +139,12 @@ public class PeertubeInstanceListFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull final Menu menu,
                                     @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
-        final MenuItem restoreItem = menu
-                .add(Menu.NONE, MENU_ITEM_RESTORE_ID, Menu.NONE, R.string.restore_defaults);
-        restoreItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        restoreItem.setIcon(AppCompatResources.getDrawable(requireContext(),
-                R.drawable.ic_settings_backup_restore));
+        inflater.inflate(R.menu.menu_chooser_fragment, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        if (item.getItemId() == MENU_ITEM_RESTORE_ID) {
+        if (item.getItemId() == R.id.menu_item_restore_default) {
             restoreDefaults();
             return true;
         }
@@ -191,7 +183,7 @@ public class PeertubeInstanceListFragment extends Fragment {
                 .setTitle(R.string.restore_defaults)
                 .setMessage(R.string.restore_defaults_confirmation)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.yes, (dialog, which) -> {
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
                     sharedPreferences.edit().remove(savedInstanceListKey).apply();
                     selectInstance(PeertubeInstance.defaultInstance);
                     updateInstanceList();

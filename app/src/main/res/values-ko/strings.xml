@@ -102,7 +102,6 @@
     <string name="popup_playing_toast">팝업 모드에서 재생 중</string>
     <string name="error_report_title">오류 보고</string>
     <string name="all">전부</string>
-    <string name="yes">네</string>
     <string name="disabled">해제됨</string>
     <string name="clear">지우기</string>
     <string name="best_resolution">최대 해상도</string>

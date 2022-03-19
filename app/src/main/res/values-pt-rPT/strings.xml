@@ -395,7 +395,6 @@
     <string name="max_retry_msg">Tentativas máximas</string>
     <string name="title_activity_history">Histórico</string>
     <string name="playback_pitch">Velocidade</string>
-    <string name="yes">Sim</string>
     <string name="error_download_resource_gone">Não é possível recuperar esta descarga</string>
     <string name="rename_playlist">Mudar nome</string>
     <string name="feed_group_dialog_empty_selection">Nenhuma subscrição selecionada</string>
@@ -648,8 +647,6 @@
     <string name="no_dir_yet">Ainda não foi definida uma pasta de descarregamento, escolha agora a pasta de descarregamento padrão</string>
     <string name="comments_are_disabled">Comentários estão desativados</string>
     <string name="mark_as_watched">Marcar como visto</string>
-    <string name="loading_channel_details">A carregar detalhes do canal…</string>
-    <string name="error_show_channel_details">Erro em Mostrar detalhes do canal</string>
     <string name="show_image_indicators_summary">Mostrar fitas coloridas de Picasso em cima das imagens que indicam a sua fonte: vermelho para rede, azul para disco e verde para memória</string>
     <string name="show_image_indicators_title">Mostrar indicadores de imagem</string>
     <string name="remote_search_suggestions">Sugestões de pesquisa remotas</string>
