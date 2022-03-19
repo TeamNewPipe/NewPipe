@@ -340,7 +340,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            final int kioskIcon = KioskTranslator.getKioskIcon(kioskId, context);
+            final int kioskIcon = KioskTranslator.getKioskIcon(kioskId);
 
             if (kioskIcon <= 0) {
                 throw new IllegalStateException("Kiosk ID is not valid: \"" + kioskId + "\"");
@@ -496,7 +496,7 @@ public abstract class Tab {
         @DrawableRes
         @Override
         public int getTabIconRes(final Context context) {
-            return KioskTranslator.getKioskIcon(getDefaultKioskId(context), context);
+            return KioskTranslator.getKioskIcon(getDefaultKioskId(context));
         }
 
         @Override

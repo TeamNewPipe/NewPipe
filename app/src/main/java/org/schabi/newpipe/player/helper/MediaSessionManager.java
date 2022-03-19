@@ -135,9 +135,7 @@ public class MediaSessionManager {
         lastTitleHashCode = title.hashCode();
         lastArtistHashCode = artist.hashCode();
         lastDuration = duration;
-        if (optAlbumArt.isPresent()) {
-            lastAlbumArtHashCode = optAlbumArt.get().hashCode();
-        }
+        optAlbumArt.ifPresent(bitmap -> lastAlbumArtHashCode = bitmap.hashCode());
     }
 
     private boolean checkIfMetadataShouldBeSet(

@@ -277,7 +277,7 @@ public final class InfoItemDialog {
         }
 
         /**
-         * Adds {@link StreamDialogDefaultEntry.MARK_AS_WATCHED} if the watch history is enabled
+         * Adds {@link StreamDialogDefaultEntry#MARK_AS_WATCHED} if the watch history is enabled
          * and the stream is not a livestream.
          * @return the current {@link Builder} instance
          */
@@ -294,7 +294,7 @@ public final class InfoItemDialog {
         }
 
         /**
-         * Adds the {@link StreamDialogDefaultEntry.PLAY_WITH_KODI} entry if it is needed.
+         * Adds the {@link StreamDialogDefaultEntry#PLAY_WITH_KODI} entry if it is needed.
          * @return the current {@link Builder} instance
          */
         public Builder addPlayWithKodiEntryIfNeeded() {

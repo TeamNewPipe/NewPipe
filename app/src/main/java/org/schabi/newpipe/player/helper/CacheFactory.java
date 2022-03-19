@@ -63,6 +63,7 @@ import java.io.File;
         }
     }
 
+    @NonNull
     @Override
     public DataSource createDataSource() {
         Log.d(TAG, "initExoPlayerCache: cacheDir = " + cacheDir.getAbsolutePath());
@@ -86,8 +87,8 @@ import java.io.File;
 
                 Log.d(TAG, "tryDeleteCacheFiles: " + filePath + " deleted = " + deleteSuccessful);
             }
-        } catch (final Exception ignored) {
-            Log.e(TAG, "Failed to delete file.", ignored);
+        } catch (final Exception e) {
+            Log.e(TAG, "Failed to delete file.", e);
         }
     }
 }
