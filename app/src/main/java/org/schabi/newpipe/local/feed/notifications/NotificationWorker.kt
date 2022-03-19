@@ -132,7 +132,6 @@ class NotificationWorker(
                 TimeUnit.MILLISECONDS
             ).setConstraints(constraints)
                 .addTag(WORK_TAG)
-                .setBackoffCriteria(BackoffPolicy.LINEAR, 30, TimeUnit.MINUTES)
                 .build()
 
             WorkManager.getInstance(context)
