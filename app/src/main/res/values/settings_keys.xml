@@ -1325,4 +1325,5 @@
         <item>@string/wifi_only</item>
     </string-array>
     <string name="streams_notifications_channels_key">streams_notifications_channels</string>
+    <string name="player_notification_screen_key">player_notification_screen</string>
 </resources>

@@ -24,6 +24,7 @@
         app:iconSpaceReserved="false" />
 
     <PreferenceScreen
+        android:key="@string/player_notification_screen_key"
         android:fragment="org.schabi.newpipe.settings.PlayerNotificationSettingsFragment"
         android:summary="@string/settings_category_player_notification_summary"
         android:title="@string/settings_category_player_notification_title"
