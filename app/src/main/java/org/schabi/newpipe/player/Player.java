@@ -682,6 +682,7 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Playback initialization via intent
 
+    @SuppressWarnings("MethodLength")
     public void handleIntent(@NonNull final Intent intent) {
         // fail fast if no play queue was provided
         final String queueCache = intent.getStringExtra(PLAY_QUEUE_KEY);

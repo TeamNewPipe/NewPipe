@@ -98,7 +98,7 @@ android {
 }
 
 ext {
-    checkstyleVersion = '9.3'
+    checkstyleVersion = '10.0'
 
     androidxLifecycleVersion = '2.3.1'
     androidxRoomVersion = '2.4.2'
@@ -121,7 +121,7 @@ configurations {
 }
 
 checkstyle {
-    getConfigDirectory().set(rootProject.file("."))
+    getConfigDirectory().set(rootProject.file("checkstyle"))
     ignoreFailures false
     showViolations true
     toolVersion = checkstyleVersion
