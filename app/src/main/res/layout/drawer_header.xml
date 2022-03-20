@@ -86,7 +86,7 @@
                     android:scaleType="fitCenter"
                     app:tint="@color/drawer_header_font_color"
                     tools:ignore="ContentDescription"
-                    tools:srcCompat="@drawable/place_holder_youtube" />
+                    tools:srcCompat="@drawable/ic_placeholder_yt" />
 
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/drawer_header_service_view"
