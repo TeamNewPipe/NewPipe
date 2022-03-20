@@ -143,9 +143,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         // -- Import --
         val importSubMenu = menu.addSubMenu(R.string.import_from)
 
-        addMenuItem(importSubMenu, R.string.previous_export) {
-            onImportPreviousSelected()
-        }
+        addMenuItem(importSubMenu, R.string.previous_export) { onImportPreviousSelected() }
+            .setIcon(R.drawable.ic_backup)
 
         val services = requireContext().resources.getStringArray(R.array.service_list)
         for (serviceName in services) {
@@ -157,10 +156,10 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 val supportedSources = subscriptionExtractor.supportedSources
                 if (supportedSources.isEmpty()) continue
 
-                val item = addMenuItem(importSubMenu, serviceName) {
+                addMenuItem(importSubMenu, serviceName) {
                     onImportFromServiceSelected(service.serviceId)
                 }
-                item.setIcon(ServiceHelper.getIcon(service.serviceId))
+                    .setIcon(ServiceHelper.getIcon(service.serviceId))
             } catch (e: ExtractionException) {
                 throw RuntimeException(
                     "Services array contains an entry that it's not a valid service name ($serviceName)",
@@ -173,6 +172,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         val exportSubMenu = menu.addSubMenu(R.string.export_to)
 
         addMenuItem(exportSubMenu, R.string.file) { onExportSelected() }
+            .setIcon(R.drawable.ic_save)
     }
 
     private fun addMenuItem(
