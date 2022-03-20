@@ -58,6 +58,7 @@ import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard
 import org.schabi.newpipe.streams.io.StoredFileHelper
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
+import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountChannels
 import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import org.schabi.newpipe.util.external_communication.ShareUtils
@@ -140,7 +141,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     private fun buildImportExportMenu(menu: Menu) {
         // -- Import --
-
         val importSubMenu = menu.addSubMenu(R.string.import_from)
 
         addMenuItem(importSubMenu, R.string.previous_export) {
@@ -157,9 +157,10 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 val supportedSources = subscriptionExtractor.supportedSources
                 if (supportedSources.isEmpty()) continue
 
-                addMenuItem(importSubMenu, serviceName) {
+                val item = addMenuItem(importSubMenu, serviceName) {
                     onImportFromServiceSelected(service.serviceId)
                 }
+                item.setIcon(ServiceHelper.getIcon(service.serviceId))
             } catch (e: ExtractionException) {
                 throw RuntimeException(
                     "Services array contains an entry that it's not a valid service name ($serviceName)",
@@ -169,7 +170,6 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
 
         // -- Export --
-
         val exportSubMenu = menu.addSubMenu(R.string.export_to)
 
         addMenuItem(exportSubMenu, R.string.file) { onExportSelected() }
