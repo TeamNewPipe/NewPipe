@@ -71,6 +71,7 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
@@ -158,11 +159,14 @@ public class MainActivity extends AppCompatActivity {
         } catch (final Exception e) {
             ErrorUtil.showUiErrorSnackbar(this, "Setting up drawer", e);
         }
-
         if (DeviceUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
         openMiniPlayerUponPlayerStarted();
+
+        // Schedule worker for checking for new streams and creating corresponding notifications
+        // if this is enabled by the user.
+        NotificationWorker.initialize(this);
     }
 
     @Override

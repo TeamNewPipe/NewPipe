@@ -447,7 +447,6 @@
     <string name="albums">Albumi</string>
     <string name="songs">Pjesme</string>
     <string name="channel_created_by">Napravio %s</string>
-    <string name="settings_category_notification_title">Obavijest</string>
     <string name="never">Nikada</string>
     <string name="enable_queue_limit">Ograniči popis preuzimanja</string>
     <string name="downloads_storage_use_saf_title">Koristi birač mapa sustava (SAF)</string>

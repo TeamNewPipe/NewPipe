@@ -229,7 +229,6 @@
     <string name="peertube_instance_add_help">ఉదాహరణ URLని నమోదు చేయండి</string>
     <string name="peertube_instance_add_fail">ఉదాహరణను ధృవీకరించడం సాధ్యపడలేదు</string>
     <string name="peertube_instance_add_exists">ఉదాహరణ ఇప్పటికే ఉంది</string>
-    <string name="settings_category_notification_title">నోటిఫికేషన్</string>
     <string name="users">వినియోగదారులు</string>
     <string name="events">ఈవెంట్స్</string>
     <string name="app_update_notification_channel_description">కొత్త NewPipe వెర్షన్ కోసం నోటిఫికేషన్‌లు</string>

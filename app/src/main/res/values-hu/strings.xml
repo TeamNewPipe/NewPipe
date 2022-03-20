@@ -485,7 +485,6 @@
 \n
 \nEngedélyezze a(z) „%1$s” beállítást, ha meg szeretné tekinteni.</string>
     <string name="show_age_restricted_content_summary">Gyermekek számára esetlegesen nem megfelelő, korhatáros tartalom megjelenítése (például 18+)</string>
-    <string name="settings_category_notification_title">Értesítés</string>
     <string name="peertube_instance_add_https_only">Csak a HTTPS URL-ek támogatottak</string>
     <string name="show_meta_info_title">Metainformációk megjelenítése</string>
     <string name="clear_queue_confirmation_description">A jelenleg aktív lejátszási sor le lesz cserélve</string>

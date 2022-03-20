@@ -512,8 +512,7 @@
     <string name="restricted_video">Tiu ĉi filmeto havas aĝlimon.
 \n
 \nŜalti \"%1$s\" en la agordoj, se vi volas vidi ĝin.</string>
-    <string name="settings_category_notification_title">Sciigo</string>
-    <string name="night_theme_title">Nokta etoso</string>
+    <string name="night_theme_title">Malhela etoso</string>
     <string name="notification_colorize_title">farbi sciigon</string>
     <string name="notification_action_buffering">Alŝuto</string>
     <string name="notification_scale_to_square_image_title">Skali bildeton ĝis 1:1 proportio</string>

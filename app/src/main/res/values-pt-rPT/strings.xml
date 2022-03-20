@@ -543,7 +543,6 @@
     <string name="wifi_only">Apenas em Wi-Fi</string>
     <string name="autoplay_summary">Iniciar reprodução automaticamente — %s</string>
     <string name="title_activity_play_queue">Reproduzir fila</string>
-    <string name="settings_category_notification_title">Notificação</string>
     <string name="unsupported_url_dialog_message">URL não reconhecido. Abrir com outra aplicação\?</string>
     <string name="auto_queue_toggle">Enfileiramento automático</string>
     <string name="clear_queue_confirmation_description">A fila do reprodutor ativo será substituída</string>

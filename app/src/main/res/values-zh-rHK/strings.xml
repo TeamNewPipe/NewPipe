@@ -179,7 +179,6 @@
     <string name="albums">專輯</string>
     <string name="peertube_instance_add_https_only">淨係支援 HTTPS 嘅 URL</string>
     <string name="settings_category_debug_title">除錯</string>
-    <string name="settings_category_notification_title">通知</string>
     <string name="undo">復原</string>
     <string name="file_deleted">刪除咗個檔案</string>
     <string name="always">幾時都係</string>
@@ -242,6 +241,7 @@
     <string name="restore_defaults_confirmation">您係咪要還原返做預設嗰個樣？</string>
     <string name="copy_for_github">複製執咗格式嘅報告</string>
     <string name="search_no_results">乜都搵唔到</string>
+    <string name="enumeration_comma">、</string>
     <string name="name">名稱</string>
     <string name="accept">接受</string>
     <string name="close">關閉</string>

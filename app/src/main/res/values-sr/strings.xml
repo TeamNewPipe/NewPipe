@@ -484,7 +484,6 @@
     <string name="youtube_restricted_mode_enabled_summary">Јутјуб омогућава „Ограничени режим“ који скрива потенцијални садржај за одрасле</string>
     <string name="youtube_restricted_mode_enabled_title">Укључити Јутјубов „Ограничени режим“</string>
     <string name="show_age_restricted_content_summary">Приказ садржаја који можда није прикладан за децу јер има старосну границу (попут 18+)</string>
-    <string name="settings_category_notification_title">Обавештење</string>
     <string name="settings_category_updates_title">Ажурирања</string>
     <string name="peertube_instance_add_exists">Инстанца већ постоји</string>
     <string name="peertube_instance_add_https_only">Подржане су само HTTPS УРЛ адресе</string>

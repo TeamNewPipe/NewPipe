@@ -205,6 +205,7 @@
     <string name="disable_media_tunneling_key">disable_media_tunneling_key</string>
     <string name="show_image_indicators_key">show_image_indicators_key</string>
     <string name="show_crash_the_player_key">show_crash_the_player_key</string>
+    <string name="check_new_streams_key">check_new_streams</string>
     <string name="crash_the_app_key">crash_the_app_key</string>
     <string name="show_error_snackbar_key">show_error_snackbar_key</string>
     <string name="create_error_notification_key">create_error_notification_key</string>
@@ -1287,4 +1288,42 @@
     </string-array>
 
     <string name="recaptcha_cookies_key">recaptcha_cookies_key</string>
+
+    <string name="enable_streams_notifications">enable_streams_notifications</string>
+    <string name="streams_notifications_interval_key">streams_notifications_interval</string>
+    <string name="streams_notifications_interval_default">14400</string>
+    <!-- Values will be localized in runtime -->
+    <string-array name="streams_notifications_interval_description">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>2 hours</item>
+        <item>4 hours</item>
+        <item>12 hours</item>
+        <item>1 day</item>
+    </string-array>
+    <!-- Notifications check frequency in seconds -->
+    <string-array name="streams_notifications_interval_values">
+        <item>900</item>
+        <item>1800</item>
+        <item>3600</item>
+        <item>7200</item>
+        <item>14400</item>
+        <item>43200</item>
+        <item>86400</item>
+    </string-array>
+    <string name="streams_notifications_network_key">streams_notifications_network</string>
+    <string name="streams_notifications_network_any">any</string>
+    <string name="streams_notifications_network_wifi">wifi</string>
+    <string name="streams_notifications_network_default">@string/streams_notifications_network_wifi</string>
+    <string-array name="streams_notifications_network_values">
+        <item>@string/streams_notifications_network_any</item>
+        <item>@string/streams_notifications_network_wifi</item>
+    </string-array>
+    <string-array name="streams_notifications_network_description">
+        <item>@string/any_network</item>
+        <item>@string/wifi_only</item>
+    </string-array>
+    <string name="streams_notifications_channels_key">streams_notifications_channels</string>
+    <string name="player_notification_screen_key">player_notification_screen</string>
 </resources>

@@ -193,7 +193,6 @@
     <string name="content">Dilşad</string>
     <string name="popup_playing_toast">Di moda popupê de dilîzin</string>
     <string name="background_player_playing_toast">Di paşayê de dilîzin</string>
-    <string name="settings_category_notification_title">Agahdayin</string>
     <string name="settings_category_updates_title">Nûvekirin</string>
     <string name="settings_category_debug_title">Xeletkirin</string>
     <string name="settings_category_appearance_title">Xuyabûnî</string>

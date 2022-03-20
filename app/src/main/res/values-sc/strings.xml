@@ -548,7 +548,6 @@
     <string name="clear_queue_confirmation_description">Sa lista dae su riproduidore ativu at a èssere remplasada</string>
     <string name="clear_queue_confirmation_summary">Colende dae unu riproduidore a s\'àteru dias pòdere remplasare sa lista tua</string>
     <string name="clear_queue_confirmation_title">Pedi una cunfirma in antis de iscantzellare una lista</string>
-    <string name="settings_category_notification_title">Notìfica</string>
     <string name="notification_action_shuffle">Òrdine casuale</string>
     <string name="notification_actions_summary">Modìfica cada atzione de notìfica inoghe in suta incarchende·la. Ischerta·nde finas a tres de ammustrare in sa notìfica cumpata impreende sas casellas de controllu a destra</string>
     <string name="notification_scale_to_square_image_summary">Iscala sa miniadura ammustrada in sa notìfica dae su formadu in 16:9 a cussu 1:1 (diat pòdere causare istorchimentos)</string>

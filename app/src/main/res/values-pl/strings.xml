@@ -564,7 +564,6 @@
     <string name="clear_queue_confirmation_description">Kolejka aktywnego odtwarzacza zostanie zastąpiona</string>
     <string name="clear_queue_confirmation_summary">Przejście z jednego odtwarzacza na inny może zastąpić kolejkę</string>
     <string name="clear_queue_confirmation_title">Poproś o potwierdzenie przed wyczyszczeniem kolejki</string>
-    <string name="settings_category_notification_title">Powiadomienie</string>
     <string name="notification_action_nothing">Nic</string>
     <string name="notification_action_buffering">Buforowanie</string>
     <string name="notification_action_shuffle">Losuj</string>

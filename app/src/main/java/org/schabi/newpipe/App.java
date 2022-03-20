@@ -27,7 +27,7 @@ import org.schabi.newpipe.util.StateSaver;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.SocketException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -213,37 +213,44 @@ public class App extends MultiDexApplication {
     private void initNotificationChannels() {
         // Keep the importance below DEFAULT to avoid making noise on every notification update for
         // the main and update channels
-        final NotificationChannelCompat mainChannel = new NotificationChannelCompat
+        final List<NotificationChannelCompat> notificationChannelCompats = new ArrayList<>();
+        notificationChannelCompats.add(new NotificationChannelCompat
                 .Builder(getString(R.string.notification_channel_id),
                         NotificationManagerCompat.IMPORTANCE_LOW)
                 .setName(getString(R.string.notification_channel_name))
                 .setDescription(getString(R.string.notification_channel_description))
-                .build();
+                .build());
 
-        final NotificationChannelCompat appUpdateChannel = new NotificationChannelCompat
+        notificationChannelCompats.add(new NotificationChannelCompat
                 .Builder(getString(R.string.app_update_notification_channel_id),
                         NotificationManagerCompat.IMPORTANCE_LOW)
                 .setName(getString(R.string.app_update_notification_channel_name))
                 .setDescription(getString(R.string.app_update_notification_channel_description))
-                .build();
+                .build());
 
-        final NotificationChannelCompat hashChannel = new NotificationChannelCompat
+        notificationChannelCompats.add(new NotificationChannelCompat
                 .Builder(getString(R.string.hash_channel_id),
                         NotificationManagerCompat.IMPORTANCE_HIGH)
                 .setName(getString(R.string.hash_channel_name))
                 .setDescription(getString(R.string.hash_channel_description))
-                .build();
+                .build());
 
-        final NotificationChannelCompat errorReportChannel = new NotificationChannelCompat
+        notificationChannelCompats.add(new NotificationChannelCompat
                 .Builder(getString(R.string.error_report_channel_id),
                         NotificationManagerCompat.IMPORTANCE_LOW)
                 .setName(getString(R.string.error_report_channel_name))
                 .setDescription(getString(R.string.error_report_channel_description))
-                .build();
+                .build());
+
+        notificationChannelCompats.add(new NotificationChannelCompat
+                .Builder(getString(R.string.streams_notification_channel_id),
+                    NotificationManagerCompat.IMPORTANCE_DEFAULT)
+                .setName(getString(R.string.streams_notification_channel_name))
+                .setDescription(getString(R.string.streams_notification_channel_description))
+                .build());
 
         final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.createNotificationChannelsCompat(Arrays.asList(mainChannel,
-                appUpdateChannel, hashChannel, errorReportChannel));
+        notificationManager.createNotificationChannelsCompat(notificationChannelCompats);
     }
 
     protected boolean isDisposedRxExceptionsReported() {

@@ -554,7 +554,6 @@
     <string name="unsupported_url_dialog_message">URL não reconhecido. Abrir com outra aplicação\?</string>
     <string name="auto_queue_toggle">Enfileiramento automático</string>
     <string name="notification_action_shuffle">Baralhar</string>
-    <string name="settings_category_notification_title">Notificação</string>
     <string name="wifi_only">Apenas em Wi-Fi</string>
     <string name="notification_action_nothing">Nada</string>
     <string name="clear_queue_confirmation_summary">Mudar de um reprodutor para outro pode substituir a sua fila</string>

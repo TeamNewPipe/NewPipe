@@ -584,7 +584,6 @@
     <string name="youtube_restricted_mode_enabled_summary">ਯੂਟਿਊਬ \"ਪਾਬੰਦੀਸ਼ੁਦਾ ਮੋਡ\" ਉਪਲਬਧ ਕਰਾਉਂਦਾ ਹੈ ਜੋ ਬਾਲਗਾਂ ਵਾਲ਼ੀ ਸਮੱਗਰੀ ਲੁਕਾਉਂਦਾ ਹੈ</string>
     <string name="youtube_restricted_mode_enabled_title">ਯੂਟਿਊਬ ਦਾ ਪਾਬੰਦੀਸ਼ੁਦਾ ਮੋਡ ਚਾਲੂ ਕਰੋ</string>
     <string name="show_age_restricted_content_summary">ਉਹ ਸਮੱਗਰੀ ਵੀ ਵਿਖਾਓ ਜੋ ਉਮਰ-ਸੀਮਾ ਕਰਕੇ ਬੱਚਿਆਂ ਲਈ ਸ਼ਾਇਦ ਸਹੀ ਨਾ ਹੋਵੇ (ਜਿਵੇਂ 18+)</string>
-    <string name="settings_category_notification_title">ਇਤਲਾਹਾਂ</string>
     <string name="peertube_instance_add_exists">ਸਥਿਤੀ ਪਹਿਲਾਂ ਨੂੰ ਮੌਜੂਦ ਹੈ</string>
     <string name="peertube_instance_add_https_only">ਸਿਰਫ਼ HTTP URLs ਹੀ ਮਾਣਨਯੋਗ ਹਨ</string>
     <string name="peertube_instance_add_fail">ਸਥਿਤੀ ਦੀ ਜਾਇਜ਼ਗੀ ਤਸਦੀਕ ਨਹੀਂ ਹੋ ਸਕੀ</string>

@@ -559,7 +559,6 @@
     <string name="clear_queue_confirmation_description">Fronta aktivního přehrávače bude smazána</string>
     <string name="clear_queue_confirmation_summary">Při přechodu z jednoho přehrávače do druhého může dojít k smazání fronty</string>
     <string name="clear_queue_confirmation_title">Žádat potvrzení před vyklizením fronty</string>
-    <string name="settings_category_notification_title">Oznámení</string>
     <string name="notification_action_nothing">Nic</string>
     <string name="notification_action_buffering">Bufferovat</string>
     <string name="notification_action_shuffle">Promíchat</string>

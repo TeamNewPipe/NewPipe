@@ -532,7 +532,6 @@
     <string name="error_report_open_github_notice">Vui lòng kiểm tra xem vấn đề bạn đang gặp đã có báo cáo trước đó chưa. Nếu bạn tạo nhiều báo cáo trùng lặp, bạn sẽ làm tốn thời gian để chúng tôi đọc thay vì thực sự sửa lỗi.</string>
     <string name="error_report_open_issue_button_text">Báo cáo trên GitHub</string>
     <string name="copy_for_github">Sao chép bản báo cáo đã được định dạng</string>
-    <string name="settings_category_notification_title">Thông báo</string>
     <string name="unsupported_url_dialog_message">Không thể đọc URL này. Mở với app khác\?</string>
     <string name="auto_queue_toggle">Tự động thêm vào hàng đợi</string>
     <string name="clear_queue_confirmation_description">Hàng đợi của trình phát hiện tại sẽ bị thay thế</string>

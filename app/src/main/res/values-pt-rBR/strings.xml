@@ -551,7 +551,6 @@
     <string name="clear_queue_confirmation_title">Pedir confirmação antes de limpar uma fila</string>
     <string name="notification_action_shuffle">Aleatório</string>
     <string name="notification_action_buffering">Carregando</string>
-    <string name="settings_category_notification_title">Notificação</string>
     <string name="notification_action_nothing">Nada</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">Você pode selecionar até no máximo três botões para mostrar na notificação compacta!</string>

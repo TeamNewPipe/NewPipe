@@ -441,4 +441,5 @@
     <string name="seek_duration_title">快进 / 快退的单位时间</string>
     <string name="clear_download_history">清除下载历史记录</string>
     <string name="delete_downloaded_files">删除下载了的文件</string>
+    <string name="enumeration_comma">、</string>
 </resources>

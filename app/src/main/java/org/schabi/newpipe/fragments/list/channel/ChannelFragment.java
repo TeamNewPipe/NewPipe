@@ -5,6 +5,7 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateBackgroundColor;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,9 +23,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.jakewharton.rxbinding4.view.RxView;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.subscription.NotificationMode;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.databinding.ChannelHeaderBinding;
 import org.schabi.newpipe.databinding.FragmentChannelBinding;
@@ -39,6 +42,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
+import org.schabi.newpipe.local.feed.notifications.NotificationHelper;
 import org.schabi.newpipe.player.MainPlayer.PlayerType;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -84,6 +88,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
     private PlaylistControlBinding playlistControlBinding;
 
     private MenuItem menuRssButton;
+    private MenuItem menuNotifyButton;
 
     public static ChannelFragment getInstance(final int serviceId, final String url,
                                               final String name) {
@@ -179,6 +184,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
                         + "menu = [" + menu + "], inflater = [" + inflater + "]");
             }
             menuRssButton = menu.findItem(R.id.menu_item_rss);
+            menuNotifyButton = menu.findItem(R.id.menu_item_notify);
         }
     }
 
@@ -187,6 +193,11 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
         switch (item.getItemId()) {
             case R.id.action_settings:
                 NavigationHelper.openSettings(requireContext());
+                break;
+            case R.id.menu_item_notify:
+                final boolean value = !item.isChecked();
+                item.setEnabled(false);
+                setNotify(value);
                 break;
             case R.id.menu_item_rss:
                 if (currentInfo != null) {
@@ -232,15 +243,22 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
                 .subscribe(getSubscribeUpdateMonitor(info), onError));
 
         disposables.add(observable
-                // Some updates are very rapid
-                // (for example when calling the updateSubscription(info))
-                // so only update the UI for the latest emission
-                // ("sync" the subscribe button's state)
-                .debounce(100, TimeUnit.MILLISECONDS)
+                .map(List::isEmpty)
+                .distinctUntilChanged()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((List<SubscriptionEntity> subscriptionEntities) ->
-                        updateSubscribeButton(!subscriptionEntities.isEmpty()), onError));
+                .subscribe(isEmpty -> updateSubscribeButton(!isEmpty), onError));
 
+        disposables.add(observable
+                .map(List::isEmpty)
+                .distinctUntilChanged()
+                .skip(1) // channel has just been opened
+                .filter(x -> NotificationHelper.areNewStreamsNotificationsEnabled(requireContext()))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(isEmpty -> {
+                    if (!isEmpty) {
+                        showNotifySnackbar();
+                    }
+                }, onError));
     }
 
     private Function<Object, Object> mapOnSubscribe(final SubscriptionEntity subscription,
@@ -320,6 +338,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
                         info.getAvatarUrl(),
                         info.getDescription(),
                         info.getSubscriberCount());
+                updateNotifyButton(null);
                 subscribeButtonMonitor = monitorSubscribeButton(
                         headerBinding.channelSubscribeButton, mapOnSubscribe(channel, info));
             } else {
@@ -327,6 +346,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
                     Log.d(TAG, "Found subscription to this channel!");
                 }
                 final SubscriptionEntity subscription = subscriptionEntities.get(0);
+                updateNotifyButton(subscription);
                 subscribeButtonMonitor = monitorSubscribeButton(
                         headerBinding.channelSubscribeButton, mapOnUnsubscribe(subscription));
             }
@@ -367,6 +387,45 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
 
         animate(headerBinding.channelSubscribeButton, true, 100,
                 AnimationType.LIGHT_SCALE_AND_ALPHA);
+    }
+
+    private void updateNotifyButton(@Nullable final SubscriptionEntity subscription) {
+        if (menuNotifyButton == null) {
+            return;
+        }
+        if (subscription != null) {
+            menuNotifyButton.setEnabled(
+                    NotificationHelper.areNewStreamsNotificationsEnabled(requireContext())
+            );
+            menuNotifyButton.setChecked(
+                    subscription.getNotificationMode() == NotificationMode.ENABLED
+            );
+        }
+
+        menuNotifyButton.setVisible(subscription != null);
+    }
+
+    private void setNotify(final boolean isEnabled) {
+        disposables.add(
+                subscriptionManager
+                        .updateNotificationMode(
+                                currentInfo.getServiceId(),
+                                currentInfo.getUrl(),
+                                isEnabled ? NotificationMode.ENABLED : NotificationMode.DISABLED)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe()
+        );
+    }
+
+    /**
+     * Show a snackbar with the option to enable notifications on new streams for this channel.
+     */
+    private void showNotifySnackbar() {
+        Snackbar.make(itemsList, R.string.you_successfully_subscribed, Snackbar.LENGTH_LONG)
+                .setAction(R.string.get_notified, v -> setNotify(true))
+                .setActionTextColor(Color.YELLOW)
+                .show();
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -539,7 +539,6 @@
     <string name="clear_queue_confirmation_description">作用中播放器的佇列可能會被取代</string>
     <string name="clear_queue_confirmation_summary">從一個播放器切換到另一個可能會取代您的佇列</string>
     <string name="clear_queue_confirmation_title">清除佇列前要求確認</string>
-    <string name="settings_category_notification_title">通知</string>
     <string name="notification_action_nothing">沒有東西</string>
     <string name="notification_action_buffering">正在緩衝</string>
     <string name="notification_action_shuffle">隨機播放</string>

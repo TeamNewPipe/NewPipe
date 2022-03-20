@@ -552,7 +552,6 @@
     <string name="notification_action_repeat">繰り返し</string>
     <string name="notification_action_shuffle">シャッフル</string>
     <string name="notification_action_buffering">バッファリング</string>
-    <string name="settings_category_notification_title">通知</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube は、成人向けの可能性があるコンテンツを除外する「制限付きモード」を提供しています</string>
     <string name="show_age_restricted_content_summary">年齢制限 (18+ など) の理由で、子供には不適切な可能性のあるコンテンツを表示する</string>
     <string name="enqueue_stream">キューに追加</string>

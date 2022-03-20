@@ -342,6 +342,8 @@
     <string name="brightness_gesture_control_title">Gestensteuerung für Helligkeit</string>
     <string name="brightness_gesture_control_summary">Gesten verwenden, um die Helligkeit einzustellen</string>
     <string name="settings_category_updates_title">Aktualisierungen</string>
+    <string name="settings_category_player_notification_title">Wiedergabebenachrichtigung</string>
+    <string name="settings_category_player_notification_summary">Konfiguriert die Benachrichtigung zum aktuell abgespielten Stream</string>
     <string name="file_deleted">Datei gelöscht</string>
     <string name="app_update_notification_channel_name">Benachrichtigung über App-Update</string>
     <string name="app_update_notification_channel_description">Benachrichtigungen über neue NewPipe-Versionen</string>
@@ -550,7 +552,6 @@
     <string name="never">Nie</string>
     <string name="notification_actions_at_most_three">Du kannst maximal drei Aktionen auswählen, die in der Kompaktbenachrichtigung angezeigt werden sollen!</string>
     <string name="notification_actions_summary">Bearbeite jede Benachrichtigungsaktion unten, indem du darauf tippst. Wähle mithilfe der Kontrollkästchen rechts bis zu drei aus, die in der Kompaktbenachrichtigung angezeigt werden sollen</string>
-    <string name="settings_category_notification_title">Benachrichtigung</string>
     <string name="unsupported_url_dialog_message">Konnte die angegebene URL nicht erkennen. Mit einer anderen Anwendung öffnen\?</string>
     <string name="notification_action_4_title">Fünfte Aktionstaste</string>
     <string name="notification_action_3_title">Vierte Aktionstaste</string>

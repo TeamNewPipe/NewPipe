@@ -484,7 +484,6 @@
 \nKui sa soovid seda näha, siis lülita seadistustest „%1$s“ sisse.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube\'is leiduv „Piiratud režiim“ peidab võimaliku täiskasvanutele mõeldud sisu</string>
     <string name="show_age_restricted_content_summary">Näita sisu, mis vanusepiirangu tõttu ilmselt ei sobi lastele (näiteks 18+)</string>
-    <string name="settings_category_notification_title">Teavitus</string>
     <string name="peertube_instance_add_https_only">Sa saad kasutada vaid HTTPS-urle</string>
     <string name="night_theme_title">Öine teema</string>
     <string name="never">Ei iialgi</string>

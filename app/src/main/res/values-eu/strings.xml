@@ -547,7 +547,6 @@
     <string name="show_age_restricted_content_summary">Adinez mugatuta dagoen eta haurrentzako desegokia izan daitezkeen edukia erakutsi (+18 adibidez)</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube-ren \"Modu Murriztua\" helduentzako edukia izan daitekeen edukia ezkutatzen du</string>
     <string name="youtube_restricted_mode_enabled_title">Piztu YouTube-ren \"Modu Murriztua\"</string>
-    <string name="settings_category_notification_title">Jakinarazpena</string>
     <string name="unsupported_url_dialog_message">Ezin izan da URL-a ezagutu. Beste aplikazio batekin ireki\?</string>
     <string name="auto_queue_toggle">Auto-ilara</string>
     <string name="clear_queue_confirmation_description">Erreprodukzio ilara aktiboa ordezkatuko da</string>

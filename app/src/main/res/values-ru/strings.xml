@@ -167,6 +167,11 @@
         <item quantity="many">%s видео</item>
         <item quantity="other">%s видео</item>
     </plurals>
+    <plurals name="new_streams">
+        <item quantity="one">%s новое видео</item>
+        <item quantity="few">%s новых видео</item>
+        <item quantity="many">%s новых видео</item>
+    </plurals>
     <string name="delete_item_search_history">Удалить этот элемент из истории поиска?</string>
     <string name="main_page_content">Главная страница</string>
     <string name="blank_page_summary">Пустая страница</string>
@@ -561,7 +566,7 @@
     <string name="clear_queue_confirmation_description">Очередь активного плеера будет заменена</string>
     <string name="clear_queue_confirmation_title">Подтверждать очистку очереди</string>
     <string name="clear_queue_confirmation_summary">Переход от одного плеера к другому может заменить вашу очередь</string>
-    <string name="settings_category_notification_title">Уведомление</string>
+    <string name="settings_category_player_notification_summary">Настроить уведомление о воспроизводимом сейчас потоке</string>
     <string name="notification_action_nothing">Ничего</string>
     <string name="notification_action_buffering">Буферизация</string>
     <string name="notification_action_shuffle">Перемешать</string>
@@ -686,6 +691,20 @@
     <string name="manual_update_title">Проверить обновления</string>
     <string name="checking_updates_toast">Проверка обновлений…</string>
     <string name="feed_new_items">Новое на канале</string>
+    <string name="report_player_errors_title">Отчёт об ошибках плеера</string>
+    <string name="report_player_errors_summary">Подробные отчёты об ошибках плеера вместо коротких всплывающих сообщений (полезно при диагностике проблем)</string>
+    <string name="notifications">Уведомления</string>
+    <string name="streams_notification_channel_name">Новые видео</string>
+    <string name="streams_notification_channel_description">Уведомления о новых видео в подписках</string>
+    <string name="streams_notifications_interval_title">Частота проверки</string>
+    <string name="enable_streams_notifications_title">Уведомлять о новых видео</string>
+    <string name="enable_streams_notifications_summary">Получать уведомления о новых видео из каналов, на которые Вы подписаны</string>
+    <string name="streams_notifications_network_title">Тип подключения</string>
+    <string name="any_network">Любая сеть</string>
+    <string name="notifications_disabled">Уведомления отключены</string>
+    <string name="get_notified">Уведомлять</string>
+    <string name="you_successfully_subscribed">Вы подписались на канал</string>
+    <string name="toggle_all">Переключить все</string>
     <string name="show_crash_the_player_title">Показать \"Вызвать сбой плеера\"</string>
     <string name="show_crash_the_player_summary">Показать функцию вызова сбоя при работе плеера</string>
     <string name="crash_the_player">Вызвать сбой плеера</string>

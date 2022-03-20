@@ -557,7 +557,6 @@
     <string name="hash_channel_name">Notificació de comprovació del vídeo</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube proporciona un \"mode restringit\" que amaga contingut potencialment inadequat per a infants</string>
     <string name="show_age_restricted_content_summary">Mostra contingut que podria ser inadequat pels infants</string>
-    <string name="settings_category_notification_title">Notificació</string>
     <string name="unsupported_url_dialog_message">No s\'ha pogut reconèixer l\'adreça URL. Obrir-la amb una altra aplicació\?</string>
     <string name="auto_queue_toggle">Posa a la cua automàticament</string>
     <string name="show_meta_info_summary">Desactiveu-ho per deixar de mostrar les metadades, que contenen informació addicional sobre el creador del directe, el contingut o una sol·licitud de cerca</string>

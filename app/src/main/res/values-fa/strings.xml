@@ -542,7 +542,6 @@
     <string name="wifi_only">فقط روی وای‌فای</string>
     <string name="autoplay_summary">شروع خودکار پخش — %s</string>
     <string name="title_activity_play_queue">پخش صف</string>
-    <string name="settings_category_notification_title">اعلان</string>
     <string name="unsupported_url_dialog_message">نشانی قابل تشخیص نبود. با برنامه دیگری باز شود؟</string>
     <string name="auto_queue_toggle">صف‌گذاری خودکار</string>
     <string name="clear_queue_confirmation_description">صف پخش‌کنندهٔ فعال جایگزین می‌شود</string>

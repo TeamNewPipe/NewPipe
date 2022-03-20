@@ -539,7 +539,6 @@
     <string name="clear_queue_confirmation_description">Antrean dari pemutar yang aktif akan digantikan</string>
     <string name="clear_queue_confirmation_summary">Beralih ke pemutar yang lain mungkin akan mengganti antrean Anda</string>
     <string name="clear_queue_confirmation_title">Konfirmasi sebelum mengosongkan antrean</string>
-    <string name="settings_category_notification_title">Notifikasi</string>
     <string name="notification_action_nothing">Tidak ada</string>
     <string name="notification_action_buffering">Bufer</string>
     <string name="notification_action_shuffle">Aduk</string>
