@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util;
 
-import android.text.Layout;
+import static org.schabi.newpipe.util.TouchUtils.getOffsetForHorizontalLine;
+
 import android.text.Selection;
 import android.text.Spannable;
 import android.text.Spanned;
@@ -30,23 +31,9 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
 
             final int action = event.getAction();
 
-            if (action == MotionEvent.ACTION_UP
-                    || action == MotionEvent.ACTION_DOWN) {
-                int x = (int) event.getX();
-                int y = (int) event.getY();
-
-                x -= widget.getTotalPaddingLeft();
-                y -= widget.getTotalPaddingTop();
-
-                x += widget.getScrollX();
-                y += widget.getScrollY();
-
-                final Layout layout = widget.getLayout();
-                final int line = layout.getLineForVertical(y);
-                final int off = layout.getOffsetForHorizontal(line, x);
-
-                final ClickableSpan[] link = buffer.getSpans(off, off,
-                        ClickableSpan.class);
+            if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_DOWN) {
+                final int offset = getOffsetForHorizontalLine(widget, event);
+                final ClickableSpan[] link = buffer.getSpans(offset, offset, ClickableSpan.class);
 
                 if (link.length != 0) {
                     if (action == MotionEvent.ACTION_UP) {
@@ -58,8 +45,7 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
                             }
                         }
                     } else if (action == MotionEvent.ACTION_DOWN) {
-                        Selection.setSelection(buffer,
-                                buffer.getSpanStart(link[0]),
+                        Selection.setSelection(buffer, buffer.getSpanStart(link[0]),
                                 buffer.getSpanEnd(link[0]));
                     }
                     return true;

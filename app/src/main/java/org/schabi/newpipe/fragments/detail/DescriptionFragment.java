@@ -132,15 +132,16 @@ public class DescriptionFragment extends BaseFragment {
             case Description.HTML:
                 TextLinkifier.createLinksFromHtmlBlock(binding.detailDescriptionView,
                         description.getContent(), HtmlCompat.FROM_HTML_MODE_LEGACY, streamInfo,
-                        descriptionDisposables);
+                        true, descriptionDisposables);
                 break;
             case Description.MARKDOWN:
                 TextLinkifier.createLinksFromMarkdownText(binding.detailDescriptionView,
-                        description.getContent(), streamInfo, descriptionDisposables);
+                        description.getContent(), streamInfo, true, descriptionDisposables);
                 break;
-            case Description.PLAIN_TEXT: default:
+            case Description.PLAIN_TEXT:
+            default:
                 TextLinkifier.createLinksFromPlainText(binding.detailDescriptionView,
-                        description.getContent(), streamInfo, descriptionDisposables);
+                        description.getContent(), streamInfo, true, descriptionDisposables);
                 break;
         }
     }
@@ -196,7 +197,7 @@ public class DescriptionFragment extends BaseFragment {
 
         if (linkifyContent) {
             TextLinkifier.createLinksFromPlainText(itemBinding.metadataContentView, content, null,
-                    descriptionDisposables);
+                    true, descriptionDisposables);
         } else {
             itemBinding.metadataContentView.setText(content);
         }
@@ -252,7 +253,8 @@ public class DescriptionFragment extends BaseFragment {
                 case INTERNAL:
                     contentRes = R.string.metadata_privacy_internal;
                     break;
-                case OTHER: default:
+                case OTHER:
+                default:
                     contentRes = 0;
                     break;
             }
