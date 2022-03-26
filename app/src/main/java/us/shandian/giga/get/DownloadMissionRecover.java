@@ -132,7 +132,7 @@ public class DownloadMissionRecover extends Thread {
         switch (mRecovery.getKind()) {
             case 'a':
                 for (AudioStream audio : mExtractor.getAudioStreams()) {
-                    if (audio.average_bitrate == mRecovery.getDesiredBitrate() && audio.getFormat() == mRecovery.getFormat()) {
+                    if (audio.getAverageBitrate() == mRecovery.getDesiredBitrate() && audio.getFormat() == mRecovery.getFormat()) {
                         url = audio.getUrl();
                         break;
                     }
