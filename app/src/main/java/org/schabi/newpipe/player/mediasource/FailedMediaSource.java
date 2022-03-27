@@ -78,7 +78,7 @@ public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSo
         return playQueueItem;
     }
 
-    public Throwable getError() {
+    public Exception getError() {
         return error;
     }
 

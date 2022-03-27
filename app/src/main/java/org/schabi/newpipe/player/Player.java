@@ -2487,11 +2487,11 @@ public final class Player implements
     /**
      * <p>Listens for event or state changes on ExoPlayer. When any event happens, we check for
      * changes in the currently-playing metadata and update the encapsulating
-     * {@link Player}. Downstream listeners are also informed.
+     * {@link Player}. Downstream listeners are also informed.</p>
      *
      * <p>When the renewed metadata contains any error, it is reported as a notification.
      * This is done because not all source resolution errors are {@link PlaybackException}, which
-     * are also captured by {@link ExoPlayer} and stops the playback.
+     * are also captured by {@link ExoPlayer} and stops the playback.</p>
      *
      * @param player The {@link com.google.android.exoplayer2.Player} whose state changed.
      * @param events The {@link com.google.android.exoplayer2.Player.Events} that has triggered
@@ -2634,6 +2634,9 @@ public final class Player implements
      * </ul>
      * @see com.google.android.exoplayer2.Player.Listener#onPlayerError(PlaybackException)
      * */
+    // Any error code not explicitly covered here are either unrelated to NewPipe use case
+    // (e.g. DRM) or not recoverable (e.g. Decoder error). In both cases, the player should
+    // shutdown.
     @SuppressLint("SwitchIntDef")
     @Override
     public void onPlayerError(@NonNull final PlaybackException error) {
