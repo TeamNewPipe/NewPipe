@@ -29,7 +29,7 @@ public final class PlaceholderTag implements MediaItemTag {
 
     @NonNull
     @Override
-    public List<Throwable> getErrors() {
+    public List<Exception> getErrors() {
         return Collections.emptyList();
     }
 

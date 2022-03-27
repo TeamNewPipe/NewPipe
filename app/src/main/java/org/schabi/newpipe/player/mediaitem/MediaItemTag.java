@@ -26,7 +26,7 @@ import androidx.annotation.Nullable;
  **/
 public interface MediaItemTag {
 
-    List<Throwable> getErrors();
+    List<Exception> getErrors();
 
     int getServiceId();
 

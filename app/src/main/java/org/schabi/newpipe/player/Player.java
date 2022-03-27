@@ -1961,13 +1961,12 @@ public final class Player implements
         final boolean showPrev = playQueue.getIndex() != 0;
         final boolean showNext = playQueue.getIndex() + 1 != playQueue.getStreams().size();
         final boolean showQueue = playQueue.getStreams().size() > 1 && !popupPlayerSelected();
-        boolean showSegment = false;
-        showSegment = /*only when stream has segment and playing in fullscreen player*/
-                !popupPlayerSelected()
-                        && !getCurrentStreamInfo()
-                        .map(StreamInfo::getStreamSegments)
-                        .map(List::isEmpty)
-                        .orElse(/*no stream info=*/true);
+        /* only when stream has segments and is not playing in popup player */
+        final boolean showSegment = !popupPlayerSelected()
+                && !getCurrentStreamInfo()
+                .map(StreamInfo::getStreamSegments)
+                .map(List::isEmpty)
+                .orElse(/*no stream info=*/true);
 
         binding.playPreviousButton.setVisibility(showPrev ? View.VISIBLE : View.INVISIBLE);
         binding.playPreviousButton.setAlpha(showPrev ? 1.0f : 0.0f);
@@ -2014,7 +2013,7 @@ public final class Player implements
                     + "playWhenReady = [" + playWhenReady + "], "
                     + "reason = [" + reason + "]");
         }
-        final int playbackState = simpleExoPlayer == null
+        final int playbackState = exoPlayerIsNull()
                 ? com.google.android.exoplayer2.Player.STATE_IDLE
                 : simpleExoPlayer.getPlaybackState();
         updatePlaybackState(playWhenReady, playbackState);
@@ -2026,8 +2025,7 @@ public final class Player implements
             Log.d(TAG, "ExoPlayer - onPlaybackStateChanged() called with: "
                     + "playbackState = [" + playbackState + "]");
         }
-        final boolean playWhenReady = simpleExoPlayer != null && simpleExoPlayer.getPlayWhenReady();
-        updatePlaybackState(playWhenReady, playbackState);
+        updatePlaybackState(getPlayWhenReady(), playbackState);
     }
 
     private void updatePlaybackState(final boolean playWhenReady, final int playbackState) {
@@ -2486,6 +2484,19 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region ExoPlayer listeners (that didn't fit in other categories)
 
+    /**
+     * <p>Listens for event or state changes on ExoPlayer. When any event happens, we check for
+     * changes in the currently-playing metadata and update the encapsulating
+     * {@link Player}. Downstream listeners are also informed.
+     *
+     * <p>When the renewed metadata contains any error, it is reported as a notification.
+     * This is done because not all source resolution errors are {@link PlaybackException}, which
+     * are also captured by {@link ExoPlayer} and stops the playback.
+     *
+     * @param player The {@link com.google.android.exoplayer2.Player} whose state changed.
+     * @param events The {@link com.google.android.exoplayer2.Player.Events} that has triggered
+     *               the player state changes.
+     **/
     @Override
     public void onEvents(@NonNull final com.google.android.exoplayer2.Player player,
                          @NonNull final com.google.android.exoplayer2.Player.Events events) {
@@ -2602,11 +2613,12 @@ public final class Player implements
      * <li>{@link PlaybackException#ERROR_CODE_BEHIND_LIVE_WINDOW BEHIND_LIVE_WINDOW}:
      * If the playback on livestreams are lagged too far behind the current playable
      * window. Then we seek to the latest timestamp and restart the playback.
+     * This error is <b>catchable</b>.
      * </li>
      * <li>From {@link PlaybackException#ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE BAD_IO} to
      * {@link PlaybackException#ERROR_CODE_PARSING_MANIFEST_UNSUPPORTED UNSUPPORTED_FORMATS}:
      * If the stream source is validated by the extractor but not recognized by the player,
-     * then we can try to recover playback by signal an error on the {@link PlayQueue}.</li>
+     * then we can try to recover playback by signalling an error on the {@link PlayQueue}.</li>
      * <li>For {@link PlaybackException#ERROR_CODE_TIMEOUT PLAYER_TIMEOUT},
      * {@link PlaybackException#ERROR_CODE_IO_UNSPECIFIED MEDIA_SOURCE_RESOLVER_TIMEOUT} and
      * {@link PlaybackException#ERROR_CODE_IO_NETWORK_CONNECTION_FAILED NO_NETWORK}:
@@ -2617,8 +2629,8 @@ public final class Player implements
      * We terminate the playback.</li>
      * <li>For any other unspecified issue internal: We set a recovery and try to restart
      * the playback.</li>
-     * In the case of decoder/renderer or unspecified errors, the player will create a
-     * notification so the users are aware.
+     * For any error above that is <b>not</b> explicitly <b>catchable</b>, the player will
+     * create a notification so users are aware.
      * </ul>
      * @see com.google.android.exoplayer2.Player.Listener#onPlayerError(PlaybackException)
      * */
@@ -2627,7 +2639,6 @@ public final class Player implements
     public void onPlayerError(@NonNull final PlaybackException error) {
         Log.e(TAG, "ExoPlayer - onPlayerError() called with:", error);
 
-        setRecovery();
         saveStreamProgressState();
         boolean isCatchableException = false;
 
@@ -2652,7 +2663,6 @@ public final class Player implements
             case ERROR_CODE_PARSING_MANIFEST_UNSUPPORTED:
                 // Source errors, signal on playQueue and move on:
                 if (!exoPlayerIsNull() && playQueue != null) {
-                    isCatchableException = true;
                     playQueue.error();
                 }
                 break;
@@ -2660,11 +2670,6 @@ public final class Player implements
             case ERROR_CODE_IO_UNSPECIFIED:
             case ERROR_CODE_IO_NETWORK_CONNECTION_FAILED:
             case ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT:
-                // Don't create notification on timeout/networking errors:
-                isCatchableException = true;
-                setRecovery();
-                reloadPlayQueueManager();
-                break;
             case ERROR_CODE_UNSPECIFIED:
                 // Reload playback on unexpected errors:
                 setRecovery();
@@ -3010,10 +3015,9 @@ public final class Player implements
     }
 
     public void saveStreamProgressStateCompleted() {
-        getCurrentStreamInfo().ifPresent(info -> {
-            // current stream has ended, so the progress is its duration (+1 to overcome rounding)
-            saveStreamProgressState((info.getDuration() + 1) * 1000);
-        });
+        // current stream has ended, so the progress is its duration (+1 to overcome rounding)
+        getCurrentStreamInfo().ifPresent(info ->
+                saveStreamProgressState((info.getDuration() + 1) * 1000));
     }
     //endregion
 
@@ -3414,7 +3418,8 @@ public final class Player implements
             case VIDEO_STREAM:
                 if (currentMetadata == null
                         || !currentMetadata.getMaybeQuality().isPresent()
-                        || info.getVideoStreams().size() + info.getVideoOnlyStreams().size() == 0) {
+                        || (info.getVideoStreams().isEmpty()
+                        && info.getVideoOnlyStreams().isEmpty())) {
                     break;
                 }
 
@@ -3684,10 +3689,8 @@ public final class Player implements
         }
 
         // Normalize mismatching language strings
-        final List<String> preferredLanguages =
-                trackSelector.getParameters().preferredTextLanguages;
-        final String preferredLanguage =
-                preferredLanguages.isEmpty() ? null : preferredLanguages.get(0);
+        final String preferredLanguage = trackSelector.getParameters()
+                .preferredTextLanguages.stream().findFirst().orElse(null);
         // Build UI
         buildCaptionMenu(availableLanguages);
         if (trackSelector.getParameters().getRendererDisabled(textRenderer)

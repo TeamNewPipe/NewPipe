@@ -47,7 +47,7 @@ public final class StreamInfoTag implements MediaItemTag {
     }
 
     @Override
-    public List<Throwable> getErrors() {
+    public List<Exception> getErrors() {
         return Collections.emptyList();
     }
 

@@ -36,7 +36,7 @@ public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSo
 
     private final String TAG = "FailedMediaSource@" + Integer.toHexString(hashCode());
     private final PlayQueueItem playQueueItem;
-    private final Throwable error;
+    private final Exception error;
     private final long retryTimestamp;
     private final MediaItem mediaItem;
     /**
@@ -51,7 +51,7 @@ public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSo
      * @param retryTimestamp epoch timestamp when this MediaSource can be refreshed
      */
     public FailedMediaSource(@NonNull final PlayQueueItem playQueueItem,
-                             @NonNull final Throwable error,
+                             @NonNull final Exception error,
                              final long retryTimestamp) {
         this.playQueueItem = playQueueItem;
         this.error = error;
@@ -68,7 +68,7 @@ public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSo
     }
 
     public static FailedMediaSource of(@NonNull final PlayQueueItem playQueueItem,
-                                       @NonNull final Throwable error,
+                                       @NonNull final Exception error,
                                        final long retryWaitMillis) {
         return new FailedMediaSource(playQueueItem, error,
                 System.currentTimeMillis() + retryWaitMillis);

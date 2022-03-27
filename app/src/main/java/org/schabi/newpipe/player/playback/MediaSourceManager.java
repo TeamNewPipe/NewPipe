@@ -441,7 +441,8 @@ public class MediaSourceManager {
             if (throwable instanceof ExtractionException) {
                 return FailedMediaSource.of(stream, new StreamInfoLoadException(throwable));
             }
-            return FailedMediaSource.of(stream, throwable, /*immediatelyRetryable=*/0L);
+            return FailedMediaSource
+                    .of(stream, new Exception(throwable), /*immediatelyRetryable=*/0L);
         });
     }
 

@@ -24,12 +24,12 @@ public final class ExceptionTag implements MediaItemTag {
     @NonNull
     private final PlayQueueItem item;
     @NonNull
-    private final List<Throwable> errors;
+    private final List<Exception> errors;
     @Nullable
     private final Object extras;
 
     private ExceptionTag(@NonNull final PlayQueueItem item,
-                         @NonNull final List<Throwable> errors,
+                         @NonNull final List<Exception> errors,
                          @Nullable final Object extras) {
         this.item = item;
         this.errors = errors;
@@ -37,13 +37,13 @@ public final class ExceptionTag implements MediaItemTag {
     }
 
     public static ExceptionTag of(@NonNull final PlayQueueItem playQueueItem,
-                                  @NonNull final List<Throwable> errors) {
+                                  @NonNull final List<Exception> errors) {
         return new ExceptionTag(playQueueItem, errors, null);
     }
 
     @NonNull
     @Override
-    public List<Throwable> getErrors() {
+    public List<Exception> getErrors() {
         return errors;
     }
 
