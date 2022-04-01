@@ -373,10 +373,10 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         if (item.streamType == StreamType.AUDIO_STREAM) {
             entries.addAll(
                 listOf(
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share,
-                    StreamDialogEntry.open_in_browser
+                    StreamDialogEntry?.start_here_on_background,
+                    StreamDialogEntry?.append_playlist,
+                    StreamDialogEntry?.share,
+                    StreamDialogEntry?.open_in_browser
                 )
             )
         } else {
@@ -453,7 +453,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
 
         val feedsNotLoaded = loadedState.notLoadedCount > 0
-        feedBinding.refreshSubtitleText.isVisible = feedsNotLoaded
+        feedBinding.refreshSubtitleText?.isVisible = feedsNotLoaded
         if (feedsNotLoaded) {
             feedBinding.refreshSubtitleText.text = getString(
                 R.string.feed_subscription_not_loaded_count,
@@ -492,7 +492,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
                 t.cause is ContentNotAvailableException
             ) {
                 Single.fromCallable {
-                    NewPipeDatabase.getInstance(requireContext()).subscriptionDAO()
+                    NewPipeDatabase?.getInstance(requireContext()).subscriptionDAO()
                         .getSubscription(t.subscriptionId)
                 }.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
