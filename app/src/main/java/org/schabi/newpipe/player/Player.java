@@ -600,29 +600,29 @@ public final class Player implements
                     }
 
                     @Override
-                    public FastSeekDirection getFastSeekDirection(
+                    public Optional<Boolean> shouldFastForward(
                             @NonNull final DisplayPortion portion
                     ) {
                         if (exoPlayerIsNull()) {
                             // Abort seeking
                             playerGestureListener.endMultiDoubleTap();
-                            return FastSeekDirection.NONE;
+                            return return Optional.of(false);
                         }
                         if (portion == DisplayPortion.LEFT) {
                             // Check if it's possible to rewind
                             // Small puffer to eliminate infinite rewind seeking
                             if (simpleExoPlayer.getCurrentPosition() < 500L) {
-                                return FastSeekDirection.NONE;
+                                return Optional.of(false);
                             }
-                            return FastSeekDirection.BACKWARD;
+                            return Optional.empty();
                         } else if (portion == DisplayPortion.RIGHT) {
                             // Check if it's possible to fast-forward
                             if (currentState == STATE_COMPLETED
                                     || simpleExoPlayer.getCurrentPosition()
                                     >= simpleExoPlayer.getDuration()) {
-                                return FastSeekDirection.NONE;
+                                return Optional.of(false);
                             }
-                            return FastSeekDirection.FORWARD;
+                            return Optional.empty();
                         }
                         /* portion == DisplayPortion.MIDDLE */
                         return FastSeekDirection.NONE;
