@@ -40,10 +40,12 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private final int commentVerticalPadding;
 
     private final RelativeLayout itemRoot;
-    public final CircleImageView itemThumbnailView;
     private final TextView itemContentView;
-    private final TextView itemLikesCountView;
     private final TextView itemPublishedTime;
+    private final TextView itemLikesCountView;
+    private final TextView itemDislikesCountView;
+
+    public final CircleImageView itemThumbnailView;
 
     private String commentText;
     private String streamUrl;
@@ -75,9 +77,10 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
         itemRoot = itemView.findViewById(R.id.itemRoot);
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
-        itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
         itemPublishedTime = itemView.findViewById(R.id.itemPublishedTime);
         itemContentView = itemView.findViewById(R.id.itemCommentContentView);
+        itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
+        itemDislikesCountView = itemView.findViewById(R.id.detail_thumbs_down_count_view);
 
         commentHorizontalPadding = (int) infoItemBuilder.getContext()
                 .getResources().getDimension(R.dimen.comments_horizontal_padding);
@@ -117,6 +120,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemContentView.setLines(COMMENT_DEFAULT_LINES);
         commentText = item.getCommentText();
         itemContentView.setText(commentText);
+        itemDislikesCountView.setText(commentText)
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
 
         if (itemContentView.getLineCount() == 0) {
