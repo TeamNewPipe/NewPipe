@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.databinding.SettingsPreferencesearchFragmentBinding;
 
@@ -26,6 +27,7 @@ public class PreferenceSearchFragment extends Fragment {
 
     private SettingsPreferencesearchFragmentBinding binding;
     private PreferenceSearchAdapter adapter;
+    private SearchViewHolder viewHolder;
 
     public void setSearcher(final PreferenceSearcher searcher) {
         this.searcher = searcher;
@@ -39,6 +41,7 @@ public class PreferenceSearchFragment extends Fragment {
             @Nullable final Bundle savedInstanceState
     ) {
         binding = SettingsPreferencesearchFragmentBinding.inflate(inflater, container, false);
+        View rootView = inflater.inflate(R.layout.settings_preferencesearch_fragment, container, false);
 
         binding.searchResults.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -46,7 +49,11 @@ public class PreferenceSearchFragment extends Fragment {
         adapter.setOnItemClickListener(this::onItemClicked);
         binding.searchResults.setAdapter(adapter);
 
-        return binding.getRoot();
+        if binding != null
+            return binding.getRoot();
+        else
+            return rootView;
+
     }
 
     public void updateSearchResults(final String keyword) {
@@ -67,6 +74,9 @@ public class PreferenceSearchFragment extends Fragment {
     private void setEmptyViewShown(final boolean shown) {
         binding.emptyStateView.setVisibility(shown ? View.VISIBLE : View.GONE);
         binding.searchResults.setVisibility(shown ? View.GONE : View.VISIBLE);
+        viewHolder.emptyStateView.setVisibility(shown ? View.VISIBLE : View.GONE);
+        viewHolder.recyclerView.setVisibility(shown ? View.GONE : View.VISIBLE);
+
     }
 
     public void onItemClicked(final PreferenceSearchItem item) {
