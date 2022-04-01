@@ -606,7 +606,7 @@ public final class Player implements
                         if (exoPlayerIsNull()) {
                             // Abort seeking
                             playerGestureListener.endMultiDoubleTap();
-                            return return Optional.of(false);
+                            return return Optional.of(true);
                         }
                         if (portion == DisplayPortion.LEFT) {
                             // Check if it's possible to rewind
