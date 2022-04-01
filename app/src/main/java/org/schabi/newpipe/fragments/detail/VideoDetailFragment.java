@@ -1089,6 +1089,8 @@ public final class VideoDetailFragment
         // return to non-fullscreen mode
         if (isPlayerAvailable() && player.isFullscreen()) {
             player.toggleFullscreen();
+        } else {
+            return
         }
     }
 
@@ -1099,8 +1101,11 @@ public final class VideoDetailFragment
         final boolean useExternalAudioPlayer = PreferenceManager
                 .getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
-
-        toggleFullscreenIfInFullscreenMode();
+        if (isPlayerAvailable() {
+            player.toggleFullscreen();
+        } else {
+            toggleFullscreenIfInFullscreenMode();
+        }
 
         if (isPlayerAvailable()) {
             // FIXME Workaround #7427
