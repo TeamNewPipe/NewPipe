@@ -21,13 +21,13 @@ class MissionRecoveryInfo(
     constructor(stream: Stream) : this(format = stream.getFormat()!!) {
         when (stream) {
             is AudioStream -> {
-                desiredBitrate = stream.average_bitrate
+                desiredBitrate = stream.averageBitrate
                 isDesired2 = false
                 kind = 'a'
             }
             is VideoStream -> {
-                desired = stream.getResolution()
-                isDesired2 = stream.isVideoOnly()
+                desired = stream.resolution
+                isDesired2 = stream.isVideoOnly
                 kind = 'v'
             }
             is SubtitlesStream -> {
