@@ -28,7 +28,8 @@ class PlaybackSpeedClickListener(
             PlaybackParameterDialog.newInstance(
                 player.playbackSpeed.toDouble(),
                 player.playbackPitch.toDouble(),
-                player.playbackSkipSilence
+                player.playbackSkipSilence,
+                player.isLiveEdge
             ) { speed: Float, pitch: Float, skipSilence: Boolean ->
                 player.setPlaybackParameters(
                     speed,

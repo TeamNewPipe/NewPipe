@@ -27,6 +27,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     // Minimum allowable range in ExoPlayer
     private static final double MINIMUM_PLAYBACK_VALUE = 0.10f;
     private static final double MAXIMUM_PLAYBACK_VALUE = 3.00f;
+    private static final double MAXIMUM_LIVE_PLAYBACK_VALUE = 1.00f;
 
     private static final char STEP_UP_SIGN = '+';
     private static final char STEP_DOWN_SIGN = '-';
@@ -42,6 +43,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     private static final int DEFAULT_SEMITONES = 0;
     private static final double DEFAULT_STEP = STEP_TWENTY_FIVE_PERCENT_VALUE;
     private static final boolean DEFAULT_SKIP_SILENCE = false;
+    private static final boolean DEFAULT_LIVE_EDGE = true;
 
     @NonNull
     private static final String TAG = "PlaybackParameterDialog";
@@ -55,12 +57,18 @@ public class PlaybackParameterDialog extends DialogFragment {
     @NonNull
     private static final String PITCH_KEY = "pitch_key";
     @NonNull
+    private static final String LIVE_EDGE_KEY = "live_edge_key";
+    @NonNull
     private static final String STEP_SIZE_KEY = "step_size_key";
 
     @NonNull
-    private final SliderStrategy strategy = new SliderStrategy.Quadratic(
+    private final SliderStrategy playerMaxStrategy = new SliderStrategy.Quadratic(
             MINIMUM_PLAYBACK_VALUE, MAXIMUM_PLAYBACK_VALUE,
             /*centerAt=*/1.00f, /*sliderGranularity=*/10000);
+    @NonNull
+    private final SliderStrategy liveMaxStrategy = new SliderStrategy.Quadratic(
+    MINIMUM_PLAYBACK_VALUE, MAXIMUM_LIVE_PLAYBACK_VALUE,
+            /*centerAt=*/0.50f, /*sliderGranularity=*/10000);
 
     @Nullable
     private Callback callback;
@@ -69,9 +77,12 @@ public class PlaybackParameterDialog extends DialogFragment {
     private double initialPitch = DEFAULT_PITCH;
     private int initialSemitones = DEFAULT_SEMITONES;
     private boolean initialSkipSilence = DEFAULT_SKIP_SILENCE;
+    private boolean liveEdge = DEFAULT_LIVE_EDGE;
     private double tempo = DEFAULT_TEMPO;
     private double pitch = DEFAULT_PITCH;
     private int semitones = DEFAULT_SEMITONES;
+    private SliderStrategy tempoStrategy;
+    private SliderStrategy pitchStrategy;
 
     @Nullable
     private SeekBar tempoSlider;
@@ -107,12 +118,14 @@ public class PlaybackParameterDialog extends DialogFragment {
     public static PlaybackParameterDialog newInstance(final double playbackTempo,
                                                       final double playbackPitch,
                                                       final boolean playbackSkipSilence,
+                                                      final boolean playbackLiveEdge,
                                                       final Callback callback) {
         final PlaybackParameterDialog dialog = new PlaybackParameterDialog();
         dialog.callback = callback;
         dialog.initialTempo = playbackTempo;
         dialog.initialPitch = playbackPitch;
 
+        dialog.liveEdge = playbackLiveEdge;
         dialog.tempo = playbackTempo;
         dialog.pitch = playbackPitch;
         dialog.semitones = dialog.percentToSemitones(playbackPitch);
@@ -144,9 +157,16 @@ public class PlaybackParameterDialog extends DialogFragment {
             initialPitch = savedInstanceState.getDouble(INITIAL_PITCH_KEY, DEFAULT_PITCH);
             initialSemitones = percentToSemitones(initialPitch);
 
+            liveEdge = savedInstanceState.getBoolean(LIVE_EDGE_KEY, DEFAULT_LIVE_EDGE);
             tempo = savedInstanceState.getDouble(TEMPO_KEY, DEFAULT_TEMPO);
             pitch = savedInstanceState.getDouble(PITCH_KEY, DEFAULT_PITCH);
             semitones = percentToSemitones(pitch);
+        }
+        pitchStrategy = playerMaxStrategy;
+        if (liveEdge) {
+            tempoStrategy = liveMaxStrategy;
+        } else {
+            tempoStrategy = playerMaxStrategy;
         }
     }
 
@@ -156,6 +176,7 @@ public class PlaybackParameterDialog extends DialogFragment {
         outState.putDouble(INITIAL_TEMPO_KEY, initialTempo);
         outState.putDouble(INITIAL_PITCH_KEY, initialPitch);
 
+        outState.putBoolean(LIVE_EDGE_KEY, liveEdge);
         outState.putDouble(TEMPO_KEY, getCurrentTempo());
         outState.putDouble(PITCH_KEY, getCurrentPitch());
     }
@@ -202,6 +223,10 @@ public class PlaybackParameterDialog extends DialogFragment {
         togglePitchSliderType(rootView);
 
         setupStepSizeSelector(rootView);
+
+        if (liveEdge) {
+            rootView.findViewById(R.id.skipSilenceCheckbox).setVisibility(View.GONE);
+        }
     }
 
     private void togglePitchSliderType(@NonNull final View rootView) {
@@ -248,15 +273,23 @@ public class PlaybackParameterDialog extends DialogFragment {
             tempoCurrentText.setText(PlayerHelper.formatSpeed(tempo));
         }
         if (tempoMaximumText != null) {
-            tempoMaximumText.setText(PlayerHelper.formatSpeed(MAXIMUM_PLAYBACK_VALUE));
+            if (liveEdge) {
+                tempoMaximumText.setText(PlayerHelper.formatSpeed(MAXIMUM_LIVE_PLAYBACK_VALUE));
+            } else {
+                tempoMaximumText.setText(PlayerHelper.formatSpeed(MAXIMUM_PLAYBACK_VALUE));
+            }
         }
         if (tempoMinimumText != null) {
             tempoMinimumText.setText(PlayerHelper.formatSpeed(MINIMUM_PLAYBACK_VALUE));
         }
 
         if (tempoSlider != null) {
-            tempoSlider.setMax(strategy.progressOf(MAXIMUM_PLAYBACK_VALUE));
-            tempoSlider.setProgress(strategy.progressOf(tempo));
+            if (liveEdge) {
+                tempoSlider.setMax(tempoStrategy.progressOf(MAXIMUM_LIVE_PLAYBACK_VALUE));
+            } else {
+                tempoSlider.setMax(tempoStrategy.progressOf(MAXIMUM_PLAYBACK_VALUE));
+            }
+            tempoSlider.setProgress(tempoStrategy.progressOf(tempo));
             tempoSlider.setOnSeekBarChangeListener(getOnTempoChangedListener());
         }
     }
@@ -280,8 +313,8 @@ public class PlaybackParameterDialog extends DialogFragment {
         }
 
         if (pitchSlider != null) {
-            pitchSlider.setMax(strategy.progressOf(MAXIMUM_PLAYBACK_VALUE));
-            pitchSlider.setProgress(strategy.progressOf(pitch));
+            pitchSlider.setMax(pitchStrategy.progressOf(MAXIMUM_PLAYBACK_VALUE));
+            pitchSlider.setProgress(pitchStrategy.progressOf(pitch));
             pitchSlider.setOnSeekBarChangeListener(getOnPitchChangedListener());
         }
     }
@@ -501,7 +534,7 @@ public class PlaybackParameterDialog extends DialogFragment {
             @Override
             public void onProgressChanged(@NonNull final SeekBar seekBar, final int progress,
                                           final boolean fromUser) {
-                final double currentTempo = strategy.valueOf(progress);
+                final double currentTempo = tempoStrategy.valueOf(progress);
                 if (fromUser) {
                     onTempoSliderUpdated(currentTempo);
                     setCurrentPlaybackParameters();
@@ -515,7 +548,7 @@ public class PlaybackParameterDialog extends DialogFragment {
             @Override
             public void onProgressChanged(@NonNull final SeekBar seekBar, final int progress,
                                           final boolean fromUser) {
-                final double currentPitch = strategy.valueOf(progress);
+                final double currentPitch = pitchStrategy.valueOf(progress);
                 if (fromUser) { // this change is first in chain
                     onPitchSliderUpdated(currentPitch);
                     setCurrentPlaybackParameters();
@@ -570,14 +603,14 @@ public class PlaybackParameterDialog extends DialogFragment {
         if (tempoSlider == null) {
             return;
         }
-        tempoSlider.setProgress(strategy.progressOf(newTempo));
+        tempoSlider.setProgress(tempoStrategy.progressOf(newTempo));
     }
 
     private void setPitchSlider(final double newPitch) {
         if (pitchSlider == null) {
             return;
         }
-        pitchSlider.setProgress(strategy.progressOf(newPitch));
+        pitchSlider.setProgress(pitchStrategy.progressOf(newPitch));
     }
 
     private void setSemitoneSlider(final int newSemitone) {
@@ -628,11 +661,11 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private double getCurrentTempo() {
-        return tempoSlider == null ? tempo : strategy.valueOf(tempoSlider.getProgress());
+        return tempoSlider == null ? tempo : tempoStrategy.valueOf(tempoSlider.getProgress());
     }
 
     private double getCurrentPitch() {
-        return pitchSlider == null ? pitch : strategy.valueOf(pitchSlider.getProgress());
+        return pitchSlider == null ? pitch : pitchStrategy.valueOf(pitchSlider.getProgress());
     }
 
     private int getCurrentSemitones() {
