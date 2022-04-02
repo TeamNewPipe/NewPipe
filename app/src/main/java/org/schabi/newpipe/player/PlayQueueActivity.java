@@ -398,8 +398,13 @@ public final class PlayQueueActivity extends AppCompatActivity
         if (player == null) {
             return;
         }
-        PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(), player.getPlaybackPitch(),
-                player.getPlaybackSkipSilence(), this).show(getSupportFragmentManager(), TAG);
+        PlaybackParameterDialog.newInstance(
+                player.getPlaybackSpeed(),
+                player.getPlaybackPitch(),
+                player.getPlaybackSkipSilence(),
+                player.isLiveEdge(),
+                this
+        ).show(getSupportFragmentManager(), TAG);
     }
 
     @Override
