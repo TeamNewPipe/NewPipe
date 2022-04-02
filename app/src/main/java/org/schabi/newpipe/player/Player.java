@@ -1719,6 +1719,11 @@ public final class Player implements
         }
         binding.playbackLiveSync.setClickable(!isLiveEdge());
 
+        if (isLiveEdge() && getPlaybackSpeed() > 1.0f) {
+            setPlaybackParameters(1.0f, getPlaybackPitch(), false);
+        }
+
+
         notifyProgressUpdateToListeners(currentProgress, duration, bufferPercent);
 
         if (areSegmentsVisible) {
