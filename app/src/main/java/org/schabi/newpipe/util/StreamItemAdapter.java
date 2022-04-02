@@ -42,16 +42,21 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
     private final StreamSizeWrapper<T> streamsWrapper;
     private final SparseArray<SecondaryStreamHelper<U>> secondaryStreams;
 
+    /**
+     * Indicates that at least one of the primary streams is an instance of {@link VideoStream},
+     * has no audio ({@link VideoStream#isVideoOnly()} returns true) and has no secondary stream
+     * associated with it.
+     */
+    private final boolean hasAnyVideoOnlyStreamWithNoSecondaryStream;
+
     public StreamItemAdapter(final Context context, final StreamSizeWrapper<T> streamsWrapper,
                              final SparseArray<SecondaryStreamHelper<U>> secondaryStreams) {
         this.context = context;
         this.streamsWrapper = streamsWrapper;
         this.secondaryStreams = secondaryStreams;
-    }
 
-    public StreamItemAdapter(final Context context, final StreamSizeWrapper<T> streamsWrapper,
-                             final boolean showIconNoAudio) {
-        this(context, streamsWrapper, showIconNoAudio ? new SparseArray<>() : null);
+        this.hasAnyVideoOnlyStreamWithNoSecondaryStream =
+                checkHasAnyVideoOnlyStreamWithNoSecondaryStream();
     }
 
     public StreamItemAdapter(final Context context, final StreamSizeWrapper<T> streamsWrapper) {
@@ -115,10 +120,15 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
             final VideoStream videoStream = ((VideoStream) stream);
             qualityString = videoStream.getResolution();
 
-            if (secondaryStreams != null) {
+            if (hasAnyVideoOnlyStreamWithNoSecondaryStream) {
                 if (videoStream.isVideoOnly()) {
-                    woSoundIconVisibility = secondaryStreams.get(position) == null ? View.VISIBLE
-                            : View.INVISIBLE;
+                    woSoundIconVisibility = hasSecondaryStream(position)
+                            // It has a secondary stream associated with it, so check if it's a
+                            // dropdown view so it doesn't look out of place (missing margin)
+                            // compared to those that don't.
+                            ? (isDropdownItem ? View.INVISIBLE : View.GONE)
+                            // It doesn't have a secondary stream, icon is visible no matter what.
+                            : View.VISIBLE;
                 } else if (isDropdownItem) {
                     woSoundIconVisibility = View.INVISIBLE;
                 }
@@ -165,6 +175,32 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
         woSoundIconView.setVisibility(woSoundIconVisibility);
 
         return convertView;
+    }
+
+    /**
+     * @param position which primary stream to check.
+     * @return whether the primary stream at position has a secondary stream associated with it.
+     */
+    private boolean hasSecondaryStream(final int position) {
+        return secondaryStreams != null && secondaryStreams.get(position) != null;
+    }
+
+    /**
+     * @return if there are any video-only streams with no secondary stream associated with them.
+     * @see #hasAnyVideoOnlyStreamWithNoSecondaryStream
+     */
+    private boolean checkHasAnyVideoOnlyStreamWithNoSecondaryStream() {
+        for (int i = 0; i < streamsWrapper.getStreamsList().size(); i++) {
+            final T stream = streamsWrapper.getStreamsList().get(i);
+            if (stream instanceof VideoStream) {
+                final boolean videoOnly = ((VideoStream) stream).isVideoOnly();
+                if (videoOnly && !hasSecondaryStream(i)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     /**
