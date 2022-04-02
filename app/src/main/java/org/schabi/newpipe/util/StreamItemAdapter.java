@@ -47,7 +47,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
      * has no audio ({@link VideoStream#isVideoOnly()} returns true) and has no secondary stream
      * associated with it.
      */
-    private final boolean hasVideoOnlyWithNoSecondaryStream;
+    private final boolean hasAnyVideoOnlyStreamWithNoSecondaryStream;
 
     public StreamItemAdapter(final Context context, final StreamSizeWrapper<T> streamsWrapper,
                              final SparseArray<SecondaryStreamHelper<U>> secondaryStreams) {
@@ -55,7 +55,8 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
         this.streamsWrapper = streamsWrapper;
         this.secondaryStreams = secondaryStreams;
 
-        this.hasVideoOnlyWithNoSecondaryStream = checkHasVideoOnlyWithNoSecondaryStream();
+        this.hasAnyVideoOnlyStreamWithNoSecondaryStream =
+                checkHasAnyVideoOnlyStreamWithNoSecondaryStream();
     }
 
     public StreamItemAdapter(final Context context, final StreamSizeWrapper<T> streamsWrapper) {
@@ -119,7 +120,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
             final VideoStream videoStream = ((VideoStream) stream);
             qualityString = videoStream.getResolution();
 
-            if (hasVideoOnlyWithNoSecondaryStream) {
+            if (hasAnyVideoOnlyStreamWithNoSecondaryStream) {
                 if (videoStream.isVideoOnly()) {
                     woSoundIconVisibility = hasSecondaryStream(position)
                             // It has a secondary stream associated with it, so check if it's a
@@ -186,9 +187,9 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
 
     /**
      * @return if there are any video-only streams with no secondary stream associated with them.
-     * @see #hasVideoOnlyWithNoSecondaryStream
+     * @see #hasAnyVideoOnlyStreamWithNoSecondaryStream
      */
-    private boolean checkHasVideoOnlyWithNoSecondaryStream() {
+    private boolean checkHasAnyVideoOnlyStreamWithNoSecondaryStream() {
         for (int i = 0; i < streamsWrapper.getStreamsList().size(); i++) {
             final T stream = streamsWrapper.getStreamsList().get(i);
             if (stream instanceof VideoStream) {
