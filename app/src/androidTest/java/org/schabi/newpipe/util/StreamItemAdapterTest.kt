@@ -11,8 +11,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import androidx.test.internal.runner.junit4.statement.UiThreadStatement
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -156,15 +155,17 @@ class StreamItemAdapterTest {
     ) {
         spinner.setSelection(position)
         spinner.adapter.getView(position, null, spinner).run {
-            assertThat(
-                "normal visibility (pos=[$position])",
-                findViewById<View>(R.id.wo_sound_icon).visibility, `is`(normalVisibility)
+            Assert.assertEquals(
+                "normal visibility (pos=[$position]) is not correct",
+                findViewById<View>(R.id.wo_sound_icon).visibility,
+                normalVisibility,
             )
         }
         spinner.adapter.getDropDownView(position, null, spinner).run {
-            assertThat(
-                "drop down visibility (pos=[$position])",
-                findViewById<View>(R.id.wo_sound_icon).visibility, `is`(dropDownVisibility)
+            Assert.assertEquals(
+                "drop down visibility (pos=[$position]) is not correct",
+                findViewById<View>(R.id.wo_sound_icon).visibility,
+                dropDownVisibility
             )
         }
     }
