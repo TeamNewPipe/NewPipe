@@ -43,7 +43,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
-import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -1884,9 +1884,8 @@ public final class VideoDetailFragment
     }
 
     @Override
-    public void onPlayerError(final ExoPlaybackException error) {
-        if (error.type == ExoPlaybackException.TYPE_SOURCE
-                || error.type == ExoPlaybackException.TYPE_UNEXPECTED) {
+    public void onPlayerError(final PlaybackException error, final boolean isCatchableException) {
+        if (!isCatchableException) {
             // Properly exit from fullscreen
             toggleFullscreenIfInFullscreenMode();
             hideMainPlayerOnLoadingNewStream();

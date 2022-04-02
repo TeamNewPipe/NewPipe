@@ -10,7 +10,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 
 import org.schabi.newpipe.App;
@@ -233,9 +233,10 @@ public final class PlayerHolder {
                 }
 
                 @Override
-                public void onPlayerError(final ExoPlaybackException error) {
+                public void onPlayerError(final PlaybackException error,
+                                          final boolean isCatchableException) {
                     if (listener != null) {
-                        listener.onPlayerError(error);
+                        listener.onPlayerError(error, isCatchableException);
                     }
                 }
 

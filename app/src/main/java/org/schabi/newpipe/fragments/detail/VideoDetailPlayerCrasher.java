@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.PlaybackException;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
@@ -27,6 +28,10 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
+
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_DECODING_FAILED;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_UNSPECIFIED;
 
 /**
  * Outsourced logic for crashing the player in the {@link VideoDetailFragment}.
@@ -51,7 +56,8 @@ public final class VideoDetailPlayerCrasher {
         exceptionTypes.put(
                 "Source",
                 () -> ExoPlaybackException.createForSource(
-                        new IOException(defaultMsg)
+                        new IOException(defaultMsg),
+                        ERROR_CODE_BEHIND_LIVE_WINDOW
                 )
         );
         exceptionTypes.put(
@@ -61,13 +67,16 @@ public final class VideoDetailPlayerCrasher {
                         "Dummy renderer",
                         0,
                         null,
-                        C.FORMAT_HANDLED
+                        C.FORMAT_HANDLED,
+                        /*isRecoverable=*/false,
+                        ERROR_CODE_DECODING_FAILED
                 )
         );
         exceptionTypes.put(
                 "Unexpected",
                 () -> ExoPlaybackException.createForUnexpected(
-                        new RuntimeException(defaultMsg)
+                        new RuntimeException(defaultMsg),
+                        ERROR_CODE_UNSPECIFIED
                 )
         );
         exceptionTypes.put(
@@ -139,7 +148,7 @@ public final class VideoDetailPlayerCrasher {
 
     /**
      * Note that this method does not crash the underlying exoplayer directly (it's not possible).
-     * It simply supplies a Exception to {@link Player#onPlayerError(ExoPlaybackException)}.
+     * It simply supplies a Exception to {@link Player#onPlayerError(PlaybackException)}.
      * @param player
      * @param exception
      */

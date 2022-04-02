@@ -12,6 +12,8 @@ import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.player.mediaitem.MediaItemTag;
+import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
 import org.schabi.newpipe.util.ListHelper;
 
 public class AudioPlaybackResolver implements PlaybackResolver {
@@ -40,7 +42,7 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         }
 
         final AudioStream audio = info.getAudioStreams().get(index);
-        final MediaSourceTag tag = new MediaSourceTag(info);
+        final MediaItemTag tag = StreamInfoTag.of(info);
         return buildMediaSource(dataSource, audio.getUrl(), PlayerHelper.cacheKeyOf(info, audio),
                 MediaFormat.getSuffixById(audio.getFormatId()), tag);
     }

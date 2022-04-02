@@ -2,8 +2,6 @@ package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
-
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
@@ -13,9 +11,12 @@ import com.google.android.exoplayer2.source.hls.playlist.DefaultHlsPlaylistTrack
 import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource;
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.upstream.DefaultDataSource;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.upstream.DefaultLoadErrorHandlingPolicy;
 import com.google.android.exoplayer2.upstream.TransferListener;
+
+import androidx.annotation.NonNull;
 
 public class PlayerDataSource {
 
@@ -35,12 +36,14 @@ public class PlayerDataSource {
     private final DataSource.Factory cacheDataSourceFactory;
     private final DataSource.Factory cachelessDataSourceFactory;
 
-    public PlayerDataSource(@NonNull final Context context, @NonNull final String userAgent,
+    public PlayerDataSource(@NonNull final Context context,
+                            @NonNull final String userAgent,
                             @NonNull final TransferListener transferListener) {
         continueLoadingCheckIntervalBytes = PlayerHelper.getProgressiveLoadIntervalBytes(context);
         cacheDataSourceFactory = new CacheFactory(context, userAgent, transferListener);
-        cachelessDataSourceFactory
-                = new DefaultDataSourceFactory(context, userAgent, transferListener);
+        cachelessDataSourceFactory = new DefaultDataSource
+                .Factory(context, new DefaultHttpDataSource.Factory().setUserAgent(userAgent))
+                .setTransferListener(transferListener);
     }
 
     public SsMediaSource.Factory getLiveSsMediaSourceFactory() {

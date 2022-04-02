@@ -17,6 +17,8 @@ import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.player.mediaitem.MediaItemTag;
+import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
 import org.schabi.newpipe.util.ListHelper;
 
 import java.util.ArrayList;
@@ -73,8 +75,10 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         } else {
             index = qualityResolver.getOverrideResolutionIndex(videos, getPlaybackQuality());
         }
-        final MediaSourceTag tag = new MediaSourceTag(info, videos, index);
-        @Nullable final VideoStream video = tag.getSelectedVideoStream();
+        final MediaItemTag tag = StreamInfoTag.of(info, videos, index);
+        @Nullable final VideoStream video = tag.getMaybeQuality()
+                .map(MediaItemTag.Quality::getSelectedVideoStream)
+                .orElse(null);
 
         if (video != null) {
             final MediaSource streamSource = buildMediaSource(dataSource, video.getUrl(),
@@ -112,12 +116,14 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                 if (mimeType == null) {
                     continue;
                 }
-                final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
-                        .createMediaSource(
-                                new MediaItem.Subtitle(Uri.parse(subtitle.getUrl()),
-                                        mimeType,
-                                        PlayerHelper.captionLanguageOf(context, subtitle)),
-                                TIME_UNSET);
+                final MediaItem.SubtitleConfiguration textMediaItem =
+                        new MediaItem.SubtitleConfiguration.Builder(Uri.parse(subtitle.getUrl()))
+                                .setMimeType(mimeType)
+                                .setLanguage(PlayerHelper.captionLanguageOf(context, subtitle))
+                                .build();
+                final MediaSource textSource = dataSource
+                        .getSampleMediaSourceFactory()
+                        .createMediaSource(textMediaItem, TIME_UNSET);
                 mediaSources.add(textSource);
             }
         }

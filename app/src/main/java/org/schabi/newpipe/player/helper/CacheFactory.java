@@ -3,12 +3,10 @@ package org.schabi.newpipe.player.helper;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.exoplayer2.database.ExoDatabaseProvider;
+import com.google.android.exoplayer2.database.StandaloneDatabaseProvider;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSource;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.upstream.FileDataSource;
 import com.google.android.exoplayer2.upstream.TransferListener;
 import com.google.android.exoplayer2.upstream.cache.CacheDataSink;
@@ -18,6 +16,8 @@ import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 
 import java.io.File;
 
+import androidx.annotation.NonNull;
+
 /* package-private */ class CacheFactory implements DataSource.Factory {
     private static final String TAG = "CacheFactory";
 
@@ -25,7 +25,7 @@ import java.io.File;
     private static final int CACHE_FLAGS = CacheDataSource.FLAG_BLOCK_ON_CACHE
             | CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR;
 
-    private final DefaultDataSourceFactory dataSourceFactory;
+    private final DataSource.Factory dataSourceFactory;
     private final File cacheDir;
     private final long maxFileSize;
 
@@ -49,7 +49,9 @@ import java.io.File;
                          final long maxFileSize) {
         this.maxFileSize = maxFileSize;
 
-        dataSourceFactory = new DefaultDataSourceFactory(context, userAgent, transferListener);
+        dataSourceFactory = new DefaultDataSource
+                .Factory(context, new DefaultHttpDataSource.Factory().setUserAgent(userAgent))
+                .setTransferListener(transferListener);
         cacheDir = new File(context.getExternalCacheDir(), CACHE_FOLDER_NAME);
         if (!cacheDir.exists()) {
             //noinspection ResultOfMethodCallIgnored
@@ -59,7 +61,7 @@ import java.io.File;
         if (cache == null) {
             final LeastRecentlyUsedCacheEvictor evictor
                     = new LeastRecentlyUsedCacheEvictor(maxCacheSize);
-            cache = new SimpleCache(cacheDir, evictor, new ExoDatabaseProvider(context));
+            cache = new SimpleCache(cacheDir, evictor, new StandaloneDatabaseProvider(context));
         }
     }
 
@@ -68,7 +70,7 @@ import java.io.File;
     public DataSource createDataSource() {
         Log.d(TAG, "initExoPlayerCache: cacheDir = " + cacheDir.getAbsolutePath());
 
-        final DefaultDataSource dataSource = dataSourceFactory.createDataSource();
+        final DataSource dataSource = dataSourceFactory.createDataSource();
         final FileDataSource fileSource = new FileDataSource();
         final CacheDataSink dataSink = new CacheDataSink(cache, maxFileSize);
 
