@@ -116,6 +116,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.collection.ArraySet;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.GestureDetectorCompat;
@@ -4217,21 +4218,21 @@ public final class Player implements
         // in livestreams) so we will be not able to execute the block below.
         // Reload the play queue manager in this case, which is the behavior when we don't know the
         // index of the video renderer or playQueueManagerReloadingNeeded returns true.
-        if (!getCurrentStreamInfo().isPresent()) {
+        final Optional<StreamInfo> optCurrentStreamInfo = getCurrentStreamInfo();
+        if (!optCurrentStreamInfo.isPresent()) {
             reloadPlayQueueManager();
             setRecovery();
             return;
         }
 
-        final int videoRenderIndex = getVideoRendererIndex();
-        final StreamInfo info = getCurrentStreamInfo().get();
+        final StreamInfo info = optCurrentStreamInfo.get();
 
         // In the case we don't know the source type, fallback to the one with video with audio or
         // audio-only source.
         final SourceType sourceType = videoResolver.getStreamSourceType().orElse(
                 SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
 
-        if (playQueueManagerReloadingNeeded(sourceType, info, videoRenderIndex)) {
+        if (playQueueManagerReloadingNeeded(sourceType, info, getVideoRendererIndex())) {
             reloadPlayQueueManager();
         } else {
             final StreamType streamType = info.getStreamType();
@@ -4242,19 +4243,22 @@ public final class Player implements
                 return;
             }
 
-            final TrackGroupArray videoTrackGroupArray = Objects.requireNonNull(
-                    trackSelector.getCurrentMappedTrackInfo()).getTrackGroups(videoRenderIndex);
+            final DefaultTrackSelector.ParametersBuilder parametersBuilder =
+                    trackSelector.buildUponParameters();
+
             if (videoEnabled) {
-                // Clearing the null selection override enable again the video stream (and its
-                // fetching).
-                trackSelector.setParameters(trackSelector.buildUponParameters()
-                        .clearSelectionOverride(videoRenderIndex, videoTrackGroupArray));
+                // Enable again the video track and the subtitles, if there is one selected
+                parametersBuilder.setDisabledTrackTypes(Collections.emptySet());
             } else {
-                // Using setRendererDisabled still fetch the video stream in background, contrary
-                // to setSelectionOverride with a null override.
-                trackSelector.setParameters(trackSelector.buildUponParameters()
-                        .setSelectionOverride(videoRenderIndex, videoTrackGroupArray, null));
+                // Disable the video track and the ability to select subtitles
+                // Use an ArraySet because we can't use Set.of() on all supported APIs by the app
+                final ArraySet<Integer> disabledTracks = new ArraySet<>();
+                disabledTracks.add(C.TRACK_TYPE_TEXT);
+                disabledTracks.add(C.TRACK_TYPE_VIDEO);
+                parametersBuilder.setDisabledTrackTypes(disabledTracks);
             }
+
+            trackSelector.setParameters(parametersBuilder);
         }
 
         setRecovery();
