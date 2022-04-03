@@ -693,5 +693,5 @@
     <string name="progressive_load_interval_summary">Modifie la taille de l\'intervalle de chargement (actuellement %s). Une valeur plus faible peut accélérer le chargement initial des vidéos .</string>
     <string name="adjust_by_semitones_checkbox">Règler la hauteur par demi-tons musicaux</string>
     <string name="playback_tempo_step">Pas du tempo</string>
-    <string name="progressive_load_interval_default">ExoPlayer par défaut</string>
+    <string name="progressive_load_interval_default">Valeur par défaut d’ExoPlayer</string>
 </resources>
