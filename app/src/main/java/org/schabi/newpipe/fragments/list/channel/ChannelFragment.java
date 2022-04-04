@@ -77,6 +77,8 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
     private final CompositeDisposable disposables = new CompositeDisposable();
     private Disposable subscribeButtonMonitor;
 
+    private boolean channelContentNotSupported;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -130,6 +132,9 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
     public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
         channelBinding = FragmentChannelBinding.bind(rootView);
+        if (channelContentNotSupported) {
+            showContentNotSupported();
+        }
     }
 
     @Override
@@ -524,9 +529,15 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
             playlistControlBinding.getRoot().setVisibility(View.GONE);
         }
 
+        channelContentNotSupported = false;
         for (final Throwable throwable : result.getErrors()) {
             if (throwable instanceof ContentNotSupportedException) {
-                showContentNotSupported();
+                /*
+                channelBinding might not be initialized when handleResult() is called
+                (e.g. after rotating the screen, https://github.com/TeamNewPipe/NewPipe/issues/6696)
+                showContentNotSupported() will be called later
+                 */
+                channelContentNotSupported = true;
             }
         }
 
