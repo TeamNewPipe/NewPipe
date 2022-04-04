@@ -12,7 +12,7 @@
     <string name="download">I-download</string>
     <string name="controls_download_desc">I-download ang stream file</string>
     <string name="search">Maghanap</string>
-    <string name="settings">Pagsasaayos</string>
+    <string name="settings">Ayos ng App</string>
     <string name="did_you_mean">Ibig mo bang sabihin \"%1$s\"\?</string>
     <string name="share_dialog_title">Ibahagi sa</string>
     <string name="use_external_video_player_title">Gumamit ng ibang video player</string>
@@ -115,4 +115,6 @@
     <string name="popup_remember_size_pos_summary">Tandaan ang huling laki at posisyon ng popup</string>
     <string name="use_inexact_seek_title">Gamitin ang mabilis ngunit di-saktong seek</string>
     <string name="seek_duration_title">Haba ng fast forward/-rewind seek</string>
+    <string name="resume_on_audio_focus_gain_title">Ituloy ang pagpapalabas</string>
+    <string name="trending">Mga Patok Ngayon</string>
 </resources>
