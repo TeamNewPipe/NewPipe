@@ -1675,10 +1675,26 @@ public final class Player implements
      */
     public void setPlaybackParameters(final float speed, final float pitch,
                                       final boolean skipSilence) {
+        setPlaybackParameters(speed, pitch, skipSilence, true);
+    }
+
+    /**
+     * Sets the playback parameters of the player, and optionally saves them to shared preferences.
+     * Speed and pitch are rounded up to 2 decimal places before being used or saved.
+     *
+     * @param speed       the playback speed, will be rounded to up to 2 decimal places
+     * @param pitch       the playback pitch, will be rounded to up to 2 decimal places
+     * @param skipSilence skip silence during playback
+     * @param savePref    should these settings be saved to preferences
+     */
+    public void setPlaybackParameters(final float speed, final float pitch,
+                                      final boolean skipSilence, final boolean savePref) {
         final float roundedSpeed = Math.round(speed * 100.0f) / 100.0f;
         final float roundedPitch = Math.round(pitch * 100.0f) / 100.0f;
 
-        savePlaybackParametersToPrefs(this, roundedSpeed, roundedPitch, skipSilence);
+        if (savePref) {
+            savePlaybackParametersToPrefs(this, roundedSpeed, roundedPitch, skipSilence);
+        }
         simpleExoPlayer.setPlaybackParameters(
                 new PlaybackParameters(roundedSpeed, roundedPitch));
         simpleExoPlayer.setSkipSilenceEnabled(skipSilence);
@@ -1718,9 +1734,8 @@ public final class Player implements
         binding.playbackLiveSync.setClickable(!isLiveEdge());
 
         if (isLiveEdge() && getPlaybackSpeed() > 1.0f) {
-            setPlaybackParameters(1.0f, getPlaybackPitch(), false);
+            setPlaybackParameters(1.0f, getPlaybackPitch(), false, false);
         }
-
 
         notifyProgressUpdateToListeners(currentProgress, duration, bufferPercent);
 
