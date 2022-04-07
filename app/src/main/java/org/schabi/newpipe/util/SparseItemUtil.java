@@ -54,6 +54,7 @@ public final class SparseItemUtil {
             // if the duration is >= 0 (provided that the item is not a livestream) and there is an
             // uploader url, probably all info is already there, so there is no need to fetch it
             callback.accept(new SinglePlayQueue(item));
+            return;
         }
 
         // either the duration or the uploader url are not available, so fetch more info
@@ -80,12 +81,12 @@ public final class SparseItemUtil {
                                                 @NonNull final String url,
                                                 @Nullable final String uploaderUrl,
                                                 @NonNull final Consumer<String> callback) {
-        if (isNullOrEmpty(uploaderUrl)) {
-            fetchStreamInfoAndSaveToDatabase(context, serviceId, url,
-                    streamInfo -> callback.accept(streamInfo.getUploaderUrl()));
-        } else {
+        if (!isNullOrEmpty(uploaderUrl)) {
             callback.accept(uploaderUrl);
+            return;
         }
+        fetchStreamInfoAndSaveToDatabase(context, serviceId, url,
+                streamInfo -> callback.accept(streamInfo.getUploaderUrl()));
     }
 
     /**
