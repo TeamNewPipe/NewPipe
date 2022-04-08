@@ -93,7 +93,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (useDefaultStateSaving) {
+        if (useDefaultStateSaving && useDefaultStateSaving != null) {
             StateSaver.onDestroy(savedState);
         }
         PreferenceManager.getDefaultSharedPreferences(activity)
@@ -291,8 +291,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                             selectedItem.getUrl(),
                             selectedItem.getName());
                 } catch (final Exception e) {
-                    ErrorUtil.showUiErrorSnackbar(
-                            BaseListFragment.this, "Opening channel fragment", e);
+                    ErrorUtil.showUiErrorSnackbar(BaseListFragment.this, "Opening channel fragment", e);
                 }
             }
         });
@@ -432,7 +431,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
     public void handleError() {
         super.handleError();
         showListFooter(false);
-        animateHideRecyclerViewAllowingScrolling(itemsList);
+        if itemsList != null {
+            animateHideRecyclerViewAllowingScrolling(itemsList);
+        }
     }
 
     @Override
