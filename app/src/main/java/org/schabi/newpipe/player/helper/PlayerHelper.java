@@ -145,6 +145,21 @@ public final class PlayerHelper {
     }
 
     @NonNull
+    public static String captionLanguageStemOf(@NonNull final String language) {
+        if (!language.contains("(") || !language.contains(")")) {
+            return language;
+        }
+
+        if (language.startsWith("(")) {
+            // language text is right-to-left
+            final String[] parts = language.split("\\)");
+            return parts[parts.length - 1].trim();
+        }
+
+        return language.split("\\(")[0].trim();
+    }
+
+    @NonNull
     public static String resizeTypeOf(@NonNull final Context context,
                                       @ResizeMode final int resizeMode) {
         switch (resizeMode) {

@@ -46,6 +46,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZ
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
 import static org.schabi.newpipe.player.helper.PlayerHelper.buildCloseOverlayLayoutParams;
+import static org.schabi.newpipe.player.helper.PlayerHelper.captionLanguageStemOf;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimizeOnExitAction;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimumVideoHeight;
@@ -3542,7 +3543,8 @@ public final class Player implements
                     // if a track of userPreferredLanguage is not found
                     // This means (auto-generated) will be resolved automatically.
                     trackSelector.setParameters(trackSelector.buildUponParameters()
-                            .setPreferredTextLanguage(captionLanguage)
+                            .setPreferredTextLanguages(captionLanguage,
+                                    captionLanguageStemOf(captionLanguage))
                             .setRendererDisabled(textRendererIndex, false));
                     prefs.edit().putString(context.getString(R.string.caption_user_set_key),
                             captionLanguage).apply();
@@ -3563,7 +3565,8 @@ public final class Player implements
                 && !selectedPreferredLanguages.contains(userPreferredLanguage)
                 && textRendererIndex != RENDERER_UNAVAILABLE) {
             trackSelector.setParameters(trackSelector.buildUponParameters()
-                    .setPreferredTextLanguage(userPreferredLanguage)
+                    .setPreferredTextLanguages(userPreferredLanguage,
+                            captionLanguageStemOf(userPreferredLanguage))
                     .setRendererDisabled(textRendererIndex, false));
         }
     }
