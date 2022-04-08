@@ -12,8 +12,8 @@ import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.START
 import androidx.constraintlayout.widget.ConstraintSet
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
-import org.schabi.newpipe.player.event.DisplayPortion
-import org.schabi.newpipe.player.event.DoubleTapListener
+import org.schabi.newpipe.player.gesture.DisplayPortion
+import org.schabi.newpipe.player.gesture.DoubleTapListener
 
 class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
     ConstraintLayout(context, attrs), DoubleTapListener {

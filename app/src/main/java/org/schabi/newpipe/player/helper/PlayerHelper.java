@@ -3,7 +3,6 @@ package org.schabi.newpipe.player.helper;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
-import static org.schabi.newpipe.player.Player.IDLE_WINDOW_FLAGS;
 import static org.schabi.newpipe.player.Player.PLAYER_TYPE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER;
@@ -11,6 +10,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLA
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
+import static org.schabi.newpipe.player.ui.PopupPlayerUi.IDLE_WINDOW_FLAGS;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 import android.annotation.SuppressLint;
@@ -49,11 +49,12 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.utils.Utils;
-import org.schabi.newpipe.player.MainPlayer;
+import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.player.ui.PopupPlayerUi;
 import org.schabi.newpipe.util.ListHelper;
 
 import java.lang.annotation.Retention;
@@ -339,10 +340,6 @@ public final class PlayerHelper {
         return true;
     }
 
-    public static int getTossFlingVelocity() {
-        return 2500;
-    }
-
     @NonNull
     public static CaptionStyleCompat getCaptionStyle(@NonNull final Context context) {
         final CaptioningManager captioningManager = ContextCompat.getSystemService(context,
@@ -452,10 +449,10 @@ public final class PlayerHelper {
     // Utils used by player
     ////////////////////////////////////////////////////////////////////////////
 
-    public static MainPlayer.PlayerType retrievePlayerTypeFromIntent(final Intent intent) {
+    public static PlayerService.PlayerType retrievePlayerTypeFromIntent(final Intent intent) {
         // If you want to open popup from the app just include Constants.POPUP_ONLY into an extra
-        return MainPlayer.PlayerType.values()[
-                intent.getIntExtra(PLAYER_TYPE, MainPlayer.PlayerType.VIDEO.ordinal())];
+        return PlayerService.PlayerType.values()[
+                intent.getIntExtra(PLAYER_TYPE, PlayerService.PlayerType.MAIN.ordinal())];
     }
 
     public static boolean isPlaybackResumeEnabled(final Player player) {
@@ -529,19 +526,20 @@ public final class PlayerHelper {
     }
 
     /**
-     * @param player {@code screenWidth} and {@code screenHeight} must have been initialized
+     * @param playerUi {@code screenWidth} and {@code screenHeight} must have been initialized
      * @return the popup starting layout params
      */
     @SuppressLint("RtlHardcoded")
     public static WindowManager.LayoutParams retrievePopupLayoutParamsFromPrefs(
-            final Player player) {
-        final boolean popupRememberSizeAndPos = player.getPrefs().getBoolean(
-                player.getContext().getString(R.string.popup_remember_size_pos_key), true);
-        final float defaultSize =
-                player.getContext().getResources().getDimension(R.dimen.popup_default_width);
+            final PopupPlayerUi playerUi) {
+        final SharedPreferences prefs = playerUi.getPlayer().getPrefs();
+        final Context context = playerUi.getPlayer().getContext();
+
+        final boolean popupRememberSizeAndPos = prefs.getBoolean(
+                context.getString(R.string.popup_remember_size_pos_key), true);
+        final float defaultSize = context.getResources().getDimension(R.dimen.popup_default_width);
         final float popupWidth = popupRememberSizeAndPos
-                ? player.getPrefs().getFloat(player.getContext().getString(
-                R.string.popup_saved_width_key), defaultSize)
+                ? prefs.getFloat(context.getString(R.string.popup_saved_width_key), defaultSize)
                 : defaultSize;
         final float popupHeight = getMinimumVideoHeight(popupWidth);
 
@@ -553,27 +551,26 @@ public final class PlayerHelper {
         popupLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
         popupLayoutParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
 
-        final int centerX = (int) (player.getScreenWidth() / 2f - popupWidth / 2f);
-        final int centerY = (int) (player.getScreenHeight() / 2f - popupHeight / 2f);
+        final int centerX = (int) (playerUi.getScreenWidth() / 2f - popupWidth / 2f);
+        final int centerY = (int) (playerUi.getScreenHeight() / 2f - popupHeight / 2f);
         popupLayoutParams.x = popupRememberSizeAndPos
-                ? player.getPrefs().getInt(player.getContext().getString(
-                R.string.popup_saved_x_key), centerX) : centerX;
+                ? prefs.getInt(context.getString(R.string.popup_saved_x_key), centerX) : centerX;
         popupLayoutParams.y = popupRememberSizeAndPos
-                ? player.getPrefs().getInt(player.getContext().getString(
-                R.string.popup_saved_y_key), centerY) : centerY;
+                ? prefs.getInt(context.getString(R.string.popup_saved_y_key), centerY) : centerY;
 
         return popupLayoutParams;
     }
 
-    public static void savePopupPositionAndSizeToPrefs(final Player player) {
-        if (player.getPopupLayoutParams() != null) {
-            player.getPrefs().edit()
-                    .putFloat(player.getContext().getString(R.string.popup_saved_width_key),
-                            player.getPopupLayoutParams().width)
-                    .putInt(player.getContext().getString(R.string.popup_saved_x_key),
-                            player.getPopupLayoutParams().x)
-                    .putInt(player.getContext().getString(R.string.popup_saved_y_key),
-                            player.getPopupLayoutParams().y)
+    public static void savePopupPositionAndSizeToPrefs(final PopupPlayerUi playerUi) {
+        if (playerUi.getPopupLayoutParams() != null) {
+            final Context context = playerUi.getPlayer().getContext();
+            playerUi.getPlayer().getPrefs().edit()
+                    .putFloat(context.getString(R.string.popup_saved_width_key),
+                            playerUi.getPopupLayoutParams().width)
+                    .putInt(context.getString(R.string.popup_saved_x_key),
+                            playerUi.getPopupLayoutParams().x)
+                    .putInt(context.getString(R.string.popup_saved_y_key),
+                            playerUi.getPopupLayoutParams().y)
                     .apply();
         }
     }

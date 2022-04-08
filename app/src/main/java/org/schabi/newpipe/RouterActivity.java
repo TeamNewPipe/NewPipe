@@ -60,7 +60,7 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
-import org.schabi.newpipe.player.MainPlayer;
+import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
@@ -630,8 +630,8 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         // ...the player is not running or in normal Video-mode/type
-        final MainPlayer.PlayerType playerType = PlayerHolder.getInstance().getType();
-        return playerType == null || playerType == MainPlayer.PlayerType.VIDEO;
+        final PlayerService.PlayerType playerType = PlayerHolder.getInstance().getType();
+        return playerType == null || playerType == PlayerService.PlayerType.MAIN;
     }
 
     private void openAddToPlaylistDialog() {

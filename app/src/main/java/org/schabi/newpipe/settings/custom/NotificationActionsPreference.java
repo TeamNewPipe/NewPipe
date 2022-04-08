@@ -26,7 +26,7 @@ import androidx.preference.PreferenceViewHolder;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
 import org.schabi.newpipe.databinding.SingleChoiceDialogViewBinding;
-import org.schabi.newpipe.player.MainPlayer;
+import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.NotificationConstants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -61,7 +61,7 @@ public class NotificationActionsPreference extends Preference {
     public void onDetached() {
         super.onDetached();
         saveChanges();
-        getContext().sendBroadcast(new Intent(MainPlayer.ACTION_RECREATE_NOTIFICATION));
+        getContext().sendBroadcast(new Intent(PlayerService.ACTION_RECREATE_NOTIFICATION));
     }
 
 

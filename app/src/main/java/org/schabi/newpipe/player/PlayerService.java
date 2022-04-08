@@ -19,26 +19,18 @@
 
 package org.schabi.newpipe.player;
 
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.App;
-import org.schabi.newpipe.databinding.PlayerBinding;
-import org.schabi.newpipe.util.DeviceUtils;
+import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.ThemeHelper;
-
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 
 /**
@@ -46,17 +38,16 @@ import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
  *
  * @author mauriciocolli
  */
-public final class MainPlayer extends Service {
-    private static final String TAG = "MainPlayer";
+public final class PlayerService extends Service {
+    private static final String TAG = PlayerService.class.getSimpleName();
     private static final boolean DEBUG = Player.DEBUG;
 
     private Player player;
-    private WindowManager windowManager;
 
-    private final IBinder mBinder = new MainPlayer.LocalBinder();
+    private final IBinder mBinder = new PlayerService.LocalBinder();
 
     public enum PlayerType {
-        VIDEO,
+        MAIN,
         AUDIO,
         POPUP
     }
@@ -67,7 +58,7 @@ public final class MainPlayer extends Service {
 
     static final String ACTION_CLOSE
             = App.PACKAGE_NAME + ".player.MainPlayer.CLOSE";
-    static final String ACTION_PLAY_PAUSE
+    public static final String ACTION_PLAY_PAUSE
             = App.PACKAGE_NAME + ".player.MainPlayer.PLAY_PAUSE";
     static final String ACTION_REPEAT
             = App.PACKAGE_NAME + ".player.MainPlayer.REPEAT";
@@ -94,19 +85,12 @@ public final class MainPlayer extends Service {
             Log.d(TAG, "onCreate() called");
         }
         assureCorrectAppLanguage(this);
-        windowManager = ContextCompat.getSystemService(this, WindowManager.class);
-
         ThemeHelper.setTheme(this);
-        createView();
-    }
-
-    private void createView() {
-        final PlayerBinding binding = PlayerBinding.inflate(LayoutInflater.from(this));
 
         player = new Player(this);
-        player.setupFromView(binding);
-
-        NotificationUtil.getInstance().createNotificationAndStartForeground(player, this);
+        /*final MainPlayerUi mainPlayerUi = new MainPlayerUi(player,
+                PlayerBinding.inflate(LayoutInflater.from(this)));
+        player.UIs().add(mainPlayerUi);*/
     }
 
     @Override
@@ -119,11 +103,6 @@ public final class MainPlayer extends Service {
                 && player.getPlayQueue() == null) {
             // Player is not working, no need to process media button's action
             return START_NOT_STICKY;
-        }
-
-        if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())
-                || intent.getStringExtra(Player.PLAY_QUEUE_KEY) != null) {
-            NotificationUtil.getInstance().createNotificationAndStartForeground(player, this);
         }
 
         player.handleIntent(intent);
@@ -144,13 +123,7 @@ public final class MainPlayer extends Service {
             // Releases wifi & cpu, disables keepScreenOn, etc.
             // We can't just pause the player here because it will make transition
             // from one stream to a new stream not smooth
-            player.smoothStopPlayer();
-            player.setRecovery();
-
-            // Android TV will handle back button in case controls will be visible
-            // (one more additional unneeded click while the player is hidden)
-            player.hideControls(0, 0);
-            player.closeItemsList();
+            player.smoothStopForImmediateReusing();
 
             // Notification shows information about old stream but if a user selects
             // a stream from backStack it's not actual anymore
@@ -180,18 +153,7 @@ public final class MainPlayer extends Service {
 
     private void cleanup() {
         if (player != null) {
-            // Exit from fullscreen when user closes the player via notification
-            if (player.isFullscreen()) {
-                player.toggleFullscreen();
-            }
-            removeViewFromParent();
-
-            player.saveStreamProgressState();
-            player.setRecovery();
-            player.stopActivityBinding();
-            player.removePopupFromView();
             player.destroy();
-
             player = null;
         }
     }
@@ -212,48 +174,14 @@ public final class MainPlayer extends Service {
         return mBinder;
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Utils
-    //////////////////////////////////////////////////////////////////////////*/
-
-    boolean isLandscape() {
-        // DisplayMetrics from activity context knows about MultiWindow feature
-        // while DisplayMetrics from app context doesn't
-        return DeviceUtils.isLandscape(player != null && player.getParentActivity() != null
-                ? player.getParentActivity() : this);
-    }
-
-    @Nullable
-    public View getView() {
-        if (player == null) {
-            return null;
-        }
-
-        return player.getRootView();
-    }
-
-    public void removeViewFromParent() {
-        if (getView() != null && getView().getParent() != null) {
-            if (player.getParentActivity() != null) {
-                // This means view was added to fragment
-                final ViewGroup parent = (ViewGroup) getView().getParent();
-                parent.removeView(getView());
-            } else {
-                // This means view was added by windowManager for popup player
-                windowManager.removeViewImmediate(getView());
-            }
-        }
-    }
-
-
     public class LocalBinder extends Binder {
 
-        public MainPlayer getService() {
-            return MainPlayer.this;
+        public PlayerService getService() {
+            return PlayerService.this;
         }
 
         public Player getPlayer() {
-            return MainPlayer.this.player;
+            return PlayerService.this.player;
         }
     }
 }

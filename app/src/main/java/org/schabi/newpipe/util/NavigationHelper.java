@@ -50,8 +50,8 @@ import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
-import org.schabi.newpipe.player.MainPlayer;
-import org.schabi.newpipe.player.MainPlayer.PlayerType;
+import org.schabi.newpipe.player.PlayerService;
+import org.schabi.newpipe.player.PlayerService.PlayerType;
 import org.schabi.newpipe.player.PlayQueueActivity;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -91,7 +91,7 @@ public final class NavigationHelper {
                 intent.putExtra(Player.PLAY_QUEUE_KEY, cacheKey);
             }
         }
-        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.VIDEO.ordinal());
+        intent.putExtra(Player.PLAYER_TYPE, PlayerService.PlayerType.MAIN.ordinal());
         intent.putExtra(Player.RESUME_PLAYBACK, resumePlayback);
 
         return intent;
@@ -163,8 +163,8 @@ public final class NavigationHelper {
 
         Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
 
-        final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
-        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.POPUP.ordinal());
+        final Intent intent = getPlayerIntent(context, PlayerService.class, queue, resumePlayback);
+        intent.putExtra(Player.PLAYER_TYPE, PlayerService.PlayerType.POPUP.ordinal());
         ContextCompat.startForegroundService(context, intent);
     }
 
@@ -174,8 +174,8 @@ public final class NavigationHelper {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT)
                 .show();
 
-        final Intent intent = getPlayerIntent(context, MainPlayer.class, queue, resumePlayback);
-        intent.putExtra(Player.PLAYER_TYPE, MainPlayer.PlayerType.AUDIO.ordinal());
+        final Intent intent = getPlayerIntent(context, PlayerService.class, queue, resumePlayback);
+        intent.putExtra(Player.PLAYER_TYPE, PlayerService.PlayerType.AUDIO.ordinal());
         ContextCompat.startForegroundService(context, intent);
     }
 
@@ -184,7 +184,7 @@ public final class NavigationHelper {
                                        final PlayQueue queue,
                                        final PlayerType playerType) {
         Toast.makeText(context, R.string.enqueued, Toast.LENGTH_SHORT).show();
-        final Intent intent = getPlayerEnqueueIntent(context, MainPlayer.class, queue);
+        final Intent intent = getPlayerEnqueueIntent(context, PlayerService.class, queue);
 
         intent.putExtra(Player.PLAYER_TYPE, playerType.ordinal());
         ContextCompat.startForegroundService(context, intent);
@@ -194,7 +194,7 @@ public final class NavigationHelper {
         PlayerType playerType = PlayerHolder.getInstance().getType();
         if (!PlayerHolder.getInstance().isPlayerOpen()) {
             Log.e(TAG, "Enqueueing but no player is open; defaulting to background player");
-            playerType = MainPlayer.PlayerType.AUDIO;
+            playerType = PlayerService.PlayerType.AUDIO;
         }
 
         enqueueOnPlayer(context, queue, playerType);
@@ -205,10 +205,10 @@ public final class NavigationHelper {
         PlayerType playerType = PlayerHolder.getInstance().getType();
         if (!PlayerHolder.getInstance().isPlayerOpen()) {
             Log.e(TAG, "Enqueueing next but no player is open; defaulting to background player");
-            playerType = MainPlayer.PlayerType.AUDIO;
+            playerType = PlayerService.PlayerType.AUDIO;
         }
         Toast.makeText(context, R.string.enqueued_next, Toast.LENGTH_SHORT).show();
-        final Intent intent = getPlayerEnqueueNextIntent(context, MainPlayer.class, queue);
+        final Intent intent = getPlayerEnqueueNextIntent(context, PlayerService.class, queue);
 
         intent.putExtra(Player.PLAYER_TYPE, playerType.ordinal());
         ContextCompat.startForegroundService(context, intent);
@@ -414,14 +414,14 @@ public final class NavigationHelper {
                                                final boolean switchingPlayers) {
 
         final boolean autoPlay;
-        @Nullable final MainPlayer.PlayerType playerType = PlayerHolder.getInstance().getType();
+        @Nullable final PlayerService.PlayerType playerType = PlayerHolder.getInstance().getType();
         if (!PlayerHolder.getInstance().isPlayerOpen()) {
             // no player open
             autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);
         } else if (switchingPlayers) {
             // switching player to main player
             autoPlay = PlayerHolder.getInstance().isPlaying(); // keep play/pause state
-        } else if (playerType == MainPlayer.PlayerType.VIDEO) {
+        } else if (playerType == PlayerService.PlayerType.MAIN) {
             // opening new stream while already playing in main player
             autoPlay = PlayerHelper.isAutoplayAllowedByUser(context);
         } else {
@@ -436,7 +436,7 @@ public final class NavigationHelper {
                 // Situation when user switches from players to main player. All needed data is
                 // here, we can start watching (assuming newQueue equals playQueue).
                 // Starting directly in fullscreen if the previous player type was popup.
-                detailFragment.openVideoPlayer(playerType == MainPlayer.PlayerType.POPUP
+                detailFragment.openVideoPlayer(playerType == PlayerService.PlayerType.POPUP
                         || PlayerHelper.isStartMainPlayerFullscreenEnabled(context));
             } else {
                 detailFragment.selectAndLoadVideo(serviceId, url, title, playQueue);

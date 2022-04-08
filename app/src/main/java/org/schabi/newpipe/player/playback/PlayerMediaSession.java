@@ -8,6 +8,9 @@ import android.support.v4.media.MediaMetadataCompat;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.ui.VideoPlayerUi;
+
+import java.util.Optional;
 
 public class PlayerMediaSession implements MediaSessionCallback {
     private final Player player;
@@ -89,7 +92,7 @@ public class PlayerMediaSession implements MediaSessionCallback {
     public void play() {
         player.play();
         // hide the player controls even if the play command came from the media session
-        player.hideControls(0, 0);
+        player.UIs().get(VideoPlayerUi.class).ifPresent(playerUi -> playerUi.hideControls(0, 0));
     }
 
     @Override
