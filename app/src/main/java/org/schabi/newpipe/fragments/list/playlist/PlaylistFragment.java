@@ -306,7 +306,9 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerBinding.uploaderLayout.setOnClickListener(null);
         // If we have an uploader put them into the UI
         if (!TextUtils.isEmpty(result.getUploaderName())) {
-            headerBinding.uploaderName.setText(result.getUploaderName());
+            if (headerBinding != null) {
+                headerBinding.uploaderName.setText(result.getUploaderName());
+            }
             if (!TextUtils.isEmpty(result.getUploaderUrl())) {
                 headerBinding.uploaderLayout.setOnClickListener(v -> {
                     try {
@@ -318,7 +320,9 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 });
             }
         } else { // Otherwise say we have no uploader
-            headerBinding.uploaderName.setText(R.string.playlist_no_uploader);
+            if (headerBinding != null) {
+                headerBinding.uploaderName.setText(R.string.playlist_no_uploader);
+            }
         }
 
         playlistControlBinding.getRoot().setVisibility(View.VISIBLE);
