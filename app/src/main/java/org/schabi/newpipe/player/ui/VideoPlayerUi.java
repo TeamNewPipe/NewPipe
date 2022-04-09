@@ -32,7 +32,6 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Surface;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -107,6 +106,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     protected PlayerBinding binding;
     private final Handler controlsVisibilityHandler = new Handler();
     @Nullable private SurfaceHolderCallback surfaceHolderCallback;
+    boolean surfaceIsSetup = false;
     @Nullable private Bitmap thumbnail = null;
 
 
@@ -130,6 +130,7 @@ public abstract class VideoPlayerUi extends PlayerUi
 
     private GestureDetector gestureDetector;
     private BasePlayerGestureListener playerGestureListener;
+    @Nullable private View.OnLayoutChangeListener onLayoutChangeListener = null;
 
     @NonNull private final SeekbarPreviewThumbnailHolder seekbarPreviewThumbnailHolder =
             new SeekbarPreviewThumbnailHolder();
@@ -138,6 +139,7 @@ public abstract class VideoPlayerUi extends PlayerUi
                          @NonNull final PlayerBinding playerBinding) {
         super(player);
         binding = playerBinding;
+        setupFromView();
     }
 
 
@@ -222,8 +224,8 @@ public abstract class VideoPlayerUi extends PlayerUi
 
         // PlaybackControlRoot already consumed window insets but we should pass them to
         // player_overlays and fast_seek_overlay too. Without it they will be off-centered.
-        binding.playbackControlRoot.addOnLayoutChangeListener(
-                (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+        onLayoutChangeListener
+                = (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
                     binding.playerOverlays.setPadding(
                             v.getPaddingLeft(),
                             v.getPaddingTop(),
@@ -240,7 +242,43 @@ public abstract class VideoPlayerUi extends PlayerUi
                     fastSeekParams.topMargin = -v.getPaddingBottom();
                     fastSeekParams.rightMargin = -v.getPaddingLeft();
                     fastSeekParams.bottomMargin = -v.getPaddingTop();
-                });
+                };
+        binding.playbackControlRoot.addOnLayoutChangeListener(onLayoutChangeListener);
+    }
+
+    protected void deinitListeners() {
+        binding.qualityTextView.setOnClickListener(null);
+        binding.playbackSpeed.setOnClickListener(null);
+        binding.playbackSeekBar.setOnSeekBarChangeListener(null);
+        binding.captionTextView.setOnClickListener(null);
+        binding.resizeTextView.setOnClickListener(null);
+        binding.playbackLiveSync.setOnClickListener(null);
+
+        binding.getRoot().setOnTouchListener(null);
+        playerGestureListener = null;
+        gestureDetector = null;
+
+        binding.repeatButton.setOnClickListener(null);
+        binding.shuffleButton.setOnClickListener(null);
+
+        binding.playPauseButton.setOnClickListener(null);
+        binding.playPreviousButton.setOnClickListener(null);
+        binding.playNextButton.setOnClickListener(null);
+
+        binding.moreOptionsButton.setOnClickListener(null);
+        binding.moreOptionsButton.setOnLongClickListener(null);
+        binding.share.setOnClickListener(null);
+        binding.share.setOnLongClickListener(null);
+        binding.fullScreenButton.setOnClickListener(null);
+        binding.screenRotationButton.setOnClickListener(null);
+        binding.playWithKodi.setOnClickListener(null);
+        binding.openInBrowser.setOnClickListener(null);
+        binding.playerCloseButton.setOnClickListener(null);
+        binding.switchMute.setOnClickListener(null);
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.itemsListPanel, null);
+
+        binding.playbackControlRoot.removeOnLayoutChangeListener(onLayoutChangeListener);
     }
 
     /**
@@ -304,18 +342,25 @@ public abstract class VideoPlayerUi extends PlayerUi
         playerGestureListener.doubleTapControls(binding.fastSeekOverlay);
     }
 
+    public void deinitPlayerSeekOverlay() {
+        binding.fastSeekOverlay
+                .seekSecondsSupplier(null)
+                .performListener(null);
+    }
+
     @Override
     public void setupAfterIntent() {
         super.setupAfterIntent();
         setupElementsVisibility();
         setupElementsSize(context.getResources());
+        binding.getRoot().setVisibility(View.VISIBLE);
+        binding.playPauseButton.requestFocus();
     }
 
     @Override
     public void initPlayer() {
         super.initPlayer();
-        setupVideoSurface();
-        setupFromView();
+        setupVideoSurfaceIfNeeded();
     }
 
     @Override
@@ -331,7 +376,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     @Override
     public void destroyPlayer() {
         super.destroyPlayer();
-        cleanupVideoSurface();
+        clearVideoSurface();
     }
 
     @Override
@@ -340,6 +385,8 @@ public abstract class VideoPlayerUi extends PlayerUi
         if (binding != null) {
             binding.endScreen.setImageBitmap(null);
         }
+        deinitPlayerSeekOverlay();
+        deinitListeners();
     }
 
     protected void setupElementsVisibility() {
@@ -1470,40 +1517,50 @@ public abstract class VideoPlayerUi extends PlayerUi
     // SurfaceHolderCallback helpers
     //////////////////////////////////////////////////////////////////////////*/
     //region SurfaceHolderCallback helpers
-    private void setupVideoSurface() {
-        // make sure there is nothing left over from previous calls
-        cleanupVideoSurface();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // >=API23
-            surfaceHolderCallback = new SurfaceHolderCallback(context, player.getExoPlayer());
-            binding.surfaceView.getHolder().addCallback(surfaceHolderCallback);
-            final Surface surface = binding.surfaceView.getHolder().getSurface();
+    /**
+     * Connects the video surface to the exo player. This can be called anytime without the risk for
+     * issues to occur, since the player will run just fine when no surface is connected. Therefore
+     * the video surface will be setup only when all of these conditions are true: it is not already
+     * setup (this just prevents wasting resources to setup the surface again), there is an exo
+     * player, the root view is attached to a parent and the surface view is valid/unreleased (the
+     * latter two conditions prevent "The surface has been released" errors). So this function can
+     * be called many times and even while the UI is in unready states.
+     */
+    public void setupVideoSurfaceIfNeeded() {
+        if (!surfaceIsSetup && player.getExoPlayer() != null
+                && binding.getRoot().getParent() != null) {
+            // make sure there is nothing left over from previous calls
+            clearVideoSurface();
 
-            // ensure player is using an unreleased surface, which the surfaceView might not be
-            // when starting playback on background or during player switching
-            if (surface.isValid()) {
-                // initially set the surface manually otherwise
-                // onRenderedFirstFrame() will not be called
-                player.getExoPlayer().setVideoSurface(surface);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // >=API23
+                surfaceHolderCallback = new SurfaceHolderCallback(context, player.getExoPlayer());
+                binding.surfaceView.getHolder().addCallback(surfaceHolderCallback);
+
+                // ensure player is using an unreleased surface, which the surfaceView might not be
+                // when starting playback on background or during player switching
+                if (binding.surfaceView.getHolder().getSurface().isValid()) {
+                    // initially set the surface manually otherwise
+                    // onRenderedFirstFrame() will not be called
+                    player.getExoPlayer().setVideoSurfaceHolder(binding.surfaceView.getHolder());
+                }
+            } else {
+                player.getExoPlayer().setVideoSurfaceView(binding.surfaceView);
             }
 
-        } else {
-            player.getExoPlayer().setVideoSurfaceView(binding.surfaceView);
+            surfaceIsSetup = true;
         }
     }
 
-    private void cleanupVideoSurface() {
-        final Optional<ExoPlayer> exoPlayer = Optional.ofNullable(player.getExoPlayer());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // >=API23
-            if (surfaceHolderCallback != null) {
-                binding.surfaceView.getHolder().removeCallback(surfaceHolderCallback);
-                surfaceHolderCallback.release();
-                surfaceHolderCallback = null;
-            }
-            exoPlayer.ifPresent(simpleExoPlayer -> simpleExoPlayer.setVideoSurface(null));
-        } else {
-            exoPlayer.ifPresent(simpleExoPlayer -> simpleExoPlayer.setVideoSurfaceView(null));
+    private void clearVideoSurface() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M // >=API23
+                && surfaceHolderCallback != null) {
+            binding.surfaceView.getHolder().removeCallback(surfaceHolderCallback);
+            surfaceHolderCallback.release();
+            surfaceHolderCallback = null;
         }
+        Optional.ofNullable(player.getExoPlayer()).ifPresent(ExoPlayer::clearVideoSurface);
+        surfaceIsSetup = false;
     }
     //endregion
 

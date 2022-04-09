@@ -19,7 +19,6 @@ import org.schabi.newpipe.player.Player;
 import java.util.List;
 
 public abstract class PlayerUi {
-    private static final String TAG = PlayerUi.class.getSimpleName();
 
     @NonNull protected Context context;
     @NonNull protected Player player;

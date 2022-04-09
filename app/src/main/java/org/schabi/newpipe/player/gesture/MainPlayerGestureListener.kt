@@ -1,12 +1,12 @@
 package org.schabi.newpipe.player.gesture
 
-import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
@@ -29,8 +29,6 @@ import kotlin.math.min
 class MainPlayerGestureListener(
     private val playerUi: MainPlayerUi
 ) : BasePlayerGestureListener(playerUi), OnTouchListener {
-    private val maxVolume: Int = player.audioReactor.maxVolume
-
     private var isMoving = false
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
@@ -41,11 +39,11 @@ class MainPlayerGestureListener(
         }
         return when (event.action) {
             MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
-                v.parent.requestDisallowInterceptTouchEvent(playerUi.isFullscreen)
+                v.parent?.requestDisallowInterceptTouchEvent(playerUi.isFullscreen)
                 true
             }
             MotionEvent.ACTION_UP -> {
-                v.parent.requestDisallowInterceptTouchEvent(false)
+                v.parent?.requestDisallowInterceptTouchEvent(false)
                 false
             }
             else -> true
@@ -68,14 +66,15 @@ class MainPlayerGestureListener(
     private fun onScrollVolume(distanceY: Float) {
         // If we just started sliding, change the progress bar to match the system volume
         if (binding.volumeRelativeLayout.visibility != View.VISIBLE) {
-            val volumePercent: Float = player.audioReactor.volume / maxVolume.toFloat()
+            val volumePercent: Float =
+                player.audioReactor.volume / player.audioReactor.maxVolume.toFloat()
             binding.volumeProgressBar.progress = (volumePercent * MAX_GESTURE_LENGTH).toInt()
         }
 
         binding.volumeProgressBar.incrementProgressBy(distanceY.toInt())
         val currentProgressPercent: Float =
             binding.volumeProgressBar.progress.toFloat() / MAX_GESTURE_LENGTH
-        val currentVolume = (maxVolume * currentProgressPercent).toInt()
+        val currentVolume = (player.audioReactor.maxVolume * currentProgressPercent).toInt()
         player.audioReactor.volume = currentVolume
         if (DEBUG) {
             Log.d(TAG, "onScroll().volumeControl, currentVolume = $currentVolume")
@@ -102,7 +101,7 @@ class MainPlayerGestureListener(
     }
 
     private fun onScrollBrightness(distanceY: Float) {
-        val parent: Activity = playerUi.parentActivity
+        val parent: AppCompatActivity = playerUi.parentActivity.orElse(null) ?: return
         val window = parent.window
         val layoutParams = window.attributes
         val bar: ProgressBar = binding.brightnessProgressBar

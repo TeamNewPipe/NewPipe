@@ -38,14 +38,14 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
 
     private var performListener: PerformListener? = null
 
-    fun performListener(listener: PerformListener) = apply {
+    fun performListener(listener: PerformListener?) = apply {
         performListener = listener
     }
 
     private var seekSecondsSupplier: () -> Int = { 0 }
 
-    fun seekSecondsSupplier(supplier: () -> Int) = apply {
-        seekSecondsSupplier = supplier
+    fun seekSecondsSupplier(supplier: (() -> Int)?) = apply {
+        seekSecondsSupplier = supplier ?: { 0 }
     }
 
     // Indicates whether this (double) tap is the first of a series

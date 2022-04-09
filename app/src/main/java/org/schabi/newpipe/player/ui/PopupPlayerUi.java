@@ -69,11 +69,9 @@ public final class PopupPlayerUi extends VideoPlayerUi {
 
     @Override
     public void setupAfterIntent() {
-        setupElementsVisibility();
-        binding.getRoot().setVisibility(View.VISIBLE);
+        super.setupAfterIntent();
         initPopup();
         initPopupCloseOverlay();
-        binding.playPauseButton.requestFocus();
     }
 
     @Override
@@ -103,6 +101,7 @@ public final class PopupPlayerUi extends VideoPlayerUi {
         binding.loadingPanel.setMinimumHeight(popupLayoutParams.height);
 
         windowManager.addView(binding.getRoot(), popupLayoutParams);
+        setupVideoSurfaceIfNeeded(); // now there is a parent, we can setup video surface
 
         // Popup doesn't have aspectRatio selector, using FIT automatically
         setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
@@ -304,25 +303,23 @@ public final class PopupPlayerUi extends VideoPlayerUi {
     }
 
     public void removePopupFromView() {
-        if (windowManager != null) {
-            // wrap in try-catch since it could sometimes generate errors randomly
-            try {
-                if (popupHasParent()) {
-                    windowManager.removeView(binding.getRoot());
-                }
-            } catch (final IllegalArgumentException e) {
-                Log.w(TAG, "Failed to remove popup from window manager", e);
+        // wrap in try-catch since it could sometimes generate errors randomly
+        try {
+            if (popupHasParent()) {
+                windowManager.removeView(binding.getRoot());
             }
+        } catch (final IllegalArgumentException e) {
+            Log.w(TAG, "Failed to remove popup from window manager", e);
+        }
 
-            try {
-                final boolean closeOverlayHasParent = closeOverlayBinding != null
-                        && closeOverlayBinding.getRoot().getParent() != null;
-                if (closeOverlayHasParent) {
-                    windowManager.removeView(closeOverlayBinding.getRoot());
-                }
-            } catch (final IllegalArgumentException e) {
-                Log.w(TAG, "Failed to remove popup overlay from window manager", e);
+        try {
+            final boolean closeOverlayHasParent = closeOverlayBinding != null
+                    && closeOverlayBinding.getRoot().getParent() != null;
+            if (closeOverlayHasParent) {
+                windowManager.removeView(closeOverlayBinding.getRoot());
             }
+        } catch (final IllegalArgumentException e) {
+            Log.w(TAG, "Failed to remove popup overlay from window manager", e);
         }
     }
 

@@ -13,12 +13,13 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimizeOnExitAct
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
@@ -28,7 +29,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -37,6 +37,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -68,8 +69,9 @@ import org.schabi.newpipe.util.external_communication.KoreUtils;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
-public final class MainPlayerUi extends VideoPlayerUi {
+public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutChangeListener {
     private static final String TAG = MainPlayerUi.class.getSimpleName();
 
     private boolean isFullscreen = false;
@@ -113,7 +115,6 @@ public final class MainPlayerUi extends VideoPlayerUi {
 
         super.setupAfterIntent();
 
-        binding.getRoot().setVisibility(View.VISIBLE);
         initVideoPlayer();
         // Android TV: without it focus will frame the whole player
         binding.playPauseButton.requestFocus();
@@ -139,7 +140,8 @@ public final class MainPlayerUi extends VideoPlayerUi {
         binding.segmentsButton.setOnClickListener(v -> onSegmentsClicked());
 
         binding.addToPlaylistButton.setOnClickListener(v ->
-                player.onAddToPlaylistClicked(getParentActivity().getSupportFragmentManager()));
+                getParentActivity().map(FragmentActivity::getSupportFragmentManager)
+                        .ifPresent(player::onAddToPlaylistClicked));
 
         settingsContentObserver = new ContentObserver(new Handler()) {
             @Override
@@ -151,7 +153,20 @@ public final class MainPlayerUi extends VideoPlayerUi {
                 Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), false,
                 settingsContentObserver);
 
-        binding.getRoot().addOnLayoutChangeListener(this::onLayoutChange);
+        binding.getRoot().addOnLayoutChangeListener(this);
+    }
+
+    @Override
+    protected void deinitListeners() {
+        super.deinitListeners();
+
+        binding.queueButton.setOnClickListener(null);
+        binding.segmentsButton.setOnClickListener(null);
+        binding.addToPlaylistButton.setOnClickListener(null);
+
+        context.getContentResolver().unregisterContentObserver(settingsContentObserver);
+
+        binding.getRoot().removeOnLayoutChangeListener(this);
     }
 
     @Override
@@ -178,7 +193,6 @@ public final class MainPlayerUi extends VideoPlayerUi {
     @Override
     public void destroy() {
         super.destroy();
-        context.getContentResolver().unregisterContentObserver(settingsContentObserver);
 
         // Exit from fullscreen when user closes the player via notification
         if (isFullscreen) {
@@ -324,9 +338,10 @@ public final class MainPlayerUi extends VideoPlayerUi {
                     player.useVideoSource(false);
                     break;
                 case MINIMIZE_ON_EXIT_MODE_POPUP:
-                    player.setRecovery();
-                    NavigationHelper.playOnPopupPlayer(getParentActivity(),
-                            player.getPlayQueue(), true);
+                    getParentActivity().ifPresent(activity -> {
+                        player.setRecovery();
+                        NavigationHelper.playOnPopupPlayer(activity, player.getPlayQueue(), true);
+                    });
                     break;
                 case MINIMIZE_ON_EXIT_MODE_NONE: default:
                     player.pause();
@@ -385,14 +400,15 @@ public final class MainPlayerUi extends VideoPlayerUi {
     @Override
     public void showSystemUIPartially() {
         if (isFullscreen) {
-            final Window window = getParentActivity().getWindow();
-            window.setStatusBarColor(Color.TRANSPARENT);
-            window.setNavigationBarColor(Color.TRANSPARENT);
-            final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
-            window.getDecorView().setSystemUiVisibility(visibility);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            getParentActivity().map(Activity::getWindow).ifPresent(window -> {
+                window.setStatusBarColor(Color.TRANSPARENT);
+                window.setNavigationBarColor(Color.TRANSPARENT);
+                final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+                window.getDecorView().setSystemUiVisibility(visibility);
+                window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            });
         }
     }
 
@@ -476,8 +492,9 @@ public final class MainPlayerUi extends VideoPlayerUi {
     //region Gestures
 
     @SuppressWarnings("checkstyle:ParameterNumber")
-    private void onLayoutChange(final View view, final int l, final int t, final int r, final int b,
-                                final int ol, final int ot, final int or, final int ob) {
+    @Override
+    public void onLayoutChange(final View view, final int l, final int t, final int r, final int b,
+                               final int ol, final int ot, final int or, final int ob) {
         if (l != ol || t != ot || r != or || b != ob) {
             // Use smaller value to be consistent between screen orientations
             // (and to make usage easier)
@@ -501,9 +518,8 @@ public final class MainPlayerUi extends VideoPlayerUi {
 
     private void setInitialGestureValues() {
         if (player.getAudioReactor() != null) {
-            final float currentVolumeNormalized =
-                    (float) player.getAudioReactor().getVolume()
-                            / player.getAudioReactor().getMaxVolume();
+            final float currentVolumeNormalized = (float) player.getAudioReactor().getVolume()
+                    / player.getAudioReactor().getMaxVolume();
             binding.volumeProgressBar.setProgress(
                     (int) (binding.volumeProgressBar.getMax() * currentVolumeNormalized));
         }
@@ -714,7 +730,7 @@ public final class MainPlayerUi extends VideoPlayerUi {
             @Override
             public void held(final PlayQueueItem item, final View view) {
                 @Nullable final PlayQueue playQueue = player.getPlayQueue();
-                @Nullable final AppCompatActivity parentActivity = getParentActivity();
+                @Nullable final AppCompatActivity parentActivity = getParentActivity().orElse(null);
                 if (playQueue != null && parentActivity != null && playQueue.indexOf(item) != -1) {
                     openPopupMenu(player.getPlayQueue(), item, view, true,
                             parentActivity.getSupportFragmentManager(), context);
@@ -801,10 +817,15 @@ public final class MainPlayerUi extends VideoPlayerUi {
 
     @Override
     protected void onPlaybackSpeedClicked() {
+        final AppCompatActivity activity = getParentActivity().orElse(null);
+        if (activity == null) {
+            return;
+        }
+
         PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(), player.getPlaybackPitch(),
                 player.getPlaybackSkipSilence(), (speed, pitch, skipSilence)
                         -> player.setPlaybackParameters(speed, pitch, skipSilence))
-                .show(getParentActivity().getSupportFragmentManager(), null);
+                .show(activity.getSupportFragmentManager(), null);
     }
 
     @Override
@@ -876,15 +897,15 @@ public final class MainPlayerUi extends VideoPlayerUi {
         }
 
         isFullscreen = !isFullscreen;
-        if (!isFullscreen) {
-            // Apply window insets because Android will not do it when orientation changes
-            // from landscape to portrait (open vertical video to reproduce)
-            binding.playbackControlRoot.setPadding(0, 0, 0, 0);
-        } else {
+        if (isFullscreen) {
             // Android needs tens milliseconds to send new insets but a user is able to see
             // how controls changes it's position from `0` to `nav bar height` padding.
             // So just hide the controls to hide this visual inconsistency
             hideControls(0, 0);
+        } else {
+            // Apply window insets because Android will not do it when orientation changes
+            // from landscape to portrait (open vertical video to reproduce)
+            binding.playbackControlRoot.setPadding(0, 0, 0, 0);
         }
         fragmentListener.onFullscreenStateChanged(isFullscreen);
 
@@ -924,14 +945,22 @@ public final class MainPlayerUi extends VideoPlayerUi {
         return binding;
     }
 
-    public AppCompatActivity getParentActivity() {
-        return (AppCompatActivity) ((ViewGroup) binding.getRoot().getParent()).getContext();
+    public Optional<AppCompatActivity> getParentActivity() {
+        final ViewParent rootParent = binding.getRoot().getParent();
+        if (rootParent instanceof ViewGroup) {
+            final Context activity = ((ViewGroup) rootParent).getContext();
+            if (activity instanceof AppCompatActivity) {
+                return Optional.of((AppCompatActivity) activity);
+            }
+        }
+        return Optional.empty();
     }
 
     public boolean isLandscape() {
         // DisplayMetrics from activity context knows about MultiWindow feature
         // while DisplayMetrics from app context doesn't
-        return DeviceUtils.isLandscape(getParentActivity());
+        return DeviceUtils.isLandscape(
+                getParentActivity().map(Context.class::cast).orElse(player.getService()));
     }
     //endregion
 }

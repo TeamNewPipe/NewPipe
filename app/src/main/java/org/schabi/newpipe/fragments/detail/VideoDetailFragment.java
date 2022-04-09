@@ -240,10 +240,6 @@ public final class VideoDetailFragment
             playerUi.ifPresent(MainPlayerUi::toggleFullscreen);
         }
 
-        if (playerIsNotStopped() && player.videoPlayerSelected()) {
-            addVideoPlayerView();
-        }
-
         //noinspection SimplifyOptionalCallChains
         if (playAfterConnect
                 || (currentInfo != null
@@ -335,6 +331,9 @@ public final class VideoDetailFragment
     @Override
     public void onResume() {
         super.onResume();
+        if (DEBUG) {
+            Log.d(TAG, "onResume() called");
+        }
 
         activity.sendBroadcast(new Intent(ACTION_VIDEO_FRAGMENT_RESUMED));
 
@@ -1310,22 +1309,14 @@ public final class VideoDetailFragment
         if (!isPlayerAvailable()) {
             return;
         }
-
-        final Optional<View> root = player.UIs().get(VideoPlayerUi.class)
-                .map(VideoPlayerUi::getBinding)
-                .map(ViewBinding::getRoot);
-
-        // Check if viewHolder already contains a child TODO TODO whaat
-        /*if (playerService != null
-                && root.map(View::getParent).orElse(null) != binding.playerPlaceholder) {
-            playerService.removeViewFromParent();
-        }*/
         setHeightThumbnail();
 
         // Prevent from re-adding a view multiple times
-        if (root.isPresent() && root.get().getParent() == null) {
-            binding.playerPlaceholder.addView(root.get());
-        }
+        new Handler().post(() -> player.UIs().get(MainPlayerUi.class).ifPresent(playerUi -> {
+            playerUi.removeViewFromParent();
+            binding.playerPlaceholder.addView(playerUi.getBinding().getRoot());
+            playerUi.setupVideoSurfaceIfNeeded();
+        }));
     }
 
     private void removeVideoPlayerView() {
@@ -1793,9 +1784,6 @@ public final class VideoDetailFragment
 
     @Override
     public void onViewCreated() {
-        // Video view can have elements visible from popup,
-        // We hide it here but once it ready the view will be shown in handleIntent()
-        getRoot().ifPresent(view -> view.setVisibility(View.GONE));
         addVideoPlayerView();
     }
 

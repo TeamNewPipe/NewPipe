@@ -485,6 +485,10 @@ public final class Player implements PlaybackListener, Listener {
             // make sure UIs know whether a service is connected or not
             UIs.call(PlayerUi::onFragmentListenerSet);
         }
+        if (!exoPlayerIsNull()) {
+            UIs.call(PlayerUi::initPlayer);
+            UIs.call(PlayerUi::initPlayback);
+        }
     }
 
     private void initPlayback(@NonNull final PlayQueue queue,
@@ -599,7 +603,7 @@ public final class Player implements PlaybackListener, Listener {
         progressUpdateDisposable.set(null);
         PicassoHelper.cancelTag(PicassoHelper.PLAYER_THUMBNAIL_TAG); // cancel thumbnail loading
 
-        UIs.call(PlayerUi::destroy);
+        UIs.destroyAll(Object.class); // destroy every UI: obviously every UI extends Object
     }
 
     public void setRecovery() {
@@ -737,7 +741,7 @@ public final class Player implements PlaybackListener, Listener {
             case Intent.ACTION_CONFIGURATION_CHANGED:
                 assureCorrectAppLanguage(service);
                 if (DEBUG) {
-                    Log.d(TAG, "onConfigurationChanged() called");
+                    Log.d(TAG, "ACTION_CONFIGURATION_CHANGED received");
                 }
                 break;
             case Intent.ACTION_HEADSET_PLUG: //FIXME
