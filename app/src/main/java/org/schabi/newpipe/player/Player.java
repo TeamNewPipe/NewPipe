@@ -29,7 +29,6 @@ import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static com.google.android.exoplayer2.Player.RepeatMode;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
-import static org.schabi.newpipe.player.helper.PlayerHelper.isPlaybackResumeEnabled;
 import static org.schabi.newpipe.player.helper.PlayerHelper.nextRepeatMode;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlaybackParametersFromPrefs;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
@@ -115,6 +114,7 @@ import org.schabi.newpipe.player.ui.PlayerUi;
 import org.schabi.newpipe.player.ui.PlayerUiList;
 import org.schabi.newpipe.player.ui.PopupPlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
+import org.schabi.newpipe.util.DependentPreferenceHelper;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -391,7 +391,7 @@ public final class Player implements PlaybackListener, Listener {
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
 
         } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false)
-                && isPlaybackResumeEnabled(this)
+                && DependentPreferenceHelper.getResumePlaybackEnabled(context)
                 && !samePlayQueue
                 && !newQueue.isEmpty()
                 && newQueue.getItem() != null
