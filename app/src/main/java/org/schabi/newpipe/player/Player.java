@@ -46,7 +46,6 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZ
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
 import static org.schabi.newpipe.player.helper.PlayerHelper.buildCloseOverlayLayoutParams;
-import static org.schabi.newpipe.player.helper.PlayerHelper.captionLanguageStemOf;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimizeOnExitAction;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimumVideoHeight;
@@ -138,7 +137,6 @@ import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.TracksInfo;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.text.Cue;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
@@ -212,7 +210,6 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.ExpandableSurfaceView;
 import org.schabi.newpipe.views.player.PlayerFastSeekOverlay;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -3539,12 +3536,18 @@ public final class Player implements
             captionItem.setOnMenuItemClickListener(menuItem -> {
                 final int textRendererIndex = getCaptionRendererIndex();
                 if (textRendererIndex != RENDERER_UNAVAILABLE) {
-                    // DefaultTrackSelector will select for tracks with similar language names
-                    // if a track of userPreferredLanguage is not found
-                    // This means (auto-generated) will be resolved automatically.
+                    // DefaultTrackSelector will select for text tracks in the following order.
+                    // When multiple tracks share the same rank, a random track will be chosen.
+                    // 1. ANY track exactly matching preferred language name
+                    // 2. ANY track exactly matching preferred language stem
+                    // 3. ROLE_FLAG_CAPTION track matching preferred language stem
+                    // 4. ROLE_FLAG_DESCRIBES_MUSIC_AND_SOUND track matching preferred language stem
+                    // This means if a caption track of preferred language is not available,
+                    // then an auto-generated track of that language will be chosen automatically.
                     trackSelector.setParameters(trackSelector.buildUponParameters()
                             .setPreferredTextLanguages(captionLanguage,
-                                    captionLanguageStemOf(captionLanguage))
+                                    PlayerHelper.captionLanguageStemOf(captionLanguage))
+                            .setPreferredTextRoleFlags(C.ROLE_FLAG_CAPTION)
                             .setRendererDisabled(textRendererIndex, false));
                     prefs.edit().putString(context.getString(R.string.caption_user_set_key),
                             captionLanguage).apply();
@@ -3561,12 +3564,12 @@ public final class Player implements
         final int textRendererIndex = getCaptionRendererIndex();
 
         if (userPreferredLanguage != null
-                && availableLanguages.contains(userPreferredLanguage)
                 && !selectedPreferredLanguages.contains(userPreferredLanguage)
                 && textRendererIndex != RENDERER_UNAVAILABLE) {
             trackSelector.setParameters(trackSelector.buildUponParameters()
                     .setPreferredTextLanguages(userPreferredLanguage,
-                            captionLanguageStemOf(userPreferredLanguage))
+                            PlayerHelper.captionLanguageStemOf(userPreferredLanguage))
+                    .setPreferredTextRoleFlags(C.ROLE_FLAG_CAPTION)
                     .setRendererDisabled(textRendererIndex, false));
         }
     }
@@ -3681,13 +3684,11 @@ public final class Player implements
                 .stream()
                 .filter(trackGroupInfo -> C.TRACK_TYPE_TEXT == trackGroupInfo.getTrackType())
                 .collect(Collectors.toList());
-        final List<String> availableLanguages = new ArrayList<>(textTracks.size());
-        for (int i = 0; i < textTracks.size(); i++) {
-            final TrackGroup textTrack = textTracks.get(i).getTrackGroup();
-            if (textTrack.length > 0) {
-                availableLanguages.add(textTrack.getFormat(0).language);
-            }
-        }
+        final List<String> availableLanguages = textTracks.stream()
+                .map(TracksInfo.TrackGroupInfo::getTrackGroup)
+                .filter(textTrack -> textTrack.length > 0)
+                .map(textTrack -> textTrack.getFormat(0).language)
+                .collect(Collectors.toList());
 
         // Find selected text track
         final Optional<Format> selectedTracks = textTracks.stream()
