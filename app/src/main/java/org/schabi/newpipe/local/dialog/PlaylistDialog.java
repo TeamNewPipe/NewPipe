@@ -31,10 +31,6 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
 
     private org.schabi.newpipe.util.SavedState savedState;
 
-    public PlaylistDialog(final List<StreamEntity> streamEntities) {
-        this.streamEntities = streamEntities;
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -120,6 +116,10 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
         this.onDismissListener = onDismissListener;
     }
 
+    protected void setStreamEntities(final List<StreamEntity> streamEntities) {
+        this.streamEntities = streamEntities;
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Dialog creation
     //////////////////////////////////////////////////////////////////////////*/
@@ -143,8 +143,8 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(hasPlaylists ->
                         onExec.accept(hasPlaylists
-                                ? new PlaylistAppendDialog(streamEntities)
-                                : new PlaylistCreationDialog(streamEntities))
+                                ? PlaylistAppendDialog.newInstance(streamEntities)
+                                : PlaylistCreationDialog.newInstance(streamEntities))
                 );
     }
 }
