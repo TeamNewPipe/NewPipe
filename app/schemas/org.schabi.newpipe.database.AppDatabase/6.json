@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 6,
-    "identityHash": "cc9c4d84f52f49105b1c4216b948b5f7",
+    "identityHash": "9ffc14521c566beed378d77430de3f0c",
     "entities": [
       {
         "tableName": "subscriptions",
@@ -447,7 +447,7 @@
       },
       {
         "tableName": "remote_playlists",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `service_id` INTEGER NOT NULL, `name` TEXT, `url` TEXT, `thumbnail_url` TEXT, `uploader` TEXT, `stream_count` INTEGER)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `service_id` INTEGER NOT NULL, `name` TEXT, `url` TEXT, `thumbnail_url` TEXT, `uploader` TEXT, `display_index` INTEGER NOT NULL, `stream_count` INTEGER)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -484,6 +484,12 @@
             "columnName": "uploader",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "displayIndex",
+            "columnName": "display_index",
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "streamCount",
@@ -731,7 +737,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cc9c4d84f52f49105b1c4216b948b5f7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9ffc14521c566beed378d77430de3f0c')"
     ]
   }
 }

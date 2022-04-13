@@ -14,6 +14,7 @@ public interface PlaylistLocalItem extends LocalItem {
     static List<PlaylistLocalItem> merge(
             final List<PlaylistMetadataEntry> localPlaylists,
             final List<PlaylistRemoteEntity> remotePlaylists) {
+        // todo: merge algorithm
         final List<PlaylistLocalItem> items = new ArrayList<>(
                 localPlaylists.size() + remotePlaylists.size());
         items.addAll(localPlaylists);

@@ -96,12 +96,17 @@ public class LocalPlaylistManager {
     }
 
     public Maybe<Integer> renamePlaylist(final long playlistId, final String name) {
-        return modifyPlaylist(playlistId, name, null);
+        return modifyPlaylist(playlistId, name, null, -1);
     }
 
     public Maybe<Integer> changePlaylistThumbnail(final long playlistId,
                                                   final String thumbnailUrl) {
-        return modifyPlaylist(playlistId, null, thumbnailUrl);
+        return modifyPlaylist(playlistId, null, thumbnailUrl, -1);
+    }
+
+    public Maybe<Integer> changePlaylistDisplayIndex(final long playlistId,
+                                                     final long displayIndex) {
+        return modifyPlaylist(playlistId, null, null, displayIndex);
     }
 
     public String getPlaylistThumbnail(final long playlistId) {
@@ -110,7 +115,8 @@ public class LocalPlaylistManager {
 
     private Maybe<Integer> modifyPlaylist(final long playlistId,
                                           @Nullable final String name,
-                                          @Nullable final String thumbnailUrl) {
+                                          @Nullable final String thumbnailUrl,
+                                          final long displayIndex) {
         return playlistTable.getPlaylist(playlistId)
                 .firstElement()
                 .filter(playlistEntities -> !playlistEntities.isEmpty())
@@ -121,6 +127,9 @@ public class LocalPlaylistManager {
                     }
                     if (thumbnailUrl != null) {
                         playlist.setThumbnailUrl(thumbnailUrl);
+                    }
+                    if (displayIndex != -1) {
+                        playlist.setDisplayIndex(displayIndex);
                     }
                     return playlistTable.update(playlist);
                 }).subscribeOn(Schedulers.io());

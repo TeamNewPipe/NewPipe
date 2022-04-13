@@ -308,7 +308,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                     + "with new name=[" + name + "] items");
         }
 
-        localPlaylistManager.renamePlaylist(id, name);
         final Disposable disposable = localPlaylistManager.renamePlaylist(id, name)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(longs -> { /*Do nothing on success*/ }, throwable -> showError(
