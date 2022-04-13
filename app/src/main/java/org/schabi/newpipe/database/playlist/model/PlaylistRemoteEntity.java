@@ -153,6 +153,7 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
         this.uploader = uploader;
     }
 
+    @Override
     public long getDisplayIndex() {
         return displayIndex;
     }

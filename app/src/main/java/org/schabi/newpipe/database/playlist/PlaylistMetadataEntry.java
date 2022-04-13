@@ -39,4 +39,9 @@ public class PlaylistMetadataEntry implements PlaylistLocalItem {
     public String getOrderingName() {
         return name;
     }
+
+    @Override
+    public long getDisplayIndex() {
+        return displayIndex;
+    }
 }
