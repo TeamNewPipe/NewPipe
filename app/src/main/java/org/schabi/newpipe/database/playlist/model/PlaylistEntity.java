@@ -15,6 +15,7 @@ public class PlaylistEntity {
     public static final String PLAYLIST_ID = "uid";
     public static final String PLAYLIST_NAME = "name";
     public static final String PLAYLIST_THUMBNAIL_URL = "thumbnail_url";
+    public static final String PLAYLIST_DISPLAY_INDEX = "display_index";
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = PLAYLIST_ID)
@@ -25,6 +26,9 @@ public class PlaylistEntity {
 
     @ColumnInfo(name = PLAYLIST_THUMBNAIL_URL)
     private String thumbnailUrl;
+
+    @ColumnInfo(name = PLAYLIST_DISPLAY_INDEX)
+    private long displayIndex = 0;
 
     public PlaylistEntity(final String name, final String thumbnailUrl) {
         this.name = name;
@@ -53,5 +57,13 @@ public class PlaylistEntity {
 
     public void setThumbnailUrl(final String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
+    }
+
+    public long getDisplayIndex() {
+        return displayIndex;
+    }
+
+    public void setDisplayIndex(final long displayIndex) {
+        this.displayIndex = displayIndex;
     }
 }

@@ -23,6 +23,7 @@ public final class Migrations {
     public static final int DB_VER_3 = 3;
     public static final int DB_VER_4 = 4;
     public static final int DB_VER_5 = 5;
+    public static final int DB_VER_6 = 6;
 
     private static final String TAG = Migrations.class.getName();
     public static final boolean DEBUG = MainActivity.DEBUG;
@@ -184,7 +185,46 @@ public final class Migrations {
         @Override
         public void migrate(@NonNull final SupportSQLiteDatabase database) {
             database.execSQL("ALTER TABLE `subscriptions` ADD COLUMN `notification_mode` "
-                     + "INTEGER NOT NULL DEFAULT 0");
+                    + "INTEGER NOT NULL DEFAULT 0");
+        }
+    };
+
+    public static final Migration MIGRATION_5_6 = new Migration(DB_VER_5, DB_VER_6) {
+        @Override
+        public void migrate(@NonNull final SupportSQLiteDatabase database) {
+            try {
+                database.beginTransaction();
+
+                // create a temp table to initialize display_index
+                database.execSQL("CREATE TABLE `playlists_tmp` "
+                        + "(`uid` INTEGER NOT NULL, "
+                        + "`name` TEXT, `thumbnail_url` TEXT,"
+                        + "`display_index` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
+                database.execSQL("INSERT INTO `playlists_tmp` (`uid`, `name`, `thumbnail_url`)"
+                        + "SELECT `uid`, `name`, `thumbnail_url` FROM `playlists`");
+
+                // drop the old table and create new one
+                database.execSQL("DROP TABLE `playlists`");
+                database.execSQL("CREATE TABLE `playlists` "
+                        + "(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+                        + "`name` TEXT, `thumbnail_url` TEXT,"
+                        + "`display_index` INTEGER NOT NULL UNIQUE)");
+
+                // insert temp data into the new table
+                // set display_index start from zero
+                database.execSQL("INSERT INTO `playlists` SELECT * FROM `playlists_tmp`");
+                database.execSQL("UPDATE `playlists` SET `display_index` = `display_index` - 1");
+
+                // drop tmp table
+                database.execSQL("DROP TABLE `playlists_tmp`");
+
+                // create index on the new table
+                database.execSQL("CREATE INDEX `index_playlists_name` ON `playlists` (`name`)");
+
+                database.setTransactionSuccessful();
+            } finally {
+                database.endTransaction();
+            }
         }
     };
 
