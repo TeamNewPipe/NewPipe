@@ -55,6 +55,10 @@ public abstract class PlayerUi {
     public void onFragmentListenerSet() {
     }
 
+    /**
+     * If you want to register new broadcast actions to receive here, add them to
+     * {@link Player#setupBroadcastReceiver()}.
+     */
     public void onBroadcastReceived(final Intent intent) {
     }
 

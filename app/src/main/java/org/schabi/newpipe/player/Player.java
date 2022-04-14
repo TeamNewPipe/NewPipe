@@ -663,6 +663,12 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
     //region Broadcast receiver
 
+    /**
+     * This function prepares the broadcast receiver and is called only in the constructor.
+     * Therefore if you want any PlayerUi to receive a broadcast action, you should add it here,
+     * even if that player ui might never be added to the player. In that case the received
+     * broadcast would not do anything.
+     */
     private void setupBroadcastReceiver() {
         if (DEBUG) {
             Log.d(TAG, "setupBroadcastReceiver() called");
