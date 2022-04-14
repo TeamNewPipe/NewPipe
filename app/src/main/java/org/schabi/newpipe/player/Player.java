@@ -447,7 +447,7 @@ public final class Player implements PlaybackListener, Listener {
     private void initUIsForCurrentPlayerType() {
         //noinspection SimplifyOptionalCallChains
         if (!UIs.get(NotificationPlayerUi.class).isPresent()) {
-            UIs.add(new NotificationPlayerUi(this));
+            UIs.addAndPrepare(new NotificationPlayerUi(this));
         }
 
         if ((UIs.get(MainPlayerUi.class).isPresent() && playerType == PlayerType.MAIN)
@@ -469,24 +469,15 @@ public final class Player implements PlaybackListener, Listener {
         switch (playerType) {
             case MAIN:
                 UIs.destroyAll(PopupPlayerUi.class);
-                UIs.add(new MainPlayerUi(this, binding));
+                UIs.addAndPrepare(new MainPlayerUi(this, binding));
+                break;
+            case POPUP:
+                UIs.destroyAll(MainPlayerUi.class);
+                UIs.addAndPrepare(new PopupPlayerUi(this, binding));
                 break;
             case AUDIO:
                 UIs.destroyAll(VideoPlayerUi.class);
                 break;
-            case POPUP:
-                UIs.destroyAll(MainPlayerUi.class);
-                UIs.add(new PopupPlayerUi(this, binding));
-                break;
-        }
-
-        if (fragmentListener != null) {
-            // make sure UIs know whether a service is connected or not
-            UIs.call(PlayerUi::onFragmentListenerSet);
-        }
-        if (!exoPlayerIsNull()) {
-            UIs.call(PlayerUi::initPlayer);
-            UIs.call(PlayerUi::initPlayback);
         }
     }
 
@@ -1968,9 +1959,9 @@ public final class Player implements PlaybackListener, Listener {
 
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Video size, resize, orientation, fullscreen
+    // Video size
     //////////////////////////////////////////////////////////////////////////*/
-    //region Video size, resize, orientation, fullscreen
+    //region Video size
     @Override // exoplayer listener
     public void onVideoSizeChanged(@NonNull final VideoSize videoSize) {
         if (DEBUG) {
