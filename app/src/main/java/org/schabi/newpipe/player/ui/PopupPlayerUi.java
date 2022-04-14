@@ -8,7 +8,6 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePopupLayoutP
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -60,6 +59,12 @@ public final class PopupPlayerUi extends VideoPlayerUi {
 
     private WindowManager.LayoutParams popupLayoutParams; // null if player is not popup
     private final WindowManager windowManager;
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Constructor, setup, destroy
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Constructor, setup, destroy
 
     public PopupPlayerUi(@NonNull final Player player,
                          @NonNull final PlayerBinding playerBinding) {
@@ -173,11 +178,14 @@ public final class PopupPlayerUi extends VideoPlayerUi {
         super.destroy();
         removePopupFromView();
     }
+    //endregion
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Broadcast receiver
     //////////////////////////////////////////////////////////////////////////*/
     //region Broadcast receiver
+
     @Override
     public void onBroadcastReceived(final Intent intent) {
         super.onBroadcastReceived(intent);
@@ -199,6 +207,11 @@ public final class PopupPlayerUi extends VideoPlayerUi {
     }
     //endregion
 
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Popup position and size
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Popup position and size
 
     /**
      * Check if {@link #popupLayoutParams}' position is within a arbitrary boundary
@@ -272,16 +285,19 @@ public final class PopupPlayerUi extends VideoPlayerUi {
         windowManager.updateViewLayout(binding.getRoot(), popupLayoutParams);
     }
 
-    private void changePopupWindowFlags(final int flags) {
-        if (DEBUG) {
-            Log.d(TAG, "changePopupWindowFlags() called with: flags = [" + flags + "]");
-        }
-
-        if (!anyPopupViewIsNull()) {
-            popupLayoutParams.flags = flags;
-            windowManager.updateViewLayout(binding.getRoot(), popupLayoutParams);
-        }
+    @Override
+    protected float calculateMaxEndScreenThumbnailHeight(@NonNull final Bitmap bitmap) {
+        // no need for the end screen thumbnail to be resized on popup player: it's only needed
+        // for the main player so that it is enlarged correctly inside the fragment
+        return bitmap.getHeight();
     }
+    //endregion
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Popup closing
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Popup closing
 
     public void closePopup() {
         if (DEBUG) {
@@ -351,23 +367,22 @@ public final class PopupPlayerUi extends VideoPlayerUi {
                     }
                 }).start();
     }
+    //endregion
 
-    @Override
-    protected float calculateMaxEndScreenThumbnailHeight(@NonNull final Bitmap bitmap) {
-        // no need for the end screen thumbnail to be resized on popup player: it's only needed
-        // for the main player so that it is enlarged correctly inside the fragment
-        return bitmap.getHeight();
-    }
+    /*//////////////////////////////////////////////////////////////////////////
+    // Playback states
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Playback states
 
-    private boolean popupHasParent() {
-        return binding != null
-                && binding.getRoot().getLayoutParams() instanceof WindowManager.LayoutParams
-                && binding.getRoot().getParent() != null;
-    }
+    private void changePopupWindowFlags(final int flags) {
+        if (DEBUG) {
+            Log.d(TAG, "changePopupWindowFlags() called with: flags = [" + flags + "]");
+        }
 
-    private boolean anyPopupViewIsNull() {
-        return popupLayoutParams == null || windowManager == null
-                || binding.getRoot().getParent() == null;
+        if (!anyPopupViewIsNull()) {
+            popupLayoutParams.flags = flags;
+            windowManager.updateViewLayout(binding.getRoot(), popupLayoutParams);
+        }
     }
 
     @Override
@@ -400,11 +415,14 @@ public final class PopupPlayerUi extends VideoPlayerUi {
         playbackSpeedPopupMenu.show();
         isSomePopupMenuVisible = true;
     }
+    //endregion
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Gestures
     //////////////////////////////////////////////////////////////////////////*/
     //region Gestures
+
     private int distanceFromCloseButton(@NonNull final MotionEvent popupMotionEvent) {
         final int closeOverlayButtonX = closeOverlayBinding.closeButton.getLeft()
                 + closeOverlayBinding.closeButton.getWidth() / 2;
@@ -433,7 +451,19 @@ public final class PopupPlayerUi extends VideoPlayerUi {
     /*//////////////////////////////////////////////////////////////////////////
     // Getters
     //////////////////////////////////////////////////////////////////////////*/
-    //region Gestures
+    //region Getters
+
+    private boolean popupHasParent() {
+        return binding != null
+                && binding.getRoot().getLayoutParams() instanceof WindowManager.LayoutParams
+                && binding.getRoot().getParent() != null;
+    }
+
+    private boolean anyPopupViewIsNull() {
+        return popupLayoutParams == null || windowManager == null
+                || binding.getRoot().getParent() == null;
+    }
+
     public PlayerPopupCloseOverlayBinding getCloseOverlayBinding() {
         return closeOverlayBinding;
     }

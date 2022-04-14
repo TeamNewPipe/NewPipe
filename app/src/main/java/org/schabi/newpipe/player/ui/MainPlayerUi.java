@@ -88,6 +88,12 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     // fullscreen player
     private ItemTouchHelper itemTouchHelper;
 
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Constructor, setup, destroy
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Constructor, setup, destroy
+
     public MainPlayerUi(@NonNull final Player player,
                         @NonNull final PlayerBinding playerBinding) {
         super(player, playerBinding);
@@ -272,12 +278,14 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                 resources.getDimensionPixelSize(R.dimen.player_main_buttons_padding)
         );
     }
+    //endregion
 
 
     /*//////////////////////////////////////////////////////////////////////////
     // Broadcast receiver
     //////////////////////////////////////////////////////////////////////////*/
     //region Broadcast receiver
+
     @Override
     public void onBroadcastReceived(final Intent intent) {
         super.onBroadcastReceived(intent);
@@ -313,6 +321,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     // Fragment binding
     //////////////////////////////////////////////////////////////////////////*/
     //region Fragment binding
+
     @Override
     public void onFragmentListenerSet() {
         super.onFragmentListenerSet();
@@ -351,13 +360,11 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     }
     //endregion
 
-    private void showHideKodiButton() {
-        // show kodi button if it supports the current service and it is enabled in settings
-        @Nullable final PlayQueue playQueue = player.getPlayQueue();
-        binding.playWithKodi.setVisibility(playQueue != null && playQueue.getItem() != null
-                && KoreUtils.shouldShowPlayWithKodi(context, playQueue.getItem().getServiceId())
-                ? View.VISIBLE : View.GONE);
-    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Playback states
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Playback states
 
     @Override
     public void onUpdateProgress(final int currentProgress,
@@ -372,6 +379,22 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
             updateQueueTime(currentProgress);
         }
     }
+
+    @Override
+    public void onPlaying() {
+        super.onPlaying();
+        checkLandscape();
+    }
+
+    @Override
+    public void onCompleted() {
+        super.onCompleted();
+        if (isFullscreen) {
+            toggleFullscreen();
+        }
+    }
+    //endregion
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Controls showing / hiding
@@ -457,22 +480,21 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
             return Math.min(bitmap.getHeight(), screenHeight);
         }
     }
+
+    private void showHideKodiButton() {
+        // show kodi button if it supports the current service and it is enabled in settings
+        @Nullable final PlayQueue playQueue = player.getPlayQueue();
+        binding.playWithKodi.setVisibility(playQueue != null && playQueue.getItem() != null
+                && KoreUtils.shouldShowPlayWithKodi(context, playQueue.getItem().getServiceId())
+                ? View.VISIBLE : View.GONE);
+    }
     //endregion
 
-    @Override
-    public void onPlaying() {
-        super.onPlaying();
-        checkLandscape();
-    }
 
-    @Override
-    public void onCompleted() {
-        super.onCompleted();
-        if (isFullscreen) {
-            toggleFullscreen();
-        }
-    }
-
+    /*//////////////////////////////////////////////////////////////////////////
+    // Captions (text tracks)
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Captions (text tracks)
 
     @Override
     protected void setupSubtitleView(float captionScale) {
@@ -482,8 +504,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.subtitleView.setFixedTextSize(
                 TypedValue.COMPLEX_UNIT_PX, minimumLength / captionRatioInverse);
     }
-
-
+    //endregion
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -798,6 +819,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     // Click listeners
     //////////////////////////////////////////////////////////////////////////*/
     //region Click listeners
+
     @Override
     public void onClick(final View v) {
         if (v.getId() == binding.screenRotationButton.getId()) {
@@ -855,9 +877,9 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Video size, resize, orientation, fullscreen
+    // Video size, orientation, fullscreen
     //////////////////////////////////////////////////////////////////////////*/
-    //region Video size, resize, orientation, fullscreen
+    //region Video size, orientation, fullscreen
 
     private void setupScreenRotationButton() {
         binding.screenRotationButton.setVisibility(globalScreenOrientationLocked(context)
@@ -941,9 +963,6 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     // Getters
     //////////////////////////////////////////////////////////////////////////*/
     //region Getters
-    public PlayerBinding getBinding() {
-        return binding;
-    }
 
     public Optional<AppCompatActivity> getParentActivity() {
         final ViewParent rootParent = binding.getRoot().getParent();

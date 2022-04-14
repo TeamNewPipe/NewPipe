@@ -135,6 +135,12 @@ public abstract class VideoPlayerUi extends PlayerUi
     @NonNull private final SeekbarPreviewThumbnailHolder seekbarPreviewThumbnailHolder =
             new SeekbarPreviewThumbnailHolder();
 
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Constructor, setup, destroy
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Constructor, setup, destroy
+
     public VideoPlayerUi(@NonNull final Player player,
                          @NonNull final PlayerBinding playerBinding) {
         super(player);
@@ -142,11 +148,6 @@ public abstract class VideoPlayerUi extends PlayerUi
         setupFromView();
     }
 
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Setup
-    //////////////////////////////////////////////////////////////////////////*/
-    //region Setup
     public void setupFromView() {
         initViews();
         initListeners();
@@ -414,6 +415,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     // Broadcast receiver
     //////////////////////////////////////////////////////////////////////////*/
     //region Broadcast receiver
+
     @Override
     public void onBroadcastReceived(final Intent intent) {
         super.onBroadcastReceived(intent);
@@ -433,6 +435,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     // Thumbnail
     //////////////////////////////////////////////////////////////////////////*/
     //region Thumbnail
+
     /**
      * Scale the player audio / end screen thumbnail down if necessary.
      * <p>
@@ -481,6 +484,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     // Progress loop and updates
     //////////////////////////////////////////////////////////////////////////*/
     //region Progress loop and updates
+
     @Override
     public void onUpdateProgress(final int currentProgress,
                                  final int duration,
@@ -744,6 +748,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     // Playback states
     //////////////////////////////////////////////////////////////////////////*/
     //region Playback states
+
     @Override
     public void onPrepared() {
         super.onPrepared();
@@ -885,7 +890,8 @@ public abstract class VideoPlayerUi extends PlayerUi
     /*//////////////////////////////////////////////////////////////////////////
     // Repeat, shuffle, mute
     //////////////////////////////////////////////////////////////////////////*/
-    //region Repeat and shuffle
+    //region Repeat, shuffle, mute
+
     public void onRepeatClicked() {
         if (DEBUG) {
             Log.d(TAG, "onRepeatClicked() called");
@@ -945,52 +951,9 @@ public abstract class VideoPlayerUi extends PlayerUi
 
 
     /*//////////////////////////////////////////////////////////////////////////
-    // ExoPlayer listeners (that didn't fit in other categories)
+    // Other player listeners
     //////////////////////////////////////////////////////////////////////////*/
-    //region ExoPlayer listeners (that didn't fit in other categories)
-    @Override
-    public void onTextTracksChanged(@NonNull final Tracks currentTracks) {
-        super.onTextTracksChanged(currentTracks);
-
-        final boolean trackTypeTextSupported = !currentTracks.containsType(C.TRACK_TYPE_TEXT)
-                || currentTracks.isTypeSupported(C.TRACK_TYPE_TEXT, false);
-        if (getPlayer().getTrackSelector().getCurrentMappedTrackInfo() == null
-                || !trackTypeTextSupported) {
-            binding.captionTextView.setVisibility(View.GONE);
-            return;
-        }
-
-        // Extract all loaded languages
-        final List<Tracks.Group> textTracks = currentTracks
-                .getGroups()
-                .stream()
-                .filter(trackGroupInfo -> C.TRACK_TYPE_TEXT == trackGroupInfo.getType())
-                .collect(Collectors.toList());
-        final List<String> availableLanguages = textTracks.stream()
-                .map(Tracks.Group::getMediaTrackGroup)
-                .filter(textTrack -> textTrack.length > 0)
-                .map(textTrack -> textTrack.getFormat(0).language)
-                .collect(Collectors.toList());
-
-        // Find selected text track
-        final Optional<Format> selectedTracks = textTracks.stream()
-                .filter(Tracks.Group::isSelected)
-                .filter(info -> info.getMediaTrackGroup().length >= 1)
-                .map(info -> info.getMediaTrackGroup().getFormat(0))
-                .findFirst();
-
-        // Build UI
-        buildCaptionMenu(availableLanguages);
-        //noinspection SimplifyOptionalCallChains
-        if (player.getTrackSelector().getParameters().getRendererDisabled(
-                player.getCaptionRendererIndex()) || !selectedTracks.isPresent()) {
-            binding.captionTextView.setText(R.string.caption_none);
-        } else {
-            binding.captionTextView.setText(selectedTracks.get().language);
-        }
-        binding.captionTextView.setVisibility(
-                availableLanguages.isEmpty() ? View.GONE : View.VISIBLE);
-    }
+    //region Other player listeners
 
     @Override
     public void onPlaybackParametersChanged(@NonNull final PlaybackParameters playbackParameters) {
@@ -1004,12 +967,6 @@ public abstract class VideoPlayerUi extends PlayerUi
         //TODO check if this causes black screen when switching to fullscreen
         animate(binding.surfaceForeground, false, DEFAULT_CONTROLS_DURATION);
     }
-
-    @Override
-    public void onCues(@NonNull List<Cue> cues) {
-        super.onCues(cues);
-        binding.subtitleView.setCues(cues);
-    }
     //endregion
 
 
@@ -1017,6 +974,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     // Metadata & stream related views
     //////////////////////////////////////////////////////////////////////////*/
     //region Metadata & stream related views
+
     @Override
     public void onMetadataChanged(@NonNull final StreamInfo info) {
         super.onMetadataChanged(info);
@@ -1092,6 +1050,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     // Popup menus ("popup" means that they pop up, not that they belong to the popup player)
     //////////////////////////////////////////////////////////////////////////*/
     //region Popup menus ("popup" means that they pop up, not that they belong to the popup player)
+
     private void buildQualityMenu() {
         if (qualityPopupMenu == null) {
             return;
@@ -1315,6 +1274,57 @@ public abstract class VideoPlayerUi extends PlayerUi
     // Captions (text tracks)
     //////////////////////////////////////////////////////////////////////////*/
     //region Captions (text tracks)
+
+    @Override
+    public void onTextTracksChanged(@NonNull final Tracks currentTracks) {
+        super.onTextTracksChanged(currentTracks);
+
+        final boolean trackTypeTextSupported = !currentTracks.containsType(C.TRACK_TYPE_TEXT)
+                || currentTracks.isTypeSupported(C.TRACK_TYPE_TEXT, false);
+        if (getPlayer().getTrackSelector().getCurrentMappedTrackInfo() == null
+                || !trackTypeTextSupported) {
+            binding.captionTextView.setVisibility(View.GONE);
+            return;
+        }
+
+        // Extract all loaded languages
+        final List<Tracks.Group> textTracks = currentTracks
+                .getGroups()
+                .stream()
+                .filter(trackGroupInfo -> C.TRACK_TYPE_TEXT == trackGroupInfo.getType())
+                .collect(Collectors.toList());
+        final List<String> availableLanguages = textTracks.stream()
+                .map(Tracks.Group::getMediaTrackGroup)
+                .filter(textTrack -> textTrack.length > 0)
+                .map(textTrack -> textTrack.getFormat(0).language)
+                .collect(Collectors.toList());
+
+        // Find selected text track
+        final Optional<Format> selectedTracks = textTracks.stream()
+                .filter(Tracks.Group::isSelected)
+                .filter(info -> info.getMediaTrackGroup().length >= 1)
+                .map(info -> info.getMediaTrackGroup().getFormat(0))
+                .findFirst();
+
+        // Build UI
+        buildCaptionMenu(availableLanguages);
+        //noinspection SimplifyOptionalCallChains
+        if (player.getTrackSelector().getParameters().getRendererDisabled(
+                player.getCaptionRendererIndex()) || !selectedTracks.isPresent()) {
+            binding.captionTextView.setText(R.string.caption_none);
+        } else {
+            binding.captionTextView.setText(selectedTracks.get().language);
+        }
+        binding.captionTextView.setVisibility(
+                availableLanguages.isEmpty() ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void onCues(@NonNull List<Cue> cues) {
+        super.onCues(cues);
+        binding.subtitleView.setCues(cues);
+    }
+
     private void setupSubtitleView() {
         setupSubtitleView(PlayerHelper.getCaptionScale(context));
         final CaptionStyleCompat captionStyle = PlayerHelper.getCaptionStyle(context);
@@ -1330,6 +1340,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     // Click listeners
     //////////////////////////////////////////////////////////////////////////*/
     //region Click listeners
+
     @Override
     public void onClick(final View v) {
         if (DEBUG) {
@@ -1493,9 +1504,10 @@ public abstract class VideoPlayerUi extends PlayerUi
 
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Video size, resize, orientation, fullscreen
+    // Video size
     //////////////////////////////////////////////////////////////////////////*/
-    //region Video size, resize, orientation, fullscreen
+    //region Video size
+
     protected void setResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode) {
         binding.surfaceView.setResizeMode(resizeMode);
         binding.resizeTextView.setText(PlayerHelper.resizeTypeOf(context, resizeMode));
@@ -1569,6 +1581,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     // Getters
     //////////////////////////////////////////////////////////////////////////*/
     //region Getters
+
     public PlayerBinding getBinding() {
         return binding;
     }
