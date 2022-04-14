@@ -207,9 +207,7 @@ public final class PlayQueueActivity extends AppCompatActivity
             public void onServiceConnected(final ComponentName name, final IBinder service) {
                 Log.d(TAG, "Player service is connected");
 
-                if (service instanceof PlayerServiceBinder) {
-                    player = ((PlayerServiceBinder) service).getPlayerInstance();
-                } else if (service instanceof PlayerService.LocalBinder) {
+                if (service instanceof PlayerService.LocalBinder) {
                     player = ((PlayerService.LocalBinder) service).getPlayer();
                 }
 
