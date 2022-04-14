@@ -1,5 +1,7 @@
 package org.schabi.newpipe.local.bookmark;
 
+import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
+
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.InputType;
@@ -12,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -41,6 +45,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistLocalItem>, Void> {
+    private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
     @State
     protected Parcelable itemsListState;
 
@@ -48,6 +53,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     private CompositeDisposable disposables = new CompositeDisposable();
     private LocalPlaylistManager localPlaylistManager;
     private RemotePlaylistManager remotePlaylistManager;
+    private ItemTouchHelper itemTouchHelper;
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
@@ -98,6 +104,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     protected void initListeners() {
         super.initListeners();
 
+        itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
+        itemTouchHelper.attachToRecyclerView(itemsList);
+
         itemListAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
             @Override
             public void selected(final LocalItem selectedItem) {
@@ -124,6 +133,14 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                     showLocalDialog((PlaylistMetadataEntry) selectedItem);
                 } else if (selectedItem instanceof PlaylistRemoteEntity) {
                     showRemoteDeleteDialog((PlaylistRemoteEntity) selectedItem);
+                }
+            }
+
+            @Override
+            public void drag(final LocalItem selectedItem,
+                             final RecyclerView.ViewHolder viewHolder) {
+                if (itemTouchHelper != null) {
+                    itemTouchHelper.startDrag(viewHolder);
                 }
             }
         });
@@ -166,6 +183,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         }
 
         databaseSubscription = null;
+        itemTouchHelper = null;
     }
 
     @Override
@@ -255,56 +273,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // Utils
-    ///////////////////////////////////////////////////////////////////////////
-
-    private void showRemoteDeleteDialog(final PlaylistRemoteEntity item) {
-        showDeleteDialog(item.getName(), remotePlaylistManager.deletePlaylist(item.getUid()));
-    }
-
-    private void showLocalDialog(final PlaylistMetadataEntry selectedItem) {
-        final DialogEditTextBinding dialogBinding
-                = DialogEditTextBinding.inflate(getLayoutInflater());
-        dialogBinding.dialogEditText.setHint(R.string.name);
-        dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
-        dialogBinding.dialogEditText.setText(selectedItem.name);
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setView(dialogBinding.getRoot())
-                .setPositiveButton(R.string.rename_playlist, (dialog, which) ->
-                        changeLocalPlaylistName(
-                                selectedItem.uid,
-                                dialogBinding.dialogEditText.getText().toString()))
-                .setNegativeButton(R.string.cancel, null)
-                .setNeutralButton(R.string.delete, (dialog, which) -> {
-                    showDeleteDialog(selectedItem.name,
-                            localPlaylistManager.deletePlaylist(selectedItem.uid));
-                    dialog.dismiss();
-                })
-                .create()
-                .show();
-    }
-
-    private void showDeleteDialog(final String name, final Single<Integer> deleteReactor) {
-        if (activity == null || disposables == null) {
-            return;
-        }
-
-        new AlertDialog.Builder(activity)
-                .setTitle(name)
-                .setMessage(R.string.delete_playlist_prompt)
-                .setCancelable(true)
-                .setPositiveButton(R.string.delete, (dialog, i) ->
-                        disposables.add(deleteReactor
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(ignored -> { /*Do nothing on success*/ }, throwable ->
-                                        showError(new ErrorInfo(throwable,
-                                                UserAction.REQUESTED_BOOKMARK,
-                                                "Deleting playlist")))))
-                .setNegativeButton(R.string.cancel, null)
-                .show();
-    }
+    /*//////////////////////////////////////////////////////////////////////////
+    // Playlist Metadata Manipulation
+    //////////////////////////////////////////////////////////////////////////*/
 
     private void changeLocalPlaylistName(final long id, final String name) {
         if (localPlaylistManager == null) {
@@ -378,6 +349,142 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 }
             }
         }
+    }
+
+    private void saveImmediate() {
+        if (localPlaylistManager == null || remotePlaylistManager == null
+                || itemListAdapter == null) {
+            return;
+        }
+        // todo: debounce
+        /*
+        // List must be loaded and modified in order to save
+        if (isLoadingComplete == null || isModified == null
+                || !isLoadingComplete.get() || !isModified.get()) {
+            Log.w(TAG, "Attempting to save playlist when local playlist "
+                    + "is not loaded or not modified: playlist id=[" + playlistId + "]");
+            return;
+        }
+        */
+        // todo: is it correct?
+        final List<LocalItem> items = itemListAdapter.getItemsList();
+        for (int i = 0; i < items.size(); i++) {
+            final LocalItem item = items.get(i);
+            if (item instanceof PlaylistMetadataEntry) {
+                changeLocalPlaylistDisplayIndex(((PlaylistMetadataEntry) item).uid, i);
+            } else if (item instanceof PlaylistRemoteEntity) {
+                changeLocalPlaylistDisplayIndex(((PlaylistRemoteEntity) item).getUid(), i);
+            }
+        }
+    }
+
+    private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
+        int directions = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+        if (shouldUseGridLayout(requireContext())) {
+            directions |= ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+        }
+        return new ItemTouchHelper.SimpleCallback(directions,
+                ItemTouchHelper.ACTION_STATE_IDLE) {
+            @Override
+            public int interpolateOutOfBoundsScroll(@NonNull final RecyclerView recyclerView,
+                                                    final int viewSize,
+                                                    final int viewSizeOutOfBounds,
+                                                    final int totalSize,
+                                                    final long msSinceStartScroll) {
+                final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView,
+                        viewSize, viewSizeOutOfBounds, totalSize, msSinceStartScroll);
+                final int minimumAbsVelocity = Math.max(MINIMUM_INITIAL_DRAG_VELOCITY,
+                        Math.abs(standardSpeed));
+                return minimumAbsVelocity * (int) Math.signum(viewSizeOutOfBounds);
+            }
+
+            @Override
+            public boolean onMove(@NonNull final RecyclerView recyclerView,
+                                  @NonNull final RecyclerView.ViewHolder source,
+                                  @NonNull final RecyclerView.ViewHolder target) {
+                if (source.getItemViewType() != target.getItemViewType()
+                        || itemListAdapter == null) {
+                    return false;
+                }
+
+                // todo: is it correct
+                final int sourceIndex = source.getBindingAdapterPosition();
+                final int targetIndex = target.getBindingAdapterPosition();
+                final boolean isSwapped = itemListAdapter.swapItems(sourceIndex, targetIndex);
+                if (isSwapped) {
+                    // todo
+                    //saveChanges();
+                    saveImmediate();
+                }
+                return isSwapped;
+            }
+
+            @Override
+            public boolean isLongPressDragEnabled() {
+                return false;
+            }
+
+            @Override
+            public boolean isItemViewSwipeEnabled() {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder,
+                                 final int swipeDir) {
+            }
+        };
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Utils
+    ///////////////////////////////////////////////////////////////////////////
+
+    private void showRemoteDeleteDialog(final PlaylistRemoteEntity item) {
+        showDeleteDialog(item.getName(), remotePlaylistManager.deletePlaylist(item.getUid()));
+    }
+
+    private void showLocalDialog(final PlaylistMetadataEntry selectedItem) {
+        final DialogEditTextBinding dialogBinding
+                = DialogEditTextBinding.inflate(getLayoutInflater());
+        dialogBinding.dialogEditText.setHint(R.string.name);
+        dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+        dialogBinding.dialogEditText.setText(selectedItem.name);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setView(dialogBinding.getRoot())
+                .setPositiveButton(R.string.rename_playlist, (dialog, which) ->
+                        changeLocalPlaylistName(
+                                selectedItem.uid,
+                                dialogBinding.dialogEditText.getText().toString()))
+                .setNegativeButton(R.string.cancel, null)
+                .setNeutralButton(R.string.delete, (dialog, which) -> {
+                    showDeleteDialog(selectedItem.name,
+                            localPlaylistManager.deletePlaylist(selectedItem.uid));
+                    dialog.dismiss();
+                })
+                .create()
+                .show();
+    }
+
+    private void showDeleteDialog(final String name, final Single<Integer> deleteReactor) {
+        if (activity == null || disposables == null) {
+            return;
+        }
+
+        new AlertDialog.Builder(activity)
+                .setTitle(name)
+                .setMessage(R.string.delete_playlist_prompt)
+                .setCancelable(true)
+                .setPositiveButton(R.string.delete, (dialog, i) ->
+                        disposables.add(deleteReactor
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(ignored -> { /*Do nothing on success*/ }, throwable ->
+                                        showError(new ErrorInfo(throwable,
+                                                UserAction.REQUESTED_BOOKMARK,
+                                                "Deleting playlist")))))
+                .setNegativeButton(R.string.cancel, null)
+                .show();
     }
 }
 

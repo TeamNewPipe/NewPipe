@@ -2,7 +2,6 @@ package org.schabi.newpipe.database.playlist.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
