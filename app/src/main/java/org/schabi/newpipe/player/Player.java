@@ -38,7 +38,6 @@ import static org.schabi.newpipe.player.PlayerService.ACTION_PLAY_PREVIOUS;
 import static org.schabi.newpipe.player.PlayerService.ACTION_RECREATE_NOTIFICATION;
 import static org.schabi.newpipe.player.PlayerService.ACTION_REPEAT;
 import static org.schabi.newpipe.player.PlayerService.ACTION_SHUFFLE;
-import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isPlaybackResumeEnabled;
 import static org.schabi.newpipe.player.helper.PlayerHelper.nextRepeatMode;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlaybackParametersFromPrefs;
@@ -620,7 +619,7 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     private void setRecovery(final int queuePos, final long windowPos) {
-        if (playQueue.size() <= queuePos) {
+        if (playQueue == null || playQueue.size() <= queuePos) {
             return;
         }
 
@@ -735,9 +734,6 @@ public final class Player implements PlaybackListener, Listener {
             case ACTION_SHUFFLE:
                 toggleShuffleModeEnabled();
                 break;
-            case ACTION_RECREATE_NOTIFICATION:
-                NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, true);
-                break;
             case Intent.ACTION_CONFIGURATION_CHANGED:
                 assureCorrectAppLanguage(service);
                 if (DEBUG) {
@@ -797,8 +793,6 @@ public final class Player implements PlaybackListener, Listener {
                 }
 
                 currentThumbnail = bitmap;
-                NotificationUtil.getInstance()
-                        .createNotificationIfNeededAndUpdate(Player.this, false);
                 // there is a new thumbnail, so changed the end screen thumbnail, too.
                 UIs.call(playerUi -> playerUi.onThumbnailLoaded(bitmap));
             }
@@ -807,8 +801,7 @@ public final class Player implements PlaybackListener, Listener {
             public void onBitmapFailed(final Exception e, final Drawable errorDrawable) {
                 Log.e(TAG, "Thumbnail - onBitmapFailed() called: url = [" + url + "]", e);
                 currentThumbnail = null;
-                NotificationUtil.getInstance()
-                        .createNotificationIfNeededAndUpdate(Player.this, false);
+                UIs.call(playerUi -> playerUi.onThumbnailLoaded(null));
             }
 
             @Override
@@ -1082,8 +1075,6 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         UIs.call(PlayerUi::onBlocked);
-
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
     private void onPlaying() {
@@ -1095,8 +1086,6 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         UIs.call(PlayerUi::onPlaying);
-
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
     private void onBuffering() {
@@ -1105,10 +1094,6 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         UIs.call(PlayerUi::onBuffering);
-
-        if (NotificationUtil.getInstance().shouldUpdateBufferingSlot()) {
-            NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-        }
     }
 
     private void onPaused() {
@@ -1121,24 +1106,13 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         UIs.call(PlayerUi::onPaused);
-
-        // Remove running notification when user does not want minimization to background or popup
-        if (PlayerHelper.getMinimizeOnExitAction(context) == MINIMIZE_ON_EXIT_MODE_NONE
-                && videoPlayerSelected()) {
-            NotificationUtil.getInstance().cancelNotificationAndStopForeground(service);
-        } else {
-            NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-        }
     }
 
     private void onPausedSeek() {
         if (DEBUG) {
             Log.d(TAG, "onPausedSeek() called");
         }
-
         UIs.call(PlayerUi::onPausedSeek);
-
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
     private void onCompleted() {
@@ -1150,7 +1124,6 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         UIs.call(PlayerUi::onCompleted);
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
 
         if (playQueue.getIndex() < playQueue.size() - 1) {
             playQueue.offsetIndex(+1);
@@ -1190,7 +1163,7 @@ public final class Player implements PlaybackListener, Listener {
                     + "repeatMode = [" + repeatMode + "]");
         }
         UIs.call(playerUi -> playerUi.onRepeatModeChanged(repeatMode));
-        onShuffleOrRepeatModeChanged();
+        notifyPlaybackUpdateToListeners();
     }
 
     @Override
@@ -1209,18 +1182,13 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         UIs.call(playerUi -> playerUi.onShuffleModeEnabledChanged(shuffleModeEnabled));
-        onShuffleOrRepeatModeChanged();
+        notifyPlaybackUpdateToListeners();
     }
     
     public void toggleShuffleModeEnabled() {
         if (!exoPlayerIsNull()) {
             simpleExoPlayer.setShuffleModeEnabled(!simpleExoPlayer.getShuffleModeEnabled());
         }
-    }
-
-    private void onShuffleOrRepeatModeChanged() {
-        notifyPlaybackUpdateToListeners();
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
     //endregion
 
@@ -1806,12 +1774,15 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
     //region Metadata
 
-    private void onMetadataChanged(@NonNull final StreamInfo info) {
+    private void updateMetadataWith(@NonNull final StreamInfo info) {
         if (DEBUG) {
             Log.d(TAG, "Playback - onMetadataChanged() called, playing: " + info.getName());
         }
+        if (exoPlayerIsNull()) {
+            return;
+        }
 
-        UIs.call(playerUi -> playerUi.onMetadataChanged(info));
+        maybeAutoQueueNextStream(info);
 
         initThumbnail(info.getThumbnailUrl());
         registerStreamViewed();
@@ -1826,17 +1797,7 @@ public final class Player implements PlaybackListener, Listener {
         );
 
         notifyMetadataUpdateToListeners();
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-    }
-
-    private void updateMetadataWith(@NonNull final StreamInfo streamInfo) {
-        if (exoPlayerIsNull()) {
-            return;
-        }
-
-        maybeAutoQueueNextStream(streamInfo);
-        onMetadataChanged(streamInfo);
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, true);
+        UIs.call(playerUi -> playerUi.onMetadataChanged(info));
     }
 
     @NonNull
@@ -1925,7 +1886,6 @@ public final class Player implements PlaybackListener, Listener {
     public void onPlayQueueEdited() {
         notifyPlaybackUpdateToListeners();
         UIs.call(PlayerUi::onPlayQueueEdited);
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
     @Override // own playback listener

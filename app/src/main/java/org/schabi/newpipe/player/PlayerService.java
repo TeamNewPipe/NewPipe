@@ -88,9 +88,6 @@ public final class PlayerService extends Service {
         ThemeHelper.setTheme(this);
 
         player = new Player(this);
-        /*final MainPlayerUi mainPlayerUi = new MainPlayerUi(player,
-                PlayerBinding.inflate(LayoutInflater.from(this)));
-        player.UIs().add(mainPlayerUi);*/
     }
 
     @Override
@@ -159,7 +156,6 @@ public final class PlayerService extends Service {
     }
 
     public void stopService() {
-        NotificationUtil.getInstance().cancelNotificationAndStopForeground(this);
         cleanup();
         stopSelf();
     }
