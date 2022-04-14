@@ -1,5 +1,7 @@
 package org.schabi.newpipe.settings.custom;
 
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_RECREATE_NOTIFICATION;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,7 +29,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
 import org.schabi.newpipe.databinding.SingleChoiceDialogViewBinding;
 import org.schabi.newpipe.player.PlayerService;
-import org.schabi.newpipe.player.NotificationConstants;
+import org.schabi.newpipe.player.notification.NotificationConstants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
@@ -61,7 +63,7 @@ public class NotificationActionsPreference extends Preference {
     public void onDetached() {
         super.onDetached();
         saveChanges();
-        getContext().sendBroadcast(new Intent(PlayerService.ACTION_RECREATE_NOTIFICATION));
+        getContext().sendBroadcast(new Intent(ACTION_RECREATE_NOTIFICATION));
     }
 
 

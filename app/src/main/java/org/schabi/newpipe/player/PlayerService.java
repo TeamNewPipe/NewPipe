@@ -28,8 +28,6 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
-import org.schabi.newpipe.App;
-import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.ThemeHelper;
 
 
@@ -51,29 +49,6 @@ public final class PlayerService extends Service {
         AUDIO,
         POPUP
     }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Notification
-    //////////////////////////////////////////////////////////////////////////*/
-
-    static final String ACTION_CLOSE
-            = App.PACKAGE_NAME + ".player.MainPlayer.CLOSE";
-    public static final String ACTION_PLAY_PAUSE
-            = App.PACKAGE_NAME + ".player.MainPlayer.PLAY_PAUSE";
-    static final String ACTION_REPEAT
-            = App.PACKAGE_NAME + ".player.MainPlayer.REPEAT";
-    static final String ACTION_PLAY_NEXT
-            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_PLAY_NEXT";
-    static final String ACTION_PLAY_PREVIOUS
-            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_PLAY_PREVIOUS";
-    static final String ACTION_FAST_REWIND
-            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_FAST_REWIND";
-    static final String ACTION_FAST_FORWARD
-            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_FAST_FORWARD";
-    static final String ACTION_SHUFFLE
-            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_SHUFFLE";
-    public static final String ACTION_RECREATE_NOTIFICATION
-            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_RECREATE_NOTIFICATION";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service's LifeCycle

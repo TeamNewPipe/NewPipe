@@ -1,8 +1,7 @@
-package org.schabi.newpipe.player;
+package org.schabi.newpipe.player.notification;
 
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Intent;
 import android.content.pm.ServiceInfo;
 import android.graphics.Bitmap;
@@ -19,6 +18,7 @@ import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.List;
@@ -26,14 +26,14 @@ import java.util.List;
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
-import static org.schabi.newpipe.player.PlayerService.ACTION_CLOSE;
-import static org.schabi.newpipe.player.PlayerService.ACTION_FAST_FORWARD;
-import static org.schabi.newpipe.player.PlayerService.ACTION_FAST_REWIND;
-import static org.schabi.newpipe.player.PlayerService.ACTION_PLAY_NEXT;
-import static org.schabi.newpipe.player.PlayerService.ACTION_PLAY_PAUSE;
-import static org.schabi.newpipe.player.PlayerService.ACTION_PLAY_PREVIOUS;
-import static org.schabi.newpipe.player.PlayerService.ACTION_REPEAT;
-import static org.schabi.newpipe.player.PlayerService.ACTION_SHUFFLE;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_CLOSE;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_FAST_FORWARD;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_FAST_REWIND;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_PLAY_NEXT;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_PLAY_PAUSE;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_PLAY_PREVIOUS;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_REPEAT;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_SHUFFLE;
 
 /**
  * This is a utility class for player notifications.
@@ -51,7 +51,7 @@ public final class NotificationUtil {
     private NotificationManagerCompat notificationManager;
     private NotificationCompat.Builder notificationBuilder;
 
-    private Player player;
+    private final Player player;
 
     public NotificationUtil(final Player player) {
         this.player = player;
@@ -205,12 +205,11 @@ public final class NotificationUtil {
     private void updateActions(final NotificationCompat.Builder builder) {
         builder.mActions.clear();
         for (int i = 0; i < 5; ++i) {
-            addAction(builder, player, notificationSlots[i]);
+            addAction(builder, notificationSlots[i]);
         }
     }
 
     private void addAction(final NotificationCompat.Builder builder,
-                           final Player player,
                            @NotificationConstants.Action final int slot) {
         final NotificationCompat.Action action = getAction(slot);
         if (action != null) {

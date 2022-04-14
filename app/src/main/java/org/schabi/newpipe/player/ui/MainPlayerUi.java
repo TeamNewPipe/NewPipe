@@ -5,13 +5,13 @@ import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.player.Player.STATE_COMPLETED;
 import static org.schabi.newpipe.player.Player.STATE_PAUSED;
-import static org.schabi.newpipe.player.PlayerService.ACTION_PLAY_PAUSE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimizeOnExitAction;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_PLAY_PAUSE;
 
 import android.app.Activity;
 import android.content.Context;
