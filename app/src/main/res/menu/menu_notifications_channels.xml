@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/action_toggle_all"
-        android:icon="@drawable/ic_list_check"
+        android:icon="@drawable/ic_checklist"
         android:title="@string/toggle_all"
         app:showAsAction="ifRoom" />
 </menu>
