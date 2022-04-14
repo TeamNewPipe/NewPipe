@@ -8,6 +8,7 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -31,6 +32,20 @@ public class RemotePlaylistManager {
     public Single<Integer> deletePlaylist(final long playlistId) {
         return Single.fromCallable(() -> playlistRemoteTable.deletePlaylist(playlistId))
                 .subscribeOn(Schedulers.io());
+    }
+
+    public Maybe<Integer> changePlaylistDisplayIndex(final long playlistId,
+                                                     final long displayIndex) {
+        return playlistRemoteTable.getPlaylist(playlistId)
+                .firstElement()
+                .filter(playlistRemoteEntities -> !playlistRemoteEntities.isEmpty())
+                .map(playlistRemoteEntities -> {
+                    final PlaylistRemoteEntity playlist = playlistRemoteEntities.get(0);
+                    if (displayIndex != -1) {
+                        playlist.setDisplayIndex(displayIndex);
+                    }
+                    return playlistRemoteTable.update(playlist);
+                }).subscribeOn(Schedulers.io());
     }
 
     public Single<Long> onBookmark(final PlaylistInfo playlistInfo) {

@@ -199,6 +199,13 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
             @Override
             public void onNext(final List<PlaylistLocalItem> subscriptions) {
+
+                // If displayIndex does not match actual index, update displayIndex.
+                // This may happen when a new list is created
+                // or on the first run after database update
+                // or displayIndex is not continuous for some reason.
+                checkDisplayIndexUpdate(subscriptions);
+
                 handleResult(subscriptions);
                 if (databaseSubscription != null) {
                     databaseSubscription.request(1);
@@ -212,7 +219,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             }
 
             @Override
-            public void onComplete() { }
+            public void onComplete() {
+            }
         };
     }
 
@@ -315,6 +323,61 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                                 UserAction.REQUESTED_BOOKMARK,
                                 "Changing playlist name")));
         disposables.add(disposable);
+    }
+
+    private void changeLocalPlaylistDisplayIndex(final long id, final long displayIndex) {
+
+        if (localPlaylistManager == null) {
+            return;
+        }
+
+        if (DEBUG) {
+            Log.d(TAG, "Updating local playlist id=[" + id + "] "
+                    + "with new display_index=[" + displayIndex + "]");
+        }
+
+        final Disposable disposable =
+                localPlaylistManager.changePlaylistDisplayIndex(id, displayIndex)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(longs -> { /*Do nothing on success*/ }, throwable -> showError(
+                                new ErrorInfo(throwable,
+                                        UserAction.REQUESTED_BOOKMARK,
+                                        "Changing local playlist display_index")));
+        disposables.add(disposable);
+    }
+
+    private void changeRemotePlaylistDisplayIndex(final long id, final long displayIndex) {
+
+        if (remotePlaylistManager == null) {
+            return;
+        }
+
+        if (DEBUG) {
+            Log.d(TAG, "Updating remote playlist id=[" + id + "] "
+                    + "with new display_index=[" + displayIndex + "]");
+        }
+
+        final Disposable disposable =
+                remotePlaylistManager.changePlaylistDisplayIndex(id, displayIndex)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(longs -> { /*Do nothing on success*/ }, throwable -> showError(
+                                new ErrorInfo(throwable,
+                                        UserAction.REQUESTED_BOOKMARK,
+                                        "Changing remote playlist display_index")));
+        disposables.add(disposable);
+    }
+
+    private void checkDisplayIndexUpdate(@NonNull final List<PlaylistLocalItem> result) {
+        for (int i = 0; i < result.size(); i++) {
+            final PlaylistLocalItem item = result.get(i);
+            if (item.getDisplayIndex() != i) {
+                if (item instanceof PlaylistMetadataEntry) {
+                    changeLocalPlaylistDisplayIndex(((PlaylistMetadataEntry) item).uid, i);
+                } else if (item instanceof PlaylistRemoteEntity) {
+                    changeRemotePlaylistDisplayIndex(((PlaylistRemoteEntity) item).getUid(), i);
+                }
+            }
+        }
     }
 }
 

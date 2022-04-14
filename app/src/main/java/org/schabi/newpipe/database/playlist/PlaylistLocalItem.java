@@ -24,6 +24,12 @@ public interface PlaylistLocalItem extends LocalItem {
         final List<PlaylistLocalItem> result = new ArrayList<>(
                 localPlaylists.size() + remotePlaylists.size());
         final List<PlaylistLocalItem> itemsWithSameIndex = new ArrayList<>();
+
+        // The data from database may not be in the displayIndex order
+        Collections.sort(localPlaylists,
+                Comparator.comparingLong(PlaylistMetadataEntry::getDisplayIndex));
+        Collections.sort(remotePlaylists,
+                Comparator.comparingLong(PlaylistRemoteEntity::getDisplayIndex));
         int i = 0;
         int j = 0;
         while (i < localPlaylists.size()) {
@@ -41,10 +47,6 @@ public interface PlaylistLocalItem extends LocalItem {
         }
         addItemsWithSameIndex(result, itemsWithSameIndex);
 
-        // If displayIndex does not match actual index, update displayIndex.
-        // This may happen when a new list is created with default displayIndex = 0.
-        // todo: update displayIndex
-
         return result;
     }
 
@@ -52,8 +54,8 @@ public interface PlaylistLocalItem extends LocalItem {
                         final List<PlaylistLocalItem> itemsWithSameIndex) {
         if (!itemsWithSameIndex.isEmpty()
                 && itemsWithSameIndex.get(0).getDisplayIndex() != item.getDisplayIndex()) {
-            // The new item has a different displayIndex,
-            // add previous items with same index to the result.
+            // The new item has a different displayIndex, add previous items with same
+            // index to the result.
             addItemsWithSameIndex(result, itemsWithSameIndex);
             itemsWithSameIndex.clear();
         }

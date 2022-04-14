@@ -40,8 +40,11 @@ public class LocalPlaylistManager {
             return Maybe.empty();
         }
         final StreamEntity defaultStream = streams.get(0);
+
+        // Make sure the new playlist is always on the top of bookmark.
+        // The index will be reassigned to non-negative number in BookmarkFragment.
         final PlaylistEntity newPlaylist =
-                new PlaylistEntity(name, defaultStream.getThumbnailUrl());
+                new PlaylistEntity(name, defaultStream.getThumbnailUrl(), -1);
 
         return Maybe.fromCallable(() -> database.runInTransaction(() ->
                 upsertStreams(playlistTable.insert(newPlaylist), streams, 0))

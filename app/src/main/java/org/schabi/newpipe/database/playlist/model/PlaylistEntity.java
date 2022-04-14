@@ -2,6 +2,7 @@ package org.schabi.newpipe.database.playlist.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
@@ -28,11 +29,12 @@ public class PlaylistEntity {
     private String thumbnailUrl;
 
     @ColumnInfo(name = PLAYLIST_DISPLAY_INDEX)
-    private long displayIndex = 0;
+    private long displayIndex;
 
-    public PlaylistEntity(final String name, final String thumbnailUrl) {
+    public PlaylistEntity(final String name, final String thumbnailUrl, final long displayIndex) {
         this.name = name;
         this.thumbnailUrl = thumbnailUrl;
+        this.displayIndex = displayIndex;
     }
 
     public long getUid() {

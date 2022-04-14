@@ -142,6 +142,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public boolean swapItems(final int fromAdapterPosition, final int toAdapterPosition) {
+        // todo: reuse this code?
         final int actualFrom = adapterOffsetWithoutHeader(fromAdapterPosition);
         final int actualTo = adapterOffsetWithoutHeader(toAdapterPosition);
 
