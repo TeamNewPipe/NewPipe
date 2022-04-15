@@ -28,7 +28,7 @@
             tools:ignore="ContentDescription,RtlHardcoded"
             tools:src="@drawable/ic_placeholder_peertube" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/instanceName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,10 +39,11 @@
             android:ellipsize="marquee"
             android:singleLine="true"
             android:textAppearance="?textAppearanceListItem"
+            android:textIsSelectable="true"
             tools:ignore="RtlHardcoded"
             tools:text="Framatube" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/instanceUrl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,6 +56,7 @@
             android:ellipsize="marquee"
             android:singleLine="true"
             android:textAppearance="?textAppearanceListItemSecondary"
+            android:textIsSelectable="true"
             tools:ignore="RtlHardcoded"
             tools:text="https://framatube.org" />
 
