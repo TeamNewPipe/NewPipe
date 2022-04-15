@@ -114,12 +114,10 @@ public final class ServiceHelper {
      */
     @StringRes
     public static int getImportInstructionsHint(final int serviceId) {
-        switch (serviceId) {
-            case 1:
-                return R.string.import_soundcloud_instructions_hint;
-            default:
-                return -1;
+        if (serviceId == 1) {
+            return R.string.import_soundcloud_instructions_hint;
         }
+        return -1;
     }
 
     public static int getSelectedServiceId(final Context context) {
