@@ -18,8 +18,11 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.instance.Instance;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
+import org.schabi.newpipe.extractor.services.youtube.invidious.InvidiousInstance;
 
+import java.util.OptionalInt;
 import java.util.concurrent.TimeUnit;
 
 public final class ServiceHelper {
@@ -43,6 +46,13 @@ public final class ServiceHelper {
             default:
                 return R.drawable.ic_placeholder_circle;
         }
+    }
+
+    public static OptionalInt getOverrideIconForInstance(final Instance instance) {
+        if (instance instanceof InvidiousInstance) {
+            return OptionalInt.of(R.drawable.ic_placeholder_invidious);
+        }
+        return OptionalInt.empty();
     }
 
     public static String getTranslatedFilterString(final String filter, final Context c) {

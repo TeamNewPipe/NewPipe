@@ -96,6 +96,7 @@ import org.schabi.newpipe.views.FocusOverlayView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.OptionalInt;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -481,19 +482,26 @@ public class MainActivity extends AppCompatActivity {
         try {
             final int selectedServiceId = ServiceHelper.getSelectedServiceId(this);
             final StreamingService service = NewPipe.getService(selectedServiceId);
+
             String selectedServiceName = service.getServiceInfo().getName();
+            int icon = ServiceHelper.getIcon(selectedServiceId);
+
             if (service instanceof InstanceBasedStreamingService) {
                 final Instance instance =
-                        ((InstanceBasedStreamingService) service).getInstance();
+                        ((InstanceBasedStreamingService<?>) service).getInstance();
                 selectedServiceName =
                         (instance.getServiceName() != null
                                 ? instance.getServiceName() + " / "
                                 : "") + instance.getName();
+
+                final OptionalInt overrideIcon = ServiceHelper.getOverrideIconForInstance(instance);
+                if (overrideIcon.isPresent()) {
+                    icon = overrideIcon.getAsInt();
+                }
             }
 
             drawerHeaderBinding.drawerHeaderServiceView.setText(selectedServiceName);
-            drawerHeaderBinding.drawerHeaderServiceIcon.setImageResource(ServiceHelper
-                    .getIcon(selectedServiceId));
+            drawerHeaderBinding.drawerHeaderServiceIcon.setImageResource(icon);
 
             drawerHeaderBinding.drawerHeaderServiceView.post(() -> drawerHeaderBinding
                     .drawerHeaderServiceView.setSelected(true));
