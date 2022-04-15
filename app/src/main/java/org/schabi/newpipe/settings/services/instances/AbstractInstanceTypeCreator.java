@@ -1,4 +1,4 @@
-package org.schabi.newpipe.settings.serviceinstances;
+package org.schabi.newpipe.settings.services.instances;
 
 import androidx.annotation.DrawableRes;
 

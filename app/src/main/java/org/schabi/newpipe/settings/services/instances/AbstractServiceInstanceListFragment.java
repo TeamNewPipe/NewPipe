@@ -1,4 +1,4 @@
-package org.schabi.newpipe.settings.serviceinstances;
+package org.schabi.newpipe.settings.services.instances;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

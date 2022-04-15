@@ -1,4 +1,4 @@
-package org.schabi.newpipe.settings.serviceinstances.youtubelike;
+package org.schabi.newpipe.settings.services.instances.youtubelike;
 
 import android.content.Context;
 
@@ -9,9 +9,9 @@ import org.schabi.newpipe.extractor.instance.Instance;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeLikeInstance;
 import org.schabi.newpipe.extractor.services.youtube.invidious.InvidiousInstance;
 import org.schabi.newpipe.extractor.services.youtube.youtube.YoutubeInstance;
-import org.schabi.newpipe.settings.serviceinstances.AbstractInstanceTypeCreator;
-import org.schabi.newpipe.settings.serviceinstances.AbstractServiceInstanceListFragment;
-import org.schabi.newpipe.settings.serviceinstances.UrlMultiInstanceTypeCreator;
+import org.schabi.newpipe.settings.services.instances.AbstractInstanceTypeCreator;
+import org.schabi.newpipe.settings.services.instances.AbstractServiceInstanceListFragment;
+import org.schabi.newpipe.settings.services.instances.UrlMultiInstanceTypeCreator;
 import org.schabi.newpipe.util.services.YoutubeLikeInstanceManager;
 
 import java.util.Arrays;

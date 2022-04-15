@@ -1,9 +1,9 @@
-package org.schabi.newpipe.settings.serviceinstances.peertube;
+package org.schabi.newpipe.settings.services.instances.peertube;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
-import org.schabi.newpipe.settings.serviceinstances.AbstractServiceInstanceListFragment;
-import org.schabi.newpipe.settings.serviceinstances.UrlMultiInstanceTypeCreator;
+import org.schabi.newpipe.settings.services.instances.AbstractServiceInstanceListFragment;
+import org.schabi.newpipe.settings.services.instances.UrlMultiInstanceTypeCreator;
 import org.schabi.newpipe.util.services.PeertubeInstanceManager;
 
 import java.util.Collections;

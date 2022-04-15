@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/services">
+
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/show_age_restricted_content"
+        android:summary="@string/show_age_restricted_content_summary"
+        android:title="@string/show_age_restricted_content_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/youtube"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false">
+
+        <PreferenceScreen
+            android:fragment="org.schabi.newpipe.settings.services.instances.youtubelike.YouTubeLikeInstanceListFragment"
+            android:key="@string/yt_like_instance_setup_key"
+            android:summary="@string/yt_like_instance_url_summary"
+            android:title="@string/yt_like_instance_url_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/youtube_restricted_mode_enabled"
+            android:summary="@string/youtube_restricted_mode_enabled_summary"
+            android:title="@string/youtube_restricted_mode_enabled_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/peertube"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false">
+
+        <PreferenceScreen
+            android:fragment="org.schabi.newpipe.settings.services.instances.peertube.PeertubeInstanceListFragment"
+            android:key="@string/peertube_instance_setup_key"
+            android:summary="@string/peertube_instance_url_summary"
+            android:title="@string/peertube_instance_url_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>

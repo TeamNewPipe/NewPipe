@@ -4,7 +4,6 @@ import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -20,7 +19,6 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
-import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -49,7 +47,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private ContentSettingsManager manager;
 
     private String importExportDataPathKey;
-    private String youtubeRestrictedModeEnabledKey;
 
     private Localization initialSelectedLocalization;
     private ContentCountry initialSelectedContentCountry;
@@ -67,7 +64,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         manager.deleteSettingsFile();
 
         importExportDataPathKey = getString(R.string.import_export_data_path);
-        youtubeRestrictedModeEnabledKey = getString(R.string.youtube_restricted_mode_enabled);
 
         addPreferencesFromResourceRegistry();
 
@@ -117,20 +113,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     }
                     return true;
                 });
-    }
-
-    @Override
-    public boolean onPreferenceTreeClick(final Preference preference) {
-        if (preference.getKey().equals(youtubeRestrictedModeEnabledKey)) {
-            final Context context = getContext();
-            if (context != null) {
-                DownloaderImpl.getInstance().updateYoutubeRestrictedModeCookies(context);
-            } else {
-                Log.w(TAG, "onPreferenceTreeClick: null context");
-            }
-        }
-
-        return super.onPreferenceTreeClick(preference);
     }
 
     @Override
