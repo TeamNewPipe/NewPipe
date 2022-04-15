@@ -132,7 +132,7 @@
     <string name="peertube_instance_url_summary">Select your favorite PeerTube instances</string>
     <string name="yt_like_instance_url_title">YouTube-Like instances</string>
     <string name="yt_like_instance_url_summary">Manage YouTube-Like instances</string>
-    <string name="publicly_available_instances_help">A list of publicly available instances can be found on %s</string>
+    <string name="publicly_available_instances_help">A list of publicly available instances can be found at %s</string>
     <string name="add_instance">Add %s instance</string>
     <string name="enter_instance_url">Enter instance URL</string>
     <string name="instance_is_foss">This service is provided by free and open-source software. Consider donating to the maintainers and developers or feel free to host your own instance.</string>
