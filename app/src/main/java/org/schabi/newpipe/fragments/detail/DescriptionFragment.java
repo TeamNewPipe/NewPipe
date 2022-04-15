@@ -84,7 +84,7 @@ public class DescriptionFragment extends BaseFragment {
     private void setupDescription() {
         final Description description = streamInfo.getDescription();
         if (description == null || isEmpty(description.getContent())
-                || description == Description.emptyDescription) {
+                || description == Description.EMPTY_DESCRIPTION) {
             binding.detailDescriptionView.setVisibility(View.GONE);
             binding.detailSelectDescriptionButton.setVisibility(View.GONE);
             return;

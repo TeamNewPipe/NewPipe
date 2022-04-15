@@ -21,7 +21,7 @@ class MissionRecoveryInfo(
     constructor(stream: Stream) : this(format = stream.getFormat()!!) {
         when (stream) {
             is AudioStream -> {
-                desiredBitrate = stream.average_bitrate
+                desiredBitrate = stream.averageBitrate
                 isDesired2 = false
                 kind = 'a'
             }
