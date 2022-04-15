@@ -390,9 +390,7 @@
     <string name="pause_downloads_on_mobile_desc">Kasulik mobiilsele andmesidele lülitumisel, kuigi mõningaid alla laadimisi ei saa peatada</string>
     <string name="search_showing_result_for">Kuvatakse otsingu tulemusi: %s</string>
     <string name="open_with">Ava rakendusega</string>
-    <string name="peertube_instance_add_help">Sisesta isendi URL</string>
-    <string name="peertube_instance_add_title">Lisa isend</string>
-    <string name="peertube_instance_url_help">Otsi endale meeldivaid aadressilt %s</string>
+    <string name="enter_instance_url">Sisesta isendi URL</string>
     <string name="peertube_instance_url_summary">Vali PeerTube lemmikisendid</string>
     <string name="peertube_instance_url_title">PeerTube isendid</string>
     <string name="unsupported_url_dialog_message">URLi tuvastamine nurjus. Kas avada mõne teise rakendusega\?</string>
@@ -484,7 +482,6 @@
 \nKui sa soovid seda näha, siis lülita seadistustest „%1$s“ sisse.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube\'is leiduv „Piiratud režiim“ peidab võimaliku täiskasvanutele mõeldud sisu</string>
     <string name="show_age_restricted_content_summary">Näita sisu, mis vanusepiirangu tõttu ilmselt ei sobi lastele (näiteks 18+)</string>
-    <string name="peertube_instance_add_https_only">Sa saad kasutada vaid HTTPS-urle</string>
     <string name="night_theme_title">Öine teema</string>
     <string name="never">Ei iialgi</string>
     <string name="wifi_only">Vaid Wi-Fi võrgus</string>
@@ -611,8 +608,8 @@
     <string name="show_original_time_ago_title">Kuva elementide algupärane aeg</string>
     <string name="comments_are_disabled">Kommentaarid on välja lülitatud</string>
     <string name="error_report_open_github_notice">Palun kontrolli kas sinu kogetud krahhi käsitlev vearaport on juba olemas. Luues korduvraporteid võtad meilt aega, mida saaksime kulutada tegelike vigade parandamiseks.</string>
-    <string name="peertube_instance_add_exists">Instants on juba olemas</string>
-    <string name="peertube_instance_add_fail">Instantsi valideerimine nurjus</string>
+    <string name="instance_already_exists">Instants on juba olemas</string>
+    <string name="could_not_validate_instance">Instantsi valideerimine nurjus</string>
     <string name="feed_use_dedicated_fetch_method_summary">Saadaval mõnedes teenustes. See on tavaliselt palju kiirem, kuid võib tagastada piiratud koguse elemente ja sageli osalise informatsiooni (nt. puudub kestus, elemendi tüüp, laiv olek)</string>
     <string name="description_select_note">Sa saad nüüd valida kirjelduse tekstist. Pane tähele, et valikurežiimis võib leht vilkuda ja lingid ei pruugi olla klõpsatavd.</string>
     <string name="video_detail_by">Autor: %s</string>
@@ -651,7 +648,7 @@
     <string name="show_image_indicators_title">Näita piltide allikat</string>
     <string name="remote_search_suggestions">Kaugotsingu soovitused</string>
     <string name="local_search_suggestions">Kohaliku otsingu soovitused</string>
-    <string name="main_page_content_swipe_remove">Kirje eemaldamiseks viipa</string>
+    <string name="swipe_items_to_remove_them">Kirje eemaldamiseks viipa</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Kustutasin %1$s allalaadimise</item>
         <item quantity="other">Kustutasin %1$s allalaadimist</item>

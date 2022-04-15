@@ -436,12 +436,9 @@
     <string name="seek_duration_title">Duração da pesquisa de avanço/recuo rápido</string>
     <string name="peertube_instance_url_title">Instâncias PeerTube</string>
     <string name="peertube_instance_url_summary">Defina as suas instâncias favoritas PeerTube</string>
-    <string name="peertube_instance_url_help">Encontre as instâncias que gosta em %s</string>
-    <string name="peertube_instance_add_title">Adicionar instância</string>
-    <string name="peertube_instance_add_help">Digite o URL da instância</string>
-    <string name="peertube_instance_add_fail">Falha ao validar a instância</string>
-    <string name="peertube_instance_add_https_only">Apenas os URL HTTPS são suportados</string>
-    <string name="peertube_instance_add_exists">Instância já existe</string>
+    <string name="enter_instance_url">Digite o URL da instância</string>
+    <string name="could_not_validate_instance">Falha ao validar a instância</string>
+    <string name="instance_already_exists">Instância já existe</string>
     <string name="local">Local</string>
     <string name="recently_added">Recentes</string>
     <string name="most_liked">Mais apreciados</string>
@@ -659,7 +656,7 @@
         <item quantity="one">Descarga concluída</item>
         <item quantity="other">%s descargas concluídas</item>
     </plurals>
-    <string name="main_page_content_swipe_remove">Deslizar itens para removê-los</string>
+    <string name="swipe_items_to_remove_them">Deslizar itens para removê-los</string>
     <string name="start_main_player_fullscreen_summary">Não iniciar vídeos no reprodutor mini, mas ir diretamente ao ecrã completo se a rotação automática estiver bloqueada. Ainda pode aceder o reprodutor mini se sair do modo de ecrã completo</string>
     <string name="start_main_player_fullscreen_title">Iniciar reprodutor principal em ecrã completo</string>
     <string name="enqueued_next">Enfileirado o próximo</string>

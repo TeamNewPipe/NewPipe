@@ -240,7 +240,7 @@
     <string name="app_update_notification_content_text">Toca pa baxalu</string>
     <string name="error_progress_lost">Perdióse\'l progresu porque se desanició\'l ficheru</string>
     <string name="peertube_instance_url_title">Instancies de PeerTube</string>
-    <string name="peertube_instance_add_exists">La instancia yá esiste</string>
+    <string name="instance_already_exists">La instancia yá esiste</string>
     <string name="app_language_title">Llingua de l\'aplicación</string>
     <string name="systems_language">Lo predeterminao del sistema</string>
     <string name="videos_string">Vídeos</string>
@@ -260,7 +260,7 @@
     <string name="import_complete_toast">Importóse</string>
     <string name="could_not_import_all_files">Alvertencia: nun pudieron importase tolos ficheros.</string>
     <string name="settings_category_updates_title">Anovamientos</string>
-    <string name="peertube_instance_add_fail">Nun pudo validase la instancia</string>
+    <string name="could_not_validate_instance">Nun pudo validase la instancia</string>
     <plurals name="minutes">
         <item quantity="one">%d minutu</item>
         <item quantity="other">%d minutos</item>
@@ -516,10 +516,8 @@
     <string name="youtube_restricted_mode_enabled_title">Activar el «Mou torgáu» de YouTube</string>
     <string name="show_age_restricted_content_summary">Amuesa\'l conteníu que quiciabes nun seya afayadizu pa guaḥes porque tien una llende d\'edá (como +18)</string>
     <string name="settings_category_debug_title">Depuración</string>
-    <string name="peertube_instance_add_https_only">Namás se sofiten URLs HTTPS</string>
-    <string name="peertube_instance_add_help">Introduz la URL d\'una instancia</string>
-    <string name="peertube_instance_add_title">Amiestu d\'una instancia</string>
-    <string name="peertube_instance_url_help">Atopa les instancies que te presten en %s</string>
+
+    <string name="enter_instance_url">Introduz la URL d\'una instancia</string>
     <string name="peertube_instance_url_summary">Esbilla les instancies de PeerTube que prefieras</string>
     <string name="unsupported_url_dialog_message">Nun pudo reconocese la URL. ¿Abrila con otra aplicación\?</string>
     <string name="show_hold_to_append_summary">Amuesa\'l mensaxe al primir el nel botón «En segundu planu» o «Ventanu» nel «Details:» de los vídeos</string>

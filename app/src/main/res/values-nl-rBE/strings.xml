@@ -537,12 +537,9 @@
     <string name="youtube_restricted_mode_enabled_summary">YouTube biedt een \"beperkte modes\" aan, dit verbergt mogelijk materiaal voor volwassenen</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube \"beperkte modus\" aanzetten</string>
     <string name="show_age_restricted_content_summary">Toon inhoud die mogelijk niet geschikt is voor kinderen omwille van een leeftijdslimiet (zoals 18+)</string>
-    <string name="peertube_instance_add_exists">Kanaal bestaat al</string>
-    <string name="peertube_instance_add_https_only">Alleen HTTPS URL\'s worden ondersteund</string>
-    <string name="peertube_instance_add_fail">Kon kanaal niet valideren</string>
-    <string name="peertube_instance_add_help">Kanaal URL invoeren</string>
-    <string name="peertube_instance_add_title">Kanaal toevoegen</string>
-    <string name="peertube_instance_url_help">Vind het kanaal dat u leuk vindt op %s</string>
+    <string name="instance_already_exists">Kanaal bestaat al</string>
+    <string name="could_not_validate_instance">Kon kanaal niet valideren</string>
+    <string name="enter_instance_url">Kanaal URL invoeren</string>
     <string name="peertube_instance_url_summary">Selecteer je favoriete PeerTube kanaal</string>
     <string name="peertube_instance_url_title">PeerTube kanaal</string>
     <string name="unsupported_url_dialog_message">Kon de URL niet herkennen. In een andere app openen\?</string>
@@ -612,7 +609,7 @@
     <string name="high_quality_larger">Hoge kwaliteit (groter)</string>
     <string name="low_quality_smaller">Lage kwaliteit (kleiner)</string>
     <string name="start_main_player_fullscreen_title">Start hoofdspeler in volledig scherm</string>
-    <string name="main_page_content_swipe_remove">Veeg items om ze te verwijderen</string>
+    <string name="swipe_items_to_remove_them">Veeg items om ze te verwijderen</string>
     <string name="seekbar_preview_thumbnail_title">Zoekbalk miniatuurvoorbeeld</string>
     <string name="mark_as_watched">Markeer als bekeken</string>
     <string name="local_search_suggestions">Lokale zoeksuggesties</string>

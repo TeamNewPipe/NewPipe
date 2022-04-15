@@ -419,8 +419,6 @@
     <string name="drawer_header_description">Пераключыць службу, выбраную ў дадзены момант:</string>
     <string name="clear_playback_states_summary">Выдаліць ўсе пазіцыі прайгравання</string>
     <string name="youtube_restricted_mode_enabled_title">Абмежаваны рэжым YouTube</string>
-    <string name="peertube_instance_add_https_only">Падтрымліваюцца толькі адрасы URL HTTPS</string>
-    <string name="peertube_instance_add_title">Дадаць экзэмпляр</string>
     <string name="peertube_instance_url_title">Экзэмпляры PeerTube</string>
     <string name="search_showing_result_for">Вынікі для: %s</string>
     <string name="notification_scale_to_square_image_title">Мініяцюра відэа ў 1:1</string>
@@ -436,9 +434,9 @@
     <string name="delete_downloaded_files">Выдаліць загружаныя файлы</string>
     <string name="show_original_time_ago_summary">Арыгінальныя тэксты з сэрвісаў будуць бачны ў ленце элементаў</string>
     <string name="clear_cookie_summary">Ачысціце cookie, якія NewPipe захоўвае пры рашэнні reCAPTCHA</string>
-    <string name="peertube_instance_add_exists">Экзэмпляр ужо існуе</string>
-    <string name="peertube_instance_add_fail">Немагчыма праверыць экзэмпляр</string>
-    <string name="peertube_instance_add_help">Увесці URL экзэмпляра</string>
+    <string name="instance_already_exists">Экзэмпляр ужо існуе</string>
+    <string name="could_not_validate_instance">Немагчыма праверыць экзэмпляр</string>
+    <string name="enter_instance_url">Увесці URL экзэмпляра</string>
     <string name="peertube_instance_url_summary">Абярыце любімыя экзэмпляры PeerTube</string>
     <string name="clear_queue_confirmation_description">Актыўны плэер быў зменены</string>
     <string name="clear_queue_confirmation_summary">Змена плэера можа замяніць вашу чаргу</string>

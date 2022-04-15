@@ -461,7 +461,6 @@
     <string name="metadata_privacy_unlisted">Скрит</string>
     <string name="metadata_privacy_private">Частен</string>
     <string name="remote_search_suggestions">Предложения от сървъра</string>
-    <string name="peertube_instance_add_title">Добави инстанция</string>
     <string name="videos_string">Видеа</string>
     <string name="error_report_open_issue_button_text">Доклад в GitHub</string>
     <string name="copy_for_github">Копиране във форматиран вид</string>
@@ -516,7 +515,6 @@
     <string name="download_has_started">Изтеглянето започна</string>
     <string name="permission_denied">Действието отказано от системата</string>
     <string name="peertube_instance_url_summary">Изберете любимите си PeerTube инстанции</string>
-    <string name="peertube_instance_add_https_only">Поддържат се само HTTPS хипервръзки</string>
     <plurals name="minutes">
         <item quantity="one">%d минута</item>
         <item quantity="other">%d минути</item>
@@ -535,7 +533,7 @@
     <string name="remove_watched_popup_title">Премахни изгледаните видеа\?</string>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Да, както и само частично изгледаните видеа</string>
     <string name="subscribers_count_not_available">Брой на абонати не е наличен</string>
-    <string name="peertube_instance_add_exists">Инстанцията вече съществува</string>
+    <string name="instance_already_exists">Инстанцията вече съществува</string>
     <string name="missing_file">Файлът е преместен или изтрит</string>
     <string name="app_update_notification_channel_description">Известие за нова версия на NewPipe</string>
     <string name="peertube_instance_url_title">PeerTube инстанции</string>

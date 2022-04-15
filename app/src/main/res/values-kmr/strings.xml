@@ -200,12 +200,9 @@
     <string name="settings_category_video_audio_title">Video û deng</string>
     <string name="settings_category_player_behavior_title">Xwenîşandinî</string>
     <string name="settings_category_player_title">Lîstikvan</string>
-    <string name="peertube_instance_add_exists">Mînak jixwe heye</string>
-    <string name="peertube_instance_add_https_only">Tenê URL-yên HTTPS têne piştgirî kirin</string>
-    <string name="peertube_instance_add_fail">Mînak nehate pejirandin</string>
-    <string name="peertube_instance_add_help">URL-ya mînakê binivîse</string>
-    <string name="peertube_instance_add_title">Mînak zêde bikin</string>
-    <string name="peertube_instance_url_help">Mînakên ku hûn dixwazin li %s bibînin</string>
+    <string name="instance_already_exists">Mînak jixwe heye</string>
+    <string name="could_not_validate_instance">Mînak nehate pejirandin</string>
+    <string name="enter_instance_url">URL-ya mînakê binivîse</string>
     <string name="peertube_instance_url_summary">Mînakên xweyên bijare yên PeerTube hilbijêrin</string>
     <string name="peertube_instance_url_title">Mînakên PeerTube</string>
     <string name="content_language_title">Zimanê naveroka bixweber</string>

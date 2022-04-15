@@ -450,12 +450,9 @@
 \n
 \nSi desitgeu visualitzar-lo, activeu \"%1$s\" a paràmetres.</string>
     <string name="youtube_restricted_mode_enabled_title">Activa el \"mode restringit\" de YouTube</string>
-    <string name="peertube_instance_add_exists">La instància introduïda ja existeix</string>
-    <string name="peertube_instance_add_https_only">Només estàn soportades URLs HTTPS</string>
-    <string name="peertube_instance_add_fail">No ha estat possible validar la instància</string>
-    <string name="peertube_instance_add_help">Introdueix l\'enllaç d\'una instància</string>
-    <string name="peertube_instance_add_title">Afegeix-hi una instància</string>
-    <string name="peertube_instance_url_help">Troba les instàncies que t\'agraden en %s</string>
+    <string name="instance_already_exists">La instància introduïda ja existeix</string>
+    <string name="could_not_validate_instance">No ha estat possible validar la instància</string>
+    <string name="enter_instance_url">Introdueix l\'enllaç d\'una instància</string>
     <string name="peertube_instance_url_summary">Selecciona les teves instàncies preferides del PeerTube</string>
     <string name="peertube_instance_url_title">Instàncies del PeerTube</string>
     <string name="seek_duration_title">Avançar/-rebobinar duració cerca</string>
@@ -648,7 +645,7 @@
     <string name="mark_as_watched">Marca com a vist</string>
     <string name="processing_may_take_a_moment">Processant... Pot trigar un moment</string>
     <string name="start_main_player_fullscreen_title">Inicia el reproductor principal en pantalla completa</string>
-    <string name="main_page_content_swipe_remove">Llisqueu els elements per eliminar-los</string>
+    <string name="swipe_items_to_remove_them">Llisqueu els elements per eliminar-los</string>
     <string name="start_main_player_fullscreen_summary">Si la rotació automàtica està bloquejada, no inicieu vídeos al mini reproductor, sinó que aneu directament al mode de pantalla completa. Podeu accedir igualment al mini reproductor sortint de pantalla completa</string>
     <string name="error_report_channel_name">Notificació d\'informe d\'error</string>
     <string name="crash_the_player">Tancar abruptament el reproductor</string>

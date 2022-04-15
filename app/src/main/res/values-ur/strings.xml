@@ -431,12 +431,9 @@
     <string name="seek_duration_title">آگے بھگانے /- پیچھے کرنے کی مدت</string>
     <string name="peertube_instance_url_title">پیر ٹیوب واقعات</string>
     <string name="peertube_instance_url_summary">اپنے پسندیدہ پیر ٹیوب کی مثالیں منتخب کریں</string>
-    <string name="peertube_instance_url_help">ایسی مثالوں کی تلاش کریں جو آپ %s پر پسند کرتے ہیں</string>
-    <string name="peertube_instance_add_title">مثال شامل کریں</string>
-    <string name="peertube_instance_add_help">مثال کا URL درج کریں</string>
-    <string name="peertube_instance_add_fail">مثال کی توثیق نہیں کی جا سکی</string>
-    <string name="peertube_instance_add_https_only">صرف HTTPS URLs موافق ہیں</string>
-    <string name="peertube_instance_add_exists">مثال پہلے سے موجود ہے</string>
+    <string name="enter_instance_url">مثال کا URL درج کریں</string>
+    <string name="could_not_validate_instance">مثال کی توثیق نہیں کی جا سکی</string>
+    <string name="instance_already_exists">مثال پہلے سے موجود ہے</string>
     <string name="local">مقامی</string>
     <string name="recently_added">حال ہی میں شامل</string>
     <string name="most_liked">زیادہ پسندیدہ</string>

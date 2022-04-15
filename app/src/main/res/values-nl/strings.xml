@@ -434,12 +434,9 @@
     <string name="seek_duration_title">Duur voor-/achteruit spoelen</string>
     <string name="peertube_instance_url_title">PeerTube kanaal</string>
     <string name="peertube_instance_url_summary">Selecteer je favorite PeerTube kanaal</string>
-    <string name="peertube_instance_url_help">Vind het kanaal dat je leuk vindt op %s</string>
-    <string name="peertube_instance_add_title">Kanaal toevoegen</string>
-    <string name="peertube_instance_add_help">Kanaal URL invoeren</string>
-    <string name="peertube_instance_add_fail">Kon kanaal niet valideren</string>
-    <string name="peertube_instance_add_https_only">Alleen HTTPS URL\'s worden ondersteund</string>
-    <string name="peertube_instance_add_exists">Kanaal bestaat al</string>
+    <string name="enter_instance_url">Kanaal URL invoeren</string>
+    <string name="could_not_validate_instance">Kon kanaal niet valideren</string>
+    <string name="instance_already_exists">Kanaal bestaat al</string>
     <string name="local">Lokaal</string>
     <string name="recently_added">Recentelijk toegevoegd</string>
     <string name="playlist_no_uploader">Automatisch gegenereerd (geen uploader gevonden)</string>
@@ -661,7 +658,7 @@
     </plurals>
     <string name="enqueued_next">Volgende item in de wachtrij geplaatst</string>
     <string name="enqueue_next_stream">Plaats volgende item in de wachtrij</string>
-    <string name="main_page_content_swipe_remove">Veeg items om ze te verwijderen</string>
+    <string name="swipe_items_to_remove_them">Veeg items om ze te verwijderen</string>
     <string name="start_main_player_fullscreen_summary">Start geen video\'s in de minispeler, maar ga direct naar de volledige schermmodus, als automatisch draaien is vergrendeld. Je hebt nog steeds toegang tot de minispeler door de volledige schermmodus af te sluiten</string>
     <string name="start_main_player_fullscreen_title">Start hoofdspeler als volledig scherm</string>
     <string name="processing_may_take_a_moment">Verwerken... Dit kan even duren</string>

@@ -178,7 +178,7 @@
     <string name="default_content_country_title">內容預設國家</string>
     <string name="artists">演出者</string>
     <string name="albums">專輯</string>
-    <string name="peertube_instance_add_https_only">淨係支援 HTTPS 嘅 URL</string>
+
     <string name="settings_category_debug_title">除錯</string>
     <string name="undo">復原</string>
     <string name="file_deleted">刪除咗個檔案</string>
@@ -334,7 +334,7 @@
     <string name="title_most_played">最常播放</string>
     <string name="main_page_content">頭版內容</string>
     <string name="main_page_content_summary">頭版要擺放邊啲分頁</string>
-    <string name="main_page_content_swipe_remove">打橫掃走啲項目去剷走佢</string>
+    <string name="swipe_items_to_remove_them">打橫掃走啲項目去剷走佢</string>
     <string name="blank_page_summary">空白頁</string>
     <string name="localization_changes_requires_app_restart">重新開過個 app 之後就會轉新語言</string>
     <string name="trending">時興</string>
@@ -412,7 +412,6 @@
     <string name="auto_queue_title">自動輪候接續落串流</string>
     <string name="auto_queue_summary">排隊播要完嘅時候 (又未設定循環播放) 就追加一條咁上下嘅串流</string>
     <string name="peertube_instance_url_title">PeerTube 站</string>
-    <string name="peertube_instance_url_help">去 %s 發掘啱您心水嘅站</string>
     <string name="playlists">播放清單</string>
     <string name="error_report_channel_name">問題報告通知</string>
     <string name="error_report_channel_description">報告問題嘅通知</string>

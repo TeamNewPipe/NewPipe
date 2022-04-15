@@ -37,7 +37,7 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
-import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper;
+import org.schabi.newpipe.extractor.services.youtube.shared.YoutubePlaylistHelper;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
@@ -286,8 +286,8 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
         final String avatarUrl = result.getUploaderAvatarUrl();
         if (result.getServiceId() == ServiceList.YouTube.getServiceId()
-                && (YoutubeParsingHelper.isYoutubeMixId(result.getId())
-                || YoutubeParsingHelper.isYoutubeMusicMixId(result.getId()))) {
+                && (YoutubePlaylistHelper.isYoutubeMixId(result.getId())
+                || YoutubePlaylistHelper.isYoutubeMusicMixId(result.getId()))) {
             // this is an auto-generated playlist (e.g. Youtube mix), so a radio is shown
             final ShapeAppearanceModel model = ShapeAppearanceModel.builder()
                     .setAllCorners(CornerFamily.ROUNDED, 0f)

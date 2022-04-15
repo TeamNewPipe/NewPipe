@@ -434,12 +434,9 @@
     <string name="seek_duration_title">Daŭro de rapidpluiga/revolva serĉo</string>
     <string name="peertube_instance_url_title">Instancoj de PeerTube</string>
     <string name="peertube_instance_url_summary">Elekti viajn preferitajn instancojn de PeerTube</string>
-    <string name="peertube_instance_url_help">Trovu la instancojn ke vi ŝatas ĉe %s</string>
-    <string name="peertube_instance_add_title">Aldoni instanco</string>
-    <string name="peertube_instance_add_help">Eniri la ligilon de la instanco</string>
-    <string name="peertube_instance_add_fail">Ne povis validigi instanco</string>
-    <string name="peertube_instance_add_https_only">Nur HTTPS ligiloj estas subtenitaj</string>
-    <string name="peertube_instance_add_exists">La instanco jam ekzistas</string>
+    <string name="enter_instance_url">Eniri la ligilon de la instanco</string>
+    <string name="could_not_validate_instance">Ne povis validigi instanco</string>
+    <string name="instance_already_exists">La instanco jam ekzistas</string>
     <string name="local">Lokaj</string>
     <string name="recently_added">Freŝe aldonitaj</string>
     <string name="most_liked">La plej ŝatitaj</string>

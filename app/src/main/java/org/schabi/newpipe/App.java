@@ -21,8 +21,8 @@ import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.PicassoHelper;
-import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
+import org.schabi.newpipe.util.services.ServiceHelper;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;

@@ -461,12 +461,9 @@
     <string name="background_player_playing_toast">Duke luajtur në sfond</string>
     <string name="settings_category_updates_title">Përditësimet</string>
     <string name="settings_category_debug_title">Rregullo</string>
-    <string name="peertube_instance_add_exists">Instanca ekziston tashmë</string>
-    <string name="peertube_instance_add_https_only">Vetëm URL-të HTTPS janë të mbështetura</string>
-    <string name="peertube_instance_add_fail">Nuk arriti të vërtetësohej instanca</string>
-    <string name="peertube_instance_add_help">Vendosni URL e instancës</string>
-    <string name="peertube_instance_add_title">Shtoni instancë</string>
-    <string name="peertube_instance_url_help">Gjeni instancat që ju pëlqeni në %s</string>
+    <string name="instance_already_exists">Instanca ekziston tashmë</string>
+    <string name="could_not_validate_instance">Nuk arriti të vërtetësohej instanca</string>
+    <string name="enter_instance_url">Vendosni URL e instancës</string>
     <string name="peertube_instance_url_summary">Zgjidhni instancat tuaja të preferuara të PeerTube</string>
     <string name="peertube_instance_url_title">Instancat PeerTube</string>
     <string name="default_content_country_title">Shteti i parazgjedhur i përmbajtjes</string>

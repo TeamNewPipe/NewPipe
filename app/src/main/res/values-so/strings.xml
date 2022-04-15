@@ -367,12 +367,9 @@
     <string name="settings_category_video_audio_title">Muuqaalada &amp; Dhagaysiga</string>
     <string name="settings_category_player_title">Daareha</string>
     <string name="settings_category_player_behavior_title">Dabeecada</string>
-    <string name="peertube_instance_add_exists">Qaybtan horay ayay ujirtay</string>
-    <string name="peertube_instance_add_https_only">Kaliya waxaa la taageeraa tixraacyada HTTPS-ka ah</string>
-    <string name="peertube_instance_add_fail">Lama ansixin karo qaybtan</string>
-    <string name="peertube_instance_add_help">Gali tixraaca qaybta</string>
-    <string name="peertube_instance_add_title">Ku dar qayb</string>
-    <string name="peertube_instance_url_help">Ka hel qaybaha aad jeceshahay %s</string>
+    <string name="instance_already_exists">Qaybtan horay ayay ujirtay</string>
+    <string name="could_not_validate_instance">Lama ansixin karo qaybtan</string>
+    <string name="enter_instance_url">Gali tixraaca qaybta</string>
     <string name="peertube_instance_url_summary">Dooro qaybaha aad jeceshahay ee PeerTube-ka</string>
     <string name="peertube_instance_url_title">Qaybaha PeerTube</string>
     <string name="content_language_title">Luuqada muuqaalka/dhagaysiga</string>

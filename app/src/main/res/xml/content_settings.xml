@@ -42,7 +42,15 @@
         app:iconSpaceReserved="false" />
 
     <PreferenceScreen
-        android:fragment="org.schabi.newpipe.settings.PeertubeInstanceListFragment"
+        android:fragment="org.schabi.newpipe.settings.serviceinstances.youtubelike.YouTubeLikeInstanceListFragment"
+        android:key="@string/yt_like_instance_setup_key"
+        android:summary="@string/yt_like_instance_url_summary"
+        android:title="@string/yt_like_instance_url_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
+        android:fragment="org.schabi.newpipe.settings.serviceinstances.peertube.PeertubeInstanceListFragment"
         android:key="@string/peertube_instance_setup_key"
         android:summary="@string/peertube_instance_url_summary"
         android:title="@string/peertube_instance_url_title"

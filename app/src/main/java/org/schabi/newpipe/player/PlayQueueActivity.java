@@ -40,7 +40,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
-import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.services.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 public final class PlayQueueActivity extends AppCompatActivity

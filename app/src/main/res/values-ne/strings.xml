@@ -430,12 +430,9 @@
     <string name="seek_duration_title">छिटो-अगाडि /-पछाडी खोज्न अवधि</string>
     <string name="peertube_instance_url_title">PeerTube उदाहरणहरू</string>
     <string name="peertube_instance_url_summary">आफ्नो मनपर्ने PeerTube उदाहरणहरू चयन</string>
-    <string name="peertube_instance_url_help">%s मा तपाईंलाई मनपर्ने ईन्स्टान्सहरू फेला पार्नुहोस्</string>
-    <string name="peertube_instance_add_title">उदाहरण थप्नुहोस्</string>
-    <string name="peertube_instance_add_help">उदाहरणका URL प्रविष्ट गर्नुहोस्</string>
-    <string name="peertube_instance_add_fail">उदाहरणका मान्य सकेन</string>
-    <string name="peertube_instance_add_https_only">HTTPS URL हरू मात्र समर्थित</string>
-    <string name="peertube_instance_add_exists">उदाहरणका पहिले नै अवस्थित</string>
+    <string name="enter_instance_url">उदाहरणका URL प्रविष्ट गर्नुहोस्</string>
+    <string name="could_not_validate_instance">उदाहरणका मान्य सकेन</string>
+    <string name="instance_already_exists">उदाहरणका पहिले नै अवस्थित</string>
     <string name="local">स्थानिय</string>
     <string name="recently_added">हालसालै थपिएको</string>
     <string name="most_liked">सबैभन्दा धेरै मनपराइएको</string>

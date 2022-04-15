@@ -336,12 +336,9 @@
     <string name="delete_playback_states_alert">Ștergeți toate pozițiile din playback\?</string>
     <string name="clear_playback_states_summary">Ștergeți toate pozițiile de redare</string>
     <string name="videos_string">Videoclipuri</string>
-    <string name="peertube_instance_add_exists">Instanța există deja</string>
-    <string name="peertube_instance_add_https_only">Sunt acceptate numai URL-urile HTTPS</string>
-    <string name="peertube_instance_add_fail">Nu s-a putut valida instanța</string>
-    <string name="peertube_instance_add_help">Introduceți URL-ul instanței</string>
-    <string name="peertube_instance_add_title">Adăugați o instanță</string>
-    <string name="peertube_instance_url_help">Găsiți instanțele care vă plac pe %s</string>
+    <string name="instance_already_exists">Instanța există deja</string>
+    <string name="could_not_validate_instance">Nu s-a putut valida instanța</string>
+    <string name="enter_instance_url">Introduceți URL-ul instanței</string>
     <string name="peertube_instance_url_summary">Selectați instanțele PeerTube preferate</string>
     <string name="peertube_instance_url_title">Instanțe PeerTube</string>
     <string name="seek_duration_title">Durată derulare rapidă înainte/înapoi</string>
@@ -662,7 +659,7 @@
         <item quantity="other">%s de descărcări finalizate</item>
     </plurals>
     <string name="disable_media_tunneling_title">Dezactivați tunelarea media</string>
-    <string name="main_page_content_swipe_remove">Glisați elementele pentru a le elimina</string>
+    <string name="swipe_items_to_remove_them">Glisați elementele pentru a le elimina</string>
     <string name="no_dir_yet">Încă nu este setat niciun folder de descărcare, alegeți acum folderul de descărcare implicit</string>
     <string name="comments_are_disabled">Comentariile sunt dezactivate</string>
     <string name="start_main_player_fullscreen_summary">Nu porniți videoclipurile în mini player, ci treceți direct la modul ecran complet, dacă rotația automată este blocată. Puteți accesa în continuare mini playerul ieșind din modul fullscreen</string>

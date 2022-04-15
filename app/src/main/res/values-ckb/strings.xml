@@ -90,7 +90,7 @@
     <string name="enqueue">نۆبه‌ت</string>
     <string name="play_with_kodi_title">لێدان به‌ Kodi</string>
     <string name="error_unable_to_load_comments">ناتوانرێت لێدوانەکان باربکرێن</string>
-    <string name="peertube_instance_add_help">بەستەری دۆخ دابنێ</string>
+    <string name="enter_instance_url">بەستەری دۆخ دابنێ</string>
     <string name="download_path_audio_summary">فایلی دەنگە دابه‌زێنراوەکان لێرەدا هەڵدەگیرێن</string>
     <string name="error_snackbar_message">ببورە، هەندێك کێشە ڕوویدا.</string>
     <string name="export_to">هەناردە کردن بۆ</string>
@@ -197,7 +197,6 @@
     <string name="msg_running_detail">كرتە بکە بۆ وردەکاری</string>
     <string name="delete_playback_states_alert">شوێنی هەموو کارپێکراوەکان بسڕدرێنەوە؟</string>
     <string name="top_50">باشترین ٥٠</string>
-    <string name="peertube_instance_add_https_only">تەنها بەستەرەکانی https پشتگیریکراون</string>
     <string name="error_ssl_exception">پەیوەستبوونی پارێزراو هه‌ره‌سی هێنا</string>
     <string name="remove_watched_popup_warning">ئەو ڤیدیۆیانەی پێشتر سەیرت کردوون و دواتر زیادت کردوون بۆ خشتەلێدان لادەدرێن.
 \nئایا دڵنیایت؟ ئەمە ناگەڕێنرێتەوە!</string>
@@ -227,7 +226,7 @@
     <string name="play_audio">ده‌نگ</string>
     <string name="show_original_time_ago_title">پیشاندانی کاتی بنچینەیی پێشوو لەسەر بابەتەکان</string>
     <string name="play_queue_stream_detail">وردەکارییەکان</string>
-    <string name="peertube_instance_add_exists">هەمان دۆخ کاراکراوە</string>
+    <string name="instance_already_exists">هەمان دۆخ کاراکراوە</string>
     <string name="content_language_title">زمانی بنەڕەتی بابەت</string>
     <string name="tab_bookmarks">خشتەلێدانه‌ نیشانەکراوەکان</string>
     <string name="privacy_policy_title">سیاسەتی تایبەتی نیوپایپ</string>
@@ -335,14 +334,12 @@
     <string name="songs">گۆرانییەکان</string>
     <string name="controls_download_desc">دابه‌زاندنی فایلی پەخش</string>
     <string name="list_view_mode">شێوازی پیشاندانی خشتە</string>
-    <string name="peertube_instance_add_title">زیادکردنی دۆخ</string>
     <string name="accept">پەسەند</string>
     <string name="delete_playlist_prompt">ئەم خشتەلێدانه‌ بسڕدرێتەوە؟</string>
     <string name="mute">بێدەنگکردن</string>
     <string name="website_encouragement">سەردانی ماڵپەڕی نیوپایپ بکە بۆ زانیاری و هەواڵی نوێ.</string>
     <string name="app_description">به‌رنامه‌یه‌كی خۆڕایی و کێشکەم بۆ پەخش لەسەر ئەندرۆید.</string>
     <string name="content_not_available">بابەت به‌رده‌ست نییە</string>
-    <string name="peertube_instance_url_help">ئەو دۆخانە بدۆزەرەوە کە لەگەڵ خۆتدا دەگونجێن لە %s</string>
     <string name="file">فایل</string>
     <string name="error_http_not_found">نەدۆزرایەوە</string>
     <string name="post_processing">چارەسەردەکرێت</string>
@@ -478,7 +475,7 @@
     <string name="error_report_title">هەڵە لە سكاڵا</string>
     <string name="metadata_cache_wipe_summary">سڕینەوەی پاشماوەی هەموو ماڵپه‌ڕه‌كان</string>
     <string name="kore_not_found">بەرنامەکە نه‌دۆزرایه‌وه‌. دابمه‌زرێت؟</string>
-    <string name="peertube_instance_add_fail">ناتوانرێ پشتگیری دۆخەکە بکرێ</string>
+    <string name="could_not_validate_instance">ناتوانرێ پشتگیری دۆخەکە بکرێ</string>
     <string name="install">دامەزراندن</string>
     <string name="videos_string">ڤیدیۆکان</string>
     <string name="unsupported_url">بەستەرەکە پشتگیری نەکراوە</string>
@@ -658,7 +655,7 @@
         <item quantity="one">دابەزاندن تەواوبوو</item>
         <item quantity="other">%s دابەزاندن تەواوبوون</item>
     </plurals>
-    <string name="main_page_content_swipe_remove">لادانی بابەتەکان بە سواندنیان</string>
+    <string name="swipe_items_to_remove_them">لادانی بابەتەکان بە سواندنیان</string>
     <string name="start_main_player_fullscreen_summary">لە حاڵەتێکدا کە لاربوونەوە ناکارا کرابوو ، ئەوا لەجیاتی لێدانی ڤیدیۆکان لە لێدەرێکی بچووکدا ، ڕاستەوخۆ ڤیدیۆکان لە دۆخی پڕ بە ڕوونمادا لێبدرێن. دەتوانیت بە دەرچوونت لەسەر ڤیدیۆکە بەردەوام بیت لەسەر لێدەرێکی بچووک</string>
     <string name="start_main_player_fullscreen_title">دەستپێکردنی لێدەری سەرەکی لە ڕوونماپڕ</string>
     <string name="enqueue_next_stream">لە نۆبەت دانان بۆ دواتر</string>

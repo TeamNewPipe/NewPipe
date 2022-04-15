@@ -298,12 +298,9 @@
     <string name="settings_category_video_audio_title">വീഡിയോയും ഓഡിയോയും</string>
     <string name="settings_category_player_behavior_title">സ്വഭാവം</string>
     <string name="settings_category_player_title">പ്ലെയർ</string>
-    <string name="peertube_instance_add_exists">സന്ദർഭം നേരത്തെ നിലവിലുണ്ട്</string>
-    <string name="peertube_instance_add_https_only">HTTPS URL കൾ മാത്രമേ പിന്തുണക്കുകയുള്ളൂ</string>
-    <string name="peertube_instance_add_fail">സന്ദർഭം സാധൂകരിക്കാൻ സാധിച്ചില്ല</string>
-    <string name="peertube_instance_add_help">സന്ദർഭത്തിന്റെ URL കൂട്ടിച്ചേർക്കുക</string>
-    <string name="peertube_instance_add_title">സന്ദർഭം ചേർക്കുക</string>
-    <string name="peertube_instance_url_help">%s-ൽ നിങ്ങൾ ഇഷ്ടപ്പെടുന്ന സന്ദർഭങ്ങളെ കണ്ടെത്തുക</string>
+    <string name="instance_already_exists">സന്ദർഭം നേരത്തെ നിലവിലുണ്ട്</string>
+    <string name="could_not_validate_instance">സന്ദർഭം സാധൂകരിക്കാൻ സാധിച്ചില്ല</string>
+    <string name="enter_instance_url">സന്ദർഭത്തിന്റെ URL കൂട്ടിച്ചേർക്കുക</string>
     <string name="peertube_instance_url_summary">നിങ്ങളുടെ പ്രിയപ്പെട്ട പിയർട്യൂബ് സന്ദർഭങ്ങളെ തിരഞ്ഞെടുക്കുക</string>
     <string name="peertube_instance_url_title">പിയർട്യൂബ് സന്ദർഭങ്ങൾ</string>
     <string name="content_language_title">സ്ഥിര കന്റെന്റ്‌ ഭാഷ</string>
@@ -651,6 +648,6 @@
     <string name="local_search_suggestions">ലോക്കൽ സെർച്ച്‌ നിർദേശങ്ങൾ</string>
     <string name="mark_as_watched">കണ്ടതാണെന്ന് അടയാളപ്പെടുത്തുക</string>
     <string name="start_main_player_fullscreen_title">തുടങ്ങുന്ന പ്രേധാന പേജ് മുഴുവന്‍ സ്ക്രീനില്‍ കാണിക്കുക</string>
-    <string name="main_page_content_swipe_remove">ഐറ്റം കളയണം എന്നുണ്ടെല്‍ സ്വൈപ്പ് ചൈയ്യുക</string>
+    <string name="swipe_items_to_remove_them">ഐറ്റം കളയണം എന്നുണ്ടെല്‍ സ്വൈപ്പ് ചൈയ്യുക</string>
     <string name="start_main_player_fullscreen_summary">മിനി പ്ലേയര്‍ -ല്‍ വീഡിയോ -ക്കള്‍ ഒരിക്കലും സ്റ്റാര്‍ട്ട് ചൈയ്യരുത് , പക്ഷേ നേരെ ഫുള്‍ സ്ക്രീന്‍ മോഡിലെക് മാറും .ഓട്ടോ റൊട്ടേഷന്‍ ലോക്ക് ചെയിത്തിട്ടുണ്ടെങ്കില്‍ നിലവിലെ ഫുള്‍ സ്ക്രീന്‍ നില്‍ നിന്നും മിനി പ്ലായേറിലെക് മാറാന്‍ ആകും</string>
 </resources>

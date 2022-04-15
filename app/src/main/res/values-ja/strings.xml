@@ -431,12 +431,9 @@
     <string name="seek_duration_title">高速早送り/巻き戻し時間</string>
     <string name="peertube_instance_url_title">PeerTube インスタンス</string>
     <string name="peertube_instance_url_summary">PeerTube インスタンスを選択する</string>
-    <string name="peertube_instance_url_help">あなたに最適なインスタンスを探す: %s</string>
-    <string name="peertube_instance_add_title">インスタンスを追加</string>
-    <string name="peertube_instance_add_help">インスタンスの URL を入力</string>
-    <string name="peertube_instance_add_fail">インスタンスを検証することができませんでした</string>
-    <string name="peertube_instance_add_https_only">HTTPS の URL のみに対応しています</string>
-    <string name="peertube_instance_add_exists">インスタンスはすでに存在しています</string>
+    <string name="enter_instance_url">インスタンスの URL を入力</string>
+    <string name="could_not_validate_instance">インスタンスを検証することができませんでした</string>
+    <string name="instance_already_exists">インスタンスはすでに存在しています</string>
     <string name="local">ローカル</string>
     <string name="recently_added">最近追加された</string>
     <string name="most_liked">高評価</string>
@@ -638,7 +635,7 @@
     <string name="mark_as_watched">視聴済みとしてマーク</string>
     <string name="remote_search_suggestions">リモート検索候補</string>
     <string name="local_search_suggestions">ローカル検索候補</string>
-    <string name="main_page_content_swipe_remove">アイテムをスワイプして削除</string>
+    <string name="swipe_items_to_remove_them">アイテムをスワイプして削除</string>
     <string name="start_main_player_fullscreen_summary">直接フルスクリーンモードに切り替えて、ミニプレイヤーで動画を開始しません。自動回転がロックされている場合でも、フルスクリーンを終了することでミニプレイヤーにアクセスできます</string>
     <string name="start_main_player_fullscreen_title">フルスクリーンでメインプレイヤーを開始</string>
     <plurals name="deleted_downloads_toast">

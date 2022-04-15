@@ -28,7 +28,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.services.ServiceHelper;
 
 import java.util.ArrayList;
 import java.util.List;

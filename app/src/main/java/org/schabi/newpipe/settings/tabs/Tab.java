@@ -29,7 +29,7 @@ import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.util.KioskTranslator;
-import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.services.ServiceHelper;
 
 import java.util.Objects;
 

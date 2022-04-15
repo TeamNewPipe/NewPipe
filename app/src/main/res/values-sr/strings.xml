@@ -485,12 +485,9 @@
     <string name="youtube_restricted_mode_enabled_title">Укључити Јутјубов „Ограничени режим“</string>
     <string name="show_age_restricted_content_summary">Приказ садржаја који можда није прикладан за децу јер има старосну границу (попут 18+)</string>
     <string name="settings_category_updates_title">Ажурирања</string>
-    <string name="peertube_instance_add_exists">Инстанца већ постоји</string>
-    <string name="peertube_instance_add_https_only">Подржане су само HTTPS УРЛ адресе</string>
-    <string name="peertube_instance_add_fail">Не могу да потврдим инстанцу</string>
-    <string name="peertube_instance_add_help">Унесите УРЛ инстанце</string>
-    <string name="peertube_instance_add_title">Додајте инстанцу</string>
-    <string name="peertube_instance_url_help">Пронађите инстанце које вам се свиђају на %s</string>
+    <string name="instance_already_exists">Инстанца већ постоји</string>
+    <string name="could_not_validate_instance">Не могу да потврдим инстанцу</string>
+    <string name="enter_instance_url">Унесите УРЛ инстанце</string>
     <string name="peertube_instance_url_title">PeerTube инстанца</string>
     <string name="peertube_instance_url_summary">Изаберите своје омиљене инстанце PeerTube</string>
     <string name="unsupported_url_dialog_message">УРЛ није препознат. Отворити другом апликацијом\?</string>

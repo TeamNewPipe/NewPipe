@@ -436,12 +436,9 @@
     <string name="seek_duration_title">Durata avanzamento e riavvolgimento rapidi</string>
     <string name="peertube_instance_url_title">Istanze PeerTube</string>
     <string name="peertube_instance_url_summary">Seleziona le istanze PeerTube preferite</string>
-    <string name="peertube_instance_url_help">Trova altre istanze su %s</string>
-    <string name="peertube_instance_add_title">Aggiungi istanza</string>
-    <string name="peertube_instance_add_help">Inserisci l\'URL dell\'istanza</string>
-    <string name="peertube_instance_add_fail">Impossibile convalidare l\'istanza</string>
-    <string name="peertube_instance_add_https_only">Sono supportati solo gli URL HTTPS</string>
-    <string name="peertube_instance_add_exists">L\'istanza esiste già</string>
+    <string name="enter_instance_url">Inserisci l\'URL dell\'istanza</string>
+    <string name="could_not_validate_instance">Impossibile convalidare l\'istanza</string>
+    <string name="instance_already_exists">L\'istanza esiste già</string>
     <string name="local">Locale</string>
     <string name="recently_added">Aggiunti di recente</string>
     <string name="most_liked">Più piaciuti</string>
@@ -659,7 +656,7 @@
         <item quantity="one">Download completato</item>
         <item quantity="other">%s download completati</item>
     </plurals>
-    <string name="main_page_content_swipe_remove">Scorri gli elementi per rimuoverli</string>
+    <string name="swipe_items_to_remove_them">Scorri gli elementi per rimuoverli</string>
     <string name="start_main_player_fullscreen_summary">Se la rotazione automatica è bloccata, i video non saranno avviati nel mini player, ma direttamente a schermo intero. È comunque possibile accedere al mini player uscendo dalla modalità a schermo intero</string>
     <string name="start_main_player_fullscreen_title">Avvia il lettore principale a schermo intero</string>
     <string name="enqueued_next">Aggiunto alla coda come prossimo</string>

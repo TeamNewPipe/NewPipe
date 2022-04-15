@@ -331,10 +331,7 @@
     <string name="youtube_restricted_mode_enabled_title">Įjungti YouTube „apribotą režimą“</string>
     <string name="show_age_restricted_content_summary">Rodyti turinį kuris gali būti netinkamas vaikams (18+)</string>
     <string name="settings_category_updates_title">Atnaujinimai</string>
-    <string name="peertube_instance_add_exists">Kopija jau yra</string>
-    <string name="peertube_instance_add_https_only">Palaikomi tik HTTPS adresai</string>
-    <string name="peertube_instance_add_title">Pridėti kopiją</string>
-    <string name="peertube_instance_url_help">Pasirinkite patikusias kopijas %s</string>
+    <string name="instance_already_exists">Kopija jau yra</string>
     <string name="peertube_instance_url_summary">Pasirinkite mėgiamiausias PeerTube kopijas</string>
     <string name="peertube_instance_url_title">PeerTube kopijos</string>
     <string name="unsupported_url_dialog_message">URL neatpažintas. Atverti kita programa\?</string>
@@ -374,8 +371,8 @@
     <string name="notification_scale_to_square_image_title">Pakeisti miniatiūrų dydi 1:1 santykiu</string>
     <string name="watch_history_states_deleted">Atkūrimo vietos pašalintos</string>
     <string name="delete_playback_states_alert">Pašalinti visas atkūrimo vietas\?</string>
-    <string name="peertube_instance_add_fail">Netinkama kopija</string>
-    <string name="peertube_instance_add_help">Įveskite kopijos URL</string>
+    <string name="could_not_validate_instance">Netinkama kopija</string>
+    <string name="enter_instance_url">Įveskite kopijos URL</string>
     <string name="enable_playback_resume_summary">Atstatyti paskutinį atkūrimo laiką</string>
     <string name="enable_playback_resume_title">Tęsti atkūrimą</string>
     <string name="show_description_title">Rodyti aprašymą</string>
@@ -671,7 +668,7 @@
         <item quantity="few">%s atsiuntimai baigti</item>
         <item quantity="other">%s atsiuntimų baigta</item>
     </plurals>
-    <string name="main_page_content_swipe_remove">Perbraukite elementus, kad juos pašalintumėte</string>
+    <string name="swipe_items_to_remove_them">Perbraukite elementus, kad juos pašalintumėte</string>
     <string name="start_main_player_fullscreen_summary">Nepradėti vaizdo įrašų naudojant mini grotuvą, o iškart įjungti viso ekrano režimą, jei automatinis pasukimas yra užrakintas. Vis tiek galėsite pasiekti mini grotuvą išėję iš viso ekrano rėžimo</string>
     <string name="start_main_player_fullscreen_title">Paleisti pagrindinį grotuvą viso ekrano režimu</string>
     <string name="enqueued_next">Sekantis pridėtas į eilę</string>

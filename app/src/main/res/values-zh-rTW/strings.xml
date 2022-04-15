@@ -431,12 +431,9 @@
     <string name="seek_duration_title">快轉／快退搜尋持續時間</string>
     <string name="peertube_instance_url_title">PeerTube 站臺</string>
     <string name="peertube_instance_url_summary">選取您最愛的 PeerTube 站臺</string>
-    <string name="peertube_instance_url_help">在 %s 上找到您喜愛的站臺</string>
-    <string name="peertube_instance_add_title">新增站臺</string>
-    <string name="peertube_instance_add_help">輸入站臺 URL</string>
-    <string name="peertube_instance_add_fail">無法驗證站臺</string>
-    <string name="peertube_instance_add_https_only">僅支援 HTTPS URL</string>
-    <string name="peertube_instance_add_exists">站臺已存在</string>
+    <string name="enter_instance_url">輸入站臺 URL</string>
+    <string name="could_not_validate_instance">無法驗證站臺</string>
+    <string name="instance_already_exists">站臺已存在</string>
     <string name="local">本機</string>
     <string name="recently_added">最近新增</string>
     <string name="most_liked">最喜歡</string>
@@ -647,7 +644,7 @@
     <plurals name="download_finished_notification">
         <item quantity="other">%s 下載已完成</item>
     </plurals>
-    <string name="main_page_content_swipe_remove">滑動項目即可移除</string>
+    <string name="swipe_items_to_remove_them">滑動項目以刪除它們</string>
     <string name="start_main_player_fullscreen_summary">如果自動旋轉被鎖定，請不要在迷你播放器中啟動影片，而是直接切換到全螢幕模式。您仍然可以透過結束全螢幕存取迷你播放器</string>
     <string name="start_main_player_fullscreen_title">以全螢幕開始主播放器</string>
     <string name="enqueued_next">已將下一個加入佇列</string>

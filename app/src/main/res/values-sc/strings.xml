@@ -441,12 +441,9 @@
     <string name="settings_category_video_audio_title">Vìdeos e àudio</string>
     <string name="settings_category_player_behavior_title">Cumportamentu</string>
     <string name="settings_category_player_title">Riproduidore</string>
-    <string name="peertube_instance_add_exists">S\'istàntzia esistit giai</string>
-    <string name="peertube_instance_add_https_only">Petzi sos URL HTTPS sunt suportados</string>
-    <string name="peertube_instance_add_fail">Impossìbile cunvalidare s\'istàntzia</string>
-    <string name="peertube_instance_add_help">Inserta s\'URL de s\'istàntzia</string>
-    <string name="peertube_instance_add_title">Annanghe un\'istàntzia</string>
-    <string name="peertube_instance_url_help">Agata sas istàntzias chi t\'agradant in %s</string>
+    <string name="instance_already_exists">S\'istàntzia esistit giai</string>
+    <string name="could_not_validate_instance">Impossìbile cunvalidare s\'istàntzia</string>
+    <string name="enter_instance_url">Inserta s\'URL de s\'istàntzia</string>
     <string name="peertube_instance_url_summary">Ischerta sas istàntzias de PeerTube preferidas tuas</string>
     <string name="peertube_instance_url_title">Istàntzias de PeerTube</string>
     <string name="content_language_title">Limba predefinida pro sos cuntenutos</string>
@@ -659,7 +656,7 @@
         <item quantity="one">Iscarrigamentu acabadu</item>
         <item quantity="other">%s iscarrigamentos acabados</item>
     </plurals>
-    <string name="main_page_content_swipe_remove">Trìsina sos elementos pro los bogare</string>
+    <string name="swipe_items_to_remove_them">Trìsina sos elementos pro los bogare</string>
     <string name="start_main_player_fullscreen_summary">Si sa rotatzione automàtica est blocada no avies sos vìdeos in su riproduidore mini ma diretamente in sa modalidade a ischermu intreu. Podes atzèdere su matessi a su riproduidore mini essende dae s\'ischermu intreu</string>
     <string name="start_main_player_fullscreen_title">Allughe su letore printzipale a ischermu intreu</string>
     <string name="enqueued_next">Postu in lista comente imbeniente</string>

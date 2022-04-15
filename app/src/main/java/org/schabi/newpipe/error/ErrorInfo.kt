@@ -12,7 +12,7 @@ import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException
 import org.schabi.newpipe.extractor.exceptions.ExtractionException
-import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor.DeobfuscateException
+import org.schabi.newpipe.extractor.services.youtube.youtube.extractors.YoutubeStreamExtractor.DeobfuscateException
 import org.schabi.newpipe.ktx.isNetworkRelated
 import java.io.PrintWriter
 import java.io.StringWriter

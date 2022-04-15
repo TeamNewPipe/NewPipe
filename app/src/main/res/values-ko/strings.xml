@@ -431,12 +431,9 @@
     <string name="seek_duration_title">빠른-감기/되감기 찾는 시간</string>
     <string name="peertube_instance_url_title">피어튜브 인스턴스</string>
     <string name="peertube_instance_url_summary">당신이 선호하는 피어튜브 인스턴스를 선택하세요.</string>
-    <string name="peertube_instance_url_help">%s에서 당신이 좋아하는 인스턴스를 찾으세요.</string>
-    <string name="peertube_instance_add_title">인스턴스 추가하기</string>
-    <string name="peertube_instance_add_help">인스턴스 URL을 입력하세요.</string>
-    <string name="peertube_instance_add_fail">인스턴스를 검증할 수 없습니다.</string>
-    <string name="peertube_instance_add_https_only">오직 HTTPS URL들만 지원합니다.</string>
-    <string name="peertube_instance_add_exists">인스턴스가 이미 존재합니다.</string>
+    <string name="enter_instance_url">인스턴스 URL을 입력하세요.</string>
+    <string name="could_not_validate_instance">인스턴스를 검증할 수 없습니다.</string>
+    <string name="instance_already_exists">인스턴스가 이미 존재합니다.</string>
     <string name="local">로컬</string>
     <string name="recently_added">최근에 추가됨.</string>
     <string name="most_liked">가장 선호하는</string>

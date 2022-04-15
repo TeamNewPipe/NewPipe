@@ -417,11 +417,9 @@
     <string name="delete_playback_states_alert">Xác nhận xóa toàn bộ vị trí phát\?</string>
     <string name="feed_groups_header_title">Nhóm kênh</string>
     <string name="choose_instance_prompt">Chọn thực thể</string>
-    <string name="peertube_instance_add_exists">Thực thể đã tồn tại</string>
-    <string name="peertube_instance_add_fail">Không thể xác nhận thực thể</string>
-    <string name="peertube_instance_add_help">Nhập URL thực thể</string>
-    <string name="peertube_instance_add_title">Thêm thực thể</string>
-    <string name="peertube_instance_url_help">Tìm thực thể bạn thích trên %s</string>
+    <string name="instance_already_exists">Thực thể đã tồn tại</string>
+    <string name="could_not_validate_instance">Không thể xác nhận thực thể</string>
+    <string name="enter_instance_url">Nhập URL thực thể</string>
     <plurals name="days">
         <item quantity="other">%d ngày</item>
     </plurals>
@@ -472,8 +470,7 @@
     <string name="restricted_video">Video này bị giới hạn độ tuổi.
 \n
 \nBật \"%1$s\" trong cài đặt nếu bạn muốn xem video này.</string>
-    <string name="youtube_restricted_mode_enabled_title">Bật chế độ hạn chế Youtube</string>
-    <string name="peertube_instance_add_https_only">Chỉ URL HTTPS được hỗ trợ</string>
+    <string name="youtube_restricted_mode_enabled_title">hế độ giới hạn YouTube</string>
     <string name="peertube_instance_url_summary">Chọn thực thể PeerTube ưa thích</string>
     <string name="peertube_instance_url_title">Thực thể PeerTube</string>
     <string name="seek_duration_title">Thời lượng tua video</string>
@@ -647,7 +644,7 @@
     <plurals name="download_finished_notification">
         <item quantity="other">%s lượt tải xuống đã hoàn tất</item>
     </plurals>
-    <string name="main_page_content_swipe_remove">Vuốt các mục để xóa chúng</string>
+    <string name="swipe_items_to_remove_them">Vuốt các mục để xóa chúng</string>
     <string name="start_main_player_fullscreen_summary">Không bắt đầu video ở trình phát mini, mà chuyển trực tiếp thành chế độ toàn màn hình, nếu tự động xoay bị khóa. Bạn vẫn có thể truy cập trình phát mini bằng cách thoát khỏi toàn màn hình</string>
     <string name="start_main_player_fullscreen_title">Khởi động trình phát chính ở toàn màn hình</string>
     <string name="enqueued_next">Đã cho mục tiếp vào hàng đợi</string>

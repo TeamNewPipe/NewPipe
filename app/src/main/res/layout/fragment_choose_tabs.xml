@@ -14,7 +14,7 @@
         android:gravity="center"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
-        android:text="@string/main_page_content_swipe_remove"
+        android:text="@string/swipe_items_to_remove_them"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

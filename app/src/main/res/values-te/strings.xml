@@ -168,7 +168,6 @@
     <string name="download_thumbnail_title">సూక్ష్మచిత్రాలను లోడ్ చేయండి</string>
     <string name="show_comments_title">వ్యాఖ్యలను చూపించు</string>
     <string name="show_comments_summary">వ్యాఖ్యలను దాచడాన్ని ఆఫ్ చేయండి</string>
-    <string name="peertube_instance_url_help">%sలో మీకు నచ్చిన సందర్భాలను కనుగొనండి</string>
     <string name="peertube_instance_url_title">పీర్‌ట్యూబ్ ఉదాహరణలు</string>
     <string name="notification_action_2_title">మూడవ చర్య బటన్</string>
     <string name="download_thumbnail_summary">థంబ్‌నెయిల్‌లను లోడ్ చేయడం, డేటాను సేవ్ చేయడం మరియు మెమరీ వినియోగాన్ని నిరోధించడానికి ఆఫ్ చేయండి. మార్పులు ఇన్-మెమరీ మరియు ఆన్-డిస్క్ ఇమేజ్ కాష్ రెండింటినీ క్లియర్ చేస్తాయి</string>
@@ -192,9 +191,7 @@
     <string name="peertube_instance_url_summary">మీకు ఇష్టమైన పీర్‌ట్యూబ్ సందర్భాలను ఎంచుకోండి</string>
     <string name="enable_watch_history_summary">వీక్షించిన వీడియోలను ట్రాక్ చేయండి</string>
     <string name="start_main_player_fullscreen_summary">మినీ ప్లేయర్‌లో వీడియోలను ప్రారంభించవద్దు, ఆటో రొటేషన్ లాక్ చేయబడితే, నేరుగా పూర్తి స్క్రీన్ మోడ్‌కి మారండి. మీరు పూర్తి స్క్రీన్ నుండి నిష్క్రమించడం ద్వారా ఇప్పటికీ మినీ ప్లేయర్‌ని యాక్సెస్ చేయవచ్చు</string>
-    <string name="peertube_instance_add_title">సందర్భాన్ని జోడించండి</string>
     <string name="settings_category_updates_title">నవీకరణలు</string>
-    <string name="peertube_instance_add_https_only">HTTPS URLలకు మాత్రమే మద్దతు ఉంది</string>
     <string name="notification_action_1_title">రెండవ చర్య బటన్</string>
     <string name="notification_action_3_title">నాల్గవ చర్య బటన్</string>
     <string name="crash_the_player">ప్లేయర్ క్రాష్ చేయండి</string>
@@ -226,9 +223,9 @@
     <string name="settings_category_clear_data_title">డేటాను క్లియర్ చేయండి</string>
     <string name="resume_on_audio_focus_gain_title">ప్లే చేయడం కొనసాగించండి</string>
     <string name="default_content_country_title">డిఫాల్ట్ కంటెంట్ దేశం</string>
-    <string name="peertube_instance_add_help">ఉదాహరణ URLని నమోదు చేయండి</string>
-    <string name="peertube_instance_add_fail">ఉదాహరణను ధృవీకరించడం సాధ్యపడలేదు</string>
-    <string name="peertube_instance_add_exists">ఉదాహరణ ఇప్పటికే ఉంది</string>
+    <string name="enter_instance_url">ఉదాహరణ URLని నమోదు చేయండి</string>
+    <string name="could_not_validate_instance">ఉదాహరణను ధృవీకరించడం సాధ్యపడలేదు</string>
+    <string name="instance_already_exists">ఉదాహరణ ఇప్పటికే ఉంది</string>
     <string name="users">వినియోగదారులు</string>
     <string name="events">ఈవెంట్స్</string>
     <string name="app_update_notification_channel_description">కొత్త NewPipe వెర్షన్ కోసం నోటిఫికేషన్‌లు</string>
@@ -325,7 +322,7 @@
     <string name="error_report_channel_description">లోపాలు నివేదించడానికి నోటిఫికేషన్‌లు</string>
     <string name="error_report_channel_name">లోపనివేదన నోటిఫికేషన్</string>
     <string name="undo">చెరుపు</string>
-    <string name="main_page_content_swipe_remove">వాటిని తీసివేయడానికి వాటిని స్వైప్ చేయండి</string>
+    <string name="swipe_items_to_remove_them">వాటిని తీసివేయడానికి వాటిని స్వైప్ చేయండి</string>
     <string name="toast_no_player">ఈ ఫైల్‌ని ప్లే చేయడానికి యాప్ ఏదీ ఇన్‌స్టాల్ చేయబడలేదు</string>
     <string name="website_encouragement">మరింత సమాచారం మరియు వార్తల కోసం NewPipe వెబ్‌సైట్‌ని సందర్శించండి.</string>
     <string name="privacy_policy_encouragement">NewPipe ప్రాజెక్ట్ మీ గోప్యతను చాలా తీవ్రంగా పరిగణిస్తుంది. కాబట్టి, మీ సమ్మతి లేకుండా యాప్ ఎలాంటి డేటాను సేకరించదు.

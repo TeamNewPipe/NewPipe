@@ -405,6 +405,4 @@
     <string name="seek_duration_title">Брзо премотување напред</string>
     <string name="peertube_instance_url_title">Примери на PeerTube</string>
     <string name="peertube_instance_url_summary">Одберете ги вашите омилени PeerTube пример</string>
-    <string name="peertube_instance_url_help">Пронајдете ги примерите кои ви се допаѓаат на %s</string>
-    <string name="peertube_instance_add_title">Додадете пример</string>
 </resources>

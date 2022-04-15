@@ -33,7 +33,7 @@ import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Constants;
-import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.services.ServiceHelper;
 
 import java.util.Collections;
 import java.util.List;

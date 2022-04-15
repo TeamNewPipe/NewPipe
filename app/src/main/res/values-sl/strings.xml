@@ -286,7 +286,6 @@
     <string name="playlists">Seznami predvajanja</string>
     <string name="channels">Kanali</string>
     <string name="settings_category_updates_title">Posodobitve</string>
-    <string name="peertube_instance_add_https_only">Samo HTTPS URL-ji so podprti</string>
     <string name="show_hold_to_append_title">Prikaži namig \"drži za dodajanje\"</string>
     <string name="settings_category_clear_data_title">Počisti podatke</string>
     <string name="enable_playback_state_lists_title">Pozicija v seznamih</string>
@@ -425,11 +424,9 @@
     <string name="youtube_restricted_mode_enabled_summary">Youtube ponuja \"omejeni način\", ki skrije potencialno vsebino za odrasle</string>
     <string name="youtube_restricted_mode_enabled_title">Vklop YouTubovega \"omejenega načina\"</string>
     <string name="show_age_restricted_content_summary">Prikaz vsebin, ki so morda neprimerne za otroke zaradi omejitve starosti (kot na primer 18+)</string>
-    <string name="peertube_instance_add_exists">Instanca že obstaja</string>
-    <string name="peertube_instance_add_fail">Validacija instance ni bila mogoča</string>
-    <string name="peertube_instance_add_help">Vnesite URL instance</string>
-    <string name="peertube_instance_add_title">Dodaj instanco</string>
-    <string name="peertube_instance_url_help">Najdite instance, ki so vam všeč na %s</string>
+    <string name="instance_already_exists">Instanca že obstaja</string>
+    <string name="could_not_validate_instance">Validacija instance ni bila mogoča</string>
+    <string name="enter_instance_url">Vnesite URL instance</string>
     <string name="peertube_instance_url_summary">Izberite vaše najljubše instance PeerTuba</string>
     <string name="peertube_instance_url_title">Instance PeerTube</string>
     <string name="default_content_country_title">Privzeta država vsebine</string>

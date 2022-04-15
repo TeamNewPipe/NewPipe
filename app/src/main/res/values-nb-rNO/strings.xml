@@ -439,12 +439,9 @@
     <string name="clear_download_history">Tøm nedlastingshistorikk</string>
     <string name="delete_downloaded_files">Slett nedlastede filer</string>
     <string name="peertube_instance_url_summary">Velg dine favoritter blant PeerTube-instansene</string>
-    <string name="peertube_instance_url_help">Finn instansene du liker på %s</string>
-    <string name="peertube_instance_add_title">Legg til instans</string>
-    <string name="peertube_instance_add_help">Skriv inn nettadresse til instans</string>
-    <string name="peertube_instance_add_fail">Kunne ikke bekrefte instans</string>
-    <string name="peertube_instance_add_https_only">Kun HTTPS-nettadresser støttes</string>
-    <string name="peertube_instance_add_exists">Instansen finnes allerede</string>
+    <string name="enter_instance_url">Skriv inn nettadresse til instans</string>
+    <string name="could_not_validate_instance">Kunne ikke bekrefte instans</string>
+    <string name="instance_already_exists">Instansen finnes allerede</string>
     <string name="playlist_no_uploader">Autogenerert (fant ingen opplaster)</string>
     <string name="recovering">gjenoppretter</string>
     <string name="error_download_resource_gone">Kan ikke gjenopprette denne nedlastingen</string>
@@ -658,7 +655,7 @@
     <string name="show_image_indicators_summary">Vis Picasso-fargede bånd på toppen av bilder for å indikere kilde: Rød for nettverk, blå for disk, og grønn for minne</string>
     <string name="detail_heart_img_view_description">Hjertemerket av skaper</string>
     <string name="show_image_indicators_title">Vis bildeindikatorer</string>
-    <string name="main_page_content_swipe_remove">Dra elementer for å fjerne dem</string>
+    <string name="swipe_items_to_remove_them">Dra elementer for å fjerne dem</string>
     <string name="start_main_player_fullscreen_title">Start hovedspiller i fullskjerm</string>
     <string name="enqueue_next_stream">Spill etterpå</string>
     <string name="enqueued_next">Spill etterpå</string>

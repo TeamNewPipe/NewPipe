@@ -447,12 +447,9 @@
     <string name="seek_duration_title">Шаг перемотки</string>
     <string name="peertube_instance_url_title">Серверы PeerTube</string>
     <string name="peertube_instance_url_summary">Выберите предпочтительные серверы</string>
-    <string name="peertube_instance_url_help">Каталог серверов: %s</string>
-    <string name="peertube_instance_add_title">Новый сервер</string>
-    <string name="peertube_instance_add_help">URL сервера</string>
-    <string name="peertube_instance_add_fail">Не удалось проверить сервер</string>
-    <string name="peertube_instance_add_https_only">Поддерживается только HTTPS</string>
-    <string name="peertube_instance_add_exists">Сервер уже существует</string>
+    <string name="enter_instance_url">URL сервера</string>
+    <string name="could_not_validate_instance">Не удалось проверить сервер</string>
+    <string name="instance_already_exists">Сервер уже существует</string>
     <string name="local">Локальное</string>
     <string name="recently_added">Новое</string>
     <string name="most_liked">Популярное</string>
@@ -681,7 +678,7 @@
         <item quantity="many">%s загрузок завершено</item>
         <item quantity="other">%s загрузок завершено</item>
     </plurals>
-    <string name="main_page_content_swipe_remove">Удаление элементов — смахиванием</string>
+    <string name="swipe_items_to_remove_them">Удаление элементов — смахиванием</string>
     <string name="start_main_player_fullscreen_summary">Запускать видео во весь экран, если отключён автоповорот. Мини-плеер доступен при выходе из полноэкранного режима</string>
     <string name="start_main_player_fullscreen_title">Начинать просмотр в полноэкранном режиме</string>
     <string name="enqueued_next">Добавлено следующим</string>

@@ -392,12 +392,9 @@
     <string name="clear_playback_states_title">Ta bort uppspelningspositioner</string>
     <string name="peertube_instance_url_title">PeerTube-instanser</string>
     <string name="peertube_instance_url_summary">Välj dina favoritpeertube-instanser</string>
-    <string name="peertube_instance_url_help">Hitta de instanser du gillar på %s</string>
-    <string name="peertube_instance_add_title">Lägg till instans</string>
-    <string name="peertube_instance_add_help">Ange instansens URL</string>
-    <string name="peertube_instance_add_fail">Det gick inte att validera instansen</string>
-    <string name="peertube_instance_add_https_only">Endast HTTPS-URL:er stöds</string>
-    <string name="peertube_instance_add_exists">Instansen finns redan</string>
+    <string name="enter_instance_url">Ange instansens URL</string>
+    <string name="could_not_validate_instance">Det gick inte att validera instansen</string>
+    <string name="instance_already_exists">Instansen finns redan</string>
     <string name="videos_string">Videor</string>
     <string name="help">Hjälp</string>
     <string name="delete_playback_states_alert">Ta bort alla uppspelningspositioner\?</string>
@@ -661,7 +658,7 @@
     <string name="start_main_player_fullscreen_title">Starta huvudspelaren i helskärmsläge</string>
     <string name="processing_may_take_a_moment">Bearbetar… Kan ta en stund</string>
     <string name="recent">Senaste</string>
-    <string name="main_page_content_swipe_remove">Svep objekt för att ta bort dem</string>
+    <string name="swipe_items_to_remove_them">Svep objekt för att ta bort dem</string>
     <string name="remote_search_suggestions">Förslag via fjärrsökning</string>
     <string name="start_main_player_fullscreen_summary">Starta inte videor i minispelaren, utan byt till helskärmsläge direkt, om auto-rotation är låst. Du kan fortfarande komma åt minispelaren genom att gå ut ur helskärmsläge</string>
     <string name="show_image_indicators_summary">Visa Picasso färgade band ovanpå bilderna som anger deras källa: rött för nätverk, blått för disk och grönt för minne</string>

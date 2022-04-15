@@ -433,7 +433,6 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">Η γλώσσα θα αλλάξει αφού επανεκκινηθεί η εφαρμογή</string>
     <string name="default_kiosk_page_summary">Προεπιλεγμένο περίπτερο</string>
-    <string name="peertube_instance_add_https_only">Μόνο HTTPS σύνδεσμοι υποστηρίζονται</string>
     <string name="local">Τοπικά</string>
     <string name="recently_added">Προστέθηκαν πρόσφατα</string>
     <string name="playlist_no_uploader">Δημιουργήθηκε αυτόματα (δεν βρέθηκε χρήστης μεταφόρτωσης)</string>
@@ -562,11 +561,9 @@
     <string name="clear_cookie_title">Εκκαθάριση reCAPTCHA cookies</string>
     <string name="youtube_restricted_mode_enabled_summary">Το YouTube διαθέτει «Περιορισμένη Λειτουργία» η οποία κρύβει πιθανώς ακατάλληλο περιεχόμενο</string>
     <string name="show_age_restricted_content_summary">Εμφάνιση πιθανώς ακατάλληλου περιεχομένου (18+)</string>
-    <string name="peertube_instance_add_exists">Το instance υπάρχει ήδη</string>
-    <string name="peertube_instance_add_fail">Αδυναμία πιστοποίησης του instance</string>
-    <string name="peertube_instance_add_help">Προσθέστε την URL του instance</string>
-    <string name="peertube_instance_add_title">Προσθήκη instance</string>
-    <string name="peertube_instance_url_help">Βρείτε τα instances που σας αρέσουν στο %s</string>
+    <string name="instance_already_exists">Το instance υπάρχει ήδη</string>
+    <string name="could_not_validate_instance">Αδυναμία πιστοποίησης του instance</string>
+    <string name="enter_instance_url">Προσθέστε την URL του instance</string>
     <string name="peertube_instance_url_summary">Επιλογή των αγαπημένων σας PeerTube instances</string>
     <string name="show_original_time_ago_title">Εμφάνιση αυθεντικού παρελθόντος χρόνου στα αντικείμενα</string>
     <string name="peertube_instance_url_title">Στιγμιότυπα PeerTube</string>
@@ -659,7 +656,7 @@
         <item quantity="one">Η λήψη ολοκληρώθηκε</item>
         <item quantity="other">%s λήψεις ολοκληρώθηκαν</item>
     </plurals>
-    <string name="main_page_content_swipe_remove">Απομάκρυνση αντικειμένων με σύρσιμο</string>
+    <string name="swipe_items_to_remove_them">Απομάκρυνση αντικειμένων με σύρσιμο</string>
     <string name="start_main_player_fullscreen_summary">Εκκίνηση των βίντεο σε πλήρη οθόνη και όχι σε αναδυόμενο παράθυρο, αν η αυτόματη περιστροφή της οθόνης είναι ανενεργή. Μπορείτε να ενεργοποιήσετε το αναδυόμενο παράθυρο βγαίνοντας από την πλήρη οθόνη</string>
     <string name="start_main_player_fullscreen_title">Εκκίνηση κύριου αναπαραγωγού σε πλήρη οθόνη</string>
     <string name="enqueued_next">Προστέθηκε το επόμενο στην ουρά</string>

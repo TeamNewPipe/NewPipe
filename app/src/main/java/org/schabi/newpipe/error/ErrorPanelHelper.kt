@@ -30,7 +30,7 @@ import org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.ktx.isInterruptedCaused
 import org.schabi.newpipe.ktx.isNetworkRelated
-import org.schabi.newpipe.util.ServiceHelper
+import org.schabi.newpipe.util.services.ServiceHelper
 import java.util.concurrent.TimeUnit
 
 class ErrorPanelHelper(

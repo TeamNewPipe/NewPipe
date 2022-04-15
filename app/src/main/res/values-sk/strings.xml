@@ -441,12 +441,9 @@
     <string name="seek_duration_title">Dĺžka rýchleho pretáčania</string>
     <string name="peertube_instance_url_title">Inštancie PeerTube</string>
     <string name="peertube_instance_url_summary">Vyberte si svoje obľúbené inštancie PeerTube</string>
-    <string name="peertube_instance_url_help">Nájdite inštancie, ktoré chcete na %s</string>
-    <string name="peertube_instance_add_title">Pridať inštanciu</string>
-    <string name="peertube_instance_add_help">Vložiť URL inštancie</string>
-    <string name="peertube_instance_add_fail">Nepodarilo sa overiť inštanciu</string>
-    <string name="peertube_instance_add_https_only">Podporované sú iba adresy URL s HTTPS</string>
-    <string name="peertube_instance_add_exists">Inštancia už existuje</string>
+    <string name="enter_instance_url">Vložiť URL inštancie</string>
+    <string name="could_not_validate_instance">Nepodarilo sa overiť inštanciu</string>
+    <string name="instance_already_exists">Inštancia už existuje</string>
     <string name="local">Miestne</string>
     <string name="recently_added">Nedávno pridané</string>
     <string name="most_liked">Najobľúbenejšie</string>
@@ -668,7 +665,7 @@
     <string name="seekbar_preview_thumbnail_title">Náhľad miniatúry pri vyhľadávaní</string>
     <string name="show_image_indicators_summary">Zobraziť farebné stužky Picassa na obrázkoch podľa ich zdroja: červená pre sieť, modrá pre disk a zelená pre pamäť</string>
     <string name="show_image_indicators_title">Zobraziť indikátory obrázka</string>
-    <string name="main_page_content_swipe_remove">Potiahnutím vymazať</string>
+    <string name="swipe_items_to_remove_them">Potiahnutím vymazať</string>
     <string name="comments_are_disabled">Komentáre sú zakázané</string>
     <string name="start_main_player_fullscreen_summary">Pri zamknutej auto-rotácií nespúšťať videá v mini prehrávači, ale prepnúť sa priamo do režimu celej obrazovky. Prístup k mini prehrávaču bude po ukončení režimu celej obrazovky</string>
     <string name="start_main_player_fullscreen_title">Hlavný prehrávač na celej obrazovke</string>

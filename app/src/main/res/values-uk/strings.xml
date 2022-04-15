@@ -441,11 +441,8 @@
     <string name="seek_duration_title">Швидке перемотування</string>
     <string name="peertube_instance_url_title">Екземпляри PeerTube</string>
     <string name="peertube_instance_url_summary">Виберіть сервер PeerTube</string>
-    <string name="peertube_instance_url_help">Каталог серверів: %s</string>
-    <string name="peertube_instance_add_title">Додати екземпляр</string>
-    <string name="peertube_instance_add_help">Введіть URL екземпляра</string>
-    <string name="peertube_instance_add_https_only">Підтримуються лише HTTPS-посилання</string>
-    <string name="peertube_instance_add_exists">Екземпляр уже існує</string>
+    <string name="enter_instance_url">Введіть URL екземпляра</string>
+    <string name="instance_already_exists">Екземпляр уже існує</string>
     <string name="recently_added">Недавно додані</string>
     <string name="most_liked">Найвподобаніші</string>
     <string name="recovering">відновлення</string>
@@ -487,7 +484,7 @@
     <string name="local">Локальне</string>
     <string name="help">Допомога</string>
     <string name="videos_string">Відео</string>
-    <string name="peertube_instance_add_fail">Не вдалося перевірити сервер</string>
+    <string name="could_not_validate_instance">Не вдалося перевірити сервер</string>
     <string name="content_not_supported">NewPipe ще не підтримує цей вміст.
 \n
 \nМожливо, підтримка з\'явиться в наступних версіях.</string>
@@ -675,7 +672,7 @@
         <item quantity="many">%s завантажень завершено</item>
         <item quantity="other">%s завантажень завершено</item>
     </plurals>
-    <string name="main_page_content_swipe_remove">Проведіть пальцем по елементах, щоб вилучити їх</string>
+    <string name="swipe_items_to_remove_them">Проведіть пальцем по елементах, щоб вилучити їх</string>
     <string name="start_main_player_fullscreen_summary">Не запускати відео в мініпрогравачі, а перемикати в повноекранний режим безпосередньо, якщо автообертання заблоковано. Ви все одно можете отримати доступ до мініпрогравача, вийшовши з повноекранного режиму</string>
     <string name="start_main_player_fullscreen_title">Запустити основний програвач у повноекранному режимі</string>
     <string name="enqueued_next">Заплановано наступним</string>

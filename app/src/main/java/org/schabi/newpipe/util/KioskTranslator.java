@@ -60,6 +60,7 @@ public final class KioskTranslator {
     public static int getKioskIcon(final String kioskId) {
         switch (kioskId) {
             case "Trending":
+            case "Popular":
             case "Top 50":
             case "New & hot":
             case "conferences":

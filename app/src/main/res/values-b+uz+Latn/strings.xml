@@ -143,12 +143,9 @@
     <string name="settings_category_video_audio_title">Video va audio</string>
     <string name="settings_category_player_behavior_title">Xatti-harakat</string>
     <string name="settings_category_player_title">Ijro etish</string>
-    <string name="peertube_instance_add_exists">Namuna allaqachon mavjud</string>
-    <string name="peertube_instance_add_https_only">Faqat HTTPS URL-lari qo\'llab-quvvatlanadi</string>
-    <string name="peertube_instance_add_fail">Namunani tasdiqlab bo\'lmadi</string>
-    <string name="peertube_instance_add_help">Namuna URL manzilini kiriting</string>
-    <string name="peertube_instance_add_title">Namuna qo\'shish</string>
-    <string name="peertube_instance_url_help">%s da sizga yoqadigan misollarni toping</string>
+    <string name="instance_already_exists">Namuna allaqachon mavjud</string>
+    <string name="could_not_validate_instance">Namunani tasdiqlab bo\'lmadi</string>
+    <string name="enter_instance_url">Namuna URL manzilini kiriting</string>
     <string name="peertube_instance_url_summary">Sevimli PeerTube nusxalarini tanlang</string>
     <string name="peertube_instance_url_title">PeerTube misollari</string>
     <string name="content_language_title">Standart kontent tili</string>

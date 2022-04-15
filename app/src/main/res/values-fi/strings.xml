@@ -381,12 +381,9 @@
 \nSalli ”%1$s” asetuksissa katsoaksesi.</string>
     <string name="youtube_restricted_mode_enabled_title">Ota käyttöön YouTuben ”Rajoitettu tila”</string>
     <string name="settings_category_updates_title">Päivitykset</string>
-    <string name="peertube_instance_add_exists">Instanssi on jo olemassa</string>
-    <string name="peertube_instance_add_https_only">Vain HTTPS-URL:t ovat tuettuja</string>
-    <string name="peertube_instance_add_fail">Instanssia ei voitu vahvistaa</string>
-    <string name="peertube_instance_add_help">Syötä instanssin URL</string>
-    <string name="peertube_instance_add_title">Lisää instanssi</string>
-    <string name="peertube_instance_url_help">Hae instansseja, joista pidät, osoitteesta %s</string>
+    <string name="instance_already_exists">Instanssi on jo olemassa</string>
+    <string name="could_not_validate_instance">Instanssia ei voitu vahvistaa</string>
+    <string name="enter_instance_url">Syötä instanssin URL</string>
     <string name="peertube_instance_url_summary">Valitse PeerTube-suosikki-instanssisi</string>
     <string name="peertube_instance_url_title">PeerTube-instanssit</string>
     <string name="autoplay_title">Automaattinen toisto</string>
@@ -658,7 +655,7 @@
         <item quantity="other">%s latausta valmiina</item>
     </plurals>
     <string name="start_main_player_fullscreen_title">Käynnistä pääsoitin koko näytössä</string>
-    <string name="main_page_content_swipe_remove">Pyyhkäise kohteita poistaaksesi ne</string>
+    <string name="swipe_items_to_remove_them">Pyyhkäise kohteita poistaaksesi ne</string>
     <string name="start_main_player_fullscreen_summary">Älä käynnistä videoita minisoittimessa, vaan siirry suoraan koko näytön tilaan, jos automaattinen kierto on lukittu. Voit silti käyttää minisoitinta poistumalla koko näytön tilasta</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Poistettu %1$s lataus</item>

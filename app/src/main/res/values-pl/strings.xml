@@ -445,12 +445,9 @@
     <string name="seek_duration_title">Wielkość skoku przy przewijaniu</string>
     <string name="peertube_instance_url_title">Serwery PeerTube</string>
     <string name="peertube_instance_url_summary">Wybierz swoje ulubione serwery PeerTube</string>
-    <string name="peertube_instance_url_help">Znajdź serwery, które lubisz, na %s</string>
-    <string name="peertube_instance_add_title">Dodaj serwer</string>
-    <string name="peertube_instance_add_help">Wprowadź adres URL serwera</string>
-    <string name="peertube_instance_add_fail">Nie udało się sprawdzić poprawności serwera</string>
-    <string name="peertube_instance_add_https_only">Obsługiwane są tylko adresy HTTPS</string>
-    <string name="peertube_instance_add_exists">Serwer już istnieje</string>
+    <string name="enter_instance_url">Wprowadź adres URL serwera</string>
+    <string name="could_not_validate_instance">Nie udało się sprawdzić poprawności serwera</string>
+    <string name="instance_already_exists">Serwer już istnieje</string>
     <string name="local">Lokalne</string>
     <string name="recently_added">Ostatnio dodane</string>
     <string name="most_liked">Najbardziej lubiane</string>
@@ -678,7 +675,7 @@
         <item quantity="many">%s ukończonych pobrań</item>
         <item quantity="other">%s ukończonych pobrań</item>
     </plurals>
-    <string name="main_page_content_swipe_remove">Przesuń w bok elementy, aby je usunąć</string>
+    <string name="swipe_items_to_remove_them">Przesuń w bok elementy, aby je usunąć</string>
     <string name="start_main_player_fullscreen_summary">Nie uruchamiaj wideo w miniodtwarzaczu, ale przełączaj się bezpośrednio na tryb pełnoekranowy, jeśli automatyczne obracanie jest zablokowane. Nadal możesz uzyskać dostęp do miniodtwarzacza, wychodząc z trybu pełnoekranowego</string>
     <string name="start_main_player_fullscreen_title">Uruchamiaj główny odtwarzacz w trybie pełnoekranowym</string>
     <string name="enqueued_next">Dodano do kolejki (następny)</string>

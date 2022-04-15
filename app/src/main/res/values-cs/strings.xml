@@ -441,12 +441,9 @@
     <string name="seek_duration_title">Délka přetočení vpřed/zpět</string>
     <string name="peertube_instance_url_title">Instance PeerTube</string>
     <string name="peertube_instance_url_summary">Vybrat oblíbené instance PeerTube</string>
-    <string name="peertube_instance_url_help">Vyhledat instance, které se vám líbí, na %s</string>
-    <string name="peertube_instance_add_title">Přidat instanci</string>
-    <string name="peertube_instance_add_help">Zadat URL instance</string>
-    <string name="peertube_instance_add_fail">Instanci nebylo možno potvrdit</string>
-    <string name="peertube_instance_add_https_only">Podporujeme pouze URL s HTTPS</string>
-    <string name="peertube_instance_add_exists">Instance již existuje</string>
+    <string name="enter_instance_url">Zadat URL instance</string>
+    <string name="could_not_validate_instance">Instanci nebylo možno potvrdit</string>
+    <string name="instance_already_exists">Instance již existuje</string>
     <string name="local">Místní</string>
     <string name="recently_added">Přidány nedávno</string>
     <string name="most_liked">Nejoblíbenější</string>
@@ -674,7 +671,7 @@
     <string name="start_main_player_fullscreen_summary">Pokud je vypnuté automatické otáčení, nespouštějte video v mini přehrávači, ale přepněte se přímo do režimu celé obrazovky. Do mini přehrávače se lze i nadále dostat ukončením režimu celé obrazovky</string>
     <string name="enqueued_next">Další ve frontě</string>
     <string name="enqueue_next_stream">Přidat do fronty (další)</string>
-    <string name="main_page_content_swipe_remove">Tažením položky odstraníte</string>
+    <string name="swipe_items_to_remove_them">Tažením položky odstraníte</string>
     <string name="start_main_player_fullscreen_title">Spustit hlavní přehrávač na celé obrazovce</string>
     <string name="processing_may_take_a_moment">Zpracovávám... může trvat moment</string>
     <string name="manual_update_description">Ručně zkontrolovat zda je k dispozici nová verze</string>

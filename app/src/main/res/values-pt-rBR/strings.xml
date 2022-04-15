@@ -436,12 +436,9 @@
     <string name="seek_duration_title">Duração do salto para avançar/retroceder</string>
     <string name="peertube_instance_url_title">Instâncias do PeerTube</string>
     <string name="peertube_instance_url_summary">Escolha suas instâncias do PeerTube favoritas</string>
-    <string name="peertube_instance_url_help">Encontre as instâncias que gosta em %s</string>
-    <string name="peertube_instance_add_title">Adicionar instância</string>
-    <string name="peertube_instance_add_help">Insira o link da instância</string>
-    <string name="peertube_instance_add_fail">Erro ao validar a instância</string>
-    <string name="peertube_instance_add_https_only">Apenas links HTTPS são suportados</string>
-    <string name="peertube_instance_add_exists">A instância já existe</string>
+    <string name="enter_instance_url">Insira o link da instância</string>
+    <string name="could_not_validate_instance">Erro ao validar a instância</string>
+    <string name="instance_already_exists">A instância já existe</string>
     <string name="local">Local</string>
     <string name="recently_added">Recentes</string>
     <string name="most_liked">Mais curtidos</string>
@@ -659,7 +656,7 @@
     <string name="show_image_indicators_title">Exibir indicadores com imagem</string>
     <string name="enqueued_next">Adicionado na próxima posição da fila</string>
     <string name="enqueue_next_stream">Adicionar a próxima posição da fila</string>
-    <string name="main_page_content_swipe_remove">Deslize items para remove-los</string>
+    <string name="swipe_items_to_remove_them">Deslize items para remove-los</string>
     <string name="start_main_player_fullscreen_summary">Não inicia os vídeos no player reduzido, mas muda direto para o modo de tela cheia, se a rotação automática estiver travada. Você ainda consegue acessar o player reduzido saindo da tela cheia</string>
     <string name="start_main_player_fullscreen_title">Iniciar o player principal em tela cheia</string>
     <string name="remote_search_suggestions">Sugestões de busca remotas</string>

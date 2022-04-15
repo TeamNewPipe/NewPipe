@@ -269,6 +269,9 @@
     <string name="peertube_instance_setup_key">peertube_instance_setup</string>
     <string name="peertube_selected_instance_key">peertube_selected_instance</string>
     <string name="peertube_instance_list_key">peertube_instance_list</string>
+    <string name="yt_like_instance_setup_key">yt_like_instance_setup</string>
+    <string name="yt_like_instance_selected_instance_key">yt_like_instance_selected_instance</string>
+    <string name="yt_like_instance_list_key">yt_like_instance_list</string>
     <string name="content_country_key">content_country</string>
     <string name="show_age_restricted_content">show_age_restricted_content</string>
     <string name="youtube_restricted_mode_enabled">youtube_restricted_mode_enabled</string>

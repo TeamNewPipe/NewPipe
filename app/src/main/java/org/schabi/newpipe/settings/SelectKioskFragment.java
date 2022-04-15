@@ -19,8 +19,8 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.util.KioskTranslator;
-import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.services.ServiceHelper;
 
 import java.util.List;
 import java.util.Vector;
@@ -116,10 +116,12 @@ public class SelectKioskFragment extends DialogFragment {
             }
         }
 
+        @Override
         public int getItemCount() {
             return kioskList.size();
         }
 
+        @Override
         @NonNull
         public SelectKioskItemHolder onCreateViewHolder(final ViewGroup parent, final int type) {
             final View item = LayoutInflater.from(parent.getContext())
@@ -127,6 +129,7 @@ public class SelectKioskFragment extends DialogFragment {
             return new SelectKioskItemHolder(item);
         }
 
+        @Override
         public void onBindViewHolder(final SelectKioskItemHolder holder, final int position) {
             final Entry entry = kioskList.get(position);
             holder.titleView.setText(entry.kioskName);

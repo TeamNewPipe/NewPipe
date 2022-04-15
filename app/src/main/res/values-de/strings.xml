@@ -443,17 +443,14 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird</string>
     <string name="peertube_instance_url_title">PeerTube-Instanzen</string>
-    <string name="peertube_instance_url_help">Finde auf %s die Instanzen, die dir gefallen</string>
-    <string name="peertube_instance_add_title">Instanz hinzufügen</string>
-    <string name="peertube_instance_add_help">URL der Instanz eingeben</string>
-    <string name="peertube_instance_add_fail">Validierung der Instanz fehlgeschlagen</string>
-    <string name="peertube_instance_add_exists">Instanz existiert bereits</string>
+    <string name="enter_instance_url">URL der Instanz eingeben</string>
+    <string name="could_not_validate_instance">Validierung der Instanz fehlgeschlagen</string>
+    <string name="instance_already_exists">Instanz existiert bereits</string>
     <string name="local">Lokal</string>
     <string name="recently_added">Kürzlich hinzugefügt</string>
     <string name="playlist_no_uploader">Auto-generiert (kein Autor gefunden)</string>
     <string name="choose_instance_prompt">Eine Instanz wählen</string>
     <string name="peertube_instance_url_summary">Bevorzugte Peertube-Instanzen auswählen</string>
-    <string name="peertube_instance_add_https_only">Es werden nur HTTPS-Adressen unterstützt</string>
     <string name="seek_duration_title">Dauer der Suche bei schnellem Vor-/Zurückspulen</string>
     <string name="most_liked">Am beliebtesten</string>
     <string name="recovering">Wiederherstellen</string>
@@ -661,7 +658,7 @@
         <item quantity="one">Download abgeschlossen</item>
         <item quantity="other">%s Downloads abgeschlossen</item>
     </plurals>
-    <string name="main_page_content_swipe_remove">Wische über Elemente, um sie zu entfernen</string>
+    <string name="swipe_items_to_remove_them">Wische über Elemente, um sie zu entfernen</string>
     <string name="start_main_player_fullscreen_summary">Videos nicht im Miniplayer starten, sondern direkt in den Vollbildmodus schalten, wenn die automatische Drehung gesperrt ist. Du kannst immer noch auf den Miniplayer zugreifen, wenn du den Vollbildmodus verlässt</string>
     <string name="start_main_player_fullscreen_title">Hauptplayer im Vollbildmodus starten</string>
     <string name="enqueued_next">Als Nächstes eingereiht</string>

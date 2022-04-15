@@ -23,7 +23,7 @@ import org.schabi.newpipe.player.playqueue.events.MoveEvent;
 import org.schabi.newpipe.player.playqueue.events.PlayQueueEvent;
 import org.schabi.newpipe.player.playqueue.events.RemoveEvent;
 import org.schabi.newpipe.player.playqueue.events.ReorderEvent;
-import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.services.ServiceHelper;
 
 import java.util.Collection;
 import java.util.Collections;

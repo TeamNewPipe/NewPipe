@@ -485,7 +485,7 @@
 \n
 \nEngedélyezze a(z) „%1$s” beállítást, ha meg szeretné tekinteni.</string>
     <string name="show_age_restricted_content_summary">Gyermekek számára esetlegesen nem megfelelő, korhatáros tartalom megjelenítése (például 18+)</string>
-    <string name="peertube_instance_add_https_only">Csak a HTTPS URL-ek támogatottak</string>
+
     <string name="show_meta_info_title">Metainformációk megjelenítése</string>
     <string name="clear_queue_confirmation_description">A jelenleg aktív lejátszási sor le lesz cserélve</string>
     <string name="clear_queue_confirmation_title">Megerősítés kérése a lejátszási sor törlése előtt</string>
@@ -545,11 +545,9 @@
     <string name="hash_channel_name">Videó ujjlenyomat-készítési értesítése</string>
     <string name="youtube_restricted_mode_enabled_summary">A YouTube biztosít egy „Korlátozott módot”, amely elrejti a lehetséges felnőtteknek szóló tartalmat</string>
     <string name="youtube_restricted_mode_enabled_title">A YouTube „Korlátozott módjának” bekapcsolása</string>
-    <string name="peertube_instance_add_exists">A példány már létezik</string>
-    <string name="peertube_instance_add_fail">A példány érvényesítése nem sikerült</string>
-    <string name="peertube_instance_add_help">Adja meg a példány URL-ét</string>
-    <string name="peertube_instance_add_title">Példány hozzáadása</string>
-    <string name="peertube_instance_url_help">Találjon önnek tetsző példányokat itt: %s</string>
+    <string name="instance_already_exists">A példány már létezik</string>
+    <string name="could_not_validate_instance">A példány érvényesítése nem sikerült</string>
+    <string name="enter_instance_url">Adja meg a példány URL-ét</string>
     <string name="peertube_instance_url_summary">Válassza ki a kedvenc PeerTube példányait</string>
     <string name="peertube_instance_url_title">PeerTube példányok</string>
     <string name="enable_disposed_exceptions_title">Életciklusából kifutott hibák jelentése</string>
@@ -573,7 +571,7 @@
     <string name="start_main_player_fullscreen_summary">A videókat ne a kis lejátszóban indítsa el, hanem kapcsolja be a teljes képernyős módot, ha az automatikus forgatás zárolva van. Továbbra is elérheti a kis lejátszót, ha kilép a teljes képernyőből.</string>
     <string name="drawer_header_description">Szolgáltatás be/ki, jelenleg kiválasztott:</string>
     <string name="comments_are_disabled">A megjegyzések ki vannak kapcsolva</string>
-    <string name="main_page_content_swipe_remove">Húzza oldalra az elemeket az eltávolításukhoz</string>
+    <string name="swipe_items_to_remove_them">Húzza oldalra az elemeket az eltávolításukhoz</string>
     <string name="enqueue_next_stream">A következő sorba állítása</string>
     <string name="enqueued_next">A következő sorba állítva</string>
     <string name="processing_may_take_a_moment">Feldolgozás… Ez eltarthat egy ideig.</string>

@@ -63,10 +63,11 @@ import org.schabi.newpipe.databinding.DrawerLayoutBinding;
 import org.schabi.newpipe.databinding.InstanceSpinnerLayoutBinding;
 import org.schabi.newpipe.databinding.ToolbarLayoutBinding;
 import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.extractor.InstanceBasedStreamingService;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
+import org.schabi.newpipe.extractor.instance.Instance;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -81,13 +82,15 @@ import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PeertubeHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.SerializedCache;
-import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.TLSSocketFactoryCompat;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.services.InstanceManager;
+import org.schabi.newpipe.util.services.PeertubeInstanceManager;
+import org.schabi.newpipe.util.services.ServiceHelper;
+import org.schabi.newpipe.util.services.YoutubeLikeInstanceManager;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.ArrayList;
@@ -389,8 +392,14 @@ public class MainActivity extends AppCompatActivity {
                     .setIcon(ServiceHelper.getIcon(s.getServiceId()));
 
             // peertube specifics
-            if (s.getServiceId() == 3) {
-                enhancePeertubeMenu(s, menuItem);
+            InstanceManager<?> instanceManager = null;
+            if (s.getServiceId() == 0) {
+                instanceManager = YoutubeLikeInstanceManager.MANAGER;
+            } else if (s.getServiceId() == 3) {
+                instanceManager = PeertubeInstanceManager.MANAGER;
+            }
+            if (instanceManager != null) {
+                enhanceServiceMenu(menuItem, instanceManager);
             }
         }
         drawerLayoutBinding.navigation.getMenu()
@@ -398,15 +407,15 @@ public class MainActivity extends AppCompatActivity {
                 .setChecked(true);
     }
 
-    private void enhancePeertubeMenu(final StreamingService s, final MenuItem menuItem) {
-        final PeertubeInstance currentInstance = PeertubeHelper.getCurrentInstance();
-        menuItem.setTitle(currentInstance.getName() + (ServiceHelper.isBeta(s) ? " (beta)" : ""));
-        final Spinner spinner = InstanceSpinnerLayoutBinding.inflate(LayoutInflater.from(this))
-                .getRoot();
-        final List<PeertubeInstance> instances = PeertubeHelper.getInstanceList(this);
+    private <I extends Instance> void enhanceServiceMenu(final MenuItem menuItem,
+                                                         final InstanceManager<I> manager) {
+        final I currentInstance = manager.getCurrentInstance();
+        menuItem.setTitle(currentInstance.getName());
+
+        final List<I> allInstances = manager.getInstanceList(getApplicationContext());
         final List<String> items = new ArrayList<>();
         int defaultSelect = 0;
-        for (final PeertubeInstance instance : instances) {
+        for (final I instance : allInstances) {
             items.add(instance.getName());
             if (instance.getUrl().equals(currentInstance.getUrl())) {
                 defaultSelect = items.size() - 1;
@@ -415,29 +424,34 @@ public class MainActivity extends AppCompatActivity {
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 R.layout.instance_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        final Spinner spinner =
+                InstanceSpinnerLayoutBinding.inflate(LayoutInflater.from(this)).getRoot();
         spinner.setAdapter(adapter);
         spinner.setSelection(defaultSelect, false);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(final AdapterView<?> parent, final View view,
                                        final int position, final long id) {
-                final PeertubeInstance newInstance = instances.get(position);
-                if (newInstance.getUrl().equals(PeertubeHelper.getCurrentInstance().getUrl())) {
+                final I newInstance = allInstances.get(position);
+                if (newInstance.getUrl().equals(manager.getCurrentInstance().getUrl())) {
                     return;
                 }
-                PeertubeHelper.selectInstance(newInstance, getApplicationContext());
+
+                manager.saveCurrentInstance(newInstance, getApplicationContext());
+
                 changeService(menuItem);
                 mainBinding.getRoot().closeDrawers();
                 new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                    getSupportFragmentManager().popBackStack(null,
-                            FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    getSupportFragmentManager()
+                            .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     ActivityCompat.recreate(MainActivity.this);
                 }, 300);
             }
 
             @Override
             public void onNothingSelected(final AdapterView<?> parent) {
-
+                // Do nothing
             }
         });
         menuItem.setActionView(spinner);
@@ -466,8 +480,17 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.getRoot().closeDrawer(GravityCompat.START, false);
         try {
             final int selectedServiceId = ServiceHelper.getSelectedServiceId(this);
-            final String selectedServiceName = NewPipe.getService(selectedServiceId)
-                    .getServiceInfo().getName();
+            final StreamingService service = NewPipe.getService(selectedServiceId);
+            String selectedServiceName = service.getServiceInfo().getName();
+            if (service instanceof InstanceBasedStreamingService) {
+                final Instance instance =
+                        ((InstanceBasedStreamingService) service).getInstance();
+                selectedServiceName =
+                        (instance.getServiceName() != null
+                                ? instance.getServiceName() + " / "
+                                : "") + instance.getName();
+            }
+
             drawerHeaderBinding.drawerHeaderServiceView.setText(selectedServiceName);
             drawerHeaderBinding.drawerHeaderServiceIcon.setImageResource(ServiceHelper
                     .getIcon(selectedServiceId));

@@ -456,11 +456,9 @@
     <string name="seek_duration_title">تسريع إلى الأمام/-ترجيع وقت البحث</string>
     <string name="peertube_instance_url_title">مثيلات خوادم پيرتيوب</string>
     <string name="peertube_instance_url_summary">حدد مثيلات PeerTube المفضلة لديك</string>
-    <string name="peertube_instance_add_title">إضافة نموذج</string>
-    <string name="peertube_instance_add_help">أدخل عنوان للمثيل</string>
-    <string name="peertube_instance_add_fail">لا يمكن التحقق من صحة المثال</string>
-    <string name="peertube_instance_add_https_only">يتم دعم عناوين URL HTTPS فقط</string>
-    <string name="peertube_instance_add_exists">مثيل الخادم موجود بالفعل</string>
+    <string name="enter_instance_url">أدخل عنوان للمثيل</string>
+    <string name="could_not_validate_instance">لا يمكن التحقق من صحة المثال</string>
+    <string name="instance_already_exists">مثيل الخادم موجود بالفعل</string>
     <string name="local">محلي</string>
     <string name="recently_added">أُضيف مؤخرًا</string>
     <string name="most_liked">الأكثر إعجابًا</string>
@@ -468,7 +466,6 @@
     <string name="recovering">استرد</string>
     <string name="error_download_resource_gone">لا يمكن استرداد هذا التنزيل</string>
     <string name="choose_instance_prompt">اختيار مثيل</string>
-    <string name="peertube_instance_url_help">ابحث عن مثيلات الخوادم التي تناسبك على %s</string>
     <string name="clear_download_history">تنظيف تاريخ التحميل</string>
     <string name="delete_downloaded_files">حذف الملفات المحملة</string>
     <string name="permission_display_over_apps">امنح الإذن بالعرض فوق التطبيقات الأخرى</string>
@@ -691,7 +688,7 @@
     <string name="show_image_indicators_title">إظهار مؤشرات الصور</string>
     <string name="remote_search_suggestions">اقتراحات البحث عن بعد</string>
     <string name="local_search_suggestions">اقتراحات البحث المحلية</string>
-    <string name="main_page_content_swipe_remove">اسحب العناصر لإزالتها</string>
+    <string name="swipe_items_to_remove_them">اسحب العناصر لإزالتها</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="zero">اكتمل %1$s تنزيل</item>
         <item quantity="one">اكتمل %1$s تنزيل</item>

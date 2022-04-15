@@ -463,7 +463,6 @@
     <string name="youtube_restricted_mode_enabled_summary">यूट्यूब एक \"प्रतिबंधित मोड\" प्रदान करता है जो संभावित रूप से परिपक्व सामग्री को छुपाता है</string>
     <string name="youtube_restricted_mode_enabled_title">यूट्यूब का \"प्रतिबंधित मोड\" चालू करें</string>
     <string name="show_age_restricted_content_summary">बच्चों के लिए अनुपयुक्त सामग्री दिखाएं क्योंकि इसकी आयु सीमा है (जैसे 18)</string>
-    <string name="peertube_instance_add_https_only">केवल HTTPS यूआरएल ही समर्थित हैं</string>
     <string name="unsupported_url_dialog_message">URL की पहचान नहीं हो सकी। दूसरे ऐप से खोलें\?</string>
     <string name="auto_queue_toggle">ऑटोमैटिकली कतार करे</string>
     <string name="clear_queue_confirmation_title">कतार को मिटाने से पहले सत्यापन के लिए पूछें</string>
@@ -546,11 +545,9 @@
     <string name="msg_calculating_hash">हैश की गणना</string>
     <string name="copy_for_github">स्वरूपित रिपोर्ट कॉपी करें</string>
     <string name="clear_cookie_summary">कुकी साफ़ करें जिसे न्यूपाइप आपके द्वारा रीकैप्चा हल करने पर संग्रहीत करता है</string>
-    <string name="peertube_instance_add_exists">उदाहरण पहले से मौजूद है</string>
-    <string name="peertube_instance_add_fail">उदाहरण मान्य नहीं किया जा सका</string>
-    <string name="peertube_instance_add_help">उदाहरण URL दर्ज करें</string>
-    <string name="peertube_instance_add_title">उदाहरण जोड़ें</string>
-    <string name="peertube_instance_url_help">%s . पर अपनी पसंद के उदाहरण ढूँढ़ें</string>
+    <string name="instance_already_exists">उदाहरण पहले से मौजूद है</string>
+    <string name="could_not_validate_instance">उदाहरण मान्य नहीं किया जा सका</string>
+    <string name="enter_instance_url">उदाहरण URL दर्ज करें</string>
     <string name="peertube_instance_url_summary">अपने पसंदीदा PeerTube उदाहरण चुनें</string>
     <string name="start_main_player_fullscreen_title">मुख्य प्लेयर को पूर्ण स्क्रीन में शुरू करें</string>
     <string name="start_main_player_fullscreen_summary">मिनी प्लेयर में वीडियो शुरू न करें, लेकिन ऑटो रोटेशन लॉक होने पर सीधे फुल स्क्रीन मोड पर जाएं। आप अब भी फ़ुलस्क्रीन से बाहर निकलकर मिनी प्लेयर तक पहुंच सकते हैं।</string>

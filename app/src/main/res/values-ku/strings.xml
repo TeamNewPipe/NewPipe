@@ -413,12 +413,9 @@
     <string name="seek_duration_title">ماوەی خێرا بردنە پێشەوە\\ گێڕانەوە بۆ دواوە</string>
     <string name="peertube_instance_url_title">دۆخی پێرتووبی</string>
     <string name="peertube_instance_url_summary">دۆخە دڵخوازەکانی پێرتووبی دیاریبکە</string>
-    <string name="peertube_instance_url_help">ئەو دۆخانە بدۆزەرەوە کە لەگەڵ خۆتدا دەگونجێن لە %s</string>
-    <string name="peertube_instance_add_title">زیادکردنی دۆخ</string>
-    <string name="peertube_instance_add_help">بەستەری دۆخ دابنێ</string>
-    <string name="peertube_instance_add_fail">ناتوانرێ پشتگیری دۆخەکە بکرێ</string>
-    <string name="peertube_instance_add_https_only">تەنها بەستەرەکانی https پشتگیریکراون</string>
-    <string name="peertube_instance_add_exists">هەمان دۆخ کاراکراوە</string>
+    <string name="enter_instance_url">بەستەری دۆخ دابنێ</string>
+    <string name="could_not_validate_instance">ناتوانرێ پشتگیری دۆخەکە بکرێ</string>
+    <string name="instance_already_exists">هەمان دۆخ کاراکراوە</string>
     <string name="error_http_not_found">نەدۆزرایەوە</string>
     <string name="error_postprocessing_failed">چارەسەرکردن شکستی هێنا</string>
     <string name="stop">ڕاگرتن</string>
