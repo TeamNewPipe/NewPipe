@@ -16,8 +16,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdk 19
         targetSdk 29
-        versionCode 984
-        versionName "0.22.1"
+        versionCode 985
+        versionName "0.22.2"
 
         multiDexEnabled true
 
