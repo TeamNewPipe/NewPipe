@@ -26,7 +26,8 @@ public class PeertubeInstanceListFragment
                     R.drawable.ic_placeholder_peertube,
                     PeertubeInstance.class,
                     PeertubeInstance::new,
-                    R.string.peertube_instance_list_url);
+                    R.string.peertube_instance_list_url,
+                    true);
         }
     }
 }

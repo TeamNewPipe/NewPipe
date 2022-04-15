@@ -66,7 +66,8 @@ public class YouTubeLikeInstanceListFragment
                     R.drawable.ic_placeholder_invidious,
                     InvidiousInstance.class,
                     InvidiousInstance::new,
-                    R.string.invidious_instance_list_url);
+                    R.string.invidious_instance_list_url,
+                    true);
         }
     }
 }

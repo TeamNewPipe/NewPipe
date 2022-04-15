@@ -2,6 +2,7 @@ package org.schabi.newpipe.settings.services.instances;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,19 +23,28 @@ public class UrlMultiInstanceTypeCreator<I extends Instance>
         extends AbstractInstanceTypeCreator<I> {
 
     protected final Function<String, I> createNewInstanceFromUrl;
+    /**
+     * The (official) list of available instances.
+     */
     @StringRes
     protected final int instanceListUrl;
+    /**
+     * <code>true</code> if the service is free and open source software.
+     */
+    protected final boolean isFoss;
 
     public UrlMultiInstanceTypeCreator(
             final String instanceServiceName,
             final int icon,
             final Class<I> createdClass,
             final Function<String, I> createNewInstanceFromUrl,
-            final int instanceListUrl
+            final int instanceListUrl,
+            final boolean isFoss
     ) {
         super(instanceServiceName, icon, createdClass);
         this.createNewInstanceFromUrl = createNewInstanceFromUrl;
         this.instanceListUrl = instanceListUrl;
+        this.isFoss = isFoss;
     }
 
     @Override
@@ -59,6 +69,7 @@ public class UrlMultiInstanceTypeCreator<I extends Instance>
                 c.getString(
                         R.string.publicly_available_instances_help,
                         c.getString(instanceListUrl)));
+        dialogBinding.fossNoticeContainer.setVisibility(isFoss ? View.VISIBLE : View.GONE);
 
         new AlertDialog.Builder(c)
                 .setTitle(c.getString(R.string.add_instance, instanceServiceName()))
