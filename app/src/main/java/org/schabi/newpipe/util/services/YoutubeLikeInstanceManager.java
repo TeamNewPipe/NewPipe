@@ -10,9 +10,6 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeLikeInstance;
 import org.schabi.newpipe.extractor.services.youtube.invidious.InvidiousInstance;
 import org.schabi.newpipe.extractor.services.youtube.youtube.YoutubeInstance;
 
-import java.util.Arrays;
-import java.util.List;
-
 public final class YoutubeLikeInstanceManager
         extends AbstractInstanceManager<YoutubeLikeInstance<?>> {
 
@@ -53,13 +50,6 @@ public final class YoutubeLikeInstanceManager
     @Override
     protected int getSelectedInstancePersistenceKey() {
         return R.string.yt_like_instance_selected_instance_key;
-    }
-
-    @Override
-    protected List<YoutubeLikeInstance<?>> getDefaultInstanceList() {
-        return Arrays.asList(
-                YoutubeInstance.YOUTUBE,
-                new InvidiousInstance("https://invidious.fdn.fr") /* TODO */);
     }
 
     @Override
