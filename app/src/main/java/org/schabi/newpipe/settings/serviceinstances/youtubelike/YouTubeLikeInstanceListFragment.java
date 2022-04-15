@@ -36,7 +36,7 @@ public class YouTubeLikeInstanceListFragment
         public YouTubeInstanceTypeCreator() {
             super(
                     YoutubeInstance.SERVICE_NAME,
-                    R.drawable.place_holder_youtube,
+                    R.drawable.ic_placeholder_yt,
                     YoutubeInstance.class);
         }
 
@@ -63,7 +63,7 @@ public class YouTubeLikeInstanceListFragment
         public InvidiousInstanceTypeCreator() {
             super(
                     InvidiousInstance.SERVICE_NAME,
-                    R.drawable.place_holder_circle, // TODO
+                    R.drawable.ic_placeholder_circle, // TODO
                     InvidiousInstance.class,
                     InvidiousInstance::new,
                     R.string.invidious_instance_list_url);

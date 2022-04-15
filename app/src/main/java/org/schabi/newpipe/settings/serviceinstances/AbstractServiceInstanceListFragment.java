@@ -331,7 +331,7 @@ public abstract class AbstractServiceInstanceListFragment<I extends Instance> ex
                 .filter(c -> c.createdClass().isInstance(instance))
                 .map(InstanceTypeCreator::icon)
                 .findFirst()
-                .orElse(R.drawable.place_holder_circle);
+                .orElse(R.drawable.ic_placeholder_circle);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

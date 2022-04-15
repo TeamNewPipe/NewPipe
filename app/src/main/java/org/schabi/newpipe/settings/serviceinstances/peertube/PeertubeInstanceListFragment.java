@@ -23,7 +23,7 @@ public class PeertubeInstanceListFragment
         public PeerTubeInstanceTypeCreator() {
             super(
                     PeertubeInstance.SERVICE_NAME,
-                    R.drawable.place_holder_peertube,
+                    R.drawable.ic_placeholder_peertube,
                     PeertubeInstance.class,
                     PeertubeInstance::new,
                     R.string.peertube_instance_list_url);
