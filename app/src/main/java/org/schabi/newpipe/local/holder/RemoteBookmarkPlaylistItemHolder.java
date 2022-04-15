@@ -1,6 +1,8 @@
 package org.schabi.newpipe.local.holder;
 
 import android.text.TextUtils;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
@@ -9,21 +11,23 @@ import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.PicassoHelper;
 
 import java.time.format.DateTimeFormatter;
 
-public class RemotePlaylistItemHolder extends PlaylistItemHolder {
+public class RemoteBookmarkPlaylistItemHolder extends PlaylistItemHolder {
+    private final View itemHandleView;
 
-    public RemotePlaylistItemHolder(final LocalItemBuilder infoItemBuilder,
-                                    final ViewGroup parent) {
-        this(infoItemBuilder, R.layout.list_playlist_mini_item, parent);
+    public RemoteBookmarkPlaylistItemHolder(final LocalItemBuilder infoItemBuilder,
+                                            final ViewGroup parent) {
+        this(infoItemBuilder, R.layout.list_playlist_bookmark_item, parent);
     }
 
-    RemotePlaylistItemHolder(final LocalItemBuilder infoItemBuilder, final int layoutId,
-                             final ViewGroup parent) {
+    RemoteBookmarkPlaylistItemHolder(final LocalItemBuilder infoItemBuilder, final int layoutId,
+                                     final ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
+        itemHandleView = itemView.findViewById(R.id.itemHandle);
     }
 
     @Override
@@ -48,6 +52,20 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
 
         PicassoHelper.loadPlaylistThumbnail(item.getThumbnailUrl()).into(itemThumbnailView);
 
+        itemHandleView.setOnTouchListener(getOnTouchListener(item));
+
         super.updateFromItem(localItem, historyRecordManager, dateTimeFormatter);
+    }
+
+    private View.OnTouchListener getOnTouchListener(final PlaylistRemoteEntity item) {
+        return (view, motionEvent) -> {
+            view.performClick();
+            if (itemBuilder != null && itemBuilder.getOnItemSelectedListener() != null
+                    && motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN) {
+                itemBuilder.getOnItemSelectedListener().drag(item,
+                        RemoteBookmarkPlaylistItemHolder.this);
+            }
+            return false;
+        };
     }
 }

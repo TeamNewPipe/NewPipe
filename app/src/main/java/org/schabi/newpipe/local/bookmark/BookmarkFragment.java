@@ -31,8 +31,8 @@ import org.schabi.newpipe.databinding.DialogEditTextBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.BaseLocalListFragment;
-import org.schabi.newpipe.local.holder.LocalPlaylistItemHolder;
-import org.schabi.newpipe.local.holder.RemotePlaylistItemHolder;
+import org.schabi.newpipe.local.holder.LocalBookmarkPlaylistItemHolder;
+import org.schabi.newpipe.local.holder.RemoteBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -53,7 +53,6 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 
 public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistLocalItem>, Void> {
-    // todo: add to playlists, item handle should be invisible
 
     // Save the list 10s after the last change occurred
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
@@ -126,6 +125,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
+
+        itemListAdapter.setUseItemHandle(true);
     }
 
     @Override
@@ -530,15 +531,16 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                                   @NonNull final RecyclerView.ViewHolder target) {
                 if (source.getItemViewType() != target.getItemViewType()
                         || itemListAdapter == null) {
-                    // Allow swap LocalPlaylistItemHolder and RemotePlaylistItemHolder.
+                    // Allow swap LocalBookmarkPlaylistItemHolder and
+                    // RemoteBookmarkPlaylistItemHolder.
                     if (!(
                             (
-                                    (source instanceof LocalPlaylistItemHolder)
-                                            || (source instanceof RemotePlaylistItemHolder)
+                                    (source instanceof LocalBookmarkPlaylistItemHolder)
+                                            || (source instanceof RemoteBookmarkPlaylistItemHolder)
                             )
                                     && (
-                                    (target instanceof LocalPlaylistItemHolder)
-                                            || (target instanceof RemotePlaylistItemHolder)
+                                    (target instanceof LocalBookmarkPlaylistItemHolder)
+                                            || (target instanceof RemoteBookmarkPlaylistItemHolder)
                             )
                     )) {
                         return false;
