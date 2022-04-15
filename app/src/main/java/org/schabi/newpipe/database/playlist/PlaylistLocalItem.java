@@ -45,6 +45,10 @@ public interface PlaylistLocalItem extends LocalItem {
             addItem(result, localPlaylists.get(i), itemsWithSameIndex);
             i++;
         }
+        while (j < remotePlaylists.size()) {
+            addItem(result, remotePlaylists.get(j), itemsWithSameIndex);
+            j++;
+        }
         addItemsWithSameIndex(result, itemsWithSameIndex);
 
         return result;

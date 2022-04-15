@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.InputType;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,21 +31,32 @@ import org.schabi.newpipe.databinding.DialogEditTextBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.BaseLocalListFragment;
+import org.schabi.newpipe.local.holder.LocalPlaylistItemHolder;
+import org.schabi.newpipe.local.holder.RemotePlaylistItemHolder;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 
 public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistLocalItem>, Void> {
+    // todo: add to playlists, item handle should be invisible
+
+    // Save the list 10s after the last change occurred
+    private static final long SAVE_DEBOUNCE_MILLIS = 10000;
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
     @State
     protected Parcelable itemsListState;
@@ -54,6 +66,16 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     private LocalPlaylistManager localPlaylistManager;
     private RemotePlaylistManager remotePlaylistManager;
     private ItemTouchHelper itemTouchHelper;
+
+    private PublishSubject<Long> debouncedSaveSignal;
+
+    /* Has the playlist been fully loaded from db */
+    private AtomicBoolean isLoadingComplete;
+    /* Has the playlist been modified (e.g. items reordered or deleted) */
+    private AtomicBoolean isModified;
+
+    // Map from (uid, local/remote item) to the saved display index in the database.
+    private Map<Pair<Long, LocalItem.LocalItemType>, Long> displayIndexInDatabase;
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
@@ -69,6 +91,12 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         localPlaylistManager = new LocalPlaylistManager(database);
         remotePlaylistManager = new RemotePlaylistManager(database);
         disposables = new CompositeDisposable();
+
+        debouncedSaveSignal = PublishSubject.create();
+        isLoadingComplete = new AtomicBoolean();
+        isModified = new AtomicBoolean();
+
+        displayIndexInDatabase = new HashMap<>();
     }
 
     @Nullable
@@ -154,6 +182,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     public void startLoading(final boolean forceLoad) {
         super.startLoading(forceLoad);
 
+        disposables.add(getDebouncedSaver());
+        isLoadingComplete.set(false);
+        isModified.set(false);
+
         Flowable.combineLatest(localPlaylistManager.getPlaylists(),
                 remotePlaylistManager.getPlaylists(), PlaylistLocalItem::merge)
                 .onBackpressureLatest()
@@ -169,6 +201,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     public void onPause() {
         super.onPause();
         itemsListState = itemsList.getLayoutManager().onSaveInstanceState();
+
+        // Save on exit
+        saveImmediate();
     }
 
     @Override
@@ -189,14 +224,22 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (debouncedSaveSignal != null) {
+            debouncedSaveSignal.onComplete();
+        }
         if (disposables != null) {
             disposables.dispose();
         }
 
+        debouncedSaveSignal = null;
         disposables = null;
         localPlaylistManager = null;
         remotePlaylistManager = null;
         itemsListState = null;
+
+        isLoadingComplete = null;
+        isModified = null;
+        displayIndexInDatabase = null;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -208,6 +251,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             @Override
             public void onSubscribe(final Subscription s) {
                 showLoading();
+                isLoadingComplete.set(false);
+
                 if (databaseSubscription != null) {
                     databaseSubscription.cancel();
                 }
@@ -217,14 +262,11 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
             @Override
             public void onNext(final List<PlaylistLocalItem> subscriptions) {
-
-                // If displayIndex does not match actual index, update displayIndex.
-                // This may happen when a new list is created
-                // or on the first run after database update
-                // or displayIndex is not continuous for some reason.
-                checkDisplayIndexUpdate(subscriptions);
-
-                handleResult(subscriptions);
+                if (isModified == null || !isModified.get()) {
+                    checkDisplayIndexModified(subscriptions);
+                    handleResult(subscriptions);
+                    isLoadingComplete.set(true);
+                }
                 if (databaseSubscription != null) {
                     databaseSubscription.request(1);
                 }
@@ -296,86 +338,170 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         disposables.add(disposable);
     }
 
-    private void changeLocalPlaylistDisplayIndex(final long id, final long displayIndex) {
+    private void deleteItem(final PlaylistLocalItem item) {
+        if (itemListAdapter == null) {
+            return;
+        }
+        itemListAdapter.removeItem(item);
 
-        if (localPlaylistManager == null) {
+        saveChanges();
+    }
+
+    private void checkDisplayIndexModified(@NonNull final List<PlaylistLocalItem> result) {
+        if (isModified != null && isModified.get()) {
             return;
         }
 
-        if (DEBUG) {
-            Log.d(TAG, "Updating local playlist id=[" + id + "] "
-                    + "with new display_index=[" + displayIndex + "]");
-        }
+        displayIndexInDatabase.clear();
 
-        final Disposable disposable =
-                localPlaylistManager.changePlaylistDisplayIndex(id, displayIndex)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(longs -> { /*Do nothing on success*/ }, throwable -> showError(
-                                new ErrorInfo(throwable,
-                                        UserAction.REQUESTED_BOOKMARK,
-                                        "Changing local playlist display_index")));
-        disposables.add(disposable);
-    }
-
-    private void changeRemotePlaylistDisplayIndex(final long id, final long displayIndex) {
-
-        if (remotePlaylistManager == null) {
-            return;
-        }
-
-        if (DEBUG) {
-            Log.d(TAG, "Updating remote playlist id=[" + id + "] "
-                    + "with new display_index=[" + displayIndex + "]");
-        }
-
-        final Disposable disposable =
-                remotePlaylistManager.changePlaylistDisplayIndex(id, displayIndex)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(longs -> { /*Do nothing on success*/ }, throwable -> showError(
-                                new ErrorInfo(throwable,
-                                        UserAction.REQUESTED_BOOKMARK,
-                                        "Changing remote playlist display_index")));
-        disposables.add(disposable);
-    }
-
-    private void checkDisplayIndexUpdate(@NonNull final List<PlaylistLocalItem> result) {
+        // If the display index does not match actual index in the list, update the display index.
+        // This may happen when a new list is created
+        // or on the first run after database update
+        // or displayIndex is not continuous for some reason.
+        boolean isDisplayIndexModified = false;
         for (int i = 0; i < result.size(); i++) {
             final PlaylistLocalItem item = result.get(i);
             if (item.getDisplayIndex() != i) {
-                if (item instanceof PlaylistMetadataEntry) {
-                    changeLocalPlaylistDisplayIndex(((PlaylistMetadataEntry) item).uid, i);
-                } else if (item instanceof PlaylistRemoteEntity) {
-                    changeRemotePlaylistDisplayIndex(((PlaylistRemoteEntity) item).getUid(), i);
-                }
+                isDisplayIndexModified = true;
             }
+
+            // Updating display index in the item does not affect the value inserts into
+            // database, which will be recalculated during the database update. Updating
+            // display index in the item here is to determine whether it is recently modified.
+            // Save the index read from the database.
+            if (item instanceof PlaylistMetadataEntry) {
+
+                displayIndexInDatabase.put(new Pair<>(((PlaylistMetadataEntry) item).uid,
+                        LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM), item.getDisplayIndex());
+                ((PlaylistMetadataEntry) item).displayIndex = i;
+
+            } else if (item instanceof PlaylistRemoteEntity) {
+
+                displayIndexInDatabase.put(new Pair<>(((PlaylistRemoteEntity) item).getUid(),
+                                LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM),
+                        item.getDisplayIndex());
+                ((PlaylistRemoteEntity) item).setDisplayIndex(i);
+
+            }
+        }
+
+        if (isDisplayIndexModified) {
+            saveChanges();
         }
     }
 
-    private void saveImmediate() {
-        if (localPlaylistManager == null || remotePlaylistManager == null
-                || itemListAdapter == null) {
+    private void saveChanges() {
+        if (isModified == null || debouncedSaveSignal == null) {
             return;
         }
-        // todo: debounce
-        /*
+
+        isModified.set(true);
+        debouncedSaveSignal.onNext(System.currentTimeMillis());
+    }
+
+    private Disposable getDebouncedSaver() {
+        if (debouncedSaveSignal == null) {
+            return Disposable.empty();
+        }
+
+        return debouncedSaveSignal
+                .debounce(SAVE_DEBOUNCE_MILLIS, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(ignored -> saveImmediate(), throwable ->
+                        showError(new ErrorInfo(throwable, UserAction.SOMETHING_ELSE,
+                                "Debounced saver")));
+    }
+
+    private void saveImmediate() {
+        if (itemListAdapter == null) {
+            return;
+        }
+
         // List must be loaded and modified in order to save
         if (isLoadingComplete == null || isModified == null
                 || !isLoadingComplete.get() || !isModified.get()) {
-            Log.w(TAG, "Attempting to save playlist when local playlist "
-                    + "is not loaded or not modified: playlist id=[" + playlistId + "]");
+            Log.w(TAG, "Attempting to save playlists in bookmark when bookmark "
+                    + "is not loaded or playlists not modified");
             return;
         }
-        */
-        // todo: is it correct?
+
         final List<LocalItem> items = itemListAdapter.getItemsList();
+        final List<PlaylistMetadataEntry> localItemsUpdate = new ArrayList<>();
+        final List<Long> localItemsDeleteUid = new ArrayList<>();
+        final List<PlaylistRemoteEntity> remoteItemsUpdate = new ArrayList<>();
+        final List<Long> remoteItemsDeleteUid = new ArrayList<>();
+
+        // Calculate display index
         for (int i = 0; i < items.size(); i++) {
             final LocalItem item = items.get(i);
+
             if (item instanceof PlaylistMetadataEntry) {
-                changeLocalPlaylistDisplayIndex(((PlaylistMetadataEntry) item).uid, i);
+                ((PlaylistMetadataEntry) item).displayIndex = i;
+
+                final Long uid = ((PlaylistMetadataEntry) item).uid;
+                final Pair<Long, LocalItem.LocalItemType> key = new Pair<>(uid,
+                        LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM);
+                final Long databaseIndex = displayIndexInDatabase.remove(key);
+
+                if (databaseIndex != null) {
+                    if (databaseIndex != i) {
+                        localItemsUpdate.add((PlaylistMetadataEntry) item);
+                    }
+                } else {
+                    // This should be impossible.
+                    continue;
+                }
             } else if (item instanceof PlaylistRemoteEntity) {
-                changeLocalPlaylistDisplayIndex(((PlaylistRemoteEntity) item).getUid(), i);
+                ((PlaylistRemoteEntity) item).setDisplayIndex(i);
+
+                final Long uid = ((PlaylistRemoteEntity) item).getUid();
+                final Pair<Long, LocalItem.LocalItemType> key = new Pair<>(uid,
+                        LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM);
+                final Long databaseIndex = displayIndexInDatabase.remove(key);
+
+                if (databaseIndex != null) {
+                    if (databaseIndex != i) {
+                        remoteItemsUpdate.add((PlaylistRemoteEntity) item);
+                    }
+                } else {
+                    // This should be impossible.
+                    continue;
+                }
             }
         }
+
+        // Find deleted items
+        for (final Pair<Long, LocalItem.LocalItemType> key : displayIndexInDatabase.keySet()) {
+            if (key.second.equals(LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM)) {
+                localItemsDeleteUid.add(key.first);
+            } else if (key.second.equals(LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM)) {
+                remoteItemsDeleteUid.add(key.first);
+            }
+        }
+
+        displayIndexInDatabase.clear();
+
+        // 1. Update local playlists
+        // 2. Update remote playlists
+        // 3. Set isModified false
+        disposables.add(localPlaylistManager.updatePlaylists(localItemsUpdate, localItemsDeleteUid)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> disposables.add(remotePlaylistManager.updatePlaylists(
+                        remoteItemsUpdate, remoteItemsDeleteUid)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(() -> {
+                                    if (isModified != null) {
+                                        isModified.set(false);
+                                    }
+                                },
+                                throwable -> showError(new ErrorInfo(throwable,
+                                        UserAction.REQUESTED_BOOKMARK,
+                                        "Saving playlist"))
+                        )),
+                        throwable -> showError(new ErrorInfo(throwable,
+                                UserAction.REQUESTED_BOOKMARK, "Saving playlist"))
+                ));
+
     }
 
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
@@ -404,17 +530,26 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                                   @NonNull final RecyclerView.ViewHolder target) {
                 if (source.getItemViewType() != target.getItemViewType()
                         || itemListAdapter == null) {
-                    return false;
+                    // Allow swap LocalPlaylistItemHolder and RemotePlaylistItemHolder.
+                    if (!(
+                            (
+                                    (source instanceof LocalPlaylistItemHolder)
+                                            || (source instanceof RemotePlaylistItemHolder)
+                            )
+                                    && (
+                                    (target instanceof LocalPlaylistItemHolder)
+                                            || (target instanceof RemotePlaylistItemHolder)
+                            )
+                    )) {
+                        return false;
+                    }
                 }
 
-                // todo: is it correct
                 final int sourceIndex = source.getBindingAdapterPosition();
                 final int targetIndex = target.getBindingAdapterPosition();
                 final boolean isSwapped = itemListAdapter.swapItems(sourceIndex, targetIndex);
                 if (isSwapped) {
-                    // todo
-                    //saveChanges();
-                    saveImmediate();
+                    saveChanges();
                 }
                 return isSwapped;
             }
@@ -441,7 +576,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     ///////////////////////////////////////////////////////////////////////////
 
     private void showRemoteDeleteDialog(final PlaylistRemoteEntity item) {
-        showDeleteDialog(item.getName(), remotePlaylistManager.deletePlaylist(item.getUid()));
+        showDeleteDialog(item.getName(), item);
     }
 
     private void showLocalDialog(final PlaylistMetadataEntry selectedItem) {
@@ -459,15 +594,14 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                                 dialogBinding.dialogEditText.getText().toString()))
                 .setNegativeButton(R.string.cancel, null)
                 .setNeutralButton(R.string.delete, (dialog, which) -> {
-                    showDeleteDialog(selectedItem.name,
-                            localPlaylistManager.deletePlaylist(selectedItem.uid));
+                    showDeleteDialog(selectedItem.name, selectedItem);
                     dialog.dismiss();
                 })
                 .create()
                 .show();
     }
 
-    private void showDeleteDialog(final String name, final Single<Integer> deleteReactor) {
+    private void showDeleteDialog(final String name, final PlaylistLocalItem item) {
         if (activity == null || disposables == null) {
             return;
         }
@@ -476,13 +610,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 .setTitle(name)
                 .setMessage(R.string.delete_playlist_prompt)
                 .setCancelable(true)
-                .setPositiveButton(R.string.delete, (dialog, i) ->
-                        disposables.add(deleteReactor
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(ignored -> { /*Do nothing on success*/ }, throwable ->
-                                        showError(new ErrorInfo(throwable,
-                                                UserAction.REQUESTED_BOOKMARK,
-                                                "Deleting playlist")))))
+                .setPositiveButton(R.string.delete, (dialog, i) -> deleteItem(item))
                 .setNegativeButton(R.string.cancel, null)
                 .show();
     }

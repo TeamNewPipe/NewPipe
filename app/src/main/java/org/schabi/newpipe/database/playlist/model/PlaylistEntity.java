@@ -2,11 +2,14 @@ package org.schabi.newpipe.database.playlist.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_NAME;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_TABLE;
+
+import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 
 @Entity(tableName = PLAYLIST_TABLE,
         indices = {@Index(value = {PLAYLIST_NAME})})
@@ -34,6 +37,14 @@ public class PlaylistEntity {
         this.name = name;
         this.thumbnailUrl = thumbnailUrl;
         this.displayIndex = displayIndex;
+    }
+
+    @Ignore
+    public PlaylistEntity(final PlaylistMetadataEntry item) {
+        this.uid = item.uid;
+        this.name = item.name;
+        this.thumbnailUrl = item.thumbnailUrl;
+        this.displayIndex = item.displayIndex;
     }
 
     public long getUid() {

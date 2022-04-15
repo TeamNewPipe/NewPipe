@@ -17,7 +17,7 @@ public class PlaylistMetadataEntry implements PlaylistLocalItem {
     @ColumnInfo(name = PLAYLIST_THUMBNAIL_URL)
     public final String thumbnailUrl;
     @ColumnInfo(name = PLAYLIST_DISPLAY_INDEX)
-    public final long displayIndex;
+    public long displayIndex;
     @ColumnInfo(name = PLAYLIST_STREAM_COUNT)
     public final long streamCount;
 

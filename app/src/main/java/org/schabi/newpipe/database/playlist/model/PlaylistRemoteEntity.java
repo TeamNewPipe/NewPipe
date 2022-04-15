@@ -54,7 +54,7 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
     private String uploader;
 
     @ColumnInfo(name = REMOTE_PLAYLIST_DISPLAY_INDEX)
-    private long displayIndex;
+    private long displayIndex = -1; // Make sure the new item is on the top
 
     @ColumnInfo(name = REMOTE_PLAYLIST_STREAM_COUNT)
     private Long streamCount;

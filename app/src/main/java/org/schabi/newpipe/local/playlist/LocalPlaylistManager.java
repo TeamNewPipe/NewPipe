@@ -41,6 +41,7 @@ public class LocalPlaylistManager {
         }
         final StreamEntity defaultStream = streams.get(0);
 
+        // Save to the database directly.
         // Make sure the new playlist is always on the top of bookmark.
         // The index will be reassigned to non-negative number in BookmarkFragment.
         final PlaylistEntity newPlaylist =
@@ -85,8 +86,29 @@ public class LocalPlaylistManager {
         })).subscribeOn(Schedulers.io());
     }
 
+    public Completable updatePlaylists(final List<PlaylistMetadataEntry> updateItems,
+                                       final List<Long> deletedItems) {
+        final List<PlaylistEntity> items = new ArrayList<>(updateItems.size());
+        for (final PlaylistMetadataEntry item : updateItems) {
+            items.add(new PlaylistEntity(item));
+        }
+        return Completable.fromRunnable(() -> database.runInTransaction(() -> {
+            for (final Long uid: deletedItems) {
+                playlistTable.deletePlaylist(uid);
+            }
+            for (final PlaylistEntity item: items) {
+                playlistTable.upsertPlaylist(item);
+            }
+        })).subscribeOn(Schedulers.io());
+    }
+
     public Flowable<List<PlaylistMetadataEntry>> getPlaylists() {
         return playlistStreamTable.getPlaylistMetadata().subscribeOn(Schedulers.io());
+    }
+
+    public Flowable<List<PlaylistMetadataEntry>> getDisplayIndexOrderedPlaylists() {
+        return playlistStreamTable.getDisplayIndexOrderedPlaylistMetadata()
+                .subscribeOn(Schedulers.io());
     }
 
     public Flowable<List<PlaylistStreamEntry>> getPlaylistStreams(final long playlistId) {
@@ -107,7 +129,7 @@ public class LocalPlaylistManager {
         return modifyPlaylist(playlistId, null, thumbnailUrl, -1);
     }
 
-    public Maybe<Integer> changePlaylistDisplayIndex(final long playlistId,
+    public Maybe<Integer> updatePlaylistDisplayIndex(final long playlistId,
                                                      final long displayIndex) {
         return modifyPlaylist(playlistId, null, null, displayIndex);
     }
