@@ -89,9 +89,6 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
                     show()
                 }
             }
-        } else {
-            notificationWarningSnackbar?.dismiss()
-            notificationWarningSnackbar = null
         }
 
         // (Re-)Create loader
@@ -105,6 +102,9 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
     override fun onPause() {
         loader?.dispose()
         loader = null
+
+        notificationWarningSnackbar?.dismiss()
+        notificationWarningSnackbar = null
 
         super.onPause()
     }
