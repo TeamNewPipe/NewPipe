@@ -26,6 +26,10 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.notifications_settings)
+
+        // main check is done in onResume, but also do it here to prevent flickering
+        preferenceScreen.isEnabled =
+            NotificationHelper.areNotificationsEnabledOnDevice(requireContext())
     }
 
     override fun onStart() {
@@ -64,7 +68,7 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
         // If they are disabled, show a snackbar informing the user about that
         // while allowing them to open the device's app settings.
         val enabled = NotificationHelper.areNotificationsEnabledOnDevice(requireContext())
-        preferenceScreen.isEnabled = enabled
+        preferenceScreen.isEnabled = enabled // it is disabled by default, see the xml
         if (!enabled) {
             if (notificationWarningSnackbar == null) {
                 notificationWarningSnackbar = Snackbar.make(
