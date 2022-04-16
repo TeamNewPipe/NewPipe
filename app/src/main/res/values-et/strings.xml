@@ -326,7 +326,7 @@
     <string name="playback_step">Samm</string>
     <string name="playback_reset">Lähtesta</string>
     <string name="start_accept_privacy_policy">Selleks, et täita Euroopa Üldist Andmekaitse Määrust (GDPR), juhime tähelepanu NewPipe\'i privaatsuspoliitikale. Palun lugege seda hoolikalt.
-\nMeile veateate saatmiseks tuleb sellega nõustuda.</string>
+\nMeile veateate saatmiseks pead sellega nõustuma.</string>
     <string name="minimize_on_exit_title">Minimeeri, kui kasutad teisi rakendusi</string>
     <string name="minimize_on_exit_summary">Tegevus lülitusel peamiselt videopleierilt teisele rakendusele — %s</string>
     <string name="minimize_on_exit_none_description">Pole</string>
@@ -685,4 +685,6 @@
 \nPalun paigalda nutiseadmesse failihaldur, mis järgib Storage Access Framework reeglistikku.</string>
     <string name="detail_pinned_comment_view_description">Esiletõstetud kommentaar</string>
     <string name="leak_canary_not_available">LeakCanary pole saadaval</string>
+    <string name="progressive_load_interval_default">ExoPlayer\'i vaikimisi väärtused</string>
+    <string name="progressive_load_interval_summary">Muuda video laadimise välpa (hetkel %s). Väiksemast väärtusest võib abi olla, kui tahad et video esitamine algaks varem. Muudatuste jõustamine eeldab rakenduse uuesti käivitamist.</string>
 </resources>

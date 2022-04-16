@@ -721,4 +721,8 @@
     <string name="background_player_already_playing_toast">Уже проигрывается в фоне</string>
     <string name="detail_pinned_comment_view_description">Закреплённый комментарий</string>
     <string name="leak_canary_not_available">LeakCanary недоступна</string>
+    <string name="adjust_by_semitones_checkbox">Регулировка высоты тона по музыкальным полутонам</string>
+    <string name="playback_tempo_step">Шаг темпа</string>
+    <string name="progressive_load_interval_default">Стандартное значение ExoPlayer</string>
+    <string name="progressive_load_interval_summary">Изменить размер интервала загрузки (сейчас %s). Меньшее значение может ускорить начальную загрузку видео. Изменение значения потребует перезапуска плеера.</string>
 </resources>

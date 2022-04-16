@@ -685,4 +685,8 @@
     <string name="background_player_already_playing_toast">Αναπαράγεται ήδη στο παρασκήνιο</string>
     <string name="detail_pinned_comment_view_description">Καρφιτσωμένο σχόλιο</string>
     <string name="leak_canary_not_available">Το LeakCanary δεν είναι διαθέσιμο</string>
+    <string name="adjust_by_semitones_checkbox">Προσαρμόστε τον τόνο με βάση τα μουσικά ημιτόνια</string>
+    <string name="playback_tempo_step">Βήμα τέμπο</string>
+    <string name="progressive_load_interval_default">Εξ\' ορισμού ExoPlayer</string>
+    <string name="progressive_load_interval_summary">Αλλάξτε το μέγεθος του διαστήματος φόρτωσης (επί του παρόντος είναι %s). Μια χαμηλότερη τιμή μπορεί να επιταχύνει την αρχική φόρτωση βίντεο. Οι αλλαγές απαιτούν επανεκκίνηση της εφαρμογής.</string>
 </resources>

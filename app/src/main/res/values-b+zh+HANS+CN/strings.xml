@@ -673,4 +673,8 @@
     <string name="background_player_already_playing_toast">已经在后台播放</string>
     <string name="detail_pinned_comment_view_description">置顶评论</string>
     <string name="leak_canary_not_available">LeakCanary 不可用</string>
+    <string name="adjust_by_semitones_checkbox">以音乐半音调整音高</string>
+    <string name="playback_tempo_step">节奏步长</string>
+    <string name="progressive_load_interval_summary">改变加载间隔的大小（当前%s），较低的值可以加快初始的视频加载速度，改变需要重启播放器。</string>
+    <string name="progressive_load_interval_default">ExoPlayer 默认</string>
 </resources>

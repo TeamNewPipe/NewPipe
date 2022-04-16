@@ -685,4 +685,8 @@
     <string name="background_player_already_playing_toast">Já está tocando em segundo plano</string>
     <string name="detail_pinned_comment_view_description">Comentário fixado</string>
     <string name="leak_canary_not_available">O LeakCanary não está disponível</string>
+    <string name="playback_tempo_step">Passo do tempo</string>
+    <string name="progressive_load_interval_summary">Altere o tamanho do intervalo de carregamento (atualmente %s). Um valor menor pode acelerar o carregamento inicial do vídeo. As alterações exigem que o player reinicie.</string>
+    <string name="adjust_by_semitones_checkbox">Ajustar o tom por semitons musicais</string>
+    <string name="progressive_load_interval_default">ExoPlayer padrão</string>
 </resources>

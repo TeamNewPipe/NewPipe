@@ -685,4 +685,8 @@
 \nInstalleer een bestandsbeheerder die compatibel is met het Storage Access Framework.</string>
     <string name="detail_pinned_comment_view_description">Vastgemaakt commentaar</string>
     <string name="leak_canary_not_available">LeakCanary is niet beschikbaar</string>
+    <string name="progressive_load_interval_summary">Verander de laad interval tijd (nu %s). Een lagere waarde kan het initiële laden van de video versnellen. De wijziging vereist een herstart van de speler.</string>
+    <string name="adjust_by_semitones_checkbox">Pas de toonhoogte aan met muzikale halve tonen</string>
+    <string name="playback_tempo_step">Tempo stap</string>
+    <string name="progressive_load_interval_default">ExoPlayer standaard</string>
 </resources>

@@ -18,7 +18,7 @@
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
     <string name="kore_not_found">¿Instalar la aplicación Kore que falta\?</string>
     <string name="show_play_with_kodi_title">Mostrar opción «Reproducir con Kodi»</string>
-    <string name="show_play_with_kodi_summary">Mostrar opción para reproducir vídeo a través del centro de medios Kodi</string>
+    <string name="show_play_with_kodi_summary">Mostrar opción para reproducir un vídeo a través de Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato de audio predefinido</string>
     <string name="download_dialog_title">Descargar</string>
@@ -316,8 +316,8 @@
     <string name="privacy_policy_encouragement">El proyecto NewPipe toma tu privacidad muy en serio. Por ello, la aplicación no recopila ningún dato sin tu consentimiento.
 \nLa política de privacidad de NewPipe explica en detalle qué datos se envían y almacenan al enviar un informe de fallo.</string>
     <string name="read_privacy_policy">Leer política de privacidad</string>
-    <string name="start_accept_privacy_policy">Para cumplir con el «Reglamento general europeo de protección de datos (GDPR)», atraemos tu atención sobre la política de privacidad de NewPipe. Por favor léase cuidadosamente.
-\nDebes aceptarlo para enviarnos el informe de error.</string>
+    <string name="start_accept_privacy_policy">Para cumplir con el «Reglamento general europeo de protección de datos (GDPR)», atraemos su atención sobre la política de privacidad de NewPipe. Por favor léase cuidadosamente.
+\nDebe aceptarlo para enviarnos el informe de error.</string>
     <string name="accept">Aceptar</string>
     <string name="decline">Declinar</string>
     <string name="limit_data_usage_none_description">Sin límite</string>
@@ -367,11 +367,11 @@
     <string name="pause_downloads">Pausar descargas</string>
     <!-- message dialog about download error -->
     <string name="show_error">Mostrar error</string>
-    <string name="error_file_creation">No se puede crear el archivo</string>
+    <string name="error_file_creation">El archivo no puede ser creado</string>
     <string name="error_path_creation">No se puede crear la carpeta de destino</string>
     <string name="error_ssl_exception">No se pudo establecer una conexión segura</string>
     <string name="error_unknown_host">No se pudo encontrar el servidor</string>
-    <string name="error_connect_host">No se puede conectar con el servidor</string>
+    <string name="error_connect_host">No se puede conectar al servidor</string>
     <string name="error_http_no_content">El servidor no devolvio datos</string>
     <string name="error_http_unsupported_range">El servidor no acepta descargas multi-hilos, intente de nuevo con @string/msg_threads = 1</string>
     <string name="error_http_not_found">No encontrado</string>
@@ -564,7 +564,7 @@
     <string name="notification_action_2_title">Botón de tercera acción</string>
     <string name="notification_action_1_title">Botón de segunda acción</string>
     <string name="notification_action_0_title">Botón de primera acción</string>
-    <string name="notification_scale_to_square_image_summary">Escalar la miniatura del vídeo mostrada en la notificación de relación de aspecto 16:9 a 1:1 (puede ocasionar distorsiones)</string>
+    <string name="notification_scale_to_square_image_summary">Escalar la relación de aspecto de la miniatura del vídeo mostrada en la notificación de 16:9 a 1:1 (puede ocasionar distorsiones)</string>
     <string name="clear_cookie_summary">Vaciar las cookies que NewPipe guarda al resolver un reCAPTCHA</string>
     <string name="show_age_restricted_content_summary">Mostrar contenido inapropiado para niños porque tiene un limite de edad (como 18+)</string>
     <string name="show_memory_leaks">Mostrar pérdidas de memoria</string>
@@ -688,4 +688,8 @@
     <string name="detail_pinned_comment_view_description">Comentario fijado</string>
     <string name="background_player_already_playing_toast">Ya se reproduce en segundo plano</string>
     <string name="leak_canary_not_available">LeakCanary no está disponible</string>
+    <string name="progressive_load_interval_default">ExoPlayer valor por defecto</string>
+    <string name="playback_tempo_step">Paso de tempo</string>
+    <string name="progressive_load_interval_summary">Cambia el tamaño del intervalo de carga (actualmente %s). Un valor más bajo puede acelerar la carga inicial del vídeo. Los cambios requieren un reinicio del reproductor.</string>
+    <string name="adjust_by_semitones_checkbox">Ajustar el tono por semitonos musicales</string>
 </resources>

@@ -315,8 +315,8 @@
     <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l\'app non raccoglie alcun dato senza il tuo consenso.
 \nL\'informativa sulla privacy spiega nel dettaglio quali dati vengono trattati e memorizzati durante l\'invio di segnalazioni per arresti anomali.</string>
     <string name="read_privacy_policy">Leggi l\'informativa sulla privacy</string>
-    <string name="start_accept_privacy_policy">Per rispettare il regolamento europeo sulla protezione dei dati (GDPR), attiriamo la vostra attenzione riguardo l\'informativa sulla privacy di NewPipe. Si prega di leggerla attentamente.
-\nDevi accettarla per inviarci il bug report.</string>
+    <string name="start_accept_privacy_policy">Per rispettare il regolamento europeo sulla protezione dei dati (GDPR), richiamiamo la vostra attenzione sull\'informativa sulla privacy di NewPipe. Si prega di leggerla attentamente.
+\nDeve essere accettata per poter inviare la segnalazione.</string>
     <string name="accept">Accetto</string>
     <string name="decline">Rifiuto</string>
     <string name="limit_data_usage_none_description">Nessun limite</string>
@@ -537,7 +537,7 @@
     <string name="select_a_playlist">Seleziona una playlist</string>
     <string name="search_showing_result_for">Risultati per: %s</string>
     <string name="playlist_page_summary">Pagina delle playlist</string>
-    <string name="error_report_open_github_notice">Prima di segnalare un problema, verificare che non sia già stato riportato da qualcun altro. Il tempo che gli sviluppatori utilizzerebbero per creare un ulteriore ticket potrebbe essere invece impiegato per correggere il problema stesso.</string>
+    <string name="error_report_open_github_notice">Prima di segnalare un problema, verificare che non sia già stato riportato da qualcun altro. Il tempo che gli sviluppatori utilizzerebbero per creare un ulteriore ticket, potrebbe invece essere impiegato per correggere il problema stesso.</string>
     <string name="error_report_open_issue_button_text">Segnala su GitHub</string>
     <string name="copy_for_github">Copia segnalazione formattata</string>
     <string name="never">Mai</string>
@@ -685,4 +685,8 @@
     <string name="detail_pinned_comment_view_description">Commento in primo piano</string>
     <string name="background_player_already_playing_toast">Già in riproduzione in sottofondo</string>
     <string name="leak_canary_not_available">LeakCanary non è disponibile</string>
+    <string name="adjust_by_semitones_checkbox">Regola il tono secondo i semitoni musicali</string>
+    <string name="progressive_load_interval_default">Predefinito ExoPlayer</string>
+    <string name="progressive_load_interval_summary">Cambia la dimensione dell\'intervallo da caricare (attualmente %s). Un valore basso può velocizzare il caricamento iniziale del video. La modifica richiede il riavvio del lettore.</string>
+    <string name="playback_tempo_step">Passo tempo</string>
 </resources>

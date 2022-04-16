@@ -329,7 +329,7 @@
     <string name="minimize_on_exit_background_description">Für die Wiedergabe im Hintergrund minimieren</string>
     <string name="minimize_on_exit_popup_description">Für die Wiedergabe im Pop-up minimieren</string>
     <string name="skip_silence_checkbox">Vorspulen bei Stille</string>
-    <string name="playback_step">Schritt</string>
+    <string name="playback_step">Stufe</string>
     <string name="playback_reset">Zurücksetzen</string>
     <string name="channels">Kanäle</string>
     <string name="playlists">Wiedergabelisten</string>
@@ -687,4 +687,8 @@
     <string name="background_player_already_playing_toast">Wird bereits im Hintergrund abgespielt</string>
     <string name="detail_pinned_comment_view_description">Angehefteter Kommentar</string>
     <string name="leak_canary_not_available">LeakCanary ist nicht verfügbar</string>
+    <string name="adjust_by_semitones_checkbox">Tonhöhe nach musikalischen Halbtönen anpassen</string>
+    <string name="progressive_load_interval_summary">Ändern der Größe des Ladeintervalls (derzeit %s). Ein niedrigerer Wert kann das anfängliche Laden des Videos beschleunigen. Änderungen erfordern einen Neustart des Players.</string>
+    <string name="playback_tempo_step">Geschwindigkeitsstufe</string>
+    <string name="progressive_load_interval_default">ExoPlayer Standard</string>
 </resources>

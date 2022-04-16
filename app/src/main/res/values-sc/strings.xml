@@ -685,4 +685,8 @@
     <string name="detail_pinned_comment_view_description">Cummentu apicadu</string>
     <string name="background_player_already_playing_toast">Giai in riprodutzione in s\'isfundu</string>
     <string name="leak_canary_not_available">LeakCanary no est a disponimentu</string>
+    <string name="adjust_by_semitones_checkbox">Règula s\'intonatzione in base a sos semitonos musicales</string>
+    <string name="playback_tempo_step">Passu de su ritmu</string>
+    <string name="progressive_load_interval_default">Valore ExoPlayer predefinidu</string>
+    <string name="progressive_load_interval_summary">Muda sa mannària de s\'intervallu de carrigamentu (in custu momentu %s). Unu valore prus bassu diat pòdere allestrare su carrigamentu de incumintzu de su vìdeu. Sas modìficas tenent bisòngiu de torrare a allùghere su riproduidore.</string>
 </resources>

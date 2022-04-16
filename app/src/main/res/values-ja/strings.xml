@@ -324,7 +324,7 @@
     <string name="playback_speed_control">再生速度を変更</string>
     <string name="unhook_checkbox">速度と音程を連動せずに変更 (歪むかもしれません)</string>
     <string name="skip_silence_checkbox">無音の間に早送り</string>
-    <string name="playback_step">音程幅</string>
+    <string name="playback_step">音階</string>
     <string name="unsubscribe">登録解除</string>
     <string name="tab_choose">タブを選択</string>
     <string name="settings_category_updates_title">アプリの更新</string>
@@ -673,4 +673,5 @@
     <string name="create_error_notification">エラー通知を作成</string>
     <string name="error_report_channel_description">エラーを報告する通知</string>
     <string name="leak_canary_not_available">LeakCanaryが利用不可能です</string>
+    <string name="playback_tempo_step">緩急音階</string>
 </resources>

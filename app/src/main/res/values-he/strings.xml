@@ -709,4 +709,8 @@
     <string name="background_player_already_playing_toast">כבר מתנגן ברקע</string>
     <string name="detail_pinned_comment_view_description">הערה ננעצה</string>
     <string name="leak_canary_not_available">LeakCanary אינה זמינה</string>
+    <string name="adjust_by_semitones_checkbox">התאמת גובה הצליל לפי חצאי טונים מוזיקליים</string>
+    <string name="playback_tempo_step">צעד מקצב</string>
+    <string name="progressive_load_interval_default">ברירת מחדל של ExoPlayer</string>
+    <string name="progressive_load_interval_summary">שינוי גודל מרווח הטעינה (כרגע %s). ערך נמוך יותר עשוי להאיץ את טעינת הווידאו הראשונית. שינויים דורשים את הפעלת הנגן מחדש.</string>
 </resources>

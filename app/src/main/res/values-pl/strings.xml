@@ -52,7 +52,7 @@
     <string name="could_not_setup_download_menu">Nie udało się utworzyć menu pobierania</string>
     <string name="sorry_string">Przepraszamy, to nie powinno mieć miejsca.</string>
     <string name="error_report_button_text">Zgłoś błąd przez e-mail</string>
-    <string name="error_snackbar_message">Niestety, coś poszło nie tak.</string>
+    <string name="error_snackbar_message">Niestety, coś poszło nie tak</string>
     <string name="error_snackbar_action">Zgłoś</string>
     <string name="what_device_headline">Informacje:</string>
     <string name="what_happened_headline">Co się stało:</string>
@@ -195,7 +195,7 @@
     <string name="hold_to_append">Przytrzymaj, aby zakolejkować</string>
     <string name="start_here_on_background">Zacznij odtwarzać w tle</string>
     <string name="start_here_on_popup">Zacznij odtwarzać w trybie okienkowym</string>
-    <string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieni (żeby odtworzyć, możesz zainstalować VLC).</string>
+    <string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieni (żeby odtworzyć, możesz zainstalować VLC)</string>
     <string name="default_content_country_title">Domyślny kraj treści</string>
     <string name="always">Zawsze</string>
     <string name="just_once">Tylko raz</string>
@@ -227,7 +227,7 @@
     <string name="export_complete_toast">Wyeksportowano</string>
     <string name="import_complete_toast">Zaimportowano</string>
     <string name="no_valid_zip_file">Nieprawidłowy plik ZIP</string>
-    <string name="could_not_import_all_files">Ostrzeżenie: Nie udało się zaimportować wszystkich plików.</string>
+    <string name="could_not_import_all_files">Ostrzeżenie: Nie udało się zaimportować wszystkich plików</string>
     <string name="override_current_data">Zastąpi to obecne ustawienia.</string>
     <string name="drawer_open">Otwórz menu</string>
     <string name="drawer_close">Zamknij menu</string>
@@ -242,8 +242,8 @@
     <string name="unbookmark_playlist">Usuń z ulubionych</string>
     <string name="delete_playlist_prompt">Czy usunąć tę playlistę\?</string>
     <string name="playlist_creation_success">Playlista utworzona</string>
-    <string name="playlist_add_stream_success">Dodano do playlisty.</string>
-    <string name="playlist_thumbnail_change_success">Miniatura playlisty zmieniona.</string>
+    <string name="playlist_add_stream_success">Dodano do playlisty</string>
+    <string name="playlist_thumbnail_change_success">Miniatura playlisty zmieniona</string>
     <string name="caption_none">Bez napisów</string>
     <string name="resize_fit">Dopasuj</string>
     <string name="resize_fill">Wypełnij</string>
@@ -313,7 +313,7 @@
     <string name="clear_search_history_summary">Usuwa historię wyszukiwania słów kluczowych</string>
     <string name="delete_search_history_alert">Usunąć całą historię wyszukiwania\?</string>
     <string name="search_history_deleted">Usunięto historię wyszukiwania</string>
-    <string name="one_item_deleted">Usunięto jedną pozycję.</string>
+    <string name="one_item_deleted">Usunięto jedną pozycję</string>
     <string name="toast_no_player">Brak zainstalowanej aplikacji do odtworzenia tego pliku</string>
     <string name="app_license">NewPipe jest wolnym i bezpłatnym oprogramowaniem: Możesz używać, udostępniać i ulepszać je do woli. W szczególności możesz je redystrybuować i/lub modyfikować zgodnie z warunkami GNU General Public License, opublikowanej przez Free Software Fundation, w wersji 3 albo (według Twojego wyboru) jakiejkolwiek późniejszej wersji.</string>
     <string name="import_settings">Czy chcesz zaimportować również ustawienia?</string>
@@ -603,11 +603,11 @@
     <string name="open_with">Otwórz za pomocą</string>
     <string name="no_app_to_open_intent">Żadna aplikacja na Twoim urządzeniu nie może tego otworzyć</string>
     <string name="related_items_tab_description">Powiązane pozycje</string>
-    <string name="crash_the_app">Awaria aplikacji</string>
+    <string name="crash_the_app">Zepsuj aplikację</string>
     <string name="paid_content">Ta zawartość dostępna jest tylko dla użytkowników, którzy za nią zapłacili. Nie może ona być strumieniowana ani pobierana przez NewPipe.</string>
     <string name="youtube_music_premium_content">To wideo dostępne jest tylko dla subskrybentów usługi YouTube Music Premium. Nie może ono być strumieniowane ani pobierane przez NewPipe.</string>
-    <string name="private_content">Ta zawartość jest prywatna, więc nie może być strumieniowana ani pobierana przez NewPipe.</string>
-    <string name="georestricted_content">Ta treść nie jest dostępna w Twoim kraju.</string>
+    <string name="private_content">Ta zawartość jest prywatna, więc nie może być strumieniowana ani pobierana przez NewPipe</string>
+    <string name="georestricted_content">Ta treść nie jest dostępna w Twoim kraju</string>
     <string name="restricted_video_no_stream">To wideo ma ograniczenia wiekowe.
 \nZe względu na nowe zasady YouTube odnośnie ograniczeń wiekowych, NewPipe nie ma dostępu do żadnego z jego strumieni wideo i dlatego nie jest w stanie go odtworzyć.</string>
     <string name="soundcloud_go_plus_content">To jest utwór SoundCloud Go+ (przynajmniej w Twoim kraju). Nie może on być strumieniowany lub pobierany przez NewPipe.</string>
@@ -645,7 +645,7 @@
 \nNewPipe nie będzie w stanie załadować tego kanału w przyszłości.
 \nCzy chcesz anulować subskrypcję tego kanału\?</string>
     <string name="feed_load_error_account_info">Nie udało się załadować kanału dla „%s”.</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Począwszy od systemu Android 10, obsługiwany jest tylko systemowy selektor folderów (SAF)</string>
+    <string name="downloads_storage_use_saf_summary_api_29">Począwszy od Androida 10 obsługiwany jest tylko systemowy selektor folderów (SAF)</string>
     <string name="downloads_storage_use_saf_summary_api_19">Systemowy selektor folderów (SAF) nie jest obsługiwany przez system Android KitKat i niższy</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Zostaniesz zapytany(-na), gdzie zapisać każdy pobierany plik</string>
     <string name="no_dir_yet">Nie ustawiono jeszcze folderu zapisywania, wybierz domyślny teraz</string>
@@ -694,7 +694,7 @@
     <string name="error_report_channel_name">Powiadomienie raportu o błędach</string>
     <string name="error_report_channel_description">Powiadomienia do zgłaszania błędów</string>
     <string name="error_report_notification_title">NewPipe napotkał błąd. Naciśnij, aby zgłosić</string>
-    <string name="error_report_notification_toast">Wystąpił błąd. Zobacz powiadomienie.</string>
+    <string name="error_report_notification_toast">Wystąpił błąd, zobacz powiadomienie</string>
     <string name="show_error_snackbar">Pokaż snackbar z błędem</string>
     <string name="create_error_notification">Utwórz powiadomienie o błędzie</string>
     <string name="no_appropriate_file_manager_message">Nie znaleziono odpowiedniego menedżera plików dla tej akcji.
@@ -704,4 +704,9 @@
     <string name="background_player_already_playing_toast">Już jest odtwarzane w tle</string>
     <string name="detail_pinned_comment_view_description">Przypięty komentarz</string>
     <string name="leak_canary_not_available">LeakCanary jest niedostępne</string>
+    <string name="progressive_load_interval_title">Rozmiar interwału ładowania odtwarzania</string>
+    <string name="progressive_load_interval_summary">Zmień rozmiar interwału ładowania (aktualnie %s). Niższa wartość może przyspieszyć początkowe ładowanie wideo. Zmiany wymagają ponownego uruchomienia odtwarzacza</string>
+    <string name="progressive_load_interval_default">domyślny ExoPlayera</string>
+    <string name="adjust_by_semitones_checkbox">Dostosuj wysokość półtonami</string>
+    <string name="playback_tempo_step">Krok tempa</string>
 </resources>

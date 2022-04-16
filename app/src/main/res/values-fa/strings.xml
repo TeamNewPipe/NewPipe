@@ -355,8 +355,8 @@
     <string name="app_license">نیوپایپ یک نرم‌افزار آزاد کپی‌لفتی است: می‌توانید به دلخواه خود استفاده، بررسی، هم‌رسانی و بهترش کنید. به طور خاص می‌توانید ذیل نگارش ۳ یا هر نگارش بالاتری از پروانهٔ جامع همگانی گنو که به دست بنیاد نرم‌افزار آزاد منتشر شده، تغییر و بازنشرش دهید.</string>
     <string name="privacy_policy_encouragement">حریم شخصی شما برای پروژه نیویایپ بسیاری جدی است. در نتیجه، این برنامه هیچ اطلاعاتی را بدون رضایت شما گردآوری نمی‌کند.
 \nسیاست‌های حریم شخصی نیوپایپ با جزئیات توضیح می‌دهد که وقتی گزارش یک خطا را می‌فرستید، چه داده‌هایی ذخیره و فرستاده می‌شود.</string>
-    <string name="start_accept_privacy_policy">به منظور هماهنگی با مقررات حفاظت داده عمومی اروپا (GDPR) در اینجا توجه شما را به سیاست حریم شخصی نیوپایپ جلب می‌کنیم. لطفا آن را به دقت مطالعه کنید.
-\nبرای فرستادن گزارش مشکل، باید این سیاست را بپذیرید.</string>
+    <string name="start_accept_privacy_policy">به منظور هماهنگی با مقرّرات حفاظت دادهٔ عمومی اروپا (GDPR) توجهتان را به سیاست محرمانگی نیوپایپ جلب می‌کنیم. لطفاً به دقّت مطالعه‌اش کنید.
+\nبرای فرستادن گزارش مشکل باید بپذیریدش.</string>
     <string name="limit_mobile_data_usage_title">کیفیت را در زمان استفاده از داده همراه محدود کن</string>
     <string name="skip_silence_checkbox">پرش به جلو حین سکوت</string>
     <string name="playback_reset">بازنشانی</string>
@@ -374,11 +374,11 @@
     <string name="overwrite">بازنویسی</string>
     <string name="download_already_running">یک بارگیری دیگر با همین نام در جریان است</string>
     <string name="show_error">نمایش خطا</string>
-    <string name="error_path_creation">پوشه مقصد نمی‌تواند ساخته شود</string>
+    <string name="error_path_creation">شاخهٔ مقصد نمی‌تواند ساخته شود</string>
     <string name="error_file_creation">پرونده نمی‌تواند ساخته شود</string>
     <string name="error_ssl_exception">شکست در برقرار ارتباط امن</string>
     <string name="error_unknown_host">ناتوانی در پیدا کردن کارساز</string>
-    <string name="error_connect_host">ناتوانی در اتصال به کارساز</string>
+    <string name="error_connect_host">نمی‌توان به کارساز وصل شد</string>
     <string name="error_http_no_content">کارساز داده‌ای نمی‌فرستد</string>
     <string name="error_http_unsupported_range">کارساز، بارگیری‌های چندرشته‌ای را قبول نمی‌کند، تلاش مجدد با ‎@string/msg_threads = 1</string>
     <string name="stop">توقف</string>
@@ -685,4 +685,8 @@
     <string name="detail_pinned_comment_view_description">نظر سنجاق شده</string>
     <string name="background_player_already_playing_toast">در حال پخش در پس‌زمینه</string>
     <string name="leak_canary_not_available">لیک‌کاناری موجود نیست</string>
+    <string name="playback_tempo_step">گام سرعت</string>
+    <string name="adjust_by_semitones_checkbox">تنظیم زیر و بم با شبه‌تن‌ها</string>
+    <string name="progressive_load_interval_summary">تغییر اندازهٔ بازهٔ بار (هم‌اکنون %s). مقداری پایین‌تر، می‌تواند بار کردن نخستین ویدیو را سرعت بخشد. تغییرها نیاز به یک آغاز دوبارهٔ پخش‌کننده دارند.</string>
+    <string name="progressive_load_interval_default">پیش‌گزیدهٔ اگزوپلیر</string>
 </resources>

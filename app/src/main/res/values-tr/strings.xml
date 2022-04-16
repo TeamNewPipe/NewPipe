@@ -20,7 +20,7 @@
     <string name="download_path_audio_title">Ses indirme klasörü</string>
     <string name="download_path_audio_summary">İndirilen ses dosyaları burada depolanır</string>
     <string name="download_path_audio_dialog_title">Ses dosyaları için indirme klasörünü seç</string>
-    <string name="default_resolution_title">Varsayılan çözünürlük</string>
+    <string name="default_resolution_title">Öntanımlı çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Eksik Kore uygulaması yüklensin mi\?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile oynat\" seçeneğini göster</string>
@@ -239,7 +239,7 @@
     <string name="resize_zoom">Yakınlaştır</string>
     <string name="settings_category_debug_title">Hata ayıklama</string>
     <string name="caption_auto_generated">Kendiliğinden oluşturulan</string>
-    <string name="enable_leak_canary_summary">Bellek sızıntısı izleme, yığın boşaltımı sırasında uygulamanın yanıt vermemesine neden olabilir</string>
+    <string name="enable_leak_canary_summary">Bellek sızıntısı izleme, yığın boşaltımı sırasında uygulamanın yanıtlamamasına neden olabilir</string>
     <string name="enable_disposed_exceptions_title">Yaşam döngüsü dışı hatalarını bildir</string>
     <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsündeki teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
     <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
@@ -344,10 +344,10 @@
     <string name="saved_tabs_invalid_json">Kayıtlı sekmeler okunamadı, bu nedenle öntanımlılar kullanılıyor</string>
     <string name="restore_defaults">Öntanımlıları geri yükle</string>
     <string name="restore_defaults_confirmation">Öntanımlıları geri yüklemek istiyor musunuz\?</string>
-    <string name="subscribers_count_not_available">Abone sayısı mevcut değil</string>
+    <string name="subscribers_count_not_available">Abone sayısı yok</string>
     <string name="main_page_content_summary">Ana sayfada hangi sekmeler gösterilir</string>
     <string name="updates_setting_title">Güncellemeler</string>
-    <string name="updates_setting_description">Yeni bir sürüm mevcut olduğunda uygulama güncellemesi için bir bildirim göster</string>
+    <string name="updates_setting_description">Yeni sürüm olduğunda uygulama güncellemesi için bildirim göster</string>
     <string name="list_view_mode">Liste görünümü kipi</string>
     <string name="list">Liste</string>
     <string name="grid">Izgara</string>
@@ -358,8 +358,8 @@
     <string name="paused">durduruldu</string>
     <string name="queued">sırada</string>
     <string name="post_processing">son işlemler uygulanıyor</string>
-    <string name="enqueue">Sıra</string>
-    <string name="permission_denied">İşlem sistem tarafından reddedildi</string>
+    <string name="enqueue">Kuyruğa al</string>
+    <string name="permission_denied">İşlem sistemce reddedildi</string>
     <string name="download_failed">İndirme başarısız</string>
     <string name="generate_unique_name">Benzersiz ad oluştur</string>
     <string name="overwrite">Üzerine yaz</string>
@@ -684,5 +684,9 @@
     <string name="crash_the_player">Oynatıcıyı çöktür</string>
     <string name="background_player_already_playing_toast">Zaten arka planda oynuyor</string>
     <string name="detail_pinned_comment_view_description">Sabitlenmiş yorum</string>
-    <string name="leak_canary_not_available">LeakCanary mevcut değil</string>
+    <string name="leak_canary_not_available">LeakCanary yok</string>
+    <string name="progressive_load_interval_summary">Yükleme ara boyutunu değiştir (şu anda %s). Düşük bir değer videonun ilk yüklenişini hızlandırabilir. Değişiklikler oynatıcının yeniden başlatılmasını gerektirir.</string>
+    <string name="progressive_load_interval_default">ExoPlayer öntanımlısı</string>
+    <string name="playback_tempo_step">Tempo adımı</string>
+    <string name="adjust_by_semitones_checkbox">Perdeyi müzikal yarım tonlarla uyarla</string>
 </resources>

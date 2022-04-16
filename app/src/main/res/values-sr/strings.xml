@@ -659,4 +659,5 @@
     <string name="show_image_indicators_title">Приказуј указиваче слике</string>
     <string name="start_main_player_fullscreen_summary">Не покрећи видео у малом прозору, већ пређи одмах у пун приказ заслона, уколико је обртање приказа закључано. И даље можете приступити малом приказу извођача изласком из пуног приказа</string>
     <string name="start_main_player_fullscreen_title">Покрени пуни главни приказ извођача</string>
+    <string name="crash_the_player">Прекините плејер</string>
 </resources>

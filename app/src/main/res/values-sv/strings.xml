@@ -159,7 +159,7 @@
     <string name="copyright" formatted="true">© %1$s av %2$s under %3$s</string>
     <string name="tab_about">Om</string>
     <string name="tab_licenses">Licenser</string>
-    <string name="app_description">Öppen och enkel Android app för mediastreaming.</string>
+    <string name="app_description">Öppen och enkel Android-app för mediastreaming.</string>
     <string name="view_on_github">Visa på GitHub</string>
     <string name="app_license_title">NewPipes licens</string>
     <string name="contribution_encouragement">Vad du än har för idéer; översättningar, designändringar, kodstädning eller riktiga stora kodändringar—hjälp är alltid välkommen. Ju mer som görs desto bättre blir det!</string>
@@ -685,4 +685,8 @@
     <string name="background_player_already_playing_toast">Spelas redan i bakgrunden</string>
     <string name="detail_pinned_comment_view_description">Fäst kommentar</string>
     <string name="leak_canary_not_available">LeakCanary är inte tillgänglig</string>
+    <string name="adjust_by_semitones_checkbox">Justera tonhöjden med musikaliska halvtoner</string>
+    <string name="progressive_load_interval_default">ExoPlayer standard</string>
+    <string name="progressive_load_interval_summary">Ändra inläsningsintervallets storlek (för närvarande %s). Ett lägre värde kan påskynda den första videoinläsningen. Ändringar kräver omstart av spelaren.</string>
+    <string name="playback_tempo_step">Temposteg</string>
 </resources>

@@ -339,7 +339,7 @@
     <string name="feed_group_show_only_ungrouped_subscriptions">ஒன்றிணைக்கா சந்தாக்களை மட்டும் காட்டு</string>
     <string name="import_settings">அமைவையும் இறக்குமதி செய்யவா\?</string>
     <string name="start_here_on_background">பின்னணியில் இயங்கத் துவங்கு</string>
-    <string name="start_here_on_popup"></string>
+    <string name="start_here_on_popup">பாப்அப்பில் இயங்கத் துவங்கு</string>
     <string name="show_channel_details">பதிவுத்தட விவரங்களைக் காட்டு</string>
     <string name="select_a_playlist">ஒளிச்சரத்தைத் தேர்ந்தெடு</string>
     <string name="add_to_playlist">ஒளிச்சரத்தில் சேர்</string>

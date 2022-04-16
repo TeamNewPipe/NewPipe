@@ -82,7 +82,7 @@
     <string name="black_theme_title">Černé</string>
     <string name="checksum">Kontrolní součet</string>
     <string name="no_available_dir">Určete prosím složku pro stahování později v nastavení</string>
-    <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu\\nZemě obsahu:\\nJazyk aplikace:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:</string>
+    <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu:\\nZemě obsahu:\\nJazyk aplikace:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:</string>
     <string name="all">Vše</string>
     <string name="short_thousand">tis.</string>
     <string name="open_in_popup_mode">Otevřít ve vyskakovacím okně</string>
@@ -233,7 +233,7 @@
     <string name="rename_playlist">Přejmenovat</string>
     <string name="name">Jméno</string>
     <string name="add_to_playlist">Přidat do playlistu</string>
-    <string name="set_as_playlist_thumbnail">Nastavit jako miniaturu playlistu</string>
+    <string name="set_as_playlist_thumbnail">Nastavit jako náhled playlistu</string>
     <string name="bookmark_playlist">Přidat playlist do záložek</string>
     <string name="unbookmark_playlist">Smazat záložku</string>
     <string name="delete_playlist_prompt">Smazat tento playlist\?</string>
@@ -312,7 +312,7 @@
     <string name="delete_search_history_alert">Vymazat celkovou historii vyhledávání\?</string>
     <string name="search_history_deleted">Historie vyhledávání smazána</string>
     <string name="one_item_deleted">Jedna položka smazána.</string>
-    <string name="app_license">NewPipe je copyleft libre software: Můžete jej používat, sdílet a vylepšovat dle vaší vůle. Redistribuovat a/nebo upravovat lze za podmínek GNU General Public Licence zveřejňované nadací Free Software Foundation, a to buď za podmínek licence verze 3 nebo (dle vaší volby) jakékoli pozdější verze.</string>
+    <string name="app_license">NewPipe je svobodný software s copyleft licencí: Můžete jej libovolně používat, studovat, sdílet a vylepšovat. Konkrétně jej můžete šířit a/nebo upravovat za podmínek Obecné veřejné licence GNU (GNU GPL) vydané nadací Free Software Foundation, a to buď za podmínek Licence verze 3 nebo (dle vaší volby) jakékoli pozdější verze.</string>
     <string name="channels">kanály</string>
     <string name="playlists">Playlisty</string>
     <string name="tracks">Stopy</string>
@@ -325,7 +325,7 @@
     <string name="skip_silence_checkbox">Zrychleně vpřed během ticha</string>
     <string name="playback_step">Krok</string>
     <string name="playback_reset">Reset</string>
-    <string name="start_accept_privacy_policy">Abychom vyhověli Obecnému nařízení o ochraně osobních údajů (GDPR), upozorňujeme vás na zásady ochrany soukromí v NewPipe. Přečtěte si je prosím pozorně.
+    <string name="start_accept_privacy_policy">Abychom vyhověli Obecnému nařízení o ochraně osobních údajů (GDPR), upozorňujeme vás na zásady ochrany soukromí v NewPipe. Přečtěte si je, prosím, pozorně.
 \nJe potřeba je odsouhlasit, abyste nám mohli odeslat hlášení chyb.</string>
     <string name="accept">Přijmout</string>
     <string name="decline">Odmítnout</string>
@@ -367,7 +367,7 @@
     <string name="paused">Pozastaveno</string>
     <string name="queued">ve frontě</string>
     <string name="post_processing">post-processing</string>
-    <string name="enqueue">Fronta</string>
+    <string name="enqueue">Zařadit do fronty</string>
     <string name="permission_denied">Akce odmítnuta systémem</string>
     <string name="download_failed">Stahování se nezdařilo</string>
     <string name="generate_unique_name">Vytvořit jedinečný název</string>
@@ -683,7 +683,7 @@
     <string name="error_report_notification_toast">Došlo k chybě, více v oznámení</string>
     <string name="create_error_notification">Vytvořit oznámení o chybě</string>
     <string name="checking_updates_toast">Kontrola aktualizací…</string>
-    <string name="show_crash_the_player_title">Ukázat \"Zřícení přehávače\"</string>
+    <string name="show_crash_the_player_title">Ukázat „Shodit přehrávač“</string>
     <string name="background_player_already_playing_toast">Hraje již v pozadí</string>
     <string name="feed_new_items">Nové položky feedů</string>
     <string name="no_appropriate_file_manager_message_android_10">Pro tuto akci nebyl nalezen žádný vhodný správce souborů.
@@ -695,5 +695,10 @@
     <string name="show_crash_the_player_summary">Ukáže volbu pro zřícení během používání přehrávače</string>
     <string name="show_error_snackbar">Ukázat krátké oznámení o chybě</string>
     <string name="detail_pinned_comment_view_description">Připnutý komentář</string>
-    <string name="crash_the_player">Zřícení přehrávače</string>
+    <string name="crash_the_player">Shodit přehrávač</string>
+    <string name="progressive_load_interval_summary">Změnit interval načítání (aktuálně %s). Menší hodnota může zrychlit počáteční načítání videa. Změna vyžaduje restart přehrávače.</string>
+    <string name="leak_canary_not_available">LeakCanary není dostupné</string>
+    <string name="adjust_by_semitones_checkbox">Upravit výšku tónů po půltónech</string>
+    <string name="playback_tempo_step">Krok tempa</string>
+    <string name="progressive_load_interval_default">Výchozí ExoPlayer</string>
 </resources>

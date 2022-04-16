@@ -681,4 +681,7 @@
     <string name="no_appropriate_file_manager_message">Installer en filbehandler først, eller skru av «%s» i nedlastingsinnstillingene.</string>
     <string name="no_appropriate_file_manager_message_android_10">Installer en filbehandler som støtter lagringstilgangsrammeverk først.</string>
     <string name="leak_canary_not_available">LeakCanary er ikke tilgjengelig</string>
+    <string name="progressive_load_interval_default">ExoPlayer-forvalg</string>
+    <string name="adjust_by_semitones_checkbox">Juster toneart etter musikalske halvtoner</string>
+    <string name="playback_tempo_step">Tempo-steg</string>
 </resources>

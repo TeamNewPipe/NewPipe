@@ -58,6 +58,7 @@
     <string name="downloads_title">Завантаження</string>
     <string name="error_report_title">Звіт про помилку</string>
     <string name="all">Усе</string>
+    <string name="yes">Так</string>
     <string name="disabled">Вимкнено</string>
     <string name="app_ui_crash">Збій застосунку/інтерфейсу</string>
     <string name="your_comment">Ваш коментар (англійською):</string>
@@ -335,7 +336,7 @@
     <string name="minimize_on_exit_title">Зменшити при перемиканні застосунку</string>
     <string name="minimize_on_exit_summary">Дія при перемиканні до інших застосунків з основного відеопрогравача — %s</string>
     <string name="minimize_on_exit_none_description">Нічого</string>
-    <string name="minimize_on_exit_background_description">Зменшити до програвача у фоновому режимі</string>
+    <string name="minimize_on_exit_background_description">Згорнути у фоновий програвач</string>
     <string name="minimize_on_exit_popup_description">Зменшити до програвача у вікні</string>
     <string name="channels">Канали</string>
     <string name="playlists">Добірки</string>
@@ -701,4 +702,8 @@
     <string name="background_player_already_playing_toast">Уже відтворюється у фоновому режимі</string>
     <string name="detail_pinned_comment_view_description">Закріплений коментар</string>
     <string name="leak_canary_not_available">LeakCanary недоступний</string>
+    <string name="playback_tempo_step">Крок темпу</string>
+    <string name="adjust_by_semitones_checkbox">Регулювання висоти звуку за музичними півтонами</string>
+    <string name="progressive_load_interval_default">Типовий ExoPlayer</string>
+    <string name="progressive_load_interval_summary">Змінити розмір інтервалу завантаження (наразі %s). Менше значення може прискорити початкове завантаження відео. Зміни вимагають перезапуску програвача.</string>
 </resources>

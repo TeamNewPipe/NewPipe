@@ -317,7 +317,7 @@
     <string name="decline">Refuser</string>
     <string name="privacy_policy_encouragement">Le projet NewPipe prend votre vie privée très à cœur. Par conséquent, l’application n’envoie aucune donnée sans votre consentement.
 \nLa politique de confidentialité de NewPipe explique en détail quelles données sont envoyées et stockées lorsque vous envoyez un rapport de plantage.</string>
-    <string name="start_accept_privacy_policy">Afin de se conformer au Règlement Général sur la Protection des Données (RGPD), nous attirons votre attention sur la politique de confidentialité de NewPipe. Veuillez la lire attentivement.
+    <string name="start_accept_privacy_policy">Afin de se conformer au Règlement Général sur la Protection des Données (RGPD), nous attirons ici votre attention sur la politique de confidentialité de NewPipe. Veuillez la lire attentivement.
 \nVous devez l’accepter pour nous envoyer le rapport de bogue.</string>
     <string name="limit_data_usage_none_description">Aucune limite</string>
     <string name="limit_mobile_data_usage_title">Limiter la définition lors de l’utilisation des données mobiles</string>
@@ -687,4 +687,8 @@
     <string name="detail_pinned_comment_view_description">Commentaire épinglé</string>
     <string name="background_player_already_playing_toast">Une lecture est déjà en arrière-plan</string>
     <string name="leak_canary_not_available">LeakCanary n\'est pas disponible</string>
+    <string name="progressive_load_interval_summary">Modifie la taille de l\'intervalle de chargement (actuellement %s). Une valeur plus faible peut accélérer le chargement initial des vidéos .</string>
+    <string name="adjust_by_semitones_checkbox">Règler la hauteur par demi-tons musicaux</string>
+    <string name="playback_tempo_step">Pas du tempo</string>
+    <string name="progressive_load_interval_default">Valeur par défaut d’ExoPlayer</string>
 </resources>

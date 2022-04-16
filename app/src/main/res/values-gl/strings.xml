@@ -64,7 +64,7 @@
     <string name="auto_queue_title">Colocar a seguinte emisión na cola automaticamente</string>
     <string name="auto_queue_summary">Continúa rematando (non se repite) a cola de reprodución engadindo unha transmisión relacionada</string>
     <string name="show_search_suggestions_title">Suxestións de procura</string>
-    <string name="show_search_suggestions_summary">Mostrar suxestións ao procurar</string>
+    <string name="show_search_suggestions_summary">Escolla suxestións a mostrar ao procurar</string>
     <string name="enable_search_history_title">Historial de procura</string>
     <string name="enable_search_history_summary">Gardar os termos de pesquisa localmente</string>
     <string name="enable_watch_history_title">Ver o historial</string>
@@ -79,8 +79,8 @@
     <string name="default_content_country_title">País predeterminado para o contido</string>
     <string name="settings_category_player_title">Reprodutor</string>
     <string name="settings_category_player_behavior_title">Comportamento</string>
-    <string name="settings_category_video_audio_title">Vídeo &amp; audio</string>
-    <string name="settings_category_history_title">Historial &amp; caché</string>
+    <string name="settings_category_video_audio_title">Vídeo e audio</string>
+    <string name="settings_category_history_title">Historial e caché</string>
     <string name="settings_category_appearance_title">Aparencia</string>
     <string name="settings_category_debug_title">Depuración</string>
     <string name="background_player_playing_toast">Reproducindo en segundo plano</string>
@@ -295,14 +295,15 @@
     <string name="previous_export">Exportación anterior</string>
     <string name="subscriptions_import_unsuccessful">Non foi posíbel importar as subscricións</string>
     <string name="subscriptions_export_unsuccessful">Non foi posíbel exportar as subscricións</string>
-    <string name="import_youtube_instructions">Pode importar as súas subscricións de YouTube do Google takeout:
+    <string name="import_youtube_instructions">Importe as súas subscricións de Google takeout:
 \n
 \n1. Acceda ao URL %1$s
 \n2. Inicie a sesión cando lle for solicitado
 \n3. Faga click en \"Todos os datos incluídos\", logo en \"Desmarcar todo\", escolla só \"subscricións\", e prema \"OK\"
 \n4. Pulse en \"Próximo paso\" e escolla \"Crear exportación\"
-\n5. Faga click no botón de \"Decarregar\" despois de que apareza e
-\n6. Do arquivo zip decarregado extraia o .json (normalmente en \"YouTube e YouTube Music/subscricións/subscricións.json\") e impórteo aquí.</string>
+\n5. Faga click no botón de \"Decarregar\" despois de que apareza
+\n6. Faga click en IMPORTAR ARQUIVO abaixo e seleccione o ficheiro .zip descarregado
+\n7. [Se a importación do .zip fallar] Extraia o ficheiro .csv (xeralmente en Youtube e Youtube Music/subscriptions/subscriptions.csv), e faga click en IMPORTAR FICHEIRO abaixo e seleccione o .csv extraído</string>
     <string name="import_soundcloud_instructions">Pode importar un perfil do SoundCloud escribindo o URL ou o seu ID:
 \n
 \n1. Active o «modo desktop» nun navegador da Internet (o sitio non está dispoñíbel para dispositivos móbiles)
@@ -403,7 +404,7 @@
     <string name="app_language_title">Lingua do aplicativo</string>
     <string name="choose_instance_prompt">Elixir unha instancia</string>
     <string name="downloads_storage_use_saf_summary">O \'Framework Access Framework\' permite a descarga a unha tarxeta SD externa</string>
-    <string name="downloads_storage_use_saf_title">Usar SAF</string>
+    <string name="downloads_storage_use_saf_title">Usar selector de cartafois do sistema (SAF)</string>
     <string name="downloads_storage_ask_summary">Preguntaralle onde gardar cada descarga.
 \nPermita o Sistema de Escolla de Cartafois (SAF) se desexar descarregar para un SD externo</string>
     <string name="downloads_storage_ask_title">Pregunta onde se descarga</string>
@@ -444,7 +445,7 @@
     <string name="generate_unique_name">Xera un nome único</string>
     <string name="download_failed">Fallou a descarga</string>
     <string name="permission_denied">Acción denegada polo sistema</string>
-    <string name="enqueue">En cola</string>
+    <string name="enqueue">Enfileirar</string>
     <string name="recovering">recuperando</string>
     <string name="post_processing">post-procesamento</string>
     <string name="queued">en cola</string>
@@ -608,7 +609,7 @@
     <string name="private_content">Este contido é privado, polo que non pode ser transmitido nin descarregado polo NewPipe.</string>
     <string name="no_app_to_open_intent">Non posúe ningunha aplicación para abrir isto</string>
     <string name="show_thumbnail_summary">Usar miniaturas para a pantalla de bloqueo e para as notificacións</string>
-    <string name="feed_toggle_show_played_items">Mostrar elementos reproducidos</string>
+    <string name="feed_toggle_show_played_items">Mostrar elementos vistos</string>
     <string name="comments_are_disabled">Os comentarios están desactivados</string>
     <string name="show_age_restricted_content_summary">Mostrar contido potencialmente non apto para menores porque ten unha limitación de idade (como +18)</string>
     <string name="notification_colorize_title">Definir cor da notificación</string>
@@ -668,4 +669,23 @@
     <string name="error_report_channel_description">Notificacións para reportar erros</string>
     <string name="error_report_notification_title">NewPipe atopou un erro, presione para reportar</string>
     <string name="detail_pinned_comment_view_description">Comentario fixado</string>
+    <string name="enqueued_next">Enfileirado</string>
+    <string name="manual_update_title">Procurar actualizacións</string>
+    <string name="manual_update_description">Procurar manualmente novas versións</string>
+    <string name="adjust_by_semitones_checkbox">Axustar o ton do semitóns musicais</string>
+    <string name="playback_tempo_step">Paso do tempo</string>
+    <string name="checking_updates_toast">A procurar actualizacións…</string>
+    <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, só o \'Sistema de Acceso ao Almacenamento\' está soportado</string>
+    <string name="progressive_load_interval_summary">Cambia o tamaño do intervalo de carga (actualmente %s). Un valor menor pode acelerar o carregamento do vídeo. Cambios poden precisar un reinicio do reprodutor.</string>
+    <string name="processing_may_take_a_moment">Procesando... Pode devagar un momento</string>
+    <string name="create_error_notification">Crear unha notificación de erro</string>
+    <string name="show_image_indicators_summary">Amosar fitas coloridas de Picasso na cima das imaxes que indican a súa fonte: vermello para a rede, azul para o disco e verde para a memoria</string>
+    <string name="downloads_storage_use_saf_summary_api_19">O \'Sistema de Acceso ao almacenamento\' non está soportado en Android KitKat e anteriores</string>
+    <string name="feed_new_items">Novos elementos</string>
+    <string name="progressive_load_interval_default">Predefinido do ExoPlayer</string>
+    <string name="show_crash_the_player_title">Amosar \"Travar o reprodutor\"</string>
+    <string name="show_error_snackbar">Amosar un snackbar de erro</string>
+    <string name="show_crash_the_player_summary">Amosa unha opción de travamento ao usar o reprodutor</string>
+    <string name="crash_the_player">Travar o reprodutor</string>
+    <string name="leak_canary_not_available">LeakCanary non está dispoñíbel</string>
 </resources>

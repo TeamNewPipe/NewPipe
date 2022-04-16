@@ -673,4 +673,8 @@
     <string name="detail_pinned_comment_view_description">Komentar dipin</string>
     <string name="background_player_already_playing_toast">Sudah diputar di latar belakang</string>
     <string name="leak_canary_not_available">LeakCanary tidak tersedia</string>
+    <string name="playback_tempo_step">Langkah tempo</string>
+    <string name="progressive_load_interval_default">Default ExoPlayer</string>
+    <string name="adjust_by_semitones_checkbox">Atur nada berdasarkan semitone musik</string>
+    <string name="progressive_load_interval_summary">Ubah ukuran interval pemuatan (saat ini %s). Sebuah nilai yang rendah mungkin dapat membuat pemuatan video awal lebih cepat. Membutuhkan sebuah pemulaian ulang pada pemain.</string>
 </resources>
