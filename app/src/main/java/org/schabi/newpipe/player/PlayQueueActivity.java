@@ -29,6 +29,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ActivityPlayerQueueControlBinding;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
+import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -52,8 +53,6 @@ public final class PlayQueueActivity extends AppCompatActivity
     private static final int SMOOTH_SCROLL_MAXIMUM_DISTANCE = 80;
 
     private Player player;
-
-    private PlayQueueAdapter adapter = null;
 
     private boolean serviceBound;
     private ServiceConnection serviceConnection;
@@ -128,7 +127,7 @@ public final class PlayQueueActivity extends AppCompatActivity
                 NavigationHelper.openSettings(this);
                 return true;
             case R.id.action_append_playlist:
-                player.onAddToPlaylistClicked(getSupportFragmentManager());
+                PlaylistDialog.showForPlayQueue(player, getSupportFragmentManager());
                 return true;
             case R.id.action_playback_speed:
                 openPlaybackParameterDialog();
@@ -441,10 +440,9 @@ public final class PlayQueueActivity extends AppCompatActivity
     @Override
     public void onQueueUpdate(@Nullable final PlayQueue queue) {
         if (queue == null) {
-            adapter = null;
             queueControlBinding.playQueue.setAdapter(null);
         } else {
-            adapter = new PlayQueueAdapter(this, queue);
+            final PlayQueueAdapter adapter = new PlayQueueAdapter(this, queue);
             adapter.setSelectedListener(getOnSelectedListener());
             queueControlBinding.playQueue.setAdapter(adapter);
         }

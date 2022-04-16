@@ -41,7 +41,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ContextThemeWrapper;
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -142,7 +141,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     //////////////////////////////////////////////////////////////////////////*/
     //region Constructor, setup, destroy
 
-    public VideoPlayerUi(@NonNull final Player player,
+    protected VideoPlayerUi(@NonNull final Player player,
                          @NonNull final PlayerBinding playerBinding) {
         super(player);
         binding = playerBinding;
@@ -912,7 +911,20 @@ public abstract class VideoPlayerUi extends PlayerUi
     @Override
     public void onRepeatModeChanged(@RepeatMode final int repeatMode) {
         super.onRepeatModeChanged(repeatMode);
-        setRepeatModeButton(binding.repeatButton, repeatMode);
+
+        switch (repeatMode) {
+            case REPEAT_MODE_OFF:
+                binding.repeatButton.setImageResource(R.drawable.exo_controls_repeat_off);
+                break;
+            case REPEAT_MODE_ONE:
+                binding.repeatButton.setImageResource(R.drawable.exo_controls_repeat_one);
+                break;
+            case REPEAT_MODE_ALL:
+                binding.repeatButton.setImageResource(R.drawable.exo_controls_repeat_all);
+                break;
+            default:
+                break; // unreachable
+        }
     }
 
     @Override
@@ -925,21 +937,6 @@ public abstract class VideoPlayerUi extends PlayerUi
     public void onMuteUnmuteChanged(final boolean isMuted) {
         super.onMuteUnmuteChanged(isMuted);
         setMuteButton(isMuted);
-    }
-
-    private void setRepeatModeButton(final AppCompatImageButton imageButton,
-                                     @RepeatMode final int repeatMode) {
-        switch (repeatMode) {
-            case REPEAT_MODE_OFF:
-                imageButton.setImageResource(R.drawable.exo_controls_repeat_off);
-                break;
-            case REPEAT_MODE_ONE:
-                imageButton.setImageResource(R.drawable.exo_controls_repeat_one);
-                break;
-            case REPEAT_MODE_ALL:
-                imageButton.setImageResource(R.drawable.exo_controls_repeat_all);
-                break;
-        }
     }
 
     private void setMuteButton(final boolean isMuted) {
@@ -1037,6 +1034,7 @@ public abstract class VideoPlayerUi extends PlayerUi
 
                 binding.qualityTextView.setVisibility(View.VISIBLE);
                 binding.surfaceView.setVisibility(View.VISIBLE);
+                // fallthrough
             default:
                 binding.endScreen.setVisibility(View.GONE);
                 binding.playbackEndTime.setVisibility(View.VISIBLE);
@@ -1426,8 +1424,6 @@ public abstract class VideoPlayerUi extends PlayerUi
 
     public boolean onKeyDown(final int keyCode) {
         switch (keyCode) {
-            default:
-                break;
             case KeyEvent.KEYCODE_BACK:
                 if (DeviceUtils.isTv(context) && isControlsVisible()) {
                     hideControls(0, 0);
@@ -1442,7 +1438,7 @@ public abstract class VideoPlayerUi extends PlayerUi
                 if ((binding.getRoot().hasFocus() && !binding.playbackControlRoot.hasFocus())
                         || isAnyListViewOpen()) {
                     // do not interfere with focus in playlist and play queue etc.
-                    return false;
+                    break;
                 }
 
                 if (player.getCurrentState() == org.schabi.newpipe.player.Player.STATE_BLOCKED) {
@@ -1458,6 +1454,8 @@ public abstract class VideoPlayerUi extends PlayerUi
                     return true;
                 }
                 break;
+            default:
+                break; // ignore other keys
         }
 
         return false;

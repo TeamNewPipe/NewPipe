@@ -266,6 +266,7 @@ public final class NotificationUtil {
                             null);
                 }
 
+                // fallthrough
             case NotificationConstants.PLAY_PAUSE:
                 if (player.getCurrentState() == Player.STATE_COMPLETED) {
                     return getAction(R.drawable.ic_replay,

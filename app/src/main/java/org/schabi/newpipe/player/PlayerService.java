@@ -71,16 +71,17 @@ public final class PlayerService extends Service {
             Log.d(TAG, "onStartCommand() called with: intent = [" + intent
                     + "], flags = [" + flags + "], startId = [" + startId + "]");
         }
-        if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())
-                && player.getPlayQueue() == null) {
-            // Player is not working, no need to process media button's action
-            return START_NOT_STICKY;
+
+        if (!Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())
+                || player.getPlayQueue() != null) {
+            // ^ no need to process media button's action if player is not working
+
+            player.handleIntent(intent);
+            if (player.getMediaSessionManager() != null) {
+                player.getMediaSessionManager().handleMediaButtonIntent(intent);
+            }
         }
 
-        player.handleIntent(intent);
-        if (player.getMediaSessionManager() != null) {
-            player.getMediaSessionManager().handleMediaButtonIntent(intent);
-        }
         return START_NOT_STICKY;
     }
 

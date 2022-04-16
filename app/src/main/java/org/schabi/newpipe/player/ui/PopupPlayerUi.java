@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player.ui;
 
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static org.schabi.newpipe.MainActivity.DEBUG;
 import static org.schabi.newpipe.player.helper.PlayerHelper.buildCloseOverlayLayoutParams;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimumVideoHeight;
@@ -140,8 +141,7 @@ public final class PopupPlayerUi extends VideoPlayerUi {
         binding.segmentsButton.setVisibility(View.GONE);
         binding.moreOptionsButton.setVisibility(View.GONE);
         binding.topControls.setOrientation(LinearLayout.HORIZONTAL);
-        binding.primaryControls.getLayoutParams().width
-                = LinearLayout.LayoutParams.WRAP_CONTENT;
+        binding.primaryControls.getLayoutParams().width = WRAP_CONTENT;
         binding.secondaryControls.setAlpha(1.0f);
         binding.secondaryControls.setVisibility(View.VISIBLE);
         binding.secondaryControls.setTranslationY(0);
@@ -193,14 +193,12 @@ public final class PopupPlayerUi extends VideoPlayerUi {
             updateScreenSize();
             changePopupSize(popupLayoutParams.width);
             checkPopupPositionBounds();
-        } else if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
-            // Use only audio source when screen turns off while popup player is playing
-            if (player.isPlaying() || player.isLoading()) {
+        } else if (player.isPlaying() || player.isLoading()) {
+            if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
+                // Use only audio source when screen turns off while popup player is playing
                 player.useVideoSource(false);
-            }
-        } else if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
-            // Restore video source when screen turns on and user is watching video in popup player
-            if (player.isPlaying() || player.isLoading()) {
+            } else if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
+                // Restore video source when screen turns on and user was watching video in popup
                 player.useVideoSource(true);
             }
         }

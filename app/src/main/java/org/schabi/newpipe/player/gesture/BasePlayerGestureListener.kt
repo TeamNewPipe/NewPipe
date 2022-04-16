@@ -92,7 +92,10 @@ abstract class BasePlayerGestureListener(
             return true
         }
 
-        return if (onDownNotDoubleTapping(e)) super.onDown(e) else true
+        if (onDownNotDoubleTapping(e)) {
+            return super.onDown(e)
+        }
+        return true
     }
 
     /**

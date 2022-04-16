@@ -31,7 +31,7 @@ public abstract class PlayerUi {
     /**
      * @param player the player instance that will be usable throughout the lifetime of this UI
      */
-    public PlayerUi(@NonNull final Player player) {
+    protected PlayerUi(@NonNull final Player player) {
         this.context = player.getContext();
         this.player = player;
     }

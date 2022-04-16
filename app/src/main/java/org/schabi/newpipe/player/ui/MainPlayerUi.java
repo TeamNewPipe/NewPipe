@@ -51,6 +51,7 @@ import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.info_list.StreamSegmentAdapter;
 import org.schabi.newpipe.ktx.AnimationType;
+import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.gesture.BasePlayerGestureListener;
@@ -147,7 +148,8 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
         binding.addToPlaylistButton.setOnClickListener(v ->
                 getParentActivity().map(FragmentActivity::getSupportFragmentManager)
-                        .ifPresent(player::onAddToPlaylistClicked));
+                        .ifPresent(fragmentManager ->
+                                PlaylistDialog.showForPlayQueue(player, fragmentManager)));
 
         settingsContentObserver = new ContentObserver(new Handler()) {
             @Override
@@ -401,6 +403,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     //////////////////////////////////////////////////////////////////////////*/
     //region Controls showing / hiding
 
+    @Override
     protected void showOrHideButtons() {
         super.showOrHideButtons();
         @Nullable final PlayQueue playQueue = player.getPlayQueue();
@@ -667,12 +670,11 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
             }
 
             animate(binding.itemsListPanel, false, DEFAULT_CONTROLS_DURATION,
-                    AnimationType.SLIDE_AND_ALPHA, 0, () -> {
+                    AnimationType.SLIDE_AND_ALPHA, 0, () ->
                         // Even when queueLayout is GONE it receives touch events
                         // and ruins normal behavior of the app. This line fixes it
                         binding.itemsListPanel.setTranslationY(
-                                -binding.itemsListPanel.getHeight() * 5);
-                    });
+                                -binding.itemsListPanel.getHeight() * 5.0f));
 
             // clear focus, otherwise a white rectangle remains on top of the player
             binding.itemsListClose.clearFocus();
@@ -845,8 +847,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         }
 
         PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(), player.getPlaybackPitch(),
-                player.getPlaybackSkipSilence(), (speed, pitch, skipSilence)
-                        -> player.setPlaybackParameters(speed, pitch, skipSilence))
+                player.getPlaybackSkipSilence(), player::setPlaybackParameters)
                 .show(activity.getSupportFragmentManager(), null);
     }
 
