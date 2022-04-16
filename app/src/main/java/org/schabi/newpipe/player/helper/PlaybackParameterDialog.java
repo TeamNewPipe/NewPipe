@@ -27,6 +27,7 @@ import androidx.preference.PreferenceManager;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.DialogPlaybackParameterBinding;
 import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.util.SimpleOnSeekBarChangeListener;
 import org.schabi.newpipe.util.SliderStrategy;
 
 import java.util.HashMap;
@@ -36,6 +37,8 @@ import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
 import java.util.function.DoubleFunction;
 import java.util.function.DoubleSupplier;
+
+import javax.annotation.Nonnull;
 
 import icepick.Icepick;
 import icepick.State;
@@ -493,24 +496,15 @@ public class PlaybackParameterDialog extends DialogFragment {
             final SliderStrategy sliderStrategy,
             final DoubleConsumer newValueConsumer
     ) {
-        return new SeekBar.OnSeekBarChangeListener() {
+        return new SimpleOnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(final SeekBar seekBar, final int progress,
+            public void onProgressChanged(@Nonnull final SeekBar seekBar,
+                                          final int progress,
                                           final boolean fromUser) {
                 if (fromUser) { // ensure that the user triggered the change
                     newValueConsumer.accept(sliderStrategy.valueOf(progress));
                     updateCallback();
                 }
-            }
-
-            @Override
-            public void onStartTrackingTouch(final SeekBar seekBar) {
-                // Do nothing
-            }
-
-            @Override
-            public void onStopTrackingTouch(final SeekBar seekBar) {
-                // Do nothing
             }
         };
     }
