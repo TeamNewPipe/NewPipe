@@ -9,12 +9,10 @@ import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.PicassoHelper;
 
 import java.time.format.DateTimeFormatter;
 
-public class LocalBookmarkPlaylistItemHolder extends PlaylistItemHolder {
+public class LocalBookmarkPlaylistItemHolder extends LocalPlaylistItemHolder {
     private final View itemHandleView;
 
     public LocalBookmarkPlaylistItemHolder(final LocalItemBuilder infoItemBuilder,
@@ -36,13 +34,6 @@ public class LocalBookmarkPlaylistItemHolder extends PlaylistItemHolder {
             return;
         }
         final PlaylistMetadataEntry item = (PlaylistMetadataEntry) localItem;
-
-        itemTitleView.setText(item.name);
-        itemStreamCountView.setText(Localization.localizeStreamCountMini(
-                itemStreamCountView.getContext(), item.streamCount));
-        itemUploaderView.setVisibility(View.INVISIBLE);
-
-        PicassoHelper.loadPlaylistThumbnail(item.thumbnailUrl).into(itemThumbnailView);
 
         itemHandleView.setOnTouchListener(getOnTouchListener(item));
 

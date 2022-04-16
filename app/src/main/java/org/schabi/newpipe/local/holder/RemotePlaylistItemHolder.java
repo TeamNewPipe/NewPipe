@@ -3,7 +3,6 @@ package org.schabi.newpipe.local.holder;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 
-import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -18,7 +17,7 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
 
     public RemotePlaylistItemHolder(final LocalItemBuilder infoItemBuilder,
                                     final ViewGroup parent) {
-        this(infoItemBuilder, R.layout.list_playlist_mini_item, parent);
+        super(infoItemBuilder, parent);
     }
 
     RemotePlaylistItemHolder(final LocalItemBuilder infoItemBuilder, final int layoutId,

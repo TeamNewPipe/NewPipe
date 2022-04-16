@@ -195,8 +195,8 @@ public final class Migrations {
             try {
                 database.beginTransaction();
 
-                // update playlists
-                // create a temp table to initialize display_index
+                // Update playlists.
+                // Create a temp table to initialize display_index.
                 database.execSQL("CREATE TABLE `playlists_tmp` "
                         + "(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
                         + "`name` TEXT, `thumbnail_url` TEXT,"
@@ -204,16 +204,16 @@ public final class Migrations {
                 database.execSQL("INSERT INTO `playlists_tmp` (`uid`, `name`, `thumbnail_url`)"
                         + "SELECT `uid`, `name`, `thumbnail_url` FROM `playlists`");
 
-                // replace the old table
+                // Replace the old table.
                 database.execSQL("DROP TABLE `playlists`");
                 database.execSQL("ALTER TABLE `playlists_tmp` RENAME TO `playlists`");
 
-                // create index on the new table
+                // Create index on the new table.
                 database.execSQL("CREATE INDEX `index_playlists_name` ON `playlists` (`name`)");
 
 
-                // update remote_playlists
-                // create a temp table to initialize display_index
+                // Update remote_playlists.
+                // Create a temp table to initialize display_index.
                 database.execSQL("CREATE TABLE `remote_playlists_tmp` "
                         + "(`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
                         + "`service_id` INTEGER NOT NULL, `name` TEXT, `url` TEXT, "
@@ -225,11 +225,11 @@ public final class Migrations {
                         + "SELECT `uid`, `service_id`, `name`, `url`, `thumbnail_url`, `uploader`, "
                         + "`stream_count` FROM `remote_playlists`");
 
-                // replace the old table
+                // Replace the old table.
                 database.execSQL("DROP TABLE `remote_playlists`");
                 database.execSQL("ALTER TABLE `remote_playlists_tmp` RENAME TO `remote_playlists`");
 
-                // create index on the new table
+                // Create index on the new table.
                 database.execSQL("CREATE INDEX `index_remote_playlists_name` "
                         + "ON `remote_playlists` (`name`)");
                 database.execSQL("CREATE UNIQUE INDEX `index_remote_playlists_service_id_url` "

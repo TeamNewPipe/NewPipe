@@ -54,7 +54,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject;
 
 public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistLocalItem>, Void> {
 
-    // Save the list 10s after the last change occurred
+    // Save the list 10 seconds after the last change occurred
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
     @State
@@ -281,6 +281,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
             @Override
             public void onComplete() {
+                // Do nothing.
             }
         };
     }
@@ -444,13 +445,13 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                         LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM);
                 final Long databaseIndex = displayIndexInDatabase.remove(key);
 
+                // The database index should not be null because inserting new item into database
+                // is not dealt here. NullPointerException has occurred once, but I can't reproduce
+                // it. Enhance robustness here.
                 if (databaseIndex != null) {
                     if (databaseIndex != i) {
                         localItemsUpdate.add((PlaylistMetadataEntry) item);
                     }
-                } else {
-                    // This should be impossible.
-                    continue;
                 }
             } else if (item instanceof PlaylistRemoteEntity) {
                 ((PlaylistRemoteEntity) item).setDisplayIndex(i);
@@ -464,9 +465,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                     if (databaseIndex != i) {
                         remoteItemsUpdate.add((PlaylistRemoteEntity) item);
                     }
-                } else {
-                    // This should be impossible.
-                    continue;
                 }
             }
         }
@@ -489,16 +487,16 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> disposables.add(remotePlaylistManager.updatePlaylists(
                         remoteItemsUpdate, remoteItemsDeleteUid)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(() -> {
-                                    if (isModified != null) {
-                                        isModified.set(false);
-                                    }
-                                },
-                                throwable -> showError(new ErrorInfo(throwable,
-                                        UserAction.REQUESTED_BOOKMARK,
-                                        "Saving playlist"))
-                        )),
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(() -> {
+                                            if (isModified != null) {
+                                                isModified.set(false);
+                                            }
+                                        },
+                                        throwable -> showError(new ErrorInfo(throwable,
+                                                UserAction.REQUESTED_BOOKMARK,
+                                                "Saving playlist"))
+                                )),
                         throwable -> showError(new ErrorInfo(throwable,
                                 UserAction.REQUESTED_BOOKMARK, "Saving playlist"))
                 ));
@@ -529,22 +527,21 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             public boolean onMove(@NonNull final RecyclerView recyclerView,
                                   @NonNull final RecyclerView.ViewHolder source,
                                   @NonNull final RecyclerView.ViewHolder target) {
-                if (source.getItemViewType() != target.getItemViewType()
-                        || itemListAdapter == null) {
-                    // Allow swap LocalBookmarkPlaylistItemHolder and
-                    // RemoteBookmarkPlaylistItemHolder.
-                    if (!(
-                            (
-                                    (source instanceof LocalBookmarkPlaylistItemHolder)
-                                            || (source instanceof RemoteBookmarkPlaylistItemHolder)
-                            )
-                                    && (
-                                    (target instanceof LocalBookmarkPlaylistItemHolder)
-                                            || (target instanceof RemoteBookmarkPlaylistItemHolder)
-                            )
-                    )) {
-                        return false;
-                    }
+
+                // Allow swap LocalBookmarkPlaylistItemHolder and RemoteBookmarkPlaylistItemHolder.
+                if (itemListAdapter == null
+                        || source.getItemViewType() != target.getItemViewType()
+                        && !(
+                        (
+                                (source instanceof LocalBookmarkPlaylistItemHolder)
+                                        || (source instanceof RemoteBookmarkPlaylistItemHolder)
+                        )
+                                && (
+                                (target instanceof LocalBookmarkPlaylistItemHolder)
+                                        || (target instanceof RemoteBookmarkPlaylistItemHolder)
+                        ))
+                ) {
+                    return false;
                 }
 
                 final int sourceIndex = source.getBindingAdapterPosition();
@@ -569,6 +566,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             @Override
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder,
                                  final int swipeDir) {
+                // Do nothing.
             }
         };
     }

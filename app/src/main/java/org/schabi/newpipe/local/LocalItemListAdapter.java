@@ -256,12 +256,17 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         switch (item.getLocalItemType()) {
             case PLAYLIST_LOCAL_ITEM:
-                return useItemHandle ? LOCAL_BOOKMARK_PLAYLIST_HOLDER_TYPE : (useGridVariant
-                        ? LOCAL_PLAYLIST_GRID_HOLDER_TYPE : LOCAL_PLAYLIST_HOLDER_TYPE);
+                if (useItemHandle) {
+                    return LOCAL_BOOKMARK_PLAYLIST_HOLDER_TYPE;
+                }
+                return useGridVariant ? LOCAL_PLAYLIST_GRID_HOLDER_TYPE
+                        : LOCAL_PLAYLIST_HOLDER_TYPE;
             case PLAYLIST_REMOTE_ITEM:
-                return useItemHandle ? REMOTE_BOOKMARK_PLAYLIST_HOLDER_TYPE : (useGridVariant
-                        ? REMOTE_PLAYLIST_GRID_HOLDER_TYPE : REMOTE_PLAYLIST_HOLDER_TYPE);
-
+                if (useItemHandle) {
+                    return REMOTE_BOOKMARK_PLAYLIST_HOLDER_TYPE;
+                }
+                return useGridVariant ? REMOTE_PLAYLIST_GRID_HOLDER_TYPE
+                        : REMOTE_PLAYLIST_HOLDER_TYPE;
             case PLAYLIST_STREAM_ITEM:
                 return useGridVariant
                         ? STREAM_PLAYLIST_GRID_HOLDER_TYPE : STREAM_PLAYLIST_HOLDER_TYPE;
