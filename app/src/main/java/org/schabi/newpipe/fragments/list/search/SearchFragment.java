@@ -141,7 +141,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @State
     boolean wasSearchFocused = false;
 
-    @Nullable private Map<Integer, String> menuItemToFilterName = null;
+    @Nullable
+    private Map<Integer, String> menuItemToFilterName = null;
     private StreamingService service;
     private Page nextPage;
     private boolean showLocalSuggestions = true;
@@ -560,6 +561,15 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     && hasFocus && !isErrorPanelVisible()) {
                 showSuggestionsPanel();
             }
+
+            // The state of keyboard will be maintained before onResume()
+            if (!isResumed() && hasFocus) {
+                if (TextUtils.isEmpty(searchString) || wasSearchFocused) {
+                    showKeyboardSearch();
+                } else {
+                    hideKeyboardSearch();
+                }
+            }
         });
 
         suggestionListAdapter.setListener(new SuggestionListAdapter.OnSuggestionItemSelected() {
@@ -724,9 +734,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 .getRelatedSearches(query, similarQueryLimit, 25)
                 .toObservable()
                 .map(searchHistoryEntries ->
-                    searchHistoryEntries.stream()
-                            .map(entry -> new SuggestionItem(true, entry))
-                            .collect(Collectors.toList()));
+                        searchHistoryEntries.stream()
+                                .map(entry -> new SuggestionItem(true, entry))
+                                .collect(Collectors.toList()));
     }
 
     private Observable<List<SuggestionItem>> getRemoteSuggestionsObservable(final String query) {
@@ -793,12 +803,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                             } else if (listNotification.isOnError()
                                     && listNotification.getError() != null
                                     && !ExceptionUtils.isInterruptedCaused(
-                                            listNotification.getError())) {
+                                    listNotification.getError())) {
                                 showSnackBarError(new ErrorInfo(listNotification.getError(),
                                         UserAction.GET_SUGGESTIONS, searchString, serviceId));
                             }
                         }, throwable -> showSnackBarError(new ErrorInfo(
-                            throwable, UserAction.GET_SUGGESTIONS, searchString, serviceId)));
+                                throwable, UserAction.GET_SUGGESTIONS, searchString, serviceId)));
     }
 
     @Override
@@ -846,7 +856,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         disposables.add(historyRecordManager.onSearched(serviceId, theSearchString)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        ignored -> { },
+                        ignored -> {
+                        },
                         throwable -> showSnackBarError(new ErrorInfo(throwable, UserAction.SEARCHED,
                                 theSearchString, serviceId))
                 ));
