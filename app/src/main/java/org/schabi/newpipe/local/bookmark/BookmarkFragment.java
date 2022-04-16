@@ -446,12 +446,10 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 final Long databaseIndex = displayIndexInDatabase.remove(key);
 
                 // The database index should not be null because inserting new item into database
-                // is not dealt here. NullPointerException has occurred once, but I can't reproduce
-                // it. Enhance robustness here.
-                if (databaseIndex != null) {
-                    if (databaseIndex != i) {
-                        localItemsUpdate.add((PlaylistMetadataEntry) item);
-                    }
+                // is not handled here. NullPointerException has occurred once, but I can't
+                // reproduce it. Enhance robustness here.
+                if (databaseIndex != null && databaseIndex != i) {
+                    localItemsUpdate.add((PlaylistMetadataEntry) item);
                 }
             } else if (item instanceof PlaylistRemoteEntity) {
                 ((PlaylistRemoteEntity) item).setDisplayIndex(i);
@@ -461,10 +459,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                         LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM);
                 final Long databaseIndex = displayIndexInDatabase.remove(key);
 
-                if (databaseIndex != null) {
-                    if (databaseIndex != i) {
-                        remoteItemsUpdate.add((PlaylistRemoteEntity) item);
-                    }
+                if (databaseIndex != null && databaseIndex != i) {
+                    remoteItemsUpdate.add((PlaylistRemoteEntity) item);
                 }
             }
         }
