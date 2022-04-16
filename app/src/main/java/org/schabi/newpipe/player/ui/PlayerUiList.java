@@ -35,7 +35,7 @@ public final class PlayerUiList {
     }
 
     /**
-     * Destroys all matching player UIs and removes them from the list
+     * Destroys all matching player UIs and removes them from the list.
      * @param playerUiType the class of the player UI to destroy; the {@link
      *                     Class#isInstance(Object)} method will be used, so even subclasses will be
      *                     destroyed and removed
@@ -67,7 +67,7 @@ public final class PlayerUiList {
     }
 
     /**
-     * Calls the provided consumer on all player UIs in the list
+     * Calls the provided consumer on all player UIs in the list.
      * @param consumer the consumer to call with player UIs
      */
     public void call(final Consumer<PlayerUi> consumer) {

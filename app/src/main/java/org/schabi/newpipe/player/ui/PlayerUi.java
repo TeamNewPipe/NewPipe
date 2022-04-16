@@ -46,7 +46,7 @@ public abstract class PlayerUi {
 
 
     /**
-     * Called after the player received an intent and processed it
+     * Called after the player received an intent and processed it.
      */
     public void setupAfterIntent() {
     }
@@ -80,7 +80,7 @@ public abstract class PlayerUi {
 
     /**
      * Called when this UI is being discarded, either because the player is switching to a different
-     * UI or because the player is shutting down completely
+     * UI or because the player is shutting down completely.
      */
     public void destroy() {
     }
@@ -88,14 +88,14 @@ public abstract class PlayerUi {
     /**
      * Called when the player is smooth-stopping, that is, transitioning smoothly to a new play
      * queue after the user tapped on a new video stream while a stream was playing in the video
-     * detail fragment
+     * detail fragment.
      */
     public void smoothStopForImmediateReusing() {
     }
 
     /**
      * Called when the video detail fragment listener is connected with the player, or right after
-     * this UI is constructed if the listener is already connected then
+     * this UI is constructed if the listener is already connected then.
      */
     public void onFragmentListenerSet() {
     }
@@ -104,6 +104,7 @@ public abstract class PlayerUi {
      * Broadcasts that the player receives will also be notified to UIs here. If you want to
      * register new broadcast actions to receive here, add them to {@link
      * Player#setupBroadcastReceiver()}.
+     * @param intent the broadcast intent received by the player
      */
     public void onBroadcastReceived(final Intent intent) {
     }
@@ -154,12 +155,14 @@ public abstract class PlayerUi {
 
     /**
      * @see com.google.android.exoplayer2.Player.Listener#onTracksChanged(Tracks)
+     * @param currentTracks the available tracks information
      */
     public void onTextTracksChanged(@NonNull final Tracks currentTracks) {
     }
 
     /**
      * @see com.google.android.exoplayer2.Player.Listener#onPlaybackParametersChanged
+     * @param playbackParameters the new playback parameters
      */
     public void onPlaybackParametersChanged(@NonNull final PlaybackParameters playbackParameters) {
     }
@@ -172,12 +175,13 @@ public abstract class PlayerUi {
 
     /**
      * @see com.google.android.exoplayer2.text.TextOutput#onCues
+     * @param cues the cues to pass to the subtitle view
      */
     public void onCues(@NonNull final List<Cue> cues) {
     }
 
     /**
-     * Called when the stream being played changes
+     * Called when the stream being played changes.
      * @param info the {@link StreamInfo} metadata object, along with data about the selected and
      *             available video streams (to be used to build the resolution menus, for example)
      */
@@ -185,7 +189,7 @@ public abstract class PlayerUi {
     }
 
     /**
-     * Called when the thumbnail for the current metadata was loaded
+     * Called when the thumbnail for the current metadata was loaded.
      * @param bitmap the thumbnail to process, or null if there is no thumbnail or there was an
      *               error when loading the thumbnail
      */

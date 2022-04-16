@@ -10,8 +10,6 @@ import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
 
-import java.util.Optional;
-
 public class PlayerMediaSession implements MediaSessionCallback {
     private final Player player;
 

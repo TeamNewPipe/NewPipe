@@ -86,7 +86,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public abstract class VideoPlayerUi extends PlayerUi
-        implements SeekBar.OnSeekBarChangeListener, View.OnClickListener, View.OnLongClickListener, PopupMenu.OnMenuItemClickListener, PopupMenu.OnDismissListener {
+        implements SeekBar.OnSeekBarChangeListener, View.OnClickListener, View.OnLongClickListener,
+        PopupMenu.OnMenuItemClickListener, PopupMenu.OnDismissListener {
     private static final String TAG = VideoPlayerUi.class.getSimpleName();
 
     // time constants
@@ -476,7 +477,7 @@ public abstract class VideoPlayerUi extends PlayerUi
         binding.endScreen.setImageBitmap(endScreenBitmap);
     }
 
-    protected abstract float calculateMaxEndScreenThumbnailHeight(@NonNull final Bitmap bitmap);
+    protected abstract float calculateMaxEndScreenThumbnailHeight(@NonNull Bitmap bitmap);
     //endregion
 
 
@@ -511,6 +512,7 @@ public abstract class VideoPlayerUi extends PlayerUi
 
     /**
      * Sets the current duration into the corresponding elements.
+     * @param currentProgress the current progress, in milliseconds
      */
     private void updatePlayBackElementsCurrentDuration(final int currentProgress) {
         // Don't set seekbar progress while user is seeking
@@ -522,6 +524,7 @@ public abstract class VideoPlayerUi extends PlayerUi
 
     /**
      * Sets the video duration time into all control components (e.g. seekbar).
+     * @param duration the video duration, in milliseconds
      */
     private void setVideoDurationToControls(final int duration) {
         binding.playbackEndTime.setText(getTimeString(duration));
@@ -1214,7 +1217,7 @@ public abstract class VideoPlayerUi extends PlayerUi
             final MediaItemTag.Quality quality = currentMetadata.getMaybeQuality().get();
             final List<VideoStream> availableStreams = quality.getSortedVideoStreams();
             final int selectedStreamIndex = quality.getSelectedVideoStreamIndex();
-            if (selectedStreamIndex == menuItemIndex|| availableStreams.size() <= menuItemIndex) {
+            if (selectedStreamIndex == menuItemIndex || availableStreams.size() <= menuItemIndex) {
                 return true;
             }
 
@@ -1320,7 +1323,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     }
 
     @Override
-    public void onCues(@NonNull List<Cue> cues) {
+    public void onCues(@NonNull final List<Cue> cues) {
         super.onCues(cues);
         binding.subtitleView.setCues(cues);
     }
@@ -1332,7 +1335,7 @@ public abstract class VideoPlayerUi extends PlayerUi
         binding.subtitleView.setStyle(captionStyle);
     }
 
-    protected abstract void setupSubtitleView(final float captionScale);
+    protected abstract void setupSubtitleView(float captionScale);
     //endregion
 
 
@@ -1518,7 +1521,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     }
 
     @Override
-    public void onVideoSizeChanged(@NonNull VideoSize videoSize) {
+    public void onVideoSizeChanged(@NonNull final VideoSize videoSize) {
         super.onVideoSizeChanged(videoSize);
         binding.surfaceView.setAspectRatio(((float) videoSize.width) / videoSize.height);
     }

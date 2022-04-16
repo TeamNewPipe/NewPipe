@@ -28,7 +28,6 @@ import androidx.preference.PreferenceViewHolder;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
 import org.schabi.newpipe.databinding.SingleChoiceDialogViewBinding;
-import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.notification.NotificationConstants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ThemeHelper;

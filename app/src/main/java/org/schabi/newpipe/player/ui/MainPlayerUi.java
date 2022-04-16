@@ -497,7 +497,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     //region Captions (text tracks)
 
     @Override
-    protected void setupSubtitleView(float captionScale) {
+    protected void setupSubtitleView(final float captionScale) {
         final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
         final float captionRatioInverse = 20f + 4f * (1.0f - captionScale);

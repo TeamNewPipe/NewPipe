@@ -239,6 +239,7 @@ public final class Player implements PlaybackListener, Listener {
     // UIs, listeners and disposables
     //////////////////////////////////////////////////////////////////////////*/
 
+    @SuppressWarnings("MemberName") // keep the unusual member name
     private final PlayerUiList UIs = new PlayerUiList();
 
     private BroadcastReceiver broadcastReceiver;
@@ -1148,7 +1149,7 @@ public final class Player implements PlaybackListener, Listener {
             simpleExoPlayer.setRepeatMode(repeatMode);
         }
     }
-    
+
     public void cycleNextRepeatMode() {
         setRepeatMode(nextRepeatMode(getRepeatMode()));
     }
@@ -1181,7 +1182,7 @@ public final class Player implements PlaybackListener, Listener {
         UIs.call(playerUi -> playerUi.onShuffleModeEnabledChanged(shuffleModeEnabled));
         notifyPlaybackUpdateToListeners();
     }
-    
+
     public void toggleShuffleModeEnabled() {
         if (!exoPlayerIsNull()) {
             simpleExoPlayer.setShuffleModeEnabled(!simpleExoPlayer.getShuffleModeEnabled());
@@ -2301,6 +2302,7 @@ public final class Player implements PlaybackListener, Listener {
     /**
      * @return the user interfaces connected with the player
      */
+    @SuppressWarnings("MethodName") // keep the unusual method name
     public PlayerUiList UIs() {
         return UIs;
     }

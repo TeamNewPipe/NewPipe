@@ -132,7 +132,7 @@ public final class NotificationUtil {
 
         // also update content intent, in case the user switched players
         notificationBuilder.setContentIntent(PendingIntent.getActivity(player.getContext(),
-                NOTIFICATION_ID, getIntentForNotification(player), FLAG_UPDATE_CURRENT));
+                NOTIFICATION_ID, getIntentForNotification(), FLAG_UPDATE_CURRENT));
         notificationBuilder.setContentTitle(player.getVideoTitle());
         notificationBuilder.setContentText(player.getUploaderName());
         notificationBuilder.setTicker(player.getVideoTitle());
@@ -321,7 +321,7 @@ public final class NotificationUtil {
                         new Intent(intentAction), FLAG_UPDATE_CURRENT));
     }
 
-    private Intent getIntentForNotification(final Player player) {
+    private Intent getIntentForNotification() {
         if (player.audioPlayerSelected() || player.popupPlayerSelected()) {
             // Means we play in popup or audio only. Let's show the play queue
             return NavigationHelper.getPlayQueueActivityIntent(player.getContext());
