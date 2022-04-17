@@ -414,14 +414,21 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     } else {
                         final Iterator<StreamStateEntity> streamStatesIter = recordManager
                                 .loadLocalStreamStateBatch(playlist).blockingGet().iterator();
-
                         while (playlistIter.hasNext()) {
                             final PlaylistStreamEntry playlistItem = playlistIter.next();
                             final int indexInHistory = Collections.binarySearch(historyStreamIds,
                                     playlistItem.getStreamId());
-
-                            final boolean hasState = streamStatesIter.next() != null;
-                            if (indexInHistory < 0 || hasState) {
+                            final StreamStateEntity streamStateEntity = streamStatesIter.next();
+                            final long duration = playlistItem.toStreamInfoItem().getDuration();
+                            boolean isFinished = false;
+                            if (streamStateEntity != null) {
+                                isFinished = streamStateEntity.isFinished(duration);
+                            }
+                            final boolean isNotWatchedItem = (streamStateEntity != null
+                                    && !isFinished);
+                            if (indexInHistory < 0) {
+                                notWatchedItems.add(playlistItem);
+                            } else if (isNotWatchedItem) {
                                 notWatchedItems.add(playlistItem);
                             } else if (!thumbnailVideoRemoved
                                     && playlistManager.getPlaylistThumbnail(playlistId)
