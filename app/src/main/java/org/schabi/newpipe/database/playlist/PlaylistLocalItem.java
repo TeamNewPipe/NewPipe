@@ -17,15 +17,15 @@ public interface PlaylistLocalItem extends LocalItem {
             final List<PlaylistMetadataEntry> localPlaylists,
             final List<PlaylistRemoteEntity> remotePlaylists) {
 
-        // Merge localPlaylists and remotePlaylists by displayIndex.
-        // If two items have the same displayIndex, sort them in CASE_INSENSITIVE_ORDER.
+        // Merge localPlaylists and remotePlaylists by display index.
+        // If two items have the same display index, sort them in CASE_INSENSITIVE_ORDER.
         // This algorithm is similar to the merge operation in merge sort.
 
         final List<PlaylistLocalItem> result = new ArrayList<>(
                 localPlaylists.size() + remotePlaylists.size());
         final List<PlaylistLocalItem> itemsWithSameIndex = new ArrayList<>();
 
-        // The data from database may not be in the displayIndex order
+        // The data from database may not be in the display index order
         Collections.sort(localPlaylists,
                 Comparator.comparingLong(PlaylistMetadataEntry::getDisplayIndex));
         Collections.sort(remotePlaylists,
@@ -58,7 +58,7 @@ public interface PlaylistLocalItem extends LocalItem {
                         final List<PlaylistLocalItem> itemsWithSameIndex) {
         if (!itemsWithSameIndex.isEmpty()
                 && itemsWithSameIndex.get(0).getDisplayIndex() != item.getDisplayIndex()) {
-            // The new item has a different displayIndex, add previous items with same
+            // The new item has a different display index, add previous items with same
             // index to the result.
             addItemsWithSameIndex(result, itemsWithSameIndex);
             itemsWithSameIndex.clear();
