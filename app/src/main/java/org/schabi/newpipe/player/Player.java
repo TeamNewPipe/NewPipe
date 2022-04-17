@@ -3557,14 +3557,19 @@ public final class Player implements
         }
 
         // apply caption language from previous user preference
-        final List<String> selectedPreferredLanguages =
-                trackSelector.getParameters().preferredTextLanguages;
         final String userPreferredLanguage =
                 prefs.getString(context.getString(R.string.caption_user_set_key), null);
         final int textRendererIndex = getCaptionRendererIndex();
 
-        if (userPreferredLanguage != null
-                && !selectedPreferredLanguages.contains(userPreferredLanguage)
+        if (userPreferredLanguage == null) {
+            trackSelector.setParameters(trackSelector.buildUponParameters()
+                    .setRendererDisabled(textRendererIndex, true));
+            return;
+        }
+
+        final List<String> selectedPreferredLanguages =
+                trackSelector.getParameters().preferredTextLanguages;
+        if (!selectedPreferredLanguages.contains(userPreferredLanguage)
                 && textRendererIndex != RENDERER_UNAVAILABLE) {
             trackSelector.setParameters(trackSelector.buildUponParameters()
                     .setPreferredTextLanguages(userPreferredLanguage,
