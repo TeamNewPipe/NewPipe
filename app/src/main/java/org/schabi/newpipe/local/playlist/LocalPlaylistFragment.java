@@ -158,6 +158,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         return headerBinding;
     }
 
+    // Commit changes immediately when the user turns to the player.
+    // Delete operations will be committed to ensure that the database
+    // is up to date when the user adds the just deleted stream by the player.
+    public void commitChanges() {
+        if (isModified != null && isModified.get()) {
+            saveImmediate();
+        }
+    }
+
     @Override
     protected void initListeners() {
         super.initListeners();
