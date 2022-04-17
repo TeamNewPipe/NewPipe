@@ -3557,20 +3557,27 @@ public final class Player implements
         }
 
         // apply caption language from previous user preference
+        final int textRendererIndex = getCaptionRendererIndex();
+        if (textRendererIndex == RENDERER_UNAVAILABLE) {
+            return;
+        }
+
+        // If user prefers to show no caption, then disable the renderer.
+        // Otherwise, DefaultTrackSelector may automatically find an available caption
+        // and display that.
         final String userPreferredLanguage =
                 prefs.getString(context.getString(R.string.caption_user_set_key), null);
-        final int textRendererIndex = getCaptionRendererIndex();
-
         if (userPreferredLanguage == null) {
             trackSelector.setParameters(trackSelector.buildUponParameters()
                     .setRendererDisabled(textRendererIndex, true));
             return;
         }
 
+        // Only set preferred language if it does not match the user preference,
+        // otherwise there might be an infinite cycle at onTextTracksChanged.
         final List<String> selectedPreferredLanguages =
                 trackSelector.getParameters().preferredTextLanguages;
-        if (!selectedPreferredLanguages.contains(userPreferredLanguage)
-                && textRendererIndex != RENDERER_UNAVAILABLE) {
+        if (!selectedPreferredLanguages.contains(userPreferredLanguage)) {
             trackSelector.setParameters(trackSelector.buildUponParameters()
                     .setPreferredTextLanguages(userPreferredLanguage,
                             PlayerHelper.captionLanguageStemOf(userPreferredLanguage))
