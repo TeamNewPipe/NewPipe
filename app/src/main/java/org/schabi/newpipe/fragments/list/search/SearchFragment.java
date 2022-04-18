@@ -141,8 +141,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @State
     boolean wasSearchFocused = false;
 
-    @Nullable
-    private Map<Integer, String> menuItemToFilterName = null;
+    @Nullable private Map<Integer, String> menuItemToFilterName = null;
     private StreamingService service;
     private Page nextPage;
     private boolean showLocalSuggestions = true;
@@ -561,15 +560,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     && hasFocus && !isErrorPanelVisible()) {
                 showSuggestionsPanel();
             }
-
-            // The state of keyboard will be maintained before onResume()
-            if (!isResumed() && hasFocus) {
-                if (TextUtils.isEmpty(searchString) || wasSearchFocused) {
-                    showKeyboardSearch();
-                } else {
-                    hideKeyboardSearch();
-                }
-            }
         });
 
         suggestionListAdapter.setListener(new SuggestionListAdapter.OnSuggestionItemSelected() {
@@ -856,8 +846,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         disposables.add(historyRecordManager.onSearched(serviceId, theSearchString)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        ignored -> {
-                        },
+                        ignored -> { },
                         throwable -> showSnackBarError(new ErrorInfo(throwable, UserAction.SEARCHED,
                                 theSearchString, serviceId))
                 ));
