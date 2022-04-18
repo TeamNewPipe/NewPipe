@@ -724,9 +724,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 .getRelatedSearches(query, similarQueryLimit, 25)
                 .toObservable()
                 .map(searchHistoryEntries ->
-                        searchHistoryEntries.stream()
-                                .map(entry -> new SuggestionItem(true, entry))
-                                .collect(Collectors.toList()));
+                    searchHistoryEntries.stream()
+                            .map(entry -> new SuggestionItem(true, entry))
+                            .collect(Collectors.toList()));
     }
 
     private Observable<List<SuggestionItem>> getRemoteSuggestionsObservable(final String query) {
@@ -793,12 +793,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                             } else if (listNotification.isOnError()
                                     && listNotification.getError() != null
                                     && !ExceptionUtils.isInterruptedCaused(
-                                    listNotification.getError())) {
+                                            listNotification.getError())) {
                                 showSnackBarError(new ErrorInfo(listNotification.getError(),
                                         UserAction.GET_SUGGESTIONS, searchString, serviceId));
                             }
                         }, throwable -> showSnackBarError(new ErrorInfo(
-                                throwable, UserAction.GET_SUGGESTIONS, searchString, serviceId)));
+                            throwable, UserAction.GET_SUGGESTIONS, searchString, serviceId)));
     }
 
     @Override
