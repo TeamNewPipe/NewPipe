@@ -426,7 +426,6 @@
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
     <string name="peertube_instance_url_summary">设置自己喜欢的PeerTube服务器</string>
     <string name="enter_instance_url">输入服务器网址(URL)</string>
-    <string name="could_not_validate_instance">无法验证服务器</string>
     <string name="instance_already_exists">该服务器已存在</string>
     <string name="local">本地</string>
     <string name="recently_added">最近添加</string>

@@ -2,6 +2,7 @@ package org.schabi.newpipe.settings.services.instances;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +24,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentInstanceListBinding;
 import org.schabi.newpipe.databinding.InstanceTypeFloatingItemBinding;
@@ -45,7 +47,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public abstract class AbstractServiceInstanceListFragment<I extends Instance> extends Fragment {
-
+    protected static final String TAG = "AbsServiceInstanceLFrag";
     protected static final int TYPES_CONTAINER_ANIMATION_DURATION = 500;
 
     @StringRes
@@ -253,9 +255,14 @@ public abstract class AbstractServiceInstanceListFragment<I extends Instance> ex
                     add(instance);
                 }, e -> {
                     binding.loadingProgressBar.setVisibility(View.GONE);
+                    if (MainActivity.DEBUG) {
+                        Log.w(TAG, "Failed to validate instance", e);
+                    }
                     Toast.makeText(getActivity(),
-                            R.string.could_not_validate_instance,
-                            Toast.LENGTH_SHORT).show();
+                            requireContext().getString(
+                                    R.string.could_not_validate_instance,
+                                    e.getMessage() != null ? e.getMessage() : "no message"),
+                            Toast.LENGTH_LONG).show();
                 });
         disposables.add(disposable);
     }

@@ -546,7 +546,6 @@
     <string name="copy_for_github">स्वरूपित रिपोर्ट कॉपी करें</string>
     <string name="clear_cookie_summary">कुकी साफ़ करें जिसे न्यूपाइप आपके द्वारा रीकैप्चा हल करने पर संग्रहीत करता है</string>
     <string name="instance_already_exists">उदाहरण पहले से मौजूद है</string>
-    <string name="could_not_validate_instance">उदाहरण मान्य नहीं किया जा सका</string>
     <string name="enter_instance_url">उदाहरण URL दर्ज करें</string>
     <string name="peertube_instance_url_summary">अपने पसंदीदा PeerTube उदाहरण चुनें</string>
     <string name="start_main_player_fullscreen_title">मुख्य प्लेयर को पूर्ण स्क्रीन में शुरू करें</string>

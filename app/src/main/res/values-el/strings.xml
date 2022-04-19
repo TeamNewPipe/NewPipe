@@ -562,7 +562,6 @@
     <string name="youtube_restricted_mode_enabled_summary">Το YouTube διαθέτει «Περιορισμένη Λειτουργία» η οποία κρύβει πιθανώς ακατάλληλο περιεχόμενο</string>
     <string name="show_age_restricted_content_summary">Εμφάνιση πιθανώς ακατάλληλου περιεχομένου (18+)</string>
     <string name="instance_already_exists">Το instance υπάρχει ήδη</string>
-    <string name="could_not_validate_instance">Αδυναμία πιστοποίησης του instance</string>
     <string name="enter_instance_url">Προσθέστε την URL του instance</string>
     <string name="peertube_instance_url_summary">Επιλογή των αγαπημένων σας PeerTube instances</string>
     <string name="show_original_time_ago_title">Εμφάνιση αυθεντικού παρελθόντος χρόνου στα αντικείμενα</string>

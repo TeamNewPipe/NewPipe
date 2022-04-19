@@ -393,7 +393,6 @@
     <string name="peertube_instance_url_title">PeerTube-instanser</string>
     <string name="peertube_instance_url_summary">Välj dina favoritpeertube-instanser</string>
     <string name="enter_instance_url">Ange instansens URL</string>
-    <string name="could_not_validate_instance">Det gick inte att validera instansen</string>
     <string name="instance_already_exists">Instansen finns redan</string>
     <string name="videos_string">Videor</string>
     <string name="help">Hjälp</string>

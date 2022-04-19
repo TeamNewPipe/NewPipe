@@ -224,7 +224,6 @@
     <string name="resume_on_audio_focus_gain_title">ప్లే చేయడం కొనసాగించండి</string>
     <string name="default_content_country_title">డిఫాల్ట్ కంటెంట్ దేశం</string>
     <string name="enter_instance_url">ఉదాహరణ URLని నమోదు చేయండి</string>
-    <string name="could_not_validate_instance">ఉదాహరణను ధృవీకరించడం సాధ్యపడలేదు</string>
     <string name="instance_already_exists">ఉదాహరణ ఇప్పటికే ఉంది</string>
     <string name="users">వినియోగదారులు</string>
     <string name="events">ఈవెంట్స్</string>

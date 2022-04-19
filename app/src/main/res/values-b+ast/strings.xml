@@ -260,7 +260,6 @@
     <string name="import_complete_toast">Importóse</string>
     <string name="could_not_import_all_files">Alvertencia: nun pudieron importase tolos ficheros.</string>
     <string name="settings_category_updates_title">Anovamientos</string>
-    <string name="could_not_validate_instance">Nun pudo validase la instancia</string>
     <plurals name="minutes">
         <item quantity="one">%d minutu</item>
         <item quantity="other">%d minutos</item>

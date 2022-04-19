@@ -442,7 +442,6 @@
     <string name="peertube_instance_url_title">Inštancie PeerTube</string>
     <string name="peertube_instance_url_summary">Vyberte si svoje obľúbené inštancie PeerTube</string>
     <string name="enter_instance_url">Vložiť URL inštancie</string>
-    <string name="could_not_validate_instance">Nepodarilo sa overiť inštanciu</string>
     <string name="instance_already_exists">Inštancia už existuje</string>
     <string name="local">Miestne</string>
     <string name="recently_added">Nedávno pridané</string>

@@ -431,7 +431,6 @@
     <string name="peertube_instance_url_title">PeerTube उदाहरणहरू</string>
     <string name="peertube_instance_url_summary">आफ्नो मनपर्ने PeerTube उदाहरणहरू चयन</string>
     <string name="enter_instance_url">उदाहरणका URL प्रविष्ट गर्नुहोस्</string>
-    <string name="could_not_validate_instance">उदाहरणका मान्य सकेन</string>
     <string name="instance_already_exists">उदाहरणका पहिले नै अवस्थित</string>
     <string name="local">स्थानिय</string>
     <string name="recently_added">हालसालै थपिएको</string>

@@ -609,7 +609,6 @@
     <string name="comments_are_disabled">Kommentaarid on välja lülitatud</string>
     <string name="error_report_open_github_notice">Palun kontrolli kas sinu kogetud krahhi käsitlev vearaport on juba olemas. Luues korduvraporteid võtad meilt aega, mida saaksime kulutada tegelike vigade parandamiseks.</string>
     <string name="instance_already_exists">Instants on juba olemas</string>
-    <string name="could_not_validate_instance">Instantsi valideerimine nurjus</string>
     <string name="feed_use_dedicated_fetch_method_summary">Saadaval mõnedes teenustes. See on tavaliselt palju kiirem, kuid võib tagastada piiratud koguse elemente ja sageli osalise informatsiooni (nt. puudub kestus, elemendi tüüp, laiv olek)</string>
     <string name="description_select_note">Sa saad nüüd valida kirjelduse tekstist. Pane tähele, et valikurežiimis võib leht vilkuda ja lingid ei pruugi olla klõpsatavd.</string>
     <string name="video_detail_by">Autor: %s</string>

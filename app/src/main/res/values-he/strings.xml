@@ -447,7 +447,6 @@
     <string name="peertube_instance_url_title">מופעים של PeerTube</string>
     <string name="peertube_instance_url_summary">נא לבחור את מופעי ה־PeerTube המועדפים עליך</string>
     <string name="enter_instance_url">נא להכניס כתובת מופע</string>
-    <string name="could_not_validate_instance">לא ניתן לאמת את המופע</string>
     <string name="instance_already_exists">המופע כבר קיים</string>
     <string name="local">מקומי</string>
     <string name="recently_added">נוספו לאחרונה</string>

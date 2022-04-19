@@ -546,7 +546,6 @@
     <string name="youtube_restricted_mode_enabled_summary">A YouTube biztosít egy „Korlátozott módot”, amely elrejti a lehetséges felnőtteknek szóló tartalmat</string>
     <string name="youtube_restricted_mode_enabled_title">A YouTube „Korlátozott módjának” bekapcsolása</string>
     <string name="instance_already_exists">A példány már létezik</string>
-    <string name="could_not_validate_instance">A példány érvényesítése nem sikerült</string>
     <string name="enter_instance_url">Adja meg a példány URL-ét</string>
     <string name="peertube_instance_url_summary">Válassza ki a kedvenc PeerTube példányait</string>
     <string name="peertube_instance_url_title">PeerTube példányok</string>

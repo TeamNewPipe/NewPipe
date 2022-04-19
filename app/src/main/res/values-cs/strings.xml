@@ -442,7 +442,6 @@
     <string name="peertube_instance_url_title">Instance PeerTube</string>
     <string name="peertube_instance_url_summary">Vybrat oblíbené instance PeerTube</string>
     <string name="enter_instance_url">Zadat URL instance</string>
-    <string name="could_not_validate_instance">Instanci nebylo možno potvrdit</string>
     <string name="instance_already_exists">Instance již existuje</string>
     <string name="local">Místní</string>
     <string name="recently_added">Přidány nedávno</string>

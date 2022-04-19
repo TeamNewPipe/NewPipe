@@ -435,7 +435,6 @@
     <string name="show_original_time_ago_summary">Арыгінальныя тэксты з сэрвісаў будуць бачны ў ленце элементаў</string>
     <string name="clear_cookie_summary">Ачысціце cookie, якія NewPipe захоўвае пры рашэнні reCAPTCHA</string>
     <string name="instance_already_exists">Экзэмпляр ужо існуе</string>
-    <string name="could_not_validate_instance">Немагчыма праверыць экзэмпляр</string>
     <string name="enter_instance_url">Увесці URL экзэмпляра</string>
     <string name="peertube_instance_url_summary">Абярыце любімыя экзэмпляры PeerTube</string>
     <string name="clear_queue_confirmation_description">Актыўны плэер быў зменены</string>

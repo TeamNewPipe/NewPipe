@@ -430,7 +430,6 @@
     <string name="peertube_instance_url_title">Situs PeerTube</string>
     <string name="peertube_instance_url_summary">Pilih situs PeerTube favorit Anda</string>
     <string name="enter_instance_url">Masukkan URL situs</string>
-    <string name="could_not_validate_instance">Tidak bisa memvalidasi situs</string>
     <string name="instance_already_exists">Situs sudah ada</string>
     <string name="local">Lokal</string>
     <string name="recently_added">Baru ditambahkan</string>

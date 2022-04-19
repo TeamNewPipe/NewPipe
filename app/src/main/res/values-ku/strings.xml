@@ -414,7 +414,6 @@
     <string name="peertube_instance_url_title">دۆخی پێرتووبی</string>
     <string name="peertube_instance_url_summary">دۆخە دڵخوازەکانی پێرتووبی دیاریبکە</string>
     <string name="enter_instance_url">بەستەری دۆخ دابنێ</string>
-    <string name="could_not_validate_instance">ناتوانرێ پشتگیری دۆخەکە بکرێ</string>
     <string name="instance_already_exists">هەمان دۆخ کاراکراوە</string>
     <string name="error_http_not_found">نەدۆزرایەوە</string>
     <string name="error_postprocessing_failed">چارەسەرکردن شکستی هێنا</string>

@@ -538,7 +538,6 @@
     <string name="youtube_restricted_mode_enabled_title">YouTube \"beperkte modus\" aanzetten</string>
     <string name="show_age_restricted_content_summary">Toon inhoud die mogelijk niet geschikt is voor kinderen omwille van een leeftijdslimiet (zoals 18+)</string>
     <string name="instance_already_exists">Kanaal bestaat al</string>
-    <string name="could_not_validate_instance">Kon kanaal niet valideren</string>
     <string name="enter_instance_url">Kanaal URL invoeren</string>
     <string name="peertube_instance_url_summary">Selecteer je favoriete PeerTube kanaal</string>
     <string name="peertube_instance_url_title">PeerTube kanaal</string>

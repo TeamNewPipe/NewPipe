@@ -446,7 +446,6 @@
     <string name="peertube_instance_url_title">Serwery PeerTube</string>
     <string name="peertube_instance_url_summary">Wybierz swoje ulubione serwery PeerTube</string>
     <string name="enter_instance_url">Wprowadź adres URL serwera</string>
-    <string name="could_not_validate_instance">Nie udało się sprawdzić poprawności serwera</string>
     <string name="instance_already_exists">Serwer już istnieje</string>
     <string name="local">Lokalne</string>
     <string name="recently_added">Ostatnio dodane</string>

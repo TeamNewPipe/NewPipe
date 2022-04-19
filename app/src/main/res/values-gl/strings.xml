@@ -521,7 +521,6 @@
     <string name="youtube_restricted_mode_enabled_title">Activar modo restrinxido de YouTube</string>
     <string name="settings_category_updates_title">Actualizacións</string>
     <string name="instance_already_exists">A instancia xa existe</string>
-    <string name="could_not_validate_instance">Non se puido validar a instancia</string>
     <string name="enter_instance_url">Introduza o URL da instancia</string>
     <string name="peertube_instance_url_summary">Selecciona as instancias favoritas de PeerTube</string>
     <string name="peertube_instance_url_title">Instancias de PeerTube</string>

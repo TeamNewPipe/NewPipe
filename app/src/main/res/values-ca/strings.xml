@@ -451,7 +451,6 @@
 \nSi desitgeu visualitzar-lo, activeu \"%1$s\" a paràmetres.</string>
     <string name="youtube_restricted_mode_enabled_title">Activa el \"mode restringit\" de YouTube</string>
     <string name="instance_already_exists">La instància introduïda ja existeix</string>
-    <string name="could_not_validate_instance">No ha estat possible validar la instància</string>
     <string name="enter_instance_url">Introdueix l\'enllaç d\'una instància</string>
     <string name="peertube_instance_url_summary">Selecciona les teves instàncies preferides del PeerTube</string>
     <string name="peertube_instance_url_title">Instàncies del PeerTube</string>

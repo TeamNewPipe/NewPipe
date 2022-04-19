@@ -457,7 +457,6 @@
     <string name="peertube_instance_url_title">مثيلات خوادم پيرتيوب</string>
     <string name="peertube_instance_url_summary">حدد مثيلات PeerTube المفضلة لديك</string>
     <string name="enter_instance_url">أدخل عنوان للمثيل</string>
-    <string name="could_not_validate_instance">لا يمكن التحقق من صحة المثال</string>
     <string name="instance_already_exists">مثيل الخادم موجود بالفعل</string>
     <string name="local">محلي</string>
     <string name="recently_added">أُضيف مؤخرًا</string>

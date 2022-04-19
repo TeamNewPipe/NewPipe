@@ -440,7 +440,6 @@
     <string name="delete_downloaded_files">Slett nedlastede filer</string>
     <string name="peertube_instance_url_summary">Velg dine favoritter blant PeerTube-instansene</string>
     <string name="enter_instance_url">Skriv inn nettadresse til instans</string>
-    <string name="could_not_validate_instance">Kunne ikke bekrefte instans</string>
     <string name="instance_already_exists">Instansen finnes allerede</string>
     <string name="playlist_no_uploader">Autogenerert (fant ingen opplaster)</string>
     <string name="recovering">gjenoppretter</string>

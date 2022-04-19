@@ -299,7 +299,6 @@
     <string name="settings_category_player_behavior_title">സ്വഭാവം</string>
     <string name="settings_category_player_title">പ്ലെയർ</string>
     <string name="instance_already_exists">സന്ദർഭം നേരത്തെ നിലവിലുണ്ട്</string>
-    <string name="could_not_validate_instance">സന്ദർഭം സാധൂകരിക്കാൻ സാധിച്ചില്ല</string>
     <string name="enter_instance_url">സന്ദർഭത്തിന്റെ URL കൂട്ടിച്ചേർക്കുക</string>
     <string name="peertube_instance_url_summary">നിങ്ങളുടെ പ്രിയപ്പെട്ട പിയർട്യൂബ് സന്ദർഭങ്ങളെ തിരഞ്ഞെടുക്കുക</string>
     <string name="peertube_instance_url_title">പിയർട്യൂബ് സന്ദർഭങ്ങൾ</string>

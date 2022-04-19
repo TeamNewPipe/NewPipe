@@ -418,7 +418,6 @@
     <string name="feed_groups_header_title">Nhóm kênh</string>
     <string name="choose_instance_prompt">Chọn thực thể</string>
     <string name="instance_already_exists">Thực thể đã tồn tại</string>
-    <string name="could_not_validate_instance">Không thể xác nhận thực thể</string>
     <string name="enter_instance_url">Nhập URL thực thể</string>
     <plurals name="days">
         <item quantity="other">%d ngày</item>

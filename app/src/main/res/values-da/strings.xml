@@ -372,7 +372,6 @@
     <string name="pause_downloads_on_mobile">Sæt på pause ved skift til mobildata</string>
     <string name="pause_downloads_on_mobile_desc">Downloads som ikke kan sættes på pause vil blive genstartet</string>
     <string name="instance_already_exists">Instansen findes allerede</string>
-    <string name="could_not_validate_instance">Kunde ikke bekræfte instans</string>
     <string name="enter_instance_url">Skriv ind instans-URL</string>
     <string name="peertube_instance_url_summary">Vælg dine favorit-PeerTube-instanser</string>
     <string name="peertube_instance_url_title">PeerTube-instanser</string>

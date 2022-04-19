@@ -432,7 +432,6 @@
     <string name="peertube_instance_url_title">PeerTube 站臺</string>
     <string name="peertube_instance_url_summary">選取您最愛的 PeerTube 站臺</string>
     <string name="enter_instance_url">輸入站臺 URL</string>
-    <string name="could_not_validate_instance">無法驗證站臺</string>
     <string name="instance_already_exists">站臺已存在</string>
     <string name="local">本機</string>
     <string name="recently_added">最近新增</string>

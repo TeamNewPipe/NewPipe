@@ -444,7 +444,6 @@
     <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird</string>
     <string name="peertube_instance_url_title">PeerTube-Instanzen</string>
     <string name="enter_instance_url">URL der Instanz eingeben</string>
-    <string name="could_not_validate_instance">Validierung der Instanz fehlgeschlagen</string>
     <string name="instance_already_exists">Instanz existiert bereits</string>
     <string name="local">Lokal</string>
     <string name="recently_added">Kürzlich hinzugefügt</string>

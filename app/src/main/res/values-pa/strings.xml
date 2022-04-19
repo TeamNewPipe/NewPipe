@@ -585,7 +585,6 @@
     <string name="youtube_restricted_mode_enabled_title">ਯੂਟਿਊਬ ਦਾ ਪਾਬੰਦੀਸ਼ੁਦਾ ਮੋਡ ਚਾਲੂ ਕਰੋ</string>
     <string name="show_age_restricted_content_summary">ਉਹ ਸਮੱਗਰੀ ਵੀ ਵਿਖਾਓ ਜੋ ਉਮਰ-ਸੀਮਾ ਕਰਕੇ ਬੱਚਿਆਂ ਲਈ ਸ਼ਾਇਦ ਸਹੀ ਨਾ ਹੋਵੇ (ਜਿਵੇਂ 18+)</string>
     <string name="instance_already_exists">ਸਥਿਤੀ ਪਹਿਲਾਂ ਨੂੰ ਮੌਜੂਦ ਹੈ</string>
-    <string name="could_not_validate_instance">ਸਥਿਤੀ ਦੀ ਜਾਇਜ਼ਗੀ ਤਸਦੀਕ ਨਹੀਂ ਹੋ ਸਕੀ</string>
     <string name="enter_instance_url">ਸਥਿਤੀ URL ਦਾਖ਼ਲ ਕਰੋ</string>
     <string name="peertube_instance_url_summary">ਆਪਣੀ ਪਸੰਦੀਦਾ ਪੀਰਟਿਊਬ ਸਥਿਤੀਆਂ ਚੁਣੋ</string>
     <string name="peertube_instance_url_title">ਪੀਰਟਿਊਬ ਸਥਿਤੀਆਂ</string>

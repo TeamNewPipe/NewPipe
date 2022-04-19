@@ -442,7 +442,6 @@
     <string name="settings_category_player_behavior_title">Cumportamentu</string>
     <string name="settings_category_player_title">Riproduidore</string>
     <string name="instance_already_exists">S\'istàntzia esistit giai</string>
-    <string name="could_not_validate_instance">Impossìbile cunvalidare s\'istàntzia</string>
     <string name="enter_instance_url">Inserta s\'URL de s\'istàntzia</string>
     <string name="peertube_instance_url_summary">Ischerta sas istàntzias de PeerTube preferidas tuas</string>
     <string name="peertube_instance_url_title">Istàntzias de PeerTube</string>

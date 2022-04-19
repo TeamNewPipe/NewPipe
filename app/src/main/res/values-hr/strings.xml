@@ -548,7 +548,6 @@
     <string name="youtube_restricted_mode_enabled_title">Uključi YouTube postavku „Ograničeni način rada”</string>
     <string name="show_age_restricted_content_summary">Prikaži sadržaj koji vjerojatno nije prikladan za djecu, jer je dobno ograničen (kategorija 18)</string>
     <string name="instance_already_exists">Primjerak već postoji</string>
-    <string name="could_not_validate_instance">Neuspjela provjera primjerka</string>
     <string name="enter_instance_url">Upiši URL primjerka</string>
     <string name="peertube_instance_url_summary">Odaberi tvoje omiljene PeerTube primjerke</string>
     <string name="peertube_instance_url_title">PeerTube primjerci</string>

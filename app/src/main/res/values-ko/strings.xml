@@ -432,7 +432,6 @@
     <string name="peertube_instance_url_title">피어튜브 인스턴스</string>
     <string name="peertube_instance_url_summary">당신이 선호하는 피어튜브 인스턴스를 선택하세요.</string>
     <string name="enter_instance_url">인스턴스 URL을 입력하세요.</string>
-    <string name="could_not_validate_instance">인스턴스를 검증할 수 없습니다.</string>
     <string name="instance_already_exists">인스턴스가 이미 존재합니다.</string>
     <string name="local">로컬</string>
     <string name="recently_added">최근에 추가됨.</string>

@@ -235,7 +235,6 @@
     <string name="related_items_tab_description">உறவுடைய உருப்படிகள்</string>
     <string name="clear_cookie_summary">reCAPTCHAஐ தீர்க்கையில் NewPipe சேமிக்கும் நினைவிகளைத் துடை</string>
     <string name="start_main_player_fullscreen_title">முதன்மை இயக்கியை முழுதிரையில் துவக்கு</string>
-    <string name="could_not_validate_instance">நிகழ்வை செல்லுபடுயாக்க முடியவில்லை</string>
     <string name="clear_playback_states_summary">எல்லா இயக்கக குறியிடங்களையும் அழிக்கும்</string>
     <string name="delete_playback_states_alert">எல்லா இயக்கக குறியிடங்களையும் அழிக்கவா\?</string>
     <string name="watch_history_states_deleted">இயக்கக குறியிடங்கள் அழிக்கப்பட்டன</string>

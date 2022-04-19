@@ -382,7 +382,6 @@
     <string name="youtube_restricted_mode_enabled_title">Ota käyttöön YouTuben ”Rajoitettu tila”</string>
     <string name="settings_category_updates_title">Päivitykset</string>
     <string name="instance_already_exists">Instanssi on jo olemassa</string>
-    <string name="could_not_validate_instance">Instanssia ei voitu vahvistaa</string>
     <string name="enter_instance_url">Syötä instanssin URL</string>
     <string name="peertube_instance_url_summary">Valitse PeerTube-suosikki-instanssisi</string>
     <string name="peertube_instance_url_title">PeerTube-instanssit</string>

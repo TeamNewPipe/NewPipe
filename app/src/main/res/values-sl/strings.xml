@@ -425,7 +425,6 @@
     <string name="youtube_restricted_mode_enabled_title">Vklop YouTubovega \"omejenega načina\"</string>
     <string name="show_age_restricted_content_summary">Prikaz vsebin, ki so morda neprimerne za otroke zaradi omejitve starosti (kot na primer 18+)</string>
     <string name="instance_already_exists">Instanca že obstaja</string>
-    <string name="could_not_validate_instance">Validacija instance ni bila mogoča</string>
     <string name="enter_instance_url">Vnesite URL instance</string>
     <string name="peertube_instance_url_summary">Izberite vaše najljubše instance PeerTuba</string>
     <string name="peertube_instance_url_title">Instance PeerTube</string>

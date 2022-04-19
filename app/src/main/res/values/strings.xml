@@ -136,7 +136,7 @@
     <string name="add_instance">Add %s instance</string>
     <string name="enter_instance_url">Enter instance URL</string>
     <string name="instance_is_foss">This service is provided by free and open-source software. Consider donating to the maintainers and developers or feel free to host your own instance.</string>
-    <string name="could_not_validate_instance">Could not validate instance</string>
+    <string name="could_not_validate_instance">Could not validate instance: %s</string>
     <string name="instance_already_exists">Instance already exists</string>
     <string name="http_is_insecure_consider_using_https">Communication via HTTP is insecure. Consider using HTTPS instead</string>
     <string name="settings_category_player_title">Player</string>

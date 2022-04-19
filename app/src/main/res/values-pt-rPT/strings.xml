@@ -76,7 +76,6 @@
 \nPara o poder ver, tem que ativar \"%1$s\" nas definições.</string>
     <string name="read_full_license">Ver licença</string>
     <string name="help">Ajuda</string>
-    <string name="could_not_validate_instance">Falha ao validar a instância</string>
     <string name="clear_download_history">Limpar histórico de descargas</string>
     <string name="delete_playback_states_alert">Remover todas as posições de reprodução\?</string>
     <string name="enable_queue_limit">Limitar fila de descargas</string>

@@ -432,7 +432,6 @@
     <string name="peertube_instance_url_title">PeerTube インスタンス</string>
     <string name="peertube_instance_url_summary">PeerTube インスタンスを選択する</string>
     <string name="enter_instance_url">インスタンスの URL を入力</string>
-    <string name="could_not_validate_instance">インスタンスを検証することができませんでした</string>
     <string name="instance_already_exists">インスタンスはすでに存在しています</string>
     <string name="local">ローカル</string>
     <string name="recently_added">最近追加された</string>

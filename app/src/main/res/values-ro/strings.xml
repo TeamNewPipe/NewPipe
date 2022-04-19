@@ -337,7 +337,6 @@
     <string name="clear_playback_states_summary">Ștergeți toate pozițiile de redare</string>
     <string name="videos_string">Videoclipuri</string>
     <string name="instance_already_exists">Instanța există deja</string>
-    <string name="could_not_validate_instance">Nu s-a putut valida instanța</string>
     <string name="enter_instance_url">Introduceți URL-ul instanței</string>
     <string name="peertube_instance_url_summary">Selectați instanțele PeerTube preferate</string>
     <string name="peertube_instance_url_title">Instanțe PeerTube</string>

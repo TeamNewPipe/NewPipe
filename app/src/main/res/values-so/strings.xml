@@ -368,7 +368,6 @@
     <string name="settings_category_player_title">Daareha</string>
     <string name="settings_category_player_behavior_title">Dabeecada</string>
     <string name="instance_already_exists">Qaybtan horay ayay ujirtay</string>
-    <string name="could_not_validate_instance">Lama ansixin karo qaybtan</string>
     <string name="enter_instance_url">Gali tixraaca qaybta</string>
     <string name="peertube_instance_url_summary">Dooro qaybaha aad jeceshahay ee PeerTube-ka</string>
     <string name="peertube_instance_url_title">Qaybaha PeerTube</string>

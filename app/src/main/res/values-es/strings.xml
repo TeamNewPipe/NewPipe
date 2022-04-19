@@ -442,7 +442,6 @@
     <string name="peertube_instance_url_title">Instancias de PeerTube</string>
     <string name="peertube_instance_url_summary">Selecciona tus instancias favoritas de PeerTube</string>
     <string name="enter_instance_url">Ingresar URL de la instancia</string>
-    <string name="could_not_validate_instance">No se pudo validar la instancia</string>
     <string name="instance_already_exists">La instancia ya existe</string>
     <string name="local">Local</string>
     <string name="recently_added">Añadidos recientemente</string>

@@ -371,7 +371,6 @@
     <string name="notification_scale_to_square_image_title">Pakeisti miniatiūrų dydi 1:1 santykiu</string>
     <string name="watch_history_states_deleted">Atkūrimo vietos pašalintos</string>
     <string name="delete_playback_states_alert">Pašalinti visas atkūrimo vietas\?</string>
-    <string name="could_not_validate_instance">Netinkama kopija</string>
     <string name="enter_instance_url">Įveskite kopijos URL</string>
     <string name="enable_playback_resume_summary">Atstatyti paskutinį atkūrimo laiką</string>
     <string name="enable_playback_resume_title">Tęsti atkūrimą</string>

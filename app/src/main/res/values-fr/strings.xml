@@ -437,7 +437,6 @@
     <string name="peertube_instance_url_title">Instances PeerTube</string>
     <string name="peertube_instance_url_summary">Veuillez choisir vos instances PeerTube préférées</string>
     <string name="enter_instance_url">Veuillez saisir l’URL de l’instance</string>
-    <string name="could_not_validate_instance">Impossible de valider l’instance</string>
     <string name="instance_already_exists">L’instance existe déjà</string>
     <string name="local">Local</string>
     <string name="recently_added">Ajoutées récemment</string>

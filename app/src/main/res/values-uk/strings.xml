@@ -484,7 +484,6 @@
     <string name="local">Локальне</string>
     <string name="help">Допомога</string>
     <string name="videos_string">Відео</string>
-    <string name="could_not_validate_instance">Не вдалося перевірити сервер</string>
     <string name="content_not_supported">NewPipe ще не підтримує цей вміст.
 \n
 \nМожливо, підтримка з\'явиться в наступних версіях.</string>

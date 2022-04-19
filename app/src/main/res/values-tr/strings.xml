@@ -437,7 +437,6 @@
     <string name="peertube_instance_url_title">PeerTube örnekleri</string>
     <string name="peertube_instance_url_summary">Favori PeerTube örneklerinizi seçin</string>
     <string name="enter_instance_url">Örnek URL\'sini girin</string>
-    <string name="could_not_validate_instance">Örnek doğrulanamadı</string>
     <string name="instance_already_exists">Örnek zaten var</string>
     <string name="local">Yerel</string>
     <string name="recently_added">Son eklenen</string>

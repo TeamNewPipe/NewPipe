@@ -418,7 +418,6 @@
     <string name="tracks">قطعه‌ها</string>
     <string name="videos_string">ویدیوها</string>
     <string name="instance_already_exists">این نمونه قبلا وجود دارد</string>
-    <string name="could_not_validate_instance">ناتوانی در اعتبارسنجی نشانی نمونه</string>
     <string name="enter_instance_url">نشانی نمونه را وارد کنید</string>
     <string name="peertube_instance_url_summary">نمونه پیرتیوب مورد علاقه خود در را انتخاب کنید</string>
     <string name="peertube_instance_url_title">نمونه‌های پیرتیوب</string>

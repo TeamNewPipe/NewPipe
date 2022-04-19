@@ -268,7 +268,6 @@
     <string name="settings_category_player_behavior_title">Uzvedība</string>
     <string name="settings_category_player_title">Atskaņotājs</string>
     <string name="instance_already_exists">Instance jau eksistē</string>
-    <string name="could_not_validate_instance">Nevarēja apstiprināt instanci</string>
     <string name="enter_instance_url">Ievadīt instances saites URL</string>
     <string name="peertube_instance_url_summary">Izvēlaties jūsu mīļāko PeerTube instanci</string>
     <string name="peertube_instance_url_title">PeerTube instances</string>

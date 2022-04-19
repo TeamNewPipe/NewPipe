@@ -475,7 +475,6 @@
     <string name="error_report_title">هەڵە لە سكاڵا</string>
     <string name="metadata_cache_wipe_summary">سڕینەوەی پاشماوەی هەموو ماڵپه‌ڕه‌كان</string>
     <string name="kore_not_found">بەرنامەکە نه‌دۆزرایه‌وه‌. دابمه‌زرێت؟</string>
-    <string name="could_not_validate_instance">ناتوانرێ پشتگیری دۆخەکە بکرێ</string>
     <string name="install">دامەزراندن</string>
     <string name="videos_string">ڤیدیۆکان</string>
     <string name="unsupported_url">بەستەرەکە پشتگیری نەکراوە</string>

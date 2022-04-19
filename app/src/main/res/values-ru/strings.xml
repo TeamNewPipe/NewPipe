@@ -448,7 +448,6 @@
     <string name="peertube_instance_url_title">Серверы PeerTube</string>
     <string name="peertube_instance_url_summary">Выберите предпочтительные серверы</string>
     <string name="enter_instance_url">URL сервера</string>
-    <string name="could_not_validate_instance">Не удалось проверить сервер</string>
     <string name="instance_already_exists">Сервер уже существует</string>
     <string name="local">Локальное</string>
     <string name="recently_added">Новое</string>
