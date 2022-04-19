@@ -898,6 +898,11 @@ public final class Player implements
 
         simpleExoPlayer.setVolume(isMuted ? 0 : 1);
         notifyQueueUpdateToListeners();
+
+        // Buffer paused streams when users add streams to the play queue.
+        if (!playOnReady && !playQueue.isEmpty()) {
+            simpleExoPlayer.prepare();
+        }
     }
     //endregion
 

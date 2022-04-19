@@ -114,8 +114,14 @@ public final class NavigationHelper {
         // - if there is nothing already playing, it is useful for the enqueue action to have a
         //   slightly different behaviour than the normal play action: the latter resumes playback,
         //   the former doesn't. (note that enqueue can be triggered when nothing is playing only
-        //   by long pressing the video detail fragment, playlist or channel controls
-        return getPlayerIntent(context, targetClazz, playQueue, false)
+        //   by long pressing the feed fragment, video detail fragment, playlist or channel
+        //   controls)
+        final boolean resumePlayback = false;
+        // `playWhenReady` is false if the play queue is empty.
+        // Users may start playing manually after queuing up a bunch of videos.
+        // For more details, please see #2611 and #8151.
+        final boolean playWhenReady = PlayerHolder.getInstance().getQueueSize() > 0;
+        return getPlayerIntent(context, targetClazz, playQueue, resumePlayback, playWhenReady)
                 .putExtra(Player.ENQUEUE, true);
     }
 
@@ -524,6 +530,7 @@ public final class NavigationHelper {
      * Opens {@link ChannelFragment}.
      * Use this instead of {@link #openChannelFragment(FragmentManager, int, String, String)}
      * when no fragments are used / no FragmentManager is available.
+     *
      * @param context
      * @param serviceId
      * @param url

@@ -245,18 +245,16 @@ public final class InfoItemDialog {
         }
 
         /**
-         * Adds {@link StreamDialogDefaultEntry#ENQUEUE} if the player is open and
+         * Adds {@link StreamDialogDefaultEntry#ENQUEUE} unconditionally and
          * {@link StreamDialogDefaultEntry#ENQUEUE_NEXT} if there are multiple streams
          * in the play queue.
          * @return the current {@link Builder} instance
          */
         public Builder addEnqueueEntriesIfNeeded() {
-            if (PlayerHolder.getInstance().isPlayQueueReady()) {
-                addEntry(StreamDialogDefaultEntry.ENQUEUE);
+            addEntry(StreamDialogDefaultEntry.ENQUEUE);
 
-                if (PlayerHolder.getInstance().getQueueSize() > 1) {
-                    addEntry(StreamDialogDefaultEntry.ENQUEUE_NEXT);
-                }
+            if (PlayerHolder.getInstance().getQueueSize() > 1) {
+                addEntry(StreamDialogDefaultEntry.ENQUEUE_NEXT);
             }
             return this;
         }

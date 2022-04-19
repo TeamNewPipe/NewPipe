@@ -84,7 +84,7 @@ public final class PlayerHolder {
     }
 
     public int getQueueSize() {
-        if (player == null || player.getPlayQueue() == null) {
+        if (!isPlayQueueReady()) {
             // player play queue might be null e.g. while player is starting
             return 0;
         }
