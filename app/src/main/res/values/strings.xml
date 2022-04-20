@@ -520,6 +520,11 @@
         <item>240p</item>
         <item>144p</item>
     </string-array>
+
+    <string-array name="limit_data_usage_description_list_additional_resolutions">
+        <item>2160p</item>
+        <item>1440p</item>
+    </string-array>
     <!-- Notifications settings -->
     <string name="enable_streams_notifications_title">New streams notifications</string>
     <string name="enable_streams_notifications_summary">Notify about new streams from subscriptions</string>

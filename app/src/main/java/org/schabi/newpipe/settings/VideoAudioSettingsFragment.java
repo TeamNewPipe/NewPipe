@@ -15,17 +15,30 @@ import com.google.android.material.snackbar.Snackbar;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.PermissionHelper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 public class VideoAudioSettingsFragment extends BasePreferenceFragment {
     private SharedPreferences.OnSharedPreferenceChangeListener listener;
+    private ListPreference defaultRes;
+    private ListPreference defaultPopupRes;
+    private ListPreference limitMobDataUsage;
+
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         addPreferencesFromResourceRegistry();
 
         updateSeekOptions();
+
+        //fetch resolution options
+        defaultRes = findPreference(getString(R.string.default_resolution_key));
+        defaultPopupRes = findPreference(getString(R.string.default_popup_resolution_key));
+        limitMobDataUsage = findPreference(getString(R.string.limit_mobile_data_usage_key));
+
+        updateResolutions();
 
         listener = (sharedPreferences, s) -> {
 
@@ -47,8 +60,14 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
 
                 }
             } else if (s.equals(getString(R.string.use_inexact_seek_key))) {
+
                 updateSeekOptions();
+
+            } else if (s.equals(getString(R.string.show_higher_resolutions_key))) {
+                updateResolutions();
             }
+
+
         };
     }
 
@@ -101,6 +120,103 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
                             Toast.LENGTH_LONG);
             toast.show();
         }
+    }
+
+
+    /***
+     * Update resolutions when user toggles "Show higher resolutions".
+     * if the user toggles the value off and the settings are set to 1440p or above,
+     * change them to 1080p60 (highest value available).
+     */
+    private void updateResolutions() {
+
+
+        if (getPreferenceManager().getSharedPreferences()
+                .getBoolean(getString(R.string.show_higher_resolutions_key), false)) {
+
+            //if setting was turned on, enable additional resolutions
+            showHigherResolutions(true);
+
+        } else {
+
+            showHigherResolutions(false);
+
+
+        }
+    }
+
+    private void showHigherResolutions(final boolean isShown) {
+
+
+        final Resources res = getResources();
+
+        final ArrayList<String> resolutions = new ArrayList<>(Arrays.asList(res.
+                getStringArray(R.array.resolution_list_description)));
+
+        final ArrayList<String> additionalResolutions = new ArrayList<>(Arrays.asList(res.
+                getStringArray(R.array.resolution_list_description_additional_resolutions)));
+
+
+        final ArrayList<String> resolutionValues = new ArrayList<>(Arrays.asList(res.
+                getStringArray(R.array.resolution_list_values)));
+
+        final ArrayList<String> additionalResolutionValues = new ArrayList<>(Arrays.
+                asList(res.getStringArray(R.array.resolution_list_values_additional_resolutions)));
+
+
+        final ArrayList<String> mobileDataResolutions = new ArrayList<>(Arrays.asList(res.
+                getStringArray(R.array.limit_data_usage_description_list)));
+
+        final ArrayList<String> additionalMobileDataResolutions =
+                new ArrayList<String>(Arrays.asList(res.
+                        getStringArray(R.array.
+                                limit_data_usage_description_list_additional_resolutions)));
+
+
+        final ArrayList<String> mobileDataResolutionValues = new ArrayList<>(Arrays.
+                asList(res.getStringArray(R.array.limit_data_usage_values_list)));
+
+        final ArrayList<String> additionalMobileDataResolutionValues =
+                new ArrayList<>(Arrays.asList(res.getStringArray(R.array.
+                        limit_data_usage_values_list_additional_resolutions)));
+
+        if (isShown) {
+
+            //index 1 because of the best resolution option
+            resolutions.addAll(1, additionalResolutions);
+            resolutionValues.addAll(1, additionalResolutionValues);
+
+            //index 1 because of the no limit option
+            mobileDataResolutions.addAll(1, additionalMobileDataResolutions);
+            mobileDataResolutionValues.addAll(1, additionalMobileDataResolutionValues);
+
+        }
+
+        //apply changed to the list
+        defaultRes.setEntries(resolutions.toArray(new String[0]));
+        defaultRes.setEntryValues(resolutionValues.toArray(new String[0]));
+
+        defaultPopupRes.setEntries(resolutions.toArray(new String[0]));
+        defaultPopupRes.setEntryValues(resolutionValues.toArray(new String[0]));
+
+        limitMobDataUsage.setEntries(mobileDataResolutions.toArray(new String[0]));
+        limitMobDataUsage.setEntryValues(mobileDataResolutionValues.toArray(new String[0]));
+
+        //make sure user hasn't selected any higher resolutions before turning higher
+        //resolutions off.
+
+        if (additionalResolutionValues.contains(defaultRes.getValue())) {
+            defaultRes.setValueIndex(1);
+        }
+
+        if (additionalResolutionValues.contains(defaultPopupRes.getValue())) {
+            defaultPopupRes.setValueIndex(1);
+        }
+
+        if (additionalMobileDataResolutionValues.contains(limitMobDataUsage.getValue())) {
+            limitMobDataUsage.setValueIndex(1);
+        }
+
     }
 
     @Override
