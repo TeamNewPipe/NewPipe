@@ -88,9 +88,8 @@ import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.TLSSocketFactoryCompat;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.services.InstanceManager;
-import org.schabi.newpipe.util.services.PeertubeInstanceManager;
+import org.schabi.newpipe.util.services.InstanceManagerHelper;
 import org.schabi.newpipe.util.services.ServiceHelper;
-import org.schabi.newpipe.util.services.YoutubeLikeInstanceManager;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.ArrayList;
@@ -392,16 +391,9 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
                     .setIcon(ServiceHelper.getIcon(s.getServiceId()));
 
-            // peertube specifics
-            InstanceManager<?> instanceManager = null;
-            if (s.getServiceId() == 0) {
-                instanceManager = YoutubeLikeInstanceManager.MANAGER;
-            } else if (s.getServiceId() == 3) {
-                instanceManager = PeertubeInstanceManager.MANAGER;
-            }
-            if (instanceManager != null) {
-                enhanceServiceMenu(menuItem, instanceManager);
-            }
+            // instance specifics
+            InstanceManagerHelper.getManagerForServiceId(s.getServiceId())
+                    .ifPresent(im -> enhanceServiceMenu(menuItem, im));
         }
         drawerLayoutBinding.navigation.getMenu()
                 .getItem(ServiceHelper.getSelectedServiceId(this))

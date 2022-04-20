@@ -3,15 +3,10 @@ package org.schabi.newpipe.util.services;
 import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 import androidx.preference.PreferenceManager;
-
-import com.grack.nanojson.JsonObject;
-import com.grack.nanojson.JsonParser;
-import com.grack.nanojson.JsonParserException;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -19,7 +14,6 @@ import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.instance.Instance;
-import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 import org.schabi.newpipe.extractor.services.youtube.invidious.InvidiousInstance;
 
 import java.util.OptionalInt;
@@ -174,26 +168,8 @@ public final class ServiceHelper {
     }
 
     public static void initService(final Context context, final int serviceId) {
-        if (serviceId == ServiceList.PeerTube.getServiceId()) {
-            final SharedPreferences sharedPreferences = PreferenceManager
-                    .getDefaultSharedPreferences(context);
-            final String json = sharedPreferences.getString(context.getString(
-                    R.string.peertube_selected_instance_key), null);
-            if (null == json) {
-                return;
-            }
-
-            final JsonObject jsonObject;
-            try {
-                jsonObject = JsonParser.object().from(json);
-            } catch (final JsonParserException e) {
-                return;
-            }
-            final String name = jsonObject.getString("name");
-            final String url = jsonObject.getString("url");
-            final PeertubeInstance instance = new PeertubeInstance(url, name);
-            ServiceList.PeerTube.setInstance(instance);
-        }
+        InstanceManagerHelper.getManagerForServiceId(serviceId)
+                .ifPresent(im -> im.reloadCurrentInstanceFromPersistence(context));
     }
 
     public static void initServices(final Context context) {

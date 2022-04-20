@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util.services;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.StringRes;
 import androidx.preference.PreferenceManager;
@@ -11,6 +12,7 @@ import com.grack.nanojson.JsonParserException;
 import com.grack.nanojson.JsonStringWriter;
 import com.grack.nanojson.JsonWriter;
 
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.extractor.InstanceBasedStreamingService;
 import org.schabi.newpipe.extractor.instance.Instance;
 
@@ -19,6 +21,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class AbstractInstanceManager<I extends Instance> implements InstanceManager<I> {
+    private static final String TAG = "AbsInstanceManager";
+
     protected abstract InstanceBasedStreamingService<I> getRelatedStreamingService();
 
     protected abstract I createInstanceFromPersistence(JsonObject jsonObject);
@@ -28,9 +32,8 @@ public abstract class AbstractInstanceManager<I extends Instance> implements Ins
     @StringRes
     protected abstract int getListPersistenceKey();
 
-
     @Override
-    public List<I> saveInstanceList(final List<I> instances, final Context context) {
+    public void saveInstanceList(final List<I> instances, final Context context) {
         final JsonStringWriter jsonWriter = JsonWriter.string().object().array("instances");
         for (final I instance : instances) {
             jsonWriter.object();
@@ -42,7 +45,6 @@ public abstract class AbstractInstanceManager<I extends Instance> implements Ins
                 .edit()
                 .putString(context.getString(getListPersistenceKey()), jsonToSave)
                 .apply();
-        return null;
     }
 
     @Override
@@ -50,7 +52,7 @@ public abstract class AbstractInstanceManager<I extends Instance> implements Ins
         final String savedInstanceListKey = context.getString(getListPersistenceKey());
         final String savedJson = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(savedInstanceListKey, null);
-        if (null == savedJson) {
+        if (savedJson == null) {
             return getDefaultInstanceList();
         }
 
@@ -88,6 +90,33 @@ public abstract class AbstractInstanceManager<I extends Instance> implements Ins
                 .apply();
 
         return instance;
+    }
+
+    @Override
+    public void reloadCurrentInstanceFromPersistence(final Context context) {
+        final String json = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(getSelectedInstancePersistenceKey()), null);
+        if (json == null) {
+            return;
+        }
+
+        final JsonObject jsonObject;
+        try {
+            jsonObject = JsonParser.object().from(json);
+        } catch (final JsonParserException e) {
+            if (MainActivity.DEBUG) {
+                Log.w(TAG, "Failed to load instance from settings", e);
+            }
+            return;
+        }
+
+        try {
+            getRelatedStreamingService().setInstance(createInstanceFromPersistence(jsonObject));
+        } catch (final Exception e) {
+            if (MainActivity.DEBUG) {
+                Log.w(TAG, "Failed to load instance from settings", e);
+            }
+        }
     }
 
     @Override
