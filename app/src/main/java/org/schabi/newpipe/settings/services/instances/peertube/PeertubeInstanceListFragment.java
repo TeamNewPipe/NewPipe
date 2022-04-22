@@ -15,7 +15,8 @@ public class PeertubeInstanceListFragment
         super(
                 R.string.peertube_instance_url_title,
                 PeertubeInstanceManager.MANAGER,
-                Collections.singletonList(new PeerTubeInstanceTypeCreator()));
+                Collections.singletonList(new PeerTubeInstanceTypeCreator()),
+                null);
     }
 
     public static class PeerTubeInstanceTypeCreator

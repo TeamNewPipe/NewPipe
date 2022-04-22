@@ -51,10 +51,14 @@ public abstract class AbstractServiceInstanceListFragment<I extends Instance> ex
     protected static final int TYPES_CONTAINER_ANIMATION_DURATION = 500;
 
     @StringRes
-    protected final int title;
+    protected final int titleRes;
 
-    protected final List<? extends InstanceTypeCreator<? extends I>> instanceTypeCreators;
     protected final InstanceManager<I> manager;
+    protected final List<? extends InstanceTypeCreator<? extends I>> instanceTypeCreators;
+
+    @Nullable
+    @StringRes
+    protected final Integer helpTextMsgRes;
 
     protected final List<I> currentInstances = new ArrayList<>();
     protected I selectedInstance;
@@ -66,13 +70,15 @@ public abstract class AbstractServiceInstanceListFragment<I extends Instance> ex
     protected CompositeDisposable disposables = new CompositeDisposable();
 
     protected AbstractServiceInstanceListFragment(
-            @StringRes final int title,
+            @StringRes final int titleRes,
             @NonNull final InstanceManager<I> manager,
-            @NonNull final List<? extends InstanceTypeCreator<? extends I>> instanceTypeCreators
+            @NonNull final List<? extends InstanceTypeCreator<? extends I>> instanceTypeCreators,
+            @Nullable @StringRes final Integer helpTextMsgRes
     ) {
-        this.title = title;
+        this.titleRes = titleRes;
         this.manager = manager;
         this.instanceTypeCreators = instanceTypeCreators;
+        this.helpTextMsgRes = helpTextMsgRes;
     }
 
     @Override
@@ -118,7 +124,7 @@ public abstract class AbstractServiceInstanceListFragment<I extends Instance> ex
     @Override
     public void onResume() {
         super.onResume();
-        ThemeHelper.setTitleToAppCompatActivity(getActivity(), getString(title));
+        ThemeHelper.setTitleToAppCompatActivity(getActivity(), getString(titleRes));
     }
 
     @Override
@@ -145,12 +151,18 @@ public abstract class AbstractServiceInstanceListFragment<I extends Instance> ex
                                     @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_chooser_fragment, menu);
+
+        menu.findItem(R.id.menu_item_instance_help).setVisible(helpTextMsgRes != null);
     }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == R.id.menu_item_restore_default) {
             restoreDefaults();
+            return true;
+        }
+        if (item.getItemId() == R.id.menu_item_instance_help) {
+            openHelp();
             return true;
         }
 
@@ -188,6 +200,18 @@ public abstract class AbstractServiceInstanceListFragment<I extends Instance> ex
                     reloadInstanceListFromManager();
                     instanceListAdapter.notifyDataSetChanged();
                 })
+                .show();
+    }
+
+    protected void openHelp() {
+        if (helpTextMsgRes == null) {
+            return;
+        }
+
+        new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.help)
+                .setMessage(helpTextMsgRes)
+                .setPositiveButton(R.string.ok, null)
                 .show();
     }
 

@@ -27,7 +27,8 @@ public class YouTubeLikeInstanceListFragment
                 YoutubeLikeInstanceManager.MANAGER,
                 Arrays.asList(
                         new YouTubeInstanceTypeCreator(),
-                        new InvidiousInstanceTypeCreator()));
+                        new InvidiousInstanceTypeCreator()),
+                R.string.yt_like_instance_list_help);
     }
 
 

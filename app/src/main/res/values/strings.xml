@@ -131,7 +131,8 @@
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="peertube_instance_url_summary">Select your favorite PeerTube instances</string>
     <string name="yt_like_instance_url_title">YouTube-Like instances</string>
-    <string name="yt_like_instance_url_summary">Manage YouTube-Like instances</string>
+    <string name="yt_like_instance_url_summary">Manage YouTube-Like service instances</string>
+    <string name="yt_like_instance_list_help">This page allows you to manage YouTube-Like service instances.\n\nAn instance provides a alternative way of fetching and delivering content (like a proxy), which can be helpful if the direct extraction fails.\n\nFurthermore it may also provide improved performance, better privacy / tracking protection and additional information.\nHowever keep in mind that an instance might not implement all features and thus limitations may occur.</string>
     <string name="publicly_available_instances_help">A list of publicly available instances can be found at %s</string>
     <string name="add_instance">Add %s instance</string>
     <string name="enter_instance_url">Enter instance URL</string>

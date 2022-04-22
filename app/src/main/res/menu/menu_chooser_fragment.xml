@@ -5,4 +5,9 @@
         android:title="@string/restore_defaults"
         android:icon="@drawable/ic_settings_backup_restore"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_item_instance_help"
+        android:icon="@drawable/ic_help"
+        android:title="@string/help"
+        app:showAsAction="ifRoom" />
 </menu>
