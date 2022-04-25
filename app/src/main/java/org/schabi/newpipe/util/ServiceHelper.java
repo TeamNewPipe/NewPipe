@@ -31,7 +31,7 @@ public final class ServiceHelper {
     public static int getIcon(final int serviceId) {
         switch (serviceId) {
             case 0:
-                return R.drawable.ic_placeholder_yt;
+                return R.drawable.ic_smart_display;
             case 1:
                 return R.drawable.ic_placeholder_cloud;
             case 2:
