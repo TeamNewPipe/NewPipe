@@ -37,7 +37,7 @@ public class YouTubeLikeInstanceListFragment
         public YouTubeInstanceTypeCreator() {
             super(
                     YoutubeInstance.SERVICE_NAME,
-                    R.drawable.ic_placeholder_yt,
+                    R.drawable.ic_smart_display,
                     YoutubeInstance.class);
         }
 
