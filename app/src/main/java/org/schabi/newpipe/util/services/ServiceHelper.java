@@ -30,7 +30,7 @@ public final class ServiceHelper {
             case 0:
                 return R.drawable.ic_smart_display;
             case 1:
-                return R.drawable.ic_placeholder_cloud;
+                return R.drawable.ic_cloud;
             case 2:
                 return R.drawable.ic_placeholder_media_ccc;
             case 3:
@@ -38,7 +38,7 @@ public final class ServiceHelper {
             case 4:
                 return R.drawable.ic_placeholder_bandcamp;
             default:
-                return R.drawable.ic_placeholder_circle;
+                return R.drawable.ic_circle;
         }
     }
 
