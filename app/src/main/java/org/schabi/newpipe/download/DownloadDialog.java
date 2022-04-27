@@ -8,6 +8,7 @@ import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -931,8 +933,14 @@ public class DownloadDialog extends DialogFragment
                     break;
             }
         });
-
-        askDialog.create().show();
+        final AlertDialog dialog = askDialog.create();
+        dialog.show();
+        final Button btnPos = dialog.
+                getButton(DialogInterface.BUTTON_POSITIVE);
+        final Button btnNeg = dialog.
+                getButton(DialogInterface.BUTTON_NEGATIVE);
+        btnPos.setTextColor(Color.BLACK);
+        btnNeg.setTextColor(Color.BLACK);
     }
 
     private void continueSelectedDownload(@NonNull final StoredFileHelper storage) {
