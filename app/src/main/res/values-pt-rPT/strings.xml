@@ -689,4 +689,26 @@
     <string name="adjust_by_semitones_checkbox">Ajustar o tom por semitons musicais</string>
     <string name="playback_tempo_step">Passo do tempo</string>
     <string name="progressive_load_interval_default">Predefinido do ExoPlayer</string>
+    <string name="notifications">Notificações</string>
+    <string name="loading_stream_details">A carregar detalhes do fluxo…</string>
+    <string name="check_new_streams">Verificar se há novos fluxos</string>
+    <string name="enable_streams_notifications_title">Notificações sobre novos fluxos</string>
+    <string name="streams_notifications_interval_title">Frequência da verificação</string>
+    <string name="delete_downloaded_files_confirm">Apagar todos os ficheiros descarregados do disco\?</string>
+    <string name="notifications_disabled">Notificações são desativadas</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s fluxo novo</item>
+        <item quantity="other">%s fluxos novos</item>
+    </plurals>
+    <string name="enable_streams_notifications_summary">Notificar sobre novos fluxos de assinaturas</string>
+    <string name="streams_notifications_network_title">Conexão de rede necessária</string>
+    <string name="any_network">Qualquer rede</string>
+    <string name="toggle_all">Alternar tudo</string>
+    <string name="streams_notification_channel_description">Notificações sobre novos fluxos para assinaturas</string>
+    <string name="settings_category_player_notification_title">Notificação do reprodutor</string>
+    <string name="settings_category_player_notification_summary">Configurar a notificação da reprodução do fluxo atual</string>
+    <string name="get_notified">Seja notificado</string>
+    <string name="you_successfully_subscribed">Agora assinou este canal</string>
+    <string name="enumeration_comma">,</string>
+    <string name="streams_notification_channel_name">Novos fluxos</string>
 </resources>

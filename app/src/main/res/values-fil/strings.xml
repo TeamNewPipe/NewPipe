@@ -117,4 +117,5 @@
     <string name="seek_duration_title">Haba ng fast forward/-rewind seek</string>
     <string name="resume_on_audio_focus_gain_title">Ituloy ang pagpapalabas</string>
     <string name="trending">Mga Patok Ngayon</string>
+    <string name="enable_watch_history_summary">Subaybayan ang mga napanood nang video</string>
 </resources>

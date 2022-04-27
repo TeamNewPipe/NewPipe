@@ -291,7 +291,7 @@
     <string name="metadata_cache_wipe_summary">Elimina i dati delle pagine web memorizzati nella cache</string>
     <string name="metadata_cache_wipe_complete_notice">Cache metadati svuotata</string>
     <string name="playback_speed_control">Controlli della velocità di riproduzione</string>
-    <string name="playback_tempo">Tempo</string>
+    <string name="playback_tempo">Velocità</string>
     <string name="playback_pitch">Tono</string>
     <string name="unhook_checkbox">Scollega (può causare distorsione)</string>
     <string name="no_streams_available_download">Nessun flusso disponibile per il download</string>
@@ -689,4 +689,26 @@
     <string name="progressive_load_interval_default">Predefinito ExoPlayer</string>
     <string name="progressive_load_interval_summary">Cambia la dimensione dell\'intervallo da caricare (attualmente %s). Un valore basso può velocizzare il caricamento iniziale del video. La modifica richiede il riavvio del lettore.</string>
     <string name="playback_tempo_step">Passo tempo</string>
+    <string name="streams_notification_channel_description">Notifiche di nuove stream dalle iscrizioni</string>
+    <string name="streams_notifications_interval_title">Frequenza controllo</string>
+    <string name="streams_notifications_network_title">Richiesta connessione alla rete</string>
+    <string name="get_notified">Ricevi le notifiche</string>
+    <string name="you_successfully_subscribed">Sei ora iscritto a questo canale</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Attiva/disattiva tutti</string>
+    <string name="enable_streams_notifications_title">Notifiche per nuove stream</string>
+    <string name="settings_category_player_notification_title">Notifica lettore</string>
+    <string name="settings_category_player_notification_summary">Configura la notifica della stream attualmente in riproduzione</string>
+    <string name="notifications">Notifiche</string>
+    <string name="streams_notification_channel_name">Nuove stream</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nuova stream</item>
+        <item quantity="other">%s nuove stream</item>
+    </plurals>
+    <string name="loading_stream_details">Caricando i dettagli della stream…</string>
+    <string name="delete_downloaded_files_confirm">Cancellare tutti i file scaricati dal dispositivo\?</string>
+    <string name="check_new_streams">Avvia controllo per nuove stream</string>
+    <string name="any_network">Qualsiasi rete</string>
+    <string name="notifications_disabled">Le notifiche sono disabilitate</string>
+    <string name="enable_streams_notifications_summary">Notifica se ci sono nuove stream dalle iscrizioni</string>
 </resources>

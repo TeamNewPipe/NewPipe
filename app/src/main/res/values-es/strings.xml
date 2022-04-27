@@ -692,4 +692,8 @@
     <string name="playback_tempo_step">Paso de tempo</string>
     <string name="progressive_load_interval_summary">Cambia el tamaño del intervalo de carga (actualmente %s). Un valor más bajo puede acelerar la carga inicial del vídeo. Los cambios requieren un reinicio del reproductor.</string>
     <string name="adjust_by_semitones_checkbox">Ajustar el tono por semitonos musicales</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="streams_notification_channel_name">Nuevos streams</string>
+    <string name="settings_category_player_notification_title">Notificación del reproductor</string>
+    <string name="settings_category_player_notification_summary">Configurar notificación de la reproducción en curso</string>
 </resources>

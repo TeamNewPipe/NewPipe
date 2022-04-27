@@ -25,7 +25,7 @@
     <string name="show_next_and_similar_title">다음/유사한 비디오 표시</string>
     <string name="unsupported_url">지원하지 않는 URL입니다</string>
     <string name="content_language_title">기본 컨텐츠 언어</string>
-    <string name="settings_category_video_audio_title">비디오 &amp; 오디오</string>
+    <string name="settings_category_video_audio_title">비디오 및 오디오</string>
     <string name="detail_thumbnail_view_description">비디오 재생, 구간:</string>
     <string name="detail_uploader_thumbnail_view_description">업로더 썸네일</string>
     <string name="detail_dislikes_img_view_description">싫어요</string>
@@ -43,7 +43,7 @@
     <string name="network_error">네트워크 오류</string>
     <string name="main_bg_subtitle">\"검색\" 버튼을 눌러서 시작하세요</string>
     <string name="content">컨텐츠</string>
-    <string name="show_age_restricted_content_title">연령 제한 컨텐츠</string>
+    <string name="show_age_restricted_content_title">연령 제한 컨텐츠 보여주기</string>
     <string name="duration_live">라이브</string>
     <string name="general_error">오류</string>
     <string name="could_not_load_thumbnails">모든 썸네일을 불러올 수 없습니다</string>
@@ -52,7 +52,7 @@
     <string name="content_not_available">컨텐츠를 사용할 수 없습니다</string>
     <string name="could_not_setup_download_menu">다운로드 메뉴를 설정할 수 없습니다</string>
     <string name="sorry_string">죄송합니다. 오류가 발생했습니다.</string>
-    <string name="error_report_button_text">이메일을 통해 오류 보고</string>
+    <string name="error_report_button_text">이메일을 통해 이 오류 보고</string>
     <string name="error_snackbar_message">죄송합니다. 오류가 발생했습니다.</string>
     <string name="error_snackbar_action">보고</string>
     <string name="what_device_headline">정보:</string>
@@ -81,7 +81,7 @@
     <string name="controls_popup_title">팝업</string>
     <string name="default_popup_resolution_title">기본 팝업 해상도</string>
     <string name="show_higher_resolutions_title">높은 해상도 표시</string>
-    <string name="show_higher_resolutions_summary">일부 기기에서만 2K/4K 해상도 재생이 지원됩니다</string>
+    <string name="show_higher_resolutions_summary">일부 기기에서만 2K/4K 영상을 재생할 수 있습니다</string>
     <string name="default_video_format_title">기본 비디오 형식</string>
     <string name="black_theme_title">검은 테마</string>
     <string name="popup_remember_size_pos_title">팝업 크기 및 위치 기억</string>
@@ -98,7 +98,7 @@
     <string name="show_hold_to_append_summary">비디오 상세 정보 페이지에서 백그라운드/팝업 재생 버튼을 누를 경우 팁을 표시합니다</string>
     <string name="settings_category_player_title">플레이어</string>
     <string name="settings_category_player_behavior_title">동작</string>
-    <string name="settings_category_history_title">기록 &amp; 캐시</string>
+    <string name="settings_category_history_title">기록 및 캐시</string>
     <string name="popup_playing_toast">팝업 모드에서 재생 중</string>
     <string name="error_report_title">오류 보고</string>
     <string name="all">전부</string>
@@ -108,13 +108,13 @@
     <string name="undo">되돌리기</string>
     <string name="play_all">전부 재생</string>
     <string name="notification_channel_name">NewPipe 알림</string>
-    <string name="notification_channel_description">NewPipe 백그라운드 및 팝업 플레이어 알림</string>
+    <string name="notification_channel_description">NewPipe 플레이어 알림</string>
     <string name="unknown_content">[알 수 없음]</string>
     <string name="app_ui_crash">앱/UI 충돌</string>
     <string name="player_stream_failure">이 스트림을 재생할 수 없습니다</string>
     <string name="player_unrecoverable_failure">복구할 수 없는 플레이어 오류가 발생했습니다</string>
     <string name="player_recoverable_failure">플레이어 오류로부터 복구 중</string>
-    <string name="info_labels">무엇을:\\n요청:\\n컨텐츠 언어:\\n서비스:\\nGMT 기준 시간:\\n패키지:\\n버전:\\n안드로이드 버전:</string>
+    <string name="info_labels">무엇을:\\n요청:\\n컨텐츠 언어:\\컨텐츠 국가:\\n앱 언어:\\n서비스:\\nGMT 기준 시간:\\n패키지:\\n버전:\\n안드로이드 버전:</string>
     <string name="search_no_results">결과 없음</string>
     <string name="empty_subscription_feed_subtitle">구독할 항목을 추가하세요</string>
     <string name="short_thousand">천</string>
@@ -188,7 +188,7 @@
     <string name="tab_bookmarks">재생목록 북마크</string>
     <string name="controls_add_to_playlist_title">이곳에 추가</string>
     <string name="use_inexact_seek_title">정확하지는 않지만 빠른 탐색</string>
-    <string name="use_inexact_seek_summary">정확하지 않은 탐색은 더 빠르게 위치를 탐색할 수 있지만 정확도는 떨어집니다</string>
+    <string name="use_inexact_seek_summary">정확하지 않은 탐색은 더 빠르게 위치를 탐색할 수 있지만 정확도는 떨어집니다. 5, 15, 25초 탐색은 이 기능과 같이 작동하지 않습니다</string>
     <string name="auto_queue_title">다음 스트림을 자동으로 대기열에 추가하기</string>
     <string name="auto_queue_summary">이전 스트림이 반복 재생 대기열이 아닐 경우, 관련 스트림을 자동 재생합니다</string>
     <string name="default_content_country_title">기본 콘텐츠 국가</string>
@@ -201,7 +201,7 @@
     <string name="import_data_title">데이터베이스 가져오기</string>
     <string name="export_data_title">데이터베이스 내보내기</string>
     <string name="import_data_summary">현재 시청 기록 및 구독 목록을 덮어쓰기 합니다</string>
-    <string name="export_data_summary">시청 기록, 구독 목록과 재생목록을 내보냅니다</string>
+    <string name="export_data_summary">시청 기록과 구독 목록, 재생 목록, 설정을 내보냅니다</string>
     <string name="external_player_unsupported_link_type">외부 플레이어는 이러한 종류의 링크를 지원하지 않습니다</string>
     <string name="video_streams_empty">발견된 비디오 스트림 없음</string>
     <string name="audio_streams_empty">발견된 오디오 스트림 없음</string>
@@ -300,11 +300,11 @@
     <string name="clear_views_history_title">시청 기록 삭제하기</string>
     <string name="clear_views_history_summary">동영상 시청 기록과 저장된 재생 위치를 삭제합니다</string>
     <string name="delete_view_history_alert">모든 시청 기록을 삭제하시겠습니까\?</string>
-    <string name="watch_history_deleted">동영상 시청 기록이 삭제되었습니다.</string>
+    <string name="watch_history_deleted">동영상 시청 기록이 삭제되었습니다</string>
     <string name="clear_search_history_title">검색 기록 삭제</string>
     <string name="clear_search_history_summary">검색 기록을 모두 삭제합니다</string>
     <string name="delete_search_history_alert">모든 검색 기록을 삭제하시겠습니까\?</string>
-    <string name="search_history_deleted">검색 기록이 삭제되었습니다.</string>
+    <string name="search_history_deleted">검색 기록이 삭제되었습니다</string>
     <string name="privacy_policy_title">NewPipe 개인정보 보호 정책</string>
     <string name="privacy_policy_encouragement">NewPipe 프로젝트는 사용자의 개인 정보 보호를 최우선으로 생각하며, 동의 없이 어떠한 정보도 수집하지 않습니다. 
 \nNewPipe 개인정보 보호 정책에서는 오류 보고 시 어떠한 정보가 수집되고 저장되는지 자세히 명시되어 있습니다.</string>
@@ -393,7 +393,7 @@
     <string name="enable_playback_state_lists_title">리스트 내 위치 표시</string>
     <string name="enable_playback_state_lists_summary">리스트에서 재생 위치를 표시합니다</string>
     <string name="settings_category_clear_data_title">데이터 삭제</string>
-    <string name="watch_history_states_deleted">재생위치 삭제완료.</string>
+    <string name="watch_history_states_deleted">재생위치 삭제완료</string>
     <string name="missing_file">파일이 이동되거나 삭제되었습니다</string>
     <string name="overwrite_failed">파일을 덮어쓰기할 수 없습니다</string>
     <string name="download_already_pending">해당 이름으로 대기된 다운로드가 있습니다</string>
@@ -431,7 +431,7 @@
     <string name="seek_duration_title">빠른-감기/되감기 찾는 시간</string>
     <string name="peertube_instance_url_title">피어튜브 인스턴스</string>
     <string name="peertube_instance_url_summary">당신이 선호하는 피어튜브 인스턴스를 선택하세요.</string>
-    <string name="peertube_instance_url_help">%s에서 당신에게 가장 잘 어울리는 인스턴스를 찾으세요.</string>
+    <string name="peertube_instance_url_help">%s에서 당신이 좋아하는 인스턴스를 찾으세요.</string>
     <string name="peertube_instance_add_title">인스턴스 추가하기</string>
     <string name="peertube_instance_add_help">인스턴스 URL을 입력하세요.</string>
     <string name="peertube_instance_add_fail">인스턴스를 검증할 수 없습니다.</string>
@@ -517,4 +517,19 @@
     <string name="night_theme_title">어두운 테마</string>
     <string name="notification_actions_at_most_three">최대 3개까지 축소 알림에 표시될 항목을 고를 수 있습니다!</string>
     <string name="notification_actions_summary">아래 항목을 터치해서 편집하세요. 위에서부터 체크된 3개 항목은 축소 알림일 때도 표시됩니다</string>
+    <string name="youtube_restricted_mode_enabled_title">유튜브의 \"제한 모드\"를 활성화</string>
+    <string name="hash_channel_description">비디오 해싱 진행 알림</string>
+    <string name="streams_notification_channel_name">새로운 스트림</string>
+    <string name="streams_notification_channel_description">구독에서 새 스트림이 있을 때 알림</string>
+    <string name="error_report_channel_name">오류 보고 알림</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA 쿠키를 비웠습니다</string>
+    <string name="settings_category_player_notification_title">플레이어 알림</string>
+    <string name="notifications">알림</string>
+    <string name="youtube_restricted_mode_enabled_summary">유튜브는 잔인할 수 있는 컨텐츠를 숨겨주는 \"제한 모드\"를 제공합니다</string>
+    <string name="clear_cookie_title">reCAPTCHA 쿠키 비우기</string>
+    <string name="crash_the_player">플레이어 크래시 발생</string>
+    <string name="notification_action_nothing">없음</string>
+    <string name="start_main_player_fullscreen_title">전체화면으로 주 플레이어 시작</string>
+    <string name="hash_channel_name">비디오 해시 알림</string>
+    <string name="error_report_open_issue_button_text">GitHub에 보고</string>
 </resources>

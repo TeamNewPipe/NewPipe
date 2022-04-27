@@ -145,7 +145,7 @@
     <string name="enable_watch_history_title">睇過嘅紀錄</string>
     <string name="enable_playback_resume_title">恢復播放</string>
     <string name="enable_playback_resume_summary">返返最後播放到去嗰個位</string>
-    <string name="enable_playback_state_lists_title">播放清單有排位</string>
+    <string name="enable_playback_state_lists_title">喺播放清單排第幾</string>
     <string name="notification_scale_to_square_image_title">縮圖放到去 1:1 長寬比</string>
     <string name="notification_scale_to_square_image_summary">顯示喺通知嘅影片縮圖由 16:9 放到去 1:1 長寬比 (話唔定會鬆郁矇)</string>
     <string name="notification_colorize_title">通知色彩化</string>
@@ -586,4 +586,27 @@
     <string name="bookmark_playlist">收起播放清單</string>
     <string name="unbookmark_playlist">唔再收起</string>
     <string name="delete_playlist_prompt">係咪要刪除呢個播放清單？</string>
+    <string name="settings_category_player_notification_title">播放器通知</string>
+    <string name="settings_category_player_notification_summary">調整目前播放緊嘅串流嘅通知</string>
+    <string name="streams_notification_channel_description">訂閱有新加串流嘅通知</string>
+    <string name="loading_stream_details">載入緊串流詳細資料…</string>
+    <string name="enable_streams_notifications_summary">通知訂閱有新加串流</string>
+    <string name="streams_notifications_interval_title">檢查頻率</string>
+    <string name="streams_notifications_network_title">須要網絡連線</string>
+    <string name="any_network">不拘任何網絡</string>
+    <string name="get_notified">收取通知</string>
+    <string name="you_successfully_subscribed">您現已訂閱呢個頻道</string>
+    <string name="toggle_all">全部切換</string>
+    <string name="check_new_streams">執行檢查有冇新加串流</string>
+    <string name="notifications">通知</string>
+    <string name="streams_notification_channel_name">新加串流</string>
+    <plurals name="new_streams">
+        <item quantity="other">%s 個新加串流</item>
+    </plurals>
+    <string name="adjust_by_semitones_checkbox">按樂音半度調整音高</string>
+    <string name="enable_streams_notifications_title">新加串流通知</string>
+    <string name="delete_downloaded_files_confirm">係咪要喺磁碟機上面消除晒全部下載咗嘅檔案？</string>
+    <string name="notifications_disabled">通知已停用</string>
+    <string name="tracks">單曲</string>
+    <string name="playback_tempo_step">節奏步伐</string>
 </resources>

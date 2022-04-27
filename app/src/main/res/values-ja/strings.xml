@@ -674,4 +674,25 @@
     <string name="error_report_channel_description">エラーを報告する通知</string>
     <string name="leak_canary_not_available">LeakCanaryが利用不可能です</string>
     <string name="playback_tempo_step">緩急音階</string>
+    <string name="settings_category_player_notification_title">プレイヤー通知</string>
+    <string name="loading_stream_details">ストリームの詳細を読み込んでいます…</string>
+    <string name="enable_streams_notifications_summary">登録チャンネルの新しいストリームについて通知する</string>
+    <string name="enumeration_comma">,</string>
+    <string name="notifications_disabled">通知は無効化されています</string>
+    <string name="progressive_load_interval_default">ExoPlayer のデフォルト</string>
+    <string name="get_notified">通知を受け取る</string>
+    <string name="you_successfully_subscribed">このチャンネルを購読しました</string>
+    <string name="delete_downloaded_files_confirm">ディスクからダウンロードしたすべてのファイルを削除しますか？</string>
+    <string name="toggle_all">すべて切り替え</string>
+    <string name="streams_notifications_interval_title">確認する頻度</string>
+    <string name="check_new_streams">新しいストリームのチェックを実行</string>
+    <string name="streams_notification_channel_description">購読チャンネルの新しいストリームに関する通知</string>
+    <string name="enable_streams_notifications_title">新しいストリームの通知</string>
+    <plurals name="new_streams">
+        <item quantity="other">%s 件の新しいストリーム</item>
+    </plurals>
+    <string name="streams_notification_channel_name">新しいストリーム</string>
+    <string name="notifications">通知</string>
+    <string name="settings_category_player_notification_summary">現在再生しているストリームの通知を構成</string>
+    <string name="progressive_load_interval_summary">読み込む間隔を変更します (現在 %s)。小さい値にすると初回読み込み時間が短くなります。変更にはプレイヤーの再起動が必要です。</string>
 </resources>

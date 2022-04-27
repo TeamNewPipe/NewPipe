@@ -737,4 +737,30 @@
     <string name="playback_tempo_step">خطوة الإيقاع</string>
     <string name="progressive_load_interval_default">الافتراضي ExoPlayer</string>
     <string name="progressive_load_interval_summary">تغيير حجم الفاصل الزمني للتحميل (حاليا %s). قد تؤدي القيمة الأقل إلى تسريع تحميل الفيديو الأولي. تتطلب التغييرات إعادة تشغيل المشغل.</string>
+    <string name="settings_category_player_notification_summary">تكوين إشعار مشغل البث الحالي</string>
+    <string name="notifications">الإشعارات</string>
+    <string name="loading_stream_details">تحميل تفاصيل البث…</string>
+    <string name="notifications_disabled">تم تعطيل الإشعارات</string>
+    <string name="streams_notification_channel_name">بث جديد</string>
+    <string name="settings_category_player_notification_title">إشعار المشغل</string>
+    <string name="you_successfully_subscribed">لقد اشتركت الآن في هذه القناة</string>
+    <string name="streams_notification_channel_description">الإخطارات حول التدفقات الجديدة للاشتراكات</string>
+    <string name="enable_streams_notifications_title">إشعارات أحداث البث الجديدة</string>
+    <string name="enable_streams_notifications_summary">الإخطار بأحداث البث الجديدة من الاشتراكات</string>
+    <string name="check_new_streams">تشغيل التحقق من وجود تدفقات جديدة</string>
+    <string name="streams_notifications_interval_title">معدل البحث</string>
+    <string name="streams_notifications_network_title">مطلوب اتصال الشبكة</string>
+    <string name="any_network">أي شبكة</string>
+    <string name="delete_downloaded_files_confirm">محو جميع الملفات التي تم تنزيلها من القرص؟</string>
+    <string name="get_notified">الحصول على إشعار</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">تبديل الكل</string>
+    <plurals name="new_streams">
+        <item quantity="zero">%s دفق جديد</item>
+        <item quantity="one">%s دفق جديد</item>
+        <item quantity="two">%s دفق جديد</item>
+        <item quantity="few">%s دفوق جديدة</item>
+        <item quantity="many">%s دفق جديد</item>
+        <item quantity="other">%s دفق جديد</item>
+    </plurals>
 </resources>

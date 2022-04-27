@@ -677,4 +677,25 @@
     <string name="progressive_load_interval_default">Default ExoPlayer</string>
     <string name="adjust_by_semitones_checkbox">Atur nada berdasarkan semitone musik</string>
     <string name="progressive_load_interval_summary">Ubah ukuran interval pemuatan (saat ini %s). Sebuah nilai yang rendah mungkin dapat membuat pemuatan video awal lebih cepat. Membutuhkan sebuah pemulaian ulang pada pemain.</string>
+    <string name="loading_stream_details">Memuat detail stream…</string>
+    <string name="streams_notifications_interval_title">Frekuensi pemeriksaan</string>
+    <string name="streams_notifications_network_title">Dibutuhkan koneksi jaringan</string>
+    <string name="any_network">Jaringan apa saja</string>
+    <string name="get_notified">Beritahu saya</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Alih semua</string>
+    <plurals name="new_streams">
+        <item quantity="other">%s stream baru</item>
+    </plurals>
+    <string name="check_new_streams">Jalankan periksa untuk stream baru</string>
+    <string name="delete_downloaded_files_confirm">Hapus semua file yang terunduh dari disk\?</string>
+    <string name="notifications_disabled">Notifikasi dinonaktifkan</string>
+    <string name="settings_category_player_notification_title">Notifikasi pemain</string>
+    <string name="notifications">Notifikasi</string>
+    <string name="settings_category_player_notification_summary">Konfigurasi notifikasi permainan stream saat ini</string>
+    <string name="streams_notification_channel_name">Stream baru</string>
+    <string name="streams_notification_channel_description">Notifikasi tentang stream baru untuk langganan</string>
+    <string name="enable_streams_notifications_title">Notifikasi stream baru</string>
+    <string name="enable_streams_notifications_summary">Beritahu tentang stream baru dari notifikasi</string>
+    <string name="you_successfully_subscribed">Anda sekarang berlangganan ke channel ini</string>
 </resources>
