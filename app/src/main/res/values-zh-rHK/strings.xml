@@ -145,7 +145,7 @@
     <string name="enable_watch_history_title">睇過嘅紀錄</string>
     <string name="enable_playback_resume_title">恢復播放</string>
     <string name="enable_playback_resume_summary">返返最後播放到去嗰個位</string>
-    <string name="enable_playback_state_lists_title">喺播放清單排第幾</string>
+    <string name="enable_playback_state_lists_title">清單度睇到播到去邊</string>
     <string name="notification_scale_to_square_image_title">縮圖放到去 1:1 長寬比</string>
     <string name="notification_scale_to_square_image_summary">顯示喺通知嘅影片縮圖由 16:9 放到去 1:1 長寬比 (話唔定會鬆郁矇)</string>
     <string name="notification_colorize_title">通知色彩化</string>
@@ -164,7 +164,7 @@
     <string name="show_comments_title">顯示留言</string>
     <string name="show_comments_summary">關閉去隱藏留言</string>
     <string name="enable_search_history_title">搜尋紀錄</string>
-    <string name="enable_playback_state_lists_summary">喺播放清單顯示位置編號</string>
+    <string name="enable_playback_state_lists_summary">喺清單入面顯示最後播放到去邊個位</string>
     <string name="settings_category_clear_data_title">抹除資料</string>
     <string name="show_description_title">顯示描述</string>
     <string name="thumbnail_cache_wipe_complete_notice">抹除咗影像快取</string>
@@ -526,7 +526,7 @@
     <string name="open_website_license">開啟網站</string>
     <string name="off">關</string>
     <string name="metadata_host">主機</string>
-    <string name="show_hold_to_append_summary">喺影片「詳情：」度撳一下「幕後播」或者「浮面播」個掣嘅時候顯示提示</string>
+    <string name="show_hold_to_append_summary">喺影片詳情撳一下「幕後播」或「浮面播」個掣嘅時候顯示提示</string>
     <string name="title_activity_history">紀錄</string>
     <string name="action_history">紀錄</string>
     <string name="enqueue_next_stream">攝下個等陣播</string>

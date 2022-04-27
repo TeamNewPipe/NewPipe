@@ -94,7 +94,7 @@
     <string name="controls_background_title">In sottofondo</string>
     <string name="controls_popup_title">Popup</string>
     <string name="default_popup_resolution_title">Risoluzione predefinita lettore popup</string>
-    <string name="show_higher_resolutions_title">Mostra altre risoluzioni</string>
+    <string name="show_higher_resolutions_title">Mostra risoluzioni più elevate</string>
     <string name="show_higher_resolutions_summary">Solo alcuni dispositivi possono riprodurre video 2K/4K</string>
     <string name="default_video_format_title">Formato video predefinito</string>
     <string name="popup_remember_size_pos_title">Ricorda proprietà lettore popup</string>
@@ -664,7 +664,7 @@
     <string name="start_main_player_fullscreen_title">Avvia il lettore principale a schermo intero</string>
     <string name="enqueued_next">Aggiunto alla coda come prossimo</string>
     <string name="enqueue_next_stream">Accoda come prossimo</string>
-    <string name="processing_may_take_a_moment">Elaborazione... Potrebbe volerci un attimo</string>
+    <string name="processing_may_take_a_moment">Elaborazione… Potrebbe volerci un attimo</string>
     <string name="manual_update_title">Controlla aggiornamenti</string>
     <string name="manual_update_description">Verifica manualmente la presenza di nuove versioni</string>
     <string name="checking_updates_toast">Controllo aggiornamenti…</string>
@@ -686,26 +686,26 @@
     <string name="leak_canary_not_available">LeakCanary non è disponibile</string>
     <string name="progressive_load_interval_exoplayer_default">Predefinito ExoPlayer</string>
     <string name="progressive_load_interval_summary">Cambia la dimensione dell\'intervallo da caricare (attualmente %s). Un valore basso può velocizzare il caricamento iniziale del video. La modifica richiede il riavvio del lettore.</string>
-    <string name="streams_notification_channel_description">Notifiche di nuove stream dalle iscrizioni</string>
+    <string name="streams_notification_channel_description">Notifiche di nuovi contenuti dalle iscrizioni</string>
     <string name="streams_notifications_interval_title">Frequenza controllo</string>
-    <string name="streams_notifications_network_title">Richiesta connessione alla rete</string>
+    <string name="streams_notifications_network_title">Connessione di rete richiesta</string>
     <string name="get_notified">Ricevi le notifiche</string>
     <string name="you_successfully_subscribed">Sei ora iscritto a questo canale</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Attiva/disattiva tutti</string>
-    <string name="enable_streams_notifications_title">Notifiche per nuove stream</string>
-    <string name="settings_category_player_notification_title">Notifica lettore</string>
-    <string name="settings_category_player_notification_summary">Configura la notifica della stream attualmente in riproduzione</string>
+    <string name="enable_streams_notifications_title">Notifiche per i nuovi contenuti</string>
+    <string name="settings_category_player_notification_title">Notifica del lettore multimediale</string>
+    <string name="settings_category_player_notification_summary">Configura la notifica dell\'elemento attualmente in riproduzione</string>
     <string name="notifications">Notifiche</string>
-    <string name="streams_notification_channel_name">Nuove stream</string>
+    <string name="streams_notification_channel_name">Nuovi contenuti</string>
     <plurals name="new_streams">
-        <item quantity="one">%s nuova stream</item>
-        <item quantity="other">%s nuove stream</item>
+        <item quantity="one">%s nuovo contenuto</item>
+        <item quantity="other">%s nuovi contenuti</item>
     </plurals>
     <string name="loading_stream_details">Caricando i dettagli della stream…</string>
     <string name="delete_downloaded_files_confirm">Cancellare tutti i file scaricati dal dispositivo\?</string>
-    <string name="check_new_streams">Avvia controllo per nuove stream</string>
+    <string name="check_new_streams">Controlla la presenza di nuovi contenuti</string>
     <string name="any_network">Qualsiasi rete</string>
     <string name="notifications_disabled">Le notifiche sono disabilitate</string>
-    <string name="enable_streams_notifications_summary">Notifica se ci sono nuove stream dalle iscrizioni</string>
+    <string name="enable_streams_notifications_summary">Notifica la presenza di nuovi contenuti dalle iscrizioni</string>
 </resources>

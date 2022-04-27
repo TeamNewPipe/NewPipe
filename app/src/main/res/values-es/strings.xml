@@ -292,7 +292,7 @@
     <string name="metadata_cache_wipe_summary">Quitar todos los datos guardados de páginas web</string>
     <string name="metadata_cache_wipe_complete_notice">Se vació la caché de metadatos</string>
     <string name="playback_speed_control">Controles de velocidad de reproducción</string>
-    <string name="playback_tempo">Tiempo</string>
+    <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Tono</string>
     <string name="unhook_checkbox">Desvincular (puede causar distorsión)</string>
     <string name="no_streams_available_download">No hay streams disponibles para descargar</string>
