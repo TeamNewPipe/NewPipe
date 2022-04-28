@@ -426,7 +426,7 @@ public final class PlayerHelper {
                 context.getString(R.string.progressive_load_interval_key),
                 context.getString(R.string.progressive_load_interval_default_value));
 
-        if (context.getString(R.string.progressive_load_interval_default_value)
+        if (context.getString(R.string.progressive_load_interval_exoplayer_default_value)
                 .equals(preferredIntervalBytes)) {
             return ProgressiveMediaSource.DEFAULT_LOADING_CHECK_INTERVAL_BYTES;
         }
