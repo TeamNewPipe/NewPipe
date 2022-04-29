@@ -688,5 +688,27 @@
     <string name="playback_tempo_step">Passo do tempo</string>
     <string name="progressive_load_interval_summary">Altere o tamanho do intervalo de carregamento (atualmente %s). Um valor menor pode acelerar o carregamento inicial do vídeo. As alterações exigem que o player reinicie.</string>
     <string name="adjust_by_semitones_checkbox">Ajustar o tom por semitons musicais</string>
-    <string name="progressive_load_interval_default">ExoPlayer padrão</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer padrão</string>
+    <string name="settings_category_player_notification_title">Notificação do reprodutor</string>
+    <string name="settings_category_player_notification_summary">Configurar a notificação do fluxo da reprodução atual</string>
+    <string name="notifications">Notificações</string>
+    <string name="streams_notification_channel_name">Novos streams</string>
+    <string name="streams_notification_channel_description">Notificações sobre novas transmissões para inscrições</string>
+    <string name="enable_streams_notifications_title">Notificações de novas transmissões</string>
+    <string name="enable_streams_notifications_summary">Notificar sobre novas transmissões de inscrições</string>
+    <string name="streams_notifications_interval_title">Frequência de verificação</string>
+    <string name="any_network">Nenhuma rede</string>
+    <string name="delete_downloaded_files_confirm">Excluir todos os arquivos baixados do disco\?</string>
+    <string name="you_successfully_subscribed">Agora você se inscreveu neste canal</string>
+    <string name="toggle_all">Alternar tudo</string>
+    <string name="enumeration_comma">,</string>
+    <string name="loading_stream_details">Carregando detalhes da transmissão…</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nova transmissão</item>
+        <item quantity="other">%s novas transmissões</item>
+    </plurals>
+    <string name="check_new_streams">Executar verificação de novas transmissões</string>
+    <string name="streams_notifications_network_title">Conexão de rede necessária</string>
+    <string name="notifications_disabled">As notificações estão desativadas</string>
+    <string name="get_notified">Seja notificado</string>
 </resources>

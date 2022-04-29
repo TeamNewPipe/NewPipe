@@ -1,0 +1,1 @@
+- Revisado, minimizar el Reproductor a Imagen Sobre Imagen no destruye el Reproductor cuando no se permite el permiso para la ventana emergente.

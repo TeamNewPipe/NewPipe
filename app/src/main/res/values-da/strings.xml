@@ -396,4 +396,5 @@
     <string name="search_showing_result_for">Viser resultater for: %s</string>
     <string name="open_with">Åben med</string>
     <string name="leak_canary_not_available">LeakCanary er ikke tilgængelig</string>
+    <string name="mark_as_watched">Markér som set</string>
 </resources>

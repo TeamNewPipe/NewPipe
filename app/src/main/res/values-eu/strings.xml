@@ -315,7 +315,7 @@
     <string name="privacy_policy_encouragement">NewPipe proiektuak aintzat hartzen du zure pribatutasuna. Aplikazioak ez du zure baimenik gabe daturik jasotzen.
 \nNewPipe pribatutasun politikak azaltzen du zehazki bidali eta gordetako informazioa zein den kraskatze txosten bat bidaltzen duzunean.</string>
     <string name="read_privacy_policy">Irakurri pribatutasun politika</string>
-    <string name="start_accept_privacy_policy">European General Data Protection Regulation (GDPR) legea betetzeko, NewPipe pribatutasun politika irakurtzera gonbidaatzen zaitugu.
+    <string name="start_accept_privacy_policy">Datuak Babesteko Araudi Orokorra (GDPR) betetzeko, NewPipe-en pribatutasun politika kontuan hartzera gonbidatzen zaitugu. Mesedez, irakurri kontu handiz.
 \nAkats txosten bat bidali ahal izateko onartu behar duzu.</string>
     <string name="accept">Onartu</string>
     <string name="decline">Ukatu</string>
@@ -664,7 +664,7 @@
     <string name="start_main_player_fullscreen_title">Hasi erreproduzitzaile nagusia pantaila osoan</string>
     <string name="enqueued_next">Isatsari bideo hau erantsita</string>
     <string name="enqueue_next_stream">Gehitu bideo hau isatsari</string>
-    <string name="show_crash_the_player_title">Erakutsi \"itxi erreproduzigailua\"</string>
+    <string name="show_crash_the_player_title">Erakutsi \"Itxi erreproduzigailua\"</string>
     <string name="processing_may_take_a_moment">Prozesatzen... Itxoin mesedez</string>
     <string name="background_player_already_playing_toast">Atzeko planoan erreproduzitzen dagoeneko</string>
     <string name="error_report_channel_name">Erroreen txostenen jakinarazpena</string>
@@ -684,4 +684,31 @@
     <string name="show_crash_the_player_summary">Erreproduzigailua erabiltzean ustekabean ixteko aukera ematen du</string>
     <string name="show_error_snackbar">Erakutsi errore barra bat</string>
     <string name="create_error_notification">Sortu errore jakinarazpen bat</string>
+    <string name="settings_category_player_notification_summary">Konfiguratu uneko erreprodukzioaren jakinarazpenak</string>
+    <string name="notifications">Jakinarazpenak</string>
+    <string name="settings_category_player_notification_title">Erreproduzigailuaren jakinarazpenak</string>
+    <string name="streams_notification_channel_name">Jario berriak</string>
+    <string name="check_new_streams">Egiaztatu jario berriak</string>
+    <string name="enable_streams_notifications_title">Jario berrien jakinarazpenak</string>
+    <string name="any_network">Edozein sare</string>
+    <string name="notifications_disabled">Jakinarazpenak desgaituta daude</string>
+    <string name="you_successfully_subscribed">Kanal honetara harpidetu zara</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Txandakatu denak</string>
+    <string name="adjust_by_semitones_checkbox">Doitu tonua semitono musikalen arabera</string>
+    <string name="playback_tempo_step">Tempo urratsa</string>
+    <string name="progressive_load_interval_summary">Aldatu karga maiztasun tamaina (unean %s). Balio txikiago batek bideoaren hasierako karga azkartu dezake. Erreproduzigailuaren berrabiarazte bat behar du.</string>
+    <string name="enable_streams_notifications_summary">Harpidetzen jario berriei buruz jakinarazi</string>
+    <string name="delete_downloaded_files_confirm">Ezabatu deskargatutako fitxategi guztiak biltegitik\?</string>
+    <string name="streams_notification_channel_description">Harpidetzentzako jario berrien jakinarazpenak</string>
+    <string name="loading_stream_details">Jarioaren xehetasunak kargatzen…</string>
+    <plurals name="new_streams">
+        <item quantity="one">jario berri %s</item>
+        <item quantity="other">%s jario berri</item>
+    </plurals>
+    <string name="leak_canary_not_available">LeakCanary ez dago eskuragarri</string>
+    <string name="streams_notifications_interval_title">Egiaztapen maiztasuna</string>
+    <string name="get_notified">Jakinarazi</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer lehenetsia</string>
+    <string name="streams_notifications_network_title">Beharrezko sare konexioa</string>
 </resources>

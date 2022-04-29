@@ -565,7 +565,7 @@
     <string name="autoplay_summary">להתחיל לנגן אוטומטית — %s</string>
     <string name="title_activity_play_queue">לנגן את התור</string>
     <string name="unsupported_url_dialog_message">לא ניתן לזהות את הכתובת. לפתוח אותה ביישומון אחר\?</string>
-    <string name="auto_queue_toggle">הוספה אוטומטית לתור</string>
+    <string name="auto_queue_toggle">סידור אוטומטי בתור</string>
     <string name="clear_queue_confirmation_description">התור מהנגן הפעיל יוחלף</string>
     <string name="clear_queue_confirmation_summary">מעבר מנגן אחד למשנהו עלול להחליף את התור שלך</string>
     <string name="clear_queue_confirmation_title">לבקש אישור לפני מחיקת התור</string>
@@ -711,6 +711,30 @@
     <string name="leak_canary_not_available">LeakCanary אינה זמינה</string>
     <string name="adjust_by_semitones_checkbox">התאמת גובה הצליל לפי חצאי טונים מוזיקליים</string>
     <string name="playback_tempo_step">צעד מקצב</string>
-    <string name="progressive_load_interval_default">ברירת מחדל של ExoPlayer</string>
+    <string name="progressive_load_interval_exoplayer_default">ברירת מחדל של ExoPlayer</string>
     <string name="progressive_load_interval_summary">שינוי גודל מרווח הטעינה (כרגע %s). ערך נמוך יותר עשוי להאיץ את טעינת הווידאו הראשונית. שינויים דורשים את הפעלת הנגן מחדש.</string>
+    <string name="streams_notification_channel_description">התראות על תזרימים חדשים להרשמה</string>
+    <string name="streams_notifications_interval_title">תדירות בדיקה</string>
+    <string name="streams_notifications_network_title">נדרש חיבור לרשת</string>
+    <string name="get_notified">קבלת הודעה</string>
+    <string name="toggle_all">להחליף את המצב של הכול</string>
+    <string name="settings_category_player_notification_summary">הגדרת התראת התזרים שמתנגן כרגע</string>
+    <string name="notifications">התראות</string>
+    <plurals name="new_streams">
+        <item quantity="one">תזרים חדש</item>
+        <item quantity="two">%s תזרימים חדשים</item>
+        <item quantity="many">%s תזרימים חדשים</item>
+        <item quantity="other">%s תזרימים חדשים</item>
+    </plurals>
+    <string name="loading_stream_details">פרטי התזרים נטענים…</string>
+    <string name="check_new_streams">הרצת בדיקה על תזרימים חדשים</string>
+    <string name="enable_streams_notifications_title">התראות תזרימים חדשים</string>
+    <string name="enable_streams_notifications_summary">הודעה על תזרימים חדשים מהמינויים</string>
+    <string name="enumeration_comma">,</string>
+    <string name="streams_notification_channel_name">תזרימים חדשים</string>
+    <string name="settings_category_player_notification_title">התראות נגן</string>
+    <string name="any_network">רשת כלשהי</string>
+    <string name="delete_downloaded_files_confirm">למחוק את כל הקבצים שהורדו מהכונן\?</string>
+    <string name="notifications_disabled">התראות מושבתות</string>
+    <string name="you_successfully_subscribed">נרשמת לערוץ הזה</string>
 </resources>

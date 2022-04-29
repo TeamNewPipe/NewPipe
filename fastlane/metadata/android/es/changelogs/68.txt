@@ -1,0 +1,8 @@
+- Mostrar "Recuento de suscriptores no disponible" en esos casos
+- Corregir NPE cuando una lista de reproducción de YouTube está vacía
+- Corrección rápida de los quioscos en SoundCloud
+- Refactorización y corrección de errores #1623 
+  - Arreglar el resultado cíclico de la búsqueda #1562
+  - Corrección de la barra de búsqueda no estática
+  - Fix YT Premium video no se bloquean correctamente
+  - Corregir los vídeos que a veces no se cargan (debido al análisis sintáctico de DASH)

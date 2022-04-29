@@ -690,5 +690,27 @@
     <string name="progressive_load_interval_summary">Modifie la taille de l\'intervalle de chargement (actuellement %s). Une valeur plus faible peut accélérer le chargement initial des vidéos .</string>
     <string name="adjust_by_semitones_checkbox">Règler la hauteur par demi-tons musicaux</string>
     <string name="playback_tempo_step">Pas du tempo</string>
-    <string name="progressive_load_interval_default">Valeur par défaut d’ExoPlayer</string>
+    <string name="progressive_load_interval_exoplayer_default">Valeur par défaut d’ExoPlayer</string>
+    <string name="streams_notification_channel_name">Nouveaux flux</string>
+    <string name="settings_category_player_notification_summary">Configurer la notification du flux en cours de lecture</string>
+    <string name="get_notified">Recevoir des notifications</string>
+    <string name="loading_stream_details">Chargement des détails du flux…</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nouveau flux</item>
+        <item quantity="other">%s nouveaux flux</item>
+    </plurals>
+    <string name="streams_notifications_network_title">Connexion réseau requise</string>
+    <string name="notifications">Notifications</string>
+    <string name="notifications_disabled">Notifications désactivées</string>
+    <string name="you_successfully_subscribed">Vous êtes maintenant abonné(e) à cette chaîne</string>
+    <string name="settings_category_player_notification_title">Notification du Lecteur</string>
+    <string name="streams_notification_channel_description">Notifications pour de nouveaux flux des abonnements</string>
+    <string name="delete_downloaded_files_confirm">Supprimer tous les fichiers téléchargés du disque \?</string>
+    <string name="check_new_streams">Exécuter la vérification de nouveaux flux</string>
+    <string name="enable_streams_notifications_title">Notifications pour de nouveaux flux</string>
+    <string name="any_network">N\'importe quel réseau</string>
+    <string name="streams_notifications_interval_title">Fréquence de vérification</string>
+    <string name="enable_streams_notifications_summary">Notifications pour de nouveaux flux des abonnements</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Sélectionner/Désélectionner tout</string>
 </resources>

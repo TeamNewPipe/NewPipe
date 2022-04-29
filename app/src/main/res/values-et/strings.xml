@@ -685,6 +685,30 @@
 \nPalun paigalda nutiseadmesse failihaldur, mis järgib Storage Access Framework reeglistikku.</string>
     <string name="detail_pinned_comment_view_description">Esiletõstetud kommentaar</string>
     <string name="leak_canary_not_available">LeakCanary pole saadaval</string>
-    <string name="progressive_load_interval_default">ExoPlayer\'i vaikimisi väärtused</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer\'i vaikimisi väärtused</string>
     <string name="progressive_load_interval_summary">Muuda video laadimise välpa (hetkel %s). Väiksemast väärtusest võib abi olla, kui tahad et video esitamine algaks varem. Muudatuste jõustamine eeldab rakenduse uuesti käivitamist.</string>
+    <string name="settings_category_player_notification_title">Meediamängija teavitused</string>
+    <string name="notifications_disabled">Teavitused pole kasutusel</string>
+    <string name="streams_notifications_interval_title">Kontrollimise sagedus</string>
+    <string name="streams_notification_channel_description">Tellimuste-kohaste uute meedivoogude teavitused</string>
+    <string name="delete_downloaded_files_confirm">Kas kustutame kõik allalaaditud failid andmekandjalt\?</string>
+    <string name="notifications">Teavitused</string>
+    <string name="settings_category_player_notification_summary">Seadista hetkel esitatava meediavoo teavitusi</string>
+    <string name="streams_notification_channel_name">Uued meediavood</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s uus meediavoog</item>
+        <item quantity="other">%s uut meediavoogu</item>
+    </plurals>
+    <string name="loading_stream_details">Laadin meediavoo teavet…</string>
+    <string name="check_new_streams">Käivita uute meediavoogude kontroll</string>
+    <string name="enable_streams_notifications_title">Uute meedivoogude teavitused</string>
+    <string name="enable_streams_notifications_summary">Tellimustega seotud uute meedivoogude teavitused</string>
+    <string name="streams_notifications_network_title">Võrguühendus on vajalik</string>
+    <string name="any_network">Mis tahes võrk</string>
+    <string name="get_notified">Saa teavitusi</string>
+    <string name="you_successfully_subscribed">Sa oled nüüd selle kanali tellija</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Lülita kõik sisse</string>
+    <string name="adjust_by_semitones_checkbox">Reguleeri helikõrgust muusikaliste pooltoonide kaupa</string>
+    <string name="playback_tempo_step">Tempo samm</string>
 </resources>

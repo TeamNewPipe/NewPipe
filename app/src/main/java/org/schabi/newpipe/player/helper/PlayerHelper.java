@@ -78,6 +78,20 @@ public final class PlayerHelper {
     private static final NumberFormat SPEED_FORMATTER = new DecimalFormat("0.##x");
     private static final NumberFormat PITCH_FORMATTER = new DecimalFormat("##%");
 
+    /**
+     * Maximum opacity allowed for Android 12 and higher to allow touches on other apps when using
+     * NewPipe's popup player.
+     *
+     * <p>
+     * This value is hardcoded instead of being get dynamically with the method linked of the
+     * constant documentation below, because it is not static and popup player layout parameters
+     * are generated with static methods.
+     * </p>
+     *
+     * @see WindowManager.LayoutParams#FLAG_NOT_TOUCHABLE
+     */
+    private static final float MAXIMUM_OPACITY_ALLOWED_FOR_S_AND_HIGHER = 0.8f;
+
     @Retention(SOURCE)
     @IntDef({AUTOPLAY_TYPE_ALWAYS, AUTOPLAY_TYPE_WIFI,
             AUTOPLAY_TYPE_NEVER})
@@ -412,7 +426,7 @@ public final class PlayerHelper {
                 context.getString(R.string.progressive_load_interval_key),
                 context.getString(R.string.progressive_load_interval_default_value));
 
-        if (context.getString(R.string.progressive_load_interval_default_value)
+        if (context.getString(R.string.progressive_load_interval_exoplayer_default_value)
                 .equals(preferredIntervalBytes)) {
             return ProgressiveMediaSource.DEFAULT_LOADING_CHECK_INTERVAL_BYTES;
         }
@@ -586,6 +600,12 @@ public final class PlayerHelper {
                 popupLayoutParamType(),
                 flags,
                 PixelFormat.TRANSLUCENT);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // Setting maximum opacity allowed for touch events to other apps for Android 12 and
+            // higher to prevent non interaction when using other apps with the popup player
+            closeOverlayLayoutParams.alpha = MAXIMUM_OPACITY_ALLOWED_FOR_S_AND_HIGHER;
+        }
 
         closeOverlayLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
         closeOverlayLayoutParams.softInputMode =
