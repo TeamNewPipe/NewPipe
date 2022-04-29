@@ -690,7 +690,7 @@
     <string name="adjust_by_semitones_checkbox">Tonhöhe nach musikalischen Halbtönen anpassen</string>
     <string name="progressive_load_interval_summary">Ändern der Größe des Ladeintervalls (derzeit %s). Ein niedrigerer Wert kann das anfängliche Laden des Videos beschleunigen. Änderungen erfordern einen Neustart des Players.</string>
     <string name="playback_tempo_step">Geschwindigkeitsstufe</string>
-    <string name="progressive_load_interval_default">ExoPlayer Standard</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer Standard</string>
     <string name="notifications">Benachrichtigungen</string>
     <string name="streams_notification_channel_description">Benachrichtigen über neue abonnierbare Streams</string>
     <string name="streams_notification_channel_name">Neue Streams</string>

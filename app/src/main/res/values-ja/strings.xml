@@ -679,7 +679,7 @@
     <string name="enable_streams_notifications_summary">登録チャンネルの新しいストリームについて通知する</string>
     <string name="enumeration_comma">,</string>
     <string name="notifications_disabled">通知は無効化されています</string>
-    <string name="progressive_load_interval_default">ExoPlayer のデフォルト</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer のデフォルト</string>
     <string name="get_notified">通知を受け取る</string>
     <string name="you_successfully_subscribed">このチャンネルを購読しました</string>
     <string name="delete_downloaded_files_confirm">ディスクからダウンロードしたすべてのファイルを削除しますか？</string>
