@@ -700,5 +700,5 @@
     <string name="leak_canary_not_available">LeakCanary není dostupné</string>
     <string name="adjust_by_semitones_checkbox">Upravit výšku tónů po půltónech</string>
     <string name="playback_tempo_step">Krok tempa</string>
-    <string name="progressive_load_interval_default">Výchozí ExoPlayer</string>
+    <string name="progressive_load_interval_exoplayer_default">Výchozí ExoPlayer</string>
 </resources>

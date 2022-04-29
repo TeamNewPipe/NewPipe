@@ -676,7 +676,7 @@
     <string name="adjust_by_semitones_checkbox">以音乐半音调整音高</string>
     <string name="playback_tempo_step">节奏步长</string>
     <string name="progressive_load_interval_summary">改变加载间隔的大小（当前%s），较低的值可以加快初始的视频加载速度，改变需要重启播放器。</string>
-    <string name="progressive_load_interval_default">ExoPlayer 默认</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer 默认</string>
     <string name="settings_category_player_notification_summary">配置当前正在播放的串流的通知</string>
     <string name="enable_streams_notifications_title">新串流通知</string>
     <string name="streams_notifications_interval_title">检查频率</string>

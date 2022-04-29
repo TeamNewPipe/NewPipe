@@ -688,7 +688,7 @@
     <string name="playback_tempo_step">گام سرعت</string>
     <string name="adjust_by_semitones_checkbox">تنظیم زیر و بم با شبه‌تن‌ها</string>
     <string name="progressive_load_interval_summary">تغییر اندازهٔ بازهٔ بار (هم‌اکنون %s). مقداری پایین‌تر، می‌تواند بار کردن نخستین ویدیو را سرعت بخشد. تغییرها نیاز به یک آغاز دوبارهٔ پخش‌کننده دارند.</string>
-    <string name="progressive_load_interval_default">پیش‌گزیدهٔ اگزوپلیر</string>
+    <string name="progressive_load_interval_exoplayer_default">پیش‌گزیدهٔ اگزوپلیر</string>
     <string name="notifications">آگاهی‌ها</string>
     <string name="loading_stream_details">بار کردن جزییات جریان…</string>
     <string name="check_new_streams">اجرای بررسی برای جریان‌های جدید</string>
