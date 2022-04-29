@@ -270,7 +270,6 @@
     <string name="best_resolution">മികച്ച റിസല്യൂഷൻ</string>
     <string name="clear">തെളിക്കുക</string>
     <string name="disabled">അസാധുവാക്കപ്പെട്ടു</string>
-    <string name="yes">അതെ</string>
     <string name="artists">കലാകാരന്മാർ</string>
     <string name="albums">ആൽബങ്ങൾ</string>
     <string name="songs">പാട്ടുകൾ</string>
@@ -588,7 +587,6 @@
 \nപ്രായ-നിയന്ത്രിത വീഡിയോകളുള്ള പുതിയ യൂട്യൂബ് നയങ്ങൾ കാരണം, ന്യൂപൈപ്പിന് അതിന്റെ വീഡിയോ സ്ട്രീമുകളിലൊന്നും ആക്സസ് ചെയ്യാൻ കഴിയില്ല, അതിനാൽ ഇത് പ്ലേ ചെയ്യാൻ കഴിയില്ല.</string>
     <string name="youtube_restricted_mode_enabled_summary">പക്വതയുള്ള ഉള്ളടക്കം മറയ്ക്കുന്ന \"നിയന്ത്രിത മോഡ്\" യൂട്യൂബ് നൽകുന്നു</string>
     <string name="show_age_restricted_content_summary">കുട്ടികൾക്ക് അനുയോജ്യമല്ലാത്ത ഉള്ളടക്കം കാണിക്കുക കാരണം അതിന് പ്രായപരിധി ഉണ്ട് (18+ പോലെ)</string>
-    <string name="settings_category_notification_title">അറിയിപ്പ്</string>
     <string name="unsupported_url_dialog_message">URL തിരിച്ചറിയാൻ കഴിഞ്ഞില്ല. മറ്റൊരു അപ്ലിക്കേഷൻ ഉപയോഗിച്ച് തുറക്കണോ\?</string>
     <string name="auto_queue_toggle">യാന്ത്രിക-ക്യൂ</string>
     <string name="show_meta_info_summary">സ്ട്രീം സ്രഷ്ടാവ്, സ്ട്രീം ഉള്ളടക്കം അല്ലെങ്കിൽ ഒരു തിരയൽ അഭ്യർത്ഥന എന്നിവയെക്കുറിച്ചുള്ള കൂടുതൽ വിവരങ്ങൾ ഉൾക്കൊള്ളുന്ന മെറ്റാ വിവര ബോക്സുകൾ മറയ്ക്കുന്നതിന് ഓഫാക്കുക</string>
@@ -612,8 +610,6 @@
     <string name="detail_heart_img_view_description">സ്നേഹത്തോടെ സൃഷ്ടാവ്</string>
     <string name="description_select_disable">ഡിസ്ക്രിപ്ഷനിലെ ടെക്സ്റ്റ്‌ സെലക്ട്‌ ചെയ്യുവാൻ അനുവദിക്കാതെ ഇരിക്കുക</string>
     <string name="description_select_enable">ഡിസ്ക്രിപ്ഷനിലെ ടെക്സ്റ്റ്‌ സെലക്ട്‌ ചെയ്യാൻ അനുവദിക്കുക</string>
-    <string name="loading_channel_details">ചാനൽ വിശദാംശങ്ങൾ ലോഡ് ചെയ്യുന്നു…</string>
-    <string name="error_show_channel_details">ചാനൽ വിശദാംശങ്ങൾ കാണിക്കുന്നതിൽ പിശക് സംഭവിച്ചു</string>
     <string name="off">ഓഫ്‌</string>
     <string name="on">ഓൺ</string>
     <string name="open_website_license">വെബ്സൈറ്റ് തുറക്കുക</string>

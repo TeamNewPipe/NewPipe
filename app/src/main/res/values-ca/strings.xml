@@ -37,7 +37,6 @@
     <string name="downloads">Baixades</string>
     <string name="downloads_title">Baixades</string>
     <string name="all">Tot</string>
-    <string name="yes">Sí</string>
     <string name="disabled">Desactivat</string>
     <string name="clear">Neteja</string>
     <string name="best_resolution">Millor resolució</string>
@@ -558,7 +557,6 @@
     <string name="hash_channel_name">Notificació de comprovació del vídeo</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube proporciona un \"mode restringit\" que amaga contingut potencialment inadequat per a infants</string>
     <string name="show_age_restricted_content_summary">Mostra contingut que podria ser inadequat pels infants</string>
-    <string name="settings_category_notification_title">Notificació</string>
     <string name="unsupported_url_dialog_message">No s\'ha pogut reconèixer l\'adreça URL. Obrir-la amb una altra aplicació\?</string>
     <string name="auto_queue_toggle">Posa a la cua automàticament</string>
     <string name="show_meta_info_summary">Desactiveu-ho per deixar de mostrar les metadades, que contenen informació addicional sobre el creador del directe, el contingut o una sol·licitud de cerca</string>
@@ -602,7 +600,6 @@
 \nDegut a la nova política d\'edat de YouTube, el NewPipe no pot accedir a aquest contingut i per tant no pot reproduir-lo.</string>
     <string name="show_description_summary">Desactiveu per amagar la descripció i la informació addicional del vídeo</string>
     <string name="disable_media_tunneling_title">Desactiva l\'entunelament del contingut</string>
-    <string name="loading_channel_details">Carregant detalls del canal…</string>
     <string name="off">Desactiva</string>
     <string name="on">Activa</string>
     <string name="tablet_mode_title">Mode tablet</string>
@@ -672,7 +669,6 @@
     <string name="error_report_notification_title">NewPipe ha trobat un error, toca per informar</string>
     <string name="enqueue_next_stream">Posa a la cua el següent vídeo</string>
     <string name="create_error_notification">Crear una notificació d\'error</string>
-    <string name="error_show_channel_details">Error en mostrar els detalls del canal</string>
     <string name="error_report_channel_description">Notificacions per informar d\'errors</string>
     <string name="show_error_snackbar">Mostra una barra d\'errors</string>
     <string name="checking_updates_toast">S\'estan comprovant les actualitzacions…</string>

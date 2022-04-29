@@ -11,11 +11,12 @@ import com.google.android.exoplayer2.source.MediaSource;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediasource.FailedMediaSource;
 import org.schabi.newpipe.player.mediasource.LoadedMediaSource;
 import org.schabi.newpipe.player.mediasource.ManagedMediaSource;
 import org.schabi.newpipe.player.mediasource.ManagedMediaSourcePlaylist;
-import org.schabi.newpipe.player.mediasource.PlaceholderMediaSource;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.events.MoveEvent;
@@ -195,7 +196,7 @@ public class MediaSourceManager {
     //////////////////////////////////////////////////////////////////////////*/
 
     private Subscriber<PlayQueueEvent> getReactor() {
-        return new Subscriber<PlayQueueEvent>() {
+        return new Subscriber<>() {
             @Override
             public void onSubscribe(@NonNull final Subscription d) {
                 playQueueReactor.cancel();
@@ -209,10 +210,12 @@ public class MediaSourceManager {
             }
 
             @Override
-            public void onError(@NonNull final Throwable e) { }
+            public void onError(@NonNull final Throwable e) {
+            }
 
             @Override
-            public void onComplete() { }
+            public void onComplete() {
+            }
         };
     }
 
@@ -292,11 +295,11 @@ public class MediaSourceManager {
         }
 
         final ManagedMediaSource mediaSource = playlist.get(playQueue.getIndex());
-        if (mediaSource == null) {
+        final PlayQueueItem playQueueItem = playQueue.getItem();
+        if (mediaSource == null || playQueueItem == null) {
             return false;
         }
 
-        final PlayQueueItem playQueueItem = playQueue.getItem();
         return mediaSource.isStreamEqual(playQueueItem);
     }
 
@@ -315,7 +318,7 @@ public class MediaSourceManager {
         isBlocked.set(true);
     }
 
-    private void maybeUnblock() {
+    private boolean maybeUnblock() {
         if (DEBUG) {
             Log.d(TAG, "maybeUnblock() called.");
         }
@@ -323,14 +326,17 @@ public class MediaSourceManager {
         if (isBlocked.get()) {
             isBlocked.set(false);
             playbackListener.onPlaybackUnblock(playlist.getParentMediaSource());
+            return true;
         }
+
+        return false;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Metadata Synchronization
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void maybeSync() {
+    private void maybeSync(final boolean wasBlocked) {
         if (DEBUG) {
             Log.d(TAG, "maybeSync() called.");
         }
@@ -340,13 +346,13 @@ public class MediaSourceManager {
             return;
         }
 
-        playbackListener.onPlaybackSynchronize(currentItem);
+        playbackListener.onPlaybackSynchronize(currentItem, wasBlocked);
     }
 
     private synchronized void maybeSynchronizePlayer() {
         if (isPlayQueueReady() && isPlaybackReady()) {
-            maybeUnblock();
-            maybeSync();
+            final boolean isBlockReleased = maybeUnblock();
+            maybeSync(isBlockReleased);
         }
     }
 
@@ -417,20 +423,29 @@ public class MediaSourceManager {
     private Single<ManagedMediaSource> getLoadedMediaSource(@NonNull final PlayQueueItem stream) {
         return stream.getStream().map(streamInfo -> {
             final MediaSource source = playbackListener.sourceOf(stream, streamInfo);
-            if (source == null) {
+            if (source == null || !MediaItemTag.from(source.getMediaItem()).isPresent()) {
                 final String message = "Unable to resolve source from stream info. "
                         + "URL: " + stream.getUrl() + ", "
                         + "audio count: " + streamInfo.getAudioStreams().size() + ", "
                         + "video count: " + streamInfo.getVideoOnlyStreams().size() + ", "
                         + streamInfo.getVideoStreams().size();
-                return new FailedMediaSource(stream, new MediaSourceResolutionException(message));
+                return (ManagedMediaSource)
+                        FailedMediaSource.of(stream, new MediaSourceResolutionException(message));
             }
 
+            final MediaItemTag tag = MediaItemTag.from(source.getMediaItem()).get();
             final long expiration = System.currentTimeMillis()
                     + ServiceHelper.getCacheExpirationMillis(streamInfo.getServiceId());
-            return new LoadedMediaSource(source, stream, expiration);
-        }).onErrorReturn(throwable -> new FailedMediaSource(stream,
-                new StreamInfoLoadException(throwable)));
+            return new LoadedMediaSource(source, tag, stream, expiration);
+        }).onErrorReturn(throwable -> {
+            if (throwable instanceof ExtractionException) {
+                return FailedMediaSource.of(stream, new StreamInfoLoadException(throwable));
+            }
+            // Non-source related error expected here (e.g. network),
+            // should allow retry shortly after the error.
+            return FailedMediaSource.of(stream, new Exception(throwable),
+                    /*allowRetryIn=*/TimeUnit.MILLISECONDS.convert(3, TimeUnit.SECONDS));
+        });
     }
 
     private void onMediaSourceReceived(@NonNull final PlayQueueItem item,
@@ -478,23 +493,23 @@ public class MediaSourceManager {
 
     /**
      * Checks if the current playing index contains an expired {@link ManagedMediaSource}.
-     * If so, the expired source is replaced by a {@link PlaceholderMediaSource} and
+     * If so, the expired source is replaced by a dummy {@link ManagedMediaSource} and
      * {@link #loadImmediate()} is called to reload the current item.
      * <br><br>
      * If not, then the media source at the current index is ready for playback, and
      * {@link #maybeSynchronizePlayer()} is called.
      * <br><br>
-     * Under both cases, {@link #maybeSync()} will be called to ensure the listener
+     * Under both cases, {@link #maybeSync(boolean)} will be called to ensure the listener
      * is up-to-date.
      */
     private void maybeRenewCurrentIndex() {
         final int currentIndex = playQueue.getIndex();
+        final PlayQueueItem currentItem = playQueue.getItem();
         final ManagedMediaSource currentSource = playlist.get(currentIndex);
-        if (currentSource == null) {
+        if (currentItem == null || currentSource == null) {
             return;
         }
 
-        final PlayQueueItem currentItem = playQueue.getItem();
         if (!currentSource.shouldBeReplacedWith(currentItem, true)) {
             maybeSynchronizePlayer();
             return;

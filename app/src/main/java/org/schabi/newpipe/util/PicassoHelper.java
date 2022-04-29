@@ -1,14 +1,18 @@
 package org.schabi.newpipe.util;
 
+import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 
 import com.squareup.picasso.Cache;
 import com.squareup.picasso.LruCache;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
+import com.squareup.picasso.Target;
 import com.squareup.picasso.Transformation;
 
 import org.schabi.newpipe.R;
@@ -16,10 +20,9 @@ import org.schabi.newpipe.R;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 import okhttp3.OkHttpClient;
-
-import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 
 public final class PicassoHelper {
     public static final String PLAYER_THUMBNAIL_TAG = "PICASSO_PLAYER_THUMBNAIL_TAG";
@@ -151,6 +154,28 @@ public final class PicassoHelper {
                     @Override
                     public String key() {
                         return PLAYER_THUMBNAIL_TRANSFORMATION_KEY;
+                    }
+                });
+    }
+
+
+    public static void loadNotificationIcon(final String url,
+                                            final Consumer<Bitmap> bitmapConsumer) {
+        loadImageDefault(url, R.drawable.ic_newpipe_triangle_white)
+                .into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(final Bitmap bitmap, final Picasso.LoadedFrom from) {
+                        bitmapConsumer.accept(bitmap);
+                    }
+
+                    @Override
+                    public void onBitmapFailed(final Exception e, final Drawable errorDrawable) {
+                        bitmapConsumer.accept(null);
+                    }
+
+                    @Override
+                    public void onPrepareLoad(final Drawable placeHolderDrawable) {
+                        // Nothing to do
                     }
                 });
     }

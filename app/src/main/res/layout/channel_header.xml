@@ -28,23 +28,27 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="50dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/channel_avatar_view"
                 android:layout_width="@dimen/channel_avatar_size"
                 android:layout_height="@dimen/channel_avatar_size"
+                android:padding="1dp"
                 android:src="@drawable/buddy"
-                app:civ_border_color="#ffffff"
-                app:civ_border_width="2dp" />
+                app:shapeAppearance="@style/CircularImageView"
+                app:strokeColor="#ffffff"
+                app:strokeWidth="2dp" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/sub_channel_avatar_view"
                 android:layout_width="@dimen/sub_channel_avatar_size"
                 android:layout_height="@dimen/sub_channel_avatar_size"
                 android:layout_gravity="bottom|right"
+                android:padding="1dp"
                 android:src="@drawable/buddy"
                 android:visibility="gone"
-                app:civ_border_color="#ffffff"
-                app:civ_border_width="2dp"
+                app:shapeAppearance="@style/CircularImageView"
+                app:strokeColor="#ffffff"
+                app:strokeWidth="2dp"
                 tools:ignore="RtlHardcoded"
                 tools:visibility="visible" />
         </FrameLayout>

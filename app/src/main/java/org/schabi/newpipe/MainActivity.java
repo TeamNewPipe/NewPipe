@@ -20,7 +20,6 @@
 
 package org.schabi.newpipe;
 
-import static org.schabi.newpipe.CheckForNewAppVersion.startNewVersionCheckService;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.content.BroadcastReceiver;
@@ -72,6 +71,7 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
@@ -159,11 +159,14 @@ public class MainActivity extends AppCompatActivity {
         } catch (final Exception e) {
             ErrorUtil.showUiErrorSnackbar(this, "Setting up drawer", e);
         }
-
         if (DeviceUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
         openMiniPlayerUponPlayerStarted();
+
+        // Schedule worker for checking for new streams and creating corresponding notifications
+        // if this is enabled by the user.
+        NotificationWorker.initialize(this);
     }
 
     @Override
@@ -174,10 +177,9 @@ public class MainActivity extends AppCompatActivity {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(app);
 
         if (prefs.getBoolean(app.getString(R.string.update_app_key), true)) {
-            // Start the service which is checking all conditions
+            // Start the worker which is checking all conditions
             // and eventually searching for a new version.
-            // The service searching for a new NewPipe version must not be started in background.
-            startNewVersionCheckService();
+            NewVersionWorker.enqueueNewVersionCheckingWork(app);
         }
     }
 
@@ -227,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
             drawerLayoutBinding.navigation.getMenu()
                     .add(R.id.menu_tabs_group, kioskId, 0, KioskTranslator
                             .getTranslatedKioskName(ks, this))
-                    .setIcon(KioskTranslator.getKioskIcon(ks, this));
+                    .setIcon(KioskTranslator.getKioskIcon(ks));
             kioskId++;
         }
 
@@ -719,7 +721,7 @@ public class MainActivity extends AppCompatActivity {
             if (toggle != null) {
                 toggle.syncState();
                 toolbarLayoutBinding.toolbar.setNavigationOnClickListener(v -> mainBinding.getRoot()
-                        .openDrawer(GravityCompat.START));
+                        .open());
                 mainBinding.getRoot().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
             }
         } else {

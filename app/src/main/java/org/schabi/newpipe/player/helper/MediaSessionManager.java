@@ -19,7 +19,6 @@ import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
 import org.schabi.newpipe.player.mediasession.PlayQueueNavigator;
-import org.schabi.newpipe.player.mediasession.PlayQueuePlaybackController;
 
 import java.util.Optional;
 
@@ -55,7 +54,6 @@ public class MediaSessionManager {
                 .build());
 
         sessionConnector = new MediaSessionConnector(mediaSession);
-        sessionConnector.setControlDispatcher(new PlayQueuePlaybackController(callback));
         sessionConnector.setQueueNavigator(new PlayQueueNavigator(mediaSession, callback));
         sessionConnector.setPlayer(player);
     }
@@ -135,9 +133,7 @@ public class MediaSessionManager {
         lastTitleHashCode = title.hashCode();
         lastArtistHashCode = artist.hashCode();
         lastDuration = duration;
-        if (optAlbumArt.isPresent()) {
-            lastAlbumArtHashCode = optAlbumArt.get().hashCode();
-        }
+        optAlbumArt.ifPresent(bitmap -> lastAlbumArtHashCode = bitmap.hashCode());
     }
 
     private boolean checkIfMetadataShouldBeSet(

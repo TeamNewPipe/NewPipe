@@ -52,7 +52,6 @@
     <string name="downloads">Λήψεις</string>
     <string name="downloads_title">Λήψεις</string>
     <string name="all">Όλα</string>
-    <string name="yes">Ναι</string>
     <string name="general_error">Σφάλμα</string>
     <string name="error_snackbar_action">Αναφορά</string>
     <string name="what_device_headline">Πληροφορίες:</string>
@@ -484,7 +483,6 @@
 \n
 \nΕνεργοποιήστε το «%1$s» στις ρυθμίσεις εάν θέλετε να το δείτε.</string>
     <string name="youtube_restricted_mode_enabled_title">Λειτουργία περιορισμένης πρόσβασης του YouTube</string>
-    <string name="settings_category_notification_title">Ειδοποίηση</string>
     <string name="unsupported_url_dialog_message">Δεν ήταν δυνατή η αναγνώριση της διεύθυνσης URL. Άνοιγμα με άλλη εφαρμογή;</string>
     <string name="auto_queue_toggle">Αυτόματη προσθήκη στην ουρά</string>
     <string name="clear_queue_confirmation_description">Η ουρά του ενεργού αναπαραγωγού θα αντικατασταθεί</string>
@@ -649,8 +647,6 @@
     <string name="seekbar_preview_thumbnail_title">Προεπισκόπηση στην μπάρα αναζήτησης</string>
     <string name="mark_as_watched">Σήμανση ως αναπαραχθέν</string>
     <string name="detail_heart_img_view_description">Επισημάνθηκε από τον δημιουργό</string>
-    <string name="loading_channel_details">Φόρτωση λεπτομερειών καναλιού…</string>
-    <string name="error_show_channel_details">Σφάλμα στην εμφάνιση λεπτομερειών καναλιού</string>
     <string name="show_image_indicators_summary">Εμφάνιση χρωματιστής κορδέλας πάνω στις εικόνες, που δείχνει την πηγή τους: κόκκινη για δίκτυο, μπλε για δίσκο και πράσινο για μνήμη</string>
     <string name="show_image_indicators_title">Εμφάνιση δεικτών εικόνων</string>
     <string name="remote_search_suggestions">Προτάσεις απομακρυσμένης αναζήτησης</string>
@@ -689,4 +685,30 @@
     <string name="background_player_already_playing_toast">Αναπαράγεται ήδη στο παρασκήνιο</string>
     <string name="detail_pinned_comment_view_description">Καρφιτσωμένο σχόλιο</string>
     <string name="leak_canary_not_available">Το LeakCanary δεν είναι διαθέσιμο</string>
+    <string name="adjust_by_semitones_checkbox">Προσαρμόστε τον τόνο με βάση τα μουσικά ημιτόνια</string>
+    <string name="playback_tempo_step">Βήμα τέμπο</string>
+    <string name="progressive_load_interval_exoplayer_default">Εξ\' ορισμού ExoPlayer</string>
+    <string name="progressive_load_interval_summary">Αλλάξτε το μέγεθος του διαστήματος φόρτωσης (επί του παρόντος είναι %s). Μια χαμηλότερη τιμή μπορεί να επιταχύνει την αρχική φόρτωση βίντεο. Οι αλλαγές απαιτούν επανεκκίνηση της εφαρμογής.</string>
+    <string name="notifications">Ειδοποιήσεις</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s νέα ροή</item>
+        <item quantity="other">%s νέες ροές</item>
+    </plurals>
+    <string name="streams_notifications_network_title">Απαιτούμενη σύνδεση δικτύου</string>
+    <string name="any_network">Οποιοδήποτε δίκτυο</string>
+    <string name="settings_category_player_notification_title">Ειδοποίηση αναπαραγωγής</string>
+    <string name="streams_notification_channel_name">Νέες ροές</string>
+    <string name="settings_category_player_notification_summary">Διαμόρφωση ειδοποίησης τρέχουσας αναπαραγωγής ροής</string>
+    <string name="streams_notifications_interval_title">Συχνότητα ελέγχου</string>
+    <string name="streams_notification_channel_description">Ειδοποιήσεις σχετικά με νέες ροές για συνδρομές</string>
+    <string name="loading_stream_details">Φόρτωση λεπτομερειών ροής…</string>
+    <string name="check_new_streams">Εκτελέστε έλεγχο για νέες ροές</string>
+    <string name="enable_streams_notifications_title">Ειδοποιήσεις για νέες ροές</string>
+    <string name="enable_streams_notifications_summary">Ειδοποίηση για νέες ροές από συνδρομές</string>
+    <string name="delete_downloaded_files_confirm">Διαγραφή όλων των ληφθέντων αρχείων από το δίσκο;</string>
+    <string name="notifications_disabled">Οι ειδοποιήσεις είναι απενεργοποιημένες</string>
+    <string name="enumeration_comma">,</string>
+    <string name="get_notified">Λάβετε ειδοποίηση</string>
+    <string name="you_successfully_subscribed">Έχετε εγγραφεί τώρα σε αυτό το κανάλι</string>
+    <string name="toggle_all">Εναλλαγή όλων</string>
 </resources>

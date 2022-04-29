@@ -1,1 +1,1 @@
-Svobodná, lehká YouTube aplikace for Android.
+Svobodný a nenáročný YouTube přehrávač for Android.

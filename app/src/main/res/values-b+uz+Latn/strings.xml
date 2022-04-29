@@ -112,7 +112,6 @@
     <string name="best_resolution">Eng yaxshi qaror</string>
     <string name="clear">Tozalash</string>
     <string name="disabled">Ijrochilar o\'chirib qo\'yilgan</string>
-    <string name="yes">Ha</string>
     <string name="artists">Artistlar</string>
     <string name="albums">Albomlar</string>
     <string name="songs">Qo\'shiqlar</string>
@@ -137,7 +136,6 @@
     <string name="content">Tarkib</string>
     <string name="popup_playing_toast">Pop-up rejimda ijro etish</string>
     <string name="background_player_playing_toast">Ijro etish foni</string>
-    <string name="settings_category_notification_title">Bildirishnoma</string>
     <string name="settings_category_updates_title">Yangilanishlar</string>
     <string name="settings_category_debug_title">Nosozliklarni tuzatish</string>
     <string name="settings_category_appearance_title">Tashqi ko\'rinish</string>

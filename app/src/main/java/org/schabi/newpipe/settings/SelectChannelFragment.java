@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -24,7 +25,6 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.util.List;
 import java.util.Vector;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -200,7 +200,7 @@ public class SelectChannelFragment extends DialogFragment {
 
         public class SelectChannelItemHolder extends RecyclerView.ViewHolder {
             public final View view;
-            final CircleImageView thumbnailView;
+            final ImageView thumbnailView;
             final TextView titleView;
             SelectChannelItemHolder(final View v) {
                 super(v);

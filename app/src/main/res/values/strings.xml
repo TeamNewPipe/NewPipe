@@ -78,6 +78,8 @@
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
     <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision. Seeking for 5, 15 or 25 seconds doesn\'t work with this</string>
     <string name="seek_duration_title">Fast-forward/-rewind seek duration</string>
+    <string name="progressive_load_interval_title">Playback load interval size</string>
+    <string name="progressive_load_interval_summary">Change the load interval size (currently %s). A lower value may speed up initial video loading. Changes require a player restart.</string>
     <string name="clear_queue_confirmation_title">Ask for confirmation before clearing a queue</string>
     <string name="clear_queue_confirmation_summary">Switching from one player to another may replace your queue</string>
     <string name="clear_queue_confirmation_description">The active player queue will be replaced</string>
@@ -141,7 +143,8 @@
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="settings_category_updates_title">Updates</string>
-    <string name="settings_category_notification_title">Notification</string>
+    <string name="settings_category_player_notification_title">Player notification</string>
+    <string name="settings_category_player_notification_summary">Configure current playing stream notification</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="content">Content</string>
@@ -166,7 +169,6 @@
     <string name="songs">Songs</string>
     <string name="albums">Albums</string>
     <string name="artists">Artists</string>
-    <string name="yes">Yes</string>
     <string name="disabled">Disabled</string>
     <string name="clear">Clear</string>
     <string name="best_resolution">Best resolution</string>
@@ -176,12 +178,15 @@
     <string name="always">Always</string>
     <string name="just_once">Just Once</string>
     <string name="file">File</string>
+    <string name="notifications">Notifications</string>
     <string name="notification_channel_name">NewPipe notification</string>
     <string name="notification_channel_description">Notifications for NewPipe\'s player</string>
     <string name="app_update_notification_channel_name">App update notification</string>
     <string name="app_update_notification_channel_description">Notifications for new NewPipe versions</string>
     <string name="hash_channel_name">Video hash notification</string>
     <string name="hash_channel_description">Notifications for video hashing progress</string>
+    <string name="streams_notification_channel_name">New streams</string>
+    <string name="streams_notification_channel_description">Notifications about new streams for subscriptions</string>
     <string name="error_report_channel_name">Error report notification</string>
     <string name="error_report_channel_description">Notifications to report errors</string>
     <string name="unknown_content">[Unknown]</string>
@@ -300,6 +305,10 @@
     </plurals>
     <string name="no_comments">No comments</string>
     <string name="comments_are_disabled">Comments are disabled</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s new stream</item>
+        <item quantity="other">%s new streams</item>
+    </plurals>
     <!-- Missions -->
     <string name="start">Start</string>
     <string name="pause">Pause</string>
@@ -404,6 +413,7 @@
     <string name="enqueued_next">Enqueued next</string>
     <string name="start_here_on_background">Start playing in the background</string>
     <string name="start_here_on_popup">Start playing in a popup</string>
+    <string name="loading_stream_details">Loading stream details…</string>
     <!-- Drawer -->
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>
@@ -455,6 +465,7 @@
     <string name="show_image_indicators_summary">Show Picasso colored ribbons on top of images indicating their source: red for network, blue for disk and green for memory</string>
     <string name="show_crash_the_player_title">Show \"Crash the player\"</string>
     <string name="show_crash_the_player_summary">Shows a crash option when using the player</string>
+    <string name="check_new_streams">Run check for new streams</string>
     <string name="crash_the_app">Crash the app</string>
     <string name="show_error_snackbar">Show an error snackbar</string>
     <string name="create_error_notification">Create an error notification</string>
@@ -486,7 +497,9 @@
     <string name="playback_pitch">Pitch</string>
     <string name="unhook_checkbox">Unhook (may cause distortion)</string>
     <string name="skip_silence_checkbox">Fast-forward during silence</string>
+    <string name="adjust_by_semitones_checkbox">Adjust pitch by musical semitones</string>
     <string name="playback_step">Step</string>
+    <string name="playback_tempo_step">Tempo step</string>
     <string name="playback_reset">Reset</string>
     <!-- GDPR dialog -->
     <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we hereby draw your attention to NewPipe\'s privacy policy. Please read it carefully.
@@ -507,6 +520,12 @@
         <item>240p</item>
         <item>144p</item>
     </string-array>
+    <!-- Notifications settings -->
+    <string name="enable_streams_notifications_title">New streams notifications</string>
+    <string name="enable_streams_notifications_summary">Notify about new streams from subscriptions</string>
+    <string name="streams_notifications_interval_title">Checking frequency</string>
+    <string name="streams_notifications_network_title">Required network connection</string>
+    <string name="any_network">Any network</string>
     <!-- Updates Settings -->
     <string name="updates_setting_title">Updates</string>
     <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>
@@ -576,6 +595,7 @@
     <string name="clear_download_history">Clear download history</string>
     <string name="confirm_prompt">Do you want to clear your download history or delete all downloaded files?</string>
     <string name="delete_downloaded_files">Delete downloaded files</string>
+    <string name="delete_downloaded_files_confirm">Erase all downloaded files from disk?</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">Deleted %1$s download</item>
         <item quantity="other">Deleted %1$s downloads</item>
@@ -712,7 +732,12 @@
     <string name="tablet_mode_title">Tablet mode</string>
     <string name="on">On</string>
     <string name="off">Off</string>
-    <!-- Show Channel Details -->
-    <string name="error_show_channel_details">Error at Show Channel Details</string>
-    <string name="loading_channel_details">Loading Channel Details…</string>
+    <!-- Progressive Load Interval -->
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer default</string>
+    <!-- New streams notifications -->
+    <string name="notifications_disabled">Notifications are disabled</string>
+    <string name="get_notified">Get notified</string>
+    <string name="you_successfully_subscribed">You now subscribed to this channel</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Toggle all</string>
 </resources>

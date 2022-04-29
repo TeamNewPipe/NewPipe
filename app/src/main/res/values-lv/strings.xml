@@ -236,7 +236,6 @@
     <string name="best_resolution">Labākā izšķirtspēja</string>
     <string name="clear">Notīrīt</string>
     <string name="disabled">Atspējots</string>
-    <string name="yes">Jā</string>
     <string name="artists">Mākslinieki</string>
     <string name="albums">Albūmi</string>
     <string name="songs">Dziesmas</string>
@@ -261,7 +260,6 @@
     <string name="content">Saturs</string>
     <string name="popup_playing_toast">Atskaņo popup režīmā</string>
     <string name="background_player_playing_toast">Atskaņo fonā</string>
-    <string name="settings_category_notification_title">Notifikācija</string>
     <string name="settings_category_updates_title">Atjauninājumi</string>
     <string name="settings_category_debug_title">Atkļūdošana</string>
     <string name="settings_category_appearance_title">Izskats</string>
@@ -663,8 +661,6 @@
     <string name="detail_heart_img_view_description">Autors piekrīt</string>
     <string name="open_website_license">Atvērt mājaslapu</string>
     <string name="tablet_mode_title">Tabletes režīms</string>
-    <string name="error_show_channel_details">Kļūda rādot kanāla informāciju</string>
-    <string name="loading_channel_details">Ielādē kanāla informāciju…</string>
     <string name="low_quality_smaller">Zemas kvalitātes (mazāks)</string>
     <string name="metadata_privacy">Privātums</string>
     <string name="metadata_privacy_unlisted">Sarakstā neiekļauts</string>

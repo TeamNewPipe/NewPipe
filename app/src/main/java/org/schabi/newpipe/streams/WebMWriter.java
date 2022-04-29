@@ -121,6 +121,7 @@ public class WebMWriter implements Closeable {
         clustersOffsetsSizes = null;
     }
 
+    @SuppressWarnings("MethodLength")
     public void build(final SharpStream out) throws IOException, RuntimeException {
         if (!out.canRewind()) {
             throw new IOException("The output stream must be allow seek");

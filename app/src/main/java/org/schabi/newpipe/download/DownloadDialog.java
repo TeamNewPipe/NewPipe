@@ -61,6 +61,7 @@ import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.SecondaryStreamHelper;
+import org.schabi.newpipe.util.SimpleOnSeekBarChangeListener;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -151,7 +152,7 @@ public class DownloadDialog extends DialogFragment
     public static DownloadDialog newInstance(final Context context, final StreamInfo info) {
         final ArrayList<VideoStream> streamsList = new ArrayList<>(ListHelper
                 .getSortedStreamVideosList(context, info.getVideoStreams(),
-                        info.getVideoOnlyStreams(), false));
+                        info.getVideoOnlyStreams(), false, false));
         final int selectedStreamIndex = ListHelper.getDefaultResolutionIndex(context, streamsList);
 
         final DownloadDialog instance = newInstance(info);
@@ -321,21 +322,15 @@ public class DownloadDialog extends DialogFragment
         final int threads = prefs.getInt(getString(R.string.default_download_threads), 3);
         dialogBinding.threadsCount.setText(String.valueOf(threads));
         dialogBinding.threads.setProgress(threads - 1);
-        dialogBinding.threads.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        dialogBinding.threads.setOnSeekBarChangeListener(new SimpleOnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(final SeekBar seekbar, final int progress,
+            public void onProgressChanged(@NonNull final SeekBar seekbar, final int progress,
                                           final boolean fromUser) {
                 final int newProgress = progress + 1;
                 prefs.edit().putInt(getString(R.string.default_download_threads), newProgress)
                         .apply();
                 dialogBinding.threadsCount.setText(String.valueOf(newProgress));
             }
-
-            @Override
-            public void onStartTrackingTouch(final SeekBar p1) { }
-
-            @Override
-            public void onStopTrackingTouch(final SeekBar p1) { }
         });
 
         fetchStreamsSize();
