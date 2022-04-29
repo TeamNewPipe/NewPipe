@@ -28,6 +28,7 @@
         <item name="android:windowBackground">@color/light_background_color</item>
         <item name="windowBackground">@color/light_background_color</item>
 
+        <item name="android:textColor">@color/light_youtube_accent_color</item>
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
         <item name="checked_selector">@drawable/selector_checked_light</item>
@@ -52,6 +53,7 @@
         <item name="android:windowBackground">@color/dark_background_color</item>
         <item name="windowBackground">@color/dark_background_color</item>
 
+        <item name="android:textColor">@color/dark_youtube_accent_color</item>
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
         <item name="checked_selector">@drawable/selector_checked_dark</item>
@@ -73,6 +75,7 @@
         <item name="android:windowBackground">@color/black_background_color</item>
         <item name="windowBackground">@color/black_background_color</item>
 
+        <item name="android:textColor">@color/dark_youtube_accent_color</item>
         <item name="separator_color">@color/black_separator_color</item>
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
 
