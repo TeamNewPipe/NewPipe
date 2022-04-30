@@ -20,7 +20,7 @@ import org.schabi.newpipe.extractor.downloader.Response
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.util.ReleaseVersionUtil.coerceUpdateCheckExpiry
 import org.schabi.newpipe.util.ReleaseVersionUtil.isLastUpdateCheckExpired
-import org.schabi.newpipe.util.ReleaseVersionUtil.isReleaseApk
+import org.schabi.newpipe.util.Version
 import java.io.IOException
 
 class NewVersionWorker(
@@ -34,19 +34,21 @@ class NewVersionWorker(
      *
      * @param versionName    Name of new version
      * @param apkLocationUrl Url with the new apk
-     * @param versionCode    Code of new version
      */
     private fun compareAppVersionAndShowNotification(
         versionName: String,
-        apkLocationUrl: String?,
-        versionCode: Int
+        apkLocationUrl: String?
     ) {
-        if (BuildConfig.VERSION_CODE >= versionCode) {
+        val sourceVersion = Version.fromString(BuildConfig.VERSION_NAME)
+        val targetVersion = Version.fromString(versionName)
+
+        // abort if source version is the same or newer than target version
+        if (sourceVersion >= targetVersion) {
             return
         }
+
         val app = App.getApp()
 
-        // A pending intent to open the apk location url in the browser.
         val intent = Intent(Intent.ACTION_VIEW, apkLocationUrl?.toUri())
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         val pendingIntent = PendingIntent.getActivity(app, 0, intent, 0)
@@ -67,11 +69,6 @@ class NewVersionWorker(
 
     @Throws(IOException::class, ReCaptchaException::class)
     private fun checkNewVersion() {
-        // Check if the current apk is a github one or not.
-        if (!isReleaseApk()) {
-            return
-        }
-
         val prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
         // Check if the last request has happened a certain time ago
         // to reduce the number of API requests.
@@ -81,7 +78,7 @@ class NewVersionWorker(
         }
 
         // Make a network request to get latest NewPipe data.
-        val response = DownloaderImpl.getInstance().get(NEWPIPE_API_URL)
+        val response = DownloaderImpl.getInstance().get(API_URL)
         handleResponse(response)
     }
 
@@ -102,19 +99,18 @@ class NewVersionWorker(
 
         // Parse the json from the response.
         try {
-            val githubStableObject = JsonParser.`object`()
-                .from(response.responseBody()).getObject("flavors")
-                .getObject("github").getObject("stable")
-
-            val versionName = githubStableObject.getString("version")
-            val versionCode = githubStableObject.getInt("version_code")
-            val apkLocationUrl = githubStableObject.getString("apk")
-            compareAppVersionAndShowNotification(versionName, apkLocationUrl, versionCode)
+            val jObj = JsonParser.`object`().from(response.responseBody())
+            val versionName = jObj.getString("tag_name")
+            val apkLocationUrl = jObj
+                .getArray("assets")
+                .getObject(0)
+                .getString("browser_download_url")
+            compareAppVersionAndShowNotification(versionName, apkLocationUrl)
         } catch (e: JsonParserException) {
-            // Most likely something is wrong in data received from NEWPIPE_API_URL.
+            // Most likely something is wrong in data received from API_URL.
             // Do not alarm user and fail silently.
             if (DEBUG) {
-                Log.w(TAG, "Could not get NewPipe API: invalid json", e)
+                Log.w(TAG, "Could not get Github API: invalid json", e)
             }
         }
     }
@@ -135,7 +131,8 @@ class NewVersionWorker(
     companion object {
         private val DEBUG = MainActivity.DEBUG
         private val TAG = NewVersionWorker::class.java.simpleName
-        private const val NEWPIPE_API_URL = "https://newpipe.net/api/data.json"
+        private const val API_URL =
+            "https://api.github.com/repos/polymorphicshade/NewPipe/releases/latest"
 
         /**
          * Start a new worker which
