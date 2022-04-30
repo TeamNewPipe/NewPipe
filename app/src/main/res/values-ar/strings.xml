@@ -91,7 +91,6 @@
     <string name="show_age_restricted_content_title">محتوى مقيد للبالغين</string>
     <string name="duration_live">بث مباشر</string>
     <string name="error_report_title">تقرير عن المشكلة</string>
-    <string name="yes">نعم</string>
     <string name="disabled">متوقف</string>
     <string name="clear">تنظيف</string>
     <string name="best_resolution">أفضل دقة</string>
@@ -243,7 +242,7 @@
     <string name="controls_download_desc">تنزيل ملف البث</string>
     <string name="tab_bookmarks">الإشارات المرجعية</string>
     <string name="use_inexact_seek_title">استعمال التقديم السريع الغير دقيق</string>
-    <string name="use_inexact_seek_summary">خاصية التقديم الغير دقيق تسمح للمشغل بالقفز خلال الفديو بشكل اسرع مع دقة قفز اقل. خاصية القفز ل5، 15 او 25 لا تعمل مع القفز الغير دقيق</string>
+    <string name="use_inexact_seek_summary">خاصية التقديم الغير دقيق تسمح للمشغل بالقفز خلال الفديو بشكل أسرع مع دقة قفز أقل. خاصية القفز ل5، 15 او 25 لا تعمل مع القفز الغير دقيق</string>
     <string name="download_thumbnail_title">تحميل الصور المصغرة</string>
     <string name="thumbnail_cache_wipe_complete_notice">تم إفراغ مساحة ذاكرة التخزين المؤقتة الخاصة بالصور</string>
     <string name="file">الملف</string>
@@ -290,7 +289,7 @@
     <string name="no_streams_available_download">لا يوجد بث متاح للتنزيل</string>
     <string name="one_item_deleted">تم حذف عنصر واحد.</string>
     <string name="toast_no_player">لم يتم تثبيت أي تطبيق لتشغيل هذا الملف</string>
-    <string name="app_license">NewPipe هو برنامج مفتوح المصدر وبحقوق متروكة: يمكنك استخدام الكود ودراسته وتحسينه كما شئت. وعلى وجه التحديد يمكنك إعادة توزيعه / أو تعديله تحت شروط رخصة GNU العمومية والتي نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (باختيارك) أي إصدار جديد.</string>
+    <string name="app_license">NewPipe هو برنامج مفتوح المصدر وبحقوق متروكة: يمكنك استخدام الكود ودراسته وتحسينه كما شئت. وعلى وجه التحديد يمكنك إعادة توزيعه / أو تعديله تحت شروط رخصة GNU العمومية والتي نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (باختيارك) أي إصدار أحدث.</string>
     <string name="title_last_played">آخر ما تم تشغيله</string>
     <string name="title_most_played">الأكثر تشغيلا</string>
     <string name="override_current_data">هذا سوف يُزيل إعداداتك الحالية.</string>
@@ -301,7 +300,7 @@
     <string name="previous_export">نسخة احتياطية</string>
     <string name="subscriptions_import_unsuccessful">تعذر استيراد الاشتراكات</string>
     <string name="subscriptions_export_unsuccessful">لا يمكن تصدير الاشتراكات</string>
-    <string name="import_youtube_instructions">استيراد اشتراكات YouTube من برنامج Google:
+    <string name="import_youtube_instructions">استيراد اشتراكات YouTube من Google takeout:
 \n
 \n1. انتقل إلى عنوان URL هذا: %1$s
 \n2. تسجيل الدخول عند سؤالك
@@ -585,7 +584,6 @@
     <string name="wifi_only">فقط على شبكة Wi-Fi</string>
     <string name="autoplay_summary">بدء التشغيل تلقائياً — %s</string>
     <string name="title_activity_play_queue">تشغيل قائمة الانتظار</string>
-    <string name="settings_category_notification_title">الإشعار</string>
     <string name="unsupported_url_dialog_message">تعذر التعرف على الرابط. فتح باستخدام تطبيق آخر؟</string>
     <string name="auto_queue_toggle">قائمة انتظار تلقائيّة</string>
     <string name="clear_queue_confirmation_description">سيتم استبدال قائمة انتظار للمشغل النشط</string>
@@ -616,7 +614,7 @@
     <string name="notification_colorize_title">تلوين الإشعارات</string>
     <string name="show_thumbnail_summary">استخدم الصورة المصغرة لكل من خلفية شاشة القفل والإشعارات</string>
     <string name="show_thumbnail_title">إظهار الصورة المصغرة</string>
-    <string name="show_meta_info_summary">قم بإيقاف التشغيل لإخفاء مربعات المعلومات الوصفية بمعلومات إضافية حول منشئ، البث أو محتوى البث أو طلب البحث</string>
+    <string name="show_meta_info_summary">قم بإيقاف التشغيل لإخفاء مربعات المعلومات الوصفية بمعلومات إضافية حول منشئ البث أو محتوى البث أو طلب البحث</string>
     <string name="show_meta_info_title">إظهار معلومات التعريف</string>
     <string name="recent">حديثة</string>
     <string name="msg_calculating_hash">حساب التجزئة</string>
@@ -689,8 +687,6 @@
     <string name="seekbar_preview_thumbnail_title">معاينة مصغرة على شريط التمرير</string>
     <string name="mark_as_watched">علّمه كفيديو تمت مشاهدته</string>
     <string name="detail_heart_img_view_description">أُعجب بها منشئ المحتوى</string>
-    <string name="loading_channel_details">جاري تحميل تفاصيل القناة…</string>
-    <string name="error_show_channel_details">خطأ في عرض تفاصيل القناة</string>
     <string name="show_image_indicators_summary">أظهر أشرطة ملونة لبيكاسو أعلى الصور تشير إلى مصدرها: الأحمر للشبكة والأزرق للقرص والأخضر للذاكرة</string>
     <string name="show_image_indicators_title">إظهار مؤشرات الصور</string>
     <string name="remote_search_suggestions">اقتراحات البحث عن بعد</string>
@@ -737,4 +733,34 @@
     <string name="background_player_already_playing_toast">يتم تشغيله في الخلفية</string>
     <string name="detail_pinned_comment_view_description">تعليق مثبت</string>
     <string name="leak_canary_not_available">LeakCanary غير متوفر</string>
+    <string name="adjust_by_semitones_checkbox">ضبط الصوت من خلال النغمات الموسيقية النصفية</string>
+    <string name="playback_tempo_step">خطوة الإيقاع</string>
+    <string name="progressive_load_interval_exoplayer_default">الافتراضي ExoPlayer</string>
+    <string name="progressive_load_interval_summary">تغيير حجم الفاصل الزمني للتحميل (حاليا %s). قد تؤدي القيمة الأقل إلى تسريع تحميل الفيديو الأولي. تتطلب التغييرات إعادة تشغيل المشغل.</string>
+    <string name="settings_category_player_notification_summary">تكوين إشعار مشغل البث الحالي</string>
+    <string name="notifications">الإشعارات</string>
+    <string name="loading_stream_details">تحميل تفاصيل البث…</string>
+    <string name="notifications_disabled">تم تعطيل الإشعارات</string>
+    <string name="streams_notification_channel_name">بث جديد</string>
+    <string name="settings_category_player_notification_title">إشعار المشغل</string>
+    <string name="you_successfully_subscribed">لقد اشتركت الآن في هذه القناة</string>
+    <string name="streams_notification_channel_description">الإخطارات حول التدفقات الجديدة للاشتراكات</string>
+    <string name="enable_streams_notifications_title">إشعارات أحداث البث الجديدة</string>
+    <string name="enable_streams_notifications_summary">الإخطار بأحداث البث الجديدة من الاشتراكات</string>
+    <string name="check_new_streams">تشغيل التحقق من وجود تدفقات جديدة</string>
+    <string name="streams_notifications_interval_title">معدل البحث</string>
+    <string name="streams_notifications_network_title">مطلوب اتصال الشبكة</string>
+    <string name="any_network">أي شبكة</string>
+    <string name="delete_downloaded_files_confirm">محو جميع الملفات التي تم تنزيلها من القرص؟</string>
+    <string name="get_notified">الحصول على إشعار</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">تبديل الكل</string>
+    <plurals name="new_streams">
+        <item quantity="zero">%s دفق جديد</item>
+        <item quantity="one">%s دفق جديد</item>
+        <item quantity="two">%s دفق جديد</item>
+        <item quantity="few">%s دفوق جديدة</item>
+        <item quantity="many">%s دفق جديد</item>
+        <item quantity="other">%s دفق جديد</item>
+    </plurals>
 </resources>

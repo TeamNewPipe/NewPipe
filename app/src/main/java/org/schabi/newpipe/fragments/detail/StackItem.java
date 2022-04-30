@@ -1,5 +1,7 @@
 package org.schabi.newpipe.fragments.detail;
 
+import androidx.annotation.NonNull;
+
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 
 import java.io.Serializable;
@@ -46,6 +48,7 @@ class StackItem implements Serializable {
         return playQueue;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return getServiceId() + ":" + getUrl() + " > " + getTitle();

@@ -1,1 +1,1 @@
-一個自由輕量的 Android YouTube 前端。
+一個自由輕巧嘅 Android YouTube 前端。

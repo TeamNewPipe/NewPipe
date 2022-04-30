@@ -58,7 +58,6 @@
     <string name="downloads_title">Atsisiuntimai</string>
     <string name="error_report_title">Klaidų ataskaita</string>
     <string name="all">Visi</string>
-    <string name="yes">Taip</string>
     <string name="disabled">Išjungta</string>
     <string name="clear">Išvalyti</string>
     <string name="best_resolution">Geriausia raiška</string>
@@ -331,7 +330,6 @@
     <string name="youtube_restricted_mode_enabled_summary">Youtube turi „apribotą režimą“ kuriame slepiamas galimai suaugusiems skirtas turinys</string>
     <string name="youtube_restricted_mode_enabled_title">Įjungti YouTube „apribotą režimą“</string>
     <string name="show_age_restricted_content_summary">Rodyti turinį kuris gali būti netinkamas vaikams (18+)</string>
-    <string name="settings_category_notification_title">Pranešimai</string>
     <string name="settings_category_updates_title">Atnaujinimai</string>
     <string name="peertube_instance_add_exists">Kopija jau yra</string>
     <string name="peertube_instance_add_https_only">Palaikomi tik HTTPS adresai</string>
@@ -659,8 +657,6 @@
     <string name="dont_show">Nerodyti</string>
     <string name="detail_heart_img_view_description">Širdelė nuo kurėjo</string>
     <string name="mark_as_watched">Pažymėti kaip peržiūrėtą</string>
-    <string name="loading_channel_details">Įkeliama kanalo išsami informacija…</string>
-    <string name="error_show_channel_details">Klaida rodant kanalo išsamią informaciją</string>
     <string name="show_image_indicators_summary">Rodyti „Picasso“ spalvotas juosteles ant vaizdų, nurodančių jų šaltinį: raudona tinklui, mėlyna diskui ir žalia atmintis</string>
     <string name="show_image_indicators_title">Rodyti vaizdo indikatorius</string>
     <string name="remote_search_suggestions">Nuotolinės paieškos pasiūlymai</string>

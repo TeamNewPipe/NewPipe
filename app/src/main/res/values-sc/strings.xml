@@ -415,7 +415,6 @@
     <string name="best_resolution">Risolutzione mègius</string>
     <string name="clear">Isbòida</string>
     <string name="disabled">Disabilitadu</string>
-    <string name="yes">Eja</string>
     <string name="artists">Artista</string>
     <string name="albums">Albums</string>
     <string name="songs">Cantzones</string>
@@ -549,7 +548,6 @@
     <string name="clear_queue_confirmation_description">Sa lista dae su riproduidore ativu at a èssere remplasada</string>
     <string name="clear_queue_confirmation_summary">Colende dae unu riproduidore a s\'àteru dias pòdere remplasare sa lista tua</string>
     <string name="clear_queue_confirmation_title">Pedi una cunfirma in antis de iscantzellare una lista</string>
-    <string name="settings_category_notification_title">Notìfica</string>
     <string name="notification_action_shuffle">Òrdine casuale</string>
     <string name="notification_actions_summary">Modìfica cada atzione de notìfica inoghe in suta incarchende·la. Ischerta·nde finas a tres de ammustrare in sa notìfica cumpata impreende sas casellas de controllu a destra</string>
     <string name="notification_scale_to_square_image_summary">Iscala sa miniadura ammustrada in sa notìfica dae su formadu in 16:9 a cussu 1:1 (diat pòdere causare istorchimentos)</string>
@@ -649,8 +647,6 @@
     <string name="comments_are_disabled">Sos cummentos sunt disabilitados</string>
     <string name="detail_heart_img_view_description">Su creadore b\'at postu unu coro</string>
     <string name="mark_as_watched">Marca comente pompiadu</string>
-    <string name="loading_channel_details">Carrighende sos detàllios de su canale…</string>
-    <string name="error_show_channel_details">Errore in sa visualizatzione de sos detàllios de su canale</string>
     <string name="show_image_indicators_summary">Ammustra sos listrones colorados de Picasso in subra de sas immàgines chi indicant sa fonte issoro: ruja pro sa retze, biaita pro su discu e birde pro sa memòria</string>
     <string name="show_image_indicators_title">Ammustra sos indicadores de immàgines</string>
     <string name="remote_search_suggestions">Impòsitos de chirca remota</string>
@@ -689,4 +685,30 @@
     <string name="detail_pinned_comment_view_description">Cummentu apicadu</string>
     <string name="background_player_already_playing_toast">Giai in riprodutzione in s\'isfundu</string>
     <string name="leak_canary_not_available">LeakCanary no est a disponimentu</string>
+    <string name="adjust_by_semitones_checkbox">Règula s\'intonatzione in base a sos semitonos musicales</string>
+    <string name="playback_tempo_step">Passu de tempus</string>
+    <string name="progressive_load_interval_exoplayer_default">Valore ExoPlayer predefinidu</string>
+    <string name="progressive_load_interval_summary">Muda sa mannària de s\'intervallu de carrigamentu (in custu momentu %s). Unu valore prus bassu diat pòdere allestrare su carrigamentu de incumintzu de su vìdeu. Sas modìficas tenent bisòngiu de torrare a allùghere su riproduidore.</string>
+    <string name="settings_category_player_notification_summary">Cunfigura sa notìfica de su flussu in cursu de riprodutzione</string>
+    <string name="streams_notification_channel_description">Notìficas de flussos noos dae sas iscritziones</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s flussu nou</item>
+        <item quantity="other">%s flussos noos</item>
+    </plurals>
+    <string name="loading_stream_details">Carrighende sos detàllios de su flussu…</string>
+    <string name="check_new_streams">Avia una verìfica pro flussos noos</string>
+    <string name="enable_streams_notifications_title">Notìficas pro sos flussos noos</string>
+    <string name="enable_streams_notifications_summary">Notìfica de flussos noos dae sas iscritziones</string>
+    <string name="streams_notifications_interval_title">Frecuèntzia de controllu</string>
+    <string name="streams_notifications_network_title">Connessione de retze rechesta</string>
+    <string name="any_network">Cale si siat retze</string>
+    <string name="notifications_disabled">Sas notìficas sunt disabilitadas</string>
+    <string name="get_notified">Retzi notìficas</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Ativa/disativa totu</string>
+    <string name="you_successfully_subscribed">Como ses iscritu a custu canale</string>
+    <string name="settings_category_player_notification_title">Notìfica de su riproduidore</string>
+    <string name="notifications">Notìficas</string>
+    <string name="streams_notification_channel_name">Flussos noos</string>
+    <string name="delete_downloaded_files_confirm">Iscantzellare totu sos archìvios iscarrigados dae su discu\?</string>
 </resources>

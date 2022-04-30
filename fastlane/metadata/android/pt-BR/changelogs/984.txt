@@ -1,0 +1,7 @@
+Carregamento de itens iniciais suficientes em listas para preencher a tela inteira e corrigir a rolagem em tablets e TVs
+Correção de falhas aleatórias ao percorrer listas
+Procura rápida no player do arco overlay passandndo pela UI do sistema
+Reversão das mudanças para recortes ao jogar em várias janelas, causando a regressão do jogador deslocado em alguns telefones
+Aumento do compileSdk de 30 para 31
+Atualização da biblioteca de relatórios de erros
+Refatoração de algum código no player

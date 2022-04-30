@@ -73,7 +73,6 @@
     <string name="all">அனைத்தும்</string>
     <string name="playlists">ஒளிச்சரங்கள்</string>
     <string name="users">பயனர்கள்</string>
-    <string name="yes">ஆம்</string>
     <string name="clear">அழி</string>
     <string name="always">எப்பொழுதும்</string>
     <string name="just_once">ஒரு முறை</string>
@@ -331,7 +330,6 @@
     <string name="enqueue_next_stream">அடுத்தைச் சாரைபடுத்து</string>
     <string name="enqueued_next">அடுத்தது சாரைபடுத்தப்பட்டது</string>
     <string name="rename_playlist">மறுபெயரிடு</string>
-    <string name="loading_channel_details">பதிவுத்தட விவரங்களை ஏற்றுகிறது…</string>
     <string name="no_playlist_bookmarked_yet">ஒளிச்சர நூற்குறிகள் இன்னுமில</string>
     <string name="unbookmark_playlist">நூற்குறியை நீக்கு</string>
     <string name="set_as_playlist_thumbnail">ஒளிச்சர சிறுபடமாக அமை</string>
@@ -339,10 +337,9 @@
     <string name="settings_file_replacement_character_title">மாற்றீடு வரியுரு</string>
     <string name="playlist_page_summary">ஒளிச்சரப் பக்கம்</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">ஒன்றிணைக்கா சந்தாக்களை மட்டும் காட்டு</string>
-    <string name="error_show_channel_details">பதிவுத்தட விவரங்களைக் காட்டுவதில் பிழை</string>
     <string name="import_settings">அமைவையும் இறக்குமதி செய்யவா\?</string>
     <string name="start_here_on_background">பின்னணியில் இயங்கத் துவங்கு</string>
-    <string name="start_here_on_popup"></string>
+    <string name="start_here_on_popup">பாப்அப்பில் இயங்கத் துவங்கு</string>
     <string name="show_channel_details">பதிவுத்தட விவரங்களைக் காட்டு</string>
     <string name="select_a_playlist">ஒளிச்சரத்தைத் தேர்ந்தெடு</string>
     <string name="add_to_playlist">ஒளிச்சரத்தில் சேர்</string>

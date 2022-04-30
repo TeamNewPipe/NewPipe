@@ -19,7 +19,8 @@ class UrlFinderTest {
             |Dapibus ultrices in iaculis nunc sed augue lacus viverra. Nisl purus in mollis nunc. 
             |Viverra nibh cras pulvinar mattis. ####!@!@!@!#### Not this one: https://www.youtube.com/playlist?list=SHOULD_NOT Nunc sed blandit libero volutpat. 
             |Nisl tincidunt eget nullam non nisi est sit amet. Purus in massa tempor nec feugiat nisl pretium fusce id. 
-            |Vulputate eu scelerisque felis imperdiet proin fermentum leo vel.""".trimMargin()
+            |Vulputate eu scelerisque felis imperdiet proin fermentum leo vel.
+            """.trimMargin()
         )
 
         assertEquals(expected, result)
@@ -35,7 +36,8 @@ class UrlFinderTest {
             |Dapibus ultrices in iaculis nunc sed augue lacus viverra. Nisl purus in mollis nunc. 
             |Viverra nibh cras pulvinar mattis. Not this one: sed blandit libero volutpat. 
             |Nisl tincidunt eget nullam non nisi est sit amet. Purus in massa tempor nec feugiat nisl pretium fusce id. 
-            |Vulputate eu scelerisque felis imperdiet proin fermentum leo vel.""".trimMargin()
+            |Vulputate eu scelerisque felis imperdiet proin fermentum leo vel.
+            """.trimMargin()
         )
 
         assertEquals(null, result)

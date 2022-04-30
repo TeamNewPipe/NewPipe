@@ -89,7 +89,6 @@
     <string name="black_theme_title">Svart</string>
     <string name="popup_playing_toast">Spiller av i oppsprettsmodus</string>
     <string name="all">Alle</string>
-    <string name="yes">Ja</string>
     <string name="disabled">Avskrudd</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
@@ -553,7 +552,6 @@
     <string name="title_activity_play_queue">Spill kø</string>
     <string name="no_playlist_bookmarked_yet">Ingen spillelistebokmerker enda</string>
     <string name="copy_for_github">Kopier formatert rapport</string>
-    <string name="settings_category_notification_title">Merknad</string>
     <string name="notification_action_repeat">Gjenta</string>
     <string name="notification_action_4_title">Femte handlingstast</string>
     <string name="notification_action_3_title">Fjerde handlingstast</string>
@@ -653,14 +651,12 @@
         <item quantity="one">Slettet én nedlastning</item>
         <item quantity="other">Slettet %1$s nedlastninger</item>
     </plurals>
-    <string name="loading_channel_details">Laster inn kanaldetaljer …</string>
     <string name="remote_search_suggestions">Søkeforslag annensteds fra</string>
     <string name="local_search_suggestions">Lokale søkeforslag</string>
     <string name="mark_as_watched">Marker som sett</string>
     <string name="start_main_player_fullscreen_summary">Ikke start videoer i minispilleren, men gå til fullskjermsmodus direkte, hvis auto-rotering er låst. Du har fremdeles tilgang til minispilleren ved å avslutte fullskjermsvisning.</string>
     <string name="show_image_indicators_summary">Vis Picasso-fargede bånd på toppen av bilder for å indikere kilde: Rød for nettverk, blå for disk, og grønn for minne</string>
     <string name="detail_heart_img_view_description">Hjertemerket av skaper</string>
-    <string name="error_show_channel_details">Kunne ikke vise kanaldetaljer</string>
     <string name="show_image_indicators_title">Vis bildeindikatorer</string>
     <string name="main_page_content_swipe_remove">Dra elementer for å fjerne dem</string>
     <string name="start_main_player_fullscreen_title">Start hovedspiller i fullskjerm</string>
@@ -685,4 +681,7 @@
     <string name="no_appropriate_file_manager_message">Installer en filbehandler først, eller skru av «%s» i nedlastingsinnstillingene.</string>
     <string name="no_appropriate_file_manager_message_android_10">Installer en filbehandler som støtter lagringstilgangsrammeverk først.</string>
     <string name="leak_canary_not_available">LeakCanary er ikke tilgjengelig</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer-forvalg</string>
+    <string name="adjust_by_semitones_checkbox">Juster toneart etter musikalske halvtoner</string>
+    <string name="playback_tempo_step">Tempo-steg</string>
 </resources>

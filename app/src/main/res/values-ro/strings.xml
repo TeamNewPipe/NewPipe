@@ -90,7 +90,6 @@
     <string name="black_theme_title">Negru</string>
     <string name="popup_playing_toast">Redare în mod pop-up</string>
     <string name="all">Toate</string>
-    <string name="yes">Da</string>
     <string name="disabled">Dezactivat</string>
     <string name="app_ui_crash">Aplicația/UI s-a oprit</string>
     <string name="info_labels">Ce:\\nSolicitare:\\nLimba conținutului:\\nȚara conținutului:\\nLimba aplicației:\\nServiciu:\\nOra GMT:\\nPachet:\\nVersiune: \\nVersiune SO:</string>
@@ -364,7 +363,6 @@
     <string name="youtube_restricted_mode_enabled_summary">YouTube oferă un \"Mod restricționat\" care ascunde conținutul potențial matur</string>
     <string name="youtube_restricted_mode_enabled_title">Activați \"Modul restricționat\" de pe YouTube</string>
     <string name="show_age_restricted_content_summary">Afișați conținut posibil nepotrivit pentru copii, deoarece are o limită de vârstă (cum ar fi 18+)</string>
-    <string name="settings_category_notification_title">Notificare</string>
     <string name="unsupported_url_dialog_message">Adresa URL nu a putut fi recunoscută. Deschideți cu o altă aplicație\?</string>
     <string name="show_meta_info_title">Afișează informațiile meta</string>
     <string name="notification_colorize_summary">Faceți ca Android să personalizeze culoarea notificării în funcție de culoarea principală din miniatură (rețineți că aceasta nu este disponibilă pe toate dispozitivele)</string>
@@ -620,8 +618,6 @@
     <string name="enqueued_next">Următorul pus în coadă</string>
     <string name="enqueue_next_stream">Adăugați în coadă pe următorul</string>
     <string name="mark_as_watched">Marcare ca vizionat</string>
-    <string name="loading_channel_details">Încărcare Detalii canal…</string>
-    <string name="error_show_channel_details">Eroare la Afișare detalii canal</string>
     <string name="off">Oprit</string>
     <string name="on">Pornit</string>
     <string name="tablet_mode_title">Mod tabletă</string>

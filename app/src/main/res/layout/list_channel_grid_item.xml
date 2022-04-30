@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
@@ -10,7 +11,7 @@
     android:minWidth="@dimen/channel_item_grid_min_width"
     android:padding="@dimen/channel_item_grid_padding">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/itemThumbnailView"
         android:layout_width="@dimen/channel_item_grid_thumbnail_image_size"
         android:layout_height="@dimen/channel_item_grid_thumbnail_image_size"
@@ -18,6 +19,7 @@
         android:layout_margin="2dp"
         android:contentDescription="@string/detail_uploader_thumbnail_view_description"
         android:src="@drawable/buddy_channel_item"
+        app:shapeAppearance="@style/CircularImageView"
         tools:ignore="RtlHardcoded" />
 
     <TextView

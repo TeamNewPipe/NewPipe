@@ -7,6 +7,7 @@ import android.text.util.Linkify;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -28,8 +29,6 @@ import org.schabi.newpipe.util.PicassoHelper;
 
 import java.util.regex.Matcher;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private static final String TAG = "CommentsMiniIIHolder";
 
@@ -40,7 +39,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private final int commentVerticalPadding;
 
     private final RelativeLayout itemRoot;
-    public final CircleImageView itemThumbnailView;
+    public final ImageView itemThumbnailView;
     private final TextView itemContentView;
     private final TextView itemLikesCountView;
     private final TextView itemPublishedTime;

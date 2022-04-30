@@ -93,7 +93,6 @@
     <string name="downloads_title">Allalaadimised</string>
     <string name="error_report_title">Vea teatamine</string>
     <string name="all">Kõik</string>
-    <string name="yes">Jah</string>
     <string name="disabled">Keelatud</string>
     <string name="clear">Kustuta</string>
     <string name="best_resolution">Parim lahutus</string>
@@ -327,7 +326,7 @@
     <string name="playback_step">Samm</string>
     <string name="playback_reset">Lähtesta</string>
     <string name="start_accept_privacy_policy">Selleks, et täita Euroopa Üldist Andmekaitse Määrust (GDPR), juhime tähelepanu NewPipe\'i privaatsuspoliitikale. Palun lugege seda hoolikalt.
-\nMeile veateate saatmiseks tuleb sellega nõustuda.</string>
+\nMeile veateate saatmiseks pead sellega nõustuma.</string>
     <string name="minimize_on_exit_title">Minimeeri, kui kasutad teisi rakendusi</string>
     <string name="minimize_on_exit_summary">Tegevus lülitusel peamiselt videopleierilt teisele rakendusele — %s</string>
     <string name="minimize_on_exit_none_description">Pole</string>
@@ -485,7 +484,6 @@
 \nKui sa soovid seda näha, siis lülita seadistustest „%1$s“ sisse.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube\'is leiduv „Piiratud režiim“ peidab võimaliku täiskasvanutele mõeldud sisu</string>
     <string name="show_age_restricted_content_summary">Näita sisu, mis vanusepiirangu tõttu ilmselt ei sobi lastele (näiteks 18+)</string>
-    <string name="settings_category_notification_title">Teavitus</string>
     <string name="peertube_instance_add_https_only">Sa saad kasutada vaid HTTPS-urle</string>
     <string name="night_theme_title">Öine teema</string>
     <string name="never">Ei iialgi</string>
@@ -649,8 +647,6 @@
 \n
 \nNii et valik taandub sellele, mida eelistad: kiirus või täpne teave.</string>
     <string name="mark_as_watched">Märgi vaadatuks</string>
-    <string name="loading_channel_details">Laadin kanali andmeid…</string>
-    <string name="error_show_channel_details">Viga kanali lisateabe kuvamisel</string>
     <string name="show_image_indicators_summary">Näita piltide kohal Picasso värvides riba, mis märgib pildi allikat: punane tähistab võrku, sinine kohalikku andmekandjat ja roheline kohalikku mälu</string>
     <string name="show_image_indicators_title">Näita piltide allikat</string>
     <string name="remote_search_suggestions">Kaugotsingu soovitused</string>
@@ -689,4 +685,30 @@
 \nPalun paigalda nutiseadmesse failihaldur, mis järgib Storage Access Framework reeglistikku.</string>
     <string name="detail_pinned_comment_view_description">Esiletõstetud kommentaar</string>
     <string name="leak_canary_not_available">LeakCanary pole saadaval</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer\'i vaikimisi väärtused</string>
+    <string name="progressive_load_interval_summary">Muuda video laadimise välpa (hetkel %s). Väiksemast väärtusest võib abi olla, kui tahad et video esitamine algaks varem. Muudatuste jõustamine eeldab rakenduse uuesti käivitamist.</string>
+    <string name="settings_category_player_notification_title">Meediamängija teavitused</string>
+    <string name="notifications_disabled">Teavitused pole kasutusel</string>
+    <string name="streams_notifications_interval_title">Kontrollimise sagedus</string>
+    <string name="streams_notification_channel_description">Tellimuste-kohaste uute meedivoogude teavitused</string>
+    <string name="delete_downloaded_files_confirm">Kas kustutame kõik allalaaditud failid andmekandjalt\?</string>
+    <string name="notifications">Teavitused</string>
+    <string name="settings_category_player_notification_summary">Seadista hetkel esitatava meediavoo teavitusi</string>
+    <string name="streams_notification_channel_name">Uued meediavood</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s uus meediavoog</item>
+        <item quantity="other">%s uut meediavoogu</item>
+    </plurals>
+    <string name="loading_stream_details">Laadin meediavoo teavet…</string>
+    <string name="check_new_streams">Käivita uute meediavoogude kontroll</string>
+    <string name="enable_streams_notifications_title">Uute meedivoogude teavitused</string>
+    <string name="enable_streams_notifications_summary">Tellimustega seotud uute meedivoogude teavitused</string>
+    <string name="streams_notifications_network_title">Võrguühendus on vajalik</string>
+    <string name="any_network">Mis tahes võrk</string>
+    <string name="get_notified">Saa teavitusi</string>
+    <string name="you_successfully_subscribed">Sa oled nüüd selle kanali tellija</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Lülita kõik sisse</string>
+    <string name="adjust_by_semitones_checkbox">Reguleeri helikõrgust muusikaliste pooltoonide kaupa</string>
+    <string name="playback_tempo_step">Tempo samm</string>
 </resources>

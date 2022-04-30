@@ -1,2 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="main_bg_subtitle">Gusa kioo la kukuza ili kuanza.</string>
+    <string name="show_higher_resolutions_summary">Ni baadhi ya vifaa vingine pekee vinavyoweza kucheza video za 2K/4K</string>
+    <string name="play_with_kodi_title">Cheza na Kodi</string>
+    <string name="show_play_with_kodi_title">Onyesha chaguo la \"Cheza na Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Onyesha chaguo la kucheza video kupitia kituo cha media cha Kodi</string>
+    <string name="upload_date_text">iliyochapishwa kwa %1$s</string>
+    <string name="no_player_found">Hakuna stream player kilichopatikana. Sakinisha VLC\?</string>
+    <string name="no_player_found_toast">Hakuna stream player kilichopatikana(unaweza sakinisha VLC kuicheza).</string>
+    <string name="install">Sakinisha</string>
+    <string name="cancel">Cancel</string>
+    <string name="open_in_browser">Fungua katika mtandao</string>
+    <string name="open_in_popup_mode">Fungua katika “popup mode”</string>
+    <string name="mark_as_watched">Weka alama kuwa umetazama</string>
+    <string name="open_with">Fungua na</string>
+    <string name="share">Share</string>
+    <string name="download">Download</string>
+    <string name="settings">Settings</string>
+    <string name="search">Tafuta</string>
+    <string name="did_you_mean">Ulimaanisha \"%1$s\"\?</string>
+    <string name="ok">OK</string>
+    <string name="search_showing_result_for">Inaonyesha matokeo ya:%s</string>
+    <string name="use_external_audio_player_title">Tumia kicheza sauti cha nje</string>
+    <string name="notification_action_0_title">Kitufe cha kitendo cha kwanza</string>
+    <string name="seek_duration_title">Fast-forward/-rewind seek duration</string>
+    <string name="popup_remember_size_pos_summary">Kumbuka ukubwa wa mwisho na nafasi ya popup</string>
+    <string name="notification_action_4_title">Kitufe cha kitendo cha tano</string>
+    <string name="notification_action_shuffle">Changanya</string>
+    <string name="notification_action_repeat">Rudia</string>
+    <string name="controls_download_desc">Download stream file</string>
+    <string name="use_external_video_player_title">Tumia kicheza video cha nje</string>
+    <string name="subscribe_button_title">Subscribe</string>
+    <string name="subscribed_button_title">Subscribed</string>
+    <string name="unsubscribe">Unsubscribe</string>
+    <string name="subscription_change_failed">Haikuweza kubadilisha \"subscription\"</string>
+    <string name="show_info">Onyesha habari</string>
+    <string name="controls_add_to_playlist_title">Ongeza kwa</string>
+    <string name="notification_action_2_title">Kitufe cha kitendo cha tatu</string>
+    <string name="notification_action_1_title">Kitufe cha kitendo cha pili</string>
+    <string name="notification_action_3_title">Kitufe cha kitendo cha nne</string>
+    <string name="notification_action_buffering">Buffering</string>
+    <string name="notification_action_nothing">Hakuna</string>
+    <string name="use_inexact_seek_title">Use fast inexact seek</string>
+</resources>
