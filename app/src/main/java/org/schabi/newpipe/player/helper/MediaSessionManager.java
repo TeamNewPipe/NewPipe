@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.media.session.MediaButtonReceiver;
 
+import com.google.android.exoplayer2.ForwardingPlayer;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
@@ -55,7 +56,17 @@ public class MediaSessionManager {
 
         sessionConnector = new MediaSessionConnector(mediaSession);
         sessionConnector.setQueueNavigator(new PlayQueueNavigator(mediaSession, callback));
-        sessionConnector.setPlayer(player);
+        sessionConnector.setPlayer(new ForwardingPlayer(player) {
+            @Override
+            public void play() {
+                callback.play();
+            }
+
+            @Override
+            public void pause() {
+                callback.pause();
+            }
+        });
     }
 
     @Nullable
