@@ -49,6 +49,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     // Minimum allowable range in ExoPlayer
     private static final double MIN_PITCH_OR_SPEED = 0.10f;
     private static final double MAX_PITCH_OR_SPEED = 3.00f;
+    private static final double MAX_LIVE_PITCH_OR_SPEED = 1.00f;
 
     private static final boolean PITCH_CTRL_MODE_PERCENT = false;
     private static final boolean PITCH_CTRL_MODE_SEMITONE = true;
@@ -63,11 +64,18 @@ public class PlaybackParameterDialog extends DialogFragment {
     private static final double DEFAULT_PITCH_PERCENT = 1.00f;
     private static final double DEFAULT_STEP = STEP_25_PERCENT_VALUE;
     private static final boolean DEFAULT_SKIP_SILENCE = false;
+    private static final boolean DEFAULT_LIVE_EDGE = false;
 
     private static final SliderStrategy QUADRATIC_STRATEGY = new SliderStrategy.Quadratic(
             MIN_PITCH_OR_SPEED,
             MAX_PITCH_OR_SPEED,
             1.00f,
+            10_000);
+
+    private static final SliderStrategy QUADRATIC_LIVE_STRATEGY = new SliderStrategy.Quadratic(
+            MIN_PITCH_OR_SPEED,
+            MAX_LIVE_PITCH_OR_SPEED,
+            0.50f,
             10_000);
 
     private static final SliderStrategy SEMITONE_STRATEGY = new SliderStrategy() {
@@ -91,6 +99,8 @@ public class PlaybackParameterDialog extends DialogFragment {
     double initialPitchPercent = DEFAULT_PITCH_PERCENT;
     @State
     boolean initialSkipSilence = DEFAULT_SKIP_SILENCE;
+    @State
+    boolean initialLiveEdge = DEFAULT_LIVE_EDGE;
 
     @State
     double tempo = DEFAULT_TEMPO;
@@ -98,6 +108,8 @@ public class PlaybackParameterDialog extends DialogFragment {
     double pitchPercent = DEFAULT_PITCH_PERCENT;
     @State
     boolean skipSilence = DEFAULT_SKIP_SILENCE;
+    @State
+    boolean liveEdge = DEFAULT_LIVE_EDGE;
 
     private DialogPlaybackParameterBinding binding;
 
@@ -105,6 +117,7 @@ public class PlaybackParameterDialog extends DialogFragment {
             final double playbackTempo,
             final double playbackPitch,
             final boolean playbackSkipSilence,
+            final boolean playbackLiveEdge,
             final Callback callback
     ) {
         final PlaybackParameterDialog dialog = new PlaybackParameterDialog();
@@ -113,10 +126,12 @@ public class PlaybackParameterDialog extends DialogFragment {
         dialog.initialTempo = playbackTempo;
         dialog.initialPitchPercent = playbackPitch;
         dialog.initialSkipSilence = playbackSkipSilence;
+        dialog.initialLiveEdge = playbackLiveEdge;
 
         dialog.tempo = dialog.initialTempo;
         dialog.pitchPercent = dialog.initialPitchPercent;
         dialog.skipSilence = dialog.initialSkipSilence;
+        dialog.liveEdge = dialog.initialLiveEdge;
 
         return dialog;
     }
@@ -180,14 +195,16 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private void initUI() {
         // Tempo
-        setText(binding.tempoMinimumText, PlayerHelper::formatSpeed, MIN_PITCH_OR_SPEED);
-        setText(binding.tempoMaximumText, PlayerHelper::formatSpeed, MAX_PITCH_OR_SPEED);
+        final double maxTempo = liveEdge ? MAX_LIVE_PITCH_OR_SPEED : MAX_PITCH_OR_SPEED;
+        final SliderStrategy tempoStrategy = getTempoStrategy();
+        setText(binding.tempoMinimumText, PlayerHelper::formatSpeed, maxTempo);
+        setText(binding.tempoMaximumText, PlayerHelper::formatSpeed, maxTempo);
 
-        binding.tempoSeekbar.setMax(QUADRATIC_STRATEGY.progressOf(MAX_PITCH_OR_SPEED));
+        binding.tempoSeekbar.setMax(tempoStrategy.progressOf(maxTempo));
         setAndUpdateTempo(tempo);
         binding.tempoSeekbar.setOnSeekBarChangeListener(
                 getTempoOrPitchSeekbarChangeListener(
-                        QUADRATIC_STRATEGY,
+                        tempoStrategy,
                         this::onTempoSliderUpdated));
 
         registerOnStepClickListener(
@@ -509,6 +526,14 @@ public class PlaybackParameterDialog extends DialogFragment {
         };
     }
 
+    private SliderStrategy getTempoStrategy() {
+        if (liveEdge) {
+            return QUADRATIC_LIVE_STRATEGY;
+        } else {
+            return QUADRATIC_STRATEGY;
+        }
+    }
+
     private void onTempoSliderUpdated(final double newTempo) {
         if (!binding.unhookCheckbox.isChecked()) {
             setSliders(newTempo);
@@ -533,7 +558,8 @@ public class PlaybackParameterDialog extends DialogFragment {
     private void setAndUpdateTempo(final double newTempo) {
         this.tempo = calcValidTempo(newTempo);
 
-        binding.tempoSeekbar.setProgress(QUADRATIC_STRATEGY.progressOf(tempo));
+        final SliderStrategy tempoStrategy = getTempoStrategy();
+        binding.tempoSeekbar.setProgress(tempoStrategy.progressOf(tempo));
         setText(binding.tempoCurrentText, PlayerHelper::formatSpeed, tempo);
     }
 
@@ -551,7 +577,8 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private double calcValidTempo(final double newTempo) {
-        return Math.max(MIN_PITCH_OR_SPEED, Math.min(MAX_PITCH_OR_SPEED, newTempo));
+        final double maxTempo = liveEdge ? MAX_LIVE_PITCH_OR_SPEED : MAX_PITCH_OR_SPEED;
+        return Math.max(MIN_PITCH_OR_SPEED, Math.min(maxTempo, newTempo));
     }
 
     private double calcValidPitch(final double newPitch) {
