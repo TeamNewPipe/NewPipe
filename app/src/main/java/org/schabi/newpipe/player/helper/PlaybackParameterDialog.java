@@ -38,8 +38,6 @@ import java.util.function.DoubleConsumer;
 import java.util.function.DoubleFunction;
 import java.util.function.DoubleSupplier;
 
-import javax.annotation.Nonnull;
-
 import icepick.Icepick;
 import icepick.State;
 
@@ -498,7 +496,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     ) {
         return new SimpleOnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(@Nonnull final SeekBar seekBar,
+            public void onProgressChanged(@NonNull final SeekBar seekBar,
                                           final int progress,
                                           final boolean fromUser) {
                 if (fromUser) { // ensure that the user triggered the change
