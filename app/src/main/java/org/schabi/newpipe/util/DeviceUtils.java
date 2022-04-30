@@ -1,5 +1,6 @@
 package org.schabi.newpipe.util;
 
+import android.annotation.SuppressLint;
 import android.app.UiModeManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -21,6 +22,9 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public final class DeviceUtils {
 
@@ -82,6 +86,50 @@ public final class DeviceUtils {
 
         DeviceUtils.isTV = isTv;
         return DeviceUtils.isTV;
+    }
+
+    public static boolean isDesktopMode(final Context context) {
+        final boolean isDesktopMode = ContextCompat.getSystemService(context, UiModeManager.class)
+                .getCurrentModeType() == Configuration.UI_MODE_TYPE_DESK;
+
+        // DeX check for standalone and multi-window mode
+        boolean isDeXMode = false;
+        try {
+            final Configuration config = context.getResources().getConfiguration();
+            final Class<?> configClass = config.getClass();
+            final int semDesktopModeEnabledConst =
+                    configClass.getField("SEM_DESKTOP_MODE_ENABLED").getInt(configClass);
+            final int currentMode =
+                    configClass.getField("semDesktopModeEnabled").getInt(config);
+            if (semDesktopModeEnabledConst == currentMode) {
+                isDeXMode = true;
+            }
+        } catch (final NoSuchFieldException | IllegalAccessException e) {
+            // empty
+        }
+        @SuppressLint("WrongConstant") final Object desktopModeManager = context
+                .getApplicationContext()
+                .getSystemService("desktopmode");
+        if (desktopModeManager != null) {
+            try {
+                final Method getDesktopModeStateMethod = desktopModeManager.getClass()
+                        .getDeclaredMethod("getDesktopModeState");
+                final Object desktopModeState = getDesktopModeStateMethod
+                        .invoke(desktopModeManager);
+                final Class<?> desktopModeStateClass = desktopModeState.getClass();
+                final Method getEnabledMethod = desktopModeStateClass
+                        .getDeclaredMethod("getEnabled");
+                final int enabled = (int) getEnabledMethod.invoke(desktopModeState);
+                final boolean isEnabled = enabled == desktopModeStateClass
+                        .getDeclaredField("ENABLED").getInt(desktopModeStateClass);
+
+                isDeXMode = isEnabled;
+            } catch (NoSuchFieldException | NoSuchMethodException
+                    | IllegalAccessException | InvocationTargetException e) {
+                // Device does not support DeX 3.0
+            }
+        }
+        return isDesktopMode || isDeXMode;
     }
 
     public static boolean isTablet(@NonNull final Context context) {

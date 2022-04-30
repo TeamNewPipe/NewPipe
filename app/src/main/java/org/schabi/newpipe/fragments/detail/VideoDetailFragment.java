@@ -639,19 +639,7 @@ public final class VideoDetailFragment
                         ? View.VISIBLE
                         : View.GONE
         );
-
-        if (DeviceUtils.isTv(getContext())) {
-            // remove ripple effects from detail controls
-            final int transparent = ContextCompat.getColor(requireContext(),
-                    R.color.transparent_background_color);
-            binding.detailControlsPlaylistAppend.setBackgroundColor(transparent);
-            binding.detailControlsBackground.setBackgroundColor(transparent);
-            binding.detailControlsPopup.setBackgroundColor(transparent);
-            binding.detailControlsDownload.setBackgroundColor(transparent);
-            binding.detailControlsShare.setBackgroundColor(transparent);
-            binding.detailControlsOpenInBrowser.setBackgroundColor(transparent);
-            binding.detailControlsPlayWithKodi.setBackgroundColor(transparent);
-        }
+        accommodateForTvAndDesktopMode();
     }
 
     @Override
@@ -2103,6 +2091,30 @@ public final class VideoDetailFragment
             }
             lp.screenBrightness = brightnessLevel;
             activity.getWindow().setAttributes(lp);
+        }
+    }
+
+    /**
+     * Make changes to the UI to accommodate for better usability on bigger screens such as TVs
+     * or in Android's desktop mode (DeX etc.)
+     */
+    private void accommodateForTvAndDesktopMode() {
+        if (DeviceUtils.isTv(getContext())) {
+            // remove ripple effects from detail controls
+            final int transparent = ContextCompat.getColor(requireContext(),
+                    R.color.transparent_background_color);
+            binding.detailControlsPlaylistAppend.setBackgroundColor(transparent);
+            binding.detailControlsBackground.setBackgroundColor(transparent);
+            binding.detailControlsPopup.setBackgroundColor(transparent);
+            binding.detailControlsDownload.setBackgroundColor(transparent);
+            binding.detailControlsShare.setBackgroundColor(transparent);
+            binding.detailControlsOpenInBrowser.setBackgroundColor(transparent);
+            binding.detailControlsPlayWithKodi.setBackgroundColor(transparent);
+        }
+        if (DeviceUtils.isDesktopMode(getContext())) {
+            // Remove the "hover" overlay (since it is visible on all mouse events and interferes
+            // with the video content being played)
+            binding.detailThumbnailRootLayout.setForeground(null);
         }
     }
 
