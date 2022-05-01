@@ -33,8 +33,16 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
 
     private final CompositeDisposable playlistDisposables = new CompositeDisposable();
 
-    public PlaylistAppendDialog(final List<StreamEntity> streamEntities) {
-        super(streamEntities);
+    /**
+     * Create a new instance of {@link PlaylistAppendDialog}.
+     *
+     * @param streamEntities    a list of {@link StreamEntity} to be added to playlists
+     * @return a new instance of {@link PlaylistAppendDialog}
+     */
+    public static PlaylistAppendDialog newInstance(final List<StreamEntity> streamEntities) {
+        final PlaylistAppendDialog dialog = new PlaylistAppendDialog();
+        dialog.setStreamEntities(streamEntities);
+        return dialog;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -103,13 +111,14 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     // Helper
     //////////////////////////////////////////////////////////////////////////*/
 
+    /** Display create playlist dialog. */
     public void openCreatePlaylistDialog() {
         if (getStreamEntities() == null || !isAdded()) {
             return;
         }
 
         final PlaylistCreationDialog playlistCreationDialog =
-                new PlaylistCreationDialog(getStreamEntities());
+                PlaylistCreationDialog.newInstance(getStreamEntities());
         // Move the dismissListener to the new dialog.
         playlistCreationDialog.setOnDismissListener(this.getOnDismissListener());
         this.setOnDismissListener(null);

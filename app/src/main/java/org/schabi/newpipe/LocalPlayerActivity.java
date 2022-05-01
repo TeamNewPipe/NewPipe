@@ -29,7 +29,7 @@ import org.schabi.newpipe.util.VideoSegment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocalPlayerActivity extends AppCompatActivity implements Player.EventListener,
+public class LocalPlayerActivity extends AppCompatActivity implements Player.Listener,
         LocalPlayerListener, PlaybackParameterDialog.Callback {
     private LocalPlayer localPlayer;
     private PlayerView playerView;

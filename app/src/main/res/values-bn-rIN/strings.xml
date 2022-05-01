@@ -53,7 +53,6 @@
     <string name="always">সবসময়</string>
     <string name="clear">পরিষ্কার</string>
     <string name="disabled">নিস্ক্রীয়</string>
-    <string name="yes">হ্যাঁ</string>
     <string name="all">সবগুলি</string>
     <string name="error_report_title">ত্রুটি প্রতিবেদন</string>
     <string name="downloads_title">ডাউনলোডগুলি</string>
@@ -190,7 +189,7 @@
     <string name="search_no_results">কোন রেজাল্ট নেই</string>
     <string name="invalid_directory">কোন ফোল্ডার নেই</string>
     <string name="download_to_sdcard_error_title">বাহ্যিক স্টোরেজ নেই</string>
-    <string name="search_history_deleted">সার্চ ইতিহাস ডিলিট হয়েছে।</string>
+    <string name="search_history_deleted">সার্চ ইতিহাস মোছা হয়েছে</string>
     <string name="name">নাম</string>
     <string name="rename_playlist">নাম পরিবর্তন</string>
     <string name="action_history">ইতিহাস</string>
@@ -199,7 +198,7 @@
     <string name="create">তৈরি করুন</string>
     <string name="retry">পুনরায় চেষ্টা করুন</string>
     <string name="help">সাহায্য</string>
-    <string name="watch_history_deleted">দেখার ইতিহাস মুছে গেছে।</string>
+    <string name="watch_history_deleted">দেখার ইতিহাস মুছে গেছে</string>
     <string name="delete_view_history_alert">সম্পূর্ণ দেখার ইতিহাস মুছে ফেলুন\?</string>
     <string name="clear_views_history_title">দেখার ইতিহাস মুছে ফেলুন</string>
     <string name="export_data_title">ডাটা বেস এক্সপোর্ট করুন</string>
@@ -270,14 +269,14 @@
     <string name="enable_playback_state_lists_title">তালিকা তে পজিশন</string>
     <string name="enable_playback_resume_summary">শেষ প্লে ব্যাক পজিশন এ যান</string>
     <string name="enable_search_history_summary">সার্চ গুলি স্থানীয় ভাবে জমা করুন</string>
-    <string name="show_search_suggestions_summary">সার্চ এর সময় সাজেশন দেখান</string>
+    <string name="show_search_suggestions_summary">সার্চ এর সময় সাজেশন পছন্দ করুন</string>
     <string name="show_search_suggestions_title">সার্চ সাজেশন</string>
     <string name="feed_notification_loading">ফিড লোড হচ্ছে…</string>
     <string name="show_error">এরর দেখান</string>
     <string name="select_a_playlist">একটি প্লে লিস্ট পছন্দ করুন</string>
     <string name="tab_about">সম্পর্কিত</string>
     <string name="title_licenses">থার্ড-পার্টি লাইসেন্স সমূহ</string>
-    <string name="error_report_open_issue_button_text">গিটহাব এ এরর রিপোর্ট করুন</string>
+    <string name="error_report_open_issue_button_text">গিটহাব এ রিপোর্ট করুন</string>
     <string name="restore_defaults">ডিফল্ট এ ফিরে যান</string>
     <string name="search_showing_result_for">রেজাল্ট দেখান হচ্ছেঃ %s</string>
     <string name="clear_queue_confirmation_title">কিউ মোছার আগে নিশ্চিত করুন</string>
@@ -290,8 +289,15 @@
     </plurals>
     <string name="description_tab_description">বিবরণ</string>
     <string name="comments_tab_description">মন্তব্য</string>
-    <string name="settings_category_notification_title">নোটিফিকেশন</string>
     <string name="show_meta_info_title">মেটা ইনফো দেখান</string>
     <string name="show_description_title">বিবরণ দেখান</string>
     <string name="night_theme_title">রাত্রি থিম</string>
+    <string name="notification_action_2_title">তৃতীয় অ্যাকশান বোতাম</string>
+    <string name="notification_action_3_title">চতুর্থ অ্যাকশান বোতাম</string>
+    <string name="clear_queue_confirmation_description">সক্রিয় প্লেয়ার ক্রম পরিবর্তিত হয়ে যাবে</string>
+    <string name="local_search_suggestions">স্থানীয় সার্চ সাজেশন</string>
+    <string name="notification_action_4_title">পঞ্চম অ্যাকশান বোতাম</string>
+    <string name="notification_action_0_title">প্রথম অ্যাকশান বোতাম</string>
+    <string name="notification_action_1_title">দ্বিতীয় অ্যাকশান বোতাম</string>
+    <string name="streams_notification_channel_name">নতুন স্ট্রিম</string>
 </resources>

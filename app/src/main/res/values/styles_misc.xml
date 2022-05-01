@@ -66,10 +66,7 @@
         <item name="tint">?attr/actionColor</item>
     </style>
 
-    <style name="DarkPopupMenu" parent="Widget.AppCompat.PopupMenu">
-        <item name="android:itemBackground">#2E2E2E</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
+    <style name="DarkPopupMenu" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
@@ -100,6 +97,11 @@
         <item name="colorPrimary">?attr/toolbarSearchColor</item>
         <item name="colorPrimaryDark">?attr/toolbarSearchColor</item>
         <item name="colorAccent">?attr/toolbarSearchColor</item>
+    </style>
+
+    <style name="CircularImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 
 </resources>

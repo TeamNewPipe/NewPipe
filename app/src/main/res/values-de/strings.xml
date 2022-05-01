@@ -88,7 +88,6 @@
     <string name="black_theme_title">Schwarz</string>
     <string name="title_activity_recaptcha">reCAPTCHA-Aufgabe</string>
     <string name="recaptcha_request_toast">reCAPTCHA-Aufgabe angefordert</string>
-    <string name="yes">Ja</string>
     <string name="all">Alle</string>
     <string name="disabled">Deaktiviert</string>
     <string name="open_in_popup_mode">Im Pop-up-Modus öffnen</string>
@@ -330,7 +329,7 @@
     <string name="minimize_on_exit_background_description">Für die Wiedergabe im Hintergrund minimieren</string>
     <string name="minimize_on_exit_popup_description">Für die Wiedergabe im Pop-up minimieren</string>
     <string name="skip_silence_checkbox">Vorspulen bei Stille</string>
-    <string name="playback_step">Schritt</string>
+    <string name="playback_step">Stufe</string>
     <string name="playback_reset">Zurücksetzen</string>
     <string name="channels">Kanäle</string>
     <string name="playlists">Wiedergabelisten</string>
@@ -343,6 +342,8 @@
     <string name="brightness_gesture_control_title">Gestensteuerung für Helligkeit</string>
     <string name="brightness_gesture_control_summary">Gesten verwenden, um die Helligkeit einzustellen</string>
     <string name="settings_category_updates_title">Aktualisierungen</string>
+    <string name="settings_category_player_notification_title">Wiedergabebenachrichtigung</string>
+    <string name="settings_category_player_notification_summary">Konfiguriert die Benachrichtigung zum aktuell abgespielten Stream</string>
     <string name="file_deleted">Datei gelöscht</string>
     <string name="app_update_notification_channel_name">Benachrichtigung über App-Update</string>
     <string name="app_update_notification_channel_description">Benachrichtigungen über neue NewPipe-Versionen</string>
@@ -551,7 +552,6 @@
     <string name="never">Nie</string>
     <string name="notification_actions_at_most_three">Du kannst maximal drei Aktionen auswählen, die in der Kompaktbenachrichtigung angezeigt werden sollen!</string>
     <string name="notification_actions_summary">Bearbeite jede Benachrichtigungsaktion unten, indem du darauf tippst. Wähle mithilfe der Kontrollkästchen rechts bis zu drei aus, die in der Kompaktbenachrichtigung angezeigt werden sollen</string>
-    <string name="settings_category_notification_title">Benachrichtigung</string>
     <string name="unsupported_url_dialog_message">Konnte die angegebene URL nicht erkennen. Mit einer anderen Anwendung öffnen\?</string>
     <string name="notification_action_4_title">Fünfte Aktionstaste</string>
     <string name="notification_action_3_title">Vierte Aktionstaste</string>
@@ -649,8 +649,6 @@
     <string name="feed_toggle_show_played_items">Angesehene Elemente anzeigen</string>
     <string name="mark_as_watched">Als gesehen markieren</string>
     <string name="detail_heart_img_view_description">Vom Ersteller mit Herz versehen</string>
-    <string name="loading_channel_details">Kanaldetails werden geladen…</string>
-    <string name="error_show_channel_details">Fehler beim Anzeigen der Kanaldetails</string>
     <string name="show_image_indicators_summary">Farbige Picasso-Bänder über den Bildern anzeigen, die deren Quelle angeben: rot für Netzwerk, blau für Festplatte und grün für Speicher</string>
     <string name="show_image_indicators_title">Bildindikatoren anzeigen</string>
     <string name="remote_search_suggestions">Entfernte Suchvorschläge</string>
@@ -668,9 +666,9 @@
     <string name="start_main_player_fullscreen_title">Hauptplayer im Vollbildmodus starten</string>
     <string name="enqueued_next">Als Nächstes eingereiht</string>
     <string name="enqueue_next_stream">Als Nächstes in Wiedergabe einreihen</string>
-    <string name="processing_may_take_a_moment">Verarbeitung… Kann einen Moment dauern</string>
+    <string name="processing_may_take_a_moment">Verarbeitung … Kann einen Moment dauern</string>
     <string name="manual_update_title">Nach Aktualisierungen suchen</string>
-    <string name="checking_updates_toast">Suche nach Aktualisierungen…</string>
+    <string name="checking_updates_toast">Suche nach Aktualisierungen …</string>
     <string name="manual_update_description">Manuelle Prüfung auf neue Versionen</string>
     <string name="feed_new_items">Neue Feed-Elemente</string>
     <string name="show_crash_the_player_title">\"Player abstürzen lassen\" anzeigen</string>
@@ -689,4 +687,28 @@
     <string name="background_player_already_playing_toast">Wird bereits im Hintergrund abgespielt</string>
     <string name="detail_pinned_comment_view_description">Angehefteter Kommentar</string>
     <string name="leak_canary_not_available">LeakCanary ist nicht verfügbar</string>
+    <string name="adjust_by_semitones_checkbox">Tonhöhe nach musikalischen Halbtönen anpassen</string>
+    <string name="progressive_load_interval_summary">Ändern der Größe des Ladeintervalls (derzeit %s). Ein niedrigerer Wert kann das anfängliche Laden des Videos beschleunigen. Änderungen erfordern einen Neustart des Players.</string>
+    <string name="playback_tempo_step">Geschwindigkeitsstufe</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer Standard</string>
+    <string name="notifications">Benachrichtigungen</string>
+    <string name="streams_notification_channel_description">Benachrichtigen über neue abonnierbare Streams</string>
+    <string name="streams_notification_channel_name">Neue Streams</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s neuer Stream</item>
+        <item quantity="other">%s neue Streams</item>
+    </plurals>
+    <string name="loading_stream_details">Stream-Details laden …</string>
+    <string name="enable_streams_notifications_summary">Über neue Streams aus Abonnements benachrichtigen</string>
+    <string name="enumeration_comma">,</string>
+    <string name="any_network">Jedes Netzwerk</string>
+    <string name="enable_streams_notifications_title">Benachrichtigungen über neue Streams</string>
+    <string name="check_new_streams">Suche nach neuen Streams ausführen</string>
+    <string name="streams_notifications_network_title">Erforderliche Netzwerkverbindung</string>
+    <string name="notifications_disabled">Benachrichtigungen sind deaktiviert</string>
+    <string name="get_notified">Benachrichtigung erhalten</string>
+    <string name="delete_downloaded_files_confirm">Alle heruntergeladenen Dateien von der Festplatte löschen\?</string>
+    <string name="you_successfully_subscribed">Du hast jetzt diesen Kanal abonniert</string>
+    <string name="toggle_all">Alle umschalten</string>
+    <string name="streams_notifications_interval_title">Aktualisierungsintervall</string>
 </resources>

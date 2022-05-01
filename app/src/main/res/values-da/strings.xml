@@ -108,7 +108,6 @@
     </plurals>
     <string name="tracks">Numre</string>
     <string name="users">Brugere</string>
-    <string name="yes">Ja</string>
     <string name="disabled">Slået fra</string>
     <string name="clear">Slet</string>
     <string name="best_resolution">Bedste opløsning</string>
@@ -397,4 +396,5 @@
     <string name="search_showing_result_for">Viser resultater for: %s</string>
     <string name="open_with">Åben med</string>
     <string name="leak_canary_not_available">LeakCanary er ikke tilgængelig</string>
+    <string name="mark_as_watched">Markér som set</string>
 </resources>

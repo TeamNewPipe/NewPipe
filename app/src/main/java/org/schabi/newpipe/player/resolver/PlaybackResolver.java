@@ -3,19 +3,22 @@ package org.schabi.newpipe.player.resolver;
 import android.net.Uri;
 import android.text.TextUtils;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.MediaSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
+import org.schabi.newpipe.player.mediaitem.MediaItemTag;
+import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
 import org.schabi.newpipe.util.StreamTypeUtil;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import static org.schabi.newpipe.player.helper.PlayerDataSource.LIVE_STREAM_EDGE_GAP_MILLIS;
 
 public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
 
@@ -27,7 +30,7 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
             return null;
         }
 
-        final MediaSourceTag tag = new MediaSourceTag(info);
+        final StreamInfoTag tag = StreamInfoTag.of(info);
         if (!info.getHlsUrl().isEmpty()) {
             return buildLiveMediaSource(dataSource, info.getHlsUrl(), C.TYPE_HLS, tag);
         } else if (!info.getDashMpdUrl().isEmpty()) {
@@ -41,8 +44,8 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
     default MediaSource buildLiveMediaSource(@NonNull final PlayerDataSource dataSource,
                                              @NonNull final String sourceUrl,
                                              @C.ContentType final int type,
-                                             @NonNull final MediaSourceTag metadata) {
-        final MediaSourceFactory factory;
+                                             @NonNull final MediaItemTag metadata) {
+        final MediaSource.Factory factory;
         switch (type) {
             case C.TYPE_SS:
                 factory = dataSource.getLiveSsMediaSourceFactory();
@@ -61,7 +64,11 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                 new MediaItem.Builder()
                         .setTag(metadata)
                         .setUri(Uri.parse(sourceUrl))
-                        .setLiveTargetOffsetMs(PlayerDataSource.LIVE_STREAM_EDGE_GAP_MILLIS)
+                        .setLiveConfiguration(
+                                new MediaItem.LiveConfiguration.Builder()
+                                        .setTargetOffsetMs(LIVE_STREAM_EDGE_GAP_MILLIS)
+                                        .build()
+                        )
                         .build()
         );
     }
@@ -71,12 +78,12 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                                          @NonNull final String sourceUrl,
                                          @NonNull final String cacheKey,
                                          @NonNull final String overrideExtension,
-                                         @NonNull final MediaSourceTag metadata) {
+                                         @NonNull final MediaItemTag metadata) {
         final Uri uri = Uri.parse(sourceUrl);
         @C.ContentType final int type = TextUtils.isEmpty(overrideExtension)
                 ? Util.inferContentType(uri) : Util.inferContentType("." + overrideExtension);
 
-        final MediaSourceFactory factory;
+        final MediaSource.Factory factory;
         switch (type) {
             case C.TYPE_SS:
                 factory = dataSource.getLiveSsMediaSourceFactory();

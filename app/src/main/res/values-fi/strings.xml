@@ -73,7 +73,6 @@
     <string name="downloads_title">Lataukset</string>
     <string name="error_report_title">Virheraportti</string>
     <string name="all">Kaikki</string>
-    <string name="yes">Kyllä</string>
     <string name="disabled">Poistettu käytöstä</string>
     <string name="clear">Pyyhi</string>
     <string name="best_resolution">Paras resoluutio</string>
@@ -545,7 +544,6 @@
     <string name="wifi_only">Vain Wi-Fi-verkossa</string>
     <string name="autoplay_summary">Aloita toisto automaattisesti — %s</string>
     <string name="title_activity_play_queue">Toistojono</string>
-    <string name="settings_category_notification_title">Ilmoitus</string>
     <string name="unsupported_url_dialog_message">Ei tunnistettu URL:ää. Avataanko toisessa sovelluksessa\?</string>
     <string name="auto_queue_toggle">Automaattinen jonoon lisääminen</string>
     <string name="clear_queue_confirmation_description">Aktiivisen soittimen jono korvataan</string>
@@ -649,8 +647,6 @@
     <string name="no_dir_yet">Latauskansiota ei vielä asetettu, valitse ensin oletuslatauskansio</string>
     <string name="comments_are_disabled">Kommentit poistettu käytöstä</string>
     <string name="mark_as_watched">Merkitse katsotuksi</string>
-    <string name="loading_channel_details">Ladataan kanavan tietoja…</string>
-    <string name="error_show_channel_details">Virhe kanavan lisätietojen näyttämisessä</string>
     <string name="show_image_indicators_summary">Näytä Picasso-värjätyt nauhat kuvien päällä osoittaakseen lähteen: punainen tarkoittaa verkkoa, sininen tarkoittaa levytilaa ja vihreä tarkoittaa muistia</string>
     <string name="show_image_indicators_title">Näytä kuvailmaisimet</string>
     <string name="remote_search_suggestions">Etähakuehdotukset</string>

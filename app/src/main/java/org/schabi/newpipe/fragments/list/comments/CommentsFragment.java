@@ -15,6 +15,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
+import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -22,7 +23,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
-public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
+public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, CommentsInfo> {
     private final CompositeDisposable disposables = new CompositeDisposable();
 
     private TextView emptyStateDesc;
@@ -67,7 +68,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
+    protected Single<ListExtractor.InfoItemsPage<CommentsInfoItem>> loadMoreItemsLogic() {
         return ExtractorHelper.getMoreCommentItems(serviceId, currentInfo, currentNextPage);
     }
 

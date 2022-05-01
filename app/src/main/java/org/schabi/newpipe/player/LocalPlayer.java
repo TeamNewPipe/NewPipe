@@ -11,7 +11,6 @@ import androidx.preference.PreferenceManager;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.PlaybackParameters;
-import com.google.android.exoplayer2.Player.EventListener;
 import com.google.android.exoplayer2.SeekParameters;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -36,7 +35,7 @@ import static org.schabi.newpipe.player.Player.STATE_PAUSED;
 import static org.schabi.newpipe.player.Player.STATE_PAUSED_SEEK;
 import static org.schabi.newpipe.player.Player.STATE_PLAYING;
 
-public class LocalPlayer implements EventListener {
+public class LocalPlayer implements com.google.android.exoplayer2.Player.Listener {
     private static final String TAG = "LocalPlayer";
     private static final int PROGRESS_LOOP_INTERVAL_MILLIS = 500;
 

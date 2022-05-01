@@ -52,7 +52,6 @@
     <string name="downloads_title">డౌన్ లోడ్</string>
     <string name="error_report_title">లోపం నివేదిక</string>
     <string name="all">అన్ని</string>
-    <string name="yes">అవును</string>
     <string name="play_all">అన్నింటినీ ప్లే చేయండి</string>
     <string name="notification_channel_name">న్యూప్యాప్ నోటిఫికేషన్</string>
     <string name="general_error">లోపం</string>
@@ -230,7 +229,6 @@
     <string name="peertube_instance_add_help">ఉదాహరణ URLని నమోదు చేయండి</string>
     <string name="peertube_instance_add_fail">ఉదాహరణను ధృవీకరించడం సాధ్యపడలేదు</string>
     <string name="peertube_instance_add_exists">ఉదాహరణ ఇప్పటికే ఉంది</string>
-    <string name="settings_category_notification_title">నోటిఫికేషన్</string>
     <string name="users">వినియోగదారులు</string>
     <string name="events">ఈవెంట్స్</string>
     <string name="app_update_notification_channel_description">కొత్త NewPipe వెర్షన్ కోసం నోటిఫికేషన్‌లు</string>
@@ -421,4 +419,11 @@
     <string name="resize_fill">పూరించండి</string>
     <string name="resize_zoom">పరివీక్షణ</string>
     <string name="switch_to_popup">తేలియాడే విధంగా మార్చు</string>
+    <string name="auto_queue_title">తదుపరి స్ట్రీమ్‌ను స్వీయ-ఎన్క్యూ</string>
+    <string name="progressive_load_interval_summary">లోడ్ విరామం పరిమాణాన్ని మార్చండి (ప్రస్తుతం %s). తక్కువ విలువ ప్రారంభ వీడియో లోడింగ్‌ని వేగవంతం చేయవచ్చు. మార్పులకు ప్లేయర్ రీస్టార్ట్ అవసరం.</string>
+    <string name="leak_canary_not_available">LeakCanary అందుబాటులో లేదు</string>
+    <string name="caption_setting_description">ప్లేయర్ శీర్షిక వచన స్థాయి మరియు నేపథ్య శైలులను సవరించండి. అమలులోకి రావడానికి యాప్ రీస్టార్ట్ అవసరం</string>
+    <string name="playlist_no_uploader">స్వయంచాలకంగా రూపొందించబడింది (ఎక్కించినవారు కనబడుటలేదు)</string>
+    <string name="caption_auto_generated">స్వయంచాలకంగా రూపొందించబడింది</string>
+    <string name="caption_setting_title">శీర్షికలు</string>
 </resources>

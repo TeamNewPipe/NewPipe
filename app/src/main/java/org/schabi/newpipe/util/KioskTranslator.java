@@ -57,7 +57,7 @@ public final class KioskTranslator {
         }
     }
 
-    public static int getKioskIcon(final String kioskId, final Context c) {
+    public static int getKioskIcon(final String kioskId) {
         switch (kioskId) {
             case "Trending":
             case "Top 50":

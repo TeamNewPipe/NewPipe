@@ -1,0 +1,1 @@
+NewPipe ne koristi nikakve Google framework biblioteke, ili YouTube API. Parsi samo web stranicu da bi stekla informaciju koja joj treba. S time se ova aplikacija može koristiti na uređajima bez instalisanih Google Servisa. Također vam ni ne treba YouTube račun da koristite NewPipe, a i FLOSS je.

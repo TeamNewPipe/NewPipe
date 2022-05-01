@@ -185,7 +185,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     }
 
     @Override
-    public boolean onPreferenceTreeClick(final Preference preference) {
+    public boolean onPreferenceTreeClick(@NonNull final Preference preference) {
         if (DEBUG) {
             Log.d(TAG, "onPreferenceTreeClick() called with: "
                     + "preference = [" + preference + "]");

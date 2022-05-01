@@ -38,15 +38,17 @@
             tools:ignore="RtlHardcoded"
             tools:visibility="visible">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/uploader_avatar_view"
                 android:layout_width="@dimen/playlist_detail_uploader_image_size"
                 android:layout_height="@dimen/playlist_detail_uploader_image_size"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
+                android:padding="0.7dp"
                 android:src="@drawable/buddy"
-                app:civ_border_color="#ffffff"
-                app:civ_border_width="1dp" />
+                app:shapeAppearance="@style/CircularImageView"
+                app:strokeColor="#ffffff"
+                app:strokeWidth="1dp" />
 
             <org.schabi.newpipe.views.NewPipeTextView
                 android:id="@+id/uploader_name"

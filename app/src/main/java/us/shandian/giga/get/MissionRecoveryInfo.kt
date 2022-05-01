@@ -26,8 +26,8 @@ class MissionRecoveryInfo(
                 kind = 'a'
             }
             is VideoStream -> {
-                desired = stream.getResolution()
-                isDesired2 = stream.isVideoOnly()
+                desired = stream.resolution
+                isDesired2 = stream.isVideoOnly
                 kind = 'v'
             }
             is SubtitlesStream -> {

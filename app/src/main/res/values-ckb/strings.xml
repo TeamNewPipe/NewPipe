@@ -101,7 +101,6 @@
     <string name="title_licenses">مۆڵەتنامەی لایەنی-سێیەم</string>
     <string name="app_license_title">مۆڵەتنامەی نیوپایپ</string>
     <string name="show_hold_to_append_title">پیشاندانی ڕێنمایی ”داگرتن تا پاشکۆ”</string>
-    <string name="yes">بەڵێ</string>
     <string name="msg_threads">دابەشکراوەکان</string>
     <string name="title_most_played">زۆرترین لێدراو</string>
     <string name="unbookmark_playlist">لادانی نیشانه‌كراو</string>
@@ -542,7 +541,6 @@
     <string name="error_report_open_github_notice">تكایه‌ پشكنینێك بكه‌ كه‌ ئاخۆ كێشه‌یه‌ك هه‌یه‌ باسی كڕاشه‌كه‌ت بكات. له‌كاتی سازدانی پلیتی لێكچوو ، كات له‌ ئێمه‌ ده‌گریت كه‌ ئێمه‌ سه‌رقاڵی چاره‌سه‌ركردنی هه‌مان كێشه‌ ده‌كه‌یت.</string>
     <string name="error_report_open_issue_button_text">سكاڵا لەسەر GitHub</string>
     <string name="copy_for_github">له‌به‌رگرتنه‌وه‌ی سكاڵای جۆركراو</string>
-    <string name="settings_category_notification_title">پەیام</string>
     <string name="unsupported_url_dialog_message">ناتوانرێت به‌سته‌ره‌كه‌ بناسرێتەوە. بە بەرنامەیەکی دیكه‌ بکرێتەوە؟</string>
     <string name="auto_queue_toggle">خستنه‌ نۆبه‌تی-خۆكاری</string>
     <string name="clear_queue_confirmation_description">نۆبه‌ته‌كه‌ لە لێدەری چالاکەوە جێگۆڕکێی دەکرێت</string>
@@ -642,8 +640,6 @@
     <string name="tablet_mode_title">دۆخی تابلێت</string>
     <string name="open_website_license">کردنەوەی ماڵپەڕ</string>
     <string name="seekbar_preview_thumbnail_title">پێشبینینی سەروێنەی گەڕان</string>
-    <string name="loading_channel_details">وردەکارییەکانی کەناڵەکە بار دەکرێن…</string>
-    <string name="error_show_channel_details">هەڵە ڕوویدا لە پیشاندانی وردەکارییەکانی کەناڵ</string>
     <string name="detail_heart_img_view_description">بەدڵکراوە لەلایەن بڵاوکەرەوە</string>
     <string name="dont_show">پیشان نەدرێت</string>
     <string name="low_quality_smaller">کواڵێتی نزم (بچووکتر)</string>
