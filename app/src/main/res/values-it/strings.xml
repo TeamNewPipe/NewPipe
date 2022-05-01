@@ -683,12 +683,9 @@
     <string name="no_appropriate_file_manager_message_android_10">Non è stato trovato alcun gestore di file appropriato per questa azione.
 \nInstallane uno compatibile con Storage Access Framework.</string>
     <string name="detail_pinned_comment_view_description">Commento in primo piano</string>
-    <string name="background_player_already_playing_toast">Già in riproduzione in sottofondo</string>
     <string name="leak_canary_not_available">LeakCanary non è disponibile</string>
-    <string name="adjust_by_semitones_checkbox">Regola il tono secondo i semitoni musicali</string>
     <string name="progressive_load_interval_exoplayer_default">Predefinito ExoPlayer</string>
     <string name="progressive_load_interval_summary">Cambia la dimensione dell\'intervallo da caricare (attualmente %s). Un valore basso può velocizzare il caricamento iniziale del video. La modifica richiede il riavvio del lettore.</string>
-    <string name="playback_tempo_step">Passo tempo</string>
     <string name="streams_notification_channel_description">Notifiche di nuove stream dalle iscrizioni</string>
     <string name="streams_notifications_interval_title">Frequenza controllo</string>
     <string name="streams_notifications_network_title">Richiesta connessione alla rete</string>

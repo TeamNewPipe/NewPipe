@@ -663,7 +663,6 @@
     <string name="error_report_notification_toast">エラーが発生しました。通知をご覧ください</string>
     <string name="error_report_notification_title">NewPipe はエラーに遭遇しました。タップして報告</string>
     <string name="show_error_snackbar">スナックバーにエラーを表示</string>
-    <string name="background_player_already_playing_toast">既にバックグラウンドで再生されています</string>
     <string name="detail_pinned_comment_view_description">固定されたコメント</string>
     <string name="no_appropriate_file_manager_message_android_10">この動作に適切なファイルマネージャが見つかりませんでした。
 \nStorage Access Frameworkと互換性のあるファイルマネージャをインストールしてください。</string>
@@ -673,7 +672,6 @@
     <string name="create_error_notification">エラー通知を作成</string>
     <string name="error_report_channel_description">エラーを報告する通知</string>
     <string name="leak_canary_not_available">LeakCanaryが利用不可能です</string>
-    <string name="playback_tempo_step">緩急音階</string>
     <string name="settings_category_player_notification_title">プレイヤー通知</string>
     <string name="loading_stream_details">ストリームの詳細を読み込んでいます…</string>
     <string name="enable_streams_notifications_summary">登録チャンネルの新しいストリームについて通知する</string>

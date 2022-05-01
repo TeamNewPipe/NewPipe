@@ -685,11 +685,8 @@
     <string name="no_appropriate_file_manager_message">Aucun gestionnaire de fichier approprié n\'a été trouvé pour cette action.
 \nVeuillez installer un gestionnaire de fichiers ou essayez de désactiver \'%s\' dans les paramètres de téléchargement.</string>
     <string name="detail_pinned_comment_view_description">Commentaire épinglé</string>
-    <string name="background_player_already_playing_toast">Une lecture est déjà en arrière-plan</string>
     <string name="leak_canary_not_available">LeakCanary n\'est pas disponible</string>
     <string name="progressive_load_interval_summary">Modifie la taille de l\'intervalle de chargement (actuellement %s). Une valeur plus faible peut accélérer le chargement initial des vidéos .</string>
-    <string name="adjust_by_semitones_checkbox">Règler la hauteur par demi-tons musicaux</string>
-    <string name="playback_tempo_step">Pas du tempo</string>
     <string name="progressive_load_interval_exoplayer_default">Valeur par défaut d’ExoPlayer</string>
     <string name="streams_notification_channel_name">Nouveaux flux</string>
     <string name="settings_category_player_notification_summary">Configurer la notification du flux en cours de lecture</string>

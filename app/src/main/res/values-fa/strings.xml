@@ -683,10 +683,7 @@
     <string name="error_report_notification_title">نیوپایپ به خطایی برخورد. برای گزارش، بزنید</string>
     <string name="error_report_notification_toast">خطایی رخ داد. آگاهی را ببینید</string>
     <string name="detail_pinned_comment_view_description">نظر سنجاق شده</string>
-    <string name="background_player_already_playing_toast">در حال پخش در پس‌زمینه</string>
     <string name="leak_canary_not_available">لیک‌کاناری موجود نیست</string>
-    <string name="playback_tempo_step">گام سرعت</string>
-    <string name="adjust_by_semitones_checkbox">تنظیم زیر و بم با شبه‌تن‌ها</string>
     <string name="progressive_load_interval_summary">تغییر اندازهٔ بازهٔ بار (هم‌اکنون %s). مقداری پایین‌تر، می‌تواند بار کردن نخستین ویدیو را سرعت بخشد. تغییرها نیاز به یک آغاز دوبارهٔ پخش‌کننده دارند.</string>
     <string name="progressive_load_interval_exoplayer_default">پیش‌گزیدهٔ اگزوپلیر</string>
     <string name="notifications">آگاهی‌ها</string>

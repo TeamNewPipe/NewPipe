@@ -603,10 +603,8 @@
     <plurals name="new_streams">
         <item quantity="other">%s 個新加串流</item>
     </plurals>
-    <string name="adjust_by_semitones_checkbox">按樂音半度調整音高</string>
     <string name="enable_streams_notifications_title">新加串流通知</string>
     <string name="delete_downloaded_files_confirm">係咪要喺磁碟機上面消除晒全部下載咗嘅檔案？</string>
     <string name="notifications_disabled">通知已停用</string>
     <string name="tracks">單曲</string>
-    <string name="playback_tempo_step">節奏步伐</string>
 </resources>

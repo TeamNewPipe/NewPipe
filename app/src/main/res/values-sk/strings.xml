@@ -647,8 +647,6 @@
     <string name="downloads_storage_ask_summary_no_saf_notice">Pri každom sťahovaní sa zobrazí výzva kam uložiť súbor</string>
     <string name="no_dir_yet">Nie je nastavený adresár na sťahovanie, nastavte ho teraz</string>
     <string name="mark_as_watched">Označiť ako videné</string>
-    <string name="loading_channel_details">Načítavanie podrobností o kanáli…</string>
-    <string name="error_show_channel_details">Chyba pri zobrazení podrobností kanála</string>
     <string name="off">Vypnuté</string>
     <string name="on">Zapnuté</string>
     <string name="tablet_mode_title">Režim tabletu</string>
@@ -698,8 +696,6 @@
     <string name="show_crash_the_player_summary">Zobrazí možnosť zlyhania pri používaní prehrávača</string>
     <string name="show_error_snackbar">Zobraziť krátke oznámenie chyby</string>
     <string name="create_error_notification">Oznámte chybu</string>
-    <string name="adjust_by_semitones_checkbox">Upraviť výšku poltónov</string>
-    <string name="playback_tempo_step">Krok tempa</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer preddefinovaný</string>
     <string name="progressive_load_interval_summary">Zmeniť interval načítania (aktuálne %s). Menšia hodnota môže zvýšiť rýchlosť prvotného načítania videa. Zmena vyžaduje reštart.</string>
     <string name="notifications">Upozornenia</string>

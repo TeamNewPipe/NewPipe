@@ -679,7 +679,6 @@
     <string name="processing_may_take_a_moment">Procesarea.. Poate dura un moment</string>
     <string name="manual_update_title">Verifică dacă există actualizări</string>
     <string name="manual_update_description">Verifică manual dacă există versiuni noi</string>
-    <string name="background_player_already_playing_toast">Se redă deja pe fundal</string>
     <string name="detail_pinned_comment_view_description">Comentariu lipit</string>
     <string name="error_report_channel_name">Notificare cu raport de eroare</string>
     <string name="show_crash_the_player_summary">Afișează opțiunea de a întrerupe atunci când utilizați playerul</string>

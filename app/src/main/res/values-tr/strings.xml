@@ -682,13 +682,10 @@
     <string name="error_report_channel_description">Hata raporları için bildirimler</string>
     <string name="show_crash_the_player_summary">Oynatıcı kullanırken çöktürme seçeneği gösterir</string>
     <string name="crash_the_player">Oynatıcıyı çöktür</string>
-    <string name="background_player_already_playing_toast">Zaten arka planda oynuyor</string>
     <string name="detail_pinned_comment_view_description">Sabitlenmiş yorum</string>
     <string name="leak_canary_not_available">LeakCanary yok</string>
     <string name="progressive_load_interval_summary">Yükleme ara boyutunu değiştir (şu anda %s). Düşük bir değer videonun ilk yüklenişini hızlandırabilir. Değişiklikler oynatıcının yeniden başlatılmasını gerektirir.</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer öntanımlısı</string>
-    <string name="playback_tempo_step">Tempo adımı</string>
-    <string name="adjust_by_semitones_checkbox">Perdeyi müzikal yarım tonlarla uyarla</string>
     <string name="enable_streams_notifications_title">Yeni akış bildirimleri</string>
     <string name="notifications">Bildirimler</string>
     <plurals name="new_streams">

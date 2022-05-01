@@ -672,7 +672,6 @@
     <string name="show_crash_the_player_summary">Viser et krasjalternativ ved bruk av avspilleren</string>
     <string name="error_report_notification_toast">Det oppstod en feil. Sjekk merknaden.</string>
     <string name="detail_pinned_comment_view_description">Festet kommentar</string>
-    <string name="background_player_already_playing_toast">Spilles allerede i bakgrunnen</string>
     <string name="error_report_channel_name">Feilrapport-merknad</string>
     <string name="error_report_channel_description">Merknader for innrapportering av feil</string>
     <string name="error_report_notification_title">NewPipe-feil. Trykk for å rapportere.</string>
@@ -682,6 +681,4 @@
     <string name="no_appropriate_file_manager_message_android_10">Installer en filbehandler som støtter lagringstilgangsrammeverk først.</string>
     <string name="leak_canary_not_available">LeakCanary er ikke tilgjengelig</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer-forvalg</string>
-    <string name="adjust_by_semitones_checkbox">Juster toneart etter musikalske halvtoner</string>
-    <string name="playback_tempo_step">Tempo-steg</string>
 </resources>

@@ -701,14 +701,11 @@
 \nZainstaluj menedżer plików lub spróbuj wyłączyć „%s” w ustawieniach pobierania.</string>
     <string name="no_appropriate_file_manager_message_android_10">Nie znaleziono odpowiedniego menedżera plików dla tej akcji.
 \nZainstaluj menedżer plików zgodny z Storage Access Framework.</string>
-    <string name="background_player_already_playing_toast">Już jest odtwarzane w tle</string>
     <string name="detail_pinned_comment_view_description">Przypięty komentarz</string>
     <string name="leak_canary_not_available">LeakCanary jest niedostępne</string>
     <string name="progressive_load_interval_title">Rozmiar interwału ładowania odtwarzania</string>
     <string name="progressive_load_interval_summary">Zmień rozmiar interwału ładowania (aktualnie %s). Niższa wartość może przyspieszyć początkowe ładowanie wideo. Zmiany wymagają ponownego uruchomienia odtwarzacza</string>
     <string name="progressive_load_interval_exoplayer_default">domyślny ExoPlayera</string>
-    <string name="adjust_by_semitones_checkbox">Dostosuj wysokość półtonami</string>
-    <string name="playback_tempo_step">Krok tempa</string>
     <string name="settings_category_player_notification_title">Powiadomienie odtwarzacza</string>
     <string name="settings_category_player_notification_summary">Skonfiguruj powiadomienie aktualnie odtwarzanego strumienia</string>
     <string name="check_new_streams">Uruchom sprawdzenie nowych strumieni</string>
