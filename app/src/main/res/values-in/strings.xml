@@ -86,7 +86,6 @@
     <string name="short_thousand">r</string>
     <string name="short_million">J</string>
     <string name="short_billion">T</string>
-    <string name="yes">Ya</string>
     <string name="open_in_popup_mode">Buka dalam mode popup</string>
     <string name="msg_popup_permission">Izin ini dibutuhkan untuk
 \nmembuka di mode sembul</string>
@@ -540,7 +539,6 @@
     <string name="clear_queue_confirmation_description">Antrean dari pemutar yang aktif akan digantikan</string>
     <string name="clear_queue_confirmation_summary">Beralih ke pemutar yang lain mungkin akan mengganti antrean Anda</string>
     <string name="clear_queue_confirmation_title">Konfirmasi sebelum mengosongkan antrean</string>
-    <string name="settings_category_notification_title">Notifikasi</string>
     <string name="notification_action_nothing">Tidak ada</string>
     <string name="notification_action_buffering">Bufer</string>
     <string name="notification_action_shuffle">Aduk</string>
@@ -654,8 +652,6 @@
     <string name="enqueued_next">telah ditambahkan ke selanjutnya</string>
     <string name="show_image_indicators_summary">Tampilkan Ribon bewarna Picasso di atas gambar yang mengindikasikan asalnya: merah untuk jaringan, biru untuk disk dan hijau untuk memori</string>
     <string name="start_main_player_fullscreen_summary">Jangan memulai memutar video di mini player, tapi nyalakan langsung di mode layar penuh, jika rotasi otomatis terkunci. Anda tetap dapat mengakses mini player dengan keluar dari layar penuh</string>
-    <string name="loading_channel_details">Memuat Detail Channel…</string>
-    <string name="error_show_channel_details">Galat Menampilkan Detail Channel</string>
     <string name="processing_may_take_a_moment">Memproses… Mungkin butuh waktu sebentar</string>
     <string name="manual_update_title">Periksa Pembaruan</string>
     <string name="manual_update_description">Periksa manual untuk versi baru</string>
@@ -677,4 +673,29 @@
     <string name="detail_pinned_comment_view_description">Komentar dipin</string>
     <string name="background_player_already_playing_toast">Sudah diputar di latar belakang</string>
     <string name="leak_canary_not_available">LeakCanary tidak tersedia</string>
+    <string name="playback_tempo_step">Langkah tempo</string>
+    <string name="progressive_load_interval_exoplayer_default">Default ExoPlayer</string>
+    <string name="adjust_by_semitones_checkbox">Atur nada berdasarkan semitone musik</string>
+    <string name="progressive_load_interval_summary">Ubah ukuran interval pemuatan (saat ini %s). Sebuah nilai yang rendah mungkin dapat membuat pemuatan video awal lebih cepat. Membutuhkan sebuah pemulaian ulang pada pemain.</string>
+    <string name="loading_stream_details">Memuat detail stream…</string>
+    <string name="streams_notifications_interval_title">Frekuensi pemeriksaan</string>
+    <string name="streams_notifications_network_title">Dibutuhkan koneksi jaringan</string>
+    <string name="any_network">Jaringan apa saja</string>
+    <string name="get_notified">Beritahu saya</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Alih semua</string>
+    <plurals name="new_streams">
+        <item quantity="other">%s stream baru</item>
+    </plurals>
+    <string name="check_new_streams">Jalankan periksa untuk stream baru</string>
+    <string name="delete_downloaded_files_confirm">Hapus semua file yang terunduh dari disk\?</string>
+    <string name="notifications_disabled">Notifikasi dinonaktifkan</string>
+    <string name="settings_category_player_notification_title">Notifikasi pemain</string>
+    <string name="notifications">Notifikasi</string>
+    <string name="settings_category_player_notification_summary">Konfigurasi notifikasi permainan stream saat ini</string>
+    <string name="streams_notification_channel_name">Stream baru</string>
+    <string name="streams_notification_channel_description">Notifikasi tentang stream baru untuk langganan</string>
+    <string name="enable_streams_notifications_title">Notifikasi stream baru</string>
+    <string name="enable_streams_notifications_summary">Beritahu tentang stream baru dari notifikasi</string>
+    <string name="you_successfully_subscribed">Anda sekarang berlangganan ke channel ini</string>
 </resources>

@@ -56,7 +56,7 @@ class FeedViewModel(
         .subscribeOn(Schedulers.io())
         .observeOn(Schedulers.io())
         .map { (event, showPlayedItems, notLoadedCount, oldestUpdate) ->
-            var streamItems = if (event is SuccessResultEvent || event is IdleEvent)
+            val streamItems = if (event is SuccessResultEvent || event is IdleEvent)
                 feedDatabaseManager
                     .getStreams(groupId, showPlayedItems)
                     .blockingGet(arrayListOf())

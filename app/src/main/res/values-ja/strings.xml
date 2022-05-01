@@ -87,7 +87,6 @@
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-    <string name="yes">はい</string>
     <string name="open_in_popup_mode">ポップアップモードで開く</string>
     <string name="msg_popup_permission">ポップアップモードで開くには
 \n権限の許可が必要です</string>
@@ -325,7 +324,7 @@
     <string name="playback_speed_control">再生速度を変更</string>
     <string name="unhook_checkbox">速度と音程を連動せずに変更 (歪むかもしれません)</string>
     <string name="skip_silence_checkbox">無音の間に早送り</string>
-    <string name="playback_step">音程幅</string>
+    <string name="playback_step">音階</string>
     <string name="unsubscribe">登録解除</string>
     <string name="tab_choose">タブを選択</string>
     <string name="settings_category_updates_title">アプリの更新</string>
@@ -553,7 +552,6 @@
     <string name="notification_action_repeat">繰り返し</string>
     <string name="notification_action_shuffle">シャッフル</string>
     <string name="notification_action_buffering">バッファリング</string>
-    <string name="settings_category_notification_title">通知</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube は、成人向けの可能性があるコンテンツを除外する「制限付きモード」を提供しています</string>
     <string name="show_age_restricted_content_summary">年齢制限 (18+ など) の理由で、子供には不適切な可能性のあるコンテンツを表示する</string>
     <string name="enqueue_stream">キューに追加</string>
@@ -638,8 +636,6 @@
     <string name="seekbar_preview_thumbnail_title">シークバーのサムネイルプレビュー</string>
     <string name="comments_are_disabled">コメントは無効です</string>
     <string name="mark_as_watched">視聴済みとしてマーク</string>
-    <string name="error_show_channel_details">チャンネルの詳細の表示でエラー</string>
-    <string name="loading_channel_details">チャンネルの詳細を読み込み中…</string>
     <string name="remote_search_suggestions">リモート検索候補</string>
     <string name="local_search_suggestions">ローカル検索候補</string>
     <string name="main_page_content_swipe_remove">アイテムをスワイプして削除</string>
@@ -677,4 +673,26 @@
     <string name="create_error_notification">エラー通知を作成</string>
     <string name="error_report_channel_description">エラーを報告する通知</string>
     <string name="leak_canary_not_available">LeakCanaryが利用不可能です</string>
+    <string name="playback_tempo_step">緩急音階</string>
+    <string name="settings_category_player_notification_title">プレイヤー通知</string>
+    <string name="loading_stream_details">ストリームの詳細を読み込んでいます…</string>
+    <string name="enable_streams_notifications_summary">登録チャンネルの新しいストリームについて通知する</string>
+    <string name="enumeration_comma">,</string>
+    <string name="notifications_disabled">通知は無効化されています</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer のデフォルト</string>
+    <string name="get_notified">通知を受け取る</string>
+    <string name="you_successfully_subscribed">このチャンネルを購読しました</string>
+    <string name="delete_downloaded_files_confirm">ディスクからダウンロードしたすべてのファイルを削除しますか？</string>
+    <string name="toggle_all">すべて切り替え</string>
+    <string name="streams_notifications_interval_title">確認する頻度</string>
+    <string name="check_new_streams">新しいストリームのチェックを実行</string>
+    <string name="streams_notification_channel_description">購読チャンネルの新しいストリームに関する通知</string>
+    <string name="enable_streams_notifications_title">新しいストリームの通知</string>
+    <plurals name="new_streams">
+        <item quantity="other">%s 件の新しいストリーム</item>
+    </plurals>
+    <string name="streams_notification_channel_name">新しいストリーム</string>
+    <string name="notifications">通知</string>
+    <string name="settings_category_player_notification_summary">現在再生しているストリームの通知を構成</string>
+    <string name="progressive_load_interval_summary">読み込む間隔を変更します (現在 %s)。小さい値にすると初回読み込み時間が短くなります。変更にはプレイヤーの再起動が必要です。</string>
 </resources>

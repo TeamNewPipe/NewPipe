@@ -51,9 +51,10 @@ public interface PlaybackListener {
      * May be called anytime at any amount once unblock is called.
      * </p>
      *
-     * @param item
+     * @param item          item the player should be playing/synchronized to
+     * @param wasBlocked    was the player recently released from blocking state
      */
-    void onPlaybackSynchronize(@NonNull PlayQueueItem item);
+    void onPlaybackSynchronize(@NonNull PlayQueueItem item, boolean wasBlocked);
 
     /**
      * Requests the listener to resolve a stream info into a media source

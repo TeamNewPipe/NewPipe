@@ -58,22 +58,27 @@ public class PreferenceSearchItem {
         this.searchIndexItemResId = searchIndexItemResId;
     }
 
+    @NonNull
     public String getKey() {
         return key;
     }
 
+    @NonNull
     public String getTitle() {
         return title;
     }
 
+    @NonNull
     public String getSummary() {
         return summary;
     }
 
+    @NonNull
     public String getEntries() {
         return entries;
     }
 
+    @NonNull
     public String getBreadcrumbs() {
         return breadcrumbs;
     }
@@ -94,7 +99,7 @@ public class PreferenceSearchItem {
             getBreadcrumbs());
     }
 
-
+    @NonNull
     @Override
     public String toString() {
         return "PreferenceItem: " + title + " " + summary + " " + key;

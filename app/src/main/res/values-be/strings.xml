@@ -97,7 +97,6 @@
     <string name="playlists">Плэйлісты</string>
     <string name="tracks">Дарожкі</string>
     <string name="users">Карыстальнікі</string>
-    <string name="yes">Так</string>
     <string name="disabled">Адключана</string>
     <string name="clear">Ачысціць</string>
     <string name="best_resolution">Лепшае разрозненне</string>
@@ -482,7 +481,6 @@
     <string name="notification_action_shuffle">Ператасаваць</string>
     <string name="notification_action_repeat">Паўтор</string>
     <string name="notification_action_4_title">Кнопка пятага дзеяння</string>
-    <string name="settings_category_notification_title">Паведамленні</string>
     <string name="notification_colorize_summary">Афарбоўваць апавяшчэнне асноўным колерам мініяцюры. Падтрымваецца не ўсімі прыладамі</string>
     <string name="notification_actions_at_most_three">У кампактным апавяшчэнні дасяжна не больш за тры дзеянні!</string>
     <string name="notification_actions_summary">Дзеянні можна змяніць, націснуўшы на іх. Адзначце не больш за трох для адлюстравання ў кампактным апавяшчэнні</string>

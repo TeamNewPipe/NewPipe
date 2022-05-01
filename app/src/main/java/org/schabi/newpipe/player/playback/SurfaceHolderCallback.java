@@ -3,7 +3,7 @@ package org.schabi.newpipe.player.playback;
 import android.content.Context;
 import android.view.SurfaceHolder;
 
-import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.video.DummySurface;
 
 /**
@@ -25,10 +25,10 @@ import com.google.android.exoplayer2.video.DummySurface;
 public final class SurfaceHolderCallback implements SurfaceHolder.Callback {
 
     private final Context context;
-    private final SimpleExoPlayer player;
+    private final Player player;
     private DummySurface dummySurface;
 
-    public SurfaceHolderCallback(final Context context, final SimpleExoPlayer player) {
+    public SurfaceHolderCallback(final Context context, final Player player) {
         this.context = context;
         this.player = player;
     }

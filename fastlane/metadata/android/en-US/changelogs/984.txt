@@ -1,0 +1,7 @@
+Load enough initial items in lists to fill the whole screen and to fix scrolling on tablets and TVs
+Fix random crashes while scrolling through lists
+Have the player fast seek overlay arc go under the system UI
+Revert changes to cutouts when playing in multi window, causing the misplaced player regression on some phones
+Increase compileSdk from 30 to 31
+Update error reporting library
+Refactor some code in the player

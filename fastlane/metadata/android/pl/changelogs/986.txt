@@ -1,0 +1,16 @@
+Nowe
+• Powiadom. o nowych strumieniach
+• Płynne przejście między odtwarzacz. w tle i wideo
+• Zmiana wys. tonu o półtony
+• Dołącz. głównej kolejki odtwarzacza do playlisty
+
+Ulepszone
+• Zapamięt. wielkości kroku prędk./wys. dźwięku
+• Zmniej. wstępne długie bufor. w odtwarzaczu
+• Ulepsz. odtwarzacza dla Android TV
+• Potwierdz. przed usun. wszystkich plików
+
+Naprawione
+• Przycisk multimediów nie ukrywał kontrolek odtwarzacza
+• Reset odtwarzania po zmianie typu odtwarzacz.
+• Obracanie okna playlisty

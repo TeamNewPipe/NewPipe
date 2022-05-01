@@ -1,1 +1,1 @@
-Behoben, dass YouTube keinen Stream abspielte.
+Behoben, dass YouTube keinen Stream abspielte

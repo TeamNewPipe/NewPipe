@@ -7,7 +7,6 @@ import android.support.v4.media.session.MediaSessionCompat;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.exoplayer2.ControlDispatcher;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import com.google.android.exoplayer2.util.Util;
@@ -44,17 +43,17 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
     }
 
     @Override
-    public void onTimelineChanged(final Player player) {
+    public void onTimelineChanged(@NonNull final Player player) {
         publishFloatingQueueWindow();
     }
 
     @Override
-    public void onCurrentWindowIndexChanged(final Player player) {
+    public void onCurrentMediaItemIndexChanged(@NonNull final Player player) {
         if (activeQueueItemId == MediaSessionCompat.QueueItem.UNKNOWN_ID
                 || player.getCurrentTimeline().getWindowCount() > maxQueueSize) {
             publishFloatingQueueWindow();
         } else if (!player.getCurrentTimeline().isEmpty()) {
-            activeQueueItemId = player.getCurrentWindowIndex();
+            activeQueueItemId = player.getCurrentMediaItemIndex();
         }
     }
 
@@ -64,18 +63,17 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
     }
 
     @Override
-    public void onSkipToPrevious(final Player player, final ControlDispatcher controlDispatcher) {
+    public void onSkipToPrevious(@NonNull final Player player) {
         callback.playPrevious();
     }
 
     @Override
-    public void onSkipToQueueItem(final Player player, final ControlDispatcher controlDispatcher,
-                                  final long id) {
+    public void onSkipToQueueItem(@NonNull final Player player, final long id) {
         callback.playItemAtIndex((int) id);
     }
 
     @Override
-    public void onSkipToNext(final Player player, final ControlDispatcher controlDispatcher) {
+    public void onSkipToNext(@NonNull final Player player) {
         callback.playNext();
     }
 
@@ -102,8 +100,10 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
     }
 
     @Override
-    public boolean onCommand(final Player player, final ControlDispatcher controlDispatcher,
-                             final String command, final Bundle extras, final ResultReceiver cb) {
+    public boolean onCommand(@NonNull final Player player,
+                             @NonNull final String command,
+                             @Nullable final Bundle extras,
+                             @Nullable final ResultReceiver cb) {
         return false;
     }
 }

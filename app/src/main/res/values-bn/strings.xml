@@ -176,7 +176,6 @@
     <string name="best_resolution">সেরা রেজুলিউসন</string>
     <string name="clear">পরিষ্কার</string>
     <string name="disabled">নিস্ক্রীয়</string>
-    <string name="yes">হ্যাঁ</string>
     <string name="artists">শিল্পীরা</string>
     <string name="albums">অ্যালবাম গুলি</string>
     <string name="songs">গান গুলি</string>
@@ -331,7 +330,6 @@
         <item quantity="other">%s সদস্যতাগণ</item>
     </plurals>
     <string name="users">ব্যবহারকারীরা</string>
-    <string name="settings_category_notification_title">বিজ্ঞপ্তি</string>
     <string name="resume_on_audio_focus_gain_summary">বাধার পর প্লে চালিয়ে যাও (উদাহরণস্বরূপ ফোনকল)</string>
     <string name="subscriptions_export_unsuccessful">সদস্যতা রপ্তানি করা যায়নি</string>
     <string name="subscriptions_import_unsuccessful">সদস্যতা আমদানি করা যায়নি</string>

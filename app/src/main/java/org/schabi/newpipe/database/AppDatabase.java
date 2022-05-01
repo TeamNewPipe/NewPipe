@@ -1,5 +1,7 @@
 package org.schabi.newpipe.database;
 
+import static org.schabi.newpipe.database.Migrations.DB_VER_5;
+
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
@@ -27,8 +29,6 @@ import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.database.subscription.SubscriptionDAO;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 
-import static org.schabi.newpipe.database.Migrations.DB_VER_4;
-
 @TypeConverters({Converters.class})
 @Database(
         entities = {
@@ -38,7 +38,7 @@ import static org.schabi.newpipe.database.Migrations.DB_VER_4;
                 FeedEntity.class, FeedGroupEntity.class, FeedGroupSubscriptionEntity.class,
                 FeedLastUpdatedEntity.class
         },
-        version = DB_VER_4
+        version = DB_VER_5
 )
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "newpipe.db";
