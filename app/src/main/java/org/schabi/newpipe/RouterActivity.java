@@ -264,15 +264,10 @@ public class RouterActivity extends AppCompatActivity {
                         getString(R.string.preferred_open_action_default));
 
         final String showInfoKey = getString(R.string.show_info_key);
-        final String videoPlayerKey = getString(R.string.video_player_key);
-        final String backgroundPlayerKey = getString(R.string.background_player_key);
-        final String popupPlayerKey = getString(R.string.popup_player_key);
-        final String downloadKey = getString(R.string.download_key);
-        final String alwaysAskKey = getString(R.string.always_ask_open_action_key);
 
-        if (selectedChoiceKey.equals(alwaysAskKey)) {
-            final List<AdapterChoiceItem> choices
-                    = getChoicesForService(currentService, currentLinkType);
+        if (selectedChoiceKey.equals(getString(R.string.always_ask_open_action_key))) {
+            final List<AdapterChoiceItem> choices =
+                    getChoicesForService(currentService, currentLinkType);
 
             switch (choices.size()) {
                 case 1:
@@ -285,36 +280,39 @@ public class RouterActivity extends AppCompatActivity {
                     showDialog(choices);
                     break;
             }
-        } else if (selectedChoiceKey.equals(showInfoKey)) {
-            handleChoice(showInfoKey);
-        } else if (selectedChoiceKey.equals(downloadKey)) {
-            handleChoice(downloadKey);
+        } else if (selectedChoiceKey.equals(showInfoKey)
+                || selectedChoiceKey.equals(getString(R.string.download_key))
+                || selectedChoiceKey.equals(getString(R.string.add_to_playlist_key))
+        ) {
+            handleChoice(selectedChoiceKey);
         } else {
             final boolean isExtVideoEnabled = preferences.getBoolean(
                     getString(R.string.use_external_video_player_key), false);
             final boolean isExtAudioEnabled = preferences.getBoolean(
                     getString(R.string.use_external_audio_player_key), false);
-            final boolean isVideoPlayerSelected = selectedChoiceKey.equals(videoPlayerKey)
-                    || selectedChoiceKey.equals(popupPlayerKey);
-            final boolean isAudioPlayerSelected = selectedChoiceKey.equals(backgroundPlayerKey);
+            final boolean isVideoPlayerSelected =
+                    selectedChoiceKey.equals(getString(R.string.video_player_key))
+                            || selectedChoiceKey.equals(getString(R.string.popup_player_key));
+            final boolean isAudioPlayerSelected =
+                    selectedChoiceKey.equals(getString(R.string.background_player_key));
 
-            if (currentLinkType != LinkType.STREAM) {
-                if (isExtAudioEnabled && isAudioPlayerSelected
-                        || isExtVideoEnabled && isVideoPlayerSelected) {
-                    Toast.makeText(this, R.string.external_player_unsupported_link_type,
-                            Toast.LENGTH_LONG).show();
-                    handleChoice(showInfoKey);
-                    return;
-                }
+            if (currentLinkType != LinkType.STREAM
+                    && (isExtAudioEnabled && isAudioPlayerSelected
+                    || isExtVideoEnabled && isVideoPlayerSelected)
+            ) {
+                Toast.makeText(this, R.string.external_player_unsupported_link_type,
+                        Toast.LENGTH_LONG).show();
+                handleChoice(showInfoKey);
+                return;
             }
 
-            final List<StreamingService.ServiceInfo.MediaCapability> capabilities
-                    = currentService.getServiceInfo().getMediaCapabilities();
+            final List<StreamingService.ServiceInfo.MediaCapability> capabilities =
+                    currentService.getServiceInfo().getMediaCapabilities();
 
             boolean serviceSupportsChoice = false;
             if (isVideoPlayerSelected) {
                 serviceSupportsChoice = capabilities.contains(VIDEO);
-            } else if (selectedChoiceKey.equals(backgroundPlayerKey)) {
+            } else if (isAudioPlayerSelected) {
                 serviceSupportsChoice = capabilities.contains(AUDIO);
             }
 
