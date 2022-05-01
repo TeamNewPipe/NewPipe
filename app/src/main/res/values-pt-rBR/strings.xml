@@ -711,7 +711,6 @@
     <string name="streams_notifications_network_title">Conexão de rede necessária</string>
     <string name="notifications_disabled">As notificações estão desativadas</string>
     <string name="get_notified">Seja notificado</string>
-    <string name="sponsor_block">SponsorBlock</string>
     <string name="settings_category_sponsor_block_title">SponsorBlock (Beta, serviço de terceiro)</string>
     <string name="settings_category_sponsor_block_categories_title">Categorias do SponsorBlock</string>
     <string name="settings_category_sponsor_block_categories_summary">Personalize quais segmentos de vídeo pular, junto com suas marcações de cores na barra.</string>
@@ -736,7 +735,7 @@
     <string name="settings_category_sponsor_block_category_preview_title">Pré-visualização/Recapitulação</string>
     <string name="settings_category_sponsor_block_category_preview_summary">Recapitulação rápida de episódios anteriores, ou uma prévia do que está chegando mais tarde no vídeo atual. Destinado a clipes editados juntos, não para resumos falados.</string>
     <string name="sponsor_block">SponsorBlock</string>
-    <string name="sponsor_block_home_page_title">Ver site</string>
+    <string name="sponsor_block_home_page_title">Visita website</string>
     <string name="sponsor_block_home_page_summary">Veja o site oficial do SponsorBlock.</string>
     <string name="sponsor_block_enable_title">Pular patrocinadores</string>
     <string name="sponsor_block_enable_summary">Use a API SponsorBlock para pular automaticamente os patrocinadores nos vídeos. Atualmente, isso só funciona para vídeos do YouTube.</string>
@@ -744,7 +743,7 @@
     <string name="sponsor_block_api_url_summary">A URL a ser usado ao consultar a API do SponsorBlock. Isso deve ser definido para que SponsorBlock funcione.</string>
     <string name="sponsor_block_notifications_title">Notificar quando os patrocinadores forem ignorados</string>
     <string name="sponsor_block_notifications_summary">Mostre uma notificação de brinde quando um patrocinador for ignorado automaticamente.</string>
-    <string name="sponsor_block_privacy_title">Ver Política de Privacidade</string>
+    <string name="sponsor_block_privacy_title">Ver política de privacidade</string>
     <string name="sponsor_block_privacy_summary">Veja a política de privacidade do SponsorBlock.</string>
     <string name="sponsor_block_api_url_help_text">Este é o URL que será consultado quando o aplicativo precisar saber quais partes de um vídeo devem ser ignoradas.\n\nVocê pode definir o URL oficial clicando na opção \'Usar oficial\' abaixo, embora seja altamente recomendável que você veja a política de privacidade do SponsorBlock antes de usá-lo.</string>
     <string name="sponsor_block_privacy_policy_text">Política de privacidade do SponsorBlock</string>
