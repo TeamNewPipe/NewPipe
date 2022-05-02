@@ -89,11 +89,11 @@ public final class DeviceUtils {
     }
 
     public static boolean isDesktopMode(final Context context) {
-        final boolean isDesktopMode = ContextCompat.getSystemService(context, UiModeManager.class)
-                .getCurrentModeType() == Configuration.UI_MODE_TYPE_DESK;
-
+        if (ContextCompat.getSystemService(context, UiModeManager.class)
+                .getCurrentModeType() == Configuration.UI_MODE_TYPE_DESK) {
+            return true;
+        }
         // DeX check for standalone and multi-window mode
-        boolean isDeXMode = false;
         try {
             final Configuration config = context.getResources().getConfiguration();
             final Class<?> configClass = config.getClass();
@@ -102,7 +102,7 @@ public final class DeviceUtils {
             final int currentMode =
                     configClass.getField("semDesktopModeEnabled").getInt(config);
             if (semDesktopModeEnabledConst == currentMode) {
-                isDeXMode = true;
+                return true;
             }
         } catch (final NoSuchFieldException | IllegalAccessException e) {
             // empty
@@ -122,14 +122,14 @@ public final class DeviceUtils {
                 final int enabled = (int) getEnabledMethod.invoke(desktopModeState);
                 if (enabled == desktopModeStateClass
                         .getDeclaredField("ENABLED").getInt(desktopModeStateClass)) {
-                    isDeXMode = true;
+                    return true;
                 }
             } catch (NoSuchFieldException | NoSuchMethodException
                     | IllegalAccessException | InvocationTargetException e) {
                 // Device does not support DeX 3.0
             }
         }
-        return isDesktopMode || isDeXMode;
+        return false;
     }
 
     public static boolean isTablet(@NonNull final Context context) {
