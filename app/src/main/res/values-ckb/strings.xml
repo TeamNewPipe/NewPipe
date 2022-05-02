@@ -672,7 +672,6 @@
     <string name="show_crash_the_player_title">پیشاندانی ”کڕاش کردنی لێدەرەکە“</string>
     <string name="create_error_notification">سازاندنی پەیامی کێشەیەک</string>
     <string name="manual_update_title">پشکنین بۆ نوێکردنەوە</string>
-    <string name="background_player_already_playing_toast">وا لە پاشبنەمادا لێدەدرێت</string>
     <string name="error_report_channel_name">کێشە لە سکاڵا کردنی پەیام</string>
     <string name="error_report_channel_description">پەیامەکانی سکاڵاکردن لە کێشەکان</string>
     <string name="feed_new_items">بابەتە نوێیەکانی فیید</string>

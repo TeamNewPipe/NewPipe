@@ -672,8 +672,6 @@
     <string name="enqueued_next">Enfileirado</string>
     <string name="manual_update_title">Procurar actualizacións</string>
     <string name="manual_update_description">Procurar manualmente novas versións</string>
-    <string name="adjust_by_semitones_checkbox">Axustar o ton do semitóns musicais</string>
-    <string name="playback_tempo_step">Paso do tempo</string>
     <string name="checking_updates_toast">A procurar actualizacións…</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, só o \'Sistema de Acceso ao Almacenamento\' está soportado</string>
     <string name="progressive_load_interval_summary">Cambia o tamaño do intervalo de carga (actualmente %s). Un valor menor pode acelerar o carregamento do vídeo. Cambios poden precisar un reinicio do reprodutor.</string>

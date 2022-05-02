@@ -674,7 +674,6 @@
     <string name="error_report_notification_title">NewPipe töös tekkis viga, sellest teavitamiseks klõpsi</string>
     <string name="crash_the_player">Jooksuta meediamängija kokku</string>
     <string name="show_error_snackbar">Näita veateate akent</string>
-    <string name="background_player_already_playing_toast">Meedia esitamine taustal toimib juba</string>
     <string name="error_report_channel_name">Teavitus vigadest</string>
     <string name="error_report_channel_description">Teavitused vigadest informeerimiseks</string>
     <string name="error_report_notification_toast">Tekkis viga, vaata vastavat teadet</string>
@@ -709,6 +708,4 @@
     <string name="you_successfully_subscribed">Sa oled nüüd selle kanali tellija</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Lülita kõik sisse</string>
-    <string name="adjust_by_semitones_checkbox">Reguleeri helikõrgust muusikaliste pooltoonide kaupa</string>
-    <string name="playback_tempo_step">Tempo samm</string>
 </resources>

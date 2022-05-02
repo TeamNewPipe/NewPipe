@@ -666,7 +666,6 @@
     <string name="enqueue_next_stream">Gehitu bideo hau isatsari</string>
     <string name="show_crash_the_player_title">Erakutsi \"Itxi erreproduzigailua\"</string>
     <string name="processing_may_take_a_moment">Prozesatzen... Itxoin mesedez</string>
-    <string name="background_player_already_playing_toast">Atzeko planoan erreproduzitzen dagoeneko</string>
     <string name="error_report_channel_name">Erroreen txostenen jakinarazpena</string>
     <string name="error_report_channel_description">Jakinarazpenak erroreen berri emateko</string>
     <string name="error_report_notification_title">NewPipe-k errore bat aurkitu du, sakatu berri emateko</string>
@@ -695,8 +694,6 @@
     <string name="you_successfully_subscribed">Kanal honetara harpidetu zara</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Txandakatu denak</string>
-    <string name="adjust_by_semitones_checkbox">Doitu tonua semitono musikalen arabera</string>
-    <string name="playback_tempo_step">Tempo urratsa</string>
     <string name="progressive_load_interval_summary">Aldatu karga maiztasun tamaina (unean %s). Balio txikiago batek bideoaren hasierako karga azkartu dezake. Erreproduzigailuaren berrabiarazte bat behar du.</string>
     <string name="enable_streams_notifications_summary">Harpidetzen jario berriei buruz jakinarazi</string>
     <string name="delete_downloaded_files_confirm">Ezabatu deskargatutako fitxategi guztiak biltegitik\?</string>
