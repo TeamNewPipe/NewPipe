@@ -120,10 +120,10 @@ public final class DeviceUtils {
                 final Method getEnabledMethod = desktopModeStateClass
                         .getDeclaredMethod("getEnabled");
                 final int enabled = (int) getEnabledMethod.invoke(desktopModeState);
-                final boolean isEnabled = enabled == desktopModeStateClass
-                        .getDeclaredField("ENABLED").getInt(desktopModeStateClass);
-
-                isDeXMode = isEnabled;
+                if (enabled == desktopModeStateClass
+                        .getDeclaredField("ENABLED").getInt(desktopModeStateClass)) {
+                    isDeXMode = true;
+                }
             } catch (NoSuchFieldException | NoSuchMethodException
                     | IllegalAccessException | InvocationTargetException e) {
                 // Device does not support DeX 3.0
