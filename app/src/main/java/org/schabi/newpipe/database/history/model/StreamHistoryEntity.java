@@ -51,7 +51,7 @@ public class StreamHistoryEntity {
 
     @Ignore
     public StreamHistoryEntity(final long streamUid, @NonNull final OffsetDateTime accessDate) {
-        this(streamUid, accessDate, 1);
+        this(streamUid, accessDate, 0);
     }
 
     public long getStreamUid() {
