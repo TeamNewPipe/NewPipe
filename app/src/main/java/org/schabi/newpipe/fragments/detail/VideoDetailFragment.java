@@ -2096,7 +2096,7 @@ public final class VideoDetailFragment
 
     /**
      * Make changes to the UI to accommodate for better usability on bigger screens such as TVs
-     * or in Android's desktop mode (DeX etc.)
+     * or in Android's desktop mode (DeX etc).
      */
     private void accommodateForTvAndDesktopMode() {
         if (DeviceUtils.isTv(getContext())) {
