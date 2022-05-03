@@ -49,7 +49,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     // Minimum allowable range in ExoPlayer
     private static final double MIN_PITCH_OR_SPEED = 0.10f;
     private static final double MAX_PITCH_OR_SPEED = 3.00f;
-    private static final double MAX_LIVE_PITCH_OR_SPEED = 1.00f;
+    private static final double MAX_LIVE_EDGE_SPEED = 1.00f;
 
     private static final boolean PITCH_CTRL_MODE_PERCENT = false;
     private static final boolean PITCH_CTRL_MODE_SEMITONE = true;
@@ -72,9 +72,9 @@ public class PlaybackParameterDialog extends DialogFragment {
             1.00f,
             10_000);
 
-    private static final SliderStrategy QUADRATIC_LIVE_STRATEGY = new SliderStrategy.Quadratic(
+    private static final SliderStrategy LIVE_EDGE_QUADRATIC_STRATEGY = new SliderStrategy.Quadratic(
             MIN_PITCH_OR_SPEED,
-            MAX_LIVE_PITCH_OR_SPEED,
+            MAX_LIVE_EDGE_SPEED,
             0.50f,
             10_000);
 
@@ -195,7 +195,7 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private void initUI() {
         // Tempo
-        final double maxTempo = liveEdge ? MAX_LIVE_PITCH_OR_SPEED : MAX_PITCH_OR_SPEED;
+        final double maxTempo = liveEdge ? MAX_LIVE_EDGE_SPEED : MAX_PITCH_OR_SPEED;
         final SliderStrategy tempoStrategy = getTempoStrategy();
         setText(binding.tempoMinimumText, PlayerHelper::formatSpeed, maxTempo);
         setText(binding.tempoMaximumText, PlayerHelper::formatSpeed, maxTempo);
@@ -528,7 +528,7 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private SliderStrategy getTempoStrategy() {
         if (liveEdge) {
-            return QUADRATIC_LIVE_STRATEGY;
+            return LIVE_EDGE_QUADRATIC_STRATEGY;
         } else {
             return QUADRATIC_STRATEGY;
         }
@@ -558,8 +558,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     private void setAndUpdateTempo(final double newTempo) {
         this.tempo = calcValidTempo(newTempo);
 
-        final SliderStrategy tempoStrategy = getTempoStrategy();
-        binding.tempoSeekbar.setProgress(tempoStrategy.progressOf(tempo));
+        binding.tempoSeekbar.setProgress(getTempoStrategy().progressOf(tempo));
         setText(binding.tempoCurrentText, PlayerHelper::formatSpeed, tempo);
     }
 
@@ -577,7 +576,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private double calcValidTempo(final double newTempo) {
-        final double maxTempo = liveEdge ? MAX_LIVE_PITCH_OR_SPEED : MAX_PITCH_OR_SPEED;
+        final double maxTempo = liveEdge ? MAX_LIVE_EDGE_SPEED : MAX_PITCH_OR_SPEED;
         return Math.max(MIN_PITCH_OR_SPEED, Math.min(maxTempo, newTempo));
     }
 
