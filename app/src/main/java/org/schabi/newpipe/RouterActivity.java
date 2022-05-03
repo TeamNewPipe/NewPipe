@@ -293,8 +293,8 @@ public class RouterActivity extends AppCompatActivity {
                     selectedChoice.equals(getString(R.string.background_player_key));
 
             if (currentLinkType != LinkType.STREAM
-                    && (isExtAudioEnabled && isAudioPlayerSelected
-                    || isExtVideoEnabled && isVideoPlayerSelected)
+                    && ((isExtAudioEnabled && isAudioPlayerSelected)
+                    || (isExtVideoEnabled && isVideoPlayerSelected))
             ) {
                 Toast.makeText(this, R.string.external_player_unsupported_link_type,
                         Toast.LENGTH_LONG).show();
@@ -306,8 +306,8 @@ public class RouterActivity extends AppCompatActivity {
                     currentService.getServiceInfo().getMediaCapabilities();
 
             // Check if the service supports the choice
-            if (isVideoPlayerSelected && capabilities.contains(VIDEO)
-                    || isAudioPlayerSelected && capabilities.contains(AUDIO)) {
+            if ((isVideoPlayerSelected && capabilities.contains(VIDEO))
+                    || (isAudioPlayerSelected && capabilities.contains(AUDIO))) {
                 handleChoice(selectedChoice);
             } else {
                 handleChoice(getString(R.string.show_info_key));
@@ -483,6 +483,7 @@ public class RouterActivity extends AppCompatActivity {
 
         final List<AdapterChoiceItem> returnedItems = new ArrayList<>();
         returnedItems.add(showInfo); // Always present
+
         final List<StreamingService.ServiceInfo.MediaCapability> capabilities =
                 service.getServiceInfo().getMediaCapabilities();
 
@@ -506,6 +507,8 @@ public class RouterActivity extends AppCompatActivity {
                     getString(R.string.add_to_playlist),
                     R.drawable.ic_add));
         } else {
+            // LinkType.NONE is never present because it's filtered out before
+            // channels and playlist can be played as they contain a list of videos
             final SharedPreferences preferences = PreferenceManager
                     .getDefaultSharedPreferences(this);
             final boolean isExtVideoEnabled = preferences.getBoolean(
@@ -608,30 +611,28 @@ public class RouterActivity extends AppCompatActivity {
         finish();
     }
 
-    // show only "video player" since the details activity will be opened and the
-    // video will be auto played there.
     private boolean canHandleChoiceLikeShowInfo(final String selectedChoiceKey) {
-        // "video player" can be handled like "show info" when...
-        if (selectedChoiceKey.equals(getString(R.string.video_player_key))) {
-            // Autoplay is enabled
-            if (!PlayerHelper.isAutoplayAllowedByUser(getThemeWrapperContext())) {
-                return false;
-            }
-
-            final boolean isExtVideoEnabled = PreferenceManager.getDefaultSharedPreferences(this)
-                    .getBoolean(getString(R.string.use_external_video_player_key), false);
-            // Ignore it when it's done via an external player
-            if (isExtVideoEnabled) {
-                return false;
-            }
-
-            // The player is not running or in Video-mode/type
-            final MainPlayer.PlayerType playerType = PlayerHolder.getInstance().getType();
-            return playerType == null || playerType == MainPlayer.PlayerType.VIDEO;
-            // Since "show info" would do the exact same thing, use that as a key to let
-            // VideoDetailFragment load the stream instead of using FetcherService
+        if (!selectedChoiceKey.equals(getString(R.string.video_player_key))) {
+            return false;
         }
-        return false;
+        // "video player" can be handled like "show info" (because VideoDetailFragment can load
+        // the stream instead of FetcherService) when...
+
+        // ...Autoplay is enabled
+        if (!PlayerHelper.isAutoplayAllowedByUser(getThemeWrapperContext())) {
+            return false;
+        }
+
+        final boolean isExtVideoEnabled = PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(getString(R.string.use_external_video_player_key), false);
+        // ...it's not done via an external player
+        if (isExtVideoEnabled) {
+            return false;
+        }
+
+        // ...the player is not running or in normal Video-mode/type
+        final MainPlayer.PlayerType playerType = PlayerHolder.getInstance().getType();
+        return playerType == null || playerType == MainPlayer.PlayerType.VIDEO;
     }
 
     private void openAddToPlaylistDialog() {
