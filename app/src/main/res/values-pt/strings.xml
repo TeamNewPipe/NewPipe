@@ -554,7 +554,6 @@
     <string name="unsupported_url_dialog_message">URL não reconhecido. Abrir com outra aplicação\?</string>
     <string name="auto_queue_toggle">Enfileiramento automático</string>
     <string name="notification_action_shuffle">Embaralhar</string>
-    <string name="settings_category_notification_title">Notificação</string>
     <string name="wifi_only">Apenas em Wi-Fi</string>
     <string name="notification_action_nothing">Nada</string>
     <string name="clear_queue_confirmation_summary">Mudar de um reprodutor para outro pode substituir a sua fila</string>
@@ -683,11 +682,30 @@
 \nPor favor, instale um gestor de ficheiros ou tente desativar \'%s\' nas configurações de descarregar.</string>
     <string name="no_appropriate_file_manager_message_android_10">Nenhum gestor de ficheiros apropriado foi encontrado para esta ação.
 \nPor favor, instale um gestor de ficheiros compatível com o Storage Access Framework.</string>
-    <string name="background_player_already_playing_toast">Já está a reproduzir em segundo plano</string>
     <string name="detail_pinned_comment_view_description">Comentário fixado</string>
     <string name="leak_canary_not_available">LeakCanary não está disponível</string>
-    <string name="adjust_by_semitones_checkbox">Ajustar o tom por semitons musicais</string>
-    <string name="progressive_load_interval_default">Predefinido do ExoPlayer</string>
+    <string name="progressive_load_interval_exoplayer_default">Predefinido do ExoPlayer</string>
     <string name="progressive_load_interval_summary">Altere o tamanho do intervalo de carregamento (atualmente %s). Um valor menor pode acelerar o carregamento inicial do vídeo. Se fizer alterações é necessário reiniciar.</string>
-    <string name="playback_tempo_step">Passo do tempo</string>
+    <string name="settings_category_player_notification_title">Notificação do reprodutor</string>
+    <string name="settings_category_player_notification_summary">Configurar a notificação da reprodução do fluxo atual</string>
+    <string name="notifications">Notificações</string>
+    <string name="loading_stream_details">A carregar detalhes do fluxo…</string>
+    <string name="check_new_streams">Verificar se há novos fluxos</string>
+    <string name="enable_streams_notifications_title">Notificações sobre novos fluxos</string>
+    <string name="enable_streams_notifications_summary">Notificar sobre novos fluxos de assinaturas</string>
+    <string name="streams_notifications_interval_title">Frequência da verificação</string>
+    <string name="streams_notifications_network_title">Conexão de rede necessária</string>
+    <string name="any_network">Qualquer rede</string>
+    <string name="you_successfully_subscribed">Agora assinou este canal</string>
+    <string name="toggle_all">Alternar tudo</string>
+    <string name="delete_downloaded_files_confirm">Apagar todos os ficheiros descarregados do disco\?</string>
+    <string name="streams_notification_channel_name">Novos fluxos</string>
+    <string name="streams_notification_channel_description">Notificações sobre novos fluxos para assinaturas</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s fluxo novo</item>
+        <item quantity="other">%s fluxos novos</item>
+    </plurals>
+    <string name="get_notified">Seja notificado</string>
+    <string name="notifications_disabled">Notificações são desativadas</string>
+    <string name="enumeration_comma">,</string>
 </resources>

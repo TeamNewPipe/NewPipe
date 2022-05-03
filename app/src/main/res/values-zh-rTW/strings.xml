@@ -539,7 +539,6 @@
     <string name="clear_queue_confirmation_description">作用中播放器的佇列可能會被取代</string>
     <string name="clear_queue_confirmation_summary">從一個播放器切換到另一個可能會取代您的佇列</string>
     <string name="clear_queue_confirmation_title">清除佇列前要求確認</string>
-    <string name="settings_category_notification_title">通知</string>
     <string name="notification_action_nothing">無</string>
     <string name="notification_action_buffering">正在緩衝</string>
     <string name="notification_action_shuffle">隨機播放</string>
@@ -638,8 +637,6 @@
     <string name="seekbar_preview_thumbnail_title">拖動列縮圖預覽</string>
     <string name="detail_heart_img_view_description">被創作者加心號</string>
     <string name="mark_as_watched">標記為已看過</string>
-    <string name="loading_channel_details">正在載入頻道詳細資訊……</string>
-    <string name="error_show_channel_details">顯示頻道詳細資訊時發生錯誤</string>
     <string name="show_image_indicators_summary">在圖片頂部顯示畢卡索彩色絲帶，指示其來源：紅色代表網路、藍色代表磁碟、綠色代表記憶體</string>
     <string name="show_image_indicators_title">顯示圖片指示器</string>
     <string name="remote_search_suggestions">遠端搜尋建議</string>
@@ -674,10 +671,28 @@
     <string name="error_report_notification_title">NewPipe 遇到錯誤，點擊以回報</string>
     <string name="error_report_notification_toast">發生錯誤，請檢視通知</string>
     <string name="detail_pinned_comment_view_description">釘選的留言</string>
-    <string name="background_player_already_playing_toast">已經在背景播放</string>
     <string name="leak_canary_not_available">LeakCanary 無法使用</string>
-    <string name="playback_tempo_step">步進時間</string>
-    <string name="progressive_load_interval_default">ExoPlayer 預設值</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer 預設值</string>
     <string name="progressive_load_interval_summary">變更載入間隔大小（目前為 %s）。較低的值可能會提昇初始影片載入速度。變更需要重新啟動播放器。</string>
-    <string name="adjust_by_semitones_checkbox">按音樂半音調整音高</string>
+    <string name="settings_category_player_notification_title">播放器通知</string>
+    <string name="notifications">通知</string>
+    <string name="loading_stream_details">正在載入串流詳細資訊……</string>
+    <string name="you_successfully_subscribed">您已訂閱此頻道</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">切換全部</string>
+    <string name="enable_streams_notifications_title">新串流通知</string>
+    <string name="settings_category_player_notification_summary">設定目前播放串流通知</string>
+    <string name="streams_notifications_network_title">需要網路連線</string>
+    <string name="delete_downloaded_files_confirm">從磁碟抹除所有已下載的檔案？</string>
+    <string name="get_notified">取得通知</string>
+    <string name="streams_notification_channel_name">新串流</string>
+    <string name="streams_notification_channel_description">關於訂閱的新串流通知</string>
+    <string name="check_new_streams">執行新串流檢查</string>
+    <string name="enable_streams_notifications_summary">通知來自訂閱的新串流</string>
+    <string name="streams_notifications_interval_title">檢查頻率</string>
+    <string name="notifications_disabled">通知已停用</string>
+    <plurals name="new_streams">
+        <item quantity="other">%s 個新串流</item>
+    </plurals>
+    <string name="any_network">任意網路</string>
 </resources>

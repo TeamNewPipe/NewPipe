@@ -25,7 +25,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Typeface
-import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.os.Parcelable
@@ -37,7 +36,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.annotation.AttrRes
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
@@ -80,6 +78,7 @@ import org.schabi.newpipe.util.DeviceUtils
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountStreams
+import org.schabi.newpipe.util.ThemeHelper.resolveDrawable
 import org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout
 import java.time.OffsetDateTime
 import java.util.function.Consumer
@@ -577,19 +576,6 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
 
         lastNewItemsCount = highlightCount
-    }
-
-    private fun resolveDrawable(context: Context, @AttrRes attrResId: Int): Drawable? {
-        return androidx.core.content.ContextCompat.getDrawable(
-            context,
-            android.util.TypedValue().apply {
-                context.theme.resolveAttribute(
-                    attrResId,
-                    this,
-                    true
-                )
-            }.resourceId
-        )
     }
 
     private fun showNewItemsLoaded() {

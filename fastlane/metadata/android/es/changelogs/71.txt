@@ -1,0 +1,6 @@
+### Mejoras
+* Añadir notificación de actualización de la aplicación para la versión de GitHub (#1608 por @krtkush)
+* Varias mejoras en el gestor de descargas (#1944 de @kapodamy):
+* añadir los iconos blancos que faltan y utilizar la manera de cambiar los colores de los iconos
+  * comprobar si el iterador está inicializado (corrige #2031)
+  * permite reintentar las descargas con el error "post-procesamiento fallido" en el nuevo muxer

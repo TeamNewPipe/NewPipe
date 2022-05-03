@@ -672,8 +672,6 @@
     <string name="enqueued_next">Enfileirado</string>
     <string name="manual_update_title">Procurar actualizacións</string>
     <string name="manual_update_description">Procurar manualmente novas versións</string>
-    <string name="adjust_by_semitones_checkbox">Axustar o ton do semitóns musicais</string>
-    <string name="playback_tempo_step">Paso do tempo</string>
     <string name="checking_updates_toast">A procurar actualizacións…</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, só o \'Sistema de Acceso ao Almacenamento\' está soportado</string>
     <string name="progressive_load_interval_summary">Cambia o tamaño do intervalo de carga (actualmente %s). Un valor menor pode acelerar o carregamento do vídeo. Cambios poden precisar un reinicio do reprodutor.</string>
@@ -682,7 +680,7 @@
     <string name="show_image_indicators_summary">Amosar fitas coloridas de Picasso na cima das imaxes que indican a súa fonte: vermello para a rede, azul para o disco e verde para a memoria</string>
     <string name="downloads_storage_use_saf_summary_api_19">O \'Sistema de Acceso ao almacenamento\' non está soportado en Android KitKat e anteriores</string>
     <string name="feed_new_items">Novos elementos</string>
-    <string name="progressive_load_interval_default">Predefinido do ExoPlayer</string>
+    <string name="progressive_load_interval_exoplayer_default">Predefinido do ExoPlayer</string>
     <string name="show_crash_the_player_title">Amosar \"Travar o reprodutor\"</string>
     <string name="show_error_snackbar">Amosar un snackbar de erro</string>
     <string name="show_crash_the_player_summary">Amosa unha opción de travamento ao usar o reprodutor</string>

@@ -154,17 +154,17 @@
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
     <plurals name="subscribers">
-        <item quantity="one">%s مشترک</item>
+        <item quantity="one">۱ مشترک</item>
         <item quantity="other">%s مشترک</item>
     </plurals>
     <string name="no_views">بدون بازدید</string>
     <plurals name="views">
-        <item quantity="one">%s بازدید</item>
+        <item quantity="one">۱ بازدید</item>
         <item quantity="other">%s بازدید</item>
     </plurals>
     <string name="no_videos">بدون ویدیو</string>
     <plurals name="videos">
-        <item quantity="one">%s ویدیو</item>
+        <item quantity="one">۱ ویدیو</item>
         <item quantity="other">%s ویدیو</item>
     </plurals>
     <string name="create">ایجاد</string>
@@ -438,7 +438,7 @@
     <string name="feed_create_new_group_button_title">جدید</string>
     <string name="feed_group_dialog_delete_message">می‌خواهید این گروه را پاک کنید؟</string>
     <plurals name="feed_group_dialog_selection_count">
-        <item quantity="one">%d مورد گزیده</item>
+        <item quantity="one">۱ مورد گزیده</item>
         <item quantity="other">%d مورد گزیده</item>
     </plurals>
     <string name="feed_processing_message">پردازش خوراک…</string>
@@ -446,19 +446,19 @@
     <string name="feed_subscription_not_loaded_count">بارگیری نشده: %d</string>
     <string name="feed_oldest_subscription_update">آخرین به‌روزرسانی خوراک: %s</string>
     <plurals name="days">
-        <item quantity="one">%d روز</item>
+        <item quantity="one">۱ روز</item>
         <item quantity="other">%d روز</item>
     </plurals>
     <plurals name="hours">
-        <item quantity="one">%d ساعت</item>
+        <item quantity="one">۱ ساعت</item>
         <item quantity="other">%d ساعت</item>
     </plurals>
     <plurals name="minutes">
-        <item quantity="one">%d دقیقه</item>
+        <item quantity="one">۱ دقیقه</item>
         <item quantity="other">%d دقیقه</item>
     </plurals>
     <plurals name="seconds">
-        <item quantity="one">%d ثانیه</item>
+        <item quantity="one">۱ ثانیه</item>
         <item quantity="other">%d ثانیه</item>
     </plurals>
     <string name="remove_watched_popup_yes_and_partially_watched_videos">بله، و ویدیوهای ناقص دیده شده</string>
@@ -485,12 +485,12 @@
     <string name="infinite_videos">∞ ویدیو</string>
     <string name="more_than_100_videos">بیش از ۱۰۰ ویدیو</string>
     <plurals name="listening">
-        <item quantity="one">%s شنونده</item>
+        <item quantity="one">۱ شنونده</item>
         <item quantity="other">%s شنونده</item>
     </plurals>
     <string name="no_one_listening">کسی در حال شنیدن نیست</string>
     <plurals name="watching">
-        <item quantity="one">%s بیننده</item>
+        <item quantity="one">۱ بیننده</item>
         <item quantity="other">%s بیننده</item>
     </plurals>
     <string name="no_one_watching">کسی در حال مشاهده نیست</string>
@@ -683,10 +683,29 @@
     <string name="error_report_notification_title">نیوپایپ به خطایی برخورد. برای گزارش، بزنید</string>
     <string name="error_report_notification_toast">خطایی رخ داد. آگاهی را ببینید</string>
     <string name="detail_pinned_comment_view_description">نظر سنجاق شده</string>
-    <string name="background_player_already_playing_toast">در حال پخش در پس‌زمینه</string>
     <string name="leak_canary_not_available">لیک‌کاناری موجود نیست</string>
-    <string name="playback_tempo_step">گام سرعت</string>
-    <string name="adjust_by_semitones_checkbox">تنظیم زیر و بم با شبه‌تن‌ها</string>
     <string name="progressive_load_interval_summary">تغییر اندازهٔ بازهٔ بار (هم‌اکنون %s). مقداری پایین‌تر، می‌تواند بار کردن نخستین ویدیو را سرعت بخشد. تغییرها نیاز به یک آغاز دوبارهٔ پخش‌کننده دارند.</string>
-    <string name="progressive_load_interval_default">پیش‌گزیدهٔ اگزوپلیر</string>
+    <string name="progressive_load_interval_exoplayer_default">پیش‌گزیدهٔ اگزوپلیر</string>
+    <string name="notifications">آگاهی‌ها</string>
+    <string name="loading_stream_details">بار کردن جزییات جریان…</string>
+    <string name="check_new_streams">اجرای بررسی برای جریان‌های جدید</string>
+    <string name="streams_notifications_network_title">نیازمند اتّصال شبکه</string>
+    <string name="enumeration_comma">،</string>
+    <string name="toggle_all">تغییر وضعیت همه</string>
+    <string name="streams_notification_channel_name">جریان‌های جدید</string>
+    <plurals name="new_streams">
+        <item quantity="one">۱ جریان جدید</item>
+        <item quantity="other">%s جریان جدید</item>
+    </plurals>
+    <string name="settings_category_player_notification_summary">پیکربندی آگاهی جریان در حال پخش کنونی</string>
+    <string name="enable_streams_notifications_title">آگاهی‌های جریان‌های جدید</string>
+    <string name="settings_category_player_notification_title">آگاهی پخش‌کننده</string>
+    <string name="streams_notification_channel_description">آگاهی‌ها دربارهٔ جریان‌های جدید برای اشتراک‌ها</string>
+    <string name="notifications_disabled">آگاهی‌ها از کار افتاده‌اند</string>
+    <string name="get_notified">آگاه شوید</string>
+    <string name="streams_notifications_interval_title">بسامد بررسی</string>
+    <string name="enable_streams_notifications_summary">آگاه کردن دربارهٔ جریان‌های جدید از اشتراک‌ها</string>
+    <string name="delete_downloaded_files_confirm">پاک کردن تمامی پرونده‌های بارگرفته از دیسک؟</string>
+    <string name="any_network">هر شبکه‌ای</string>
+    <string name="you_successfully_subscribed">اکنون مشترک این کانال شده‌اید</string>
 </resources>

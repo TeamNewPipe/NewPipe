@@ -16,8 +16,8 @@ android {
         resValue "string", "app_name", "NewPipe"
         minSdk 19
         targetSdk 29
-        versionCode 985
-        versionName "0.22.2"
+        versionCode 986
+        versionName "0.23.0"
 
         multiDexEnabled true
 
@@ -190,7 +190,7 @@ dependencies {
     // name and the commit hash with the commit hash of the (pushed) commit you want to test
     // This works thanks to JitPack: https://jitpack.io/
     implementation 'com.github.TeamNewPipe:nanojson:1d9e1aea9049fc9f85e68b43ba39fe7be1c1f751'
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:b77c72fb8826c3ffca0be5f96b066cca0a07b1c9'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:ac1c22d81c65b7b0c5427f4e1989f5256d617f32'
 
 /** Checkstyle **/
     checkstyle "com.puppycrawl.tools:checkstyle:${checkstyleVersion}"

@@ -1,0 +1,2 @@
+# Corregido
+-Parche rápido del error de la función de descifrado de nuevo.

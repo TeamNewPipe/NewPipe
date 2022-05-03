@@ -116,5 +116,91 @@
     <string name="use_inexact_seek_title">Gamitin ang mabilis ngunit di-saktong seek</string>
     <string name="seek_duration_title">Haba ng fast forward/-rewind seek</string>
     <string name="resume_on_audio_focus_gain_title">Ituloy ang pagpapalabas</string>
-    <string name="trending">Mga Patok Ngayon</string>
+    <string name="trending">Patok Ngayon</string>
+    <string name="enable_watch_history_summary">Subaybayan ang mga napanood nang video</string>
+    <string name="recent">Kumakailan</string>
+    <string name="metadata_category">Kategorya</string>
+    <string name="metadata_tags">Mga Tag</string>
+    <string name="metadata_privacy">Praybasi</string>
+    <string name="notifications_disabled">Nakapatay ang Mga Notipikasyon</string>
+    <string name="metadata_privacy_public">Publiko</string>
+    <string name="comments_tab_description">Mga Puna</string>
+    <string name="msg_running">Nagda-dawnload ang NewPipe</string>
+    <string name="on">Naka-bukas</string>
+    <string name="app_language_title">Wika ng App</string>
+    <string name="tab_about">Tungkol dito</string>
+    <string name="restricted_video_no_stream">Ang video na ito ay may paghihigpit sa edad.
+\nDahil sa mga bagong polisiya ng Youtube, hindi maaring ma-access ng NewPipe ang mga video streams nito, kaya hindi ito maipapalabas.</string>
+    <string name="notification_channel_name">Notipikasyon sa NewPipe</string>
+    <plurals name="listening">
+        <item quantity="one">%s nakikinig</item>
+        <item quantity="other">Mga %s nakikinig</item>
+    </plurals>
+    <string name="more_than_100_videos">100+ na mga video</string>
+    <string name="infinite_videos">∞ na mga video</string>
+    <string name="no_comments">Walang Komento</string>
+    <string name="play_all">Ipalabas Lahat</string>
+    <string name="notifications">Mga Notipikasyon</string>
+    <string name="comments_are_disabled">Pinagbabawal ang pagkomento</string>
+    <string name="settings_file_charset_title">Mga pinahihintulutang karakter sa pangalan ng file</string>
+    <string name="tab_licenses">Mga Lisensya</string>
+    <string name="title_activity_history">Kasaysayan</string>
+    <string name="main_page_content">Laman ng pangunahing pahina</string>
+    <string name="duration_live">Live</string>
+    <string name="always">Palagi</string>
+    <string name="delete_item_search_history">Gusto mo bang burahin ito sa kasaysayan ng paghanap\?</string>
+    <string name="content">Laman</string>
+    <plurals name="hours">
+        <item quantity="one">%d oras</item>
+        <item quantity="other">mga %d oras</item>
+    </plurals>
+    <string name="systems_language">Karaniwan ng Sistema</string>
+    <string name="private_content">Nakapribado ang content na ito, kaya hindi ito maipalabas o mai-download ng NewPipe.</string>
+    <string name="download_has_started">Sinisimulan na ang Pagdownload</string>
+    <string name="detail_heart_img_view_description">Pinusuan ng creator</string>
+    <string name="video_detail_by">Ni %s</string>
+    <string name="help">Tulong</string>
+    <string name="detail_pinned_comment_view_description">Naka-pin na komento</string>
+    <string name="open_website_license">Buksan ang website</string>
+    <string name="metadata_licence">Lisensya</string>
+    <string name="metadata_language">Wika</string>
+    <string name="metadata_privacy_private">Pribado</string>
+    <string name="metadata_thumbnail_url">URL ng Thumbnail</string>
+    <string name="metadata_privacy_unlisted">Hindi nakalista</string>
+    <string name="off">Nakapatay</string>
+    <string name="new_and_hot">Bago at patok</string>
+    <string name="content_language_title">Panimulang wika ng content</string>
+    <string name="settings_category_appearance_title">Itsura ng App</string>
+    <plurals name="seconds">
+        <item quantity="one">%d segundo</item>
+        <item quantity="other">Mga %d segundo</item>
+    </plurals>
+    <string name="channel_created_by">Nilikha ni %s</string>
+    <string name="chapters">Mga Kabanata</string>
+    <string name="no_app_to_open_intent">Walang app sa device mo ang makakabukas nito</string>
+    <string name="featured">Tampok</string>
+    <string name="title_last_played">Huling Pinanood</string>
+    <string name="action_history">Kasaysayan</string>
+    <string name="no_one_listening">Walang nakikinig</string>
+    <string name="search_no_results">Walang nahanap</string>
+    <string name="switch_to_background">Pumalit sa Likuran</string>
+    <string name="clear_views_history_title">Linisin ang kasaysayan ng panonood</string>
+    <plurals name="watching">
+        <item quantity="one">%s nanonood</item>
+        <item quantity="other">Mga %s nanonood</item>
+    </plurals>
+    <string name="no_videos">Walang mga video</string>
+    <string name="title_most_played">Madalas na Pinanood</string>
+    <plurals name="videos">
+        <item quantity="one">%s video</item>
+        <item quantity="other">Mga %s na video</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minuto</item>
+        <item quantity="other">Mga %d minuto</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d araw</item>
+        <item quantity="other">mga %d araw</item>
+    </plurals>
 </resources>

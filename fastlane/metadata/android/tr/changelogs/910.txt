@@ -1,0 +1,1 @@
+Bazı nadir durumlarda NewPipe'ın başlamasını engelleyen veri tabanı taşıması düzeltildi.

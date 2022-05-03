@@ -670,11 +670,30 @@
     <string name="no_appropriate_file_manager_message_android_10">找不到适合此操作的文件管理器。
 \n请安装与存储访问框架(SAF)兼容的文件管理器。</string>
     <string name="error_report_notification_title">NewPipe 遇到了一个错误，点击此处报告此错误</string>
-    <string name="background_player_already_playing_toast">已经在后台播放</string>
     <string name="detail_pinned_comment_view_description">置顶评论</string>
     <string name="leak_canary_not_available">LeakCanary 不可用</string>
-    <string name="adjust_by_semitones_checkbox">以音乐半音调整音高</string>
-    <string name="playback_tempo_step">节奏步长</string>
     <string name="progressive_load_interval_summary">改变加载间隔的大小（当前%s），较低的值可以加快初始的视频加载速度，改变需要重启播放器。</string>
-    <string name="progressive_load_interval_default">ExoPlayer 默认</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer 默认</string>
+    <string name="settings_category_player_notification_summary">配置当前正在播放的串流的通知</string>
+    <string name="enable_streams_notifications_title">新串流通知</string>
+    <string name="streams_notifications_interval_title">检查频率</string>
+    <string name="streams_notifications_network_title">所需的网络连接</string>
+    <string name="notifications_disabled">通知已被禁用</string>
+    <string name="you_successfully_subscribed">你刚刚订阅了此频道</string>
+    <string name="enumeration_comma">，</string>
+    <string name="toggle_all">全选</string>
+    <string name="settings_category_player_notification_title">播放器通知</string>
+    <string name="notifications">通知</string>
+    <string name="streams_notification_channel_name">新的串流</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s 条新串流</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="streams_notification_channel_description">被订阅的新串流的通知</string>
+    <string name="loading_stream_details">正在加载串流详情…</string>
+    <string name="check_new_streams">检查新串流</string>
+    <string name="any_network">任何网络</string>
+    <string name="delete_downloaded_files_confirm">清除所有下载的文件？</string>
+    <string name="get_notified">获取通知</string>
+    <string name="enable_streams_notifications_summary">来自订阅的新串流的通知</string>
 </resources>

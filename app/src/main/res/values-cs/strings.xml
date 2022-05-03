@@ -684,7 +684,6 @@
     <string name="create_error_notification">Vytvořit oznámení o chybě</string>
     <string name="checking_updates_toast">Kontrola aktualizací…</string>
     <string name="show_crash_the_player_title">Ukázat „Shodit přehrávač“</string>
-    <string name="background_player_already_playing_toast">Hraje již v pozadí</string>
     <string name="feed_new_items">Nové položky feedů</string>
     <string name="no_appropriate_file_manager_message_android_10">Pro tuto akci nebyl nalezen žádný vhodný správce souborů.
 \nProsím, nainstalujte správce souborů kompatibilní se Storage Access Framework.</string>
@@ -698,7 +697,5 @@
     <string name="crash_the_player">Shodit přehrávač</string>
     <string name="progressive_load_interval_summary">Změnit interval načítání (aktuálně %s). Menší hodnota může zrychlit počáteční načítání videa. Změna vyžaduje restart přehrávače.</string>
     <string name="leak_canary_not_available">LeakCanary není dostupné</string>
-    <string name="adjust_by_semitones_checkbox">Upravit výšku tónů po půltónech</string>
-    <string name="playback_tempo_step">Krok tempa</string>
-    <string name="progressive_load_interval_default">Výchozí ExoPlayer</string>
+    <string name="progressive_load_interval_exoplayer_default">Výchozí ExoPlayer</string>
 </resources>

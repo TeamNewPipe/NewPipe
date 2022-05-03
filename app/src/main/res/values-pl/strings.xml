@@ -22,7 +22,7 @@
     <string name="download_path_audio_dialog_title">Wybierz folder zapisywania plików audio</string>
     <string name="default_resolution_title">Domyślna rozdzielczość</string>
     <string name="play_with_kodi_title">Odtwórz w Kodi</string>
-    <string name="kore_not_found">Zainstalować brakującą aplikację Kore\?</string>
+    <string name="kore_not_found">Czy zainstalować brakującą aplikację Kore\?</string>
     <string name="show_play_with_kodi_title">Pokazuj opcję „Odtwórz z Kodi”</string>
     <string name="show_play_with_kodi_summary">Wyświetlaj opcję odtwarzania wideo przez centrum multimedialne Kodi</string>
     <string name="play_audio">Dźwięk</string>
@@ -406,7 +406,7 @@
     <string name="settings_category_clear_data_title">Wyczyść dane</string>
     <string name="watch_history_states_deleted">Usunięto pozycje odtwarzania</string>
     <string name="missing_file">Plik usunięty albo przeniesiony</string>
-    <string name="overwrite_unrelated_warning">Plik z tą nazwą już istnieje</string>
+    <string name="overwrite_unrelated_warning">Plik o tej nazwie już istnieje</string>
     <string name="overwrite_failed">Nie udało się nadpisać pliku</string>
     <string name="download_already_pending">Plik o tej samej nazwie oczekuje na pobranie</string>
     <string name="error_postprocessing_stopped">NewPipe został zamknięty podczas pracy nad plikiem</string>
@@ -539,7 +539,7 @@
     <string name="remove_watched_popup_yes_and_partially_watched_videos">Tak, i częściowo obejrzane wideo</string>
     <string name="remove_watched_popup_warning">Wideo, które zostały obejrzane przed i po dodaniu do playlisty, zostaną usunięte.
 \nCzy na pewno\? Tego nie da się cofnąć!</string>
-    <string name="remove_watched_popup_title">Usunąć obejrzane wideo\?</string>
+    <string name="remove_watched_popup_title">Czy usunąć obejrzane wideo\?</string>
     <string name="remove_watched">Usuń obejrzane</string>
     <string name="show_original_time_ago_summary">Oryginalne teksty z usług będą widoczne w strumieniowanych pozycjach</string>
     <string name="show_original_time_ago_title">Pokazuj oryginalny czas na pozycjach</string>
@@ -701,12 +701,33 @@
 \nZainstaluj menedżer plików lub spróbuj wyłączyć „%s” w ustawieniach pobierania.</string>
     <string name="no_appropriate_file_manager_message_android_10">Nie znaleziono odpowiedniego menedżera plików dla tej akcji.
 \nZainstaluj menedżer plików zgodny z Storage Access Framework.</string>
-    <string name="background_player_already_playing_toast">Już jest odtwarzane w tle</string>
     <string name="detail_pinned_comment_view_description">Przypięty komentarz</string>
     <string name="leak_canary_not_available">LeakCanary jest niedostępne</string>
     <string name="progressive_load_interval_title">Rozmiar interwału ładowania odtwarzania</string>
     <string name="progressive_load_interval_summary">Zmień rozmiar interwału ładowania (aktualnie %s). Niższa wartość może przyspieszyć początkowe ładowanie wideo. Zmiany wymagają ponownego uruchomienia odtwarzacza</string>
-    <string name="progressive_load_interval_default">domyślny ExoPlayera</string>
-    <string name="adjust_by_semitones_checkbox">Dostosuj wysokość półtonami</string>
-    <string name="playback_tempo_step">Krok tempa</string>
+    <string name="progressive_load_interval_exoplayer_default">domyślny ExoPlayera</string>
+    <string name="settings_category_player_notification_title">Powiadomienie odtwarzacza</string>
+    <string name="settings_category_player_notification_summary">Skonfiguruj powiadomienie aktualnie odtwarzanego strumienia</string>
+    <string name="check_new_streams">Uruchom sprawdzenie nowych strumieni</string>
+    <string name="any_network">Dowolna sieć</string>
+    <string name="you_successfully_subscribed">Subskrybujesz teraz ten kanał</string>
+    <string name="notifications">Powiadomienia</string>
+    <string name="streams_notification_channel_name">Nowe strumienie</string>
+    <string name="streams_notification_channel_description">Powiadomienia o nowych strumieniach dla subskrypcji</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nowy strumień</item>
+        <item quantity="few">%s nowe strumienie</item>
+        <item quantity="many">%s nowych strumieni</item>
+        <item quantity="other">%s nowych strumieni</item>
+    </plurals>
+    <string name="loading_stream_details">Ładowanie szczegółów strumienia…</string>
+    <string name="enable_streams_notifications_title">Powiadomienia o nowych strumieniach</string>
+    <string name="enable_streams_notifications_summary">Powiadamiaj o nowych strumieniach z subskrypcji</string>
+    <string name="streams_notifications_interval_title">Częstotliwość sprawdzania</string>
+    <string name="streams_notifications_network_title">Wymagane połączenie sieciowe</string>
+    <string name="delete_downloaded_files_confirm">Czy usunąć wszystkie pobrane pliki z dysku\?</string>
+    <string name="notifications_disabled">Powiadomienia są wyłączone</string>
+    <string name="get_notified">Otrzymuj powiadomienia</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Przełącz wszystkie</string>
 </resources>
