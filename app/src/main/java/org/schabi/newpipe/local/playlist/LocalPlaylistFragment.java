@@ -420,15 +420,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                                     playlistItem.getStreamId());
                             final StreamStateEntity streamStateEntity = streamStatesIter.next();
                             final long duration = playlistItem.toStreamInfoItem().getDuration();
-                            boolean isFinished = false;
-                            if (streamStateEntity != null) {
-                                isFinished = streamStateEntity.isFinished(duration);
-                            }
-                            final boolean isNotWatchedItem = (streamStateEntity != null
-                                    && !isFinished);
-                            if (indexInHistory < 0) {
-                                notWatchedItems.add(playlistItem);
-                            } else if (isNotWatchedItem) {
+                            if (indexInHistory < 0 || (streamStateEntity != null && !streamStateEntity.isFinished(duration))) {
                                 notWatchedItems.add(playlistItem);
                             } else if (!thumbnailVideoRemoved
                                     && playlistManager.getPlaylistThumbnail(playlistId)
