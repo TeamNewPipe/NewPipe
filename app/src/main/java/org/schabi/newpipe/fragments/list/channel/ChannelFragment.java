@@ -132,9 +132,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
     public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
         channelBinding = FragmentChannelBinding.bind(rootView);
-        if (channelContentNotSupported) {
-            showContentNotSupported();
-        }
+        showContentNotSupportedIfNeeded();
     }
 
     @Override
@@ -532,12 +530,8 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
         channelContentNotSupported = false;
         for (final Throwable throwable : result.getErrors()) {
             if (throwable instanceof ContentNotSupportedException) {
-                /*
-                channelBinding might not be initialized when handleResult() is called
-                (e.g. after rotating the screen, https://github.com/TeamNewPipe/NewPipe/issues/6696)
-                showContentNotSupported() will be called later
-                 */
                 channelContentNotSupported = true;
+                showContentNotSupportedIfNeeded();
             }
         }
 
@@ -569,7 +563,13 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
         });
     }
 
-    private void showContentNotSupported() {
+    private void showContentNotSupportedIfNeeded() {
+        // channelBinding might not be initialized when handleResult() is called
+        // (e.g. after rotating the screen, #6696)
+        if (!channelContentNotSupported || channelBinding == null) {
+            return;
+        }
+
         channelBinding.errorContentNotSupported.setVisibility(View.VISIBLE);
         channelBinding.channelKaomoji.setText("(︶︹︺)");
         channelBinding.channelKaomoji.setTextSize(TypedValue.COMPLEX_UNIT_SP, 45f);
