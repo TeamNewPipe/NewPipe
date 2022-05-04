@@ -596,13 +596,18 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         changeThumbnailUrl(newThumbnailUrl);
     }
-
     private void deleteItem(final PlaylistStreamEntry item) {
         if (itemListAdapter == null) {
             return;
         }
+        new AlertDialog.Builder(getContext())
+                .setTitle(R.string.confirm_video_deletion_from_local_playlists)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.ok,
+                        (dialog, which) -> itemListAdapter.removeItem(item))
+                .create()
+                .show();
 
-        itemListAdapter.removeItem(item);
         if (playlistManager.getPlaylistThumbnail(playlistId)
                 .equals(item.getStreamEntity().getThumbnailUrl())) {
             updateThumbnailUrl();
