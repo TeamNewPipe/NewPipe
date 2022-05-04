@@ -213,7 +213,7 @@ public class PlaybackParameterDialog extends DialogFragment {
 
         getPitchControlModeComponentMappings()
                 .forEach(this::setupPitchControlModeTextView);
-        changePitchControlMode(isCurrentPitchControlModeSemitone());
+        // Initialization is done at the end
 
         // Pitch - Percent
         setText(binding.pitchPercentMinimumText, PlayerHelper::formatPitch, MIN_PITCH_OR_SPEED);
@@ -275,6 +275,9 @@ public class PlaybackParameterDialog extends DialogFragment {
             skipSilence = isChecked;
             updateCallback();
         });
+
+        // PitchControlMode has to be initialized at the end because it requires the unhookCheckbox
+        changePitchControlMode(isCurrentPitchControlModeSemitone());
     }
 
     // -- General formatting --
