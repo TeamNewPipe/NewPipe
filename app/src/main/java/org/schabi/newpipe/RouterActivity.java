@@ -2,7 +2,6 @@ package org.schabi.newpipe;
 
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.AUDIO;
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.VIDEO;
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 import android.annotation.SuppressLint;
 import android.app.IntentService;
@@ -73,6 +72,7 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ListHelper;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -131,7 +131,7 @@ public class RouterActivity extends AppCompatActivity {
         ThemeHelper.setDayNightMode(this);
         setTheme(ThemeHelper.isLightThemeSelected(this)
                 ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
-        assureCorrectAppLanguage(this);
+        Localization.assureCorrectAppLanguage(this);
     }
 
     @Override
