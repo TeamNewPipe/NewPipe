@@ -51,7 +51,7 @@ public class StreamHistoryEntity {
 
     @Ignore
     public StreamHistoryEntity(final long streamUid, @NonNull final OffsetDateTime accessDate) {
-        this(streamUid, accessDate, 1);
+        this(streamUid, accessDate, 0); // start with 0 views (adding views will be done elsewhere)
     }
 
     public long getStreamUid() {
