@@ -88,12 +88,19 @@ public final class DeviceUtils {
         return DeviceUtils.isTV;
     }
 
+    /**
+     * Checks if the device is in desktop or DeX mode. This function should only
+     * be invoked once on view load as it is using reflection for the DeX checks.
+     * @param context the context to use for services and config.
+     * @return true if the Android device is in desktop mode or using DeX.
+     */
     public static boolean isDesktopMode(final Context context) {
         if (ContextCompat.getSystemService(context, UiModeManager.class)
                 .getCurrentModeType() == Configuration.UI_MODE_TYPE_DESK) {
             return true;
         }
-        // DeX check for standalone and multi-window mode
+        // DeX check for standalone and multi-window mode, from:
+        // https://developer.samsung.com/samsung-dex/modify-optimizing.html
         try {
             final Configuration config = context.getResources().getConfiguration();
             final Class<?> configClass = config.getClass();
@@ -119,8 +126,8 @@ public final class DeviceUtils {
                 final Class<?> desktopModeStateClass = desktopModeState.getClass();
                 final Method getEnabledMethod = desktopModeStateClass
                         .getDeclaredMethod("getEnabled");
-                final int enabled = (int) getEnabledMethod.invoke(desktopModeState);
-                if (enabled == desktopModeStateClass
+                final int enabledStatus = (int) getEnabledMethod.invoke(desktopModeState);
+                if (enabledStatus == desktopModeStateClass
                         .getDeclaredField("ENABLED").getInt(desktopModeStateClass)) {
                     return true;
                 }
