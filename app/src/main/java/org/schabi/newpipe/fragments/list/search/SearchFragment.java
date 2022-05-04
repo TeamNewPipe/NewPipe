@@ -385,9 +385,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @Override
     public void onSaveInstanceState(@NonNull final Bundle bundle) {
-        searchEditText.setText(searchEditText.getText().toString().trim());
         searchString = searchEditText != null
-                ? searchEditText.getText().toString()
+                ? getSearchEditString().trim()
                 : searchString;
         super.onSaveInstanceState(bundle);
     }
@@ -399,10 +398,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     @Override
     public void reloadContent() {
         if (!TextUtils.isEmpty(searchString) || (searchEditText != null
-                && !isBlank(searchEditText.getText().toString()))) {
+                && !isSearchEditBlank())) {
             search(!TextUtils.isEmpty(searchString)
                     ? searchString
-                    : searchEditText.getText().toString(), this.contentFilter, "");
+                    : getSearchEditString(), this.contentFilter, "");
         } else {
             if (searchEditText != null) {
                 searchEditText.setText("");
@@ -497,7 +496,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         searchEditText.setText(searchString);
 
         if (TextUtils.isEmpty(searchString)
-                || isBlank(searchEditText.getText().toString())) {
+                || isSearchEditBlank()) {
             searchToolbarContainer.setTranslationX(100);
             searchToolbarContainer.setAlpha(0.0f);
             searchToolbarContainer.setVisibility(View.VISIBLE);
@@ -521,7 +520,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             if (DEBUG) {
                 Log.d(TAG, "onClick() called with: v = [" + v + "]");
             }
-            if (isBlank(searchEditText.getText().toString())) {
+            if (isSearchEditBlank()) {
                 NavigationHelper.gotoMainFragment(getFM());
                 return;
             }
@@ -600,7 +599,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     s.removeSpan(span);
                 }
 
-                final String newText = searchEditText.getText().toString().trim();
+                final String newText = getSearchEditString().trim();
                 suggestionPublisher.onNext(newText);
             }
         };
@@ -616,8 +615,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     } else if (event != null
                             && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
                             || event.getAction() == EditorInfo.IME_ACTION_SEARCH)) {
-                        searchEditText.setText(searchEditText.getText().toString().trim());
-                        search(searchEditText.getText().toString(), new String[0], "");
+                        searchEditText.setText(getSearchEditString().trim());
+                        search(getSearchEditString(), new String[0], "");
                         return true;
                     }
                     return false;
@@ -692,7 +691,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     howManyDeleted -> suggestionPublisher
-                                            .onNext(searchEditText.getText().toString()),
+                                            .onNext(getSearchEditString()),
                                     throwable -> showSnackBarError(new ErrorInfo(throwable,
                                             UserAction.DELETE_FROM_HISTORY,
                                             "Deleting item failed")));
@@ -942,6 +941,14 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         sortFilter = theSortFilter;
     }
 
+    private String getSearchEditString() {
+        return searchEditText.getText().toString();
+    }
+
+    private Boolean isSearchEditBlank() {
+        return isBlank(getSearchEditString());
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Suggestion Results
     //////////////////////////////////////////////////////////////////////////*/
@@ -1087,7 +1094,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         howManyDeleted -> suggestionPublisher
-                                .onNext(searchEditText.getText().toString()),
+                                .onNext(getSearchEditString()),
                         throwable -> showSnackBarError(new ErrorInfo(throwable,
                                 UserAction.DELETE_FROM_HISTORY, "Deleting item failed")));
         disposables.add(onDelete);

@@ -28,9 +28,6 @@ class DatabaseMigrationTest {
 
         private const val DEFAULT_SECOND_SERVICE_ID = 1
         private const val DEFAULT_SECOND_URL = "https://www.youtube.com/watch?v=ncQU6iBn5Fc"
-
-        private const val DEFAULT_SEARCH1 = " abc "
-        private const val DEFAULT_SEARCH2 = " abc"
     }
 
     @get:Rule
@@ -163,28 +160,28 @@ class DatabaseMigrationTest {
                 "search_history", SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("service_id", DEFAULT_SERVICE_ID)
-                    put("search", DEFAULT_SEARCH1)
+                    put("search", defaultSearch1)
                 }
             )
             insert(
                 "search_history", SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("service_id", DEFAULT_SERVICE_ID)
-                    put("search", DEFAULT_SEARCH2)
+                    put("search", defaultSearch2)
                 }
             )
             insert(
                 "search_history", SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("service_id", DEFAULT_SECOND_SERVICE_ID)
-                    put("search", DEFAULT_SEARCH1)
+                    put("search", defaultSearch1)
                 }
             )
             insert(
                 "search_history", SQLiteDatabase.CONFLICT_FAIL,
                 ContentValues().apply {
                     put("service_id", DEFAULT_SECOND_SERVICE_ID)
-                    put("search", DEFAULT_SEARCH2)
+                    put("search", defaultSearch2)
                 }
             )
             close()
