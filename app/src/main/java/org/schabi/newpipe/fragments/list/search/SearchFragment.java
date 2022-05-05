@@ -945,7 +945,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         return searchEditText.getText().toString();
     }
 
-    private Boolean isSearchEditBlank() {
+    private boolean isSearchEditBlank() {
         return isBlank(getSearchEditString());
     }
 
