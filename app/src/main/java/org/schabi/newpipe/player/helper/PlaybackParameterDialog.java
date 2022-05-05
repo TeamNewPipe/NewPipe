@@ -99,8 +99,6 @@ public class PlaybackParameterDialog extends DialogFragment {
     double initialPitchPercent = DEFAULT_PITCH_PERCENT;
     @State
     boolean initialSkipSilence = DEFAULT_SKIP_SILENCE;
-    @State
-    boolean initialLiveEdge = DEFAULT_LIVE_EDGE;
 
     @State
     double tempo = DEFAULT_TEMPO;
@@ -126,12 +124,11 @@ public class PlaybackParameterDialog extends DialogFragment {
         dialog.initialTempo = playbackTempo;
         dialog.initialPitchPercent = playbackPitch;
         dialog.initialSkipSilence = playbackSkipSilence;
-        dialog.initialLiveEdge = playbackLiveEdge;
 
         dialog.tempo = dialog.initialTempo;
         dialog.pitchPercent = dialog.initialPitchPercent;
         dialog.skipSilence = dialog.initialSkipSilence;
-        dialog.liveEdge = dialog.initialLiveEdge;
+        dialog.liveEdge = playbackLiveEdge;
 
         return dialog;
     }
