@@ -77,7 +77,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
     private final CompositeDisposable disposables = new CompositeDisposable();
     private Disposable subscribeButtonMonitor;
 
-    private boolean channelContentNotSupported;
+    private boolean channelContentNotSupported = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
