@@ -31,10 +31,6 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
 
     private org.schabi.newpipe.util.SavedState savedState;
 
-    public PlaylistDialog(final List<StreamEntity> streamEntities) {
-        this.streamEntities = streamEntities;
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -97,7 +93,7 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
     }
 
     @Override
-    public void onSaveInstanceState(final Bundle outState) {
+    public void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
         if (getActivity() != null) {
             savedState = StateSaver.tryToSave(getActivity().isChangingConfigurations(),
@@ -118,6 +114,10 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
             @Nullable final DialogInterface.OnDismissListener onDismissListener
     ) {
         this.onDismissListener = onDismissListener;
+    }
+
+    protected void setStreamEntities(final List<StreamEntity> streamEntities) {
+        this.streamEntities = streamEntities;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -143,8 +143,8 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(hasPlaylists ->
                         onExec.accept(hasPlaylists
-                                ? new PlaylistAppendDialog(streamEntities)
-                                : new PlaylistCreationDialog(streamEntities))
+                                ? PlaylistAppendDialog.newInstance(streamEntities)
+                                : PlaylistCreationDialog.newInstance(streamEntities))
                 );
     }
 }

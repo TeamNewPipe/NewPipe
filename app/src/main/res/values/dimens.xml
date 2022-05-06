@@ -23,6 +23,10 @@
     <!-- 16 / 9 ratio-->
     <dimen name="video_item_search_thumbnail_image_width">124dp</dimen>
     <dimen name="video_item_search_thumbnail_image_height">70dp</dimen>
+    <dimen name="video_item_search_avatar_image_width">70dp</dimen>
+    <dimen name="video_item_search_avatar_image_height">70dp</dimen>
+    <dimen name="video_item_search_avatar_left_margin">27dp</dimen>
+    <dimen name="video_item_search_avatar_right_margin">33dp</dimen>
     <dimen name="video_item_grid_thumbnail_image_width">164dp</dimen>
     <dimen name="video_item_grid_thumbnail_image_height">92dp</dimen>
 
@@ -52,6 +56,7 @@
     <!-- Miscellaneous -->
     <dimen name="popup_default_width">180dp</dimen>
     <dimen name="popup_minimum_width">150dp</dimen>
+    <dimen name="comment_item_avatar_right_margin">9dp</dimen>
 
     <dimen name="subscription_import_export_title_height">32dp</dimen>
     <dimen name="subscription_import_export_item_height">42dp</dimen>

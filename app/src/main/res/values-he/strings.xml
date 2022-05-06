@@ -58,7 +58,6 @@
     <string name="downloads_title">הורדות</string>
     <string name="error_report_title">דוח שגיאה</string>
     <string name="all">הכול</string>
-    <string name="yes">כן</string>
     <string name="disabled">מושבת</string>
     <string name="clear">ניקוי</string>
     <string name="general_error">שגיאה</string>
@@ -566,11 +565,10 @@
     <string name="autoplay_summary">להתחיל לנגן אוטומטית — %s</string>
     <string name="title_activity_play_queue">לנגן את התור</string>
     <string name="unsupported_url_dialog_message">לא ניתן לזהות את הכתובת. לפתוח אותה ביישומון אחר\?</string>
-    <string name="auto_queue_toggle">הוספה אוטומטית לתור</string>
+    <string name="auto_queue_toggle">סידור אוטומטי בתור</string>
     <string name="clear_queue_confirmation_description">התור מהנגן הפעיל יוחלף</string>
     <string name="clear_queue_confirmation_summary">מעבר מנגן אחד למשנהו עלול להחליף את התור שלך</string>
     <string name="clear_queue_confirmation_title">לבקש אישור לפני מחיקת התור</string>
-    <string name="settings_category_notification_title">התראה</string>
     <string name="notification_action_nothing">כלום</string>
     <string name="notification_action_buffering">איסוף</string>
     <string name="notification_action_shuffle">ערבוב</string>
@@ -669,8 +667,6 @@
     <string name="seekbar_preview_thumbnail_title">תמונה מוקטנת בסרגל הנגינה</string>
     <string name="detail_heart_img_view_description">סומן בלב על ידי היוצר</string>
     <string name="mark_as_watched">סימון כנצפה</string>
-    <string name="loading_channel_details">פרטי הערוץ נטענים…</string>
-    <string name="error_show_channel_details">שגיאה בהצגת פרטי הערוץ</string>
     <string name="show_image_indicators_summary">הצגת סרטים בסגנון פיקאסו בראש התמונות לציון המקור שלהם: אדום זה מהרשת, כחול מהכונן וירוק מהזיכרון</string>
     <string name="show_image_indicators_title">הצגת מחווני תמונות</string>
     <string name="remote_search_suggestions">הצעות חיפוש מרוחקות</string>
@@ -713,4 +709,32 @@
     <string name="background_player_already_playing_toast">כבר מתנגן ברקע</string>
     <string name="detail_pinned_comment_view_description">הערה ננעצה</string>
     <string name="leak_canary_not_available">LeakCanary אינה זמינה</string>
+    <string name="adjust_by_semitones_checkbox">התאמת גובה הצליל לפי חצאי טונים מוזיקליים</string>
+    <string name="playback_tempo_step">צעד מקצב</string>
+    <string name="progressive_load_interval_exoplayer_default">ברירת מחדל של ExoPlayer</string>
+    <string name="progressive_load_interval_summary">שינוי גודל מרווח הטעינה (כרגע %s). ערך נמוך יותר עשוי להאיץ את טעינת הווידאו הראשונית. שינויים דורשים את הפעלת הנגן מחדש.</string>
+    <string name="streams_notification_channel_description">התראות על תזרימים חדשים להרשמה</string>
+    <string name="streams_notifications_interval_title">תדירות בדיקה</string>
+    <string name="streams_notifications_network_title">נדרש חיבור לרשת</string>
+    <string name="get_notified">קבלת הודעה</string>
+    <string name="toggle_all">להחליף את המצב של הכול</string>
+    <string name="settings_category_player_notification_summary">הגדרת התראת התזרים שמתנגן כרגע</string>
+    <string name="notifications">התראות</string>
+    <plurals name="new_streams">
+        <item quantity="one">תזרים חדש</item>
+        <item quantity="two">%s תזרימים חדשים</item>
+        <item quantity="many">%s תזרימים חדשים</item>
+        <item quantity="other">%s תזרימים חדשים</item>
+    </plurals>
+    <string name="loading_stream_details">פרטי התזרים נטענים…</string>
+    <string name="check_new_streams">הרצת בדיקה על תזרימים חדשים</string>
+    <string name="enable_streams_notifications_title">התראות תזרימים חדשים</string>
+    <string name="enable_streams_notifications_summary">הודעה על תזרימים חדשים מהמינויים</string>
+    <string name="enumeration_comma">,</string>
+    <string name="streams_notification_channel_name">תזרימים חדשים</string>
+    <string name="settings_category_player_notification_title">התראות נגן</string>
+    <string name="any_network">רשת כלשהי</string>
+    <string name="delete_downloaded_files_confirm">למחוק את כל הקבצים שהורדו מהכונן\?</string>
+    <string name="notifications_disabled">התראות מושבתות</string>
+    <string name="you_successfully_subscribed">נרשמת לערוץ הזה</string>
 </resources>

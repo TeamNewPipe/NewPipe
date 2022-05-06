@@ -105,6 +105,7 @@
                 android:layout_height="24dp"
                 android:layout_marginStart="4dp"
                 app:srcCompat="@drawable/ic_arrow_drop_down"
+                app:tint="@color/drawer_header_font_color"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
     </LinearLayout>

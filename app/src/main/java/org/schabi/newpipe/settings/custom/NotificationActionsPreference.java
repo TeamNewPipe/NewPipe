@@ -50,7 +50,7 @@ public class NotificationActionsPreference extends Preference {
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onBindViewHolder(final PreferenceViewHolder holder) {
+    public void onBindViewHolder(@NonNull final PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
 
         holder.itemView.setClickable(false);

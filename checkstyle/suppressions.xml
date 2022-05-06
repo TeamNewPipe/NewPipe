@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+  "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+  "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+<suppressions>
+  <!-- Use @SuppressWarnings("...") if it is possible, only use this file if it is not -->
+
+  <suppress checks="FileLength"
+    files="Player.java"/>
+
+  <suppress checks="FileLength"
+    files="VideoDetailFragment.java"/>
+</suppressions>

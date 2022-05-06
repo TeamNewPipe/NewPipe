@@ -87,7 +87,6 @@
     <string name="short_million">M</string>
     <string name="short_billion">Mrd</string>
     <string name="recaptcha_request_toast">È richiesta la risoluzione del reCAPTCHA</string>
-    <string name="yes">Sì</string>
     <string name="open_in_popup_mode">Apri in modalità popup</string>
     <string name="popup_playing_toast">Riproduzione in modalità popup</string>
     <string name="disabled">Disattivato</string>
@@ -292,7 +291,7 @@
     <string name="metadata_cache_wipe_summary">Elimina i dati delle pagine web memorizzati nella cache</string>
     <string name="metadata_cache_wipe_complete_notice">Cache metadati svuotata</string>
     <string name="playback_speed_control">Controlli della velocità di riproduzione</string>
-    <string name="playback_tempo">Tempo</string>
+    <string name="playback_tempo">Velocità</string>
     <string name="playback_pitch">Tono</string>
     <string name="unhook_checkbox">Scollega (può causare distorsione)</string>
     <string name="no_streams_available_download">Nessun flusso disponibile per il download</string>
@@ -316,8 +315,8 @@
     <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l\'app non raccoglie alcun dato senza il tuo consenso.
 \nL\'informativa sulla privacy spiega nel dettaglio quali dati vengono trattati e memorizzati durante l\'invio di segnalazioni per arresti anomali.</string>
     <string name="read_privacy_policy">Leggi l\'informativa sulla privacy</string>
-    <string name="start_accept_privacy_policy">Per rispettare il regolamento europeo sulla protezione dei dati (GDPR), attiriamo la vostra attenzione riguardo l\'informativa sulla privacy di NewPipe. Si prega di leggerla attentamente.
-\nDevi accettarla per inviarci il bug report.</string>
+    <string name="start_accept_privacy_policy">Per rispettare il regolamento europeo sulla protezione dei dati (GDPR), richiamiamo la vostra attenzione sull\'informativa sulla privacy di NewPipe. Si prega di leggerla attentamente.
+\nDeve essere accettata per poter inviare la segnalazione.</string>
     <string name="accept">Accetto</string>
     <string name="decline">Rifiuto</string>
     <string name="limit_data_usage_none_description">Nessun limite</string>
@@ -538,7 +537,7 @@
     <string name="select_a_playlist">Seleziona una playlist</string>
     <string name="search_showing_result_for">Risultati per: %s</string>
     <string name="playlist_page_summary">Pagina delle playlist</string>
-    <string name="error_report_open_github_notice">Prima di segnalare un problema, verificare che non sia già stato riportato da qualcun altro. Il tempo che gli sviluppatori utilizzerebbero per creare un ulteriore ticket potrebbe essere invece impiegato per correggere il problema stesso.</string>
+    <string name="error_report_open_github_notice">Prima di segnalare un problema, verificare che non sia già stato riportato da qualcun altro. Il tempo che gli sviluppatori utilizzerebbero per creare un ulteriore ticket, potrebbe invece essere impiegato per correggere il problema stesso.</string>
     <string name="error_report_open_issue_button_text">Segnala su GitHub</string>
     <string name="copy_for_github">Copia segnalazione formattata</string>
     <string name="never">Mai</string>
@@ -559,7 +558,6 @@
     <string name="notification_action_buffering">Buffer in corso</string>
     <string name="notification_actions_at_most_three">Nella notifica compatta è possibile visualizzare al massimo 3 azioni!</string>
     <string name="notification_action_shuffle">Casuale</string>
-    <string name="settings_category_notification_title">Notifica</string>
     <string name="notification_action_nothing">Niente</string>
     <string name="notification_action_repeat">Ripeti</string>
     <string name="notification_scale_to_square_image_title">Ridimensiona copertina alla proporzione 1:1</string>
@@ -649,8 +647,6 @@
     <string name="comments_are_disabled">Commenti disattivati</string>
     <string name="detail_heart_img_view_description">Apprezzato dall\'autore</string>
     <string name="mark_as_watched">Segna come visto</string>
-    <string name="loading_channel_details">Caricamento dettagli canale…</string>
-    <string name="error_show_channel_details">Errore per \"Mostra dettagli canale\"</string>
     <string name="show_image_indicators_summary">Mostra gli indicatori colorati Picasso sopra le immagini, per indicare la loro fonte: rosso per la rete, blu per il disco e verde per la memoria</string>
     <string name="show_image_indicators_title">Mostra indicatori immagine</string>
     <string name="remote_search_suggestions">Suggerimenti di ricerca remoti</string>
@@ -689,4 +685,30 @@
     <string name="detail_pinned_comment_view_description">Commento in primo piano</string>
     <string name="background_player_already_playing_toast">Già in riproduzione in sottofondo</string>
     <string name="leak_canary_not_available">LeakCanary non è disponibile</string>
+    <string name="adjust_by_semitones_checkbox">Regola il tono secondo i semitoni musicali</string>
+    <string name="progressive_load_interval_exoplayer_default">Predefinito ExoPlayer</string>
+    <string name="progressive_load_interval_summary">Cambia la dimensione dell\'intervallo da caricare (attualmente %s). Un valore basso può velocizzare il caricamento iniziale del video. La modifica richiede il riavvio del lettore.</string>
+    <string name="playback_tempo_step">Passo tempo</string>
+    <string name="streams_notification_channel_description">Notifiche di nuove stream dalle iscrizioni</string>
+    <string name="streams_notifications_interval_title">Frequenza controllo</string>
+    <string name="streams_notifications_network_title">Richiesta connessione alla rete</string>
+    <string name="get_notified">Ricevi le notifiche</string>
+    <string name="you_successfully_subscribed">Sei ora iscritto a questo canale</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Attiva/disattiva tutti</string>
+    <string name="enable_streams_notifications_title">Notifiche per nuove stream</string>
+    <string name="settings_category_player_notification_title">Notifica lettore</string>
+    <string name="settings_category_player_notification_summary">Configura la notifica della stream attualmente in riproduzione</string>
+    <string name="notifications">Notifiche</string>
+    <string name="streams_notification_channel_name">Nuove stream</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nuova stream</item>
+        <item quantity="other">%s nuove stream</item>
+    </plurals>
+    <string name="loading_stream_details">Caricando i dettagli della stream…</string>
+    <string name="delete_downloaded_files_confirm">Cancellare tutti i file scaricati dal dispositivo\?</string>
+    <string name="check_new_streams">Avvia controllo per nuove stream</string>
+    <string name="any_network">Qualsiasi rete</string>
+    <string name="notifications_disabled">Le notifiche sono disabilitate</string>
+    <string name="enable_streams_notifications_summary">Notifica se ci sono nuove stream dalle iscrizioni</string>
 </resources>

@@ -87,7 +87,6 @@
     <string name="short_thousand">хиљ</string>
     <string name="short_million">мил</string>
     <string name="short_billion">млрд</string>
-    <string name="yes">Да</string>
     <string name="open_in_popup_mode">Отвори у искачућем режиму</string>
     <string name="msg_popup_permission">Ова дозвола је потребна за
 \nотварање у искачућем режиму</string>
@@ -485,7 +484,6 @@
     <string name="youtube_restricted_mode_enabled_summary">Јутјуб омогућава „Ограничени режим“ који скрива потенцијални садржај за одрасле</string>
     <string name="youtube_restricted_mode_enabled_title">Укључити Јутјубов „Ограничени режим“</string>
     <string name="show_age_restricted_content_summary">Приказ садржаја који можда није прикладан за децу јер има старосну границу (попут 18+)</string>
-    <string name="settings_category_notification_title">Обавештење</string>
     <string name="settings_category_updates_title">Ажурирања</string>
     <string name="peertube_instance_add_exists">Инстанца већ постоји</string>
     <string name="peertube_instance_add_https_only">Подржане су само HTTPS УРЛ адресе</string>
@@ -661,4 +659,5 @@
     <string name="show_image_indicators_title">Приказуј указиваче слике</string>
     <string name="start_main_player_fullscreen_summary">Не покрећи видео у малом прозору, већ пређи одмах у пун приказ заслона, уколико је обртање приказа закључано. И даље можете приступити малом приказу извођача изласком из пуног приказа</string>
     <string name="start_main_player_fullscreen_title">Покрени пуни главни приказ извођача</string>
+    <string name="crash_the_player">Прекините плејер</string>
 </resources>
