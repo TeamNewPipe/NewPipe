@@ -532,6 +532,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
             if (throwable instanceof ContentNotSupportedException) {
                 channelContentNotSupported = true;
                 showContentNotSupportedIfNeeded();
+                break;
             }
         }
 
