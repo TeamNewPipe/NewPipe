@@ -111,7 +111,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.PopupMenu;
@@ -1118,8 +1117,7 @@ public final class Player implements
             binding.primaryControls.getLayoutParams().width
                     = LinearLayout.LayoutParams.MATCH_PARENT;
             binding.secondaryControls.setVisibility(View.INVISIBLE);
-            binding.moreOptionsButton.setImageDrawable(AppCompatResources.getDrawable(context,
-                    R.drawable.ic_expand_more));
+            binding.moreOptionsButton.setImageResource(R.drawable.ic_expand_more);
             binding.share.setVisibility(View.VISIBLE);
             binding.openInBrowser.setVisibility(View.VISIBLE);
             binding.switchMute.setVisibility(View.VISIBLE);
@@ -2470,8 +2468,7 @@ public final class Player implements
     }
 
     private void setMuteButton(@NonNull final ImageButton button, final boolean isMuted) {
-        button.setImageDrawable(AppCompatResources.getDrawable(context, isMuted
-                ? R.drawable.ic_volume_off : R.drawable.ic_volume_up));
+        button.setImageResource(isMuted ? R.drawable.ic_volume_off : R.drawable.ic_volume_up);
     }
     //endregion
 
@@ -3933,9 +3930,8 @@ public final class Player implements
                 && (globalScreenOrientationLocked(context) || isVerticalVideo
                         || DeviceUtils.isTablet(context))
                 ? View.VISIBLE : View.GONE);
-        binding.screenRotationButton.setImageDrawable(AppCompatResources.getDrawable(context,
-                isFullscreen ? R.drawable.ic_fullscreen_exit
-                : R.drawable.ic_fullscreen));
+        binding.screenRotationButton.setImageResource(isFullscreen ? R.drawable.ic_fullscreen_exit
+                : R.drawable.ic_fullscreen);
     }
 
     private void setResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode) {

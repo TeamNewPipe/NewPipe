@@ -16,7 +16,6 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.content.res.AppCompatResources;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -136,12 +135,11 @@ public class PlayerGestureListener
             Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
         }
 
-        player.getVolumeImageView().setImageDrawable(
-                AppCompatResources.getDrawable(service, currentProgressPercent <= 0
-                        ? R.drawable.ic_volume_off
-                        : currentProgressPercent < 0.25 ? R.drawable.ic_volume_mute
-                        : currentProgressPercent < 0.75 ? R.drawable.ic_volume_down
-                        : R.drawable.ic_volume_up)
+        player.getVolumeImageView().setImageResource(
+                currentProgressPercent <= 0 ? R.drawable.ic_volume_off
+                        : currentProgressPercent < 0.25
+                        ? R.drawable.ic_volume_mute : currentProgressPercent < 0.75
+                        ? R.drawable.ic_volume_down : R.drawable.ic_volume_up
         );
 
         if (player.getVolumeRelativeLayout().getVisibility() != View.VISIBLE) {
@@ -177,13 +175,12 @@ public class PlayerGestureListener
                     + "currentBrightness = " + currentProgressPercent);
         }
 
-        player.getBrightnessImageView().setImageDrawable(
-                AppCompatResources.getDrawable(service,
-                        currentProgressPercent < 0.25
-                                ? R.drawable.ic_brightness_low
-                                : currentProgressPercent < 0.75
-                                ? R.drawable.ic_brightness_medium
-                                : R.drawable.ic_brightness_high)
+        player.getBrightnessImageView().setImageResource(
+                currentProgressPercent < 0.25
+                        ? R.drawable.ic_brightness_low
+                        : currentProgressPercent < 0.75
+                        ? R.drawable.ic_brightness_medium
+                        : R.drawable.ic_brightness_high
         );
 
         if (player.getBrightnessRelativeLayout().getVisibility() != View.VISIBLE) {

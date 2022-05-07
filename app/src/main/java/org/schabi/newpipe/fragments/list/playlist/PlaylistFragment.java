@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.shape.CornerFamily;
@@ -297,10 +296,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                     ColorStateList.valueOf(ContextCompat.getColor(
                             requireContext(), R.color.transparent_background_color))
             );
-            headerBinding.uploaderAvatarView.setImageDrawable(
-                    AppCompatResources.getDrawable(requireContext(),
-                    R.drawable.ic_radio)
-            );
+            headerBinding.uploaderAvatarView.setImageResource(R.drawable.ic_radio);
         } else {
             PicassoHelper.loadAvatar(avatarUrl).tag(PICASSO_PLAYLIST_TAG)
                     .into(headerBinding.uploaderAvatarView);

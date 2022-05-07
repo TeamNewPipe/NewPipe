@@ -21,7 +21,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.core.widget.TextViewCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceViewHolder;
 
@@ -178,13 +177,7 @@ public class NotificationActionsPreference extends Preference {
         }
 
         void updateInfo() {
-            if (NotificationConstants.ACTION_ICONS[selectedAction] == 0) {
-                icon.setImageDrawable(null);
-            } else {
-                icon.setImageDrawable(AppCompatResources.getDrawable(getContext(),
-                        NotificationConstants.ACTION_ICONS[selectedAction]));
-            }
-
+            icon.setImageResource(NotificationConstants.ACTION_ICONS[selectedAction]);
             summary.setText(NotificationConstants.getActionName(getContext(), selectedAction));
         }
 
@@ -212,17 +205,15 @@ public class NotificationActionsPreference extends Preference {
                         = (RadioButton) inflater.inflate(R.layout.list_radio_icon_item, null);
 
                 // if present set action icon with correct color
-                if (NotificationConstants.ACTION_ICONS[action] != 0) {
-                    Drawable drawable = AppCompatResources.getDrawable(getContext(),
-                            NotificationConstants.ACTION_ICONS[action]);
-                    if (drawable != null) {
-                        final int color = ThemeHelper.resolveColorFromAttr(getContext(),
-                                android.R.attr.textColorPrimary);
-                        drawable = DrawableCompat.wrap(drawable).mutate();
-                        DrawableCompat.setTint(drawable, color);
-                        TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(radioButton,
-                                null, null, drawable, null);
-                    }
+                final int iconRes = NotificationConstants.ACTION_ICONS[action];
+                final Drawable drawable = iconRes != 0
+                        ? AppCompatResources.getDrawable(getContext(), iconRes) : null;
+                if (drawable != null) {
+                    final int color = ThemeHelper.resolveColorFromAttr(getContext(),
+                            android.R.attr.textColorPrimary);
+                    DrawableCompat.setTint(drawable, color);
+                    radioButton.setCompoundDrawablesRelativeWithIntrinsicBounds(null,
+                            null, drawable, null);
                 }
 
                 radioButton.setText(NotificationConstants.getActionName(getContext(), action));

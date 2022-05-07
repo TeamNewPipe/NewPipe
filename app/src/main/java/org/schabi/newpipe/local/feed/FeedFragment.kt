@@ -38,7 +38,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -274,8 +273,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     private fun updateTogglePlayedItemsButton(menuItem: MenuItem) {
         menuItem.isChecked = showPlayedItems
-        menuItem.icon = AppCompatResources.getDrawable(
-            requireContext(),
+        menuItem.setIcon(
             if (showPlayedItems) R.drawable.ic_visibility_on else R.drawable.ic_visibility_off
         )
     }

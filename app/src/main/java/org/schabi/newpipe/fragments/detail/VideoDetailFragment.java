@@ -12,7 +12,6 @@ import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,7 +36,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
@@ -1404,8 +1402,7 @@ public final class VideoDetailFragment
             return;
         }
 
-        binding.detailThumbnailImageView.setImageDrawable(
-                AppCompatResources.getDrawable(requireContext(), imageResource));
+        binding.detailThumbnailImageView.setImageResource(imageResource);
         animate(binding.detailThumbnailImageView, false, 0, AnimationType.ALPHA,
                 0, () -> animate(binding.detailThumbnailImageView, true, 500));
     }
@@ -1544,9 +1541,8 @@ public final class VideoDetailFragment
             binding.detailUploaderThumbnailView.setVisibility(View.GONE);
         }
 
-        final Drawable buddyDrawable = AppCompatResources.getDrawable(activity, R.drawable.buddy);
-        binding.detailSubChannelThumbnailView.setImageDrawable(buddyDrawable);
-        binding.detailUploaderThumbnailView.setImageDrawable(buddyDrawable);
+        binding.detailSubChannelThumbnailView.setImageResource(R.drawable.buddy);
+        binding.detailUploaderThumbnailView.setImageResource(R.drawable.buddy);
 
         if (info.getViewCount() >= 0) {
             if (info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
