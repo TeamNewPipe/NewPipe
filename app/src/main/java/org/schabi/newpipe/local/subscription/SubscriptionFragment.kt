@@ -65,7 +65,6 @@ import org.schabi.newpipe.util.external_communication.ShareUtils
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import java.util.function.Supplier
 
 class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     private var _binding: FragmentSubscriptionBinding? = null
@@ -89,6 +88,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     @State
     @JvmField
     var itemsListState: Parcelable? = null
+
     @State
     @JvmField
     var feedGroupsListState: Parcelable? = null
@@ -143,7 +143,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         // -- Import --
         val importSubMenu = menu.addSubMenu(R.string.import_from)
 
-        addMenuItem(importSubMenu, R.string.previous_export) { onImportPreviousSelected() }
+        addMenuItemToSubmenu(importSubMenu, R.string.previous_export) { onImportPreviousSelected() }
             .setIcon(R.drawable.ic_backup)
 
         val services = requireContext().resources.getStringArray(R.array.service_list)
@@ -156,7 +156,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 val supportedSources = subscriptionExtractor.supportedSources
                 if (supportedSources.isEmpty()) continue
 
-                addMenuItem(importSubMenu, serviceName) {
+                addMenuItemToSubmenu(importSubMenu, serviceName) {
                     onImportFromServiceSelected(service.serviceId)
                 }
                     .setIcon(ServiceHelper.getIcon(service.serviceId))
@@ -171,38 +171,35 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         // -- Export --
         val exportSubMenu = menu.addSubMenu(R.string.export_to)
 
-        addMenuItem(exportSubMenu, R.string.file) { onExportSelected() }
+        addMenuItemToSubmenu(exportSubMenu, R.string.file) { onExportSelected() }
             .setIcon(R.drawable.ic_save)
     }
 
-    private fun addMenuItem(
+    private fun addMenuItemToSubmenu(
         subMenu: SubMenu,
         @StringRes title: Int,
         onClick: Runnable
     ): MenuItem {
-        return addMenuItem({ subMenu.add(title) }, onClick)
+        return setClickListenerToMenuItem(subMenu.add(title), onClick)
     }
 
-    private fun addMenuItem(
+    private fun addMenuItemToSubmenu(
         subMenu: SubMenu,
         title: String,
         onClick: Runnable
     ): MenuItem {
-        return addMenuItem({ subMenu.add(title) }, onClick)
+        return setClickListenerToMenuItem(subMenu.add(title), onClick)
     }
 
-    private fun addMenuItem(
-        menuItemSupplier: Supplier<MenuItem>,
+    private fun setClickListenerToMenuItem(
+        menuItem: MenuItem,
         onClick: Runnable
     ): MenuItem {
-        val item = menuItemSupplier.get()
-
-        item.setOnMenuItemClickListener { _ ->
+        menuItem.setOnMenuItemClickListener { _ ->
             onClick.run()
             true
         }
-
-        return item
+        return menuItem
     }
 
     private fun onImportFromServiceSelected(serviceId: Int) {
