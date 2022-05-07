@@ -15,10 +15,27 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:autoLink="web"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/publicly_available_instances_help" />
+        tools:text="@string/publicly_available_instances_help"
+        tools:visibility="visible" />
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/instanceRequirements"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:autoLink="web"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instanceHelp"
+        tools:text="@string/note_that_an_instance_requires_the_following"
+        tools:visibility="visible" />
 
     <org.schabi.newpipe.views.NewPipeEditText
         android:id="@+id/dialogEditText"
@@ -32,7 +49,7 @@
         android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instanceHelp" />
+        app:layout_constraintTop_toBottomOf="@+id/instanceRequirements" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fossNoticeContainer"

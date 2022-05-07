@@ -15,6 +15,7 @@ import org.schabi.newpipe.settings.services.instances.UrlMultiInstanceTypeCreato
 import org.schabi.newpipe.util.services.YoutubeLikeInstanceManager;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -68,6 +69,7 @@ public class YouTubeLikeInstanceListFragment
                     InvidiousInstance.class,
                     InvidiousInstance::new,
                     R.string.invidious_instance_list_url,
+                    Collections.singletonList(R.string.a_working_api),
                     true);
         }
     }

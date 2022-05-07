@@ -28,6 +28,7 @@ public class PeertubeInstanceListFragment
                     PeertubeInstance.class,
                     PeertubeInstance::new,
                     R.string.peertube_instance_list_url,
+                    Collections.singletonList(R.string.a_working_api),
                     true);
         }
     }

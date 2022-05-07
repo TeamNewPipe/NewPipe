@@ -1,5 +1,6 @@
 package org.schabi.newpipe.settings.services.instances;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,13 @@ public class UrlMultiInstanceTypeCreator<I extends Instance>
      * The (official) list of available instances.
      */
     @StringRes
-    protected final int instanceListUrl;
+    protected final Integer instanceListUrl;
+
+    /**
+     * List of {@link StringRes} representing the requirements for an instance (e.g. a working API).
+     */
+    protected final List<Integer> instanceRequirements;
+
     /**
      * <code>true</code> if the service is free and open source software.
      */
@@ -38,12 +45,14 @@ public class UrlMultiInstanceTypeCreator<I extends Instance>
             final int icon,
             final Class<I> createdClass,
             final Function<String, I> createNewInstanceFromUrl,
-            final int instanceListUrl,
+            @StringRes final Integer instanceListUrl,
+            final List<Integer> instanceRequirements,
             final boolean isFoss
     ) {
         super(instanceServiceName, icon, createdClass);
         this.createNewInstanceFromUrl = createNewInstanceFromUrl;
         this.instanceListUrl = instanceListUrl;
+        this.instanceRequirements = instanceRequirements;
         this.isFoss = isFoss;
     }
 
@@ -55,20 +64,36 @@ public class UrlMultiInstanceTypeCreator<I extends Instance>
     ) {
         showAddInstanceUrlDialog(context, url ->
                 defaultValidateAndCleanUrl(url, context, existingInstances, createdClass())
-                    .map(createNewInstanceFromUrl)
-                    .ifPresent(onInstanceCreated));
+                        .map(createNewInstanceFromUrl)
+                        .ifPresent(onInstanceCreated));
     }
 
+    @SuppressLint("SetTextI18n")
+        // When using non concated text for
+        // instanceRequirements, we would have to duplicate code/translations
     void showAddInstanceUrlDialog(
             final Context c,
             final Consumer<String> onUrlCreated
     ) {
         final DialogAddInstanceBinding dialogBinding
                 = DialogAddInstanceBinding.inflate(LayoutInflater.from(c));
-        dialogBinding.instanceHelp.setText(
-                c.getString(
-                        R.string.publicly_available_instances_help,
-                        c.getString(instanceListUrl)));
+        if (instanceListUrl != -1) {
+            dialogBinding.instanceHelp.setVisibility(View.VISIBLE);
+            dialogBinding.instanceHelp.setText(
+                    c.getString(
+                            R.string.publicly_available_instances_help,
+                            c.getString(instanceListUrl)));
+        }
+        if (!instanceRequirements.isEmpty()) {
+            dialogBinding.instanceRequirements.setVisibility(View.VISIBLE);
+            dialogBinding.instanceRequirements.setText(
+                    c.getString(R.string.note_that_an_instance_requires_the_following)
+                            + instanceRequirements.stream()
+                            .map(c::getString)
+                            .map(s -> "\n • " + s)
+                            .collect(Collectors.joining())
+            );
+        }
         dialogBinding.fossNoticeContainer.setVisibility(isFoss ? View.VISIBLE : View.GONE);
 
         new AlertDialog.Builder(c)
