@@ -17,6 +17,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.nextResizeModeAndSav
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -162,8 +163,7 @@ public abstract class VideoPlayerUi extends PlayerUi
         binding.resizeTextView
                 .setText(PlayerHelper.resizeTypeOf(context, binding.surfaceView.getResizeMode()));
 
-        binding.playbackSeekBar.getThumb()
-                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_IN));
+        binding.playbackSeekBar.setThumbTintList(ColorStateList.valueOf(Color.RED));
         binding.playbackSeekBar.getProgressDrawable()
                 .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY));
 
@@ -761,8 +761,7 @@ public abstract class VideoPlayerUi extends PlayerUi
         hideControls(DEFAULT_CONTROLS_DURATION, 0);
 
         binding.playbackSeekBar.setEnabled(false);
-        binding.playbackSeekBar.getThumb()
-                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_IN));
+        binding.playbackSeekBar.setThumbTintList(ColorStateList.valueOf(Color.RED));
 
         binding.loadingPanel.setBackgroundColor(Color.BLACK);
         animate(binding.loadingPanel, true, 0);
@@ -780,8 +779,7 @@ public abstract class VideoPlayerUi extends PlayerUi
         updateStreamRelatedViews();
 
         binding.playbackSeekBar.setEnabled(true);
-        binding.playbackSeekBar.getThumb()
-                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_IN));
+        binding.playbackSeekBar.setThumbTintList(ColorStateList.valueOf(Color.RED));
 
         binding.loadingPanel.setVisibility(View.GONE);
 

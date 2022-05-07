@@ -2,8 +2,6 @@ package org.schabi.newpipe.settings.preferencesearch;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Handler;
@@ -101,11 +99,9 @@ public final class PreferenceSearchResultHighlighter {
         // Show highlight icon
         final Drawable oldIcon = prefResult.getIcon();
         final boolean oldSpaceReserved = prefResult.isIconSpaceReserved();
-        final Drawable highlightIcon =
-                AppCompatResources.getDrawable(
-                        prefsFragment.requireContext(),
-                        R.drawable.ic_play_arrow);
-        highlightIcon.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+        final Drawable highlightIcon = AppCompatResources.getDrawable(
+                prefsFragment.requireContext(), R.drawable.ic_play_arrow);
+        highlightIcon.setTint(color);
         prefResult.setIcon(highlightIcon);
 
         prefsFragment.scrollToPreference(prefResult);
