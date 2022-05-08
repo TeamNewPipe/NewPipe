@@ -13,7 +13,6 @@ import com.google.android.exoplayer2.source.MediaSource;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
-import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
 import org.schabi.newpipe.util.ListHelper;
@@ -57,7 +56,7 @@ public class AudioPlaybackResolver implements PlaybackResolver {
 
         try {
             return PlaybackResolver.buildMediaSource(
-                    dataSource, audio, info, PlayerHelper.cacheKeyOf(info, audio), tag);
+                    dataSource, audio, info, PlaybackResolver.cacheKeyOf(info, audio), tag);
         } catch (final IOException e) {
             Log.e(TAG, "Unable to create audio source:", e);
             return null;

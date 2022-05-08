@@ -95,7 +95,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         if (video != null) {
             try {
                 final MediaSource streamSource = PlaybackResolver.buildMediaSource(
-                        dataSource, video, info, PlayerHelper.cacheKeyOf(info, video), tag);
+                        dataSource, video, info, PlaybackResolver.cacheKeyOf(info, video), tag);
                 mediaSources.add(streamSource);
             } catch (final IOException e) {
                 Log.e(TAG, "Unable to create video source:", e);
@@ -114,7 +114,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         if (audio != null && (video == null || video.isVideoOnly())) {
             try {
                 final MediaSource audioSource = PlaybackResolver.buildMediaSource(
-                        dataSource, audio, info, PlayerHelper.cacheKeyOf(info, audio), tag);
+                        dataSource, audio, info, PlaybackResolver.cacheKeyOf(info, audio), tag);
                 mediaSources.add(audioSource);
                 streamSourceType = SourceType.VIDEO_WITH_SEPARATED_AUDIO;
             } catch (final IOException e) {

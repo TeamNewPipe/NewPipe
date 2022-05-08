@@ -3,8 +3,6 @@ package org.schabi.newpipe.player.helper;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
-import static org.schabi.newpipe.extractor.stream.AudioStream.UNKNOWN_BITRATE;
-import static org.schabi.newpipe.extractor.stream.VideoStream.RESOLUTION_UNKNOWN;
 import static org.schabi.newpipe.player.Player.IDLE_WINDOW_FLAGS;
 import static org.schabi.newpipe.player.Player.PLAYER_TYPE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
@@ -47,11 +45,9 @@ import com.google.android.exoplayer2.util.MimeTypes;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
-import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.extractor.utils.Utils;
 import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.Player;
@@ -195,52 +191,6 @@ public final class PlayerHelper {
             default:
                 throw new IllegalArgumentException("Unrecognized resize mode: " + resizeMode);
         }
-    }
-
-    @NonNull
-    public static String cacheKeyOf(@NonNull final StreamInfo info,
-                                    @NonNull final VideoStream videoStream) {
-        String cacheKey = info.getUrl() + " " + videoStream.getId();
-
-        final String resolution = videoStream.getResolution();
-        final MediaFormat mediaFormat = videoStream.getFormat();
-        if (resolution.equals(RESOLUTION_UNKNOWN) && mediaFormat == null) {
-            // The hash code is only used in the cache key in the case when the resolution and the
-            // media format are unknown
-            cacheKey += " " + videoStream.hashCode();
-        } else {
-            if (mediaFormat != null) {
-                cacheKey += " " + videoStream.getFormat().getName();
-            }
-            if (!resolution.equals(RESOLUTION_UNKNOWN)) {
-                cacheKey += " " + resolution;
-            }
-        }
-
-        return cacheKey;
-    }
-
-    @NonNull
-    public static String cacheKeyOf(@NonNull final StreamInfo info,
-                                    @NonNull final AudioStream audioStream) {
-        String cacheKey = info.getUrl() + " " + audioStream.getId();
-
-        final int averageBitrate = audioStream.getAverageBitrate();
-        final MediaFormat mediaFormat = audioStream.getFormat();
-        if (averageBitrate == UNKNOWN_BITRATE && mediaFormat == null) {
-            // The hash code is only used in the cache key in the case when the resolution and the
-            // media format are unknown
-            cacheKey += " " + audioStream.hashCode();
-        } else {
-            if (mediaFormat != null) {
-                cacheKey += " " + audioStream.getFormat().getName();
-            }
-            if (averageBitrate != UNKNOWN_BITRATE) {
-                cacheKey += " " + averageBitrate;
-            }
-        }
-
-        return cacheKey;
     }
 
     /**

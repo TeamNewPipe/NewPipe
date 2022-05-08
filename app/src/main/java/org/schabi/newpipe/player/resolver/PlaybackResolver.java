@@ -1,5 +1,7 @@
 package org.schabi.newpipe.player.resolver;
 
+import static org.schabi.newpipe.extractor.stream.AudioStream.UNKNOWN_BITRATE;
+import static org.schabi.newpipe.extractor.stream.VideoStream.RESOLUTION_UNKNOWN;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.player.helper.PlayerDataSource.LIVE_STREAM_EDGE_GAP_MILLIS;
 
@@ -20,6 +22,7 @@ import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.source.smoothstreaming.manifest.SsManifest;
 import com.google.android.exoplayer2.source.smoothstreaming.manifest.SsManifestParser;
 
+import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.services.youtube.ItagItem;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.CreationException;
@@ -48,6 +51,79 @@ import java.util.Objects;
 
 public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
     String TAG = PlaybackResolver.class.getSimpleName();
+
+    @NonNull
+    private static StringBuilder commonCacheKeyOf(@NonNull final StreamInfo info,
+                                                  @NonNull final Stream stream,
+                                                  final boolean resolutionOrBitrateUnknown) {
+        // stream info service id
+        final StringBuilder cacheKey = new StringBuilder(info.getServiceId());
+
+        // stream info id
+        cacheKey.append(" ");
+        cacheKey.append(info.getId());
+
+        // stream id (even if unknown)
+        cacheKey.append(" ");
+        cacheKey.append(stream.getId());
+
+        // mediaFormat (if not null)
+        final MediaFormat mediaFormat = stream.getFormat();
+        if (mediaFormat != null) {
+            cacheKey.append(" ");
+            cacheKey.append(mediaFormat.getName());
+        }
+
+        // content (only if other information is missing)
+        // If the media format and the resolution/bitrate are both missing, then we don't have
+        // enough information to distinguish this stream from other streams.
+        // So, only in that case, we use the content (i.e. url or manifest) to differentiate
+        // between streams.
+        // Note that if the content were used even when other information is present, then two
+        // streams with the same stats but with different contents (e.g. because the url was
+        // refreshed) will be considered different (i.e. with a different cacheKey), making the
+        // cache useless.
+        if (resolutionOrBitrateUnknown && mediaFormat == null) {
+            cacheKey.append(" ");
+            Objects.hash(stream.getContent(), stream.getManifestUrl());
+        }
+
+        return cacheKey;
+    }
+
+    @NonNull
+    static String cacheKeyOf(@NonNull final StreamInfo info,
+                             @NonNull final VideoStream videoStream) {
+        final boolean resolutionUnknown = videoStream.getResolution().equals(RESOLUTION_UNKNOWN);
+        final StringBuilder cacheKey = commonCacheKeyOf(info, videoStream, resolutionUnknown);
+
+        // resolution (if known)
+        if (!resolutionUnknown) {
+            cacheKey.append(" ");
+            cacheKey.append(videoStream.getResolution());
+        }
+
+        // isVideoOnly
+        cacheKey.append(" ");
+        cacheKey.append(videoStream.isVideoOnly());
+
+        return cacheKey.toString();
+    }
+
+    @NonNull
+    static String cacheKeyOf(@NonNull final StreamInfo info,
+                             @NonNull final AudioStream audioStream) {
+        final boolean averageBitrateUnknown = audioStream.getAverageBitrate() == UNKNOWN_BITRATE;
+        final StringBuilder cacheKey = commonCacheKeyOf(info, audioStream, averageBitrateUnknown);
+
+        // averageBitrate (if known)
+        if (!averageBitrateUnknown) {
+            cacheKey.append(" ");
+            cacheKey.append(audioStream.getAverageBitrate());
+        }
+
+        return cacheKey.toString();
+    }
 
     @Nullable
     static MediaSource maybeBuildLiveMediaSource(@NonNull final PlayerDataSource dataSource,
