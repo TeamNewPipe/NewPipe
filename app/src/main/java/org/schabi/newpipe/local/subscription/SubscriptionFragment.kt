@@ -34,9 +34,8 @@ import org.schabi.newpipe.databinding.FeedItemCarouselBinding
 import org.schabi.newpipe.databinding.FragmentSubscriptionBinding
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.UserAction
-import org.schabi.newpipe.extractor.NewPipe
+import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
-import org.schabi.newpipe.extractor.exceptions.ExtractionException
 import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.local.subscription.SubscriptionViewModel.SubscriptionState
@@ -146,26 +145,16 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         addMenuItemToSubmenu(importSubMenu, R.string.previous_export) { onImportPreviousSelected() }
             .setIcon(R.drawable.ic_backup)
 
-        val services = requireContext().resources.getStringArray(R.array.service_list)
-        for (serviceName in services) {
-            try {
-                val service = NewPipe.getService(serviceName)
+        for (service in ServiceList.all()) {
+            val subscriptionExtractor = service.subscriptionExtractor ?: continue
 
-                val subscriptionExtractor = service.subscriptionExtractor ?: continue
+            val supportedSources = subscriptionExtractor.supportedSources
+            if (supportedSources.isEmpty()) continue
 
-                val supportedSources = subscriptionExtractor.supportedSources
-                if (supportedSources.isEmpty()) continue
-
-                addMenuItemToSubmenu(importSubMenu, serviceName) {
-                    onImportFromServiceSelected(service.serviceId)
-                }
-                    .setIcon(ServiceHelper.getIcon(service.serviceId))
-            } catch (e: ExtractionException) {
-                throw RuntimeException(
-                    "Services array contains an entry that it's not a valid service name ($serviceName)",
-                    e
-                )
+            addMenuItemToSubmenu(importSubMenu, service.serviceInfo.name) {
+                onImportFromServiceSelected(service.serviceId)
             }
+                .setIcon(ServiceHelper.getIcon(service.serviceId))
         }
 
         // -- Export --
