@@ -1,12 +1,14 @@
 package org.schabi.newpipe.settings;
 
+import static androidx.collection.ArraySetKt.arraySetOf;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.XmlRes;
+import androidx.collection.ArraySet;
 import androidx.fragment.app.Fragment;
 
 import org.schabi.newpipe.R;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -23,33 +25,26 @@ import java.util.Set;
  * E.g. used by the preference search.
  */
 public final class SettingsResourceRegistry {
-
     private static final SettingsResourceRegistry INSTANCE = new SettingsResourceRegistry();
 
-    private final Set<SettingRegistryEntry> registeredEntries = new HashSet<>();
+    private final ArraySet<SettingRegistryEntry> registeredEntries = arraySetOf(
+            new SettingRegistryEntry(MainSettingsFragment.class, R.xml.main_settings)
+                    .setSearchable(false),
+            new SettingRegistryEntry(AppearanceSettingsFragment.class, R.xml.appearance_settings),
+            new SettingRegistryEntry(ContentSettingsFragment.class, R.xml.content_settings),
+            new SettingRegistryEntry(DebugSettingsFragment.class, R.xml.debug_settings)
+                    .setSearchable(false),
+            new SettingRegistryEntry(DownloadSettingsFragment.class, R.xml.download_settings),
+            new SettingRegistryEntry(HistorySettingsFragment.class, R.xml.history_settings),
+            new SettingRegistryEntry(NotificationSettingsFragment.class,
+                    R.xml.notifications_settings),
+            new SettingRegistryEntry(PlayerNotificationSettingsFragment.class,
+                    R.xml.player_notification_settings),
+            new SettingRegistryEntry(UpdateSettingsFragment.class, R.xml.update_settings),
+            new SettingRegistryEntry(VideoAudioSettingsFragment.class, R.xml.video_audio_settings)
+    );
 
     private SettingsResourceRegistry() {
-        add(MainSettingsFragment.class, R.xml.main_settings).setSearchable(false);
-
-        add(AppearanceSettingsFragment.class, R.xml.appearance_settings);
-        add(ContentSettingsFragment.class, R.xml.content_settings);
-        add(DebugSettingsFragment.class, R.xml.debug_settings).setSearchable(false);
-        add(DownloadSettingsFragment.class, R.xml.download_settings);
-        add(HistorySettingsFragment.class, R.xml.history_settings);
-        add(NotificationSettingsFragment.class, R.xml.notifications_settings);
-        add(PlayerNotificationSettingsFragment.class, R.xml.player_notification_settings);
-        add(UpdateSettingsFragment.class, R.xml.update_settings);
-        add(VideoAudioSettingsFragment.class, R.xml.video_audio_settings);
-    }
-
-    private SettingRegistryEntry add(
-            @NonNull final Class<? extends Fragment> fragmentClass,
-            @XmlRes final int preferencesResId
-    ) {
-        final SettingRegistryEntry entry =
-                new SettingRegistryEntry(fragmentClass, preferencesResId);
-        this.registeredEntries.add(entry);
-        return entry;
     }
 
     public SettingRegistryEntry getEntryByFragmentClass(
@@ -86,7 +81,7 @@ public final class SettingsResourceRegistry {
     }
 
     public Set<SettingRegistryEntry> getAllEntries() {
-        return new HashSet<>(registeredEntries);
+        return new ArraySet<>(registeredEntries);
     }
 
     public static SettingsResourceRegistry getInstance() {

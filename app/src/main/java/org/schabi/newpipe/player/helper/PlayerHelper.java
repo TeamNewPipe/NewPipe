@@ -28,6 +28,7 @@ import android.view.accessibility.CaptioningManager;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.collection.ArraySet;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
@@ -64,7 +65,6 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Formatter;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -223,7 +223,7 @@ public final class PlayerHelper {
     @Nullable
     public static PlayQueue autoQueueOf(@NonNull final StreamInfo info,
                                         @NonNull final List<PlayQueueItem> existingItems) {
-        final Set<String> urls = new HashSet<>(existingItems.size());
+        final Set<String> urls = new ArraySet<>(existingItems.size());
         for (final PlayQueueItem item : existingItems) {
             urls.add(item.getUrl());
         }

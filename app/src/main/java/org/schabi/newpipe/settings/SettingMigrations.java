@@ -1,10 +1,13 @@
 package org.schabi.newpipe.settings;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.collection.ArraySet;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
@@ -14,10 +17,7 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.DeviceUtils;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
-
-import static org.schabi.newpipe.MainActivity.DEBUG;
 
 /**
  * In order to add a migration, follow these steps, given P is the previous version:<br>
@@ -97,7 +97,7 @@ public final class SettingMigrations {
                 addAllSearchSuggestionTypes = true;
             }
 
-            final Set<String> showSearchSuggestionsValueList = new HashSet<>();
+            final Set<String> showSearchSuggestionsValueList = new ArraySet<>();
             if (addAllSearchSuggestionTypes) {
                 // if the preference was true, all suggestions will be shown, otherwise none
                 Collections.addAll(showSearchSuggestionsValueList, context.getResources()

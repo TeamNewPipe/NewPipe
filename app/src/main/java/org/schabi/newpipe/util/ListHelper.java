@@ -1,5 +1,7 @@
 package org.schabi.newpipe.util;
 
+import static androidx.collection.ArraySetKt.arraySetOf;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -20,7 +22,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -38,9 +39,8 @@ public final class ListHelper {
     private static final List<MediaFormat> AUDIO_FORMAT_EFFICIENCY_RANKING =
             Arrays.asList(MediaFormat.WEBMA, MediaFormat.M4A, MediaFormat.MP3);
 
-    private static final Set<String> HIGH_RESOLUTION_LIST
-            // Uses a HashSet for better performance
-            = new HashSet<>(Arrays.asList("1440p", "2160p", "1440p60", "2160p60"));
+    private static final Set<String> HIGH_RESOLUTION_LIST = arraySetOf("1440p", "2160p",
+            "1440p60", "2160p60");
 
     private ListHelper() { }
 

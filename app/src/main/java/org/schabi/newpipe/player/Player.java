@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player;
 
+import static androidx.collection.ArraySetKt.arraySetOf;
 import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW;
 import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_BAD_HTTP_STATUS;
 import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_IO_CLEARTEXT_NOT_PERMITTED;
@@ -115,7 +116,6 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.collection.ArraySet;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.GestureDetectorCompat;
@@ -4265,10 +4265,8 @@ public final class Player implements
             } else {
                 // Disable the video track and the ability to select subtitles
                 // Use an ArraySet because we can't use Set.of() on all supported APIs by the app
-                final ArraySet<Integer> disabledTracks = new ArraySet<>();
-                disabledTracks.add(C.TRACK_TYPE_TEXT);
-                disabledTracks.add(C.TRACK_TYPE_VIDEO);
-                parametersBuilder.setDisabledTrackTypes(disabledTracks);
+                parametersBuilder.setDisabledTrackTypes(arraySetOf(C.TRACK_TYPE_TEXT,
+                        C.TRACK_TYPE_VIDEO));
             }
 
             trackSelector.setParameters(parametersBuilder);
