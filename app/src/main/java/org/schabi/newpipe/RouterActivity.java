@@ -29,7 +29,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.ServiceCompat;
-import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
 
@@ -388,7 +387,7 @@ public class RouterActivity extends AppCompatActivity {
         for (final AdapterChoiceItem item : choices) {
             final RadioButton radioButton = ListRadioIconItemBinding.inflate(inflater).getRoot();
             radioButton.setText(item.description);
-            TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(radioButton,
+            radioButton.setCompoundDrawablesRelativeWithIntrinsicBounds(
                     AppCompatResources.getDrawable(themeWrapperContext, item.icon),
                     null, null, null);
             radioButton.setChecked(false);
