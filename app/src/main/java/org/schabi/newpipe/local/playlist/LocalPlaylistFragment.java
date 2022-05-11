@@ -46,8 +46,8 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainPlayer.PlayerType;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
-import org.schabi.newpipe.util.DebounceSavable;
-import org.schabi.newpipe.util.DebounceSaver;
+import org.schabi.newpipe.util.debounce.DebounceSavable;
+import org.schabi.newpipe.util.debounce.DebounceSaver;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -112,7 +112,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         disposables = new CompositeDisposable();
 
         isLoadingComplete = new AtomicBoolean();
-        debounceSaver = new DebounceSaver(10000, this);
+        debounceSaver = new DebounceSaver(this);
     }
 
     @Override

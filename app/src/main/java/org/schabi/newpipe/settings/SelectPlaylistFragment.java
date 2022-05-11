@@ -90,8 +90,8 @@ public class SelectPlaylistFragment extends DialogFragment {
         final LocalPlaylistManager localPlaylistManager = new LocalPlaylistManager(database);
         final RemotePlaylistManager remotePlaylistManager = new RemotePlaylistManager(database);
 
-        disposable = Flowable.combineLatest(localPlaylistManager.getPlaylists(),
-                remotePlaylistManager.getPlaylists(), PlaylistLocalItem::merge)
+        disposable = Flowable.combineLatest(localPlaylistManager.getDisplayIndexOrderedPlaylists(),
+                remotePlaylistManager.getDisplayIndexOrderedPlaylists(), PlaylistLocalItem::merge)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::displayPlaylists, this::onError);
     }

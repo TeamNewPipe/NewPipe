@@ -1,4 +1,4 @@
-package org.schabi.newpipe.util;
+package org.schabi.newpipe.util.debounce;
 
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
@@ -21,6 +21,9 @@ public class DebounceSaver {
     // Has the object been modified
     private final AtomicBoolean isModified;
 
+    // Default 10 seconds
+    private static final long DEFAULT_SAVE_DEBOUNCE_MILLIS = 10000;
+
 
     /**
      * Creates a new {@code DebounceSaver}.
@@ -34,6 +37,16 @@ public class DebounceSaver {
         debouncedSaveSignal = PublishSubject.create();
         this.debounceSavable = debounceSavable;
         this.isModified = new AtomicBoolean();
+    }
+
+    /**
+     * Creates a new {@code DebounceSaver}. Save the object 10 seconds later after the last change
+     * occurred.
+     *
+     * @param debounceSavable       The object containing data to be saved.
+     */
+    public DebounceSaver(final DebounceSavable debounceSavable) {
+        this(DEFAULT_SAVE_DEBOUNCE_MILLIS, debounceSavable);
     }
 
     public boolean getIsModified() {

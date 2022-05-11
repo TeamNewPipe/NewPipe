@@ -35,8 +35,8 @@ import org.schabi.newpipe.local.holder.LocalBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.holder.RemoteBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
-import org.schabi.newpipe.util.DebounceSavable;
-import org.schabi.newpipe.util.DebounceSaver;
+import org.schabi.newpipe.util.debounce.DebounceSavable;
+import org.schabi.newpipe.util.debounce.DebounceSaver;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 
@@ -89,7 +89,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         disposables = new CompositeDisposable();
 
         isLoadingComplete = new AtomicBoolean();
-        debounceSaver = new DebounceSaver(10000, this);
+        debounceSaver = new DebounceSaver(this);
 
         displayIndexInDatabase = new HashMap<>();
     }
@@ -185,8 +185,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         }
         isLoadingComplete.set(false);
 
-        Flowable.combineLatest(localPlaylistManager.getPlaylists(),
-                remotePlaylistManager.getPlaylists(), PlaylistLocalItem::merge)
+        Flowable.combineLatest(localPlaylistManager.getDisplayIndexOrderedPlaylists(),
+                remotePlaylistManager.getDisplayIndexOrderedPlaylists(), PlaylistLocalItem::merge)
                 .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistsSubscriber());

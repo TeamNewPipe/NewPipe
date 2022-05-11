@@ -1,4 +1,4 @@
-package org.schabi.newpipe.util;
+package org.schabi.newpipe.util.debounce;
 
 import org.schabi.newpipe.error.ErrorInfo;
 
