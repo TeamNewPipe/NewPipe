@@ -719,7 +719,7 @@
     <string name="settings_category_sponsor_block_category_disabled_title">Desativar</string>
     <string name="settings_category_sponsor_block_category_color">Cor da barra</string>
     <string name="settings_category_sponsor_block_category_sponsor_title">Patrocinador</string>
-    <string name="settings_category_sponsor_block_category_sponsor_summary">Promoção paga, referências pagas e anúncios diretos. Não é usado em Auto promoção ou mensagens grátis para causas/criadores/sites/produtos que eles gostam.</string>
+    <string name="settings_category_sponsor_block_category_sponsor_summary">Promoção paga, referências pagas e anúncios diretos. Não é usado em auto promoção ou mensagens grátis para causas/criadores/sites/produtos que eles gostam.</string>
     <string name="settings_category_sponsor_block_category_intro_title">Intervalo/Animação de introdução</string>
     <string name="settings_category_sponsor_block_category_intro_summary">Um intervalo sem conteúdo real. Pode ser uma pausa, um quadro estático, uma animação repetitiva. Isso não é usado em transições que contém informação.</string>
     <string name="settings_category_sponsor_block_category_outro_title">Finalização/Créditos</string>
@@ -735,8 +735,8 @@
     <string name="settings_category_sponsor_block_category_preview_title">Pré-visualização/Recapitulação</string>
     <string name="settings_category_sponsor_block_category_preview_summary">Recapitulação rápida de episódios anteriores, ou uma prévia do que está chegando mais tarde no vídeo atual. Destinado a clipes editados juntos, não é para resumos falados.</string>
     <string name="sponsor_block">SponsorBlock</string>
-    <string name="sponsor_block_home_page_title">Visita website</string>
-    <string name="sponsor_block_home_page_summary">Veja o site oficial do SponsorBlock.</string>
+    <string name="sponsor_block_home_page_title">Visitar site</string>
+    <string name="sponsor_block_home_page_summary">Visite o site oficial do SponsorBlock.</string>
     <string name="sponsor_block_enable_title">Pular patrocinadores</string>
     <string name="sponsor_block_enable_summary">Use a API SponsorBlock para pular automaticamente os patrocinadores nos vídeos. Atualmente, isso só funciona para vídeos do YouTube.</string>
     <string name="sponsor_block_api_url_title">URL da API</string>
