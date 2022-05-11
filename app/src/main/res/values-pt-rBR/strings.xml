@@ -775,7 +775,7 @@
     <string name="enable_local_player_title">Ativar player local (alfa)</string>
     <string name="enable_local_player_summary">Use um player embutido para reprodução local. Isso ainda está em desenvolvimento inicial, então provavelmente haverá muitos problemas, incluindo conflitos com o player existente</string>
     <string name="force_auto_fullscreen_title">Forçar tela cheia automaticamente</string>
-    <string name="force_auto_fullscreen_summary">Se ativado, quando o dispositivo estiver no modo paisagem, ele forçará o modo de tela cheia, mesmo que o dispositivo seja um tablet ou TV.</string>
+    <string name="force_auto_fullscreen_summary">Se ativado, quando o dispositivo estiver no modo paisagem, força o modo de tela cheia mesmo se o dispositivo for um tablet ou TV.</string>
     <string name="disable_error_reports_title">Desativar relatório de erros</string>
     <string name="disable_error_reports_summary">Impede que todas as telas de relatório de erros apareçam. Isso pode fazer com que o aplicativo se comporte inesperadamente. <b>USE POR SUA CONTA E RISCO!</b></string>
     <string name="enable_return_youtube_dislike_title">Mostrar contagem de não gostei</string>
