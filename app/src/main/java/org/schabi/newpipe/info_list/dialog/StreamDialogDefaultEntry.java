@@ -2,6 +2,7 @@ package org.schabi.newpipe.info_list.dialog;
 
 import static org.schabi.newpipe.util.NavigationHelper.openChannelFragment;
 import static org.schabi.newpipe.util.SparseItemUtil.fetchItemInfoIfSparse;
+import static org.schabi.newpipe.util.SparseItemUtil.fetchStreamInfoAndSaveToDatabase;
 import static org.schabi.newpipe.util.SparseItemUtil.fetchUploaderUrlIfSparse;
 
 import android.net.Uri;
@@ -11,6 +12,7 @@ import androidx.annotation.StringRes;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -109,6 +111,15 @@ public enum StreamDialogDefaultEntry {
     SHARE(R.string.share, (fragment, item) ->
             ShareUtils.shareText(fragment.requireContext(), item.getName(), item.getUrl(),
                     item.getThumbnailUrl())),
+
+    DOWNLOAD(R.string.download, (fragment, item) ->
+            fetchStreamInfoAndSaveToDatabase(fragment.requireContext(), item.getServiceId(),
+                    item.getUrl(), info -> {
+                        final DownloadDialog downloadDialog
+                                = new DownloadDialog(fragment.requireContext(), info);
+                        downloadDialog.show(fragment.getChildFragmentManager(), "downloadDialog");
+                    })
+    ),
 
     OPEN_IN_BROWSER(R.string.open_in_browser, (fragment, item) ->
             ShareUtils.openUrlInBrowser(fragment.requireContext(), item.getUrl())),
