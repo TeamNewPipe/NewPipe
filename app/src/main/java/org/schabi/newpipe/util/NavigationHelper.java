@@ -572,6 +572,11 @@ public final class NavigationHelper {
         }
     }
 
+    public static void openPlayQueue(final Context context) {
+        final Intent intent = new Intent(context, PlayQueueActivity.class);
+        context.startActivity(intent);
+    }
+
     public static Intent getPlayQueueActivityIntent(final Context context) {
         final Intent intent = new Intent(context, PlayQueueActivity.class);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
