@@ -31,17 +31,17 @@ public final class ServiceHelper {
     public static int getIcon(final int serviceId) {
         switch (serviceId) {
             case 0:
-                return R.drawable.place_holder_youtube;
+                return R.drawable.ic_smart_display;
             case 1:
-                return R.drawable.place_holder_cloud;
+                return R.drawable.ic_cloud;
             case 2:
-                return R.drawable.place_holder_gadse;
+                return R.drawable.ic_placeholder_media_ccc;
             case 3:
-                return R.drawable.place_holder_peertube;
+                return R.drawable.ic_placeholder_peertube;
             case 4:
-                return R.drawable.place_holder_bandcamp;
+                return R.drawable.ic_placeholder_bandcamp;
             default:
-                return R.drawable.place_holder_circle;
+                return R.drawable.ic_circle;
         }
     }
 

@@ -26,7 +26,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             tools:ignore="ContentDescription,RtlHardcoded"
-            tools:src="@drawable/place_holder_peertube" />
+            tools:src="@drawable/ic_placeholder_peertube" />
 
         <TextView
             android:id="@+id/instanceName"
