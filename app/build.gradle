@@ -221,10 +221,9 @@ dependencies {
     // https://developer.android.com/jetpack/androidx/releases/viewpager2#1.1.0-alpha01
     implementation 'androidx.viewpager2:viewpager2:1.1.0-beta01'
     implementation 'androidx.webkit:webkit:1.4.0'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation "androidx.work:work-runtime:${androidxWorkVersion}"
     implementation "androidx.work:work-runtime-ktx:${androidxWorkVersion}"
     implementation "androidx.work:work-rxjava3:${androidxWorkVersion}"
+    implementation 'com.google.android.material:material:1.5.0'
 
 /** Third-party libraries **/
     // Instance state boilerplate elimination
