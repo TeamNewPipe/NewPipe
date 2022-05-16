@@ -28,6 +28,7 @@ import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.databinding.PlaylistHeaderBinding;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -41,6 +42,7 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
+import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.player.MainPlayer.PlayerType;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -56,6 +58,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
@@ -236,6 +239,17 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                 break;
             case R.id.menu_item_bookmark:
                 onBookmarkClicked();
+                break;
+            case R.id.menu_item_append_playlist:
+                disposables.add(PlaylistDialog.createCorrespondingDialog(
+                        getContext(),
+                        getPlayQueue()
+                                .getStreams()
+                                .stream()
+                                .map(StreamEntity::new)
+                                .collect(Collectors.toList()),
+                        dialog -> dialog.show(getFM(), TAG)
+                ));
                 break;
             default:
                 return super.onOptionsItemSelected(item);
