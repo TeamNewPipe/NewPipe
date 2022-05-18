@@ -107,7 +107,7 @@ ext {
     icepickVersion = '3.2.0'
     exoPlayerVersion = '2.17.1'
     googleAutoServiceVersion = '1.0.1'
-    groupieVersion = '2.10.0'
+    groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'
 
     leakCanaryVersion = '2.5'
@@ -262,7 +262,7 @@ dependencies {
     implementation "com.nononsenseapps:filepicker:4.2.1"
 
     // Crash reporting
-    implementation "ch.acra:acra-core:5.9.1"
+    implementation "ch.acra:acra-core:5.9.3"
 
     // Properly restarting
     implementation 'com.jakewharton:process-phoenix:2.1.2'
