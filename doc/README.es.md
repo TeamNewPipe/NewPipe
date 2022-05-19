@@ -1,4 +1,4 @@
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p>
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">Una interfaz de streaming ligera y libre para Android.</h4>
 
@@ -41,7 +41,7 @@
 
 ## Descripción
 
-NewPipe no usa ninguna librería del framework de Google, ni la API de YouTube. Los sitios web solamente se analizan para extraer la información requerida, por lo que esta app se puede usar sin los servicios de Google instalados. Además, no se necesita una cuenta de YouTube para usar NewPipe, lo cual es un software libre de copyleft.
+NewPipe no usa ninguna librería del framework de Google, ni la API de YouTube. Los sitios web solamente se analizan para extraer la información requerida, por lo que esta app se puede usar sin los servicios de Google instalados. Además, no se necesita una cuenta de YouTube para usar NewPipe, que es un programa libre <i lang="en">copyleft</i>.
 
 ### Características
 
@@ -93,7 +93,7 @@ Se puede instalar NewPipe usando uno de los métodos siguientes:
  3. Usando el repositorio oficial de F-Droid. Este es el método más lento para obtener actualizaciones, ya que F-Droid debe reconocer los cambios, construir el APK aparte, firmarlo con una clave, y finalmente publicar la actualización.
  4. Construyendo la app usted mismo. Este es el modo más rápido para obtener nuevas características en su dispositivo, pero es mucho más complicado, así que recomendamos uno de los otros métodos.
 
-Recomendamos el método 1 para la mayoría de usuarios. Los APKs instalados usando método 1 y 2 son compatibles entre sí, pero no lo son con los instalados usando el método 3. Esto es debido a la clave de firmado, ya que los métodos 1 y 2 usan la misma clave (la nuestra), pero el método 3 usa una clave diferente (la de F-Droid). El método 4 excluye totalmente una clave de firmado. Las claves de firmado aseguran que el usuario no esté siendo engañado para instalar/actualizar una APK maliciosa. 
+Recomendamos el método 1 para la mayoría de usuarios. Los APKs instalados usando método 1 y 2 son compatibles entre sí, pero no lo son con los instalados usando el método 3. Esto es debido a la clave de firmado, ya que los métodos 1 y 2 usan la misma clave (la nuestra), pero el método 3 usa una clave diferente (la de F-Droid). El método 4 excluye totalmente una clave de firmado. Las claves de firmado aseguran que el usuario no esté siendo engañado para instalar/actualizar una APK maliciosa.
 
 Además, si quiere cambiar el método de instalación por alguna razón (por ejemplo: la funcionalidad del núcleo de NewPipe se rompe o F-Droid aún no publica la actualización), recomendamos el siguiente procedimiento:
 1. Respalde su información a través de Ajustes > Contenido > Exportar base de datos; esto guardará su historial (videos vistos y búsquedas), suscripciones, listas de reproducción y ajustes.
@@ -138,6 +138,6 @@ El proyecto NewPipe tiene como objetivo ofrecer una experience privada y anónim
 
 ## Licencia
 
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.html)  
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.html)
 
 NewPipe es Software Libre: Puede usarlo, estudiarlo, compartirlo y mejorarlo a su voluntad. Más específicamente, puede redistribuirlo y/o modificarlo bajo los términos de la [GNU General Public License](https://www.gnu.org/licenses/gpl.html) publicada por la Free Software Foundation tanto si usa la versión 3 o posterior de la licencia.
