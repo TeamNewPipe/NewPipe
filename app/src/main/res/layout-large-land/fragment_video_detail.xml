@@ -717,7 +717,7 @@
                 android:background="?attr/selectableItemBackground"
                 android:padding="10dp"
                 android:scaleType="center"
-                app:srcCompat="@drawable/ic_play_queue"
+                app:srcCompat="@drawable/ic_list"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
             <ImageButton
