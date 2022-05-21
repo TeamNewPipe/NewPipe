@@ -786,10 +786,8 @@ public class DownloadDialog extends DialogFragment
 
                 if (format == MediaFormat.TTML) {
                     filenameTmp += MediaFormat.SRT.suffix;
-                } else {
-                    if (format != null) {
-                        filenameTmp += format.suffix;
-                    }
+                } else if (format != null) {
+                    filenameTmp += format.suffix;
                 }
                 break;
             default:

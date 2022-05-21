@@ -35,33 +35,35 @@ public class SecondaryStreamHelper<T extends Stream> {
     public static AudioStream getAudioStreamFor(@NonNull final List<AudioStream> audioStreams,
                                                 @NonNull final VideoStream videoStream) {
         final MediaFormat mediaFormat = videoStream.getFormat();
-        if (mediaFormat != null) {
-            switch (mediaFormat) {
-                case WEBM:
-                case MPEG_4:// ¿is mpeg-4 DASH?
-                    break;
-                default:
-                    return null;
-            }
+        if (mediaFormat == null) {
+            return null;
+        }
 
-            final boolean m4v = (mediaFormat == MediaFormat.MPEG_4);
-
-            for (final AudioStream audio : audioStreams) {
-                if (audio.getFormat() == (m4v ? MediaFormat.M4A : MediaFormat.WEBMA)) {
-                    return audio;
-                }
-            }
-
-            if (m4v) {
+        switch (mediaFormat) {
+            case WEBM:
+            case MPEG_4:// ¿is mpeg-4 DASH?
+                break;
+            default:
                 return null;
-            }
+        }
 
-            // retry, but this time in reverse order
-            for (int i = audioStreams.size() - 1; i >= 0; i--) {
-                final AudioStream audio = audioStreams.get(i);
-                if (audio.getFormat() == MediaFormat.WEBMA_OPUS) {
-                    return audio;
-                }
+        final boolean m4v = (mediaFormat == MediaFormat.MPEG_4);
+
+        for (final AudioStream audio : audioStreams) {
+            if (audio.getFormat() == (m4v ? MediaFormat.M4A : MediaFormat.WEBMA)) {
+                return audio;
+            }
+        }
+
+        if (m4v) {
+            return null;
+        }
+
+        // retry, but this time in reverse order
+        for (int i = audioStreams.size() - 1; i >= 0; i--) {
+            final AudioStream audio = audioStreams.get(i);
+            if (audio.getFormat() == MediaFormat.WEBMA_OPUS) {
+                return audio;
             }
         }
 

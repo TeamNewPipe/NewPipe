@@ -155,10 +155,10 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
                 qualityString += " (" + context.getString(R.string.caption_auto_generated) + ")";
             }
         } else {
-            if (mediaFormat != null) {
-                qualityString = mediaFormat.getSuffix();
-            } else {
+            if (mediaFormat == null) {
                 qualityString = context.getString(R.string.unknown_quality);
+            } else {
+                qualityString = mediaFormat.getSuffix();
             }
         }
 
