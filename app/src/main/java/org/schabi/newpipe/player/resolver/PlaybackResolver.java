@@ -8,6 +8,8 @@ import static org.schabi.newpipe.player.helper.PlayerDataSource.LIVE_STREAM_EDGE
 import android.net.Uri;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -41,20 +43,23 @@ import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
 import org.schabi.newpipe.util.StreamTypeUtil;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
+/**
+ * This interface is just a shorthand for {@link Resolver} with {@link StreamInfo} as source and
+ * {@link MediaSource} as product. It contains many static methods that can be used by classes
+ * implementing this interface, and nothing else.
+ */
 public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
     String TAG = PlaybackResolver.class.getSimpleName();
 
-    @NonNull
-    private static StringBuilder commonCacheKeyOf(@NonNull final StreamInfo info,
-                                                  @NonNull final Stream stream,
+
+    //region Cache key generation
+    private static StringBuilder commonCacheKeyOf(final StreamInfo info,
+                                                  final Stream stream,
                                                   final boolean resolutionOrBitrateUnknown) {
         // stream info service id
         final StringBuilder cacheKey = new StringBuilder(info.getServiceId());
@@ -91,9 +96,20 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         return cacheKey;
     }
 
-    @NonNull
-    static String cacheKeyOf(@NonNull final StreamInfo info,
-                             @NonNull final VideoStream videoStream) {
+    /**
+     * Builds the cache key of a video stream. A cache key is unique to the features of the
+     * provided video stream, and when possible independent of <i>transient</i> parameters (such as
+     * the url of the stream). This ensures that there are no conflicts, but also that the cache is
+     * used as much as possible: the same cache should be used for two streams which have the same
+     * features but e.g. a different url, since the url might have been reloaded in the meantime,
+     * but the stream actually referenced by the url is still the same.
+     *
+     * @param info the stream info, to distinguish between streams with the same features but coming
+     *             from different stream infos
+     * @param videoStream the video stream for which the cache key should be created
+     * @return a key to be used to store the cache of the provided video stream
+     */
+    static String cacheKeyOf(final StreamInfo info, final VideoStream videoStream) {
         final boolean resolutionUnknown = videoStream.getResolution().equals(RESOLUTION_UNKNOWN);
         final StringBuilder cacheKey = commonCacheKeyOf(info, videoStream, resolutionUnknown);
 
@@ -110,9 +126,20 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         return cacheKey.toString();
     }
 
-    @NonNull
-    static String cacheKeyOf(@NonNull final StreamInfo info,
-                             @NonNull final AudioStream audioStream) {
+    /**
+     * Builds the cache key of an audio stream. A cache key is unique to the features of the
+     * provided audio stream, and when possible independent of <i>transient</i> parameters (such as
+     * the url of the stream). This ensures that there are no conflicts, but also that the cache is
+     * used as much as possible: the same cache should be used for two streams which have the same
+     * features but e.g. a different url, since the url might have been reloaded in the meantime,
+     * but the stream actually referenced by the url is still the same.
+     *
+     * @param info the stream info, to distinguish between streams with the same features but coming
+     *             from different stream infos
+     * @param audioStream the audio stream for which the cache key should be created
+     * @return a key to be used to store the cache of the provided audio stream
+     */
+    static String cacheKeyOf(final StreamInfo info, final AudioStream audioStream) {
         final boolean averageBitrateUnknown = audioStream.getAverageBitrate() == UNKNOWN_BITRATE;
         final StringBuilder cacheKey = commonCacheKeyOf(info, audioStream, averageBitrateUnknown);
 
@@ -124,10 +151,13 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
 
         return cacheKey.toString();
     }
+    //endregion
 
+
+    //region Live media sources
     @Nullable
-    static MediaSource maybeBuildLiveMediaSource(@NonNull final PlayerDataSource dataSource,
-                                                 @NonNull final StreamInfo info) {
+    static MediaSource maybeBuildLiveMediaSource(final PlayerDataSource dataSource,
+                                                 final StreamInfo info) {
         final StreamType streamType = info.getStreamType();
         if (!StreamTypeUtil.isLiveStream(streamType)) {
             return null;
@@ -143,11 +173,10 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         return null;
     }
 
-    @NonNull
-    static MediaSource buildLiveMediaSource(@NonNull final PlayerDataSource dataSource,
-                                            @NonNull final String sourceUrl,
+    static MediaSource buildLiveMediaSource(final PlayerDataSource dataSource,
+                                            final String sourceUrl,
                                             @C.ContentType final int type,
-                                            @NonNull final MediaItemTag metadata) {
+                                            final MediaItemTag metadata) {
         final MediaSource.Factory factory;
         switch (type) {
             case C.TYPE_SS:
@@ -159,7 +188,7 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
             case C.TYPE_HLS:
                 factory = dataSource.getLiveHlsMediaSourceFactory();
                 break;
-            default:
+            case C.TYPE_OTHER: case C.TYPE_RTSP: default:
                 throw new IllegalStateException("Unsupported type: " + type);
         }
 
@@ -173,13 +202,15 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                                         .build())
                         .build());
     }
+    //endregion
 
-    @NonNull
-    static MediaSource buildMediaSource(@NonNull final PlayerDataSource dataSource,
-                                        @NonNull final Stream stream,
-                                        @NonNull final StreamInfo streamInfo,
-                                        @NonNull final String cacheKey,
-                                        @NonNull final MediaItemTag metadata)
+
+    //region Generic media sources
+    static MediaSource buildMediaSource(final PlayerDataSource dataSource,
+                                        final Stream stream,
+                                        final StreamInfo streamInfo,
+                                        final String cacheKey,
+                                        final MediaItemTag metadata)
             throws IOException {
         if (streamInfo.getService() == ServiceList.YouTube) {
             return createYoutubeMediaSource(stream, streamInfo, dataSource, cacheKey, metadata);
@@ -201,12 +232,11 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         }
     }
 
-    @NonNull
-    private static <T extends Stream> ProgressiveMediaSource buildProgressiveMediaSource(
-            @NonNull final PlayerDataSource dataSource,
-            @NonNull final T stream,
-            @NonNull final String cacheKey,
-            @NonNull final MediaItemTag metadata) throws IOException {
+    private static ProgressiveMediaSource buildProgressiveMediaSource(
+            final PlayerDataSource dataSource,
+            final Stream stream,
+            final String cacheKey,
+            final MediaItemTag metadata) throws IOException {
         final String url = stream.getContent();
 
         if (isNullOrEmpty(url)) {
@@ -223,12 +253,11 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         }
     }
 
-    @NonNull
-    private static <T extends Stream> DashMediaSource buildDashMediaSource(
-            @NonNull final PlayerDataSource dataSource,
-            @NonNull final T stream,
-            @NonNull final String cacheKey,
-            @NonNull final MediaItemTag metadata) throws IOException {
+    private static DashMediaSource buildDashMediaSource(final PlayerDataSource dataSource,
+                                                        final Stream stream,
+                                                        final String cacheKey,
+                                                        final MediaItemTag metadata)
+            throws IOException {
         final boolean isUrlStream = stream.isUrl();
         if (isUrlStream && isNullOrEmpty(stream.getContent())) {
             throw new IOException("Try to generate a DASH media source from an empty string or "
@@ -260,10 +289,8 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         }
     }
 
-    @NonNull
-    private static <T extends Stream> DashManifest createDashManifest(
-            @NonNull final String manifestContent,
-            @NonNull final T stream) throws IOException {
+    private static DashManifest createDashManifest(final String manifestContent,
+                                                   final Stream stream) throws IOException {
         try {
             final ByteArrayInputStream dashManifestInput = new ByteArrayInputStream(
                     manifestContent.getBytes(StandardCharsets.UTF_8));
@@ -278,12 +305,11 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         }
     }
 
-    @NonNull
-    private static <T extends Stream> HlsMediaSource buildHlsMediaSource(
-            @NonNull final PlayerDataSource dataSource,
-            @NonNull final T stream,
-            @NonNull final String cacheKey,
-            @NonNull final MediaItemTag metadata) throws IOException {
+    private static HlsMediaSource buildHlsMediaSource(final PlayerDataSource dataSource,
+                                                      final Stream stream,
+                                                      final String cacheKey,
+                                                      final MediaItemTag metadata)
+            throws IOException {
         final boolean isUrlStream = stream.isUrl();
         if (isUrlStream && isNullOrEmpty(stream.getContent())) {
             throw new IOException("Try to generate an HLS media source from an empty string or "
@@ -324,12 +350,11 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         }
     }
 
-    @NonNull
-    private static <T extends Stream> SsMediaSource buildSSMediaSource(
-            @NonNull final PlayerDataSource dataSource,
-            @NonNull final T stream,
-            @NonNull final String cacheKey,
-            @NonNull final MediaItemTag metadata) throws IOException {
+    private static SsMediaSource buildSSMediaSource(final PlayerDataSource dataSource,
+                                                    final Stream stream,
+                                                    final String cacheKey,
+                                                    final MediaItemTag metadata)
+            throws IOException {
         final boolean isUrlStream = stream.isUrl();
         if (isUrlStream && isNullOrEmpty(stream.getContent())) {
             throw new IOException("Try to generate an SmoothStreaming media source from an empty "
@@ -370,13 +395,16 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                             .build());
         }
     }
+    //endregion
 
-    private static <T extends Stream> MediaSource createYoutubeMediaSource(
-            final T stream,
-            final StreamInfo streamInfo,
-            final PlayerDataSource dataSource,
-            final String cacheKey,
-            final MediaItemTag metadata) throws IOException {
+
+    //region YouTube media sources
+    private static MediaSource createYoutubeMediaSource(final Stream stream,
+                                                        final StreamInfo streamInfo,
+                                                        final PlayerDataSource dataSource,
+                                                        final String cacheKey,
+                                                        final MediaItemTag metadata)
+            throws IOException {
         if (!(stream instanceof AudioStream || stream instanceof VideoStream)) {
             throw new IOException("Try to generate a DASH manifest of a YouTube "
                     + stream.getClass() + " " + stream.getContent());
@@ -414,12 +442,12 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         }
     }
 
-    private static <T extends Stream> MediaSource createYoutubeMediaSourceOfVideoStreamType(
-            @NonNull final PlayerDataSource dataSource,
-            @NonNull final T stream,
-            @NonNull final StreamInfo streamInfo,
-            @NonNull final String cacheKey,
-            @NonNull final MediaItemTag metadata) throws IOException {
+    private static MediaSource createYoutubeMediaSourceOfVideoStreamType(
+            final PlayerDataSource dataSource,
+            final Stream stream,
+            final StreamInfo streamInfo,
+            final String cacheKey,
+            final MediaItemTag metadata) throws IOException {
         final DeliveryMethod deliveryMethod = stream.getDeliveryMethod();
         switch (deliveryMethod) {
             case PROGRESSIVE_HTTP:
@@ -480,13 +508,12 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         }
     }
 
-    @NonNull
-    private static <T extends Stream> DashMediaSource buildYoutubeManualDashMediaSource(
-            @NonNull final PlayerDataSource dataSource,
-            @NonNull final DashManifest dashManifest,
-            @NonNull final T stream,
-            @NonNull final String cacheKey,
-            @NonNull final MediaItemTag metadata) {
+    private static DashMediaSource buildYoutubeManualDashMediaSource(
+            final PlayerDataSource dataSource,
+            final DashManifest dashManifest,
+            final Stream stream,
+            final String cacheKey,
+            final MediaItemTag metadata) {
         return dataSource.getYoutubeDashMediaSourceFactory().createMediaSource(dashManifest,
                 new MediaItem.Builder()
                         .setTag(metadata)
@@ -495,12 +522,11 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                         .build());
     }
 
-    @NonNull
-    private static <T extends Stream> ProgressiveMediaSource buildYoutubeProgressiveMediaSource(
-            @NonNull final PlayerDataSource dataSource,
-            @NonNull final T stream,
-            @NonNull final String cacheKey,
-            @NonNull final MediaItemTag metadata) {
+    private static ProgressiveMediaSource buildYoutubeProgressiveMediaSource(
+            final PlayerDataSource dataSource,
+            final Stream stream,
+            final String cacheKey,
+            final MediaItemTag metadata) {
         return dataSource.getYoutubeProgressiveMediaSourceFactory()
                 .createMediaSource(new MediaItem.Builder()
                         .setTag(metadata)
@@ -508,4 +534,5 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                         .setCustomCacheKey(cacheKey)
                         .build());
     }
+    //endregion
 }
