@@ -93,11 +93,11 @@ public class PlayerDataSource {
 
         // YouTube-specific data source factories use getYoutubeHttpDataSourceFactory()
         ytHlsCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                getYoutubeHttpDataSourceFactory(false, false, userAgent));
+                getYoutubeHttpDataSourceFactory(false, false));
         ytDashCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                getYoutubeHttpDataSourceFactory(true, true, userAgent));
+                getYoutubeHttpDataSourceFactory(true, true));
         ytProgressiveDashCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                getYoutubeHttpDataSourceFactory(false, true, userAgent));
+                getYoutubeHttpDataSourceFactory(false, true));
 
         // set the maximum size to manifest creators
         YoutubeProgressiveDashManifestCreator.getCache().setMaximumSize(MAX_MANIFEST_CACHE_SIZE);
@@ -187,12 +187,10 @@ public class PlayerDataSource {
 
     private static YoutubeHttpDataSource.Factory getYoutubeHttpDataSourceFactory(
             final boolean rangeParameterEnabled,
-            final boolean rnParameterEnabled,
-            final String userAgent) {
+            final boolean rnParameterEnabled) {
         return new YoutubeHttpDataSource.Factory()
                 .setRangeParameterEnabled(rangeParameterEnabled)
-                .setRnParameterEnabled(rnParameterEnabled)
-                .setUserAgentForNonMobileStreams(userAgent);
+                .setRnParameterEnabled(rnParameterEnabled);
     }
 
     private static void instantiateCacheIfNeeded(final Context context) {

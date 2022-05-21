@@ -44,6 +44,8 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 import com.google.common.net.HttpHeaders;
 
+import org.schabi.newpipe.DownloaderImpl;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InterruptedIOException;
@@ -69,6 +71,10 @@ import java.util.zip.GZIPInputStream;
  * (only where it's relevant) and also more parameters, such as {@code rn} and replaces the use of
  * the {@code Range} header by the corresponding parameter ({@code range}), if enabled.
  * </p>
+ *
+ * There are many unused methods in this class because everything was copied from {@link
+ * com.google.android.exoplayer2.upstream.DefaultHttpDataSource} with as little changes as possible.
+ * SonarQube warnings were also suppressed for the same reason.
  */
 @SuppressWarnings({"squid:S3011", "squid:S4738"})
 public final class YoutubeHttpDataSource extends BaseDataSource implements HttpDataSource {
@@ -89,8 +95,6 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
         private boolean allowCrossProtocolRedirects;
         private boolean keepPostFor302Redirects;
 
-        @Nullable
-        private String userAgentForNonMobileStreams;
         private boolean rangeParameterEnabled;
         private boolean rnParameterEnabled;
 
@@ -108,25 +112,6 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
         public Factory setDefaultRequestProperties(
                 @NonNull final Map<String, String> defaultRequestPropertiesMap) {
             defaultRequestProperties.clearAndSet(defaultRequestPropertiesMap);
-            return this;
-        }
-
-        /**
-         * Sets the user agent that will be used, only for non-mobile streams.
-         *
-         * <p>
-         * The default is {@code null}, which causes the default user agent of the underlying
-         * platform to be used.
-         * </p>
-         *
-         * @param userAgentForNonMobileStreamsValue The user agent that will be used for non-mobile
-         *                                          streams, or {@code null} to use the default
-         *                                          user agent of the underlying platform.
-         * @return This factory.
-         */
-        public Factory setUserAgentForNonMobileStreams(
-                @Nullable final String userAgentForNonMobileStreamsValue) {
-            userAgentForNonMobileStreams = userAgentForNonMobileStreamsValue;
             return this;
         }
 
@@ -262,7 +247,6 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
         @Override
         public YoutubeHttpDataSource createDataSource() {
             final YoutubeHttpDataSource dataSource = new YoutubeHttpDataSource(
-                    userAgentForNonMobileStreams,
                     connectTimeoutMs,
                     readTimeoutMs,
                     allowCrossProtocolRedirects,
@@ -294,8 +278,6 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
     private final int connectTimeoutMillis;
     private final int readTimeoutMillis;
     @Nullable
-    private final String userAgent;
-    @Nullable
     private final RequestProperties defaultRequestProperties;
     private final RequestProperties requestProperties;
     private final boolean keepPostFor302Redirects;
@@ -316,8 +298,7 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
     private long requestNumber;
 
     @SuppressWarnings("checkstyle:ParameterNumber")
-    private YoutubeHttpDataSource(@Nullable final String userAgent,
-                                  final int connectTimeoutMillis,
+    private YoutubeHttpDataSource(final int connectTimeoutMillis,
                                   final int readTimeoutMillis,
                                   final boolean allowCrossProtocolRedirects,
                                   final boolean rangeParameterEnabled,
@@ -326,7 +307,6 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
                                   @Nullable final Predicate<String> contentTypePredicate,
                                   final boolean keepPostFor302Redirects) {
         super(true);
-        this.userAgent = userAgent;
         this.connectTimeoutMillis = connectTimeoutMillis;
         this.readTimeoutMillis = readTimeoutMillis;
         this.allowCrossProtocolRedirects = allowCrossProtocolRedirects;
@@ -637,6 +617,8 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
             final boolean allowGzip,
             final boolean followRedirects,
             final Map<String, String> requestParameters) throws IOException {
+        // This is the method that contains breaking changes with respect to DefaultHttpDataSource!
+
         String requestUrl = url.toString();
 
         // Don't add the request number parameter if it has been already added (for instance in
@@ -687,18 +669,19 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
 
         httpURLConnection.setRequestProperty(HttpHeaders.TE, "trailers");
 
-        final boolean isAnAndroidStreamingUrl = isAndroidStreamingUrl(requestUrl);
-        final boolean isAnIosStreamingUrl = isIosStreamingUrl(requestUrl);
-        if (isAnAndroidStreamingUrl) {
+        final boolean isAndroidStreamingUrl = isAndroidStreamingUrl(requestUrl);
+        final boolean isIosStreamingUrl = isIosStreamingUrl(requestUrl);
+        if (isAndroidStreamingUrl) {
             // Improvement which may be done: find the content country used to request YouTube
             // contents to add it in the user agent instead of using the default
             httpURLConnection.setRequestProperty(HttpHeaders.USER_AGENT,
                     getAndroidUserAgent(null));
-        } else if (isAnIosStreamingUrl) {
+        } else if (isIosStreamingUrl) {
             httpURLConnection.setRequestProperty(HttpHeaders.USER_AGENT,
                     getIosUserAgent(null));
-        } else if (userAgent != null) {
-            httpURLConnection.setRequestProperty(HttpHeaders.USER_AGENT, userAgent);
+        } else {
+            // non-mobile user agent
+            httpURLConnection.setRequestProperty(HttpHeaders.USER_AGENT, DownloaderImpl.USER_AGENT);
         }
 
         httpURLConnection.setRequestProperty(HttpHeaders.ACCEPT_ENCODING,
@@ -707,7 +690,7 @@ public final class YoutubeHttpDataSource extends BaseDataSource implements HttpD
         httpURLConnection.setDoOutput(httpBody != null);
 
         // Mobile clients uses POST requests to fetch contents
-        httpURLConnection.setRequestMethod(isAnAndroidStreamingUrl || isAnIosStreamingUrl
+        httpURLConnection.setRequestMethod(isAndroidStreamingUrl || isIosStreamingUrl
                 ? "POST"
                 : DataSpec.getStringForHttpMethod(httpMethod));
 
