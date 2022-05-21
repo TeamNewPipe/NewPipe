@@ -150,7 +150,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
@@ -429,7 +428,7 @@ public final class Player implements
         setupBroadcastReceiver();
 
         trackSelector = new DefaultTrackSelector(context, PlayerHelper.getQualitySelector());
-        final PlayerDataSource dataSource = new PlayerDataSource(context, DownloaderImpl.USER_AGENT,
+        final PlayerDataSource dataSource = new PlayerDataSource(context,
                 new DefaultBandwidthMeter.Builder(context).build());
         loadController = new LoadController();
         renderFactory = new DefaultRenderersFactory(context);

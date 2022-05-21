@@ -22,6 +22,7 @@ import com.google.android.exoplayer2.upstream.TransferListener;
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 
+import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeOtfDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubePostLiveStreamDvrDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeProgressiveDashManifestCreator;
@@ -76,7 +77,6 @@ public class PlayerDataSource {
 
 
     public PlayerDataSource(final Context context,
-                            final String userAgent,
                             final TransferListener transferListener) {
 
         progressiveLoadIntervalBytes = PlayerHelper.getProgressiveLoadIntervalBytes(context);
@@ -86,10 +86,10 @@ public class PlayerDataSource {
 
         // generic data source factories use DefaultHttpDataSource.Factory
         cachelessDataSourceFactory = new DefaultDataSource.Factory(context,
-                new DefaultHttpDataSource.Factory().setUserAgent(userAgent))
+                new DefaultHttpDataSource.Factory().setUserAgent(DownloaderImpl.USER_AGENT))
                 .setTransferListener(transferListener);
         cacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                new DefaultHttpDataSource.Factory().setUserAgent(userAgent));
+                new DefaultHttpDataSource.Factory().setUserAgent(DownloaderImpl.USER_AGENT));
 
         // YouTube-specific data source factories use getYoutubeHttpDataSourceFactory()
         ytHlsCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
