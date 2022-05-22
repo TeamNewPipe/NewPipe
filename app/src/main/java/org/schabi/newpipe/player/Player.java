@@ -88,6 +88,7 @@ import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -118,7 +119,6 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.collection.ArraySet;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
-import androidx.core.view.GestureDetectorCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
@@ -387,7 +387,7 @@ public final class Player implements
     private static final float MAX_GESTURE_LENGTH = 0.75f;
 
     private int maxGestureLength; // scaled
-    private GestureDetectorCompat gestureDetector;
+    private GestureDetector gestureDetector;
     private PlayerGestureListener playerGestureListener;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -555,7 +555,7 @@ public final class Player implements
         binding.playbackLiveSync.setOnClickListener(this);
 
         playerGestureListener = new PlayerGestureListener(this, service);
-        gestureDetector = new GestureDetectorCompat(context, playerGestureListener);
+        gestureDetector = new GestureDetector(context, playerGestureListener);
         binding.getRoot().setOnTouchListener(playerGestureListener);
 
         binding.queueButton.setOnClickListener(v -> onQueueClicked());
@@ -4428,7 +4428,7 @@ public final class Player implements
         return audioReactor;
     }
 
-    public GestureDetectorCompat getGestureDetector() {
+    public GestureDetector getGestureDetector() {
         return gestureDetector;
     }
 

@@ -21,7 +21,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.core.widget.TextViewCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceViewHolder;
 
@@ -220,8 +219,8 @@ public class NotificationActionsPreference extends Preference {
                                 android.R.attr.textColorPrimary);
                         drawable = DrawableCompat.wrap(drawable).mutate();
                         DrawableCompat.setTint(drawable, color);
-                        TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(radioButton,
-                                null, null, drawable, null);
+                        radioButton.setCompoundDrawablesRelativeWithIntrinsicBounds(null,
+                                null, drawable, null);
                     }
                 }
 
