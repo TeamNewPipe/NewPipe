@@ -7,6 +7,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
+import androidx.annotation.Nullable;
+
 import com.squareup.picasso.Cache;
 import com.squareup.picasso.LruCache;
 import com.squareup.picasso.OkHttp3Downloader;
@@ -23,9 +25,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 import okhttp3.OkHttpClient;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public final class PicassoHelper {
     public static final String PLAYER_THUMBNAIL_TAG = "PICASSO_PLAYER_THUMBNAIL_TAG";
@@ -162,8 +161,9 @@ public final class PicassoHelper {
     }
 
     @Nullable
-    public static Bitmap getImageFromCacheIfPresent(@NonNull final String imageUrl) {
-        return picassoCache.get(imageUrl);
+    public static Bitmap getImageFromCacheIfPresent(final String imageUrl) {
+        // URLs in the internal cache finish with \n so we need to add \n to image URLs
+        return picassoCache.get(imageUrl + "\n");
     }
 
     public static void loadNotificationIcon(final String url,

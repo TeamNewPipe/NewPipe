@@ -244,9 +244,11 @@ public final class ShareUtils {
     /**
      * Open the android share sheet to share a content.
      *
+     * <p>
      * For Android 10+ users, a content preview is shown, which includes the title of the shared
-     * content.
-     * Support sharing the image of the content needs to done, if possible.
+     * content and an image preview the content, if its URL is not null or empty and its
+     * corresponding image is in the image cache.
+     * </p>
      *
      * @param context         the context to use
      * @param title           the title of the content
@@ -272,8 +274,12 @@ public final class ShareUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
                 && !TextUtils.isEmpty(imagePreviewUrl)
                 && PicassoHelper.getShouldLoadImages()) {
-            shareIntent.setClipData(generateClipDataForImagePreview(context, imagePreviewUrl));
-            shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            final ClipData clipData = generateClipDataForImagePreview(context, imagePreviewUrl);
+            if (clipData != null) {
+                shareIntent.setClipData(clipData);
+                shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            }
         }
 
         openAppChooser(context, shareIntent, false);
@@ -283,14 +289,9 @@ public final class ShareUtils {
      * Open the android share sheet to share a content.
      *
      * <p>
-     * For Android 10+ users, a content preview is shown, which includes the title of the shared
-     * content and an image preview the content, if its URL is not null or empty and its
-     * corresponding image is in the image cache.
-     * </p>
-     *
-     * <p>
      * This calls {@link #shareText(Context, String, String, String)} with an empty string for the
-     * {@code imagePreviewUrl} parameter.
+     * {@code imagePreviewUrl} parameter. This method should be used when the shared content has no
+     * preview thumbnail.
      * </p>
      *
      * @param context the context to use
@@ -327,11 +328,11 @@ public final class ShareUtils {
      * Generate a {@link ClipData} with the image of the content shared, if it's in the app cache.
      *
      * <p>
-     * In order to not manage network issues (timeouts, DNS issues, low connection speed, ...) when
-     * sharing a content, only images in the {@link com.squareup.picasso.LruCache LruCache} used by
-     * the Picasso library inside {@link PicassoHelper} are used as preview images. If the
-     * thumbnail image is not yet loaded, no {@link ClipData} will be generated and {@code null}
-     * will be returned in this case.
+     * In order not to worry about network issues (timeouts, DNS issues, low connection speed, ...)
+     * when sharing a content, only images in the {@link com.squareup.picasso.LruCache LruCache}
+     * used by the Picasso library inside {@link PicassoHelper} are used as preview images. If the
+     * thumbnail image is not in the cache, no {@link ClipData} will be generated and {@code null}
+     * will be returned.
      * </p>
      *
      * <p>
@@ -339,7 +340,7 @@ public final class ShareUtils {
      * the content, accessible and readable by other apps has to be generated, so a new file inside
      * the application cache will be generated, named {@code android_share_sheet_image_preview.jpg}
      * (if a file under this name already exists, it will be overwritten). The thumbnail will be
-     * compressed in JPEG format, with a {@code 100} compression level.
+     * compressed in JPEG format, with a {@code 90} compression level.
      * </p>
      *
      * <p>
@@ -354,8 +355,8 @@ public final class ShareUtils {
      * </p>
      *
      * <p>
-     * This method has only an effect on the system share sheet (if OEMs didn't change Android
-     * system standard behavior) on Android API 29 and higher.
+     * Using the result of this method when sharing has only an effect on the system share sheet (if
+     * OEMs didn't change Android system standard behavior) on Android API 29 and higher.
      * </p>
      *
      * @param context      the context to use
@@ -367,9 +368,7 @@ public final class ShareUtils {
             @NonNull final Context context,
             @NonNull final String thumbnailUrl) {
         try {
-            // URLs in the internal cache finish with \n so we need to add \n to image URLs
-            final Bitmap bitmap = PicassoHelper.getImageFromCacheIfPresent(thumbnailUrl + "\n");
-
+            final Bitmap bitmap = PicassoHelper.getImageFromCacheIfPresent(thumbnailUrl);
             if (bitmap == null) {
                 return null;
             }
@@ -386,20 +385,19 @@ public final class ShareUtils {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
             fileOutputStream.close();
 
-            final ClipData clipData = ClipData.newUri(applicationContext.getContentResolver(),
-                        "",
+            final ClipData clipData = ClipData.newUri(applicationContext.getContentResolver(), "",
                         FileProvider.getUriForFile(applicationContext,
                                 BuildConfig.APPLICATION_ID + ".provider",
                                 thumbnailPreviewFile));
+
             if (DEBUG) {
                 Log.d(TAG, "ClipData successfully generated for Android share sheet: " + clipData);
             }
-
             return clipData;
+
         } catch (final Exception e) {
             Log.w(TAG, "Error when setting preview image for share sheet", e);
+            return null;
         }
-
-        return null;
     }
 }
