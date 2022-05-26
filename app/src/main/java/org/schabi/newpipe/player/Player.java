@@ -328,6 +328,8 @@ public final class Player implements
     private boolean isVerticalVideo = false;
     private boolean fragmentIsVisible = false;
 
+    private boolean loop = false;
+
     private List<VideoStream> availableStreams;
     private int selectedStreamIndex;
 
@@ -582,6 +584,7 @@ public final class Player implements
         binding.openInBrowser.setOnClickListener(this);
         binding.playerCloseButton.setOnClickListener(this);
         binding.switchMute.setOnClickListener(this);
+        binding.loop.setOnClickListener(this);
 
         settingsContentObserver = new ContentObserver(new Handler()) {
             @Override
@@ -1102,6 +1105,7 @@ public final class Player implements
             binding.playWithKodi.setVisibility(View.GONE);
             binding.openInBrowser.setVisibility(View.GONE);
             binding.switchMute.setVisibility(View.GONE);
+            binding.loop.setVisibility(View.GONE);
             binding.playerCloseButton.setVisibility(View.GONE);
             binding.topControls.bringToFront();
             binding.topControls.setClickable(false);
@@ -1123,6 +1127,7 @@ public final class Player implements
             binding.share.setVisibility(View.VISIBLE);
             binding.openInBrowser.setVisibility(View.VISIBLE);
             binding.switchMute.setVisibility(View.VISIBLE);
+            binding.loop.setVisibility(View.VISIBLE);
             binding.playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
             // Top controls have a large minHeight which is allows to drag the player
             // down in fullscreen mode (just larger area to make easy to locate by finger)
@@ -2306,6 +2311,10 @@ public final class Player implements
         animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
         binding.loadingPanel.setVisibility(View.GONE);
         animate(binding.surfaceForeground, true, 100);
+
+        if (loop) {
+            play();
+        }
     }
 
     private void animatePlayButtons(final boolean show, final int duration) {
@@ -2475,6 +2484,21 @@ public final class Player implements
     }
     //endregion
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Loop
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Loop
+    public void onLoop() {
+        loop = !loop;
+        notifyPlaybackUpdateToListeners();
+        setReplayButton(binding.loop, loop);
+    }
+
+    private void setReplayButton(@NonNull final ImageButton button, final boolean isLoop) {
+        button.setImageDrawable(AppCompatResources.getDrawable(context, isLoop
+                ? R.drawable.ic_replay : R.drawable.ic_replay_off));
+    }
+    //endregion
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -3784,6 +3808,8 @@ public final class Player implements
             }
         } else if (v.getId() == binding.switchMute.getId()) {
             onMuteUnmuteButtonClicked();
+        } else if (v.getId() == binding.loop.getId()) {
+            onLoop();
         } else if (v.getId() == binding.playerCloseButton.getId()) {
             context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
         }
