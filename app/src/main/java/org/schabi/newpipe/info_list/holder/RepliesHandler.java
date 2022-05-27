@@ -173,6 +173,7 @@ public class RepliesHandler {
              addRepliesToUI(parentInfoItem);
         } else {
             cachedReplies.clear();
+            repliesView.setVisibility(View.GONE);
         }
     }
 
