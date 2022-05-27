@@ -3,7 +3,8 @@ package org.schabi.newpipe.info_list.holder;
 import android.annotation.SuppressLint;
 import android.view.View;
 import android.view.ViewGroup;
-import org.schabi.newpipe.views.NewPipeTextView;
+import android.widget.TextView;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,10 +28,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RepliesHandler {
     private final List<CommentsInfoItem> cachedReplies;
-    private final NewPipeTextView showReplies;
+    private final TextView showReplies;
     private final RecyclerView repliesView;
 
-    public RepliesHandler(final NewPipeTextView showReplies, final RecyclerView recyclerView) {
+    public RepliesHandler(final TextView showReplies, final RecyclerView recyclerView) {
         this.repliesView = recyclerView;
         repliesView.setAdapter(new InfoListAdapter(repliesView.getContext()));
         repliesView.setLayoutManager(new LinearLayoutManager(repliesView.getContext()));

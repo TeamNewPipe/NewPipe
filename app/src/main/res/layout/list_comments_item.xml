@@ -136,7 +136,7 @@
         android:textSize="@dimen/video_item_search_upload_date_text_size"
         tools:text="1 year ago" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/showReplies"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -3,7 +3,7 @@ package org.schabi.newpipe.info_list.holder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import org.schabi.newpipe.views.NewPipeTextView;
+import org.schabi.newpipe.views.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
@@ -33,7 +33,7 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
  */
 
 public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
-    public final NewPipeTextView itemTitleView;
+    public final TextView itemTitleView;
     private final ImageView itemHeartView;
     private final ImageView itemPinnedView;
     private final RepliesHandler repliesHandler;
@@ -43,7 +43,7 @@ public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
         itemTitleView = itemView.findViewById(R.id.itemTitleView);
         itemHeartView = itemView.findViewById(R.id.detail_heart_image_view);
         itemPinnedView = itemView.findViewById(R.id.detail_pinned_view);
-        final NewPipeTextView showReplies = itemView.findViewById(R.id.showReplies);
+        final TextView showReplies = itemView.findViewById(R.id.showReplies);
         final RecyclerView repliesView = itemView.findViewById(R.id.replyRecycleView);
         repliesHandler = new RepliesHandler(showReplies, repliesView);
     }
