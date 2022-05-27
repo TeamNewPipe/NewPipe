@@ -172,7 +172,7 @@ public class RepliesHandler {
             downloadReplies(parentInfoItem);
              addRepliesToUI(parentInfoItem);
         } else {
-            cachedReplies={};
+            cachedReplies.clear();
         }
     }
 
