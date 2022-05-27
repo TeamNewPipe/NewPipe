@@ -34,18 +34,17 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
  */
 
 public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
-    public final TextView itemTitleView;
+    public final NewPipeTextView itemTitleView;
     private final ImageView itemHeartView;
     private final ImageView itemPinnedView;
     private final RepliesHandler repliesHandler;
-
     public CommentsInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
         super(infoItemBuilder, R.layout.list_comments_item, parent);
 
         itemTitleView = itemView.findViewById(R.id.itemTitleView);
         itemHeartView = itemView.findViewById(R.id.detail_heart_image_view);
         itemPinnedView = itemView.findViewById(R.id.detail_pinned_view);
-        final TextView showReplies = itemView.findViewById(R.id.showReplies);
+        final NewPipeTextView showReplies = itemView.findViewById(R.id.showReplies);
         final RecyclerView repliesView = itemView.findViewById(R.id.replyRecycleView);
         repliesHandler = new RepliesHandler(showReplies, repliesView);
     }

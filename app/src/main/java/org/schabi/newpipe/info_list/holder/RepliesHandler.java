@@ -28,10 +28,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RepliesHandler {
     private final List<CommentsInfoItem> cachedReplies;
-    private final TextView showReplies;
+    private final NewPipeTextView showReplies;
     private final RecyclerView repliesView;
 
-    public RepliesHandler(final TextView showReplies, final RecyclerView recyclerView) {
+    public RepliesHandler(final NewPipeTextView showReplies, final RecyclerView recyclerView) {
         this.repliesView = recyclerView;
         repliesView.setAdapter(new InfoListAdapter(repliesView.getContext()));
         repliesView.setLayoutManager(new LinearLayoutManager(repliesView.getContext()));
@@ -75,7 +75,7 @@ public class RepliesHandler {
             @SuppressLint("SetTextI18n")
             @Override
             public void onSubscribe(@NonNull final Disposable d) {
-                showReplies.setText("Setting up replies");
+                showReplies.setText("Expand");
             }
 
             @Override
@@ -143,7 +143,6 @@ public class RepliesHandler {
 
         repliesView.setMinimumHeight(100);
         repliesView.setHasFixedSize(true);
-        showReplies.setVisibility(View.GONE);
         repliesView.setVisibility(View.VISIBLE);
     }
 
