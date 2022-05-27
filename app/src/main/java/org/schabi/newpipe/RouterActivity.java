@@ -369,11 +369,13 @@ public class RouterActivity extends AppCompatActivity {
 
     private void showDialog(final List<AdapterChoiceItem> choices) {
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        final Context themeWrapperContext = getThemeWrapperContext();
 
-        final LayoutInflater inflater = LayoutInflater.from(themeWrapperContext);
-        final RadioGroup radioGroup = SingleChoiceDialogViewBinding.inflate(getLayoutInflater())
-                .list;
+        final Context themeWrapperContext = getThemeWrapperContext();
+        final LayoutInflater layoutInflater = LayoutInflater.from(themeWrapperContext);
+
+        final SingleChoiceDialogViewBinding binding =
+                SingleChoiceDialogViewBinding.inflate(layoutInflater);
+        final RadioGroup radioGroup = binding.list;
 
         final DialogInterface.OnClickListener dialogButtonsClickListener = (dialog, which) -> {
             final int indexOfChild = radioGroup.indexOfChild(
@@ -392,7 +394,7 @@ public class RouterActivity extends AppCompatActivity {
 
         alertDialogChoice = new AlertDialog.Builder(themeWrapperContext)
                 .setTitle(R.string.preferred_open_action_share_menu_title)
-                .setView(radioGroup)
+                .setView(binding.getRoot())
                 .setCancelable(true)
                 .setNegativeButton(R.string.just_once, dialogButtonsClickListener)
                 .setPositiveButton(R.string.always, dialogButtonsClickListener)
@@ -424,7 +426,8 @@ public class RouterActivity extends AppCompatActivity {
 
         int id = 12345;
         for (final AdapterChoiceItem item : choices) {
-            final RadioButton radioButton = ListRadioIconItemBinding.inflate(inflater).getRoot();
+            final RadioButton radioButton = ListRadioIconItemBinding.inflate(layoutInflater)
+                    .getRoot();
             radioButton.setText(item.description);
             radioButton.setCompoundDrawablesRelativeWithIntrinsicBounds(
                     AppCompatResources.getDrawable(themeWrapperContext, item.icon),
