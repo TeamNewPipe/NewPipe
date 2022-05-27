@@ -170,8 +170,9 @@ public class RepliesHandler {
 
         if (cachedReplies.isEmpty()) {
             downloadReplies(parentInfoItem);
+             addRepliesToUI(parentInfoItem);
         } else {
-            addRepliesToUI(parentInfoItem);
+            cachedReplies={};
         }
     }
 
