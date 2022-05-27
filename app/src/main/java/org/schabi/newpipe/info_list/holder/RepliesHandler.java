@@ -143,7 +143,7 @@ public class RepliesHandler {
 
         repliesView.setMinimumHeight(100);
         repliesView.setHasFixedSize(true);
-        parentInfoItem.repliesOpen=true;
+        parentInfoItem.repliesOpen = true;
         showReplies.setVisibility(View.GONE);
         repliesView.setVisibility(View.VISIBLE);
     }
