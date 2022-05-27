@@ -143,7 +143,6 @@ public class RepliesHandler {
 
         repliesView.setMinimumHeight(100);
         repliesView.setHasFixedSize(true);
-        parentInfoItem.repliesOpen = true;
         showReplies.setVisibility(View.GONE);
         repliesView.setVisibility(View.VISIBLE);
     }
@@ -178,10 +177,12 @@ public class RepliesHandler {
     }
 
     public void checkForReplies(final CommentsInfoItem item) {
+    	CommentsInfo info = CommentsInfo.getInfo(item);
+    	CommentsInfo replies = info.getReplies() != null ? CommentsInfo.getMoreItems(info, info.getReplies()) : null;
         if (item.getReplies() == null) {
             repliesView.setVisibility(View.GONE);
             showReplies.setVisibility(View.GONE);
-        } else if (item.repliesOpen) {
+        } else if (replies) {
             addReplies(item);
         } else {
             repliesView.setVisibility(View.GONE);
