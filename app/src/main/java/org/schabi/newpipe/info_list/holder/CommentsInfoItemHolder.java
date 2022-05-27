@@ -37,8 +37,7 @@ public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
     public final TextView itemTitleView;
     private final ImageView itemHeartView;
     private final ImageView itemPinnedView;
-    private final TextView showReplies;
-    private final RecyclerView repliesView;
+    private final RepliesHandler repliesHandler;
 
     public CommentsInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
         super(infoItemBuilder, R.layout.list_comments_item, parent);
@@ -47,11 +46,10 @@ public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
         itemHeartView = itemView.findViewById(R.id.detail_heart_image_view);
         itemPinnedView = itemView.findViewById(R.id.detail_pinned_view);
         final TextView showReplies = itemView.findViewById(R.id.showReplies);
-		final RecyclerView repliesView = itemView.findViewById(R.id.replyRecycleView);
-		repliesHandler = new RepliesHandler(showReplies, repliesView);
+        final RecyclerView repliesView = itemView.findViewById(R.id.replyRecycleView);
+        repliesHandler = new RepliesHandler(showReplies, repliesView);
     }
 
-    
     @Override
     public void updateFromItem(final InfoItem infoItem,
                                final HistoryRecordManager historyRecordManager) {
