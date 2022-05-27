@@ -740,4 +740,5 @@
     <string name="you_successfully_subscribed">You now subscribed to this channel</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Toggle all</string>
+    <string name="show_replies">Show Replies</string>
 </resources>
