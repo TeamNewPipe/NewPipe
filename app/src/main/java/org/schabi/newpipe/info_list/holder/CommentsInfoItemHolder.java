@@ -3,7 +3,7 @@ package org.schabi.newpipe.info_list.holder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
+import org.schabi.newpipe.views.NewPipeTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;

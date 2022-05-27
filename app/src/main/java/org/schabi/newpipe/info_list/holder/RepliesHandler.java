@@ -3,7 +3,7 @@ package org.schabi.newpipe.info_list.holder;
 import android.annotation.SuppressLint;
 import android.view.View;
 import android.view.ViewGroup;
-
+import org.schabi.newpipe.views.NewPipeTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
