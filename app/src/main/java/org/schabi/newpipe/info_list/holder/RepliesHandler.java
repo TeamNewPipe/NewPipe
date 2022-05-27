@@ -178,7 +178,8 @@ public class RepliesHandler {
 
     public void checkForReplies(final CommentsInfoItem item) {
         final CommentsInfo info = CommentsInfo.getInfo(item);
-        final CommentsInfo replies = info.getReplies() != null ? CommentsInfo.getMoreItems(info, info.getReplies()) : null;
+        final CommentsInfo replies = info.getReplies() != null ? 
+        CommentsInfo.getMoreItems(info, info.getReplies()) : null;
         if (item.getReplies() == null) {
             repliesView.setVisibility(View.GONE);
             showReplies.setVisibility(View.GONE);
