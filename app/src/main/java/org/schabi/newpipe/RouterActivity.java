@@ -396,17 +396,15 @@ public class RouterActivity extends AppCompatActivity {
                 .setCancelable(true)
                 .setNegativeButton(R.string.just_once, dialogButtonsClickListener)
                 .setPositiveButton(R.string.always, dialogButtonsClickListener)
-                .setOnDismissListener((dialog) -> {
+                .setOnDismissListener(dialog -> {
                     if (!selectionIsDownload && !selectionIsAddToPlaylist) {
                         finish();
                     }
                 })
                 .create();
 
-        //noinspection CodeBlock2Expr
-        alertDialogChoice.setOnShowListener(dialog -> {
-            setDialogButtonsState(alertDialogChoice, radioGroup.getCheckedRadioButtonId() != -1);
-        });
+        alertDialogChoice.setOnShowListener(dialog -> setDialogButtonsState(
+                alertDialogChoice, radioGroup.getCheckedRadioButtonId() != -1));
 
         radioGroup.setOnCheckedChangeListener((group, checkedId) ->
                 setDialogButtonsState(alertDialogChoice, true));
