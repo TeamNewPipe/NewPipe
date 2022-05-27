@@ -75,7 +75,7 @@ public class RepliesHandler {
             @SuppressLint("SetTextI18n")
             @Override
             public void onSubscribe(@NonNull final Disposable d) {
-                showReplies.setText("Expand");
+                showReplies.setText("Replies");
             }
 
             @Override
