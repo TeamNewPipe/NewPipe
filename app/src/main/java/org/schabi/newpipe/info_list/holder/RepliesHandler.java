@@ -143,7 +143,7 @@ public class RepliesHandler {
 
         repliesView.setMinimumHeight(100);
         repliesView.setHasFixedSize(true);
-        parentInfoItem.setRepliesOpen(true);
+        parentInfoItem.repliesOpen=true;
         showReplies.setVisibility(View.GONE);
         repliesView.setVisibility(View.VISIBLE);
     }
@@ -181,7 +181,7 @@ public class RepliesHandler {
         if (item.getReplies() == null) {
             repliesView.setVisibility(View.GONE);
             showReplies.setVisibility(View.GONE);
-        } else if (item.getRepliesOpen()) {
+        } else if (item.repliesOpen) {
             addReplies(item);
         } else {
             repliesView.setVisibility(View.GONE);
