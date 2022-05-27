@@ -180,7 +180,6 @@ public class RepliesHandler {
             repliesView.setVisibility(View.GONE);
             showReplies.setVisibility(View.GONE);
         } else {
-            addReplies(item);
             repliesView.setVisibility(View.GONE);
             showReplies.setVisibility(View.VISIBLE);
             showReplies.setOnClickListener(v -> addReplies(item));
