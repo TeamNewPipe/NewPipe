@@ -75,7 +75,7 @@ public class RepliesHandler {
             @SuppressLint("SetTextI18n")
             @Override
             public void onSubscribe(@NonNull final Disposable d) {
-                showReplies.setText("Replies");
+                showReplies.setText("Collapse");
             }
 
             @Override
@@ -102,12 +102,6 @@ public class RepliesHandler {
         repliesInfoObserver(final CommentsInfoItem parentInfoItem) {
 
         return new SingleObserver<CommentsInfo>() {
-
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onSubscribe(@NonNull final Disposable d) {
-                showReplies.setText("Downloading Replies");
-            }
 
             @Override
             public void onSuccess(@NonNull final CommentsInfo commentsInfo) {
@@ -171,9 +165,11 @@ public class RepliesHandler {
         if (cachedReplies.isEmpty()) {
             downloadReplies(parentInfoItem);
              addRepliesToUI(parentInfoItem);
+             showReplies.setText("Collapse");
         } else {
             cachedReplies.clear();
             repliesView.setVisibility(View.GONE);
+            showReplies.setText("Show Replies");
         }
     }
 
