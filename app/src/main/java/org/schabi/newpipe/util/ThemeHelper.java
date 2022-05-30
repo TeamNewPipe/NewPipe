@@ -33,6 +33,7 @@ import androidx.annotation.StyleRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
@@ -236,13 +237,11 @@ public final class ThemeHelper {
      * @param attrResId Resource id
      * @return the {@link Drawable}
      */
-    public static Drawable resolveDrawable(
-            @NonNull final Context context,
-            @AttrRes final int attrResId
-    ) {
+    public static Drawable resolveDrawable(@NonNull final Context context,
+                                           @AttrRes final int attrResId) {
         final TypedValue typedValue = new TypedValue();
         context.getTheme().resolveAttribute(attrResId, typedValue, true);
-        return ContextCompat.getDrawable(context, typedValue.resourceId);
+        return AppCompatResources.getDrawable(context, typedValue.resourceId);
     }
 
     private static String getSelectedThemeKey(final Context context) {
