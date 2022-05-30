@@ -1693,6 +1693,7 @@ public final class VideoDetailFragment
             downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
             downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
             downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
+            downloadDialog.setDefaultValues(true);
 
             downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
         } catch (final Exception e) {

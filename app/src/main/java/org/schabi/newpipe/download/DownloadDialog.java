@@ -104,6 +104,9 @@ public class DownloadDialog extends DialogFragment
     @State
     int selectedSubtitleIndex = 0;
 
+    @State
+    Boolean useDefault = false;
+
     @Nullable
     private OnDismissListener onDismissListener = null;
 
@@ -276,6 +279,12 @@ public class DownloadDialog extends DialogFragment
                 askForSavePath = mgr.askForSavePath();
 
                 okButton.setEnabled(true);
+
+                if (useDefault) {
+                    prepareSelectedDownload();
+                }
+
+
 
                 context.unbindService(this);
             }
@@ -1041,5 +1050,9 @@ public class DownloadDialog extends DialogFragment
                 Toast.LENGTH_SHORT).show();
 
         dismiss();
+    }
+
+    public void setDefaultValues(final boolean defaultB) {
+        useDefault = defaultB;
     }
 }
