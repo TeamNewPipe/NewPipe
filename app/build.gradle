@@ -238,7 +238,13 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:3.12.13"
 
     // Media player
-    implementation "com.google.android.exoplayer:exoplayer:${exoPlayerVersion}"
+    implementation "com.google.android.exoplayer:exoplayer-core:${exoPlayerVersion}"
+    implementation "com.google.android.exoplayer:exoplayer-dash:${exoPlayerVersion}"
+    implementation "com.google.android.exoplayer:exoplayer-database:${exoPlayerVersion}"
+    implementation "com.google.android.exoplayer:exoplayer-datasource:${exoPlayerVersion}"
+    implementation "com.google.android.exoplayer:exoplayer-hls:${exoPlayerVersion}"
+    implementation "com.google.android.exoplayer:exoplayer-smoothstreaming:${exoPlayerVersion}"
+    implementation "com.google.android.exoplayer:exoplayer-ui:${exoPlayerVersion}"
     implementation "com.google.android.exoplayer:extension-mediasession:${exoPlayerVersion}"
 
     // Metadata generator for service descriptors
