@@ -579,19 +579,21 @@ public final class VideoDetailFragment
     }
 
     private void toggleTitleAndSecondaryControls() {
-        if (binding.detailSecondaryControlPanel.getVisibility() == View.GONE) {
-            binding.detailVideoTitleView.setMaxLines(10);
-            animateRotation(binding.detailToggleSecondaryControlsView,
-                    Player.DEFAULT_CONTROLS_DURATION, 180);
-            binding.detailSecondaryControlPanel.setVisibility(View.VISIBLE);
-        } else {
-            binding.detailVideoTitleView.setMaxLines(1);
-            animateRotation(binding.detailToggleSecondaryControlsView,
-                    Player.DEFAULT_CONTROLS_DURATION, 0);
-            binding.detailSecondaryControlPanel.setVisibility(View.GONE);
+        // only toggle if title is ellipsized
+        final int lines = binding.detailVideoTitleView.getLineCount();
+        if (binding.detailVideoTitleView.getLayout().getEllipsisCount(lines - 1) > 0) {
+            if (binding.detailVideoTitleView.getMaxLines() == 2) {
+                binding.detailVideoTitleView.setMaxLines(10);
+                animateRotation(binding.detailToggleSecondaryControlsView,
+                        Player.DEFAULT_CONTROLS_DURATION, 180);
+            } else {
+                binding.detailVideoTitleView.setMaxLines(2);
+                animateRotation(binding.detailToggleSecondaryControlsView,
+                        Player.DEFAULT_CONTROLS_DURATION, 0);
+            }
+            // view pager height has changed, update the tab layout
+            updateTabLayoutVisibility();
         }
-        // view pager height has changed, update the tab layout
-        updateTabLayoutVisibility();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1500,12 +1502,11 @@ public final class VideoDetailFragment
         animate(binding.positionView, false, 50);
 
         binding.detailVideoTitleView.setText(title);
-        binding.detailVideoTitleView.setMaxLines(1);
+        binding.detailVideoTitleView.setMaxLines(2);
         animate(binding.detailVideoTitleView, true, 0);
 
         binding.detailToggleSecondaryControlsView.setVisibility(View.GONE);
         binding.detailTitleRootLayout.setClickable(false);
-        binding.detailSecondaryControlPanel.setVisibility(View.GONE);
 
         if (binding.relatedItemsLayout != null) {
             if (showRelatedItems) {
@@ -1610,8 +1611,14 @@ public final class VideoDetailFragment
 
         binding.detailTitleRootLayout.setClickable(true);
         binding.detailToggleSecondaryControlsView.setRotation(0);
-        binding.detailToggleSecondaryControlsView.setVisibility(View.VISIBLE);
-        binding.detailSecondaryControlPanel.setVisibility(View.GONE);
+
+        // only enable toggle if title is ellipsized
+        final int lines = binding.detailVideoTitleView.getLineCount();
+        if (binding.detailVideoTitleView.getLayout().getEllipsisCount(lines - 1) > 0) {
+            binding.detailToggleSecondaryControlsView.setVisibility(View.VISIBLE);
+        } else {
+            binding.detailToggleSecondaryControlsView.setVisibility(View.GONE);
+        }
 
         sortedVideoStreams = ListHelper.getSortedStreamVideosList(
                 activity,

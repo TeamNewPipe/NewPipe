@@ -185,7 +185,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginEnd="30dp"
                             android:ellipsize="end"
-                            android:maxLines="1"
+                            android:maxLines="2"
                             android:paddingTop="12dp"
                             android:paddingBottom="8dp"
                             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -501,21 +501,6 @@
                                 android:text="@string/download"
                                 android:textSize="@dimen/detail_control_text_size"
                                 app:drawableTopCompat="@drawable/ic_file_download" />
-
-                        </LinearLayout>
-
-                        <!-- SECONDARY CONTROLS -->
-                        <LinearLayout
-                            android:id="@+id/detail_secondary_control_panel"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:descendantFocusability="afterDescendants"
-                            android:focusable="true"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="@dimen/detail_control_padding"
-                            android:paddingBottom="@dimen/detail_control_padding"
-                            android:visibility="gone"
-                            tools:visibility="visible">
 
                             <org.schabi.newpipe.views.NewPipeTextView
                                 android:id="@+id/detail_controls_share"
