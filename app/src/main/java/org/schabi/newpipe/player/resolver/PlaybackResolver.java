@@ -101,10 +101,12 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                 throw new IllegalStateException("Unsupported type: " + type);
         }
 
+        Uri nUri = Uri.parse("content://com.android.externalstorage.documents/tree/primary%3A/document/primary%3ABlur%20-%20Song%202%20(Official%20Music%20Video).mp4");
+
         return factory.createMediaSource(
                 new MediaItem.Builder()
                     .setTag(metadata)
-                    .setUri(uri)
+                    .setUri(nUri)
                     .setCustomCacheKey(cacheKey)
                     .build()
         );
