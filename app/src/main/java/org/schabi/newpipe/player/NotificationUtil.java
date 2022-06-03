@@ -6,7 +6,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.pm.ServiceInfo;
 import android.graphics.Bitmap;
-import android.graphics.Matrix;
 import android.os.Build;
 import android.util.Log;
 
@@ -366,16 +365,13 @@ public final class NotificationUtil {
     }
 
     private Bitmap getBitmapWithSquareAspectRatio(final Bitmap bitmap) {
-        return getResizedBitmap(bitmap, bitmap.getWidth(), bitmap.getWidth());
-    }
-
-    private Bitmap getResizedBitmap(final Bitmap bitmap, final int newWidth, final int newHeight) {
-        final int width = bitmap.getWidth();
-        final int height = bitmap.getHeight();
-        final float scaleWidth = ((float) newWidth) / width;
-        final float scaleHeight = ((float) newHeight) / height;
-        final Matrix matrix = new Matrix();
-        matrix.postScale(scaleWidth, scaleHeight);
-        return Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, false);
+        // Find the smaller dimension and then take a center portion of the image that
+        // has that size.
+        final int w = bitmap.getWidth();
+        final int h = bitmap.getHeight();
+        final int dstSize = Math.min(w, h);
+        final int x = (w - dstSize) / 2;
+        final int y = (h - dstSize) / 2;
+        return Bitmap.createBitmap(bitmap, x, y, dstSize, dstSize);
     }
 }
