@@ -584,11 +584,11 @@ public final class VideoDetailFragment
         if (binding.detailVideoTitleView.getLayout().getEllipsisCount(lines - 1) > 0) {
             if (binding.detailVideoTitleView.getMaxLines() == 2) {
                 binding.detailVideoTitleView.setMaxLines(10);
-                animateRotation(binding.detailToggleSecondaryControlsView,
+                animateRotation(binding.detailToggleExpandTitle,
                         Player.DEFAULT_CONTROLS_DURATION, 180);
             } else {
                 binding.detailVideoTitleView.setMaxLines(2);
-                animateRotation(binding.detailToggleSecondaryControlsView,
+                animateRotation(binding.detailToggleExpandTitle,
                         Player.DEFAULT_CONTROLS_DURATION, 0);
             }
             // view pager height has changed, update the tab layout
@@ -1505,7 +1505,7 @@ public final class VideoDetailFragment
         binding.detailVideoTitleView.setMaxLines(2);
         animate(binding.detailVideoTitleView, true, 0);
 
-        binding.detailToggleSecondaryControlsView.setVisibility(View.GONE);
+        binding.detailToggleExpandTitle.setVisibility(View.GONE);
         binding.detailTitleRootLayout.setClickable(false);
 
         if (binding.relatedItemsLayout != null) {
@@ -1610,14 +1610,14 @@ public final class VideoDetailFragment
         }
 
         binding.detailTitleRootLayout.setClickable(true);
-        binding.detailToggleSecondaryControlsView.setRotation(0);
+        binding.detailToggleExpandTitle.setRotation(0);
 
         // only enable toggle if title is ellipsized
         final int lines = binding.detailVideoTitleView.getLineCount();
         if (binding.detailVideoTitleView.getLayout().getEllipsisCount(lines - 1) > 0) {
-            binding.detailToggleSecondaryControlsView.setVisibility(View.VISIBLE);
+            binding.detailToggleExpandTitle.setVisibility(View.VISIBLE);
         } else {
-            binding.detailToggleSecondaryControlsView.setVisibility(View.GONE);
+            binding.detailToggleExpandTitle.setVisibility(View.GONE);
         }
 
         sortedVideoStreams = ListHelper.getSortedStreamVideosList(
