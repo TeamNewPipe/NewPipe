@@ -12,21 +12,31 @@
     <style name="Base" parent="Base.V21"/>
 
     <!-- Light Theme -->
-    <style name="Base.V21.LightTheme" parent="Base.V19.LightTheme">
+    <style name="Base.V21.LightTheme" parent="Base.V19.LightTheme" />
 
-    </style>
     <style name="Base.LightTheme" parent="Base.V21.LightTheme" />
 
     <!-- Dark Theme -->
-    <style name="Base.V21.DarkTheme" parent="Base.V19.DarkTheme">
+    <style name="Base.V21.DarkTheme" parent="Base.V19.DarkTheme" />
 
-    </style>
     <style name="Base.DarkTheme" parent="Base.V21.DarkTheme" />
 
     <!-- Black Theme -->
-    <style name="Base.V21.BlackTheme" parent="Base.V19.BlackTheme">
+    <style name="Base.V21.BlackTheme" parent="Base.V19.BlackTheme" />
 
-    </style>
     <style name="Base.BlackTheme" parent="Base.V21.BlackTheme" />
+
+    <!-- Router Activity -->
+    <style name="Base.V21.RouterActivityThemeLight" parent="Base.RouterActivityThemeLight">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="RouterActivityThemeLight" parent="Base.V21.RouterActivityThemeLight" />
+
+    <style name="Base.V21.RouterActivityThemeDark" parent="Base.RouterActivityThemeDark">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="RouterActivityThemeDark" parent="Base.V21.RouterActivityThemeDark" />
 
 </resources>

@@ -130,7 +130,8 @@
         <item name="colorAccent">@color/black_settings_accent_color</item>
     </style>
 
-    <style name="RouterActivityThemeLight" parent="LightTheme">
+    <!-- Router Activity -->
+    <style name="Base.RouterActivityThemeLight" parent="LightTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
@@ -138,12 +139,16 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
-    <style name="RouterActivityThemeDark" parent="DarkTheme">
+    <style name="RouterActivityThemeLight" parent="Base.RouterActivityThemeLight" />
+
+    <style name="Base.RouterActivityThemeDark" parent="DarkTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@null</item>
     </style>
+
+    <style name="RouterActivityThemeDark" parent="Base.RouterActivityThemeDark" />
 
 </resources>
