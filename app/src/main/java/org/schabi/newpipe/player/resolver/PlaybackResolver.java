@@ -2,6 +2,7 @@ package org.schabi.newpipe.player.resolver;
 
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.MediaItem;
@@ -19,6 +20,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import static org.schabi.newpipe.player.helper.PlayerDataSource.LIVE_STREAM_EDGE_GAP_MILLIS;
+
+import us.shandian.giga.service.DownloadManager;
 
 public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
 
@@ -78,7 +81,8 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                                          @NonNull final String sourceUrl,
                                          @NonNull final String cacheKey,
                                          @NonNull final String overrideExtension,
-                                         @NonNull final MediaItemTag metadata) {
+                                         @NonNull final MediaItemTag metadata,
+                                         final String localUri) {
         final Uri uri = Uri.parse(sourceUrl);
         @C.ContentType final int type = TextUtils.isEmpty(overrideExtension)
                 ? Util.inferContentType(uri) : Util.inferContentType("." + overrideExtension);
@@ -101,12 +105,16 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                 throw new IllegalStateException("Unsupported type: " + type);
         }
 
-        Uri nUri = Uri.parse("content://com.android.externalstorage.documents/tree/primary%3A/document/primary%3ABlur%20-%20Song%202%20(Official%20Music%20Video).mp4");
+        Uri nUuri = uri;
+
+        if (localUri != null) {
+            nUuri = Uri.parse(localUri);
+        }
 
         return factory.createMediaSource(
                 new MediaItem.Builder()
                     .setTag(metadata)
-                    .setUri(nUri)
+                    .setUri(nUuri)
                     .setCustomCacheKey(cacheKey)
                     .build()
         );

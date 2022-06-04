@@ -62,7 +62,7 @@ public class DownloadManager {
      * @param context Context for the data source for finished downloads
      * @param handler Thread required for Messaging
      */
-    DownloadManager(@NonNull Context context, Handler handler, StoredDirectoryHelper storageVideo, StoredDirectoryHelper storageAudio) {
+    public DownloadManager(@NonNull Context context, Handler handler, StoredDirectoryHelper storageVideo, StoredDirectoryHelper storageAudio) {
         if (DEBUG) {
             Log.d(TAG, "new DownloadManager instance. 0x" + Integer.toHexString(this.hashCode()));
         }

@@ -23,6 +23,7 @@ public final class Migrations {
     public static final int DB_VER_3 = 3;
     public static final int DB_VER_4 = 4;
     public static final int DB_VER_5 = 5;
+    public static final int DB_VER_6 = 6;
 
     private static final String TAG = Migrations.class.getName();
     public static final boolean DEBUG = MainActivity.DEBUG;
@@ -177,6 +178,13 @@ public final class Migrations {
             database.execSQL(
                     "ALTER TABLE streams ADD COLUMN uploader_url TEXT"
             );
+        }
+    };
+
+    public static final Migration MIGRATION_5_6 = new Migration(DB_VER_5, DB_VER_6) {
+        @Override
+        public void migrate(@NonNull final SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE IF NOT EXISTS `download` (`id_key` TEXT NOT NULL, `creation_date` INTEGER, `id` INTEGER NOT NULL, `uri_value` TEXT NOT NULL, PRIMARY KEY(`id`))");
         }
     };
 

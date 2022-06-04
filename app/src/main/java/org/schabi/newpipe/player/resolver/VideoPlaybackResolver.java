@@ -11,11 +11,13 @@ import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
 
+import org.schabi.newpipe.database.download.entry.DownloadEntry;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.local.download.DownloadRecordManager;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
@@ -82,9 +84,16 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                 .orElse(null);
 
         if (video != null) {
+            DownloadRecordManager d = new DownloadRecordManager(context);
+
+            DownloadEntry downloadEntry = d.getUri(info.getId()).blockingGet();
+            String uri = null;
+            if (downloadEntry != null) {
+                uri = downloadEntry.getUriValue();
+            }
             final MediaSource streamSource = buildMediaSource(dataSource, video.getUrl(),
                     PlayerHelper.cacheKeyOf(info, video),
-                    MediaFormat.getSuffixById(video.getFormatId()), tag);
+                    MediaFormat.getSuffixById(video.getFormatId()), tag, uri);
             mediaSources.add(streamSource);
         }
 
@@ -95,9 +104,16 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         // Use the audio stream if there is no video stream, or
         // Merge with audio stream in case if video does not contain audio
         if (audio != null && (video == null || video.isVideoOnly)) {
+            DownloadRecordManager d = new DownloadRecordManager(context);
+
+            DownloadEntry downloadEntry = d.getUri(info.getId()).blockingGet();
+            String uri = null;
+            if (downloadEntry != null) {
+                uri = downloadEntry.getUriValue();
+            }
             final MediaSource audioSource = buildMediaSource(dataSource, audio.getUrl(),
                     PlayerHelper.cacheKeyOf(info, audio),
-                    MediaFormat.getSuffixById(audio.getFormatId()), tag);
+                    MediaFormat.getSuffixById(audio.getFormatId()), tag, uri);
             mediaSources.add(audioSource);
             streamSourceType = SourceType.VIDEO_WITH_SEPARATED_AUDIO;
         } else {
