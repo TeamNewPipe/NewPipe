@@ -104,7 +104,7 @@ public class RepliesHandler {
         return new SingleObserver<CommentsInfo>() {
             @Override
 
-            public void onSubscribe(@NonNull final Disposable d) {		
+            public void onSubscribe(@NonNull final Disposable d) {
 
             }
             @Override
