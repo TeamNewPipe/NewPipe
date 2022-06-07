@@ -102,7 +102,11 @@ public class RepliesHandler {
         repliesInfoObserver(final CommentsInfoItem parentInfoItem) {
 
         return new SingleObserver<CommentsInfo>() {
-
+            @Override 		
+                
+            public void onSubscribe(@NonNull final Disposable d) { 				
+    
+            }
             @Override
             public void onSuccess(@NonNull final CommentsInfo commentsInfo) {
                 final Single<ListExtractor.InfoItemsPage<CommentsInfoItem>>
