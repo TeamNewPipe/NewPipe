@@ -48,8 +48,8 @@ jobs:
           distribution: "temurin"
           cache: 'gradle'
 
-      - name: Build debug APK and run jvm tests
-        run: ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --stacktrace -DskipFormatKtlint
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
