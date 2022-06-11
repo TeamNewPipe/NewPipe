@@ -1,0 +1,2006 @@
+From 6d1eee441f3051c730cc4b51294bc83fcc1d156e Mon Sep 17 00:00:00 2001
+From: German Andrade <german@launchmobility.com>
+Date: Sat, 4 Jun 2022 12:24:50 -0500
+Subject: [PATCH 1/2] MVP ready TODO CR
+
+---
+ .../5.json                                    |  68 +-
+ .../6.json                                    | 769 ++++++++++++++++++
+ .../org/schabi/newpipe/NewPipeDatabase.java   |   3 +-
+ .../schabi/newpipe/database/AppDatabase.java  |   9 +-
+ .../schabi/newpipe/database/Migrations.java   |   8 +
+ .../database/download/dao/DownloadDAO.kt      |  20 +
+ .../database/download/entry/DownloadEntry.kt  |  25 +
+ .../newpipe/download/DownloadDialog.java      |  21 +-
+ .../local/download/DownloadRecordManager.kt   |  35 +
+ .../resolver/AudioPlaybackResolver.java       |  15 +-
+ .../player/resolver/PlaybackResolver.java     |  14 +-
+ .../resolver/VideoPlaybackResolver.java       |  20 +-
+ .../giga/service/DownloadManager.java         |   2 +-
+ 13 files changed, 987 insertions(+), 22 deletions(-)
+ create mode 100644 app/schemas/org.schabi.newpipe.database.AppDatabase/6.json
+ create mode 100644 app/src/main/java/org/schabi/newpipe/database/download/dao/DownloadDAO.kt
+ create mode 100644 app/src/main/java/org/schabi/newpipe/database/download/entry/DownloadEntry.kt
+ create mode 100644 app/src/main/java/org/schabi/newpipe/local/download/DownloadRecordManager.kt
+
+diff --git a/app/schemas/org.schabi.newpipe.database.AppDatabase/5.json b/app/schemas/org.schabi.newpipe.database.AppDatabase/5.json
+index 9a1c62995..5ad54737d 100644
+--- a/app/schemas/org.schabi.newpipe.database.AppDatabase/5.json
++++ b/app/schemas/org.schabi.newpipe.database.AppDatabase/5.json
+@@ -2,7 +2,7 @@
+   "formatVersion": 1,
+   "database": {
+     "version": 5,
+-    "identityHash": "096731b513bb71dd44517639f4a2c1e3",
++    "identityHash": "0ed5c359372ff3efa8db64331d34b7a4",
+     "entities": [
+       {
+         "tableName": "subscriptions",
+@@ -71,6 +71,7 @@
+               "service_id",
+               "url"
+             ],
++            "orders": [],
+             "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_subscriptions_service_id_url` ON `${TABLE_NAME}` (`service_id`, `url`)"
+           }
+         ],
+@@ -78,14 +79,8 @@
+       },
+       {
+         "tableName": "search_history",
+-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `creation_date` INTEGER, `service_id` INTEGER NOT NULL, `search` TEXT)",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`creation_date` INTEGER, `service_id` INTEGER NOT NULL, `search` TEXT, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+         "fields": [
+-          {
+-            "fieldPath": "id",
+-            "columnName": "id",
+-            "affinity": "INTEGER",
+-            "notNull": true
+-          },
+           {
+             "fieldPath": "creationDate",
+             "columnName": "creation_date",
+@@ -103,6 +98,12 @@
+             "columnName": "search",
+             "affinity": "TEXT",
+             "notNull": false
++          },
++          {
++            "fieldPath": "id",
++            "columnName": "id",
++            "affinity": "INTEGER",
++            "notNull": true
+           }
+         ],
+         "primaryKey": {
+@@ -118,6 +119,7 @@
+             "columnNames": [
+               "search"
+             ],
++            "orders": [],
+             "createSql": "CREATE INDEX IF NOT EXISTS `index_search_history_search` ON `${TABLE_NAME}` (`search`)"
+           }
+         ],
+@@ -220,6 +222,7 @@
+               "service_id",
+               "url"
+             ],
++            "orders": [],
+             "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_streams_service_id_url` ON `${TABLE_NAME}` (`service_id`, `url`)"
+           }
+         ],
+@@ -262,6 +265,7 @@
+             "columnNames": [
+               "stream_id"
+             ],
++            "orders": [],
+             "createSql": "CREATE INDEX IF NOT EXISTS `index_stream_history_stream_id` ON `${TABLE_NAME}` (`stream_id`)"
+           }
+         ],
+@@ -353,6 +357,7 @@
+             "columnNames": [
+               "name"
+             ],
++            "orders": [],
+             "createSql": "CREATE INDEX IF NOT EXISTS `index_playlists_name` ON `${TABLE_NAME}` (`name`)"
+           }
+         ],
+@@ -396,6 +401,7 @@
+               "playlist_id",
+               "join_index"
+             ],
++            "orders": [],
+             "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_playlist_stream_join_playlist_id_join_index` ON `${TABLE_NAME}` (`playlist_id`, `join_index`)"
+           },
+           {
+@@ -404,6 +410,7 @@
+             "columnNames": [
+               "stream_id"
+             ],
++            "orders": [],
+             "createSql": "CREATE INDEX IF NOT EXISTS `index_playlist_stream_join_stream_id` ON `${TABLE_NAME}` (`stream_id`)"
+           }
+         ],
+@@ -492,6 +499,7 @@
+             "columnNames": [
+               "name"
+             ],
++            "orders": [],
+             "createSql": "CREATE INDEX IF NOT EXISTS `index_remote_playlists_name` ON `${TABLE_NAME}` (`name`)"
+           },
+           {
+@@ -501,6 +509,7 @@
+               "service_id",
+               "url"
+             ],
++            "orders": [],
+             "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_remote_playlists_service_id_url` ON `${TABLE_NAME}` (`service_id`, `url`)"
+           }
+         ],
+@@ -537,6 +546,7 @@
+             "columnNames": [
+               "subscription_id"
+             ],
++            "orders": [],
+             "createSql": "CREATE INDEX IF NOT EXISTS `index_feed_subscription_id` ON `${TABLE_NAME}` (`subscription_id`)"
+           }
+         ],
+@@ -607,6 +617,7 @@
+             "columnNames": [
+               "sort_order"
+             ],
++            "orders": [],
+             "createSql": "CREATE INDEX IF NOT EXISTS `index_feed_group_sort_order` ON `${TABLE_NAME}` (`sort_order`)"
+           }
+         ],
+@@ -643,6 +654,7 @@
+             "columnNames": [
+               "subscription_id"
+             ],
++            "orders": [],
+             "createSql": "CREATE INDEX IF NOT EXISTS `index_feed_group_subscription_join_subscription_id` ON `${TABLE_NAME}` (`subscription_id`)"
+           }
+         ],
+@@ -708,12 +720,50 @@
+             ]
+           }
+         ]
++      },
++      {
++        "tableName": "download",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`creation_date` INTEGER, `id_key` TEXT NOT NULL, `uri_value` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
++        "fields": [
++          {
++            "fieldPath": "creationDate",
++            "columnName": "creation_date",
++            "affinity": "INTEGER",
++            "notNull": false
++          },
++          {
++            "fieldPath": "idKey",
++            "columnName": "id_key",
++            "affinity": "TEXT",
++            "notNull": true
++          },
++          {
++            "fieldPath": "uriValue",
++            "columnName": "uri_value",
++            "affinity": "TEXT",
++            "notNull": true
++          },
++          {
++            "fieldPath": "id",
++            "columnName": "id",
++            "affinity": "INTEGER",
++            "notNull": true
++          }
++        ],
++        "primaryKey": {
++          "columnNames": [
++            "id"
++          ],
++          "autoGenerate": true
++        },
++        "indices": [],
++        "foreignKeys": []
+       }
+     ],
+     "views": [],
+     "setupQueries": [
+       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '096731b513bb71dd44517639f4a2c1e3')"
++      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0ed5c359372ff3efa8db64331d34b7a4')"
+     ]
+   }
+ }
+\ No newline at end of file
+diff --git a/app/schemas/org.schabi.newpipe.database.AppDatabase/6.json b/app/schemas/org.schabi.newpipe.database.AppDatabase/6.json
+new file mode 100644
+index 000000000..10abe4c9f
+--- /dev/null
++++ b/app/schemas/org.schabi.newpipe.database.AppDatabase/6.json
+@@ -0,0 +1,769 @@
++{
++  "formatVersion": 1,
++  "database": {
++    "version": 6,
++    "identityHash": "0ed5c359372ff3efa8db64331d34b7a4",
++    "entities": [
++      {
++        "tableName": "subscriptions",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `service_id` INTEGER NOT NULL, `url` TEXT, `name` TEXT, `avatar_url` TEXT, `subscriber_count` INTEGER, `description` TEXT, `notification_mode` INTEGER NOT NULL)",
++        "fields": [
++          {
++            "fieldPath": "uid",
++            "columnName": "uid",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "serviceId",
++            "columnName": "service_id",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "url",
++            "columnName": "url",
++            "affinity": "TEXT",
++            "notNull": false
++          },
++          {
++            "fieldPath": "name",
++            "columnName": "name",
++            "affinity": "TEXT",
++            "notNull": false
++          },
++          {
++            "fieldPath": "avatarUrl",
++            "columnName": "avatar_url",
++            "affinity": "TEXT",
++            "notNull": false
++          },
++          {
++            "fieldPath": "subscriberCount",
++            "columnName": "subscriber_count",
++            "affinity": "INTEGER",
++            "notNull": false
++          },
++          {
++            "fieldPath": "description",
++            "columnName": "description",
++            "affinity": "TEXT",
++            "notNull": false
++          },
++          {
++            "fieldPath": "notificationMode",
++            "columnName": "notification_mode",
++            "affinity": "INTEGER",
++            "notNull": true
++          }
++        ],
++        "primaryKey": {
++          "columnNames": [
++            "uid"
++          ],
++          "autoGenerate": true
++        },
++        "indices": [
++          {
++            "name": "index_subscriptions_service_id_url",
++            "unique": true,
++            "columnNames": [
++              "service_id",
++              "url"
++            ],
++            "orders": [],
++            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_subscriptions_service_id_url` ON `${TABLE_NAME}` (`service_id`, `url`)"
++          }
++        ],
++        "foreignKeys": []
++      },
++      {
++        "tableName": "search_history",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`creation_date` INTEGER, `service_id` INTEGER NOT NULL, `search` TEXT, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
++        "fields": [
++          {
++            "fieldPath": "creationDate",
++            "columnName": "creation_date",
++            "affinity": "INTEGER",
++            "notNull": false
++          },
++          {
++            "fieldPath": "serviceId",
++            "columnName": "service_id",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "search",
++            "columnName": "search",
++            "affinity": "TEXT",
++            "notNull": false
++          },
++          {
++            "fieldPath": "id",
++            "columnName": "id",
++            "affinity": "INTEGER",
++            "notNull": true
++          }
++        ],
++        "primaryKey": {
++          "columnNames": [
++            "id"
++          ],
++          "autoGenerate": true
++        },
++        "indices": [
++          {
++            "name": "index_search_history_search",
++            "unique": false,
++            "columnNames": [
++              "search"
++            ],
++            "orders": [],
++            "createSql": "CREATE INDEX IF NOT EXISTS `index_search_history_search` ON `${TABLE_NAME}` (`search`)"
++          }
++        ],
++        "foreignKeys": []
++      },
++      {
++        "tableName": "streams",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `service_id` INTEGER NOT NULL, `url` TEXT NOT NULL, `title` TEXT NOT NULL, `stream_type` TEXT NOT NULL, `duration` INTEGER NOT NULL, `uploader` TEXT NOT NULL, `uploader_url` TEXT, `thumbnail_url` TEXT, `view_count` INTEGER, `textual_upload_date` TEXT, `upload_date` INTEGER, `is_upload_date_approximation` INTEGER)",
++        "fields": [
++          {
++            "fieldPath": "uid",
++            "columnName": "uid",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "serviceId",
++            "columnName": "service_id",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "url",
++            "columnName": "url",
++            "affinity": "TEXT",
++            "notNull": true
++          },
++          {
++            "fieldPath": "title",
++            "columnName": "title",
++            "affinity": "TEXT",
++            "notNull": true
++          },
++          {
++            "fieldPath": "streamType",
++            "columnName": "stream_type",
++            "affinity": "TEXT",
++            "notNull": true
++          },
++          {
++            "fieldPath": "duration",
++            "columnName": "duration",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "uploader",
++            "columnName": "uploader",
++            "affinity": "TEXT",
++            "notNull": true
++          },
++          {
++            "fieldPath": "uploaderUrl",
++            "columnName": "uploader_url",
++            "affinity": "TEXT",
++            "notNull": false
++          },
++          {
++            "fieldPath": "thumbnailUrl",
++            "columnName": "thumbnail_url",
++            "affinity": "TEXT",
++            "notNull": false
++          },
++          {
++            "fieldPath": "viewCount",
++            "columnName": "view_count",
++            "affinity": "INTEGER",
++            "notNull": false
++          },
++          {
++            "fieldPath": "textualUploadDate",
++            "columnName": "textual_upload_date",
++            "affinity": "TEXT",
++            "notNull": false
++          },
++          {
++            "fieldPath": "uploadDate",
++            "columnName": "upload_date",
++            "affinity": "INTEGER",
++            "notNull": false
++          },
++          {
++            "fieldPath": "isUploadDateApproximation",
++            "columnName": "is_upload_date_approximation",
++            "affinity": "INTEGER",
++            "notNull": false
++          }
++        ],
++        "primaryKey": {
++          "columnNames": [
++            "uid"
++          ],
++          "autoGenerate": true
++        },
++        "indices": [
++          {
++            "name": "index_streams_service_id_url",
++            "unique": true,
++            "columnNames": [
++              "service_id",
++              "url"
++            ],
++            "orders": [],
++            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_streams_service_id_url` ON `${TABLE_NAME}` (`service_id`, `url`)"
++          }
++        ],
++        "foreignKeys": []
++      },
++      {
++        "tableName": "stream_history",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`stream_id` INTEGER NOT NULL, `access_date` INTEGER NOT NULL, `repeat_count` INTEGER NOT NULL, PRIMARY KEY(`stream_id`, `access_date`), FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )",
++        "fields": [
++          {
++            "fieldPath": "streamUid",
++            "columnName": "stream_id",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "accessDate",
++            "columnName": "access_date",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "repeatCount",
++            "columnName": "repeat_count",
++            "affinity": "INTEGER",
++            "notNull": true
++          }
++        ],
++        "primaryKey": {
++          "columnNames": [
++            "stream_id",
++            "access_date"
++          ],
++          "autoGenerate": false
++        },
++        "indices": [
++          {
++            "name": "index_stream_history_stream_id",
++            "unique": false,
++            "columnNames": [
++              "stream_id"
++            ],
++            "orders": [],
++            "createSql": "CREATE INDEX IF NOT EXISTS `index_stream_history_stream_id` ON `${TABLE_NAME}` (`stream_id`)"
++          }
++        ],
++        "foreignKeys": [
++          {
++            "table": "streams",
++            "onDelete": "CASCADE",
++            "onUpdate": "CASCADE",
++            "columns": [
++              "stream_id"
++            ],
++            "referencedColumns": [
++              "uid"
++            ]
++          }
++        ]
++      },
++      {
++        "tableName": "stream_state",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`stream_id` INTEGER NOT NULL, `progress_time` INTEGER NOT NULL, PRIMARY KEY(`stream_id`), FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )",
++        "fields": [
++          {
++            "fieldPath": "streamUid",
++            "columnName": "stream_id",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "progressMillis",
++            "columnName": "progress_time",
++            "affinity": "INTEGER",
++            "notNull": true
++          }
++        ],
++        "primaryKey": {
++          "columnNames": [
++            "stream_id"
++          ],
++          "autoGenerate": false
++        },
++        "indices": [],
++        "foreignKeys": [
++          {
++            "table": "streams",
++            "onDelete": "CASCADE",
++            "onUpdate": "CASCADE",
++            "columns": [
++              "stream_id"
++            ],
++            "referencedColumns": [
++              "uid"
++            ]
++          }
++        ]
++      },
++      {
++        "tableName": "playlists",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `thumbnail_url` TEXT)",
++        "fields": [
++          {
++            "fieldPath": "uid",
++            "columnName": "uid",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "name",
++            "columnName": "name",
++            "affinity": "TEXT",
++            "notNull": false
++          },
++          {
++            "fieldPath": "thumbnailUrl",
++            "columnName": "thumbnail_url",
++            "affinity": "TEXT",
++            "notNull": false
++          }
++        ],
++        "primaryKey": {
++          "columnNames": [
++            "uid"
++          ],
++          "autoGenerate": true
++        },
++        "indices": [
++          {
++            "name": "index_playlists_name",
++            "unique": false,
++            "columnNames": [
++              "name"
++            ],
++            "orders": [],
++            "createSql": "CREATE INDEX IF NOT EXISTS `index_playlists_name` ON `${TABLE_NAME}` (`name`)"
++          }
++        ],
++        "foreignKeys": []
++      },
++      {
++        "tableName": "playlist_stream_join",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`playlist_id` INTEGER NOT NULL, `stream_id` INTEGER NOT NULL, `join_index` INTEGER NOT NULL, PRIMARY KEY(`playlist_id`, `join_index`), FOREIGN KEY(`playlist_id`) REFERENCES `playlists`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED, FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)",
++        "fields": [
++          {
++            "fieldPath": "playlistUid",
++            "columnName": "playlist_id",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "streamUid",
++            "columnName": "stream_id",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "index",
++            "columnName": "join_index",
++            "affinity": "INTEGER",
++            "notNull": true
++          }
++        ],
++        "primaryKey": {
++          "columnNames": [
++            "playlist_id",
++            "join_index"
++          ],
++          "autoGenerate": false
++        },
++        "indices": [
++          {
++            "name": "index_playlist_stream_join_playlist_id_join_index",
++            "unique": true,
++            "columnNames": [
++              "playlist_id",
++              "join_index"
++            ],
++            "orders": [],
++            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_playlist_stream_join_playlist_id_join_index` ON `${TABLE_NAME}` (`playlist_id`, `join_index`)"
++          },
++          {
++            "name": "index_playlist_stream_join_stream_id",
++            "unique": false,
++            "columnNames": [
++              "stream_id"
++            ],
++            "orders": [],
++            "createSql": "CREATE INDEX IF NOT EXISTS `index_playlist_stream_join_stream_id` ON `${TABLE_NAME}` (`stream_id`)"
++          }
++        ],
++        "foreignKeys": [
++          {
++            "table": "playlists",
++            "onDelete": "CASCADE",
++            "onUpdate": "CASCADE",
++            "columns": [
++              "playlist_id"
++            ],
++            "referencedColumns": [
++              "uid"
++            ]
++          },
++          {
++            "table": "streams",
++            "onDelete": "CASCADE",
++            "onUpdate": "CASCADE",
++            "columns": [
++              "stream_id"
++            ],
++            "referencedColumns": [
++              "uid"
++            ]
++          }
++        ]
++      },
++      {
++        "tableName": "remote_playlists",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `service_id` INTEGER NOT NULL, `name` TEXT, `url` TEXT, `thumbnail_url` TEXT, `uploader` TEXT, `stream_count` INTEGER)",
++        "fields": [
++          {
++            "fieldPath": "uid",
++            "columnName": "uid",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "serviceId",
++            "columnName": "service_id",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "name",
++            "columnName": "name",
++            "affinity": "TEXT",
++            "notNull": false
++          },
++          {
++            "fieldPath": "url",
++            "columnName": "url",
++            "affinity": "TEXT",
++            "notNull": false
++          },
++          {
++            "fieldPath": "thumbnailUrl",
++            "columnName": "thumbnail_url",
++            "affinity": "TEXT",
++            "notNull": false
++          },
++          {
++            "fieldPath": "uploader",
++            "columnName": "uploader",
++            "affinity": "TEXT",
++            "notNull": false
++          },
++          {
++            "fieldPath": "streamCount",
++            "columnName": "stream_count",
++            "affinity": "INTEGER",
++            "notNull": false
++          }
++        ],
++        "primaryKey": {
++          "columnNames": [
++            "uid"
++          ],
++          "autoGenerate": true
++        },
++        "indices": [
++          {
++            "name": "index_remote_playlists_name",
++            "unique": false,
++            "columnNames": [
++              "name"
++            ],
++            "orders": [],
++            "createSql": "CREATE INDEX IF NOT EXISTS `index_remote_playlists_name` ON `${TABLE_NAME}` (`name`)"
++          },
++          {
++            "name": "index_remote_playlists_service_id_url",
++            "unique": true,
++            "columnNames": [
++              "service_id",
++              "url"
++            ],
++            "orders": [],
++            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_remote_playlists_service_id_url` ON `${TABLE_NAME}` (`service_id`, `url`)"
++          }
++        ],
++        "foreignKeys": []
++      },
++      {
++        "tableName": "feed",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`stream_id` INTEGER NOT NULL, `subscription_id` INTEGER NOT NULL, PRIMARY KEY(`stream_id`, `subscription_id`), FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED, FOREIGN KEY(`subscription_id`) REFERENCES `subscriptions`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)",
++        "fields": [
++          {
++            "fieldPath": "streamId",
++            "columnName": "stream_id",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "subscriptionId",
++            "columnName": "subscription_id",
++            "affinity": "INTEGER",
++            "notNull": true
++          }
++        ],
++        "primaryKey": {
++          "columnNames": [
++            "stream_id",
++            "subscription_id"
++          ],
++          "autoGenerate": false
++        },
++        "indices": [
++          {
++            "name": "index_feed_subscription_id",
++            "unique": false,
++            "columnNames": [
++              "subscription_id"
++            ],
++            "orders": [],
++            "createSql": "CREATE INDEX IF NOT EXISTS `index_feed_subscription_id` ON `${TABLE_NAME}` (`subscription_id`)"
++          }
++        ],
++        "foreignKeys": [
++          {
++            "table": "streams",
++            "onDelete": "CASCADE",
++            "onUpdate": "CASCADE",
++            "columns": [
++              "stream_id"
++            ],
++            "referencedColumns": [
++              "uid"
++            ]
++          },
++          {
++            "table": "subscriptions",
++            "onDelete": "CASCADE",
++            "onUpdate": "CASCADE",
++            "columns": [
++              "subscription_id"
++            ],
++            "referencedColumns": [
++              "uid"
++            ]
++          }
++        ]
++      },
++      {
++        "tableName": "feed_group",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `icon_id` INTEGER NOT NULL, `sort_order` INTEGER NOT NULL)",
++        "fields": [
++          {
++            "fieldPath": "uid",
++            "columnName": "uid",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "name",
++            "columnName": "name",
++            "affinity": "TEXT",
++            "notNull": true
++          },
++          {
++            "fieldPath": "icon",
++            "columnName": "icon_id",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "sortOrder",
++            "columnName": "sort_order",
++            "affinity": "INTEGER",
++            "notNull": true
++          }
++        ],
++        "primaryKey": {
++          "columnNames": [
++            "uid"
++          ],
++          "autoGenerate": true
++        },
++        "indices": [
++          {
++            "name": "index_feed_group_sort_order",
++            "unique": false,
++            "columnNames": [
++              "sort_order"
++            ],
++            "orders": [],
++            "createSql": "CREATE INDEX IF NOT EXISTS `index_feed_group_sort_order` ON `${TABLE_NAME}` (`sort_order`)"
++          }
++        ],
++        "foreignKeys": []
++      },
++      {
++        "tableName": "feed_group_subscription_join",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`group_id` INTEGER NOT NULL, `subscription_id` INTEGER NOT NULL, PRIMARY KEY(`group_id`, `subscription_id`), FOREIGN KEY(`group_id`) REFERENCES `feed_group`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED, FOREIGN KEY(`subscription_id`) REFERENCES `subscriptions`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)",
++        "fields": [
++          {
++            "fieldPath": "feedGroupId",
++            "columnName": "group_id",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "subscriptionId",
++            "columnName": "subscription_id",
++            "affinity": "INTEGER",
++            "notNull": true
++          }
++        ],
++        "primaryKey": {
++          "columnNames": [
++            "group_id",
++            "subscription_id"
++          ],
++          "autoGenerate": false
++        },
++        "indices": [
++          {
++            "name": "index_feed_group_subscription_join_subscription_id",
++            "unique": false,
++            "columnNames": [
++              "subscription_id"
++            ],
++            "orders": [],
++            "createSql": "CREATE INDEX IF NOT EXISTS `index_feed_group_subscription_join_subscription_id` ON `${TABLE_NAME}` (`subscription_id`)"
++          }
++        ],
++        "foreignKeys": [
++          {
++            "table": "feed_group",
++            "onDelete": "CASCADE",
++            "onUpdate": "CASCADE",
++            "columns": [
++              "group_id"
++            ],
++            "referencedColumns": [
++              "uid"
++            ]
++          },
++          {
++            "table": "subscriptions",
++            "onDelete": "CASCADE",
++            "onUpdate": "CASCADE",
++            "columns": [
++              "subscription_id"
++            ],
++            "referencedColumns": [
++              "uid"
++            ]
++          }
++        ]
++      },
++      {
++        "tableName": "feed_last_updated",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`subscription_id` INTEGER NOT NULL, `last_updated` INTEGER, PRIMARY KEY(`subscription_id`), FOREIGN KEY(`subscription_id`) REFERENCES `subscriptions`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)",
++        "fields": [
++          {
++            "fieldPath": "subscriptionId",
++            "columnName": "subscription_id",
++            "affinity": "INTEGER",
++            "notNull": true
++          },
++          {
++            "fieldPath": "lastUpdated",
++            "columnName": "last_updated",
++            "affinity": "INTEGER",
++            "notNull": false
++          }
++        ],
++        "primaryKey": {
++          "columnNames": [
++            "subscription_id"
++          ],
++          "autoGenerate": false
++        },
++        "indices": [],
++        "foreignKeys": [
++          {
++            "table": "subscriptions",
++            "onDelete": "CASCADE",
++            "onUpdate": "CASCADE",
++            "columns": [
++              "subscription_id"
++            ],
++            "referencedColumns": [
++              "uid"
++            ]
++          }
++        ]
++      },
++      {
++        "tableName": "download",
++        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`creation_date` INTEGER, `id_key` TEXT NOT NULL, `uri_value` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
++        "fields": [
++          {
++            "fieldPath": "creationDate",
++            "columnName": "creation_date",
++            "affinity": "INTEGER",
++            "notNull": false
++          },
++          {
++            "fieldPath": "idKey",
++            "columnName": "id_key",
++            "affinity": "TEXT",
++            "notNull": true
++          },
++          {
++            "fieldPath": "uriValue",
++            "columnName": "uri_value",
++            "affinity": "TEXT",
++            "notNull": true
++          },
++          {
++            "fieldPath": "id",
++            "columnName": "id",
++            "affinity": "INTEGER",
++            "notNull": true
++          }
++        ],
++        "primaryKey": {
++          "columnNames": [
++            "id"
++          ],
++          "autoGenerate": true
++        },
++        "indices": [],
++        "foreignKeys": []
++      }
++    ],
++    "views": [],
++    "setupQueries": [
++      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
++      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0ed5c359372ff3efa8db64331d34b7a4')"
++    ]
++  }
++}
+\ No newline at end of file
+diff --git a/app/src/main/java/org/schabi/newpipe/NewPipeDatabase.java b/app/src/main/java/org/schabi/newpipe/NewPipeDatabase.java
+index 402d4648d..5748c6820 100644
+--- a/app/src/main/java/org/schabi/newpipe/NewPipeDatabase.java
++++ b/app/src/main/java/org/schabi/newpipe/NewPipeDatabase.java
+@@ -5,6 +5,7 @@ import static org.schabi.newpipe.database.Migrations.MIGRATION_1_2;
+ import static org.schabi.newpipe.database.Migrations.MIGRATION_2_3;
+ import static org.schabi.newpipe.database.Migrations.MIGRATION_3_4;
+ import static org.schabi.newpipe.database.Migrations.MIGRATION_4_5;
++import static org.schabi.newpipe.database.Migrations.MIGRATION_5_6;
+ 
+ import android.content.Context;
+ import android.database.Cursor;
+@@ -24,7 +25,7 @@ public final class NewPipeDatabase {
+     private static AppDatabase getDatabase(final Context context) {
+         return Room
+                 .databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
+-                .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
++                .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+                 .build();
+     }
+ 
+diff --git a/app/src/main/java/org/schabi/newpipe/database/AppDatabase.java b/app/src/main/java/org/schabi/newpipe/database/AppDatabase.java
+index 28ddc8184..533dd040c 100644
+--- a/app/src/main/java/org/schabi/newpipe/database/AppDatabase.java
++++ b/app/src/main/java/org/schabi/newpipe/database/AppDatabase.java
+@@ -1,11 +1,14 @@
+ package org.schabi.newpipe.database;
+ 
+ import static org.schabi.newpipe.database.Migrations.DB_VER_5;
++import static org.schabi.newpipe.database.Migrations.DB_VER_6;
+ 
+ import androidx.room.Database;
+ import androidx.room.RoomDatabase;
+ import androidx.room.TypeConverters;
+ 
++import org.schabi.newpipe.database.download.dao.DownloadDAO;
++import org.schabi.newpipe.database.download.entry.DownloadEntry;
+ import org.schabi.newpipe.database.feed.dao.FeedDAO;
+ import org.schabi.newpipe.database.feed.dao.FeedGroupDAO;
+ import org.schabi.newpipe.database.feed.model.FeedEntity;
+@@ -36,13 +39,15 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity;
+                 StreamEntity.class, StreamHistoryEntity.class, StreamStateEntity.class,
+                 PlaylistEntity.class, PlaylistStreamEntity.class, PlaylistRemoteEntity.class,
+                 FeedEntity.class, FeedGroupEntity.class, FeedGroupSubscriptionEntity.class,
+-                FeedLastUpdatedEntity.class
++                FeedLastUpdatedEntity.class, DownloadEntry.class
+         },
+-        version = DB_VER_5
++        version = DB_VER_6
+ )
+ public abstract class AppDatabase extends RoomDatabase {
+     public static final String DATABASE_NAME = "newpipe.db";
+ 
++    public abstract DownloadDAO downloadDAO();
++
+     public abstract SearchHistoryDAO searchHistoryDAO();
+ 
+     public abstract StreamDAO streamDAO();
+diff --git a/app/src/main/java/org/schabi/newpipe/database/Migrations.java b/app/src/main/java/org/schabi/newpipe/database/Migrations.java
+index 7de08442c..d3fa2880b 100644
+--- a/app/src/main/java/org/schabi/newpipe/database/Migrations.java
++++ b/app/src/main/java/org/schabi/newpipe/database/Migrations.java
+@@ -23,6 +23,7 @@ public final class Migrations {
+     public static final int DB_VER_3 = 3;
+     public static final int DB_VER_4 = 4;
+     public static final int DB_VER_5 = 5;
++    public static final int DB_VER_6 = 6;
+ 
+     private static final String TAG = Migrations.class.getName();
+     public static final boolean DEBUG = MainActivity.DEBUG;
+@@ -180,6 +181,13 @@ public final class Migrations {
+         }
+     };
+ 
++    public static final Migration MIGRATION_5_6 = new Migration(DB_VER_5, DB_VER_6) {
++        @Override
++        public void migrate(@NonNull final SupportSQLiteDatabase database) {
++            database.execSQL("CREATE TABLE IF NOT EXISTS `download` (`id_key` TEXT NOT NULL, `creation_date` INTEGER, `id` INTEGER NOT NULL, `uri_value` TEXT NOT NULL, PRIMARY KEY(`id`))");
++        }
++    };
++
+     public static final Migration MIGRATION_4_5 = new Migration(DB_VER_4, DB_VER_5) {
+         @Override
+         public void migrate(@NonNull final SupportSQLiteDatabase database) {
+diff --git a/app/src/main/java/org/schabi/newpipe/database/download/dao/DownloadDAO.kt b/app/src/main/java/org/schabi/newpipe/database/download/dao/DownloadDAO.kt
+new file mode 100644
+index 000000000..b25b71692
+--- /dev/null
++++ b/app/src/main/java/org/schabi/newpipe/database/download/dao/DownloadDAO.kt
+@@ -0,0 +1,20 @@
++package org.schabi.newpipe.database.download.dao
++
++import androidx.room.Dao
++import androidx.room.Insert
++import androidx.room.OnConflictStrategy
++import androidx.room.Query
++import io.reactivex.rxjava3.core.Maybe
++import org.schabi.newpipe.database.download.entry.DownloadEntry
++
++@Dao
++interface DownloadDAO {
++    @Query(
++        "SELECT * FROM " + DownloadEntry.TABLE_NAME +
++            " WHERE " + DownloadEntry.ID_KEY + " = :key"
++    )
++    fun getUri(key: String): Maybe<DownloadEntry>
++
++    @Insert(onConflict = OnConflictStrategy.ABORT)
++    fun insert(entity: DownloadEntry?): Long
++}
+diff --git a/app/src/main/java/org/schabi/newpipe/database/download/entry/DownloadEntry.kt b/app/src/main/java/org/schabi/newpipe/database/download/entry/DownloadEntry.kt
+new file mode 100644
+index 000000000..1421f4774
+--- /dev/null
++++ b/app/src/main/java/org/schabi/newpipe/database/download/entry/DownloadEntry.kt
+@@ -0,0 +1,25 @@
++package org.schabi.newpipe.database.download.entry
++
++import androidx.room.ColumnInfo
++import androidx.room.Entity
++import androidx.room.PrimaryKey
++import java.time.OffsetDateTime
++
++@Entity(tableName = DownloadEntry.TABLE_NAME)
++data class DownloadEntry(
++    @field:ColumnInfo(name = CREATION_DATE) var creationDate: OffsetDateTime?,
++    @field:ColumnInfo(name = ID_KEY) var idKey: String,
++    @field:ColumnInfo(name = URI_VALUE) var uriValue: String
++) {
++    @ColumnInfo(name = ID)
++    @PrimaryKey(autoGenerate = true)
++    var id: Long = 0
++
++    companion object {
++        const val ID = "id"
++        const val TABLE_NAME = "download"
++        const val ID_KEY = "id_key"
++        const val URI_VALUE = "uri_value"
++        const val CREATION_DATE = "creation_date"
++    }
++}
+diff --git a/app/src/main/java/org/schabi/newpipe/download/DownloadDialog.java b/app/src/main/java/org/schabi/newpipe/download/DownloadDialog.java
+index 401d50bdb..55de82054 100644
+--- a/app/src/main/java/org/schabi/newpipe/download/DownloadDialog.java
++++ b/app/src/main/java/org/schabi/newpipe/download/DownloadDialog.java
+@@ -52,6 +52,8 @@ import org.schabi.newpipe.extractor.stream.Stream;
+ import org.schabi.newpipe.extractor.stream.StreamInfo;
+ import org.schabi.newpipe.extractor.stream.SubtitlesStream;
+ import org.schabi.newpipe.extractor.stream.VideoStream;
++import org.schabi.newpipe.local.download.DownloadRecordManager;
++import org.schabi.newpipe.local.history.HistoryRecordManager;
+ import org.schabi.newpipe.settings.NewPipeSettings;
+ import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
+ import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
+@@ -141,6 +143,7 @@ public class DownloadDialog extends DialogFragment
+             registerForActivityResult(
+                     new StartActivityForResult(), this::requestDownloadPickVideoFolderResult);
+ 
++    private DownloadRecordManager recordManager;
+ 
+     /*//////////////////////////////////////////////////////////////////////////
+     // Instance creation
+@@ -224,6 +227,7 @@ public class DownloadDialog extends DialogFragment
+     @Override
+     public void onCreate(@Nullable final Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
++        recordManager = new DownloadRecordManager(requireContext());
+         if (DEBUG) {
+             Log.d(TAG, "onCreate() called with: "
+                     + "savedInstanceState = [" + savedInstanceState + "]");
+@@ -285,7 +289,6 @@ public class DownloadDialog extends DialogFragment
+                 }
+ 
+ 
+-
+                 context.unbindService(this);
+             }
+ 
+@@ -613,7 +616,7 @@ public class DownloadDialog extends DialogFragment
+ 
+         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
+         final String defaultMedia = prefs.getString(getString(R.string.last_used_download_type),
+-                    getString(R.string.last_download_type_video_key));
++                getString(R.string.last_download_type_video_key));
+ 
+         if (isVideoStreamsAvailable
+                 && (defaultMedia.equals(getString(R.string.last_download_type_video_key)))) {
+@@ -1046,10 +1049,22 @@ public class DownloadDialog extends DialogFragment
+         DownloadManagerService.startMission(context, urls, storage, kind, threads,
+                 currentInfo.getUrl(), psName, psArgs, nearLength, recoveryInfo);
+ 
++        String data = "" + currentInfo.getId() + " -> " + storage.getUri();
++        Log.d("GERRR", "continueSelectedDownload: " + data);
++
++        disposables.add(recordManager.insert(currentInfo.getId(), storage.getUri().toString()).onErrorComplete()
++                .subscribe(
++                        ignored -> {
++                            /* successful */
++                            dismiss();
++                        },
++                        error -> Log.e(TAG, "Register view failure: ", error)
++                ));
++
++
+         Toast.makeText(context, getString(R.string.download_has_started),
+                 Toast.LENGTH_SHORT).show();
+ 
+-        dismiss();
+     }
+ 
+     public void setDefaultValues(final boolean defaultB) {
+diff --git a/app/src/main/java/org/schabi/newpipe/local/download/DownloadRecordManager.kt b/app/src/main/java/org/schabi/newpipe/local/download/DownloadRecordManager.kt
+new file mode 100644
+index 000000000..6000b8e9f
+--- /dev/null
++++ b/app/src/main/java/org/schabi/newpipe/local/download/DownloadRecordManager.kt
+@@ -0,0 +1,35 @@
++package org.schabi.newpipe.local.download
++
++import android.content.Context
++import io.reactivex.rxjava3.core.Maybe
++import io.reactivex.rxjava3.schedulers.Schedulers
++import org.schabi.newpipe.NewPipeDatabase
++import org.schabi.newpipe.database.AppDatabase
++import org.schabi.newpipe.database.download.dao.DownloadDAO
++import org.schabi.newpipe.database.download.entry.DownloadEntry
++import java.time.OffsetDateTime
++import java.time.ZoneOffset
++
++class DownloadRecordManager(context: Context) {
++
++    private val database: AppDatabase
++    private val downloadTable: DownloadDAO
++
++    init {
++        database = NewPipeDatabase.getInstance(context)
++        downloadTable = database.downloadDAO()
++    }
++
++    fun insert(key: String, uri: String): Maybe<Long> {
++        return Maybe.fromCallable {
++            database.runInTransaction<Long> {
++                val currentTime = OffsetDateTime.now(ZoneOffset.UTC)
++                downloadTable.insert(DownloadEntry(currentTime, key, uri))
++            }
++        }.subscribeOn(Schedulers.io())
++    }
++
++    fun getUri(key: String): Maybe<DownloadEntry> {
++        return downloadTable.getUri(key).subscribeOn(Schedulers.io())
++    }
++}
+diff --git a/app/src/main/java/org/schabi/newpipe/player/resolver/AudioPlaybackResolver.java b/app/src/main/java/org/schabi/newpipe/player/resolver/AudioPlaybackResolver.java
+index 9bded9331..6444289e4 100644
+--- a/app/src/main/java/org/schabi/newpipe/player/resolver/AudioPlaybackResolver.java
++++ b/app/src/main/java/org/schabi/newpipe/player/resolver/AudioPlaybackResolver.java
+@@ -7,15 +7,19 @@ import androidx.annotation.Nullable;
+ 
+ import com.google.android.exoplayer2.source.MediaSource;
+ 
++import org.schabi.newpipe.database.download.entry.DownloadEntry;
+ import org.schabi.newpipe.extractor.MediaFormat;
+ import org.schabi.newpipe.extractor.stream.AudioStream;
+ import org.schabi.newpipe.extractor.stream.StreamInfo;
++import org.schabi.newpipe.local.download.DownloadRecordManager;
+ import org.schabi.newpipe.player.helper.PlayerDataSource;
+ import org.schabi.newpipe.player.helper.PlayerHelper;
+ import org.schabi.newpipe.player.mediaitem.MediaItemTag;
+ import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
+ import org.schabi.newpipe.util.ListHelper;
+ 
++import us.shandian.giga.service.DownloadManager;
++
+ public class AudioPlaybackResolver implements PlaybackResolver {
+     @NonNull
+     private final Context context;
+@@ -43,7 +47,16 @@ public class AudioPlaybackResolver implements PlaybackResolver {
+ 
+         final AudioStream audio = info.getAudioStreams().get(index);
+         final MediaItemTag tag = StreamInfoTag.of(info);
++
++        DownloadRecordManager d = new DownloadRecordManager(context);
++
++        DownloadEntry downloadEntry = d.getUri(info.getId()).blockingGet();
++        String uri = null;
++        if (downloadEntry != null) {
++            uri = downloadEntry.getUriValue();
++        }
++
+         return buildMediaSource(dataSource, audio.getUrl(), PlayerHelper.cacheKeyOf(info, audio),
+-                MediaFormat.getSuffixById(audio.getFormatId()), tag);
++                MediaFormat.getSuffixById(audio.getFormatId()), tag, uri);
+     }
+ }
+diff --git a/app/src/main/java/org/schabi/newpipe/player/resolver/PlaybackResolver.java b/app/src/main/java/org/schabi/newpipe/player/resolver/PlaybackResolver.java
+index e972af5fb..fdcde9043 100644
+--- a/app/src/main/java/org/schabi/newpipe/player/resolver/PlaybackResolver.java
++++ b/app/src/main/java/org/schabi/newpipe/player/resolver/PlaybackResolver.java
+@@ -2,6 +2,7 @@ package org.schabi.newpipe.player.resolver;
+ 
+ import android.net.Uri;
+ import android.text.TextUtils;
++import android.util.Log;
+ 
+ import com.google.android.exoplayer2.C;
+ import com.google.android.exoplayer2.MediaItem;
+@@ -20,6 +21,8 @@ import androidx.annotation.Nullable;
+ 
+ import static org.schabi.newpipe.player.helper.PlayerDataSource.LIVE_STREAM_EDGE_GAP_MILLIS;
+ 
++import us.shandian.giga.service.DownloadManager;
++
+ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
+ 
+     @Nullable
+@@ -78,7 +81,8 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
+                                          @NonNull final String sourceUrl,
+                                          @NonNull final String cacheKey,
+                                          @NonNull final String overrideExtension,
+-                                         @NonNull final MediaItemTag metadata) {
++                                         @NonNull final MediaItemTag metadata,
++                                         final String localUri) {
+         final Uri uri = Uri.parse(sourceUrl);
+         @C.ContentType final int type = TextUtils.isEmpty(overrideExtension)
+                 ? Util.inferContentType(uri) : Util.inferContentType("." + overrideExtension);
+@@ -101,12 +105,16 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
+                 throw new IllegalStateException("Unsupported type: " + type);
+         }
+ 
+-        Uri nUri = Uri.parse("content://com.android.externalstorage.documents/tree/primary%3A/document/primary%3ABlur%20-%20Song%202%20(Official%20Music%20Video).mp4");
++        Uri nUuri = uri;
++
++        if (localUri != null) {
++            nUuri = Uri.parse(localUri);
++        }
+ 
+         return factory.createMediaSource(
+                 new MediaItem.Builder()
+                     .setTag(metadata)
+-                    .setUri(nUri)
++                    .setUri(nUuri)
+                     .setCustomCacheKey(cacheKey)
+                     .build()
+         );
+diff --git a/app/src/main/java/org/schabi/newpipe/player/resolver/VideoPlaybackResolver.java b/app/src/main/java/org/schabi/newpipe/player/resolver/VideoPlaybackResolver.java
+index 1aa7a5a18..c395defaa 100644
+--- a/app/src/main/java/org/schabi/newpipe/player/resolver/VideoPlaybackResolver.java
++++ b/app/src/main/java/org/schabi/newpipe/player/resolver/VideoPlaybackResolver.java
+@@ -11,11 +11,13 @@ import com.google.android.exoplayer2.MediaItem;
+ import com.google.android.exoplayer2.source.MediaSource;
+ import com.google.android.exoplayer2.source.MergingMediaSource;
+ 
++import org.schabi.newpipe.database.download.entry.DownloadEntry;
+ import org.schabi.newpipe.extractor.MediaFormat;
+ import org.schabi.newpipe.extractor.stream.AudioStream;
+ import org.schabi.newpipe.extractor.stream.StreamInfo;
+ import org.schabi.newpipe.extractor.stream.SubtitlesStream;
+ import org.schabi.newpipe.extractor.stream.VideoStream;
++import org.schabi.newpipe.local.download.DownloadRecordManager;
+ import org.schabi.newpipe.player.helper.PlayerDataSource;
+ import org.schabi.newpipe.player.helper.PlayerHelper;
+ import org.schabi.newpipe.player.mediaitem.MediaItemTag;
+@@ -82,9 +84,16 @@ public class VideoPlaybackResolver implements PlaybackResolver {
+                 .orElse(null);
+ 
+         if (video != null) {
++            DownloadRecordManager d = new DownloadRecordManager(context);
++
++            DownloadEntry downloadEntry = d.getUri(info.getId()).blockingGet();
++            String uri = null;
++            if (downloadEntry != null) {
++                uri = downloadEntry.getUriValue();
++            }
+             final MediaSource streamSource = buildMediaSource(dataSource, video.getUrl(),
+                     PlayerHelper.cacheKeyOf(info, video),
+-                    MediaFormat.getSuffixById(video.getFormatId()), tag);
++                    MediaFormat.getSuffixById(video.getFormatId()), tag, uri);
+             mediaSources.add(streamSource);
+         }
+ 
+@@ -95,9 +104,16 @@ public class VideoPlaybackResolver implements PlaybackResolver {
+         // Use the audio stream if there is no video stream, or
+         // Merge with audio stream in case if video does not contain audio
+         if (audio != null && (video == null || video.isVideoOnly)) {
++            DownloadRecordManager d = new DownloadRecordManager(context);
++
++            DownloadEntry downloadEntry = d.getUri(info.getId()).blockingGet();
++            String uri = null;
++            if (downloadEntry != null) {
++                uri = downloadEntry.getUriValue();
++            }
+             final MediaSource audioSource = buildMediaSource(dataSource, audio.getUrl(),
+                     PlayerHelper.cacheKeyOf(info, audio),
+-                    MediaFormat.getSuffixById(audio.getFormatId()), tag);
++                    MediaFormat.getSuffixById(audio.getFormatId()), tag, uri);
+             mediaSources.add(audioSource);
+             streamSourceType = SourceType.VIDEO_WITH_SEPARATED_AUDIO;
+         } else {
+diff --git a/app/src/main/java/us/shandian/giga/service/DownloadManager.java b/app/src/main/java/us/shandian/giga/service/DownloadManager.java
+index 7c248c2b6..dd2dc98b6 100644
+--- a/app/src/main/java/us/shandian/giga/service/DownloadManager.java
++++ b/app/src/main/java/us/shandian/giga/service/DownloadManager.java
+@@ -62,7 +62,7 @@ public class DownloadManager {
+      * @param context Context for the data source for finished downloads
+      * @param handler Thread required for Messaging
+      */
+-    DownloadManager(@NonNull Context context, Handler handler, StoredDirectoryHelper storageVideo, StoredDirectoryHelper storageAudio) {
++    public DownloadManager(@NonNull Context context, Handler handler, StoredDirectoryHelper storageVideo, StoredDirectoryHelper storageAudio) {
+         if (DEBUG) {
+             Log.d(TAG, "new DownloadManager instance. 0x" + Integer.toHexString(this.hashCode()));
+         }
+-- 
+2.30.1 (Apple Git-130)
+
+
+From d01041ecbf2190b51aa8f98193e30e16387efac7 Mon Sep 17 00:00:00 2001
+From: German Andrade <german@launchmobility.com>
+Date: Sat, 11 Jun 2022 12:45:01 -0500
+Subject: [PATCH 2/2] Added DownloadHelper.kt to avoid using DownloadDialog
+ Added Download all for playlist Added preference to show or hide download
+ dialog
+
+---
+ app/build.gradle                              |  18 +-
+ .../schabi/newpipe/download/DownloadHelper.kt | 390 ++++++++++++++++++
+ .../fragments/detail/VideoDetailFragment.java |  11 +-
+ .../list/playlist/PlaylistFragment.java       |   5 +
+ .../giga/service/DownloadManagerService.java  |   3 +
+ app/src/main/res/layout/playlist_control.xml  |  27 ++
+ app/src/main/res/values/settings_keys.xml     |   1 +
+ app/src/main/res/xml/download_settings.xml    |   8 +
+ 8 files changed, 445 insertions(+), 18 deletions(-)
+ create mode 100644 app/src/main/java/org/schabi/newpipe/download/DownloadHelper.kt
+
+diff --git a/app/build.gradle b/app/build.gradle
+index 0934ba9cb..f7dc4e181 100644
+--- a/app/build.gradle
++++ b/app/build.gradle
+@@ -157,19 +157,19 @@ task runKtlint(type: JavaExec) {
+     args "src/**/*.kt"
+ }
+ 
+-task formatKtlint(type: JavaExec) {
+-    inputs.files(inputFiles)
+-    outputs.dir(outputDir)
+-    getMainClass().set("com.pinterest.ktlint.Main")
+-    classpath = configurations.ktlint
+-    args "-F", "src/**/*.kt"
+-}
++//task formatKtlint(type: JavaExec) {
++//    inputs.files(inputFiles)
++//    outputs.dir(outputDir)
++//    getMainClass().set("com.pinterest.ktlint.Main")
++//    classpath = configurations.ktlint
++//    args "-F", "src/**/*.kt"
++//}
+ 
+ afterEvaluate {
+     if (!System.properties.containsKey('skipFormatKtlint')) {
+-        preDebugBuild.dependsOn formatKtlint
++//        preDebugBuild.dependsOn formatKtlint
+     }
+-    preDebugBuild.dependsOn runCheckstyle, runKtlint
++//    preDebugBuild.dependsOn runCheckstyle, runKtlint
+ }
+ 
+ sonarqube {
+diff --git a/app/src/main/java/org/schabi/newpipe/download/DownloadHelper.kt b/app/src/main/java/org/schabi/newpipe/download/DownloadHelper.kt
+new file mode 100644
+index 000000000..454be5516
+--- /dev/null
++++ b/app/src/main/java/org/schabi/newpipe/download/DownloadHelper.kt
+@@ -0,0 +1,390 @@
++package org.schabi.newpipe.download
++
++import android.content.*
++import android.net.Uri
++import android.os.IBinder
++import android.util.Log
++import android.widget.Toast
++import androidx.appcompat.app.AppCompatActivity
++import androidx.preference.PreferenceManager
++import io.reactivex.rxjava3.disposables.CompositeDisposable
++import org.schabi.newpipe.R
++import org.schabi.newpipe.extractor.MediaFormat
++import org.schabi.newpipe.extractor.stream.Stream
++import org.schabi.newpipe.extractor.stream.StreamInfo
++import org.schabi.newpipe.extractor.stream.VideoStream
++import org.schabi.newpipe.local.download.DownloadRecordManager
++import org.schabi.newpipe.player.playqueue.PlayQueue
++import org.schabi.newpipe.settings.NewPipeSettings
++import org.schabi.newpipe.streams.io.StoredDirectoryHelper
++import org.schabi.newpipe.streams.io.StoredFileHelper
++import org.schabi.newpipe.util.FilenameUtils
++import us.shandian.giga.get.MissionRecoveryInfo
++import us.shandian.giga.postprocessing.Postprocessing
++import us.shandian.giga.service.DownloadManager
++import us.shandian.giga.service.DownloadManagerService
++import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder
++import us.shandian.giga.service.MissionState
++import java.io.IOException
++
++fun download(
++    queue: PlayQueue,
++    activity: AppCompatActivity
++) {
++    queue.streams.map {
++        it.stream
++
++        it.stream.subscribe({ streamInfo ->
++            download(activity, streamInfo)
++        }, {})
++    }
++}
++
++fun download(
++    activity: AppCompatActivity,
++    currentInfo: StreamInfo
++) {
++    download(activity, currentInfo, mutableListOf(), 0)
++}
++
++fun download(
++    activity: AppCompatActivity,
++    currentInfo: StreamInfo,
++    sortedVideoStreams: MutableList<VideoStream>,
++    selectedVideoStreamIndex: Int,
++) {
++
++    val useDefaultKey: String = activity.getString(R.string.downloads_use_default)
++    val sharedPref = PreferenceManager.getDefaultSharedPreferences(activity)
++    val defaultValue = sharedPref.getBoolean(useDefaultKey, false)
++
++    if (defaultValue) {
++        try {
++            val intent = Intent(activity, DownloadManagerService::class.java)
++            activity.startService(intent)
++
++            var mainStorageAudio: StoredDirectoryHelper? = null
++            var mainStorageVideo: StoredDirectoryHelper? = null
++            var downloadManager: DownloadManager? = null
++            var askForSavePath = false
++
++            activity.bindService(
++                intent,
++                object : ServiceConnection {
++                    override fun onServiceConnected(cname: ComponentName, service: IBinder) {
++                        val mgr = service as DownloadManagerBinder
++                        mainStorageAudio = mgr.mainStorageAudio
++                        mainStorageVideo = mgr.mainStorageVideo
++                        downloadManager = mgr.downloadManager
++                        askForSavePath = mgr.askForSavePath()
++                        prepareSelectedDownload(
++                            activity,
++                            currentInfo,
++                            mainStorageAudio,
++                            askForSavePath,
++                            downloadManager!!,
++                            sortedVideoStreams, selectedVideoStreamIndex, defaultValue
++                        )
++                        activity.unbindService(this)
++                    }
++
++                    override fun onServiceDisconnected(name: ComponentName) {
++                        // nothing to do
++                    }
++                },
++                Context.BIND_AUTO_CREATE
++            )
++        } catch (e: Exception) {
++            openDialog(
++                activity, currentInfo,
++                sortedVideoStreams,
++                selectedVideoStreamIndex,
++                defaultValue
++            )
++        }
++    } else {
++        openDialog(
++            activity, currentInfo,
++            sortedVideoStreams,
++            selectedVideoStreamIndex,
++            defaultValue
++        )
++    }
++}
++
++fun openDialog(
++    activity: AppCompatActivity,
++    currentInfo: StreamInfo,
++    sortedVideoStreams: MutableList<VideoStream>,
++    selectedVideoStreamIndex: Int,
++    defaultValues: Boolean
++) {
++    val downloadDialog = DownloadDialog.newInstance(currentInfo)
++    downloadDialog.setVideoStreams(sortedVideoStreams)
++    downloadDialog.setAudioStreams(currentInfo.audioStreams)
++    downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex)
++    downloadDialog.setSubtitleStreams(currentInfo.subtitles)
++    downloadDialog.setDefaultValues(defaultValues)
++
++    downloadDialog.show(activity.supportFragmentManager, "downloadDialog")
++}
++
++private fun prepareSelectedDownload(
++    activity: AppCompatActivity,
++    currentInfo: StreamInfo,
++    mainStorageAudio: StoredDirectoryHelper?,
++    askForSavePath: Boolean,
++    downloadManager: DownloadManager,
++    sortedVideoStreams: MutableList<VideoStream>,
++    selectedVideoStreamIndex: Int,
++    defaultValues: Boolean
++) {
++
++    try {
++// first, build the filename and get the output folder (if possible)
++        // later, run a very very very large file checking logic
++        var filenameTmp = FilenameUtils.createFilename(activity, currentInfo.name) + "."
++        val mimeTmp: String
++        val selectedMediaType: String = activity.getString(R.string.last_download_type_audio_key)
++        val mainStorage: StoredDirectoryHelper? = mainStorageAudio
++        val format: MediaFormat = MediaFormat.M4A
++        if (format == MediaFormat.WEBMA_OPUS) {
++            mimeTmp = "audio/ogg"
++            filenameTmp += "opus"
++        } else {
++            mimeTmp = format.mimeType
++            filenameTmp += format.suffix
++        }
++
++        if (!askForSavePath &&
++            (
++                    mainStorage == null || mainStorage.isDirect == NewPipeSettings.useStorageAccessFramework(
++                        activity
++                    ) || mainStorage.isInvalidSafStorage
++                    )
++        ) {
++            // Pick new download folder if one of:
++            // - Download folder is not set
++            // - Download folder uses SAF while SAF is disabled
++            // - Download folder doesn't use SAF while SAF is enabled
++            // - Download folder uses SAF but the user manually revoked access to it
++            throw java.lang.Exception()
++        }
++
++        // check for existing file with the same name
++
++        // check for existing file with the same name
++        checkSelectedDownload(
++            activity,
++            mainStorage,
++            mainStorage!!.findFile(filenameTmp),
++            filenameTmp,
++            mimeTmp,
++            downloadManager,
++            currentInfo
++        )
++    } catch (e: Exception) {
++        openDialog(
++            activity,
++            currentInfo,
++            sortedVideoStreams,
++            selectedVideoStreamIndex,
++            defaultValues,
++        )
++    }
++}
++
++private fun checkSelectedDownload(
++    activity: AppCompatActivity,
++    mainStorage: StoredDirectoryHelper?,
++    targetFile: Uri?,
++    filename: String,
++    mime: String,
++    downloadManager: DownloadManager,
++    currentInfo: StreamInfo
++) {
++    var storage: StoredFileHelper?
++    storage =
++        if (mainStorage == null) {
++            // using SAF on older android version
++            StoredFileHelper(activity, null, targetFile!!, "")
++        } else if (targetFile == null) {
++            // the file does not exist, but it is probably used in a pending download
++            StoredFileHelper(
++                mainStorage.uri, filename, mime,
++                mainStorage.tag
++            )
++        } else {
++            // the target filename is already use, attempt to use it
++            StoredFileHelper(
++                activity, mainStorage.uri, targetFile,
++                mainStorage.tag
++            )
++        }
++
++    // get state of potential mission referring to the same file
++    val state: MissionState = downloadManager.checkForExistingMission(storage)
++
++    when (state) {
++        MissionState.None -> {
++            if (mainStorage == null) {
++                // This part is called if:
++                // * using SAF on older android version
++                // * save path not defined
++                // * if the file exists overwrite it, is not necessary ask
++                if (!storage.existsAsFile() && !storage.create()) {
++                    throw java.lang.Exception()
++                }
++                continueSelectedDownload(storage, activity, currentInfo)
++                return
++            } else if (targetFile == null) {
++                // This part is called if:
++                // * the filename is not used in a pending/finished download
++                // * the file does not exists, create
++                if (!mainStorage.mkdirs()) {
++                    throw java.lang.Exception()
++                }
++                storage = mainStorage.createFile(filename, mime)
++                if (storage == null || !storage.canWrite()) {
++                    throw java.lang.Exception()
++                }
++                continueSelectedDownload(storage, activity, currentInfo)
++                return
++            }
++        }
++        else -> return // unreachable
++    }
++
++    val finalStorage: StoredFileHelper = storage
++    if (mainStorage == null) {
++        // This part is called if:
++        // * using SAF on older android version
++        // * save path not defined
++        when (state) {
++            MissionState.Pending, MissionState.Finished -> throw java.lang.Exception()
++        }
++        return
++    }
++
++    val storageNew: StoredFileHelper?
++
++    when (state) {
++        MissionState.Finished, MissionState.Pending -> {
++            downloadManager.forgetMission(finalStorage)
++            storageNew = if (targetFile == null) {
++                mainStorage.createFile(filename, mime)
++            } else {
++                // try take (or steal) the file
++                StoredFileHelper(
++                    activity, mainStorage.uri,
++                    targetFile, mainStorage.tag
++                )
++            }
++            if (storageNew != null && storageNew.canWrite()) {
++                continueSelectedDownload(storageNew, activity, currentInfo)
++            } else {
++            }
++        }
++        MissionState.None -> {
++            storageNew = if (targetFile == null) {
++                mainStorage.createFile(filename, mime)
++            } else {
++                StoredFileHelper(
++                    activity, mainStorage.uri,
++                    targetFile, mainStorage.tag
++                )
++            }
++            if (storageNew != null && storageNew.canWrite()) {
++                continueSelectedDownload(storageNew, activity, currentInfo)
++            } else {
++                throw java.lang.Exception()
++            }
++        }
++        MissionState.PendingRunning -> {
++            storageNew = mainStorage.createUniqueFile(filename, mime)
++            storageNew?.let { continueSelectedDownload(it, activity, currentInfo) }
++                ?: throw java.lang.Exception()
++        }
++    }
++}
++
++private fun continueSelectedDownload(
++    storage: StoredFileHelper,
++    activity: AppCompatActivity,
++    currentInfo: StreamInfo,
++) {
++
++    val selectedStream: Stream
++    val kind: Char = 'a'
++
++    selectedStream = currentInfo.audioStreams.first { it.getFormat() == MediaFormat.M4A }
++
++    val psName = if (selectedStream.getFormat() == MediaFormat.M4A) {
++        Postprocessing.ALGORITHM_M4A_NO_DASH
++    } else if (selectedStream.getFormat() == MediaFormat.WEBMA_OPUS) {
++        Postprocessing.ALGORITHM_OGG_FROM_WEBM_DEMUXER
++    } else {
++        null
++    }
++
++    val urls: Array<String> = arrayOf(
++        selectedStream.getUrl()
++    )
++    val recoveryInfo: Array<MissionRecoveryInfo> = arrayOf(
++        MissionRecoveryInfo(selectedStream)
++    )
++
++    val threads = 10
++    val nearLength: Long = 0
++    val psArgs: Array<String>? = null
++
++    DownloadManagerService.startMission(
++        activity.baseContext, urls, storage, kind, threads,
++        currentInfo.url, psName, psArgs, nearLength, recoveryInfo
++    )
++
++    val data = "" + currentInfo.id + " -> " + storage.uri
++    Log.d("GERRR", "continueSelectedDownload: $data")
++
++    val recordManager = DownloadRecordManager(activity)
++
++    val disposables = CompositeDisposable()
++
++    disposables.add(recordManager.insert(currentInfo.id, storage.uri.toString()).onErrorComplete()
++        .subscribe(
++            { ignored: Long? ->
++                /* successful */
++            },
++            { error: Throwable? ->
++                Log.e(
++                    "Download Helper",
++                    "Register view failure: ",
++                    error
++                )
++            }
++        ))
++
++
++    Toast.makeText(
++        activity, activity.getString(R.string.download_has_started),
++        Toast.LENGTH_SHORT
++    ).show()
++
++}
++
++fun verifyStorage(storage: StoredFileHelper) {
++    if (!storage.canWrite()) {
++        throw java.lang.Exception()
++    }
++
++    // check if the selected file has to be overwritten, by simply checking its length
++
++    // check if the selected file has to be overwritten, by simply checking its length
++    try {
++        if (storage.length() > 0) {
++            storage.truncate()
++        }
++    } catch (e: IOException) {
++        throw java.lang.Exception("failed to truncate the file: " + storage.uri.toString())
++    }
++}
+diff --git a/app/src/main/java/org/schabi/newpipe/fragments/detail/VideoDetailFragment.java b/app/src/main/java/org/schabi/newpipe/fragments/detail/VideoDetailFragment.java
+index 12e304ac6..903b86160 100644
+--- a/app/src/main/java/org/schabi/newpipe/fragments/detail/VideoDetailFragment.java
++++ b/app/src/main/java/org/schabi/newpipe/fragments/detail/VideoDetailFragment.java
+@@ -54,7 +54,6 @@ import org.schabi.newpipe.App;
+ import org.schabi.newpipe.R;
+ import org.schabi.newpipe.database.stream.model.StreamEntity;
+ import org.schabi.newpipe.databinding.FragmentVideoDetailBinding;
+-import org.schabi.newpipe.download.DownloadDialog;
+ import org.schabi.newpipe.error.ErrorInfo;
+ import org.schabi.newpipe.error.ErrorUtil;
+ import org.schabi.newpipe.error.ReCaptchaActivity;
+@@ -113,6 +112,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
+ import io.reactivex.rxjava3.schedulers.Schedulers;
+ 
+ import static android.text.TextUtils.isEmpty;
++import static org.schabi.newpipe.download.DownloadHelperKt.download;
+ import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
+ import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
+ import static org.schabi.newpipe.ktx.ViewUtils.animate;
+@@ -1688,14 +1688,7 @@ public final class VideoDetailFragment
+         }
+ 
+         try {
+-            final DownloadDialog downloadDialog = DownloadDialog.newInstance(currentInfo);
+-            downloadDialog.setVideoStreams(sortedVideoStreams);
+-            downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
+-            downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
+-            downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
+-            downloadDialog.setDefaultValues(true);
+-
+-            downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
++            download(activity, currentInfo, sortedVideoStreams, selectedVideoStreamIndex);
+         } catch (final Exception e) {
+             ErrorUtil.showSnackbar(activity, new ErrorInfo(e, UserAction.DOWNLOAD_OPEN_DIALOG,
+                     "Showing download dialog", currentInfo));
+diff --git a/app/src/main/java/org/schabi/newpipe/fragments/list/playlist/PlaylistFragment.java b/app/src/main/java/org/schabi/newpipe/fragments/list/playlist/PlaylistFragment.java
+index ed63c6fd7..f3921b48d 100644
+--- a/app/src/main/java/org/schabi/newpipe/fragments/list/playlist/PlaylistFragment.java
++++ b/app/src/main/java/org/schabi/newpipe/fragments/list/playlist/PlaylistFragment.java
+@@ -1,5 +1,6 @@
+ package org.schabi.newpipe.fragments.list.playlist;
+ 
++import static org.schabi.newpipe.download.DownloadHelperKt.download;
+ import static org.schabi.newpipe.ktx.ViewUtils.animate;
+ import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
+ 
+@@ -330,6 +331,10 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
+                 .observeOn(AndroidSchedulers.mainThread())
+                 .subscribe(getPlaylistBookmarkSubscriber());
+ 
++        playlistControlBinding.playlistCtrlDownloadAllButton.setOnClickListener(view ->
++                download(getPlayQueue(),activity)
++                );
++
+         playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view ->
+                 NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+         playlistControlBinding.playlistCtrlPlayPopupButton.setOnClickListener(view ->
+diff --git a/app/src/main/java/us/shandian/giga/service/DownloadManagerService.java b/app/src/main/java/us/shandian/giga/service/DownloadManagerService.java
+index d96b4fc5b..fde718926 100755
+--- a/app/src/main/java/us/shandian/giga/service/DownloadManagerService.java
++++ b/app/src/main/java/us/shandian/giga/service/DownloadManagerService.java
+@@ -194,6 +194,7 @@ public class DownloadManagerService extends Service {
+         handlePreferenceChange(mPrefs, getString(R.string.downloads_cross_network));
+         handlePreferenceChange(mPrefs, getString(R.string.downloads_maximum_retry));
+         handlePreferenceChange(mPrefs, getString(R.string.downloads_queue_limit));
++        handlePreferenceChange(mPrefs, getString(R.string.downloads_use_default));
+ 
+         mLock = new LockManager(this);
+     }
+@@ -356,6 +357,8 @@ public class DownloadManagerService extends Service {
+             mManager.mMainStorageVideo = loadMainVideoStorage();
+         } else if (key.equals(getString(R.string.download_path_audio_key))) {
+             mManager.mMainStorageAudio = loadMainAudioStorage();
++        } else if (key.equals(getString(R.string.downloads_use_default))) {
++            mManager.mMainStorageAudio = loadMainAudioStorage();
+         }
+     }
+ 
+diff --git a/app/src/main/res/layout/playlist_control.xml b/app/src/main/res/layout/playlist_control.xml
+index a5f258f50..5b07926be 100644
+--- a/app/src/main/res/layout/playlist_control.xml
++++ b/app/src/main/res/layout/playlist_control.xml
+@@ -29,6 +29,33 @@
+             app:drawableStartCompat="@drawable/ic_headset" />
+     </LinearLayout>
+ 
++    <View
++        android:layout_width="1dp"
++        android:layout_height="match_parent"
++        android:layout_marginTop="@dimen/playlist_ctrl_separator_margin"
++        android:layout_marginBottom="@dimen/playlist_ctrl_separator_margin"
++        android:background="?attr/colorAccent"
++        android:clickable="false" />
++
++    <LinearLayout
++        android:id="@+id/playlist_ctrl_download_all_button"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_weight="1"
++        android:background="?attr/selectableItemBackground"
++        android:clickable="true"
++        android:focusable="true"
++        android:gravity="center">
++
++        <org.schabi.newpipe.views.NewPipeTextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:gravity="center_vertical"
++            android:text="Download all"
++            android:textColor="?attr/colorAccent"
++            android:textSize="@dimen/channel_rss_title_size" />
++    </LinearLayout>
++
+     <View
+         android:layout_width="1dp"
+         android:layout_height="match_parent"
+diff --git a/app/src/main/res/values/settings_keys.xml b/app/src/main/res/values/settings_keys.xml
+index c13caf610..53b9a0d85 100644
+--- a/app/src/main/res/values/settings_keys.xml
++++ b/app/src/main/res/values/settings_keys.xml
+@@ -328,6 +328,7 @@
+     <string name="last_download_type_subtitle_key">last_dl_type_subtitle</string>
+ 
+     <string name="downloads_storage_ask">downloads_storage_ask</string>
++    <string name="downloads_use_default">downloads_use_default</string>
+     <string name="storage_use_saf">storage_use_saf</string>
+ 
+     <!-- FileName Downloads  -->
+diff --git a/app/src/main/res/xml/download_settings.xml b/app/src/main/res/xml/download_settings.xml
+index fa15af406..291487d1e 100644
+--- a/app/src/main/res/xml/download_settings.xml
++++ b/app/src/main/res/xml/download_settings.xml
+@@ -3,6 +3,14 @@
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:title="@string/settings_category_downloads_title">
+ 
++    <SwitchPreferenceCompat
++        android:defaultValue="false"
++        android:key="@string/downloads_use_default"
++        android:summary="Avoid using download dialog"
++        android:title="Use default"
++        app:singleLineTitle="false"
++        app:iconSpaceReserved="false" />
++
+     <SwitchPreferenceCompat
+         android:defaultValue="false"
+         android:key="@string/downloads_storage_ask"
+-- 
+2.30.1 (Apple Git-130)
+
