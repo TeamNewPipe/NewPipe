@@ -157,19 +157,19 @@ task runKtlint(type: JavaExec) {
     args "src/**/*.kt"
 }
 
-task formatKtlint(type: JavaExec) {
-    inputs.files(inputFiles)
-    outputs.dir(outputDir)
-    getMainClass().set("com.pinterest.ktlint.Main")
-    classpath = configurations.ktlint
-    args "-F", "src/**/*.kt"
-}
+//task formatKtlint(type: JavaExec) {
+//    inputs.files(inputFiles)
+//    outputs.dir(outputDir)
+//    getMainClass().set("com.pinterest.ktlint.Main")
+//    classpath = configurations.ktlint
+//    args "-F", "src/**/*.kt"
+//}
 
 afterEvaluate {
     if (!System.properties.containsKey('skipFormatKtlint')) {
-        preDebugBuild.dependsOn formatKtlint
+//        preDebugBuild.dependsOn formatKtlint
     }
-    preDebugBuild.dependsOn runCheckstyle, runKtlint
+//    preDebugBuild.dependsOn runCheckstyle, runKtlint
 }
 
 sonarqube {

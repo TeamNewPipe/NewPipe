@@ -1,5 +1,6 @@
 package org.schabi.newpipe.fragments.list.playlist;
 
+import static org.schabi.newpipe.download.DownloadHelperKt.download;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 
@@ -329,6 +330,10 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                 .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistBookmarkSubscriber());
+
+        playlistControlBinding.playlistCtrlDownloadAllButton.setOnClickListener(view ->
+                download(getPlayQueue(),activity)
+                );
 
         playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view ->
                 NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));

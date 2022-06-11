@@ -54,7 +54,6 @@ import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.FragmentVideoDetailBinding;
-import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.ReCaptchaActivity;
@@ -113,6 +112,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static android.text.TextUtils.isEmpty;
+import static org.schabi.newpipe.download.DownloadHelperKt.download;
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
 import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
@@ -1688,14 +1688,7 @@ public final class VideoDetailFragment
         }
 
         try {
-            final DownloadDialog downloadDialog = DownloadDialog.newInstance(currentInfo);
-            downloadDialog.setVideoStreams(sortedVideoStreams);
-            downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
-            downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
-            downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
-            downloadDialog.setDefaultValues(true);
-
-            downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
+            download(activity, currentInfo, sortedVideoStreams, selectedVideoStreamIndex);
         } catch (final Exception e) {
             ErrorUtil.showSnackbar(activity, new ErrorInfo(e, UserAction.DOWNLOAD_OPEN_DIALOG,
                     "Showing download dialog", currentInfo));

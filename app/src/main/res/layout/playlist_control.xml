@@ -38,6 +38,33 @@
         android:clickable="false" />
 
     <LinearLayout
+        android:id="@+id/playlist_ctrl_download_all_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center">
+
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Download all"
+            android:textColor="?attr/colorAccent"
+            android:textSize="@dimen/channel_rss_title_size" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/playlist_ctrl_separator_margin"
+        android:layout_marginBottom="@dimen/playlist_ctrl_separator_margin"
+        android:background="?attr/colorAccent"
+        android:clickable="false" />
+
+    <LinearLayout
         android:id="@+id/playlist_ctrl_play_all_button"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

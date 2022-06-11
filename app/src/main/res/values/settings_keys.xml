@@ -328,6 +328,7 @@
     <string name="last_download_type_subtitle_key">last_dl_type_subtitle</string>
 
     <string name="downloads_storage_ask">downloads_storage_ask</string>
+    <string name="downloads_use_default">downloads_use_default</string>
     <string name="storage_use_saf">storage_use_saf</string>
 
     <!-- FileName Downloads  -->
