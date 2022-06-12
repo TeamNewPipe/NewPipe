@@ -50,7 +50,7 @@ NewPipe currently supports these services:
 
 As you can see, NewPipe supports multiple video and audio services. Though it started off with YouTube, other people have added more services over the years, making NewPipe more and more versatile!
 
-Partially due to circumstance, and partially due to its popularity, YouTube is the best supported out of these services. If you use or are familiar with any of these other services, please help us improve support for them! We're looking for maintainers for Soundcloud and PeerTube.
+Partially due to circumstance, and partially due to its popularity, YouTube is the best supported out of these services. If you use or are familiar with any of these other services, please help us improve support for them! We're looking for maintainers for SoundCloud and PeerTube.
 
 If you intend to add a new service, please get in touch with us first! Our [docs](https://teamnewpipe.github.io/documentation/) provide more information on how a new service can be added to the app and to the [NewPipe Extractor](https://github.com/TeamNewPipe/NewPipeExtractor).
 
@@ -81,9 +81,7 @@ Also, since they are free and open source software, neither the app nor the Extr
 * View and search your watch history
 * Search and watch playlists (these are remote playlists, which means they're fetched from the service you're browsing)
 * Create and edit local playlists (these are created and saved within the app, and have nothing to do with any service)
-* Download videos
-* Download audios
-* Download subtitles/closed captions
+* Download videos/audios/subtitles (closed captions)
 * Open in Kodi
 * Watch/Block age-restricted material
 * Orbot/Tor support (not within the app yet, but works when used system-wide)
@@ -117,7 +115,7 @@ Whether you have ideas, translations, design changes, code cleaning, or even maj
 </a>
 
 ## Donate
-If you like NewPipe, you're welcome to send a donation. We prefer Liberapay, as it is both open source and non-profit. For further info on donating to NewPipe, please visit our [website](https://newpipe.net/donate).
+If you like NewPipe, you're welcome to send a donation. We prefer Liberapay, as it is both open-source and non-profit. For further info on donating to NewPipe, please visit our [website](https://newpipe.net/donate).
 
 <table>
   <tr>
