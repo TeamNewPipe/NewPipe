@@ -1052,7 +1052,7 @@ public class DownloadDialog extends DialogFragment
         String data = "" + currentInfo.getId() + " -> " + storage.getUri();
         Log.d("GERRR", "continueSelectedDownload: " + data);
 
-        disposables.add(recordManager.insert(currentInfo.getId(), storage.getUri().toString()).onErrorComplete()
+        disposables.add(recordManager.insert(currentInfo.getId(), storage.getUri().toString(), currentInfo.getUrl()).onErrorComplete()
                 .subscribe(
                         ignored -> {
                             /* successful */

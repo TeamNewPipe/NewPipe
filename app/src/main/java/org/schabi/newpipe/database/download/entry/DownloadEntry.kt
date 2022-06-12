@@ -9,6 +9,7 @@ import java.time.OffsetDateTime
 data class DownloadEntry(
     @field:ColumnInfo(name = CREATION_DATE) var creationDate: OffsetDateTime?,
     @field:ColumnInfo(name = ID_KEY) var idKey: String,
+    @field:ColumnInfo(name = URL_KEY) var url: String,
     @field:ColumnInfo(name = URI_VALUE) var uriValue: String
 ) {
     @ColumnInfo(name = ID)
@@ -19,6 +20,7 @@ data class DownloadEntry(
         const val ID = "id"
         const val TABLE_NAME = "download"
         const val ID_KEY = "id_key"
+        const val URL_KEY = "url_key"
         const val URI_VALUE = "uri_value"
         const val CREATION_DATE = "creation_date"
     }

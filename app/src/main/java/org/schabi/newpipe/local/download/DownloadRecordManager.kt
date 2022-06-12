@@ -20,11 +20,11 @@ class DownloadRecordManager(context: Context) {
         downloadTable = database.downloadDAO()
     }
 
-    fun insert(key: String, uri: String): Maybe<Long> {
+    fun insert(key: String, uri: String, url: String): Maybe<Long> {
         return Maybe.fromCallable {
             database.runInTransaction<Long> {
                 val currentTime = OffsetDateTime.now(ZoneOffset.UTC)
-                downloadTable.insert(DownloadEntry(currentTime, key, uri))
+                downloadTable.insert(DownloadEntry(currentTime, key, url, uri))
             }
         }.subscribeOn(Schedulers.io())
     }
@@ -32,4 +32,9 @@ class DownloadRecordManager(context: Context) {
     fun getUri(key: String): Maybe<DownloadEntry> {
         return downloadTable.getUri(key).subscribeOn(Schedulers.io())
     }
+
+    fun getUriFromUrl(url: String): Maybe<DownloadEntry> {
+        return downloadTable.getUriFromUrl(url).subscribeOn(Schedulers.io())
+    }
+
 }

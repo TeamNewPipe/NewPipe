@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player.playback;
 
+import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
 
@@ -11,7 +12,13 @@ import com.google.android.exoplayer2.source.MediaSource;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.schabi.newpipe.database.download.entry.DownloadEntry;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.services.youtube.ItagItem;
+import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamType;
+import org.schabi.newpipe.local.download.DownloadRecordManager;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediasource.FailedMediaSource;
 import org.schabi.newpipe.player.mediasource.LoadedMediaSource;
@@ -25,8 +32,10 @@ import org.schabi.newpipe.player.playqueue.events.RemoveEvent;
 import org.schabi.newpipe.player.playqueue.events.ReorderEvent;
 import org.schabi.newpipe.util.ServiceHelper;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -40,6 +49,8 @@ import io.reactivex.rxjava3.internal.subscriptions.EmptySubscription;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 
+import static org.schabi.newpipe.extractor.MediaFormat.M4A;
+import static org.schabi.newpipe.extractor.services.youtube.ItagItem.ItagType.AUDIO;
 import static org.schabi.newpipe.player.mediasource.FailedMediaSource.MediaSourceResolutionException;
 import static org.schabi.newpipe.player.mediasource.FailedMediaSource.StreamInfoLoadException;
 import static org.schabi.newpipe.player.playqueue.PlayQueue.DEBUG;
@@ -126,11 +137,19 @@ public class MediaSourceManager {
 
     private final Handler removeMediaSourceHandler = new Handler();
 
+    @NonNull
+    Context context;
+
     public MediaSourceManager(@NonNull final PlaybackListener listener,
-                              @NonNull final PlayQueue playQueue) {
+                              @NonNull final PlayQueue playQueue,
+                              @NonNull Context context
+    ) {
         this(listener, playQueue, 400L,
                 /*playbackNearEndGapMillis=*/TimeUnit.MILLISECONDS.convert(30, TimeUnit.SECONDS),
                 /*progressUpdateIntervalMillis*/TimeUnit.MILLISECONDS.convert(2, TimeUnit.SECONDS));
+
+        this.context = context;
+
     }
 
     private MediaSourceManager(@NonNull final PlaybackListener listener,
@@ -412,6 +431,28 @@ public class MediaSourceManager {
             }
 
             loadingItems.add(item);
+
+            // try with local first
+
+            DownloadRecordManager d = new DownloadRecordManager(context);
+            DownloadEntry downloadEntry = d.getUriFromUrl(item.getUrl()).blockingGet();
+            if (downloadEntry != null) {
+                String uri = downloadEntry.getUriValue();
+
+                StreamInfo streamInfo = new StreamInfo(0, uri, uri, StreamType.AUDIO_STREAM, "0" , item.getTitle(), 1000);
+                streamInfo.setThumbnailUrl(item.getThumbnailUrl());
+                List<AudioStream> audioStreams = new ArrayList<>();
+                audioStreams.add(new AudioStream(uri, new ItagItem(140, AUDIO, M4A, 128)));
+                streamInfo.setAudioStreams(audioStreams);
+                final MediaSource source = playbackListener.sourceOf(item, streamInfo);
+                final MediaItemTag tag = MediaItemTag.from(source.getMediaItem()).get();
+
+                LoadedMediaSource loadedMediaSource = new LoadedMediaSource(source, tag, item, Long.MAX_VALUE);
+
+                onMediaSourceReceived(item, loadedMediaSource);
+                return;
+            }
+
             final Disposable loader = getLoadedMediaSource(item)
                     .observeOn(AndroidSchedulers.mainThread())
                     /* No exception handling since getLoadedMediaSource guarantees nonnull return */

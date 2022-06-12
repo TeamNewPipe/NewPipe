@@ -350,7 +350,7 @@ private fun continueSelectedDownload(
 
     val disposables = CompositeDisposable()
 
-    disposables.add(recordManager.insert(currentInfo.id, storage.uri.toString()).onErrorComplete()
+    disposables.add(recordManager.insert(currentInfo.id, storage.uri.toString(), currentInfo.url).onErrorComplete()
         .subscribe(
             { ignored: Long? ->
                 /* successful */

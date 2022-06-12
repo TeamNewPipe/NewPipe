@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.playlist;
 
+import static org.schabi.newpipe.download.DownloadHelperKt.download;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
@@ -482,6 +483,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             itemsListState = null;
         }
         setVideoCount(itemListAdapter.getItemsList().size());
+
+        playlistControlBinding.playlistCtrlDownloadAllButton.setOnClickListener(view ->
+                download(getPlayQueue(), activity)
+        );
 
         playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view ->
                 NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));

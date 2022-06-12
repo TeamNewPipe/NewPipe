@@ -75,8 +75,7 @@ public interface MediaItemTag {
 
     @NonNull
     default MediaItem asMediaItem() {
-        Uri uri = Uri.parse("content://com.android.externalstorage.documents/tree/primary%3A/document/primary%3ABlur%20-%20Song%202%20(Official%20Music%20Video).mp4");
-        Uri uriD = Uri.parse(getStreamUrl());
+        Uri uri = Uri.parse(getStreamUrl());
         final MediaMetadata mediaMetadata = new MediaMetadata.Builder()
                 .setMediaUri(uri)
                 .setArtworkUri(Uri.parse(getThumbnailUrl()))

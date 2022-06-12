@@ -184,7 +184,7 @@ public final class Migrations {
     public static final Migration MIGRATION_5_6 = new Migration(DB_VER_5, DB_VER_6) {
         @Override
         public void migrate(@NonNull final SupportSQLiteDatabase database) {
-            database.execSQL("CREATE TABLE IF NOT EXISTS `download` (`id_key` TEXT NOT NULL, `creation_date` INTEGER, `id` INTEGER NOT NULL, `uri_value` TEXT NOT NULL, PRIMARY KEY(`id`))");
+            database.execSQL("CREATE TABLE IF NOT EXISTS `download` (`id_key` TEXT NOT NULL, `url_key` TEXT NOT NULL, `creation_date` INTEGER, `id` INTEGER NOT NULL, `uri_value` TEXT NOT NULL, PRIMARY KEY(`id`))");
         }
     };
 

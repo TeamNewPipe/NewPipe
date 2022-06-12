@@ -990,7 +990,9 @@ public final class Player implements
         }
 
         if (playQueue != null) {
-            playQueueManager = new MediaSourceManager(this, playQueue);
+            // TODO how to remove context from MediaSourceManager?
+            // DI?
+            playQueueManager = new MediaSourceManager(this, playQueue, context);
         }
     }
 

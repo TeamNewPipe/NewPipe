@@ -332,8 +332,8 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                 .subscribe(getPlaylistBookmarkSubscriber());
 
         playlistControlBinding.playlistCtrlDownloadAllButton.setOnClickListener(view ->
-                download(getPlayQueue(),activity)
-                );
+                download(getPlayQueue(), activity)
+        );
 
         playlistControlBinding.playlistCtrlPlayAllButton.setOnClickListener(view ->
                 NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));

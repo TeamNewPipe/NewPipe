@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 6,
-    "identityHash": "0ed5c359372ff3efa8db64331d34b7a4",
+    "identityHash": "f4a46f9a456b4f42d68d3b7b2257030e",
     "entities": [
       {
         "tableName": "subscriptions",
@@ -723,7 +723,7 @@
       },
       {
         "tableName": "download",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`creation_date` INTEGER, `id_key` TEXT NOT NULL, `uri_value` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`creation_date` INTEGER, `id_key` TEXT NOT NULL, `url_key` TEXT NOT NULL, `uri_value` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
         "fields": [
           {
             "fieldPath": "creationDate",
@@ -734,6 +734,12 @@
           {
             "fieldPath": "idKey",
             "columnName": "id_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url_key",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -763,7 +769,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0ed5c359372ff3efa8db64331d34b7a4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f4a46f9a456b4f42d68d3b7b2257030e')"
     ]
   }
 }

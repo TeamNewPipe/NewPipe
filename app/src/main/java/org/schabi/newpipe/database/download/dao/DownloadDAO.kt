@@ -15,6 +15,12 @@ interface DownloadDAO {
     )
     fun getUri(key: String): Maybe<DownloadEntry>
 
+    @Query(
+        "SELECT * FROM " + DownloadEntry.TABLE_NAME +
+            " WHERE " + DownloadEntry.URL_KEY + " = :url"
+    )
+    fun getUriFromUrl(url: String): Maybe<DownloadEntry>
+
     @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insert(entity: DownloadEntry?): Long
 }
