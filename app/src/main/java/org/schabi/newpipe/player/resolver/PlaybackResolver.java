@@ -18,8 +18,6 @@ import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.dash.manifest.DashManifest;
 import com.google.android.exoplayer2.source.dash.manifest.DashManifestParser;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
-import com.google.android.exoplayer2.source.hls.playlist.HlsPlaylist;
-import com.google.android.exoplayer2.source.hls.playlist.HlsPlaylistParser;
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.source.smoothstreaming.manifest.SsManifest;
 import com.google.android.exoplayer2.source.smoothstreaming.manifest.SsManifestParser;
@@ -37,7 +35,7 @@ import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.player.helper.NonUriHlsPlaylistParserFactory;
+import org.schabi.newpipe.player.datasource.NonUriHlsDataSourceFactory;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
@@ -340,27 +338,17 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                             .setCustomCacheKey(cacheKey)
                             .build());
         } else {
-            String baseUrl = stream.getManifestUrl();
-            if (baseUrl == null) {
-                baseUrl = "";
+            final NonUriHlsDataSourceFactory.Builder hlsDataSourceFactoryBuilder =
+                    new NonUriHlsDataSourceFactory.Builder();
+            hlsDataSourceFactoryBuilder.setPlaylistString(stream.getContent());
+            String manifestUrl = stream.getManifestUrl();
+            if (manifestUrl == null) {
+                manifestUrl = "";
             }
-
-            final Uri uri = Uri.parse(baseUrl);
-
-            final HlsPlaylist hlsPlaylist;
-            try {
-                final ByteArrayInputStream hlsManifestInput = new ByteArrayInputStream(
-                        stream.getContent().getBytes(StandardCharsets.UTF_8));
-                hlsPlaylist = new HlsPlaylistParser().parse(uri, hlsManifestInput);
-            } catch (final IOException e) {
-                throw new ResolverException("Error when parsing manual HLS manifest", e);
-            }
-
-            return dataSource.getHlsMediaSourceFactory(
-                    new NonUriHlsPlaylistParserFactory(hlsPlaylist))
+            return dataSource.getHlsMediaSourceFactory(hlsDataSourceFactoryBuilder)
                     .createMediaSource(new MediaItem.Builder()
                             .setTag(metadata)
-                            .setUri(Uri.parse(stream.getContent()))
+                            .setUri(Uri.parse(manifestUrl))
                             .setCustomCacheKey(cacheKey)
                             .build());
         }

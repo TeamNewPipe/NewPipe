@@ -12,7 +12,6 @@ import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.source.hls.playlist.DefaultHlsPlaylistTracker;
-import com.google.android.exoplayer2.source.hls.playlist.HlsPlaylistParserFactory;
 import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource;
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.upstream.DataSource;
@@ -26,6 +25,7 @@ import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeOtfDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubePostLiveStreamDvrDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeProgressiveDashManifestCreator;
+import org.schabi.newpipe.player.datasource.NonUriHlsDataSourceFactory;
 import org.schabi.newpipe.player.datasource.YoutubeHttpDataSource;
 
 import java.io.File;
@@ -132,10 +132,13 @@ public class PlayerDataSource {
 
     //region Generic media source factories
     public HlsMediaSource.Factory getHlsMediaSourceFactory(
-            @Nullable final HlsPlaylistParserFactory hlsPlaylistParserFactory) {
-        final HlsMediaSource.Factory factory = new HlsMediaSource.Factory(cacheDataSourceFactory);
-        factory.setPlaylistParserFactory(hlsPlaylistParserFactory);
-        return factory;
+            @Nullable final NonUriHlsDataSourceFactory.Builder hlsDataSourceFactoryBuilder) {
+        if (hlsDataSourceFactoryBuilder != null) {
+            hlsDataSourceFactoryBuilder.setDataSourceFactory(cacheDataSourceFactory);
+            return new HlsMediaSource.Factory(hlsDataSourceFactoryBuilder.build());
+        }
+
+        return new HlsMediaSource.Factory(cacheDataSourceFactory);
     }
 
     public DashMediaSource.Factory getDashMediaSourceFactory() {
