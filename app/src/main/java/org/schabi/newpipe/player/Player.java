@@ -4234,10 +4234,7 @@ public final class Player implements
         if (playQueueManagerReloadingNeeded(sourceType, info, getVideoRendererIndex())) {
             reloadPlayQueueManager();
         } else {
-            final StreamType streamType = info.getStreamType();
-            if (streamType == StreamType.AUDIO_STREAM
-                    || streamType == StreamType.AUDIO_LIVE_STREAM
-                    || streamType == StreamType.POST_LIVE_AUDIO_STREAM) {
+            if (StreamTypeUtil.isAudio(info.getStreamType())) {
                 // Nothing to do more than setting the recovery position
                 setRecovery();
                 return;
@@ -4296,21 +4293,17 @@ public final class Player implements
                                                     @NonNull final StreamInfo streamInfo,
                                                     final int videoRendererIndex) {
         final StreamType streamType = streamInfo.getStreamType();
+        final boolean isStreamTypeAudio = StreamTypeUtil.isAudio(streamType);
 
-        if (videoRendererIndex == RENDERER_UNAVAILABLE && streamType != StreamType.AUDIO_STREAM
-                && streamType != StreamType.AUDIO_LIVE_STREAM
-                && streamType != StreamType.POST_LIVE_AUDIO_STREAM) {
+        if (videoRendererIndex == RENDERER_UNAVAILABLE && !isStreamTypeAudio) {
             return true;
         }
 
         // The content is an audio stream, an audio live stream, or a live stream with a live
         // source: it's not needed to reload the play queue manager because the stream source will
         // be the same
-        if ((streamType == StreamType.AUDIO_STREAM
-                || streamType == StreamType.POST_LIVE_AUDIO_STREAM
-                || streamType == StreamType.AUDIO_LIVE_STREAM)
-                || (streamType == StreamType.LIVE_STREAM
-                        && sourceType == SourceType.LIVE_STREAM)) {
+        if (isStreamTypeAudio || (streamType == StreamType.LIVE_STREAM
+                && sourceType == SourceType.LIVE_STREAM)) {
             return false;
         }
 
@@ -4324,9 +4317,7 @@ public final class Player implements
                     && isNullOrEmpty(streamInfo.getAudioStreams()))) {
             // It's not needed to reload the play queue manager only if the content's stream type
             // is a video stream, a live stream or an ended live stream
-            return streamType != StreamType.VIDEO_STREAM
-                    && streamType != StreamType.LIVE_STREAM
-                    && streamType != StreamType.POST_LIVE_STREAM;
+            return !StreamTypeUtil.isVideo(streamType);
         }
 
         // Other cases: the play queue manager reload is needed
