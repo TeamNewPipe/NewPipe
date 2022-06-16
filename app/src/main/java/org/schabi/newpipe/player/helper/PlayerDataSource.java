@@ -1,10 +1,12 @@
 package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.exoplayer2.database.StandaloneDatabaseProvider;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
@@ -18,11 +20,15 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSource;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.upstream.TransferListener;
+import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
+import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeOtfDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubePostLiveStreamDvrDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeProgressiveDashManifestCreator;
 import org.schabi.newpipe.player.datasource.YoutubeHttpDataSource;
+
+import java.io.File;
 
 public class PlayerDataSource {
 
@@ -43,6 +49,18 @@ public class PlayerDataSource {
      */
     private static final int MAXIMUM_SIZE_CACHED_GENERATED_MANIFESTS_PER_CACHE = 500;
 
+    /**
+     * The folder name in which the ExoPlayer cache will be written.
+     */
+    private static final String CACHE_FOLDER_NAME = "exoplayer";
+
+    /**
+     * The {@link SimpleCache} instance which will be used to build
+     * {@link com.google.android.exoplayer2.upstream.cache.CacheDataSource}s instances (with
+     * {@link CacheFactory}).
+     */
+    private static SimpleCache cache;
+
     private final int continueLoadingCheckIntervalBytes;
     private final CacheFactory.Builder cacheDataSourceFactoryBuilder;
     private final DataSource.Factory cachelessDataSourceFactory;
@@ -51,8 +69,24 @@ public class PlayerDataSource {
                             @NonNull final String userAgent,
                             @NonNull final TransferListener transferListener) {
         continueLoadingCheckIntervalBytes = PlayerHelper.getProgressiveLoadIntervalBytes(context);
+        final File cacheDir = new File(context.getExternalCacheDir(), CACHE_FOLDER_NAME);
+        if (!cacheDir.exists()) {
+            //noinspection ResultOfMethodCallIgnored
+            cacheDir.mkdir();
+        }
+
+        if (cache == null) {
+            final LeastRecentlyUsedCacheEvictor evictor
+                    = new LeastRecentlyUsedCacheEvictor(PlayerHelper.getPreferredCacheSize());
+            cache = new SimpleCache(cacheDir, evictor, new StandaloneDatabaseProvider(context));
+            Log.d(PlayerDataSource.class.getSimpleName(), "initExoPlayerCache: cacheDir = "
+                    + cacheDir.getAbsolutePath());
+        }
+
         cacheDataSourceFactoryBuilder = new CacheFactory.Builder(context, userAgent,
                 transferListener);
+        cacheDataSourceFactoryBuilder.setSimpleCache(cache);
+
         cachelessDataSourceFactory = new DefaultDataSource.Factory(context,
                 new DefaultHttpDataSource.Factory().setUserAgent(userAgent))
                 .setTransferListener(transferListener);
