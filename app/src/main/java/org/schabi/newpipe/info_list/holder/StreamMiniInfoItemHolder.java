@@ -96,9 +96,10 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             case VIDEO_STREAM:
             case LIVE_STREAM:
             case AUDIO_LIVE_STREAM:
+            case POST_LIVE_STREAM:
+            case POST_LIVE_AUDIO_STREAM:
                 enableLongClick(item);
                 break;
-            case FILE:
             case NONE:
             default:
                 disableLongClick();
@@ -114,7 +115,8 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         final StreamStateEntity state
                 = historyRecordManager.loadStreamState(infoItem).blockingGet()[0];
         if (state != null && item.getDuration() > 0
-                && item.getStreamType() != StreamType.LIVE_STREAM) {
+                && item.getStreamType() != StreamType.LIVE_STREAM
+                && item.getStreamType() != StreamType.AUDIO_LIVE_STREAM) {
             itemProgressView.setMax((int) item.getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
                 itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS

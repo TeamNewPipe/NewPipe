@@ -32,7 +32,7 @@ class QualityClickListener(
         val videoStream = player.selectedVideoStream
         if (videoStream != null) {
             player.binding.qualityTextView.text =
-                MediaFormat.getNameById(videoStream.formatId) + " " + videoStream.resolution
+                MediaFormat.getNameById(videoStream.formatId) + " " + videoStream.getResolution()
         }
 
         player.saveWasPlaying()

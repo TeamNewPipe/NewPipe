@@ -740,4 +740,11 @@
     <string name="you_successfully_subscribed">You now subscribed to this channel</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Toggle all</string>
+    <string name="streams_not_yet_supported_removed">Note that streams which are not supported by the downloader yet have been removed</string>
+    <string name="selected_stream_external_player_not_supported">The selected stream is not supported by external players</string>
+    <string name="no_audio_streams_available_for_external_players">No audio streams are available for external players</string>
+    <string name="no_video_streams_available_for_external_players">No video streams are available for external players</string>
+    <string name="select_quality_external_players">Select quality for external players</string>
+    <string name="unknown_format">Unknown format</string>
+    <string name="unknown_quality">Unknown quality</string>
 </resources>

@@ -3,6 +3,8 @@ package org.schabi.newpipe.player.helper;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
+import static org.schabi.newpipe.extractor.stream.AudioStream.UNKNOWN_BITRATE;
+import static org.schabi.newpipe.extractor.stream.VideoStream.RESOLUTION_UNKNOWN;
 import static org.schabi.newpipe.player.Player.IDLE_WINDOW_FLAGS;
 import static org.schabi.newpipe.player.Player.PLAYER_TYPE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
@@ -110,12 +112,14 @@ public final class PlayerHelper {
         int MINIMIZE_ON_EXIT_MODE_POPUP = 2;
     }
 
-    private PlayerHelper() { }
+    private PlayerHelper() {
+    }
 
     ////////////////////////////////////////////////////////////////////////////
     // Exposed helpers
     ////////////////////////////////////////////////////////////////////////////
 
+    @NonNull
     public static String getTimeString(final int milliSeconds) {
         final int seconds = (milliSeconds % 60000) / 1000;
         final int minutes = (milliSeconds % 3600000) / 60000;
@@ -131,15 +135,18 @@ public final class PlayerHelper {
         ).toString();
     }
 
+    @NonNull
     public static String formatSpeed(final double speed) {
         return SPEED_FORMATTER.format(speed);
     }
 
+    @NonNull
     public static String formatPitch(final double pitch) {
         return PITCH_FORMATTER.format(pitch);
     }
 
-    public static String subtitleMimeTypesOf(final MediaFormat format) {
+    @NonNull
+    public static String subtitleMimeTypesOf(@NonNull final MediaFormat format) {
         switch (format) {
             case VTT:
                 return MimeTypes.TEXT_VTT;
@@ -192,14 +199,48 @@ public final class PlayerHelper {
 
     @NonNull
     public static String cacheKeyOf(@NonNull final StreamInfo info,
-                                    @NonNull final VideoStream video) {
-        return info.getUrl() + video.getResolution() + video.getFormat().getName();
+                                    @NonNull final VideoStream videoStream) {
+        String cacheKey = info.getUrl() + " " + videoStream.getId();
+
+        final String resolution = videoStream.getResolution();
+        final MediaFormat mediaFormat = videoStream.getFormat();
+        if (resolution.equals(RESOLUTION_UNKNOWN) && mediaFormat == null) {
+            // The hash code is only used in the cache key in the case when the resolution and the
+            // media format are unknown
+            cacheKey += " " + videoStream.hashCode();
+        } else {
+            if (mediaFormat != null) {
+                cacheKey += " " + videoStream.getFormat().getName();
+            }
+            if (!resolution.equals(RESOLUTION_UNKNOWN)) {
+                cacheKey += " " + resolution;
+            }
+        }
+
+        return cacheKey;
     }
 
     @NonNull
     public static String cacheKeyOf(@NonNull final StreamInfo info,
-                                    @NonNull final AudioStream audio) {
-        return info.getUrl() + audio.getAverageBitrate() + audio.getFormat().getName();
+                                    @NonNull final AudioStream audioStream) {
+        String cacheKey = info.getUrl() + " " + audioStream.getId();
+
+        final int averageBitrate = audioStream.getAverageBitrate();
+        final MediaFormat mediaFormat = audioStream.getFormat();
+        if (averageBitrate == UNKNOWN_BITRATE && mediaFormat == null) {
+            // The hash code is only used in the cache key in the case when the resolution and the
+            // media format are unknown
+            cacheKey += " " + audioStream.hashCode();
+        } else {
+            if (mediaFormat != null) {
+                cacheKey += " " + audioStream.getFormat().getName();
+            }
+            if (averageBitrate != UNKNOWN_BITRATE) {
+                cacheKey += " " + averageBitrate;
+            }
+        }
+
+        return cacheKey;
     }
 
     /**
@@ -233,7 +274,7 @@ public final class PlayerHelper {
             return null;
         }
 
-        if (relatedItems.get(0) != null && relatedItems.get(0) instanceof StreamInfoItem
+        if (relatedItems.get(0) instanceof StreamInfoItem
                 && !urls.contains(relatedItems.get(0).getUrl())) {
             return getAutoQueuedSinglePlayQueue((StreamInfoItem) relatedItems.get(0));
         }
@@ -335,6 +376,7 @@ public final class PlayerHelper {
         return 2 * 1024 * 1024L; // ExoPlayer CacheDataSink.MIN_RECOMMENDED_FRAGMENT_SIZE
     }
 
+    @NonNull
     public static ExoTrackSelection.Factory getQualitySelector() {
         return new AdaptiveTrackSelection.Factory(
                 1000,
@@ -389,7 +431,7 @@ public final class PlayerHelper {
     /**
      * @param context the Android context
      * @return the screen brightness to use. A value less than 0 (the default) means to use the
-     *         preferred screen brightness
+     * preferred screen brightness
      */
     public static float getScreenBrightness(@NonNull final Context context) {
         final SharedPreferences sp = getPreferences(context);
@@ -480,7 +522,8 @@ public final class PlayerHelper {
                 return REPEAT_MODE_ONE;
             case REPEAT_MODE_ONE:
                 return REPEAT_MODE_ALL;
-            case REPEAT_MODE_ALL: default:
+            case REPEAT_MODE_ALL:
+            default:
                 return REPEAT_MODE_OFF;
         }
     }
@@ -548,7 +591,7 @@ public final class PlayerHelper {
                 player.getContext().getResources().getDimension(R.dimen.popup_default_width);
         final float popupWidth = popupRememberSizeAndPos
                 ? player.getPrefs().getFloat(player.getContext().getString(
-                        R.string.popup_saved_width_key), defaultSize)
+                R.string.popup_saved_width_key), defaultSize)
                 : defaultSize;
         final float popupHeight = getMinimumVideoHeight(popupWidth);
 
@@ -564,10 +607,10 @@ public final class PlayerHelper {
         final int centerY = (int) (player.getScreenHeight() / 2f - popupHeight / 2f);
         popupLayoutParams.x = popupRememberSizeAndPos
                 ? player.getPrefs().getInt(player.getContext().getString(
-                        R.string.popup_saved_x_key), centerX) : centerX;
+                R.string.popup_saved_x_key), centerX) : centerX;
         popupLayoutParams.y = popupRememberSizeAndPos
                 ? player.getPrefs().getInt(player.getContext().getString(
-                        R.string.popup_saved_y_key), centerY) : centerY;
+                R.string.popup_saved_y_key), centerY) : centerY;
 
         return popupLayoutParams;
     }

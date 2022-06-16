@@ -1744,24 +1744,9 @@ public final class Player implements
         if (exoPlayerIsNull()) {
             return;
         }
-        // Use duration of currentItem for non-live streams,
-        // because HLS streams are fragmented
-        // and thus the whole duration is not available to the player
-        // TODO: revert #6307 when introducing proper HLS support
-        final int duration;
-        if (currentItem != null
-                && !StreamTypeUtil.isLiveStream(currentItem.getStreamType())
-        ) {
-            // convert seconds to milliseconds
-            duration = (int) (currentItem.getDuration() * 1000);
-        } else {
-            duration = (int) simpleExoPlayer.getDuration();
-        }
-        onUpdateProgress(
-                Math.max((int) simpleExoPlayer.getCurrentPosition(), 0),
-                duration,
-                simpleExoPlayer.getBufferedPercentage()
-        );
+
+        onUpdateProgress(Math.max((int) simpleExoPlayer.getCurrentPosition(), 0),
+                (int) simpleExoPlayer.getDuration(), simpleExoPlayer.getBufferedPercentage());
     }
 
     private Disposable getProgressUpdateDisposable() {
@@ -3399,6 +3384,7 @@ public final class Player implements
 
         switch (info.getStreamType()) {
             case AUDIO_STREAM:
+            case POST_LIVE_AUDIO_STREAM:
                 binding.surfaceView.setVisibility(View.GONE);
                 binding.endScreen.setVisibility(View.VISIBLE);
                 binding.playbackEndTime.setVisibility(View.VISIBLE);
@@ -3417,6 +3403,7 @@ public final class Player implements
                 break;
 
             case VIDEO_STREAM:
+            case POST_LIVE_STREAM:
                 if (currentMetadata == null
                         || !currentMetadata.getMaybeQuality().isPresent()
                         || (info.getVideoStreams().isEmpty()
@@ -3484,10 +3471,10 @@ public final class Player implements
         for (int i = 0; i < availableStreams.size(); i++) {
             final VideoStream videoStream = availableStreams.get(i);
             qualityPopupMenu.getMenu().add(POPUP_MENU_ID_QUALITY, i, Menu.NONE, MediaFormat
-                    .getNameById(videoStream.getFormatId()) + " " + videoStream.resolution);
+                    .getNameById(videoStream.getFormatId()) + " " + videoStream.getResolution());
         }
         if (getSelectedVideoStream() != null) {
-            binding.qualityTextView.setText(getSelectedVideoStream().resolution);
+            binding.qualityTextView.setText(getSelectedVideoStream().getResolution());
         }
         qualityPopupMenu.setOnMenuItemClickListener(this);
         qualityPopupMenu.setOnDismissListener(this);
@@ -3605,7 +3592,7 @@ public final class Player implements
             }
 
             saveStreamProgressState(); //TODO added, check if good
-            final String newResolution = availableStreams.get(menuItemIndex).resolution;
+            final String newResolution = availableStreams.get(menuItemIndex).getResolution();
             setRecovery();
             setPlaybackQuality(newResolution);
             reloadPlayQueueManager();
@@ -3633,7 +3620,7 @@ public final class Player implements
         }
         isSomePopupMenuVisible = false; //TODO check if this works
         if (getSelectedVideoStream() != null) {
-            binding.qualityTextView.setText(getSelectedVideoStream().resolution);
+            binding.qualityTextView.setText(getSelectedVideoStream().getResolution());
         }
         if (isPlaying()) {
             hideControls(DEFAULT_CONTROLS_DURATION, 0);
@@ -4250,7 +4237,8 @@ public final class Player implements
         } else {
             final StreamType streamType = info.getStreamType();
             if (streamType == StreamType.AUDIO_STREAM
-                    || streamType == StreamType.AUDIO_LIVE_STREAM) {
+                    || streamType == StreamType.AUDIO_LIVE_STREAM
+                    || streamType == StreamType.POST_LIVE_AUDIO_STREAM) {
                 // Nothing to do more than setting the recovery position
                 setRecovery();
                 return;
@@ -4285,13 +4273,15 @@ public final class Player implements
      * the content is not an audio content, but also if none of the following cases is met:
      *
      * <ul>
-     *     <li>the content is an {@link StreamType#AUDIO_STREAM audio stream} or an
-     *     {@link StreamType#AUDIO_LIVE_STREAM audio live stream};</li>
+     *     <li>the content is an {@link StreamType#AUDIO_STREAM audio stream}, an
+     *     {@link StreamType#AUDIO_LIVE_STREAM audio live stream}, or a
+     *     {@link StreamType#POST_LIVE_AUDIO_STREAM ended audio live stream};</li>
      *     <li>the content is a {@link StreamType#LIVE_STREAM live stream} and the source type is a
      *     {@link SourceType#LIVE_STREAM live source};</li>
      *     <li>the content's source is {@link SourceType#VIDEO_WITH_SEPARATED_AUDIO a video stream
      *     with a separated audio source} or has no audio-only streams available <b>and</b> is a
-     *     {@link StreamType#LIVE_STREAM live stream} or a
+     *     {@link StreamType#VIDEO_STREAM video stream}, an
+     *     {@link StreamType#POST_LIVE_STREAM ended live stream}, or a
      *     {@link StreamType#LIVE_STREAM live stream}.
      *     </li>
      * </ul>
@@ -4309,14 +4299,17 @@ public final class Player implements
         final StreamType streamType = streamInfo.getStreamType();
 
         if (videoRendererIndex == RENDERER_UNAVAILABLE && streamType != StreamType.AUDIO_STREAM
-                && streamType != StreamType.AUDIO_LIVE_STREAM) {
+                && streamType != StreamType.AUDIO_LIVE_STREAM
+                && streamType != StreamType.POST_LIVE_AUDIO_STREAM) {
             return true;
         }
 
         // The content is an audio stream, an audio live stream, or a live stream with a live
         // source: it's not needed to reload the play queue manager because the stream source will
         // be the same
-        if ((streamType == StreamType.AUDIO_STREAM || streamType == StreamType.AUDIO_LIVE_STREAM)
+        if ((streamType == StreamType.AUDIO_STREAM
+                || streamType == StreamType.POST_LIVE_AUDIO_STREAM
+                || streamType == StreamType.AUDIO_LIVE_STREAM)
                 || (streamType == StreamType.LIVE_STREAM
                         && sourceType == SourceType.LIVE_STREAM)) {
             return false;
@@ -4331,8 +4324,10 @@ public final class Player implements
                 || (sourceType == SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY
                     && isNullOrEmpty(streamInfo.getAudioStreams()))) {
             // It's not needed to reload the play queue manager only if the content's stream type
-            // is a video stream or a live stream
-            return streamType != StreamType.VIDEO_STREAM && streamType != StreamType.LIVE_STREAM;
+            // is a video stream, a live stream or an ended live stream
+            return streamType != StreamType.VIDEO_STREAM
+                    && streamType != StreamType.LIVE_STREAM
+                    && streamType != StreamType.POST_LIVE_STREAM;
         }
 
         // Other cases: the play queue manager reload is needed

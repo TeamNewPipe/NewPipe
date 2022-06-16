@@ -94,6 +94,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
@@ -121,6 +122,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientat
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
+import static org.schabi.newpipe.util.ListHelper.removeNonUrlAndTorrentStreams;
 
 public final class VideoDetailFragment
         extends BaseStateFragment<StreamInfo>
@@ -186,8 +188,7 @@ public final class VideoDetailFragment
     @Nullable
     private Disposable positionSubscriber = null;
 
-    private List<VideoStream> sortedVideoStreams;
-    private int selectedVideoStreamIndex = -1;
+    private List<VideoStream> videoStreamsForExternalPlayers;
     private BottomSheetBehavior<FrameLayout> bottomSheetBehavior;
     private BroadcastReceiver broadcastReceiver;
 
@@ -1547,11 +1548,13 @@ public final class VideoDetailFragment
         binding.detailSubChannelThumbnailView.setImageDrawable(buddyDrawable);
         binding.detailUploaderThumbnailView.setImageDrawable(buddyDrawable);
 
+        final StreamType streamType = info.getStreamType();
+
         if (info.getViewCount() >= 0) {
-            if (info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
+            if (streamType.equals(StreamType.AUDIO_LIVE_STREAM)) {
                 binding.detailViewCountView.setText(Localization.listeningCount(activity,
                         info.getViewCount()));
-            } else if (info.getStreamType().equals(StreamType.LIVE_STREAM)) {
+            } else if (streamType.equals(StreamType.LIVE_STREAM)) {
                 binding.detailViewCountView.setText(Localization
                         .localizeWatchingCount(activity, info.getViewCount()));
             } else {
@@ -1612,14 +1615,13 @@ public final class VideoDetailFragment
         binding.detailToggleSecondaryControlsView.setVisibility(View.VISIBLE);
         binding.detailSecondaryControlPanel.setVisibility(View.GONE);
 
-        sortedVideoStreams = ListHelper.getSortedStreamVideosList(
-                activity,
-                info.getVideoStreams(),
-                info.getVideoOnlyStreams(),
-                false,
-                false);
-        selectedVideoStreamIndex = ListHelper
-                .getDefaultResolutionIndex(activity, sortedVideoStreams);
+        final List<VideoStream> videoStreams = removeNonUrlAndTorrentStreams(
+                new ArrayList<>(currentInfo.getVideoStreams()));
+        final List<VideoStream> videoOnlyStreams = removeNonUrlAndTorrentStreams(
+                new ArrayList<>(currentInfo.getVideoOnlyStreams()));
+        videoStreamsForExternalPlayers = ListHelper.getSortedStreamVideosList(activity,
+                videoStreams, videoOnlyStreams, false, false);
+
         updateProgressInfo(info);
         initThumbnailViews(info);
         showMetaInfoInTextView(info.getMetaInfo(), binding.detailMetaInfoTextView,
@@ -1645,8 +1647,8 @@ public final class VideoDetailFragment
             }
         }
 
-        binding.detailControlsDownload.setVisibility(info.getStreamType() == StreamType.LIVE_STREAM
-                || info.getStreamType() == StreamType.AUDIO_LIVE_STREAM ? View.GONE : View.VISIBLE);
+        binding.detailControlsDownload.setVisibility(
+                StreamTypeUtil.isLiveStream(streamType) ? View.GONE : View.VISIBLE);
         binding.detailControlsBackground.setVisibility(info.getAudioStreams().isEmpty()
                 ? View.GONE : View.VISIBLE);
 
@@ -1687,11 +1689,10 @@ public final class VideoDetailFragment
         }
 
         try {
-            final DownloadDialog downloadDialog = DownloadDialog.newInstance(currentInfo);
-            downloadDialog.setVideoStreams(sortedVideoStreams);
-            downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
-            downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
-            downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
+            final DownloadDialog downloadDialog = DownloadDialog.newInstance(activity,
+                    currentInfo);
+            downloadDialog.setSelectedVideoStream(ListHelper.getDefaultResolutionIndex(activity,
+                    downloadDialog.wrappedVideoStreams.getStreamsList()));
 
             downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
         } catch (final Exception e) {
@@ -1722,8 +1723,7 @@ public final class VideoDetailFragment
                 binding.detailPositionView.setVisibility(View.GONE);
                 // TODO: Remove this check when separation of concerns is done.
                 //  (live streams weren't getting updated because they are mixed)
-                if (!info.getStreamType().equals(StreamType.LIVE_STREAM)
-                        && !info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
+                if (!StreamTypeUtil.isLiveStream(info.getStreamType())) {
                     return;
                 }
             } else {
@@ -2151,25 +2151,33 @@ public final class VideoDetailFragment
     }
 
     private void showExternalPlaybackDialog() {
-        if (sortedVideoStreams == null) {
+        if (currentInfo == null) {
             return;
         }
-        final CharSequence[] resolutions = new CharSequence[sortedVideoStreams.size()];
-        for (int i = 0; i < sortedVideoStreams.size(); i++) {
-            resolutions[i] = sortedVideoStreams.get(i).getResolution();
-        }
-        final AlertDialog.Builder builder = new AlertDialog.Builder(activity)
-                .setNegativeButton(R.string.cancel, null)
-                .setNeutralButton(R.string.open_in_browser, (dialog, i) ->
-                        ShareUtils.openUrlInBrowser(requireActivity(), url)
-                );
-        // Maybe there are no video streams available, show just `open in browser` button
-        if (resolutions.length > 0) {
-            builder.setSingleChoiceItems(resolutions, selectedVideoStreamIndex, (dialog, i) -> {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle(R.string.select_quality_external_players);
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.setNeutralButton(R.string.open_in_browser, (dialog, i) ->
+                ShareUtils.openUrlInBrowser(requireActivity(), url));
+        if (videoStreamsForExternalPlayers.isEmpty()) {
+            builder.setMessage(R.string.no_video_streams_available_for_external_players);
+        } else {
+            final int selectedVideoStreamIndexForExternalPlayers =
+                    ListHelper.getDefaultResolutionIndex(activity, videoStreamsForExternalPlayers);
+            final CharSequence[] resolutions =
+                    new CharSequence[videoStreamsForExternalPlayers.size()];
+
+            for (int i = 0; i < videoStreamsForExternalPlayers.size(); i++) {
+                resolutions[i] = videoStreamsForExternalPlayers.get(i).getResolution();
+            }
+
+            builder.setSingleChoiceItems(resolutions, selectedVideoStreamIndexForExternalPlayers,
+                    (dialog, i) -> {
                         dialog.dismiss();
-                        startOnExternalPlayer(activity, currentInfo, sortedVideoStreams.get(i));
-                    }
-            );
+                        startOnExternalPlayer(activity, currentInfo,
+                                videoStreamsForExternalPlayers.get(i));
+                    });
         }
         builder.show();
     }

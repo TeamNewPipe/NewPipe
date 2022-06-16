@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
@@ -14,7 +15,8 @@ public class SecondaryStreamHelper<T extends Stream> {
     private final int position;
     private final StreamSizeWrapper<T> streams;
 
-    public SecondaryStreamHelper(final StreamSizeWrapper<T> streams, final T selectedStream) {
+    public SecondaryStreamHelper(@NonNull final StreamSizeWrapper<T> streams,
+                                 final T selectedStream) {
         this.streams = streams;
         this.position = streams.getStreamsList().indexOf(selectedStream);
         if (this.position < 0) {
@@ -29,33 +31,37 @@ public class SecondaryStreamHelper<T extends Stream> {
      * @param videoStream  desired video ONLY stream
      * @return selected audio stream or null if a candidate was not found
      */
+    @Nullable
     public static AudioStream getAudioStreamFor(@NonNull final List<AudioStream> audioStreams,
                                                 @NonNull final VideoStream videoStream) {
-        switch (videoStream.getFormat()) {
-            case WEBM:
-            case MPEG_4:// ¿is mpeg-4 DASH?
-                break;
-            default:
-                return null;
-        }
-
-        final boolean m4v = videoStream.getFormat() == MediaFormat.MPEG_4;
-
-        for (final AudioStream audio : audioStreams) {
-            if (audio.getFormat() == (m4v ? MediaFormat.M4A : MediaFormat.WEBMA)) {
-                return audio;
+        final MediaFormat mediaFormat = videoStream.getFormat();
+        if (mediaFormat != null) {
+            switch (mediaFormat) {
+                case WEBM:
+                case MPEG_4:// ¿is mpeg-4 DASH?
+                    break;
+                default:
+                    return null;
             }
-        }
 
-        if (m4v) {
-            return null;
-        }
+            final boolean m4v = (mediaFormat == MediaFormat.MPEG_4);
 
-        // retry, but this time in reverse order
-        for (int i = audioStreams.size() - 1; i >= 0; i--) {
-            final AudioStream audio = audioStreams.get(i);
-            if (audio.getFormat() == MediaFormat.WEBMA_OPUS) {
-                return audio;
+            for (final AudioStream audio : audioStreams) {
+                if (audio.getFormat() == (m4v ? MediaFormat.M4A : MediaFormat.WEBMA)) {
+                    return audio;
+                }
+            }
+
+            if (m4v) {
+                return null;
+            }
+
+            // retry, but this time in reverse order
+            for (int i = audioStreams.size() - 1; i >= 0; i--) {
+                final AudioStream audio = audioStreams.get(i);
+                if (audio.getFormat() == MediaFormat.WEBMA_OPUS) {
+                    return audio;
+                }
             }
         }
 

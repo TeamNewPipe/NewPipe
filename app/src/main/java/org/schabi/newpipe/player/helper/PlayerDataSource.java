@@ -2,21 +2,27 @@ package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.source.hls.playlist.DefaultHlsPlaylistTracker;
+import com.google.android.exoplayer2.source.hls.playlist.HlsPlaylistParserFactory;
 import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource;
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSource;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
-import com.google.android.exoplayer2.upstream.DefaultLoadErrorHandlingPolicy;
 import com.google.android.exoplayer2.upstream.TransferListener;
 
-import androidx.annotation.NonNull;
+import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeOtfDashManifestCreator;
+import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubePostLiveStreamDvrDashManifestCreator;
+import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeProgressiveDashManifestCreator;
+import org.schabi.newpipe.player.datasource.YoutubeHttpDataSource;
 
 public class PlayerDataSource {
 
@@ -29,79 +35,120 @@ public class PlayerDataSource {
      * early.
      */
     private static final double PLAYLIST_STUCK_TARGET_DURATION_COEFFICIENT = 15;
-    private static final int MANIFEST_MINIMUM_RETRY = 5;
-    private static final int EXTRACTOR_MINIMUM_RETRY = Integer.MAX_VALUE;
+
+    /**
+     * The maximum number of generated manifests per cache, in
+     * {@link YoutubeProgressiveDashManifestCreator}, {@link YoutubeOtfDashManifestCreator} and
+     * {@link YoutubePostLiveStreamDvrDashManifestCreator}.
+     */
+    private static final int MAXIMUM_SIZE_CACHED_GENERATED_MANIFESTS_PER_CACHE = 500;
 
     private final int continueLoadingCheckIntervalBytes;
-    private final DataSource.Factory cacheDataSourceFactory;
+    private final CacheFactory.Builder cacheDataSourceFactoryBuilder;
     private final DataSource.Factory cachelessDataSourceFactory;
 
     public PlayerDataSource(@NonNull final Context context,
                             @NonNull final String userAgent,
                             @NonNull final TransferListener transferListener) {
         continueLoadingCheckIntervalBytes = PlayerHelper.getProgressiveLoadIntervalBytes(context);
-        cacheDataSourceFactory = new CacheFactory(context, userAgent, transferListener);
-        cachelessDataSourceFactory = new DefaultDataSource
-                .Factory(context, new DefaultHttpDataSource.Factory().setUserAgent(userAgent))
+        cacheDataSourceFactoryBuilder = new CacheFactory.Builder(context, userAgent,
+                transferListener);
+        cachelessDataSourceFactory = new DefaultDataSource.Factory(context,
+                new DefaultHttpDataSource.Factory().setUserAgent(userAgent))
                 .setTransferListener(transferListener);
+
+        YoutubeProgressiveDashManifestCreator.getCache().setMaximumSize(
+                MAXIMUM_SIZE_CACHED_GENERATED_MANIFESTS_PER_CACHE);
+        YoutubeOtfDashManifestCreator.getCache().setMaximumSize(
+                MAXIMUM_SIZE_CACHED_GENERATED_MANIFESTS_PER_CACHE);
+        YoutubePostLiveStreamDvrDashManifestCreator.getCache().setMaximumSize(
+                MAXIMUM_SIZE_CACHED_GENERATED_MANIFESTS_PER_CACHE);
     }
 
     public SsMediaSource.Factory getLiveSsMediaSourceFactory() {
-        return new SsMediaSource.Factory(
-                new DefaultSsChunkSource.Factory(cachelessDataSourceFactory),
-                cachelessDataSourceFactory
-        )
-                .setLoadErrorHandlingPolicy(
-                        new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY))
-                .setLivePresentationDelayMs(LIVE_STREAM_EDGE_GAP_MILLIS);
+        return getSSMediaSourceFactory().setLivePresentationDelayMs(LIVE_STREAM_EDGE_GAP_MILLIS);
     }
 
     public HlsMediaSource.Factory getLiveHlsMediaSourceFactory() {
         return new HlsMediaSource.Factory(cachelessDataSourceFactory)
                 .setAllowChunklessPreparation(true)
-                .setLoadErrorHandlingPolicy(new DefaultLoadErrorHandlingPolicy(
-                        MANIFEST_MINIMUM_RETRY))
                 .setPlaylistTrackerFactory((dataSourceFactory, loadErrorHandlingPolicy,
                                             playlistParserFactory) ->
                         new DefaultHlsPlaylistTracker(dataSourceFactory, loadErrorHandlingPolicy,
-                                playlistParserFactory, PLAYLIST_STUCK_TARGET_DURATION_COEFFICIENT)
-                );
+                                playlistParserFactory,
+                                PLAYLIST_STUCK_TARGET_DURATION_COEFFICIENT));
     }
 
     public DashMediaSource.Factory getLiveDashMediaSourceFactory() {
         return new DashMediaSource.Factory(
                 getDefaultDashChunkSourceFactory(cachelessDataSourceFactory),
-                cachelessDataSourceFactory
-        )
-                .setLoadErrorHandlingPolicy(
-                        new DefaultLoadErrorHandlingPolicy(MANIFEST_MINIMUM_RETRY));
+                cachelessDataSourceFactory);
     }
 
-    private DefaultDashChunkSource.Factory getDefaultDashChunkSourceFactory(
-            final DataSource.Factory dataSourceFactory
-    ) {
-        return new DefaultDashChunkSource.Factory(dataSourceFactory);
-    }
-
-    public HlsMediaSource.Factory getHlsMediaSourceFactory() {
-        return new HlsMediaSource.Factory(cacheDataSourceFactory);
+    public HlsMediaSource.Factory getHlsMediaSourceFactory(
+            @Nullable final HlsPlaylistParserFactory hlsPlaylistParserFactory) {
+        final HlsMediaSource.Factory factory = new HlsMediaSource.Factory(
+                cacheDataSourceFactoryBuilder.build());
+        if (hlsPlaylistParserFactory != null) {
+            factory.setPlaylistParserFactory(hlsPlaylistParserFactory);
+        }
+        return factory;
     }
 
     public DashMediaSource.Factory getDashMediaSourceFactory() {
         return new DashMediaSource.Factory(
-                getDefaultDashChunkSourceFactory(cacheDataSourceFactory),
-                cacheDataSourceFactory
-        );
+                getDefaultDashChunkSourceFactory(cacheDataSourceFactoryBuilder.build()),
+                cacheDataSourceFactoryBuilder.build());
     }
 
-    public ProgressiveMediaSource.Factory getExtractorMediaSourceFactory() {
-        return new ProgressiveMediaSource.Factory(cacheDataSourceFactory)
-                .setContinueLoadingCheckIntervalBytes(continueLoadingCheckIntervalBytes)
-                .setLoadErrorHandlingPolicy(
-                        new DefaultLoadErrorHandlingPolicy(EXTRACTOR_MINIMUM_RETRY));
+    public ProgressiveMediaSource.Factory getProgressiveMediaSourceFactory() {
+        return new ProgressiveMediaSource.Factory(cacheDataSourceFactoryBuilder.build())
+                .setContinueLoadingCheckIntervalBytes(continueLoadingCheckIntervalBytes);
     }
 
-    public SingleSampleMediaSource.Factory getSampleMediaSourceFactory() {
-        return new SingleSampleMediaSource.Factory(cacheDataSourceFactory);
+    public SsMediaSource.Factory getSSMediaSourceFactory() {
+        return new SsMediaSource.Factory(
+                new DefaultSsChunkSource.Factory(cachelessDataSourceFactory),
+                cachelessDataSourceFactory);
+    }
+
+    public SingleSampleMediaSource.Factory getSingleSampleMediaSourceFactory() {
+        return new SingleSampleMediaSource.Factory(cacheDataSourceFactoryBuilder.build());
+    }
+
+    public DashMediaSource.Factory getYoutubeDashMediaSourceFactory() {
+        cacheDataSourceFactoryBuilder.setUpstreamDataSourceFactory(
+                getYoutubeHttpDataSourceFactory(true, true));
+        return new DashMediaSource.Factory(
+                getDefaultDashChunkSourceFactory(cacheDataSourceFactoryBuilder.build()),
+                cacheDataSourceFactoryBuilder.build());
+    }
+
+    public HlsMediaSource.Factory getYoutubeHlsMediaSourceFactory() {
+        cacheDataSourceFactoryBuilder.setUpstreamDataSourceFactory(
+                getYoutubeHttpDataSourceFactory(false, false));
+        return new HlsMediaSource.Factory(cacheDataSourceFactoryBuilder.build());
+    }
+
+    public ProgressiveMediaSource.Factory getYoutubeProgressiveMediaSourceFactory() {
+        cacheDataSourceFactoryBuilder.setUpstreamDataSourceFactory(
+                getYoutubeHttpDataSourceFactory(false, true));
+        return new ProgressiveMediaSource.Factory(cacheDataSourceFactoryBuilder.build())
+                .setContinueLoadingCheckIntervalBytes(continueLoadingCheckIntervalBytes);
+    }
+
+    @NonNull
+    private DefaultDashChunkSource.Factory getDefaultDashChunkSourceFactory(
+            final DataSource.Factory dataSourceFactory) {
+        return new DefaultDashChunkSource.Factory(dataSourceFactory);
+    }
+
+    @NonNull
+    private YoutubeHttpDataSource.Factory getYoutubeHttpDataSourceFactory(
+            final boolean rangeParameterEnabled,
+            final boolean rnParameterEnabled) {
+        return new YoutubeHttpDataSource.Factory()
+                .setRangeParameterEnabled(rangeParameterEnabled)
+                .setRnParameterEnabled(rnParameterEnabled);
     }
 }
