@@ -63,7 +63,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.List;
 
-import static org.schabi.newpipe.util.ListHelper.removeNonUrlAndTorrentStreams;
+import static org.schabi.newpipe.util.ListHelper.getNonUrlAndNonTorrentStreams;
 
 public final class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
@@ -221,39 +221,42 @@ public final class NavigationHelper {
     public static void playOnExternalAudioPlayer(@NonNull final Context context,
                                                  @NonNull final StreamInfo info) {
         final List<AudioStream> audioStreams = info.getAudioStreams();
-        if (audioStreams.isEmpty()) {
+        if (audioStreams == null || audioStreams.isEmpty()) {
             Toast.makeText(context, R.string.audio_streams_empty, Toast.LENGTH_SHORT).show();
             return;
         }
-        final List<AudioStream> audioStreamsForExternalPlayers = removeNonUrlAndTorrentStreams(
-                audioStreams);
+
+        final List<AudioStream> audioStreamsForExternalPlayers =
+                getNonUrlAndNonTorrentStreams(audioStreams);
         if (audioStreamsForExternalPlayers.isEmpty()) {
             Toast.makeText(context, R.string.no_audio_streams_available_for_external_players,
                     Toast.LENGTH_SHORT).show();
             return;
         }
-        final int index = ListHelper.getDefaultAudioFormat(context,
-                audioStreamsForExternalPlayers);
 
+        final int index = ListHelper.getDefaultAudioFormat(context, audioStreamsForExternalPlayers);
         final AudioStream audioStream = audioStreamsForExternalPlayers.get(index);
+
         playOnExternalPlayer(context, info.getName(), info.getUploaderName(), audioStream);
     }
 
     public static void playOnExternalVideoPlayer(final Context context,
                                                  @NonNull final StreamInfo info) {
         final List<VideoStream> videoStreams = info.getVideoStreams();
-        if (videoStreams.isEmpty()) {
+        if (videoStreams == null || videoStreams.isEmpty()) {
             Toast.makeText(context, R.string.video_streams_empty, Toast.LENGTH_SHORT).show();
             return;
         }
+
         final List<VideoStream> videoStreamsForExternalPlayers =
                 ListHelper.getSortedStreamVideosList(context,
-                        removeNonUrlAndTorrentStreams(videoStreams), null, false, false);
+                        getNonUrlAndNonTorrentStreams(videoStreams), null, false, false);
         if (videoStreamsForExternalPlayers.isEmpty()) {
             Toast.makeText(context, R.string.no_video_streams_available_for_external_players,
                     Toast.LENGTH_SHORT).show();
             return;
         }
+
         final int index = ListHelper.getDefaultResolutionIndex(context,
                 videoStreamsForExternalPlayers);
 
@@ -267,42 +270,41 @@ public final class NavigationHelper {
                                             @NonNull final Stream stream) {
         final DeliveryMethod deliveryMethod = stream.getDeliveryMethod();
         final String mimeType;
-        if (deliveryMethod == DeliveryMethod.PROGRESSIVE_HTTP) {
-            if (stream.getFormat() != null) {
-                mimeType = stream.getFormat().getMimeType();
-            } else {
-                if (stream instanceof AudioStream) {
-                    mimeType = "audio/*";
-                } else if (stream instanceof VideoStream) {
-                    mimeType = "video/*";
+
+        if (!stream.isUrl() || deliveryMethod == DeliveryMethod.TORRENT) {
+            Toast.makeText(context, R.string.selected_stream_external_player_not_supported,
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        switch (deliveryMethod) {
+            case PROGRESSIVE_HTTP:
+                if (stream.getFormat() == null) {
+                    if (stream instanceof AudioStream) {
+                        mimeType = "audio/*";
+                    } else if (stream instanceof VideoStream) {
+                        mimeType = "video/*";
+                    } else {
+                        // This should never be reached, because subtitles are not opened in
+                        // external players
+                        return;
+                    }
                 } else {
-                    // This should never be reached, because subtitles are not opened in external
-                    // players
-                    return;
+                    mimeType = stream.getFormat().getMimeType();
                 }
-            }
-        } else {
-            if (!stream.isUrl() || deliveryMethod == DeliveryMethod.TORRENT) {
-                Toast.makeText(context, R.string.selected_stream_external_player_not_supported,
-                        Toast.LENGTH_SHORT).show();
-                return;
-            } else {
-                switch (deliveryMethod) {
-                    case HLS:
-                        mimeType = "application/x-mpegURL";
-                        break;
-                    case DASH:
-                        mimeType = "application/dash+xml";
-                        break;
-                    case SS:
-                        mimeType = "application/vnd.ms-sstr+xml";
-                        break;
-                    default:
-                        // Progressive HTTP streams are handled above and torrents streams are not
-                        // exposed to external players
-                        mimeType = "";
-                }
-            }
+                break;
+            case HLS:
+                mimeType = "application/x-mpegURL";
+                break;
+            case DASH:
+                mimeType = "application/dash+xml";
+                break;
+            case SS:
+                mimeType = "application/vnd.ms-sstr+xml";
+                break;
+            default:
+                // Torrent streams are not exposed to external players
+                mimeType = "";
         }
 
         final Intent intent = new Intent();

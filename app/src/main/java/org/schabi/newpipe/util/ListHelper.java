@@ -23,10 +23,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public final class ListHelper {
@@ -116,27 +116,17 @@ public final class ListHelper {
      * Return a {@link Stream} list which uses the given delivery method from a {@link Stream}
      * list.
      *
-     * @param streamList     the original stream list
-     * @param deliveryMethod the delivery method
+     * @param streamList     the original {@link Stream stream} list
+     * @param deliveryMethod the {@link DeliveryMethod delivery method}
      * @param <S>            the item type's class that extends {@link Stream}
-     * @return a stream list which uses the given delivery method
+     * @return a {@link Stream stream} list which uses the given delivery method
      */
     @NonNull
-    public static <S extends Stream> List<S> keepStreamsWithDelivery(
-            @NonNull final List<S> streamList,
+    public static <S extends Stream> List<S> getStreamsOfSpecifiedDelivery(
+            final List<S> streamList,
             final DeliveryMethod deliveryMethod) {
-        if (streamList.isEmpty()) {
-            return Collections.emptyList();
-        }
-
-        final Iterator<S> streamListIterator = streamList.iterator();
-        while (streamListIterator.hasNext()) {
-            if (streamListIterator.next().getDeliveryMethod() != deliveryMethod) {
-                streamListIterator.remove();
-            }
-        }
-
-        return streamList;
+        return getFilteredStreamList(streamList,
+                stream -> stream.getDeliveryMethod() == deliveryMethod);
     }
 
     /**
@@ -147,21 +137,10 @@ public final class ListHelper {
      * @return a stream list which only contains URL streams and non-torrent streams
      */
     @NonNull
-    public static <S extends Stream> List<S> removeNonUrlAndTorrentStreams(
-            @NonNull final List<S> streamList) {
-        if (streamList.isEmpty()) {
-            return Collections.emptyList();
-        }
-
-        final Iterator<S> streamListIterator = streamList.iterator();
-        while (streamListIterator.hasNext()) {
-            final S stream = streamListIterator.next();
-            if (!stream.isUrl() || stream.getDeliveryMethod() == DeliveryMethod.TORRENT) {
-                streamListIterator.remove();
-            }
-        }
-
-        return streamList;
+    public static <S extends Stream> List<S> getNonUrlAndNonTorrentStreams(
+            final List<S> streamList) {
+        return getFilteredStreamList(streamList,
+                stream -> stream.isUrl() && stream.getDeliveryMethod() != DeliveryMethod.TORRENT);
     }
 
     /**
@@ -172,21 +151,10 @@ public final class ListHelper {
      * @return a stream list which only contains non-torrent streams
      */
     @NonNull
-    public static <S extends Stream> List<S> removeTorrentStreams(
-            @NonNull final List<S> streamList) {
-        if (streamList.isEmpty()) {
-            return Collections.emptyList();
-        }
-
-        final Iterator<S> streamListIterator = streamList.iterator();
-        while (streamListIterator.hasNext()) {
-            final S stream = streamListIterator.next();
-            if (stream.getDeliveryMethod() == DeliveryMethod.TORRENT) {
-                streamListIterator.remove();
-            }
-        }
-
-        return streamList;
+    public static <S extends Stream> List<S> getNonTorrentStreams(
+            final List<S> streamList) {
+        return getFilteredStreamList(streamList,
+                stream -> stream.getDeliveryMethod() != DeliveryMethod.TORRENT);
     }
 
     /**
@@ -223,6 +191,26 @@ public final class ListHelper {
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
+
+    /**
+     * Get a filtered stream list, by using Java 8 Stream's API and the given predicate.
+     *
+     * @param streamList          the stream list to filter
+     * @param streamListPredicate the predicate which will be used to filter streams
+     * @param <S>                 the item type's class that extends {@link Stream}
+     * @return a new stream list filtered using the given predicate
+     */
+    private static <S extends Stream> List<S> getFilteredStreamList(
+            final List<S> streamList,
+            final Predicate<S> streamListPredicate) {
+        if (streamList == null) {
+            return Collections.emptyList();
+        }
+
+        return streamList.stream()
+                .filter(streamListPredicate)
+                .collect(Collectors.toList());
+    }
 
     private static String computeDefaultResolution(final Context context, final int key,
                                                    final int value) {

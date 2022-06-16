@@ -29,8 +29,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.google.android.exoplayer2.C.TIME_UNSET;
-import static org.schabi.newpipe.util.ListHelper.removeNonUrlAndTorrentStreams;
-import static org.schabi.newpipe.util.ListHelper.removeTorrentStreams;
+import static org.schabi.newpipe.util.ListHelper.getNonUrlAndNonTorrentStreams;
+import static org.schabi.newpipe.util.ListHelper.getNonTorrentStreams;
 
 public class VideoPlaybackResolver implements PlaybackResolver {
     private static final String TAG = VideoPlaybackResolver.class.getSimpleName();
@@ -70,24 +70,21 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         }
 
         final List<MediaSource> mediaSources = new ArrayList<>();
-        final List<VideoStream> videoStreams = new ArrayList<>(info.getVideoStreams());
-        final List<VideoStream> videoOnlyStreams = new ArrayList<>(info.getVideoOnlyStreams());
-
-        removeTorrentStreams(videoStreams);
-        removeTorrentStreams(videoOnlyStreams);
 
         // Create video stream source
-        final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
-                videoStreams, videoOnlyStreams, false, true);
+        final List<VideoStream> videoStreamsList = ListHelper.getSortedStreamVideosList(context,
+                getNonTorrentStreams(info.getVideoStreams()),
+                getNonTorrentStreams(info.getVideoOnlyStreams()), false, true);
         final int index;
-        if (videos.isEmpty()) {
+        if (videoStreamsList.isEmpty()) {
             index = -1;
         } else if (playbackQuality == null) {
-            index = qualityResolver.getDefaultResolutionIndex(videos);
+            index = qualityResolver.getDefaultResolutionIndex(videoStreamsList);
         } else {
-            index = qualityResolver.getOverrideResolutionIndex(videos, getPlaybackQuality());
+            index = qualityResolver.getOverrideResolutionIndex(videoStreamsList,
+                    getPlaybackQuality());
         }
-        final MediaItemTag tag = StreamInfoTag.of(info, videos, index);
+        final MediaItemTag tag = StreamInfoTag.of(info, videoStreamsList, index);
         @Nullable final VideoStream video = tag.getMaybeQuality()
                 .map(MediaItemTag.Quality::getSelectedVideoStream)
                 .orElse(null);
@@ -104,8 +101,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         }
 
         // Create optional audio stream source
-        final List<AudioStream> audioStreams = info.getAudioStreams();
-        removeTorrentStreams(audioStreams);
+        final List<AudioStream> audioStreams = getNonTorrentStreams(info.getAudioStreams());
         final AudioStream audio = audioStreams.isEmpty() ? null : audioStreams.get(
                 ListHelper.getDefaultAudioFormat(context, audioStreams));
 
@@ -129,13 +125,14 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         if (mediaSources.isEmpty()) {
             return null;
         }
+
         // Below are auxiliary media sources
 
         // Create subtitle sources
         final List<SubtitlesStream> subtitlesStreams = info.getSubtitles();
         if (subtitlesStreams != null) {
             // Torrent and non URL subtitles are not supported by ExoPlayer
-            final List<SubtitlesStream> nonTorrentAndUrlStreams = removeNonUrlAndTorrentStreams(
+            final List<SubtitlesStream> nonTorrentAndUrlStreams = getNonUrlAndNonTorrentStreams(
                     subtitlesStreams);
             for (final SubtitlesStream subtitle : nonTorrentAndUrlStreams) {
                 final MediaFormat mediaFormat = subtitle.getFormat();

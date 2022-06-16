@@ -31,6 +31,7 @@ import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
@@ -122,7 +123,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientat
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
-import static org.schabi.newpipe.util.ListHelper.removeNonUrlAndTorrentStreams;
+import static org.schabi.newpipe.util.ListHelper.getNonUrlAndNonTorrentStreams;
 
 public final class VideoDetailFragment
         extends BaseStateFragment<StreamInfo>
@@ -1092,9 +1093,6 @@ public final class VideoDetailFragment
     }
 
     private void openBackgroundPlayer(final boolean append) {
-        final AudioStream audioStream = currentInfo.getAudioStreams()
-                .get(ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams()));
-
         final boolean useExternalAudioPlayer = PreferenceManager
                 .getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
@@ -1109,7 +1107,17 @@ public final class VideoDetailFragment
         if (!useExternalAudioPlayer) {
             openNormalBackgroundPlayer(append);
         } else {
-            startOnExternalPlayer(activity, currentInfo, audioStream);
+            final List<AudioStream> audioStreams = getNonUrlAndNonTorrentStreams(
+                    currentInfo.getAudioStreams());
+            final int index = ListHelper.getDefaultAudioFormat(activity, audioStreams);
+
+            if (index == -1) {
+                Toast.makeText(activity, R.string.no_audio_streams_available_for_external_players,
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            startOnExternalPlayer(activity, currentInfo, audioStreams.get(index));
         }
     }
 
@@ -2147,10 +2155,10 @@ public final class VideoDetailFragment
             return;
         }
 
-        final List<VideoStream> videoStreams = removeNonUrlAndTorrentStreams(
-                new ArrayList<>(currentInfo.getVideoStreams()));
-        final List<VideoStream> videoOnlyStreams = removeNonUrlAndTorrentStreams(
-                new ArrayList<>(currentInfo.getVideoOnlyStreams()));
+        final List<VideoStream> videoStreams = getNonUrlAndNonTorrentStreams(
+                currentInfo.getVideoStreams());
+        final List<VideoStream> videoOnlyStreams = getNonUrlAndNonTorrentStreams(
+                currentInfo.getVideoOnlyStreams());
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle(R.string.select_quality_external_players);

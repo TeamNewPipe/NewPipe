@@ -69,7 +69,6 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -84,7 +83,7 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;
 import us.shandian.giga.service.MissionState;
 
-import static org.schabi.newpipe.util.ListHelper.keepStreamsWithDelivery;
+import static org.schabi.newpipe.util.ListHelper.getStreamsOfSpecifiedDelivery;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class DownloadDialog extends DialogFragment
@@ -149,25 +148,24 @@ public class DownloadDialog extends DialogFragment
     public static DownloadDialog newInstance(final Context context,
                                              @NonNull final StreamInfo info) {
         // TODO: Adapt this code when the downloader support other types of stream deliveries
-        final List<VideoStream> videoStreams = new ArrayList<>(info.getVideoStreams());
         final List<VideoStream> progressiveHttpVideoStreams =
-                keepStreamsWithDelivery(videoStreams, DeliveryMethod.PROGRESSIVE_HTTP);
+                getStreamsOfSpecifiedDelivery(info.getVideoStreams(),
+                        DeliveryMethod.PROGRESSIVE_HTTP);
 
-        final List<VideoStream> videoOnlyStreams = new ArrayList<>(info.getVideoOnlyStreams());
         final List<VideoStream> progressiveHttpVideoOnlyStreams =
-                keepStreamsWithDelivery(videoOnlyStreams, DeliveryMethod.PROGRESSIVE_HTTP);
+                getStreamsOfSpecifiedDelivery(info.getVideoOnlyStreams(),
+                        DeliveryMethod.PROGRESSIVE_HTTP);
 
-        final List<AudioStream> audioStreams = new ArrayList<>(info.getAudioStreams());
         final List<AudioStream> progressiveHttpAudioStreams =
-                keepStreamsWithDelivery(audioStreams, DeliveryMethod.PROGRESSIVE_HTTP);
+                getStreamsOfSpecifiedDelivery(info.getAudioStreams(),
+                        DeliveryMethod.PROGRESSIVE_HTTP);
 
-        final List<SubtitlesStream> subtitlesStreams = new ArrayList<>(info.getSubtitles());
         final List<SubtitlesStream> progressiveHttpSubtitlesStreams =
-                keepStreamsWithDelivery(subtitlesStreams, DeliveryMethod.PROGRESSIVE_HTTP);
+                getStreamsOfSpecifiedDelivery(info.getSubtitles(),
+                        DeliveryMethod.PROGRESSIVE_HTTP);
 
-        final List<VideoStream> videoStreamsList = new ArrayList<>(
-                ListHelper.getSortedStreamVideosList(context, progressiveHttpVideoStreams,
-                        progressiveHttpVideoOnlyStreams, false, false));
+        final List<VideoStream> videoStreamsList = ListHelper.getSortedStreamVideosList(context,
+                progressiveHttpVideoStreams, progressiveHttpVideoOnlyStreams, false, false);
 
         final DownloadDialog instance = new DownloadDialog();
         instance.setInfo(info);

@@ -1,6 +1,6 @@
 package org.schabi.newpipe.player.resolver;
 
-import static org.schabi.newpipe.util.ListHelper.removeTorrentStreams;
+import static org.schabi.newpipe.util.ListHelper.getNonTorrentStreams;
 
 import android.content.Context;
 import android.util.Log;
@@ -18,7 +18,6 @@ import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
 import org.schabi.newpipe.util.ListHelper;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AudioPlaybackResolver implements PlaybackResolver {
@@ -43,8 +42,7 @@ public class AudioPlaybackResolver implements PlaybackResolver {
             return liveSource;
         }
 
-        final List<AudioStream> audioStreams = new ArrayList<>(info.getAudioStreams());
-        removeTorrentStreams(audioStreams);
+        final List<AudioStream> audioStreams = getNonTorrentStreams(info.getAudioStreams());
 
         final int index = ListHelper.getDefaultAudioFormat(context, audioStreams);
         if (index < 0 || index >= info.getAudioStreams().size()) {
