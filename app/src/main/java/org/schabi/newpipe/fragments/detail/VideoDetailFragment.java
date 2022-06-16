@@ -188,7 +188,6 @@ public final class VideoDetailFragment
     @Nullable
     private Disposable positionSubscriber = null;
 
-    private List<VideoStream> videoStreamsForExternalPlayers;
     private BottomSheetBehavior<FrameLayout> bottomSheetBehavior;
     private BroadcastReceiver broadcastReceiver;
 
@@ -1615,13 +1614,6 @@ public final class VideoDetailFragment
         binding.detailToggleSecondaryControlsView.setVisibility(View.VISIBLE);
         binding.detailSecondaryControlPanel.setVisibility(View.GONE);
 
-        final List<VideoStream> videoStreams = removeNonUrlAndTorrentStreams(
-                new ArrayList<>(currentInfo.getVideoStreams()));
-        final List<VideoStream> videoOnlyStreams = removeNonUrlAndTorrentStreams(
-                new ArrayList<>(currentInfo.getVideoOnlyStreams()));
-        videoStreamsForExternalPlayers = ListHelper.getSortedStreamVideosList(activity,
-                videoStreams, videoOnlyStreams, false, false);
-
         updateProgressInfo(info);
         initThumbnailViews(info);
         showMetaInfoInTextView(info.getMetaInfo(), binding.detailMetaInfoTextView,
@@ -2155,13 +2147,21 @@ public final class VideoDetailFragment
             return;
         }
 
+        final List<VideoStream> videoStreams = removeNonUrlAndTorrentStreams(
+                new ArrayList<>(currentInfo.getVideoStreams()));
+        final List<VideoStream> videoOnlyStreams = removeNonUrlAndTorrentStreams(
+                new ArrayList<>(currentInfo.getVideoOnlyStreams()));
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle(R.string.select_quality_external_players);
-        builder.setNegativeButton(android.R.string.cancel, null);
         builder.setNeutralButton(R.string.open_in_browser, (dialog, i) ->
                 ShareUtils.openUrlInBrowser(requireActivity(), url));
+        final List<VideoStream> videoStreamsForExternalPlayers =
+                ListHelper.getSortedStreamVideosList(activity, videoStreams, videoOnlyStreams,
+                        false, false);
         if (videoStreamsForExternalPlayers.isEmpty()) {
             builder.setMessage(R.string.no_video_streams_available_for_external_players);
+            builder.setPositiveButton(R.string.ok, null);
         } else {
             final int selectedVideoStreamIndexForExternalPlayers =
                     ListHelper.getDefaultResolutionIndex(activity, videoStreamsForExternalPlayers);
@@ -2173,11 +2173,19 @@ public final class VideoDetailFragment
             }
 
             builder.setSingleChoiceItems(resolutions, selectedVideoStreamIndexForExternalPlayers,
-                    (dialog, i) -> {
-                        dialog.dismiss();
-                        startOnExternalPlayer(activity, currentInfo,
-                                videoStreamsForExternalPlayers.get(i));
-                    });
+                    null);
+            builder.setNegativeButton(R.string.cancel, null);
+            builder.setPositiveButton(R.string.ok, (dialog, i) -> {
+                final int index = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                // We don't have to manage the index validity because if there is no stream
+                // available for external players, this code will be not executed and if there is
+                // no stream which matches the default resolution, 0 is returned by
+                // ListHelper.getDefaultResolutionIndex.
+                // The index cannot be outside the bounds of the list as its always between 0 and
+                // the list size - 1, .
+                startOnExternalPlayer(activity, currentInfo,
+                        videoStreamsForExternalPlayers.get(index));
+            });
         }
         builder.show();
     }
