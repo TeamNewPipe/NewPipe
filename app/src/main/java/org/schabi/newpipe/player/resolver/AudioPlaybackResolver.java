@@ -17,7 +17,6 @@ import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
 import org.schabi.newpipe.util.ListHelper;
 
-import java.io.IOException;
 import java.util.List;
 
 public class AudioPlaybackResolver implements PlaybackResolver {
@@ -55,8 +54,8 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         try {
             return PlaybackResolver.buildMediaSource(
                     dataSource, audio, info, PlaybackResolver.cacheKeyOf(info, audio), tag);
-        } catch (final IOException e) {
-            Log.e(TAG, "Unable to create audio source:", e);
+        } catch (final ResolverException e) {
+            Log.e(TAG, "Unable to create audio source", e);
             return null;
         }
     }

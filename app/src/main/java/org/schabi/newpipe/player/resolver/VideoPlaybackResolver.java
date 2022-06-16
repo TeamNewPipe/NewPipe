@@ -23,7 +23,6 @@ import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
 import org.schabi.newpipe.util.ListHelper;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -94,8 +93,8 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                 final MediaSource streamSource = PlaybackResolver.buildMediaSource(
                         dataSource, video, info, PlaybackResolver.cacheKeyOf(info, video), tag);
                 mediaSources.add(streamSource);
-            } catch (final IOException e) {
-                Log.e(TAG, "Unable to create video source:", e);
+            } catch (final ResolverException e) {
+                Log.e(TAG, "Unable to create video source", e);
                 return null;
             }
         }
@@ -113,8 +112,8 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                         dataSource, audio, info, PlaybackResolver.cacheKeyOf(info, audio), tag);
                 mediaSources.add(audioSource);
                 streamSourceType = SourceType.VIDEO_WITH_SEPARATED_AUDIO;
-            } catch (final IOException e) {
-                Log.e(TAG, "Unable to create audio source:", e);
+            } catch (final ResolverException e) {
+                Log.e(TAG, "Unable to create audio source", e);
                 return null;
             }
         } else {
