@@ -63,7 +63,7 @@ import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.List;
 
-import static org.schabi.newpipe.util.ListHelper.getNonUrlAndNonTorrentStreams;
+import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
 
 public final class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
@@ -227,7 +227,7 @@ public final class NavigationHelper {
         }
 
         final List<AudioStream> audioStreamsForExternalPlayers =
-                getNonUrlAndNonTorrentStreams(audioStreams);
+                getUrlAndNonTorrentStreams(audioStreams);
         if (audioStreamsForExternalPlayers.isEmpty()) {
             Toast.makeText(context, R.string.no_audio_streams_available_for_external_players,
                     Toast.LENGTH_SHORT).show();
@@ -250,7 +250,7 @@ public final class NavigationHelper {
 
         final List<VideoStream> videoStreamsForExternalPlayers =
                 ListHelper.getSortedStreamVideosList(context,
-                        getNonUrlAndNonTorrentStreams(videoStreams), null, false, false);
+                        getUrlAndNonTorrentStreams(videoStreams), null, false, false);
         if (videoStreamsForExternalPlayers.isEmpty()) {
             Toast.makeText(context, R.string.no_video_streams_available_for_external_players,
                     Toast.LENGTH_SHORT).show();

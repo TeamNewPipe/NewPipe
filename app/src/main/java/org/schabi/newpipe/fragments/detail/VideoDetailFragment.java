@@ -123,7 +123,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientat
 import static org.schabi.newpipe.player.helper.PlayerHelper.isClearingQueueConfirmationRequired;
 import static org.schabi.newpipe.player.playqueue.PlayQueueItem.RECOVERY_UNSET;
 import static org.schabi.newpipe.util.ExtractorHelper.showMetaInfoInTextView;
-import static org.schabi.newpipe.util.ListHelper.getNonUrlAndNonTorrentStreams;
+import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
 
 public final class VideoDetailFragment
         extends BaseStateFragment<StreamInfo>
@@ -1107,7 +1107,7 @@ public final class VideoDetailFragment
         if (!useExternalAudioPlayer) {
             openNormalBackgroundPlayer(append);
         } else {
-            final List<AudioStream> audioStreams = getNonUrlAndNonTorrentStreams(
+            final List<AudioStream> audioStreams = getUrlAndNonTorrentStreams(
                     currentInfo.getAudioStreams());
             final int index = ListHelper.getDefaultAudioFormat(activity, audioStreams);
 
@@ -2157,8 +2157,8 @@ public final class VideoDetailFragment
         final List<VideoStream> videoStreamsForExternalPlayers =
                 ListHelper.getSortedStreamVideosList(
                         activity,
-                        getNonUrlAndNonTorrentStreams(currentInfo.getVideoStreams()),
-                        getNonUrlAndNonTorrentStreams(currentInfo.getVideoOnlyStreams()),
+                        getUrlAndNonTorrentStreams(currentInfo.getVideoStreams()),
+                        getUrlAndNonTorrentStreams(currentInfo.getVideoOnlyStreams()),
                         false,
                         false
                 );

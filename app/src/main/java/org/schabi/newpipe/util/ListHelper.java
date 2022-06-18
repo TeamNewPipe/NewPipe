@@ -137,7 +137,7 @@ public final class ListHelper {
      * @return a stream list which only contains URL streams and non-torrent streams
      */
     @NonNull
-    public static <S extends Stream> List<S> getNonUrlAndNonTorrentStreams(
+    public static <S extends Stream> List<S> getUrlAndNonTorrentStreams(
             final List<S> streamList) {
         return getFilteredStreamList(streamList,
                 stream -> stream.isUrl() && stream.getDeliveryMethod() != DeliveryMethod.TORRENT);
