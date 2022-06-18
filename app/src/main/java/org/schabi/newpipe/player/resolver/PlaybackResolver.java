@@ -2,7 +2,6 @@ package org.schabi.newpipe.player.resolver;
 
 import static org.schabi.newpipe.extractor.stream.AudioStream.UNKNOWN_BITRATE;
 import static org.schabi.newpipe.extractor.stream.VideoStream.RESOLUTION_UNKNOWN;
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.player.helper.PlayerDataSource.LIVE_STREAM_EDGE_GAP_MILLIS;
 
 import android.net.Uri;
@@ -88,7 +87,7 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         // cache useless.
         if (resolutionOrBitrateUnknown && mediaFormat == null) {
             cacheKey.append(" ");
-            Objects.hash(stream.getContent(), stream.getManifestUrl());
+            cacheKey.append(Objects.hash(stream.getContent(), stream.getManifestUrl()));
         }
 
         return cacheKey;
@@ -250,20 +249,13 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
             final Stream stream,
             final String cacheKey,
             final MediaItemTag metadata) throws ResolverException {
-        final String url = stream.getContent();
-
-        if (isNullOrEmpty(url)) {
-            throw new ResolverException(
-                    "Try to generate a progressive media source from an empty string or from a "
-                            + "null object");
-        } else {
-            return dataSource.getProgressiveMediaSourceFactory().createMediaSource(
-                    new MediaItem.Builder()
-                            .setTag(metadata)
-                            .setUri(Uri.parse(url))
-                            .setCustomCacheKey(cacheKey)
-                            .build());
-        }
+        throwResolverExceptionIfUrlNullOrEmpty(stream.getContent());
+        return dataSource.getProgressiveMediaSourceFactory().createMediaSource(
+                new MediaItem.Builder()
+                        .setTag(metadata)
+                        .setUri(Uri.parse(stream.getContent()))
+                        .setCustomCacheKey(cacheKey)
+                        .build());
     }
 
     private static DashMediaSource buildDashMediaSource(final PlayerDataSource dataSource,
@@ -271,52 +263,35 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                                                         final String cacheKey,
                                                         final MediaItemTag metadata)
             throws ResolverException {
-        final boolean isUrlStream = stream.isUrl();
-        if (isUrlStream && isNullOrEmpty(stream.getContent())) {
-            throw new ResolverException(
-                    "Could not build a DASH media source from an empty or a null URL content");
-        }
 
-        if (isUrlStream) {
+        if (stream.isUrl()) {
+            throwResolverExceptionIfUrlNullOrEmpty(stream.getContent());
             return dataSource.getDashMediaSourceFactory().createMediaSource(
                     new MediaItem.Builder()
                             .setTag(metadata)
                             .setUri(Uri.parse(stream.getContent()))
                             .setCustomCacheKey(cacheKey)
                             .build());
-        } else {
-            String baseUrl = stream.getManifestUrl();
-            if (baseUrl == null) {
-                baseUrl = "";
-            }
+        }
 
-            final Uri uri = Uri.parse(baseUrl);
-
-            try {
-                return dataSource.getDashMediaSourceFactory().createMediaSource(
-                        createDashManifest(stream.getContent(), stream),
-                        new MediaItem.Builder()
-                                .setTag(metadata)
-                                .setUri(uri)
-                                .setCustomCacheKey(cacheKey)
-                                .build());
-            } catch (final IOException e) {
-                throw new ResolverException(
-                        "Could not create a DASH media source/manifest from the manifest text");
-            }
+        try {
+            return dataSource.getDashMediaSourceFactory().createMediaSource(
+                    createDashManifest(stream.getContent(), stream),
+                    new MediaItem.Builder()
+                            .setTag(metadata)
+                            .setUri(manifestUrlToUri(stream.getManifestUrl()))
+                            .setCustomCacheKey(cacheKey)
+                            .build());
+        } catch (final IOException e) {
+            throw new ResolverException(
+                    "Could not create a DASH media source/manifest from the manifest text", e);
         }
     }
 
     private static DashManifest createDashManifest(final String manifestContent,
                                                    final Stream stream) throws IOException {
-        final ByteArrayInputStream dashManifestInput = new ByteArrayInputStream(
-                manifestContent.getBytes(StandardCharsets.UTF_8));
-        String baseUrl = stream.getManifestUrl();
-        if (baseUrl == null) {
-            baseUrl = "";
-        }
-
-        return new DashManifestParser().parse(Uri.parse(baseUrl), dashManifestInput);
+        return new DashManifestParser().parse(manifestUrlToUri(stream.getManifestUrl()),
+                new ByteArrayInputStream(manifestContent.getBytes(StandardCharsets.UTF_8)));
     }
 
     private static HlsMediaSource buildHlsMediaSource(final PlayerDataSource dataSource,
@@ -324,34 +299,26 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                                                       final String cacheKey,
                                                       final MediaItemTag metadata)
             throws ResolverException {
-        final boolean isUrlStream = stream.isUrl();
-        if (isUrlStream && isNullOrEmpty(stream.getContent())) {
-            throw new ResolverException(
-                    "Could not build a HLS media source from an empty or a null URL content");
-        }
-
-        if (isUrlStream) {
+        if (stream.isUrl()) {
+            throwResolverExceptionIfUrlNullOrEmpty(stream.getContent());
             return dataSource.getHlsMediaSourceFactory(null).createMediaSource(
                     new MediaItem.Builder()
                             .setTag(metadata)
                             .setUri(Uri.parse(stream.getContent()))
                             .setCustomCacheKey(cacheKey)
                             .build());
-        } else {
-            final NonUriHlsDataSourceFactory.Builder hlsDataSourceFactoryBuilder =
-                    new NonUriHlsDataSourceFactory.Builder();
-            hlsDataSourceFactoryBuilder.setPlaylistString(stream.getContent());
-            String manifestUrl = stream.getManifestUrl();
-            if (manifestUrl == null) {
-                manifestUrl = "";
-            }
-            return dataSource.getHlsMediaSourceFactory(hlsDataSourceFactoryBuilder)
-                    .createMediaSource(new MediaItem.Builder()
-                            .setTag(metadata)
-                            .setUri(Uri.parse(manifestUrl))
-                            .setCustomCacheKey(cacheKey)
-                            .build());
         }
+
+        final NonUriHlsDataSourceFactory.Builder hlsDataSourceFactoryBuilder =
+                new NonUriHlsDataSourceFactory.Builder();
+        hlsDataSourceFactoryBuilder.setPlaylistString(stream.getContent());
+
+        return dataSource.getHlsMediaSourceFactory(hlsDataSourceFactoryBuilder)
+                .createMediaSource(new MediaItem.Builder()
+                        .setTag(metadata)
+                        .setUri(manifestUrlToUri(stream.getManifestUrl()))
+                        .setCustomCacheKey(cacheKey)
+                        .build());
     }
 
     private static SsMediaSource buildSSMediaSource(final PlayerDataSource dataSource,
@@ -359,45 +326,35 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                                                     final String cacheKey,
                                                     final MediaItemTag metadata)
             throws ResolverException {
-        final boolean isUrlStream = stream.isUrl();
-        if (isUrlStream && isNullOrEmpty(stream.getContent())) {
-            throw new ResolverException(
-                    "Could not build a SS media source from an empty or a null URL content");
-        }
-
-        if (isUrlStream) {
+        if (stream.isUrl()) {
+            throwResolverExceptionIfUrlNullOrEmpty(stream.getContent());
             return dataSource.getSSMediaSourceFactory().createMediaSource(
                     new MediaItem.Builder()
                             .setTag(metadata)
                             .setUri(Uri.parse(stream.getContent()))
                             .setCustomCacheKey(cacheKey)
                             .build());
-        } else {
-            String baseUrl = stream.getManifestUrl();
-            if (baseUrl == null) {
-                baseUrl = "";
-            }
-
-            final Uri uri = Uri.parse(baseUrl);
-
-            final SsManifest smoothStreamingManifest;
-            try {
-                final ByteArrayInputStream smoothStreamingManifestInput = new ByteArrayInputStream(
-                        stream.getContent().getBytes(StandardCharsets.UTF_8));
-                smoothStreamingManifest = new SsManifestParser().parse(uri,
-                        smoothStreamingManifestInput);
-            } catch (final IOException e) {
-                throw new ResolverException("Error when parsing manual SS manifest", e);
-            }
-
-            return dataSource.getSSMediaSourceFactory().createMediaSource(
-                    smoothStreamingManifest,
-                    new MediaItem.Builder()
-                            .setTag(metadata)
-                            .setUri(uri)
-                            .setCustomCacheKey(cacheKey)
-                            .build());
         }
+
+        final Uri manifestUri = manifestUrlToUri(stream.getManifestUrl());
+
+        final SsManifest smoothStreamingManifest;
+        try {
+            final ByteArrayInputStream smoothStreamingManifestInput = new ByteArrayInputStream(
+                    stream.getContent().getBytes(StandardCharsets.UTF_8));
+            smoothStreamingManifest = new SsManifestParser().parse(manifestUri,
+                    smoothStreamingManifestInput);
+        } catch (final IOException e) {
+            throw new ResolverException("Error when parsing manual SS manifest", e);
+        }
+
+        return dataSource.getSSMediaSourceFactory().createMediaSource(
+                smoothStreamingManifest,
+                new MediaItem.Builder()
+                        .setTag(metadata)
+                        .setUri(manifestUri)
+                        .setCustomCacheKey(cacheKey)
+                        .build());
     }
     //endregion
 
@@ -435,8 +392,6 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                         createDashManifest(manifestString, stream), stream, cacheKey,
                         metadata);
             } catch (final CreationException | IOException | NullPointerException e) {
-                Log.e(TAG, "Error when generating the DASH manifest of YouTube ended live stream",
-                        e);
                 throw new ResolverException(
                         "Error when generating the DASH manifest of YouTube ended live stream", e);
             }
@@ -540,7 +495,23 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
     //endregion
 
 
-    //region resolver exception
+    //region Utils
+    private static Uri manifestUrlToUri(final String manifestUrl) {
+        return Uri.parse(Objects.requireNonNullElse(manifestUrl, ""));
+    }
+
+    private static void throwResolverExceptionIfUrlNullOrEmpty(@Nullable final String url)
+            throws ResolverException {
+        if (url == null) {
+            throw new ResolverException("Null stream url");
+        } else if (url.isEmpty()) {
+            throw new ResolverException("Empty stream url");
+        }
+    }
+    //endregion
+
+
+    //region Resolver exception
     final class ResolverException extends Exception {
         public ResolverException(final String message) {
             super(message);
