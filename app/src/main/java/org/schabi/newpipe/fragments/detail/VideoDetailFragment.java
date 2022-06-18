@@ -1689,11 +1689,7 @@ public final class VideoDetailFragment
         }
 
         try {
-            final DownloadDialog downloadDialog = DownloadDialog.newInstance(activity,
-                    currentInfo);
-            downloadDialog.setSelectedVideoStream(ListHelper.getDefaultResolutionIndex(activity,
-                    downloadDialog.wrappedVideoStreams.getStreamsList()));
-
+            final DownloadDialog downloadDialog = new DownloadDialog(activity, currentInfo);
             downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
         } catch (final Exception e) {
             ErrorUtil.showSnackbar(activity, new ErrorInfo(e, UserAction.DOWNLOAD_OPEN_DIALOG,

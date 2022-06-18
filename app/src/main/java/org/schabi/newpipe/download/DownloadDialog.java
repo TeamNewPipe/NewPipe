@@ -48,7 +48,6 @@ import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.extractor.stream.AudioStream;
-import org.schabi.newpipe.extractor.stream.DeliveryMethod;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
@@ -83,6 +82,7 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;
 import us.shandian.giga.service.MissionState;
 
+import static org.schabi.newpipe.extractor.stream.DeliveryMethod.PROGRESSIVE_HTTP;
 import static org.schabi.newpipe.util.ListHelper.getStreamsOfSpecifiedDelivery;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
@@ -94,17 +94,17 @@ public class DownloadDialog extends DialogFragment
     @State
     StreamInfo currentInfo;
     @State
-    public StreamSizeWrapper<AudioStream> wrappedAudioStreams = StreamSizeWrapper.empty();
+    StreamSizeWrapper<AudioStream> wrappedAudioStreams;
     @State
-    public StreamSizeWrapper<VideoStream> wrappedVideoStreams = StreamSizeWrapper.empty();
+    StreamSizeWrapper<VideoStream> wrappedVideoStreams;
     @State
-    public StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams = StreamSizeWrapper.empty();
+    StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams;
     @State
-    int selectedVideoIndex = 0;
+    int selectedVideoIndex; // set in the constructor
     @State
-    int selectedAudioIndex = 0;
+    int selectedAudioIndex = 0; // default to the first item
     @State
-    int selectedSubtitleIndex = 0;
+    int selectedSubtitleIndex = 0; // default to the first item
 
     @Nullable
     private OnDismissListener onDismissListener = null;
@@ -140,115 +140,47 @@ public class DownloadDialog extends DialogFragment
             registerForActivityResult(
                     new StartActivityForResult(), this::requestDownloadPickVideoFolderResult);
 
+
     /*//////////////////////////////////////////////////////////////////////////
     // Instance creation
     //////////////////////////////////////////////////////////////////////////*/
 
-    @NonNull
-    public static DownloadDialog newInstance(final Context context,
-                                             @NonNull final StreamInfo info) {
-        // TODO: Adapt this code when the downloader support other types of stream deliveries
-        final List<VideoStream> progressiveHttpVideoStreams =
-                getStreamsOfSpecifiedDelivery(info.getVideoStreams(),
-                        DeliveryMethod.PROGRESSIVE_HTTP);
-
-        final List<VideoStream> progressiveHttpVideoOnlyStreams =
-                getStreamsOfSpecifiedDelivery(info.getVideoOnlyStreams(),
-                        DeliveryMethod.PROGRESSIVE_HTTP);
-
-        final List<AudioStream> progressiveHttpAudioStreams =
-                getStreamsOfSpecifiedDelivery(info.getAudioStreams(),
-                        DeliveryMethod.PROGRESSIVE_HTTP);
-
-        final List<SubtitlesStream> progressiveHttpSubtitlesStreams =
-                getStreamsOfSpecifiedDelivery(info.getSubtitles(),
-                        DeliveryMethod.PROGRESSIVE_HTTP);
-
-        final List<VideoStream> videoStreamsList = ListHelper.getSortedStreamVideosList(context,
-                progressiveHttpVideoStreams, progressiveHttpVideoOnlyStreams, false, false);
-
-        final DownloadDialog instance = new DownloadDialog();
-        instance.setInfo(info);
-        instance.setVideoStreams(videoStreamsList);
-        instance.setAudioStreams(progressiveHttpAudioStreams);
-        instance.setSubtitleStreams(progressiveHttpSubtitlesStreams);
-
-        return instance;
-    }
-
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Setters
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private void setInfo(@NonNull final StreamInfo info) {
+    /**
+     * Create a new download dialog with the video, audio and subtitle streams from the provided
+     * stream info. Video streams and video-only streams will be put into a single list menu,
+     * sorted according to their resolution and the default video resolution will be selected.
+     *
+     * @param context the context to use just to obtain preferences and strings (will not be stored)
+     * @param info    the info from which to obtain downloadable streams and other info (e.g. title)
+     */
+    public DownloadDialog(final Context context, @NonNull final StreamInfo info) {
         this.currentInfo = info;
-    }
 
-    public void setAudioStreams(@NonNull final List<AudioStream> audioStreams) {
-        this.wrappedAudioStreams = new StreamSizeWrapper<>(audioStreams, getContext());
-    }
+        // TODO: Adapt this code when the downloader support other types of stream deliveries
+        final List<VideoStream> videoStreams = ListHelper.getSortedStreamVideosList(
+                context,
+                getStreamsOfSpecifiedDelivery(info.getVideoStreams(), PROGRESSIVE_HTTP),
+                getStreamsOfSpecifiedDelivery(info.getVideoOnlyStreams(), PROGRESSIVE_HTTP),
+                false,
+                false
+        );
 
-    public void setVideoStreams(@NonNull final List<VideoStream> videoStreams) {
-        this.wrappedVideoStreams = new StreamSizeWrapper<>(videoStreams, getContext());
-    }
+        this.wrappedVideoStreams = new StreamSizeWrapper<>(videoStreams, context);
+        this.wrappedAudioStreams = new StreamSizeWrapper<>(
+                getStreamsOfSpecifiedDelivery(info.getAudioStreams(), PROGRESSIVE_HTTP), context);
+        this.wrappedSubtitleStreams = new StreamSizeWrapper<>(
+                getStreamsOfSpecifiedDelivery(info.getSubtitles(), PROGRESSIVE_HTTP), context);
 
-    public void setSubtitleStreams(@NonNull final List<SubtitlesStream> subtitleStreams) {
-        this.wrappedSubtitleStreams = new StreamSizeWrapper<>(subtitleStreams, getContext());
-    }
-
-    /**
-     * Set the selected video stream, by using its index in the stream list.
-     *
-     * The index of the select video stream will be not set if this index is not in the bounds
-     * of the stream list.
-     *
-     * @param svi the index of the selected {@link VideoStream}
-     */
-    public void setSelectedVideoStream(final int svi) {
-        if (selectedStreamIsInBoundsOfWrappedStreams(svi, this.wrappedVideoStreams)) {
-            this.selectedVideoIndex = svi;
-        }
+        this.selectedVideoIndex = ListHelper.getDefaultResolutionIndex(context, videoStreams);
     }
 
     /**
-     * Set the selected audio stream, by using its index in the stream list.
-     *
-     * The index of the select audio stream will be not set if this index is not in the bounds
-     * of the stream list.
-     *
-     * @param sai the index of the selected {@link AudioStream}
+     * @param onDismissListener the listener to call in {@link #onDismiss(DialogInterface)}
      */
-    public void setSelectedAudioStream(final int sai) {
-        if (selectedStreamIsInBoundsOfWrappedStreams(sai, this.wrappedAudioStreams)) {
-            this.selectedAudioIndex = sai;
-        }
-    }
-
-    /**
-     * Set the selected subtitles stream, by using its index in the stream list.
-     *
-     * The index of the select subtitles stream will be not set if this index is not in the bounds
-     * of the stream list.
-     *
-     * @param ssi the index of the selected {@link SubtitlesStream}
-     */
-    public void setSelectedSubtitleStream(final int ssi) {
-        if (selectedStreamIsInBoundsOfWrappedStreams(ssi, this.wrappedSubtitleStreams)) {
-            this.selectedSubtitleIndex = ssi;
-        }
-    }
-
-    private boolean selectedStreamIsInBoundsOfWrappedStreams(
-            final int selectedIndexStream,
-            final StreamSizeWrapper<? extends Stream> wrappedStreams) {
-        return selectedIndexStream > 0
-                && selectedIndexStream < wrappedStreams.getStreamsList().size();
-    }
-
     public void setOnDismissListener(@Nullable final OnDismissListener onDismissListener) {
         this.onDismissListener = onDismissListener;
     }
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Android lifecycle
@@ -754,13 +686,9 @@ public class DownloadDialog extends DialogFragment
                 if (format == MediaFormat.WEBMA_OPUS) {
                     mimeTmp = "audio/ogg";
                     filenameTmp += "opus";
-                } else {
-                    if (format != null) {
-                        mimeTmp = format.mimeType;
-                    }
-                    if (format != null) {
-                        filenameTmp += format.suffix;
-                    }
+                } else if (format != null) {
+                    mimeTmp = format.mimeType;
+                    filenameTmp += format.suffix;
                 }
                 break;
             case R.id.video_button:
@@ -769,8 +697,6 @@ public class DownloadDialog extends DialogFragment
                 format = videoStreamsAdapter.getItem(selectedVideoIndex).getFormat();
                 if (format != null) {
                     mimeTmp = format.mimeType;
-                }
-                if (format != null) {
                     filenameTmp += format.suffix;
                 }
                 break;
@@ -1085,7 +1011,7 @@ public class DownloadDialog extends DialogFragment
                     new MissionRecoveryInfo(selectedStream)
             };
         } else {
-            if (secondaryStream.getDeliveryMethod() != DeliveryMethod.PROGRESSIVE_HTTP) {
+            if (secondaryStream.getDeliveryMethod() != PROGRESSIVE_HTTP) {
                 throw new IllegalArgumentException("Unsupported stream delivery format"
                         + secondaryStream.getDeliveryMethod());
             }

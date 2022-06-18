@@ -70,7 +70,6 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
-import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -676,9 +675,7 @@ public class RouterActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
-                    final DownloadDialog downloadDialog = DownloadDialog.newInstance(this, result);
-                    downloadDialog.setSelectedVideoStream(ListHelper.getDefaultResolutionIndex(
-                            this, downloadDialog.wrappedVideoStreams.getStreamsList()));
+                    final DownloadDialog downloadDialog = new DownloadDialog(this, result);
                     downloadDialog.setOnDismissListener(dialog -> finish());
 
                     final FragmentManager fm = getSupportFragmentManager();
