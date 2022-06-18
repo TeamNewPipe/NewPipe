@@ -1555,13 +1555,11 @@ public final class VideoDetailFragment
         binding.detailSubChannelThumbnailView.setImageDrawable(buddyDrawable);
         binding.detailUploaderThumbnailView.setImageDrawable(buddyDrawable);
 
-        final StreamType streamType = info.getStreamType();
-
         if (info.getViewCount() >= 0) {
-            if (streamType.equals(StreamType.AUDIO_LIVE_STREAM)) {
+            if (info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
                 binding.detailViewCountView.setText(Localization.listeningCount(activity,
                         info.getViewCount()));
-            } else if (streamType.equals(StreamType.LIVE_STREAM)) {
+            } else if (info.getStreamType().equals(StreamType.LIVE_STREAM)) {
                 binding.detailViewCountView.setText(Localization
                         .localizeWatchingCount(activity, info.getViewCount()));
             } else {
@@ -1648,7 +1646,7 @@ public final class VideoDetailFragment
         }
 
         binding.detailControlsDownload.setVisibility(
-                StreamTypeUtil.isLiveStream(streamType) ? View.GONE : View.VISIBLE);
+                StreamTypeUtil.isLiveStream(info.getStreamType()) ? View.GONE : View.VISIBLE);
         binding.detailControlsBackground.setVisibility(info.getAudioStreams().isEmpty()
                 ? View.GONE : View.VISIBLE);
 
@@ -2151,21 +2149,24 @@ public final class VideoDetailFragment
             return;
         }
 
-        final List<VideoStream> videoStreams = getNonUrlAndNonTorrentStreams(
-                currentInfo.getVideoStreams());
-        final List<VideoStream> videoOnlyStreams = getNonUrlAndNonTorrentStreams(
-                currentInfo.getVideoOnlyStreams());
-
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle(R.string.select_quality_external_players);
         builder.setNeutralButton(R.string.open_in_browser, (dialog, i) ->
                 ShareUtils.openUrlInBrowser(requireActivity(), url));
+
         final List<VideoStream> videoStreamsForExternalPlayers =
-                ListHelper.getSortedStreamVideosList(activity, videoStreams, videoOnlyStreams,
-                        false, false);
+                ListHelper.getSortedStreamVideosList(
+                        activity,
+                        getNonUrlAndNonTorrentStreams(currentInfo.getVideoStreams()),
+                        getNonUrlAndNonTorrentStreams(currentInfo.getVideoOnlyStreams()),
+                        false,
+                        false
+                );
+
         if (videoStreamsForExternalPlayers.isEmpty()) {
             builder.setMessage(R.string.no_video_streams_available_for_external_players);
             builder.setPositiveButton(R.string.ok, null);
+
         } else {
             final int selectedVideoStreamIndexForExternalPlayers =
                     ListHelper.getDefaultResolutionIndex(activity, videoStreamsForExternalPlayers);
