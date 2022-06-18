@@ -1,5 +1,7 @@
 package org.schabi.newpipe.player.helper;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
 import android.content.Context;
 import android.util.Log;
 
@@ -199,7 +201,9 @@ public class PlayerDataSource {
     private static void instantiateCacheIfNeeded(final Context context) {
         if (cache == null) {
             final File cacheDir = new File(context.getExternalCacheDir(), CACHE_FOLDER_NAME);
-            Log.d(TAG, "instantiateCacheIfNeeded: cacheDir = " + cacheDir.getAbsolutePath());
+            if (DEBUG) {
+                Log.d(TAG, "instantiateCacheIfNeeded: cacheDir = " + cacheDir.getAbsolutePath());
+            }
             if (!cacheDir.exists() && !cacheDir.mkdir()) {
                 Log.w(TAG, "instantiateCacheIfNeeded: could not create cache dir");
             }
