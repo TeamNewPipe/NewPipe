@@ -249,6 +249,9 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
             final Stream stream,
             final String cacheKey,
             final MediaItemTag metadata) throws ResolverException {
+        if (!stream.isUrl()) {
+            throw new ResolverException("Non URI progressive contents are not supported");
+        }
         throwResolverExceptionIfUrlNullOrEmpty(stream.getContent());
         return dataSource.getProgressiveMediaSourceFactory().createMediaSource(
                 new MediaItem.Builder()
@@ -503,9 +506,9 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
     private static void throwResolverExceptionIfUrlNullOrEmpty(@Nullable final String url)
             throws ResolverException {
         if (url == null) {
-            throw new ResolverException("Null stream url");
+            throw new ResolverException("Null stream URL");
         } else if (url.isEmpty()) {
-            throw new ResolverException("Empty stream url");
+            throw new ResolverException("Empty stream URL");
         }
     }
     //endregion
