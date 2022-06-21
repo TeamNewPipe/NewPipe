@@ -1,5 +1,11 @@
 package org.schabi.newpipe.local.subscription;
 
+import static org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.ContentSource.CHANNEL_URL;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.CHANNEL_URL_MODE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.INPUT_STREAM_MODE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,12 +45,6 @@ import java.util.Collections;
 import java.util.List;
 
 import icepick.State;
-
-import static org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.ContentSource.CHANNEL_URL;
-import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.CHANNEL_URL_MODE;
-import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.INPUT_STREAM_MODE;
-import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE;
-import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE;
 
 public class SubscriptionsImportFragment extends BaseFragment {
     @State
@@ -89,7 +89,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
         if (supportedSources.isEmpty() && currentServiceId != Constants.NO_SERVICE_ID) {
             ErrorUtil.showSnackbar(activity,
                     new ErrorInfo(new String[]{}, UserAction.SUBSCRIPTION_IMPORT_EXPORT,
-                            NewPipe.getNameOfService(currentServiceId),
+                            ServiceHelper.getNameOfServiceById(currentServiceId),
                             "Service does not support importing subscriptions",
                             R.string.general_error));
             activity.finish();
