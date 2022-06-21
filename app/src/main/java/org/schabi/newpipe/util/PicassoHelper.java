@@ -104,6 +104,10 @@ public final class PicassoHelper {
         return loadImageDefault(url, R.drawable.dummy_thumbnail);
     }
 
+    public static RequestCreator loadDetailsThumbnail(final String url) {
+        return loadImageDefault(url, R.drawable.dummy_thumbnail, false);
+    }
+
     public static RequestCreator loadBanner(final String url) {
         return loadImageDefault(url, R.drawable.channel_banner);
     }
@@ -189,15 +193,24 @@ public final class PicassoHelper {
 
 
     private static RequestCreator loadImageDefault(final String url, final int placeholderResId) {
+        return loadImageDefault(url, placeholderResId, true);
+    }
+
+    private static RequestCreator loadImageDefault(final String url, final int placeholderResId,
+                                                   final boolean showPlaceholderWhileLoading) {
         if (!shouldLoadImages || isBlank(url)) {
             return picassoInstance
                     .load((String) null)
                     .placeholder(placeholderResId) // show placeholder when no image should load
                     .error(placeholderResId);
         } else {
-            return picassoInstance
+            final RequestCreator requestCreator = picassoInstance
                     .load(url)
-                    .error(placeholderResId); // don't show placeholder while loading, only on error
+                    .error(placeholderResId);
+            if (showPlaceholderWhileLoading) {
+                requestCreator.placeholder(placeholderResId);
+            }
+            return requestCreator;
         }
     }
 }
