@@ -58,7 +58,6 @@ import org.schabi.newpipe.extractor.exceptions.SoundCloudGoPlusContentException;
 import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.MainPlayer;
@@ -71,7 +70,6 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
-import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -677,22 +675,13 @@ public class RouterActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
-                    final List<VideoStream> sortedVideoStreams = ListHelper
-                            .getSortedStreamVideosList(this, result.getVideoStreams(),
-                                    result.getVideoOnlyStreams(), false, false);
-                    final int selectedVideoStreamIndex = ListHelper
-                            .getDefaultResolutionIndex(this, sortedVideoStreams);
+                    final DownloadDialog downloadDialog = new DownloadDialog(this, result);
+                    downloadDialog.setOnDismissListener(dialog -> finish());
 
                     final FragmentManager fm = getSupportFragmentManager();
-                    final DownloadDialog downloadDialog = DownloadDialog.newInstance(result);
-                    downloadDialog.setVideoStreams(sortedVideoStreams);
-                    downloadDialog.setAudioStreams(result.getAudioStreams());
-                    downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
-                    downloadDialog.setOnDismissListener(dialog -> finish());
                     downloadDialog.show(fm, "downloadDialog");
                     fm.executePendingTransactions();
-                }, throwable ->
-                        showUnsupportedUrlDialog(currentUrl)));
+                }, throwable -> showUnsupportedUrlDialog(currentUrl)));
     }
 
     @Override
