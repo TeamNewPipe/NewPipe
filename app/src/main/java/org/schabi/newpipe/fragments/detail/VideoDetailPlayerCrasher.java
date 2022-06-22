@@ -1,5 +1,9 @@
 package org.schabi.newpipe.fragments.detail;
 
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_DECODING_FAILED;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_UNSPECIFIED;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -28,10 +32,6 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
-
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_DECODING_FAILED;
-import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_UNSPECIFIED;
 
 /**
  * Outsourced logic for crashing the player in the {@link VideoDetailFragment}.
@@ -97,8 +97,7 @@ public final class VideoDetailPlayerCrasher {
 
     public static void onCrashThePlayer(
             @NonNull final Context context,
-            @Nullable final Player player,
-            @NonNull final LayoutInflater layoutInflater
+            @Nullable final Player player
     ) {
         if (player == null) {
             Log.d(TAG, "Player is not available");
@@ -109,16 +108,15 @@ public final class VideoDetailPlayerCrasher {
         }
 
         // -- Build the dialog/UI --
-
         final Context themeWrapperContext = getThemeWrapperContext(context);
-
         final LayoutInflater inflater = LayoutInflater.from(themeWrapperContext);
-        final RadioGroup radioGroup = SingleChoiceDialogViewBinding.inflate(layoutInflater)
-                .list;
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(getThemeWrapperContext(context))
+        final SingleChoiceDialogViewBinding binding =
+                SingleChoiceDialogViewBinding.inflate(inflater);
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(themeWrapperContext)
                 .setTitle("Choose an exception")
-                .setView(radioGroup)
+                .setView(binding.getRoot())
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
                 .create();
@@ -136,11 +134,9 @@ public final class VideoDetailPlayerCrasher {
             );
             radioButton.setOnClickListener(v -> {
                 tryCrashPlayerWith(player, entry.getValue().get());
-                if (alertDialog != null) {
-                    alertDialog.cancel();
-                }
+                alertDialog.cancel();
             });
-            radioGroup.addView(radioButton);
+            binding.list.addView(radioButton);
         }
 
         alertDialog.show();

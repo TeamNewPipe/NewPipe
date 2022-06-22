@@ -2,6 +2,7 @@ package org.schabi.newpipe.player.resolver;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,8 +28,12 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.google.android.exoplayer2.C.TIME_UNSET;
+import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
+import static org.schabi.newpipe.util.ListHelper.getNonTorrentStreams;
 
 public class VideoPlaybackResolver implements PlaybackResolver {
+    private static final String TAG = VideoPlaybackResolver.class.getSimpleName();
+
     @NonNull
     private final Context context;
     @NonNull
@@ -57,7 +62,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     @Override
     @Nullable
     public MediaSource resolve(@NonNull final StreamInfo info) {
-        final MediaSource liveSource = maybeBuildLiveMediaSource(dataSource, info);
+        final MediaSource liveSource = PlaybackResolver.maybeBuildLiveMediaSource(dataSource, info);
         if (liveSource != null) {
             streamSourceType = SourceType.LIVE_STREAM;
             return liveSource;
@@ -66,40 +71,51 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         final List<MediaSource> mediaSources = new ArrayList<>();
 
         // Create video stream source
-        final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
-                info.getVideoStreams(), info.getVideoOnlyStreams(), false, true);
+        final List<VideoStream> videoStreamsList = ListHelper.getSortedStreamVideosList(context,
+                getNonTorrentStreams(info.getVideoStreams()),
+                getNonTorrentStreams(info.getVideoOnlyStreams()), false, true);
         final int index;
-        if (videos.isEmpty()) {
+        if (videoStreamsList.isEmpty()) {
             index = -1;
         } else if (playbackQuality == null) {
-            index = qualityResolver.getDefaultResolutionIndex(videos);
+            index = qualityResolver.getDefaultResolutionIndex(videoStreamsList);
         } else {
-            index = qualityResolver.getOverrideResolutionIndex(videos, getPlaybackQuality());
+            index = qualityResolver.getOverrideResolutionIndex(videoStreamsList,
+                    getPlaybackQuality());
         }
-        final MediaItemTag tag = StreamInfoTag.of(info, videos, index);
+        final MediaItemTag tag = StreamInfoTag.of(info, videoStreamsList, index);
         @Nullable final VideoStream video = tag.getMaybeQuality()
                 .map(MediaItemTag.Quality::getSelectedVideoStream)
                 .orElse(null);
 
         if (video != null) {
-            final MediaSource streamSource = buildMediaSource(dataSource, video.getUrl(),
-                    PlayerHelper.cacheKeyOf(info, video),
-                    MediaFormat.getSuffixById(video.getFormatId()), tag);
-            mediaSources.add(streamSource);
+            try {
+                final MediaSource streamSource = PlaybackResolver.buildMediaSource(
+                        dataSource, video, info, PlaybackResolver.cacheKeyOf(info, video), tag);
+                mediaSources.add(streamSource);
+            } catch (final ResolverException e) {
+                Log.e(TAG, "Unable to create video source", e);
+                return null;
+            }
         }
 
         // Create optional audio stream source
-        final List<AudioStream> audioStreams = info.getAudioStreams();
+        final List<AudioStream> audioStreams = getNonTorrentStreams(info.getAudioStreams());
         final AudioStream audio = audioStreams.isEmpty() ? null : audioStreams.get(
                 ListHelper.getDefaultAudioFormat(context, audioStreams));
+
         // Use the audio stream if there is no video stream, or
-        // Merge with audio stream in case if video does not contain audio
-        if (audio != null && (video == null || video.isVideoOnly)) {
-            final MediaSource audioSource = buildMediaSource(dataSource, audio.getUrl(),
-                    PlayerHelper.cacheKeyOf(info, audio),
-                    MediaFormat.getSuffixById(audio.getFormatId()), tag);
-            mediaSources.add(audioSource);
-            streamSourceType = SourceType.VIDEO_WITH_SEPARATED_AUDIO;
+        // merge with audio stream in case if video does not contain audio
+        if (audio != null && (video == null || video.isVideoOnly())) {
+            try {
+                final MediaSource audioSource = PlaybackResolver.buildMediaSource(
+                        dataSource, audio, info, PlaybackResolver.cacheKeyOf(info, audio), tag);
+                mediaSources.add(audioSource);
+                streamSourceType = SourceType.VIDEO_WITH_SEPARATED_AUDIO;
+            } catch (final ResolverException e) {
+                Log.e(TAG, "Unable to create audio source", e);
+                return null;
+            }
         } else {
             streamSourceType = SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY;
         }
@@ -108,36 +124,39 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         if (mediaSources.isEmpty()) {
             return null;
         }
+
         // Below are auxiliary media sources
 
         // Create subtitle sources
-        if (info.getSubtitles() != null) {
-            for (final SubtitlesStream subtitle : info.getSubtitles()) {
-                final String mimeType = PlayerHelper.subtitleMimeTypesOf(subtitle.getFormat());
-                if (mimeType == null) {
-                    continue;
+        final List<SubtitlesStream> subtitlesStreams = info.getSubtitles();
+        if (subtitlesStreams != null) {
+            // Torrent and non URL subtitles are not supported by ExoPlayer
+            final List<SubtitlesStream> nonTorrentAndUrlStreams = getUrlAndNonTorrentStreams(
+                    subtitlesStreams);
+            for (final SubtitlesStream subtitle : nonTorrentAndUrlStreams) {
+                final MediaFormat mediaFormat = subtitle.getFormat();
+                if (mediaFormat != null) {
+                    @C.RoleFlags final int textRoleFlag = subtitle.isAutoGenerated()
+                            ? C.ROLE_FLAG_DESCRIBES_MUSIC_AND_SOUND
+                            : C.ROLE_FLAG_CAPTION;
+                    final MediaItem.SubtitleConfiguration textMediaItem =
+                            new MediaItem.SubtitleConfiguration.Builder(
+                                    Uri.parse(subtitle.getContent()))
+                                    .setMimeType(mediaFormat.getMimeType())
+                                    .setRoleFlags(textRoleFlag)
+                                    .setLanguage(PlayerHelper.captionLanguageOf(context, subtitle))
+                                    .build();
+                    final MediaSource textSource = dataSource.getSingleSampleMediaSourceFactory()
+                            .createMediaSource(textMediaItem, TIME_UNSET);
+                    mediaSources.add(textSource);
                 }
-                final @C.RoleFlags int textRoleFlag = subtitle.isAutoGenerated()
-                        ? C.ROLE_FLAG_DESCRIBES_MUSIC_AND_SOUND
-                        : C.ROLE_FLAG_CAPTION;
-                final MediaItem.SubtitleConfiguration textMediaItem =
-                        new MediaItem.SubtitleConfiguration.Builder(Uri.parse(subtitle.getUrl()))
-                                .setMimeType(mimeType)
-                                .setRoleFlags(textRoleFlag)
-                                .setLanguage(PlayerHelper.captionLanguageOf(context, subtitle))
-                                .build();
-                final MediaSource textSource = dataSource
-                        .getSampleMediaSourceFactory()
-                        .createMediaSource(textMediaItem, TIME_UNSET);
-                mediaSources.add(textSource);
             }
         }
 
         if (mediaSources.size() == 1) {
             return mediaSources.get(0);
         } else {
-            return new MergingMediaSource(mediaSources.toArray(
-                    new MediaSource[0]));
+            return new MergingMediaSource(true, mediaSources.toArray(new MediaSource[0]));
         }
     }
 
