@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.preference.PreferenceManager;
@@ -23,8 +24,6 @@ import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
-
-import javax.annotation.Nonnull;
 
 public final class ServiceHelper {
     private static final StreamingService DEFAULT_FALLBACK_SERVICE = ServiceList.YouTube;
@@ -135,7 +134,7 @@ public final class ServiceHelper {
         }
     }
 
-    @Nonnull
+    @NonNull
     public static String getNameOfServiceById(final int serviceId) {
         return ServiceList.all().stream()
                 .filter(s -> s.getServiceId() == serviceId)
