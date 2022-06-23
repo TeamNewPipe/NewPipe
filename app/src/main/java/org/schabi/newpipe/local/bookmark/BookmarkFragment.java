@@ -454,21 +454,16 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
         // 1. Update local playlists
         // 2. Update remote playlists
-        // 3. Set isModified false
+        // 3. Set NoChangesToSave
         disposables.add(localPlaylistManager.updatePlaylists(localItemsUpdate, localItemsDeleteUid)
+                .mergeWith(remotePlaylistManager.updatePlaylists(
+                        remoteItemsUpdate, remoteItemsDeleteUid))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> disposables.add(remotePlaylistManager.updatePlaylists(
-                        remoteItemsUpdate, remoteItemsDeleteUid)
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(() -> {
-                                            if (debounceSaver != null) {
-                                                debounceSaver.setNoChangesToSave();
-                                            }
-                                        },
-                                        throwable -> showError(new ErrorInfo(throwable,
-                                                UserAction.REQUESTED_BOOKMARK,
-                                                "Saving playlist"))
-                                )),
+                .subscribe(() -> {
+                            if (debounceSaver != null) {
+                                debounceSaver.setNoChangesToSave();
+                            }
+                        },
                         throwable -> showError(new ErrorInfo(throwable,
                                 UserAction.REQUESTED_BOOKMARK, "Saving playlist"))
                 ));
