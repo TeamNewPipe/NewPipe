@@ -621,8 +621,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         // List must be loaded and modified in order to save
         if (isLoadingComplete == null || debounceSaver == null
                 || !isLoadingComplete.get() || !debounceSaver.getIsModified()) {
-            Log.w(TAG, "Attempting to save playlist when local playlist "
-                    + "is not loaded or not modified: playlist id=[" + playlistId + "]");
             return;
         }
 

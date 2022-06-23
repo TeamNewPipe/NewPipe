@@ -66,6 +66,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     /* Have the bookmarked playlists been fully loaded from db */
     private AtomicBoolean isLoadingComplete;
 
+    /* Gives enough time to avoid interrupting user sorting operations */
     private DebounceSaver debounceSaver;
 
     private List<Pair<Long, LocalItem.LocalItemType>> deletedItems;
@@ -385,8 +386,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         // List must be loaded and modified in order to save
         if (isLoadingComplete == null || debounceSaver == null
                 || !isLoadingComplete.get() || !debounceSaver.getIsModified()) {
-            Log.w(TAG, "Attempting to save playlists in bookmark when bookmark "
-                    + "is not loaded or playlists not modified");
             return;
         }
 
