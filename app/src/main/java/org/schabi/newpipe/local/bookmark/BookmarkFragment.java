@@ -139,7 +139,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
                 if (selectedItem instanceof PlaylistMetadataEntry) {
                     final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
-                    NavigationHelper.openLocalPlaylistFragment(fragmentManager, entry.uid,
+                    NavigationHelper.openLocalPlaylistFragment(fragmentManager, entry.getUid(),
                             entry.name);
 
                 } else if (selectedItem instanceof PlaylistRemoteEntity) {
@@ -181,7 +181,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
         if (debounceSaver != null) {
             disposables.add(debounceSaver.getDebouncedSaver());
-            debounceSaver.setIsModified(false);
+            debounceSaver.setNoChangesToSave();
         }
         isLoadingComplete.set(false);
 
@@ -371,16 +371,15 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             // Save the index read from the database.
             if (item instanceof PlaylistMetadataEntry) {
 
-                displayIndexInDatabase.put(new Pair<>(((PlaylistMetadataEntry) item).uid,
+                displayIndexInDatabase.put(new Pair<>(item.getUid(),
                         LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM), item.getDisplayIndex());
-                ((PlaylistMetadataEntry) item).displayIndex = i;
+                item.setDisplayIndex(i);
 
             } else if (item instanceof PlaylistRemoteEntity) {
 
-                displayIndexInDatabase.put(new Pair<>(((PlaylistRemoteEntity) item).getUid(),
-                                LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM),
-                        item.getDisplayIndex());
-                ((PlaylistRemoteEntity) item).setDisplayIndex(i);
+                displayIndexInDatabase.put(new Pair<>(item.getUid(),
+                        LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM), item.getDisplayIndex());
+                item.setDisplayIndex(i);
 
             }
         }
@@ -415,9 +414,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             final LocalItem item = items.get(i);
 
             if (item instanceof PlaylistMetadataEntry) {
-                ((PlaylistMetadataEntry) item).displayIndex = i;
+                ((PlaylistMetadataEntry) item).setDisplayIndex(i);
 
-                final Long uid = ((PlaylistMetadataEntry) item).uid;
+                final Long uid = ((PlaylistMetadataEntry) item).getUid();
                 final Pair<Long, LocalItem.LocalItemType> key = new Pair<>(uid,
                         LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM);
                 final Long databaseIndex = displayIndexInDatabase.remove(key);
@@ -463,7 +462,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(() -> {
                                             if (debounceSaver != null) {
-                                                debounceSaver.setIsModified(false);
+                                                debounceSaver.setNoChangesToSave();
                                             }
                                         },
                                         throwable -> showError(new ErrorInfo(throwable,
@@ -563,7 +562,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         builder.setView(dialogBinding.getRoot())
                 .setPositiveButton(R.string.rename_playlist, (dialog, which) ->
                         changeLocalPlaylistName(
-                                selectedItem.uid,
+                                selectedItem.getUid(),
                                 dialogBinding.dialogEditText.getText().toString()))
                 .setNegativeButton(R.string.cancel, null)
                 .setNeutralButton(R.string.delete, (dialog, which) -> {

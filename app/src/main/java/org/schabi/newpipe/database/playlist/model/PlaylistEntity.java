@@ -41,10 +41,10 @@ public class PlaylistEntity {
 
     @Ignore
     public PlaylistEntity(final PlaylistMetadataEntry item) {
-        this.uid = item.uid;
+        this.uid = item.getUid();
         this.name = item.name;
         this.thumbnailUrl = item.thumbnailUrl;
-        this.displayIndex = item.displayIndex;
+        this.displayIndex = item.getDisplayIndex();
     }
 
     public long getUid() {

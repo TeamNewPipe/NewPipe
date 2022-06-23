@@ -221,7 +221,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         if (debounceSaver != null) {
             disposables.add(debounceSaver.getDebouncedSaver());
-            debounceSaver.setIsModified(false);
+            debounceSaver.setNoChangesToSave();
         }
 
         isLoadingComplete.set(false);
@@ -644,7 +644,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .subscribe(
                         () -> {
                             if (debounceSaver != null) {
-                                debounceSaver.setIsModified(false);
+                                debounceSaver.setNoChangesToSave();
                             }
                         },
                         throwable -> showError(new ErrorInfo(throwable,

@@ -13,6 +13,10 @@ public interface PlaylistLocalItem extends LocalItem {
 
     long getDisplayIndex();
 
+    long getUid();
+
+    void setDisplayIndex(long displayIndex);
+
     /**
      * Merge localPlaylists and remotePlaylists by the display index.
      * If two items have the same display index, sort them in {@code CASE_INSENSITIVE_ORDER}.

@@ -105,6 +105,7 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
                 && TextUtils.equals(getUploader(), info.getUploaderName());
     }
 
+    @Override
     public long getUid() {
         return uid;
     }
@@ -158,6 +159,7 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
         return displayIndex;
     }
 
+    @Override
     public void setDisplayIndex(final long displayIndex) {
         this.displayIndex = displayIndex;
     }

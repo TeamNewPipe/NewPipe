@@ -53,8 +53,8 @@ public class DebounceSaver {
         return isModified.get();
     }
 
-    public void setIsModified(final boolean isModified) {
-        this.isModified.set(isModified);
+    public void setNoChangesToSave() {
+        isModified.set(false);
     }
 
     public PublishSubject<Long> getDebouncedSaveSignal() {
