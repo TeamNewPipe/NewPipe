@@ -41,9 +41,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import icepick.State;
@@ -70,8 +68,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
     private DebounceSaver debounceSaver;
 
-    // Map from (uid, local/remote item) to the saved display index in the database.
-    private Map<Pair<Long, LocalItem.LocalItemType>, Long> displayIndexInDatabase;
+    private List<Pair<Long, LocalItem.LocalItemType>> deletedItems;
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
@@ -89,9 +86,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         disposables = new CompositeDisposable();
 
         isLoadingComplete = new AtomicBoolean();
-        debounceSaver = new DebounceSaver(this);
+        debounceSaver = new DebounceSaver(3000, this);
 
-        displayIndexInDatabase = new HashMap<>();
+        deletedItems = new ArrayList<>();
     }
 
     @Nullable
@@ -186,7 +183,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         isLoadingComplete.set(false);
 
         Flowable.combineLatest(localPlaylistManager.getDisplayIndexOrderedPlaylists(),
-                remotePlaylistManager.getDisplayIndexOrderedPlaylists(), PlaylistLocalItem::merge)
+                        remotePlaylistManager.getDisplayIndexOrderedPlaylists(),
+                        PlaylistLocalItem::merge)
                 .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistsSubscriber());
@@ -237,7 +235,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         itemsListState = null;
 
         isLoadingComplete = null;
-        displayIndexInDatabase = null;
+        deletedItems = null;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -343,7 +341,15 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         }
         itemListAdapter.removeItem(item);
 
-        debounceSaver.saveChanges();
+        if (item instanceof PlaylistMetadataEntry) {
+            deletedItems.add(new Pair<>(item.getUid(),
+                    LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM));
+        } else if (item instanceof PlaylistRemoteEntity) {
+            deletedItems.add(new Pair<>(item.getUid(),
+                    LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM));
+        }
+
+        debounceSaver.setHasChangesToSave();
     }
 
     private void checkDisplayIndexModified(@NonNull final List<PlaylistLocalItem> result) {
@@ -351,9 +357,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             return;
         }
 
-        displayIndexInDatabase.clear();
-
-        // If the display index does not match actual index in the list, update the display index.
+        // Check if the display index does not match the actual index in the list.
         // This may happen when a new list is created
         // or on the first run after database migration
         // or display index is not continuous for some reason
@@ -363,29 +367,12 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             final PlaylistLocalItem item = result.get(i);
             if (item.getDisplayIndex() != i) {
                 isDisplayIndexModified = true;
-            }
-
-            // Updating display index in the item does not affect the value inserts into
-            // database, which will be recalculated during the database update. Updating
-            // display index in the item here is to determine whether it is recently modified.
-            // Save the index read from the database.
-            if (item instanceof PlaylistMetadataEntry) {
-
-                displayIndexInDatabase.put(new Pair<>(item.getUid(),
-                        LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM), item.getDisplayIndex());
-                item.setDisplayIndex(i);
-
-            } else if (item instanceof PlaylistRemoteEntity) {
-
-                displayIndexInDatabase.put(new Pair<>(item.getUid(),
-                        LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM), item.getDisplayIndex());
-                item.setDisplayIndex(i);
-
+                break;
             }
         }
 
         if (debounceSaver != null && isDisplayIndexModified) {
-            debounceSaver.saveChanges();
+            debounceSaver.setHasChangesToSave();
         }
     }
 
@@ -414,43 +401,28 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             final LocalItem item = items.get(i);
 
             if (item instanceof PlaylistMetadataEntry) {
-                ((PlaylistMetadataEntry) item).setDisplayIndex(i);
-
-                final Long uid = ((PlaylistMetadataEntry) item).getUid();
-                final Pair<Long, LocalItem.LocalItemType> key = new Pair<>(uid,
-                        LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM);
-                final Long databaseIndex = displayIndexInDatabase.remove(key);
-
-                // The database index should not be null because inserting new item into database
-                // is not handled here. NullPointerException has occurred once, but I can't
-                // reproduce it. Enhance robustness here.
-                if (databaseIndex != null && databaseIndex != i) {
+                if (((PlaylistMetadataEntry) item).getDisplayIndex() != i) {
+                    ((PlaylistMetadataEntry) item).setDisplayIndex(i);
                     localItemsUpdate.add((PlaylistMetadataEntry) item);
                 }
             } else if (item instanceof PlaylistRemoteEntity) {
-                ((PlaylistRemoteEntity) item).setDisplayIndex(i);
-
-                final Long uid = ((PlaylistRemoteEntity) item).getUid();
-                final Pair<Long, LocalItem.LocalItemType> key = new Pair<>(uid,
-                        LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM);
-                final Long databaseIndex = displayIndexInDatabase.remove(key);
-
-                if (databaseIndex != null && databaseIndex != i) {
+                if (((PlaylistRemoteEntity) item).getDisplayIndex() != i) {
+                    ((PlaylistRemoteEntity) item).setDisplayIndex(i);
                     remoteItemsUpdate.add((PlaylistRemoteEntity) item);
                 }
             }
         }
 
         // Find deleted items
-        for (final Pair<Long, LocalItem.LocalItemType> key : displayIndexInDatabase.keySet()) {
-            if (key.second.equals(LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM)) {
-                localItemsDeleteUid.add(key.first);
-            } else if (key.second.equals(LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM)) {
-                remoteItemsDeleteUid.add(key.first);
+        for (final Pair<Long, LocalItem.LocalItemType> item : deletedItems) {
+            if (item.second.equals(LocalItem.LocalItemType.PLAYLIST_LOCAL_ITEM)) {
+                localItemsDeleteUid.add(item.first);
+            } else if (item.second.equals(LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM)) {
+                remoteItemsDeleteUid.add(item.first);
             }
         }
 
-        displayIndexInDatabase.clear();
+        deletedItems.clear();
 
         // 1. Update local playlists
         // 2. Update remote playlists
@@ -515,7 +487,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 final int targetIndex = target.getBindingAdapterPosition();
                 final boolean isSwapped = itemListAdapter.swapItems(sourceIndex, targetIndex);
                 if (isSwapped) {
-                    debounceSaver.saveChanges();
+                    debounceSaver.setHasChangesToSave();
                 }
                 return isSwapped;
             }

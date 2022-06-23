@@ -441,7 +441,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
                     itemListAdapter.clearStreamItemList();
                     itemListAdapter.addItems(notWatchedItems);
-                    debounceSaver.saveChanges();
+                    debounceSaver.setHasChangesToSave();
 
 
                     if (thumbnailVideoRemoved) {
@@ -609,7 +609,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         setVideoCount(itemListAdapter.getItemsList().size());
-        debounceSaver.saveChanges();
+        debounceSaver.setHasChangesToSave();
     }
 
     @Override
@@ -687,7 +687,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 final int targetIndex = target.getBindingAdapterPosition();
                 final boolean isSwapped = itemListAdapter.swapItems(sourceIndex, targetIndex);
                 if (isSwapped) {
-                    debounceSaver.saveChanges();
+                    debounceSaver.setHasChangesToSave();
                 }
                 return isSwapped;
             }

@@ -36,16 +36,6 @@ public class PlaylistLocalItemTest {
         assertEquals(3, mergedPlaylists.get(2).getDisplayIndex());
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void invalidLocalPlaylists() {
-        final List<PlaylistMetadataEntry> localPlaylists = new ArrayList<>();
-        final List<PlaylistRemoteEntity> remotePlaylists = new ArrayList<>();
-        localPlaylists.add(new PlaylistMetadataEntry(1, "name1", "", 2, 1));
-        localPlaylists.add(new PlaylistMetadataEntry(2, "name2", "", 1, 1));
-        localPlaylists.add(new PlaylistMetadataEntry(3, "name3", "", 0, 1));
-        PlaylistLocalItem.merge(localPlaylists, remotePlaylists);
-    }
-
     @Test
     public void onlyRemotePlaylists() {
         final List<PlaylistMetadataEntry> localPlaylists = new ArrayList<>();
@@ -63,19 +53,6 @@ public class PlaylistLocalItemTest {
         assertEquals(1, mergedPlaylists.get(0).getDisplayIndex());
         assertEquals(2, mergedPlaylists.get(1).getDisplayIndex());
         assertEquals(4, mergedPlaylists.get(2).getDisplayIndex());
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void invalidRemotePlaylists() {
-        final List<PlaylistMetadataEntry> localPlaylists = new ArrayList<>();
-        final List<PlaylistRemoteEntity> remotePlaylists = new ArrayList<>();
-        remotePlaylists.add(new PlaylistRemoteEntity(
-                1, "name1", "url1", "", "", 1, 1L));
-        remotePlaylists.add(new PlaylistRemoteEntity(
-                2, "name2", "url2", "", "", 3, 1L));
-        remotePlaylists.add(new PlaylistRemoteEntity(
-                3, "name3", "url3", "", "", 0, 1L));
-        PlaylistLocalItem.merge(localPlaylists, remotePlaylists);
     }
 
     @Test

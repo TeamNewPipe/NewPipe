@@ -21,29 +21,18 @@ public interface PlaylistLocalItem extends LocalItem {
      * Merge localPlaylists and remotePlaylists by the display index.
      * If two items have the same display index, sort them in {@code CASE_INSENSITIVE_ORDER}.
      *
-     * @param localPlaylists  local playlists in the display index order
-     * @param remotePlaylists remote playlists in the display index order
+     * @param localPlaylists  local playlists
+     * @param remotePlaylists remote playlists
      * @return merged playlists
      */
     static List<PlaylistLocalItem> merge(
             final List<PlaylistMetadataEntry> localPlaylists,
             final List<PlaylistRemoteEntity> remotePlaylists) {
 
-        for (int i = 1; i < localPlaylists.size(); i++) {
-            if (localPlaylists.get(i).getDisplayIndex()
-                    < localPlaylists.get(i - 1).getDisplayIndex()) {
-                throw new IllegalArgumentException(
-                        "localPlaylists is not in the display index order");
-            }
-        }
-
-        for (int i = 1; i < remotePlaylists.size(); i++) {
-            if (remotePlaylists.get(i).getDisplayIndex()
-                    < remotePlaylists.get(i - 1).getDisplayIndex()) {
-                throw new IllegalArgumentException(
-                        "remotePlaylists is not in the display index order");
-            }
-        }
+        Collections.sort(localPlaylists,
+                Comparator.comparingLong(PlaylistMetadataEntry::getDisplayIndex));
+        Collections.sort(remotePlaylists,
+                Comparator.comparingLong(PlaylistRemoteEntity::getDisplayIndex));
 
         // This algorithm is similar to the merge operation in merge sort.
 

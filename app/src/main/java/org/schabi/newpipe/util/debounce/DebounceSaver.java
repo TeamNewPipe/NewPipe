@@ -70,7 +70,7 @@ public class DebounceSaver {
                                 UserAction.SOMETHING_ELSE, "Debounced saver")));
     }
 
-    public void saveChanges() {
+    public void setHasChangesToSave() {
         if (isModified == null || debouncedSaveSignal == null) {
             return;
         }
