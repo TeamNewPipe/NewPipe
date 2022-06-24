@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.playlist;
 
+import static org.schabi.newpipe.error.ErrorUtil.showUiErrorSnackbar;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
@@ -50,6 +51,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,10 +59,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -345,7 +349,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        if (item.getItemId() == R.id.menu_item_remove_watched) {
+        if (item.getItemId() == R.id.menu_item_share_playlist) {
+            sharePlaylist();
+        } else if (item.getItemId() == R.id.menu_item_rename_playlist) {
+            createRenameDialog();
+        } else if (item.getItemId() == R.id.menu_item_remove_watched) {
             if (!isRemovingWatched) {
                 new AlertDialog.Builder(requireContext())
                         .setMessage(R.string.remove_watched_popup_warning)
@@ -360,12 +368,24 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                         .create()
                         .show();
             }
-        } else if (item.getItemId() == R.id.menu_item_rename_playlist) {
-            createRenameDialog();
         } else {
             return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    /**
+     * Share the playlist as a newline-separated list of stream URLs.
+     */
+    public void sharePlaylist() {
+        disposables.add(playlistManager.getPlaylistStreams(playlistId)
+                .flatMapSingle(playlist -> Single.just(playlist.stream()
+                        .map(PlaylistStreamEntry::getStreamEntity)
+                        .map(StreamEntity::getUrl)
+                        .collect(Collectors.joining("\n"))))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(urlsText -> ShareUtils.shareText(requireContext(), name, urlsText),
+                        throwable -> showUiErrorSnackbar(this, "Sharing playlist", throwable)));
     }
 
     public void removeWatchedStreams(final boolean removePartiallyWatched) {
