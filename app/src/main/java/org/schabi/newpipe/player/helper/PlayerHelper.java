@@ -249,6 +249,11 @@ public final class PlayerHelper {
         return getPreferences(context)
                 .getBoolean(context.getString(R.string.resume_on_audio_focus_gain_key), false);
     }
+        
+    public static boolean isStopAfterAudioFocusLoss(@NonNull final Context context) {
+        return getPreferences(context)
+                .getBoolean(context.getString(R.string.stop_on_audio_focus_loss_key), true);
+    }
 
     public static boolean isVolumeGestureEnabled(@NonNull final Context context) {
         return getPreferences(context)
