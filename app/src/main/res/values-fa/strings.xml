@@ -708,4 +708,6 @@
     <string name="delete_downloaded_files_confirm">پاک کردن تمامی پرونده‌های بارگرفته از دیسک؟</string>
     <string name="any_network">هر شبکه‌ای</string>
     <string name="you_successfully_subscribed">اکنون مشترک این کانال شده‌اید</string>
+    <string name="semitone">نیم‌پرده</string>
+    <string name="percent">درصد</string>
 </resources>

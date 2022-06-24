@@ -707,5 +707,7 @@
     <string name="delete_downloaded_files_confirm">Alle heruntergeladenen Dateien von der Festplatte löschen\?</string>
     <string name="you_successfully_subscribed">Du hast jetzt diesen Kanal abonniert</string>
     <string name="toggle_all">Alle umschalten</string>
-    <string name="streams_notifications_interval_title">Aktualisierungsintervall</string>
+    <string name="streams_notifications_interval_title">Prüfintervall</string>
+    <string name="percent">Prozent</string>
+    <string name="semitone">Halbton</string>
 </resources>

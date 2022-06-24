@@ -79,7 +79,7 @@
     <string name="downloads_title">Prevzaté</string>
     <string name="error_report_title">Hlásenie o chybe</string>
     <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
-    <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nKrajina Obsahu:\\nJazyk Aplikácie:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nVerzia OS:</string>
+    <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nKrajina Obsahu:\\nJazyk Aplikácie:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nOS:</string>
     <string name="title_activity_recaptcha">Výzva reCAPTCHA</string>
     <string name="black_theme_title">Čierna</string>
     <string name="all">Všetko</string>
@@ -708,4 +708,19 @@
     <string name="you_successfully_subscribed">Začali ste odoberať tento kanál</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Zapnúť všetko</string>
+    <string name="streams_notification_channel_name">Nové streamy</string>
+    <string name="streams_notification_channel_description">Upozornenia na nové streamy v odberoch</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nový stream</item>
+        <item quantity="few">%s nové streamy</item>
+        <item quantity="other">%s nových streamov</item>
+    </plurals>
+    <string name="check_new_streams">Skontrolovať nové streamy</string>
+    <string name="enable_streams_notifications_title">Upozornenia na nové streamy</string>
+    <string name="enable_streams_notifications_summary">Upozorniť na nové streamy z odberov</string>
+    <string name="any_network">Akákoľvek sieť</string>
+    <string name="get_notified">Dostávať upozornenia</string>
+    <string name="semitone">Poltón</string>
+    <string name="loading_stream_details">Nahrávanie podrobností streamu…</string>
+    <string name="percent">Percent</string>
 </resources>

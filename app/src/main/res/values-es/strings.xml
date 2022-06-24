@@ -693,4 +693,24 @@
     <string name="streams_notification_channel_name">Nuevos streams</string>
     <string name="settings_category_player_notification_title">Notificación del reproductor</string>
     <string name="settings_category_player_notification_summary">Configurar notificación de la reproducción en curso</string>
+    <string name="you_successfully_subscribed">Ahora estás suscrito a este canal</string>
+    <string name="any_network">Cualquier red</string>
+    <string name="enumeration_comma">,</string>
+    <string name="check_new_streams">Comprobar la existencia de nuevos directos</string>
+    <string name="enable_streams_notifications_title">Notificaciones de nuevos directos</string>
+    <string name="enable_streams_notifications_summary">Notificar de nuevos directos desde las suscripciones</string>
+    <string name="streams_notifications_interval_title">Frecuencia de comprobación</string>
+    <string name="delete_downloaded_files_confirm">¿Desea borrar del disco todos los archivos descargados\?</string>
+    <string name="notifications_disabled">Las notificaciones están desactivadas</string>
+    <string name="get_notified">Recibir notificaciones</string>
+    <string name="toggle_all">Conmutar todo</string>
+    <string name="loading_stream_details">Cargando detalles del directo…</string>
+    <string name="streams_notification_channel_description">Notificaciones sobre nuevos directos para suscriptores</string>
+    <string name="streams_notifications_network_title">Se requiere conexión a red</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nuevo directo</item>
+        <item quantity="other">%s nuevos directos</item>
+    </plurals>
+    <string name="percent">Porcentaje</string>
+    <string name="semitone">Semitono</string>
 </resources>

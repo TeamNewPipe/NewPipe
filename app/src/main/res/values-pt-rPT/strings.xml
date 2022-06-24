@@ -36,7 +36,7 @@
     <string name="caption_setting_title">Legendas</string>
     <string name="restore_defaults">Repor predefinições</string>
     <string name="error_occurred_detail">Ocorreu um erro: %1$s</string>
-    <string name="controls_popup_title">Popup</string>
+    <string name="controls_popup_title">Pop-up</string>
     <string name="msg_running">Descarga NewPipe</string>
     <string name="new_seek_duration_toast">Devido às restrições de ExoPlayer, a duração da pesquisa foi definida para %d segundos</string>
     <string name="overwrite">Sobrescrever</string>
@@ -708,4 +708,6 @@
     <string name="you_successfully_subscribed">Agora assinou este canal</string>
     <string name="enumeration_comma">,</string>
     <string name="streams_notification_channel_name">Novos fluxos</string>
+    <string name="percent">Por cento</string>
+    <string name="semitone">Semitom</string>
 </resources>

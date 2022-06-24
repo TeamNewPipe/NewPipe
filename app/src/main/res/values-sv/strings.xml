@@ -708,4 +708,6 @@
     <string name="enumeration_comma">,</string>
     <string name="settings_category_player_notification_title">Spelaravisering</string>
     <string name="toggle_all">Växla alla</string>
+    <string name="percent">Procent</string>
+    <string name="semitone">Halvton</string>
 </resources>

@@ -1,0 +1,8 @@
+### Forbedringer
+- Import/export indstillinger #1333 
+- Reducering af overtegning (ydeevne forbedring )#1371 
+- Små kode forbedringer #1375 
+- GDPR er nu dokumenteret #1420
+
+### Fikset
+- Downloader: Et crash når man loadede et ikke-færdiggjort download fra .giga filer #1407

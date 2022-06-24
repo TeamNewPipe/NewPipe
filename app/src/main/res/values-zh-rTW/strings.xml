@@ -695,4 +695,6 @@
         <item quantity="other">%s 個新串流</item>
     </plurals>
     <string name="any_network">任意網路</string>
+    <string name="percent">百分比</string>
+    <string name="semitone">半音</string>
 </resources>

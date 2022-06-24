@@ -1,0 +1,22 @@
+<h4>Təkmilləşdirmələr</h4>
+<ul>
+<li> şərhlərdəki keçidləri tıklanabilir etmək, mətn ölçüsünü artırmaq</li>
+<li> şərhlərdə vaxt damğası bağlantılarına klikləməyə çalışın</li>
+<li> son seçilmiş vəziyyətə əsasən üstünlük verilən tabı göstərin</li>
+<li> pleylist pəncərəsində "Arxa fon" üzərinə uzun müddət kliklədikdə pleylistini növbəyə əlavə edin</li>
+<li> URL olmadığı zaman paylaşılan mətni axtarın</li><
+li> əsas video pleyerə "cari vaxtda paylaş" düyməsini əlavə edin</li>
+<li> video növbəsi bitdikdə əsas pleyerə bağlama düyməsini əlavə edin</li>
+<li> video siyahı elementləri üçün uzun basaraq menyuya "Birbaşa Fonda Oynat" əlavə edin</li><li> Play/Enqueue əmrləri üçün ingilis dili tərcümələrini təkmilləşdirin</li>
+<li> kiçik performans təkmilləşdirmələri</li>
+<li> istifadə olunmamış faylları silin</li>
+<li> ExoPlayer-i 2.9.6-a yeniləyin</li>
+<li> Invidious bağlantılar üçün dəstək əlavə edin</li>
+</ul>
+<h4> Sabit</h4>
+<ul>
+<li> şərhlər və əlaqəli axınlarla sabit sürüşdürmə deaktiv edildi</li>
+<li> Sabit CheckForNewAppVersionTask yerinə yetirilməməlidir</li>
+<li> sabit youtube abunə idxalı: etibarsız url olanlara məhəl qoymayın və başlığı boş olanları saxlayın</li>
+<li> etibarsız YouTube url-ni düzəldin: imza teqinin adı həmişə "imza" deyil, axınların yüklənməsinə mane olur</li>
+</ul>

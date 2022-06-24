@@ -4,9 +4,9 @@
     <string name="no_player_found">Нема плејера токова. Инсталирати ВЛЦ\?</string>
     <string name="install">Инсталирај</string>
     <string name="cancel">Откажи</string>
-    <string name="open_in_browser">Отвори у прегледачу</string>
+    <string name="open_in_browser">Отвори у претраживачу</string>
     <string name="share">Подели</string>
-    <string name="download">Преузимање</string>
+    <string name="download">Преузми</string>
     <string name="search">Тражи</string>
     <string name="settings">Подешавања</string>
     <string name="did_you_mean">Да ли сте мислили: „%1$s“\?</string>
@@ -61,7 +61,7 @@
     <string name="audio">Аудио</string>
     <string name="retry">Покушај поново</string>
     <string name="duration_live">Уживо</string>
-    <string name="main_bg_subtitle">Тапните на лупу да започнете.</string>
+    <string name="main_bg_subtitle">Кликните на лупу да започнете.</string>
     <string name="start">Почни</string>
     <string name="pause">Паузирај</string>
     <string name="delete">Обриши</string>
@@ -515,7 +515,7 @@
     <string name="clear_queue_confirmation_description">Редослед активног плејера биће замењен</string>
     <string name="clear_queue_confirmation_summary">Пребацивање на други плејер може променити ваш редослед</string>
     <string name="clear_queue_confirmation_title">Питај за потврду пре пражњења редоследа</string>
-    <string name="seek_duration_title">Време за премотавања напред/назад</string>
+    <string name="seek_duration_title">Период премотавања напред/назад</string>
     <string name="night_theme_title">ноћна тема</string>
     <string name="notification_colorize_summary">Андроид ће прилагодити боју обавештења према главној боји на сличици (није доступно на свим уређајима)</string>
     <string name="notification_colorize_title">Обоји обавештења</string>

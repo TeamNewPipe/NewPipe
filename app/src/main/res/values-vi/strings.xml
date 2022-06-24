@@ -67,7 +67,7 @@
     <string name="content_not_available">Nội dung không khả dụng</string>
     <string name="could_not_setup_download_menu">Không thể thiết lập menu tải về</string>
     <string name="app_ui_crash">Ứng dụng / Giao diện người dùng bị lỗi</string>
-    <string name="sorry_string">Xin lỗi, điều đó không nên xảy ra.</string>
+    <string name="sorry_string">Ai Da, NewPipe đã gặp lỗi. Tôi lấy làm tiếc cho bạn.</string>
     <string name="error_report_button_text">Báo lỗi qua email</string>
     <string name="error_snackbar_message">Xin lỗi, đã xảy ra sự cố.</string>
     <string name="error_snackbar_action">Báo cáo</string>
@@ -100,7 +100,7 @@
     <string name="msg_copied">Đã sao chép vào clipboard</string>
     <string name="no_available_dir">Hãy chọn một thư mục để tải xuống trong phần cài đặt</string>
     <string name="msg_popup_permission">Chế độ popup cần quyền này
-\n để hoạt động</string>
+\n để hoạt động, hãy bật trong phần cài đặt</string>
     <string name="title_activity_recaptcha">reCAPTCHA</string>
     <string name="recaptcha_request_toast">Yêu cầu reCAPTCHA</string>
     <string name="title_activity_about">Giới thiệu về NewPipe</string>
@@ -156,7 +156,7 @@
     <string name="playlists">Playlist</string>
     <string name="tracks">Bản nhạc</string>
     <string name="users">Người dùng</string>
-    <string name="undo">Hủy bỏ</string>
+    <string name="undo">Hoàn tác</string>
     <string name="play_all">Chơi tất cả</string>
     <string name="always">Luôn luôn</string>
     <string name="just_once">Chỉ một lần</string>
@@ -219,7 +219,7 @@
     <string name="donation_title">Đóng góp</string>
     <string name="donation_encouragement">NewPipe được phát triển bởi các tình nguyện viên dành thời gian mang lại cho bạn trải nghiệm tốt nhất. Đóng góp một tách cà phê để giúp các nhà phát triển làm NewPipe tốt hơn nữa.</string>
     <string name="give_back">Trả lại</string>
-    <string name="website_title">Trang mạng</string>
+    <string name="website_title">Trang web</string>
     <string name="website_encouragement">Truy cập trang web NewPipe để biết thêm thông tin và tin tức.</string>
     <string name="privacy_policy_title">Chính sách bảo mật của NewPipe</string>
     <string name="privacy_policy_encouragement">Dự án NewPipe rất coi trọng quyền riêng tư của bạn. Do đó, ứng dụng không thu thập bất kỳ dữ liệu nào mà không có sự đồng ý của bạn.
@@ -344,7 +344,7 @@
     <string name="saved_tabs_invalid_json">Không thể đọc tab đã lưu, sử dụng tab mặc định</string>
     <string name="restore_defaults">Khôi phục về mặc định</string>
     <string name="restore_defaults_confirmation">Bạn có muốn khôi phục về mặc định\?</string>
-    <string name="subscribers_count_not_available">Số người đăng ký không có</string>
+    <string name="subscribers_count_not_available">Số người đăng ký không khả dụng</string>
     <string name="main_page_content_summary">Chọn các tab để hiện trên trang chủ</string>
     <string name="top_50">Top 50 phổ biến</string>
     <string name="import_soundcloud_instructions_hint">Nhập ID SoundCloud hoặc link soundcloud.com/&lt;ID của bạn&gt;</string>
@@ -513,9 +513,9 @@
     </plurals>
     <string name="feed_group_dialog_empty_selection">Chưa chọn kênh nào</string>
     <string name="feed_group_dialog_select_subscriptions">Chọn kênh</string>
-    <string name="feed_processing_message">Đang xử lý feed…</string>
+    <string name="feed_processing_message">Đang xử lý thông báo…</string>
     <string name="feed_subscription_not_loaded_count">Số kênh không tải được: %d</string>
-    <string name="feed_notification_loading">Đang tải feed…</string>
+    <string name="feed_notification_loading">Đang tải thông báo…</string>
     <string name="feed_oldest_subscription_update">Feed cập nhật lần cuối vào: %s</string>
     <string name="new_seek_duration_toast">Do giới hạn của ExoPlayer, khoảng thời gian tua đã được đặt lại thành %d giây</string>
     <string name="recovering">đang khôi phục</string>
@@ -587,7 +587,7 @@
     <string name="youtube_music_premium_content">Video này chỉ được dành cho thành viên YouTube Music Premium, nên NewPipe không thể phát hay tải xuống.</string>
     <string name="private_content">Nội dung này được để ở chế độ riêng tư, nên NewPipe không thể phát hay tải xuống.</string>
     <string name="soundcloud_go_plus_content">Đây là một track SoundCloud Go+, nên NewPipe không thể phát hay tải xuống được, ít nhất là tại quốc gia của bạn.</string>
-    <string name="georestricted_content">Nội dung này không có sẳn ở quốc gia của bạn.</string>
+    <string name="georestricted_content">Nội dung này không có sẵn ở quốc gia của bạn.</string>
     <string name="crash_the_app">Làm văng ứng dụng</string>
     <string name="restricted_video_no_stream">Video này đã bị giới hạn độ tuổi.
 \nVì những quy định mới của YouTube, NewPipe không thể phát được video này, vì không thể tìm thấy nguồn phát video.</string>
@@ -610,7 +610,7 @@
     <string name="metadata_support">Hỗ trợ</string>
     <string name="metadata_language">Ngôn ngữ</string>
     <string name="metadata_age_limit">Giới hạn độ tuổi</string>
-    <string name="metadata_privacy">Sự riêng tư</string>
+    <string name="metadata_privacy">Chế độ</string>
     <string name="metadata_licence">Giấy phép</string>
     <string name="metadata_tags">Thẻ</string>
     <string name="metadata_category">Thể loại</string>
@@ -635,7 +635,7 @@
     <string name="high_quality_larger">Chất lượng cao (lớn hơn)</string>
     <string name="seekbar_preview_thumbnail_title">Xem trước hình thu nhỏ trên thanh tua</string>
     <string name="comments_are_disabled">Bình luận đang bị tắt</string>
-    <string name="detail_heart_img_view_description">Đã được người tạo gắn tim</string>
+    <string name="detail_heart_img_view_description">Đã được người tạo thả tim</string>
     <string name="mark_as_watched">Đánh dấu là đã xem</string>
     <string name="show_image_indicators_summary">Hiện ruy băng được tô màu Picasso ở trên cùng các hình ảnh và chỉ ra nguồn của chúng: đỏ đối với mạng, xanh lam đối với ổ đĩa và xanh lá đối với bộ nhớ</string>
     <string name="show_image_indicators_title">Hiện dấu chỉ hình ảnh</string>
@@ -664,7 +664,7 @@
     <string name="manual_update_title">Kiểm tra cập nhật</string>
     <string name="manual_update_description">Kiểm tra phiên bản mới theo cách thủ công</string>
     <string name="checking_updates_toast">Đang kiểm tra cập nhật…</string>
-    <string name="feed_new_items">Mục feed mới</string>
+    <string name="feed_new_items">Mục thông báo mới</string>
     <string name="crash_the_player">Làm trình phát dừng</string>
     <string name="no_appropriate_file_manager_message_android_10">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động.
 \nVui lòng cài đặt ứng dụng quản lý tệp tương thích với Storage Access Framework.</string>
@@ -674,4 +674,27 @@
     <string name="leak_canary_not_available">LeakCanary không khả dụng</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer mặc định</string>
     <string name="detail_pinned_comment_view_description">Bình luận được ghim</string>
+    <string name="settings_category_player_notification_title">Thông báo trình phát</string>
+    <string name="settings_category_player_notification_summary">Thiết lập thông báo hiện đang phát</string>
+    <string name="notifications">Thông báo</string>
+    <string name="streams_notification_channel_name">Luồng truyền mới</string>
+    <string name="streams_notification_channel_description">Thông báo về luồng truyền mới đối với mục đăng ký</string>
+    <plurals name="new_streams">
+        <item quantity="other">%s luồng truyền mới</item>
+    </plurals>
+    <string name="loading_stream_details">Đang tải chi tiết luồng truyền…</string>
+    <string name="check_new_streams">Chạy kiểm tra luồng truyền mới</string>
+    <string name="enable_streams_notifications_title">Thông báo video mới</string>
+    <string name="enable_streams_notifications_summary">Thông báo về video mới từ kênh bạn đã đăng ký</string>
+    <string name="streams_notifications_interval_title">Thời gian kiểm tra</string>
+    <string name="streams_notifications_network_title">Yêu cầu kết nối mạng</string>
+    <string name="any_network">Bất kỳ mạng nào (có thể tính phí)</string>
+    <string name="delete_downloaded_files_confirm">Xóa tất cả tệp đã tải xuống khỏi ổ đĩa\?</string>
+    <string name="notifications_disabled">Thông báo bị tắt</string>
+    <string name="get_notified">Được thông báo</string>
+    <string name="you_successfully_subscribed">Bạn hiện đã đăng ký kênh này</string>
+    <string name="toggle_all">Bật/tắt tất cả</string>
+    <string name="percent">Phần trăm</string>
+    <string name="enumeration_comma">,</string>
+    <string name="semitone">Nửa cung</string>
 </resources>

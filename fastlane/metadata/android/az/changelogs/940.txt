@@ -1,0 +1,14 @@
+Yeni
+ • SoundCloud şərhləri üçün dəstək əlavə edin
+ • YouTube məhdudlaşdırılmış rejim ayarı əlavə edin 
+• PeerTube ana kanalı təfərrüatlarını göstərin 
+
+Təkmilləşdi 
+• Yalnız dəstəklənən xidmətlər üçün Kore düyməsini göstərin
+ • Naviqasiya Panelində və ya StatusBar-da başlayan oyunçu jestlərini bloklayın 
+• Xidmətə əsasən yenidən cəhd edin və abunə olun düymələrinin fon rəngini dəyişdirin rəng 
+
+Düzəltildi
+ • Yükləmə dialoqunun dondurulmasını düzəldin
+ • Brauzerdə aç düyməsi indi həqiqətən brauzerdə açılır
+ • Videoların açılması zamanı yaranan nasazlığı aradan qaldırın və "Bu yayımı oynatmaq mümkün olmadı" və s.
