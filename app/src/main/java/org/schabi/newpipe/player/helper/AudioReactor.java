@@ -110,7 +110,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
 
     private void onAudioFocusLoss() {
         Log.d(TAG, "onAudioFocusLoss() called");
-        if (PlayerHelper.isStopAfterAudioFocusLoss(context)) {
+        if (PlayerHelper.isPauseAfterAudioFocusLoss(context)) {
             player.pause();
         }
     }
