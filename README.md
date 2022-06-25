@@ -73,7 +73,6 @@ Also, since they are free and open source software, neither the app nor the Extr
 * Show/hide general information about videos (such as description and tags)
 * Show/hide next/related videos
 * Show/hide comments
-* 1080p/2K/4K support
 * Search videos, audios, channels, playlists and albums
 * Browse videos and audios within a channel
 * Subscribe to channels (yes, without logging into any account!)
