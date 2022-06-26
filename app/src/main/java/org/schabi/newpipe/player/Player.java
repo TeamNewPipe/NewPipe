@@ -3980,7 +3980,7 @@ public final class Player implements
             // So just hide the controls to hide this visual inconsistency
             hideControls(0, 0);
         }
-        fragmentListener.onFullscreenStateChanged(isFullscreen);
+        //fragmentListener.onFullscreenStateChanged(isFullscreen);
 
         if (isFullscreen) {
             binding.titleTextView.setVisibility(View.VISIBLE);
