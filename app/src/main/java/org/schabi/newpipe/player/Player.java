@@ -116,7 +116,6 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.collection.ArraySet;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -135,9 +134,9 @@ import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.PositionInfo;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.TracksInfo;
+import com.google.android.exoplayer2.Tracks;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.text.Cue;
+import com.google.android.exoplayer2.text.CueGroup;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
@@ -2506,12 +2505,12 @@ public final class Player implements
     }
 
     @Override
-    public void onTracksInfoChanged(@NonNull final TracksInfo tracksInfo) {
+    public void onTracksChanged(@NonNull final Tracks tracks) {
         if (DEBUG) {
             Log.d(TAG, "ExoPlayer - onTracksChanged(), "
-                    + "track group size = " + tracksInfo.getTrackGroupInfos().size());
+                    + "track group size = " + tracks.getGroups().size());
         }
-        onTextTracksChanged(tracksInfo);
+        onTextTracksChanged(tracks);
     }
 
     @Override
@@ -2577,8 +2576,8 @@ public final class Player implements
     }
 
     @Override
-    public void onCues(@NonNull final List<Cue> cues) {
-        binding.subtitleView.onCues(cues);
+    public void onCues(@NonNull final CueGroup cueGroup) {
+        binding.subtitleView.setCues(cueGroup.cues);
     }
     //endregion
 
@@ -3665,34 +3664,35 @@ public final class Player implements
         binding.subtitleView.setStyle(captionStyle);
     }
 
-    private void onTextTracksChanged(@NonNull final TracksInfo currentTrackInfo) {
+    private void onTextTracksChanged(@NonNull final Tracks currentTrack) {
         if (binding == null) {
             return;
         }
 
-        if (trackSelector.getCurrentMappedTrackInfo() == null
-                || !currentTrackInfo.isTypeSupportedOrEmpty(C.TRACK_TYPE_TEXT)) {
+        final boolean trackTypeTextSupported = !currentTrack.containsType(C.TRACK_TYPE_TEXT)
+                || currentTrack.isTypeSupported(C.TRACK_TYPE_TEXT, false);
+        if (trackSelector.getCurrentMappedTrackInfo() == null || !trackTypeTextSupported) {
             binding.captionTextView.setVisibility(View.GONE);
             return;
         }
 
         // Extract all loaded languages
-        final List<TracksInfo.TrackGroupInfo> textTracks = currentTrackInfo
-                .getTrackGroupInfos()
+        final List<Tracks.Group> textTracks = currentTrack
+                .getGroups()
                 .stream()
-                .filter(trackGroupInfo -> C.TRACK_TYPE_TEXT == trackGroupInfo.getTrackType())
+                .filter(trackGroupInfo -> C.TRACK_TYPE_TEXT == trackGroupInfo.getType())
                 .collect(Collectors.toList());
         final List<String> availableLanguages = textTracks.stream()
-                .map(TracksInfo.TrackGroupInfo::getTrackGroup)
+                .map(Tracks.Group::getMediaTrackGroup)
                 .filter(textTrack -> textTrack.length > 0)
                 .map(textTrack -> textTrack.getFormat(0).language)
                 .collect(Collectors.toList());
 
         // Find selected text track
         final Optional<Format> selectedTracks = textTracks.stream()
-                .filter(TracksInfo.TrackGroupInfo::isSelected)
-                .filter(info -> info.getTrackGroup().length >= 1)
-                .map(info -> info.getTrackGroup().getFormat(0))
+                .filter(Tracks.Group::isSelected)
+                .filter(info -> info.getMediaTrackGroup().length >= 1)
+                .map(info -> info.getMediaTrackGroup().getFormat(0))
                 .findFirst();
 
         // Build UI
@@ -4240,20 +4240,12 @@ public final class Player implements
                 return;
             }
 
-            final DefaultTrackSelector.ParametersBuilder parametersBuilder =
+            final DefaultTrackSelector.Parameters.Builder parametersBuilder =
                     trackSelector.buildUponParameters();
 
-            if (videoEnabled) {
-                // Enable again the video track and the subtitles, if there is one selected
-                parametersBuilder.setDisabledTrackTypes(Collections.emptySet());
-            } else {
-                // Disable the video track and the ability to select subtitles
-                // Use an ArraySet because we can't use Set.of() on all supported APIs by the app
-                final ArraySet<Integer> disabledTracks = new ArraySet<>();
-                disabledTracks.add(C.TRACK_TYPE_TEXT);
-                disabledTracks.add(C.TRACK_TYPE_VIDEO);
-                parametersBuilder.setDisabledTrackTypes(disabledTracks);
-            }
+            // Enable/disable the video track and the ability to select subtitles
+            parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoEnabled);
+            parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoEnabled);
 
             trackSelector.setParameters(parametersBuilder);
         }
