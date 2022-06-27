@@ -730,4 +730,6 @@
     <string name="get_notified">Otrzymuj powiadomienia</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Przełącz wszystkie</string>
+    <string name="percent">Procent</string>
+    <string name="semitone">Półton</string>
 </resources>

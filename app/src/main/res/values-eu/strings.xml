@@ -708,4 +708,6 @@
     <string name="get_notified">Jakinarazi</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer lehenetsia</string>
     <string name="streams_notifications_network_title">Beharrezko sare konexioa</string>
+    <string name="percent">Portzentaia</string>
+    <string name="semitone">Semitonoa</string>
 </resources>

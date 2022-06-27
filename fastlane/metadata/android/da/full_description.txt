@@ -1,0 +1,1 @@
+NewPipe bruger ingen af Googles programmeringsplatforme eller YouTubes API. Det besøger kun hjemmesiden for at finde de informationer det har brug for. derfor kan denne app køre på enheder uden Google Services, desuden har du ikke brug for en Google konto for at bruge appen. NewPipe er udgivet under en fri og open source licens.

@@ -725,4 +725,6 @@
     <string name="enable_streams_notifications_title">Сповіщення про нові трансляції</string>
     <string name="streams_notifications_interval_title">Частота перевірки</string>
     <string name="streams_notifications_network_title">Необхідний тип з\'єднання</string>
+    <string name="percent">Відсоток</string>
+    <string name="semitone">Напівтон</string>
 </resources>

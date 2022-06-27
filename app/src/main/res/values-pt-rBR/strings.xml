@@ -708,4 +708,6 @@
     <string name="streams_notifications_network_title">Conexão de rede necessária</string>
     <string name="notifications_disabled">As notificações estão desativadas</string>
     <string name="get_notified">Seja notificado</string>
+    <string name="percent">Por cento</string>
+    <string name="semitone">Semitom</string>
 </resources>

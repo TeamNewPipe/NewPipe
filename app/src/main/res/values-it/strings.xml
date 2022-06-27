@@ -690,10 +690,10 @@
     <string name="streams_notifications_interval_title">Frequenza controllo</string>
     <string name="streams_notifications_network_title">Connessione di rete richiesta</string>
     <string name="get_notified">Ricevi le notifiche</string>
-    <string name="you_successfully_subscribed">Sei ora iscritto a questo canale</string>
+    <string name="you_successfully_subscribed">Ti sei iscritto a questo canale</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Attiva/disattiva tutti</string>
-    <string name="enable_streams_notifications_title">Notifiche per i nuovi contenuti</string>
+    <string name="enable_streams_notifications_title">Notifiche per nuovi contenuti</string>
     <string name="settings_category_player_notification_title">Notifica del lettore multimediale</string>
     <string name="settings_category_player_notification_summary">Configura la notifica dell\'elemento attualmente in riproduzione</string>
     <string name="notifications">Notifiche</string>
@@ -702,10 +702,12 @@
         <item quantity="one">%s nuovo contenuto</item>
         <item quantity="other">%s nuovi contenuti</item>
     </plurals>
-    <string name="loading_stream_details">Caricando i dettagli della stream…</string>
-    <string name="delete_downloaded_files_confirm">Cancellare tutti i file scaricati dal dispositivo\?</string>
+    <string name="loading_stream_details">Caricamento dei dettagli dei contenuti…</string>
+    <string name="delete_downloaded_files_confirm">Cancellare dal dispositivo i file scaricati\?</string>
     <string name="check_new_streams">Controlla la presenza di nuovi contenuti</string>
     <string name="any_network">Qualsiasi rete</string>
     <string name="notifications_disabled">Le notifiche sono disabilitate</string>
     <string name="enable_streams_notifications_summary">Notifica la presenza di nuovi contenuti dalle iscrizioni</string>
+    <string name="semitone">Semitono</string>
+    <string name="percent">Percentuale</string>
 </resources>

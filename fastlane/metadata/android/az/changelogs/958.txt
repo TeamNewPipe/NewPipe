@@ -1,0 +1,15 @@
+Yeni və təkmilləşdirilmiş:
+ • Kilid ekranında miniatürü gizlətmək üçün seçim yenidən əlavə edildi 
+• Lenti yeniləmək üçün çəkin 
+• Yerli siyahıları əldə edərkən təkmilləşdirilmiş performans 
+
+Sabit:
+ • RAM-dan çıxarıldıqdan sonra NewPipe-ı işə salarkən yaranan qəza düzəldildi
+ • İnternet bağlantısı olmadıqda işə salma zamanı yaranan qəza düzəldildi 
+• Parlaqlıq və həcm jest parametrlərinə uyğun olaraq düzəldildi 
+• [YouTube] Sabit uzun çalğı siyahıları 
+
+Digər:
+ • Kodun təmizlənməsi və bir sıra daxili təkmilləşdirmələr 
+• Asılılıq yeniləmələri 
+• Tərcümə yeniləmələri.

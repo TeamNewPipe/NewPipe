@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Başlamak için büyüteç simgesine dokunun.</string>
-    <string name="upload_date_text">Yayınlanma: %1$s</string>
+    <string name="upload_date_text">%1$s tarihinde yayınlandı</string>
     <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC yüklensin mi\?</string>
     <string name="install">Yükle</string>
     <string name="cancel">İptal</string>
@@ -708,4 +708,6 @@
     <string name="delete_downloaded_files_confirm">İndirilen tüm dosyalar diskten silinsin mi\?</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Tümünü değiştir</string>
+    <string name="percent">Yüzde</string>
+    <string name="semitone">Ara ton</string>
 </resources>

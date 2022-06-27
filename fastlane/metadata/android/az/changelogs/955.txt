@@ -1,0 +1,3 @@
+[YouTube] Bəzi istifadəçilər üçün axtarışı düzəldin [YouTube] Təsadüfi deşifrə istisnalarını düzəldin
+
+ [SoundCloud] Çizgi ilə bitən URL-lər indi düzgün təhlil edildi

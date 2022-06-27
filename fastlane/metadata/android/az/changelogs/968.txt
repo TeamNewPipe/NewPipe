@@ -1,0 +1,6 @@
+Uzun basılan menyuya kanal təfərrüatları seçimi əlavə edildi.
+Pleylist interfeysindən Pleylist adını dəyişmək üçün funksionallıq əlavə edildi.
+Video buferlənərkən istifadəçiyə fasilə verməyə icazə verin.
+Ağ mövzunu cilaladı.
+Daha böyük şrift ölçüsündən istifadə edərkən üst-üstə düşən şriftlər düzəldildi.
+Formuler və Zephier cihazlarında heç bir video düzəldilməyib. Müxtəlif qəzaları aradan qaldırdı.

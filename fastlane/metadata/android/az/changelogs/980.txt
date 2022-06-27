@@ -1,0 +1,12 @@
+Yeni
+ • Menyu paylaşmaq üçün "Pleylistə əlavə et" seçimi əlavə edildi
+ • y2u.be və PeerTube qısa keçidləri üçün əlavə dəstək
+
+ Təkmilləşdirilmiş • Playback-Speed-Controlları daha yığcam etdi 
+• Lent indi yeni elementləri vurğulayır 
+• Lentdə "Baxılan elementləri göstər" seçimi indi yadda saxlanılıb 
+
+Sabit 
+• Sabit YouTube bəyənmə və bəyənməmələrin çıxarılması 
+• Arxa fondan qayıtdıqdan sonra avtomatik təkrar oynatma düzəldildi 
+Və daha çox

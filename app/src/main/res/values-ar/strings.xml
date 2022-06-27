@@ -23,7 +23,7 @@
     <string name="light_theme_title">فاتح</string>
     <string name="network_error">خطأ في الشبكة</string>
     <string name="no_player_found">لم يتم العثور على مشغل بث. تثبيت VLC؟</string>
-    <string name="open_in_browser">افتح في المتصفح</string>
+    <string name="open_in_browser">فتح في المتصفح</string>
     <string name="play_audio">الصوت</string>
     <string name="play_with_kodi_title">تشغيل بواسطة كودي</string>
     <string name="search">البحث</string>
@@ -760,4 +760,6 @@
         <item quantity="many">%s دفق جديد</item>
         <item quantity="other">%s دفق جديد</item>
     </plurals>
+    <string name="percent">النسبة المئوية</string>
+    <string name="semitone">سيميتون</string>
 </resources>

@@ -1,0 +1,8 @@
+### Uzlabojumi
+- Pievienota iespēja ierobežot video kvalitāti, ja tiek lietoti mobilie dati. #1339 
+- Atcerēties spilgtumu visu sesiju #1442 
+- Uzlabot lejupielāžu ātrumu vājākiem procesoriem #1431 
+-
+
+### Salabots
+- Salabot avāriju, kas notiek, kad atver lejupielādes () #1441

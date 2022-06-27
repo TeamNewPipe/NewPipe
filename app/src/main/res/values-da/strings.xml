@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Tryk på forstørrelsesglasset for at komme i gang.</string>
-    <string name="upload_date_text">Udgivet %1$s</string>
-    <string name="no_player_found">Ingen streamafspiller blev fundet. Installer VLC\?</string>
+    <string name="upload_date_text">Udgivet den %1$s</string>
+    <string name="no_player_found">Ingen streamafspiller blev fundet. Installér VLC\?</string>
     <string name="no_player_found_toast">Ingen streamafspiller fundet (du kan installere VLC for at afspille den).</string>
     <string name="install">Installer</string>
     <string name="cancel">Annuller</string>
@@ -13,13 +13,13 @@
     <string name="controls_download_desc">Download stream-fil</string>
     <string name="search">Søg</string>
     <string name="settings">Indstillinger</string>
-    <string name="did_you_mean">Mente du: %1$s\?</string>
+    <string name="did_you_mean">Mente du \"%1$s\"\?</string>
     <string name="share_dialog_title">Del med</string>
     <string name="use_external_video_player_title">Benyt ekstern videoafspiller</string>
-    <string name="use_external_video_player_summary">Fjerner lyd ved NOGLE opløsninger</string>
+    <string name="use_external_video_player_summary">Fjerner lyd ved nogle opløsninger</string>
     <string name="use_external_audio_player_title">Brug ekstern lydafspiller</string>
     <string name="subscribe_button_title">Abonner</string>
-    <string name="subscribed_button_title">Abonneret</string>
+    <string name="subscribed_button_title">Abonnerer</string>
     <string name="unsubscribe">Afmeld abonnement</string>
     <string name="channel_unsubscribed">Abonnement afmeldt</string>
     <string name="subscription_change_failed">Kunne ikke ændre abonnement</string>
@@ -33,17 +33,17 @@
     <string name="controls_popup_title">Pop op</string>
     <string name="controls_add_to_playlist_title">Føj til</string>
     <string name="download_path_title">Placering af videodownloads</string>
-    <string name="download_path_summary">Mappe som videoer skal downloades til</string>
-    <string name="download_path_dialog_title">Angiv downloadmappe for videoer</string>
+    <string name="download_path_summary">Downloadede videoer gemmes her</string>
+    <string name="download_path_dialog_title">Angiv downloadmappe for videofiler</string>
     <string name="download_path_audio_title">Downloadmappe for lydfiler</string>
-    <string name="download_path_audio_summary">Downloadede lydfiler bliver gemt her</string>
+    <string name="download_path_audio_summary">Downloadede lydfiler gemmes her</string>
     <string name="download_path_audio_dialog_title">Angiv downloadmappe for lydfiler</string>
     <string name="default_resolution_title">Standardopløsning</string>
     <string name="default_popup_resolution_title">Standardopløsning for pop op</string>
     <string name="show_higher_resolutions_title">Vis højere opløsninger</string>
-    <string name="show_higher_resolutions_summary">Ikke alle enheder understøtter afspilning af 2K/4K-videoer</string>
+    <string name="show_higher_resolutions_summary">Kun nogle enheder kan afspille 2K-/4K-videoer</string>
     <string name="play_with_kodi_title">Afspil med Kodi</string>
-    <string name="kore_not_found">Kore-appen ikke fundet. Installer den\?</string>
+    <string name="kore_not_found">Installer manglede Kore-app\?</string>
     <string name="show_play_with_kodi_title">Vis valgmuligheden \"Afspil med Kodi\"</string>
     <string name="show_play_with_kodi_summary">Vis en knap til at afspille en video via Kodi</string>
     <string name="play_audio">Lyd</string>
@@ -56,30 +56,30 @@
     <string name="popup_remember_size_pos_title">Husk størrelse og placering af pop op</string>
     <string name="popup_remember_size_pos_summary">Husk sidste størrelse og placering af pop op-afspiller</string>
     <string name="use_inexact_seek_title">Brug hurtig og upræcis søgning</string>
-    <string name="use_inexact_seek_summary">Upræcis søgning lader afspilleren finde placeringer hurtigere, men mindre præcist</string>
+    <string name="use_inexact_seek_summary">Upræcis søgning lader afspilleren finde placeringer hurtigere, men mindre præcist. Søgninger på 5, 15 eller 25 sekunder fungerer ikke med denne indstilling, slået til</string>
     <string name="download_thumbnail_title">Indlæs miniaturebilleder</string>
-    <string name="download_thumbnail_summary">Slå fra for at undgå indlæsning af billeder, hvorved der spares data og hukommelse. Ændringer sletter billedcachen i både ram og lager.</string>
+    <string name="download_thumbnail_summary">Slå fra for at undgå indlæsning af billeder, hvorved der spares data og hukommelse. Ændringer sletter billedcachen i både ram og lager</string>
     <string name="thumbnail_cache_wipe_complete_notice">Billedcache slettet</string>
     <string name="metadata_cache_wipe_title">Slet metadata-cachen</string>
     <string name="metadata_cache_wipe_summary">Slet alle websidedata fra cachen</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata-cache slettet</string>
     <string name="auto_queue_title">Føj automatisk næste stream til køen</string>
-    <string name="auto_queue_summary">Føj automatisk relaterede streams til køen når den sidste stream i en ikke-repeterende kø afspilles.</string>
+    <string name="auto_queue_summary">Fortsæt nedlukningen af en (ikke-gentagende) playback kø ved at tilføje et relateret stream</string>
     <string name="volume_gesture_control_title">Juster lydstyrke ved hjælp af fingerbevægelser</string>
-    <string name="volume_gesture_control_summary">Brug fingerbevægelser til at kontrollere lydstyrke</string>
+    <string name="volume_gesture_control_summary">Brug fingerbevægelser til at kontrollere afspillerens lydstyrke</string>
     <string name="brightness_gesture_control_title">Styr lysstyrken med fingerbevægelser</string>
     <string name="brightness_gesture_control_summary">Brug fingerbevægelser til at justere afspillerens lysstyrke</string>
     <string name="show_search_suggestions_title">Søgeforslag</string>
-    <string name="show_search_suggestions_summary">Vis forslag når der søges</string>
+    <string name="show_search_suggestions_summary">Vælg forslagene, der vises, når der søges</string>
     <string name="enable_search_history_title">Søgehistorik</string>
     <string name="enable_search_history_summary">Gem søgninger lokalt</string>
-    <string name="enable_watch_history_title">Historik og cache</string>
+    <string name="enable_watch_history_title">Visningshistorik</string>
     <string name="enable_watch_history_summary">Husk sete videoer</string>
-    <string name="resume_on_audio_focus_gain_title">Fortsæt når appen kommer i fokus</string>
+    <string name="resume_on_audio_focus_gain_title">Fortsæt afspilning</string>
     <string name="resume_on_audio_focus_gain_summary">Fortsæt afspilning efter afbrydelser (fx telefonopkald)</string>
     <string name="download_dialog_title">Download</string>
     <string name="show_next_and_similar_title">Vis \'Næste\' og \'Lignende\' videoer</string>
-    <string name="show_hold_to_append_title">Vis \"Hold for at tilføje\"-tip</string>
+    <string name="show_hold_to_append_title">Vis \"Hold for at sætte i kø\"-tip</string>
     <string name="show_hold_to_append_summary">Vis et tip når der trykkes på baggrunds- eller pop op-knappen på siden med videodetaljer</string>
     <string name="unsupported_url">Denne webadresse er ikke understøttet</string>
     <string name="default_content_country_title">Standardland for indhold</string>
@@ -94,8 +94,8 @@
     <string name="background_player_playing_toast">Afspiller i baggrunden</string>
     <string name="popup_playing_toast">Afspiller i pop op-tilstand</string>
     <string name="content">Indhold</string>
-    <string name="show_age_restricted_content_title">Aldersbegrænset indhold</string>
-    <string name="duration_live">LIVE</string>
+    <string name="show_age_restricted_content_title">Vis aldersbegrænset indhold</string>
+    <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Fejlrapport</string>
@@ -117,29 +117,29 @@
     <string name="always">Altid</string>
     <string name="just_once">Kun én gang</string>
     <string name="file">Fil</string>
-    <string name="notification_channel_name">NewPipe-notifikation</string>
-    <string name="notification_channel_description">Notifikationer for NewPipes baggrunds- og pop op-afspillere</string>
+    <string name="notification_channel_name">NewPipe notifikation</string>
+    <string name="notification_channel_description">Notifikationer for NewPipes afspiller</string>
     <string name="app_update_notification_channel_name">Notifikation om opdatering af app</string>
-    <string name="app_update_notification_channel_description">Notifikationer for nye NewPipe-versioner</string>
+    <string name="app_update_notification_channel_description">Notifikationer for nye NewPipe versioner</string>
     <string name="unknown_content">[Ukendt]</string>
     <string name="switch_to_background">Skift til baggrund</string>
     <string name="switch_to_popup">Skift til pop op</string>
     <string name="switch_to_main">Skift til hovedafspiller</string>
     <string name="import_data_title">Importer database</string>
     <string name="export_data_title">Eksporter database</string>
-    <string name="import_data_summary">Overskriver din nuværende historik og abonnementer</string>
-    <string name="export_data_summary">Eksporter historik, abonnementer og spillelister</string>
+    <string name="import_data_summary">Overskriver din nuværende historik, abonnementer, spillelister og (hvis det ønskes) indstillinger</string>
+    <string name="export_data_summary">Eksporter historik, abonnementer, spillelister og indstillinger</string>
     <string name="clear_views_history_title">Slet visningshistorik</string>
-    <string name="clear_views_history_summary">Sletter historikken for viste videoer</string>
+    <string name="clear_views_history_summary">Sletter historikken og positioner af tidligere viste videoer</string>
     <string name="delete_view_history_alert">Slet hele visningshistorikken\?</string>
-    <string name="watch_history_deleted">Visningshistorikken blev slettet.</string>
+    <string name="watch_history_deleted">Visningshistorikken blev slettet</string>
     <string name="clear_search_history_title">Slet søgehistorik</string>
     <string name="clear_search_history_summary">Sletter historikken for søgeord</string>
     <string name="delete_search_history_alert">Slet hele søgehistorikken\?</string>
-    <string name="search_history_deleted">Søgehistorik slettet.</string>
+    <string name="search_history_deleted">Søgehistorikken blev slettet</string>
     <string name="general_error">Fejl</string>
     <string name="download_to_sdcard_error_title">Eksternt lager utilgængeligt</string>
-    <string name="download_to_sdcard_error_message">Download til eksternt SD-kort er endnu ikke muligt. Nulstil placering af download-mappe\?</string>
+    <string name="download_to_sdcard_error_message">Det er endnu ikke muligt at downloade til et eksternt SD-kort. Nulstil download-mappens placering\?</string>
     <string name="network_error">Netværksfejl</string>
     <string name="could_not_load_thumbnails">Kunne ikke indlæse alle miniaturebilleder</string>
     <string name="youtube_signature_deobfuscation_error">Kunne ikke dekryptere URL-signatur for video</string>
@@ -161,16 +161,16 @@
     <string name="no_streams_available_download">Ingen streams er tilgængelige for download</string>
     <string name="saved_tabs_invalid_json">Bruger standardfaner pga. fejl ved indlæsning af gemte faner</string>
     <string name="restore_defaults">Genskab standardindstillinger</string>
-    <string name="restore_defaults_confirmation">Vil du genskabe standardindstillingerne\?</string>
+    <string name="restore_defaults_confirmation">Vil du genoprette standardindstillingerne\?</string>
     <string name="sorry_string">Undskyld, dette skulle ikke være sket.</string>
-    <string name="error_report_button_text">Rapporter fejl via e-mail</string>
-    <string name="error_snackbar_message">Undskyld, nogle fejl opstod.</string>
-    <string name="error_snackbar_action">RAPPORTER</string>
+    <string name="error_report_button_text">Rapporter denne fejl via e-mail</string>
+    <string name="error_snackbar_message">Beklager, noget gik galt.</string>
+    <string name="error_snackbar_action">Rapporter</string>
     <string name="what_device_headline">Information:</string>
     <string name="what_happened_headline">Hvad skete der:</string>
     <string name="your_comment">Din kommentar (på engelsk):</string>
     <string name="error_details_headline">Detaljer:</string>
-    <string name="detail_thumbnail_view_description">Videominiaturebillede</string>
+    <string name="detail_thumbnail_view_description">Afspil video, længde:</string>
     <string name="detail_uploader_thumbnail_view_description">Uploaders profilbillede</string>
     <string name="detail_likes_img_view_description">Synes godt om</string>
     <string name="detail_dislikes_img_view_description">Kan ikke lide</string>
@@ -201,8 +201,9 @@
     <string name="msg_running_detail">Tryk for detaljer</string>
     <string name="msg_wait">Vent venligst…</string>
     <string name="msg_copied">Kopieret til udklipsholderen</string>
-    <string name="no_available_dir">Vælg venligst en tilgængelig downloadmappe</string>
-    <string name="msg_popup_permission">Denne tilladelse er nødvendig for at kunne åbne i pop op-tilstand</string>
+    <string name="no_available_dir">Vælg senere en tilgængelig downloadmappe i indstillingerne</string>
+    <string name="msg_popup_permission">Denne tilladelse behøves for
+\nat åbne i pop op-tilstand</string>
     <string name="one_item_deleted">1 element slettet.</string>
     <string name="title_activity_recaptcha">reCAPTCHA-udfordring</string>
     <string name="recaptcha_request_toast">Der blev anmodet om en reCAPTCHA-udfordring</string>
@@ -223,7 +224,7 @@
     <string name="contribution_encouragement">Hvad enten du har idéer til oversættelse, designændringer, kodeoprydning eller virkelig tunge kodeændringer, så er hjælp altid velkommen. Jo mere der bliver gjort, jo bedre bliver det!</string>
     <string name="view_on_github">Se på GitHub</string>
     <string name="donation_title">Doner</string>
-    <string name="donation_encouragement">NewPipe er udviklet af frivillige der bruger tid på at give dig den bedste oplevelse. Giv noget tilbage for at hjælpe NewPipes udviklere til at gøre appen endnu bedre, mens de nyder en kop kaffe.</string>
+    <string name="donation_encouragement">NewPipe er udviklet af frivillige, der bruger deres fritid på at give dig den bedst mulige brugeroplevelse. Giv noget tilbage for at hjælpe NewPipes udviklere til at gøre appen endnu bedre, mens de nyder en kop kaffe.</string>
     <string name="give_back">Giv noget tilbage</string>
     <string name="website_title">Websted</string>
     <string name="website_encouragement">Besøg NewPipes websted for mere information og nyheder.</string>
@@ -292,7 +293,7 @@
     <string name="missions_header_finished">Færdig</string>
     <string name="missions_header_pending">Afventning</string>
     <string name="post_processing">efterbehandling</string>
-    <string name="enqueue">Kø</string>
+    <string name="enqueue">Læg i kø</string>
     <string name="permission_denied">Handling afvist af systemet</string>
     <string name="download_failed">Download fejlede</string>
     <string name="generate_unique_name">Generer unikt navn</string>
@@ -303,9 +304,9 @@
     <string name="show_error">Vis fejl</string>
     <string name="error_file_creation">Filen kan ikke oprettes</string>
     <string name="error_path_creation">Destinationsmappen kan ikke oprettes</string>
-    <string name="error_ssl_exception">Sikker forbindelse fejlede</string>
+    <string name="error_ssl_exception">Kunne ikke etablere en sikker forbindelse</string>
     <string name="error_unknown_host">Kunne ikke finde serveren</string>
-    <string name="error_connect_host">Kan ikke forbinde til serveren</string>
+    <string name="error_connect_host">Kan ikke oprette forbindelse til serveren</string>
     <string name="error_http_no_content">Serveren sender ikke data</string>
     <string name="error_http_unsupported_range">Serveren accepterer ikke multitrådede downloads; prøv igen med @string/msg_threads = 1</string>
     <string name="error_http_not_found">Ikke fundet</string>
@@ -313,7 +314,7 @@
     <string name="stop">Stop</string>
     <string name="events">Hændelser</string>
     <string name="empty_subscription_feed_subtitle">Intet at se her</string>
-    <string name="short_thousand">T</string>
+    <string name="short_thousand">t</string>
     <string name="short_million">mio.</string>
     <string name="short_billion">mia.</string>
     <plurals name="subscribers">
@@ -324,18 +325,18 @@
     <string name="subscriptions_import_unsuccessful">Kunne ikke importere abonnementer</string>
     <string name="subscriptions_export_unsuccessful">Kunne ikke eksportere abonnementer</string>
     <string name="conferences">Konferencer</string>
-    <string name="start_here_on_background">Start her når i baggrunden</string>
-    <string name="start_here_on_popup">Start her ved ny pop op</string>
+    <string name="start_here_on_background">Start afspilningen i baggrunden</string>
+    <string name="start_here_on_popup">Start afspilning i et pop op</string>
     <string name="drawer_open">Åbn skuffe</string>
     <string name="drawer_close">Luk skuffe</string>
-    <string name="info_labels">Hvad:\\nForespørgsel:\\nIndholdssprog:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersion:\\nOS-version:</string>
-    <string name="preferred_open_action_settings_summary">Standardhandling ved åbning af indhold — %s</string>
-    <string name="set_as_playlist_thumbnail">Angiv som miniaturebillede for spilleliste</string>
+    <string name="info_labels">Hvad:\\nForespørgsel:\\nIndholdssprog:\\nIndholdsland:\\nAppsprog:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersion:\\nOS-version:</string>
+    <string name="preferred_open_action_settings_summary">Standardhandling når indhold åbnes – %s</string>
+    <string name="set_as_playlist_thumbnail">Anvend som playlistens miniature</string>
     <string name="bookmark_playlist">Bogmærk spilleliste</string>
     <string name="unbookmark_playlist">Fjern bogmærke</string>
     <string name="playlist_add_stream_success">Føjet til spillelisten</string>
     <string name="playlist_thumbnail_change_success">Miniaturebillede for spilleliste ændret.</string>
-    <string name="caption_setting_description">Ændr undertekststørrelse og baggrundsstil. Kræver genstart af appen for at træde i kraft.</string>
+    <string name="caption_setting_description">Ændr undertekststørrelse og baggrundsstil. Kræver genstart af appen for at træde i kraft</string>
     <string name="enable_leak_canary_summary">Monitorering for hukommelseslækager kan få appen til ikke at svare under heap dumping</string>
     <string name="enable_disposed_exceptions_title">Rapporter out-of-lifecycle-fejl</string>
     <string name="import_title">Importer</string>
@@ -348,7 +349,11 @@
 \n
 \n1. Gå til denne webadresse: %1$s
 \n2. Log ind når du bliver bedt om det
-\n3. En download bør starte (det er eksportfilen)</string>
+\n3. Klik på \"Alle Youtube-data medtages\" og fravælg alt bortset fra \"abonnementer\".
+\n4. Klik på \"Næste trin\" og derefter \"Opret eksport\".
+\n5. Klik på \"Download\" knappen efter den popper frem.
+\n6. Klik på \"IMPORTER FIL\" nederst på denne side og vælg den downloadede .zip fil.
+\n7. [Såfremt .zip-importeringen slår fejl] Uddrag .csv filen (som normalt findes i \"YouTube og YouTube Music/abonnementer/abonnementer.csv\"). Klik på \"IMPORTER FIL\" nederst på denne side, og vælg den uddragede .csv fil</string>
     <string name="import_soundcloud_instructions_hint">ditID, soundcloud.com/ditID</string>
     <string name="import_network_expensive_warning">Bemærk at denne operation kan kræve meget netværkstrafik.
 \n
@@ -364,37 +369,288 @@
     <string name="minimize_on_exit_none_description">Ingen</string>
     <string name="minimize_on_exit_background_description">Minimer til baggrundsafspiller</string>
     <string name="minimize_on_exit_popup_description">Minimer til pop op-afspiller</string>
-    <string name="app_update_notification_content_title">NewPipe-opdatering tilgængelig!</string>
+    <string name="app_update_notification_content_title">En NewPipe-opdatering er tilgængelig!</string>
     <string name="paused">sat på pause</string>
     <string name="queued">sat i kø</string>
     <string name="max_retry_msg">Maksimalt antal genforsøg</string>
     <string name="max_retry_desc">Maksimalt antal forsøg før downloaden opgives</string>
-    <string name="pause_downloads_on_mobile">Sæt på pause ved skift til mobildata</string>
-    <string name="pause_downloads_on_mobile_desc">Downloads som ikke kan sættes på pause vil blive genstartet</string>
-    <string name="peertube_instance_add_https_only">Kun HTTPS URL-er understøttet</string>
+    <string name="pause_downloads_on_mobile">Afbryd på forbrugsafregnede netværk</string>
+    <string name="pause_downloads_on_mobile_desc">Nyttigt ved skift til mobildata, selv om nogle downloads ikke kan sættes på pause</string>
+    <string name="peertube_instance_add_https_only">Kun HTTPS adresser understøttes</string>
     <string name="peertube_instance_add_exists">Instansen findes allerede</string>
-    <string name="peertube_instance_add_fail">Kunde ikke bekræfte instans</string>
-    <string name="peertube_instance_add_help">Skriv ind instans-URL</string>
+    <string name="peertube_instance_add_fail">Kunne ikke validere instansen</string>
+    <string name="peertube_instance_add_help">Skriv instansens adresse</string>
     <string name="peertube_instance_add_title">Tilføj instans</string>
-    <string name="peertube_instance_url_help">Finn instanserne du liger på %s</string>
-    <string name="peertube_instance_url_summary">Vælg dine favorit-PeerTube-instanser</string>
+    <string name="peertube_instance_url_help">Find de instanserne du kan lide på %s</string>
+    <string name="peertube_instance_url_summary">Vælg dine yndlings PeerTube-instanser</string>
     <string name="peertube_instance_url_title">PeerTube-instanser</string>
-    <string name="autoplay_title">Automatisk afspilning</string>
-    <string name="settings_category_clear_data_title">Tøm data</string>
+    <string name="autoplay_title">Afspil automatisk</string>
+    <string name="settings_category_clear_data_title">Ryd data</string>
     <string name="enable_playback_state_lists_title">Positioner i lister</string>
     <string name="enable_playback_resume_summary">Genopret forrige afspilningsposition</string>
     <string name="enable_playback_resume_title">Fortsæt afspilning</string>
-    <string name="show_comments_summary">Skru av for at skjule kommentarer</string>
+    <string name="show_comments_summary">Slå fra for at skjule kommentarer</string>
     <string name="show_comments_title">Vis kommentarer</string>
     <string name="notification_action_nothing">Ingenting</string>
-    <string name="notification_action_repeat">Gentagelse</string>
+    <string name="notification_action_repeat">Gentag</string>
     <string name="notification_action_4_title">Femte handlingstast</string>
     <string name="notification_action_3_title">Fjerde handlingstast</string>
     <string name="notification_action_0_title">Første handlingstast</string>
-    <string name="notification_action_1_title">Andre handlingstast</string>
+    <string name="notification_action_1_title">Anden handlingstast</string>
     <string name="notification_action_2_title">Tredje handlingstast</string>
     <string name="search_showing_result_for">Viser resultater for: %s</string>
     <string name="open_with">Åben med</string>
     <string name="leak_canary_not_available">LeakCanary er ikke tilgængelig</string>
     <string name="mark_as_watched">Markér som set</string>
+    <string name="description_tab_description">Beskrivelse</string>
+    <string name="chapters">Kapitler</string>
+    <string name="notifications">Notifikationer</string>
+    <string name="help">Hjælp</string>
+    <string name="artists">Kunstnere</string>
+    <string name="close">Luk</string>
+    <string name="radio">Radio</string>
+    <string name="metadata_category">Kategori</string>
+    <string name="metadata_privacy">Privatliv</string>
+    <string name="percent">Procent</string>
+    <string name="feed_create_new_group_button_title">Ny</string>
+    <string name="systems_language">Systemstandard</string>
+    <string name="albums">Album</string>
+    <string name="songs">Sange</string>
+    <string name="videos_string">Videoer</string>
+    <string name="dont_show">Vis ikke</string>
+    <string name="notification_action_shuffle">Bland</string>
+    <string name="show_description_title">Vis beskrivelse</string>
+    <string name="open_website_license">Åbn hjemmeside</string>
+    <string name="metadata_language">Sprog</string>
+    <string name="low_quality_smaller">Lav kvalitet (mindre)</string>
+    <string name="autoplay_summary">Start afspilning automatisk — %s</string>
+    <string name="never">Aldrig</string>
+    <string name="wifi_only">Kun på Wi-Fi</string>
+    <plurals name="seconds">
+        <item quantity="one">%d sekund</item>
+        <item quantity="other">%d sekunder</item>
+    </plurals>
+    <plurals name="deleted_downloads_toast">
+        <item quantity="one">%1$s download slettet</item>
+        <item quantity="other">%1$s downloads slettet</item>
+    </plurals>
+    <string name="delete_downloaded_files_confirm">Slet alle downloadede filer fra drevet\?</string>
+    <string name="pause_downloads">Sæt downloads på pause</string>
+    <string name="start_main_player_fullscreen_title">Start hovedafspilleren i fuldskærmstilstand</string>
+    <string name="no_dir_yet">Downloadmappe endnu ikke valgt. Vælg standardmappen nu</string>
+    <string name="auto_queue_toggle">Læg automatisk i kø</string>
+    <string name="settings_category_player_notification_summary">Konfigurer det spillende streams notifikation</string>
+    <string name="show_age_restricted_content_summary">Vis aldersbegrænset indhold (f.eks. 18+)</string>
+    <string name="youtube_restricted_mode_enabled_title">Slå YouTube \"begrænset tilstand\" til</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube har en \"begrænset tilstand\" der skjuler videoer som potientielt er skadelige for børn</string>
+    <string name="restricted_video">Denne video er aldersbegrænset.
+\n
+\nSlå \"%1$s\" fra i indstillingerne hvis du vil se den.</string>
+    <string name="streams_notification_channel_name">Nye streams</string>
+    <string name="streams_notification_channel_description">Notifikationer om nye streams fra abonnementer</string>
+    <string name="recaptcha_cookies_cleared">reCAPTCHA cookies er ryddet</string>
+    <string name="delete_playback_states_alert">Slet alle playback positioner\?</string>
+    <string name="missing_file">Filen er flyttet eller slettet</string>
+    <string name="error_report_notification_title">NewPipe stødte ind i en fejl, tryk for at rapportere</string>
+    <string name="error_report_open_issue_button_text">Rapporter på GitHub</string>
+    <string name="high_quality_larger">Høj kvalitet (større)</string>
+    <string name="enable_queue_limit">Begræns downloadkøen</string>
+    <string name="clear_cookie_summary">Ryd de cookies som NewPipe opbevarer når du løser en reCAPTCHA</string>
+    <string name="notification_colorize_title">Farvelæg notifikationen</string>
+    <string name="settings_category_player_notification_title">Afspillernotifikation</string>
+    <string name="error_report_notification_toast">En fejl opstod, se notifikationen</string>
+    <string name="show_description_summary">Slå fra for at skjule videobeskrivelsen og yderligere information</string>
+    <string name="show_meta_info_summary">Slå fra for at gemme metainformationskasser med yderligere information om streammets skaber, streammets indhold eller en søgeforespørgsel</string>
+    <plurals name="download_finished_notification">
+        <item quantity="one">Download fuldført</item>
+        <item quantity="other">%s downloads fuldført</item>
+    </plurals>
+    <string name="progressive_load_interval_summary">Lav indlæsningsintervallets størrelse, (som nu ligger på %s) om. En højere værdi kan øge videoindlæsningshastigheden. Ændringer af værdien kræver genstart.</string>
+    <string name="clear_queue_confirmation_description">Den aktive spilleliste bliver udskiftet</string>
+    <string name="clear_queue_confirmation_summary">At skifte fra en afspiller til en anden kan udskifte din kø</string>
+    <string name="show_meta_info_title">Vis metainformation</string>
+    <string name="local_search_suggestions">Lokale søgeforslag</string>
+    <string name="remote_search_suggestions">Fjerne søgeforslag</string>
+    <string name="start_main_player_fullscreen_summary">Start ikke videoer i miniafspilleren, men gå direkte til fuldskærmstilstand, hvis automatisk rotering er låst. Du kan stadig se miniafspilleren, hvis du går ud af fuldskærmstilstand</string>
+    <string name="unsupported_url_dialog_message">Kunne ikke genkende addressen. Vil du åbne den i en anden app\?</string>
+    <string name="hash_channel_name">Videohashfunktion notifikation</string>
+    <string name="hash_channel_description">Notifikationer om videohashfunktioners status</string>
+    <string name="error_report_channel_name">Fejlrapport-notifikation</string>
+    <string name="error_report_channel_description">Notifikationer for at rapportere fejl</string>
+    <string name="clear_playback_states_title">Slet playback positioner</string>
+    <string name="clear_playback_states_summary">Sletter alle playback positioner</string>
+    <string name="downloads_storage_ask_title">Spørg hvor filen skal downloades</string>
+    <string name="enable_queue_limit_desc">Et download ad gangen</string>
+    <string name="delete_downloaded_files">Slet downloadede filer</string>
+    <string name="confirm_prompt">Vil du rydde din download historik eller slette alle downloadede filer\?</string>
+    <string name="error_download_resource_gone">Kan ikke gendanne dette download</string>
+    <string name="clear_download_history">Ryd download historik</string>
+    <string name="privacy_policy_encouragement">NewPipe projektet tager dit privatliv seriøst. Derfor samler appen intet data uden dit samtykke.
+\nNewPipes fortrolighedspolitik forklarer i detaljer, hvilke data der bliver sendt og opbevaret når du sender en nedbrudsrapport.</string>
+    <string name="copy_for_github">Kopier en formatteret rapport</string>
+    <string name="permission_display_over_apps">Giv tilladelse til at vise over andre apps</string>
+    <string name="enable_playback_state_lists_summary">Vis playback positionsvisere i lister</string>
+    <string name="watch_history_states_deleted">Playback positioner slettet</string>
+    <string name="clear_cookie_title">Ryd reCAPTCHA cookies</string>
+    <string name="download_already_pending">Der er en afventende download med dette navn</string>
+    <string name="start_downloads">Start downloads</string>
+    <string name="notification_scale_to_square_image_title">Skaler miniaturebilledet til 1:1 format</string>
+    <string name="notification_scale_to_square_image_summary">Skaler notifikationsminiaturebillederne fra 16:9 til 1:1 format (dette kan medføre forvrængninger)</string>
+    <string name="notification_actions_summary">Rediger hver eneste varselshandling nedenunder ved at trykke på dem. Vælg op til tre af dem som bliver vist i den lille notifikation, via kasserne til højre</string>
+    <string name="notification_actions_at_most_three">Du kan kun vælge op til tre handlinger som kan vises i den lille notifikation!</string>
+    <string name="notification_action_buffering">Buffer</string>
+    <string name="notification_colorize_summary">Få Android til at vælge notifikationens farve ud fra den primære farve i miniaturebilledet (virker ikke på alle enheder)</string>
+    <string name="night_theme_title">Nattetema</string>
+    <string name="seek_duration_title">Frem- og tilbagesøgningstid</string>
+    <string name="restricted_video_no_stream">Denne video er aldersbegrænset.
+\nPga. YouTubes politik om aldersbegrænsede videoer har NewPipe ikke adgang til videoen.</string>
+    <string name="crash_the_player">Crash afspilleren</string>
+    <string name="clear_queue_confirmation_title">Spørg om bekræftelse før du tømmer en kø</string>
+    <string name="seekbar_preview_thumbnail_title">Forhåndsvisning af miniaturebilleder på statuslinjen</string>
+    <string name="enqueue_next_stream">Sæt i kø som næste</string>
+    <string name="enqueued_next">Er sat som næste i køen</string>
+    <string name="download_has_started">Download er begyndt</string>
+    <string name="show_thumbnail_summary">Vis miniaturebilleder på både låseskærmen og notifikationer</string>
+    <string name="recent">Nylige</string>
+    <string name="notifications_disabled">Notifikationer er slået fra</string>
+    <string name="comments_tab_description">Kommentarer</string>
+    <string name="related_items_tab_description">Relaterede objekter</string>
+    <string name="main_page_content_swipe_remove">Stryg på elementer for at fjerne dem</string>
+    <string name="select_a_playlist">Vælg en playliste</string>
+    <string name="no_playlist_bookmarked_yet">Ingen playliste bogmærker endnu</string>
+    <string name="localization_changes_requires_app_restart">Sproget ændres når appen genstarter</string>
+    <string name="title_activity_play_queue">Spillekø</string>
+    <string name="show_channel_details">Vis kanalens detaljer</string>
+    <string name="enqueue_stream">Sæt i kø</string>
+    <string name="enqueued">Sat i kø</string>
+    <string name="loading_stream_details">Loader streamets detaljer…</string>
+    <string name="processing_may_take_a_moment">Processere... Det kan tage et øjeblik</string>
+    <string name="show_memory_leaks">Vis hukommelsestab</string>
+    <string name="disable_media_tunneling_title">Deaktiver medietunneler</string>
+    <string name="show_image_indicators_title">Vis billedindikatorer</string>
+    <string name="streams_notifications_network_title">Netværkskrav</string>
+    <string name="any_network">Alle netværk</string>
+    <string name="streams_notifications_interval_title">Kontrolfrekvens</string>
+    <string name="enable_streams_notifications_title">Notifikationer ved nye streams</string>
+    <string name="enable_streams_notifications_summary">Notifikationer om ny streams fra abonnomenter</string>
+    <string name="manual_update_description">Tjek manuelt efter opdateringer</string>
+    <string name="checking_updates_toast">Tjekker efter opdateringer…</string>
+    <string name="recovering">Gendanner</string>
+    <string name="feed_load_error_fast_unknown">\"Hurtig feed\"-tilstand viser ikke mere information om dette.</string>
+    <string name="manual_update_title">Tjek efter opdateringer</string>
+    <string name="remove_watched_popup_title">Fjern sete videoer\?</string>
+    <string name="disable_media_tunneling_summary">Deaktiver medietunneler hvis du oplever en sort skærm eller hak ved videoafspilning</string>
+    <string name="error_report_open_github_notice">Venligst tjek om der allerede eksisterer en problemrapport som diskuterer dit crash. Hvis du opretter duplikatrapporter, tager du tid fra os som vi kunne bruge på at fikse fejlen.</string>
+    <string name="check_new_streams">Tjek efter nye streams</string>
+    <string name="create_error_notification">Lav en fejlnotifikation</string>
+    <string name="local">Lokale</string>
+    <string name="feed_load_error_terminated">Udgiverens bruger er blevet slettet.
+\nNewpipe kan ikke indlæse dette feed i fremtiden.
+\nVil du fjerne dit abonnement på denne kanal\?</string>
+    <string name="feed_oldest_subscription_update">Feedet blev sidst opdateret for %s</string>
+    <string name="feed_subscription_not_loaded_count">Ikke indlæst: %d</string>
+    <string name="feed_notification_loading">Indlæser feed…</string>
+    <string name="feed_new_items">Nye feed elementer</string>
+    <string name="feed_update_threshold_summary">Tid siden sidste opdatering for at et abonnoment bliver forældet - %s</string>
+    <string name="feed_update_threshold_option_always_update">Altid opdater</string>
+    <string name="feed_group_dialog_select_subscriptions">Vælg abonnementer</string>
+    <string name="feed_toggle_show_played_items">Vis sete elementer</string>
+    <string name="georestricted_content">Dette indhold er ikke tilgængeligt i dit land</string>
+    <string name="video_detail_by">Af %s</string>
+    <string name="remove_watched_popup_warning">Videoer på playlisten som allerede er blevet set fjernes.
+\nDette kan ikke fortrydes!</string>
+    <string name="show_thumbnail_title">Vis miniaturebillede</string>
+    <string name="metadata_tags">Tags</string>
+    <string name="metadata_age_limit">Aldersbegrænsning</string>
+    <string name="content_not_supported">Dette indhold er ikke understøttet af NewPipe.
+\n
+\nVi håber at kunne understøtte det i en fremtiden.</string>
+    <string name="paid_content">Dette indhold er kun tilgængeligt for brugere som har betalt for det. Det kan ikke blive streamet eller downloadet af NewPipe.</string>
+    <string name="account_terminated">Bruger slettet</string>
+    <string name="private_content">Dette indhold er privat, så det jan ikke blive streamet eller downloadet af NewPipe.</string>
+    <string name="recently_added">Nyligt tilføjede</string>
+    <string name="featured">Fremhævede</string>
+    <string name="service_provides_reason">%s giver denne grund:</string>
+    <plurals name="listening">
+        <item quantity="one">%s lytter</item>
+        <item quantity="other">%s lyttere</item>
+    </plurals>
+    <string name="more_than_100_videos">100+ videoer</string>
+    <string name="msg_calculating_hash">Udregner hash</string>
+    <string name="recaptcha_solve">Løs</string>
+    <string name="feed_group_dialog_empty_selection">Ingen abonnementer valgt</string>
+    <string name="feed_group_dialog_delete_message">Vil du slette denne gruppe\?</string>
+    <string name="metadata_licence">Licens</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nyt stream</item>
+        <item quantity="other">%s nye streams</item>
+    </plurals>
+    <string name="semitone">Semitone</string>
+    <plurals name="hours">
+        <item quantity="one">%d time</item>
+        <item quantity="other">%d timer</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d dag</item>
+        <item quantity="other">%d dage</item>
+    </plurals>
+    <string name="channel_created_by">Lavet af %s</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">Slå hurtigtilstand fra</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">Slå hurtigtilstand til</string>
+    <string name="feed_use_dedicated_fetch_method_title">Hent fra det dedikerede feed når det er muligt</string>
+    <string name="feed_update_threshold_title">Feed opdateringsgrænse</string>
+    <string name="settings_category_feed_title">Feed</string>
+    <plurals name="feed_group_dialog_selection_count">
+        <item quantity="one">%d valgt</item>
+        <item quantity="other">%d valgte</item>
+    </plurals>
+    <string name="feed_processing_message">Processerer feed…</string>
+    <string name="feed_groups_header_title">Kanalgrupper</string>
+    <plurals name="minutes">
+        <item quantity="one">%d minut</item>
+        <item quantity="other">%d minutter</item>
+    </plurals>
+    <string name="remove_watched">Fjern sete</string>
+    <string name="choose_instance_prompt">Vælg en instans</string>
+    <string name="error_timeout">Forbindelse afbrudt</string>
+    <string name="error_progress_lost">Fremskridt tabt fordi filen blev slettet</string>
+    <string name="error_postprocessing_stopped">NewPipe blev lukket under arbejde på filen</string>
+    <string name="overwrite_failed">Kan ikke overskrive filen</string>
+    <string name="start_accept_privacy_policy">For at være i overenstemmelse med GDPR fanger vi din opmærksomhed hentil NewPipes privatpolitik. Venligst læs den med omhu.
+\nDu skal acceptere den for at sende os en fejlrapport.</string>
+    <string name="unhook_checkbox">Aflænk (kan skabe forvrængning)</string>
+    <string name="import_soundcloud_instructions">Importer en SoundCloud profil ved at skrive enten dit URL eller ID:
+\n
+\n1. Slå \"desktop-version\" til i mobilbrowsere.
+\n2. Gå til denne adresse: %1$s
+\n3. Log ind når du bliver spurgt
+\n4. Kopier adressen på den profil du bliver henstillet til.</string>
+    <string name="show_original_time_ago_title">Vis den oprindelige tidsforskel på elementer</string>
+    <string name="playlist_no_uploader">Autogenereret (ingen uploader fundet)</string>
+    <string name="unmute">Slå lyd til</string>
+    <string name="mute">Sæt på lydløs</string>
+    <string name="most_liked">Mest likede</string>
+    <string name="error_unable_to_load_comments">Kunne ikke indlæse kommentarer</string>
+    <string name="default_kiosk_page_summary">Standard Kiosk</string>
+    <string name="recaptcha_done_button">Færdig</string>
+    <string name="subtitle_activity_recaptcha">Tryk på \"Færdig\" når den er løst</string>
+    <string name="no_comments">Ingen kommentarer</string>
+    <string name="infinite_videos">∞ videoer</string>
+    <string name="no_one_listening">Ingen lyttere</string>
+    <plurals name="watching">
+        <item quantity="one">%s seer</item>
+        <item quantity="other">%s seere</item>
+    </plurals>
+    <string name="no_one_watching">Ingen seere</string>
+    <string name="drawer_header_description">Skift service, nuværende valg:</string>
+    <string name="comments_are_disabled">Kommentarer er slået fra</string>
+    <string name="no_app_to_open_intent">Ingen apps på din enhed kan åbne dette</string>
+    <string name="error_insufficient_storage">Ingen ledig plads på enheden</string>
+    <string name="app_language_title">App sprog</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Ja, og delvist sete videoer</string>
+    <string name="feed_load_error">Fejl ved indlæsning af feed</string>
+    <string name="feed_load_error_account_info">Kunne ikke indlæse feed for \'%s\'.</string>
+    <string name="show_crash_the_player_title">Vis \"crash afspilleren\"</string>
+    <string name="crash_the_app">Crash appen</string>
+    <string name="show_crash_the_player_summary">Vis et crash alternativ når afspilleren er i brug</string>
 </resources>

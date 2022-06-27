@@ -1,0 +1,10 @@
+Yeni 
+Təsvirdə vaxt ştamplarını və hashtagları tanıyın Əl ilə planşet rejimi parametri əlavə edildi Lentdə oynanılan elementləri gizlətmək imkanı əlavə edildi
+
+Təkmilləşdirilmiş 
+Yaddaş Giriş Çərçivəsini düzgün şəkildə dəstəkləyin 
+Əlçatan olmayan və dayandırılmış kanalların daha yaxşı idarə edilməsi
+ Android 10+ istifadəçiləri üçün Android paylaşım vərəqi indi məzmunun başlığını göstərir. 
+
+Yenilənmiş
+ Invidious instansiyaları və boru bağlantılarını dəstəkləyir. Sabit [YouTube] Yaş məhdudiyyəti olan məzmun Seçim dialoqunu açarkən sızan pəncərə İstisnasının qarşısını alın

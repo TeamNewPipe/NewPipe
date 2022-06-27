@@ -111,7 +111,7 @@
     <string name="subscription_change_failed">Nu s-a putut modifica abonamentul</string>
     <string name="subscription_update_failed">Nu s-a putut actualiza abonamentul</string>
     <string name="tab_subscriptions">Abonamente</string>
-    <string name="fragment_feed_title">Ce este nou</string>
+    <string name="fragment_feed_title">Noutăți</string>
     <string name="enable_search_history_title">Istoric de căutări</string>
     <string name="enable_search_history_summary">Stochează local căutările</string>
     <string name="enable_watch_history_title">Istoricul vizionărilor</string>
@@ -123,7 +123,7 @@
     <string name="settings_category_history_title">Istoric și cache</string>
     <string name="undo">Anulare</string>
     <string name="notification_channel_name">Notificare NewPipe</string>
-    <string name="notification_channel_description">Notificări pentru playerele de fundal și popup NewPipe</string>
+    <string name="notification_channel_description">Notificări pentru playerul NewPipe</string>
     <string name="search_no_results">Fără rezultate</string>
     <string name="empty_subscription_feed_subtitle">Nimic aici în afară de sunetul greierilor</string>
     <string name="no_subscribers">Fără abonați</string>
@@ -144,12 +144,12 @@
         <item quantity="few">%s videoclipuri</item>
         <item quantity="other">%s de videoclipuri</item>
     </plurals>
-    <string name="settings_category_downloads_title">Descărcați</string>
+    <string name="settings_category_downloads_title">Descărcări</string>
     <string name="settings_file_charset_title">Caractere permise în numele fișierelor</string>
     <string name="settings_file_replacement_character_summary">Caracterele nevalabile sunt înlocuite cu această valoare</string>
     <string name="settings_file_replacement_character_title">Caracter de înlocuire</string>
     <string name="charset_letters_and_digits">Litere și cifre</string>
-    <string name="charset_most_special_characters">Caracterele cele mai speciale</string>
+    <string name="charset_most_special_characters">Caractere speciale</string>
     <string name="title_activity_about">Despre NewPipe</string>
     <string name="title_licenses">Licențe terță-parte</string>
     <string name="copyright" formatted="true">© %1$s de %2$s sub %3$s</string>
@@ -175,7 +175,7 @@
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Noi și populare</string>
     <string name="no_player_found_toast">Niciun player pentru streaming găsit. (Totuși, puteți instala VLC).</string>
-    <string name="controls_download_desc">Descărcați fișierul de vizionat</string>
+    <string name="controls_download_desc">Descărcați fișierul de flux</string>
     <string name="show_info">Arată informații</string>
     <string name="tab_bookmarks">Playlist-uri salvate</string>
     <string name="controls_add_to_playlist_title">Salvează în</string>
@@ -306,7 +306,7 @@
     <string name="resize_zoom">Mărire</string>
     <string name="caption_setting_title">Subtitrări</string>
     <string name="caption_setting_description">Modificați scara textului de legendă a playerului și stilurile de fundal. Necesită repornirea aplicației pentru a intra în vigoare</string>
-    <string name="app_license">NewPipe este un software liber cu copyleft: îl puteți folosi, studia, partaja și îmbunătăți în voie. Mai exact, îl puteți redistribui și/sau modifica în conformitate cu termenii Licenței Publice Generale GNU, așa cum a fost publicată de Free Software Foundation, fie versiunea 3 a Licenței, fie (la alegerea dumneavoastră) orice versiune ulterioară.</string>
+    <string name="app_license">NewPipe este un software liber cu copyleft: îl puteți folosi, studia, distribui și îmbunătăți în voie. Mai exact, îl puteți redistribui și/sau modifica în conformitate cu termenii Licenței Publice Generale GNU, așa cum a fost publicată de Free Software Foundation, fie versiunea 3 a Licenței, fie (la alegerea dumneavoastră) orice versiune ulterioară.</string>
     <string name="privacy_policy_title">Politica de confidențialitate a NewPipe</string>
     <string name="privacy_policy_encouragement">Proiectul NewPipe ia foarte în serios confidențialitatea dumneavoastră. Prin urmare, aplicația nu colectează niciun fel de date fără consimțământul dumneavoastră.
 \nPolitica de confidențialitate a NewPipe explică în detaliu ce date sunt trimise și stocate atunci când trimiteți un raport de eroare.</string>
@@ -353,7 +353,7 @@
     <string name="recaptcha_cookies_cleared">Cookie-urile reCAPTCHA au fost șterse</string>
     <string name="clear_cookie_title">Ștergeți cookie-urile reCAPTCHA</string>
     <string name="hash_channel_description">Notificări pentru progresul hashing-ului video</string>
-    <string name="hash_channel_name">Notificare video Hash</string>
+    <string name="hash_channel_name">Notificare hash video</string>
     <string name="artists">Artiști</string>
     <string name="albums">Albume</string>
     <string name="songs">Melodii</string>
@@ -505,7 +505,7 @@
     <string name="generate_unique_name">Generați un nume unic</string>
     <string name="download_failed">Descărcare eșuată</string>
     <string name="permission_denied">Acțiune refuzată de sistem</string>
-    <string name="enqueue">Coadă</string>
+    <string name="enqueue">Puneți în coadă</string>
     <string name="recovering">Se recuperează</string>
     <string name="post_processing">post-procesare</string>
     <string name="queued">În așteptare</string>
@@ -553,8 +553,8 @@
 \n3. Faceți clic pe \"Toate datele incluse\", apoi pe \"Deselectați totul\", apoi selectați doar \"Abonamente\" și faceți clic pe \"OK\"
 \n4. Faceți clic pe \"Pasul următor\" și apoi pe \"Creați exportul\"
 \n5. Faceți clic pe butonul \"Descărcare\" după ce acesta apare
-\n6. Faceți clic pe IMPORT FIȘIER de mai jos și selectați fișierul zip descărcat
-\n7. [În cazul în care importul zip eșuează] Extrageți fișierul .csv (de obicei sub \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), faceți clic pe IMPORT FIȘIER de mai jos și selectați fișierul csv extras</string>
+\n6. Faceți clic pe IMPORT FIȘIER de mai jos și selectați fișierul .zip descărcat
+\n7. [În cazul în care importul .zip eșuează] Extrageți fișierul .csv (de obicei sub \"YouTube and YouTube Music/subscriptions/subscriptions.csv\"), faceți clic pe IMPORT FIȘIER de mai jos și selectați fișierul csv extras</string>
     <string name="show_original_time_ago_summary">Textele originale din servicii vor fi vizibile în elementele de flux</string>
     <string name="enable_disposed_exceptions_title">Raportați erori în afara ciclului de viață</string>
     <string name="show_memory_leaks">Afișați scurgeri de memorie</string>
@@ -682,12 +682,45 @@
     <string name="detail_pinned_comment_view_description">Comentariu lipit</string>
     <string name="error_report_channel_name">Notificare cu raport de eroare</string>
     <string name="show_crash_the_player_summary">Afișează opțiunea de a întrerupe atunci când utilizați playerul</string>
-    <string name="error_report_notification_toast">A apărut o eroare, verifică notificarea</string>
+    <string name="error_report_notification_toast">A apărut o eroare, consultați notificarea</string>
     <string name="error_report_notification_title">NewPipe a întămpinat o eroare, apăsați ca să raportați</string>
     <string name="checking_updates_toast">Se verifică actualizări…</string>
     <string name="error_report_channel_description">Notificări pentru a raporta erori</string>
-    <string name="create_error_notification">Crează o notificare de eroare</string>
-    <string name="show_crash_the_player_title">Arată \"închiderea bruscă a player-ului video\"</string>
-    <string name="show_error_snackbar">Arată o eroare de tip snackbar</string>
-    <string name="feed_new_items">Elemente de flux noi</string>
+    <string name="create_error_notification">Creați o notificare de eroare</string>
+    <string name="show_crash_the_player_title">Afișează \"Dați crash playerului\"</string>
+    <string name="show_error_snackbar">Afișați o eroare de tip snackbar</string>
+    <string name="feed_new_items">Elemente noi în flux</string>
+    <string name="settings_category_player_notification_title">Notificarea player-ului</string>
+    <string name="settings_category_player_notification_summary">Configurați notificarea fluxului de redare curent</string>
+    <string name="streams_notification_channel_name">Fluxuri noi</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s flux nou</item>
+        <item quantity="few">%s fluxuri noi</item>
+        <item quantity="other">%s de fluxuri noi</item>
+    </plurals>
+    <string name="loading_stream_details">Se încarcă detaliile fluxului…</string>
+    <string name="enable_streams_notifications_title">Notificări de fluxuri noi</string>
+    <string name="enable_streams_notifications_summary">Notificare despre fluxuri noi din abonamente</string>
+    <string name="streams_notifications_interval_title">Frecvența verificării</string>
+    <string name="streams_notifications_network_title">Conexiune de rețea necesară</string>
+    <string name="any_network">Orice rețea</string>
+    <string name="delete_downloaded_files_confirm">Ștergeți toate fișierele descărcate de pe disc\?</string>
+    <string name="notifications_disabled">Notificările sunt dezactivate</string>
+    <string name="percent">Procent</string>
+    <string name="semitone">Semiton</string>
+    <string name="progressive_load_interval_exoplayer_default">Implicit ExoPlayer</string>
+    <string name="progressive_load_interval_summary">Modificați dimensiunea intervalului de încărcare (în prezent %s). O valoare mai mică poate accelera încărcarea inițială a videoclipului. Modificările necesită o repornire a playerului.</string>
+    <string name="crash_the_player">Dați crash player-ului</string>
+    <string name="leak_canary_not_available">LeakCanary nu este disponibil</string>
+    <string name="notifications">Notificări</string>
+    <string name="streams_notification_channel_description">Notificări despre noi fluxuri pentru abonamente</string>
+    <string name="check_new_streams">Executați verificarea pentru fluxuri noi</string>
+    <string name="no_appropriate_file_manager_message">Nu a fost găsit niciun manager de fișiere adecvat pentru această acțiune.
+\nVă rugăm să instalați un manager de fișiere sau să încercați să dezactivați \'%s\' în setările de descărcare.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Nu a fost găsit niciun manager de fișiere adecvat pentru această acțiune.
+\nVă rugăm să instalați un manager de fișiere compatibil cu Storage Access Framework.</string>
+    <string name="get_notified">Primiți notificări</string>
+    <string name="you_successfully_subscribed">V-ați abonat la acest canal</string>
+    <string name="toggle_all">Comutați toate</string>
+    <string name="enumeration_comma">,</string>
 </resources>

@@ -1,0 +1,8 @@
+Təkmilləşdirilmiş
+ • Avtomatik oxutma bütün xidmətlər üçün əlçatandır (yalnız YouTube üçün əvəzinə) 
+
+Sabit 
+• YouTube-un yeni davamını dəstəkləyərək əlaqəli axınlar 
+düzəldildi 
+• Sabit yaş məhdudiyyəti olan YouTube videoları 
+• [Android TV] Sabit uzanan fokus vurğulanması
