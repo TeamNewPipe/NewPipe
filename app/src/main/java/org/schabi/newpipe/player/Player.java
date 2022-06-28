@@ -4005,7 +4005,8 @@ public final class Player implements
                 && videoInLandscapeButNotInFullscreen
                 && notPaused
                 && !DeviceUtils.isTablet(context)) {
-            toggleFullscreen();
+            //try fix #7262
+            new Handler().post(this::toggleFullscreen);
         }
     }
     //endregion
