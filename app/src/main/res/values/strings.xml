@@ -265,7 +265,6 @@
     <string name="related_items_tab_description">Related items</string>
     <string name="description_tab_description">Description</string>
     <string name="search_no_results">No results</string>
-    <string name="empty_subscription_feed_subtitle">Nothing here but crickets</string>
     <string name="detail_drag_description">Drag to reorder</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
@@ -747,4 +746,5 @@
     <string name="select_quality_external_players">Select quality for external players</string>
     <string name="unknown_format">Unknown format</string>
     <string name="unknown_quality">Unknown quality</string>
+    <string name="empty_subscription_feed_subtitle">You can import and export subscriptions from the three-dot menu</string>
 </resources>
