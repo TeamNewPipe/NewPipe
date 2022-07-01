@@ -210,8 +210,9 @@ public final class ListHelper {
                 .collect(Collectors.toList());
     }
 
-    private static String computeDefaultResolution(final Context context, final int key,
-                                                   final int value) {
+    public static String computeDefaultResolution(@NonNull final Context context,
+                                                  final int key,
+                                                  final int value) {
         final SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(context);
 
