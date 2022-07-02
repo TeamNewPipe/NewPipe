@@ -512,6 +512,7 @@ public final class Player implements
         simpleExoPlayer = new ExoPlayer.Builder(context, renderFactory)
                 .setTrackSelector(trackSelector)
                 .setLoadControl(loadController)
+                .setUsePlatformDiagnostics(false)
                 .build();
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setPlayWhenReady(playOnReady);
