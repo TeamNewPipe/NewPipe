@@ -1,0 +1,4 @@
+Düzəltmə
+ • Bir cərgəyə neçə videonun yerləşə biləcəyi ilə bağlı səhv hesablamaya görə tor düzümündə kəsilmiş miniatürləri və başlıqları düzəldin 
+• Paylaşım menyusundan açılsa, yükləmə dialoqunun heç nə etmədən yoxa çıxmasını düzəldin 
+• Storage Access Framework fayl seçicisi kimi xarici fəaliyyətlərin açılması ilə bağlı kitabxananı yeniləyin

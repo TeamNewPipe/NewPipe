@@ -5,4 +5,4 @@
 - Alles toevoegen over GDPR #1420
 
 ### Opgelost
-- Downloader: Crash bij laden van onafgemaakte downloads van .giga bestanden verhelpen #1407
+- Downloader: Een crash verholpen bij laden van onafgemaakte downloads van .giga bestanden #1407

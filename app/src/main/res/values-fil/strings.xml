@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Pindutin ang magnifying glass para makapagsimula.</string>
+    <string name="main_bg_subtitle">Pindutin ang magnifying glass upang magsimula.</string>
     <string name="upload_date_text">Inilathala noong %1$s</string>
     <string name="no_player_found">Walang nakitang stream player. I-install ang VLC\?</string>
     <string name="no_player_found_toast">Walang nakitang stream player (pwede mong i-install ang VLC para ma-play ito).</string>
@@ -13,7 +13,7 @@
     <string name="controls_download_desc">I-download ang stream file</string>
     <string name="search">Maghanap</string>
     <string name="settings">Ayos ng App</string>
-    <string name="did_you_mean">Ibig mo bang sabihin \"%1$s\"\?</string>
+    <string name="did_you_mean">\"%1$s\" ba ang tinutukoy mo\?</string>
     <string name="share_dialog_title">Ibahagi sa</string>
     <string name="use_external_video_player_title">Gumamit ng ibang video player</string>
     <string name="use_external_video_player_summary">Natatanggal ang tunog sa ilang mga resolusyon</string>
@@ -42,7 +42,7 @@
     <string name="download_path_summary">Ilalagay rito ang mga na-download na video file</string>
     <string name="download_path_audio_title">Download folder ng mga audio</string>
     <string name="search_showing_result_for">Ipinapakita ang mga resulta para sa: %s</string>
-    <string name="open_with">Buksan gamit ng</string>
+    <string name="open_with">Buksan gamit ang</string>
     <string name="notification_action_3_title">Pang-apat na action button</string>
     <string name="show_play_with_kodi_title">Ipakita ang \"I-play gamit Kodi\"</string>
     <string name="notification_action_1_title">Pangalawang action button</string>
@@ -58,7 +58,7 @@
     <string name="theme_title">Tema</string>
     <string name="local_search_suggestions">Lokal na mungkahi</string>
     <string name="remote_search_suggestions">Remote na mungkahi</string>
-    <string name="mark_as_watched">Markahang napanood</string>
+    <string name="mark_as_watched">Markahan bilang napanood</string>
     <string name="auto_queue_toggle">Kusang ipila</string>
     <string name="notification_action_repeat">Ulitin</string>
     <string name="notification_action_shuffle">Halo-halo</string>
@@ -116,6 +116,145 @@
     <string name="use_inexact_seek_title">Gamitin ang mabilis ngunit di-saktong seek</string>
     <string name="seek_duration_title">Haba ng fast forward/-rewind seek</string>
     <string name="resume_on_audio_focus_gain_title">Ituloy ang pagpapalabas</string>
-    <string name="trending">Mga Patok Ngayon</string>
+    <string name="trending">Patok Ngayon</string>
     <string name="enable_watch_history_summary">Subaybayan ang mga napanood nang video</string>
+    <string name="recent">Kumakailan</string>
+    <string name="metadata_category">Kategorya</string>
+    <string name="metadata_tags">Mga Tag</string>
+    <string name="metadata_privacy">Praybasi</string>
+    <string name="notifications_disabled">Nakapatay ang Mga Notipikasyon</string>
+    <string name="metadata_privacy_public">Publiko</string>
+    <string name="comments_tab_description">Mga Puna</string>
+    <string name="msg_running">Nagda-dawnload ang NewPipe</string>
+    <string name="on">Naka-bukas</string>
+    <string name="app_language_title">Wika ng App</string>
+    <string name="tab_about">Tungkol dito</string>
+    <string name="restricted_video_no_stream">Ang video na ito ay may paghihigpit sa edad.
+\nDahil sa mga bagong polisiya ng Youtube, hindi maaring ma-access ng NewPipe ang mga video streams nito, kaya hindi ito maipapalabas.</string>
+    <string name="notification_channel_name">Notipikasyon sa NewPipe</string>
+    <plurals name="listening">
+        <item quantity="one">%s nakikinig</item>
+        <item quantity="other">Mga %s nakikinig</item>
+    </plurals>
+    <string name="more_than_100_videos">100+ na mga video</string>
+    <string name="infinite_videos">∞ na mga video</string>
+    <string name="no_comments">Walang Komento</string>
+    <string name="play_all">Ipalabas Lahat</string>
+    <string name="notifications">Mga Notipikasyon</string>
+    <string name="comments_are_disabled">Pinagbabawal ang pagkomento</string>
+    <string name="settings_file_charset_title">Mga pinahihintulutang karakter sa pangalan ng file</string>
+    <string name="tab_licenses">Mga Lisensya</string>
+    <string name="title_activity_history">Kasaysayan</string>
+    <string name="main_page_content">Laman ng pangunahing pahina</string>
+    <string name="duration_live">Live</string>
+    <string name="always">Palagi</string>
+    <string name="delete_item_search_history">Gusto mo bang burahin ito sa kasaysayan ng paghanap\?</string>
+    <string name="content">Laman</string>
+    <plurals name="hours">
+        <item quantity="one">%d oras</item>
+        <item quantity="other">mga %d oras</item>
+    </plurals>
+    <string name="systems_language">Karaniwan ng Sistema</string>
+    <string name="private_content">Nakapribado ang content na ito, kaya hindi ito maipalabas o mai-download ng NewPipe.</string>
+    <string name="download_has_started">Sinisimulan na ang Pagdownload</string>
+    <string name="detail_heart_img_view_description">Pinusuan ng creator</string>
+    <string name="video_detail_by">Ni %s</string>
+    <string name="help">Tulong</string>
+    <string name="detail_pinned_comment_view_description">Naka-pin na komento</string>
+    <string name="open_website_license">Buksan ang website</string>
+    <string name="metadata_licence">Lisensya</string>
+    <string name="metadata_language">Wika</string>
+    <string name="metadata_privacy_private">Pribado</string>
+    <string name="metadata_thumbnail_url">URL ng Thumbnail</string>
+    <string name="metadata_privacy_unlisted">Hindi nakalista</string>
+    <string name="off">Nakapatay</string>
+    <string name="new_and_hot">Bago at patok</string>
+    <string name="content_language_title">Panimulang wika ng content</string>
+    <string name="settings_category_appearance_title">Itsura ng App</string>
+    <plurals name="seconds">
+        <item quantity="one">%d segundo</item>
+        <item quantity="other">Mga %d segundo</item>
+    </plurals>
+    <string name="channel_created_by">Nilikha ni %s</string>
+    <string name="chapters">Mga Kabanata</string>
+    <string name="no_app_to_open_intent">Walang app sa device mo ang makakabukas nito</string>
+    <string name="featured">Tampok</string>
+    <string name="title_last_played">Huling Pinanood</string>
+    <string name="action_history">Kasaysayan</string>
+    <string name="no_one_listening">Walang nakikinig</string>
+    <string name="search_no_results">Walang nahanap</string>
+    <string name="switch_to_background">Pumalit sa Likuran</string>
+    <string name="clear_views_history_title">Linisin ang kasaysayan ng panonood</string>
+    <plurals name="watching">
+        <item quantity="one">%s nanonood</item>
+        <item quantity="other">Mga %s nanonood</item>
+    </plurals>
+    <string name="no_videos">Walang mga video</string>
+    <string name="title_most_played">Madalas na Pinanood</string>
+    <plurals name="videos">
+        <item quantity="one">%s video</item>
+        <item quantity="other">Mga %s na video</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minuto</item>
+        <item quantity="other">Mga %d minuto</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d araw</item>
+        <item quantity="other">mga %d araw</item>
+    </plurals>
+    <string name="start_main_player_fullscreen_title">Buksan ang pangunahing player sa fullscreen</string>
+    <string name="settings_category_player_notification_summary">Itakda ang kasalukuyang notipikasyon ng playing stream</string>
+    <string name="downloads">Mga download</string>
+    <string name="error_report_title">Ulat sa problema</string>
+    <string name="channels">Mga channel</string>
+    <string name="playlists">Mga listahan ng nilalaman</string>
+    <string name="videos_string">Mga bidyo</string>
+    <string name="events">Mga pangyayari</string>
+    <string name="albums">Mga album</string>
+    <string name="disabled">Naka-disable</string>
+    <string name="clear">Alisin</string>
+    <string name="best_resolution">Pinakamainam na resolusyon</string>
+    <string name="file_deleted">Natanggal ang file</string>
+    <string name="just_once">Isang Beses Lang</string>
+    <string name="peertube_instance_add_https_only">Mga HTTPS URL lang ang suportado</string>
+    <string name="songs">Mga kanta</string>
+    <string name="autoplay_title">Awtopaandar</string>
+    <string name="peertube_instance_url_help">Mahahanap mo sa %s ang hilig mong mga instansya</string>
+    <string name="resume_on_audio_focus_gain_summary">Patuloy na mag-play pagkatapos ng istorbo (hal. tawag sa telepono)</string>
+    <string name="download_dialog_title">I-download</string>
+    <string name="start_main_player_fullscreen_summary">Huwag buksan ang mga video sa mini player at dumiretso na sa fullscreen mode kung naka-lock ang awto rotasyon. Magagamit mo pa rin ang mini player kung aalis ka sa fullscreen</string>
+    <string name="show_hold_to_append_title">Ipakita ang tip ng \"I-hold para ipila\"</string>
+    <string name="show_hold_to_append_summary">Ipakita ang tip tuwing pinpindot ang background o ang buttong pumapop-up sa video na \"Details:\"</string>
+    <string name="unsupported_url_dialog_message">Hindi makilala ang URL. Buksan sa ibang app\?</string>
+    <string name="peertube_instance_url_title">Mga instansya ng PeerTube</string>
+    <string name="restricted_video">Ang video na ito ay may paghihigpit sa edad.
+\n
+\nBuksan ang \"%1$s\" sa ayos ng app kung gusto mong makita ito.</string>
+    <string name="peertube_instance_add_title">Magdagdag ng mga instansya</string>
+    <string name="peertube_instance_add_fail">Hindi maberipika ang instansya</string>
+    <string name="peertube_instance_add_exists">Naidagdag na ang instansyang iyan</string>
+    <string name="settings_category_player_behavior_title">Ugali</string>
+    <string name="settings_category_video_audio_title">Bidyo at tunog</string>
+    <string name="settings_category_history_title">Kasaysayan at cache</string>
+    <string name="settings_category_updates_title">Mga update</string>
+    <string name="show_age_restricted_content_title">Ipakita ang nilalamang hindi pambata</string>
+    <string name="show_age_restricted_content_summary">Ipakita ang nilalamang maaaring makahamak sa bata dahil limitado ito sa edad (hal. 18+)</string>
+    <string name="youtube_restricted_mode_enabled_summary">May \"Restricted Mode\" ang YouTube kung saan nakatago ang nilalamang hindi pambata</string>
+    <string name="app_update_notification_channel_name">Notipikasyon sa pag-update ng app</string>
+    <string name="notification_channel_description">Mga notipikasyon para sa player ng NewPipe</string>
+    <string name="artists">Mga artista</string>
+    <string name="youtube_restricted_mode_enabled_title">Gamitin ang \"Restricted Mode\" ng YouTube</string>
+    <string name="popup_playing_toast">Nagpe-play sa popup mode</string>
+    <string name="background_player_playing_toast">Nagpe-play sa background</string>
+    <string name="settings_category_player_title">Player</string>
+    <string name="peertube_instance_add_help">Ilagay ang URL ng instansya</string>
+    <string name="peertube_instance_url_summary">Piliin ang iyong mga paboritong instansya ng PeerTube</string>
+    <string name="downloads_title">Mga download</string>
+    <string name="all">Lahat</string>
+    <string name="default_content_country_title">Default na bansa ng nilalaman</string>
+    <string name="unsupported_url">Di-suportadong URL</string>
+    <string name="settings_category_player_notification_title">Notipikasyon ng player</string>
+    <string name="tracks">Mga track</string>
+    <string name="users">Mga gumagamit</string>
 </resources>

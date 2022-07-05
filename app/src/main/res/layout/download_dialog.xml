@@ -82,13 +82,14 @@
         android:text="@string/msg_threads" />
 
     <LinearLayout
+        android:id="@+id/threads_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/threads_text_view"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:orientation="horizontal"
-        android:paddingBottom="12dp">
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal">
 
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/threads_count"
@@ -106,4 +107,16 @@
             android:max="31"
             android:progress="3" />
     </LinearLayout>
+
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/threads_layout"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:text="@string/streams_not_yet_supported_removed"
+        android:textSize="12sp" />
+
 </RelativeLayout>

@@ -1,1 +1,1 @@
-Sistemato un problema nell'estrattore di YouTube che impediva di guardare qualsiasi video.
+Corretto problema di riproduzione di YouTube

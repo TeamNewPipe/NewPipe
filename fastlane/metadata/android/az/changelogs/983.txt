@@ -1,0 +1,6 @@
+Axtarmaq üçün yeni iki dəfə toxunan UI və davranış əlavə edin Parametrləri axtara bilən edin 
+Sabitlənmiş şərhləri belə vurğulayın FSFE-nin PeerTube nümunəsi üçün açıq proqram dəstəyi əlavə edin Səhv bildirişləri əlavə edin
+ Oyunçu dəyişikliyində birinci növbə elementinin təkrarını düzəldin
+ Canlı yayımlar zamanı buferləmə zamanı uğursuzluqdan əvvəl daha çox gözləyin
+ Yerli axtarış nəticələrinin sırasını düzəldin 
+Oyun növbəsindəki boş element sahələrini düzəldin

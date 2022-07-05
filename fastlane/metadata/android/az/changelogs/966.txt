@@ -1,0 +1,14 @@
+Yeni: 
+• Yeni xidmət əlavə edin: Bandcamp 
+
+Təkmilləşdirilmiş: 
+• Proqramın cihaz mövzusunu izləməsi üçün seçim əlavə edin 
+• Təkmil xəta panelini göstərməklə bəzi qəzaların qarşısını alın
+ • Məzmunun niyə əlçatmaz olması haqqında daha çox məlumat göstərin 
+• Avadanlıq boşluq düyməsi oynatma/pauza verir
+ • "Yükləmə başladı" tostunu göstərin 
+
+Sabit:
+ • Arxa fonda oxuyarkən video təfərrüatlarında çox kiçik miniatürləri düzəldin
+ • Kiçilmiş oyunçuda boş başlığı düzəldin 
+• Düzgün bərpa edilməmiş sonuncu ölçü dəyişdirmə rejimi düzəldi

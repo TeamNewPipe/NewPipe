@@ -1,0 +1,18 @@
+### Yeni 
+- Uzun kliklə silin və abunəliklərdə paylaşın #1516 - Planşet UI və şəbəkə siyahısı tərtibatı #1617 
+
+### Təkmilləşdirmələr 
+- sonuncu istifadə olunan aspekt nisbətini saxlayıb yenidən yükləyin #1748
+ - Tam video adları ilə Yükləmələr fəaliyyətində xətti düzümü aktivləşdirin #1771
+ - Abunəlikləri birbaşa abunəliklər tabından silin və paylaşın #1516 
+- Növbəyə yığmaq, əgər oxutma növbəsi artıq bitibsə, videonun oynatılmasını tetikler #1783
+ - Səs və parlaqlıq jestləri üçün ayrıca parametrlər #1644
+ - Lokallaşdırma üçün dəstək əlavə edin #1792
+
+ ### Düzəlişlər
+ -vaxt təhlilini düzəldin. format, beləliklə, NewPipe Finlandiyada istifadə oluna bilər
+ - Abunəlik sayını düzəldin 
+- API 28+ cihazları üçün ön plana xidmət icazəsi əlavə edin #1830
+
+ ### Məlum Xətalar 
+- Oxutma vəziyyəti Android P-də yadda saxlanıla bilməz

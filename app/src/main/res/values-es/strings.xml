@@ -292,7 +292,7 @@
     <string name="metadata_cache_wipe_summary">Quitar todos los datos guardados de páginas web</string>
     <string name="metadata_cache_wipe_complete_notice">Se vació la caché de metadatos</string>
     <string name="playback_speed_control">Controles de velocidad de reproducción</string>
-    <string name="playback_tempo">Tiempo</string>
+    <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Tono</string>
     <string name="unhook_checkbox">Desvincular (puede causar distorsión)</string>
     <string name="no_streams_available_download">No hay streams disponibles para descargar</string>
@@ -558,7 +558,7 @@
     <string name="notification_action_buffering">Almacenar en memoria (búfer)</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">¡Puedes seleccionar como máximo tres acciones para mostrar en la notificación compacta!</string>
-    <string name="notification_actions_summary">Edita cada acción de la notificación pulsando sobre ella. Selecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación a la derecha</string>
+    <string name="notification_actions_summary">Edita cada acción de notificación debajo pulsando sobre ella. Selecciona hasta tres de ellas para que aparezcan en la notificación compacta usando las casillas de verificación a la derecha</string>
     <string name="notification_action_4_title">Botón de quinta acción</string>
     <string name="notification_action_3_title">Botón de cuarta acción</string>
     <string name="notification_action_2_title">Botón de tercera acción</string>
@@ -686,14 +686,38 @@
     <string name="no_appropriate_file_manager_message_android_10">No se encontró ningún gestor de archivos adecuado para esta acción.
 \nPor favor instale un gestor de archivos compatible con \"Sistema de Acceso al Almacenamiento\".</string>
     <string name="detail_pinned_comment_view_description">Comentario fijado</string>
-    <string name="background_player_already_playing_toast">Ya se reproduce en segundo plano</string>
     <string name="leak_canary_not_available">LeakCanary no está disponible</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer valor por defecto</string>
-    <string name="playback_tempo_step">Paso de tempo</string>
     <string name="progressive_load_interval_summary">Cambia el tamaño del intervalo de carga (actualmente %s). Un valor más bajo puede acelerar la carga inicial del vídeo. Los cambios requieren un reinicio del reproductor.</string>
-    <string name="adjust_by_semitones_checkbox">Ajustar el tono por semitonos musicales</string>
     <string name="notifications">Notificaciones</string>
     <string name="streams_notification_channel_name">Nuevos streams</string>
     <string name="settings_category_player_notification_title">Notificación del reproductor</string>
     <string name="settings_category_player_notification_summary">Configurar notificación de la reproducción en curso</string>
+    <string name="you_successfully_subscribed">Ahora estás suscrito a este canal</string>
+    <string name="any_network">Cualquier red</string>
+    <string name="enumeration_comma">,</string>
+    <string name="check_new_streams">Comprobar la existencia de nuevos directos</string>
+    <string name="enable_streams_notifications_title">Notificaciones de nuevos directos</string>
+    <string name="enable_streams_notifications_summary">Notificar de nuevos directos desde las suscripciones</string>
+    <string name="streams_notifications_interval_title">Frecuencia de comprobación</string>
+    <string name="delete_downloaded_files_confirm">¿Desea borrar del disco todos los archivos descargados\?</string>
+    <string name="notifications_disabled">Las notificaciones están desactivadas</string>
+    <string name="get_notified">Recibir notificaciones</string>
+    <string name="toggle_all">Conmutar todo</string>
+    <string name="loading_stream_details">Cargando detalles del directo…</string>
+    <string name="streams_notification_channel_description">Notificaciones sobre nuevos directos para suscriptores</string>
+    <string name="streams_notifications_network_title">Se requiere conexión a red</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nuevo directo</item>
+        <item quantity="other">%s nuevos directos</item>
+    </plurals>
+    <string name="percent">Porcentaje</string>
+    <string name="semitone">Semitono</string>
+    <string name="streams_not_yet_supported_removed">No se muestran flujos cuya descarga aún no está soportada</string>
+    <string name="selected_stream_external_player_not_supported">El flujo seleccionado no es soportado por reproductores externos</string>
+    <string name="no_audio_streams_available_for_external_players">No hay flujos de audio disponibles para reproductores externos</string>
+    <string name="no_video_streams_available_for_external_players">No hay flujos de video disponibles para reproductores externos</string>
+    <string name="select_quality_external_players">Elija la calidad para reproductores externos</string>
+    <string name="unknown_format">Formato desconocido</string>
+    <string name="unknown_quality">Calidad desconocida</string>
 </resources>

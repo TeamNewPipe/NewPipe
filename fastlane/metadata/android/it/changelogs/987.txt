@@ -1,0 +1,12 @@
+Novità
+• Supporto per protocolli diversi da progressive HTTP: caricamenti più rapidi; sistemati PeerTube, SoundCloud e livestream di YouTube appena finiti
+• Aggiunta di playlist remote a una locale
+• Immagini nel menu di condivisione Android 10+
+
+Miglioramenti
+• Schermata proprietà di riproduzione migliorata
+• Spostato "importa/esporta iscrizioni" al menu a tre puntini
+
+Correzioni
+• Corretta la rimozione di video guardati da playlist
+• Sistemati colori e aggiunta a playlist nel menu condivisione

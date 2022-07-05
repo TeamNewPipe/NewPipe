@@ -128,13 +128,11 @@ public class HistoryRecordManager {
 
             // Add a history entry
             final StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry(streamId);
-            if (latestEntry != null) {
-                streamHistoryTable.delete(latestEntry);
-                latestEntry.setAccessDate(currentTime);
-                latestEntry.setRepeatCount(latestEntry.getRepeatCount() + 1);
-                return streamHistoryTable.insert(latestEntry);
+            if (latestEntry == null) {
+                // never actually viewed: add history entry but with 0 views
+                return streamHistoryTable.insert(new StreamHistoryEntity(streamId, currentTime, 0));
             } else {
-                return streamHistoryTable.insert(new StreamHistoryEntity(streamId, currentTime));
+                return 0L;
             }
         })).subscribeOn(Schedulers.io());
     }
@@ -155,7 +153,8 @@ public class HistoryRecordManager {
                 latestEntry.setRepeatCount(latestEntry.getRepeatCount() + 1);
                 return streamHistoryTable.insert(latestEntry);
             } else {
-                return streamHistoryTable.insert(new StreamHistoryEntity(streamId, currentTime));
+                // just viewed for the first time: set 1 view
+                return streamHistoryTable.insert(new StreamHistoryEntity(streamId, currentTime, 1));
             }
         })).subscribeOn(Schedulers.io());
     }

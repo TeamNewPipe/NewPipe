@@ -1,0 +1,7 @@
+• yeni proqram iş prosesi: ətraflı səhifəsində videoları oynatın, oyunçunu minimuma endirmək üçün aşağı sürüşdürün
+ • MediaStyle bildirişləri: bildirişlərdə fərdiləşdirilə bilən hərəkətlər, performans təkmilləşdirmələri
+ • NewPipe-dan masaüstü proqramı kimi istifadə edərkən əsas ölçülərin dəyişdirilməsi
+ • dəstəklənməyən URL tost zamanı açıq seçimlərlə dialoq göstərin 
+• Uzaqdan olanları əldə etmək mümkün olmadıqda axtarış təklifi təcrübəsini təkmilləşdirin 
+• Defolt video keyfiyyəti 720p60 (tətbiqdaxili pleyer) və 480p (pop-up pleyer) səviyyəsinə qaldırıldı
+• tonla səhv düzəltmələri və daha çox

@@ -1,0 +1,17 @@
+Yeni 
+• YouTube Musiqidə axtarın 
+• Əsas Android TV dəstəyi 
+
+Təkmilləşdi
+ • Bütün baxılan videoları yerli pleylistdən silmək imkanı əlavə edildi 
+• Məzmunu pozmaq əvəzinə hələ dəstəklənməyəndə mesajı göstərin
+ • Çimdik jestləri ilə təkmilləşdirilmiş pop-up pleyerinin ölçüsünü dəyişdirin 
+• Yayımları sıralayın arxa fonda və kanalda açılan düymələrə uzun müddət basmaq
+ • Çekmece başlığının başlığının təkmilləşdirilmiş ölçü idarəsi 
+
+Sabitləndi 
+• Yaş məhdudiyyəti ilə bağlı sabit məzmun parametri işləmir
+ • Müəyyən növ reCAPTCHA-lar düzəldildi
+ • Pleylist `null` olarkən əlfəcinləri açarkən qəza düzəldildi
+ • Şəbəkənin sabit aşkarlanması əlaqədar istisnalar
+ • Abunəliklər fraqmentində qrup çeşidləmə düyməsinin sabit görünməsi və daha çox
