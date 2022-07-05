@@ -698,4 +698,11 @@
     <string name="enable_streams_notifications_summary">来自订阅的新串流的通知</string>
     <string name="semitone">半音</string>
     <string name="percent">百分比</string>
+    <string name="unknown_format">未知格式</string>
+    <string name="no_audio_streams_available_for_external_players">没有音频流可用于外部播放器</string>
+    <string name="select_quality_external_players">选择外部播放器画质</string>
+    <string name="selected_stream_external_player_not_supported">外部播放器不支持所选串流</string>
+    <string name="no_video_streams_available_for_external_players">没有视频流可用于外部播放器</string>
+    <string name="streams_not_yet_supported_removed">不显示下载器尚不支持的串流</string>
+    <string name="unknown_quality">未知画质</string>
 </resources>

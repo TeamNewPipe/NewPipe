@@ -617,4 +617,9 @@
         <item quantity="other">%s টি নতুন ধারা</item>
     </plurals>
     <string name="notification_colorize_summary">প্রতিচ্ছবিত প্রধান রঙ অনুসারে অ্যান্ড্রয়েডকে বিজ্ঞপ্তির রঙ কাস্টমাইজ করতে দাও (দ্রষ্টব্য যে এটা সমস্ত ডিভাইসে উপলব্ধ নয়)</string>
+    <string name="unknown_format">অজ্ঞাত ফরম্যাট</string>
+    <string name="select_quality_external_players">বাহ্যিক প্লেয়ারের জন্য মান নির্বাচন করুন</string>
+    <string name="no_audio_streams_available_for_external_players">বাহ্যিক প্লেয়ারের জন্য কোনো অডিও স্ট্রিম নেই</string>
+    <string name="no_video_streams_available_for_external_players">বাহ্যিক প্লেয়ারের জন্য কোনো ভিডিও স্ট্রিম নেই</string>
+    <string name="unknown_quality">অজ্ঞাত মান</string>
 </resources>

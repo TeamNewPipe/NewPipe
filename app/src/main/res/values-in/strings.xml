@@ -697,4 +697,12 @@
     <string name="you_successfully_subscribed">Anda sekarang berlangganan ke channel ini</string>
     <string name="semitone">Semiton</string>
     <string name="percent">Persen</string>
+    <string name="selected_stream_external_player_not_supported">Stream yang dipilih tidak didukung oleh pemain eksternal</string>
+    <string name="no_video_streams_available_for_external_players">Tidak ada stream video yang tersedia untuk pemain eksternal</string>
+    <string name="unknown_quality">Kualitas tidak diketahui</string>
+    <string name="streams_not_yet_supported_removed">Stream yang belum didukung oleh pengunduh tidak ditampilkan</string>
+    <string name="no_audio_streams_available_for_external_players">Tidak ada stream audio yang tersedia untuk pemain eksternal</string>
+    <string name="select_quality_external_players">Pilih kualitas untuk pemain eksternal</string>
+    <string name="unknown_format">Format tidak diketahui</string>
+    <string name="progressive_load_interval_title">Ukuran interval pemuatan playback</string>
 </resources>

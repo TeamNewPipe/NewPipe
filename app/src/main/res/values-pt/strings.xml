@@ -710,4 +710,11 @@
     <string name="enumeration_comma">,</string>
     <string name="percent">Por cento</string>
     <string name="semitone">Semitom</string>
+    <string name="streams_not_yet_supported_removed">As transmissões que ainda não são suportadas para descarregamento não são mostradas</string>
+    <string name="no_audio_streams_available_for_external_players">Não estão disponíveis transmissões de áudio a reprodutores externos</string>
+    <string name="no_video_streams_available_for_external_players">Não estão disponíveis transmissões de vídeo a reprodutores externos</string>
+    <string name="select_quality_external_players">Selecione a qualidade para reprodutores externos</string>
+    <string name="unknown_format">Formato desconhecido</string>
+    <string name="unknown_quality">Qualidade desconhecida</string>
+    <string name="selected_stream_external_player_not_supported">A transmissão selecionada não é suportada por reprodutores externos</string>
 </resources>

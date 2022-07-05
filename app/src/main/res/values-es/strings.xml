@@ -558,7 +558,7 @@
     <string name="notification_action_buffering">Almacenar en memoria (búfer)</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">¡Puedes seleccionar como máximo tres acciones para mostrar en la notificación compacta!</string>
-    <string name="notification_actions_summary">Edita cada acción de la notificación pulsando sobre ella. Selecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación a la derecha</string>
+    <string name="notification_actions_summary">Edita cada acción de notificación debajo pulsando sobre ella. Selecciona hasta tres de ellas para que aparezcan en la notificación compacta usando las casillas de verificación a la derecha</string>
     <string name="notification_action_4_title">Botón de quinta acción</string>
     <string name="notification_action_3_title">Botón de cuarta acción</string>
     <string name="notification_action_2_title">Botón de tercera acción</string>
@@ -713,4 +713,11 @@
     </plurals>
     <string name="percent">Porcentaje</string>
     <string name="semitone">Semitono</string>
+    <string name="streams_not_yet_supported_removed">No se muestran flujos cuya descarga aún no está soportada</string>
+    <string name="selected_stream_external_player_not_supported">El flujo seleccionado no es soportado por reproductores externos</string>
+    <string name="no_audio_streams_available_for_external_players">No hay flujos de audio disponibles para reproductores externos</string>
+    <string name="no_video_streams_available_for_external_players">No hay flujos de video disponibles para reproductores externos</string>
+    <string name="select_quality_external_players">Elija la calidad para reproductores externos</string>
+    <string name="unknown_format">Formato desconocido</string>
+    <string name="unknown_quality">Calidad desconocida</string>
 </resources>

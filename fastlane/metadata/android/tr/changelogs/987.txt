@@ -1,0 +1,12 @@
+Yeni
+• Aşamalı HTTP dışında destek sağlama yöntemleri: daha hızlı oynatma yükleme süresi, PeerTube ve SoundCloud için düzeltmeler, yakın zamanda sona eren YouTube canlı akışlarının oynatılması
+• Yerel bir oynatma listesine uzak oynatma listesi eklemek için ekle düğmesi
+• Android 10+ paylaşım sayfasında görüntü önizlemesi
+
+İyileştirildi
+• Oynatma ayarları iletişim kutusunu iyileştirin
+• Abonelik içe/dışa aktarma düğmelerini üç noktalı menüye taşıyın
+
+Sabit
+• Tam olarak izlenen videoları oynatma listesinden kaldırmayı düzeltin
+• Menü temasını paylaş ve "oynatma listesine ekle" girişini düzeltin
