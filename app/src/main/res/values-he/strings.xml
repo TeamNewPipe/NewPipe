@@ -736,4 +736,11 @@
     <string name="you_successfully_subscribed">נרשמת לערוץ הזה</string>
     <string name="percent">אחוז</string>
     <string name="semitone">חצי טון</string>
+    <string name="streams_not_yet_supported_removed">תזרימים שעדיין לא נתמכים על ידי המוריד לא מופיעים</string>
+    <string name="selected_stream_external_player_not_supported">התזרים הנבחר לא נתמך על ידי נגנים חיצוניים</string>
+    <string name="no_audio_streams_available_for_external_players">אין תזרימי שמע שזמינים לנגנים חיצוניים</string>
+    <string name="unknown_quality">איכות לא מוכרת</string>
+    <string name="no_video_streams_available_for_external_players">אין תזרימי וידאו שזמינים לנגנים חיצוניים</string>
+    <string name="select_quality_external_players">בחירת איכות לנגנים חיצוניים</string>
+    <string name="unknown_format">תצורה לא מוכרת</string>
 </resources>

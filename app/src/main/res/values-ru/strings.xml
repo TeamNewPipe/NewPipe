@@ -727,4 +727,11 @@
     <string name="enumeration_comma">,</string>
     <string name="semitone">Полутон</string>
     <string name="percent">Проценты</string>
+    <string name="selected_stream_external_player_not_supported">Выбранная трансляция не поддерживается внешними проигрывателями</string>
+    <string name="no_video_streams_available_for_external_players">Нет ни одного доступного видео потока для внешних проигрывателей</string>
+    <string name="streams_not_yet_supported_removed">Были скрыты трансляции, которые пока ещё не поддерживаются загрузчиком</string>
+    <string name="unknown_format">Неизвестный формат</string>
+    <string name="no_audio_streams_available_for_external_players">Нет ни одного доступного аудио потока для внешних проигрывателей</string>
+    <string name="select_quality_external_players">Выберите качество для внешних проигрывателей</string>
+    <string name="unknown_quality">Неизвестное качество</string>
 </resources>

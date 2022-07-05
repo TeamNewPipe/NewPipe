@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.Ignore;
 import androidx.room.Index;
 
 import org.schabi.newpipe.database.stream.model.StreamEntity;
@@ -42,16 +41,17 @@ public class StreamHistoryEntity {
     @ColumnInfo(name = STREAM_REPEAT_COUNT)
     private long repeatCount;
 
-    public StreamHistoryEntity(final long streamUid, @NonNull final OffsetDateTime accessDate,
+    /**
+     * @param streamUid the stream id this history item will refer to
+     * @param accessDate the last time the stream was accessed
+     * @param repeatCount the total number of views this stream received
+     */
+    public StreamHistoryEntity(final long streamUid,
+                               @NonNull final OffsetDateTime accessDate,
                                final long repeatCount) {
         this.streamUid = streamUid;
         this.accessDate = accessDate;
         this.repeatCount = repeatCount;
-    }
-
-    @Ignore
-    public StreamHistoryEntity(final long streamUid, @NonNull final OffsetDateTime accessDate) {
-        this(streamUid, accessDate, 0); // start with 0 views (adding views will be done elsewhere)
     }
 
     public long getStreamUid() {

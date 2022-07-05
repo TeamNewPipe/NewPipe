@@ -712,4 +712,12 @@
     <string name="toggle_all">Tout basculer</string>
     <string name="percent">Pourcent</string>
     <string name="semitone">Demi-ton</string>
+    <string name="streams_not_yet_supported_removed">Les flux qui ne sont pas encore supportés ne sont pas montrés</string>
+    <string name="no_audio_streams_available_for_external_players">Aucun flux audio n\'est disponible pour les lecteurs externes</string>
+    <string name="select_quality_external_players">Sélectionner la qualité pour les lecteurs externes</string>
+    <string name="unknown_format">Format inconnu</string>
+    <string name="unknown_quality">Qualité inconnue</string>
+    <string name="selected_stream_external_player_not_supported">Le flux séléctionné n\'est pas supporté par les lecteurs externes</string>
+    <string name="no_video_streams_available_for_external_players">Aucun flux vidéo n\'est disponible pour les lecteurs externes</string>
+    <string name="progressive_load_interval_title">Taille de l\'intervalle de chargement de la lecture</string>
 </resources>

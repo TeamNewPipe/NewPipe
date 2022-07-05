@@ -710,4 +710,11 @@
     <string name="you_successfully_subscribed">اکنون مشترک این کانال شده‌اید</string>
     <string name="semitone">نیم‌پرده</string>
     <string name="percent">درصد</string>
+    <string name="no_video_streams_available_for_external_players">هیچ جریان ویدیویی‌ای برای پخش‌کننده‌های خارجی موجود نیست</string>
+    <string name="streams_not_yet_supported_removed">جریان‌هایی که هنوز به دست بارگیر پشتیبانی نمی‌شوند نشان داده نشده‌اند</string>
+    <string name="no_audio_streams_available_for_external_players">هیچ جریان صوتی‌ای برای پخش‌کننده‌های خارجی موجود نیست</string>
+    <string name="selected_stream_external_player_not_supported">جریان گزیده به دست پخش‌کننده‌های خارجی پشتیبانی نمی‌شود</string>
+    <string name="select_quality_external_players">گزینش کیفیت برای پخش‌کننده‌های خارجی</string>
+    <string name="unknown_format">قالب ناشناخته</string>
+    <string name="unknown_quality">کیفیت ناشناخته</string>
 </resources>

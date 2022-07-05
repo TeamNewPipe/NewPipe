@@ -710,4 +710,12 @@
     <string name="get_notified">Seja notificado</string>
     <string name="percent">Por cento</string>
     <string name="semitone">Semitom</string>
+    <string name="selected_stream_external_player_not_supported">A transmissão selecionada não é compatível com players externos</string>
+    <string name="no_audio_streams_available_for_external_players">Nenhum áudio de transmissão está disponível para players externos</string>
+    <string name="streams_not_yet_supported_removed">As transmissão que ainda não são suportados pelo downloader não são exibidos</string>
+    <string name="no_video_streams_available_for_external_players">Nenhum vídeo de transmissão está disponível para players externos</string>
+    <string name="select_quality_external_players">Selecione a qualidade para players externos</string>
+    <string name="unknown_format">Formato desconhecido</string>
+    <string name="unknown_quality">Qualidade desconhecida</string>
+    <string name="progressive_load_interval_title">Tamanho do intervalo de carregamento da reprodução</string>
 </resources>
