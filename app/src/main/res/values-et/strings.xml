@@ -2,8 +2,8 @@
 <resources>
     <string name="main_bg_subtitle">Alustamiseks toksa suurendusklaasi ikooni.</string>
     <string name="upload_date_text">Avaldatud %1$s</string>
-    <string name="no_player_found">Voogesituseks puudub pleier. Kas paigaldada VLC?</string>
-    <string name="no_player_found_toast">Voogesituseks puudub pleier (selleks võib paigaldada VLC).</string>
+    <string name="no_player_found">Voogesituseks puudub pleier. Kas paigaldame VLC\?</string>
+    <string name="no_player_found_toast">Voogesituseks puudub pleier (selleks võid paigaldada VLC).</string>
     <string name="install">Paigalda</string>
     <string name="cancel">Tühista</string>
     <string name="open_in_browser">Ava veebilehitsejas</string>
@@ -305,7 +305,7 @@
     <string name="title_activity_recaptcha">reCAPTCHA nõue</string>
     <string name="recaptcha_request_toast">reCAPTCHA nõude taotlus</string>
     <string name="copyright" formatted="true">© %1$s %2$s %3$s alla</string>
-    <string name="app_description">Vaba kergekaaluline Androidi voogesitus.</string>
+    <string name="app_description">Vaba ja lihtne voogesitus Androidis.</string>
     <string name="contribution_encouragement">Kui sul on ideid kujunduse muutmisest, koodi puhastamisest või suurtest koodi muudatustest - abi on alati teretulnud. Mida rohkem tehtud, seda paremaks läheb!</string>
     <string name="donation_encouragement">NewPipe arendajad on vabatahtlikud, kes kulutavad oma vaba aega, toomaks sulle parimat kasutamise kogemust. On aeg anda tagasi aidates arendajaid ja muuta NewPipe veel paremaks, nautides ise tassi kohvi.</string>
     <string name="give_back">Anneta</string>
@@ -708,4 +708,13 @@
     <string name="you_successfully_subscribed">Sa oled nüüd selle kanali tellija</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Lülita kõik sisse</string>
+    <string name="no_audio_streams_available_for_external_players">Välise pleieri jaoks ei leidu sobilikke helivoogusid</string>
+    <string name="streams_not_yet_supported_removed">Need meediavood, mida allalaadija ei oska kasutada, on peidetud</string>
+    <string name="no_video_streams_available_for_external_players">Välise pleieri jaoks ei leidu sobilikke videovoogusid</string>
+    <string name="select_quality_external_players">Vali välis pleieri jaoks sobilik kvaliteet</string>
+    <string name="unknown_format">Tundmatu vorming</string>
+    <string name="unknown_quality">Teadmata kvaliteet</string>
+    <string name="selected_stream_external_player_not_supported">Valitud meediavood ei ole toetatud välises pleieris</string>
+    <string name="percent">Protsent</string>
+    <string name="semitone">Pooltoon</string>
 </resources>

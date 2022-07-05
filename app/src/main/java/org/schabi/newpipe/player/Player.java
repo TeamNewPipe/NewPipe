@@ -2485,22 +2485,31 @@ public final class Player implements
         Listener.super.onEvents(player, events);
         MediaItemTag.from(player.getCurrentMediaItem()).ifPresent(tag -> {
             if (tag == currentMetadata) {
-                return;
+                return; // we still have the same metadata, no need to do anything
             }
+            final StreamInfo previousInfo = Optional.ofNullable(currentMetadata)
+                    .flatMap(MediaItemTag::getMaybeStreamInfo).orElse(null);
             currentMetadata = tag;
-            if (!tag.getErrors().isEmpty()) {
+
+            if (!currentMetadata.getErrors().isEmpty()) {
+                // new errors might have been added even if previousInfo == tag.getMaybeStreamInfo()
                 final ErrorInfo errorInfo = new ErrorInfo(
-                        tag.getErrors().get(0),
+                        currentMetadata.getErrors(),
                         UserAction.PLAY_STREAM,
-                        "Loading failed for [" + tag.getTitle() + "]: " + tag.getStreamUrl(),
-                        tag.getServiceId());
+                        "Loading failed for [" + currentMetadata.getTitle()
+                                + "]: " + currentMetadata.getStreamUrl(),
+                        currentMetadata.getServiceId());
                 ErrorUtil.createNotification(context, errorInfo);
             }
-            tag.getMaybeStreamInfo().ifPresent(info -> {
+
+            currentMetadata.getMaybeStreamInfo().ifPresent(info -> {
                 if (DEBUG) {
                     Log.d(TAG, "ExoPlayer - onEvents() update stream info: " + info.getName());
                 }
-                updateMetadataWith(info);
+                if (previousInfo == null || !previousInfo.getUrl().equals(info.getUrl())) {
+                    // only update with the new stream info if it has actually changed
+                    updateMetadataWith(info);
+                }
             });
         });
     }

@@ -732,4 +732,11 @@
     <string name="toggle_all">Przełącz wszystkie</string>
     <string name="percent">Procent</string>
     <string name="semitone">Półton</string>
+    <string name="selected_stream_external_player_not_supported">Wybrany strumień nie jest obsługiwany przez zewnętrzne odtwarzacze</string>
+    <string name="streams_not_yet_supported_removed">Strumienie, których jeszcze nie da się pobrać, nie są wyświetlane</string>
+    <string name="no_audio_streams_available_for_external_players">Brak dostępnych strumieni audio dla zewnętrznych odtwarzaczy</string>
+    <string name="no_video_streams_available_for_external_players">Brak dostępnych strumieni wideo dla zewnętrznych odtwarzaczy</string>
+    <string name="select_quality_external_players">Wybierz jakość dla zewnętrznych odtwarzaczy</string>
+    <string name="unknown_format">Nieznany format</string>
+    <string name="unknown_quality">Nieznana jakość</string>
 </resources>

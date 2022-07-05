@@ -762,4 +762,12 @@
     </plurals>
     <string name="percent">النسبة المئوية</string>
     <string name="semitone">سيميتون</string>
+    <string name="streams_not_yet_supported_removed">لا يتم عرض التدفقات التي لم يدعمها برنامج التنزيل بعد</string>
+    <string name="selected_stream_external_player_not_supported">الدفق المحدد غير مدعوم من قبل المشغلون الخارجيون</string>
+    <string name="no_audio_streams_available_for_external_players">لا توجد تدفقات صوتية متاحة للمشغلات الخارجية</string>
+    <string name="no_video_streams_available_for_external_players">لا تتوفر تدفقات فيديو للاعبين الخارجيين</string>
+    <string name="select_quality_external_players">حدد الجودة للمشغلين الخارجيين</string>
+    <string name="unknown_format">تنسيق غير معروف</string>
+    <string name="unknown_quality">جودة غير معروفة</string>
+    <string name="progressive_load_interval_title">حجم الفاصل الزمني لتحميل التشغيل</string>
 </resources>

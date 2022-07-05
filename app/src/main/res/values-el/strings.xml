@@ -710,4 +710,11 @@
     <string name="toggle_all">Εναλλαγή όλων</string>
     <string name="percent">Τοις εκατό</string>
     <string name="semitone">Ημιτόνιο</string>
+    <string name="streams_not_yet_supported_removed">Οι ροές που δεν υποστηρίζονται ακόμα από τον λήπτη δεν εμφανίζονται</string>
+    <string name="selected_stream_external_player_not_supported">Η επιλεγμένη ροή δεν υποστηρίζεται από εξωτερικούς αναπαραγωγούς</string>
+    <string name="no_audio_streams_available_for_external_players">Δεν διατίθενται ροές ήχου για εξωτερικούς αναπαραγωγούς</string>
+    <string name="no_video_streams_available_for_external_players">Δεν διατίθενται ροές βίντεο για εξωτερικούς αναπαραγωγούς</string>
+    <string name="select_quality_external_players">Επιλογή ποιότητας εξωτερικών αναπαραγωγών</string>
+    <string name="unknown_format">Άγνωστος τύπος αρχείου</string>
+    <string name="unknown_quality">Άγνωστη ποιότητα</string>
 </resources>

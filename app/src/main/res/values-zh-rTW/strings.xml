@@ -697,4 +697,12 @@
     <string name="any_network">任意網路</string>
     <string name="percent">百分比</string>
     <string name="semitone">半音</string>
+    <string name="unknown_format">未知格式</string>
+    <string name="unknown_quality">未知品質</string>
+    <string name="streams_not_yet_supported_removed">不顯示下載程式尚不支援的串流</string>
+    <string name="selected_stream_external_player_not_supported">外部播放程式不支援選定的串流</string>
+    <string name="no_audio_streams_available_for_external_players">沒有可用於外部播放程式的音訊串流</string>
+    <string name="no_video_streams_available_for_external_players">沒有可用於外部播放程式的視訊串流</string>
+    <string name="select_quality_external_players">選取外部播放程式的畫質</string>
+    <string name="progressive_load_interval_title">播放載入間隔大小</string>
 </resources>

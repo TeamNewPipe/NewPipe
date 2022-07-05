@@ -710,4 +710,11 @@
     <string name="delete_downloaded_files_confirm">Iscantzellare totu sos archìvios iscarrigados dae su discu\?</string>
     <string name="percent">Pertzentuale</string>
     <string name="semitone">Semitonu</string>
+    <string name="select_quality_external_players">Seletziona sa calidade pro sos letores esternos</string>
+    <string name="streams_not_yet_supported_removed">Sos flussos chi non sunt galu suportados dae s\'iscarrigadore non sunt ammustrados</string>
+    <string name="no_audio_streams_available_for_external_players">Non b\'est perunu flussu sonoru a disponimentu pro letores esternos</string>
+    <string name="no_video_streams_available_for_external_players">Non bi sunt flussos de vìdeu a disponimentu pro letores esternos</string>
+    <string name="unknown_format">Formadu disconnotu</string>
+    <string name="unknown_quality">Calidade disconnota</string>
+    <string name="selected_stream_external_player_not_supported">Su flussu seletzionadu no est galu suportadu dae letores esternos</string>
 </resources>

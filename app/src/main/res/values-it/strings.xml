@@ -710,4 +710,12 @@
     <string name="enable_streams_notifications_summary">Notifica la presenza di nuovi contenuti dalle iscrizioni</string>
     <string name="semitone">Semitono</string>
     <string name="percent">Percentuale</string>
+    <string name="selected_stream_external_player_not_supported">Il flusso selezionato non è supportato dai lettori esterni</string>
+    <string name="no_video_streams_available_for_external_players">Non sono disponibili flussi video per i lettori esterni</string>
+    <string name="streams_not_yet_supported_removed">I flussi che non sono ancora supportati dal downloader non vengono visualizzati</string>
+    <string name="no_audio_streams_available_for_external_players">Non sono disponibili flussi audio per i lettori esterni</string>
+    <string name="select_quality_external_players">Seleziona qualità per lettori esterni</string>
+    <string name="unknown_quality">Qualità sconosciuta</string>
+    <string name="unknown_format">Formato sconosciuto</string>
+    <string name="progressive_load_interval_title">Dimensione dell\'intervallo di caricamento della riproduzione</string>
 </resources>
