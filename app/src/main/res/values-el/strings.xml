@@ -717,4 +717,5 @@
     <string name="select_quality_external_players">Επιλογή ποιότητας εξωτερικών αναπαραγωγών</string>
     <string name="unknown_format">Άγνωστος τύπος αρχείου</string>
     <string name="unknown_quality">Άγνωστη ποιότητα</string>
+    <string name="progressive_load_interval_title">Μέγεθος διαστήματος φόρτωσης αναπαραγωγής</string>
 </resources>
