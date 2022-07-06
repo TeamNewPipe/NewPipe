@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="48dp">
@@ -13,7 +12,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="6dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/ic_volume_off"
+        android:src="@drawable/ic_volume_off"
         tools:ignore="ContentDescription,RtlHardcoded" />
 
     <org.schabi.newpipe.views.NewPipeTextView

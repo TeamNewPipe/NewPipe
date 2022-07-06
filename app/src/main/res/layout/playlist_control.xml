@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -20,13 +19,12 @@
         <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_headset"
             android:drawablePadding="4dp"
             android:gravity="center_vertical"
             android:text="@string/controls_background_title"
             android:textColor="?attr/colorAccent"
-            android:textSize="@dimen/channel_rss_title_size"
-            app:drawableLeftCompat="@drawable/ic_headset"
-            app:drawableStartCompat="@drawable/ic_headset" />
+            android:textSize="@dimen/channel_rss_title_size" />
     </LinearLayout>
 
     <View
@@ -77,12 +75,11 @@
         <org.schabi.newpipe.views.NewPipeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_picture_in_picture"
             android:drawablePadding="4dp"
             android:gravity="center_vertical"
             android:text="@string/controls_popup_title"
             android:textColor="?attr/colorAccent"
-            android:textSize="@dimen/channel_rss_title_size"
-            app:drawableLeftCompat="@drawable/ic_picture_in_picture"
-            app:drawableStartCompat="@drawable/ic_picture_in_picture" />
+            android:textSize="@dimen/channel_rss_title_size" />
     </LinearLayout>
 </LinearLayout>

@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_close"
         app:backgroundTint="@color/light_youtube_primary_color"
         app:borderWidth="0dp"
-        app:fabSize="normal"
-        app:srcCompat="@drawable/ic_close" />
+        app:fabSize="normal" />
 </FrameLayout>
