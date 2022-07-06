@@ -626,7 +626,6 @@
     <string name="feed_load_error_account_info">Nuk u arrit të ngarkohej feed-i për \'%s\'.</string>
     <string name="feed_load_error">Gabim gjatë ngarkimit të feed-it</string>
     <string name="downloads_storage_use_saf_summary_api_29">Duke nisur nga Android 10 vetëm \'Storage Access Framework\' është i mbështetur</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' nuk është e mbështetur në Android KitKat dhe më poshtë</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Ju do të pyeteni se ku doni të ruani çdo shkarkim</string>
     <string name="crash_the_app">Rrëzoje aplikacionin manualisht</string>
     <string name="disable_media_tunneling_summary">Ç\'aktivizo tunelin e medias nëse po hasni një ekran të zi apo ngecje gjatë luajtjes së një videoje</string>

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.DocumentsContract;
 
 import androidx.annotation.NonNull;
@@ -53,10 +52,6 @@ public class StoredDirectoryHelper {
             throw new IOException(e);
         }
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            throw new IOException("Storage Access Framework with Directory API is not available");
-        }
-
         this.docTree = DocumentFile.fromTreeUri(context, path);
 
         if (this.docTree == null) {
@@ -73,7 +68,7 @@ public class StoredDirectoryHelper {
         final String[] filename = splitFilename(name);
         final String lcFilename = filename[0].toLowerCase();
 
-        if (docTree == null || Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+        if (docTree == null) {
             for (final File file : ioTree.listFiles()) {
                 addIfStartWith(matches, lcFilename, file.getName());
             }
@@ -277,7 +272,7 @@ public class StoredDirectoryHelper {
      */
     static DocumentFile findFileSAFHelper(@Nullable final Context context, final DocumentFile tree,
                                           final String filename) {
-        if (context == null || Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+        if (context == null) {
             return tree.findFile(filename); // warning: this is very slow
         }
 

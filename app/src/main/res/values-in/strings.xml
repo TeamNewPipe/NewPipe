@@ -623,7 +623,6 @@
     <string name="feed_load_error_account_info">Tidak bisa memuat langganan untuk \'%s\'.</string>
     <string name="feed_load_error">Galat memuat langganan</string>
     <string name="downloads_storage_use_saf_summary_api_29">Mulai Android 10, hanya \'Storage Access Framework\' yang didukung</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' tidak didukung pada Android KitKat dan yang lebih rendah</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Anda akan ditanya lokasi penyimpanan berkas unduhan</string>
     <string name="no_dir_yet">Belum ada folder unduhan, pilih folder unduhan sekarang</string>
     <string name="off">Nonaktif</string>

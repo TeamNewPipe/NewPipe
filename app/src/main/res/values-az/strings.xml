@@ -463,7 +463,6 @@
     <string name="error_http_no_content">Server məlumat göndərmir</string>
     <string name="error_download_resource_gone">Bu endirməni bərpa etmək mümkün deyil</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Sizdən hər endirmənin harada saxlanacağı soruşulacaq</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Yaddaş Giriş Çərçivəsi\' Android KitKat və ondan aşağı versiyalarda dəstəklənmir</string>
     <string name="downloads_storage_use_saf_summary_api_29">\"Yaddaş Giriş Çərçivəsi\"yalnız Android 10\'dan başlayaraq dəstəklənir</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar miniatürü</string>
     <string name="select_night_theme_toast">Sevdiyiniz gecə mövzusunu aşağıda seçə bilərsiniz</string>

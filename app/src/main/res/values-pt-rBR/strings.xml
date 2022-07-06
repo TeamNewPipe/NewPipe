@@ -633,7 +633,6 @@
     <string name="feed_load_error_account_info">Não foi possível carregar o feed para \'%s\'.</string>
     <string name="feed_load_error">Erro ao carregar o feed</string>
     <string name="downloads_storage_use_saf_summary_api_29">O \'Storage Access Framework\' é compatível apenas com versões a partir do Android 10</string>
-    <string name="downloads_storage_use_saf_summary_api_19">O \'Storage Access Framework\' não é compatível com Android KitKat e versões anteriores</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Você será questionado onde salvar cada download</string>
     <string name="no_dir_yet">Nenhuma pasta de download definida ainda, escolha a pasta de download padrão agora</string>
     <string name="off">Desligado</string>

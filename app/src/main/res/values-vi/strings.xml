@@ -627,7 +627,6 @@
     <string name="feed_load_error_account_info">Không thể tải nguồn dữ liệu cho \'%s\'.</string>
     <string name="feed_load_error">Lỗi khi tải nguồn dữ liệu</string>
     <string name="downloads_storage_use_saf_summary_api_29">\'Storage Access Framework\' chỉ được hỗ trợ từ Android 10 trở đi</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' không được hỗ trợ trên Android KitKat và cũ hơn</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Bạn sẽ được hỏi nơi bạn muốn lưu mỗi mục tải xuống</string>
     <string name="no_dir_yet">Chưa có thư mục tải xuống nào được đặt, hãy chọn thư mục tải xuống mặc định ngay</string>
     <string name="dont_show">Không hiện</string>

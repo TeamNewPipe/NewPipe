@@ -633,7 +633,6 @@
 \nCheres bogare s\'iscritzione a custu canale\?</string>
     <string name="feed_load_error_account_info">Carrigamentu de su flussu pro \'%s\' fallidu.</string>
     <string name="feed_load_error">Errore carrighende su flussu</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Su \'Storage Access Framework\' no est suportadu in Android KitKat e versiones prus betzas</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">T\'at a bènnere pedidu in ue sarvare cada documentu</string>
     <string name="no_dir_yet">Non b\'at galu peruna cartella de iscarrigamentu impostada. Issèbera como sa cartella de iscarrigamentu predefinida</string>
     <string name="off">Istudadu</string>

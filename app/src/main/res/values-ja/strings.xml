@@ -614,7 +614,6 @@
     <string name="downloads_storage_ask_summary_no_saf_notice">ダウンロードのたびに保存する場所を尋ねます</string>
     <string name="no_dir_yet">ダウンロードフォルダがまだ設定されていません。今すぐデフォルトのフォルダを選択してください</string>
     <string name="downloads_storage_use_saf_summary_api_29">Android 10 以降は \'Storage Access Framework\' のみがサポートされます</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' は Android KitKat 以下ではサポートされていません</string>
     <string name="feed_load_error_fast_unknown">高速モードでこの情報の詳細は提供されません。</string>
     <string name="feed_load_error_account_info">\'%s\' のフィードを読み込めませんでした。</string>
     <string name="feed_load_error">フィードの読み込みエラー</string>

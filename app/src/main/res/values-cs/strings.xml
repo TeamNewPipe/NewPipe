@@ -643,7 +643,6 @@
     <string name="feed_load_error_account_info">Feed pro \'%s\' nemohl být načten.</string>
     <string name="feed_load_error">Chyba při načítání feedu</string>
     <string name="downloads_storage_use_saf_summary_api_29">Počínaje Android 10 je podporován pouze \"Storage Access Framework\"</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\"Storage Access Framework\" není podporován na KitKat a níže</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Budete dotázáni, kde uložit každý stažený soubor</string>
     <string name="no_dir_yet">Adresář pro stažené soubory dosud nenastaven, zvolte, prosím, výchozí adresář nyní</string>
     <string name="off">Vypnuto</string>

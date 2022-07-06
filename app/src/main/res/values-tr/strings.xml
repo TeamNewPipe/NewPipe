@@ -633,7 +633,6 @@
     <string name="feed_load_error_account_info">\'%s\' için besleme yüklenemedi.</string>
     <string name="feed_load_error">Besleme yüklenirken hata</string>
     <string name="downloads_storage_use_saf_summary_api_29">\'Depolama Erişimi Çerçevesi\' yalnızca Android 10\'dan başlayarak desteklenmektedir</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Depolama Erişimi Çerçevesi\' Android KitKat ve altında desteklenmez</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Her indirmede nereye kaydedileceği sorulacak</string>
     <string name="no_dir_yet">İndirme klasörü belirlenmedi, şimdi öntanımlı indirme klasörünü seçin</string>
     <string name="off">Kapat</string>

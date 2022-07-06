@@ -623,7 +623,6 @@
     <string name="feed_load_error_account_info">無法載入「%s」。</string>
     <string name="feed_load_error">載入 feed 時發生錯誤</string>
     <string name="downloads_storage_use_saf_summary_api_29">從 Android 10 開始僅支援「儲存空間存取框架」</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Android KitKat 或更舊的版本不支援「儲存空間存取框架」</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">每次下載都會詢問您要下載到哪裡</string>
     <string name="no_dir_yet">尚未設定下載資料夾，立刻選擇預設的下載資料夾</string>
     <string name="off">關閉</string>

@@ -1963,10 +1963,9 @@ public final class Player implements
     private void showSystemUIPartially() {
         final AppCompatActivity activity = getParentActivity();
         if (isFullscreen && activity != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
-                activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);
-            }
+            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+            activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);
+
             final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;

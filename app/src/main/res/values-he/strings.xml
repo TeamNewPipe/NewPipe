@@ -653,7 +653,6 @@
     <string name="feed_load_error_account_info">לא ניתן לטעון את ההזנה עבור ‚%s’.</string>
     <string name="feed_load_error">שגיאה בהורדת ההזנה</string>
     <string name="downloads_storage_use_saf_summary_api_29">התמיכה ב‚תשתית גישה לאחסון’ נתמכת מ־Android 10 בלבד</string>
-    <string name="downloads_storage_use_saf_summary_api_19">‚תשתית הגישה לאחסון’ אינה נתמכת על ידי Android KitKat ומטה</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">תופיע שאלה לאן לשמור כל הורדה</string>
     <string name="no_dir_yet">טרם הוגדרה תיקיית הורדה, נא לבחור את תיקיית ההורדה כעת</string>
     <string name="off">כבוי</string>

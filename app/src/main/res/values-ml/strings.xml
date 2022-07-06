@@ -639,7 +639,6 @@
     <string name="feed_load_error">ഫീഡ് ലോഡ് ചെയ്യുന്നതിൽ പിശക് സംഭവിച്ചിരിക്കുന്നു</string>
     <string name="downloads_storage_use_saf_summary_api_29">ആൻഡ്രോയ്ഡ് 10 മുതൽ മാത്രമേ \"സ്റ്റോറേജ് അക്സസ് ഫ്രെയിംവർക്ക്\" പിന്തുണക്കു</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">എവിടെ ആണ് ഡൌൺലോഡ് ചെയ്യ്യപെടുന്ന ഓരോ ഫയൽലും സംരക്ഷിക്കപ്പെടേണ്ടത് എന്ന് തങ്കളോട് ചോദിക്കും</string>
-    <string name="downloads_storage_use_saf_summary_api_19">ആൻഡ്രോയ്ഡ് കിറ്റ് ക്യാറ്റോ അതിനു താഴെക്കോ ഉള്ളതിൽ \"സ്റ്റോറേജ് ആസസ്സ് ഫ്രെയിംവർക്ക് പിന്തുണക്കുന്നില്ല</string>
     <string name="dont_show">കാണിക്കരുത്</string>
     <string name="low_quality_smaller">കുറഞ്ഞ നിലവാരം (ചെറുത് )</string>
     <string name="high_quality_larger">ഉയർന്ന നിലവാരം (വലിയത് )</string>

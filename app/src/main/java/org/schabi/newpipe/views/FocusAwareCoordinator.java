@@ -17,10 +17,8 @@
  */
 package org.schabi.newpipe.views;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Rect;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +72,6 @@ public final class FocusAwareCoordinator extends CoordinatorLayout {
      * Makes possible for multiple fragments to co-exist. Without this code
      * the first ViewGroup who consumes will be the last who receive the insets
      */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public WindowInsets dispatchApplyWindowInsets(final WindowInsets insets) {
         boolean consumed = false;
