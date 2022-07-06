@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.CookieManager;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +19,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 import androidx.preference.PreferenceManager;
-import androidx.webkit.WebViewClientCompat;
 
 import org.schabi.newpipe.databinding.ActivityRecaptchaBinding;
 import org.schabi.newpipe.DownloaderImpl;
@@ -85,14 +86,15 @@ public class ReCaptchaActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setUserAgentString(DownloaderImpl.USER_AGENT);
 
-        recaptchaBinding.reCaptchaWebView.setWebViewClient(new WebViewClientCompat() {
+        recaptchaBinding.reCaptchaWebView.setWebViewClient(new WebViewClient() {
             @Override
-            public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
+            public boolean shouldOverrideUrlLoading(final WebView view,
+                                                    final WebResourceRequest request) {
                 if (MainActivity.DEBUG) {
-                    Log.d(TAG, "shouldOverrideUrlLoading: url=" + url);
+                    Log.d(TAG, "shouldOverrideUrlLoading: url=" + request.getUrl().toString());
                 }
 
-                handleCookiesFromUrl(url);
+                handleCookiesFromUrl(request.getUrl().toString());
                 return false;
             }
 
