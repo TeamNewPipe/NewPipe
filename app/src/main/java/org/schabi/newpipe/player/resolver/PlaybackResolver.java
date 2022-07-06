@@ -171,6 +171,7 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
 
         try {
             final StreamInfoTag tag = StreamInfoTag.of(info);
+            tag.setSourceType(SourceType.MANIFEST);
             if (!info.getHlsUrl().isEmpty()) {
                 return buildLiveMediaSource(dataSource, info.getHlsUrl(), C.CONTENT_TYPE_HLS, tag);
             } else if (!info.getDashMpdUrl().isEmpty()) {

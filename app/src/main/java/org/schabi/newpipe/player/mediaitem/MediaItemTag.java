@@ -10,6 +10,7 @@ import com.google.android.exoplayer2.Player;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.player.resolver.SourceType;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +45,10 @@ public interface MediaItemTag {
     String getUploaderUrl();
 
     StreamType getStreamType();
+
+    default SourceType getSourceType() {
+        return SourceType.UNKNOWN;
+    }
 
     @NonNull
     default Optional<StreamInfo> getMaybeStreamInfo() {

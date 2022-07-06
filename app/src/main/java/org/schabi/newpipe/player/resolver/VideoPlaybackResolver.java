@@ -25,7 +25,6 @@ import org.schabi.newpipe.util.ListHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static com.google.android.exoplayer2.C.TIME_UNSET;
 import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
@@ -40,16 +39,9 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     private final PlayerDataSource dataSource;
     @NonNull
     private final QualityResolver qualityResolver;
-    private SourceType streamSourceType;
 
     @Nullable
     private String playbackQuality;
-
-    public enum SourceType {
-        LIVE_STREAM,
-        VIDEO_WITH_SEPARATED_AUDIO,
-        VIDEO_WITH_AUDIO_OR_AUDIO_ONLY
-    }
 
     public VideoPlaybackResolver(@NonNull final Context context,
                                  @NonNull final PlayerDataSource dataSource,
@@ -64,7 +56,6 @@ public class VideoPlaybackResolver implements PlaybackResolver {
     public MediaSource resolve(@NonNull final StreamInfo info) {
         final MediaSource liveSource = PlaybackResolver.maybeBuildLiveMediaSource(dataSource, info);
         if (liveSource != null) {
-            streamSourceType = SourceType.LIVE_STREAM;
             return liveSource;
         }
 
@@ -83,7 +74,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
             index = qualityResolver.getOverrideResolutionIndex(videoStreamsList,
                     getPlaybackQuality());
         }
-        final MediaItemTag tag = StreamInfoTag.of(info, videoStreamsList, index);
+        final StreamInfoTag tag = StreamInfoTag.of(info, videoStreamsList, index);
         @Nullable final VideoStream video = tag.getMaybeQuality()
                 .map(MediaItemTag.Quality::getSelectedVideoStream)
                 .orElse(null);
@@ -111,18 +102,28 @@ public class VideoPlaybackResolver implements PlaybackResolver {
                 final MediaSource audioSource = PlaybackResolver.buildMediaSource(
                         dataSource, audio, info, PlaybackResolver.cacheKeyOf(info, audio), tag);
                 mediaSources.add(audioSource);
-                streamSourceType = SourceType.VIDEO_WITH_SEPARATED_AUDIO;
             } catch (final ResolverException e) {
                 Log.e(TAG, "Unable to create audio source", e);
                 return null;
             }
-        } else {
-            streamSourceType = SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY;
         }
 
         // If there is no audio or video sources, then this media source cannot be played back
         if (mediaSources.isEmpty()) {
             return null;
+        }
+
+        if (video != null) {
+            if (video.isVideoOnly()) {
+                tag.setSourceType(audio == null
+                        ? SourceType.VIDEO_ONLY : SourceType.VIDEO_WITH_SEPARATED_AUDIO);
+            } else {
+                tag.setSourceType(SourceType.VIDEO_WITH_AUDIO);
+            }
+        } else {
+            // If there is no video stream, it means that there is an audio stream for playback
+            // (because if there is no audio stream and video stream, the block above would be run)
+            tag.setSourceType(SourceType.AUDIO_ONLY);
         }
 
         // Below are auxiliary media sources
@@ -158,16 +159,6 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         } else {
             return new MergingMediaSource(true, mediaSources.toArray(new MediaSource[0]));
         }
-    }
-
-    /**
-     * Returns the last resolved {@link StreamInfo}'s {@link SourceType source type}.
-     *
-     * @return {@link Optional#empty()} if nothing was resolved, otherwise the {@link SourceType}
-     * of the last resolved {@link StreamInfo} inside an {@link Optional}
-     */
-    public Optional<SourceType> getStreamSourceType() {
-        return Optional.ofNullable(streamSourceType);
     }
 
     @Nullable

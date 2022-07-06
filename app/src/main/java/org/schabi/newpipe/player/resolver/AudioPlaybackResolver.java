@@ -13,7 +13,6 @@ import com.google.android.exoplayer2.source.MediaSource;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
-import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediaitem.StreamInfoTag;
 import org.schabi.newpipe.util.ListHelper;
 
@@ -49,7 +48,8 @@ public class AudioPlaybackResolver implements PlaybackResolver {
         }
 
         final AudioStream audio = info.getAudioStreams().get(index);
-        final MediaItemTag tag = StreamInfoTag.of(info);
+        final StreamInfoTag tag = StreamInfoTag.of(info);
+        tag.setSourceType(SourceType.AUDIO_ONLY);
 
         try {
             return PlaybackResolver.buildMediaSource(

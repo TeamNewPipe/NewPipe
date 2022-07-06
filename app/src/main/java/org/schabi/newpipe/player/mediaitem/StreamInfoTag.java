@@ -5,6 +5,7 @@ import com.google.android.exoplayer2.MediaItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.player.resolver.SourceType;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,6 +28,9 @@ public final class StreamInfoTag implements MediaItemTag {
     @Nullable
     private final Object extras;
 
+    @NonNull
+    private SourceType sourceType = SourceType.UNKNOWN;
+
     private StreamInfoTag(@NonNull final StreamInfo streamInfo,
                           @Nullable final MediaItemTag.Quality quality,
                           @Nullable final Object extras) {
@@ -35,6 +39,7 @@ public final class StreamInfoTag implements MediaItemTag {
         this.extras = extras;
     }
 
+    @NonNull
     public static StreamInfoTag of(@NonNull final StreamInfo streamInfo,
                                    @NonNull final List<VideoStream> sortedVideoStreams,
                                    final int selectedVideoStreamIndex) {
@@ -42,10 +47,12 @@ public final class StreamInfoTag implements MediaItemTag {
         return new StreamInfoTag(streamInfo, quality, null);
     }
 
+    @NonNull
     public static StreamInfoTag of(@NonNull final StreamInfo streamInfo) {
         return new StreamInfoTag(streamInfo, null, null);
     }
 
+    @NonNull
     @Override
     public List<Exception> getErrors() {
         return Collections.emptyList();
@@ -93,6 +100,16 @@ public final class StreamInfoTag implements MediaItemTag {
 
     @NonNull
     @Override
+    public SourceType getSourceType() {
+        return sourceType;
+    }
+
+    public void setSourceType(@NonNull final SourceType sourceType) {
+        this.sourceType = sourceType;
+    }
+
+    @NonNull
+    @Override
     public Optional<StreamInfo> getMaybeStreamInfo() {
         return Optional.of(streamInfo);
     }
@@ -108,6 +125,7 @@ public final class StreamInfoTag implements MediaItemTag {
         return Optional.ofNullable(extras).map(type::cast);
     }
 
+    @NonNull
     @Override
     public StreamInfoTag withExtras(@NonNull final Object extra) {
         return new StreamInfoTag(streamInfo, quality, extra);
