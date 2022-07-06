@@ -19,8 +19,6 @@ android {
         versionCode 987
         versionName "0.23.1"
 
-        multiDexEnabled true
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
@@ -210,7 +208,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:${androidxLifecycleVersion}"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
     implementation 'androidx.media:media:1.5.0'
-    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.preference:preference:1.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation "androidx.room:room-runtime:${androidxRoomVersion}"
