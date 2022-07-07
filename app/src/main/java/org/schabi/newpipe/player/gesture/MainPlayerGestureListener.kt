@@ -8,11 +8,13 @@ import android.view.View.OnTouchListener
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.view.isVisible
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.ktx.AnimationType
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.player.Player
+import org.schabi.newpipe.player.helper.AudioReactor
 import org.schabi.newpipe.player.helper.PlayerHelper
 import org.schabi.newpipe.player.ui.MainPlayerUi
 import kotlin.math.abs
@@ -64,22 +66,27 @@ class MainPlayerGestureListener(
     }
 
     private fun onScrollVolume(distanceY: Float) {
+        val bar: ProgressBar = binding.volumeProgressBar
+        val audioReactor: AudioReactor = player.audioReactor
+
         // If we just started sliding, change the progress bar to match the system volume
-        if (binding.volumeRelativeLayout.visibility != View.VISIBLE) {
-            val volumePercent: Float =
-                player.audioReactor.volume / player.audioReactor.maxVolume.toFloat()
-            binding.volumeProgressBar.progress = (volumePercent * MAX_GESTURE_LENGTH).toInt()
+        if (!binding.volumeRelativeLayout.isVisible) {
+            val volumePercent: Float = audioReactor.volume / audioReactor.maxVolume.toFloat()
+            bar.progress = (volumePercent * bar.max).toInt()
         }
 
+        // Update progress bar
         binding.volumeProgressBar.incrementProgressBy(distanceY.toInt())
-        val currentProgressPercent: Float =
-            binding.volumeProgressBar.progress.toFloat() / MAX_GESTURE_LENGTH
-        val currentVolume = (player.audioReactor.maxVolume * currentProgressPercent).toInt()
-        player.audioReactor.volume = currentVolume
+
+        // Update volume
+        val currentProgressPercent: Float = bar.progress / bar.max.toFloat()
+        val currentVolume = (audioReactor.maxVolume * currentProgressPercent).toInt()
+        audioReactor.volume = currentVolume
         if (DEBUG) {
             Log.d(TAG, "onScroll().volumeControl, currentVolume = $currentVolume")
         }
 
+        // Update player center image
         binding.volumeImageView.setImageDrawable(
             AppCompatResources.getDrawable(
                 player.context,
@@ -92,12 +99,11 @@ class MainPlayerGestureListener(
             )
         )
 
-        if (binding.volumeRelativeLayout.visibility != View.VISIBLE) {
+        // Make sure the correct layout is visible
+        if (!binding.volumeRelativeLayout.isVisible) {
             binding.volumeRelativeLayout.animate(true, 200, AnimationType.SCALE_AND_ALPHA)
         }
-        if (binding.brightnessRelativeLayout.visibility == View.VISIBLE) {
-            binding.volumeRelativeLayout.visibility = View.GONE
-        }
+        binding.brightnessRelativeLayout.isVisible = false
     }
 
     private fun onScrollBrightness(distanceY: Float) {
@@ -105,9 +111,13 @@ class MainPlayerGestureListener(
         val window = parent.window
         val layoutParams = window.attributes
         val bar: ProgressBar = binding.brightnessProgressBar
+
+        // Update progress bar
         val oldBrightness = layoutParams.screenBrightness
         bar.progress = (bar.max * max(0f, min(1f, oldBrightness))).toInt()
         bar.incrementProgressBy(distanceY.toInt())
+
+        // Update brightness
         val currentProgressPercent = bar.progress.toFloat() / bar.max
         layoutParams.screenBrightness = currentProgressPercent
         window.attributes = layoutParams
@@ -121,26 +131,32 @@ class MainPlayerGestureListener(
                     "currentBrightness = " + currentProgressPercent
             )
         }
+
+        // Update player center image
         binding.brightnessImageView.setImageDrawable(
             AppCompatResources.getDrawable(
                 player.context,
-                if (currentProgressPercent < 0.25) R.drawable.ic_brightness_low else if (currentProgressPercent < 0.75) R.drawable.ic_brightness_medium else R.drawable.ic_brightness_high
+                when {
+                    currentProgressPercent < 0.25 -> R.drawable.ic_brightness_low
+                    currentProgressPercent < 0.75 -> R.drawable.ic_brightness_medium
+                    else -> R.drawable.ic_brightness_high
+                }
             )
         )
-        if (binding.brightnessRelativeLayout.visibility != View.VISIBLE) {
+
+        // Make sure the correct layout is visible
+        if (!binding.brightnessRelativeLayout.isVisible) {
             binding.brightnessRelativeLayout.animate(true, 200, AnimationType.SCALE_AND_ALPHA)
         }
-        if (binding.volumeRelativeLayout.visibility == View.VISIBLE) {
-            binding.volumeRelativeLayout.visibility = View.GONE
-        }
+        binding.volumeRelativeLayout.isVisible = false
     }
 
     override fun onScrollEnd(event: MotionEvent) {
         super.onScrollEnd(event)
-        if (binding.volumeRelativeLayout.visibility == View.VISIBLE) {
+        if (binding.volumeRelativeLayout.isVisible) {
             binding.volumeRelativeLayout.animate(false, 200, AnimationType.SCALE_AND_ALPHA, 200)
         }
-        if (binding.brightnessRelativeLayout.visibility == View.VISIBLE) {
+        if (binding.brightnessRelativeLayout.isVisible) {
             binding.brightnessRelativeLayout.animate(false, 200, AnimationType.SCALE_AND_ALPHA, 200)
         }
     }
@@ -210,7 +226,6 @@ class MainPlayerGestureListener(
         private val TAG = MainPlayerGestureListener::class.java.simpleName
         private val DEBUG = MainActivity.DEBUG
         private const val MOVEMENT_THRESHOLD = 40
-        const val MAX_GESTURE_LENGTH = 0.75f
 
         private fun getNavigationBarHeight(context: Context): Int {
             val resId = context.resources

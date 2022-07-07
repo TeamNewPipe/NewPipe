@@ -520,12 +520,13 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     public void onLayoutChange(final View view, final int l, final int t, final int r, final int b,
                                final int ol, final int ot, final int or, final int ob) {
         if (l != ol || t != ot || r != or || b != ob) {
-            // Use smaller value to be consistent between screen orientations
-            // (and to make usage easier)
+            // Use a smaller value to be consistent across screen orientations, and to make usage
+            // easier. Multiply by 3/4 to ensure the user does not need to move the finger up to the
+            // screen border, in order to reach the maximum volume/brightness.
             final int width = r - l;
             final int height = b - t;
             final int min = Math.min(width, height);
-            final int maxGestureLength = (int) (min * MainPlayerGestureListener.MAX_GESTURE_LENGTH);
+            final int maxGestureLength = (int) (min * 0.75);
 
             if (DEBUG) {
                 Log.d(TAG, "maxGestureLength = " + maxGestureLength);
