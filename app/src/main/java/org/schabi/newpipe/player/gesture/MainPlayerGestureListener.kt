@@ -1,6 +1,5 @@
 package org.schabi.newpipe.player.gesture
 
-import android.content.Context
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -17,6 +16,7 @@ import org.schabi.newpipe.player.Player
 import org.schabi.newpipe.player.helper.AudioReactor
 import org.schabi.newpipe.player.helper.PlayerHelper
 import org.schabi.newpipe.player.ui.MainPlayerUi
+import org.schabi.newpipe.util.ThemeHelper.getAndroidDimenPx
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -172,9 +172,13 @@ class MainPlayerGestureListener(
             return false
         }
 
-        val isTouchingStatusBar: Boolean = initialEvent.y < getStatusBarHeight(player.context)
-        val isTouchingNavigationBar: Boolean =
-            initialEvent.y > (binding.root.height - getNavigationBarHeight(player.context))
+        // Calculate heights of status and navigation bars
+        val statusBarHeight = getAndroidDimenPx(player.context, "status_bar_height")
+        val navigationBarHeight = getAndroidDimenPx(player.context, "navigation_bar_height")
+
+        // Do not handle this event if initially it started from status or navigation bars
+        val isTouchingStatusBar = initialEvent.y < statusBarHeight
+        val isTouchingNavigationBar = initialEvent.y > (binding.root.height - navigationBarHeight)
         if (isTouchingStatusBar || isTouchingNavigationBar) {
             return false
         }
@@ -226,21 +230,5 @@ class MainPlayerGestureListener(
         private val TAG = MainPlayerGestureListener::class.java.simpleName
         private val DEBUG = MainActivity.DEBUG
         private const val MOVEMENT_THRESHOLD = 40
-
-        private fun getNavigationBarHeight(context: Context): Int {
-            val resId = context.resources
-                .getIdentifier("navigation_bar_height", "dimen", "android")
-            return if (resId > 0) {
-                context.resources.getDimensionPixelSize(resId)
-            } else 0
-        }
-
-        private fun getStatusBarHeight(context: Context): Int {
-            val resId = context.resources
-                .getIdentifier("status_bar_height", "dimen", "android")
-            return if (resId > 0) {
-                context.resources.getDimensionPixelSize(resId)
-            } else 0
-        }
     }
 }
