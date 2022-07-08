@@ -2,21 +2,25 @@ package org.schabi.newpipe.player.ui;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static org.schabi.newpipe.MainActivity.DEBUG;
-import static org.schabi.newpipe.player.helper.PlayerHelper.buildCloseOverlayLayoutParams;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimumVideoHeight;
-import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePopupLayoutParamsFromPrefs;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.PixelFormat;
+import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.AnticipateInterpolator;
 import android.widget.LinearLayout;
@@ -37,6 +41,20 @@ import org.schabi.newpipe.player.helper.PlayerHelper;
 
 public final class PopupPlayerUi extends VideoPlayerUi {
     private static final String TAG = PopupPlayerUi.class.getSimpleName();
+
+    /**
+     * Maximum opacity allowed for Android 12 and higher to allow touches on other apps when using
+     * NewPipe's popup player.
+     *
+     * <p>
+     * This value is hardcoded instead of being get dynamically with the method linked of the
+     * constant documentation below, because it is not static and popup player layout parameters
+     * are generated with static methods.
+     * </p>
+     *
+     * @see WindowManager.LayoutParams#FLAG_NOT_TOUCHABLE
+     */
+    private static final float MAXIMUM_OPACITY_ALLOWED_FOR_S_AND_HIGHER = 0.8f;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Popup player
@@ -98,7 +116,7 @@ public final class PopupPlayerUi extends VideoPlayerUi {
 
         updateScreenSize();
 
-        popupLayoutParams = retrievePopupLayoutParamsFromPrefs(this);
+        popupLayoutParams = retrievePopupLayoutParamsFromPrefs();
         binding.surfaceView.setHeights(popupLayoutParams.height, popupLayoutParams.height);
 
         checkPopupPositionBounds();
@@ -442,6 +460,92 @@ public final class PopupPlayerUi extends VideoPlayerUi {
 
     public boolean isInsideClosingRadius(@NonNull final MotionEvent popupMotionEvent) {
         return distanceFromCloseButton(popupMotionEvent) <= getClosingRadius();
+    }
+    //endregion
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Popup & closing overlay layout params + saving popup position and size
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Popup & closing overlay layout params + saving popup position and size
+
+    /**
+     * {@code screenWidth} and {@code screenHeight} must have been initialized.
+     * @return the popup starting layout params
+     */
+    @SuppressLint("RtlHardcoded")
+    public WindowManager.LayoutParams retrievePopupLayoutParamsFromPrefs() {
+        final SharedPreferences prefs = getPlayer().getPrefs();
+        final Context context = getPlayer().getContext();
+
+        final boolean popupRememberSizeAndPos = prefs.getBoolean(
+                context.getString(R.string.popup_remember_size_pos_key), true);
+        final float defaultSize = context.getResources().getDimension(R.dimen.popup_default_width);
+        final float popupWidth = popupRememberSizeAndPos
+                ? prefs.getFloat(context.getString(R.string.popup_saved_width_key), defaultSize)
+                : defaultSize;
+        final float popupHeight = getMinimumVideoHeight(popupWidth);
+
+        final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+                (int) popupWidth, (int) popupHeight,
+                popupLayoutParamType(),
+                IDLE_WINDOW_FLAGS,
+                PixelFormat.TRANSLUCENT);
+        params.gravity = Gravity.LEFT | Gravity.TOP;
+        params.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
+
+        final int centerX = (int) (screenWidth / 2f - popupWidth / 2f);
+        final int centerY = (int) (screenHeight / 2f - popupHeight / 2f);
+        params.x = popupRememberSizeAndPos
+                ? prefs.getInt(context.getString(R.string.popup_saved_x_key), centerX) : centerX;
+        params.y = popupRememberSizeAndPos
+                ? prefs.getInt(context.getString(R.string.popup_saved_y_key), centerY) : centerY;
+
+        return params;
+    }
+
+    public void savePopupPositionAndSizeToPrefs() {
+        if (getPopupLayoutParams() != null) {
+            final Context context = getPlayer().getContext();
+            getPlayer().getPrefs().edit()
+                    .putFloat(context.getString(R.string.popup_saved_width_key),
+                            popupLayoutParams.width)
+                    .putInt(context.getString(R.string.popup_saved_x_key),
+                            popupLayoutParams.x)
+                    .putInt(context.getString(R.string.popup_saved_y_key),
+                            popupLayoutParams.y)
+                    .apply();
+        }
+    }
+
+    @SuppressLint("RtlHardcoded")
+    public static WindowManager.LayoutParams buildCloseOverlayLayoutParams() {
+        final int flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
+
+        final WindowManager.LayoutParams closeOverlayLayoutParams = new WindowManager.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT,
+                popupLayoutParamType(),
+                flags,
+                PixelFormat.TRANSLUCENT);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // Setting maximum opacity allowed for touch events to other apps for Android 12 and
+            // higher to prevent non interaction when using other apps with the popup player
+            closeOverlayLayoutParams.alpha = MAXIMUM_OPACITY_ALLOWED_FOR_S_AND_HIGHER;
+        }
+
+        closeOverlayLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
+        closeOverlayLayoutParams.softInputMode =
+                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
+        return closeOverlayLayoutParams;
+    }
+
+    public static int popupLayoutParamType() {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.O
+                ? WindowManager.LayoutParams.TYPE_PHONE
+                : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
     }
     //endregion
 

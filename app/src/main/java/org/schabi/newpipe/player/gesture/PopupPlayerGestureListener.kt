@@ -7,7 +7,6 @@ import android.view.ViewConfiguration
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.ktx.AnimationType
 import org.schabi.newpipe.ktx.animate
-import org.schabi.newpipe.player.helper.PlayerHelper
 import org.schabi.newpipe.player.ui.PopupPlayerUi
 import kotlin.math.abs
 import kotlin.math.hypot
@@ -87,7 +86,7 @@ class PopupPlayerGestureListener(
                 player.changeState(player.currentState)
             }
             if (!playerUi.isPopupClosing) {
-                PlayerHelper.savePopupPositionAndSizeToPrefs(playerUi)
+                playerUi.savePopupPositionAndSizeToPrefs()
             }
         }
 
@@ -106,40 +105,42 @@ class PopupPlayerGestureListener(
     }
 
     private fun handleMultiDrag(event: MotionEvent): Boolean {
-        if (initPointerDistance != -1.0 && event.pointerCount == 2) {
-            // get the movements of the fingers
-            val firstPointerMove = hypot(
-                event.getX(0) - initFirstPointerX.toDouble(),
-                event.getY(0) - initFirstPointerY.toDouble()
-            )
-            val secPointerMove = hypot(
-                event.getX(1) - initSecPointerX.toDouble(),
-                event.getY(1) - initSecPointerY.toDouble()
-            )
-
-            // minimum threshold beyond which pinch gesture will work
-            val minimumMove = ViewConfiguration.get(player.context).scaledTouchSlop
-
-            if (max(firstPointerMove, secPointerMove) > minimumMove) {
-                // calculate current distance between the pointers
-                val currentPointerDistance = hypot(
-                    event.getX(0) - event.getX(1).toDouble(),
-                    event.getY(0) - event.getY(1).toDouble()
-                )
-
-                val popupWidth = playerUi.popupLayoutParams.width.toDouble()
-                // change co-ordinates of popup so the center stays at the same position
-                val newWidth = popupWidth * currentPointerDistance / initPointerDistance
-                initPointerDistance = currentPointerDistance
-                playerUi.popupLayoutParams.x += ((popupWidth - newWidth) / 2.0).toInt()
-
-                playerUi.checkPopupPositionBounds()
-                playerUi.updateScreenSize()
-                playerUi.changePopupSize(min(playerUi.screenWidth.toDouble(), newWidth).toInt())
-                return true
-            }
+        if (initPointerDistance == -1.0 || event.pointerCount != 2) {
+            return false
         }
-        return false
+
+        // get the movements of the fingers
+        val firstPointerMove = hypot(
+            event.getX(0) - initFirstPointerX.toDouble(),
+            event.getY(0) - initFirstPointerY.toDouble()
+        )
+        val secPointerMove = hypot(
+            event.getX(1) - initSecPointerX.toDouble(),
+            event.getY(1) - initSecPointerY.toDouble()
+        )
+
+        // minimum threshold beyond which pinch gesture will work
+        val minimumMove = ViewConfiguration.get(player.context).scaledTouchSlop
+        if (max(firstPointerMove, secPointerMove) <= minimumMove) {
+            return false
+        }
+
+        // calculate current distance between the pointers
+        val currentPointerDistance = hypot(
+            event.getX(0) - event.getX(1).toDouble(),
+            event.getY(0) - event.getY(1).toDouble()
+        )
+
+        val popupWidth = playerUi.popupLayoutParams.width.toDouble()
+        // change co-ordinates of popup so the center stays at the same position
+        val newWidth = popupWidth * currentPointerDistance / initPointerDistance
+        initPointerDistance = currentPointerDistance
+        playerUi.popupLayoutParams.x += ((popupWidth - newWidth) / 2.0).toInt()
+
+        playerUi.checkPopupPositionBounds()
+        playerUi.updateScreenSize()
+        playerUi.changePopupSize(min(playerUi.screenWidth.toDouble(), newWidth).toInt())
+        return true
     }
 
     private fun onPopupResizingStart() {
