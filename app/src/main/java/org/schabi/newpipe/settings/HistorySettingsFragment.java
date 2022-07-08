@@ -128,7 +128,6 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                 .setTitle(R.string.delete_view_history_alert)
                 .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
                 .setPositiveButton(R.string.delete, ((dialog, which) -> {
-                    disposables.add(getDeletePlaybackStatesDisposable(context, recordManager));
                     disposables.add(getWholeStreamHistoryDisposable(context, recordManager));
                     disposables.add(getRemoveOrphanedRecordsDisposable(context, recordManager));
                 }))
