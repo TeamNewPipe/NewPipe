@@ -68,7 +68,7 @@ The [checkStyle](https://github.com/checkstyle/checkstyle) plugin verifies that 
 - Go to `File -> Settings -> Plugins`, search for `checkstyle` and install `CheckStyle-IDEA`.
 - Go to `File -> Settings -> Tools -> Checkstyle`.
 - Add NewPipe's configuration file by clicking the `+` in the right toolbar of the "Configuration File" list.
-- Under the "Use a local Checkstyle file" bullet, click on `Browse` and pick the file named `checkstyle.xml` in the project's root folder.
+- Under the "Use a local Checkstyle file" bullet, click on `Browse` and, enter `checkstyle` folder under the project's root path and pick the file named `checkstyle.xml`.
 - Enable "Store relative to project location" so that moving the directory around does not create issues.
 - Insert a description in the top bar, then click `Next` and then `Finish`.
 - Activate the configuration file you just added by enabling the checkbox on the left.

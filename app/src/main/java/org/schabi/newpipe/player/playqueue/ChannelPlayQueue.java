@@ -3,7 +3,6 @@ package org.schabi.newpipe.player.playqueue;
 
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
-import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.util.ExtractorHelper;
 
@@ -12,13 +11,10 @@ import java.util.List;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public final class ChannelPlayQueue extends AbstractInfoPlayQueue<ChannelInfo, ChannelInfoItem> {
-    public ChannelPlayQueue(final ChannelInfoItem item) {
-        super(item);
-    }
+public final class ChannelPlayQueue extends AbstractInfoPlayQueue<ChannelInfo> {
 
     public ChannelPlayQueue(final ChannelInfo info) {
-        this(info.getServiceId(), info.getUrl(), info.getNextPage(), info.getRelatedItems(), 0);
+        super(info);
     }
 
     public ChannelPlayQueue(final int serviceId,

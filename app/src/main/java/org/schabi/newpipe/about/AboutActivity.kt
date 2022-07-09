@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
@@ -21,30 +20,28 @@ import org.schabi.newpipe.util.ThemeHelper
 import org.schabi.newpipe.util.external_communication.ShareUtils
 
 class AboutActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Localization.assureCorrectAppLanguage(this)
         super.onCreate(savedInstanceState)
         ThemeHelper.setTheme(this)
         title = getString(R.string.title_activity_about)
+
         val aboutBinding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(aboutBinding.root)
         setSupportActionBar(aboutBinding.aboutToolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         val mAboutStateAdapter = AboutStateAdapter(this)
-
         // Set up the ViewPager with the sections adapter.
         aboutBinding.aboutViewPager2.adapter = mAboutStateAdapter
         TabLayoutMediator(
             aboutBinding.aboutTabLayout,
             aboutBinding.aboutViewPager2
-        ) { tab: TabLayout.Tab, position: Int ->
-            when (position) {
-                POS_ABOUT -> tab.setText(R.string.tab_about)
-                POS_LICENSE -> tab.setText(R.string.tab_licenses)
-                else -> throw IllegalArgumentException("Unknown position for ViewPager2")
-            }
+        ) { tab, position ->
+            tab.setText(mAboutStateAdapter.getPageTitle(position))
         }.attach()
     }
 
@@ -75,13 +72,14 @@ class AboutActivity : AppCompatActivity() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
         ): View {
-            val aboutBinding = FragmentAboutBinding.inflate(inflater, container, false)
-            aboutBinding.aboutAppVersion.text = BuildConfig.VERSION_NAME
-            aboutBinding.aboutGithubLink.openLink(R.string.github_url)
-            aboutBinding.aboutDonationLink.openLink(R.string.donation_url)
-            aboutBinding.aboutWebsiteLink.openLink(R.string.website_url)
-            aboutBinding.aboutPrivacyPolicyLink.openLink(R.string.privacy_policy_url)
-            return aboutBinding.root
+            FragmentAboutBinding.inflate(inflater, container, false).apply {
+                aboutAppVersion.text = BuildConfig.VERSION_NAME
+                aboutGithubLink.openLink(R.string.github_url)
+                aboutDonationLink.openLink(R.string.donation_url)
+                aboutWebsiteLink.openLink(R.string.website_url)
+                aboutPrivacyPolicyLink.openLink(R.string.privacy_policy_url)
+                return root
+            }
         }
     }
 
@@ -90,17 +88,29 @@ class AboutActivity : AppCompatActivity() {
      * one of the sections/tabs/pages.
      */
     private class AboutStateAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+        private val posAbout = 0
+        private val posLicense = 1
+        private val totalCount = 2
+
         override fun createFragment(position: Int): Fragment {
             return when (position) {
-                POS_ABOUT -> AboutFragment()
-                POS_LICENSE -> LicenseFragment.newInstance(SOFTWARE_COMPONENTS)
+                posAbout -> AboutFragment()
+                posLicense -> LicenseFragment.newInstance(SOFTWARE_COMPONENTS)
                 else -> throw IllegalArgumentException("Unknown position for ViewPager2")
             }
         }
 
         override fun getItemCount(): Int {
             // Show 2 total pages.
-            return TOTAL_COUNT
+            return totalCount
+        }
+
+        fun getPageTitle(position: Int): Int {
+            return when (position) {
+                posAbout -> R.string.tab_about
+                posLicense -> R.string.tab_licenses
+                else -> throw IllegalArgumentException("Unknown position for ViewPager2")
+            }
         }
     }
 
@@ -116,10 +126,6 @@ class AboutActivity : AppCompatActivity() {
             SoftwareComponent(
                 "AndroidX", "2005 - 2011", "The Android Open Source Project",
                 "https://developer.android.com/jetpack", StandardLicenses.APACHE2
-            ),
-            SoftwareComponent(
-                "CircleImageView", "2014 - 2020", "Henning Dodenhof",
-                "https://github.com/hdodenhof/CircleImageView", StandardLicenses.APACHE2
             ),
             SoftwareComponent(
                 "ExoPlayer", "2014 - 2020", "Google, Inc.",
@@ -191,8 +197,5 @@ class AboutActivity : AppCompatActivity() {
                 "https://github.com/ByteHamster/SearchPreference", StandardLicenses.MIT
             ),
         )
-        private const val POS_ABOUT = 0
-        private const val POS_LICENSE = 1
-        private const val TOTAL_COUNT = 2
     }
 }

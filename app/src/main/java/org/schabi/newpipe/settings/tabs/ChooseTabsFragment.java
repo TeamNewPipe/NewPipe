@@ -1,5 +1,8 @@
 package org.schabi.newpipe.settings.tabs;
 
+import static org.schabi.newpipe.settings.tabs.Tab.typeFrom;
+import static org.schabi.newpipe.util.ServiceHelper.getNameOfServiceById;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -7,7 +10,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +19,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -30,7 +31,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.settings.SelectChannelFragment;
 import org.schabi.newpipe.settings.SelectKioskFragment;
 import org.schabi.newpipe.settings.SelectPlaylistFragment;
@@ -40,8 +40,6 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static org.schabi.newpipe.settings.tabs.Tab.typeFrom;
 
 public class ChooseTabsFragment extends Fragment {
     private TabsManager tabsManager;
@@ -107,12 +105,8 @@ public class ChooseTabsFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull final Menu menu,
                                     @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
-        final MenuItem restoreItem = menu.add(R.string.restore_defaults);
-        restoreItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        restoreItem.setIcon(AppCompatResources.getDrawable(requireContext(),
-                R.drawable.ic_settings_backup_restore));
-        restoreItem.setOnMenuItemClickListener(ev -> {
+        inflater.inflate(R.menu.menu_chooser_fragment, menu);
+        menu.findItem(R.id.menu_item_restore_default).setOnMenuItemClickListener(item -> {
             restoreDefaults();
             return true;
         });
@@ -136,7 +130,7 @@ public class ChooseTabsFragment extends Fragment {
                 .setTitle(R.string.restore_defaults)
                 .setMessage(R.string.restore_defaults_confirmation)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.yes, (dialog, which) -> {
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
                     tabsManager.resetTabs();
                     updateTabList();
                     selectedTabsAdapter.notifyDataSetChanged();
@@ -380,36 +374,31 @@ public class ChooseTabsFragment extends Fragment {
                     return;
                 }
 
-                final String tabName;
+                tabNameView.setText(getTabName(type, tab));
+                tabIconView.setImageResource(tab.getTabIconRes(requireContext()));
+            }
+
+            private String getTabName(@NonNull final Tab.Type type, @NonNull final Tab tab) {
                 switch (type) {
                     case BLANK:
-                        tabName = getString(R.string.blank_page_summary);
-                        break;
+                        return getString(R.string.blank_page_summary);
                     case DEFAULT_KIOSK:
-                        tabName = getString(R.string.default_kiosk_page_summary);
-                        break;
+                        return getString(R.string.default_kiosk_page_summary);
                     case KIOSK:
-                        tabName = NewPipe.getNameOfService(((Tab.KioskTab) tab)
-                                .getKioskServiceId()) + "/" + tab.getTabName(requireContext());
-                        break;
+                        return getNameOfServiceById(((Tab.KioskTab) tab).getKioskServiceId())
+                                + "/" + tab.getTabName(requireContext());
                     case CHANNEL:
-                        tabName = NewPipe.getNameOfService(((Tab.ChannelTab) tab)
-                                .getChannelServiceId()) + "/" + tab.getTabName(requireContext());
-                        break;
+                        return getNameOfServiceById(((Tab.ChannelTab) tab).getChannelServiceId())
+                                + "/" + tab.getTabName(requireContext());
                     case PLAYLIST:
                         final int serviceId = ((Tab.PlaylistTab) tab).getPlaylistServiceId();
                         final String serviceName = serviceId == -1
                                 ? getString(R.string.local)
-                                : NewPipe.getNameOfService(serviceId);
-                        tabName = serviceName + "/" + tab.getTabName(requireContext());
-                        break;
+                                : getNameOfServiceById(serviceId);
+                        return serviceName + "/" + tab.getTabName(requireContext());
                     default:
-                        tabName = tab.getTabName(requireContext());
-                        break;
+                        return tab.getTabName(requireContext());
                 }
-
-                tabNameView.setText(tabName);
-                tabIconView.setImageResource(tab.getTabIconRes(requireContext()));
             }
 
             @SuppressLint("ClickableViewAccessibility")

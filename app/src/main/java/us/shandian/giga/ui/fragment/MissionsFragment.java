@@ -192,14 +192,7 @@ public class MissionsFragment extends Fragment {
                 updateList();
                 return true;
             case R.id.clear_list:
-                AlertDialog.Builder prompt = new AlertDialog.Builder(mContext);
-                prompt.setTitle(R.string.clear_download_history);
-                prompt.setMessage(R.string.confirm_prompt);
-                // Intentionally misusing button's purpose in order to achieve good order
-                prompt.setNegativeButton(R.string.clear_download_history, (dialog, which) -> mAdapter.clearFinishedDownloads(false));
-                prompt.setPositiveButton(R.string.delete_downloaded_files, (dialog, which) -> mAdapter.clearFinishedDownloads(true));
-                prompt.setNeutralButton(R.string.cancel, null);
-                prompt.create().show();
+                showClearDownloadHistoryPrompt();
                 return true;
             case R.id.start_downloads:
                 mBinder.getDownloadManager().startAllMissions();
@@ -210,6 +203,32 @@ public class MissionsFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void showClearDownloadHistoryPrompt() {
+        // ask the user whether he wants to just clear history or instead delete files on disk
+        new AlertDialog.Builder(mContext)
+                .setTitle(R.string.clear_download_history)
+                .setMessage(R.string.confirm_prompt)
+                // Intentionally misusing buttons' purpose in order to achieve good order
+                .setNegativeButton(R.string.clear_download_history,
+                        (dialog, which) -> mAdapter.clearFinishedDownloads(false))
+                .setNeutralButton(R.string.cancel, null)
+                .setPositiveButton(R.string.delete_downloaded_files,
+                        (dialog, which) -> showDeleteDownloadedFilesConfirmationPrompt())
+                .create()
+                .show();
+    }
+
+    public void showDeleteDownloadedFilesConfirmationPrompt() {
+        // make sure the user confirms once more before deleting files on disk
+        new AlertDialog.Builder(mContext)
+                .setTitle(R.string.delete_downloaded_files_confirm)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.ok,
+                        (dialog, which) -> mAdapter.clearFinishedDownloads(true))
+                .create()
+                .show();
     }
 
     private void updateList() {

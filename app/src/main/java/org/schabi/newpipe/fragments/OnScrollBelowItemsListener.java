@@ -1,5 +1,6 @@
 package org.schabi.newpipe.fragments;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -10,7 +11,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
  */
 public abstract class OnScrollBelowItemsListener extends RecyclerView.OnScrollListener {
     @Override
-    public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
+    public void onScrolled(@NonNull final RecyclerView recyclerView, final int dx, final int dy) {
         super.onScrolled(recyclerView, dx, dy);
         if (dy > 0) {
             int pastVisibleItems = 0;

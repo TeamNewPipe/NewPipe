@@ -10,6 +10,10 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.util.NavigationHelper;
 
+/**
+ * Util class that provides methods which are related to the Kodi Media Center and its Kore app.
+ * @see <a href="https://kodi.tv/">Kodi website</a>
+ */
 public final class KoreUtils {
     private KoreUtils() { }
 

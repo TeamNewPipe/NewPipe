@@ -1,0 +1,8 @@
+### Vylepšenia
+- Pridaná možnosť obmedziť kvalitu videa pri používaní mobilných dát. #1339
+- Zapamätanie jasu pre reláciu #1442
+- Zlepšenie výkonu sťahovania pre slabšie procesory #1431
+- Pridanie (funkčnej) podpory pre reláciu médií #1433
+
+### Opravy
+- Oprava zlyhania pri otváraní sťahovania (oprava je teraz k dispozícii pre verzie vydania) #1441

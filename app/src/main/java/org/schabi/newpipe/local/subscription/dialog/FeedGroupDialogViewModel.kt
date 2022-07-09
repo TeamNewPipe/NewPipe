@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.functions.BiFunction
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
@@ -33,9 +32,8 @@ class FeedGroupDialogViewModel(
     private var subscriptionsFlowable = Flowable
         .combineLatest(
             filterSubscriptions.startWithItem(initialQuery),
-            toggleShowOnlyUngrouped.startWithItem(initialShowOnlyUngrouped),
-            BiFunction { t1: String, t2: Boolean -> Filter(t1, t2) }
-        )
+            toggleShowOnlyUngrouped.startWithItem(initialShowOnlyUngrouped)
+        ) { t1: String, t2: Boolean -> Filter(t1, t2) }
         .distinctUntilChanged()
         .switchMap { (query, showOnlyUngrouped) ->
             subscriptionManager.getSubscriptions(groupId, query, showOnlyUngrouped)
@@ -56,9 +54,8 @@ class FeedGroupDialogViewModel(
 
     private var subscriptionsDisposable = Flowable
         .combineLatest(
-            subscriptionsFlowable, feedDatabaseManager.subscriptionIdsForGroup(groupId),
-            BiFunction { t1: List<PickerSubscriptionItem>, t2: List<Long> -> t1 to t2.toSet() }
-        )
+            subscriptionsFlowable, feedDatabaseManager.subscriptionIdsForGroup(groupId)
+        ) { t1: List<PickerSubscriptionItem>, t2: List<Long> -> t1 to t2.toSet() }
         .subscribeOn(Schedulers.io())
         .subscribe(mutableSubscriptionsLiveData::postValue)
 

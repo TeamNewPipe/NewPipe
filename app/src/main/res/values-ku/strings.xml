@@ -86,7 +86,6 @@
     <string name="downloads_title">دابەزاندنەکان</string>
     <string name="error_report_title">ناتوانرێ سکاڵابکرێ</string>
     <string name="all">گشتی</string>
-    <string name="yes">بەڵێ</string>
     <string name="disabled">ناکارایە</string>
     <string name="clear">پاککردنەوە</string>
     <string name="best_resolution">باشترین قەبارە</string>
@@ -539,7 +538,6 @@
     <string name="autoplay_summary">دەسپێکردنی کارپێکەر بەخۆکاری — %s</string>
     <string name="title_activity_play_queue">لێدانی ڕیز</string>
     <string name="no_playlist_bookmarked_yet">هیچ لیستەلێدانێک نیشانە نەکراوە</string>
-    <string name="settings_category_notification_title">پەیام</string>
     <string name="unsupported_url_dialog_message">بەستەرەکە نەناسرایەوە. لە ئەپێکیتردا بکرێتەوە؟</string>
     <string name="auto_queue_toggle">ڕیزبوونی خۆکار</string>
     <string name="clear_queue_confirmation_description">ڕیزی لێدەری چالاک جێیدەگیرێتەوە</string>

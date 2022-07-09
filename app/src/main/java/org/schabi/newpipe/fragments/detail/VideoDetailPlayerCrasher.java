@@ -1,5 +1,9 @@
 package org.schabi.newpipe.fragments.detail;
 
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_DECODING_FAILED;
+import static com.google.android.exoplayer2.PlaybackException.ERROR_CODE_UNSPECIFIED;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -15,6 +19,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.PlaybackException;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
@@ -51,7 +56,8 @@ public final class VideoDetailPlayerCrasher {
         exceptionTypes.put(
                 "Source",
                 () -> ExoPlaybackException.createForSource(
-                        new IOException(defaultMsg)
+                        new IOException(defaultMsg),
+                        ERROR_CODE_BEHIND_LIVE_WINDOW
                 )
         );
         exceptionTypes.put(
@@ -61,13 +67,16 @@ public final class VideoDetailPlayerCrasher {
                         "Dummy renderer",
                         0,
                         null,
-                        C.FORMAT_HANDLED
+                        C.FORMAT_HANDLED,
+                        /*isRecoverable=*/false,
+                        ERROR_CODE_DECODING_FAILED
                 )
         );
         exceptionTypes.put(
                 "Unexpected",
                 () -> ExoPlaybackException.createForUnexpected(
-                        new RuntimeException(defaultMsg)
+                        new RuntimeException(defaultMsg),
+                        ERROR_CODE_UNSPECIFIED
                 )
         );
         exceptionTypes.put(
@@ -88,8 +97,7 @@ public final class VideoDetailPlayerCrasher {
 
     public static void onCrashThePlayer(
             @NonNull final Context context,
-            @Nullable final Player player,
-            @NonNull final LayoutInflater layoutInflater
+            @Nullable final Player player
     ) {
         if (player == null) {
             Log.d(TAG, "Player is not available");
@@ -100,16 +108,15 @@ public final class VideoDetailPlayerCrasher {
         }
 
         // -- Build the dialog/UI --
-
         final Context themeWrapperContext = getThemeWrapperContext(context);
-
         final LayoutInflater inflater = LayoutInflater.from(themeWrapperContext);
-        final RadioGroup radioGroup = SingleChoiceDialogViewBinding.inflate(layoutInflater)
-                .list;
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(getThemeWrapperContext(context))
+        final SingleChoiceDialogViewBinding binding =
+                SingleChoiceDialogViewBinding.inflate(inflater);
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(themeWrapperContext)
                 .setTitle("Choose an exception")
-                .setView(radioGroup)
+                .setView(binding.getRoot())
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
                 .create();
@@ -127,11 +134,9 @@ public final class VideoDetailPlayerCrasher {
             );
             radioButton.setOnClickListener(v -> {
                 tryCrashPlayerWith(player, entry.getValue().get());
-                if (alertDialog != null) {
-                    alertDialog.cancel();
-                }
+                alertDialog.cancel();
             });
-            radioGroup.addView(radioButton);
+            binding.list.addView(radioButton);
         }
 
         alertDialog.show();
@@ -139,7 +144,7 @@ public final class VideoDetailPlayerCrasher {
 
     /**
      * Note that this method does not crash the underlying exoplayer directly (it's not possible).
-     * It simply supplies a Exception to {@link Player#onPlayerError(ExoPlaybackException)}.
+     * It simply supplies a Exception to {@link Player#onPlayerError(PlaybackException)}.
      * @param player
      * @param exception
      */

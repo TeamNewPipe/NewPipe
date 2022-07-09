@@ -18,7 +18,7 @@
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
     <string name="kore_not_found">¿Instalar la aplicación Kore que falta\?</string>
     <string name="show_play_with_kodi_title">Mostrar opción «Reproducir con Kodi»</string>
-    <string name="show_play_with_kodi_summary">Mostrar opción para reproducir vídeo a través del centro de medios Kodi</string>
+    <string name="show_play_with_kodi_summary">Mostrar opción para reproducir un vídeo a través de Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato de audio predefinido</string>
     <string name="download_dialog_title">Descargar</string>
@@ -82,7 +82,6 @@
     <string name="info_labels">Lo sucedido:\\nPetición:\\nIdioma del contenido:\\nPaís del contenido:\\nIdioma de la aplicación:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
     <string name="black_theme_title">Negro</string>
     <string name="all">Todo</string>
-    <string name="yes">Sí</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
@@ -293,7 +292,7 @@
     <string name="metadata_cache_wipe_summary">Quitar todos los datos guardados de páginas web</string>
     <string name="metadata_cache_wipe_complete_notice">Se vació la caché de metadatos</string>
     <string name="playback_speed_control">Controles de velocidad de reproducción</string>
-    <string name="playback_tempo">Tiempo</string>
+    <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Tono</string>
     <string name="unhook_checkbox">Desvincular (puede causar distorsión)</string>
     <string name="no_streams_available_download">No hay streams disponibles para descargar</string>
@@ -317,8 +316,8 @@
     <string name="privacy_policy_encouragement">El proyecto NewPipe toma tu privacidad muy en serio. Por ello, la aplicación no recopila ningún dato sin tu consentimiento.
 \nLa política de privacidad de NewPipe explica en detalle qué datos se envían y almacenan al enviar un informe de fallo.</string>
     <string name="read_privacy_policy">Leer política de privacidad</string>
-    <string name="start_accept_privacy_policy">Para cumplir con el «Reglamento general europeo de protección de datos (GDPR)», atraemos tu atención sobre la política de privacidad de NewPipe. Por favor léase cuidadosamente.
-\nDebes aceptarlo para enviarnos el informe de error.</string>
+    <string name="start_accept_privacy_policy">Para cumplir con el «Reglamento general europeo de protección de datos (GDPR)», atraemos su atención sobre la política de privacidad de NewPipe. Por favor léase cuidadosamente.
+\nDebe aceptarlo para enviarnos el informe de error.</string>
     <string name="accept">Aceptar</string>
     <string name="decline">Declinar</string>
     <string name="limit_data_usage_none_description">Sin límite</string>
@@ -368,11 +367,11 @@
     <string name="pause_downloads">Pausar descargas</string>
     <!-- message dialog about download error -->
     <string name="show_error">Mostrar error</string>
-    <string name="error_file_creation">No se puede crear el archivo</string>
+    <string name="error_file_creation">El archivo no puede ser creado</string>
     <string name="error_path_creation">No se puede crear la carpeta de destino</string>
     <string name="error_ssl_exception">No se pudo establecer una conexión segura</string>
     <string name="error_unknown_host">No se pudo encontrar el servidor</string>
-    <string name="error_connect_host">No se puede conectar con el servidor</string>
+    <string name="error_connect_host">No se puede conectar al servidor</string>
     <string name="error_http_no_content">El servidor no devolvio datos</string>
     <string name="error_http_unsupported_range">El servidor no acepta descargas multi-hilos, intente de nuevo con @string/msg_threads = 1</string>
     <string name="error_http_not_found">No encontrado</string>
@@ -550,7 +549,6 @@
     <string name="wifi_only">Solo en Wi-Fi</string>
     <string name="autoplay_summary">Comenzar reproducción automáticamente — %s</string>
     <string name="title_activity_play_queue">Reproducir cola</string>
-    <string name="settings_category_notification_title">Notificación</string>
     <string name="unsupported_url_dialog_message">No se pudo reconocer la URL. ¿Abrir con otra aplicación\?</string>
     <string name="auto_queue_toggle">Poner en cola automáticamente</string>
     <string name="clear_queue_confirmation_summary">Cambiar de un reproductor a otro puede reemplazar la cola de reproducción</string>
@@ -560,13 +558,13 @@
     <string name="notification_action_buffering">Almacenar en memoria (búfer)</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">¡Puedes seleccionar como máximo tres acciones para mostrar en la notificación compacta!</string>
-    <string name="notification_actions_summary">Edita cada acción de la notificación pulsando sobre ella. Selecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación a la derecha</string>
+    <string name="notification_actions_summary">Edita cada acción de notificación debajo pulsando sobre ella. Selecciona hasta tres de ellas para que aparezcan en la notificación compacta usando las casillas de verificación a la derecha</string>
     <string name="notification_action_4_title">Botón de quinta acción</string>
     <string name="notification_action_3_title">Botón de cuarta acción</string>
     <string name="notification_action_2_title">Botón de tercera acción</string>
     <string name="notification_action_1_title">Botón de segunda acción</string>
     <string name="notification_action_0_title">Botón de primera acción</string>
-    <string name="notification_scale_to_square_image_summary">Escalar la miniatura del vídeo mostrada en la notificación de relación de aspecto 16:9 a 1:1 (puede ocasionar distorsiones)</string>
+    <string name="notification_scale_to_square_image_summary">Escalar la relación de aspecto de la miniatura del vídeo mostrada en la notificación de 16:9 a 1:1 (puede ocasionar distorsiones)</string>
     <string name="clear_cookie_summary">Vaciar las cookies que NewPipe guarda al resolver un reCAPTCHA</string>
     <string name="show_age_restricted_content_summary">Mostrar contenido inapropiado para niños porque tiene un limite de edad (como 18+)</string>
     <string name="show_memory_leaks">Mostrar pérdidas de memoria</string>
@@ -653,8 +651,6 @@
     <string name="detail_heart_img_view_description">Valorado por el creador</string>
     <string name="mark_as_watched">Marcar como visto</string>
     <string name="show_image_indicators_summary">Mostrar cintas de colores Picasso encima de las imágenes indicando su origen: rojo para la red, azul para el disco y verde para la memoria</string>
-    <string name="loading_channel_details">Cargando detalles del canal…</string>
-    <string name="error_show_channel_details">Error en Mostrar detalles del canal</string>
     <string name="show_image_indicators_title">Mostrar indicadores de imagen</string>
     <string name="remote_search_suggestions">Sugerencias de búsqueda remota</string>
     <string name="local_search_suggestions">Sugerencias de búsqueda local</string>
@@ -690,6 +686,102 @@
     <string name="no_appropriate_file_manager_message_android_10">No se encontró ningún gestor de archivos adecuado para esta acción.
 \nPor favor instale un gestor de archivos compatible con \"Sistema de Acceso al Almacenamiento\".</string>
     <string name="detail_pinned_comment_view_description">Comentario fijado</string>
-    <string name="background_player_already_playing_toast">Ya se reproduce en segundo plano</string>
     <string name="leak_canary_not_available">LeakCanary no está disponible</string>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer valor por defecto</string>
+    <string name="progressive_load_interval_summary">Cambia el tamaño del intervalo de carga (actualmente %s). Un valor más bajo puede acelerar la carga inicial del vídeo. Los cambios requieren un reinicio del reproductor.</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="streams_notification_channel_name">Nuevos streams</string>
+    <string name="settings_category_player_notification_title">Notificación del reproductor</string>
+    <string name="settings_category_player_notification_summary">Configurar notificación de la reproducción en curso</string>
+    <string name="settings_category_sponsor_block_title">SponsorBlock (Beta, Servicio de Terceros)</string>
+    <string name="settings_category_sponsor_block_categories_title">Categorías de SponsorBlock</string>
+    <string name="settings_category_sponsor_block_categories_summary">Personaliza qué segmentos de video saltar, junto con sus marcas de color en la barra de búsqueda.</string>
+    <string name="settings_category_sponsor_block_categories_reset_colors_title">Restablecer Colores</string>
+    <string name="settings_category_sponsor_block_category_enable_title">Activar</string>
+    <string name="settings_category_sponsor_block_category_color">Color en la Barra de Búsqueda</string>
+    <string name="settings_category_sponsor_block_category_sponsor_title">Sponsor</string>
+    <string name="settings_category_sponsor_block_category_sponsor_summary">Promoción pagada, recomendaciones pagadas y anuncios directos. No para promoción propia o anuncios gratuitos a causas/creadores/sitios web/productos que les gusten.</string>
+    <string name="settings_category_sponsor_block_category_intro_title">Intermisión/Animación de Introducción</string>
+    <string name="settings_category_sponsor_block_category_intro_summary">Un intervalo sin contenido real. Podría ser una pausa, un cuadro estático, una animación repetida. Esto no debe ser usado para transiciones que contengan información ni utilizarse en videos musicales.</string>
+    <string name="settings_category_sponsor_block_category_outro_title">Tarjetas/Créditos</string>
+    <string name="settings_category_sponsor_block_category_outro_summary">Créditos o cuando aparecen las tarjetas finales de YouTube. No para conclusiones habladas. Esto no debe contener contenido útil. Esto no debe ser usado en videos musicales.</string>
+    <string name="settings_category_sponsor_block_category_interaction_title">Recordatorios de Interacción (Suscribir)</string>
+    <string name="settings_category_sponsor_block_category_interaction_summary">Cuando hay un breve recordatorio para dar like, suscribirse o seguirlos en medio del contenido. Si es largo o sobre algo específico, debería estar bajo autopromoción en su lugar.</string>
+    <string name="settings_category_sponsor_block_category_self_promo_title">Promoción Propia/No Remunerada</string>
+    <string name="settings_category_sponsor_block_category_self_promo_summary">Similar a "sponsor", excepto que para la promoción propia o no remunerada. Esto incluye secciones sobre mercancía, donaciones o información sobre con quiénes colaboraron.</string>
+    <string name="settings_category_sponsor_block_category_non_music_title">Música: Sección sin musica</string>
+    <string name="settings_category_sponsor_block_category_non_music_summary">Sólo para el uso en vídeos musicales. Esto incluye introducciones u outros en videos musicales.</string>
+    <string name="you_successfully_subscribed">Ahora estás suscrito a este canal</string>
+    <string name="any_network">Cualquier red</string>
+    <string name="enumeration_comma">,</string>
+    <string name="check_new_streams">Comprobar la existencia de nuevos directos</string>
+    <string name="enable_streams_notifications_title">Notificaciones de nuevos directos</string>
+    <string name="enable_streams_notifications_summary">Notificar de nuevos directos desde las suscripciones</string>
+    <string name="streams_notifications_interval_title">Frecuencia de comprobación</string>
+    <string name="delete_downloaded_files_confirm">¿Desea borrar del disco todos los archivos descargados\?</string>
+    <string name="notifications_disabled">Las notificaciones están desactivadas</string>
+    <string name="get_notified">Recibir notificaciones</string>
+    <string name="toggle_all">Conmutar todo</string>
+    <string name="loading_stream_details">Cargando detalles del directo…</string>
+    <string name="streams_notification_channel_description">Notificaciones sobre nuevos directos para suscriptores</string>
+    <string name="streams_notifications_network_title">Se requiere conexión a red</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nuevo directo</item>
+        <item quantity="other">%s nuevos directos</item>
+    </plurals>
+    <string name="percent">Porcentaje</string>
+    <string name="semitone">Semitono</string>
+    <string name="streams_not_yet_supported_removed">No se muestran flujos cuya descarga aún no está soportada</string>
+    <string name="selected_stream_external_player_not_supported">El flujo seleccionado no es soportado por reproductores externos</string>
+    <string name="no_audio_streams_available_for_external_players">No hay flujos de audio disponibles para reproductores externos</string>
+    <string name="no_video_streams_available_for_external_players">No hay flujos de video disponibles para reproductores externos</string>
+    <string name="select_quality_external_players">Elija la calidad para reproductores externos</string>
+    <string name="unknown_format">Formato desconocido</string>
+    <string name="unknown_quality">Calidad desconocida</string>
+    <!-- SponsorBlock -->
+    <string name="sponsor_block">SponsorBlock</string>
+    <string name="sponsor_block_home_page_title">Ver Sitio Web</string>
+    <string name="sponsor_block_home_page_summary">Ver sitio web oficial de SponsorBlock.</string>
+    <string name="sponsor_block_enable_title">Saltar Sponsors</string>
+    <string name="sponsor_block_enable_summary">Usar la API de SponsorBlock para automáticamente saltar los sponsors en los videos. Actualmente esto solo funciona para los videos de YouTube.</string>
+    <string name="sponsor_block_api_url_title">URL de la API</string>
+    <string name="sponsor_block_api_url_summary">La URL a usar al consultar la API de SponsorBlock. Esta debe estar establecida para que SponsorBlock funcione.</string>
+    <string name="sponsor_block_notifications_title">Notificar cuando se saltan los sponsors</string>
+    <string name="sponsor_block_notifications_summary">Mostrar un aviso cuando se salta un sponsor automáticamente.</string>
+    <string name="sponsor_block_privacy_title">Ver Política de Privacidad</string>
+    <string name="sponsor_block_privacy_summary">Ver la política de privacidad de SponsorBlock</string>
+    <string name="sponsor_block_api_url_help_text">Esta es la URL que se consultará cuando la aplicación necesite saber qué partes de un vídeo debe omitir.\n\nPuedes establecer la URL oficial haciendo clic en la opción "Usar oficial" que aparece a continuación, aunque es muy recomendable que veas la política de privacidad de SponsorBlock antes de hacerlo.</string>
+    <string name="sponsor_block_privacy_policy_text">Política de Privacidad de SponsorBlock</string>
+    <string name="sponsor_block_homepage_url">https://sponsor.ajay.app/</string>
+    <string name="sponsor_block_default_api_url">https://sponsor.ajay.app/api/</string>
+    <string name="sponsor_block_privacy_policy_url">https://gist.github.com/ajayyy/aa9f8ded2b573d4f73a3ffa0ef74f796</string>
+    <string name="sponsor_block_skip_sponsor_toast">Sponsor Omitido</string>
+    <string name="sponsor_block_skip_intro_toast">Intermisión/Introducción Omitida</string>
+    <string name="sponsor_block_skip_outro_toast">Tarjetas/Créditos Omitidos</string>
+    <string name="sponsor_block_skip_interaction_toast">Recordatorio de Interacción Omitido</string>
+    <string name="sponsor_block_skip_self_promo_toast">Promoción Propia/No Remunerada Omitida</string>
+    <string name="sponsor_block_skip_non_music_toast">Sin Música Omitido</string>
+    <string name="sponsor_block_toggle_skipping">Alternar omisión de sponsors</string>
+    <string name="sponsor_block_clear_whitelist_title">Borrar la Lista Blanca</string>
+    <string name="sponsor_block_clear_whitelist_summary">Borrar la lista de canales que SponsorBlock ignorará.</string>
+    <string name="sponsor_block_enabled_toast">SponsorBlock activado</string>
+    <string name="sponsor_block_disabled_toast">SponsorBlock desactivado</string>
+    <string name="sponsor_block_whitelist_cleared_toast">Lista blanca borrada</string>
+    <string name="sponsor_block_uploader_added_to_whitelist_toast">Canal añadido a la lista blanca</string>
+    <string name="sponsor_block_uploader_removed_from_whitelist_toast">Canal retirado de la lista blanca</string>
+    <string name="sponsor_block_confirm_clear_whitelist">¿Estás seguro/a de que quieres borrar la lista blanca?</string>
+    <string name="sponsor_block_confirm_reset_colors">¿Estás seguro/a de que quieres restablecer los colores de las categorías?</string>
+    <string name="sponsor_block_reset_colors_toast">Colores restablecidos.</string>
+    <!-- Extras -->
+    <string name="extras">Extras</string>
+    <string name="extras_todo_summary">Los retoques, arreglos y otros ajustes misceláneos pertenecen aquí.</string>
+    <string name="experimental_settings">Ajustes Experimentales</string>
+    <string name="enable_local_player_title">Activar Reproductor Local (alfa)</string>
+    <string name="enable_local_player_summary">Utilizar un reproductor integrado para la reproducción local. Esto todavía está en desarrollo temprano, así que probablemente habrá muchos problemas, incluyendo conflictos con el reproductor existente.</string>
+    <string name="force_auto_fullscreen_title">Forzar Pantalla Completa Automática</string>
+    <string name="force_auto_fullscreen_summary">Si se activa, cuando el dispositivo está en modo horizontal, fuerza el modo de pantalla completa, incluso si el dispositivo es una tableta o un televisor.</string>
+    <string name="disable_error_reports_title">Desactivar el Informe de Errores</string>
+    <string name="disable_error_reports_summary">Evitar que aparezcan todas las pantallas de informe de errores. Esto puede hacer que la aplicación se comporte de forma inesperada. <b>¡UTILÍCELO BAJO SU PROPIO RIESGO!</b></string>
+    <string name="enable_return_youtube_dislike_title">Mostrar Conteo de No Me Gusta</string>
+    <string name="enable_return_youtube_dislike_summary">Utilizar el API de ReturnYouTubeDislike API para mostrar la cantidad de no me gusta de un video. Esto solo funciona con videos de YouTube.\n<b>ADVERTENCIA: Su dirección IP será visible para la API. Utilícelo bajo su propio riesgo.</b></string>
 </resources>

@@ -1,0 +1,6 @@
+Bütün ekranı doldurmaq və planşet və televizorlarda sürüşməni düzəltmək üçün siyahılara kifayət qədər ilkin elementləri yükləyin Siyahılar arasında sürüşərkən təsadüfi qəzaları düzəldin
+Oyunçuda sürətli axtarış üst-üstə düşmə qövsünü sistem UI-nin altına daxil edin
+ Çox pəncərədə oynadarkən bəzi telefonlarda yersiz oyunçu reqressiyasına səbəb olan dəyişiklikləri kəsiklərə qaytarın 
+Sdk-ni 30-dan 31-ə qədər artırın
+Xəta hesabatı kitabxanasını yeniləyin 
+Pleyerdə bəzi kodu refaktor edin

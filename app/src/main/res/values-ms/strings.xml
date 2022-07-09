@@ -105,7 +105,6 @@
     <string name="tracks">Trek</string>
     <string name="users">Pengguna</string>
     <string name="events">Peristiwa</string>
-    <string name="yes">Ya</string>
     <string name="disabled">Dinyahdayakan</string>
     <string name="clear">Bersihkan</string>
     <string name="best_resolution">Resolusi terbaik</string>
@@ -383,7 +382,6 @@
         <item quantity="other">%d hari</item>
     </plurals>
     <string name="help">Bantuan</string>
-    <string name="settings_category_notification_title">Pemberitahuan</string>
     <string name="open_with">Buka dengan</string>
     <plurals name="listening">
         <item quantity="other">%s pendengar</item>

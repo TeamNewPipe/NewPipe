@@ -8,6 +8,7 @@
     <string name="app_update_notification_channel_id">newpipeAppUpdate</string>
     <string name="hash_channel_id">newpipeHash</string>
     <string name="error_report_channel_id">newpipeErrorReport</string>
+    <string name="streams_notification_channel_id" translatable="false">newpipeNewStreams</string>
     <string name="guru_meditation">Guru Meditation.</string>
     <string name="empty_view_no_videos">@string/no_videos</string>
     <string name="empty_view_no_comments">@string/no_comments</string>
@@ -16,7 +17,7 @@
     <string name="md5">MD5</string>
     <string name="sha1">SHA-1</string>
     <string name="recaptcha">reCAPTCHA</string>
-    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
+    <string name="github_url">https://github.com/polymorphicshade/NewPipe</string>
     <string name="donation_url">https://newpipe.net/donate/</string>
     <string name="website_url">https://newpipe.net/</string>
     <string name="privacy_policy_url">https://newpipe.net/legal/privacy/</string>

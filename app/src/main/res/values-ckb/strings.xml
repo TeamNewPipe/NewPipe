@@ -11,7 +11,7 @@
 \nیوتیوب نموونەیە لەم خزمەتگوزارییە کە ڕێگەی خێرا بەکاردەبات بەهۆی پیشاندەری RSS.
 \n
 \nبۆیە هەڵژرادن بۆ خۆت دەگەڕێتەوە: زانیاری تەواو یان خێرا.</string>
-    <string name="app_license">نیوپایپ نه‌رمه‌والایه‌كی سەرچاوە کراوەیە : دەتوانیت بەکاریبهێنیت، بیخوێنیتەوە و هاوبەشی پێبکەیت و بەرەوپێشی ببەیت. بەتایبەتی دەتوانی دابەشیبکەیتەوە یاخوود بگۆڕیت بەپێی مەرجەکانی GNU مۆڵەتنامەی گشتی وەک نه‌رمه‌واڵایه‌كی بڵاوی خۆڕایی, بەهۆی وەشانی ٣ ی مۆڵەتنامە، یان هەر وەشانێکی دوواتر.</string>
+    <string name="app_license">نیوپایپ نه‌رمه‌والایه‌كی سەرچاوە کراوەیە : دەتوانیت بەکاریبهێنیت، بیخوێنیتەوە، هاوبەشی پێبکەیت ،بەرەوپێشی ببەیت. بەتایبەتی دەتوانی دابەشیبکەیتەوە یاخوود بگۆڕیت بەپێی مەرجەکانی GNU مۆڵەتنامەی گشتی وەک نه‌رمه‌واڵایه‌كی بڵاوی خۆڕایی, بەهۆی وەشانی ٣ ی مۆڵەتنامە، یان هەر وەشانێکی دوواتر.</string>
     <string name="info_labels">چی:\\nداواكاری:\\nزمانی بابەت:\\nوڵاتی بابەت:\\nزمانی به‌رنامه‌:\\nخزمه‌تگوزاری:\\nGMT كات:\\nپاكێج:\\nوه‌شان:\\nOS وه‌شان:</string>
     <string name="privacy_policy_encouragement">پڕۆژەی نیوپایپ زانیارییە تایبەتییەکانت بە وردی دەپارێزێت. هەروەها به‌رنامه‌كه‌ هیچ زانایارییەکت بەبێ ئاگاداری تۆ بەکارنابات.
 \n‫سیاسەتی تایبەتی نیوپایپ بە وردی ڕوونکردنەوەت دەداتێ لەسەر ئەو زانیاریانەی وەریاندەگرێت و بەکاریاندەبات.</string>
@@ -101,7 +101,6 @@
     <string name="title_licenses">مۆڵەتنامەی لایەنی-سێیەم</string>
     <string name="app_license_title">مۆڵەتنامەی نیوپایپ</string>
     <string name="show_hold_to_append_title">پیشاندانی ڕێنمایی ”داگرتن تا پاشکۆ”</string>
-    <string name="yes">بەڵێ</string>
     <string name="msg_threads">دابەشکراوەکان</string>
     <string name="title_most_played">زۆرترین لێدراو</string>
     <string name="unbookmark_playlist">لادانی نیشانه‌كراو</string>
@@ -542,7 +541,6 @@
     <string name="error_report_open_github_notice">تكایه‌ پشكنینێك بكه‌ كه‌ ئاخۆ كێشه‌یه‌ك هه‌یه‌ باسی كڕاشه‌كه‌ت بكات. له‌كاتی سازدانی پلیتی لێكچوو ، كات له‌ ئێمه‌ ده‌گریت كه‌ ئێمه‌ سه‌رقاڵی چاره‌سه‌ركردنی هه‌مان كێشه‌ ده‌كه‌یت.</string>
     <string name="error_report_open_issue_button_text">سكاڵا لەسەر GitHub</string>
     <string name="copy_for_github">له‌به‌رگرتنه‌وه‌ی سكاڵای جۆركراو</string>
-    <string name="settings_category_notification_title">پەیام</string>
     <string name="unsupported_url_dialog_message">ناتوانرێت به‌سته‌ره‌كه‌ بناسرێتەوە. بە بەرنامەیەکی دیكه‌ بکرێتەوە؟</string>
     <string name="auto_queue_toggle">خستنه‌ نۆبه‌تی-خۆكاری</string>
     <string name="clear_queue_confirmation_description">نۆبه‌ته‌كه‌ لە لێدەری چالاکەوە جێگۆڕکێی دەکرێت</string>
@@ -642,8 +640,6 @@
     <string name="tablet_mode_title">دۆخی تابلێت</string>
     <string name="open_website_license">کردنەوەی ماڵپەڕ</string>
     <string name="seekbar_preview_thumbnail_title">پێشبینینی سەروێنەی گەڕان</string>
-    <string name="loading_channel_details">وردەکارییەکانی کەناڵەکە بار دەکرێن…</string>
-    <string name="error_show_channel_details">هەڵە ڕوویدا لە پیشاندانی وردەکارییەکانی کەناڵ</string>
     <string name="detail_heart_img_view_description">بەدڵکراوە لەلایەن بڵاوکەرەوە</string>
     <string name="dont_show">پیشان نەدرێت</string>
     <string name="low_quality_smaller">کواڵێتی نزم (بچووکتر)</string>
@@ -676,7 +672,6 @@
     <string name="show_crash_the_player_title">پیشاندانی ”کڕاش کردنی لێدەرەکە“</string>
     <string name="create_error_notification">سازاندنی پەیامی کێشەیەک</string>
     <string name="manual_update_title">پشکنین بۆ نوێکردنەوە</string>
-    <string name="background_player_already_playing_toast">وا لە پاشبنەمادا لێدەدرێت</string>
     <string name="error_report_channel_name">کێشە لە سکاڵا کردنی پەیام</string>
     <string name="error_report_channel_description">پەیامەکانی سکاڵاکردن لە کێشەکان</string>
     <string name="feed_new_items">بابەتە نوێیەکانی فیید</string>
@@ -688,4 +683,29 @@
     <string name="leak_canary_not_available">LeakCanary بەردەست نییە</string>
     <string name="no_appropriate_file_manager_message_android_10">هیچ ڕێکخەرێکی فایلی گونجاو نەدۆزرایەوە بۆ ئەم کردارە.
 \nتکایە ڕێکخەرێکی فایلی دابمەزرێنە کە گونجاوبێت لەگەڵ دەسەڵاتی گەیشتن بە بیرگە.</string>
+    <string name="check_new_streams">پشکنین کردن بۆ پەخشی نوێ</string>
+    <string name="enable_streams_notifications_title">پەیامەکانی پەخشە نوێیەکان</string>
+    <string name="enable_streams_notifications_summary">پەیام بکرێم لەکاتی هەبوونی پەخشی نوێی بەژدارییەکان</string>
+    <string name="streams_notifications_interval_title">فریکوێنسی دەپشکنرێت</string>
+    <string name="streams_notifications_network_title">پەیوەندی تۆڕ داواکراوە</string>
+    <string name="any_network">هەر تۆڕێک</string>
+    <string name="you_successfully_subscribed">تۆ ئێستا ئەم چەناڵەت بەژداری کردووە</string>
+    <string name="enumeration_comma">،</string>
+    <string name="streams_notification_channel_name">پەخشە نوێیەکان</string>
+    <string name="settings_category_player_notification_title">پەیامی لێدەر</string>
+    <string name="notifications">پەیامەکان</string>
+    <string name="streams_notification_channel_description">پەیامەکان بۆ پەخشە نوێیەکانی بەژدارییەکانت</string>
+    <string name="loading_stream_details">وردەکاری پەخش باردەکرێت…</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s پەخشی نوێ</item>
+        <item quantity="other">%s پەخشانی نوێ</item>
+    </plurals>
+    <string name="settings_category_player_notification_summary">پەیامی ئێستای لێدانی پەخش ڕێکبخە</string>
+    <string name="delete_downloaded_files_confirm">هەموو فایلە دابەزێنراوەکان لە دیسک بسڕدرێتەوە؟</string>
+    <string name="notifications_disabled">پەیامەکان ناکاراکراون</string>
+    <string name="get_notified">پەیامم بکە</string>
+    <string name="progressive_load_interval_summary">"قەبارەی نێوان بارکردنەکە بگۆڕە (لە ئێستادا %s) .    بەهایەکی کەمتر لەوانەیە بارکردنی ڤیدیۆی سەرەتایی خێراتر بکات.  گۆڕانکارییەکان پێویستیان بە داگیرساندنەوەی لێدەر هەیە"</string>
+    <string name="percent">لەسەدا</string>
+    <string name="semitone">نیمچەتەن</string>
+    <string name="progressive_load_interval_exoplayer_default">بنەڕەتی ExoPlayer</string>
 </resources>

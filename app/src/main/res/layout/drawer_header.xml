@@ -86,7 +86,7 @@
                     android:scaleType="fitCenter"
                     app:tint="@color/drawer_header_font_color"
                     tools:ignore="ContentDescription"
-                    tools:srcCompat="@drawable/place_holder_youtube" />
+                    tools:srcCompat="@drawable/ic_smart_display" />
 
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/drawer_header_service_view"
@@ -105,6 +105,7 @@
                 android:layout_height="24dp"
                 android:layout_marginStart="4dp"
                 app:srcCompat="@drawable/ic_arrow_drop_down"
+                app:tint="@color/drawer_header_font_color"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
     </LinearLayout>

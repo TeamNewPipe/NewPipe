@@ -58,7 +58,6 @@
     <string name="downloads_title">Завантаження</string>
     <string name="error_report_title">Звіт про помилку</string>
     <string name="all">Усе</string>
-    <string name="yes">Так</string>
     <string name="disabled">Вимкнено</string>
     <string name="app_ui_crash">Збій застосунку/інтерфейсу</string>
     <string name="your_comment">Ваш коментар (англійською):</string>
@@ -93,7 +92,7 @@
     <string name="subscription_update_failed">Не вдалося оновити підписку</string>
     <string name="tab_subscriptions">Підписки</string>
     <string name="fragment_feed_title">Новинки</string>
-    <string name="controls_background_title">У фоновому режимі</string>
+    <string name="controls_background_title">Фоново</string>
     <string name="controls_popup_title">У вікні</string>
     <string name="default_popup_resolution_title">Типова роздільність вікна</string>
     <string name="show_higher_resolutions_summary">Не всі пристрої можуть відтворювати 2K/4K-відео</string>
@@ -336,7 +335,7 @@
     <string name="minimize_on_exit_title">Зменшити при перемиканні застосунку</string>
     <string name="minimize_on_exit_summary">Дія при перемиканні до інших застосунків з основного відеопрогравача — %s</string>
     <string name="minimize_on_exit_none_description">Нічого</string>
-    <string name="minimize_on_exit_background_description">Зменшити до програвача у фоновому режимі</string>
+    <string name="minimize_on_exit_background_description">Згорнути у фоновий програвач</string>
     <string name="minimize_on_exit_popup_description">Зменшити до програвача у вікні</string>
     <string name="channels">Канали</string>
     <string name="playlists">Добірки</string>
@@ -580,7 +579,7 @@
     <string name="description_tab_description">Опис</string>
     <string name="related_items_tab_description">Повʼязані елементи</string>
     <string name="comments_tab_description">Коментарі</string>
-    <string name="settings_category_notification_title">Сповіщення</string>
+    <string name="settings_category_player_notification_summary">Налаштувати повідомлення про відтворюваний наразі потік</string>
     <string name="unsupported_url_dialog_message">Не розпізнано URL. Відкрити через іншу програму\?</string>
     <string name="auto_queue_toggle">Автоматична черга</string>
     <string name="show_meta_info_title">Показувати метадані</string>
@@ -660,8 +659,6 @@
     <string name="seekbar_preview_thumbnail_title">Мініатюра з попереднім переглядом на повзунку поступу</string>
     <string name="detail_heart_img_view_description">Вподобано автором</string>
     <string name="mark_as_watched">Позначити переглянутим</string>
-    <string name="loading_channel_details">Завантаження відомостей про канал…</string>
-    <string name="error_show_channel_details">Помилка показу відомостей про канал</string>
     <string name="show_image_indicators_summary">Показувати кольорові стрічки Пікассо поверх зображень із зазначенням їх джерела: червоний для мережі, синій для диска та зелений для пам’яті</string>
     <string name="show_image_indicators_title">Показати індикатори зображень</string>
     <string name="remote_search_suggestions">Віддалені пропозиції пошуку</string>
@@ -701,7 +698,41 @@
 \nУстановіть файловий менеджер, сумісний зі Storage Access Framework.</string>
     <string name="show_error_snackbar">Показати панель помилок</string>
     <string name="create_error_notification">Створити сповіщення про помилку</string>
-    <string name="background_player_already_playing_toast">Уже відтворюється у фоновому режимі</string>
     <string name="detail_pinned_comment_view_description">Закріплений коментар</string>
     <string name="leak_canary_not_available">LeakCanary недоступний</string>
+    <string name="progressive_load_interval_exoplayer_default">Типовий ExoPlayer</string>
+    <string name="progressive_load_interval_summary">Змінити розмір інтервалу завантаження (наразі %s). Менше значення може прискорити початкове завантаження відео. Зміни вимагають перезапуску програвача.</string>
+    <string name="you_successfully_subscribed">Ви підписалися на цей канал</string>
+    <string name="enumeration_comma">,</string>
+    <string name="streams_notification_channel_description">Сповіщення про нові трансляції для підписок</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s нова трансляція</item>
+        <item quantity="few">%s нові трансляції</item>
+        <item quantity="many">%s нових трансляцій</item>
+        <item quantity="other">%s нових трансляцій</item>
+    </plurals>
+    <string name="loading_stream_details">Завантаження відомостей про трансляцію…</string>
+    <string name="check_new_streams">Запустити виявлення нових трансляцій</string>
+    <string name="enable_streams_notifications_summary">Сповіщати про нові трансляції з підписок</string>
+    <string name="notifications_disabled">Сповіщення вимкнено</string>
+    <string name="any_network">Будь-яка мережа</string>
+    <string name="delete_downloaded_files_confirm">Видалити всі завантажені файли з диска\?</string>
+    <string name="toggle_all">Перемкнути всі</string>
+    <string name="get_notified">Сповіщати</string>
+    <string name="settings_category_player_notification_title">Сповіщення програвача</string>
+    <string name="notifications">Сповіщення</string>
+    <string name="streams_notification_channel_name">Нові трансляції</string>
+    <string name="enable_streams_notifications_title">Сповіщення про нові трансляції</string>
+    <string name="streams_notifications_interval_title">Частота перевірки</string>
+    <string name="streams_notifications_network_title">Необхідний тип з\'єднання</string>
+    <string name="percent">Відсоток</string>
+    <string name="semitone">Напівтон</string>
+    <string name="no_audio_streams_available_for_external_players">Немає аудіотрансляцій доступних для зовнішніх програвачів</string>
+    <string name="no_video_streams_available_for_external_players">Немає доступних відеотрансляцій для зовнішніх програвачів</string>
+    <string name="unknown_format">Невідомий формат</string>
+    <string name="streams_not_yet_supported_removed">Трансляції, які ще не підтримуються завантажувачем, не показані</string>
+    <string name="selected_stream_external_player_not_supported">Вибрана трансляція не підтримується зовнішніми програвачами</string>
+    <string name="select_quality_external_players">Виберіть якість для зовнішніх програвачів</string>
+    <string name="unknown_quality">Невідома якість</string>
+    <string name="progressive_load_interval_title">Розмір інтервалу завантаження відтворення</string>
 </resources>

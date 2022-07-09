@@ -86,7 +86,6 @@
     <string name="black_theme_title">Чёрная</string>
     <string name="popup_remember_size_pos_title">Помнить параметры окна</string>
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
-    <string name="yes">Да</string>
     <string name="clear">Очистить</string>
     <string name="all">Всё</string>
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСтрана контента:\\nЯзык приложения:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия пакета:\\nВерсия ОС:</string>
@@ -167,6 +166,11 @@
         <item quantity="few">%s видео</item>
         <item quantity="many">%s видео</item>
         <item quantity="other">%s видео</item>
+    </plurals>
+    <plurals name="new_streams">
+        <item quantity="one">%s новое видео</item>
+        <item quantity="few">%s новых видео</item>
+        <item quantity="many">%s новых видео</item>
     </plurals>
     <string name="delete_item_search_history">Удалить этот элемент из истории поиска?</string>
     <string name="main_page_content">Главная страница</string>
@@ -562,7 +566,7 @@
     <string name="clear_queue_confirmation_description">Очередь активного плеера будет заменена</string>
     <string name="clear_queue_confirmation_title">Подтверждать очистку очереди</string>
     <string name="clear_queue_confirmation_summary">Переход от одного плеера к другому может заменить вашу очередь</string>
-    <string name="settings_category_notification_title">Уведомление</string>
+    <string name="settings_category_player_notification_summary">Настроить уведомление о воспроизводимом сейчас потоке</string>
     <string name="notification_action_nothing">Ничего</string>
     <string name="notification_action_buffering">Буферизация</string>
     <string name="notification_action_shuffle">Перемешать</string>
@@ -661,8 +665,6 @@
     <string name="seekbar_preview_thumbnail_title">Миниатюра над полосой прокрутки</string>
     <string name="detail_heart_img_view_description">Автору видео понравилось это</string>
     <string name="mark_as_watched">Пометить как проигранные</string>
-    <string name="error_show_channel_details">Не удалось отобразить сведения о канале</string>
-    <string name="loading_channel_details">Загрузка сведений о канале…</string>
     <string name="show_image_indicators_summary">Picasso: указать цветом источник изображений (красный — сеть, синий — диск, зелёный — память)</string>
     <string name="show_image_indicators_title">Цветные метки на изображениях</string>
     <string name="remote_search_suggestions">Серверные предложения поиска</string>
@@ -689,6 +691,18 @@
     <string name="manual_update_title">Проверить обновления</string>
     <string name="checking_updates_toast">Проверка обновлений…</string>
     <string name="feed_new_items">Новое на канале</string>
+    <string name="notifications">Уведомления</string>
+    <string name="streams_notification_channel_name">Новые видео</string>
+    <string name="streams_notification_channel_description">Уведомления о новых видео в подписках</string>
+    <string name="streams_notifications_interval_title">Частота проверки</string>
+    <string name="enable_streams_notifications_title">Уведомлять о новых видео</string>
+    <string name="enable_streams_notifications_summary">Получать уведомления о новых видео из каналов, на которые Вы подписаны</string>
+    <string name="streams_notifications_network_title">Тип подключения</string>
+    <string name="any_network">Любая сеть</string>
+    <string name="notifications_disabled">Уведомления отключены</string>
+    <string name="get_notified">Уведомлять</string>
+    <string name="you_successfully_subscribed">Вы подписались на канал</string>
+    <string name="toggle_all">Переключить все</string>
     <string name="show_crash_the_player_title">Показать \"Вызвать сбой плеера\"</string>
     <string name="show_crash_the_player_summary">Показать функцию вызова сбоя при работе плеера</string>
     <string name="crash_the_player">Вызвать сбой плеера</string>
@@ -702,7 +716,22 @@
 \nПожалуйста, установите файловый менеджер, или попробуйте отключить \'%s\' в настройках загрузок.</string>
     <string name="no_appropriate_file_manager_message_android_10">Для этого действия не найдено подходящего файлового менеджера.
 \nПожалуйста, установите файловый менеджер, совместимый со Storage Access Framework (SAF).</string>
-    <string name="background_player_already_playing_toast">Уже проигрывается в фоне</string>
     <string name="detail_pinned_comment_view_description">Закреплённый комментарий</string>
     <string name="leak_canary_not_available">LeakCanary недоступна</string>
+    <string name="progressive_load_interval_exoplayer_default">Стандартное значение ExoPlayer</string>
+    <string name="progressive_load_interval_summary">Изменить размер интервала загрузки (сейчас %s). Меньшее значение может ускорить начальную загрузку видео. Изменение значения потребует перезапуска плеера.</string>
+    <string name="loading_stream_details">Загрузка деталей трансляции…</string>
+    <string name="check_new_streams">Проверить на наличие новых трансляций</string>
+    <string name="delete_downloaded_files_confirm">Удалить все загруженные файлы\?</string>
+    <string name="settings_category_player_notification_title">Уведомления плеера</string>
+    <string name="enumeration_comma">,</string>
+    <string name="semitone">Полутон</string>
+    <string name="percent">Проценты</string>
+    <string name="selected_stream_external_player_not_supported">Выбранная трансляция не поддерживается внешними проигрывателями</string>
+    <string name="no_video_streams_available_for_external_players">Нет ни одного доступного видео потока для внешних проигрывателей</string>
+    <string name="streams_not_yet_supported_removed">Были скрыты трансляции, которые пока ещё не поддерживаются загрузчиком</string>
+    <string name="unknown_format">Неизвестный формат</string>
+    <string name="no_audio_streams_available_for_external_players">Нет ни одного доступного аудио потока для внешних проигрывателей</string>
+    <string name="select_quality_external_players">Выберите качество для внешних проигрывателей</string>
+    <string name="unknown_quality">Неизвестное качество</string>
 </resources>

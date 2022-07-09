@@ -1,0 +1,14 @@
+Təkmilləşdirilmiş 
+• Kor insanlar üçün əlçatanlığı yaxşılaşdırmaq üçün daha çox başlıq əlavə edin #2655 
+• Yükləmə qovluğunun dilini daha ardıcıl və daha az qeyri-müəyyən edin #2637 
+
+Düzəltildi 
+• Blokdakı son baytın endirilib-endirilmədiyini yoxlayın #2646 
+• Video təfərrüatlı fraqmentdə sabit sürüşdürmə #2672
+ • İkiqat axtarışın aydın qutusu animasiyalarını bir #2695-ə silin 
+• [SoundCloud] Client_id hasilatı #2745 
+
+İnkişafını düzəldin
+ • NewPipeExtractor-dan NewPipe #2535-ə miras qalmış çatışmayan asılılıqları əlavə edin 
+• AndroidX #2685-ə köçürün
+ • ExoPlayer 2.10.6 #2736-a yeniləyin, #2

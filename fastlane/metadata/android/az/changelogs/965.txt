@@ -1,0 +1,5 @@
+Kanal qruplarını yenidən sıralayarkən baş verən qəza düzəldildi.
+Kanallardan və pleylistlərdən daha çox YouTube videosu əldə etmək həll edildi.
+YouTube şərhlərinin alınması düzəldildi.
+YouTube URL-lərində /watch/, /v/ və /w/ alt yolları üçün əlavə dəstək.
+SoundCloud müştəri identifikatorunun və coğrafi məhdudiyyətli məzmunun sabit çıxarılması. Şimali Kürd lokalizasiyası əlavə edildi.
