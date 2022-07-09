@@ -683,10 +683,7 @@
     <string name="error_report_notification_title">نیوپایپ به خطایی برخورد. برای گزارش، بزنید</string>
     <string name="error_report_notification_toast">خطایی رخ داد. آگاهی را ببینید</string>
     <string name="detail_pinned_comment_view_description">نظر سنجاق شده</string>
-    <string name="background_player_already_playing_toast">در حال پخش در پس‌زمینه</string>
     <string name="leak_canary_not_available">لیک‌کاناری موجود نیست</string>
-    <string name="playback_tempo_step">گام سرعت</string>
-    <string name="adjust_by_semitones_checkbox">تنظیم زیر و بم با شبه‌تن‌ها</string>
     <string name="progressive_load_interval_summary">تغییر اندازهٔ بازهٔ بار (هم‌اکنون %s). مقداری پایین‌تر، می‌تواند بار کردن نخستین ویدیو را سرعت بخشد. تغییرها نیاز به یک آغاز دوبارهٔ پخش‌کننده دارند.</string>
     <string name="progressive_load_interval_exoplayer_default">پیش‌گزیدهٔ اگزوپلیر</string>
     <string name="notifications">آگاهی‌ها</string>
@@ -711,4 +708,13 @@
     <string name="delete_downloaded_files_confirm">پاک کردن تمامی پرونده‌های بارگرفته از دیسک؟</string>
     <string name="any_network">هر شبکه‌ای</string>
     <string name="you_successfully_subscribed">اکنون مشترک این کانال شده‌اید</string>
+    <string name="semitone">نیم‌پرده</string>
+    <string name="percent">درصد</string>
+    <string name="no_video_streams_available_for_external_players">هیچ جریان ویدیویی‌ای برای پخش‌کننده‌های خارجی موجود نیست</string>
+    <string name="streams_not_yet_supported_removed">جریان‌هایی که هنوز به دست بارگیر پشتیبانی نمی‌شوند نشان داده نشده‌اند</string>
+    <string name="no_audio_streams_available_for_external_players">هیچ جریان صوتی‌ای برای پخش‌کننده‌های خارجی موجود نیست</string>
+    <string name="selected_stream_external_player_not_supported">جریان گزیده به دست پخش‌کننده‌های خارجی پشتیبانی نمی‌شود</string>
+    <string name="select_quality_external_players">گزینش کیفیت برای پخش‌کننده‌های خارجی</string>
+    <string name="unknown_format">قالب ناشناخته</string>
+    <string name="unknown_quality">کیفیت ناشناخته</string>
 </resources>

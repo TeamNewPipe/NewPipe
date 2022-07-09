@@ -20,7 +20,7 @@
     <string name="show_play_with_kodi_summary">顯示以 Kodi 媒體中心播放影片嘅選項</string>
     <string name="play_audio">聲音</string>
     <string name="default_audio_format_title">預設聲音檔案格式</string>
-    <string name="theme_title">主題</string>
+    <string name="theme_title">色系</string>
     <string name="dark_theme_title">黑暗</string>
     <string name="light_theme_title">明亮</string>
     <string name="download_dialog_title">下載</string>
@@ -106,15 +106,15 @@
     <string name="best_resolution">最佳解像度</string>
     <string name="short_billion">十億</string>
     <string name="title_activity_about">關於 NewPipe</string>
-    <string name="title_licenses">第三方版權特許</string>
-    <string name="copyright" formatted="true">© %1$s %2$s，根據 %3$s 特許版權所有</string>
+    <string name="title_licenses">第三方版權協議</string>
+    <string name="copyright" formatted="true">© %1$s %2$s 版權所有，根據 %3$s 嘅條款授權</string>
     <string name="tab_about">關於</string>
-    <string name="tab_licenses">特許</string>
+    <string name="tab_licenses">版權協議</string>
     <string name="app_description">喺 Android 上盡享自由輕便串流。</string>
     <string name="view_on_github">檢視我們的 GitHub</string>
     <string name="app_license_title">NewPipe 嘅授權協議</string>
     <string name="contribution_encouragement">無論您對翻譯、設計改動、打掃程式碼，抑或開山劈石編寫程式碼有咩偈仔，都無任歡迎您幫手。聚沙成塔，眾志成城！</string>
-    <string name="read_full_license">檢閱特許</string>
+    <string name="read_full_license">閱讀版權協議</string>
     <string name="contribution_title">貢獻</string>
     <string name="clear_views_history_title">抹走睇過嘅紀錄</string>
     <string name="no_player_found_toast">搵唔到串流播放器 (您可以裝 VLC 嚟播)。</string>
@@ -145,7 +145,7 @@
     <string name="enable_watch_history_title">睇過嘅紀錄</string>
     <string name="enable_playback_resume_title">恢復播放</string>
     <string name="enable_playback_resume_summary">返返最後播放到去嗰個位</string>
-    <string name="enable_playback_state_lists_title">喺播放清單排第幾</string>
+    <string name="enable_playback_state_lists_title">清單度睇到播到去邊</string>
     <string name="notification_scale_to_square_image_title">縮圖放到去 1:1 長寬比</string>
     <string name="notification_scale_to_square_image_summary">顯示喺通知嘅影片縮圖由 16:9 放到去 1:1 長寬比 (話唔定會鬆郁矇)</string>
     <string name="notification_colorize_title">通知色彩化</string>
@@ -164,7 +164,7 @@
     <string name="show_comments_title">顯示留言</string>
     <string name="show_comments_summary">關閉去隱藏留言</string>
     <string name="enable_search_history_title">搜尋紀錄</string>
-    <string name="enable_playback_state_lists_summary">喺播放清單顯示位置編號</string>
+    <string name="enable_playback_state_lists_summary">喺清單入面顯示最後播放到去邊個位</string>
     <string name="settings_category_clear_data_title">抹除資料</string>
     <string name="show_description_title">顯示描述</string>
     <string name="thumbnail_cache_wipe_complete_notice">抹除咗影像快取</string>
@@ -201,7 +201,7 @@
     <string name="import_data_title">匯入資料庫</string>
     <string name="start_main_player_fullscreen_title">主播放器用全螢幕開啟</string>
     <string name="start_main_player_fullscreen_summary">如果自動旋轉鎖定，開啟影片嘅時候唔用袖珍播放器就直接飛去全螢幕模式。您仍可結束全螢幕返返去袖珍播放器</string>
-    <string name="unsupported_url_dialog_message">個 URL 識別唔到。會唔會用另一個 app 開？</string>
+    <string name="unsupported_url_dialog_message">認唔出呢個 URL。要唔要用另一個 app 開？</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube 提供嘅「嚴格篩選模式」可以過濾潛在嘅成人內容</string>
     <string name="show_age_restricted_content_summary">有年齡限制 (例如 18+) 故可能兒童不宜嘅內容都照顯示</string>
     <string name="restricted_video">呢部影片有年齡限制。
@@ -338,7 +338,7 @@
     <string name="blank_page_summary">空白頁</string>
     <string name="localization_changes_requires_app_restart">重新開過個 app 之後就會轉新語言</string>
     <string name="trending">時興</string>
-    <string name="top_50">頭位 50</string>
+    <string name="top_50">頭 50 位</string>
     <string name="new_and_hot">最新同大熱</string>
     <string name="could_not_import_all_files">警告：未能匯入晒全部檔案。</string>
     <string name="override_current_data">噉樣做會冚咗您而家嘅設定個囉噃。</string>
@@ -357,8 +357,8 @@
     <string name="caption_auto_generated">自動產生</string>
     <string name="resize_fit">貼合</string>
     <string name="import_title">匯入</string>
-    <string name="import_from">由邊處匯入：</string>
-    <string name="export_to">匯出去邊處：</string>
+    <string name="import_from">由呢處匯入</string>
+    <string name="export_to">匯出去呢度</string>
     <string name="import_ongoing">匯入緊…</string>
     <string name="skip_silence_checkbox">無聲嘅時候快轉</string>
     <string name="playback_reset">重設</string>
@@ -526,7 +526,7 @@
     <string name="open_website_license">開啟網站</string>
     <string name="off">關</string>
     <string name="metadata_host">主機</string>
-    <string name="show_hold_to_append_summary">喺影片「詳情：」度撳一下「幕後播」或者「浮面播」個掣嘅時候顯示提示</string>
+    <string name="show_hold_to_append_summary">喺影片詳情撳一下「幕後播」或「浮面播」個掣嘅時候顯示提示</string>
     <string name="title_activity_history">紀錄</string>
     <string name="action_history">紀錄</string>
     <string name="enqueue_next_stream">攝下個等陣播</string>
@@ -587,7 +587,7 @@
     <string name="unbookmark_playlist">唔再收起</string>
     <string name="delete_playlist_prompt">係咪要刪除呢個播放清單？</string>
     <string name="settings_category_player_notification_title">播放器通知</string>
-    <string name="settings_category_player_notification_summary">調整目前播放緊嘅串流嘅通知</string>
+    <string name="settings_category_player_notification_summary">調整目前播放緊咩串流嘅通知</string>
     <string name="streams_notification_channel_description">訂閱有新加串流嘅通知</string>
     <string name="loading_stream_details">載入緊串流詳細資料…</string>
     <string name="enable_streams_notifications_summary">通知訂閱有新加串流</string>
@@ -595,7 +595,7 @@
     <string name="streams_notifications_network_title">須要網絡連線</string>
     <string name="any_network">不拘任何網絡</string>
     <string name="get_notified">收取通知</string>
-    <string name="you_successfully_subscribed">您現已訂閱呢個頻道</string>
+    <string name="you_successfully_subscribed">您而家訂閱咗呢個頻道</string>
     <string name="toggle_all">全部切換</string>
     <string name="check_new_streams">執行檢查有冇新加串流</string>
     <string name="notifications">通知</string>
@@ -603,10 +603,64 @@
     <plurals name="new_streams">
         <item quantity="other">%s 個新加串流</item>
     </plurals>
-    <string name="adjust_by_semitones_checkbox">按樂音半度調整音高</string>
     <string name="enable_streams_notifications_title">新加串流通知</string>
     <string name="delete_downloaded_files_confirm">係咪要喺磁碟機上面消除晒全部下載咗嘅檔案？</string>
     <string name="notifications_disabled">通知已停用</string>
     <string name="tracks">單曲</string>
-    <string name="playback_tempo_step">節奏步伐</string>
+    <string name="clear_playback_states_summary">全部剷走晒播放到邊個位</string>
+    <string name="error_report_open_github_notice">請查看係咪已經有人喺度講緊您呢次彈 app 嘅狀況。若然重複發表新嘅議題，將會嘥我哋可以真正用嚟修復個問題嘅時間㗎喇。</string>
+    <string name="donation_encouragement">NewPipe 係由一班熱心人用空閒時間義務開發，為您帶嚟最佳嘅使用體驗。係時候少少無拘，支持返開發者令 NewPipe 更臻完美，同時一顆心意挺佢哋可以嘆返杯咖啡。</string>
+    <string name="local">站內</string>
+    <string name="conferences">聚首</string>
+    <string name="minimize_on_exit_title">轉 app 嘅時候借過</string>
+    <string name="minimize_on_exit_summary">當喺主影片播放器轉去第個 app 嘅時候點做好 — %s</string>
+    <string name="minimize_on_exit_background_description">借過幕後播</string>
+    <string name="minimize_on_exit_popup_description">借過浮面播</string>
+    <string name="autoplay_summary">自動開啟播放 — %s</string>
+    <string name="minimize_on_exit_none_description">上返行人路</string>
+    <string name="seekbar_preview_thumbnail_title">時間軸預覽縮圖</string>
+    <string name="feed_notification_loading">載入緊摘要…</string>
+    <string name="feed_processing_message">處理緊摘要…</string>
+    <string name="settings_category_feed_title">摘要</string>
+    <string name="feed_oldest_subscription_update">摘要上次更新：%s</string>
+    <string name="feed_subscription_not_loaded_count">未有載入：%d</string>
+    <string name="feed_update_threshold_title">摘要隔幾耐要更新</string>
+    <string name="feed_update_threshold_summary">訂閱對上一次更新後，隔幾耐視之為過時 — %s</string>
+    <string name="feed_update_threshold_option_always_update">幾時都照更新</string>
+    <string name="feed_load_error">載入摘要嘅時候發生問題</string>
+    <string name="feed_load_error_account_info">載入唔到「%s」嘅摘要。</string>
+    <string name="feed_load_error_fast_unknown">快速摘要模式就此冇補充。</string>
+    <string name="feed_use_dedicated_fetch_method_title">有得攞就攞特設摘要</string>
+    <string name="feed_use_dedicated_fetch_method_enable_button">啟用快速模式</string>
+    <string name="feed_use_dedicated_fetch_method_disable_button">停用快速模式</string>
+    <string name="give_back">少少無拘</string>
+    <string name="watch_history_states_deleted">全部剷走咗播放到邊個位</string>
+    <string name="select_quality_external_players">揀選外面嘅播放器用咩畫質</string>
+    <string name="selected_stream_external_player_not_supported">外面嘅播放器唔支援揀選嘅串流</string>
+    <string name="no_audio_streams_available_for_external_players">外面嘅播放器用得到嘅聲音串流欠奉</string>
+    <string name="no_video_streams_available_for_external_players">外面嘅播放器用得到嘅影片串流欠奉</string>
+    <string name="unknown_format">未知格式</string>
+    <string name="unknown_quality">未知畫質</string>
+    <string name="streams_not_yet_supported_removed">下載工具暫未支援嘅串流，就無謂擺出嚟喇</string>
+    <string name="feed_load_error_terminated">著作者嘅帳戶已經被終止。
+\nNewPipe 日後唔會載入到呢個摘要。
+\n您要唔要取消訂閱呢個頻道？</string>
+    <string name="feed_use_dedicated_fetch_method_summary">某啲服務會提供，通常快趣好多，但項目數量可能有限兼詳情欠奉 (例如片長、項目類型、直播狀態)</string>
+    <string name="clear_playback_states_title">剷走播放到邊個位</string>
+    <string name="delete_playback_states_alert">係咪要全部剷走晒播放到邊個位？</string>
+    <string name="percent">百分比</string>
+    <string name="semitone">半音</string>
+    <string name="progressive_load_interval_summary">更改載入相距大細 (目前係 %s)。細啲或者會加快影片一開波嘅載入。更改要開過個播放器至生效。</string>
+    <string name="clear_queue_confirmation_title">問過先至將排隊播清零</string>
+    <string name="clear_queue_confirmation_description">目前播放器入面嘅排隊播將會清零</string>
+    <string name="peertube_instance_add_title">加一個站</string>
+    <string name="peertube_instance_add_help">請輸入個站嘅 URL</string>
+    <string name="peertube_instance_add_fail">驗證唔到個站</string>
+    <string name="peertube_instance_add_exists">個站已經喺度喇</string>
+    <string name="import_data_summary">冚過您目前嘅紀錄、訂閱、播放清單，同埋 (有得揀係咪冚埋) 設定</string>
+    <string name="export_data_summary">匯出紀錄、訂閱、播放清單，同埋設定</string>
+    <string name="feed_new_items">新嘅摘要項目</string>
+    <string name="choose_instance_prompt">揀選一個站</string>
+    <string name="clear_queue_confirmation_summary">轉換播放器嘅時候，排隊播可能會清零</string>
+    <string name="app_license">NewPipe 係「著佐權」(copyleft) 自由軟件：您可以隨意使用、考究、分享同改進佢。具體而言，您可以依據自由軟件基金會發佈嘅《GNU 通用公眾特許條款》第 3 版或 (按您選擇) 之後任一版本之下嘅條款，重新分發及/或修改呢個軟件。</string>
 </resources>

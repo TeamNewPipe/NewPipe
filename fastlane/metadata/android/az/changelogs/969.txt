@@ -1,0 +1,8 @@
+• Xarici yaddaşda quraşdırmaya icazə verin
+ • [Bandcamp] Yayımda ilk üç şərhi göstərmək üçün əlavə dəstək 
+• Yükləmə başlandıqda yalnız "download başladı" tostunu göstərin 
+• Saxlanılan kuki olmadıqda reCaptcha kukisini təyin etməyin 
+• [Oyunçu] Keş performansını təkmilləşdirin 
+• [Oyunçu] Sabit oyunçunun avtomatik oynamaması
+ • Yükləmələri silərkən əvvəlki Snackbarları rədd edin
+ • Siyahıda olmayan obyekti silmək cəhdi düzəldildi

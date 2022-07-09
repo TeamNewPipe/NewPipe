@@ -684,7 +684,6 @@
     <string name="create_error_notification">Vytvořit oznámení o chybě</string>
     <string name="checking_updates_toast">Kontrola aktualizací…</string>
     <string name="show_crash_the_player_title">Ukázat „Shodit přehrávač“</string>
-    <string name="background_player_already_playing_toast">Hraje již v pozadí</string>
     <string name="feed_new_items">Nové položky feedů</string>
     <string name="no_appropriate_file_manager_message_android_10">Pro tuto akci nebyl nalezen žádný vhodný správce souborů.
 \nProsím, nainstalujte správce souborů kompatibilní se Storage Access Framework.</string>
@@ -698,7 +697,30 @@
     <string name="crash_the_player">Shodit přehrávač</string>
     <string name="progressive_load_interval_summary">Změnit interval načítání (aktuálně %s). Menší hodnota může zrychlit počáteční načítání videa. Změna vyžaduje restart přehrávače.</string>
     <string name="leak_canary_not_available">LeakCanary není dostupné</string>
-    <string name="adjust_by_semitones_checkbox">Upravit výšku tónů po půltónech</string>
-    <string name="playback_tempo_step">Krok tempa</string>
     <string name="progressive_load_interval_exoplayer_default">Výchozí ExoPlayer</string>
+    <string name="settings_category_player_notification_summary">Nastavit oznámení k právě přehrávanému strýmu</string>
+    <string name="enable_streams_notifications_title">Oznámení o nových strýmech</string>
+    <string name="enable_streams_notifications_summary">Oznámit o nových strýmech k objednání</string>
+    <string name="streams_notifications_interval_title">Frekvence kontroly</string>
+    <string name="any_network">Jakákoli síť</string>
+    <string name="streams_notifications_network_title">Nutné síťové připojení</string>
+    <string name="delete_downloaded_files_confirm">Smazat všechny stažené soubory z disku\?</string>
+    <string name="you_successfully_subscribed">Objednali jste si nyní tento kanál</string>
+    <string name="toggle_all">Všechny přepnout</string>
+    <string name="streams_notification_channel_name">Nové strýmy</string>
+    <string name="streams_notification_channel_description">Oznámení o nových strýmech k objednání</string>
+    <string name="check_new_streams">Spustit kontrolu nových strýmů</string>
+    <string name="settings_category_player_notification_title">Oznámení přehrávače</string>
+    <string name="notifications">Oznámení</string>
+    <string name="loading_stream_details">Načítám podrobnosti o strýmu…</string>
+    <string name="notifications_disabled">Oznámení jsou vypnuta</string>
+    <string name="get_notified">Přijímat oznámení</string>
+    <string name="enumeration_comma">,</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nový strým</item>
+        <item quantity="few">%s nové strýmy</item>
+        <item quantity="other">%s nových strýmů</item>
+    </plurals>
+    <string name="percent">Procento</string>
+    <string name="semitone">Půltón</string>
 </resources>

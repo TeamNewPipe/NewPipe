@@ -1,0 +1,2 @@
+Android 11+-da buferdən sonra uğursuz oxutma davamını düzəltmək üçün MediaParser dəstəyi silindi.
+ Oxutma problemlərini həll etmək üçün Philips QM16XE-də media tunelini deaktiv etdi.

@@ -36,7 +36,7 @@
     <string name="caption_setting_title">Legendas</string>
     <string name="restore_defaults">Repor predefinições</string>
     <string name="error_occurred_detail">Ocorreu um erro: %1$s</string>
-    <string name="controls_popup_title">Popup</string>
+    <string name="controls_popup_title">Pop-up</string>
     <string name="msg_running">Descarga NewPipe</string>
     <string name="new_seek_duration_toast">Devido às restrições de ExoPlayer, a duração da pesquisa foi definida para %d segundos</string>
     <string name="overwrite">Sobrescrever</string>
@@ -683,11 +683,8 @@
     <string name="no_appropriate_file_manager_message_android_10">Nenhum gestor de ficheiros apropriado foi encontrado para esta ação.
 \nPor favor, instale um gestor de ficheiros compatível com o Storage Access Framework.</string>
     <string name="detail_pinned_comment_view_description">Comentário fixado</string>
-    <string name="background_player_already_playing_toast">Já está a reproduzir em segundo plano</string>
     <string name="leak_canary_not_available">LeakCanary não está disponível</string>
     <string name="progressive_load_interval_summary">Altere o tamanho do intervalo de carregamento (atualmente %s). Um valor menor pode acelerar o carregamento inicial do vídeo. Se fizer alterações é necessário reiniciar.</string>
-    <string name="adjust_by_semitones_checkbox">Ajustar o tom por semitons musicais</string>
-    <string name="playback_tempo_step">Passo do tempo</string>
     <string name="progressive_load_interval_exoplayer_default">Predefinido do ExoPlayer</string>
     <string name="notifications">Notificações</string>
     <string name="loading_stream_details">A carregar detalhes do fluxo…</string>
@@ -711,4 +708,13 @@
     <string name="you_successfully_subscribed">Agora assinou este canal</string>
     <string name="enumeration_comma">,</string>
     <string name="streams_notification_channel_name">Novos fluxos</string>
+    <string name="percent">Por cento</string>
+    <string name="semitone">Semitom</string>
+    <string name="no_video_streams_available_for_external_players">Não estão disponíveis transmissões de vídeo a reprodutores externos</string>
+    <string name="streams_not_yet_supported_removed">As transmissões que ainda não são suportadas para descarregamento não são mostradas</string>
+    <string name="selected_stream_external_player_not_supported">A transmissão selecionada não é suportada por reprodutores externos</string>
+    <string name="no_audio_streams_available_for_external_players">Não estão disponíveis transmissões de áudio a reprodutores externos</string>
+    <string name="unknown_format">Formato desconhecido</string>
+    <string name="unknown_quality">Qualidade desconhecida</string>
+    <string name="select_quality_external_players">Selecione a qualidade para reprodutores externos</string>
 </resources>

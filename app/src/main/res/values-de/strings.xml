@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">Veröffentlicht am %1$s</string>
-    <string name="no_player_found">Kein Stream-Player gefunden. Möchtest du VLC installieren\?</string>
+    <string name="no_player_found">Kein Stream-Player gefunden. Möchtest du den VLC installieren\?</string>
     <string name="install">Installieren</string>
     <string name="cancel">Abbrechen</string>
     <string name="open_in_browser">Im Browser öffnen</string>
@@ -373,7 +373,7 @@
     <string name="post_processing">Nachbearbeitung</string>
     <string name="enqueue">In Wiedergabe einreihen</string>
     <string name="permission_denied">System verweigert den Zugriff</string>
-    <string name="download_failed">Herunterladen fehlgeschlagen</string>
+    <string name="download_failed">Download fehlgeschlagen</string>
     <string name="generate_unique_name">Eindeutigen Namen erzeugen</string>
     <string name="overwrite">Überschreiben</string>
     <string name="overwrite_unrelated_warning">Eine Datei mit diesem Namen existiert bereits</string>
@@ -684,12 +684,9 @@
 \nBitte installiere einen Dateimanager oder versuche, \'%s\' in den Downloadeinstellungen zu deaktivieren.</string>
     <string name="no_appropriate_file_manager_message_android_10">Es wurde kein geeigneter Dateimanager für diese Aktion gefunden.
 \nBitte installiere einen Storage Access Framework kompatiblen Dateimanager.</string>
-    <string name="background_player_already_playing_toast">Wird bereits im Hintergrund abgespielt</string>
     <string name="detail_pinned_comment_view_description">Angehefteter Kommentar</string>
     <string name="leak_canary_not_available">LeakCanary ist nicht verfügbar</string>
-    <string name="adjust_by_semitones_checkbox">Tonhöhe nach musikalischen Halbtönen anpassen</string>
     <string name="progressive_load_interval_summary">Ändern der Größe des Ladeintervalls (derzeit %s). Ein niedrigerer Wert kann das anfängliche Laden des Videos beschleunigen. Änderungen erfordern einen Neustart des Players.</string>
-    <string name="playback_tempo_step">Geschwindigkeitsstufe</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer Standard</string>
     <string name="notifications">Benachrichtigungen</string>
     <string name="streams_notification_channel_description">Benachrichtigen über neue abonnierbare Streams</string>
@@ -710,5 +707,15 @@
     <string name="delete_downloaded_files_confirm">Alle heruntergeladenen Dateien von der Festplatte löschen\?</string>
     <string name="you_successfully_subscribed">Du hast jetzt diesen Kanal abonniert</string>
     <string name="toggle_all">Alle umschalten</string>
-    <string name="streams_notifications_interval_title">Aktualisierungsintervall</string>
+    <string name="streams_notifications_interval_title">Prüfintervall</string>
+    <string name="percent">Prozent</string>
+    <string name="semitone">Halbton</string>
+    <string name="no_video_streams_available_for_external_players">Keine Videostreams für externe Player verfügbar</string>
+    <string name="select_quality_external_players">Qualität für externe Player auswählen</string>
+    <string name="unknown_format">Unbekanntes Format</string>
+    <string name="no_audio_streams_available_for_external_players">Keine Audiostreams für externe Player verfügbar</string>
+    <string name="unknown_quality">Unbekannte Qualität</string>
+    <string name="streams_not_yet_supported_removed">Streams, die noch nicht vom Downloader unterstützt werden, werden nicht angezeigt</string>
+    <string name="selected_stream_external_player_not_supported">Der ausgewählte Stream wird von externen Playern nicht unterstützt</string>
+    <string name="progressive_load_interval_title">Größe des Ladeintervalls für die Wiedergabe</string>
 </resources>

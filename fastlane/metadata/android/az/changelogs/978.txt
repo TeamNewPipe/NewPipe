@@ -1,0 +1,1 @@
+Yeni bir NewPipe versiyası üçün yoxlamanın aparılması düzəldildi. Bu yoxlama bəzən çox erkən həyata keçirilirdi və buna görə də tətbiq qəzasına səbəb olur. Bu, indi düzəldilməlidir.

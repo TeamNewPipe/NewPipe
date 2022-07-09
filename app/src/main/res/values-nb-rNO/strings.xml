@@ -303,8 +303,8 @@
 \n2. Gå til denne nettadressen: %1$s
 \n3. Logg inn når forespurt
 \n4. Kopier profil-nettadressen du ble videresendt til.</string>
-    <string name="use_inexact_seek_summary">Unøyaktig blafring lar spilleren søke posisjoner raskere med redusert presisjon. Å søke i 5, 15 eller 25 sekunder fungerer ikke med dette.</string>
-    <string name="download_thumbnail_summary">Skru av for å stoppe innlasting av miniatyrbilder, noe som sparer data- og minnebruk. Endring av dette vil tømme både disk- og minne-hurtiglager.</string>
+    <string name="use_inexact_seek_summary">Unøyaktig blafring lar spilleren søke posisjoner raskere med redusert presisjon. Å søke i 5, 15 eller 25 sekunder fungerer ikke med dette</string>
+    <string name="download_thumbnail_summary">Skru av for å stoppe innlasting av miniatyrbilder, noe som sparer data- og minnebruk. Endring av dette vil tømme både disk- og minne-hurtiglager</string>
     <string name="auto_queue_summary">Fortsett fullendt (ikke-repeterende) avspillingskø ved å legge til en relatert strøm</string>
     <string name="enable_leak_canary_summary">Minnelekkasjeoppsyn kan forårsake programmet å opptre uresponsivt under haugdumping</string>
     <string name="enable_disposed_exceptions_title">Rapporter feil utenfor livssyklusen</string>
@@ -532,7 +532,7 @@
     <string name="show_original_time_ago_summary">Originaltekster fra tjenester vil vises for elementer i strømmen</string>
     <string name="error_report_open_github_notice">Sjekk om det allerede eksisterer et problem som diskuterer ditt krasj. Når du oppretter duplikatbilletter, tar du tid fra oss som vi kan bruke på å fikse den faktiske feilen.</string>
     <string name="notification_actions_at_most_three">Du kan maksimalt velge tre handlinger som skal vises i kompaktvarselet!</string>
-    <string name="notification_actions_summary">Rediger hver varslingshandling nedenfor ved å trykke på den. Velg opptil tre av dem som skal vises i det kompakte varselet ved å bruke avmerkingsboksene til høyre.</string>
+    <string name="notification_actions_summary">Rediger hver varslingshandling nedenfor ved å trykke på den. Velg opptil tre av dem som skal vises i det kompakte varselet ved å bruke avmerkingsboksene til høyre</string>
     <string name="notification_scale_to_square_image_summary">Skaler videominiatyrbildet som vises i varselet fra 16:9 til 1:1 sideforhold (kan føre til forvrengninger)</string>
     <string name="feed_use_dedicated_fetch_method_summary">Tilgjengelig i noen tjenester, det er vanligvis mye raskere, men kan gi et begrenset antall elementer, og ofte ufullstendig info (f.eks. ingen varighet, elementtype, eller sanntidsstatus).</string>
     <string name="feed_use_dedicated_fetch_method_title">Hent fra dedikert strøm når tilgjengelig</string>
@@ -575,7 +575,7 @@
     <string name="msg_calculating_hash">Regner ut sjekksum</string>
     <string name="hash_channel_description">Merknad for videosjekksummeringsframdrift</string>
     <string name="hash_channel_name">Videosjekksumsmerknad</string>
-    <string name="show_meta_info_summary">Slå av for å skjule metainformasjonsbokser med tilleggsinformasjon om strømskaperen, strøminnhold eller en søkeforespørsel.</string>
+    <string name="show_meta_info_summary">Slå av for å skjule metainformasjonsbokser med tilleggsinformasjon om strømskaperen, strøminnhold eller en søkeforespørsel</string>
     <string name="show_meta_info_title">Vis metainfo</string>
     <string name="recent">Nylige</string>
     <string name="no_app_to_open_intent">Ingen programmer på enheten din kan åpne dette</string>
@@ -672,7 +672,6 @@
     <string name="show_crash_the_player_summary">Viser et krasjalternativ ved bruk av avspilleren</string>
     <string name="error_report_notification_toast">Det oppstod en feil. Sjekk merknaden.</string>
     <string name="detail_pinned_comment_view_description">Festet kommentar</string>
-    <string name="background_player_already_playing_toast">Spilles allerede i bakgrunnen</string>
     <string name="error_report_channel_name">Feilrapport-merknad</string>
     <string name="error_report_channel_description">Merknader for innrapportering av feil</string>
     <string name="error_report_notification_title">NewPipe-feil. Trykk for å rapportere.</string>
@@ -682,6 +681,4 @@
     <string name="no_appropriate_file_manager_message_android_10">Installer en filbehandler som støtter lagringstilgangsrammeverk først.</string>
     <string name="leak_canary_not_available">LeakCanary er ikke tilgjengelig</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer-forvalg</string>
-    <string name="adjust_by_semitones_checkbox">Juster toneart etter musikalske halvtoner</string>
-    <string name="playback_tempo_step">Tempo-steg</string>
 </resources>

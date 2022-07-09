@@ -61,7 +61,7 @@
     <string name="metadata_cache_wipe_title">Os metadatos da caché foron eliminados</string>
     <string name="metadata_cache_wipe_summary">Eliminar todos os datos de páxinas en caché</string>
     <string name="metadata_cache_wipe_complete_notice">Os metadatos da caché foron eliminados</string>
-    <string name="auto_queue_title">Colocar a seguinte emisión na cola automaticamente</string>
+    <string name="auto_queue_title">Colocar a seguinte emisión na fila automaticamente</string>
     <string name="auto_queue_summary">Continúa rematando (non se repite) a cola de reprodución engadindo unha transmisión relacionada</string>
     <string name="show_search_suggestions_title">Suxestións de procura</string>
     <string name="show_search_suggestions_summary">Escolla suxestións a mostrar ao procurar</string>
@@ -226,7 +226,7 @@
 \nA política de privacidade do NewPipe explica con máis detalle que datos son enviados e gardados cando envía un relatorio de erros.</string>
     <string name="read_privacy_policy">Ler a política de privacidade</string>
     <string name="app_license_title">Licenza do NewPipe</string>
-    <string name="app_license">NewPipe é un software libre copyleft: Pode usar, estudar compartir e melloralo a vontade. En concreto, pode redistribuír e / ou modificala segundo os termos da Licenza Pública Xeral GNU publicada pola Free Software Foundation, xa sexa a versión 3 da licenza, ou (na súa opción) calquera outra versión posterior.</string>
+    <string name="app_license">NewPipe é un software libre copyleft: Pode usar, estudar compartillar e melloralo a vontade. En concreto, pode redistribuír e / ou modificala segundo os termos da Licenza Pública Xeral GNU publicada pola Free Software Foundation, xa sexa a versión 3 da licenza, ou (na súa opción) calquera outra versión posterior.</string>
     <string name="read_full_license">Ler a licenza</string>
     <string name="title_activity_history">Historial</string>
     <string name="action_history">Historial</string>
@@ -321,8 +321,8 @@
     <string name="skip_silence_checkbox">Avanzar rápido durante os momentos de silencio</string>
     <string name="playback_step">Paso</string>
     <string name="playback_reset">Reiniciar</string>
-    <string name="start_accept_privacy_policy">Para cumprirmos co Regulamento Xeral Europeo de Protección de Datos (GDPR), chamamos a súa atención sobre a nova política de privacidade do NewPipe. Por favor, léao con coidado.
-\nDebe aceptalo para nos enviar un relatorio de erro.</string>
+    <string name="start_accept_privacy_policy">Para cumprirmos co Regulamento Xeral Europeo de Protección de Datos (GDPR), chamamos a súa atención sobre a nova política de privacidade do NewPipe. Por favor, léaa con coidado.
+\nDebe aceptala para nos enviar un relatorio de erro.</string>
     <string name="accept">Aceptar</string>
     <string name="decline">Recusar</string>
     <string name="limit_data_usage_none_description">Sen límite</string>
@@ -434,7 +434,7 @@
     <string name="error_unknown_host">Non se puido atopar o servidor</string>
     <string name="error_ssl_exception">Non se puido establecer unha conexión segura</string>
     <string name="error_path_creation">Non se pode crear o cartafol de destino</string>
-    <string name="error_file_creation">Non se puido crear este ficheiro</string>
+    <string name="error_file_creation">Non se pode crear o ficheiro</string>
     <string name="show_error">Amosar o erro</string>
     <string name="download_already_pending">Hai unha descarga pendente con este nome</string>
     <string name="download_already_running">Hai unha descarga en curso con este nome</string>
@@ -557,7 +557,7 @@
     <string name="metadata_privacy_private">Privado</string>
     <string name="metadata_privacy_public">Público</string>
     <string name="metadata_thumbnail_url">URL da miniatura</string>
-    <string name="metadata_support">Soporte</string>
+    <string name="metadata_support">Apoio</string>
     <string name="metadata_language">Idioma</string>
     <string name="metadata_age_limit">Límite de idade</string>
     <string name="metadata_privacy">Privacidade</string>
@@ -672,8 +672,6 @@
     <string name="enqueued_next">Enfileirado</string>
     <string name="manual_update_title">Procurar actualizacións</string>
     <string name="manual_update_description">Procurar manualmente novas versións</string>
-    <string name="adjust_by_semitones_checkbox">Axustar o ton do semitóns musicais</string>
-    <string name="playback_tempo_step">Paso do tempo</string>
     <string name="checking_updates_toast">A procurar actualizacións…</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, só o \'Sistema de Acceso ao Almacenamento\' está soportado</string>
     <string name="progressive_load_interval_summary">Cambia o tamaño do intervalo de carga (actualmente %s). Un valor menor pode acelerar o carregamento do vídeo. Cambios poden precisar un reinicio do reprodutor.</string>
@@ -688,4 +686,28 @@
     <string name="show_crash_the_player_summary">Amosa unha opción de travamento ao usar o reprodutor</string>
     <string name="crash_the_player">Travar o reprodutor</string>
     <string name="leak_canary_not_available">LeakCanary non está dispoñíbel</string>
+    <string name="streams_notification_channel_description">Notificacións sobre novas emisións para subscricións</string>
+    <string name="streams_notifications_interval_title">Frecuencia de verificación</string>
+    <string name="streams_notifications_network_title">Conexión á rede necesaria</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Alternar todo</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nova emisión</item>
+        <item quantity="other">%s novas emisións</item>
+    </plurals>
+    <string name="percent">Por cento</string>
+    <string name="semitone">Semitón</string>
+    <string name="enable_streams_notifications_summary">Notificar sobre novas emisións de subscricións</string>
+    <string name="enable_streams_notifications_title">Notificacións sobre novas emisións</string>
+    <string name="settings_category_player_notification_title">Notificación do reprodutor</string>
+    <string name="streams_notification_channel_name">Novas emisións</string>
+    <string name="loading_stream_details">Carregando detalles da emisión…</string>
+    <string name="check_new_streams">Verifique se hai novas emisións</string>
+    <string name="settings_category_player_notification_summary">Configurar a notificación da emisión actual</string>
+    <string name="notifications">Notificacións</string>
+    <string name="any_network">Calquera rede</string>
+    <string name="delete_downloaded_files_confirm">Desexa eliminar todos os ficheiros descarregados do disco\?</string>
+    <string name="notifications_disabled">As notificacións están desactivadas</string>
+    <string name="get_notified">Recibir notificacións</string>
+    <string name="you_successfully_subscribed">Agora está subscrito a esta canle</string>
 </resources>
