@@ -71,6 +71,8 @@ public final class SponsorBlockUtils {
                 .getString(R.string.sponsor_block_category_self_promo_key), false);
         final boolean includeMusicCategory = prefs.getBoolean(context
                 .getString(R.string.sponsor_block_category_non_music_key), false);
+        final boolean includePreviewCategory = prefs.getBoolean(context
+                .getString(R.string.sponsor_block_category_preview_key), false);
         final boolean includeFillerCategory = prefs.getBoolean(context
                 .getString(R.string.sponsor_block_category_filler_key), false);
 
@@ -94,6 +96,9 @@ public final class SponsorBlockUtils {
         if (includeMusicCategory) {
             categoryParamList.add("music_offtopic");
         }
+        if (includePreviewCategory) {
+            categoryParamList.add("preview");
+            
         if (includeFillerCategory) {
             categoryParamList.add("filler");
         }
@@ -273,6 +278,14 @@ public final class SponsorBlockUtils {
                             : Color.parseColor(colorStr);
                 }
                 break;
+            case "preview":
+                key = context.getString(R.string.sponsor_block_category_preview_key);
+                if (prefs.getBoolean(key, false)) {
+                    key = context.getString(R.string.sponsor_block_category_preview_color_key);
+                    colorStr = prefs.getString(key, null);
+                    return colorStr == null
+                            ? context.getResources().getColor(R.color.preview_segment)
+                            : Color.parseColor(colorStr);
             case "filler":
                 key = context.getString(R.string.sponsor_block_category_filler_key);
                 if (prefs.getBoolean(key, false)) {
