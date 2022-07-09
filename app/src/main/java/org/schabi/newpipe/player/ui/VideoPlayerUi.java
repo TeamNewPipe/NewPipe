@@ -25,6 +25,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -103,7 +104,7 @@ public abstract class VideoPlayerUi extends PlayerUi
     //////////////////////////////////////////////////////////////////////////*/
 
     protected PlayerBinding binding;
-    private final Handler controlsVisibilityHandler = new Handler();
+    private final Handler controlsVisibilityHandler = new Handler(Looper.getMainLooper());
     @Nullable private SurfaceHolderCallback surfaceHolderCallback;
     boolean surfaceIsSetup = false;
     @Nullable private Bitmap thumbnail = null;

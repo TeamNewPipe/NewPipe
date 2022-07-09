@@ -287,8 +287,7 @@ public final class PopupPlayerUi extends VideoPlayerUi {
         }
 
         final float minimumWidth = context.getResources().getDimension(R.dimen.popup_minimum_width);
-        final int actualWidth = (int) (width > screenWidth ? screenWidth
-                : (width < minimumWidth ? minimumWidth : width));
+        final int actualWidth = Math.min((int) Math.max(width, minimumWidth), screenWidth);
         final int actualHeight = (int) getMinimumVideoHeight(width);
         if (DEBUG) {
             Log.d(TAG, "updatePopupSize() updated values:"

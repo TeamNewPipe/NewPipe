@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player.ui;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static org.schabi.newpipe.MainActivity.DEBUG;
 import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
@@ -21,6 +22,7 @@ import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -156,7 +158,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                         .ifPresent(fragmentManager ->
                                 PlaylistDialog.showForPlayQueue(player, fragmentManager)));
 
-        settingsContentObserver = new ContentObserver(new Handler()) {
+        settingsContentObserver = new ContentObserver(new Handler(Looper.getMainLooper())) {
             @Override
             public void onChange(final boolean selfChange) {
                 setupScreenRotationButton();
@@ -237,8 +239,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     private void initVideoPlayer() {
         // restore last resize mode
         setResizeMode(PlayerHelper.retrieveResizeModeFromPrefs(player));
-        binding.getRoot().setLayoutParams(new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+        binding.getRoot().setLayoutParams(new FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT));
     }
 
     @Override
@@ -253,8 +254,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.getRoot().findViewById(R.id.metadataView).setVisibility(View.VISIBLE);
         binding.moreOptionsButton.setVisibility(View.VISIBLE);
         binding.topControls.setOrientation(LinearLayout.VERTICAL);
-        binding.primaryControls.getLayoutParams().width
-                = LinearLayout.LayoutParams.MATCH_PARENT;
+        binding.primaryControls.getLayoutParams().width = MATCH_PARENT;
         binding.secondaryControls.setVisibility(View.INVISIBLE);
         binding.moreOptionsButton.setImageDrawable(AppCompatResources.getDrawable(context,
                 R.drawable.ic_expand_more));
@@ -459,7 +459,6 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
      * </li>
      * <li>
      *     Otherwise, the max thumbnail height is the screen height.
-     *     TODO investigate why this is done on popup player, too
      * </li>
      * </ul>
      *

@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player.gesture
 
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
@@ -130,7 +131,7 @@ abstract class BasePlayerGestureListener(
     }
 
     private var doubleTapDelay = DOUBLE_TAP_DELAY
-    private val doubleTapHandler: Handler = Handler()
+    private val doubleTapHandler: Handler = Handler(Looper.getMainLooper())
     private val doubleTapRunnable = Runnable {
         if (DEBUG)
             Log.d(TAG, "doubleTapRunnable called")
