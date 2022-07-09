@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -21,11 +20,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.core.widget.TextViewCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceViewHolder;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
+import org.schabi.newpipe.databinding.SingleChoiceDialogViewBinding;
 import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.NotificationConstants;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -190,13 +190,12 @@ public class NotificationActionsPreference extends Preference {
 
         void openActionChooserDialog() {
             final LayoutInflater inflater = LayoutInflater.from(getContext());
-            final LinearLayout rootLayout = (LinearLayout) inflater.inflate(
-                    R.layout.single_choice_dialog_view, null, false);
-            final RadioGroup radioGroup = rootLayout.findViewById(android.R.id.list);
+            final SingleChoiceDialogViewBinding binding =
+                    SingleChoiceDialogViewBinding.inflate(inflater);
 
             final AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                     .setTitle(SLOT_TITLES[i])
-                    .setView(radioGroup)
+                    .setView(binding.getRoot())
                     .setCancelable(true)
                     .create();
 
@@ -208,8 +207,8 @@ public class NotificationActionsPreference extends Preference {
 
             for (int id = 0; id < NotificationConstants.SLOT_ALLOWED_ACTIONS[i].length; ++id) {
                 final int action = NotificationConstants.SLOT_ALLOWED_ACTIONS[i][id];
-                final RadioButton radioButton
-                        = (RadioButton) inflater.inflate(R.layout.list_radio_icon_item, null);
+                final RadioButton radioButton = ListRadioIconItemBinding.inflate(inflater)
+                        .getRoot();
 
                 // if present set action icon with correct color
                 if (NotificationConstants.ACTION_ICONS[action] != 0) {
@@ -220,8 +219,8 @@ public class NotificationActionsPreference extends Preference {
                                 android.R.attr.textColorPrimary);
                         drawable = DrawableCompat.wrap(drawable).mutate();
                         DrawableCompat.setTint(drawable, color);
-                        TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(radioButton,
-                                null, null, drawable, null);
+                        radioButton.setCompoundDrawablesRelativeWithIntrinsicBounds(null,
+                                null, drawable, null);
                     }
                 }
 
@@ -231,7 +230,7 @@ public class NotificationActionsPreference extends Preference {
                 radioButton.setLayoutParams(new RadioGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 radioButton.setOnClickListener(radioButtonsClickListener);
-                radioGroup.addView(radioButton);
+                binding.list.addView(radioButton);
             }
             alertDialog.show();
 

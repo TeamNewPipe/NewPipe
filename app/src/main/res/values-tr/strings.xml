@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Başlamak için büyüteç simgesine dokunun.</string>
-    <string name="upload_date_text">Yayınlanma: %1$s</string>
+    <string name="main_bg_subtitle">Başlamak için büyütece dokunun.</string>
+    <string name="upload_date_text">%1$s tarihinde yayınlandı</string>
     <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC yüklensin mi\?</string>
     <string name="install">Yükle</string>
     <string name="cancel">İptal</string>
@@ -20,7 +20,7 @@
     <string name="download_path_audio_title">Ses indirme klasörü</string>
     <string name="download_path_audio_summary">İndirilen ses dosyaları burada depolanır</string>
     <string name="download_path_audio_dialog_title">Ses dosyaları için indirme klasörünü seç</string>
-    <string name="default_resolution_title">Öntanımlı çözünürlük</string>
+    <string name="default_resolution_title">Varsayılan çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Eksik Kore uygulaması yüklensin mi\?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile oynat\" seçeneğini göster</string>
@@ -103,7 +103,7 @@
     <string name="popup_remember_size_pos_summary">Açılan pencerenin son boyutunu ve konumunu hatırla</string>
     <string name="use_external_video_player_summary">Bazı çözünürlüklerde sesi kaldırır</string>
     <string name="show_search_suggestions_title">Arama önerileri</string>
-    <string name="show_search_suggestions_summary">Ararken gösterilecek önerileri seç</string>
+    <string name="show_search_suggestions_summary">Arama yaparken gösterilecek önerileri seçin</string>
     <string name="best_resolution">En iyi çözünürlük</string>
     <string name="title_activity_about">NewPipe Hakkında</string>
     <string name="title_licenses">Üçüncü Taraf Lisansları</string>
@@ -282,7 +282,7 @@
 \nSürdürmek istiyor musunuz\?</string>
     <string name="download_thumbnail_title">Küçük resimleri yükle</string>
     <string name="download_thumbnail_summary">Küçük resimlerin yüklenmesini önleyerek veri ve hafıza kullanımından tasarruf etmek için kapatın. Değişiklikler, hem bellek içi hem de diskteki resim önbelleğini temizler</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği temizlendi</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği silindi</string>
     <string name="metadata_cache_wipe_title">Önbelleğe alınmış üstverileri temizle</string>
     <string name="metadata_cache_wipe_summary">Önbelleğe alınmış tüm web sayfası verilerini kaldır</string>
     <string name="metadata_cache_wipe_complete_notice">Üstveri önbelleği temizlendi</string>
@@ -541,7 +541,7 @@
     <string name="error_report_open_github_notice">Lütfen hatanızı tartışan sorunun var olup olmadığını kontrol edin. Yinelenen istekler oluştururken, bizden asıl hatayı düzeltmek için harcayabileceğimiz zamanı alırsınız.</string>
     <string name="no_playlist_bookmarked_yet">Henüz oynatma listesi yer imleri yok</string>
     <string name="never">Asla</string>
-    <string name="wifi_only">Yalnızca Wi-Fi\'de</string>
+    <string name="wifi_only">Yalnızca Wi-Fi</string>
     <string name="autoplay_summary">Oynatmayı kendiliğinden başlat — %s</string>
     <string name="title_activity_play_queue">Oynatma kuyruğu</string>
     <string name="unsupported_url_dialog_message">URL tanınamadı. Başka bir uygulamayla açılsın mı\?</string>
@@ -682,13 +682,10 @@
     <string name="error_report_channel_description">Hata raporları için bildirimler</string>
     <string name="show_crash_the_player_summary">Oynatıcı kullanırken çöktürme seçeneği gösterir</string>
     <string name="crash_the_player">Oynatıcıyı çöktür</string>
-    <string name="background_player_already_playing_toast">Zaten arka planda oynuyor</string>
     <string name="detail_pinned_comment_view_description">Sabitlenmiş yorum</string>
     <string name="leak_canary_not_available">LeakCanary yok</string>
     <string name="progressive_load_interval_summary">Yükleme ara boyutunu değiştir (şu anda %s). Düşük bir değer videonun ilk yüklenişini hızlandırabilir. Değişiklikler oynatıcının yeniden başlatılmasını gerektirir.</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer öntanımlısı</string>
-    <string name="playback_tempo_step">Tempo adımı</string>
-    <string name="adjust_by_semitones_checkbox">Perdeyi müzikal yarım tonlarla uyarla</string>
     <string name="enable_streams_notifications_title">Yeni akış bildirimleri</string>
     <string name="notifications">Bildirimler</string>
     <plurals name="new_streams">
@@ -711,4 +708,14 @@
     <string name="delete_downloaded_files_confirm">İndirilen tüm dosyalar diskten silinsin mi\?</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Tümünü değiştir</string>
+    <string name="percent">Yüzde</string>
+    <string name="semitone">Ara ton</string>
+    <string name="selected_stream_external_player_not_supported">Seçilen yayın harici oynatıcılar tarafından desteklenmiyor</string>
+    <string name="streams_not_yet_supported_removed">İndirici tarafından henüz desteklenmeyen yayınlar gösterilmez</string>
+    <string name="no_audio_streams_available_for_external_players">Harici oynatıcılar için ses yayını yok</string>
+    <string name="no_video_streams_available_for_external_players">Harici oynatıcılar için video yayını yok</string>
+    <string name="select_quality_external_players">Harici oynatıcılar için kalite seçin</string>
+    <string name="unknown_format">Bilinmeyen biçim</string>
+    <string name="unknown_quality">Bilinmeyen kalite</string>
+    <string name="progressive_load_interval_title">Oynatma yükleme aralığı boyutu</string>
 </resources>

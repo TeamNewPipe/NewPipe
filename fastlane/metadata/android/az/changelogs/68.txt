@@ -1,0 +1,38 @@
+# v0.14.1 dəyişiklikləri
+
+### Sabit
+
+- Video URL-nin şifrəsini açmaqda uğursuzluq düzəldildi#1659
+- Sabit təsvir linki yaxşı çıxarılmadı#1657
+
+# v0.14.0 dəyişiklikləri
+
+### Yeni
+
+- Yeni Çəkməcə dizaynı
+#1461
+- Yeni fərdiləşdirilə bilən ön səhifə
+# 1461
+
+### Təkmilləşdirmələr
+
+- Yenidən işlənmiş Jest nəzarətləri
+#1604
+- Pop-up pleyerini bağlamağın yeni yolu #1597
+
+### Sabit
+
+- Abunə sayı mövcud olmadıqda xətanı düzəldin.№1649 bağlanır.
+- Bu hallarda "Abunəçi sayı mövcud deyil"i göstərin
+- YouTube pleylist boş olduqda NPE-ni düzəldin
+- SoundCloud-da köşklər üçün sürətli düzəliş
+- Refaktor və səhv düzəltmə #1623
+- Dövri axtarış nəticəsi #1562-ni düzəldin
+- Axtarış panelinin statik olaraq yerləşdirilməməsini düzəldin
+- YT Premium videonun düzgün bloklanmamasını düzəldin
+- Videoların bəzən yüklənməməsini düzəldin (DASH təhlilinə görə)
+- Video təsvirindəki keçidləri düzəldin
+- Kimsə xarici sdcard-a endirməyə cəhd edərkən xəbərdarlığı göstərin
+- Göstərilən heç nəyi düzəldin istisna hesabatı işə salır
+- Miniatür arxa fonda göstərilmir android 8.1 üçün oyunçu [buraya baxın](https://github.com/TeamNewPipe/NewPipe/issues/943)
+- Yayım qəbuledicisinin qeydiyyatını düzəldin. №1641 bağlanır.

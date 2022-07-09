@@ -1,5 +1,5 @@
 ### Təkmilləşdirmələr 
--İdxal/ixrac parametrləri #1333 
+-İdxal/ixrac tənzimləmələri #1333 
 -Həddindən artıq çəkilişi azaldın (performansın yaxşılaşdırılması) #1371 
 - Kiçik kod təkmilləşdirmələri #1375 
 - GDPR #1420 haqqında hər şeyi əlavə edin 

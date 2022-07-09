@@ -1,0 +1,12 @@
+Nowe
+• Obsługa metod dostarczania innych niż progresywny HTTP: szybszy czas ładowania odtw., poprawki PeerTube i SoundCloud, odtw. ostatnio zakończonych transmisji na żywo w YT
+• Przycisk dodawania zdalnej playlisty do lokalnej
+• Podgląd w oknie udost. Androida 10+
+
+Ulepszone
+• Okno dialogowe parametrów odtw.
+• Przeniesiono import/eksport subskrypcji do menu z trzema kropkami
+
+Naprawione
+• Usuwanie w pełni obejrzanych wideo z playlisty
+• Motyw menu udostępniania i wpis „dodaj do playlisty”

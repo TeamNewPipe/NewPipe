@@ -58,7 +58,6 @@
     <string name="downloads_title">Завантаження</string>
     <string name="error_report_title">Звіт про помилку</string>
     <string name="all">Усе</string>
-    <string name="yes">Так</string>
     <string name="disabled">Вимкнено</string>
     <string name="app_ui_crash">Збій застосунку/інтерфейсу</string>
     <string name="your_comment">Ваш коментар (англійською):</string>
@@ -93,7 +92,7 @@
     <string name="subscription_update_failed">Не вдалося оновити підписку</string>
     <string name="tab_subscriptions">Підписки</string>
     <string name="fragment_feed_title">Новинки</string>
-    <string name="controls_background_title">У фоновому режимі</string>
+    <string name="controls_background_title">Фоново</string>
     <string name="controls_popup_title">У вікні</string>
     <string name="default_popup_resolution_title">Типова роздільність вікна</string>
     <string name="show_higher_resolutions_summary">Не всі пристрої можуть відтворювати 2K/4K-відео</string>
@@ -699,11 +698,8 @@
 \nУстановіть файловий менеджер, сумісний зі Storage Access Framework.</string>
     <string name="show_error_snackbar">Показати панель помилок</string>
     <string name="create_error_notification">Створити сповіщення про помилку</string>
-    <string name="background_player_already_playing_toast">Уже відтворюється у фоновому режимі</string>
     <string name="detail_pinned_comment_view_description">Закріплений коментар</string>
     <string name="leak_canary_not_available">LeakCanary недоступний</string>
-    <string name="playback_tempo_step">Крок темпу</string>
-    <string name="adjust_by_semitones_checkbox">Регулювання висоти звуку за музичними півтонами</string>
     <string name="progressive_load_interval_exoplayer_default">Типовий ExoPlayer</string>
     <string name="progressive_load_interval_summary">Змінити розмір інтервалу завантаження (наразі %s). Менше значення може прискорити початкове завантаження відео. Зміни вимагають перезапуску програвача.</string>
     <string name="you_successfully_subscribed">Ви підписалися на цей канал</string>
@@ -729,4 +725,14 @@
     <string name="enable_streams_notifications_title">Сповіщення про нові трансляції</string>
     <string name="streams_notifications_interval_title">Частота перевірки</string>
     <string name="streams_notifications_network_title">Необхідний тип з\'єднання</string>
+    <string name="percent">Відсоток</string>
+    <string name="semitone">Напівтон</string>
+    <string name="no_audio_streams_available_for_external_players">Немає аудіотрансляцій доступних для зовнішніх програвачів</string>
+    <string name="no_video_streams_available_for_external_players">Немає доступних відеотрансляцій для зовнішніх програвачів</string>
+    <string name="unknown_format">Невідомий формат</string>
+    <string name="streams_not_yet_supported_removed">Трансляції, які ще не підтримуються завантажувачем, не показані</string>
+    <string name="selected_stream_external_player_not_supported">Вибрана трансляція не підтримується зовнішніми програвачами</string>
+    <string name="select_quality_external_players">Виберіть якість для зовнішніх програвачів</string>
+    <string name="unknown_quality">Невідома якість</string>
+    <string name="progressive_load_interval_title">Розмір інтервалу завантаження відтворення</string>
 </resources>

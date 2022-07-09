@@ -1,0 +1,25 @@
+Yeni
+ • P2P olmadan PeerTube dəstəyi (#2201) 
+[Beta]: 
+◦ PeerTube nümunələrindən videolara baxın və endirin 
+◦ Tam PeerTube dünyasına daxil olmaq üçün parametrlərə nümunələr əlavə edin
+ ◦ Müəyyən girişlərə daxil olan zaman Android 4.4 və 7.1-də SSL əl sıxmalarında problemlər ola bilər. şəbəkə xətası ilə nəticələnən hallar.
+
+ • Yükləyici (#2679): 
+◦ Endirmə ETA-nı hesablayın 
+◦ Opus (veb faylları) ogg kimi endirin
+ ◦ Uzun fasilədən sonra endirmələri davam etdirmək üçün vaxtı keçmiş endirmə bağlantılarını bərpa edin
+
+ Təkmilləşdirildi
+ • KioskFragment-i üstünlük verilən məzmun ölkəsindəki dəyişikliklərdən xəbərdar edin və bütün performansını yaxşılaşdırın əsas nişanlar #2742 
+• №2713 çıxarıcıdan yeni Lokallaşdırma və Yükləyici tətbiqlərindən istifadə edin
+ • "Defolt köşk" sətrini tərcümə edilə bilən edin
+ • Qara mövzu üçün qara naviqasiya paneli #2569
+
+ Sabitləşdirildi 
+• Başqa barmaq yerləşdirilərkən pop-up pleyerini hərəkət etdirə bilməyən xəta düzəldildi. pop-up pleyerinin hərəkət etdirilməsi #2772 
+• Yükləyicisi çatmayan pleylistlərə icazə verin və bu problemlə bağlı qəzaları düzəldin №2724, TeamNewPipe/NewPipeExtractor#219
+ • MediaC ilə TLS əl sıxışmasını düzəltmək üçün Android 4.4 cihazlarında (API 19/KitKat) TLS1.1/1.2 işə salınır və bəzi PeerTube nümunələri #2792
+ • [SoundCloud] Sabit müştəri kimliyinin çıxarılması TeamNewPipe/NewPipeExtractor#217 • [SoundCloud] Audio axınının çıxarılmasının işlənməsini düzəldin 
+• ExoPlayer-i 2.10.8 #2791, #2816-a yeniləyin 
+• Güncəlləmə 3.5.1-ə keçin və Kotlin dəstəyi #2714 əlavə edin

@@ -24,7 +24,19 @@ public final class KeyboardUtil {
         if (editText.requestFocus()) {
             final InputMethodManager imm = ContextCompat.getSystemService(activity,
                     InputMethodManager.class);
-            imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED);
+            if (!imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED)) {
+                /*
+                 * Sometimes the keyboard can't be shown because Android's ImeFocusController is in
+                 * a incorrect state e.g. when animations are disabled or the unfocus event of the
+                 * previous view arrives in the wrong moment (see #7647 for details).
+                 * The invalid state can be fixed by to re-focusing the editText.
+                 */
+                editText.clearFocus();
+                editText.requestFocus();
+
+                // Try again
+                imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED);
+            }
         }
     }
 

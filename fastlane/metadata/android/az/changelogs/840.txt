@@ -1,0 +1,21 @@
+Yeni
+ • Proqram dilini dəyişmək üçün dil seçicisi əlavə edildi
+ • Oyunçuların yığıla bilən menyusuna Kodi-yə göndər düyməsi əlavə edildi
+ • Uzun basışda şərhləri kopyalamaq imkanı əlavə edildi 
+
+Təkmilləşdirildi
+ • ReCaptcha fəaliyyətini düzəldin və əldə edilmiş kukiləri düzgün saxlayın
+ • Çekmece və gizlətmə lehinə nöqtə menyusu silindi parametrlərdə baxış tarixçəsi aktiv edilmədikdə tarix düyməsi 
+• Android 6 və sonrakı versiyalarda düzgün şəkildə parametrlərdə digər proqramlar üzərində göstərilməsi üçün icazə istəyin
+ • BookmarkFragment-də uzun klikləməklə yerli pleylistinin adını dəyişin
+ • Müxtəlif PeerTube təkmilləşdirmələri 
+• Təkmilləşdirilmiş bir neçə ingilis mənbə sətirləri 
+
+Sabitləşdirildi 
+• Sabit pleyer "Tətbiq keçidində minimuma endirmək" seçimi aktiv edildikdə və NewPipe minimuma endirildikdə dayandırılsa da, yenidən başlayır 
+• Jest üçün ilkin parlaqlıq dəyərini düzəldin 
+• Sabit .srt altyazı yükləmələri bütün sətir fasilələrini ehtiva etmədi 
+• SD karta endirmənin uğursuzluğu müəyyən edildi, çünki bəzi Android 5 cihazları CTF uyğun deyil
+ • Android KitKat-da sabit endirmə • Sabit pozulmuş video .mp4 faylının audio fayl kimi tanınması
+ • Sabit multi yanlış Çin dili kodları da daxil olmaqla ple lokalizasiya problemləri 
+• [YouTube] Təsvirdəki vaxt möhürləri yenidən klikləilə bilər

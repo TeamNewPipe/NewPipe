@@ -4,10 +4,6 @@
     <string name="last_used_preferences_version">last_used_preferences_version</string>
 
     <!-- Service -->
-    <string-array name="service_list">
-        <item>@string/youtube</item>
-        <item>@string/soundcloud</item>
-    </string-array>
     <string name="current_service_key">service</string>
     <string name="default_service_value">@string/youtube</string>
 

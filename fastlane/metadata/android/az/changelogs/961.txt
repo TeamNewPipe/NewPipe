@@ -1,0 +1,11 @@
+• [YouTube] Mix dəstəyi
+ • [YouTube] İctimai yayımçılar və Covid-19 haqqında məlumatı göstərin 
+• [media.ccc.de] Son videolar əlavə edildi 
+• Somali tərcüməsi əlavə edildi
+
+• Çoxlu daxili təkmilləşdirmələr
+
+ • Pleyer daxilində videoların paylaşılması düzəldildi 
+• Sabit boş ReCaptcha veb görünüşü • Siyahıdan axını silərkən baş verən qəza düzəldildi 
+• [PeerTube] Sabit əlaqəli axınlar 
+• [YouTube] Sabit YouTube Musiqi axtarışı
