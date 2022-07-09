@@ -33,7 +33,7 @@
     <string name="detail_thumbnail_view_description">ভিডিও প্রাকদর্শন, সময়ঃ</string>
     <string name="error_details_headline">বর্ণনা:</string>
     <string name="your_comment">আপনার মন্তব্য (ইংরেজিতে):</string>
-    <string name="info_labels">কি:\\nঅনুরোধ:\\nকন্টেন্ট ভাষা:\\nসার্ভিস:\\nসময়(GMT এ):\\nপ্যাকেজ:\\nসংস্করণ:\\nওএস সংস্করণ:\\nআইপি পরিসর:</string>
+    <string name="info_labels">কি:\\nঅনুরোধ:\\nকন্টেন্ট ভাষা:\\nকন্টেন্ট দেশ:\\nঅ্যাপ ভাষা:\\nসার্ভিস:\\nসময়(GMT এ):\\nপ্যাকেজ:\\nসংস্করণ:\\nওএস সংস্করণ:</string>
     <string name="what_happened_headline">কি হয়েছিল:</string>
     <string name="what_device_headline">তথ্য:</string>
     <string name="error_snackbar_action">প্রতিবেদন</string>
@@ -83,7 +83,7 @@
     <string name="metadata_cache_wipe_summary">সব ক্যাশড ওয়েবপেজ ডেটা মুছে ফেলো</string>
     <string name="metadata_cache_wipe_title">ক্যাশ করা মেটাডেটা মুছো</string>
     <string name="thumbnail_cache_wipe_complete_notice">ছবির ক্যাশ মুছে ফেলা হয়েছে</string>
-    <string name="download_thumbnail_summary">থাম্বনেইল প্রদর্শন বন্ধ করার মাধ্যমে, ডাটা এবং মেমোরি সংরক্ষণ করুন। অপশনটি‌ পরিবর্তনে ইন-মেমোরি এবং অন-ডিস্ক ইমেজ ক্যাশ উভয়ই মুছে যাবে।</string>
+    <string name="download_thumbnail_summary">থাম্বনেইল প্রদর্শন বন্ধ করার মাধ্যমে, ডাটা এবং মেমোরি সংরক্ষণ করুন। অপশনটি‌ পরিবর্তনে ইন-মেমোরি এবং অন-ডিস্ক ইমেজ ক্যাশ উভয়ই মুছে যাবে</string>
     <string name="show_comments_summary">মতামত প্রদর্শন বন্ধ করতে অপশনটি বন্ধ করুন</string>
     <string name="show_comments_title">মতামত প্রদর্শন করুন</string>
     <string name="download_thumbnail_title">থাম্বনেইল লোড করুন</string>
@@ -142,7 +142,7 @@
     <string name="no_player_found_toast">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি (প্লে করতে VLC ইন্সটল করতে পারেন)।</string>
     <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। VLC ইনস্টল করতে চান\?</string>
     <string name="upload_date_text">প্রকাশকাল %1$s</string>
-    <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন</string>
+    <string name="main_bg_subtitle">অনুসন্ধান শুরু করুন</string>
     <string name="feed_create_new_group_button_title">নতুন</string>
     <string name="fragment_feed_title">নতুন কি</string>
     <string name="app_language_title">অ্যাপ এর ভাষা</string>
@@ -224,7 +224,7 @@
     <string name="player_recoverable_failure">প্লেয়ার এর এরর থেকে বেরিয়ে আসুন</string>
     <string name="player_stream_failure">স্ট্রিম টি চালানো গেল না</string>
     <string name="clear_search_history_summary">সার্চের ইতিহাস মোছা হয়</string>
-    <string name="watch_history_states_deleted">প্লে ব্যাক এর অবস্থান মোছা হয়েছে।</string>
+    <string name="watch_history_states_deleted">প্লে ব্যাক এর অবস্থান মোছা হয়েছে</string>
     <string name="delete_playback_states_alert">সমস্ত প্লে লিস্ট এর অবস্থান মুছবেন\?</string>
     <string name="clear_playback_states_summary">সমস্ত প্লে লিস্ট এর অবস্থান মুছে ফেলুন</string>
     <string name="clear_playback_states_title">প্লে লিস্ট এর অবস্থান মুছে ফেলুন</string>
@@ -300,4 +300,20 @@
     <string name="notification_action_0_title">প্রথম অ্যাকশান বোতাম</string>
     <string name="notification_action_1_title">দ্বিতীয় অ্যাকশান বোতাম</string>
     <string name="streams_notification_channel_name">নতুন স্ট্রিম</string>
+    <string name="wifi_only">শুধুমাত্র ওয়াইফাইএ</string>
+    <string name="metadata_language">ভাষা</string>
+    <string name="unsupported_url_dialog_message">URL বোঝা যায় নি, অন্য অ্যাপ এ খুলুন\?</string>
+    <string name="error_file_creation">ফাইল তৈরি করা যাচ্ছে না</string>
+    <string name="show_description_summary">ভিডিও বিবরণ ও বাড়তি তথ্য বন্ধ করুন</string>
+    <string name="start_main_player_fullscreen_title">মূল প্লেয়ার ফুল স্ক্রীন এ শুরু করুন</string>
+    <string name="peertube_instance_add_fail">" "</string>
+    <string name="error_connect_host">সার্ভার এর সাথে যোগাযোগ করা যাচ্ছে না</string>
+    <string name="notification_action_buffering">বাফার হচ্ছে</string>
+    <string name="download_has_started">ডাউনলোড শুরু হয়েছে</string>
+    <string name="open_with">এটি দিয়ে খুলুন</string>
+    <string name="mark_as_watched">দেখা হিসাবে চিহ্নিত করুন</string>
+    <string name="notification_scale_to_square_image_title">থাম্বনেল 1:1 আকৃতির অনুপাতের করুন</string>
+    <string name="notification_scale_to_square_image_summary">বিজ্ঞপ্তিতে প্রদর্শিত ভিডিও থাম্বনেল 16:9 থেকে 1:1 অনুপাতের করুন (বিকৃতি দেখা যেতে পারে)</string>
+    <string name="notification_action_shuffle">অদলবদল</string>
+    <string name="notification_action_nothing">কিছু না</string>
 </resources>

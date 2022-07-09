@@ -23,14 +23,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
@@ -225,6 +228,20 @@ public final class ThemeHelper {
         }
 
         return value.data;
+    }
+
+    /**
+     * Resolves a {@link Drawable} by it's id.
+     *
+     * @param context   Context
+     * @param attrResId Resource id
+     * @return the {@link Drawable}
+     */
+    public static Drawable resolveDrawable(@NonNull final Context context,
+                                           @AttrRes final int attrResId) {
+        final TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(attrResId, typedValue, true);
+        return AppCompatResources.getDrawable(context, typedValue.resourceId);
     }
 
     private static String getSelectedThemeKey(final Context context) {

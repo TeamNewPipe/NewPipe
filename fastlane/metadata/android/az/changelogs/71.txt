@@ -1,0 +1,9 @@
+### Təkmilləşdirmələr
+ * GitHub quruluşu üçün proqram yeniləmə bildirişi əlavə edin (@krtkush tərəfindən #1608) 
+* Yükləyiciyə müxtəlif təkmilləşdirmələr (@kapodamy tərəfindən #1944): 
+* çatışmayan ağ nişanlar əlavə edin və simvol rənglərini dəyişdirmək üçün sərt üsuldan istifadə edin 
+* olub olmadığını yoxlayın iterator işə salındı (düzəlişlər #2031)
+ * yeni muxerdə "sonradan emal alınmadı" xətası ilə yenidən yükləmələrə icazə verin 
+* sinxron olmayan video və audio axınları düzəldən yeni MPEG-4 muxer (#2039)
+### Sabit
+ * YouTube canlı yayımlar qısa müddətdən sonra ifa etməyi dayandırır (@yausername tərəfindən #1996)

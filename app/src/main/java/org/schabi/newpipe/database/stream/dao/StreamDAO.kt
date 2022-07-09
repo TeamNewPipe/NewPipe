@@ -12,8 +12,7 @@ import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
 import org.schabi.newpipe.extractor.stream.StreamType
-import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_LIVE_STREAM
-import org.schabi.newpipe.extractor.stream.StreamType.LIVE_STREAM
+import org.schabi.newpipe.util.StreamTypeUtil
 import java.time.OffsetDateTime
 
 @Dao
@@ -91,8 +90,7 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
             ?: throw IllegalStateException("Stream cannot be null just after insertion.")
         newerStream.uid = existentMinimalStream.uid
 
-        val isNewerStreamLive = newerStream.streamType == AUDIO_LIVE_STREAM || newerStream.streamType == LIVE_STREAM
-        if (!isNewerStreamLive) {
+        if (!StreamTypeUtil.isLiveStream(newerStream.streamType)) {
 
             // Use the existent upload date if the newer stream does not have a better precision
             // (i.e. is an approximation). This is done to prevent unnecessary changes.

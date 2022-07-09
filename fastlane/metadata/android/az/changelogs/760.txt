@@ -1,0 +1,36 @@
+0.17.1-də dəyişikliklər 
+
+Yeni
+ • Tayland lokalizasiyası 
+
+Təkmilləşdi 
+• Pleylistlər üçün uzun basılan menyularda yenidən burada ifa etməyə başlayın əməliyyatı əlavə edin #2518 
+• SAF / köhnə fayl seçicisi üçün keçid əlavə edin #2521
+
+ Sabitləşdirildi 
+• Proqramları dəyişdirərkən yükləmələr görünüşündə yoxa çıxan düymələri düzəldin #2487 
+• Baxış tarixçəsi deaktiv edilsə də, oxutma mövqeyini düzəldin 
+• Siyahı görünüşlərində oxutma mövqeyinin yaratdığı performansı azaldın №2517 
+• [Extractor] ReCaptchaActivity #2527, TeamNewPipe/NewPipeExtractor#186-nı düzəldin
+ • [Extractor] [YouTube] Təsadüfi axtarış xətasını düzəldin. çalğı siyahıları nəticələrdədir TeamNewPipe/NewPipeExtractor#185
+
+
+ 0.17.0-da dəyişikliklər
+ Yeni 
+Oynatma davamı #2288
+ • Sonuncu dəfə dayandırdığınız yayımları davam etdirin Downloader Təkmilləşdirmələri #2149
+ • Endirmələri xarici SD-kartlarda saxlamaq üçün Yaddaş Giriş Çərçivəsindən istifadə edin 
+• Seçim olaraq yeni mp4 muxer. endirməyə başlamazdan əvvəl endirmə kataloqunu dəyişdirin
+ • Ölçülmüş şəbəkələrə hörmət edin 
+
+Təkmilləşdirildi 
+• Silinmiş gema sətirləri #2295
+ • Fəaliyyətin həyat dövrü ərzində (avtomatik) fırlanma dəyişikliklərini idarə edin #2444
+ • Uzun müddətə edin -menyuları ardıcıl basın #2368
+
+ Sabitləndi
+ • Seçilmiş altyazı trekinin adının göstərilməməsi düzəldildi #2394 
+• Proqram yeniləməsinin yoxlanılması uğursuz olduqda qəzaya uğramayın (GitHub versiyası) #2423
+ • Sabit endirmələr 99,9%-də qaldı #2440 
+• Oynatma növbəsinin metadatasını yeniləyin #2453 
+• [SoundCloud] TeamNewPipe/NewPipeExtractor#170 pleylistlərini yükləyərkən yaranan xəta düzəldildi • [YouTube] Sabit müddət TeamNewPipe/NewPipeExtractor#177 ilə paresd edilə bilməz

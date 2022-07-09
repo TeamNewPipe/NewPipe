@@ -1,0 +1,8 @@
+### Mga pagpapabuti
+- Maaari nang limitahan ang kalidad ng video kung gumagamit ng mobile data. #1339 
+- Tandaan ang liwanag ng screen para sa sesyon #1442 
+- Mas pinainam na pag-download sa mahihinang CPU #1431 
+- (Gumaganang) suporta para sa media session #1433
+
+### Fix
+- Inayos ang crash tuwing binubuksan ang mga download (nasa release builds na rin ito) #1441

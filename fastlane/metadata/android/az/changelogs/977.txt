@@ -1,0 +1,8 @@
+• Uzun mətbuat menyusuna "növbəti oynat" düyməsi əlavə edildi 
+• Niyyət filtrinə YouTube şortu yolu prefiksi əlavə edildi 
+• Sabit Parametrlərin idxalı
+ • Növbə ekranında oyunçu düymələri ilə axtarış çubuğunun yerini dəyişdirin 
+• MediasessionManager ilə bağlı müxtəlif düzəlişlər 
+• Sabit axtarış çubuğu video bitdikdən sonra tamamlanmadı 
+• RealtekATV-də media tunelləri söndürüldü 
+• Genişləndirilmiş kiçildilmiş oyunçu düymələri tıklanabilir sahə Əlavə dəyişiklikləri görmək üçün aşağıdakı Linklər sekmesinden dəyişiklik jurnalına (və blog yazısına) baxın.

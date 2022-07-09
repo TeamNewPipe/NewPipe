@@ -300,14 +300,7 @@ private fun View.animateLightSlideAndAlpha(enterOrExit: Boolean, duration: Long,
     }
 }
 
-fun View.slideUp(
-    duration: Long,
-    delay: Long,
-    @FloatRange(from = 0.0, to = 1.0) translationPercent: Float
-) {
-    slideUp(duration, delay, translationPercent, null)
-}
-
+@JvmOverloads
 fun View.slideUp(
     duration: Long,
     delay: Long = 0L,

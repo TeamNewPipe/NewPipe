@@ -1,0 +1,2 @@
+Bu, SoundCloud-dan yenidən böyük çətinliklər olmadan istifadə etməyə imkan vermək üçün NewPipe-ı yeniləyən düzəliş buraxılışıdır. 
+SoundCloud-un v2 API-si indi ekstraktorda istifadə olunur və etibarsız müştəri ID-lərinin aşkarlanması təkmilləşdirilib.

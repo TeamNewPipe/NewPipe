@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
@@ -14,7 +15,8 @@ public class SecondaryStreamHelper<T extends Stream> {
     private final int position;
     private final StreamSizeWrapper<T> streams;
 
-    public SecondaryStreamHelper(final StreamSizeWrapper<T> streams, final T selectedStream) {
+    public SecondaryStreamHelper(@NonNull final StreamSizeWrapper<T> streams,
+                                 final T selectedStream) {
         this.streams = streams;
         this.position = streams.getStreamsList().indexOf(selectedStream);
         if (this.position < 0) {
@@ -29,9 +31,15 @@ public class SecondaryStreamHelper<T extends Stream> {
      * @param videoStream  desired video ONLY stream
      * @return selected audio stream or null if a candidate was not found
      */
+    @Nullable
     public static AudioStream getAudioStreamFor(@NonNull final List<AudioStream> audioStreams,
                                                 @NonNull final VideoStream videoStream) {
-        switch (videoStream.getFormat()) {
+        final MediaFormat mediaFormat = videoStream.getFormat();
+        if (mediaFormat == null) {
+            return null;
+        }
+
+        switch (mediaFormat) {
             case WEBM:
             case MPEG_4:// ¿is mpeg-4 DASH?
                 break;
@@ -39,7 +47,7 @@ public class SecondaryStreamHelper<T extends Stream> {
                 return null;
         }
 
-        final boolean m4v = videoStream.getFormat() == MediaFormat.MPEG_4;
+        final boolean m4v = (mediaFormat == MediaFormat.MPEG_4);
 
         for (final AudioStream audio : audioStreams) {
             if (audio.getFormat() == (m4v ? MediaFormat.M4A : MediaFormat.WEBMA)) {

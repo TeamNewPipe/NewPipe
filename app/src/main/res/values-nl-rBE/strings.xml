@@ -622,4 +622,22 @@
     <string name="dont_show">Niet tonen</string>
     <string name="comments_are_disabled">Reacties zijn uitgeschakeld</string>
     <string name="show_image_indicators_title">Toon afbeeldingsindicatoren</string>
+    <string name="settings_category_player_notification_title">Speler melding</string>
+    <string name="settings_category_player_notification_summary">Configureer actieve stream melding</string>
+    <string name="notifications">Meldingen</string>
+    <string name="streams_notification_channel_name">Nieuwe streams</string>
+    <string name="streams_notification_channel_description">Meldingen over nieuwe streams voor abonnementen</string>
+    <string name="error_report_notification_title">NewPipe meldt een fout, tik om te rapporteren</string>
+    <string name="progressive_load_interval_summary">Verander het laadinterval (momenteel %s). Een lagere waarde kan het laden van video versnellen. Vereist een herstart van de speler.</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nieuwe stream</item>
+        <item quantity="other">%s nieuwe streams</item>
+    </plurals>
+    <string name="error_report_channel_name">Foutrapport melding</string>
+    <string name="loading_stream_details">Stream details aan het laden…</string>
+    <string name="error_report_notification_toast">Een fout is opgetreden, zie melding</string>
+    <string name="crash_the_player">Crash de speler</string>
+    <string name="error_report_channel_description">Meldingen om fouten te rapporteren</string>
+    <string name="processing_may_take_a_moment">Verwerken... Dit kan even duren</string>
+    <string name="leak_canary_not_available">LeakCanary is niet beschikbaar</string>
 </resources>

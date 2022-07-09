@@ -1,0 +1,1 @@
+Bəzi nadir hallarda NewPipe-ın başlamasına mane olan sabit məlumatlar bazası miqrasiyası.

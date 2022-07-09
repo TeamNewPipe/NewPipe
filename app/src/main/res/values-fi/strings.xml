@@ -684,4 +684,5 @@
     <string name="show_crash_the_player_summary">Näytä soitinta käytettäessä soittimen kaatamisen vaihtoehto</string>
     <string name="show_error_snackbar">Näytä virheen ponnahdusilmoitus</string>
     <string name="feed_new_items">Uudet syötteet</string>
+    <string name="notifications">Ilmoitukset</string>
 </resources>

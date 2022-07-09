@@ -1,6 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/list"
+<?xml version="1.0" encoding="utf-8"?><!-- -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="?attr/listPreferredItemPaddingLeft" />
+    android:layout_height="match_parent"
+    android:fadeScrollbars="false">
+
+    <RadioGroup
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="?attr/listPreferredItemPaddingLeft" />
+</ScrollView>
+
+
