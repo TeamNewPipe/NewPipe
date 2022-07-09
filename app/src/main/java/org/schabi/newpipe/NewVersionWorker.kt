@@ -20,6 +20,7 @@ import org.schabi.newpipe.extractor.downloader.Response
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.util.ReleaseVersionUtil.coerceUpdateCheckExpiry
 import org.schabi.newpipe.util.ReleaseVersionUtil.isLastUpdateCheckExpired
+import org.schabi.newpipe.util.ReleaseVersionUtil.isReleaseApk
 import org.schabi.newpipe.util.Version
 import java.io.IOException
 
@@ -69,6 +70,11 @@ class NewVersionWorker(
 
     @Throws(IOException::class, ReCaptchaException::class)
     private fun checkNewVersion() {
+        // Check if the current apk is a github one or not.
+        if (!isReleaseApk()) {
+            return
+        }
+
         val prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
         // Check if the last request has happened a certain time ago
         // to reduce the number of API requests.
