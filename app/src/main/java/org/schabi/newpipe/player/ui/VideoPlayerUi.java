@@ -57,6 +57,7 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.CaptionStyleCompat;
 import com.google.android.exoplayer2.video.VideoSize;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.extractor.MediaFormat;
@@ -1372,7 +1373,9 @@ public abstract class VideoPlayerUi extends PlayerUi
         } else if (v.getId() == binding.switchMute.getId()) {
             player.toggleMute();
         } else if (v.getId() == binding.playerCloseButton.getId()) {
-            context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
+            // set package to this app's package to prevent the intent from being seen outside
+            context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER)
+                    .setPackage(App.PACKAGE_NAME));
         } else if (v.getId() == binding.playbackSpeed.getId()) {
             onPlaybackSpeedClicked();
         } else if (v.getId() == binding.qualityTextView.getId()) {
