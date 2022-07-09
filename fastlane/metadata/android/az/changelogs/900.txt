@@ -1,0 +1,14 @@
+Yeni 
+• Abunə qrupları və çeşidlənmiş lentlər 
+• Pleyerlərdə səssiz düyməsi 
+
+Təkmilləşdirilmiş
+ • NewPipe-də music.youtube.com və media.ccc.de linklərinin açılmasına icazə verin
+ • Görünüşdən Məzmuna iki parametrin yerini dəyişin 
+• Dəqiq olduqda 5, 15, 25 saniyəlik axtarış seçimlərini gizlədin. axtarış aktivləşdirildi 
+
+Sabitləşdirildi
+ • bəzi WebM videoları axtarıla bilməz 
+• Android P-də verilənlər bazası ehtiyat nüsxəsi 
+• endirilmiş faylı paylaşarkən qəza 
+• tonlarla YouTube çıxarılması problemi və s.

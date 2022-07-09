@@ -126,6 +126,14 @@ public class PlayerGestureListener
     }
 
     private void onScrollMainVolume(final float distanceX, final float distanceY) {
+        // If we just started sliding, change the progress bar to match the system volume
+        if (player.getVolumeRelativeLayout().getVisibility() != View.VISIBLE) {
+            final float volumePercent = player
+                    .getAudioReactor().getVolume() / (float) maxVolume;
+            player.getVolumeProgressBar().setProgress(
+                    (int) (volumePercent * player.getMaxGestureLength()));
+        }
+
         player.getVolumeProgressBar().incrementProgressBy((int) distanceY);
         final float currentProgressPercent = (float) player
                 .getVolumeProgressBar().getProgress() / player.getMaxGestureLength();

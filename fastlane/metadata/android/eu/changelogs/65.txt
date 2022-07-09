@@ -1,0 +1,14 @@
+### Hobekuntzak
+
+- Burger menuko animazioa desgaitu #1486 
+- Deskargen ezabaketa desegin #1472 
+- Partekatze-menuan deskargatzeko aukera #1498
+- Sakatze luzeko menuan partekatzeko aukera gehitu da #1454 
+- Minimizatu erreproduzigailua irtetzean #1354 
+- Liburutegiaren bertsioa eguneratu eta datu-basearen babeskopia konpondu #1510 
+- ExoPlayer 2.8.2 eguneraketa #1392
+
+### Konponketak
+
+- #1440 Bideoaren informazio ikuspegia apurtuta konponduta #1491 
+- Historia ikustea konponduta #1497

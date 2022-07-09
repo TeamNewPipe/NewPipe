@@ -1,0 +1,12 @@
+Yeni
+• Tədricən HTTP'dən başqa çatdırılma üsullarını dəstəkləyin: daha sürətli oynatma yükləmə zamanı, PeerTube və SoundCloud üçün düzəlişlər, bu yaxınlarda başa çatmış YouTube canlı yayımlarının oynadılması
+• Yerli siyahıya uzaqdan pleylist əlavə etmək üçün düyməni əlavə edin
+• Android 10+ paylaşım vərəqində şəkilə baxış
+
+Təkmilləşdirildi
+• Oynatma tənzimləmələrini təkmilləşdirin
+• Abunəlik idxal/ixrac düymələrini üç nöqtəli menyuya köçürün
+
+Sabitləndi
+• Tam baxılmış videoların pleylistdən çıxarılmasını düzəldin
+• Paylaşım menyusu mövzusunu və "pleylistə əlavə et" girişini düzəldin

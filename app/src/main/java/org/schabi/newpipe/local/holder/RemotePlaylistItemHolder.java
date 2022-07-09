@@ -5,11 +5,11 @@ import android.view.ViewGroup;
 
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
-import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.ServiceHelper;
 
 import java.time.format.DateTimeFormatter;
 
@@ -39,9 +39,9 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
         // Here is where the uploader name is set in the bookmarked playlists library
         if (!TextUtils.isEmpty(item.getUploader())) {
             itemUploaderView.setText(Localization.concatenateStrings(item.getUploader(),
-                    NewPipe.getNameOfService(item.getServiceId())));
+                    ServiceHelper.getNameOfServiceById(item.getServiceId())));
         } else {
-            itemUploaderView.setText(NewPipe.getNameOfService(item.getServiceId()));
+            itemUploaderView.setText(ServiceHelper.getNameOfServiceById(item.getServiceId()));
         }
 
         PicassoHelper.loadPlaylistThumbnail(item.getThumbnailUrl()).into(itemThumbnailView);
