@@ -163,6 +163,8 @@
     <string name="settings_category_sponsor_block_category_self_promo_summary">Similar to "sponsor" except for unpaid or self promotion. This includes sections about merchandise, donations, or information about who they collaborated with.</string>
     <string name="settings_category_sponsor_block_category_non_music_title">Music: Non-Music Section</string>
     <string name="settings_category_sponsor_block_category_non_music_summary">Only for use in music videos. This includes introductions or outros in music videos.</string>
+    <string name="settings_category_sponsor_block_category_filler_title">Filler Tangent/Jokes</string>
+    <string name="settings_category_sponsor_block_category_filler_summary">This is for tangential scenes added only for filler or humor that are not required to understand the main content of the video.</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="content">Content</string>
@@ -792,6 +794,7 @@
     <string name="sponsor_block_skip_interaction_toast">Skipped interaction reminder</string>
     <string name="sponsor_block_skip_self_promo_toast">Skipped unpaid/self promo</string>
     <string name="sponsor_block_skip_non_music_toast">Skipped non-music</string>
+    <string name="sponsor_block_skip_filler_toast">Skipped filler</string>
     <string name="sponsor_block_toggle_skipping">Toggle skipping sponsors</string>
     <string name="sponsor_block_clear_whitelist_title">Clear Whitelist</string>
     <string name="sponsor_block_clear_whitelist_summary">Clear the list of uploaders SponsorBlock will ignore.</string>

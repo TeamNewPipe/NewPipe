@@ -149,6 +149,30 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/settings_category_sponsor_block_category_filler_title">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            android:summary="@string/settings_category_sponsor_block_category_filler_summary"
+            android:selectable="false"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="false"
+            android:key="@string/sponsor_block_category_filler_key"
+            android:title="@string/settings_category_sponsor_block_category_enable_title"/>
+
+        <org.schabi.newpipe.settings.custom.EditColorPreference
+            app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_category_filler_key"
+            android:defaultValue="@color/filler_segment"
+            android:key="@string/sponsor_block_category_filler_color_key"
+            android:title="@string/settings_category_sponsor_block_category_color"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:layout="@layout/settings_category_header_layout">
 
         <Preference

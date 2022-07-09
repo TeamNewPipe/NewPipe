@@ -321,6 +321,10 @@ public class LocalPlayer implements com.google.android.exoplayer2.Player.Listene
                     toastText = context
                             .getString(R.string.sponsor_block_skip_non_music_toast);
                     break;
+                case "filler":
+                    toastText = context
+                            .getString(R.string.sponsor_block_skip_filler_toast);
+                    break;
             }
 
             Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
