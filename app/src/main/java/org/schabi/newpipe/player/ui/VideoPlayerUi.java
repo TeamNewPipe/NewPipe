@@ -1,7 +1,6 @@
 package org.schabi.newpipe.player.ui;
 
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static org.schabi.newpipe.MainActivity.DEBUG;
 import static org.schabi.newpipe.ktx.ViewUtils.animate;
@@ -912,18 +911,12 @@ public abstract class VideoPlayerUi extends PlayerUi
     public void onRepeatModeChanged(@RepeatMode final int repeatMode) {
         super.onRepeatModeChanged(repeatMode);
 
-        switch (repeatMode) {
-            case REPEAT_MODE_OFF:
-                binding.repeatButton.setImageResource(R.drawable.exo_controls_repeat_off);
-                break;
-            case REPEAT_MODE_ONE:
-                binding.repeatButton.setImageResource(R.drawable.exo_controls_repeat_one);
-                break;
-            case REPEAT_MODE_ALL:
-                binding.repeatButton.setImageResource(R.drawable.exo_controls_repeat_all);
-                break;
-            default:
-                break; // unreachable
+        if (repeatMode == REPEAT_MODE_ALL) {
+            binding.repeatButton.setImageResource(R.drawable.exo_controls_repeat_all);
+        } else if (repeatMode == REPEAT_MODE_ONE) {
+            binding.repeatButton.setImageResource(R.drawable.exo_controls_repeat_one);
+        } else /* repeatMode == REPEAT_MODE_OFF */ {
+            binding.repeatButton.setImageResource(R.drawable.exo_controls_repeat_off);
         }
     }
 

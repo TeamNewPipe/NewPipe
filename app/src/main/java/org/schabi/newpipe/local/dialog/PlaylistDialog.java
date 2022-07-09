@@ -168,7 +168,7 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
 
         final List<StreamEntity> streamEntities = Stream.of(player.getPlayQueue())
                 .filter(Objects::nonNull)
-                .flatMap(playQueue -> Objects.requireNonNull(playQueue).getStreams().stream())
+                .flatMap(playQueue -> playQueue.getStreams().stream())
                 .map(StreamEntity::new)
                 .collect(Collectors.toList());
         if (streamEntities.isEmpty()) {

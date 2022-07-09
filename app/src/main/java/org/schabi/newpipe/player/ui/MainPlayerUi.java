@@ -75,6 +75,11 @@ import java.util.Optional;
 public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutChangeListener {
     private static final String TAG = MainPlayerUi.class.getSimpleName();
 
+    // see the Javadoc of calculateMaxEndScreenThumbnailHeight for information
+    private static final int DETAIL_ROOT_MINIMUM_HEIGHT = 85; // dp
+    private static final int DETAIL_TITLE_TEXT_SIZE_TV = 16; // sp
+    private static final int DETAIL_TITLE_TEXT_SIZE_TABLET = 15; // sp
+
     private boolean isFullscreen = false;
     private boolean isVerticalVideo = false;
     private boolean fragmentIsVisible = false;
@@ -262,13 +267,8 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.topControls.setClickable(true);
         binding.topControls.setFocusable(true);
 
-        if (isFullscreen) {
-            binding.titleTextView.setVisibility(View.VISIBLE);
-            binding.channelTextView.setVisibility(View.VISIBLE);
-        } else {
-            binding.titleTextView.setVisibility(View.GONE);
-            binding.channelTextView.setVisibility(View.GONE);
-        }
+        binding.titleTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
+        binding.channelTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -450,13 +450,12 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
      * The calculating follows these rules:
      * <ul>
      * <li>
-     *     Show at least stream title and content creator on TVs and tablets
-     *     when in landscape (always the case for TVs) and not in fullscreen mode.
-     *     This requires to have at least <code>85dp</code> free space for {@link R.id.detail_root}
-     *     and additional space for the stream title text size
-     *     ({@link R.id.detail_title_root_layout}).
-     *     The text size is <code>15sp</code> on tablets and <code>16sp</code> on TVs,
-     *     see {@link R.id.titleTextView}.
+     *     Show at least stream title and content creator on TVs and tablets when in landscape
+     *     (always the case for TVs) and not in fullscreen mode. This requires to have at least
+     *     {@link #DETAIL_ROOT_MINIMUM_HEIGHT} free space for {@link R.id.detail_root} and
+     *     additional space for the stream title text size ({@link R.id.detail_title_root_layout}).
+     *     The text size is {@link #DETAIL_TITLE_TEXT_SIZE_TABLET} on tablets and
+     *     {@link #DETAIL_TITLE_TEXT_SIZE_TV} on TVs, see {@link R.id.titleTextView}.
      * </li>
      * <li>
      *     Otherwise, the max thumbnail height is the screen height.
@@ -472,12 +471,12 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         final int screenHeight = context.getResources().getDisplayMetrics().heightPixels;
 
         if (DeviceUtils.isTv(context) && !isFullscreen()) {
-            final int videoInfoHeight =
-                    DeviceUtils.dpToPx(85, context) + DeviceUtils.spToPx(16, context);
+            final int videoInfoHeight = DeviceUtils.dpToPx(DETAIL_ROOT_MINIMUM_HEIGHT, context)
+                    + DeviceUtils.spToPx(DETAIL_TITLE_TEXT_SIZE_TV, context);
             return Math.min(bitmap.getHeight(), screenHeight - videoInfoHeight);
         } else if (DeviceUtils.isTablet(context) && isLandscape() && !isFullscreen()) {
-            final int videoInfoHeight =
-                    DeviceUtils.dpToPx(85, context) + DeviceUtils.spToPx(15, context);
+            final int videoInfoHeight = DeviceUtils.dpToPx(DETAIL_ROOT_MINIMUM_HEIGHT, context)
+                    + DeviceUtils.spToPx(DETAIL_TITLE_TEXT_SIZE_TABLET, context);
             return Math.min(bitmap.getHeight(), screenHeight - videoInfoHeight);
         } else { // fullscreen player: max height is the device height
             return Math.min(bitmap.getHeight(), screenHeight);
@@ -933,15 +932,9 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         }
         fragmentListener.onFullscreenStateChanged(isFullscreen);
 
-        if (isFullscreen) {
-            binding.titleTextView.setVisibility(View.VISIBLE);
-            binding.channelTextView.setVisibility(View.VISIBLE);
-            binding.playerCloseButton.setVisibility(View.GONE);
-        } else {
-            binding.titleTextView.setVisibility(View.GONE);
-            binding.channelTextView.setVisibility(View.GONE);
-            binding.playerCloseButton.setVisibility(View.VISIBLE);
-        }
+        binding.titleTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
+        binding.channelTextView.setVisibility(isFullscreen ? View.VISIBLE : View.GONE);
+        binding.playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
         setupScreenRotationButton();
     }
 

@@ -33,8 +33,6 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 /**
  * One service for all players.
- *
- * @author mauriciocolli
  */
 public final class PlayerService extends Service {
     private static final String TAG = PlayerService.class.getSimpleName();
@@ -72,14 +70,16 @@ public final class PlayerService extends Service {
                     + "], flags = [" + flags + "], startId = [" + startId + "]");
         }
 
-        if (!Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())
-                || player.getPlayQueue() != null) {
-            // ^ no need to process media button's action if player is not working
+        if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())
+                && player.getPlayQueue() == null) {
+            // No need to process media button's actions if the player is not working, otherwise the
+            // player service would strangely start with nothing to play
+            return START_NOT_STICKY;
+        }
 
-            player.handleIntent(intent);
-            if (player.getMediaSessionManager() != null) {
-                player.getMediaSessionManager().handleMediaButtonIntent(intent);
-            }
+        player.handleIntent(intent);
+        if (player.getMediaSessionManager() != null) {
+            player.getMediaSessionManager().handleMediaButtonIntent(intent);
         }
 
         return START_NOT_STICKY;
@@ -97,11 +97,6 @@ public final class PlayerService extends Service {
             // We can't just pause the player here because it will make transition
             // from one stream to a new stream not smooth
             player.smoothStopForImmediateReusing();
-
-            // Notification shows information about old stream but if a user selects
-            // a stream from backStack it's not actual anymore
-            // So we should hide the notification at all.
-            // When autoplay enabled such notification flashing is annoying so skip this case
         }
     }
 

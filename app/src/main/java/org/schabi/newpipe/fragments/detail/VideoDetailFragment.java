@@ -1311,11 +1311,12 @@ public final class VideoDetailFragment
         setHeightThumbnail();
 
         // Prevent from re-adding a view multiple times
-        new Handler().post(() -> player.UIs().get(MainPlayerUi.class).ifPresent(playerUi -> {
-            playerUi.removeViewFromParent();
-            binding.playerPlaceholder.addView(playerUi.getBinding().getRoot());
-            playerUi.setupVideoSurfaceIfNeeded();
-        }));
+        new Handler(Looper.getMainLooper()).post(() ->
+                player.UIs().get(MainPlayerUi.class).ifPresent(playerUi -> {
+                    playerUi.removeViewFromParent();
+                    binding.playerPlaceholder.addView(playerUi.getBinding().getRoot());
+                    playerUi.setupVideoSurfaceIfNeeded();
+                }));
     }
 
     private void removeVideoPlayerView() {
