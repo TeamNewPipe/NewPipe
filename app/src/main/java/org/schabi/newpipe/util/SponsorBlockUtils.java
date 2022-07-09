@@ -98,7 +98,8 @@ public final class SponsorBlockUtils {
         }
         if (includePreviewCategory) {
             categoryParamList.add("preview");
-            
+        }
+
         if (includeFillerCategory) {
             categoryParamList.add("filler");
         }
@@ -286,6 +287,8 @@ public final class SponsorBlockUtils {
                     return colorStr == null
                             ? context.getResources().getColor(R.color.preview_segment)
                             : Color.parseColor(colorStr);
+                }
+                break;
             case "filler":
                 key = context.getString(R.string.sponsor_block_category_filler_key);
                 if (prefs.getBoolean(key, false)) {
