@@ -1,0 +1,24 @@
+DİQQƏT: Bu versiya yəqin ki, sonuncu versiya kimi bir bugfestdir. Lakin 17-ci ildən bəri tam bağlanması səbəbindən. qırıq versiya heç bir versiyadan daha yaxşıdır. Düzdür? ¯\_(ツ)_/¯
+
+ ### Təkmilləşdirmələr
+ * endirilmiş fayllar indi bir kliklə açıla bilər #1879 * android 4.1 - 4.3 üçün dəstəyi buraxın #1884 
+* köhnə oyunçunu silin #1884 
+* sürüşdürməklə axınları cari oyun növbəsindən silin onları sağa #1915 
+* yeni axın əl ilə növbəyə salındıqda avtomatik növbəyə qoyulmuş axını silin #1878
+ * Yükləmələr üçün postprocessing və çatışmayan funksiyaları həyata keçirin #1759 @kapodamy
+ * Post-proses infrastrukturu
+ * Düzgün xəta idarəsi "infrastruktur" (yükləyici üçün) 
+* Çoxsaylı yükləmələr əvəzinə növbə saxlayın
+ * Seriallaşdırılmış gözlənilən yükləmələri (`.giga` faylları) proqram datasına köçürün
+ * Maksimum endirmə cəhdini həyata keçirin 
+* Düzgün çoxmüxtəlif endirmənin dayandırılmasını 
+* Mobil şəbəkəyə keçərkən yükləmələri dayandırın (heç vaxt işləmir, 2-ci nöqtəyə baxın)
+ * Saxla növbəti yükləmələr üçün mövzu sayı
+ * Çoxlu uyğunsuzluqlar düzəldildi
+
+### Düzəltildi 
+* Defolt ayırdetmə ən yaxşı və məhdud mobil data ayırdetmə səviyyəsinə təyin edilmiş qəzanı düzəldin #1835
+ * pop-up pleyer qəzası düzəldildi #1874 
+* Fon pleyeri açmağa çalışarkən NPE # 1901 
+* Yerləşdirmə üçün düzəliş g avtomatik növbə aktivləşdirildikdə yeni axınlar #1878 
+* Bağlama şəhərinin şifrəsinin açılması problemi həll edildi

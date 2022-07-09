@@ -156,8 +156,8 @@
     <string name="error_details_headline">Detaļas:</string>
     <string name="your_comment">Jūsu komentārs (Angliski):</string>
     <string name="info_labels">Kas:\\nRequest:\\nContent Valoda:\\nContent Valsts:\\nApp Valoda:\\nService:\\nGMT Laiks:\\nPackage:\\nVersion:\\nOS versija:</string>
-    <string name="hash_channel_description">Notifikācijas priekš video apstrādes progresa</string>
-    <string name="hash_channel_name">Video Haša Notifikācija</string>
+    <string name="hash_channel_description">Notifikācijas video apstrādes progresam</string>
+    <string name="hash_channel_name">Video haša notifikācija</string>
     <string name="popup_remember_size_pos_summary">Atcerēties pēdējo popup izmēru un pozīciju</string>
     <string name="popup_remember_size_pos_title">Atcerēties popup īpašības</string>
     <string name="default_popup_resolution_title">Noklusējuma popup izšķirtspēja</string>
@@ -223,9 +223,9 @@
     <string name="switch_to_popup">Pārslēgt uz Popup</string>
     <string name="switch_to_background">Pārslēgt uz Fonu</string>
     <string name="unknown_content">[Nezināms]</string>
-    <string name="app_update_notification_channel_description">Notifikācijas priekš NewPipe versijas</string>
-    <string name="app_update_notification_channel_name">Aplikācijas Atjauninājuma Notifikācija</string>
-    <string name="notification_channel_description">Notifikācijas priekš NewPipe fona un popup atskaņotājiem</string>
+    <string name="app_update_notification_channel_description">Notifikācijas NewPipe versijām</string>
+    <string name="app_update_notification_channel_name">Aplikācijas atjauninājuma notifikācija</string>
+    <string name="notification_channel_description">Notifikācijas priekš NewPipe atskaņotāja</string>
     <string name="notification_channel_name">NewPipe Notifikācija</string>
     <string name="file">Fails</string>
     <string name="just_once">Tikai Vienreiz</string>
@@ -253,7 +253,7 @@
     <string name="restricted_video">Šis video ir vecuma ierobežots.
 \n
 \nIeslēdziet \"%1$s\" iestatījumos, ja vēlaties to redzēt.</string>
-    <string name="youtube_restricted_mode_enabled_summary">YouTube piedāvā \"ierobežotu režīmu\", kas slēpj iespējams pieaugušo saturu</string>
+    <string name="youtube_restricted_mode_enabled_summary">YouTube piedāvā \"ierobežotu režīmu\", kas slēpj potenciāli pieaugušo saturu</string>
     <string name="youtube_restricted_mode_enabled_title">Ieslēgt YouTube \"Ierobežoto režīmu\"</string>
     <string name="show_age_restricted_content_summary">Rādīt saturu, iespējams nepiemērotu bērniem, jo tam ir vecuma ierobežojums</string>
     <string name="show_age_restricted_content_title">Rādīt vecuma ierobežotu saturu</string>
@@ -273,7 +273,7 @@
     <string name="peertube_instance_add_help">Ievadīt instances saites URL</string>
     <string name="peertube_instance_add_title">Pievienot instanci</string>
     <string name="peertube_instance_url_help">Atrodiet instances, kas jums patīk ar %s</string>
-    <string name="peertube_instance_url_summary">Izvēlaties jūsu mīļāko PeerTube instanci</string>
+    <string name="peertube_instance_url_summary">Izvēlaties jūsu mīļākās PeerTube instances</string>
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="localization_changes_requires_app_restart">Valoda nomainīsies, kad aplikāciju restartēs</string>
     <string name="no_app_to_open_intent">Neviena lietotne jūsu ierīcē nevar šo atvērt</string>
@@ -493,7 +493,7 @@
     <string name="show_hold_to_append_title">Rādīt \"Nospiediet, lai pievienotu\" padomu</string>
     <string name="autoplay_title">Automātiski atskaņot</string>
     <string name="download_dialog_title">Lejupielādēt</string>
-    <string name="resume_on_audio_focus_gain_summary">Turpināt atskaņošanu pēc pārtraukumiem (piemēram telefona zvana)</string>
+    <string name="resume_on_audio_focus_gain_summary">Turpināt atskaņošanu pēc pārtraukumiem (piemēram, telefona zvana)</string>
     <string name="resume_on_audio_focus_gain_title">Turpināt atskaņošanu</string>
     <string name="enable_watch_history_summary">Saglabājiet skatītos videoklipus</string>
     <string name="settings_category_clear_data_title">Dzēst datus</string>
@@ -502,9 +502,9 @@
     <string name="enable_playback_resume_summary">Saglabāt pēdējo atskaņošanas pozīciju</string>
     <string name="enable_playback_resume_title">Atsākt atskaņošanu</string>
     <string name="enable_watch_history_title">Skatīšanās vēsture</string>
-    <string name="enable_search_history_summary">Glabāt meklēšanas vēsturi uz telefona</string>
+    <string name="enable_search_history_summary">Glabāt meklēšanas vēsturi atmiņā</string>
     <string name="enable_search_history_title">Meklēšanas vēsture</string>
-    <string name="show_search_suggestions_summary">Izvēlaties, kādus ieteikumus rādīt, rakstot meklēšanas joslā</string>
+    <string name="show_search_suggestions_summary">Izvēlieties, kādus ieteikumus rādīt, rakstot meklēšanas joslā</string>
     <string name="show_search_suggestions_title">Meklēšanas ieteikumi</string>
     <string name="brightness_gesture_control_summary">Velkot ar pirkstu, mainiet video atskaņošanas spilgtumu</string>
     <string name="brightness_gesture_control_title">Spilgtuma kontrole, atskaņojot video</string>
@@ -522,15 +522,15 @@
     <string name="show_description_summary">Izslēdziet, ja nevēlaties redzēt video aprakstus un papildus informāciju</string>
     <string name="show_description_title">Rādīt video aprakstu</string>
     <string name="show_next_and_similar_title">Rādīt \'Nākošos\' un \'Līdzīgos\' videoklipus</string>
-    <string name="show_comments_summary">Izslēdziet, ja vēlaties neredzēt komentārus</string>
+    <string name="show_comments_summary">Izslēdziet, lai paslēptu komentārus</string>
     <string name="show_comments_title">Rādīt komentārus</string>
     <string name="download_thumbnail_summary">Izslēdziet, ja vēlaties nelādēt video attēlus, ietaupot datus un atmiņu. Opcija notīra kešatmiņu, izdzēšot visus saglabātos video attēlus</string>
     <string name="download_thumbnail_title">Ielādēt video attēlus</string>
     <string name="clear_queue_confirmation_description">Tagadējā atskaņošanas rinda tiks aizvietota</string>
-    <string name="clear_queue_confirmation_summary">Mainoties vienam video uz citu, iespējams notīrīsies jūsu atskaņošanas rinda</string>
+    <string name="clear_queue_confirmation_summary">Mainoties vienam video uz citu, iespējams, notīrīsies jūsu atskaņošanas rinda</string>
     <string name="clear_queue_confirmation_title">Prasīt apstiprinājumu, pirms notīrīt atskaņošanas rindu</string>
-    <string name="seek_duration_title">Uz priekšu/ uz atpakaļu, meklētāja ilgums</string>
-    <string name="use_inexact_seek_summary">Neprecīzs meklētājs atļauj video atskaņotājam atrast pozīciju atrāk, bet ar zemāku precizitāti. Meklēšana 5, 15 vai 25 sekundes uz priekšu vai atpakaļ, nestrādā ar šo opciju</string>
+    <string name="seek_duration_title">Uz priekšu/atpakaļ meklētāja ilgums</string>
+    <string name="use_inexact_seek_summary">Neprecīzs meklētājs atļauj video atskaņotājam atrast pozīciju ātrāk, bet ar zemāku precizitāti. Meklēšana 5, 15 vai 25 sekundes uz priekšu vai atpakaļ, nestrādā ar šo opciju</string>
     <string name="use_inexact_seek_title">Izmantot ātru, neprecīzu meklētāju</string>
     <string name="black_theme_title">Melna</string>
     <string name="dark_theme_title">Tumša</string>
@@ -539,7 +539,7 @@
     <string name="default_video_format_title">Noklusējuma video formāts</string>
     <string name="default_audio_format_title">Noklusējuma audio formāts</string>
     <string name="play_audio">Audio</string>
-    <string name="notification_colorize_summary">Ļaujiet Android pielāgot paziņojuma krāsu atbilstoši galvenajai krāsai video attēlā (ņemiet vērā, ka tas nav pieejams visās ierīcēs)</string>
+    <string name="notification_colorize_summary">Ļaujiet Android pielāgot notifikācijas krāsu atbilstoši galvenajai krāsai video attēlā (ņemiet vērā, ka tas nav pieejams visās ierīcēs)</string>
     <string name="share">Kopīgot</string>
     <string name="open_with">Atvērt ar</string>
     <string name="open_in_browser">Atvērt pārlūkprogrammā</string>
@@ -548,22 +548,22 @@
     <string name="no_player_found_toast">Netika atrasts video atskaņotājs (jūs varat instalēt VLC, lai to atskaņotu).</string>
     <string name="no_player_found">Netika atrasts video atskaņotājs. Instalēt VLC\?</string>
     <string name="upload_date_text">Publicēts %1$s</string>
-    <string name="main_bg_subtitle">Nospiediet \"Meklēt\", lai sāktu.</string>
+    <string name="main_bg_subtitle">Nospiediet uz meklēšanas ikonas, lai sāktu.</string>
     <string name="notification_colorize_title">Iekrāsot notifikāciju</string>
     <string name="notification_action_nothing">Nekas</string>
-    <string name="notification_action_buffering">Lādējas</string>
+    <string name="notification_action_buffering">Ielādējas</string>
     <string name="notification_action_shuffle">Sajaukt</string>
     <string name="notification_action_repeat">Atkārtot</string>
     <string name="notification_actions_at_most_three">Jūs varat izvēlēties tikai 3 darbības, kuras rādīs kompaktajā notifikācijā!</string>
-    <string name="notification_actions_summary">Rediģējiet katru notifikācijas darbību pieskaroties tai. Izvēlaties trīs darbības, kuras rādīs kompaktā notifikācijā, izmantojot rūtiņas labajā pusē</string>
+    <string name="notification_actions_summary">Rediģējiet katru notifikācijas darbību, pieskaroties tai. Izvēlieties trīs darbības, kuras rādīs kompaktā notifikācijā, izmantojot rūtiņas labajā pusē</string>
     <string name="notification_action_4_title">Piektā darbības poga</string>
     <string name="notification_action_3_title">Ceturtā darbības poga</string>
     <string name="notification_action_2_title">Trešā darbības poga</string>
     <string name="notification_action_1_title">Otrā darbības poga</string>
     <string name="notification_action_0_title">Pirmā darbības poga</string>
-    <string name="notification_scale_to_square_image_summary">Piemērot video attēlu, kuru rāda notifikācijā, no 16:9 uz 1:1 proporciju (iespējams, ka attēls būs izstiepts)</string>
+    <string name="notification_scale_to_square_image_summary">Piemērot video attēlu, kuru rāda notifikācijā, no 16:9 uz 1:1 proporciju (iespējams, attēls būs izstiepts)</string>
     <string name="notification_scale_to_square_image_title">Piemērot video attēlu 1:1 proporcijai</string>
-    <string name="show_play_with_kodi_summary">Rādīt opciju, atskaņot video ar Kodi mediju centru</string>
+    <string name="show_play_with_kodi_summary">Rādīt opciju atskaņot video ar Kodi mediju centru</string>
     <string name="show_play_with_kodi_title">Rādīt \"Atskaņot ar Kodi\" opciju</string>
     <string name="kore_not_found">Instalēt trūkstošo Kore aplikāciju\?</string>
     <string name="play_with_kodi_title">Atskaņot ar Kodi</string>
@@ -589,10 +589,10 @@
     <string name="subscribed_button_title">Abonēts</string>
     <string name="subscribe_button_title">Abonēt</string>
     <string name="use_external_audio_player_title">Izmantot ārējo audio atskaņotāju</string>
-    <string name="use_external_video_player_summary">Noņem skaņu dažās rezolūcijās</string>
+    <string name="use_external_video_player_summary">Noņem skaņu dažās izšķirtspējās</string>
     <string name="use_external_video_player_title">Izmantot ārējo video atskaņotāju</string>
     <string name="share_dialog_title">Kopīgot ar</string>
-    <string name="search_showing_result_for">Rāda rezultātus priekš: %s</string>
+    <string name="search_showing_result_for">Tiek rādīti rezultāti priekš: %s</string>
     <string name="did_you_mean">Vai jūs domājāt \"%1$s\"\?</string>
     <string name="settings">Iestatījumi</string>
     <string name="search">Meklēt</string>
@@ -638,7 +638,7 @@
     <string name="show_image_indicators_summary">Rādīt krāsainas lentes virs attēliem, norādot to avotu: sarkana - tīkls, zila - disks, zaļa - atmiņa</string>
     <string name="downloads_storage_use_saf_summary_api_19">“Krātuves Piekļuves Sistēma” ir neatbalstīta uz Android KitKat un zemākām versijām</string>
     <string name="description_select_enable">Ieslēgt teksta atlasīšanu video aprakstā</string>
-    <string name="no_dir_yet">Nav izvēlēts noklusējuma lejupielādes mape, izvēlaties to tagad</string>
+    <string name="no_dir_yet">Lejupielādes mape vēl nav iestatīta, izvēlieties noklusējuma lejupielādes mapi</string>
     <string name="main_page_content_swipe_remove">Pārvelciet objektus, lai tos noņemtu</string>
     <string name="feed_toggle_show_played_items">Rādīt noskatītos video</string>
     <string name="local_search_suggestions">Lokālie meklēšanas ieteikumi</string>
@@ -680,4 +680,9 @@
         <item quantity="other">Lejupielādes pabeigtas</item>
     </plurals>
     <string name="description_select_note">Tagad varat atlasīt tekstu video aprakstā.</string>
+    <string name="notifications">Notifikācijas</string>
+    <string name="progressive_load_interval_summary">Izmainīt ielādēšanas intervāla izmēru (pašlaik %s). Zemāka vērtība var paātrināt sākotnējo video ielādi. Izmainot vērtību, nepieciešams restartēt atskaņotāju.</string>
+    <string name="crash_the_player">Avarēt atskaņotāju</string>
+    <string name="settings_category_player_notification_summary">Pielāgojiet pašlaik atskaņotās plūsmas notifikāciju</string>
+    <string name="settings_category_player_notification_title">Atskaņotāja notifikācija</string>
 </resources>

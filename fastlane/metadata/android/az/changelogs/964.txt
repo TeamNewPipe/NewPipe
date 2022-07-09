@@ -1,0 +1,8 @@
+• Oyunçu idarələrində fəsillər üçün əlavə dəstək
+ • [PeerTube] Sepia axtarışı əlavə edildi 
+• Video təfərrüatları görünüşündə paylaşma düyməsi yenidən əlavə edildi və axın təsviri tab tərtibatına köçürüldü 
+• Parlaqlıq jesti deaktiv edilibsə, parlaqlığın bərpasını deaktiv edin
+ • Videonu kodi-də oynamaq üçün siyahı elementi əlavə edildi 
+• Bəzi cihazlarda heç bir defolt brauzer təyin edilmədikdə qəza düzəldildi və paylaşma dialoqlarını təkmilləşdirin
+ • Tam ekran pleyerində hardware sahəsi düyməsi ilə oynat/fasilə dəyişin
+ • [media.ccc.de] Müxtəlif düzəlişlər və təkmilləşdirmələr

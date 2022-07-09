@@ -205,7 +205,7 @@ public class App extends MultiDexApplication {
             return;
         }
 
-        final CoreConfigurationBuilder acraConfig = new CoreConfigurationBuilder(this)
+        final CoreConfigurationBuilder acraConfig = new CoreConfigurationBuilder()
                 .withBuildConfigClass(BuildConfig.class);
         ACRA.init(this, acraConfig);
     }

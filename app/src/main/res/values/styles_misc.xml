@@ -69,14 +69,17 @@
     <style name="DarkPopupMenu" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
+        <item name="popupTheme">@style/ToolbarPopupTheme</item>
         <item name="android:textColorPrimary">?attr/actionColor</item>
         <item name="android:textColorSecondary">?attr/actionColor</item>
         <item name="tint">?attr/actionColor</item>
         <item name="iconTint">?attr/actionColor</item>
     </style>
+    <style name="ToolbarPopupTheme" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
+        <item name="tint">@color/contrastColor</item>
+    </style>
     <style name="ContrastToolbarTheme" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
+        <item name="popupTheme">@style/ToolbarPopupTheme</item>
         <item name="android:textColorPrimary">@color/contrastColor</item>
         <item name="android:textColorSecondary">@color/contrastColor</item>
         <item name="tint">@color/contrastColor</item>

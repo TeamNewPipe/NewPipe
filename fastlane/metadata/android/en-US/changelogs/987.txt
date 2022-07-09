@@ -1,0 +1,12 @@
+New
+• Support delivery methods other than progressive HTTP: faster playback loading time, fixes for PeerTube and SoundCloud, playback of recently-ended YouTube livestreams
+• Add button to add a remote playlist to a local one
+• Image preview in Android 10+ share sheet
+
+Improved
+• Improve playback parameters dialog
+• Move subscription import/export buttons to three-dot menu
+
+Fixed
+• Fix removing fully watched videos from playlist
+• Fix share menu theme and "add to playlist" entry

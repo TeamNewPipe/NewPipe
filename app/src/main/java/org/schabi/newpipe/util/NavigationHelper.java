@@ -33,6 +33,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.DeliveryMethod;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
@@ -60,7 +61,9 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import static org.schabi.newpipe.util.ListHelper.getUrlAndNonTorrentStreams;
 
 public final class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
@@ -217,30 +220,47 @@ public final class NavigationHelper {
 
     public static void playOnExternalAudioPlayer(@NonNull final Context context,
                                                  @NonNull final StreamInfo info) {
-        final int index = ListHelper.getDefaultAudioFormat(context, info.getAudioStreams());
-
-        if (index == -1) {
+        final List<AudioStream> audioStreams = info.getAudioStreams();
+        if (audioStreams == null || audioStreams.isEmpty()) {
             Toast.makeText(context, R.string.audio_streams_empty, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        final AudioStream audioStream = info.getAudioStreams().get(index);
+        final List<AudioStream> audioStreamsForExternalPlayers =
+                getUrlAndNonTorrentStreams(audioStreams);
+        if (audioStreamsForExternalPlayers.isEmpty()) {
+            Toast.makeText(context, R.string.no_audio_streams_available_for_external_players,
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        final int index = ListHelper.getDefaultAudioFormat(context, audioStreamsForExternalPlayers);
+        final AudioStream audioStream = audioStreamsForExternalPlayers.get(index);
+
         playOnExternalPlayer(context, info.getName(), info.getUploaderName(), audioStream);
     }
 
-    public static void playOnExternalVideoPlayer(@NonNull final Context context,
+    public static void playOnExternalVideoPlayer(final Context context,
                                                  @NonNull final StreamInfo info) {
-        final ArrayList<VideoStream> videoStreamsList = new ArrayList<>(
-                ListHelper.getSortedStreamVideosList(context, info.getVideoStreams(), null, false,
-                        false));
-        final int index = ListHelper.getDefaultResolutionIndex(context, videoStreamsList);
-
-        if (index == -1) {
+        final List<VideoStream> videoStreams = info.getVideoStreams();
+        if (videoStreams == null || videoStreams.isEmpty()) {
             Toast.makeText(context, R.string.video_streams_empty, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        final VideoStream videoStream = videoStreamsList.get(index);
+        final List<VideoStream> videoStreamsForExternalPlayers =
+                ListHelper.getSortedStreamVideosList(context,
+                        getUrlAndNonTorrentStreams(videoStreams), null, false, false);
+        if (videoStreamsForExternalPlayers.isEmpty()) {
+            Toast.makeText(context, R.string.no_video_streams_available_for_external_players,
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        final int index = ListHelper.getDefaultResolutionIndex(context,
+                videoStreamsForExternalPlayers);
+
+        final VideoStream videoStream = videoStreamsForExternalPlayers.get(index);
         playOnExternalPlayer(context, info.getName(), info.getUploaderName(), videoStream);
     }
 
@@ -248,9 +268,48 @@ public final class NavigationHelper {
                                             @Nullable final String name,
                                             @Nullable final String artist,
                                             @NonNull final Stream stream) {
+        final DeliveryMethod deliveryMethod = stream.getDeliveryMethod();
+        final String mimeType;
+
+        if (!stream.isUrl() || deliveryMethod == DeliveryMethod.TORRENT) {
+            Toast.makeText(context, R.string.selected_stream_external_player_not_supported,
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        switch (deliveryMethod) {
+            case PROGRESSIVE_HTTP:
+                if (stream.getFormat() == null) {
+                    if (stream instanceof AudioStream) {
+                        mimeType = "audio/*";
+                    } else if (stream instanceof VideoStream) {
+                        mimeType = "video/*";
+                    } else {
+                        // This should never be reached, because subtitles are not opened in
+                        // external players
+                        return;
+                    }
+                } else {
+                    mimeType = stream.getFormat().getMimeType();
+                }
+                break;
+            case HLS:
+                mimeType = "application/x-mpegURL";
+                break;
+            case DASH:
+                mimeType = "application/dash+xml";
+                break;
+            case SS:
+                mimeType = "application/vnd.ms-sstr+xml";
+                break;
+            default:
+                // Torrent streams are not exposed to external players
+                mimeType = "";
+        }
+
         final Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.parse(stream.getUrl()), stream.getFormat().getMimeType());
+        intent.setDataAndType(Uri.parse(stream.getContent()), mimeType);
         intent.putExtra(Intent.EXTRA_TITLE, name);
         intent.putExtra("title", name);
         intent.putExtra("artist", artist);

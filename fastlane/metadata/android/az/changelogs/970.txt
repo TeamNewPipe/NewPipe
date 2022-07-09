@@ -1,0 +1,10 @@
+Yeni
+ • Təsvirin altında məzmun metadatasını (teqlər, kateqoriyalar, lisenziya, ...) göstərin 
+• Uzaqdan (yerli olmayan) pleylistlərdə "Kanal təfərrüatlarını göstər" seçimi əlavə edildi.
+ • Uzun basılan menyuya "Brauzerdə aç" seçimi əlavə edildi 
+
+Sabit 
+• Video təfərrüatları səhifəsində sabit fırlanma qəzası 
+• Pleyerdəki "Kodi ilə Oyna" düyməsi həmişə Kore quraşdırmağı təklif edir 
+• Sabit və təkmilləşdirilmiş qəbulu idxal və ixrac yolları 
+• [YouTube] Bəyənmə sayı düzəldildi Və daha çox

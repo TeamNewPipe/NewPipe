@@ -1,0 +1,17 @@
+Yeni 
+• Yeni axınlar üçün bildirişlər 
+• Fon və video pleyerlər arasında problemsiz keçid 
+• Səthi yarımtonlarla dəyişdirin 
+• Pleylistə əsas oyunçu növbəsini əlavə edin
+
+ Təkmilləşdirilmiş 
+• Sürət/pitch addım ölçüsünü yadda saxla
+ • Video pleyerdə ilkin uzun buferləməni azaldın
+ • Android TV üçün oyunçu interfeysini təkmilləşdirin 
+• Bütün endirilmiş faylları silməzdən əvvəl təsdiqləyin 
+
+Sabit 
+• Yeni axınlar üçün bildirişlər 
+• Fon və video pleyerlər arasında problemsiz keçid 
+• Səthi yarımtonlarla dəyişdirin
+ • Pleylistə əsas oyunçu növbəsini əlavə edin
