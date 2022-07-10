@@ -19,6 +19,8 @@
 
 package org.schabi.newpipe.local.subscription.services;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
@@ -42,8 +44,6 @@ import java.util.List;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-
-import static org.schabi.newpipe.MainActivity.DEBUG;
 
 public class SubscriptionsExportService extends BaseImportExportService {
     public static final String KEY_FILE_PATH = "key_file_path";
@@ -109,8 +109,8 @@ public class SubscriptionsExportService extends BaseImportExportService {
 
         subscriptionManager.subscriptionTable().getAll().take(1)
                 .map(subscriptionEntities -> {
-                    final List<SubscriptionItem> result
-                            = new ArrayList<>(subscriptionEntities.size());
+                    final List<SubscriptionItem> result =
+                            new ArrayList<>(subscriptionEntities.size());
                     for (final SubscriptionEntity entity : subscriptionEntities) {
                         result.add(new SubscriptionItem(entity.getServiceId(), entity.getUrl(),
                                 entity.getName()));

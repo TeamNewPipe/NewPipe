@@ -176,8 +176,8 @@ public final class ListHelper {
             @Nullable final List<VideoStream> videoOnlyStreams,
             final boolean ascendingOrder,
             final boolean preferVideoOnlyStreams) {
-        final SharedPreferences preferences
-                = PreferenceManager.getDefaultSharedPreferences(context);
+        final SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(context);
 
         final boolean showHigherResolutions = preferences.getBoolean(
                 context.getString(R.string.show_higher_resolutions_key), false);
@@ -214,8 +214,8 @@ public final class ListHelper {
 
     private static String computeDefaultResolution(final Context context, final int key,
                                                    final int value) {
-        final SharedPreferences preferences
-                = PreferenceManager.getDefaultSharedPreferences(context);
+        final SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(context);
 
         // Load the preferred resolution otherwise the best available
         String resolution = preferences != null
@@ -254,8 +254,8 @@ public final class ListHelper {
             return 0;
         }
 
-        final int defaultStreamIndex
-                = getVideoStreamIndex(defaultResolution, defaultFormat, videoStreams);
+        final int defaultStreamIndex =
+                getVideoStreamIndex(defaultResolution, defaultFormat, videoStreams);
 
         // this is actually an error,
         // but maybe there is really no stream fitting to the default value.
@@ -446,8 +446,9 @@ public final class ListHelper {
         final String targetResolutionNoRefresh = targetResolution.replaceAll("p\\d+$", "p");
 
         for (int idx = 0; idx < videoStreams.size(); idx++) {
-            final MediaFormat format
-                    = targetFormat == null ? null : videoStreams.get(idx).getFormat();
+            final MediaFormat format = targetFormat == null
+                    ? null
+                    : videoStreams.get(idx).getFormat();
             final String resolution = videoStreams.get(idx).getResolution();
             final String resolutionNoRefresh = resolution.replaceAll("p\\d+$", "p");
 
@@ -510,8 +511,8 @@ public final class ListHelper {
     private static MediaFormat getDefaultFormat(@NonNull final Context context,
                                                 @StringRes final int defaultFormatKey,
                                                 @StringRes final int defaultFormatValueKey) {
-        final SharedPreferences preferences
-                = PreferenceManager.getDefaultSharedPreferences(context);
+        final SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(context);
 
         final String defaultFormat = context.getString(defaultFormatValueKey);
         final String defaultFormatString = preferences.getString(
@@ -617,8 +618,8 @@ public final class ListHelper {
     private static String getResolutionLimit(@NonNull final Context context) {
         String resolutionLimit = null;
         if (isMeteredNetwork(context)) {
-            final SharedPreferences preferences
-                    = PreferenceManager.getDefaultSharedPreferences(context);
+            final SharedPreferences preferences =
+                    PreferenceManager.getDefaultSharedPreferences(context);
             final String defValue = context.getString(R.string.limit_data_usage_none_key);
             final String value = preferences.getString(
                     context.getString(R.string.limit_mobile_data_usage_key), defValue);
@@ -634,8 +635,8 @@ public final class ListHelper {
      * @return {@code true} if connected to a metered network
      */
     public static boolean isMeteredNetwork(@NonNull final Context context) {
-        final ConnectivityManager manager
-                = ContextCompat.getSystemService(context, ConnectivityManager.class);
+        final ConnectivityManager manager =
+                ContextCompat.getSystemService(context, ConnectivityManager.class);
         if (manager == null || manager.getActiveNetworkInfo() == null) {
             return false;
         }

@@ -199,8 +199,8 @@ public class PeertubeInstanceListFragment extends Fragment {
     }
 
     private void showAddItemDialog(final Context c) {
-        final DialogEditTextBinding dialogBinding
-                = DialogEditTextBinding.inflate(getLayoutInflater());
+        final DialogEditTextBinding dialogBinding =
+                DialogEditTextBinding.inflate(getLayoutInflater());
         dialogBinding.dialogEditText.setInputType(
                 InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
         dialogBinding.dialogEditText.setHint(R.string.peertube_instance_add_help);

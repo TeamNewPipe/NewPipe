@@ -1,5 +1,7 @@
 package org.schabi.newpipe;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -26,10 +28,10 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
 public final class DownloaderImpl extends Downloader {
-    public static final String USER_AGENT
-            = "Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0";
-    public static final String YOUTUBE_RESTRICTED_MODE_COOKIE_KEY
-            = "youtube_restricted_mode_key";
+    public static final String USER_AGENT =
+            "Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0";
+    public static final String YOUTUBE_RESTRICTED_MODE_COOKIE_KEY =
+            "youtube_restricted_mode_key";
     public static final String YOUTUBE_RESTRICTED_MODE_COOKIE = "PREF=f2=8000000";
     public static final String YOUTUBE_DOMAIN = "youtube.com";
 

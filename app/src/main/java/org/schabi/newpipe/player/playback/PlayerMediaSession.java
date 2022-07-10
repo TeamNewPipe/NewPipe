@@ -61,8 +61,7 @@ public class PlayerMediaSession implements MediaSessionCallback {
             return null;
         }
 
-        final MediaDescriptionCompat.Builder descriptionBuilder
-                = new MediaDescriptionCompat.Builder()
+        final MediaDescriptionCompat.Builder descBuilder = new MediaDescriptionCompat.Builder()
                 .setMediaId(String.valueOf(index))
                 .setTitle(item.getTitle())
                 .setSubtitle(item.getUploader());
@@ -76,14 +75,14 @@ public class PlayerMediaSession implements MediaSessionCallback {
         additionalMetadata.putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, index + 1);
         additionalMetadata
                 .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, player.getPlayQueue().size());
-        descriptionBuilder.setExtras(additionalMetadata);
+        descBuilder.setExtras(additionalMetadata);
 
         final Uri thumbnailUri = Uri.parse(item.getThumbnailUrl());
         if (thumbnailUri != null) {
-            descriptionBuilder.setIconUri(thumbnailUri);
+            descBuilder.setIconUri(thumbnailUri);
         }
 
-        return descriptionBuilder.build();
+        return descBuilder.build();
     }
 
     @Override

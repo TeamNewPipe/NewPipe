@@ -473,8 +473,8 @@ public class MainActivity extends AppCompatActivity {
             ErrorUtil.showUiErrorSnackbar(this, "Setting up service toggle", e);
         }
 
-        final SharedPreferences sharedPreferences
-                = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
             if (DEBUG) {
                 Log.d(TAG, "Theme has changed, recreating activity...");
@@ -646,8 +646,8 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onCreateOptionsMenu(menu);
 
-        final Fragment fragment
-                = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+        final Fragment fragment =
+                getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
         if (!(fragment instanceof SearchFragment)) {
             toolbarLayoutBinding.toolbarSearchContainer.getRoot().setVisibility(View.GONE);
         }

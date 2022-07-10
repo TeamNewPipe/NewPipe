@@ -1,5 +1,7 @@
 package org.schabi.newpipe.settings;
 
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -31,8 +33,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
-
-import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class DownloadSettingsFragment extends BasePreferenceFragment {
     public static final boolean IGNORE_RELEASE_ON_OLD_PATH = true;
@@ -255,8 +255,8 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
                 context.grantUriPermission(context.getPackageName(), uri,
                         StoredDirectoryHelper.PERMISSION_FLAGS);
 
-                final StoredDirectoryHelper mainStorage
-                        = new StoredDirectoryHelper(context, uri, null);
+                final StoredDirectoryHelper mainStorage =
+                        new StoredDirectoryHelper(context, uri, null);
                 Log.i(TAG, "Acquiring tree success from " + uri.toString());
 
                 if (!mainStorage.canWrite()) {

@@ -54,8 +54,8 @@ public final class PeertubeHelper {
                                                   final Context context) {
         final SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        final String selectedInstanceKey
-                = context.getString(R.string.peertube_selected_instance_key);
+        final String selectedInstanceKey =
+                context.getString(R.string.peertube_selected_instance_key);
         final JsonStringWriter jsonWriter = JsonWriter.string().object();
         jsonWriter.value("name", instance.getName());
         jsonWriter.value("url", instance.getUrl());

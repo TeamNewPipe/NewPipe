@@ -9,19 +9,19 @@ import org.schabi.newpipe.NewVersionWorker;
 import org.schabi.newpipe.R;
 
 public class UpdateSettingsFragment extends BasePreferenceFragment {
-    private final Preference.OnPreferenceChangeListener updatePreferenceChange
-            = (preference, checkForUpdates) -> {
+    private final Preference.OnPreferenceChangeListener updatePreferenceChange = (p, nVal) -> {
+        final boolean checkForUpdates = (boolean) nVal;
         defaultPreferences.edit()
-                .putBoolean(getString(R.string.update_app_key), (boolean) checkForUpdates).apply();
+                .putBoolean(getString(R.string.update_app_key), checkForUpdates)
+                .apply();
 
-        if ((boolean) checkForUpdates) {
+        if (checkForUpdates) {
             checkNewVersionNow();
         }
         return true;
     };
 
-    private final Preference.OnPreferenceClickListener manualUpdateClick
-            = preference -> {
+    private final Preference.OnPreferenceClickListener manualUpdateClick = preference -> {
         Toast.makeText(getContext(), R.string.checking_updates_toast, Toast.LENGTH_SHORT).show();
         checkNewVersionNow();
         return true;
