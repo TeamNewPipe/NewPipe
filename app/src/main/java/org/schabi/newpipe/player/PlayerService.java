@@ -42,11 +42,6 @@ public final class PlayerService extends Service {
 
     private final IBinder mBinder = new PlayerService.LocalBinder();
 
-    public enum PlayerType {
-        MAIN,
-        AUDIO,
-        POPUP
-    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service's LifeCycle

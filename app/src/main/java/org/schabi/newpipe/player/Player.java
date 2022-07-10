@@ -32,7 +32,6 @@ import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isPlaybackResumeEnabled;
 import static org.schabi.newpipe.player.helper.PlayerHelper.nextRepeatMode;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlaybackParametersFromPrefs;
-import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlayerTypeFromIntent;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
 import static org.schabi.newpipe.player.helper.PlayerHelper.savePlaybackParametersToPrefs;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_CLOSE;
@@ -95,7 +94,6 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.player.PlayerService.PlayerType;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.AudioReactor;
@@ -308,7 +306,7 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         final PlayerType oldPlayerType = playerType;
-        playerType = retrievePlayerTypeFromIntent(intent);
+        playerType = PlayerType.retrieveFromIntent(intent);
         initUIsForCurrentPlayerType();
         // We need to setup audioOnly before super(), see "sourceOf"
         isAudioOnly = audioPlayerSelected();

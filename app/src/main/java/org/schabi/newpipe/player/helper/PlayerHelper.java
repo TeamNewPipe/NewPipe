@@ -3,7 +3,6 @@ package org.schabi.newpipe.player.helper;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
-import static org.schabi.newpipe.player.Player.PLAYER_TYPE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI;
@@ -14,7 +13,6 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.provider.Settings;
 import android.view.accessibility.CaptioningManager;
@@ -44,7 +42,6 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.utils.Utils;
 import org.schabi.newpipe.player.Player;
-import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
@@ -427,12 +424,6 @@ public final class PlayerHelper {
     ////////////////////////////////////////////////////////////////////////////
     // Utils used by player
     ////////////////////////////////////////////////////////////////////////////
-
-    public static PlayerService.PlayerType retrievePlayerTypeFromIntent(final Intent intent) {
-        // If you want to open popup from the app just include Constants.POPUP_ONLY into an extra
-        return PlayerService.PlayerType.values()[
-                intent.getIntExtra(PLAYER_TYPE, PlayerService.PlayerType.MAIN.ordinal())];
-    }
 
     public static boolean isPlaybackResumeEnabled(final Player player) {
         return player.getPrefs().getBoolean(

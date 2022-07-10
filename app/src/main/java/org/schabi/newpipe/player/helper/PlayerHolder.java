@@ -18,6 +18,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -46,13 +47,13 @@ public final class PlayerHolder {
     @Nullable private Player player;
 
     /**
-     * Returns the current {@link PlayerService.PlayerType} of the {@link PlayerService} service,
-     * otherwise `null` if no service running.
+     * Returns the current {@link PlayerType} of the {@link PlayerService} service,
+     * otherwise `null` if no service is running.
      *
      * @return Current PlayerType
      */
     @Nullable
-    public PlayerService.PlayerType getType() {
+    public PlayerType getType() {
         if (player == null) {
             return null;
         }
