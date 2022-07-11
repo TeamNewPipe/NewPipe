@@ -1842,6 +1842,7 @@ public final class Player implements
                     case "preview":
                         toastText = context
                                 .getString(R.string.sponsor_block_skip_preview_toast);
+                        break;
                     case "filler":
                         toastText = context
                                 .getString(R.string.sponsor_block_skip_filler_toast);
