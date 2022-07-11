@@ -3145,8 +3145,6 @@ public final class Player implements
         updateStreamRelatedViews();
         showHideKodiButton();
 
-        setBlockSponsorsButton(binding.switchSponsorBlocking);
-
         binding.titleTextView.setText(info.getName());
         binding.channelTextView.setText(info.getUploaderName());
 
@@ -3188,6 +3186,8 @@ public final class Player implements
                     ? SponsorBlockMode.ENABLED
                     : SponsorBlockMode.DISABLED);
         }
+
+        setBlockSponsorsButton(binding.switchSponsorBlocking);
     }
 
     private void updateMetadataWith(@NonNull final StreamInfo streamInfo) {
