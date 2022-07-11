@@ -6,10 +6,12 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Point;
+import android.hardware.input.InputManager;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.TypedValue;
+import android.view.InputDevice;
 import android.view.KeyEvent;
 import android.view.WindowInsets;
 import android.view.WindowManager;
@@ -25,6 +27,8 @@ import org.schabi.newpipe.R;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import static android.content.Context.INPUT_SERVICE;
 
 public final class DeviceUtils {
 
@@ -95,6 +99,25 @@ public final class DeviceUtils {
      * @return true if the Android device is in desktop mode or using DeX.
      */
     public static boolean isDesktopMode(final Context context) {
+        // Adapted from https://stackoverflow.com/a/64615568
+        // to check for all devices that have an active cursor
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            final InputManager im = (InputManager) context.getSystemService(INPUT_SERVICE);
+            for (final int id : im.getInputDeviceIds()) {
+                final InputDevice inputDevice = im.getInputDevice(id);
+                if (
+                        inputDevice.supportsSource(InputDevice.SOURCE_BLUETOOTH_STYLUS)
+                                || inputDevice.supportsSource(InputDevice.SOURCE_MOUSE)
+                                || inputDevice.supportsSource(InputDevice.SOURCE_STYLUS)
+                                || inputDevice.supportsSource(InputDevice.SOURCE_TOUCHPAD)
+                                || inputDevice.supportsSource(InputDevice.SOURCE_TRACKBALL)
+                ) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         if (ContextCompat.getSystemService(context, UiModeManager.class)
                 .getCurrentModeType() == Configuration.UI_MODE_TYPE_DESK) {
             return true;
