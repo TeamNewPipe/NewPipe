@@ -1,5 +1,5 @@
 /*
- * Based on ExoPlayer's DefaultHttpDataSource, version 2.17.1.
+ * Based on ExoPlayer's DefaultHttpDataSource, version 2.18.0.
  *
  * Original source code copyright (C) 2016 The Android Open Source Project, licensed under the
  * Apache License, Version 2.0.
