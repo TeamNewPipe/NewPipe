@@ -673,7 +673,6 @@
     <string name="feed_load_error_account_info">تعذر تحميل تغذية لـ\'%s\'.</string>
     <string name="feed_load_error">خطأ في تحميل الخلاصة</string>
     <string name="downloads_storage_use_saf_summary_api_29">بدءًا من Android 10، يتم دعم \"Storage Access Framework\" فقط</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\"Storage Access Framework\" غير مدعوم على Android KitKat والإصدارات الأقدم</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">سيتم سؤالك عن مكان حفظ كل تنزيل</string>
     <string name="no_dir_yet">لم يتم تعيين مجلد التحميل، الرجاء اختيار مجلد التحميل الافتراضي الآن</string>
     <string name="off">إيقاف</string>

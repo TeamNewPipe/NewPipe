@@ -563,7 +563,6 @@
     <string name="preferred_open_action_settings_summary">預設開啟內容嘅時候做咩好 — %s</string>
     <string name="unhook_checkbox">脫鈎 (聲音可能會失真)</string>
     <string name="playback_step">飛前一格</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Android KitKat 以及樓下唔支援「儲存空間存取框架」</string>
     <string name="no_playlist_bookmarked_yet">未有收起嘅播放清單</string>
     <string name="play_all">照單全播</string>
     <string name="no_channel_subscribed_yet">未有頻道訂閱</string>

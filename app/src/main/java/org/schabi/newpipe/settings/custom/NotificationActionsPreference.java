@@ -218,7 +218,7 @@ public class NotificationActionsPreference extends Preference {
                         final int color = ThemeHelper.resolveColorFromAttr(getContext(),
                                 android.R.attr.textColorPrimary);
                         drawable = DrawableCompat.wrap(drawable).mutate();
-                        DrawableCompat.setTint(drawable, color);
+                        drawable.setTint(color);
                         radioButton.setCompoundDrawablesRelativeWithIntrinsicBounds(null,
                                 null, drawable, null);
                     }

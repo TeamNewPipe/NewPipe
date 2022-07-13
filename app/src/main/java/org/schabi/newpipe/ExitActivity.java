@@ -3,7 +3,6 @@ package org.schabi.newpipe;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 
 import org.schabi.newpipe.util.NavigationHelper;
@@ -44,11 +43,7 @@ public class ExitActivity extends Activity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            finishAndRemoveTask();
-        } else {
-            finish();
-        }
+        finishAndRemoveTask();
 
         NavigationHelper.restartApp(this);
     }

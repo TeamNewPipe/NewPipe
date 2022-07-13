@@ -646,7 +646,6 @@
 \nCzy chcesz anulować subskrypcję tego kanału\?</string>
     <string name="feed_load_error_account_info">Nie udało się załadować kanału dla „%s”.</string>
     <string name="downloads_storage_use_saf_summary_api_29">Począwszy od Androida 10 obsługiwany jest tylko systemowy selektor folderów (SAF)</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Systemowy selektor folderów (SAF) nie jest obsługiwany przez system Android KitKat i niższy</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Zostaniesz zapytany(-na), gdzie zapisać każdy pobierany plik</string>
     <string name="no_dir_yet">Nie ustawiono jeszcze folderu zapisywania, wybierz domyślny teraz</string>
     <string name="feed_load_error">Błąd podczas ładowania kanału</string>

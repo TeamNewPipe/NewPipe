@@ -623,7 +623,6 @@
     <string name="feed_load_error_account_info">无法加载“%s”的 Feed。</string>
     <string name="feed_load_error">加载 Feed 时出错</string>
     <string name="downloads_storage_use_saf_summary_api_29">仅 Android 10 及以上版本支持“存储访问框架”</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Android KitKat 及更低版本不支持“存储访问框架”</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">你会被问到在哪里保存每个下载</string>
     <string name="no_dir_yet">尚未设置下载文件夹，现在选择默认下载文件夹</string>
     <string name="tablet_mode_title">平板模式</string>

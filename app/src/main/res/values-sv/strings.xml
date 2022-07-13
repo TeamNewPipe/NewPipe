@@ -633,7 +633,6 @@
     <string name="feed_toggle_show_played_items">Visa sedda objekt</string>
     <string name="feed_load_error_fast_unknown">Det snabba flödesläget ger inte mer information om detta.</string>
     <string name="feed_load_error">Fel vid inläsning av flödet</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\"Storage Access Framework\" är inte tillgängligt på Android KitKat och tidigare versioner</string>
     <string name="mark_as_watched">Markera som sedd</string>
     <string name="metadata_privacy_unlisted">Ej listad</string>
     <string name="featured">Aktuellt</string>

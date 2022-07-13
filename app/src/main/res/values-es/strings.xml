@@ -633,7 +633,6 @@
 \n¿Desea desuscribirse de este canal\?</string>
     <string name="feed_load_error">Error al cargar el muro</string>
     <string name="downloads_storage_use_saf_summary_api_29">Desde Android 10 solo el \'Sistema de Acceso al Almacenamiento\' es soportado</string>
-    <string name="downloads_storage_use_saf_summary_api_19">El \'Sistema de Acceso al Almacenamiento\' no es sorportado en Android KitKat o versiones anteriores</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Se le preguntará dónde guardar cada descarga</string>
     <string name="disable_media_tunneling_summary">Deshabilitar el túnel de medios si experimenta una pantalla negra o interrupciones en la reproduccción de videos</string>
     <string name="disable_media_tunneling_title">Deshabilitar el túnel de medios</string>

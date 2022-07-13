@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Opening Theme -->
-    <style name="Base.V21.OpeningTheme" parent="Base.V19.OpeningTheme">
+    <style name="Base.OpeningTheme" parent="Base.V21.OpeningTheme">
         <item name="android:navigationBarColor">@color/dark_youtube_primary_color</item>
     </style>
 

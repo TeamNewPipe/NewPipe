@@ -39,7 +39,7 @@
                 android:layout_width="@dimen/drawer_header_newpipe_icon_size"
                 android:layout_height="@dimen/drawer_header_newpipe_icon_size"
                 android:layout_marginEnd="@dimen/drawer_header_newpipe_icon_title_space"
-                app:srcCompat="@drawable/splash_foreground"
+                android:src="@drawable/splash_foreground"
                 tools:ignore="ContentDescription" />
 
             <org.schabi.newpipe.views.NewPipeTextView
@@ -86,7 +86,7 @@
                     android:scaleType="fitCenter"
                     app:tint="@color/drawer_header_font_color"
                     tools:ignore="ContentDescription"
-                    tools:srcCompat="@drawable/ic_smart_display" />
+                    tools:src="@drawable/ic_smart_display" />
 
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/drawer_header_service_view"
@@ -104,7 +104,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="4dp"
-                app:srcCompat="@drawable/ic_arrow_drop_down"
+                android:src="@drawable/ic_arrow_drop_down"
                 app:tint="@color/drawer_header_font_color"
                 tools:ignore="ContentDescription" />
         </LinearLayout>

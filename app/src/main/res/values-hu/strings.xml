@@ -582,7 +582,6 @@
     <string name="disable_media_tunneling_summary">Tiltsa le a médiacsatornázást, ha fekete képernyőt vagy akadozást tapasztal videólejátszáskor</string>
     <string name="show_image_indicators_summary">Picasso színes szalagok megjelenítése a képek fölött, megjelölve a forrásukat: piros a hálózathoz, kék a lemezhez, zöld a memóriához</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Minden letöltésnél meg fogja kérdezni, hogy hova mentse el</string>
-    <string name="downloads_storage_use_saf_summary_api_19">A „Storage Access Framework” nem támogatott Android KitKaten vagy régebbin</string>
     <string name="choose_instance_prompt">Válasszon egy példányt</string>
     <string name="feed_oldest_subscription_update">Lista legutóbbi frissítése: %s</string>
     <string name="feed_notification_loading">Lista betöltése…</string>

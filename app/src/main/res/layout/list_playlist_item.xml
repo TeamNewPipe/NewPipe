@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
@@ -30,6 +29,8 @@
         android:layout_alignEnd="@id/itemThumbnailView"
         android:layout_alignBottom="@id/itemThumbnailView"
         android:background="@color/playlist_stream_count_background_color"
+        android:drawableTop="@drawable/ic_playlist_play"
+        android:drawableTint="@color/duration_text_color"
         android:gravity="center"
         android:paddingTop="16dp"
         android:paddingBottom="14dp"
@@ -37,8 +38,6 @@
         android:textColor="@color/duration_text_color"
         android:textSize="@dimen/video_item_search_duration_text_size"
         android:textStyle="bold"
-        app:drawableTint="@color/duration_text_color"
-        app:drawableTopCompat="@drawable/ic_playlist_play"
         tools:text="314159" />
 
     <org.schabi.newpipe.views.NewPipeTextView

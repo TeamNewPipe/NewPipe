@@ -619,7 +619,6 @@
     <string name="feed_load_error_account_info">Não foi possível carregar o feed para \'%s\'.</string>
     <string name="feed_load_error">Erro ao carregar o feed</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, apenas o \'Storage Access Framework\' é compatível</string>
-    <string name="downloads_storage_use_saf_summary_api_19">A \'Framework de acesso ao armazenamento\' não está disponível no Android KitKat e anteriores</string>
     <string name="seekbar_preview_thumbnail_title">Pré-visualização da miniatura da barra de pesquisa</string>
     <string name="mark_as_watched">Marcar como visto</string>
     <string name="off">Desligado</string>

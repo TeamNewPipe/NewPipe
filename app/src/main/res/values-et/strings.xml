@@ -632,7 +632,6 @@
     <string name="settings_category_feed_title">Voog</string>
     <string name="choose_instance_prompt">Vali eksemplar</string>
     <string name="downloads_storage_use_saf_summary_api_29">Android 10st alates on toetatud ainult salvestusjuurdepääsu raamistik \'Storage Access Framework\'</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Android KitKat ja vanemad versioonid ei toeta salvestusjuurdepääsu raamistikku \'Storage Access Framework\'</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Sinult küsitakse iga kord, kuhu alla laadimine salvestada</string>
     <string name="detail_heart_img_view_description">Südamlik autor</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Kas sinu meelest on voo laadimine aeglane\? Sel juhul proovi lubada kiire laadimine (seda saad muuta seadetes või vajutades allolevat nuppu).

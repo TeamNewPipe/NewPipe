@@ -12,6 +12,7 @@
         app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
+        android:defaultValue="true"
         android:key="@string/storage_use_saf"
         android:summary="@string/downloads_storage_use_saf_summary"
         android:title="@string/downloads_storage_use_saf_title"

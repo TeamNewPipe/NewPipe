@@ -193,8 +193,8 @@
             android:layout_centerVertical="true"
             android:minWidth="0dp"
             android:scaleType="centerInside"
+            android:src="@drawable/ic_delete"
             android:visibility="gone"
-            app:srcCompat="@drawable/ic_delete"
             tools:ignore="ContentDescription"
             tools:visibility="visible" />
 
