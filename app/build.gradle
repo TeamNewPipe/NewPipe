@@ -17,7 +17,7 @@ android {
         minSdk 19
         targetSdk 29
         versionCode 987
-        versionName "0.23.1"
+        versionName "0.23.1_r1"
 
         multiDexEnabled true
 
