@@ -31,6 +31,10 @@ on:
 jobs:
   build-and-test-jvm:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
     steps:
       - uses: actions/checkout@v3
       - uses: gradle/wrapper-validation-action@v1
@@ -64,6 +68,10 @@ jobs:
       matrix:
         # api-level 19 is min sdk, but throws errors related to desugaring
         api-level: [ 21, 29 ]
+
+    permissions:
+      contents: read
+
     steps:
       - uses: actions/checkout@v3
 
@@ -81,7 +89,7 @@ jobs:
           # workaround to emulator bug: https://github.com/ReactiveCircus/android-emulator-runner/issues/160
           emulator-build: 7425822
           script: ./gradlew connectedCheck --stacktrace
-        
+
       - name: Upload test report when tests fail # because the printed out stacktrace (console) is too short, see also #7553
         uses: actions/upload-artifact@v3
         if: failure()
@@ -91,6 +99,10 @@ jobs:
 
   sonar:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
     steps:
       - uses: actions/checkout@v3
         with:
