@@ -17,7 +17,7 @@
             android:layout_height="70dp"
             android:background="@android:color/black"
             android:fitsSystemWindows="true"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             android:src="@drawable/channel_banner"
             tools:ignore="ContentDescription" />
 

@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
-        android:scaleType="centerCrop"
+        android:scaleType="fitStart"
         android:src="@drawable/dummy_thumbnail_playlist"
         tools:ignore="RtlHardcoded" />
 
@@ -26,7 +26,7 @@
         android:layout_width="@dimen/playlist_item_thumbnail_stream_count_width"
         android:layout_height="match_parent"
         android:layout_alignTop="@id/itemThumbnailView"
-        android:layout_alignRight="@id/itemThumbnailView"
+        android:layout_alignEnd="@id/itemThumbnailView"
         android:layout_alignBottom="@id/itemThumbnailView"
         android:background="@color/playlist_stream_count_background_color"
         android:gravity="center"
@@ -38,7 +38,6 @@
         android:textStyle="bold"
         app:drawableTint="@color/duration_text_color"
         app:drawableTopCompat="@drawable/ic_playlist_play"
-        tools:ignore="RtlHardcoded"
         tools:text="314159" />
 
     <org.schabi.newpipe.views.NewPipeTextView
