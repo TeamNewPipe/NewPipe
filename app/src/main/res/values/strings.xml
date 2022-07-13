@@ -747,4 +747,5 @@
     <string name="select_quality_external_players">Select quality for external players</string>
     <string name="unknown_format">Unknown format</string>
     <string name="unknown_quality">Unknown quality</string>
+    <string name="feed_toggle_show_future_items">Show future videos</string>
 </resources>
