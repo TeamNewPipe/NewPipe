@@ -20,7 +20,7 @@
         android:layout_marginLeft="3dp"
         android:layout_marginRight="@dimen/comment_item_avatar_right_margin"
         android:focusable="false"
-        android:src="@drawable/buddy"
+        android:src="@drawable/dummy_person"
         app:shapeAppearance="@style/CircularImageView"
         tools:ignore="RtlHardcoded" />
 

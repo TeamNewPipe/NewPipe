@@ -97,7 +97,7 @@ public final class PicassoHelper {
 
 
     public static RequestCreator loadAvatar(final String url) {
-        return loadImageDefault(url, R.drawable.buddy);
+        return loadImageDefault(url, R.drawable.dummy_person);
     }
 
     public static RequestCreator loadThumbnail(final String url) {
