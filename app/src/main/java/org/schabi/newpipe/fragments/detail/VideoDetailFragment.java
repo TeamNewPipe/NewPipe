@@ -2361,7 +2361,7 @@ public final class VideoDetailFragment
                                    @Nullable final String thumbnailUrl) {
         binding.overlayTitleTextView.setText(isEmpty(overlayTitle) ? "" : overlayTitle);
         binding.overlayChannelTextView.setText(isEmpty(uploader) ? "" : uploader);
-        binding.overlayThumbnail.setImageResource(R.drawable.dummy_thumbnail_dark);
+        binding.overlayThumbnail.setImageDrawable(null);
         PicassoHelper.loadDetailsThumbnail(thumbnailUrl).tag(PICASSO_VIDEO_DETAILS_TAG)
                 .into(binding.overlayThumbnail);
     }

@@ -618,8 +618,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/video_item_search_padding"
             android:paddingRight="@dimen/video_item_search_padding"
-            android:scaleType="fitCenter"
-            android:src="@drawable/dummy_thumbnail" />
+            android:scaleType="fitCenter" />
 
         <LinearLayout
             android:id="@+id/overlay_metadata_layout"
