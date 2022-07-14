@@ -714,7 +714,7 @@ public final class VideoDetailFragment
     }
 
     private void initThumbnailViews(@NonNull final StreamInfo info) {
-        PicassoHelper.loadThumbnail(info.getThumbnailUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
+        PicassoHelper.loadDetailsThumbnail(info.getThumbnailUrl()).tag(PICASSO_VIDEO_DETAILS_TAG)
                 .into(binding.detailThumbnailImageView, new Callback() {
                     @Override
                     public void onSuccess() {
@@ -1551,7 +1551,8 @@ public final class VideoDetailFragment
             binding.detailUploaderThumbnailView.setVisibility(View.GONE);
         }
 
-        final Drawable buddyDrawable = AppCompatResources.getDrawable(activity, R.drawable.buddy);
+        final Drawable buddyDrawable
+                = AppCompatResources.getDrawable(activity, R.drawable.placeholder_person);
         binding.detailSubChannelThumbnailView.setImageDrawable(buddyDrawable);
         binding.detailUploaderThumbnailView.setImageDrawable(buddyDrawable);
 
@@ -2360,8 +2361,8 @@ public final class VideoDetailFragment
                                    @Nullable final String thumbnailUrl) {
         binding.overlayTitleTextView.setText(isEmpty(overlayTitle) ? "" : overlayTitle);
         binding.overlayChannelTextView.setText(isEmpty(uploader) ? "" : uploader);
-        binding.overlayThumbnail.setImageResource(R.drawable.dummy_thumbnail_dark);
-        PicassoHelper.loadThumbnail(thumbnailUrl).tag(PICASSO_VIDEO_DETAILS_TAG)
+        binding.overlayThumbnail.setImageDrawable(null);
+        PicassoHelper.loadDetailsThumbnail(thumbnailUrl).tag(PICASSO_VIDEO_DETAILS_TAG)
                 .into(binding.overlayThumbnail);
     }
 

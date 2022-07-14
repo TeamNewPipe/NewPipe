@@ -47,7 +47,7 @@
                         android:scaleType="fitCenter"
                         tools:ignore="RtlHardcoded"
                         tools:layout_height="200dp"
-                        tools:src="@drawable/dummy_thumbnail" />
+                        tools:src="@drawable/placeholder_thumbnail_video" />
 
                     <ImageView
                         android:id="@+id/detail_thumbnail_play_button"
@@ -258,7 +258,7 @@
                                     android:layout_width="@dimen/video_item_detail_uploader_image_size"
                                     android:layout_height="@dimen/video_item_detail_uploader_image_size"
                                     android:contentDescription="@string/detail_uploader_thumbnail_view_description"
-                                    android:src="@drawable/buddy"
+                                    android:src="@drawable/placeholder_person"
                                     app:shapeAppearance="@style/CircularImageView" />
 
                                 <com.google.android.material.imageview.ShapeableImageView
@@ -267,7 +267,7 @@
                                     android:layout_height="@dimen/video_item_detail_sub_channel_image_size"
                                     android:layout_gravity="bottom|right"
                                     android:contentDescription="@string/detail_sub_channel_thumbnail_view_description"
-                                    android:src="@drawable/buddy"
+                                    android:src="@drawable/placeholder_person"
                                     android:visibility="gone"
                                     app:shapeAppearance="@style/CircularImageView"
                                     tools:ignore="RtlHardcoded"
@@ -618,8 +618,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/video_item_search_padding"
             android:paddingRight="@dimen/video_item_search_padding"
-            android:scaleType="fitCenter"
-            android:src="@drawable/dummy_thumbnail" />
+            android:scaleType="fitCenter" />
 
         <LinearLayout
             android:id="@+id/overlay_metadata_layout"

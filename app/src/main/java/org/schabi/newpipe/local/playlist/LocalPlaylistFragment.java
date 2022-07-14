@@ -613,7 +613,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             newThumbnailUrl = ((PlaylistStreamEntry) itemListAdapter.getItemsList().get(0))
                     .getStreamEntity().getThumbnailUrl();
         } else {
-            newThumbnailUrl = "drawable://" + R.drawable.dummy_thumbnail_playlist;
+            newThumbnailUrl = "drawable://" + R.drawable.placeholder_thumbnail_playlist;
         }
 
         changeThumbnailUrl(newThumbnailUrl);

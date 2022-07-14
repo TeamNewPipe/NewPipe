@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" id="svg2" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g id="layer1" transform="matrix(1.03744, 0, 0, 0.835106, 0, -678.408142)">
+    <rect style="opacity: 0.997; fill: rgb(153, 153, 153); fill-opacity: 1; fill-rule: nonzero; stroke: none; stroke-width: 5; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1;" id="rect4136" width="192.949" height="240" y="812.362"/>
+    <path style="opacity:0.997;fill:#6c6c6c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="path4164" d="M 110.852 931.134 L 88.494 945.904 L 63.381 962.046 L 62.871 933.742 L 62.656 902.173 L 85.524 915.706 L 110.852 931.134 Z" transform="matrix(1, 0.000081, -0.000052, 1, 0.048923, -0.007025)"/>
+    <path style="opacity:0.997;fill:#6c6c6c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="path-1" d="M 134.95 931.133 L 112.592 945.903 L 87.479 962.045 L 86.969 933.741 L 86.754 902.172 L 109.622 915.705 L 134.95 931.133 Z" transform="matrix(1, 0.000081, -0.000052, 1, 0.048901, -0.008782)"/>
+  </g>
+</svg>

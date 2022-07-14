@@ -18,7 +18,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="2dp"
         android:contentDescription="@string/detail_uploader_thumbnail_view_description"
-        android:src="@drawable/buddy_channel_item"
+        android:src="@drawable/placeholder_person"
         app:shapeAppearance="@style/CircularImageView"
         tools:ignore="RtlHardcoded" />
 
