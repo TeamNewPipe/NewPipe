@@ -97,23 +97,23 @@ public final class PicassoHelper {
 
 
     public static RequestCreator loadAvatar(final String url) {
-        return loadImageDefault(url, R.drawable.dummy_person);
+        return loadImageDefault(url, R.drawable.placeholder_person);
     }
 
     public static RequestCreator loadThumbnail(final String url) {
-        return loadImageDefault(url, R.drawable.dummy_thumbnail);
+        return loadImageDefault(url, R.drawable.placeholder_thumbnail_video);
     }
 
     public static RequestCreator loadDetailsThumbnail(final String url) {
-        return loadImageDefault(url, R.drawable.dummy_thumbnail, false);
+        return loadImageDefault(url, R.drawable.placeholder_thumbnail_video, false);
     }
 
     public static RequestCreator loadBanner(final String url) {
-        return loadImageDefault(url, R.drawable.channel_banner);
+        return loadImageDefault(url, R.drawable.placeholder_channel_banner);
     }
 
     public static RequestCreator loadPlaylistThumbnail(final String url) {
-        return loadImageDefault(url, R.drawable.dummy_thumbnail_playlist);
+        return loadImageDefault(url, R.drawable.placeholder_thumbnail_playlist);
     }
 
     public static RequestCreator loadSeekbarThumbnailPreview(final String url) {

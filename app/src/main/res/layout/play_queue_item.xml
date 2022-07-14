@@ -18,7 +18,7 @@
         android:layout_marginTop="@dimen/video_item_search_image_right_margin"
         android:layout_marginBottom="@dimen/video_item_search_image_right_margin"
         android:scaleType="fitCenter"
-        android:src="@drawable/dummy_thumbnail"
+        android:src="@drawable/placeholder_thumbnail_video"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

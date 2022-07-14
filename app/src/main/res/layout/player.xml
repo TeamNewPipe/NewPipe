@@ -397,7 +397,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="2dp"
-                        android:src="@drawable/dummy_thumbnail"
+                        android:src="@drawable/placeholder_thumbnail_video"
                         android:visibility="gone"
                         tools:visibility="visible" />
 

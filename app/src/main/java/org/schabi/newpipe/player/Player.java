@@ -3108,7 +3108,7 @@ public final class Player implements
     public Bitmap getThumbnail() {
         if (currentThumbnail == null) {
             currentThumbnail = BitmapFactory.decodeResource(
-                    context.getResources(), R.drawable.dummy_thumbnail);
+                    context.getResources(), R.drawable.placeholder_thumbnail_video);
         }
         return currentThumbnail;
     }

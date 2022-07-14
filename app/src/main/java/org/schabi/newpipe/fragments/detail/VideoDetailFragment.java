@@ -1552,7 +1552,7 @@ public final class VideoDetailFragment
         }
 
         final Drawable buddyDrawable
-                = AppCompatResources.getDrawable(activity, R.drawable.dummy_person);
+                = AppCompatResources.getDrawable(activity, R.drawable.placeholder_person);
         binding.detailSubChannelThumbnailView.setImageDrawable(buddyDrawable);
         binding.detailUploaderThumbnailView.setImageDrawable(buddyDrawable);
 
