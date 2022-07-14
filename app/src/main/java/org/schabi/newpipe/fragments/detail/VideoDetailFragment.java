@@ -1305,7 +1305,7 @@ public final class VideoDetailFragment
     }
 
     private void addVideoPlayerView() {
-        if (!isPlayerAvailable()) {
+        if (!isPlayerAvailable() || getView() == null) {
             return;
         }
         setHeightThumbnail();
