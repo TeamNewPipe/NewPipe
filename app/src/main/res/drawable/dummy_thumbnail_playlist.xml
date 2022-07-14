@@ -7,9 +7,9 @@
       android:pathData="M0,0h24v24h-24z"
       android:fillColor="@color/placeholder_background" />
   <path
-      android:pathData="M13.8008,11.9023L11.0156,13.3828L7.8906,15L7.8281,12.1641L7.8008,9L10.6484,10.3555ZM13.8008,11.9023"
+      android:pathData="M13,12L8,15L8,9"
       android:fillColor="@color/placeholder_foreground" />
   <path
-      android:pathData="M16.8008,11.9023L14.0156,13.3828L10.8906,15L10.8281,12.1641L10.8008,9L13.6484,10.3555ZM16.8008,11.9023"
+      android:pathData="M16,12L11,15L11,9"
       android:fillColor="@color/placeholder_foreground" />
 </vector>

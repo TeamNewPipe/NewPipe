@@ -2,7 +2,4 @@
 <resources>
     <color name="contrastColor">@color/white</color>
     <color name="defaultIconTint">@color/white</color>
-
-    <color name="placeholder_background">#6C6C6C</color>
-    <color name="placeholder_foreground">#999999</color>
 </resources>
