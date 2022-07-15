@@ -1,7 +1,5 @@
 package org.schabi.newpipe;
 
-import static org.schabi.newpipe.MainActivity.DEBUG;
-
 import android.content.Context;
 
 import androidx.annotation.NonNull;
