@@ -20,7 +20,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
-import java.util.Collections;
+import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
@@ -89,7 +89,7 @@ public enum StreamDialogDefaultEntry {
     APPEND_PLAYLIST(R.string.add_to_playlist, (fragment, item) ->
         PlaylistDialog.createCorrespondingDialog(
                 fragment.getContext(),
-                Collections.singletonList(new StreamEntity(item)),
+                List.of(new StreamEntity(item)),
                 dialog -> dialog.show(
                         fragment.getParentFragmentManager(),
                         "StreamDialogEntry@"
