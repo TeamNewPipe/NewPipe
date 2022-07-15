@@ -3,8 +3,6 @@ package org.schabi.newpipe.player.helper;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
-import static org.schabi.newpipe.player.Player.IDLE_WINDOW_FLAGS;
-import static org.schabi.newpipe.player.Player.PLAYER_TYPE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER;
 import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI;
@@ -15,14 +13,8 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PixelFormat;
-import android.os.Build;
 import android.provider.Settings;
-import android.view.Gravity;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.accessibility.CaptioningManager;
 
 import androidx.annotation.IntDef;
@@ -49,7 +41,6 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.utils.Utils;
-import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
@@ -75,20 +66,6 @@ public final class PlayerHelper {
             = new Formatter(STRING_BUILDER, Locale.getDefault());
     private static final NumberFormat SPEED_FORMATTER = new DecimalFormat("0.##x");
     private static final NumberFormat PITCH_FORMATTER = new DecimalFormat("##%");
-
-    /**
-     * Maximum opacity allowed for Android 12 and higher to allow touches on other apps when using
-     * NewPipe's popup player.
-     *
-     * <p>
-     * This value is hardcoded instead of being get dynamically with the method linked of the
-     * constant documentation below, because it is not static and popup player layout parameters
-     * are generated with static methods.
-     * </p>
-     *
-     * @see WindowManager.LayoutParams#FLAG_NOT_TOUCHABLE
-     */
-    private static final float MAXIMUM_OPACITY_ALLOWED_FOR_S_AND_HIGHER = 0.8f;
 
     @Retention(SOURCE)
     @IntDef({AUTOPLAY_TYPE_ALWAYS, AUTOPLAY_TYPE_WIFI,
@@ -339,10 +316,6 @@ public final class PlayerHelper {
         return true;
     }
 
-    public static int getTossFlingVelocity() {
-        return 2500;
-    }
-
     @NonNull
     public static CaptionStyleCompat getCaptionStyle(@NonNull final Context context) {
         final CaptioningManager captioningManager = ContextCompat.getSystemService(context,
@@ -452,12 +425,6 @@ public final class PlayerHelper {
     // Utils used by player
     ////////////////////////////////////////////////////////////////////////////
 
-    public static MainPlayer.PlayerType retrievePlayerTypeFromIntent(final Intent intent) {
-        // If you want to open popup from the app just include Constants.POPUP_ONLY into an extra
-        return MainPlayer.PlayerType.values()[
-                intent.getIntExtra(PLAYER_TYPE, MainPlayer.PlayerType.VIDEO.ordinal())];
-    }
-
     public static boolean isPlaybackResumeEnabled(final Player player) {
         return player.getPrefs().getBoolean(
                 player.getContext().getString(R.string.enable_watch_history_key), true)
@@ -528,88 +495,8 @@ public final class PlayerHelper {
                 .apply();
     }
 
-    /**
-     * @param player {@code screenWidth} and {@code screenHeight} must have been initialized
-     * @return the popup starting layout params
-     */
-    @SuppressLint("RtlHardcoded")
-    public static WindowManager.LayoutParams retrievePopupLayoutParamsFromPrefs(
-            final Player player) {
-        final boolean popupRememberSizeAndPos = player.getPrefs().getBoolean(
-                player.getContext().getString(R.string.popup_remember_size_pos_key), true);
-        final float defaultSize =
-                player.getContext().getResources().getDimension(R.dimen.popup_default_width);
-        final float popupWidth = popupRememberSizeAndPos
-                ? player.getPrefs().getFloat(player.getContext().getString(
-                R.string.popup_saved_width_key), defaultSize)
-                : defaultSize;
-        final float popupHeight = getMinimumVideoHeight(popupWidth);
-
-        final WindowManager.LayoutParams popupLayoutParams = new WindowManager.LayoutParams(
-                (int) popupWidth, (int) popupHeight,
-                popupLayoutParamType(),
-                IDLE_WINDOW_FLAGS,
-                PixelFormat.TRANSLUCENT);
-        popupLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
-        popupLayoutParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
-
-        final int centerX = (int) (player.getScreenWidth() / 2f - popupWidth / 2f);
-        final int centerY = (int) (player.getScreenHeight() / 2f - popupHeight / 2f);
-        popupLayoutParams.x = popupRememberSizeAndPos
-                ? player.getPrefs().getInt(player.getContext().getString(
-                R.string.popup_saved_x_key), centerX) : centerX;
-        popupLayoutParams.y = popupRememberSizeAndPos
-                ? player.getPrefs().getInt(player.getContext().getString(
-                R.string.popup_saved_y_key), centerY) : centerY;
-
-        return popupLayoutParams;
-    }
-
-    public static void savePopupPositionAndSizeToPrefs(final Player player) {
-        if (player.getPopupLayoutParams() != null) {
-            player.getPrefs().edit()
-                    .putFloat(player.getContext().getString(R.string.popup_saved_width_key),
-                            player.getPopupLayoutParams().width)
-                    .putInt(player.getContext().getString(R.string.popup_saved_x_key),
-                            player.getPopupLayoutParams().x)
-                    .putInt(player.getContext().getString(R.string.popup_saved_y_key),
-                            player.getPopupLayoutParams().y)
-                    .apply();
-        }
-    }
-
     public static float getMinimumVideoHeight(final float width) {
         return width / (16.0f / 9.0f); // Respect the 16:9 ratio that most videos have
-    }
-
-    @SuppressLint("RtlHardcoded")
-    public static WindowManager.LayoutParams buildCloseOverlayLayoutParams() {
-        final int flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
-
-        final WindowManager.LayoutParams closeOverlayLayoutParams = new WindowManager.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT,
-                popupLayoutParamType(),
-                flags,
-                PixelFormat.TRANSLUCENT);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            // Setting maximum opacity allowed for touch events to other apps for Android 12 and
-            // higher to prevent non interaction when using other apps with the popup player
-            closeOverlayLayoutParams.alpha = MAXIMUM_OPACITY_ALLOWED_FOR_S_AND_HIGHER;
-        }
-
-        closeOverlayLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
-        closeOverlayLayoutParams.softInputMode =
-                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
-        return closeOverlayLayoutParams;
-    }
-
-    public static int popupLayoutParamType() {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.O
-                ? WindowManager.LayoutParams.TYPE_PHONE
-                : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
     }
 
     public static int retrieveSeekDurationFromPreferences(final Player player) {

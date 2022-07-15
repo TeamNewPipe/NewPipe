@@ -25,7 +25,7 @@
             android:layout_gravity="center_horizontal"
             app:behavior_hideable="true"
             app:behavior_peekHeight="0dp"
-            app:layout_behavior="org.schabi.newpipe.player.event.CustomBottomSheetBehavior" />
+            app:layout_behavior="org.schabi.newpipe.player.gesture.CustomBottomSheetBehavior" />
 
     </org.schabi.newpipe.views.FocusAwareCoordinator>
 

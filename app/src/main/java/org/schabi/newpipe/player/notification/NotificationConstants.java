@@ -1,4 +1,4 @@
-package org.schabi.newpipe.player;
+package org.schabi.newpipe.player.notification;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,6 +7,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.Localization;
 
@@ -20,7 +21,34 @@ import java.util.TreeSet;
 
 public final class NotificationConstants {
 
-    private NotificationConstants() { }
+    private NotificationConstants() {
+    }
+
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Intent actions
+    //////////////////////////////////////////////////////////////////////////*/
+
+    public static final String ACTION_CLOSE
+            = App.PACKAGE_NAME + ".player.MainPlayer.CLOSE";
+    public static final String ACTION_PLAY_PAUSE
+            = App.PACKAGE_NAME + ".player.MainPlayer.PLAY_PAUSE";
+    public static final String ACTION_REPEAT
+            = App.PACKAGE_NAME + ".player.MainPlayer.REPEAT";
+    public static final String ACTION_PLAY_NEXT
+            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_PLAY_NEXT";
+    public static final String ACTION_PLAY_PREVIOUS
+            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_PLAY_PREVIOUS";
+    public static final String ACTION_FAST_REWIND
+            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_FAST_REWIND";
+    public static final String ACTION_FAST_FORWARD
+            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_FAST_FORWARD";
+    public static final String ACTION_SHUFFLE
+            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_SHUFFLE";
+    public static final String ACTION_RECREATE_NOTIFICATION
+            = App.PACKAGE_NAME + ".player.MainPlayer.ACTION_RECREATE_NOTIFICATION";
+
 
 
     public static final int NOTHING = 0;

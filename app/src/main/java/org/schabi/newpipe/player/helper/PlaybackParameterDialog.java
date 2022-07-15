@@ -26,7 +26,7 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.DialogPlaybackParameterBinding;
-import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.SimpleOnSeekBarChangeListener;
 import org.schabi.newpipe.util.SliderStrategy;
 
@@ -207,7 +207,7 @@ public class PlaybackParameterDialog extends DialogFragment {
                     ? View.VISIBLE
                     : View.GONE);
             animateRotation(binding.pitchToogleControlModes,
-                    Player.DEFAULT_CONTROLS_DURATION,
+                    VideoPlayerUi.DEFAULT_CONTROLS_DURATION,
                     isCurrentlyVisible ? 180 : 0);
         });
 
