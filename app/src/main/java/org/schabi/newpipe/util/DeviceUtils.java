@@ -100,20 +100,18 @@ public final class DeviceUtils {
      */
     public static boolean isDesktopMode(final Context context) {
         // Adapted from https://stackoverflow.com/a/64615568
-        // to check for all devices that have an active cursor
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            final InputManager im = (InputManager) context.getSystemService(INPUT_SERVICE);
-            for (final int id : im.getInputDeviceIds()) {
-                final InputDevice inputDevice = im.getInputDevice(id);
-                if (
-                        inputDevice.supportsSource(InputDevice.SOURCE_BLUETOOTH_STYLUS)
-                                || inputDevice.supportsSource(InputDevice.SOURCE_MOUSE)
-                                || inputDevice.supportsSource(InputDevice.SOURCE_STYLUS)
-                                || inputDevice.supportsSource(InputDevice.SOURCE_TOUCHPAD)
-                                || inputDevice.supportsSource(InputDevice.SOURCE_TRACKBALL)
-                ) {
-                    return true;
-                }
+        // to check for all input devices that have an active cursor
+        final InputManager im = (InputManager) context.getSystemService(INPUT_SERVICE);
+        for (final int id : im.getInputDeviceIds()) {
+            final InputDevice inputDevice = im.getInputDevice(id);
+            if (
+                    inputDevice.supportsSource(InputDevice.SOURCE_BLUETOOTH_STYLUS)
+                            || inputDevice.supportsSource(InputDevice.SOURCE_MOUSE)
+                            || inputDevice.supportsSource(InputDevice.SOURCE_STYLUS)
+                            || inputDevice.supportsSource(InputDevice.SOURCE_TOUCHPAD)
+                            || inputDevice.supportsSource(InputDevice.SOURCE_TRACKBALL)
+            ) {
+                return true;
             }
         }
 
