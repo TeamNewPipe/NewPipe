@@ -313,10 +313,15 @@ public final class ShareUtils {
             return;
         }
 
-        clipboardManager.setPrimaryClip(ClipData.newPlainText(null, text));
-        if (Build.VERSION.SDK_INT < 33) {
-            // Android 13 has its own "copied to clipboard" dialog
-            Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show();
+        try {
+            clipboardManager.setPrimaryClip(ClipData.newPlainText(null, text));
+            if (Build.VERSION.SDK_INT < 33) {
+                // Android 13 has its own "copied to clipboard" dialog
+                Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show();
+            }
+        } catch (final Exception e) {
+            Log.e(TAG, "Error when trying to copy text to clipboard", e);
+            Toast.makeText(context, R.string.msg_failed_to_copy, Toast.LENGTH_SHORT).show();
         }
     }
 
