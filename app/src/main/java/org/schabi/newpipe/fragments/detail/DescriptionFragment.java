@@ -26,9 +26,8 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.external_communication.TextLinkifier;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import icepick.State;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -209,8 +208,8 @@ public class DescriptionFragment extends BaseFragment {
             final ItemMetadataTagsBinding itemBinding
                     = ItemMetadataTagsBinding.inflate(inflater, layout, false);
 
-            final List<String> tags = new ArrayList<>(streamInfo.getTags());
-            Collections.sort(tags);
+            final List<String> tags = streamInfo.getTags().stream().sorted()
+                    .collect(Collectors.toList());
             for (final String tag : tags) {
                 final Chip chip = (Chip) inflater.inflate(R.layout.chip,
                         itemBinding.metadataTagsChips, false);
