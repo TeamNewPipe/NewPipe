@@ -21,4 +21,4 @@ jobs:
         with:
           token: ${{ github.token }}
           daysUntilClose: 14
-          responseRequiredLabel: waiting-for-author
+          responseRequiredLabel: waiting for author
