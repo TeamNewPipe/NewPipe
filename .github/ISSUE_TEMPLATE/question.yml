@@ -1,6 +1,6 @@
 name: Question
 description: Ask about anything NewPipe-related
-labels: [question]
+labels: [question, needs triage]
 body:
   - type: markdown
     attributes:
