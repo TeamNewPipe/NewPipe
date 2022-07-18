@@ -1,5 +1,9 @@
 package org.schabi.newpipe.fragments.detail;
 
+import static android.text.TextUtils.isEmpty;
+import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
+import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,10 +36,6 @@ import java.util.List;
 
 import icepick.State;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-
-import static android.text.TextUtils.isEmpty;
-import static org.schabi.newpipe.extractor.stream.StreamExtractor.NO_AGE_LIMIT;
-import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 
 public class DescriptionFragment extends BaseFragment {
 
@@ -185,8 +185,8 @@ public class DescriptionFragment extends BaseFragment {
             return;
         }
 
-        final ItemMetadataBinding itemBinding
-                = ItemMetadataBinding.inflate(inflater, layout, false);
+        final ItemMetadataBinding itemBinding =
+                ItemMetadataBinding.inflate(inflater, layout, false);
 
         itemBinding.metadataTypeView.setText(type);
         itemBinding.metadataTypeView.setOnLongClickListener(v -> {
@@ -206,8 +206,8 @@ public class DescriptionFragment extends BaseFragment {
 
     private void addTagsMetadataItem(final LayoutInflater inflater, final LinearLayout layout) {
         if (streamInfo.getTags() != null && !streamInfo.getTags().isEmpty()) {
-            final ItemMetadataTagsBinding itemBinding
-                    = ItemMetadataTagsBinding.inflate(inflater, layout, false);
+            final ItemMetadataTagsBinding itemBinding =
+                    ItemMetadataTagsBinding.inflate(inflater, layout, false);
 
             final List<String> tags = new ArrayList<>(streamInfo.getTags());
             Collections.sort(tags);

@@ -226,8 +226,8 @@ public abstract class VideoPlayerUi extends PlayerUi
 
         // PlaybackControlRoot already consumed window insets but we should pass them to
         // player_overlays and fast_seek_overlay too. Without it they will be off-centered.
-        onLayoutChangeListener
-                = (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+        onLayoutChangeListener =
+                (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
                     binding.playerOverlays.setPadding(
                             v.getPaddingLeft(),
                             v.getPaddingTop(),
@@ -1053,8 +1053,7 @@ public abstract class VideoPlayerUi extends PlayerUi
         }
         qualityPopupMenu.getMenu().removeGroup(POPUP_MENU_ID_QUALITY);
 
-        @Nullable final List<VideoStream> availableStreams
-                = Optional.ofNullable(player.getCurrentMetadata())
+        final List<VideoStream> availableStreams = Optional.ofNullable(player.getCurrentMetadata())
                 .flatMap(MediaItemTag::getMaybeQuality)
                 .map(MediaItemTag.Quality::getSortedVideoStreams)
                 .orElse(null);

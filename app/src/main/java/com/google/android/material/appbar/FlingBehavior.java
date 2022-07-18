@@ -132,8 +132,8 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
         try {
             final Class<?> headerBehaviorType = this.getClass().getSuperclass().getSuperclass();
             if (headerBehaviorType != null) {
-                final Field field
-                        = headerBehaviorType.getDeclaredField("lastNestedScrollingChildRef");
+                final Field field =
+                        headerBehaviorType.getDeclaredField("lastNestedScrollingChildRef");
                 field.setAccessible(true);
                 return field;
             }

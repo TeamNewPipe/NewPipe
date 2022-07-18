@@ -62,8 +62,8 @@ import java.util.concurrent.TimeUnit;
 
 public final class PlayerHelper {
     private static final StringBuilder STRING_BUILDER = new StringBuilder();
-    private static final Formatter STRING_FORMATTER
-            = new Formatter(STRING_BUILDER, Locale.getDefault());
+    private static final Formatter STRING_FORMATTER =
+            new Formatter(STRING_BUILDER, Locale.getDefault());
     private static final NumberFormat SPEED_FORMATTER = new DecimalFormat("0.##x");
     private static final NumberFormat PITCH_FORMATTER = new DecimalFormat("##%");
 

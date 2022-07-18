@@ -42,6 +42,7 @@ import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
+import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.PlayerType;
@@ -50,7 +51,6 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
-import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.util.ArrayList;
@@ -402,8 +402,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     final Iterator<PlaylistStreamEntry> playlistIter = playlist.iterator();
 
                     // History data
-                    final HistoryRecordManager recordManager
-                            = new HistoryRecordManager(getContext());
+                    final HistoryRecordManager recordManager =
+                            new HistoryRecordManager(getContext());
                     final Iterator<StreamHistoryEntry> historyIter = recordManager
                             .getStreamHistorySortedById().blockingFirst().iterator();
 
@@ -544,8 +544,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             return;
         }
 
-        final DialogEditTextBinding dialogBinding
-                = DialogEditTextBinding.inflate(getLayoutInflater());
+        final DialogEditTextBinding dialogBinding =
+                DialogEditTextBinding.inflate(getLayoutInflater());
         dialogBinding.dialogEditText.setHint(R.string.name);
         dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);
         dialogBinding.dialogEditText.setSelection(dialogBinding.dialogEditText.getText().length());

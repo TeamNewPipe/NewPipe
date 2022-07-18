@@ -115,8 +115,8 @@ public enum StreamDialogDefaultEntry {
     DOWNLOAD(R.string.download, (fragment, item) ->
             fetchStreamInfoAndSaveToDatabase(fragment.requireContext(), item.getServiceId(),
                     item.getUrl(), info -> {
-                        final DownloadDialog downloadDialog
-                                = new DownloadDialog(fragment.requireContext(), info);
+                        final DownloadDialog downloadDialog =
+                                new DownloadDialog(fragment.requireContext(), info);
                         downloadDialog.show(fragment.getChildFragmentManager(), "downloadDialog");
                     })
     ),

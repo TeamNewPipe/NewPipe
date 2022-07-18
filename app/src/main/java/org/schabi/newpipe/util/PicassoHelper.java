@@ -28,8 +28,8 @@ import okhttp3.OkHttpClient;
 
 public final class PicassoHelper {
     public static final String PLAYER_THUMBNAIL_TAG = "PICASSO_PLAYER_THUMBNAIL_TAG";
-    private static final String PLAYER_THUMBNAIL_TRANSFORMATION_KEY
-            = "PICASSO_PLAYER_THUMBNAIL_TRANSFORMATION_KEY";
+    private static final String PLAYER_THUMBNAIL_TRANSFORMATION_KEY =
+            "PICASSO_PLAYER_THUMBNAIL_TRANSFORMATION_KEY";
 
     private PicassoHelper() {
     }

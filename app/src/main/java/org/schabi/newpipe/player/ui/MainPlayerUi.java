@@ -534,8 +534,8 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
             binding.brightnessProgressBar.setMax(maxGestureLength);
 
             setInitialGestureValues();
-            binding.itemsListPanel.getLayoutParams().height
-                    = height - binding.itemsListPanel.getTop();
+            binding.itemsListPanel.getLayoutParams().height =
+                    height - binding.itemsListPanel.getTop();
         }
     }
 
@@ -710,8 +710,9 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         }
 
         int nearestPosition = 0;
-        final List<StreamSegment> segments
-                = player.getCurrentStreamInfo().get().getStreamSegments();
+        final List<StreamSegment> segments = player.getCurrentStreamInfo()
+                .get()
+                .getStreamSegments();
 
         for (int i = 0; i < segments.size(); i++) {
             if (segments.get(i).getStartTimeSeconds() * 1000L > playbackPosition) {
@@ -912,8 +913,8 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         if (DEBUG) {
             Log.d(TAG, "toggleFullscreen() called");
         }
-        final PlayerServiceEventListener fragmentListener
-                = player.getFragmentListener().orElse(null);
+        final PlayerServiceEventListener fragmentListener = player.getFragmentListener()
+                .orElse(null);
         if (fragmentListener == null || player.exoPlayerIsNull()) {
             return;
         }
@@ -939,8 +940,9 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
     public void checkLandscape() {
         // check if landscape is correct
-        final boolean videoInLandscapeButNotInFullscreen
-                = isLandscape() && !isFullscreen && !player.isAudioOnly();
+        final boolean videoInLandscapeButNotInFullscreen = isLandscape()
+                && !isFullscreen
+                && !player.isAudioOnly();
         final boolean notPaused = player.getCurrentState() != STATE_COMPLETED
                 && player.getCurrentState() != STATE_PAUSED;
 

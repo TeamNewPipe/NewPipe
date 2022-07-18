@@ -1555,8 +1555,8 @@ public final class VideoDetailFragment
             binding.detailUploaderThumbnailView.setVisibility(View.GONE);
         }
 
-        final Drawable buddyDrawable
-                = AppCompatResources.getDrawable(activity, R.drawable.placeholder_person);
+        final Drawable buddyDrawable =
+                AppCompatResources.getDrawable(activity, R.drawable.placeholder_person);
         binding.detailSubChannelThumbnailView.setImageDrawable(buddyDrawable);
         binding.detailUploaderThumbnailView.setImageDrawable(buddyDrawable);
 
@@ -2030,6 +2030,7 @@ public final class VideoDetailFragment
     }
 
     // Listener implementation
+    @Override
     public void hideSystemUiIfNeeded() {
         if (isFullscreen()
                 && bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
