@@ -21,7 +21,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.ContentObserver;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -1051,15 +1050,13 @@ public final class VideoDetailFragment
             // call `post()` to be sure `viewPager.getHitRect()`
             // is up to date and not being currently recomputed
             binding.tabLayout.post(() -> {
-                if (getContext() != null) {
+                final var activity = getActivity();
+                if (activity != null) {
                     final Rect pagerHitRect = new Rect();
                     binding.viewPager.getHitRect(pagerHitRect);
 
-                    final Point displaySize = new Point();
-                    Objects.requireNonNull(ContextCompat.getSystemService(getContext(),
-                            WindowManager.class)).getDefaultDisplay().getSize(displaySize);
-
-                    final int viewPagerVisibleHeight = displaySize.y - pagerHitRect.top;
+                    final int height = DeviceUtils.getWindowHeight(activity.getWindowManager());
+                    final int viewPagerVisibleHeight = height - pagerHitRect.top;
                     // see TabLayout.DEFAULT_HEIGHT, which is equal to 48dp
                     final float tabLayoutHeight = TypedValue.applyDimension(
                             TypedValue.COMPLEX_UNIT_DIP, 48, getResources().getDisplayMetrics());
