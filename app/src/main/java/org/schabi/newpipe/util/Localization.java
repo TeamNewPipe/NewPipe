@@ -13,6 +13,7 @@ import android.util.DisplayMetrics;
 import androidx.annotation.NonNull;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
+import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
 
 import org.ocpsoft.prettytime.PrettyTime;
@@ -247,8 +248,7 @@ public final class Localization {
         // is not the responsibility of this method handle long numbers
         // (it probably will fall in the "other" category,
         // or some language have some specific rule... then we have to change it)
-        final int safeCount = count > Integer.MAX_VALUE ? Integer.MAX_VALUE
-                : count < Integer.MIN_VALUE ? Integer.MIN_VALUE : (int) count;
+        final int safeCount = (int) MathUtils.clamp(count, Integer.MIN_VALUE, Integer.MAX_VALUE);
         return context.getResources().getQuantityString(pluralId, safeCount, formattedCount);
     }
 
