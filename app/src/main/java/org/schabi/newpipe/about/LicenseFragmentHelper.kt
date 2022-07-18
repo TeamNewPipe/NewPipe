@@ -12,10 +12,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.ThemeHelper
 import org.schabi.newpipe.util.external_communication.ShareUtils
-import java.io.BufferedReader
 import java.io.IOException
-import java.io.InputStreamReader
-import java.nio.charset.StandardCharsets
 
 object LicenseFragmentHelper {
     /**
@@ -25,32 +22,13 @@ object LicenseFragmentHelper {
      * styled according to the context's theme
      */
     private fun getFormattedLicense(context: Context, license: License): String {
-        val licenseContent = StringBuilder()
-        val webViewData: String
         try {
-            BufferedReader(
-                InputStreamReader(
-                    context.assets.open(license.filename),
-                    StandardCharsets.UTF_8
-                )
-            ).use { `in` ->
-                var str: String?
-                while (`in`.readLine().also { str = it } != null) {
-                    licenseContent.append(str)
-                }
-
+            return context.assets.open(license.filename).bufferedReader().use { it.readText() }
                 // split the HTML file and insert the stylesheet into the HEAD of the file
-                webViewData = "$licenseContent".replace(
-                    "</head>",
-                    "<style>" + getLicenseStylesheet(context) + "</style></head>"
-                )
-            }
+                .replace("</head>", "<style>${getLicenseStylesheet(context)}</style></head>")
         } catch (e: IOException) {
-            throw IllegalArgumentException(
-                "Could not get license file: " + license.filename, e
-            )
+            throw IllegalArgumentException("Could not get license file: ${license.filename}", e)
         }
-        return webViewData
     }
 
     /**
@@ -118,9 +96,7 @@ object LicenseFragmentHelper {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { formattedLicense ->
-                    val webViewData = Base64.encodeToString(
-                        formattedLicense.toByteArray(StandardCharsets.UTF_8), Base64.NO_PADDING
-                    )
+                    val webViewData = Base64.encodeToString(formattedLicense.toByteArray(), Base64.NO_PADDING)
                     val webView = WebView(context)
                     webView.loadData(webViewData, "text/html; charset=UTF-8", "base64")
 
