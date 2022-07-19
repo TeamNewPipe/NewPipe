@@ -5,6 +5,7 @@ import static org.schabi.newpipe.database.Migrations.MIGRATION_1_2;
 import static org.schabi.newpipe.database.Migrations.MIGRATION_2_3;
 import static org.schabi.newpipe.database.Migrations.MIGRATION_3_4;
 import static org.schabi.newpipe.database.Migrations.MIGRATION_4_5;
+import static org.schabi.newpipe.database.Migrations.MIGRATION_5_6;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -24,7 +25,8 @@ public final class NewPipeDatabase {
     private static AppDatabase getDatabase(final Context context) {
         return Room
                 .databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
-                .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5,
+                        MIGRATION_5_6)
                 .build();
     }
 

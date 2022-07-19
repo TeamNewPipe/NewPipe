@@ -11,17 +11,78 @@ import java.util.List;
 public interface PlaylistLocalItem extends LocalItem {
     String getOrderingName();
 
+    long getDisplayIndex();
+
+    long getUid();
+
+    void setDisplayIndex(long displayIndex);
+
+    /**
+     * Merge localPlaylists and remotePlaylists by the display index.
+     * If two items have the same display index, sort them in {@code CASE_INSENSITIVE_ORDER}.
+     *
+     * @param localPlaylists  local playlists
+     * @param remotePlaylists remote playlists
+     * @return merged playlists
+     */
     static List<PlaylistLocalItem> merge(
             final List<PlaylistMetadataEntry> localPlaylists,
             final List<PlaylistRemoteEntity> remotePlaylists) {
-        final List<PlaylistLocalItem> items = new ArrayList<>(
+
+        Collections.sort(localPlaylists,
+                Comparator.comparingLong(PlaylistMetadataEntry::getDisplayIndex));
+        Collections.sort(remotePlaylists,
+                Comparator.comparingLong(PlaylistRemoteEntity::getDisplayIndex));
+
+        // This algorithm is similar to the merge operation in merge sort.
+
+        final List<PlaylistLocalItem> result = new ArrayList<>(
                 localPlaylists.size() + remotePlaylists.size());
-        items.addAll(localPlaylists);
-        items.addAll(remotePlaylists);
+        final List<PlaylistLocalItem> itemsWithSameIndex = new ArrayList<>();
 
-        Collections.sort(items, Comparator.comparing(PlaylistLocalItem::getOrderingName,
-                Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
+        int i = 0;
+        int j = 0;
+        while (i < localPlaylists.size()) {
+            while (j < remotePlaylists.size()) {
+                if (remotePlaylists.get(j).getDisplayIndex()
+                        <= localPlaylists.get(i).getDisplayIndex()) {
+                    addItem(result, remotePlaylists.get(j), itemsWithSameIndex);
+                    j++;
+                } else {
+                    break;
+                }
+            }
+            addItem(result, localPlaylists.get(i), itemsWithSameIndex);
+            i++;
+        }
+        while (j < remotePlaylists.size()) {
+            addItem(result, remotePlaylists.get(j), itemsWithSameIndex);
+            j++;
+        }
+        addItemsWithSameIndex(result, itemsWithSameIndex);
 
-        return items;
+        return result;
+    }
+
+    static void addItem(final List<PlaylistLocalItem> result, final PlaylistLocalItem item,
+                        final List<PlaylistLocalItem> itemsWithSameIndex) {
+        if (!itemsWithSameIndex.isEmpty()
+                && itemsWithSameIndex.get(0).getDisplayIndex() != item.getDisplayIndex()) {
+            // The new item has a different display index, add previous items with same
+            // index to the result.
+            addItemsWithSameIndex(result, itemsWithSameIndex);
+            itemsWithSameIndex.clear();
+        }
+        itemsWithSameIndex.add(item);
+    }
+
+    static void addItemsWithSameIndex(final List<PlaylistLocalItem> result,
+                                      final List<PlaylistLocalItem> itemsWithSameIndex) {
+        if (itemsWithSameIndex.size() > 1) {
+            Collections.sort(itemsWithSameIndex,
+                    Comparator.comparing(PlaylistLocalItem::getOrderingName,
+                            Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
+        }
+        result.addAll(itemsWithSameIndex);
     }
 }

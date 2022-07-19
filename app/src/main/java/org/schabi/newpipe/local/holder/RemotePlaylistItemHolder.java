@@ -14,6 +14,7 @@ import org.schabi.newpipe.util.ServiceHelper;
 import java.time.format.DateTimeFormatter;
 
 public class RemotePlaylistItemHolder extends PlaylistItemHolder {
+
     public RemotePlaylistItemHolder(final LocalItemBuilder infoItemBuilder,
                                     final ViewGroup parent) {
         super(infoItemBuilder, parent);

@@ -13,6 +13,7 @@ import org.schabi.newpipe.util.Localization;
 import java.time.format.DateTimeFormatter;
 
 public class LocalPlaylistItemHolder extends PlaylistItemHolder {
+
     public LocalPlaylistItemHolder(final LocalItemBuilder infoItemBuilder, final ViewGroup parent) {
         super(infoItemBuilder, parent);
     }

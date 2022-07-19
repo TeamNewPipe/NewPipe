@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.local.holder.LocalBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.holder.LocalItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistGridItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistItemHolder;
@@ -20,6 +21,7 @@ import org.schabi.newpipe.local.holder.LocalPlaylistStreamGridItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistStreamItemHolder;
 import org.schabi.newpipe.local.holder.LocalStatisticStreamGridItemHolder;
 import org.schabi.newpipe.local.holder.LocalStatisticStreamItemHolder;
+import org.schabi.newpipe.local.holder.RemoteBookmarkPlaylistItemHolder;
 import org.schabi.newpipe.local.holder.RemotePlaylistGridItemHolder;
 import org.schabi.newpipe.local.holder.RemotePlaylistItemHolder;
 import org.schabi.newpipe.util.FallbackViewHolder;
@@ -66,6 +68,8 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int REMOTE_PLAYLIST_HOLDER_TYPE = 0x2001;
     private static final int LOCAL_PLAYLIST_GRID_HOLDER_TYPE = 0x2002;
     private static final int REMOTE_PLAYLIST_GRID_HOLDER_TYPE = 0x2004;
+    private static final int LOCAL_BOOKMARK_PLAYLIST_HOLDER_TYPE = 0x2008;
+    private static final int REMOTE_BOOKMARK_PLAYLIST_HOLDER_TYPE = 0x2010;
 
     private final LocalItemBuilder localItemBuilder;
     private final ArrayList<LocalItem> localItems;
@@ -74,6 +78,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private boolean showFooter = false;
     private boolean useGridVariant = false;
+    private boolean useItemHandle = false;
     private View header = null;
     private View footer = null;
 
@@ -169,6 +174,10 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.useGridVariant = useGridVariant;
     }
 
+    public void setUseItemHandle(final boolean useItemHandle) {
+        this.useItemHandle = useItemHandle;
+    }
+
     public void setHeader(final View header) {
         final boolean changed = header != this.header;
         this.header = header;
@@ -247,12 +256,17 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         switch (item.getLocalItemType()) {
             case PLAYLIST_LOCAL_ITEM:
-                return useGridVariant
-                        ? LOCAL_PLAYLIST_GRID_HOLDER_TYPE : LOCAL_PLAYLIST_HOLDER_TYPE;
+                if (useItemHandle) {
+                    return LOCAL_BOOKMARK_PLAYLIST_HOLDER_TYPE;
+                }
+                return useGridVariant ? LOCAL_PLAYLIST_GRID_HOLDER_TYPE
+                        : LOCAL_PLAYLIST_HOLDER_TYPE;
             case PLAYLIST_REMOTE_ITEM:
-                return useGridVariant
-                        ? REMOTE_PLAYLIST_GRID_HOLDER_TYPE : REMOTE_PLAYLIST_HOLDER_TYPE;
-
+                if (useItemHandle) {
+                    return REMOTE_BOOKMARK_PLAYLIST_HOLDER_TYPE;
+                }
+                return useGridVariant ? REMOTE_PLAYLIST_GRID_HOLDER_TYPE
+                        : REMOTE_PLAYLIST_HOLDER_TYPE;
             case PLAYLIST_STREAM_ITEM:
                 return useGridVariant
                         ? STREAM_PLAYLIST_GRID_HOLDER_TYPE : STREAM_PLAYLIST_HOLDER_TYPE;
@@ -283,10 +297,14 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 return new LocalPlaylistItemHolder(localItemBuilder, parent);
             case LOCAL_PLAYLIST_GRID_HOLDER_TYPE:
                 return new LocalPlaylistGridItemHolder(localItemBuilder, parent);
+            case LOCAL_BOOKMARK_PLAYLIST_HOLDER_TYPE:
+                return new LocalBookmarkPlaylistItemHolder(localItemBuilder, parent);
             case REMOTE_PLAYLIST_HOLDER_TYPE:
                 return new RemotePlaylistItemHolder(localItemBuilder, parent);
             case REMOTE_PLAYLIST_GRID_HOLDER_TYPE:
                 return new RemotePlaylistGridItemHolder(localItemBuilder, parent);
+            case REMOTE_BOOKMARK_PLAYLIST_HOLDER_TYPE:
+                return new RemoteBookmarkPlaylistItemHolder(localItemBuilder, parent);
             case STREAM_PLAYLIST_HOLDER_TYPE:
                 return new LocalPlaylistStreamItemHolder(localItemBuilder, parent);
             case STREAM_PLAYLIST_GRID_HOLDER_TYPE:

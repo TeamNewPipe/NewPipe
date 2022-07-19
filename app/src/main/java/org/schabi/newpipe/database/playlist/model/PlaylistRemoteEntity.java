@@ -31,6 +31,7 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
     public static final String REMOTE_PLAYLIST_URL = "url";
     public static final String REMOTE_PLAYLIST_THUMBNAIL_URL = "thumbnail_url";
     public static final String REMOTE_PLAYLIST_UPLOADER_NAME = "uploader";
+    public static final String REMOTE_PLAYLIST_DISPLAY_INDEX = "display_index";
     public static final String REMOTE_PLAYLIST_STREAM_COUNT = "stream_count";
 
     @PrimaryKey(autoGenerate = true)
@@ -52,6 +53,9 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
     @ColumnInfo(name = REMOTE_PLAYLIST_UPLOADER_NAME)
     private String uploader;
 
+    @ColumnInfo(name = REMOTE_PLAYLIST_DISPLAY_INDEX)
+    private long displayIndex = -1; // Make sure the new item is on the top
+
     @ColumnInfo(name = REMOTE_PLAYLIST_STREAM_COUNT)
     private Long streamCount;
 
@@ -63,6 +67,19 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
         this.url = url;
         this.thumbnailUrl = thumbnailUrl;
         this.uploader = uploader;
+        this.streamCount = streamCount;
+    }
+
+    @Ignore
+    public PlaylistRemoteEntity(final int serviceId, final String name, final String url,
+                                final String thumbnailUrl, final String uploader,
+                                final long displayIndex, final Long streamCount) {
+        this.serviceId = serviceId;
+        this.name = name;
+        this.url = url;
+        this.thumbnailUrl = thumbnailUrl;
+        this.uploader = uploader;
+        this.displayIndex = displayIndex;
         this.streamCount = streamCount;
     }
 
@@ -88,6 +105,7 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
                 && TextUtils.equals(getUploader(), info.getUploaderName());
     }
 
+    @Override
     public long getUid() {
         return uid;
     }
@@ -134,6 +152,16 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
 
     public void setUploader(final String uploader) {
         this.uploader = uploader;
+    }
+
+    @Override
+    public long getDisplayIndex() {
+        return displayIndex;
+    }
+
+    @Override
+    public void setDisplayIndex(final long displayIndex) {
+        this.displayIndex = displayIndex;
     }
 
     public Long getStreamCount() {

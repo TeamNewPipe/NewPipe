@@ -15,6 +15,7 @@ import java.util.List;
 import io.reactivex.rxjava3.core.Flowable;
 
 import static org.schabi.newpipe.database.playlist.PlaylistMetadataEntry.PLAYLIST_STREAM_COUNT;
+import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_DISPLAY_INDEX;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_ID;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_NAME;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_TABLE;
@@ -75,12 +76,25 @@ public interface PlaylistStreamDAO extends BasicDAO<PlaylistStreamEntity> {
 
     @Transaction
     @Query("SELECT " + PLAYLIST_ID + ", " + PLAYLIST_NAME + ", " + PLAYLIST_THUMBNAIL_URL + ", "
+            + PLAYLIST_DISPLAY_INDEX + ", "
             + "COALESCE(COUNT(" + JOIN_PLAYLIST_ID + "), 0) AS " + PLAYLIST_STREAM_COUNT
 
             + " FROM " + PLAYLIST_TABLE
             + " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE
             + " ON " + PLAYLIST_ID + " = " + JOIN_PLAYLIST_ID
-            + " GROUP BY " + JOIN_PLAYLIST_ID
+            + " GROUP BY " + PLAYLIST_ID
             + " ORDER BY " + PLAYLIST_NAME + " COLLATE NOCASE ASC")
     Flowable<List<PlaylistMetadataEntry>> getPlaylistMetadata();
+
+    @Transaction
+    @Query("SELECT " + PLAYLIST_ID + ", " + PLAYLIST_NAME + ", " + PLAYLIST_THUMBNAIL_URL + ", "
+            + PLAYLIST_DISPLAY_INDEX + ", "
+            + "COALESCE(COUNT(" + JOIN_PLAYLIST_ID + "), 0) AS " + PLAYLIST_STREAM_COUNT
+
+            + " FROM " + PLAYLIST_TABLE
+            + " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE
+            + " ON " + PLAYLIST_ID + " = " + JOIN_PLAYLIST_ID
+            + " GROUP BY " + PLAYLIST_ID
+            + " ORDER BY " + PLAYLIST_DISPLAY_INDEX)
+    Flowable<List<PlaylistMetadataEntry>> getDisplayIndexOrderedPlaylistMetadata();
 }
