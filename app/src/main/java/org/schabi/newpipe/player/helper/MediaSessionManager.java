@@ -21,7 +21,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
 import org.schabi.newpipe.player.mediasession.PlayQueueNavigator;
 
-import java.util.Optional;
+import java.util.Objects;
 
 public class MediaSessionManager {
     private static final String TAG = MediaSessionManager.class.getSimpleName();
@@ -84,23 +84,20 @@ public class MediaSessionManager {
      *
      * @param title       {@link MediaMetadataCompat#METADATA_KEY_TITLE}
      * @param artist      {@link MediaMetadataCompat#METADATA_KEY_ARTIST}
-     * @param optAlbumArt {@link MediaMetadataCompat#METADATA_KEY_ALBUM_ART}
+     * @param albumArt    {@link MediaMetadataCompat#METADATA_KEY_ALBUM_ART}
      * @param duration    {@link MediaMetadataCompat#METADATA_KEY_DURATION}
      *                    - should be a negative value for unknown durations, e.g. for livestreams
      */
     public void setMetadata(@NonNull final String title,
                             @NonNull final String artist,
-                            @NonNull final Optional<Bitmap> optAlbumArt,
+                            @Nullable final Bitmap albumArt,
                             final long duration
     ) {
         if (DEBUG) {
             Log.d(TAG, "setMetadata called:"
                     + " t: " + title
                     + " a: " + artist
-                    + " thumb: " + (
-                    optAlbumArt.isPresent()
-                            ? optAlbumArt.get().hashCode()
-                            : "<none>")
+                    + " thumb: " + (albumArt != null ? albumArt.hashCode() : "<none>")
                     + " d: " + duration);
         }
 
@@ -111,7 +108,7 @@ public class MediaSessionManager {
             return;
         }
 
-        if (!checkIfMetadataShouldBeSet(title, artist, optAlbumArt, duration)) {
+        if (!checkIfMetadataShouldBeSet(title, artist, albumArt, duration)) {
             if (DEBUG) {
                 Log.d(TAG, "setMetadata: No update required - exiting");
             }
@@ -122,10 +119,7 @@ public class MediaSessionManager {
             Log.d(TAG, "setMetadata: N_Metadata update:"
                     + " t: " + title
                     + " a: " + artist
-                    + " thumb: " + (
-                    optAlbumArt.isPresent()
-                            ? optAlbumArt.get().hashCode()
-                            : "<none>")
+                    + " thumb: " + (albumArt != null ? albumArt.hashCode() : "<none>")
                     + " d: " + duration);
         }
 
@@ -134,9 +128,9 @@ public class MediaSessionManager {
                 .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, artist)
                 .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration);
 
-        if (optAlbumArt.isPresent()) {
-            builder.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, optAlbumArt.get());
-            builder.putBitmap(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON, optAlbumArt.get());
+        if (albumArt != null) {
+            builder.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, albumArt);
+            builder.putBitmap(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON, albumArt);
         }
 
         mediaSession.setMetadata(builder.build());
@@ -144,20 +138,20 @@ public class MediaSessionManager {
         lastTitleHashCode = title.hashCode();
         lastArtistHashCode = artist.hashCode();
         lastDuration = duration;
-        optAlbumArt.ifPresent(bitmap -> lastAlbumArtHashCode = bitmap.hashCode());
+        lastAlbumArtHashCode = Objects.hashCode(albumArt);
     }
 
     private boolean checkIfMetadataShouldBeSet(
             @NonNull final String title,
             @NonNull final String artist,
-            @NonNull final Optional<Bitmap> optAlbumArt,
+            @Nullable final Bitmap albumArt,
             final long duration
     ) {
         // Check if the values have changed since the last time
         if (title.hashCode() != lastTitleHashCode
                 || artist.hashCode() != lastArtistHashCode
                 || duration != lastDuration
-                || (optAlbumArt.isPresent() && optAlbumArt.get().hashCode() != lastAlbumArtHashCode)
+                || (Objects.hashCode(albumArt) != lastAlbumArtHashCode)
         ) {
             if (DEBUG) {
                 Log.d(TAG,
@@ -184,7 +178,7 @@ public class MediaSessionManager {
         }
 
         // If we got an album art check if the current set AlbumArt is null
-        if (optAlbumArt.isPresent() && getMetadataAlbumArt() == null) {
+        if (albumArt != null && getMetadataAlbumArt() == null) {
             if (DEBUG) {
                 Log.d(TAG, "N_getMetadataAlbumArt: thumb == null");
             }

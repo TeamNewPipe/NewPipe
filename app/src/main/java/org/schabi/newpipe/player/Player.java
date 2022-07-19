@@ -1748,7 +1748,7 @@ public final class Player implements PlaybackListener, Listener {
         mediaSessionManager.setMetadata(
                 getVideoTitle(),
                 getUploaderName(),
-                showThumbnail ? Optional.ofNullable(getThumbnail()) : Optional.empty(),
+                showThumbnail ? getThumbnail() : null,
                 StreamTypeUtil.isLiveStream(info.getStreamType()) ? -1 : info.getDuration()
         );
 

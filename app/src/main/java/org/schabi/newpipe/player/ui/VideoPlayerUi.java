@@ -554,7 +554,7 @@ public abstract class VideoPlayerUi extends PlayerUi
         SeekbarPreviewThumbnailHelper
                 .tryResizeAndSetSeekbarPreviewThumbnail(
                         player.getContext(),
-                        seekbarPreviewThumbnailHolder.getBitmapAt(progress),
+                        seekbarPreviewThumbnailHolder.getBitmapAt(progress).orElse(null),
                         binding.currentSeekbarPreviewThumbnail,
                         binding.subtitleView::getWidth);
 
