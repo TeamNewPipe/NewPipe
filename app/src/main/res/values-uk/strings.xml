@@ -362,8 +362,7 @@
     <string name="conferences">Конференції</string>
     <string name="updates_setting_title">Оновлення</string>
     <string name="auto">Автоматично</string>
-    <string name="app_update_notification_content_title">Доступне оновлення NewPipe!</string>
-    <string name="app_update_notification_content_text">Натисніть для завантаження</string>
+    <string name="app_update_available_notification_title">Доступне оновлення NewPipe!</string>
     <string name="missions_header_finished">Завершено</string>
     <string name="missions_header_pending">Очікує</string>
     <string name="paused">призупинено</string>

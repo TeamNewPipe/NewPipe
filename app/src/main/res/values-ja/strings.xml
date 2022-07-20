@@ -342,8 +342,7 @@
     <string name="list">リスト</string>
     <string name="grid">グリッド</string>
     <string name="auto">自動</string>
-    <string name="app_update_notification_content_title">NewPipe のアップデートがあります！</string>
-    <string name="app_update_notification_content_text">タップでダウンロード</string>
+    <string name="app_update_available_notification_title">NewPipe のアップデートがあります！</string>
     <string name="missions_header_finished">完了</string>
     <string name="missions_header_pending">順番に処理中</string>
     <string name="paused">一時停止</string>

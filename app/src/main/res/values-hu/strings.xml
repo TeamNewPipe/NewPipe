@@ -381,8 +381,7 @@
     <string name="paused">szüneteltetve</string>
     <string name="missions_header_pending">Függőben lévő</string>
     <string name="missions_header_finished">Befejezett</string>
-    <string name="app_update_notification_content_text">Kattintson a letöltéshez</string>
-    <string name="app_update_notification_content_title">NewPipe frissítés érhető el!</string>
+    <string name="app_update_available_notification_title">NewPipe frissítés érhető el!</string>
     <string name="auto">Automatikus</string>
     <string name="grid">Rács</string>
     <string name="list">Lista</string>

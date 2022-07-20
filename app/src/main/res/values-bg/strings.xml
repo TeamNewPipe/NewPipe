@@ -398,10 +398,9 @@
     <string name="wifi_only">Само при Wi-Fi</string>
     <string name="list_view_mode">Вид на списъка</string>
     <string name="enable_playback_resume_summary">Възстанови последната позиция</string>
-    <string name="app_update_notification_content_title">Нова версия на NewPipe е налична!</string>
+    <string name="app_update_available_notification_title">Нова версия на NewPipe е налична!</string>
     <string name="seekbar_preview_thumbnail_title">Миниатюри на лентата за превъртане</string>
     <string name="low_quality_smaller">Нискокачествени (малки)</string>
-    <string name="app_update_notification_content_text">Докоснете за изтегляне</string>
     <string name="queued">на опашка</string>
     <string name="updates_setting_title">Актуализации</string>
     <string name="overwrite">Презаписване</string>

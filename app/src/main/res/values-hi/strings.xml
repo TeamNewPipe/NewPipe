@@ -343,8 +343,7 @@
     <string name="main_page_content_summary">मुख्य पृष्ठ पर कौन से टैब दिखाए जाते हैं</string>
     <string name="updates_setting_title">अपडेट</string>
     <string name="list">सूची</string>
-    <string name="app_update_notification_content_title">न्यूपाइप अपडेट उपलब्ध!</string>
-    <string name="app_update_notification_content_text">डाउनलोड करने के लिए टैप करें</string>
+    <string name="app_update_available_notification_title">न्यूपाइप अपडेट उपलब्ध!</string>
     <string name="missions_header_finished">समाप्त</string>
     <string name="missions_header_pending">अपूर्ण</string>
     <string name="paused">रोका हुआ</string>

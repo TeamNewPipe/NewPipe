@@ -348,8 +348,7 @@
     <string name="list">Senarai</string>
     <string name="grid">Grid</string>
     <string name="auto">Auto</string>
-    <string name="app_update_notification_content_title">Kemas kini NewPipe Tersedia!</string>
-    <string name="app_update_notification_content_text">Ketik untuk muat turun</string>
+    <string name="app_update_available_notification_title">Kemas kini NewPipe Tersedia!</string>
     <string name="missions_header_finished">Selesai</string>
     <string name="paused">dijeda</string>
     <string name="queued">telah beratur</string>

@@ -360,8 +360,7 @@
     <string name="list">Seznam</string>
     <string name="grid">Mřížka</string>
     <string name="auto">Automaticky</string>
-    <string name="app_update_notification_content_title">Aktualizace NewPipe je k dispozici!</string>
-    <string name="app_update_notification_content_text">Klepněte pro stažení</string>
+    <string name="app_update_available_notification_title">Aktualizace NewPipe je k dispozici!</string>
     <string name="missions_header_finished">Hotovo</string>
     <string name="missions_header_pending">Vyčkávání</string>
     <string name="paused">Pozastaveno</string>

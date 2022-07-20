@@ -358,8 +358,7 @@
     <string name="list">Λίστα</string>
     <string name="grid">Πλέγμα</string>
     <string name="auto">Αυτόματα</string>
-    <string name="app_update_notification_content_title">Μια νέα έκδοση του NewPipe είναι διαθέσιμη!</string>
-    <string name="app_update_notification_content_text">Πατήστε για λήψη</string>
+    <string name="app_update_available_notification_title">Μια νέα έκδοση του NewPipe είναι διαθέσιμη!</string>
     <string name="missions_header_finished">Ολοκληρώθηκε</string>
     <string name="missions_header_pending">Εκκρεμεί</string>
     <string name="paused">σε παύση</string>

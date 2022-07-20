@@ -453,8 +453,7 @@
     <string name="paused">to\'xtatildi</string>
     <string name="missions_header_pending">Kutilmoqda</string>
     <string name="missions_header_finished">Tugatildi</string>
-    <string name="app_update_notification_content_text">Yuklash uchun bosing</string>
-    <string name="app_update_notification_content_title">NewPipe yangilanishi mavjud!</string>
+    <string name="app_update_available_notification_title">NewPipe yangilanishi mavjud!</string>
     <string name="auto">Avto</string>
     <string name="grid">Tarmoq</string>
     <string name="list">Ro\'yxat</string>

@@ -370,8 +370,7 @@
     <string name="app_update_notification_channel_description">Уведомления о новых версиях NewPipe</string>
     <string name="updates_setting_title">Обновления</string>
     <string name="updates_setting_description">Показать уведомление при наличии новой версии</string>
-    <string name="app_update_notification_content_title">Доступно обновление NewPipe!</string>
-    <string name="app_update_notification_content_text">Нажмите для загрузки</string>
+    <string name="app_update_available_notification_title">Доступно обновление NewPipe!</string>
     <string name="missions_header_finished">Завершено</string>
     <string name="paused">приостановлено</string>
     <string name="queued">в очереди</string>

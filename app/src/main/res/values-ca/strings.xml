@@ -347,7 +347,7 @@
     <string name="list">Llista</string>
     <string name="grid">Quadrícula</string>
     <string name="auto">Automàtic</string>
-    <string name="app_update_notification_content_title">Una nova versió del NewPipe està disponible!</string>
+    <string name="app_update_available_notification_title">Una nova versió del NewPipe està disponible!</string>
     <string name="missions_header_pending">Pendent</string>
     <string name="paused">en pausa</string>
     <string name="queued">a la cua</string>
@@ -388,7 +388,6 @@
     <string name="close">Tanca</string>
     <string name="saved_tabs_invalid_json">S\'ha produït un error en llegir les pestanyes desades; s\'estan utilitzant les pestanyes per defecte</string>
     <string name="updates_setting_description">Mostra una notificació per demanar l\'actualització de l\'aplicació si hi ha una versió nova disponible</string>
-    <string name="app_update_notification_content_text">Toqueu per baixar</string>
     <string name="error_http_no_content">El servidor no està enviant dades</string>
     <string name="app_update_notification_channel_name">Notificació d\'actualització de l\'aplicació</string>
     <string name="enable_playback_resume_title">Reprèn la reproducció</string>

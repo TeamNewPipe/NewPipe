@@ -178,7 +178,6 @@
     <string name="show_error">এরর দেখান</string>
     <string name="download_failed">ডাউনলোড ব্যর্থ হয়েছে</string>
     <string name="paused">স্থগিত</string>
-    <string name="app_update_notification_content_text">ডাউনলোড করতে টোকা দিন</string>
     <string name="auto">অটো</string>
     <string name="limit_data_usage_none_description">সীমাহীন</string>
     <string name="caption_none">কোন ক্যাপশন নেই</string>
@@ -392,7 +391,7 @@
     <string name="notification_action_4_title">পঞ্চম পদক্ষেপ বোতাম</string>
     <string name="show_description_summary">ভিডিও বর্ণনা ও বাড়তি তথ্য লুকাতে বন্ধ করুন</string>
     <string name="dont_show">দেখিও না</string>
-    <string name="app_update_notification_content_title">নিউ পাইপ আপডেট এসেছে!</string>
+    <string name="app_update_available_notification_title">নিউ পাইপ আপডেট এসেছে!</string>
     <string name="comments_are_disabled">মন্তব্যসমূহ নিষ্ক্রিয় আছে</string>
     <plurals name="views">
         <item quantity="one">%s বার দেখেছে</item>

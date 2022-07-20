@@ -485,7 +485,7 @@
     <string name="queued">növbədədir</string>
     <string name="post_processing">sonrakı emal olunur</string>
     <string name="checking_updates_toast">Yeniləmələr yoxlanılır…</string>
-    <string name="app_update_notification_content_title">NewPipe yeniləməsi mövcuddur!</string>
+    <string name="app_update_available_notification_title">NewPipe yeniləməsi mövcuddur!</string>
     <string name="metadata_licence">Lisenziya</string>
     <string name="feed_load_error_terminated">Müəllifin hesabı bağlanıb.
 \nNewPipe gələcəkdə bu axını yükləyə bilməyəcək.
@@ -572,7 +572,6 @@
     <string name="recovering">bərpa olunur</string>
     <string name="paused">dayandırıldı</string>
     <string name="missions_header_finished">Bitdi</string>
-    <string name="app_update_notification_content_text">Endirmək üçün toxun</string>
     <string name="minimize_on_exit_none_description">Heç biri</string>
     <string name="minimize_on_exit_summary">Əsas video oynadıcıdan digər tətbiqə keçid zamanı hərəkət — %s</string>
     <string name="decline">İmtina</string>

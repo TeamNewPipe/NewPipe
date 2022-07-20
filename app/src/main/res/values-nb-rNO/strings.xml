@@ -358,8 +358,7 @@
     <string name="list">Liste</string>
     <string name="grid">Rutenett</string>
     <string name="auto">Auto</string>
-    <string name="app_update_notification_content_title">Ny NewPipe-versjon er tilgjengelig!</string>
-    <string name="app_update_notification_content_text">Trykk for å laste ned</string>
+    <string name="app_update_available_notification_title">Ny NewPipe-versjon er tilgjengelig!</string>
     <string name="missions_header_finished">Fullført</string>
     <string name="paused">pauset</string>
     <string name="queued">I kø</string>

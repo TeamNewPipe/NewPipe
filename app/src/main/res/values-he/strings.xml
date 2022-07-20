@@ -364,8 +364,7 @@
     <string name="list">רשימה</string>
     <string name="grid">טבלה</string>
     <string name="auto">אוטומטית</string>
-    <string name="app_update_notification_content_title">יצא עדכון ל־NewPipe!</string>
-    <string name="app_update_notification_content_text">יש לגעת כדי להוריד</string>
+    <string name="app_update_available_notification_title">יצא עדכון ל־NewPipe!</string>
     <string name="missions_header_finished">הסתיים</string>
     <string name="paused">מושהה</string>
     <string name="queued">בתור</string>

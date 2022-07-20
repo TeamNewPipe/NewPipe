@@ -512,8 +512,7 @@
     <string name="paused">Întrerupt</string>
     <string name="missions_header_pending">În așteptare</string>
     <string name="missions_header_finished">Finalizat</string>
-    <string name="app_update_notification_content_text">Atingeți pentru a descărca</string>
-    <string name="app_update_notification_content_title">Actualizare NewPipe disponibilă!</string>
+    <string name="app_update_available_notification_title">Actualizare NewPipe disponibilă!</string>
     <string name="auto">Automat</string>
     <string name="grid">Grilă</string>
     <string name="list">Listă</string>

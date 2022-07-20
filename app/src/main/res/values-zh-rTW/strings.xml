@@ -350,8 +350,7 @@
     <string name="list">清單</string>
     <string name="grid">網格</string>
     <string name="auto">自動</string>
-    <string name="app_update_notification_content_title">有可用的 NewPipe 更新！</string>
-    <string name="app_update_notification_content_text">輕觸以下載</string>
+    <string name="app_update_available_notification_title">有可用的 NewPipe 更新！</string>
     <string name="missions_header_finished">已完成</string>
     <string name="missions_header_pending">有待處理</string>
     <string name="paused">已暫停</string>

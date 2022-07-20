@@ -254,8 +254,7 @@
     <string name="list">سیاهه</string>
     <string name="grid">شبکه</string>
     <string name="auto">خودکار</string>
-    <string name="app_update_notification_content_title">به‌روزرسانی برای نیوپایپ موجود است!</string>
-    <string name="app_update_notification_content_text">برای بارگیری، لمس کنید</string>
+    <string name="app_update_available_notification_title">به‌روزرسانی برای نیوپایپ موجود است!</string>
     <string name="missions_header_finished">تمام</string>
     <string name="missions_header_pending">در انتظار</string>
     <string name="enqueue">صف‌گذاری</string>

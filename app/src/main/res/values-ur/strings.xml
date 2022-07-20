@@ -350,8 +350,7 @@
     <string name="list">فہرست</string>
     <string name="grid">گرڈ</string>
     <string name="auto">خودکار</string>
-    <string name="app_update_notification_content_title">نیو پائپ کی تازہ کاری دستیاب!</string>
-    <string name="app_update_notification_content_text">ڈاؤن لوڈ کرنے کے لئے کلک کریں</string>
+    <string name="app_update_available_notification_title">نیو پائپ کی تازہ کاری دستیاب!</string>
     <string name="missions_header_finished">ختم</string>
     <string name="missions_header_pending">ملتوی</string>
     <string name="paused">توقف</string>

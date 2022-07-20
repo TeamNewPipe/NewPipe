@@ -362,8 +362,7 @@
     <string name="list">Lista</string>
     <string name="grid">Siatka</string>
     <string name="auto">Automatyczny</string>
-    <string name="app_update_notification_content_title">Dostępna jest aktualizacja NewPipe!</string>
-    <string name="app_update_notification_content_text">Naciśnij, aby pobrać</string>
+    <string name="app_update_available_notification_title">Dostępna jest aktualizacja NewPipe!</string>
     <string name="missions_header_finished">Zakończone</string>
     <string name="paused">wstrzymane</string>
     <string name="queued">w kolejce</string>

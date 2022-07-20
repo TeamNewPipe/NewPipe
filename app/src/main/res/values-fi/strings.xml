@@ -520,8 +520,7 @@
     <string name="pause_downloads_on_mobile_desc">Hyödyllinen vaihdettaessa mobiilidataan, vaikka joitakin latauksia ei voi pysäyttää</string>
     <string name="pause_downloads_on_mobile">Keskeytä, kun yhteys on käytön mukaan laskutettava</string>
     <string name="paused">tauotettu</string>
-    <string name="app_update_notification_content_text">Napauta ladataksesi</string>
-    <string name="app_update_notification_content_title">NewPipe-päivitys on saatavilla!</string>
+    <string name="app_update_available_notification_title">NewPipe-päivitys on saatavilla!</string>
     <string name="list_view_mode">Listanäkymän ulkoasu</string>
     <string name="auto">Automaattinen</string>
     <string name="grid">Ruudukko</string>

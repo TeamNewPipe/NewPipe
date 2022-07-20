@@ -261,7 +261,6 @@
     <string name="auto">自動</string>
     <string name="low_quality_smaller">低畫質 (細格啲)</string>
     <string name="dont_show">唔顯示</string>
-    <string name="app_update_notification_content_text">撳一下去下載</string>
     <string name="no_views">無觀看次數</string>
     <plurals name="listening">
         <item quantity="other">%s 個人聽緊</item>
@@ -369,7 +368,7 @@
     <string name="updates_setting_title">更新</string>
     <string name="updates_setting_description">出咗新版本嘅時候，顯示通知提示升級個 app</string>
     <string name="manual_update_description">手動檢查下有冇新版本</string>
-    <string name="app_update_notification_content_title">NewPipe 出咗更新喇！</string>
+    <string name="app_update_available_notification_title">NewPipe 出咗更新喇！</string>
     <string name="missions_header_pending">仲等緊</string>
     <string name="recovering">恢復緊</string>
     <string name="permission_denied">動作被系統拒絕咗</string>

@@ -227,7 +227,6 @@
     <string name="download_failed">Prenos spodletel</string>
     <string name="paused">Pavza</string>
     <string name="missions_header_finished">Končano</string>
-    <string name="app_update_notification_content_text">Tapnite da prenesete</string>
     <string name="list">Seznam</string>
     <string name="updates_setting_title">Posodobitve</string>
     <string name="accept">Sprejmi</string>
@@ -446,7 +445,7 @@
     <string name="search_showing_result_for">Prikazujem rezultate za %s</string>
     <string name="enqueue">Vrsta</string>
     <string name="queued">V vrsti</string>
-    <string name="app_update_notification_content_title">NewPipe posodobitve so na voljo!</string>
+    <string name="app_update_available_notification_title">NewPipe posodobitve so na voljo!</string>
     <string name="auto">Avtomatsko</string>
     <string name="grid">Mreža</string>
     <string name="never">Nikoli</string>

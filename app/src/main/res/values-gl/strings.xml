@@ -452,8 +452,7 @@
     <string name="paused">pausado</string>
     <string name="missions_header_pending">Pendente</string>
     <string name="missions_header_finished">Rematado</string>
-    <string name="app_update_notification_content_text">Prema para descargar</string>
-    <string name="app_update_notification_content_title">A actualización de NewPipe está dispoñible!</string>
+    <string name="app_update_available_notification_title">A actualización de NewPipe está dispoñible!</string>
     <string name="auto">Automático</string>
     <string name="enable_playback_state_lists_summary">Mostra os indicadores de posición de reprodución nas listas</string>
     <string name="brightness_gesture_control_summary">Use xestos para controlar o brillo do reprodutor</string>

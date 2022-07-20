@@ -75,8 +75,7 @@
     <string name="paused">la qabtay</string>
     <string name="missions_header_pending">Socda</string>
     <string name="missions_header_finished">Dhamaystirmay</string>
-    <string name="app_update_notification_content_text">Ku dhufo si aad u dajiso</string>
-    <string name="app_update_notification_content_title">Nooc cusub oo NewPipe ah ayaa diyaar ah!</string>
+    <string name="app_update_available_notification_title">Nooc cusub oo NewPipe ah ayaa diyaar ah!</string>
     <string name="list_view_mode">Qaabka soobandhigga</string>
     <string name="never">Marna</string>
     <string name="wifi_only">WiFi-ga kaliya</string>

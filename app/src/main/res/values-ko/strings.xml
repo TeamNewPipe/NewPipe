@@ -261,18 +261,18 @@
     <string name="subscriptions_export_unsuccessful">구독 목록 내보내기 실패</string>
     <string name="import_youtube_instructions">구글 테이크아웃에서 유튜브 구독 가져오기:
 \n
-\n1. 다음 URL로 이동: %1$s 
-\n2. 요청 시 로그인 
-\n3. \"모든 데이터 포함\"을 클릭한 다음 \"모두 선택 취소\"를 클릭한 후 \"구독\"만 선택하고 \"확인\" 클릭 
-\n4. \"다음 단계\"를 클릭한 다음 \"내보내기 만들기\" 클릭 
-\n5. \"다운로드\" 버튼이 나타나면 클릭 
-\n6. 아래 파일 가져오기를 클릭하고 다운로드한 .zip 파일 선택 
+\n1. 다음 URL로 이동: %1$s
+\n2. 요청 시 로그인
+\n3. \"모든 데이터 포함\"을 클릭한 다음 \"모두 선택 취소\"를 클릭한 후 \"구독\"만 선택하고 \"확인\" 클릭
+\n4. \"다음 단계\"를 클릭한 다음 \"내보내기 만들기\" 클릭
+\n5. \"다운로드\" 버튼이 나타나면 클릭
+\n6. 아래 파일 가져오기를 클릭하고 다운로드한 .zip 파일 선택
 \n7. [.zip 가져오기가 실패한 경우] .csv 파일(일반적으로 \"YouTube 및 YouTube Music/subscriptions/subscriptions.csv\" 아래에 있음)의 압축을 풀고, 아래 파일 가져오기를 클릭하고 압축을 푼 csv 파일 선택</string>
-    <string name="import_soundcloud_instructions">URL 또는 ID를 입력하여 SoundCloud 프로필을 가져옵니다: 
+    <string name="import_soundcloud_instructions">URL 또는 ID를 입력하여 SoundCloud 프로필을 가져옵니다:
 \n 
-\n1. 웹 브라우저에서 \"데스크톱 모드\"를 활성화합니다(모바일 장치에서는 사이트를 사용할 수 없습니다) 
-\n2. 다음 URL로 이동: %1$s 
-\n3. 요청 시 로그인 
+\n1. 웹 브라우저에서 \"데스크톱 모드\"를 활성화합니다(모바일 장치에서는 사이트를 사용할 수 없습니다)
+\n2. 다음 URL로 이동: %1$s
+\n3. 요청 시 로그인
 \n4. 리디렉션된 프로필 URL을 복사합니다.</string>
     <string name="import_soundcloud_instructions_hint">프로필ID, soundcloud.com/프로필ID</string>
     <string name="import_network_expensive_warning">경고: 데이터가 많이 소모될 수 있습니다. 
@@ -311,7 +311,7 @@
     <string name="app_license">NewPipe는 카피레프트 자유 소프트웨어입니다: 마음대로 사용하고, 연구하고, 공유하고, 개선할 수 있습니다. 특히 자유 소프트웨어 재단에서 발행한 GNU 일반 공중 사용 라이센스의 조건에 따라 라이센스 버전 3 또는 (귀하의 선택에 따라) 이후 버전을 재배포 및/또는 수정할 수 있습니다.</string>
     <string name="import_settings">설정도 가져오시겠습니까\?</string>
     <string name="skip_silence_checkbox">무음 구간 빨리 감기</string>
-    <string name="start_accept_privacy_policy">유럽 연합 일반 데이터 보호 규정(GDPR)을 준수하기 위해 NewPipe의 개인 정보 보호 정책에 주의를 기울입니다. 주의 깊게 읽으십시오. 
+    <string name="start_accept_privacy_policy">유럽 연합 일반 데이터 보호 규정(GDPR)을 준수하기 위해 NewPipe의 개인 정보 보호 정책에 주의를 기울입니다. 주의 깊게 읽으십시오.
 \n버그 보고서를 보내려면 수락해야 합니다.</string>
     <string name="accept">동의</string>
     <string name="decline">동의하지 않음</string>
@@ -351,8 +351,7 @@
     <string name="list">목록</string>
     <string name="grid">격자</string>
     <string name="auto">자동</string>
-    <string name="app_update_notification_content_title">NewPipe 업데이트를 사용할 수 있습니다!</string>
-    <string name="app_update_notification_content_text">여기를 눌러서 다운로드</string>
+    <string name="app_update_available_notification_title">NewPipe 업데이트를 사용할 수 있습니다!</string>
     <string name="missions_header_finished">완료됨</string>
     <string name="missions_header_pending">대기열에 있음</string>
     <string name="paused">일시중지됨</string>
@@ -406,7 +405,7 @@
     <string name="start_downloads">다운로드 시작</string>
     <string name="pause_downloads">다운로드 일시정지</string>
     <string name="downloads_storage_ask_title">다운로드 위치를 묻기</string>
-    <string name="downloads_storage_ask_summary">각 다운로드를 저장할 위치를 묻는 메시지가 표시됩니다. 
+    <string name="downloads_storage_ask_summary">각 다운로드를 저장할 위치를 묻는 메시지가 표시됩니다.
 \n외부 SD 카드에 다운로드하려면 시스템 폴더 선택기(SAF) 활성화</string>
     <string name="downloads_storage_use_saf_title">시스템 폴더 선택기(SAF) 사용</string>
     <string name="downloads_storage_use_saf_summary">\'저장영역 접속 프레임워크\'를 통해 외부 SD 카드로 다운로드 가능</string>
@@ -590,7 +589,7 @@
     <string name="tablet_mode_title">태블릿 모드</string>
     <string name="local_search_suggestions">지역 검색 제안</string>
     <string name="remote_search_suggestions">원격 검색 제안</string>
-    <string name="restricted_video_no_stream">이 동영상은 연령 제한이 있습니다. 
+    <string name="restricted_video_no_stream">이 동영상은 연령 제한이 있습니다.
 \n연령 제한 동영상에 대한 새로운 유튜브 정책으로 인해 NewPipe는 동영상 스트림에 접속할 수 없으므로 재생할 수 없습니다.</string>
     <string name="clear_cookie_summary">reCAPTCHA를 해결할 때 NewPipe가 저장하는 쿠키 지우기</string>
     <string name="description_tab_description">설명</string>
@@ -621,8 +620,8 @@
     <string name="feed_new_items">새로운 피드 항목</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">그룹화되지 않은 구독만 표시</string>
     <string name="feed_load_error_account_info">\'%s\'에 대한 피드를 불러올 수 없습니다.</string>
-    <string name="feed_load_error_terminated">제작자의 계정이 해지되었습니다. 
-\nNewPipe는 앞으로 이 피드를 불러올 수 없습니다. 
+    <string name="feed_load_error_terminated">제작자의 계정이 해지되었습니다.
+\nNewPipe는 앞으로 이 피드를 불러올 수 없습니다.
 \n이 채널의 구독을 취소하겠습니까\?</string>
     <string name="feed_load_error_fast_unknown">빠른 공급 모드는 이에 대한 자세한 정보를 제공하지 않습니다.</string>
     <string name="feed_use_dedicated_fetch_method_title">사용 가능한 경우 전용 피드에서 가져오기</string>
@@ -677,7 +676,7 @@
     <string name="feed_group_dialog_select_subscriptions">구독 선택</string>
     <string name="feed_use_dedicated_fetch_method_summary">일부 서비스에서 사용할 수 있으며 일반적으로 훨씬 빠르지만 제한된 양의 항목과 종종 불완전한 정보를 반환할 수 있습니다 (예: 기간 없음, 항목 유형, 라이브 상태 없음)</string>
     <string name="downloads_storage_use_saf_summary_api_29">안드로이드 10부터 \'저장영역 접속 프레임워크\'만 지원됩니다</string>
-    <string name="remove_watched_popup_warning">재생 목록에 추가되기 전과 후에 시청한 동영상은 제거됩니다. 
+    <string name="remove_watched_popup_warning">재생 목록에 추가되기 전과 후에 시청한 동영상은 제거됩니다.
 \n확실합니까\? 이것은 취소 할 수 없습니다!</string>
     <string name="start_main_player_fullscreen_summary">미니 플레이어에서 동영상을 시작하지 말고 자동 회전이 잠겨 있는 경우 전체 화면 모드로 직접 전환하십시오. 전체 화면을 종료하여 미니 플레이어에 계속 접속할 수 있습니다</string>
     <string name="metadata_privacy_public">공식</string>
@@ -691,19 +690,19 @@
 \n저장영역 접속 프레임워크 호환 파일 관리자를 설치하십시오</string>
     <string name="no_appropriate_file_manager_message">이 작업에 적합한 파일 관리자를 찾을 수 없습니다.
 \n파일 관리자를 설치하거나 다운로드 설정에서 \'%s\'을(를) 비활성화하십시오</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">피드 로딩이 너무 느리다고 생각하십니까\? 그렇다면 빠른 로딩을 활성화해 보십시오 (설정에서 변경하거나 아래 버튼을 눌러 변경할 수 있습니다). 
-\n 
-\nNewPipe는 두 가지 피드 로딩 전략을 제공합니다: 
-\n• 느리지만 완전한 전체 구독 채널을 가져옵니다. 
-\n• 빠르지만 일반적으로 완전하지는 않은 전용 서비스 엔드포인트를 사용합니다. 
-\n 
-\n둘의 차이점은 빠른 동영상은 일반적으로 항목의 길이나 유형(라이브 동영상과 일반 동영상을 구분할 수 없음)과 같은 일부 정보가 부족하고 더 적은 항목을 반환할 수 있다는 것입니다. 
-\n 
-\n유튜브는 RSS 피드로 이 빠른 방법을 제공하는 서비스의 한 예입니다. 
+    <string name="feed_use_dedicated_fetch_method_help_text">피드 로딩이 너무 느리다고 생각하십니까\? 그렇다면 빠른 로딩을 활성화해 보십시오 (설정에서 변경하거나 아래 버튼을 눌러 변경할 수 있습니다).
+\n
+\nNewPipe는 두 가지 피드 로딩 전략을 제공합니다:
+\n• 느리지만 완전한 전체 구독 채널을 가져옵니다.
+\n• 빠르지만 일반적으로 완전하지는 않은 전용 서비스 엔드포인트를 사용합니다.
+\n
+\n둘의 차이점은 빠른 동영상은 일반적으로 항목의 길이나 유형(라이브 동영상과 일반 동영상을 구분할 수 없음)과 같은 일부 정보가 부족하고 더 적은 항목을 반환할 수 있다는 것입니다.
+\n
+\n유튜브는 RSS 피드로 이 빠른 방법을 제공하는 서비스의 한 예입니다.
 \n
 \n따라서 선택은 속도 또는 정확한 정보 중에서 선호하는 것으로 귀결됩니다.</string>
-    <string name="content_not_supported">이 기능은 아직 NewPipe에서 지원하지 않습니다. 
-\n 
+    <string name="content_not_supported">이 기능은 아직 NewPipe에서 지원하지 않습니다.
+\n
 \n이후 버전에서 지원될 예정입니다.</string>
     <string name="feed_toggle_hide_played_items">감시한 항목 숨기기</string>
     <string name="feed_toggle_hide_future_items">향후 항목 숨기기</string>

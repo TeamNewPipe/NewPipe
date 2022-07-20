@@ -153,7 +153,6 @@
     <string name="error_unknown_host">সার্ভার পাওয়া যায় নি</string>
     <string name="download_failed">ডাউন লোড হয় নি</string>
     <string name="paused">পজ হয়েছে</string>
-    <string name="app_update_notification_content_text">ডাউন লোড করার জন্য চাপ দিন</string>
     <string name="auto">অটো</string>
     <string name="grid">গ্রিড</string>
     <string name="caption_setting_title">ক্যাপশন</string>

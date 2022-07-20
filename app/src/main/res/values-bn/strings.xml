@@ -17,7 +17,6 @@
     <string name="download_failed">ডাউন লোড হয় নি</string>
     <string name="paused">পজ হয়েছে</string>
     <string name="missions_header_finished">সম্পূর্ণ</string>
-    <string name="app_update_notification_content_text">ডাউন লোড করার জন্য চাপ দিন</string>
     <string name="auto">অটো</string>
     <string name="grid">ছক</string>
     <string name="list">তালিকা</string>
@@ -470,7 +469,7 @@
     <string name="pause_downloads_on_mobile">পরিমাপকৃত নেটওয়ার্কে বাধা দাও</string>
     <string name="error_download_resource_gone">এই ডাউনলোড উদ্ধার করা যাচ্ছে না</string>
     <string name="overwrite_failed">এই ফাইলের উপর লেখা যাচ্ছে না</string>
-    <string name="app_update_notification_content_title">নিউপাইপ হালনাগাদ আছে!</string>
+    <string name="app_update_available_notification_title">নিউপাইপ হালনাগাদ আছে!</string>
     <string name="minimize_on_exit_popup_description">ভাসমান চালকের ক্ষুদ্রকরণ করো</string>
     <string name="minimize_on_exit_background_description">প্লেয়ার পটভূমিতে ক্ষুদ্রকরণ করো</string>
     <string name="minimize_on_exit_title">অ্যাপ পরিবর্তনে ক্ষুদ্রকরণ করো</string>
