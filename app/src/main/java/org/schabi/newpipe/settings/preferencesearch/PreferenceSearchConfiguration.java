@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 public class PreferenceSearchConfiguration {
     private PreferenceSearchFunction searcher = new PreferenceFuzzySearchFunction();
 
-    private final List<String> parserIgnoreElements = List.of(PreferenceCategory.class
-            .getSimpleName());
+    private final List<String> parserIgnoreElements = List.of(
+            PreferenceCategory.class.getSimpleName());
     private final List<String> parserContainerElements = List.of(
             PreferenceCategory.class.getSimpleName(),
             PreferenceScreen.class.getSimpleName());
