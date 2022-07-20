@@ -578,17 +578,13 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
     }
 
     private PlayQueue getPlayQueue() {
-        return getPlayQueue(0);
-    }
-
-    private PlayQueue getPlayQueue(final int index) {
         final List<StreamInfoItem> streamItems = infoListAdapter.getItemsList().stream()
                 .filter(StreamInfoItem.class::isInstance)
                 .map(StreamInfoItem.class::cast)
                 .collect(Collectors.toList());
 
         return new ChannelPlayQueue(currentInfo.getServiceId(), currentInfo.getUrl(),
-                currentInfo.getNextPage(), streamItems, index);
+                currentInfo.getNextPage(), streamItems, 0);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
