@@ -30,7 +30,6 @@ import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.SimpleOnSeekBarChangeListener;
 import org.schabi.newpipe.util.SliderStrategy;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -334,10 +333,8 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private Map<Boolean, TextView> getPitchControlModeComponentMappings() {
-        final Map<Boolean, TextView> mappings = new HashMap<>();
-        mappings.put(PITCH_CTRL_MODE_PERCENT, binding.pitchControlModePercent);
-        mappings.put(PITCH_CTRL_MODE_SEMITONE, binding.pitchControlModeSemitone);
-        return mappings;
+        return Map.of(PITCH_CTRL_MODE_PERCENT, binding.pitchControlModePercent,
+                PITCH_CTRL_MODE_SEMITONE, binding.pitchControlModeSemitone);
     }
 
     private void changePitchControlMode(final boolean semitones) {
@@ -407,13 +404,11 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private Map<Double, TextView> getStepSizeComponentMappings() {
-        final Map<Double, TextView> mappings = new HashMap<>();
-        mappings.put(STEP_1_PERCENT_VALUE, binding.stepSizeOnePercent);
-        mappings.put(STEP_5_PERCENT_VALUE, binding.stepSizeFivePercent);
-        mappings.put(STEP_10_PERCENT_VALUE, binding.stepSizeTenPercent);
-        mappings.put(STEP_25_PERCENT_VALUE, binding.stepSizeTwentyFivePercent);
-        mappings.put(STEP_100_PERCENT_VALUE, binding.stepSizeOneHundredPercent);
-        return mappings;
+        return Map.of(STEP_1_PERCENT_VALUE, binding.stepSizeOnePercent,
+                STEP_5_PERCENT_VALUE, binding.stepSizeFivePercent,
+                STEP_10_PERCENT_VALUE, binding.stepSizeTenPercent,
+                STEP_25_PERCENT_VALUE, binding.stepSizeTwentyFivePercent,
+                STEP_100_PERCENT_VALUE, binding.stepSizeOneHundredPercent);
     }
 
     private void setStepSizeToUI(final double newStepSize) {
