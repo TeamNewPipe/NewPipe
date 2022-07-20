@@ -233,22 +233,14 @@ class PopupPlayerGestureListener(
 
         isMoving = true
 
-        val diffX: Float = (movingEvent.rawX - initialEvent.rawX)
-        var posX: Float = (initialPopupX + diffX)
-        val diffY: Float = (movingEvent.rawY - initialEvent.rawY)
-        var posY: Float = (initialPopupY + diffY)
-
-        if (posX > playerUi.screenWidth - playerUi.popupLayoutParams.width) {
-            posX = (playerUi.screenWidth - playerUi.popupLayoutParams.width).toFloat()
-        } else if (posX < 0) {
-            posX = 0f
-        }
-
-        if (posY > playerUi.screenHeight - playerUi.popupLayoutParams.height) {
-            posY = (playerUi.screenHeight - playerUi.popupLayoutParams.height).toFloat()
-        } else if (posY < 0) {
-            posY = 0f
-        }
+        val diffX = (movingEvent.rawX - initialEvent.rawX)
+        val posX = (initialPopupX + diffX).coerceIn(
+            0f, (playerUi.screenWidth - playerUi.popupLayoutParams.width).toFloat()
+        )
+        val diffY = (movingEvent.rawY - initialEvent.rawY)
+        val posY = (initialPopupY + diffY).coerceIn(
+            0f, (playerUi.screenHeight - playerUi.popupLayoutParams.height).toFloat()
+        )
 
         playerUi.popupLayoutParams.x = posX.toInt()
         playerUi.popupLayoutParams.y = posY.toInt()

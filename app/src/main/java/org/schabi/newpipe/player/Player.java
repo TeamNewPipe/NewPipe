@@ -62,6 +62,7 @@ import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.C;
@@ -591,7 +592,7 @@ public final class Player implements PlaybackListener, Listener {
         final long duration = simpleExoPlayer.getDuration();
 
         // No checks due to https://github.com/TeamNewPipe/NewPipe/pull/7195#issuecomment-962624380
-        setRecovery(queuePos, Math.max(0, Math.min(windowPos, duration)));
+        setRecovery(queuePos, MathUtils.clamp(windowPos, 0, duration));
     }
 
     private void setRecovery(final int queuePos, final long windowPos) {
@@ -1534,14 +1535,8 @@ public final class Player implements PlaybackListener, Listener {
         }
         if (!exoPlayerIsNull()) {
             // prevent invalid positions when fast-forwarding/-rewinding
-            long normalizedPositionMillis = positionMillis;
-            if (normalizedPositionMillis < 0) {
-                normalizedPositionMillis = 0;
-            } else if (normalizedPositionMillis > simpleExoPlayer.getDuration()) {
-                normalizedPositionMillis = simpleExoPlayer.getDuration();
-            }
-
-            simpleExoPlayer.seekTo(normalizedPositionMillis);
+            simpleExoPlayer.seekTo(MathUtils.clamp(positionMillis, 0,
+                    simpleExoPlayer.getDuration()));
         }
     }
 

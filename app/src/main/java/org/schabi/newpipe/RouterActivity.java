@@ -30,6 +30,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.ServiceCompat;
+import androidx.core.math.MathUtils;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
 
@@ -451,7 +452,7 @@ public class RouterActivity extends AppCompatActivity {
             }
         }
 
-        selectedRadioPosition = Math.min(Math.max(-1, selectedRadioPosition), choices.size() - 1);
+        selectedRadioPosition = MathUtils.clamp(selectedRadioPosition, -1, choices.size() - 1);
         if (selectedRadioPosition != -1) {
             ((RadioButton) radioGroup.getChildAt(selectedRadioPosition)).setChecked(true);
         }

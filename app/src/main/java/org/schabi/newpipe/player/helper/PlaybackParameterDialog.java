@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.math.MathUtils;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 
@@ -527,7 +528,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     }
 
     private void setAndUpdateTempo(final double newTempo) {
-        this.tempo = calcValidTempo(newTempo);
+        this.tempo = MathUtils.clamp(newTempo, MIN_PITCH_OR_SPEED, MAX_PITCH_OR_SPEED);
 
         binding.tempoSeekbar.setProgress(QUADRATIC_STRATEGY.progressOf(tempo));
         setText(binding.tempoCurrentText, PlayerHelper::formatSpeed, tempo);
@@ -546,13 +547,8 @@ public class PlaybackParameterDialog extends DialogFragment {
                 pitchPercent);
     }
 
-    private double calcValidTempo(final double newTempo) {
-        return Math.max(MIN_PITCH_OR_SPEED, Math.min(MAX_PITCH_OR_SPEED, newTempo));
-    }
-
     private double calcValidPitch(final double newPitch) {
-        final double calcPitch =
-                Math.max(MIN_PITCH_OR_SPEED, Math.min(MAX_PITCH_OR_SPEED, newPitch));
+        final double calcPitch = MathUtils.clamp(newPitch, MIN_PITCH_OR_SPEED, MAX_PITCH_OR_SPEED);
 
         if (!isCurrentPitchControlModeSemitone()) {
             return calcPitch;

@@ -8,13 +8,13 @@ import android.widget.ImageView;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
+import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.DeviceUtils;
 
 import java.lang.annotation.Retention;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.IntSupplier;
 
@@ -79,19 +79,14 @@ public final class SeekbarPreviewThumbnailHelper {
 
         // Resize original bitmap
         try {
-            Objects.requireNonNull(srcBitmap);
-
             final int srcWidth = srcBitmap.getWidth() > 0 ? srcBitmap.getWidth() : 1;
-            final int newWidth = Math.max(
-                    Math.min(
-                            // Use 1/4 of the width for the preview
-                            Math.round(baseViewWidthSupplier.getAsInt() / 4f),
-                            // Scaling more than that factor looks really pixelated -> max
-                            Math.round(srcWidth * 2.5f)
-                    ),
-                    // Min width = 10dp
-                    DeviceUtils.dpToPx(10, context)
-            );
+            final int newWidth = MathUtils.clamp(
+                    // Use 1/4 of the width for the preview
+                    Math.round(baseViewWidthSupplier.getAsInt() / 4f),
+                    // But have a min width of 10dp
+                    DeviceUtils.dpToPx(10, context),
+                    // And scaling more than that factor looks really pixelated -> max
+                    Math.round(srcWidth * 2.5f));
 
             final float scaleFactor = (float) newWidth / srcWidth;
             final int newHeight = (int) (srcBitmap.getHeight() * scaleFactor);
