@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.core.math.MathUtils;
 
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
@@ -247,17 +248,10 @@ public final class PopupPlayerUi extends VideoPlayerUi {
             return;
         }
 
-        if (popupLayoutParams.x < 0) {
-            popupLayoutParams.x = 0;
-        } else if (popupLayoutParams.x > screenWidth - popupLayoutParams.width) {
-            popupLayoutParams.x = screenWidth - popupLayoutParams.width;
-        }
-
-        if (popupLayoutParams.y < 0) {
-            popupLayoutParams.y = 0;
-        } else if (popupLayoutParams.y > screenHeight - popupLayoutParams.height) {
-            popupLayoutParams.y = screenHeight - popupLayoutParams.height;
-        }
+        popupLayoutParams.x = MathUtils.clamp(popupLayoutParams.x, 0, screenWidth
+                - popupLayoutParams.width);
+        popupLayoutParams.y = MathUtils.clamp(popupLayoutParams.y, 0, screenHeight
+                - popupLayoutParams.height);
     }
 
     public void updateScreenSize() {

@@ -16,7 +16,6 @@ import org.schabi.newpipe.player.playqueue.events.SelectEvent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -264,7 +263,7 @@ public abstract class PlayQueue implements Serializable {
      * @param items {@link PlayQueueItem}s to append
      */
     public synchronized void append(@NonNull final PlayQueueItem... items) {
-        append(Arrays.asList(items));
+        append(List.of(items));
     }
 
     /**

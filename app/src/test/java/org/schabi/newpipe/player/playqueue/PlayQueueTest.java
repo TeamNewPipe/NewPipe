@@ -153,7 +153,7 @@ public class PlayQueueTest {
         @Test
         public void itemsAreNotCloned() {
             final PlayQueueItem item = makeItemWithUrl("A url");
-            final PlayQueue playQueue = makePlayQueue(0, Collections.singletonList(item));
+            final PlayQueue playQueue = makePlayQueue(0, List.of(item));
 
             // make sure that items are not cloned when added to the queue
             assertSame(playQueue.getItem(), item);

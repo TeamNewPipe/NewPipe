@@ -43,6 +43,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.graphics.Insets;
+import androidx.core.math.MathUtils;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
@@ -580,16 +581,9 @@ public abstract class VideoPlayerUi extends PlayerUi
                     currentSeekbarLeft - (binding.seekbarPreviewContainer.getWidth() / 2);
 
             // Fix the position so it's within the boundaries
-            final int checkedContainerLeft =
-                    Math.max(
-                            Math.min(
-                                    uncheckedContainerLeft,
-                                    // Max left
-                                    binding.playbackWindowRoot.getWidth()
-                                            - binding.seekbarPreviewContainer.getWidth()
-                            ),
-                            0 // Min left
-                    );
+            final int checkedContainerLeft = MathUtils.clamp(uncheckedContainerLeft,
+                    0, binding.playbackWindowRoot.getWidth()
+                            - binding.seekbarPreviewContainer.getWidth());
 
             // See also: https://stackoverflow.com/a/23249734
             final LinearLayout.LayoutParams params =
