@@ -19,8 +19,10 @@ public abstract class PlayQueueItemTouchCallback extends ItemTouchHelper.SimpleC
 
     @Override
     public int interpolateOutOfBoundsScroll(@NonNull final RecyclerView recyclerView,
-                                            final int viewSize, final int viewSizeOutOfBounds,
-                                            final int totalSize, final long msSinceStartScroll) {
+                                            final int viewSize,
+                                            final int viewSizeOutOfBounds,
+                                            final int totalSize,
+                                            final long msSinceStartScroll) {
         final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView, viewSize,
                 viewSizeOutOfBounds, totalSize, msSinceStartScroll);
         final int clampedAbsVelocity = MathUtils.clamp(Math.abs(standardSpeed),

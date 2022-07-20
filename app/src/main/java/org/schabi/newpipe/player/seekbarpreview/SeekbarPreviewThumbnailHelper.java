@@ -80,10 +80,12 @@ public final class SeekbarPreviewThumbnailHelper {
         // Resize original bitmap
         try {
             final int srcWidth = srcBitmap.getWidth() > 0 ? srcBitmap.getWidth() : 1;
-            // Use 1/4 of the width for the preview
-            final int newWidth = MathUtils.clamp(Math.round(baseViewWidthSupplier.getAsInt() / 4f),
+            final int newWidth = MathUtils.clamp(
+                    // Use 1/4 of the width for the preview
+                    Math.round(baseViewWidthSupplier.getAsInt() / 4f),
+                    // But have a min width of 10dp
                     DeviceUtils.dpToPx(10, context),
-                    // Scaling more than that factor looks really pixelated -> max
+                    // And scaling more than that factor looks really pixelated -> max
                     Math.round(srcWidth * 2.5f));
 
             final float scaleFactor = (float) newWidth / srcWidth;
