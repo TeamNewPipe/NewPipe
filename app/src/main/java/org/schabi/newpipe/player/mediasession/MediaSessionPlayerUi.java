@@ -1,9 +1,11 @@
 package org.schabi.newpipe.player.mediasession;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v4.media.session.MediaSessionCompat;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -58,6 +60,12 @@ public class MediaSessionPlayerUi extends PlayerUi {
                 showThumbnail ? Optional.ofNullable(player.getThumbnail()) : Optional.empty(),
                 StreamTypeUtil.isLiveStream(info.getStreamType()) ? -1 : info.getDuration()
         );
+    }
+
+    @Override
+    public void onThumbnailLoaded(@Nullable final Bitmap bitmap) {
+        super.onThumbnailLoaded(bitmap);
+        player.getCurrentStreamInfo().ifPresent(this::onMetadataChanged);
     }
 
     public void handleMediaButtonIntent(final Intent intent) {
