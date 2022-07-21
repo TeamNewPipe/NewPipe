@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.Player;
-import org.schabi.newpipe.player.playback.PlayerMediaSession;
 import org.schabi.newpipe.player.ui.PlayerUi;
 import org.schabi.newpipe.util.StreamTypeUtil;
 
@@ -28,8 +27,7 @@ public class MediaSessionPlayerUi extends PlayerUi {
         if (mediaSessionManager != null) {
             mediaSessionManager.dispose();
         }
-        mediaSessionManager = new MediaSessionManager(context, player.getExoPlayer(),
-                new PlayerMediaSession(player));
+        mediaSessionManager = new MediaSessionManager(context, player);
     }
 
     @Override

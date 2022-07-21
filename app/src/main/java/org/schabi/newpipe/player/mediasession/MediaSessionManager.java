@@ -14,10 +14,11 @@ import androidx.annotation.Nullable;
 import androidx.media.session.MediaButtonReceiver;
 
 import com.google.android.exoplayer2.ForwardingPlayer;
-import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
 import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.ui.VideoPlayerUi;
 
 import java.util.Optional;
 
@@ -36,8 +37,7 @@ public class MediaSessionManager {
     private int lastAlbumArtHashCode;
 
     public MediaSessionManager(@NonNull final Context context,
-                               @NonNull final Player player,
-                               @NonNull final MediaSessionCallback callback) {
+                               @NonNull final Player player) {
         mediaSession = new MediaSessionCompat(context, TAG);
         mediaSession.setActive(true);
 
@@ -53,16 +53,18 @@ public class MediaSessionManager {
                 .build());
 
         sessionConnector = new MediaSessionConnector(mediaSession);
-        sessionConnector.setQueueNavigator(new PlayQueueNavigator(mediaSession, callback));
-        sessionConnector.setPlayer(new ForwardingPlayer(player) {
+        sessionConnector.setQueueNavigator(new PlayQueueNavigator(mediaSession, player));
+        sessionConnector.setPlayer(new ForwardingPlayer(player.getExoPlayer()) {
             @Override
             public void play() {
-                callback.play();
+                player.play();
+                // hide the player controls even if the play command came from the media session
+                player.UIs().get(VideoPlayerUi.class).ifPresent(ui -> ui.hideControls(0, 0));
             }
 
             @Override
             public void pause() {
-                callback.pause();
+                player.pause();
             }
         });
     }
