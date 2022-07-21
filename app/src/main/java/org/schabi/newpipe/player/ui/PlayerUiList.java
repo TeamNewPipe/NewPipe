@@ -9,6 +9,19 @@ public final class PlayerUiList {
     final List<PlayerUi> playerUis = new ArrayList<>();
 
     /**
+     * Creates a {@link PlayerUiList} starting with the provided player uis. The provided player uis
+     * will not be prepared like those passed to {@link #addAndPrepare(PlayerUi)}, because when
+     * the {@link PlayerUiList} constructor is called, the player is still not running and it
+     * wouldn't make sense to initialize uis then. Instead the player will initialize them by doing
+     * proper calls to {@link #call(Consumer)}.
+     *
+     * @param initialPlayerUis the player uis this list should start with; the order will be kept
+     */
+    public PlayerUiList(final PlayerUi... initialPlayerUis) {
+        playerUis.addAll(List.of(initialPlayerUis));
+    }
+
+    /**
      * Adds the provided player ui to the list and calls on it the initialization functions that
      * apply based on the current player state. The preparation step needs to be done since when UIs
      * are removed and re-added, the player will not call e.g. initPlayer again since the exoplayer
@@ -67,11 +80,11 @@ public final class PlayerUiList {
     }
 
     /**
-     * Calls the provided consumer on all player UIs in the list.
+     * Calls the provided consumer on all player UIs in the list, in order of addition.
      * @param consumer the consumer to call with player UIs
      */
     public void call(final Consumer<PlayerUi> consumer) {
         //noinspection SimplifyStreamApiCallChains
-        playerUis.stream().forEach(consumer);
+        playerUis.stream().forEachOrdered(consumer);
     }
 }

@@ -99,14 +99,13 @@ import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.LoadController;
-import org.schabi.newpipe.player.helper.MediaSessionManager;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
+import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.player.notification.NotificationPlayerUi;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
-import org.schabi.newpipe.player.playback.PlayerMediaSession;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
@@ -196,7 +195,6 @@ public final class Player implements PlaybackListener, Listener {
 
     private ExoPlayer simpleExoPlayer;
     private AudioReactor audioReactor;
-    private MediaSessionManager mediaSessionManager;
 
     @NonNull private final DefaultTrackSelector trackSelector;
     @NonNull private final LoadController loadController;
@@ -225,7 +223,7 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
 
     @SuppressWarnings("MemberName") // keep the unusual member name
-    private final PlayerUiList UIs = new PlayerUiList();
+    private final PlayerUiList UIs;
 
     private BroadcastReceiver broadcastReceiver;
     private IntentFilter intentFilter;
@@ -265,6 +263,15 @@ public final class Player implements PlaybackListener, Listener {
 
         videoResolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
         audioResolver = new AudioPlaybackResolver(context, dataSource);
+
+        // The UIs added here should always be present. They will be initialized when the player
+        // reaches the initialization step. Make sure the media session ui is before the
+        // notification ui in the UIs list, since the notification depends on the media session in
+        // PlayerUi#initPlayer(), and UIs.call() guarantees UI order is preserved.
+        UIs = new PlayerUiList(
+                new MediaSessionPlayerUi(this),
+                new NotificationPlayerUi(this)
+        );
     }
 
     private VideoPlaybackResolver.QualityResolver getQualityResolver() {
@@ -431,11 +438,6 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     private void initUIsForCurrentPlayerType() {
-        //noinspection SimplifyOptionalCallChains
-        if (!UIs.get(NotificationPlayerUi.class).isPresent()) {
-            UIs.addAndPrepare(new NotificationPlayerUi(this));
-        }
-
         if ((UIs.get(MainPlayerUi.class).isPresent() && playerType == PlayerType.MAIN)
                 || (UIs.get(PopupPlayerUi.class).isPresent() && playerType == PlayerType.POPUP)) {
             // correct UI already in place
@@ -506,8 +508,6 @@ public final class Player implements PlaybackListener, Listener {
         simpleExoPlayer.setHandleAudioBecomingNoisy(true);
 
         audioReactor = new AudioReactor(context, simpleExoPlayer);
-        mediaSessionManager = new MediaSessionManager(context, simpleExoPlayer,
-                new PlayerMediaSession(this));
 
         registerBroadcastReceiver();
 
@@ -557,9 +557,6 @@ public final class Player implements PlaybackListener, Listener {
         }
         if (playQueueManager != null) {
             playQueueManager.dispose();
-        }
-        if (mediaSessionManager != null) {
-            mediaSessionManager.dispose();
         }
     }
 
@@ -722,11 +719,6 @@ public final class Player implements PlaybackListener, Listener {
                 if (DEBUG) {
                     Log.d(TAG, "ACTION_CONFIGURATION_CHANGED received");
                 }
-                break;
-            case Intent.ACTION_HEADSET_PLUG: //FIXME
-                /*notificationManager.cancel(NOTIFICATION_ID);
-                mediaSessionManager.dispose();
-                mediaSessionManager.enable(getBaseContext(), basePlayerImpl.simpleExoPlayer);*/
                 break;
         }
 
@@ -1738,15 +1730,6 @@ public final class Player implements PlaybackListener, Listener {
         initThumbnail(info.getThumbnailUrl());
         registerStreamViewed();
 
-        final boolean showThumbnail = prefs.getBoolean(
-                context.getString(R.string.show_thumbnail_key), true);
-        mediaSessionManager.setMetadata(
-                getVideoTitle(),
-                getUploaderName(),
-                showThumbnail ? Optional.ofNullable(getThumbnail()) : Optional.empty(),
-                StreamTypeUtil.isLiveStream(info.getStreamType()) ? -1 : info.getDuration()
-        );
-
         notifyMetadataUpdateToListeners();
         UIs.call(playerUi -> playerUi.onMetadataChanged(info));
     }
@@ -2192,10 +2175,6 @@ public final class Player implements PlaybackListener, Listener {
     @NonNull
     public SharedPreferences getPrefs() {
         return prefs;
-    }
-
-    public MediaSessionManager getMediaSessionManager() {
-        return mediaSessionManager;
     }
 
 

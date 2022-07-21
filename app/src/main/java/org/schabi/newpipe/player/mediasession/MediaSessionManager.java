@@ -1,4 +1,4 @@
-package org.schabi.newpipe.player.helper;
+package org.schabi.newpipe.player.mediasession;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,8 +18,6 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
 import org.schabi.newpipe.MainActivity;
-import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
-import org.schabi.newpipe.player.mediasession.PlayQueueNavigator;
 
 import java.util.Optional;
 

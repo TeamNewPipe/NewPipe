@@ -19,11 +19,13 @@ import androidx.core.content.ContextCompat;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.List;
 
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
+import static androidx.media.app.NotificationCompat.MediaStyle;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_CLOSE;
@@ -101,9 +103,11 @@ public final class NotificationUtil {
                 player.getContext(), player.getPrefs(), nonNothingSlotCount);
         final int[] compactSlots = compactSlotList.stream().mapToInt(Integer::intValue).toArray();
 
-        builder.setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
-                    .setMediaSession(player.getMediaSessionManager().getSessionToken())
-                    .setShowActionsInCompactView(compactSlots))
+        final MediaStyle mediaStyle = new MediaStyle().setShowActionsInCompactView(compactSlots);
+        player.UIs().get(MediaSessionPlayerUi.class).flatMap(MediaSessionPlayerUi::getSessionToken)
+                        .ifPresent(mediaStyle::setMediaSession);
+
+        builder.setStyle(mediaStyle)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCategory(NotificationCompat.CATEGORY_TRANSPORT)
