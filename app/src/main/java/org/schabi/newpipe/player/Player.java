@@ -748,11 +748,15 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
     //region Thumbnail loading
 
-    private void initThumbnail(final String url) {
+    private void loadCurrentThumbnail(final String url) {
         if (DEBUG) {
-            Log.d(TAG, "Thumbnail - initThumbnail() called with url = ["
+            Log.d(TAG, "Thumbnail - loadCurrentThumbnail() called with url = ["
                     + (url == null ? "null" : url) + "]");
         }
+
+        // Unset currentThumbnail, since it is now outdated. This ensures it is not used in media
+        // session metadata while the new thumbnail is being loaded by Picasso.
+        currentThumbnail = null;
         if (isNullOrEmpty(url)) {
             return;
         }
@@ -762,8 +766,8 @@ public final class Player implements PlaybackListener, Listener {
             @Override
             public void onBitmapLoaded(final Bitmap bitmap, final Picasso.LoadedFrom from) {
                 if (DEBUG) {
-                    Log.d(TAG, "Thumbnail - onLoadingComplete() called with: url = [" + url
-                            + "], " + "loadedImage = [" + bitmap + " -> " + bitmap.getWidth() + "x"
+                    Log.d(TAG, "Thumbnail - onBitmapLoaded() called with: url = [" + url
+                            + "], " + "bitmap = [" + bitmap + " -> " + bitmap.getWidth() + "x"
                             + bitmap.getHeight() + "], from = [" + from + "]");
                 }
 
@@ -1727,7 +1731,7 @@ public final class Player implements PlaybackListener, Listener {
 
         maybeAutoQueueNextStream(info);
 
-        initThumbnail(info.getThumbnailUrl());
+        loadCurrentThumbnail(info.getThumbnailUrl());
         registerStreamViewed();
 
         notifyMetadataUpdateToListeners();

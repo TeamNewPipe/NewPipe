@@ -1,10 +1,12 @@
 package org.schabi.newpipe.util;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
 import static org.schabi.newpipe.extractor.utils.Utils.isBlank;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -24,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 
 public final class PicassoHelper {
+    private static final String TAG = PicassoHelper.class.getSimpleName();
     public static final String PLAYER_THUMBNAIL_TAG = "PICASSO_PLAYER_THUMBNAIL_TAG";
     private static final String PLAYER_THUMBNAIL_TRANSFORMATION_KEY =
             "PICASSO_PLAYER_THUMBNAIL_TRANSFORMATION_KEY";
@@ -129,6 +132,10 @@ public final class PicassoHelper {
                 .transform(new Transformation() {
                     @Override
                     public Bitmap transform(final Bitmap source) {
+                        if (DEBUG) {
+                            Log.d(TAG, "Thumbnail - transform() called");
+                        }
+
                         final float notificationThumbnailWidth = Math.min(
                                 context.getResources()
                                         .getDimension(R.dimen.player_notification_thumbnail_width),
