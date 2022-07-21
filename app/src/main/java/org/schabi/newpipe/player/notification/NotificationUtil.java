@@ -9,6 +9,7 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
@@ -137,12 +138,9 @@ public final class NotificationUtil {
         notificationBuilder.setContentTitle(player.getVideoTitle());
         notificationBuilder.setContentText(player.getUploaderName());
         notificationBuilder.setTicker(player.getVideoTitle());
+
         updateActions(notificationBuilder);
-        final boolean showThumbnail = player.getPrefs().getBoolean(
-                player.getContext().getString(R.string.show_thumbnail_key), true);
-        if (showThumbnail) {
-            setLargeIcon(notificationBuilder);
-        }
+        setLargeIcon(notificationBuilder);
     }
 
 
@@ -344,17 +342,26 @@ public final class NotificationUtil {
     /////////////////////////////////////////////////////
 
     private void setLargeIcon(final NotificationCompat.Builder builder) {
+        final boolean showThumbnail = player.getPrefs().getBoolean(
+                player.getContext().getString(R.string.show_thumbnail_key), true);
+        final Bitmap thumbnail = player.getThumbnail();
+        if (thumbnail == null || !showThumbnail) {
+            // since the builder is reused, make sure the thumbnail is unset if there is not one
+            builder.setLargeIcon(null);
+            return;
+        }
+
         final boolean scaleImageToSquareAspectRatio = player.getPrefs().getBoolean(
                 player.getContext().getString(R.string.scale_to_square_image_in_notifications_key),
                 false);
         if (scaleImageToSquareAspectRatio) {
-            builder.setLargeIcon(getBitmapWithSquareAspectRatio(player.getThumbnail()));
+            builder.setLargeIcon(getBitmapWithSquareAspectRatio(thumbnail));
         } else {
-            builder.setLargeIcon(player.getThumbnail());
+            builder.setLargeIcon(thumbnail);
         }
     }
 
-    private Bitmap getBitmapWithSquareAspectRatio(final Bitmap bitmap) {
+    private Bitmap getBitmapWithSquareAspectRatio(@NonNull final Bitmap bitmap) {
         // Find the smaller dimension and then take a center portion of the image that
         // has that size.
         final int w = bitmap.getWidth();
