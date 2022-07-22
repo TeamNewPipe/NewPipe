@@ -57,7 +57,7 @@ public class MediaSessionPlayerUi extends PlayerUi {
         mediaSessionManager.setMetadata(
                 player.getVideoTitle(),
                 player.getUploaderName(),
-                showThumbnail ? Optional.ofNullable(player.getThumbnail()) : Optional.empty(),
+                showThumbnail ? player.getThumbnail() : null,
                 StreamTypeUtil.isLiveStream(info.getStreamType()) ? -1 : info.getDuration()
         );
     }

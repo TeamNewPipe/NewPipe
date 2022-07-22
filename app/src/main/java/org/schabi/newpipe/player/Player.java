@@ -54,7 +54,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.util.Log;
@@ -1773,10 +1772,6 @@ public final class Player implements PlaybackListener, Listener {
 
     @Nullable
     public Bitmap getThumbnail() {
-        if (currentThumbnail == null) {
-            currentThumbnail = BitmapFactory.decodeResource(
-                    context.getResources(), R.drawable.placeholder_thumbnail_video);
-        }
         return currentThumbnail;
     }
     //endregion
