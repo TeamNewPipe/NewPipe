@@ -140,7 +140,7 @@ public class ListHelperTest {
 
     @Test
     public void getDefaultResolutionTest() {
-        final List<VideoStream> testList = List.of(
+        final List<VideoStream> testList = new ArrayList<>(List.of(
                 generateVideoStream("mpeg_4-720", MediaFormat.MPEG_4, "720p", false),
                 generateVideoStream("v3gpp-240", MediaFormat.v3GPP, "240p", false),
                 generateVideoStream("webm-480",  MediaFormat.WEBM, "480p", false),
@@ -148,7 +148,7 @@ public class ListHelperTest {
                 generateVideoStream("mpeg_4-240", MediaFormat.MPEG_4, "240p", false),
                 generateVideoStream("webm-144", MediaFormat.WEBM, "144p", false),
                 generateVideoStream("mpeg_4-360", MediaFormat.MPEG_4, "360p", false),
-                generateVideoStream("webm-360", MediaFormat.WEBM, "360p", false));
+                generateVideoStream("webm-360", MediaFormat.WEBM, "360p", false)));
         VideoStream result = testList.get(ListHelper.getDefaultResolutionIndex(
                 "720p", BEST_RESOLUTION_KEY, MediaFormat.MPEG_4, testList));
         assertEquals("720p", result.getResolution());

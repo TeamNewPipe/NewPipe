@@ -230,14 +230,15 @@ public final class ListHelper {
     }
 
     /**
-     * Return the index of the default stream in the list, based on the parameters
-     * defaultResolution and defaultFormat.
+     * Return the index of the default stream in the list, that will be sorted in the process, based
+     * on the parameters defaultResolution and defaultFormat.
      *
      * @param defaultResolution the default resolution to look for
      * @param bestResolutionKey key of the best resolution
      * @param defaultFormat     the default format to look for
-     * @param videoStreams      list of the video streams to check
-     * @return index of the default resolution&format
+     * @param videoStreams      a mutable list of the video streams to check (it will be sorted in
+     *                          place)
+     * @return index of the default resolution&format in the sorted videoStreams
      */
     static int getDefaultResolutionIndex(final String defaultResolution,
                                          final String bestResolutionKey,
