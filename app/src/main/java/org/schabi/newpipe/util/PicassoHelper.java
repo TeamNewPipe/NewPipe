@@ -27,7 +27,6 @@ import okhttp3.OkHttpClient;
 
 public final class PicassoHelper {
     private static final String TAG = PicassoHelper.class.getSimpleName();
-    public static final String PLAYER_THUMBNAIL_TAG = "PICASSO_PLAYER_THUMBNAIL_TAG";
     private static final String PLAYER_THUMBNAIL_TRANSFORMATION_KEY =
             "PICASSO_PLAYER_THUMBNAIL_TRANSFORMATION_KEY";
 
@@ -128,7 +127,6 @@ public final class PicassoHelper {
     public static RequestCreator loadScaledDownThumbnail(final Context context, final String url) {
         // scale down the notification thumbnail for performance
         return PicassoHelper.loadThumbnail(url)
-                .tag(PLAYER_THUMBNAIL_TAG)
                 .transform(new Transformation() {
                     @Override
                     public Bitmap transform(final Bitmap source) {

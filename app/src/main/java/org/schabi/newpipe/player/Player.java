@@ -174,6 +174,7 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
 
     public static final int RENDERER_UNAVAILABLE = -1;
+    private static final String PICASSO_PLAYER_THUMBNAIL_TAG = "PICASSO_PLAYER_THUMBNAIL_TAG";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
@@ -232,6 +233,11 @@ public final class Player implements PlaybackListener, Listener {
     @NonNull private final SerialDisposable progressUpdateDisposable = new SerialDisposable();
     @NonNull private final CompositeDisposable databaseUpdateDisposable = new CompositeDisposable();
 
+    // This is the only listener we need for thumbnail loading, since there is always at most only
+    // one thumbnail being loaded at a time. This field is also here to maintain a strong reference,
+    // which would otherwise be garbage collected since Picasso holds weak references to targets.
+    @NonNull private final Target currentThumbnailTarget;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
@@ -262,6 +268,8 @@ public final class Player implements PlaybackListener, Listener {
 
         videoResolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
         audioResolver = new AudioPlaybackResolver(context, dataSource);
+
+        currentThumbnailTarget = getCurrentThumbnailTarget();
 
         // The UIs added here should always be present. They will be initialized when the player
         // reaches the initialization step. Make sure the media session ui is before the
@@ -573,7 +581,7 @@ public final class Player implements PlaybackListener, Listener {
 
         databaseUpdateDisposable.clear();
         progressUpdateDisposable.set(null);
-        PicassoHelper.cancelTag(PicassoHelper.PLAYER_THUMBNAIL_TAG); // cancel thumbnail loading
+        cancelLoadingCurrentThumbnail();
 
         UIs.destroyAll(Object.class); // destroy every UI: obviously every UI extends Object
     }
@@ -747,11 +755,46 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
     //region Thumbnail loading
 
+    private Target getCurrentThumbnailTarget() {
+        // a Picasso target is just a listener for thumbnail loading events
+        return new Target() {
+            @Override
+            public void onBitmapLoaded(final Bitmap bitmap, final Picasso.LoadedFrom from) {
+                if (DEBUG) {
+                    Log.d(TAG, "Thumbnail - onBitmapLoaded() called with: bitmap = [" + bitmap
+                            + " -> " + bitmap.getWidth() + "x" + bitmap.getHeight() + "], from = ["
+                            + from + "]");
+                }
+                currentThumbnail = bitmap;
+                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
+                UIs.call(playerUi -> playerUi.onThumbnailLoaded(bitmap));
+            }
+
+            @Override
+            public void onBitmapFailed(final Exception e, final Drawable errorDrawable) {
+                Log.e(TAG, "Thumbnail - onBitmapFailed() called", e);
+                currentThumbnail = null;
+                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
+                UIs.call(playerUi -> playerUi.onThumbnailLoaded(null));
+            }
+
+            @Override
+            public void onPrepareLoad(final Drawable placeHolderDrawable) {
+                if (DEBUG) {
+                    Log.d(TAG, "Thumbnail - onPrepareLoad() called");
+                }
+            }
+        };
+    }
+
     private void loadCurrentThumbnail(final String url) {
         if (DEBUG) {
             Log.d(TAG, "Thumbnail - loadCurrentThumbnail() called with url = ["
                     + (url == null ? "null" : url) + "]");
         }
+
+        // first cancel any previous loading
+        cancelLoadingCurrentThumbnail();
 
         // Unset currentThumbnail, since it is now outdated. This ensures it is not used in media
         // session metadata while the new thumbnail is being loaded by Picasso.
@@ -761,34 +804,14 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         // scale down the notification thumbnail for performance
-        PicassoHelper.loadScaledDownThumbnail(context, url).into(new Target() {
-            @Override
-            public void onBitmapLoaded(final Bitmap bitmap, final Picasso.LoadedFrom from) {
-                if (DEBUG) {
-                    Log.d(TAG, "Thumbnail - onBitmapLoaded() called with: url = [" + url
-                            + "], " + "bitmap = [" + bitmap + " -> " + bitmap.getWidth() + "x"
-                            + bitmap.getHeight() + "], from = [" + from + "]");
-                }
+        PicassoHelper.loadScaledDownThumbnail(context, url)
+                .tag(PICASSO_PLAYER_THUMBNAIL_TAG)
+                .into(currentThumbnailTarget);
+    }
 
-                currentThumbnail = bitmap;
-                // there is a new thumbnail, so changed the end screen thumbnail, too.
-                UIs.call(playerUi -> playerUi.onThumbnailLoaded(bitmap));
-            }
-
-            @Override
-            public void onBitmapFailed(final Exception e, final Drawable errorDrawable) {
-                Log.e(TAG, "Thumbnail - onBitmapFailed() called: url = [" + url + "]", e);
-                currentThumbnail = null;
-                UIs.call(playerUi -> playerUi.onThumbnailLoaded(null));
-            }
-
-            @Override
-            public void onPrepareLoad(final Drawable placeHolderDrawable) {
-                if (DEBUG) {
-                    Log.d(TAG, "Thumbnail - onPrepareLoad() called: url = [" + url + "]");
-                }
-            }
-        });
+    private void cancelLoadingCurrentThumbnail() {
+        // cancel the Picasso job associated with the player thumbnail, if any
+        PicassoHelper.cancelTag(PICASSO_PLAYER_THUMBNAIL_TAG);
     }
     //endregion
 
