@@ -2,10 +2,8 @@ package org.schabi.newpipe.player.mediasession;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
-import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 
@@ -17,8 +15,12 @@ import com.google.android.exoplayer2.ForwardingPlayer;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
 import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
+import org.schabi.newpipe.util.StreamTypeUtil;
+
+import java.util.Optional;
 
 public class MediaSessionManager {
     private static final String TAG = MediaSessionManager.class.getSimpleName();
@@ -33,17 +35,6 @@ public class MediaSessionManager {
                                @NonNull final Player player) {
         mediaSession = new MediaSessionCompat(context, TAG);
         mediaSession.setActive(true);
-
-        mediaSession.setPlaybackState(new PlaybackStateCompat.Builder()
-                .setState(PlaybackStateCompat.STATE_NONE, -1, 1)
-                .setActions(PlaybackStateCompat.ACTION_SEEK_TO
-                        | PlaybackStateCompat.ACTION_PLAY
-                        | PlaybackStateCompat.ACTION_PAUSE // was play and pause now play/pause
-                        | PlaybackStateCompat.ACTION_SKIP_TO_NEXT
-                        | PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS
-                        | PlaybackStateCompat.ACTION_SET_REPEAT_MODE
-                        | PlaybackStateCompat.ACTION_STOP)
-                .build());
 
         sessionConnector = new MediaSessionConnector(mediaSession);
         sessionConnector.setQueueNavigator(new PlayQueueNavigator(mediaSession, player));
@@ -60,6 +51,37 @@ public class MediaSessionManager {
                 player.pause();
             }
         });
+
+        sessionConnector.setMetadataDeduplicationEnabled(true);
+        sessionConnector.setMediaMetadataProvider(exoPlayer -> {
+            if (DEBUG) {
+                Log.d(TAG, "MediaMetadataProvider#getMetadata called");
+            }
+
+            // set title and artist
+            final MediaMetadataCompat.Builder builder = new MediaMetadataCompat.Builder()
+                    .putString(MediaMetadataCompat.METADATA_KEY_TITLE, player.getVideoTitle())
+                    .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, player.getUploaderName());
+
+            // set duration (-1 for livestreams, since they don't have a duration)
+            final long duration = player.getCurrentStreamInfo()
+                    .filter(info -> !StreamTypeUtil.isLiveStream(info.getStreamType()))
+                    .map(info -> info.getDuration() * 1000L)
+                    .orElse(-1L);
+            builder.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration);
+
+            // set album art, unless the user asked not to, or there is no thumbnail available
+            final boolean showThumbnail = player.getPrefs().getBoolean(
+                    context.getString(R.string.show_thumbnail_key), true);
+            Optional.ofNullable(player.getThumbnail())
+                    .filter(bitmap -> showThumbnail)
+                    .ifPresent(bitmap -> {
+                builder.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, bitmap);
+                builder.putBitmap(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON, bitmap);
+            });
+
+            return builder.build();
+        });
     }
 
     @Nullable
@@ -72,43 +94,8 @@ public class MediaSessionManager {
         return mediaSession.getSessionToken();
     }
 
-    /**
-     * sets the Metadata - if required.
-     *
-     * @param title       {@link MediaMetadataCompat#METADATA_KEY_TITLE}
-     * @param artist      {@link MediaMetadataCompat#METADATA_KEY_ARTIST}
-     * @param albumArt    {@link MediaMetadataCompat#METADATA_KEY_ALBUM_ART}, if not null
-     * @param duration    {@link MediaMetadataCompat#METADATA_KEY_DURATION}
-     *                    - should be a negative value for unknown durations, e.g. for livestreams
-     */
-    public void setMetadata(@NonNull final String title,
-                            @NonNull final String artist,
-                            @Nullable final Bitmap albumArt,
-                            final long duration) {
-        if (DEBUG) {
-            Log.d(TAG, "setMetadata called with: title = [" + title + "], artist = [" + artist
-                    + "], albumArt = [" + (albumArt == null ? "null" : albumArt.hashCode())
-                    + "], duration = [" + duration + "]");
-        }
-
-        if (!mediaSession.isActive()) {
-            if (DEBUG) {
-                Log.d(TAG, "setMetadata: media session not active, exiting");
-            }
-            return;
-        }
-
-        final MediaMetadataCompat.Builder builder = new MediaMetadataCompat.Builder()
-                .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
-                .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, artist)
-                .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration);
-
-        if (albumArt != null) {
-            builder.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, albumArt);
-            builder.putBitmap(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON, albumArt);
-        }
-
-        mediaSession.setMetadata(builder.build());
+    void triggerMetadataUpdate() {
+        sessionConnector.invalidateMediaSessionMetadata();
     }
 
     /**

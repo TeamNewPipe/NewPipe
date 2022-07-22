@@ -7,11 +7,8 @@ import android.support.v4.media.session.MediaSessionCompat;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.ui.PlayerUi;
-import org.schabi.newpipe.util.StreamTypeUtil;
 
 import java.util.Optional;
 
@@ -48,24 +45,11 @@ public class MediaSessionPlayerUi extends PlayerUi {
     }
 
     @Override
-    public void onMetadataChanged(@NonNull final StreamInfo info) {
-        super.onMetadataChanged(info);
-
-        final boolean showThumbnail = player.getPrefs().getBoolean(
-                context.getString(R.string.show_thumbnail_key), true);
-
-        mediaSessionManager.setMetadata(
-                player.getVideoTitle(),
-                player.getUploaderName(),
-                showThumbnail ? player.getThumbnail() : null,
-                StreamTypeUtil.isLiveStream(info.getStreamType()) ? -1 : info.getDuration()
-        );
-    }
-
-    @Override
     public void onThumbnailLoaded(@Nullable final Bitmap bitmap) {
         super.onThumbnailLoaded(bitmap);
-        player.getCurrentStreamInfo().ifPresent(this::onMetadataChanged);
+        if (mediaSessionManager != null) {
+            mediaSessionManager.triggerMetadataUpdate();
+        }
     }
 
     public void handleMediaButtonIntent(final Intent intent) {
