@@ -39,7 +39,7 @@ class ChannelItem(
             itemChannelDescriptionView.text = infoItem.description
         }
 
-        PicassoHelper.loadThumbnail(infoItem.thumbnailUrl).into(itemThumbnailView)
+        PicassoHelper.loadAvatar(infoItem.thumbnailUrl).into(itemThumbnailView)
 
         gesturesListener?.run {
             viewHolder.root.setOnClickListener { selected(infoItem) }
