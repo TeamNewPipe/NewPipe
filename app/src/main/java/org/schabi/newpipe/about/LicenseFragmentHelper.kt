@@ -64,29 +64,25 @@ private fun getHexRGBColor(context: Context, color: Int): String {
     return context.getString(color).substring(3)
 }
 
-fun showLicense(context: Context?, license: License): Disposable {
-    return showLicense(context, license) { alertDialog ->
-        alertDialog.setPositiveButton(R.string.ok) { dialog, _ ->
-            dialog.dismiss()
-        }
-    }
-}
-
 fun showLicense(context: Context?, component: SoftwareComponent): Disposable {
-    return showLicense(context, component.license) { alertDialog ->
-        alertDialog.setPositiveButton(R.string.dismiss) { dialog, _ ->
+    return showLicense(context, component.license) {
+        setPositiveButton(R.string.dismiss) { dialog, _ ->
             dialog.dismiss()
         }
-        alertDialog.setNeutralButton(R.string.open_website_license) { _, _ ->
+        setNeutralButton(R.string.open_website_license) { _, _ ->
             ShareUtils.openUrlInBrowser(context!!, component.link)
         }
     }
 }
 
+fun showLicense(context: Context?, license: License) = showLicense(context, license) {
+    setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
+}
+
 private fun showLicense(
     context: Context?,
     license: License,
-    block: (AlertDialog.Builder) -> Unit
+    block: AlertDialog.Builder.() -> AlertDialog.Builder
 ): Disposable {
     return if (context == null) {
         Disposable.empty()
@@ -100,13 +96,12 @@ private fun showLicense(
                 val webView = WebView(context)
                 webView.loadData(webViewData, "text/html; charset=UTF-8", "base64")
 
-                AlertDialog.Builder(context).apply {
-                    setTitle(license.name)
-                    setView(webView)
-                    Localization.assureCorrectAppLanguage(context)
-                    block(this)
-                    show()
-                }
+                Localization.assureCorrectAppLanguage(context)
+                AlertDialog.Builder(context)
+                    .setTitle(license.name)
+                    .setView(webView)
+                    .block()
+                    .show()
             }
     }
 }
