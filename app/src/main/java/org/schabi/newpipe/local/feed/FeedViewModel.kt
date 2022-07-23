@@ -146,7 +146,7 @@ class FeedViewModel(
         private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return FeedViewModel(
                 context.applicationContext,
                 groupId,
