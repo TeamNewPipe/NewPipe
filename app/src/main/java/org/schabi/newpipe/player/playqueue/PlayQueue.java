@@ -257,13 +257,10 @@ public abstract class PlayQueue implements Serializable {
     }
 
     /**
-     * Appends the given {@link PlayQueueItem}s to the current play queue.
-     *
-     * @see #append(List items)
-     * @param items {@link PlayQueueItem}s to append
+     * Notifies that a change has occurred.
      */
-    public synchronized void append(@NonNull final PlayQueueItem... items) {
-        append(List.of(items));
+    public synchronized void notifyChange() {
+        broadcast(new AppendEvent(0));
     }
 
     /**
