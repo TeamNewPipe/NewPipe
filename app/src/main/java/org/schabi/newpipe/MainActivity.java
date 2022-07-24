@@ -382,7 +382,7 @@ public class MainActivity extends AppCompatActivity {
 
             // peertube specifics
             if (s.getServiceId() == 3) {
-                enhancePeertubeMenu(s, menuItem);
+                enhancePeertubeMenu(menuItem);
             }
         }
         drawerLayoutBinding.navigation.getMenu()
@@ -390,7 +390,7 @@ public class MainActivity extends AppCompatActivity {
                 .setChecked(true);
     }
 
-    private void enhancePeertubeMenu(final StreamingService s, final MenuItem menuItem) {
+    private void enhancePeertubeMenu(final MenuItem menuItem) {
         final PeertubeInstance currentInstance = PeertubeHelper.getCurrentInstance();
         menuItem.setTitle(currentInstance.getName());
         final Spinner spinner = InstanceSpinnerLayoutBinding.inflate(LayoutInflater.from(this))
