@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
+import androidx.core.graphics.BitmapCompat;
 import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
 
@@ -91,8 +92,8 @@ public final class SeekbarPreviewThumbnailHelper {
             final float scaleFactor = (float) newWidth / srcWidth;
             final int newHeight = (int) (srcBitmap.getHeight() * scaleFactor);
 
-            currentSeekbarPreviewThumbnail.setImageBitmap(
-                    Bitmap.createScaledBitmap(srcBitmap, newWidth, newHeight, true));
+            currentSeekbarPreviewThumbnail.setImageBitmap(BitmapCompat.createScaledBitmap(srcBitmap,
+                    newWidth, newHeight, null, true));
         } catch (final Exception ex) {
             Log.e(TAG, "Failed to resize and set seekbar preview thumbnail", ex);
             currentSeekbarPreviewThumbnail.setVisibility(View.GONE);
