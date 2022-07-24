@@ -374,8 +374,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showServices() {
         for (final StreamingService s : NewPipe.getServices()) {
-            final String title = s.getServiceInfo().getName()
-                    + (ServiceHelper.isBeta(s) ? " (beta)" : "");
+            final String title = s.getServiceInfo().getName();
 
             final MenuItem menuItem = drawerLayoutBinding.navigation.getMenu()
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
@@ -383,7 +382,7 @@ public class MainActivity extends AppCompatActivity {
 
             // peertube specifics
             if (s.getServiceId() == 3) {
-                enhancePeertubeMenu(s, menuItem);
+                enhancePeertubeMenu(menuItem);
             }
         }
         drawerLayoutBinding.navigation.getMenu()
@@ -391,9 +390,9 @@ public class MainActivity extends AppCompatActivity {
                 .setChecked(true);
     }
 
-    private void enhancePeertubeMenu(final StreamingService s, final MenuItem menuItem) {
+    private void enhancePeertubeMenu(final MenuItem menuItem) {
         final PeertubeInstance currentInstance = PeertubeHelper.getCurrentInstance();
-        menuItem.setTitle(currentInstance.getName() + (ServiceHelper.isBeta(s) ? " (beta)" : ""));
+        menuItem.setTitle(currentInstance.getName());
         final Spinner spinner = InstanceSpinnerLayoutBinding.inflate(LayoutInflater.from(this))
                 .getRoot();
         final List<PeertubeInstance> instances = PeertubeHelper.getInstanceList(this);
