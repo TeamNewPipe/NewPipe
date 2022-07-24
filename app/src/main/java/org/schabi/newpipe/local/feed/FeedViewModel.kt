@@ -65,9 +65,8 @@ class FeedViewModel(
         .map { (event, showPlayedItems, showFutureItems, notLoadedCount, oldestUpdate) ->
             val streamItems = if (event is SuccessResultEvent || event is IdleEvent)
                 feedDatabaseManager
-                    .getStreams(groupId, showPlayedItems)
+                    .getStreams(groupId, showPlayedItems, showFutureItems)
                     .blockingGet(arrayListOf())
-                    .filter { s -> showFutureItems || s.stream.uploadDate?.isBefore(OffsetDateTime.now()) ?: true }
             else
                 arrayListOf()
 
