@@ -38,7 +38,7 @@
 [<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png)
 [<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png)
 
-### Unterstützte Dienste
+## Unterstützte Dienste
 
 Aktuell unterstützt NewPipe die folgenden Dienste:
 
@@ -57,34 +57,34 @@ Falls du vorhaben solltest, einen neuen Dienst hinzuzügen, kontaktiere uns bitt
 
 ## Beschreibung
 
-NewPipe works by fetching the required data from the official API (e.g. PeerTube) of the service you're using. If the official API is restricted (e.g. YouTube) for our purposes, or is proprietary, the app parses the website or uses an internal API instead. This means that you don't need an account on any service to use NewPipe.
+NewPipe holt sich die benötigten Daten über die offizielle API des jeweiligen Dienstes (z.B. PeerTube). Falls die offizielle API für unsere Zwecke zu eingeschränkt ist (z.B. YouTube), oder weil sie proprietär ist, wird die Website entweder *geparst* oder eine interne API stattdesses benutzt. Das heißt also für dich, dass für keinen Service ein Account gebraucht wird um NewPipe zu benutzen.
 
-Also, since they are free and open source software, neither the app nor the Extractor use any proprietary libraries or frameworks, such as Google Play Services. This means you can use NewPipe on devices or custom ROMs that do not have Google apps installed.
+Da außerdem sowohl die App als auch der Extractor frei und open source sind, wird keine proprietäre Bibliothek und kein proprietäres Framework benutzt, wie z.B. Google Pay Services. NewPipe kann also  selbst auf Geräten und Custom ROMs benutzt werden, die keine Google Apps installiert haben.
 
 ### Features
 
-* Watch videos at resolutions up to 4K
-* Listen to audio in the background, only loading the audio stream to save data
-* Popup mode (floating player, aka Picture-in-Picture)
-* Watch live streams
-* Show/hide subtitles/closed captions
-* Search videos and audios (on YouTube, you can specify the content language as well)
-* Enqueue videos (and optionally save them as local playlists)
-* Show/hide general information about videos (such as description and tags)
-* Show/hide next/related videos
-* Show/hide comments
-* Search videos, audios, channels, playlists and albums
-* Browse videos and audios within a channel
-* Subscribe to channels (yes, without logging into any account!)
-* Get notifications about new videos from channels you're subscribed to
-* Create and edit channel groups (for easier browsing and management)
-* Browse video feeds generated from your channel groups
-* View and search your watch history
-* Search and watch playlists (these are remote playlists, which means they're fetched from the service you're browsing)
-* Create and edit local playlists (these are created and saved within the app, and have nothing to do with any service)
-* Download videos/audios/subtitles (closed captions)
-* Open in Kodi
-* Watch/Block age-restricted material
+* Sehe dir Videos mit einer Auflösungo von bis zu 4K an
+* Höre Audio im Hintergrund, wodurch nur der Audio Stream geladen wird um Daten zu sparen
+* Popup Modus ("schwebender Player", auch bekannt als Picture-in-Picture)
+* Schaue Live Streams
+* Ein- und Ausblenden von („geschlossenen“) Untertitel
+* Suche nach Videos und Musik (bei YouTube kann zusätzlich die Sprache des Inhalts festgelegt werden)
+* Warteschlangen für Videos (speichere sie optional als lokale Playlists)
+* Ein- und Ausblenden von allgemeinen Information der Videos (z.B. Beschreibung und Tags)
+* Ein- und Ausblenden von nächsten/ähnlichen Videos
+* Ein- und Ausblenden der Kommentarsektion
+* Suche Videos, Musik, Kanäle, Playlists und Alben
+* Durchsuche Videos and Musik innerhalb eines Kanals
+* Abonniere Kanäle (ja, ohne sich mit einem Account einzuloggen!)
+* Stelle Benachrichtigungen für neue Videos von Kanälen ein, die du abonniert hast
+* Erstelle und bearbeite Kanalgruppen (um das Durchsuchen und Organisieren zu vereinfachen)
+* Durchsuche Video Feeds, die aus deinen Kanalgruppen entstehen
+* Schaue dir deinen Verlauf an und durchsuche ihn
+* Suche und schaue dir Playlists an (Es handelt sich um „Remote Playlists“, die also vom Dienst abgerufen werden, den du gerade durchsuchst)
+* Erstelle und bearbeite lokale Playlists (diese werden lediglich in der App gespeichert, also nicht im jeweiligen Dienst!)
+* Lade Videos/Audio/(„geschlossene“) Untertitel herunter
+* Öffnen in Kodi
+* Schaue oder blockiere altergeschützten Inhalt
 
 <!-- Hidden span to keep old links compatible. -->
 <span id="updates"></span>
