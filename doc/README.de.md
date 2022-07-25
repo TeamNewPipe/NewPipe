@@ -90,12 +90,12 @@ Da außerdem sowohl die App als auch der Extractor frei und open source sind, wi
 <span id="updates"></span>
 
 ## Installation und Updates
-You can install NewPipe using one of the following methods:
- 1. Add our custom repo to F-Droid and install it from there. The instructions are here: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
- 2. Download the APK from [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases) and install it.
- 3. Update via F-Droid. This is the slowest method of getting updates, as F-Droid must recognize changes, build the APK itself, sign it, and then push the update to users.
- 4. Build a debug APK yourself. This is the fastest way to get new features on your device, but is much more complicated, so we recommend using one of the other methods.
- 5. If you're interested in a specific feature or bugfix provided in a Pull Request in this repo, you can also download its APK from within the PR. Read the PR description for instructions. The great thing about PR-specific APKs is that they're installed side-by-side the official app, so you don't have to worry about losing your data or messing anything up.
+NewPipe kann mit einer der folgenden Methoden installiert werden:
+ 1. Füge unser Custom Repo in F-Droid hinzu und installiere es von dort. Die Anleitung dafür findest du hier: https://newpipe.net/FAQ/tutorials/install-add-fdroid-repo/
+ 2. Lade die APK direkt aus den [GitHub Releases](https://github.com/TeamNewPipe/NewPipe/releases) herunter und installiere es manuell.
+ 3. Updates via F-Droid. Das ist dia langsamste Methode, Updates zu fahren. Da F-Droid selbst Veränderungen erkennen, die APK bauen, signieren, und dann das Update den Benutzern bereitstellen muss.
+ 4. Baue selbst die APK. Das ist die beste Methode um neue Features schnellstmöglich zu bekommen, aber auch sehr kompliziert und umständlich. War raten dir daher zu einer der anderen Methoden.
+ 5. Falls du an einem spezifischen Feature oder Bugfix interessiert bist, welches/r in einem Pull Request in diesem Repo adressiert wird, kannst du auch die APK aus dem PR direkt beziehen. Lies dir die PR Beschreibung durch für entsprechende Anweisungen. Das Gute an PR-spezifischen APKs ist, dass sie parallel zu der offiziellen App installiert werden. Du musst also nichf fürchten, dass deine Daten verloren gehen oder irgendetwas daneben geht.
 
 We recommend method 1 for most users. APKs installed using method 1 or 2 are compatible with each other (meaning that if you installed NewPipe using either method 1 or 2, you can also update NewPipe using the other), but not with those installed using method 3. This is due to the same signing key (ours) being used for 1 and 2, but a different signing key (F-Droid's) being used for 3. Building a debug APK using method 4 excludes a key entirely. Signing keys help ensure that a user isn't tricked into installing a malicious update to an app. When using method 5, each APK is signed with a different random key supplied by GitHub Actions, so you cannot even update it. You will have to backup and restore the app data each time you wish to use a new APK.
 
