@@ -44,16 +44,16 @@ Aktuell unterstützt NewPipe die folgenden Dienste:
 
 <!-- Um das versehentliche Öffnen einer Website zu verhindern, werden diese separat verlinkt. -->
 * YouTube ([Website](https://www.youtube.com/)) und YouTube Music ([Website](https://music.youtube.com/)) ([Wiki](https://en.wikipedia.org/wiki/YouTube))
-* PeerTube ([Website](https://joinpeertube.org/)) sowie alle *Instanzen* davon (öffne die Website um herauszufinden was das bedeutet!) ([Wiki](https://en.wikipedia.org/wiki/PeerTube))
+* PeerTube ([Website](https://joinpeertube.org/)) sowie all seine *Instanzen* (öffne die Website um herauszufinden was das bedeutet!) ([Wiki](https://en.wikipedia.org/wiki/PeerTube))
 * Bandcamp ([Website](https://bandcamp.com/)) ([Wiki](https://en.wikipedia.org/wiki/Bandcamp))
 * SoundCloud ([Website](https://soundcloud.com/)) ([Wiki](https://en.wikipedia.org/wiki/SoundCloud))
 * media.ccc.de ([Website](https://media.ccc.de/)) ([Wiki](https://en.wikipedia.org/wiki/Chaos_Computer_Club))
 
-As you can see, NewPipe supports multiple video and audio services. Though it started off with YouTube, other people have added more services over the years, making NewPipe more and more versatile!
+NewPipe unterstützt also mehrere Video- und Audiodienste. Während anfangs nur YouTube unterstützt wurde, wurden immer mehr Dienste von verschiedenen Personen hinzugefügt über die Jahre - was zu einem zunehmend vielfältigeren NewPipe führte!
 
-Partially due to circumstance, and partially due to its popularity, YouTube is the best supported out of these services. If you use or are familiar with any of these other services, please help us improve support for them! We're looking for maintainers for SoundCloud and PeerTube.
+Teils den Umständen geschuldet, teils aufgrund der Bekanntheit, ist von allen Dienste YouTube der am besten Unterstützte. Wenn du einen der anderen Dienste nutzt oder generell dich damit besser auskennst, hilf uns bitte ihn besser zu machen! Wir suchen nach Unterstützer für SoundCloud und PeerTube.
 
-If you intend to add a new service, please get in touch with us first! Our [docs](https://teamnewpipe.github.io/documentation/) provide more information on how a new service can be added to the app and to the [NewPipe Extractor](https://github.com/TeamNewPipe/NewPipeExtractor).
+Falls du vorhaben solltest, einen neuen Dienst hinzuzügen, kontaktiere uns bitte zuerst! In unserer [Dokumentation](https://teamnewpipe.github.io/documentation/) findest du mehr Informationen wie man der App und dem [NewPipe Extractor](https://github.com/TeamNewPipe/NewPipeExtractor) einen neuen Service hinzufügen kann.
 
 ## Beschreibung
 
