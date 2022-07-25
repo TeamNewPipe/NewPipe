@@ -15,17 +15,31 @@ import com.google.android.material.snackbar.Snackbar;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.PermissionHelper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
 
 public class VideoAudioSettingsFragment extends BasePreferenceFragment {
     private SharedPreferences.OnSharedPreferenceChangeListener listener;
+    private ListPreference defaultResolution;
+    private ListPreference defaultPopupResolution;
+    private ListPreference limitMobileDataUsage;
+    private static final String FULL_HD_RESOLUTION = "1080p60";
+    private static final Set<String> HIGHER_RESOLUTIONS =
+            Set.of("1440p", "1440p60", "2160p", "2160p60");
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         addPreferencesFromResourceRegistry();
 
         updateSeekOptions();
+        defaultResolution = findPreference(getString(R.string.default_resolution_key));
+        defaultPopupResolution = findPreference(getString(R.string.default_popup_resolution_key));
+        limitMobileDataUsage = findPreference(getString(R.string.limit_mobile_data_usage_key));
+        updateResolutions();
 
         listener = (sharedPreferences, s) -> {
 
@@ -48,7 +62,9 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
                 }
             } else if (s.equals(getString(R.string.use_inexact_seek_key))) {
                 updateSeekOptions();
-            }
+            } else if (s.equals(getString(R.string.show_higher_resolutions_key))) {
+                updateResolutions();
+        }
         };
     }
 
@@ -103,12 +119,34 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         }
     }
 
+    /**
+     * Update resolution options. Defaults to 1080p60 and removes higher options when the "Show
+     * higher resolutions" switch is set to false.
+    */
+    private void updateResolutions() {
+        final ArrayList<String> resolutions = new ArrayList<>(Arrays.asList(getResources()
+                .getStringArray(R.array.resolution_list_description)));
+
+        if (!getPreferenceManager().getSharedPreferences()
+                .getBoolean(getString(R.string.show_higher_resolutions_key), false)) {
+            Stream.of(defaultResolution, defaultPopupResolution, limitMobileDataUsage)
+                    .filter(p -> HIGHER_RESOLUTIONS.contains((p.getValue())))
+                    .forEach(p -> p.setValue(FULL_HD_RESOLUTION));
+            resolutions.removeAll(HIGHER_RESOLUTIONS);
+        }
+
+        final String[] resolutionsArray = resolutions.toArray(new String[0]);
+        Stream.of(defaultResolution, defaultPopupResolution, limitMobileDataUsage).forEach(p -> {
+            p.setEntries(resolutionsArray);
+            p.setEntryValues(resolutionsArray);
+        });
+    }
+
     @Override
     public void onResume() {
         super.onResume();
         getPreferenceManager().getSharedPreferences()
                 .registerOnSharedPreferenceChangeListener(listener);
-
     }
 
     @Override

@@ -333,9 +333,14 @@ public final class ListHelper {
      *      360p     ->  360
      *      1080p    ->  1080
      *      1080p60  ->  1081
+     *      1440p    ->  1440
+     *      1440p60  ->  1441
+     *      2160p    ->  2160
+     *      2160p60  ->  2161
      * <br>
-     * ascendingOrder  ? 360 < 720 < 721 < 1080 < 1081
-     * !ascendingOrder ? 1081 < 1080 < 721 < 720 < 360</pre></blockquote>
+     * ascendingOrder  ? 360 < 720 < 721 < 1080 < 1081 < 1440 < 1441 < 2160 < 2161
+     * !ascendingOrder ? 2161 < 2160 < 1441 < 1440 < 1081 < 1080 < 721 < 720 < 360
+     * </pre></blockquote>
      *
      * @param videoStreams   list that the sorting will be applied
      * @param ascendingOrder true -> smallest to greatest | false -> greatest to smallest
