@@ -126,7 +126,7 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
                 .setTitle(item.getTitle())
                 .setSubtitle(item.getUploader());
 
-        // set additional metadata for A2DP/AVRCP
+        // set additional metadata for A2DP/AVRCP (Audio/Video Bluetooth profiles)
         final Bundle additionalMetadata = new Bundle();
         additionalMetadata.putString(MediaMetadataCompat.METADATA_KEY_TITLE, item.getTitle());
         additionalMetadata.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, item.getUploader());

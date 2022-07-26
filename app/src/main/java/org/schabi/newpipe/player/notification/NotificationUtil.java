@@ -105,8 +105,10 @@ public final class NotificationUtil {
         final int[] compactSlots = compactSlotList.stream().mapToInt(Integer::intValue).toArray();
 
         final MediaStyle mediaStyle = new MediaStyle().setShowActionsInCompactView(compactSlots);
-        player.UIs().get(MediaSessionPlayerUi.class).flatMap(MediaSessionPlayerUi::getSessionToken)
-                        .ifPresent(mediaStyle::setMediaSession);
+        player.UIs()
+                .get(MediaSessionPlayerUi.class)
+                .flatMap(MediaSessionPlayerUi::getSessionToken)
+                .ifPresent(mediaStyle::setMediaSession);
 
         builder.setStyle(mediaStyle)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
