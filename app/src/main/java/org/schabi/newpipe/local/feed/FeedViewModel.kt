@@ -5,7 +5,8 @@ import androidx.core.content.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
@@ -139,21 +140,16 @@ class FeedViewModel(
         private fun getShowFutureItemsFromPreferences(context: Context) =
             PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.feed_show_future_items_key), true)
-    }
-
-    class Factory(
-        private val context: Context,
-        private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID
-    ) : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return FeedViewModel(
-                context.applicationContext,
-                groupId,
-                // Read initial value from preferences
-                getShowPlayedItemsFromPreferences(context.applicationContext),
-                getShowFutureItemsFromPreferences(context.applicationContext)
-            ) as T
+        fun getFactory(context: Context, groupId: Long) = viewModelFactory {
+            initializer {
+                FeedViewModel(
+                    context.applicationContext,
+                    groupId,
+                    // Read initial value from preferences
+                    getShowPlayedItemsFromPreferences(context.applicationContext),
+                    getShowFutureItemsFromPreferences(context.applicationContext)
+                )
+            }
         }
     }
 }
