@@ -34,7 +34,9 @@ import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class NotificationActionsPreference extends Preference {
 
@@ -74,13 +76,10 @@ public class NotificationActionsPreference extends Preference {
     ////////////////////////////////////////////////////////////////////////////
 
     private void setupActions(@NonNull final View view) {
-        compactSlots =
-                NotificationConstants.getCompactSlotsFromPreferences(
-                        getContext(), getSharedPreferences(), 5);
-        notificationSlots = new NotificationSlot[5];
-        for (int i = 0; i < 5; i++) {
-            notificationSlots[i] = new NotificationSlot(i, view);
-        }
+        compactSlots = new ArrayList<>(NotificationConstants
+                .getCompactSlotsFromPreferences(getContext(), getSharedPreferences(), 5));
+        notificationSlots = IntStream.range(0, 5).mapToObj(i -> new NotificationSlot(i, view))
+                .toArray(NotificationSlot[]::new);
     }
 
 

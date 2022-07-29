@@ -2167,12 +2167,8 @@ public final class VideoDetailFragment
         } else {
             final int selectedVideoStreamIndexForExternalPlayers =
                     ListHelper.getDefaultResolutionIndex(activity, videoStreamsForExternalPlayers);
-            final CharSequence[] resolutions =
-                    new CharSequence[videoStreamsForExternalPlayers.size()];
-
-            for (int i = 0; i < videoStreamsForExternalPlayers.size(); i++) {
-                resolutions[i] = videoStreamsForExternalPlayers.get(i).getResolution();
-            }
+            final CharSequence[] resolutions = videoStreamsForExternalPlayers.stream()
+                    .map(VideoStream::getResolution).toArray(CharSequence[]::new);
 
             builder.setSingleChoiceItems(resolutions, selectedVideoStreamIndexForExternalPlayers,
                     null);

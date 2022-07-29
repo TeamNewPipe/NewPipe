@@ -14,7 +14,6 @@ import org.schabi.newpipe.util.Localization;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -115,7 +114,7 @@ public final class NotificationConstants {
     };
 
 
-    public static final Integer[] SLOT_COMPACT_DEFAULTS = {0, 1, 2};
+    public static final List<Integer> SLOT_COMPACT_DEFAULTS = List.of(0, 1, 2);
 
     public static final int[] SLOT_COMPACT_PREF_KEYS = {
             R.string.notification_slot_compact_0_key,
@@ -181,7 +180,7 @@ public final class NotificationConstants {
 
             if (compactSlot == Integer.MAX_VALUE) {
                 // settings not yet populated, return default values
-                return new ArrayList<>(Arrays.asList(SLOT_COMPACT_DEFAULTS));
+                return SLOT_COMPACT_DEFAULTS;
             }
 
             // a negative value (-1) is set when the user does not want a particular compact slot
