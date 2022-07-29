@@ -202,10 +202,9 @@ public class DescriptionFragment extends BaseFragment {
 
     private void addTagsMetadataItem(final LayoutInflater inflater, final LinearLayout layout) {
         if (streamInfo.getTags() != null && !streamInfo.getTags().isEmpty()) {
-            final ItemMetadataTagsBinding itemBinding =
-                    ItemMetadataTagsBinding.inflate(inflater, layout, false);
+            final var itemBinding = ItemMetadataTagsBinding.inflate(inflater, layout, false);
 
-            streamInfo.getTags().stream().sorted().forEach(tag -> {
+            streamInfo.getTags().stream().sorted(String.CASE_INSENSITIVE_ORDER).forEach(tag -> {
                 final Chip chip = (Chip) inflater.inflate(R.layout.chip,
                         itemBinding.metadataTagsChips, false);
                 chip.setText(tag);
