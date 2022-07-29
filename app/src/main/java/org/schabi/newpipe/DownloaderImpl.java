@@ -11,15 +11,17 @@ import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.extractor.downloader.Request;
 import org.schabi.newpipe.extractor.downloader.Response;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
-import org.schabi.newpipe.util.CookieUtils;
 import org.schabi.newpipe.util.InfoCache;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -63,19 +65,15 @@ public final class DownloaderImpl extends Downloader {
     }
 
     public String getCookies(final String url) {
-        final List<String> resultCookies = new ArrayList<>();
-        if (url.contains(YOUTUBE_DOMAIN)) {
-            final String youtubeCookie = getCookie(YOUTUBE_RESTRICTED_MODE_COOKIE_KEY);
-            if (youtubeCookie != null) {
-                resultCookies.add(youtubeCookie);
-            }
-        }
+        final String youtubeCookie = url.contains(YOUTUBE_DOMAIN)
+                ? getCookie(YOUTUBE_RESTRICTED_MODE_COOKIE_KEY) : null;
+
         // Recaptcha cookie is always added TODO: not sure if this is necessary
-        final String recaptchaCookie = getCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY);
-        if (recaptchaCookie != null) {
-            resultCookies.add(recaptchaCookie);
-        }
-        return CookieUtils.concatCookies(resultCookies);
+        return Stream.of(youtubeCookie, getCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY))
+                .filter(Objects::nonNull)
+                .flatMap(cookies -> Arrays.stream(cookies.split("; *")))
+                .distinct()
+                .collect(Collectors.joining("; "));
     }
 
     public String getCookie(final String key) {
