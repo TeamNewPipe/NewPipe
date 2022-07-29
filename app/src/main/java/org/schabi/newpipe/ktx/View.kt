@@ -90,64 +90,43 @@ fun View.animate(
  */
 fun View.animateBackgroundColor(duration: Long, @ColorInt colorStart: Int, @ColorInt colorEnd: Int) {
     if (MainActivity.DEBUG) {
-        Log.d(
-            TAG,
-            "animateBackgroundColor() called with: " +
-                "view = [" + this + "], duration = [" + duration + "], " +
-                "colorStart = [" + colorStart + "], colorEnd = [" + colorEnd + "]"
+        Log.d(TAG, "animateBackgroundColor() called with: view = [$this], duration = [$duration], " +
+                "colorStart = [$colorStart], colorEnd = [$colorEnd]"
         )
     }
-    val empty = arrayOf(IntArray(0))
     val viewPropertyAnimator = ValueAnimator.ofObject(ArgbEvaluator(), colorStart, colorEnd)
     viewPropertyAnimator.interpolator = FastOutSlowInInterpolator()
     viewPropertyAnimator.duration = duration
-    viewPropertyAnimator.addUpdateListener { animation: ValueAnimator ->
-        ViewCompat.setBackgroundTintList(this, ColorStateList(empty, intArrayOf(animation.animatedValue as Int)))
+
+    fun listenerAction(color: Int) {
+        ViewCompat.setBackgroundTintList(this, ColorStateList.valueOf(color))
     }
-    viewPropertyAnimator.addListener(
-        onCancel = { ViewCompat.setBackgroundTintList(this, ColorStateList(empty, intArrayOf(colorEnd))) },
-        onEnd = { ViewCompat.setBackgroundTintList(this, ColorStateList(empty, intArrayOf(colorEnd))) }
-    )
+    viewPropertyAnimator.addUpdateListener { listenerAction(it.animatedValue as Int) }
+    viewPropertyAnimator.addListener(onCancel = { listenerAction(colorEnd) }, onEnd = { listenerAction(colorEnd) })
     viewPropertyAnimator.start()
 }
 
 fun View.animateHeight(duration: Long, targetHeight: Int): ValueAnimator {
     if (MainActivity.DEBUG) {
-        Log.d(
-            TAG,
-            "animateHeight: duration = [" + duration + "], " +
-                "from " + height + " to → " + targetHeight + " in: " + this
-        )
+        Log.d(TAG, "animateHeight: duration = [$duration], from $height to → $targetHeight in: $this")
     }
     val animator = ValueAnimator.ofFloat(height.toFloat(), targetHeight.toFloat())
     animator.interpolator = FastOutSlowInInterpolator()
     animator.duration = duration
-    animator.addUpdateListener { animation: ValueAnimator ->
-        val value = animation.animatedValue as Float
-        layoutParams.height = value.toInt()
+
+    fun listenerAction(value: Int) {
+        layoutParams.height = value
         requestLayout()
     }
-    animator.addListener(
-        onCancel = {
-            layoutParams.height = targetHeight
-            requestLayout()
-        },
-        onEnd = {
-            layoutParams.height = targetHeight
-            requestLayout()
-        }
-    )
+    animator.addUpdateListener { listenerAction((it.animatedValue as Float).toInt()) }
+    animator.addListener(onCancel = { listenerAction(targetHeight) }, onEnd = { listenerAction(targetHeight) })
     animator.start()
     return animator
 }
 
 fun View.animateRotation(duration: Long, targetRotation: Int) {
     if (MainActivity.DEBUG) {
-        Log.d(
-            TAG,
-            "animateRotation: duration = [" + duration + "], " +
-                "from " + rotation + " to → " + targetRotation + " in: " + this
-        )
+        Log.d(TAG, "animateRotation: duration = [$duration], from $rotation to → $targetRotation in: $this")
     }
     animate().setListener(null).cancel()
     animate()
