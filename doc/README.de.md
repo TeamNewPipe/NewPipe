@@ -97,49 +97,66 @@ NewPipe kann mit einer der folgenden Methoden installiert werden:
  4. Baue selbst die APK. Das ist die beste Methode um neue Features schnellstmöglich zu bekommen, aber auch sehr kompliziert und umständlich. War raten dir daher zu einer der anderen Methoden.
  5. Falls du an einem spezifischen Feature oder Bugfix interessiert bist, welches/r in einem Pull Request in diesem Repo adressiert wird, kannst du auch die APK aus dem PR direkt beziehen. Lies dir die PR Beschreibung durch für entsprechende Anweisungen. Das Gute an PR-spezifischen APKs ist, dass sie parallel zu der offiziellen App installiert werden. Du musst also nichf fürchten, dass deine Daten verloren gehen oder irgendetwas daneben geht.
 
-We recommend method 1 for most users. APKs installed using method 1 or 2 are compatible with each other (meaning that if you installed NewPipe using either method 1 or 2, you can also update NewPipe using the other), but not with those installed using method 3. This is due to the same signing key (ours) being used for 1 and 2, but a different signing key (F-Droid's) being used for 3. Building a debug APK using method 4 excludes a key entirely. Signing keys help ensure that a user isn't tricked into installing a malicious update to an app. When using method 5, each APK is signed with a different random key supplied by GitHub Actions, so you cannot even update it. You will have to backup and restore the app data each time you wish to use a new APK.
+Für die meisten Benutzer empfehlen wir die erste Methode. APKs, die mit Methode 1  oder 2 installiert wurden, sind untereinander kompatibel (d.h. wenn NewPipe mit Methode 1 installiert wurde, kann es trotzdem mit Methode 2 aktualisiert werden und vice versa) - aber nicht mit Methode 3.
+Das liegt daran, dass Methode 1 und 2 den gleichen Signing Key benutzen (unseren), während Methode 3 einen anderen benutzt (den von F-Droid).
+Eine mit Methode 4 gebaute Debug APK benutzt überhaupt gar keinen Key.
+Das Signieren von Keys ermöglicht Benutzern, dass bösartige Updates nicht versehentlich installiert werden.
+Bei Methode 5 wird für jede APK ein zufälliger Signierschlüssel von GitHub Actions generiert, d.h. Updates sind unmöglich.
+Bei jeder neuen APK Installation muss ein Backup gemacht werden und die Daten wiederhergestellt werden.
 
-In the meanwhile, if you want to switch sources for some reason (e.g. NewPipe's core functionality breaks and F-Droid doesn't have the latest update yet), we recommend following this procedure:
-1. Back up your data via Settings > Content > Export Database so you keep your history, subscriptions, and playlists
-2. Uninstall NewPipe
-3. Download the APK from the new source and install it
-4. Import the data from step 1 via Settings > Content > Import Database
+Falls du aus welchem Grund auch immer die Quelle (Methode) ändern willst (z.B. weil irgendetwas in NewPipe nicht mehr funktioniert und F-Droid nicht das neuste Update mit dem Fix hat), empfehlen wir folgende Herangehensweise:
+1. Mache ein Back-up über Einstellungen > Inhalt > Datenbank exportieren damit dein Verlauf, deine Abos und Playlists nicht verloren gehen
+2. Deinstalliere NewPipe
+3. Lade die APK von der neuen Quelle herunter und installiere es
+4. Importiere die Daten aus Schritt 1 über Einstellungen > Inhalt > Datenbank importieren
 
-<b>Note: when you're importing a database into the official app, always make sure that it is the one you exported _from_ the official app. If you import a database exported from an APK other than the official app, it may break things. Such an action is unsupported, and you should only do so when you're absolutely certain you know what you're doing.</b>
+<!-- What is an unsupported app anyway? -->
+<b>Hinweis: Wenn du eine Datenbank in die offizielle App importierst, stelle sicher, dass dass sie _von_ der offiziellen App exportiert wurde.
+Wenn du eine Datenbank von einer nicht offiziellen APK exportierst, werden Dinge vorraussichtlich kaputt gehen.
+So eine Aktion wird nicht unterstützt und du solltest es nur in Erwägung ziehen, wenn du weißt, was du tust.</b>
+
 
 ## Beitrag
-Whether you have ideas, translations, design changes, code cleaning, or even major code changes, help is always welcome. The app gets better and better with each contribution, no matter how big or small! If you'd like to get involved, check our [contribution notes](.github/CONTRIBUTING.md).
+Egal ob du neue Ideen, Übersetzungen, Designvorschläge, kleinere Code-Bereinigungen, oder sogar große Code-Verbesserungen hast, jegliche Unterstützung ist immer gern gesehen.
+Die App wird mit _jedem_ Beitrag besser und besser - egal wie groß oder klein er sein mag!
+Wenn du dich einbringen willst, sehe dir die [Beitragshinweise](.github/CONTRIBUTING.md) an.
 
-<a href="https://hosted.weblate.org/engage/newpipe/">
-<img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />
+<a href="https://hosted.weblate.org/engage/newpipe/de/">
+<img src="https://hosted.weblate.org/widgets/newpipe/de/287x66-grey.png" alt="Übersetzt" />
 </a>
 
 ## Spenden
-If you like NewPipe, you're welcome to send a donation. We prefer Liberapay, as it is both open-source and non-profit. For further info on donating to NewPipe, please visit our [Website](https://newpipe.net/donate).
+Wenn dir NewPipe gefällt, kannst du uns gerne durch eine Spende unterstützen.
+Wir bevorzugen Liberapay, da es sowohl quelloffen als auch nicht gewinnorientiert ist.
+Für weitere Informationen über Spenden an NewPipe, gehe auf unsere [Website](https://newpipe.net/donate).
 
 <table>
   <tr>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="assets/liberapay_qr_code.png" alt="Visit NewPipe at liberapay.com" width="100px"></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px"></a></td>
+    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="assets/liberapay_qr_code.png" alt="Gehe zu NewPipe auf liberapay.com" width="100px"></a></td>
+    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="assets/liberapay_donate_button.svg" alt="Spenden mit Liberapay" height="35px"></a></td>
   </tr>
   <tr>
     <td><img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin"></td>
-    <td><img src="assets/bitcoin_qr_code.png" alt="Bitcoin QR code" width="100px"></td>
+    <td><img src="assets/bitcoin_qr_code.png" alt="Bitcoin QR Code" width="100px"></td>
     <td><samp>16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh</samp></td>
   </tr>
   <tr>
     <td><a href="https://www.bountysource.com/teams/newpipe"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bountysource.png/320px-Bountysource.png" alt="Bountysource" width="190px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="assets/bountysource_qr_code.png" alt="Visit NewPipe at bountysource.com" width="100px"></a></td>
-    <td><a href="https://www.bountysource.com/teams/newpipe/issues"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f" height="30px" alt="Check out how many bounties you can earn."></a></td>
+    <td><a href="https://www.bountysource.com/teams/newpipe"><img src="assets/bountysource_qr_code.png" alt="Gehe zu NewPipe auf bountysource.com" width="100px"></a></td>
+    <td><a href="https://www.bountysource.com/teams/newpipe/issues"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f" height="30px" alt="Sieh nach, wie viel Bounties du bekommen kannst."></a></td>
   </tr>
 </table>
 
 ## Privacy Policy
 
-The NewPipe project aims to provide a private, anonymous experience for using web-based media services. Therefore, the app does not collect any data without your consent. NewPipe's privacy policy explains in detail what data is sent and stored when you send a crash report, or leave a comment in our blog. You can find the document [here](https://newpipe.net/legal/privacy/).
+Das NewPipe Projekt hat zum Ziel, eine private und anonyme Benutzung von Web-basierten Medien-Dienste ermöglichen.
+Daher sammelt die App keinerlei Daten ohne deine Zustimmung.
+NewPipe's Datenschutzbestimmungen erklären im Detail, welche Daten gesendet und gespeichert werden, wenn du einen _Crash Report_ einreichst, oder ein Kommentar auf unserem Blog hinterlässt.
+Du findest das Dokument [hier](https://newpipe.net/legal/privacy/).
 
 ## Lizenz
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
 
-NewPipe is Free Software: You can use, study, share, and improve it at will. Specifically you can redistribute and/or modify it under the terms of the [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+NewPipe ist freie Software: Du kannst es nach Beliebeb benutzen, studieren, teilen, und verbessern.
+Du kannst es insbesondere unter den Bedingungen der [GNU General Public License](https://www.gnu.org/licenses/gpl.html), wie von der Free Software Foundation veröffentlicht, entweder Version 3 der Lizenz oder (nach deiner Wahl) jede spätere Version, weiterverbreiten und/oder verändern.
