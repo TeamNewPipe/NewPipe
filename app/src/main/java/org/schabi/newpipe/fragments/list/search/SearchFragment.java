@@ -541,19 +541,19 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         suggestionListAdapter.setListener(new SuggestionListAdapter.OnSuggestionItemSelected() {
             @Override
             public void onSuggestionItemSelected(final SuggestionItem item) {
-                search(item.query);
-                searchEditText.setText(item.query);
+                search(item.getQuery());
+                searchEditText.setText(item.getQuery());
             }
 
             @Override
             public void onSuggestionItemInserted(final SuggestionItem item) {
-                searchEditText.setText(item.query);
+                searchEditText.setText(item.getQuery());
                 searchEditText.setSelection(searchEditText.getText().length());
             }
 
             @Override
             public void onSuggestionItemLongClick(final SuggestionItem item) {
-                if (item.fromHistory) {
+                if (item.isFromHistory()) {
                     showDeleteSuggestionDialog(item);
                 }
             }
@@ -654,7 +654,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (activity == null || historyRecordManager == null || searchEditText == null) {
             return;
         }
-        final String query = item.query;
+        final String query = item.getQuery();
         new AlertDialog.Builder(activity)
                 .setTitle(query)
                 .setMessage(R.string.delete_item_search_history)
@@ -952,13 +952,13 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         }
 
         final SuggestionItem item = suggestionListAdapter.getCurrentList().get(position);
-        return item.fromHistory ? makeMovementFlags(0,
+        return item.isFromHistory() ? makeMovementFlags(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) : 0;
     }
 
     public void onSuggestionItemSwiped(@NonNull final RecyclerView.ViewHolder viewHolder) {
         final int position = viewHolder.getBindingAdapterPosition();
-        final String query = suggestionListAdapter.getCurrentList().get(position).query;
+        final String query = suggestionListAdapter.getCurrentList().get(position).getQuery();
         final Disposable onDelete = historyRecordManager.deleteSearchHistory(query)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

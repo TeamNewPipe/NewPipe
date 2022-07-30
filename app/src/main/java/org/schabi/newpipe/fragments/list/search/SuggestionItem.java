@@ -3,12 +3,20 @@ package org.schabi.newpipe.fragments.list.search;
 import androidx.annotation.NonNull;
 
 public class SuggestionItem {
-    final boolean fromHistory;
-    public final String query;
+    private final boolean fromHistory;
+    private final String query;
 
     public SuggestionItem(final boolean fromHistory, final String query) {
         this.fromHistory = fromHistory;
         this.query = query;
+    }
+
+    public boolean isFromHistory() {
+        return fromHistory;
+    }
+
+    public String getQuery() {
+        return query;
     }
 
     @Override
