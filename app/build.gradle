@@ -98,6 +98,7 @@ ext {
     checkstyleVersion = '10.3.1'
 
     androidxLifecycleVersion = '2.5.1'
+    androidxPagingVersion = '3.1.1'
     androidxRoomVersion = '2.4.3'
     androidxWorkVersion = '2.7.1'
 
@@ -208,6 +209,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${androidxLifecycleVersion}"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
     implementation 'androidx.media:media:1.6.0'
+    implementation "androidx.paging:paging-runtime:${androidxPagingVersion}"
+    implementation "androidx.paging:paging-rxjava3:${androidxPagingVersion}"
     implementation 'androidx.preference:preference:1.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation "androidx.room:room-runtime:${androidxRoomVersion}"
