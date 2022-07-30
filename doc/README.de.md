@@ -1,6 +1,6 @@
 <p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
-<h4 align="center">Eine freie leichtgewichtige Streaming App für Android.</h4>
+<h4 align="center">Eine freie und leichtgewichtige Streaming App für Android.</h4>
 
 <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-de.svg" alt="Hole es dir auf F-Droid" height=80/></a></p>
 
@@ -17,7 +17,7 @@
 <p align="center"><a href="https://newpipe.net">Website</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Über NewPipe</a></p>
 <hr>
 
-*In einer anderen Sprache lesen: [English](README.md), [Español](doc/README.es.md), [हिन्दी](doc/README.hi.md), [한국어](doc/README.ko.md), [Soomaali](doc/README.so.md), [Português Brasil](doc/README.pt_BR.md), [Polski](doc/README.pl.md), [日本語](doc/README.ja.md), [Română](doc/README.ro.md), [Türkçe](doc/README.tr.md), [正體中文](doc/README.zh_TW.md), [Deutsch](doc/README.de.md).*
+*In einer anderen Sprache lesen: [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [Deutsch](README.de.md).*
 
 <b>WARNUNG: DIESE APP IST IN DER BETA-PHASE, SOMIT KÖNNEN BUGS AUFTRETEN. FALLS EIN BUG AUFTRITT, ERSTELLE EIN ISSUE AUF UNSEREM GITHUB REPOSITORY INDEM DU DIE ISSUE VORLAGE BENUTZT.</b>
 
