@@ -135,8 +135,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         _feedBinding = FragmentFeedBinding.bind(rootView)
         super.onViewCreated(rootView, savedInstanceState)
 
-        val factory = FeedViewModel.Factory(requireContext(), groupId)
-        viewModel = ViewModelProvider(this, factory).get(FeedViewModel::class.java)
+        val factory = FeedViewModel.getFactory(requireContext(), groupId)
+        viewModel = ViewModelProvider(this, factory)[FeedViewModel::class.java]
         showPlayedItems = viewModel.getShowPlayedItemsFromPreferences()
         showFutureItems = viewModel.getShowFutureItemsFromPreferences()
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(::handleResult) }
