@@ -19,7 +19,7 @@
             android:id="@+id/detail_main_content"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5"
+            android:layout_weight="6"
             android:isScrollContainer="true">
 
             <com.google.android.material.appbar.AppBarLayout
