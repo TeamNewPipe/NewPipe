@@ -192,6 +192,7 @@ public final class VideoDetailFragment
     private Disposable positionSubscriber = null;
 
     private BottomSheetBehavior<FrameLayout> bottomSheetBehavior;
+    private BottomSheetBehavior.BottomSheetCallback bottomSheetCallback;
     private BroadcastReceiver broadcastReceiver;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -207,8 +208,6 @@ public final class VideoDetailFragment
     private PlayerService playerService;
     private Player player;
     private final PlayerHolder playerHolder = PlayerHolder.getInstance();
-
-    private BottomSheetBehavior.BottomSheetCallback bottomSheetCallback;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service management
