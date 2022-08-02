@@ -343,7 +343,10 @@ public final class ListHelper {
      */
     private static List<VideoStream> sortStreamList(final List<VideoStream> videoStreams,
                                                     final boolean ascendingOrder) {
-        final Comparator<VideoStream> comparator = ListHelper::compareVideoStreamResolution;
+        // Compares the quality of two video streams.
+        final Comparator<VideoStream> comparator = Comparator.nullsLast(Comparator
+                .comparing(VideoStream::getResolution, ListHelper::compareVideoStreamResolution)
+                .thenComparingInt(s -> VIDEO_FORMAT_QUALITY_RANKING.indexOf(s.getFormat())));
         Collections.sort(videoStreams, ascendingOrder ? comparator : comparator.reversed());
         return videoStreams;
     }
@@ -360,8 +363,7 @@ public final class ListHelper {
                                            @Nullable final List<AudioStream> audioStreams) {
         return getAudioIndexByHighestRank(format, audioStreams,
                 // Compares descending (last = highest rank)
-                (s1, s2) -> compareAudioStreamBitrate(s1, s2, AUDIO_FORMAT_QUALITY_RANKING)
-        );
+                getAudioStreamComparator(AUDIO_FORMAT_QUALITY_RANKING));
     }
 
     /**
@@ -374,11 +376,15 @@ public final class ListHelper {
      */
     static int getMostCompactAudioIndex(@Nullable final MediaFormat format,
                                         @Nullable final List<AudioStream> audioStreams) {
-
         return getAudioIndexByHighestRank(format, audioStreams,
                 // The "-" is important -> Compares ascending (first = highest rank)
-                (s1, s2) -> -compareAudioStreamBitrate(s1, s2, AUDIO_FORMAT_EFFICIENCY_RANKING)
-        );
+                getAudioStreamComparator(AUDIO_FORMAT_EFFICIENCY_RANKING).reversed());
+    }
+
+    private static Comparator<AudioStream> getAudioStreamComparator(
+            final List<MediaFormat> formatRanking) {
+        return Comparator.nullsLast(Comparator.comparingInt(AudioStream::getAverageBitrate))
+                .thenComparingInt(stream -> formatRanking.indexOf(stream.getFormat()));
     }
 
     /**
@@ -544,28 +550,6 @@ public final class ListHelper {
         return format;
     }
 
-    // Compares the quality of two audio streams
-    private static int compareAudioStreamBitrate(final AudioStream streamA,
-                                                 final AudioStream streamB,
-                                                 final List<MediaFormat> formatRanking) {
-        if (streamA == null) {
-            return -1;
-        }
-        if (streamB == null) {
-            return 1;
-        }
-        if (streamA.getAverageBitrate() < streamB.getAverageBitrate()) {
-            return -1;
-        }
-        if (streamA.getAverageBitrate() > streamB.getAverageBitrate()) {
-            return 1;
-        }
-
-        // Same bitrate and format
-        return formatRanking.indexOf(streamA.getFormat())
-                - formatRanking.indexOf(streamB.getFormat());
-    }
-
     private static int compareVideoStreamResolution(@NonNull final String r1,
                                                     @NonNull final String r2) {
         try {
@@ -581,28 +565,6 @@ public final class ListHelper {
             return 1;
         }
     }
-
-    // Compares the quality of two video streams.
-    private static int compareVideoStreamResolution(final VideoStream streamA,
-                                                    final VideoStream streamB) {
-        if (streamA == null) {
-            return -1;
-        }
-        if (streamB == null) {
-            return 1;
-        }
-
-        final int resComp = compareVideoStreamResolution(streamA.getResolution(),
-                streamB.getResolution());
-        if (resComp != 0) {
-            return resComp;
-        }
-
-        // Same bitrate and format
-        return ListHelper.VIDEO_FORMAT_QUALITY_RANKING.indexOf(streamA.getFormat())
-                - ListHelper.VIDEO_FORMAT_QUALITY_RANKING.indexOf(streamB.getFormat());
-    }
-
 
     private static boolean isLimitingDataUsage(final Context context) {
         return getResolutionLimit(context) != null;
