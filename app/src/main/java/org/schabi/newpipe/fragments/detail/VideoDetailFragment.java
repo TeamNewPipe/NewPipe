@@ -1220,7 +1220,7 @@ public final class VideoDetailFragment
         }
 
         final PlayQueue queue = setupPlayQueueForIntent(false);
-        addVideoPlayerView();
+        tryAddVideoPlayerView();
 
         final Intent playerIntent = NavigationHelper.getPlayerIntent(requireContext(),
                 PlayerService.class, queue, true, autoPlayEnabled);
@@ -1301,21 +1301,27 @@ public final class VideoDetailFragment
                 && PlayerHelper.isAutoplayAllowedByUser(requireContext());
     }
 
-    private void addVideoPlayerView() {
-        if (!isPlayerAvailable() || getView() == null) {
-            return;
-        }
-        setHeightThumbnail();
+    private void tryAddVideoPlayerView() {
+        // do all the null checks in the posted lambda, since the player, the binding and the view
+        // could be set or unset before the lambda gets executed on the next main thread cycle
+        new Handler(Looper.getMainLooper()).post(() -> {
+            if (!isPlayerAvailable() || getView() == null) {
+                return;
+            }
 
-        // Prevent from re-adding a view multiple times
-        new Handler(Looper.getMainLooper()).post(() ->
-                player.UIs().get(MainPlayerUi.class).ifPresent(playerUi -> {
-                    if (binding != null) {
-                        playerUi.removeViewFromParent();
-                        binding.playerPlaceholder.addView(playerUi.getBinding().getRoot());
-                        playerUi.setupVideoSurfaceIfNeeded();
-                    }
-                }));
+            // setup the surface view height, so that it fits the video correctly
+            setHeightThumbnail();
+
+            player.UIs().get(MainPlayerUi.class).ifPresent(playerUi -> {
+                // sometimes binding would be null here, even though getView() != null above u.u
+                if (binding != null) {
+                    // prevent from re-adding a view multiple times
+                    playerUi.removeViewFromParent();
+                    binding.playerPlaceholder.addView(playerUi.getBinding().getRoot());
+                    playerUi.setupVideoSurfaceIfNeeded();
+                }
+            });
+        });
     }
 
     private void removeVideoPlayerView() {
@@ -1784,7 +1790,7 @@ public final class VideoDetailFragment
 
     @Override
     public void onViewCreated() {
-        addVideoPlayerView();
+        tryAddVideoPlayerView();
     }
 
     @Override
@@ -1926,7 +1932,7 @@ public final class VideoDetailFragment
         }
         scrollToTop();
 
-        addVideoPlayerView();
+        tryAddVideoPlayerView();
     }
 
     @Override
