@@ -11,7 +11,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
@@ -149,7 +148,7 @@ public class PlaybackParameterDialog extends DialogFragment {
         assureCorrectAppLanguage(getContext());
         Icepick.restoreInstanceState(this, savedInstanceState);
 
-        binding = DialogPlaybackParameterBinding.inflate(LayoutInflater.from(getContext()));
+        binding = DialogPlaybackParameterBinding.inflate(getLayoutInflater());
         initUI();
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireActivity())
