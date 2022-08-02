@@ -97,12 +97,12 @@ android {
 ext {
     checkstyleVersion = '10.3.1'
 
-    androidxLifecycleVersion = '2.3.1'
+    androidxLifecycleVersion = '2.5.1'
     androidxRoomVersion = '2.4.2'
     androidxWorkVersion = '2.7.1'
 
     icepickVersion = '3.2.0'
-    exoPlayerVersion = '2.18.0'
+    exoPlayerVersion = '2.18.1'
     googleAutoServiceVersion = '1.0.1'
     groupieVersion = '2.10.1'
     markwonVersion = '4.6.2'
@@ -203,8 +203,8 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.documentfile:documentfile:1.0.1'
     implementation 'androidx.fragment:fragment-ktx:1.4.1'
-    implementation "androidx.lifecycle:lifecycle-livedata:${androidxLifecycleVersion}"
-    implementation "androidx.lifecycle:lifecycle-viewmodel:${androidxLifecycleVersion}"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${androidxLifecycleVersion}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${androidxLifecycleVersion}"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
     implementation 'androidx.media:media:1.6.0'
     implementation 'androidx.preference:preference:1.2.0'
