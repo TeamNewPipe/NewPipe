@@ -1312,9 +1312,11 @@ public final class VideoDetailFragment
         // Prevent from re-adding a view multiple times
         new Handler(Looper.getMainLooper()).post(() ->
                 player.UIs().get(MainPlayerUi.class).ifPresent(playerUi -> {
-                    playerUi.removeViewFromParent();
-                    binding.playerPlaceholder.addView(playerUi.getBinding().getRoot());
-                    playerUi.setupVideoSurfaceIfNeeded();
+                    if (binding != null) {
+                        playerUi.removeViewFromParent();
+                        binding.playerPlaceholder.addView(playerUi.getBinding().getRoot());
+                        playerUi.setupVideoSurfaceIfNeeded();
+                    }
                 }));
     }
 
