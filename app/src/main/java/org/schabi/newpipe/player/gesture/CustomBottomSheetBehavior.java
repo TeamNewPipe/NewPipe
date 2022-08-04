@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -18,7 +19,8 @@ import java.util.List;
 
 public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> {
 
-    public CustomBottomSheetBehavior(final Context context, final AttributeSet attrs) {
+    public CustomBottomSheetBehavior(@NonNull final Context context,
+                                     @Nullable final AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -32,7 +34,7 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
     @Override
     public boolean onInterceptTouchEvent(@NonNull final CoordinatorLayout parent,
                                          @NonNull final FrameLayout child,
-                                         final MotionEvent event) {
+                                         @NonNull final MotionEvent event) {
         // Drop following when action ends
         if (event.getAction() == MotionEvent.ACTION_CANCEL
                 || event.getAction() == MotionEvent.ACTION_UP) {
