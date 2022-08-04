@@ -346,7 +346,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     override fun doInitialLoadLogic() = Unit
     override fun startLoading(forceLoad: Boolean) = Unit
 
-    private val listenerFeedGroups = object : OnClickGesture<Item<*>>() {
+    private val listenerFeedGroups = object : OnClickGesture<Item<*>> {
         override fun selected(selectedItem: Item<*>?) {
             when (selectedItem) {
                 is FeedGroupCardItem -> NavigationHelper.openFeedFragment(fm, selectedItem.groupId, selectedItem.name)
@@ -361,7 +361,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
     }
 
-    private val listenerChannelItem = object : OnClickGesture<ChannelInfoItem>() {
+    private val listenerChannelItem = object : OnClickGesture<ChannelInfoItem> {
         override fun selected(selectedItem: ChannelInfoItem) = NavigationHelper.openChannelFragment(
             fm,
             selectedItem.serviceId, selectedItem.url, selectedItem.name
