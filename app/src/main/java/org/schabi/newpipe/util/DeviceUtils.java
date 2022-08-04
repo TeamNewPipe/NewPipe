@@ -4,11 +4,14 @@ import android.app.UiModeManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.Point;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.TypedValue;
 import android.view.KeyEvent;
+import android.view.WindowInsets;
+import android.view.WindowManager;
 
 import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
@@ -150,5 +153,19 @@ public final class DeviceUtils {
                 context.getContentResolver(),
                 Settings.Global.ANIMATOR_DURATION_SCALE,
                 1F) != 0F;
+    }
+
+    public static int getWindowHeight(@NonNull final WindowManager windowManager) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            final var windowMetrics = windowManager.getCurrentWindowMetrics();
+            final var windowInsets = windowMetrics.getWindowInsets();
+            final var insets = windowInsets.getInsetsIgnoringVisibility(
+                    WindowInsets.Type.navigationBars() | WindowInsets.Type.displayCutout());
+            return windowMetrics.getBounds().height() - (insets.top + insets.bottom);
+        } else {
+            final Point point = new Point();
+            windowManager.getDefaultDisplay().getSize(point);
+            return point.y;
+        }
     }
 }

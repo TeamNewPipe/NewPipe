@@ -1,17 +1,20 @@
 package org.schabi.newpipe.local.feed
 
+import android.app.Application
 import android.content.Context
 import androidx.core.content.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.functions.Function5
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.stream.StreamWithState
@@ -26,12 +29,12 @@ import java.time.OffsetDateTime
 import java.util.concurrent.TimeUnit
 
 class FeedViewModel(
-    private val applicationContext: Context,
+    private val application: Application,
     groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
     initialShowPlayedItems: Boolean = true,
     initialShowFutureItems: Boolean = true
 ) : ViewModel() {
-    private var feedDatabaseManager: FeedDatabaseManager = FeedDatabaseManager(applicationContext)
+    private val feedDatabaseManager = FeedDatabaseManager(application)
 
     private val toggleShowPlayedItems = BehaviorProcessor.create<Boolean>()
     private val toggleShowPlayedItemsFlowable = toggleShowPlayedItems
@@ -113,24 +116,24 @@ class FeedViewModel(
     }
 
     fun saveShowPlayedItemsToPreferences(showPlayedItems: Boolean) =
-        PreferenceManager.getDefaultSharedPreferences(applicationContext).edit {
-            this.putBoolean(applicationContext.getString(R.string.feed_show_played_items_key), showPlayedItems)
+        PreferenceManager.getDefaultSharedPreferences(application).edit {
+            this.putBoolean(application.getString(R.string.feed_show_played_items_key), showPlayedItems)
             this.apply()
         }
 
-    fun getShowPlayedItemsFromPreferences() = getShowPlayedItemsFromPreferences(applicationContext)
+    fun getShowPlayedItemsFromPreferences() = getShowPlayedItemsFromPreferences(application)
 
     fun toggleFutureItems(showFutureItems: Boolean) {
         toggleShowFutureItems.onNext(showFutureItems)
     }
 
     fun saveShowFutureItemsToPreferences(showFutureItems: Boolean) =
-        PreferenceManager.getDefaultSharedPreferences(applicationContext).edit {
-            this.putBoolean(applicationContext.getString(R.string.feed_show_future_items_key), showFutureItems)
+        PreferenceManager.getDefaultSharedPreferences(application).edit {
+            this.putBoolean(application.getString(R.string.feed_show_future_items_key), showFutureItems)
             this.apply()
         }
 
-    fun getShowFutureItemsFromPreferences() = getShowFutureItemsFromPreferences(applicationContext)
+    fun getShowFutureItemsFromPreferences() = getShowFutureItemsFromPreferences(application)
 
     companion object {
         private fun getShowPlayedItemsFromPreferences(context: Context) =
@@ -139,21 +142,16 @@ class FeedViewModel(
         private fun getShowFutureItemsFromPreferences(context: Context) =
             PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.feed_show_future_items_key), true)
-    }
-
-    class Factory(
-        private val context: Context,
-        private val groupId: Long = FeedGroupEntity.GROUP_ALL_ID
-    ) : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return FeedViewModel(
-                context.applicationContext,
-                groupId,
-                // Read initial value from preferences
-                getShowPlayedItemsFromPreferences(context.applicationContext),
-                getShowFutureItemsFromPreferences(context.applicationContext)
-            ) as T
+        fun getFactory(context: Context, groupId: Long) = viewModelFactory {
+            initializer {
+                FeedViewModel(
+                    App.getApp(),
+                    groupId,
+                    // Read initial value from preferences
+                    getShowPlayedItemsFromPreferences(context.applicationContext),
+                    getShowFutureItemsFromPreferences(context.applicationContext)
+                )
+            }
         }
     }
 }
