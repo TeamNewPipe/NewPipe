@@ -3,10 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings_category_video_audio_title">
 
+    <!-- entries and entryValues for the three resolution options are set programmatically, the
+     values set are just placeholders so that the settings-search shows correct strings -->
+
     <ListPreference
         android:defaultValue="@string/default_resolution_value"
-        android:entries="@array/resolution_list_description"
-        android:entryValues="@array/resolution_list_values"
+        android:entries="@array/resolution_list_placeholder_descriptions"
+        android:entryValues="@array/resolution_list_placeholder_values"
         android:key="@string/default_resolution_key"
         android:summary="%s"
         android:title="@string/default_resolution_title"
@@ -15,8 +18,8 @@
 
     <ListPreference
         android:defaultValue="@string/default_popup_resolution_value"
-        android:entries="@array/resolution_list_description"
-        android:entryValues="@array/resolution_list_values"
+        android:entries="@array/resolution_list_placeholder_descriptions"
+        android:entryValues="@array/resolution_list_placeholder_values"
         android:key="@string/default_popup_resolution_key"
         android:summary="%s"
         android:title="@string/default_popup_resolution_title"
@@ -24,9 +27,9 @@
         app:iconSpaceReserved="false" />
 
     <ListPreference
-        android:defaultValue="@string/limit_mobile_data_usage_value"
-        android:entries="@array/limit_data_usage_description_list"
-        android:entryValues="@array/limit_data_usage_values_list"
+        android:defaultValue="@string/limit_mobile_data_usage_default_value"
+        android:entries="@array/limit_mobile_data_usage_placeholder_descriptions"
+        android:entryValues="@array/limit_mobile_data_usage_placeholder_values"
         android:key="@string/limit_mobile_data_usage_key"
         android:summary="%s"
         android:title="@string/limit_mobile_data_usage_title"

@@ -624,7 +624,7 @@ public final class ListHelper {
         if (isMeteredNetwork(context)) {
             final SharedPreferences preferences =
                     PreferenceManager.getDefaultSharedPreferences(context);
-            final String defValue = context.getString(R.string.limit_data_usage_none_key);
+            final String defValue = context.getString(R.string.limit_mobile_data_usage_none_key);
             final String value = preferences.getString(
                     context.getString(R.string.limit_mobile_data_usage_key), defValue);
             resolutionLimit = defValue.equals(value) ? null : value;

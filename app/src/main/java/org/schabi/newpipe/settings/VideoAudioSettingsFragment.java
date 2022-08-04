@@ -8,6 +8,7 @@ import android.provider.Settings;
 import android.text.format.DateUtils;
 import android.widget.Toast;
 
+import androidx.annotation.StringRes;
 import androidx.preference.ListPreference;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -16,20 +17,28 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.PermissionHelper;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class VideoAudioSettingsFragment extends BasePreferenceFragment {
+    // these arrays are all sorted from highest to lowest resolution
+    private static final List<String> NORMAL_RESOLUTIONS =
+            List.of("1080p60", "1080p", "720p60", "720p", "480p", "360p", "240p", "144p");
+    private static final List<String> HIGHER_RESOLUTIONS =
+            List.of("2160p60", "2160p", "1440p60", "1440p");
+    private static final List<String> ALL_RESOLUTIONS =
+            Stream.of(HIGHER_RESOLUTIONS, NORMAL_RESOLUTIONS)
+                    .flatMap(Collection::stream)
+                    .collect(Collectors.toList());
+
     private SharedPreferences.OnSharedPreferenceChangeListener listener;
     private ListPreference defaultResolution;
     private ListPreference defaultPopupResolution;
     private ListPreference limitMobileDataUsage;
-    private static final String FULL_HD_RESOLUTION = "1080p60";
-    private static final Set<String> HIGHER_RESOLUTIONS =
-            Set.of("1440p", "1440p60", "2160p", "2160p60");
+
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
@@ -67,6 +76,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         }
         };
     }
+
 
     /**
      * Update fast-forward/-rewind seek duration options
@@ -119,28 +129,55 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         }
     }
 
+
     /**
      * Update resolution options. Defaults to 1080p60 and removes higher options when the "Show
-     * higher resolutions" switch is set to false.
-    */
+     * higher resolutions" switch is disabled.
+     */
     private void updateResolutions() {
-        final ArrayList<String> resolutions = new ArrayList<>(Arrays.asList(getResources()
-                .getStringArray(R.array.resolution_list_description)));
+        final boolean showHigherResolutions = getPreferenceManager().getSharedPreferences()
+            .getBoolean(getString(R.string.show_higher_resolutions_key), false);
 
-        if (!getPreferenceManager().getSharedPreferences()
-                .getBoolean(getString(R.string.show_higher_resolutions_key), false)) {
-            Stream.of(defaultResolution, defaultPopupResolution, limitMobileDataUsage)
-                    .filter(p -> HIGHER_RESOLUTIONS.contains((p.getValue())))
-                    .forEach(p -> p.setValue(FULL_HD_RESOLUTION));
-            resolutions.removeAll(HIGHER_RESOLUTIONS);
+        updateResolutions(defaultResolution, showHigherResolutions,
+                R.string.best_resolution_key, R.string.best_resolution);
+        updateResolutions(defaultPopupResolution, showHigherResolutions,
+                R.string.best_resolution_key, R.string.best_resolution);
+        updateResolutions(limitMobileDataUsage, showHigherResolutions,
+                R.string.limit_mobile_data_usage_none_key,
+                R.string.limit_data_usage_none_description);
+    }
+
+    private void updateResolutions(final ListPreference preference,
+                                   final boolean showHigherResolutions,
+                                   @StringRes final int noResolutionValue,
+                                   @StringRes final int noResolutionDescription) {
+        final List<String> resolutionValues = new ArrayList<>();
+        final List<String> resolutionDescriptions = new ArrayList<>();
+
+        // add in the first place the "no resolution chosen" option (i.e. "best" or "no limit")
+        resolutionValues.add(getString(noResolutionValue));
+        resolutionDescriptions.add(getString(noResolutionDescription));
+
+        if (showHigherResolutions) {
+            // set the whole arrays
+            resolutionValues.addAll(ALL_RESOLUTIONS);
+            resolutionDescriptions.addAll(ALL_RESOLUTIONS);
+        } else {
+            // reset the current value to the biggest non-higher resolution if needed
+            if (HIGHER_RESOLUTIONS.contains(preference.getValue())) {
+                preference.setValue(NORMAL_RESOLUTIONS.get(0));
+            }
+
+            // only keep non-higher resolutions
+            resolutionValues.addAll(NORMAL_RESOLUTIONS);
+            resolutionDescriptions.addAll(NORMAL_RESOLUTIONS);
         }
 
-        final String[] resolutionsArray = resolutions.toArray(new String[0]);
-        Stream.of(defaultResolution, defaultPopupResolution, limitMobileDataUsage).forEach(p -> {
-            p.setEntries(resolutionsArray);
-            p.setEntryValues(resolutionsArray);
-        });
+        // finally set the computed arrays to the preference
+        preference.setEntryValues(resolutionValues.toArray(new String[0]));
+        preference.setEntries(resolutionDescriptions.toArray(new String[0]));
     }
+
 
     @Override
     public void onResume() {

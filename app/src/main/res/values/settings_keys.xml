@@ -118,43 +118,32 @@
         <item>@string/dont_show</item>
     </string-array>
 
+    <!-- Default resolution for main and popup players -->
     <string name="default_resolution_key">default_resolution</string>
     <string name="default_resolution_value">720p60</string>
     <string name="show_higher_resolutions_key">show_higher_resolutions</string>
     <string name="default_popup_resolution_key">default_popup_resolution</string>
     <string name="default_popup_resolution_value">480p</string>
     <string name="best_resolution_key">best_resolution</string>
-
-    <string-array name="resolution_list_values">
+    <!-- These placeholders are just so that the settings-search shows correct strings -->
+    <array name="resolution_list_placeholder_values">
         <item>@string/best_resolution_key</item>
-        <item>2160p60</item>
-        <item>2160p</item>
-        <item>1440p60</item>
-        <item>1440p</item>
-        <item>1080p60</item>
-        <item>1080p</item>
-        <item>720p60</item>
-        <item>720p</item>
-        <item>480p</item>
-        <item>360p</item>
-        <item>240p</item>
-        <item>144p</item>
-    </string-array>
-    <string-array name="resolution_list_description">
+    </array>
+    <array name="resolution_list_placeholder_descriptions">
         <item>@string/best_resolution</item>
-        <item>2160p60</item>
-        <item>2160p</item>
-        <item>1440p60</item>
-        <item>1440p</item>
-        <item>1080p60</item>
-        <item>1080p</item>
-        <item>720p60</item>
-        <item>720p</item>
-        <item>480p</item>
-        <item>360p</item>
-        <item>240p</item>
-        <item>144p</item>
-    </string-array>
+    </array>
+
+    <!-- Limit mobile data usage by resolution -->
+    <string name="limit_mobile_data_usage_key">limit_mobile_data_usage</string>
+    <string name="limit_mobile_data_usage_none_key">limit_data_usage_none</string>
+    <string name="limit_mobile_data_usage_default_value">@string/limit_mobile_data_usage_none_key</string>
+    <!-- These placeholders are just so that the settings-search shows correct strings -->
+    <array name="limit_mobile_data_usage_placeholder_values">
+        <item>@string/limit_mobile_data_usage_none_key</item>
+    </array>
+    <array name="limit_mobile_data_usage_placeholder_descriptions">
+        <item>@string/limit_data_usage_none_description</item>
+    </array>
 
     <string name="scale_to_square_image_in_notifications_key">scale_to_square_image_in_notifications</string>
 
@@ -1240,26 +1229,6 @@
         <item>简体中文</item>
         <item>繁體中文（廣東話）</item>
         <item>正體中文</item>
-    </string-array>
-
-    <!-- Limit mobile data usage  -->
-    <string name="limit_mobile_data_usage_key">limit_mobile_data_usage</string>
-    <string name="limit_data_usage_none_key">limit_data_usage_none</string>
-    <string name="limit_mobile_data_usage_value">@string/limit_data_usage_none_key</string>
-    <string-array name="limit_data_usage_values_list">
-        <item>@string/limit_data_usage_none_key</item>
-        <item>2160p60</item>
-        <item>2160p</item>
-        <item>1440p60</item>
-        <item>1440p</item>
-        <item>1080p60</item>
-        <item>1080p</item>
-        <item>720p60</item>
-        <item>720p</item>
-        <item>480p</item>
-        <item>360p</item>
-        <item>240p</item>
-        <item>144p</item>
     </string-array>
 
     <string name="list_view_mode_key">list_view_mode</string>
