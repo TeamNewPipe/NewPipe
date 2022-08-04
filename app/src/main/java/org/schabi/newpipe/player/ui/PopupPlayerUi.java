@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.view.animation.AnticipateInterpolator;
 import android.widget.LinearLayout;
@@ -255,11 +256,20 @@ public final class PopupPlayerUi extends VideoPlayerUi {
     }
 
     public void updateScreenSize() {
-        final DisplayMetrics metrics = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getMetrics(metrics);
-
-        screenWidth = metrics.widthPixels;
-        screenHeight = metrics.heightPixels;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            final var windowMetrics = windowManager.getCurrentWindowMetrics();
+            final var bounds = windowMetrics.getBounds();
+            final var windowInsets = windowMetrics.getWindowInsets();
+            final var insets = windowInsets.getInsetsIgnoringVisibility(
+                    WindowInsets.Type.navigationBars() | WindowInsets.Type.displayCutout());
+            screenWidth = bounds.width() - (insets.left + insets.right);
+            screenHeight = bounds.height() - (insets.top + insets.bottom);
+        } else {
+            final DisplayMetrics metrics = new DisplayMetrics();
+            windowManager.getDefaultDisplay().getMetrics(metrics);
+            screenWidth = metrics.widthPixels;
+            screenHeight = metrics.heightPixels;
+        }
         if (DEBUG) {
             Log.d(TAG, "updateScreenSize() called: screenWidth = ["
                     + screenWidth + "], screenHeight = [" + screenHeight + "]");
