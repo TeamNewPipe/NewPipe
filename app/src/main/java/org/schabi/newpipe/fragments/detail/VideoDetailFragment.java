@@ -191,6 +191,7 @@ public final class VideoDetailFragment
     private Disposable positionSubscriber = null;
 
     private BottomSheetBehavior<FrameLayout> bottomSheetBehavior;
+    private BottomSheetBehavior.BottomSheetCallback bottomSheetCallback;
     private BroadcastReceiver broadcastReceiver;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -385,7 +386,7 @@ public final class VideoDetailFragment
         disposables.clear();
         positionSubscriber = null;
         currentWorker = null;
-        bottomSheetBehavior.setBottomSheetCallback(null);
+        bottomSheetBehavior.removeBottomSheetCallback(bottomSheetCallback);
 
         if (activity.isFinishing()) {
             playQueue = null;
@@ -2288,7 +2289,7 @@ public final class VideoDetailFragment
             }
         }
 
-        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+        bottomSheetCallback = new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull final View bottomSheet, final int newState) {
                 bottomSheetState = newState;
@@ -2342,11 +2343,13 @@ public final class VideoDetailFragment
                         }
                         if (isPlayerAvailable()) {
                             player.UIs().get(MainPlayerUi.class).ifPresent(ui -> {
-                                    if (ui.isControlsVisible()) {
-                                        ui.hideControls(0, 0);
-                                    }
+                                if (ui.isControlsVisible()) {
+                                    ui.hideControls(0, 0);
+                                }
                             });
                         }
+                        break;
+                    case BottomSheetBehavior.STATE_HALF_EXPANDED:
                         break;
                 }
             }
@@ -2355,7 +2358,9 @@ public final class VideoDetailFragment
             public void onSlide(@NonNull final View bottomSheet, final float slideOffset) {
                 setOverlayLook(binding.appBarLayout, behavior, slideOffset);
             }
-        });
+        };
+
+        bottomSheetBehavior.addBottomSheetCallback(bottomSheetCallback);
 
         // User opened a new page and the player will hide itself
         activity.getSupportFragmentManager().addOnBackStackChangedListener(() -> {
