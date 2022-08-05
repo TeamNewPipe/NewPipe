@@ -99,7 +99,7 @@ public final class NotificationUtil {
         // build the compact slot indices array (need code to convert from Integer... because Java)
         final List<Integer> compactSlotList = NotificationConstants.getCompactSlotsFromPreferences(
                 player.getContext(), player.getPrefs(), nonNothingSlotCount);
-        final int[] compactSlots = compactSlotList.stream().mapToInt(i -> i).toArray();
+        final int[] compactSlots = compactSlotList.stream().mapToInt(Integer::intValue).toArray();
 
         builder.setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
                     .setMediaSession(player.getMediaSessionManager().getSessionToken())

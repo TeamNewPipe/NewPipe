@@ -180,7 +180,7 @@ public final class NotificationConstants {
 
             if (compactSlot == Integer.MAX_VALUE) {
                 // settings not yet populated, return default values
-                return SLOT_COMPACT_DEFAULTS;
+                return new ArrayList<>(SLOT_COMPACT_DEFAULTS);
             }
 
             // a negative value (-1) is set when the user does not want a particular compact slot
