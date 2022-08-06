@@ -31,7 +31,7 @@ public class PreferenceFuzzySearchFunction
                 // Specific search - Used for determining order of search results
                 // Calculate a score based on specific search fields
                 .map(item -> new FuzzySearchSpecificDTO(item, keyword))
-                .sorted(Comparator.comparing(FuzzySearchSpecificDTO::getScore).reversed())
+                .sorted(Comparator.comparingDouble(FuzzySearchSpecificDTO::getScore).reversed())
                 .map(FuzzySearchSpecificDTO::getItem)
                 // Limit the amount of search results
                 .limit(20);
