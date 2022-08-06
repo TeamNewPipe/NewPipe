@@ -377,7 +377,7 @@ public final class ListHelper {
     static int getMostCompactAudioIndex(@Nullable final MediaFormat format,
                                         @Nullable final List<AudioStream> audioStreams) {
         return getAudioIndexByHighestRank(format, audioStreams,
-                // The "-" is important -> Compares ascending (first = highest rank)
+                // The "reversed()" is important -> Compares ascending (first = highest rank)
                 getAudioStreamComparator(AUDIO_FORMAT_EFFICIENCY_RANKING).reversed());
     }
 
