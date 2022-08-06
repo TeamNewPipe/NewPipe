@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
+import androidx.core.math.MathUtils
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.ktx.AnimationType
 import org.schabi.newpipe.ktx.animate
@@ -234,11 +235,13 @@ class PopupPlayerGestureListener(
         isMoving = true
 
         val diffX = (movingEvent.rawX - initialEvent.rawX)
-        val posX = (initialPopupX + diffX).coerceIn(
+        val posX = MathUtils.clamp(
+            initialPopupX + diffX,
             0f, (playerUi.screenWidth - playerUi.popupLayoutParams.width).toFloat()
         )
         val diffY = (movingEvent.rawY - initialEvent.rawY)
-        val posY = (initialPopupY + diffY).coerceIn(
+        val posY = MathUtils.clamp(
+            initialPopupY + diffY,
             0f, (playerUi.screenHeight - playerUi.popupLayoutParams.height).toFloat()
         )
 
