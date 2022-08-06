@@ -32,6 +32,7 @@ import java.time.format.FormatStyle;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 
 /*
@@ -63,26 +64,14 @@ public final class Localization {
 
     @NonNull
     public static String concatenateStrings(final String... strings) {
-        return concatenateStrings(Arrays.asList(strings));
+        return concatenateStrings(DOT_SEPARATOR, Arrays.asList(strings));
     }
 
     @NonNull
-    public static String concatenateStrings(final List<String> strings) {
-        if (strings.isEmpty()) {
-            return "";
-        }
-
-        final StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(strings.get(0));
-
-        for (int i = 1; i < strings.size(); i++) {
-            final String string = strings.get(i);
-            if (!TextUtils.isEmpty(string)) {
-                stringBuilder.append(DOT_SEPARATOR).append(strings.get(i));
-            }
-        }
-
-        return stringBuilder.toString();
+    public static String concatenateStrings(final String delimiter, final List<String> strings) {
+        return strings.stream()
+                .filter(string -> !TextUtils.isEmpty(string))
+                .collect(Collectors.joining(delimiter));
     }
 
     public static org.schabi.newpipe.extractor.localization.Localization getPreferredLocalization(
@@ -357,20 +346,5 @@ public final class Localization {
 
     private static double round(final double value, final int places) {
         return new BigDecimal(value).setScale(places, RoundingMode.HALF_UP).doubleValue();
-    }
-
-    /**
-     * Workaround to match normalized captions like english to English or deutsch to Deutsch.
-     * @param list the list to search into
-     * @param toFind the string to look for
-     * @return whether the string was found or not
-     */
-    public static boolean containsCaseInsensitive(final List<String> list, final String toFind) {
-        for (final String i : list) {
-            if (i.equalsIgnoreCase(toFind)) {
-                return true;
-            }
-        }
-        return false;
     }
 }
