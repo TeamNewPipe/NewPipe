@@ -26,7 +26,6 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,6 +33,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.text.HtmlCompat;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -69,22 +69,17 @@ import org.schabi.newpipe.util.ServiceHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 import icepick.State;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import io.reactivex.rxjava3.subjects.PublishSubject;
 
 public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.InfoItemsPage<?>>
         implements BackPressable {
@@ -92,18 +87,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     // Search
     //////////////////////////////////////////////////////////////////////////*/
 
-    /**
-     * The suggestions will only be fetched from network if the query meet this threshold (>=).
-     * (local ones will be fetched regardless of the length)
-     */
-    private static final int THRESHOLD_NETWORK_SUGGESTION = 1;
-
-    /**
-     * How much time have to pass without emitting a item (i.e. the user stop typing)
-     * to fetch/show the suggestions, in milliseconds.
-     */
-    private static final int SUGGESTIONS_DEBOUNCE = 120; //ms
-    private final PublishSubject<String> suggestionPublisher = PublishSubject.create();
+    private SearchViewModel searchViewModel;
 
     @State
     int filterItemCheckedId = -1;
@@ -148,7 +132,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     private boolean showRemoteSuggestions = true;
 
     private Disposable searchDisposable;
-    private Disposable suggestionDisposable;
     private final CompositeDisposable disposables = new CompositeDisposable();
 
     private SuggestionListAdapter suggestionListAdapter;
@@ -172,7 +155,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     public static SearchFragment getInstance(final int serviceId, final String searchString) {
         final SearchFragment searchFragment = new SearchFragment();
-        searchFragment.setQuery(serviceId, searchString, new String[0], "");
+        searchFragment.setQuery(serviceId, searchString, new String[0]);
 
         if (!TextUtils.isEmpty(searchString)) {
             searchFragment.setSearchOnResume();
@@ -199,6 +182,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         showLocalSuggestions = NewPipeSettings.showLocalSearchSuggestions(activity, prefs);
         showRemoteSuggestions = NewPipeSettings.showRemoteSearchSuggestions(activity, prefs);
+
+        searchViewModel = new ViewModelProvider(this, SearchViewModel.Companion
+                .getFactory(serviceId, showLocalSuggestions, showRemoteSuggestions))
+                .get(SearchViewModel.class);
 
         suggestionListAdapter = new SuggestionListAdapter();
         historyRecordManager = new HistoryRecordManager(context);
@@ -245,9 +232,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (searchDisposable != null) {
             searchDisposable.dispose();
         }
-        if (suggestionDisposable != null) {
-            suggestionDisposable.dispose();
-        }
         disposables.clear();
         hideKeyboardSearch();
     }
@@ -258,25 +242,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             Log.d(TAG, "onResume() called");
         }
         super.onResume();
-
-        if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
-            initSuggestionObserver();
-        }
-
-        if (!TextUtils.isEmpty(searchString)) {
-            if (wasLoading.getAndSet(false)) {
-                search(searchString, contentFilter, sortFilter);
-                return;
-            } else if (infoListAdapter.getItemsList().isEmpty()) {
-                if (savedState == null) {
-                    search(searchString, contentFilter, sortFilter);
-                    return;
-                } else if (!isLoading.get() && !wasSearchFocused && lastPanelError == null) {
-                    infoListAdapter.clearStreamItemList();
-                    showEmptyState();
-                }
-            }
-        }
 
         handleSearchSuggestion();
 
@@ -311,9 +276,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (searchDisposable != null) {
             searchDisposable.dispose();
         }
-        if (suggestionDisposable != null) {
-            suggestionDisposable.dispose();
-        }
         disposables.clear();
     }
 
@@ -322,7 +284,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (requestCode == ReCaptchaActivity.RECAPTCHA_REQUEST) {
             if (resultCode == Activity.RESULT_OK
                     && !TextUtils.isEmpty(searchString)) {
-                search(searchString, contentFilter, sortFilter);
+                search(searchString);
             } else {
                 Log.e(TAG, "ReCaptcha failed");
             }
@@ -359,6 +321,25 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 onSuggestionItemSwiped(viewHolder);
             }
         }).attachToRecyclerView(searchBinding.suggestionsList);
+        searchViewModel.getSuggestionLiveData().observe(this, response -> {
+            if (response instanceof SuggestionItemSuccess) {
+                final var listNotification = ((SuggestionItemSuccess) response).getNotification();
+                if (listNotification.isOnNext()) {
+                    if (listNotification.getValue() != null) {
+                        handleSuggestions(listNotification.getValue());
+                    }
+                } else if (listNotification.isOnError()
+                        && listNotification.getError() != null
+                        && !ExceptionUtils.isInterruptedCaused(listNotification.getError())) {
+                    showSnackBarError(new ErrorInfo(listNotification.getError(),
+                            UserAction.GET_SUGGESTIONS, searchString, serviceId));
+                }
+            } else if (response instanceof SuggestionItemError) {
+                final var throwable = ((SuggestionItemError) response).getThrowable();
+                showSnackBarError(new ErrorInfo(throwable, UserAction.GET_SUGGESTIONS, searchString,
+                        serviceId));
+            }
+        });
 
         searchToolbarContainer = activity.findViewById(R.id.toolbar_search_container);
         searchEditText = searchToolbarContainer.findViewById(R.id.toolbar_search_edit_text);
@@ -383,9 +364,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
     @Override
     public void onSaveInstanceState(@NonNull final Bundle bundle) {
-        searchString = searchEditText != null
-                ? searchEditText.getText().toString()
-                : searchString;
+        searchString = searchEditText != null ? searchEditText.getText().toString() : searchString;
         super.onSaveInstanceState(bundle);
     }
 
@@ -399,7 +378,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 || (searchEditText != null && !TextUtils.isEmpty(searchEditText.getText()))) {
             search(!TextUtils.isEmpty(searchString)
                     ? searchString
-                    : searchEditText.getText().toString(), this.contentFilter, "");
+                    : searchEditText.getText().toString());
         } else {
             if (searchEditText != null) {
                 searchEditText.setText("");
@@ -562,7 +541,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         suggestionListAdapter.setListener(new SuggestionListAdapter.OnSuggestionItemSelected() {
             @Override
             public void onSuggestionItemSelected(final SuggestionItem item) {
-                search(item.query, new String[0], "");
+                search(item.query);
                 searchEditText.setText(item.query);
             }
 
@@ -601,31 +580,25 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     s.removeSpan(span);
                 }
 
-                final String newText = searchEditText.getText().toString();
-                suggestionPublisher.onNext(newText);
+                searchViewModel.updateSearchQuery(searchEditText.getText().toString());
             }
         };
         searchEditText.addTextChangedListener(textWatcher);
-        searchEditText.setOnEditorActionListener(
-                (TextView v, int actionId, KeyEvent event) -> {
-                    if (DEBUG) {
-                        Log.d(TAG, "onEditorAction() called with: v = [" + v + "], "
-                                + "actionId = [" + actionId + "], event = [" + event + "]");
-                    }
-                    if (actionId == EditorInfo.IME_ACTION_PREVIOUS) {
-                        hideKeyboardSearch();
-                    } else if (event != null
-                            && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
-                            || event.getAction() == EditorInfo.IME_ACTION_SEARCH)) {
-                        search(searchEditText.getText().toString(), new String[0], "");
-                        return true;
-                    }
-                    return false;
-                });
-
-        if (suggestionDisposable == null || suggestionDisposable.isDisposed()) {
-            initSuggestionObserver();
-        }
+        searchEditText.setOnEditorActionListener((v, actionId, event) -> {
+            if (DEBUG) {
+                Log.d(TAG, "onEditorAction() called with: v = [" + v + "], "
+                        + "actionId = [" + actionId + "], event = [" + event + "]");
+            }
+            if (actionId == EditorInfo.IME_ACTION_PREVIOUS) {
+                hideKeyboardSearch();
+            } else if (event != null
+                    && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
+                    || event.getAction() == EditorInfo.IME_ACTION_SEARCH)) {
+                search(searchEditText.getText().toString());
+                return true;
+            }
+            return false;
+        });
     }
 
     private void unsetSearchListeners() {
@@ -691,8 +664,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                     final Disposable onDelete = historyRecordManager.deleteSearchHistory(query)
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
-                                    howManyDeleted -> suggestionPublisher
-                                            .onNext(searchEditText.getText().toString()),
+                                    howManyDeleted -> searchViewModel
+                                            .updateSearchQuery(searchEditText.getText().toString()),
                                     throwable -> showSnackBarError(new ErrorInfo(throwable,
                                             UserAction.DELETE_FROM_HISTORY,
                                             "Deleting item failed")));
@@ -714,98 +687,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         return false;
     }
 
-
-    private Observable<List<SuggestionItem>> getLocalSuggestionsObservable(
-            final String query, final int similarQueryLimit) {
-        return historyRecordManager
-                .getRelatedSearches(query, similarQueryLimit, 25)
-                .toObservable()
-                .map(searchHistoryEntries ->
-                    searchHistoryEntries.stream()
-                            .map(entry -> new SuggestionItem(true, entry))
-                            .collect(Collectors.toList()));
-    }
-
-    private Observable<List<SuggestionItem>> getRemoteSuggestionsObservable(final String query) {
-        return ExtractorHelper
-                .suggestionsFor(serviceId, query)
-                .toObservable()
-                .map(strings -> {
-                    final List<SuggestionItem> result = new ArrayList<>();
-                    for (final String entry : strings) {
-                        result.add(new SuggestionItem(false, entry));
-                    }
-                    return result;
-                });
-    }
-
-    private void initSuggestionObserver() {
-        if (DEBUG) {
-            Log.d(TAG, "initSuggestionObserver() called");
-        }
-        if (suggestionDisposable != null) {
-            suggestionDisposable.dispose();
-        }
-
-        suggestionDisposable = suggestionPublisher
-                .debounce(SUGGESTIONS_DEBOUNCE, TimeUnit.MILLISECONDS)
-                .startWithItem(searchString == null ? "" : searchString)
-                .switchMap(query -> {
-                    // Only show remote suggestions if they are enabled in settings and
-                    // the query length is at least THRESHOLD_NETWORK_SUGGESTION
-                    final boolean shallShowRemoteSuggestionsNow = showRemoteSuggestions
-                            && query.length() >= THRESHOLD_NETWORK_SUGGESTION;
-
-                    if (showLocalSuggestions && shallShowRemoteSuggestionsNow) {
-                        return Observable.zip(
-                                getLocalSuggestionsObservable(query, 3),
-                                getRemoteSuggestionsObservable(query),
-                                (local, remote) -> {
-                                    remote.removeIf(remoteItem -> local.stream().anyMatch(
-                                            localItem -> localItem.equals(remoteItem)));
-                                    local.addAll(remote);
-                                    return local;
-                                })
-                                .materialize();
-                    } else if (showLocalSuggestions) {
-                        return getLocalSuggestionsObservable(query, 25)
-                                .materialize();
-                    } else if (shallShowRemoteSuggestionsNow) {
-                        return getRemoteSuggestionsObservable(query)
-                                .materialize();
-                    } else {
-                        return Single.fromCallable(Collections::<SuggestionItem>emptyList)
-                                .toObservable()
-                                .materialize();
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        listNotification -> {
-                            if (listNotification.isOnNext()) {
-                                if (listNotification.getValue() != null) {
-                                    handleSuggestions(listNotification.getValue());
-                                }
-                            } else if (listNotification.isOnError()
-                                    && listNotification.getError() != null
-                                    && !ExceptionUtils.isInterruptedCaused(
-                                            listNotification.getError())) {
-                                showSnackBarError(new ErrorInfo(listNotification.getError(),
-                                        UserAction.GET_SUGGESTIONS, searchString, serviceId));
-                            }
-                        }, throwable -> showSnackBarError(new ErrorInfo(
-                            throwable, UserAction.GET_SUGGESTIONS, searchString, serviceId)));
-    }
-
     @Override
     protected void doInitialLoadLogic() {
         // no-op
     }
 
-    private void search(final String theSearchString,
-                        final String[] theContentFilter,
-                        final String theSortFilter) {
+    private void search(final String theSearchString) {
         if (DEBUG) {
             Log.d(TAG, "search() called with: query = [" + theSearchString + "]");
         }
@@ -847,7 +734,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                         throwable -> showSnackBarError(new ErrorInfo(throwable, UserAction.SEARCHED,
                                 theSearchString, serviceId))
                 ));
-        suggestionPublisher.onNext(theSearchString);
+        searchViewModel.updateSearchQuery(theSearchString);
         startLoading(false);
     }
 
@@ -922,18 +809,16 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         contentFilter = theContentFilter.toArray(new String[0]);
 
         if (!TextUtils.isEmpty(searchString)) {
-            search(searchString, contentFilter, sortFilter);
+            search(searchString);
         }
     }
 
-    private void setQuery(final int theServiceId,
-                          final String theSearchString,
-                          final String[] theContentFilter,
-                          final String theSortFilter) {
+    private void setQuery(final int theServiceId, final String theSearchString,
+                          final String[] theContentFilter) {
         serviceId = theServiceId;
         searchString = theSearchString;
         contentFilter = theContentFilter;
-        sortFilter = theSortFilter;
+        sortFilter = "";
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1018,7 +903,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
 
             searchBinding.correctSuggestion.setOnClickListener(v -> {
                 searchBinding.correctSuggestion.setVisibility(View.GONE);
-                search(searchSuggestion, contentFilter, sortFilter);
+                search(searchSuggestion);
                 searchEditText.setText(searchSuggestion);
             });
 
@@ -1077,8 +962,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         final Disposable onDelete = historyRecordManager.deleteSearchHistory(query)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        howManyDeleted -> suggestionPublisher
-                                .onNext(searchEditText.getText().toString()),
+                        howManyDeleted -> searchViewModel
+                                .updateSearchQuery(searchEditText.getText().toString()),
                         throwable -> showSnackBarError(new ErrorInfo(throwable,
                                 UserAction.DELETE_FROM_HISTORY, "Deleting item failed")));
         disposables.add(onDelete);
