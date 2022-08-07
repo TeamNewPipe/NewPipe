@@ -394,12 +394,14 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         showLoading();
 
         final var recordManager = new HistoryRecordManager(getContext());
-        final var historyIdsFlowable = recordManager.getStreamHistorySortedById()
+        final var historyIdsMaybe = recordManager.getStreamHistorySortedById()
+                .firstElement()
                 // already sorted by ^ getStreamHistorySortedById(), binary search can be used
                 .map(historyList -> historyList.stream().map(StreamHistoryEntry::getStreamId)
                         .collect(Collectors.toList()));
-        final var streamsFlowable = playlistManager.getPlaylistStreams(playlistId)
-                .zipWith(historyIdsFlowable, (playlist, historyStreamIds) -> {
+        final var streamsMaybe = playlistManager.getPlaylistStreams(playlistId)
+                .firstElement()
+                .zipWith(historyIdsMaybe, (playlist, historyStreamIds) -> {
                     // Remove Watched, Functionality data
                     final List<PlaylistStreamEntry> notWatchedItems = new ArrayList<>();
                     boolean thumbnailVideoRemoved = false;
@@ -418,8 +420,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                             }
                         }
                     } else {
-                        final var streamStates = recordManager.loadLocalStreamStateBatch(playlist)
-                                .blockingGet();
+                        final var streamStates = recordManager
+                                .loadLocalStreamStateBatch(playlist).blockingGet();
 
                         for (int i = 0; i < playlist.size(); i++) {
                             final var playlistItem = playlist.get(i);
@@ -442,7 +444,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
                     return new Pair<>(notWatchedItems, thumbnailVideoRemoved);
                 });
-        disposables.add(streamsFlowable.subscribeOn(Schedulers.io())
+
+        disposables.add(streamsMaybe.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(flow -> {
                     final List<PlaylistStreamEntry> notWatchedItems = flow.first;
