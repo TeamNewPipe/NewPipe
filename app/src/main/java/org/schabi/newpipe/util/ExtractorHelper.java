@@ -100,7 +100,7 @@ public final class ExtractorHelper {
 
     }
 
-    public static Single<List<String>> suggestionsFor(final int serviceId, final String query) {
+    public static Single<List<String>> getSuggestionsFor(final int serviceId, final String query) {
         checkServiceId(serviceId);
         return Single.fromCallable(() -> {
             final SuggestionExtractor extractor = NewPipe.getService(serviceId)
