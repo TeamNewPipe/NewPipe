@@ -1317,7 +1317,6 @@
     </string-array>
 
     <string name="tablet_mode_key">tablet_mode</string>
-
     <string name="tablet_mode_auto_key">auto</string>
     <string name="tablet_mode_on_key">on</string>
     <string name="tablet_mode_off_key">off</string>
@@ -1330,6 +1329,18 @@
         <item>@string/auto</item>
         <item>@string/on</item>
         <item>@string/off</item>
+    </string-array>
+
+    <string name="popup_configuration_key">popup_configuration</string>
+    <string name="popup_mode_pip">pip</string>
+    <string name="popup_mode_legacy">legacy</string>
+    <string-array name="popup_mode_values">
+        <item>@string/popup_mode_pip</item>
+        <item>@string/popup_mode_legacy</item>
+    </string-array>
+    <string-array name="popup_mode_description">
+        <item>@string/pip</item>
+        <item>@string/legacy</item>
     </string-array>
 
     <string name="recaptcha_cookies_key">recaptcha_cookies_key</string>

@@ -669,6 +669,14 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     //////////////////////////////////////////////////////////////////////////*/
     //region Controls showing / hiding
 
+    public void togglePictureInPictureMode(final boolean isInPictureInPictureMode) {
+        if (isInPictureInPictureMode) {
+            hideControls(0, 0);
+        } else {
+            showControls(0);
+        }
+    }
+
     public boolean isControlsVisible() {
         return binding != null && binding.playbackControlRoot.getVisibility() == View.VISIBLE;
     }

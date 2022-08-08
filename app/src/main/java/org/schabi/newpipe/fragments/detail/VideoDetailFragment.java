@@ -15,6 +15,7 @@ import static org.schabi.newpipe.util.NavigationHelper.openPlayQueue;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.PictureInPictureParams;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -439,6 +440,20 @@ public final class VideoDetailFragment
                 Log.e(TAG, "Request code from activity not supported [" + requestCode + "]");
                 break;
         }
+    }
+
+    @Override
+    public void onPictureInPictureModeChanged(final boolean isInPictureInPictureMode) {
+        final int visibility = isInPictureInPictureMode ? View.GONE : View.VISIBLE;
+        binding.overlayLayout.setVisibility(visibility);
+        binding.tabLayout.setVisibility(visibility);
+        binding.detailContentRootLayout.setVisibility(visibility);
+        binding.viewPager.setVisibility(visibility);
+        if (binding.relatedItemsLayout != null) {
+            binding.relatedItemsLayout.setVisibility(visibility);
+        }
+        player.UIs().get(VideoPlayerUi.class).ifPresent(ui ->
+                ui.togglePictureInPictureMode(isInPictureInPictureMode));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1052,7 +1067,31 @@ public final class VideoDetailFragment
     }
 
     private void openPopupPlayer(final boolean append) {
-        if (!PermissionHelper.isPopupEnabledElseAsk(activity)) {
+        // The setting can't be changed if the device is running Android Go.
+        final var popupMode = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getString(getString(R.string.popup_configuration_key),
+                        getString(R.string.popup_mode_legacy));
+        final var isPipEnabled = popupMode.equals(getString(R.string.popup_mode_pip));
+
+        if (isPipEnabled) {
+            switchToPipMode();
+        } else {
+            openPreNougatPopupPlayer(append);
+        }
+    }
+
+    private void switchToPipMode() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            final var pipParams = new PictureInPictureParams.Builder();
+            requireActivity().enterPictureInPictureMode(pipParams.build());
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            requireActivity().enterPictureInPictureMode();
+        }
+        player.UIs().get(VideoPlayerUi.class).ifPresent(ui -> ui.togglePictureInPictureMode(true));
+    }
+
+    private void openPreNougatPopupPlayer(final boolean append) {
+        if (!PermissionHelper.isPopupEnabled(activity)) {
             return;
         }
 

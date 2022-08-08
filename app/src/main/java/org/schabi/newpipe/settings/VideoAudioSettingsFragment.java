@@ -1,6 +1,9 @@
 package org.schabi.newpipe.settings;
 
+import static org.schabi.newpipe.util.PermissionHelper.checkSystemAlertWindowPermission;
+
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,13 +16,33 @@ import androidx.preference.ListPreference;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.util.PermissionHelper;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class VideoAudioSettingsFragment extends BasePreferenceFragment {
-    private SharedPreferences.OnSharedPreferenceChangeListener listener;
+    private final SharedPreferences.OnSharedPreferenceChangeListener listener =
+            (sharedPreferences, key) -> {
+                // on M and above, if user chooses to minimise to popup player on exit
+                // and the app doesn't have display over other apps permission,
+                // show a snackbar to let the user give permission
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                        && key.equals(getString(R.string.minimize_on_exit_key))) {
+                    final String newSetting = sharedPreferences.getString(key, null);
+                    if (newSetting != null
+                            && newSetting.equals(getString(R.string.minimize_on_exit_popup_key))
+                            && !Settings.canDrawOverlays(getContext())) {
+
+                        Snackbar.make(getListView(), R.string.permission_display_over_apps,
+                                        Snackbar.LENGTH_INDEFINITE)
+                                .setAction(R.string.settings,
+                                        view -> checkSystemAlertWindowPermission(getContext()))
+                                .show();
+                    }
+                } else if (getString(R.string.use_inexact_seek_key).equals(key)) {
+                    updateSeekOptions();
+                }
+            };
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
@@ -27,29 +50,22 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
 
         updateSeekOptions();
 
-        listener = (sharedPreferences, key) -> {
+        final boolean isPipUnavailable = Build.VERSION.SDK_INT < Build.VERSION_CODES.N
+                || !requireContext().getPackageManager()
+                .hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE);
 
-            // on M and above, if user chooses to minimise to popup player on exit
-            // and the app doesn't have display over other apps permission,
-            // show a snackbar to let the user give permission
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                    && getString(R.string.minimize_on_exit_key).equals(key)) {
-                final String newSetting = sharedPreferences.getString(key, null);
-                if (newSetting != null
-                        && newSetting.equals(getString(R.string.minimize_on_exit_popup_key))
-                        && !Settings.canDrawOverlays(getContext())) {
-
-                    Snackbar.make(getListView(), R.string.permission_display_over_apps,
-                            Snackbar.LENGTH_INDEFINITE)
-                            .setAction(R.string.settings, view ->
-                                    PermissionHelper.checkSystemAlertWindowPermission(getContext()))
-                            .show();
-
-                }
-            } else if (getString(R.string.use_inexact_seek_key).equals(key)) {
-                updateSeekOptions();
+        // Disable PiP configuration if the device is running Android < 7.0 or Android Go.
+        if (isPipUnavailable) {
+            final ListPreference popupConfig =
+                    findPreference(getString(R.string.popup_configuration_key));
+            if (popupConfig != null) {
+                popupConfig.setEnabled(false);
+                // If the Android version is >= 7.0, then PiP is disabled when this point is
+                // reached.
+                popupConfig.setSummary(Build.VERSION.SDK_INT < Build.VERSION_CODES.N
+                        ? R.string.pip_unavailable : R.string.pip_disabled);
             }
-        };
+        }
     }
 
     /**
@@ -86,8 +102,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
             }
         }
 
-        final ListPreference durations = findPreference(
-                getString(R.string.seek_duration_key));
+        final ListPreference durations = findPreference(getString(R.string.seek_duration_key));
         durations.setEntryValues(displayedDurationValues.toArray(new CharSequence[0]));
         durations.setEntries(displayedDescriptionValues.toArray(new CharSequence[0]));
         final int selectedDuration = Integer.parseInt(durations.getValue());
