@@ -40,7 +40,7 @@ body:
       label: Steps to reproduce the bug
       description: |
         What did you do for the bug to show up?
-        
+
         If you can't cause the bug to show up again reliably (and hence don't have a proper set of steps to give us), please still try to give as many details as possible on how you think you encountered the bug.
       placeholder: |
         1. Go to '...'
@@ -69,11 +69,11 @@ body:
       label: Screenshots/Screen recordings
       description: |
         A picture or video is worth a thousand words.
-        
+
         If applicable, add screenshots or a screen recording to help explain your problem.
         GitHub supports uploading them directly in the text box.
         If your file is too big for Github to accept, try to compress it (ZIP-file) or feel free to paste a link to an image/video hoster here instead.
-        
+
         :heavy_exclamation_mark: DON'T POST SCREENSHOTS OF THE ERROR PAGE.
         Instead, follow the instructions in the "Logs" section below.
 

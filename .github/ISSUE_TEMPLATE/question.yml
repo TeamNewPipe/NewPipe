@@ -27,7 +27,7 @@ body:
       label: What is/are your question(s)?
     validations:
       required: true
-      
+
   - type: textarea
     id: additional-information
     attributes:
