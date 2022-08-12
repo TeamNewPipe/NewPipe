@@ -1,5 +1,25 @@
 package us.shandian.giga.ui.adapter;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
+import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
+import static us.shandian.giga.get.DownloadMission.ERROR_CONNECT_HOST;
+import static us.shandian.giga.get.DownloadMission.ERROR_FILE_CREATION;
+import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_NO_CONTENT;
+import static us.shandian.giga.get.DownloadMission.ERROR_INSUFFICIENT_STORAGE;
+import static us.shandian.giga.get.DownloadMission.ERROR_NOTHING;
+import static us.shandian.giga.get.DownloadMission.ERROR_PATH_CREATION;
+import static us.shandian.giga.get.DownloadMission.ERROR_PERMISSION_DENIED;
+import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING;
+import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_HOLD;
+import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_STOPPED;
+import static us.shandian.giga.get.DownloadMission.ERROR_PROGRESS_LOST;
+import static us.shandian.giga.get.DownloadMission.ERROR_RESOURCE_GONE;
+import static us.shandian.giga.get.DownloadMission.ERROR_SSL_EXCEPTION;
+import static us.shandian.giga.get.DownloadMission.ERROR_TIMEOUT;
+import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_EXCEPTION;
+import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_HOST;
+
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -10,7 +30,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -38,10 +57,11 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorUtil;
-import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
@@ -60,46 +80,18 @@ import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
 import us.shandian.giga.get.Mission;
 import us.shandian.giga.get.MissionRecoveryInfo;
-import org.schabi.newpipe.streams.io.StoredFileHelper;
 import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.common.Deleter;
 import us.shandian.giga.ui.common.ProgressDrawable;
 import us.shandian.giga.util.Utility;
 
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
-import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
-import static us.shandian.giga.get.DownloadMission.ERROR_CONNECT_HOST;
-import static us.shandian.giga.get.DownloadMission.ERROR_FILE_CREATION;
-import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_NO_CONTENT;
-import static us.shandian.giga.get.DownloadMission.ERROR_INSUFFICIENT_STORAGE;
-import static us.shandian.giga.get.DownloadMission.ERROR_NOTHING;
-import static us.shandian.giga.get.DownloadMission.ERROR_PATH_CREATION;
-import static us.shandian.giga.get.DownloadMission.ERROR_PERMISSION_DENIED;
-import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING;
-import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_HOLD;
-import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_STOPPED;
-import static us.shandian.giga.get.DownloadMission.ERROR_PROGRESS_LOST;
-import static us.shandian.giga.get.DownloadMission.ERROR_RESOURCE_GONE;
-import static us.shandian.giga.get.DownloadMission.ERROR_SSL_EXCEPTION;
-import static us.shandian.giga.get.DownloadMission.ERROR_TIMEOUT;
-import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_EXCEPTION;
-import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_HOST;
-
 public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callback {
-    private static final SparseArray<String> ALGORITHMS = new SparseArray<>();
     private static final String TAG = "MissionAdapter";
     private static final String UNDEFINED_PROGRESS = "--.-%";
     private static final String DEFAULT_MIME_TYPE = "*/*";
     private static final String UNDEFINED_ETA = "--:--";
-
     private static final int HASH_NOTIFICATION_ID = 123790;
-
-    static {
-        ALGORITHMS.put(R.id.md5, "MD5");
-        ALGORITHMS.put(R.id.sha1, "SHA1");
-    }
 
     private final Context mContext;
     private final LayoutInflater mInflater;
@@ -697,7 +689,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                         .build());
                 final StoredFileHelper storage = h.item.mission.storage;
                 compositeDisposable.add(
-                        Observable.fromCallable(() -> Utility.checksum(storage, ALGORITHMS.get(id)))
+                        Observable.fromCallable(() -> Utility.checksum(storage, id))
                                 .subscribeOn(Schedulers.computation())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(result -> {
