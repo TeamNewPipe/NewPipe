@@ -76,7 +76,7 @@ public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.File
 
     public static class CustomFilePickerFragment extends FilePickerFragment {
         @Override
-        public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
+        public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                                  final Bundle savedInstanceState) {
             return super.onCreateView(inflater, container, savedInstanceState);
         }
@@ -138,7 +138,7 @@ public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.File
         }
 
         @Override
-        public void onLoadFinished(final Loader<SortedList<File>> loader,
+        public void onLoadFinished(@NonNull final Loader<SortedList<File>> loader,
                                    final SortedList<File> data) {
             super.onLoadFinished(loader, data);
             layoutManager.scrollToPosition(0);
