@@ -54,7 +54,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.util.Log;
@@ -62,6 +61,8 @@ import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.graphics.drawable.DrawableKt;
 import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
 
@@ -125,6 +126,7 @@ import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.StreamTypeUtil;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -1784,11 +1786,13 @@ public final class Player implements PlaybackListener, Listener {
                 : currentMetadata.getUploaderName();
     }
 
-    @Nullable
+    @NonNull
     public Bitmap getThumbnail() {
         if (currentThumbnail == null) {
-            currentThumbnail = BitmapFactory.decodeResource(
-                    context.getResources(), R.drawable.placeholder_thumbnail_video);
+            final var placeholder = Objects.requireNonNull(AppCompatResources
+                    .getDrawable(context, R.drawable.placeholder_thumbnail_video));
+            currentThumbnail = DrawableKt.toBitmap(placeholder, placeholder.getIntrinsicWidth(),
+                    placeholder.getIntrinsicHeight(), null);
         }
         return currentThumbnail;
     }
