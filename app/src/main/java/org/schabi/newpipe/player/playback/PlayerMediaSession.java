@@ -8,6 +8,7 @@ import android.support.v4.media.MediaMetadataCompat;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.ui.VideoPlayerUi;
 
 public class PlayerMediaSession implements MediaSessionCallback {
     private final Player player;
@@ -60,8 +61,7 @@ public class PlayerMediaSession implements MediaSessionCallback {
             return null;
         }
 
-        final MediaDescriptionCompat.Builder descriptionBuilder
-                = new MediaDescriptionCompat.Builder()
+        final MediaDescriptionCompat.Builder descBuilder = new MediaDescriptionCompat.Builder()
                 .setMediaId(String.valueOf(index))
                 .setTitle(item.getTitle())
                 .setSubtitle(item.getUploader());
@@ -75,19 +75,21 @@ public class PlayerMediaSession implements MediaSessionCallback {
         additionalMetadata.putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, index + 1);
         additionalMetadata
                 .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, player.getPlayQueue().size());
-        descriptionBuilder.setExtras(additionalMetadata);
+        descBuilder.setExtras(additionalMetadata);
 
         final Uri thumbnailUri = Uri.parse(item.getThumbnailUrl());
         if (thumbnailUri != null) {
-            descriptionBuilder.setIconUri(thumbnailUri);
+            descBuilder.setIconUri(thumbnailUri);
         }
 
-        return descriptionBuilder.build();
+        return descBuilder.build();
     }
 
     @Override
     public void play() {
         player.play();
+        // hide the player controls even if the play command came from the media session
+        player.UIs().get(VideoPlayerUi.class).ifPresent(playerUi -> playerUi.hideControls(0, 0));
     }
 
     @Override

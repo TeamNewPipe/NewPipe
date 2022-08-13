@@ -1,0 +1,2 @@
+MediaParser-ondersteuning verwijderd om mislukte afspeelhervattingen na buffering op Android 11+ te verhelpen.
+Media tunneling uitgeschakeld op Philips QM16XE om afspeelproblemen te verhelpen.

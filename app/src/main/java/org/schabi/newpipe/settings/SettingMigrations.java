@@ -2,14 +2,13 @@ package org.schabi.newpipe.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.util.Log;
 
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.util.DeviceUtils;
 
@@ -71,12 +70,12 @@ public final class SettingMigrations {
             // and standard way to access folders and files to be used consistently everywhere.
             // We reset the setting to its default value, i.e. "use SAF", since now there are no
             // more issues with SAF and users should use that one instead of the old
-            // NoNonsenseFilePicker. SAF does not work on KitKat and below, though, so the setting
-            // is set to false in that case. Also, there's a bug on FireOS in which SAF open/close
+            // NoNonsenseFilePicker. Also, there's a bug on FireOS in which SAF open/close
             // dialogs cannot be confirmed with a remote (see #6455).
-            sp.edit().putBoolean(context.getString(R.string.storage_use_saf),
-                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                            && !DeviceUtils.isFireTv()).apply();
+            sp.edit().putBoolean(
+                    context.getString(R.string.storage_use_saf),
+                    !DeviceUtils.isFireTv()
+            ).apply();
         }
     };
 
@@ -157,7 +156,7 @@ public final class SettingMigrations {
             } catch (final Exception e) {
                 // save the version with the last successful migration and report the error
                 sp.edit().putInt(lastPrefVersionKey, currentVersion).apply();
-                ErrorActivity.reportError(context, new ErrorInfo(
+                ErrorUtil.openActivity(context, new ErrorInfo(
                         e,
                         UserAction.PREFERENCES_MIGRATION,
                         "Migrating preferences from version " + lastPrefVersion + " to "

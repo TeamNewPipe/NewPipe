@@ -7,13 +7,14 @@ import android.text.util.Linkify;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorActivity;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
@@ -22,13 +23,11 @@ import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.external_communication.TimestampExtractor;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.external_communication.TimestampExtractor;
 
 import java.util.regex.Matcher;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private static final String TAG = "CommentsMiniIIHolder";
@@ -40,7 +39,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private final int commentVerticalPadding;
 
     private final RelativeLayout itemRoot;
-    public final CircleImageView itemThumbnailView;
+    public final ImageView itemThumbnailView;
     private final TextView itemContentView;
     private final TextView itemLikesCountView;
     private final TextView itemPublishedTime;
@@ -171,7 +170,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                     item.getUploaderUrl(),
                     item.getUploaderName());
         } catch (final Exception e) {
-            ErrorActivity.reportUiErrorInSnackbar(activity, "Opening channel fragment", e);
+            ErrorUtil.showUiErrorSnackbar(activity, "Opening channel fragment", e);
         }
     }
 
@@ -205,8 +204,9 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         boolean hasEllipsis = false;
 
         if (itemContentView.getLineCount() > COMMENT_DEFAULT_LINES) {
-            final int endOfLastLine
-                    = itemContentView.getLayout().getLineEnd(COMMENT_DEFAULT_LINES - 1);
+            final int endOfLastLine = itemContentView
+                    .getLayout()
+                    .getLineEnd(COMMENT_DEFAULT_LINES - 1);
             int end = itemContentView.getText().toString().lastIndexOf(' ', endOfLastLine - 2);
             if (end == -1) {
                 end = Math.max(endOfLastLine - 2, 0);

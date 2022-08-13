@@ -142,6 +142,7 @@ public class Mp4FromDashWriter {
         outStream = null;
     }
 
+    @SuppressWarnings("MethodLength")
     public void build(final SharpStream output) throws IOException {
         if (done) {
             throw new RuntimeException("already done");
@@ -306,8 +307,8 @@ public class Mp4FromDashWriter {
         outWrite(makeMdat(totalSampleSize, is64));
 
         final int[] sampleIndex = new int[readers.length];
-        final int[] sizes
-                = new int[singleSampleBuffer > 0 ? singleSampleBuffer : SAMPLES_PER_CHUNK];
+        final int[] sizes =
+                new int[singleSampleBuffer > 0 ? singleSampleBuffer : SAMPLES_PER_CHUNK];
         final int[] sync = new int[singleSampleBuffer > 0 ? singleSampleBuffer : SAMPLES_PER_CHUNK];
 
         int written = readers.length;

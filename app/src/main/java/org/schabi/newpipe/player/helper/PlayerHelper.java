@@ -1,15 +1,20 @@
 package org.schabi.newpipe.player.helper;
 
+import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
+import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
+import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
+import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
+import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER;
+import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI;
+import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
+import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
+import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
+import static java.lang.annotation.RetentionPolicy.SOURCE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PixelFormat;
-import android.os.Build;
 import android.provider.Settings;
-import android.view.Gravity;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.accessibility.CaptioningManager;
 
 import androidx.annotation.IntDef;
@@ -21,23 +26,21 @@ import androidx.preference.PreferenceManager;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.RepeatMode;
 import com.google.android.exoplayer2.SeekParameters;
-import com.google.android.exoplayer2.text.CaptionStyleCompat;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.trackselection.TrackSelection;
+import com.google.android.exoplayer2.trackselection.ExoTrackSelection;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout.ResizeMode;
+import com.google.android.exoplayer2.ui.CaptionStyleCompat;
 import com.google.android.exoplayer2.util.MimeTypes;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
-import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.extractor.utils.Utils;
-import org.schabi.newpipe.player.MainPlayer;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
@@ -57,23 +60,10 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
-import static java.lang.annotation.RetentionPolicy.SOURCE;
-import static org.schabi.newpipe.player.Player.IDLE_WINDOW_FLAGS;
-import static org.schabi.newpipe.player.Player.PLAYER_TYPE;
-import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
-import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER;
-import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI;
-import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
-import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
-import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
-
 public final class PlayerHelper {
     private static final StringBuilder STRING_BUILDER = new StringBuilder();
-    private static final Formatter STRING_FORMATTER
-            = new Formatter(STRING_BUILDER, Locale.getDefault());
+    private static final Formatter STRING_FORMATTER =
+            new Formatter(STRING_BUILDER, Locale.getDefault());
     private static final NumberFormat SPEED_FORMATTER = new DecimalFormat("0.##x");
     private static final NumberFormat PITCH_FORMATTER = new DecimalFormat("##%");
 
@@ -95,12 +85,14 @@ public final class PlayerHelper {
         int MINIMIZE_ON_EXIT_MODE_POPUP = 2;
     }
 
-    private PlayerHelper() { }
+    private PlayerHelper() {
+    }
 
     ////////////////////////////////////////////////////////////////////////////
     // Exposed helpers
     ////////////////////////////////////////////////////////////////////////////
 
+    @NonNull
     public static String getTimeString(final int milliSeconds) {
         final int seconds = (milliSeconds % 60000) / 1000;
         final int minutes = (milliSeconds % 3600000) / 60000;
@@ -116,15 +108,18 @@ public final class PlayerHelper {
         ).toString();
     }
 
+    @NonNull
     public static String formatSpeed(final double speed) {
         return SPEED_FORMATTER.format(speed);
     }
 
+    @NonNull
     public static String formatPitch(final double pitch) {
         return PITCH_FORMATTER.format(pitch);
     }
 
-    public static String subtitleMimeTypesOf(final MediaFormat format) {
+    @NonNull
+    public static String subtitleMimeTypesOf(@NonNull final MediaFormat format) {
         switch (format) {
             case VTT:
                 return MimeTypes.TEXT_VTT;
@@ -144,6 +139,21 @@ public final class PlayerHelper {
     }
 
     @NonNull
+    public static String captionLanguageStemOf(@NonNull final String language) {
+        if (!language.contains("(") || !language.contains(")")) {
+            return language;
+        }
+
+        if (language.startsWith("(")) {
+            // language text is right-to-left
+            final String[] parts = language.split("\\)");
+            return parts[parts.length - 1].trim();
+        }
+
+        return language.split("\\(")[0].trim();
+    }
+
+    @NonNull
     public static String resizeTypeOf(@NonNull final Context context,
                                       @ResizeMode final int resizeMode) {
         switch (resizeMode) {
@@ -158,18 +168,6 @@ public final class PlayerHelper {
             default:
                 throw new IllegalArgumentException("Unrecognized resize mode: " + resizeMode);
         }
-    }
-
-    @NonNull
-    public static String cacheKeyOf(@NonNull final StreamInfo info,
-                                    @NonNull final VideoStream video) {
-        return info.getUrl() + video.getResolution() + video.getFormat().getName();
-    }
-
-    @NonNull
-    public static String cacheKeyOf(@NonNull final StreamInfo info,
-                                    @NonNull final AudioStream audio) {
-        return info.getUrl() + audio.getAverageBitrate() + audio.getFormat().getName();
     }
 
     /**
@@ -203,7 +201,7 @@ public final class PlayerHelper {
             return null;
         }
 
-        if (relatedItems.get(0) != null && relatedItems.get(0) instanceof StreamInfoItem
+        if (relatedItems.get(0) instanceof StreamInfoItem
                 && !urls.contains(relatedItems.get(0).getUrl())) {
             return getAutoQueuedSinglePlayQueue((StreamInfoItem) relatedItems.get(0));
         }
@@ -305,14 +303,8 @@ public final class PlayerHelper {
         return 2 * 1024 * 1024L; // ExoPlayer CacheDataSink.MIN_RECOMMENDED_FRAGMENT_SIZE
     }
 
-    /**
-     * @return the number of milliseconds the player buffers for before starting playback
-     */
-    public static int getPlaybackStartBufferMs() {
-        return 500;
-    }
-
-    public static TrackSelection.Factory getQualitySelector() {
+    @NonNull
+    public static ExoTrackSelection.Factory getQualitySelector() {
         return new AdaptiveTrackSelection.Factory(
                 1000,
                 AdaptiveTrackSelection.DEFAULT_MAX_DURATION_FOR_QUALITY_DECREASE_MS,
@@ -322,10 +314,6 @@ public final class PlayerHelper {
 
     public static boolean isUsingDSP() {
         return true;
-    }
-
-    public static int getTossFlingVelocity() {
-        return 2500;
     }
 
     @NonNull
@@ -366,7 +354,7 @@ public final class PlayerHelper {
     /**
      * @param context the Android context
      * @return the screen brightness to use. A value less than 0 (the default) means to use the
-     *         preferred screen brightness
+     * preferred screen brightness
      */
     public static float getScreenBrightness(@NonNull final Context context) {
         final SharedPreferences sp = getPreferences(context);
@@ -398,6 +386,19 @@ public final class PlayerHelper {
                 context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 0;
     }
 
+    public static int getProgressiveLoadIntervalBytes(@NonNull final Context context) {
+        final String preferredIntervalBytes = getPreferences(context).getString(
+                context.getString(R.string.progressive_load_interval_key),
+                context.getString(R.string.progressive_load_interval_default_value));
+
+        if (context.getString(R.string.progressive_load_interval_exoplayer_default_value)
+                .equals(preferredIntervalBytes)) {
+            return ProgressiveMediaSource.DEFAULT_LOADING_CHECK_INTERVAL_BYTES;
+        }
+        // Keeping the same KiB unit used by ProgressiveMediaSource
+        return Integer.parseInt(preferredIntervalBytes) * 1024;
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Private helpers
     ////////////////////////////////////////////////////////////////////////////
@@ -424,12 +425,6 @@ public final class PlayerHelper {
     // Utils used by player
     ////////////////////////////////////////////////////////////////////////////
 
-    public static MainPlayer.PlayerType retrievePlayerTypeFromIntent(final Intent intent) {
-        // If you want to open popup from the app just include Constants.POPUP_ONLY into an extra
-        return MainPlayer.PlayerType.values()[
-                intent.getIntExtra(PLAYER_TYPE, MainPlayer.PlayerType.VIDEO.ordinal())];
-    }
-
     public static boolean isPlaybackResumeEnabled(final Player player) {
         return player.getPrefs().getBoolean(
                 player.getContext().getString(R.string.enable_watch_history_key), true)
@@ -444,7 +439,8 @@ public final class PlayerHelper {
                 return REPEAT_MODE_ONE;
             case REPEAT_MODE_ONE:
                 return REPEAT_MODE_ALL;
-            case REPEAT_MODE_ALL: default:
+            case REPEAT_MODE_ALL:
+            default:
                 return REPEAT_MODE_OFF;
         }
     }
@@ -499,82 +495,8 @@ public final class PlayerHelper {
                 .apply();
     }
 
-    /**
-     * @param player {@code screenWidth} and {@code screenHeight} must have been initialized
-     * @return the popup starting layout params
-     */
-    @SuppressLint("RtlHardcoded")
-    public static WindowManager.LayoutParams retrievePopupLayoutParamsFromPrefs(
-            final Player player) {
-        final boolean popupRememberSizeAndPos = player.getPrefs().getBoolean(
-                player.getContext().getString(R.string.popup_remember_size_pos_key), true);
-        final float defaultSize =
-                player.getContext().getResources().getDimension(R.dimen.popup_default_width);
-        final float popupWidth = popupRememberSizeAndPos
-                ? player.getPrefs().getFloat(player.getContext().getString(
-                        R.string.popup_saved_width_key), defaultSize)
-                : defaultSize;
-        final float popupHeight = getMinimumVideoHeight(popupWidth);
-
-        final WindowManager.LayoutParams popupLayoutParams = new WindowManager.LayoutParams(
-                (int) popupWidth, (int) popupHeight,
-                popupLayoutParamType(),
-                IDLE_WINDOW_FLAGS,
-                PixelFormat.TRANSLUCENT);
-        popupLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
-        popupLayoutParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
-
-        final int centerX = (int) (player.getScreenWidth() / 2f - popupWidth / 2f);
-        final int centerY = (int) (player.getScreenHeight() / 2f - popupHeight / 2f);
-        popupLayoutParams.x = popupRememberSizeAndPos
-                ? player.getPrefs().getInt(player.getContext().getString(
-                        R.string.popup_saved_x_key), centerX) : centerX;
-        popupLayoutParams.y = popupRememberSizeAndPos
-                ? player.getPrefs().getInt(player.getContext().getString(
-                        R.string.popup_saved_y_key), centerY) : centerY;
-
-        return popupLayoutParams;
-    }
-
-    public static void savePopupPositionAndSizeToPrefs(final Player player) {
-        if (player.getPopupLayoutParams() != null) {
-            player.getPrefs().edit()
-                    .putFloat(player.getContext().getString(R.string.popup_saved_width_key),
-                            player.getPopupLayoutParams().width)
-                    .putInt(player.getContext().getString(R.string.popup_saved_x_key),
-                            player.getPopupLayoutParams().x)
-                    .putInt(player.getContext().getString(R.string.popup_saved_y_key),
-                            player.getPopupLayoutParams().y)
-                    .apply();
-        }
-    }
-
     public static float getMinimumVideoHeight(final float width) {
         return width / (16.0f / 9.0f); // Respect the 16:9 ratio that most videos have
-    }
-
-    @SuppressLint("RtlHardcoded")
-    public static WindowManager.LayoutParams buildCloseOverlayLayoutParams() {
-        final int flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
-
-        final WindowManager.LayoutParams closeOverlayLayoutParams = new WindowManager.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT,
-                popupLayoutParamType(),
-                flags,
-                PixelFormat.TRANSLUCENT);
-
-        closeOverlayLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
-        closeOverlayLayoutParams.softInputMode =
-                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
-        return closeOverlayLayoutParams;
-    }
-
-    public static int popupLayoutParamType() {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.O
-                ? WindowManager.LayoutParams.TYPE_PHONE
-                : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
     }
 
     public static int retrieveSeekDurationFromPreferences(final Player player) {

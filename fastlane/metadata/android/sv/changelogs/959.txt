@@ -1,0 +1,3 @@
+Fixade en oändlig kraschloop när felrapporteringsverktyget öppnats.
+Updaterade listan av PeerTube-instanser som NewPipe kan öppna automatiskt.
+Updaterade översättningarna.

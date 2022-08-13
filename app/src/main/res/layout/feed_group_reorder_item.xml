@@ -29,7 +29,7 @@
             tools:ignore="ContentDescription,RtlHardcoded"
             tools:src="@drawable/ic_kiosk_hot" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/group_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             android:paddingTop="12dp"
             android:paddingRight="16dp"
             android:paddingBottom="12dp"
-            app:srcCompat="@drawable/ic_drag_handle"
+            android:src="@drawable/ic_drag_handle"
             tools:ignore="ContentDescription,RtlHardcoded" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

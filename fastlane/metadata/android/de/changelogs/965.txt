@@ -1,0 +1,6 @@
+Absturz behoben, der beim Neuordnen von Kanalgruppen auftrat.
+Das Abrufen weiterer YouTube-Videos aus Kanälen und Wiedergabelisten wurde behoben.
+Das Abrufen von YouTube-Kommentaren wurde behoben.
+Unterstützung für /watch/, /v/ und /w/ Unterpfade in YouTube URLs hinzugefügt.
+Die Extraktion der SoundCloud-Client-ID und geografisch eingeschränkter Inhalte wurde korrigiert.
+Nordkurdische Lokalisierung wurde hinzugefügt.

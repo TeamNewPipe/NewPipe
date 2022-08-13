@@ -1,0 +1,1 @@
+Naprawiono sprawdzanie nowej wersji NewPipe. To sprawdzenie było czasami wykonywane zbyt wcześnie i dlatego prowadziło do awarii aplikacji. Powinno to być już naprawione.

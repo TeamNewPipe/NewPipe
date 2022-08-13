@@ -1,0 +1,16 @@
+Yeni
+
+ • Lent qrupu dialoqunda abunə seçicisi üçün axtarış əlavə edin 
+• Yalnız qruplaşdırılmamış abunələri göstərmək üçün lent qrupu dialoquna filtr əlavə edin 
+• Əsas səhifəyə pleylist nişanı əlavə edin 
+• Arxa fonda/pop-up oyunçu növbəsində sürətli irəli/geri sarın
+ •Axtarış təklifini göstərin: bunu nəzərdə tutursunuz və nəticəni göstərirsiniz
+
+Təkmilləşdirildi
+ • Tətbiq metadatasını dəyişdirilmiş fayllarda buraxın 
+• Uğursuz axınları növbədən silməyin 
+• Alətlər panelinin rənginə uyğunlaşdırmaq üçün status panelinin rəngini güncəlləyin
+
+Sabit 
+• Üzən nöqtə kümülatif xətaların səbəb olduğu sabit audio/video sinxronizasiyası düzəldildi
+ • [PeerTube ] Silinmiş şərhləri idarə edin və s

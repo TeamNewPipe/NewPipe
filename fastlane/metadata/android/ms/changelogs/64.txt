@@ -1,0 +1,8 @@
+### Penambahbaikan
+- Menambah kemampuan untuk membataskan kualiti video jika menggunakan data mudah alih. #1339
+- Ingat kecerahan untuk sesi yang sedang dipakai #1442
+- Peningkatan prestasi muat turun untuk CPU yang lemah #1431
+- Penambahan sokongan (hidup) untuk sesi media #1433
+
+###Diperbaiki
+- Pembaikian kepada lagaan ketika memulakan muat turun (Pembaikian sekarang tersedia untuk rilis binaan) #1441

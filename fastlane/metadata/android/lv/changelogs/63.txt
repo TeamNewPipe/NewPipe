@@ -1,0 +1,8 @@
+### Uzlabojumi
+- Importēšanas/eksportēšanas iestatījumi #1333 
+- Samazināt pārzīmēšanu (ātruma uzlabojums) #1371 
+- Nelieli koda uzlabojumi #1375
+- Pievienot visu par GDPR #1420
+
+### Salabots
+- Lejupielādētājs: Salabot avāriju, ielādējot nepabeigtas lejupielādes no .giga failiem #1407

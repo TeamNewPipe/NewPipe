@@ -1,0 +1,7 @@
+Verbeterd
+• Automatisch afspelen is beschikbaar voor alle services (in plaats van alleen voor YouTube)
+
+Aangepast
+• Vaste gerelateerde streams door de nieuwe voortzettingen van YouTube te ondersteunen
+• YouTube-video's met leeftijdsbeperking
+• [Android TV] Opgeloste overlay met focusaccenten

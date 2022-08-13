@@ -1,1 +1,1 @@
-Isang magaan at libreng YouTube para sa Android.
+Libre't magaang YouTube frontend para sa Android.

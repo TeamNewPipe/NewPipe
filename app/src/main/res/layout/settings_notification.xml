@@ -7,7 +7,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="16dp">
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

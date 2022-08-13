@@ -26,7 +26,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             tools:ignore="ContentDescription,RtlHardcoded"
-            tools:src="@drawable/place_holder_peertube" />
+            tools:src="@drawable/ic_placeholder_peertube" />
 
         <TextView
             android:id="@+id/instanceName"
@@ -75,7 +75,7 @@
             android:paddingTop="12dp"
             android:paddingRight="10dp"
             android:paddingBottom="12dp"
-            app:srcCompat="@drawable/ic_drag_handle"
+            android:src="@drawable/ic_drag_handle"
             tools:ignore="ContentDescription,RtlHardcoded" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

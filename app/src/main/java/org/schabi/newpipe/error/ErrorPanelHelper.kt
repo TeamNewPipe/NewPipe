@@ -15,7 +15,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
-import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
 import org.schabi.newpipe.extractor.exceptions.AgeRestrictedContentException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
@@ -106,7 +105,7 @@ class ErrorPanelHelper(
             if (!isNullOrEmpty((errorInfo.throwable as AccountTerminatedException).message)) {
                 errorServiceInfoTextView.text = context.resources.getString(
                     R.string.service_provides_reason,
-                    NewPipe.getNameOfService(ServiceHelper.getSelectedServiceId(context))
+                    ServiceHelper.getSelectedService(context)?.serviceInfo?.name ?: "<unknown>"
                 )
                 errorServiceInfoTextView.isVisible = true
 
@@ -118,7 +117,7 @@ class ErrorPanelHelper(
             showAndSetErrorButtonAction(
                 R.string.error_snackbar_action
             ) {
-                ErrorActivity.reportError(context, errorInfo)
+                ErrorUtil.openActivity(context, errorInfo)
             }
 
             errorTextView.setText(getExceptionDescription(errorInfo.throwable))
@@ -178,7 +177,7 @@ class ErrorPanelHelper(
         val DEBUG: Boolean = MainActivity.DEBUG
 
         @StringRes
-        public fun getExceptionDescription(throwable: Throwable?): Int {
+        fun getExceptionDescription(throwable: Throwable?): Int {
             return when (throwable) {
                 is AgeRestrictedContentException -> R.string.restricted_video_no_stream
                 is GeographicRestrictionException -> R.string.georestricted_content

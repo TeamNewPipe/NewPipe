@@ -2,7 +2,6 @@ package org.schabi.newpipe.player.playqueue;
 
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
-import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.util.ExtractorHelper;
 
@@ -11,13 +10,10 @@ import java.util.List;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public final class PlaylistPlayQueue extends AbstractInfoPlayQueue<PlaylistInfo, PlaylistInfoItem> {
-    public PlaylistPlayQueue(final PlaylistInfoItem item) {
-        super(item);
-    }
+public final class PlaylistPlayQueue extends AbstractInfoPlayQueue<PlaylistInfo> {
 
     public PlaylistPlayQueue(final PlaylistInfo info) {
-        this(info.getServiceId(), info.getUrl(), info.getNextPage(), info.getRelatedItems(), 0);
+        super(info);
     }
 
     public PlaylistPlayQueue(final int serviceId,

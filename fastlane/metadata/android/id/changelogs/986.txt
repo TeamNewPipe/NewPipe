@@ -1,0 +1,16 @@
+Baru
+• Notifikasi untuk stream baru
+• Transisi tanpa batas antara pemutar latar belakang & video
+• Ubah nada dgn semitone
+• Tambahkan antrean pemain utama ke daftar putar
+
+Perbaikan
+• Ingat ukuran langkah kecepatan/nada
+• Kurangi buffering panjang awal di pemutar video
+• Tingkatkan UI pemutar utk Android TV
+• Konfirmasi sblm menghapus semua file yang diunduh
+
+Diperbaiki
+• Tombol media agar tdk menyembunyikan kontrol pemain
+• Reset pemutaran pada perubahan tipe pemutar
+• Memutar dialog dftr putar

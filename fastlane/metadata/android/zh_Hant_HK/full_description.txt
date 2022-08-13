@@ -1,0 +1,1 @@
+NewPipe 冇用到任何 Google 框架程式庫又或者 YouTube API，單憑解析網站去攞到所需嘅資訊，因此就算冇裝 Google 服務嘅機都用得呢個 app。此外，NewPipe 亦毋需您要有 YouTube 帳戶就用得，而且係自由同開放原始碼嘅軟件 (FLOSS)。

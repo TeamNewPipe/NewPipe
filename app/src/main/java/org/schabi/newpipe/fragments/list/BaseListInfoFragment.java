@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.Page;
@@ -27,8 +28,8 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public abstract class BaseListInfoFragment<I extends ListInfo>
-        extends BaseListFragment<I, ListExtractor.InfoItemsPage> {
+public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInfo<I>>
+        extends BaseListFragment<L, ListExtractor.InfoItemsPage<I>> {
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
     @State
@@ -37,7 +38,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     protected String url;
 
     private final UserAction errorUserAction;
-    protected I currentInfo;
+    protected L currentInfo;
     protected Page currentNextPage;
     protected Disposable currentWorker;
 
@@ -65,7 +66,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
         super.onResume();
         // Check if it was loading when the fragment was stopped/paused,
         if (wasLoading.getAndSet(false)) {
-            if (hasMoreItems() && infoListAdapter.getItemsList().size() > 0) {
+            if (hasMoreItems() && !infoListAdapter.getItemsList().isEmpty()) {
                 loadMoreItems();
             } else {
                 doInitialLoadLogic();
@@ -97,7 +98,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     @SuppressWarnings("unchecked")
     public void readFrom(@NonNull final Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
-        currentInfo = (I) savedObjects.poll();
+        currentInfo = (L) savedObjects.poll();
         currentNextPage = (Page) savedObjects.poll();
     }
 
@@ -105,6 +106,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     // Load and handle
     //////////////////////////////////////////////////////////////////////////*/
 
+    @Override
     protected void doInitialLoadLogic() {
         if (DEBUG) {
             Log.d(TAG, "doInitialLoadLogic() called");
@@ -123,7 +125,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
      * @param forceLoad allow or disallow the result to come from the cache
      * @return Rx {@link Single} containing the {@link ListInfo}
      */
-    protected abstract Single<I> loadResult(boolean forceLoad);
+    protected abstract Single<L> loadResult(boolean forceLoad);
 
     @Override
     public void startLoading(final boolean forceLoad) {
@@ -139,7 +141,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
         currentWorker = loadResult(forceLoad)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@NonNull I result) -> {
+                .subscribe((@NonNull L result) -> {
                     isLoading.set(false);
                     currentInfo = result;
                     currentNextPage = result.getNextPage();
@@ -156,8 +158,9 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
      *
      * @return Rx {@link Single} containing the {@link ListExtractor.InfoItemsPage}
      */
-    protected abstract Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic();
+    protected abstract Single<ListExtractor.InfoItemsPage<I>> loadMoreItemsLogic();
 
+    @Override
     protected void loadMoreItems() {
         isLoading.set(true);
 
@@ -171,9 +174,9 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally(this::allowDownwardFocusScroll)
-                .subscribe((@NonNull ListExtractor.InfoItemsPage InfoItemsPage) -> {
+                .subscribe(infoItemsPage -> {
                     isLoading.set(false);
-                    handleNextItems(InfoItemsPage);
+                    handleNextItems(infoItemsPage);
                 }, (@NonNull Throwable throwable) ->
                         dynamicallyShowErrorPanelOrSnackbar(new ErrorInfo(throwable,
                                 errorUserAction, "Loading more items: " + url, serviceId)));
@@ -192,7 +195,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     }
 
     @Override
-    public void handleNextItems(final ListExtractor.InfoItemsPage result) {
+    public void handleNextItems(final ListExtractor.InfoItemsPage<I> result) {
         super.handleNextItems(result);
 
         currentNextPage = result.getNextPage();
@@ -216,14 +219,14 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void handleResult(@NonNull final I result) {
+    public void handleResult(@NonNull final L result) {
         super.handleResult(result);
 
         name = result.getName();
         setTitle(name);
 
         if (infoListAdapter.getItemsList().isEmpty()) {
-            if (result.getRelatedItems().size() > 0) {
+            if (!result.getRelatedItems().isEmpty()) {
                 infoListAdapter.addInfoItemList(result.getRelatedItems());
                 showListFooter(hasMoreItems());
             } else {
@@ -240,7 +243,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
             final List<Throwable> errors = new ArrayList<>(result.getErrors());
             // handling ContentNotSupportedException not to show the error but an appropriate string
             // so that crashes won't be sent uselessly and the user will understand what happened
-            errors.removeIf(throwable -> throwable instanceof ContentNotSupportedException);
+            errors.removeIf(ContentNotSupportedException.class::isInstance);
 
             if (!errors.isEmpty()) {
                 dynamicallyShowErrorPanelOrSnackbar(new ErrorInfo(result.getErrors(),

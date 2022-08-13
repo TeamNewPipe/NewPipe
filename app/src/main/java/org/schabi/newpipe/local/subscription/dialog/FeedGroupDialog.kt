@@ -1,7 +1,6 @@
 package org.schabi.newpipe.local.subscription.dialog
 
 import android.app.Dialog
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -9,12 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
-import androidx.core.widget.ImageViewCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
@@ -124,14 +121,6 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
         super.onViewCreated(view, savedInstanceState)
         _feedGroupCreateBinding = DialogFeedGroupCreateBinding.bind(view)
         _searchLayoutBinding = feedGroupCreateBinding.subscriptionsHeaderSearchContainer
-
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
-            // KitKat doesn't apply container's theme to <include> content
-            val contrastColor = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.contrastColor))
-            searchLayoutBinding.toolbarSearchEditText.setTextColor(contrastColor)
-            searchLayoutBinding.toolbarSearchEditText.setHintTextColor(contrastColor.withAlpha(128))
-            ImageViewCompat.setImageTintList(searchLayoutBinding.toolbarSearchClearIcon, contrastColor)
-        }
 
         viewModel = ViewModelProvider(
             this,

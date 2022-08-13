@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="48dp">
@@ -13,10 +12,10 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="6dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/ic_volume_off"
+        android:src="@drawable/ic_volume_off"
         tools:ignore="ContentDescription,RtlHardcoded" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/stream_format_name"
         android:layout_width="wrap_content"
         android:layout_height="22dp"
@@ -32,7 +31,7 @@
         tools:ignore="RtlHardcoded"
         tools:text="MPEG-4" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/stream_quality"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
@@ -48,7 +47,7 @@
         tools:ignore="RtlHardcoded"
         tools:text="1080p60" />
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/stream_size"
         android:layout_width="wrap_content"
         android:layout_height="48dp"

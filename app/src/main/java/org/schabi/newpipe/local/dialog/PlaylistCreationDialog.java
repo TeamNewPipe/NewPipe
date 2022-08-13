@@ -21,8 +21,17 @@ import java.util.List;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 public final class PlaylistCreationDialog extends PlaylistDialog {
-    public PlaylistCreationDialog(final List<StreamEntity> streamEntities) {
-        super(streamEntities);
+
+    /**
+     * Create a new instance of {@link PlaylistCreationDialog}.
+     *
+     * @param streamEntities    a list of {@link StreamEntity} to be added to playlists
+     * @return a new instance of {@link PlaylistCreationDialog}
+     */
+    public static PlaylistCreationDialog newInstance(final List<StreamEntity> streamEntities) {
+        final PlaylistCreationDialog dialog = new PlaylistCreationDialog();
+        dialog.setStreamEntities(streamEntities);
+        return dialog;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -36,8 +45,8 @@ public final class PlaylistCreationDialog extends PlaylistDialog {
             return super.onCreateDialog(savedInstanceState);
         }
 
-        final DialogEditTextBinding dialogBinding
-                = DialogEditTextBinding.inflate(getLayoutInflater());
+        final DialogEditTextBinding dialogBinding =
+                DialogEditTextBinding.inflate(getLayoutInflater());
         dialogBinding.getRoot().getContext().setTheme(ThemeHelper.getDialogTheme(requireContext()));
         dialogBinding.dialogEditText.setHint(R.string.name);
         dialogBinding.dialogEditText.setInputType(InputType.TYPE_CLASS_TEXT);

@@ -86,7 +86,6 @@
     <string name="downloads_title">دابەزاندنەکان</string>
     <string name="error_report_title">ناتوانرێ سکاڵابکرێ</string>
     <string name="all">گشتی</string>
-    <string name="yes">بەڵێ</string>
     <string name="disabled">ناکارایە</string>
     <string name="clear">پاککردنەوە</string>
     <string name="best_resolution">باشترین قەبارە</string>
@@ -127,7 +126,6 @@
     <string name="what_happened_headline">چی ڕوویدا:</string>
     <string name="your_comment">لێدوانەکەت (بە ئینگلیزی):</string>
     <string name="error_details_headline">وردەکارییەکان:</string>
-    <string name="list_thumbnail_view_description">پێشبینین ی وێنۆچکەی ڤیدیۆ</string>
     <string name="detail_thumbnail_view_description">کارپێکردنی ڤیدیۆ، ماوەی:</string>
     <string name="detail_uploader_thumbnail_view_description">وێنۆچکەی کەسی بەرزکەرەوە</string>
     <string name="detail_likes_img_view_description">بەدڵبوون</string>
@@ -540,7 +538,6 @@
     <string name="autoplay_summary">دەسپێکردنی کارپێکەر بەخۆکاری — %s</string>
     <string name="title_activity_play_queue">لێدانی ڕیز</string>
     <string name="no_playlist_bookmarked_yet">هیچ لیستەلێدانێک نیشانە نەکراوە</string>
-    <string name="settings_category_notification_title">پەیام</string>
     <string name="unsupported_url_dialog_message">بەستەرەکە نەناسرایەوە. لە ئەپێکیتردا بکرێتەوە؟</string>
     <string name="auto_queue_toggle">ڕیزبوونی خۆکار</string>
     <string name="clear_queue_confirmation_description">ڕیزی لێدەری چالاک جێیدەگیرێتەوە</string>

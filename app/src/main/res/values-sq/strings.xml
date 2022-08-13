@@ -34,7 +34,6 @@
     <string name="downloads_title">Shkarkimet</string>
     <string name="error_report_title">Raporti i gabimit</string>
     <string name="all">Të gjitha</string>
-    <string name="yes">Po</string>
     <string name="missions_header_pending">Në pritje</string>
     <plurals name="feed_group_dialog_selection_count">
         <item quantity="one">%d i zgjedhur</item>
@@ -313,7 +312,6 @@
     <string name="detail_likes_img_view_description">Pëlqimet</string>
     <string name="detail_uploader_thumbnail_view_description">Pamja statike e fotos së ngarkuesit</string>
     <string name="detail_thumbnail_view_description">Luaje videon, kohëzgjatja:</string>
-    <string name="list_thumbnail_view_description">Pamjet statike të parapamjes së videove</string>
     <string name="error_details_headline">Detajet:</string>
     <string name="your_comment">Komenti juaj (në Anglisht):</string>
     <string name="info_labels">Çfarë:\\nKërkesa:\\nGjuha e përmbajtjes:\\nShteti i pëmbajtjes:\\nGjuha e aplikacionit:\\nShërbimi:\\nKoha në GMT:\\nPaketa:\\nVersioni:\\nVersioni i sistemit operativ:</string>
@@ -546,7 +544,6 @@
     <string name="never">Kurrë</string>
     <string name="autoplay_summary">Nise luajtjen automatikisht — %s</string>
     <string name="title_activity_play_queue">Lista e luajtjes</string>
-    <string name="settings_category_notification_title">Njoftim</string>
     <string name="unsupported_url_dialog_message">Nuk u njoh URL. Të hapet me një aplikacion tjetër\?</string>
     <string name="auto_queue_toggle">Listë automatike luajtjeje</string>
     <string name="clear_queue_confirmation_description">Lista aktive e luajtjes do të zëvendësohet</string>
@@ -629,7 +626,6 @@
     <string name="feed_load_error_account_info">Nuk u arrit të ngarkohej feed-i për \'%s\'.</string>
     <string name="feed_load_error">Gabim gjatë ngarkimit të feed-it</string>
     <string name="downloads_storage_use_saf_summary_api_29">Duke nisur nga Android 10 vetëm \'Storage Access Framework\' është i mbështetur</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' nuk është e mbështetur në Android KitKat dhe më poshtë</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Ju do të pyeteni se ku doni të ruani çdo shkarkim</string>
     <string name="crash_the_app">Rrëzoje aplikacionin manualisht</string>
     <string name="disable_media_tunneling_summary">Ç\'aktivizo tunelin e medias nëse po hasni një ekran të zi apo ngecje gjatë luajtjes së një videoje</string>

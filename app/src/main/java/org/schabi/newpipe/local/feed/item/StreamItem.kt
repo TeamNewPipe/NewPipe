@@ -14,11 +14,14 @@ import org.schabi.newpipe.databinding.ListStreamItemBinding
 import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_LIVE_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.LIVE_STREAM
+import org.schabi.newpipe.extractor.stream.StreamType.POST_LIVE_AUDIO_STREAM
+import org.schabi.newpipe.extractor.stream.StreamType.POST_LIVE_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.VIDEO_STREAM
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.PicassoHelper
 import org.schabi.newpipe.util.StreamTypeUtil
 import java.util.concurrent.TimeUnit
+import java.util.function.Consumer
 
 data class StreamItem(
     val streamWithState: StreamWithState,
@@ -30,6 +33,12 @@ data class StreamItem(
 
     private val stream: StreamEntity = streamWithState.stream
     private val stateProgressTime: Long? = streamWithState.stateProgressMillis
+
+    /**
+     * Will be executed at the end of the [StreamItem.bind] (with (ListStreamItemBinding,Int)).
+     * Can be used e.g. for highlighting a item.
+     */
+    var execBindEnd: Consumer<ListStreamItemBinding>? = null
 
     override fun getId(): Long = stream.uid
 
@@ -97,10 +106,12 @@ data class StreamItem(
             viewBinding.itemAdditionalDetails.text =
                 getStreamInfoDetailLine(viewBinding.itemAdditionalDetails.context)
         }
+
+        execBindEnd?.accept(viewBinding)
     }
 
     override fun isLongClickable() = when (stream.streamType) {
-        AUDIO_STREAM, VIDEO_STREAM, LIVE_STREAM, AUDIO_LIVE_STREAM -> true
+        AUDIO_STREAM, VIDEO_STREAM, LIVE_STREAM, AUDIO_LIVE_STREAM, POST_LIVE_STREAM, POST_LIVE_AUDIO_STREAM -> true
         else -> false
     }
 

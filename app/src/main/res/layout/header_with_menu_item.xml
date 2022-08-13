@@ -8,7 +8,7 @@
     android:paddingRight="16dp"
     android:paddingBottom="12dp">
 
-    <TextView
+    <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/header_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

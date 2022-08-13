@@ -6,7 +6,7 @@
     android:layout_height="?attr/actionBarSize"
     tools:background="?attr/colorPrimary">
 
-    <EditText
+    <org.schabi.newpipe.views.NewPipeEditText
         android:id="@+id/toolbar_search_edit_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -48,8 +48,8 @@
             android:layout_gravity="center"
             android:contentDescription="@string/search"
             android:scaleType="fitCenter"
+            android:src="@drawable/ic_close"
             app:tint="?attr/toolbarSearchColor"
-            app:srcCompat="@drawable/ic_close"
             tools:ignore="RtlHardcoded" />
     </FrameLayout>
 

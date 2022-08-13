@@ -112,7 +112,6 @@
     <string name="best_resolution">Eng yaxshi qaror</string>
     <string name="clear">Tozalash</string>
     <string name="disabled">Ijrochilar o\'chirib qo\'yilgan</string>
-    <string name="yes">Ha</string>
     <string name="artists">Artistlar</string>
     <string name="albums">Albomlar</string>
     <string name="songs">Qo\'shiqlar</string>
@@ -137,7 +136,6 @@
     <string name="content">Tarkib</string>
     <string name="popup_playing_toast">Pop-up rejimda ijro etish</string>
     <string name="background_player_playing_toast">Ijro etish foni</string>
-    <string name="settings_category_notification_title">Bildirishnoma</string>
     <string name="settings_category_updates_title">Yangilanishlar</string>
     <string name="settings_category_debug_title">Nosozliklarni tuzatish</string>
     <string name="settings_category_appearance_title">Tashqi ko\'rinish</string>
@@ -289,7 +287,6 @@
     <string name="detail_likes_img_view_description">Layklar</string>
     <string name="detail_uploader_thumbnail_view_description">Yuklovchining avatar eskizi</string>
     <string name="detail_thumbnail_view_description">Videoni ijro etish muddati, davomiyligi:</string>
-    <string name="list_thumbnail_view_description">Videoni oldindan ko\'rish uchun eskiz</string>
     <string name="error_details_headline">Detallar:</string>
     <string name="your_comment">Sizning sharhingiz (ingliz tilida):</string>
     <string name="info_labels">Nima: \\n So\'rov: \\nTarkib tili: \\nTarkib mamlakati: \\nIlova tili: \\ nXizmat: \\ nGMT vaqti: \\ nPaket: \\ nVersion: \\ nOS versiyasi:</string>

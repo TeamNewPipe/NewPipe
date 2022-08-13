@@ -2,8 +2,12 @@
 <resources>
 
     <color name="contrastColor">@color/black</color>
+    <color name="defaultIconTint">@color/black</color>
 
     <color name="ic_launcher_background">#CD201F</color>
+
+    <color name="placeholder_background">#999999</color>
+    <color name="placeholder_foreground">#6C6C6C</color>
 
     <!-- Light Theme -->
     <color name="light_background_color">#EEEEEE</color>

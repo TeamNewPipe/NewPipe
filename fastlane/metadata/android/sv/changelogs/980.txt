@@ -1,0 +1,13 @@
+Nytt
+• La till "Lägg till i spellista" alternativ i delningsmenyn
+• La till stöd för y2u.be och PeerTube kort länkar
+
+Förbättrat
+• Gjorde uppspelningshastighetskontrollerna mer kompakta
+• Flödet markerar nya objekt nu
+• "Visa bevakade objekt" alternativet i flödet sparas nu
+
+Fixat
+• Fixade YouTube tumme upp och tumme ner extraktion
+• Fixade automatisk uppspelning efter återkomst från bakgrunden
+Och mycket mer

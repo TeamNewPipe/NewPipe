@@ -14,8 +14,9 @@ import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.SparseItemUtil;
 
-import java.util.Collections;
+import java.util.List;
 
 public final class QueueItemMenuUtil {
     private QueueItemMenuUtil() {
@@ -52,7 +53,7 @@ public final class QueueItemMenuUtil {
                 case R.id.menu_item_append_playlist:
                     PlaylistDialog.createCorrespondingDialog(
                             context,
-                            Collections.singletonList(new StreamEntity(item)),
+                            List.of(new StreamEntity(item)),
                             dialog -> dialog.show(
                                     fragmentManager,
                                     "QueueItemMenuUtil@append_playlist"
@@ -61,11 +62,14 @@ public final class QueueItemMenuUtil {
 
                     return true;
                 case R.id.menu_item_channel_details:
-                    // An intent must be used here.
-                    // Opening with FragmentManager transactions is not working,
-                    // as PlayQueueActivity doesn't use fragments.
-                    NavigationHelper.openChannelFragmentUsingIntent(context, item.getServiceId(),
-                            item.getUploaderUrl(), item.getUploader());
+                    SparseItemUtil.fetchUploaderUrlIfSparse(context, item.getServiceId(),
+                            item.getUrl(), item.getUploaderUrl(),
+                            // An intent must be used here.
+                            // Opening with FragmentManager transactions is not working,
+                            // as PlayQueueActivity doesn't use fragments.
+                            uploaderUrl -> NavigationHelper.openChannelFragmentUsingIntent(
+                                    context, item.getServiceId(), uploaderUrl, item.getUploader()
+                            ));
                     return true;
                 case R.id.menu_item_share:
                     shareText(context, item.getTitle(), item.getUrl(),

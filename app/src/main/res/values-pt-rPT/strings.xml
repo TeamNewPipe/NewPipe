@@ -25,7 +25,7 @@
     <string name="channel_unsubscribed">Canal não subscrito</string>
     <string name="msg_name">Nome do ficheiro</string>
     <string name="enable_playback_state_lists_summary">Mostrar indicadores de posição de reprodução nas listas</string>
-    <string name="notification_channel_description">Notificações para NewPipe e para os reprodutores popup</string>
+    <string name="notification_channel_description">Notificações para o reprodutor do NewPipe</string>
     <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
     <string name="show_search_suggestions_summary">Escolha as sugestões a mostrar ao pesquisar</string>
     <string name="no_valid_zip_file">Ficheiro ZIP inválido</string>
@@ -36,7 +36,7 @@
     <string name="caption_setting_title">Legendas</string>
     <string name="restore_defaults">Repor predefinições</string>
     <string name="error_occurred_detail">Ocorreu um erro: %1$s</string>
-    <string name="controls_popup_title">Popup</string>
+    <string name="controls_popup_title">Pop-up</string>
     <string name="msg_running">Descarga NewPipe</string>
     <string name="new_seek_duration_toast">Devido às restrições de ExoPlayer, a duração da pesquisa foi definida para %d segundos</string>
     <string name="overwrite">Sobrescrever</string>
@@ -139,7 +139,7 @@
     <string name="download_thumbnail_summary">Desative para parar o carregamento de miniaturas, poupar dados e utilização da memória. As alterações limpam a cache de imagens do disco e da memória</string>
     <string name="did_you_mean">Será que queria dizer \"%1$s\"\?</string>
     <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da aplicação se existir uma nova versão</string>
-    <string name="enqueue">Fila</string>
+    <string name="enqueue">Enfileirar</string>
     <string name="no_one_watching">Ninguém está a ver</string>
     <string name="delete_downloaded_files">Remover ficheiros descarregados</string>
     <string name="app_language_title">Idioma da aplicação</string>
@@ -176,8 +176,8 @@
 \n3. Clique em \"Todos os dados incluídos\", depois em \"Desmarcar todos\", depois selecione apenas \"subscrições\" e clique em \"OK\".
 \n4. Clique em \"Próximo passo\" e depois em \"Criar exportação\".
 \n5. Clique no botão \"Descarregar\" após aparecer
-\n6. Clique em IMPORT FILE abaixo e selecione o ficheiro zip descarregado
-\n7. [Se a importação do zip falhar] Extraia o ficheiro .csv (geralmente em \"YouTube e YouTube Music/subscriptions/subscriptions.csv\"), clique em IMPORT FILE abaixo e selecione o ficheiro csv extraído</string>
+\n6. Clique em IMPORT FILE abaixo e selecione o ficheiro .zip descarregado
+\n7. [Se a importação do .zip falhar] Extraia o ficheiro .csv (geralmente em \"YouTube e YouTube Music/subscriptions/subscriptions.csv\"), clique em IMPORT FILE abaixo e selecione o ficheiro csv extraído</string>
     <string name="minimize_on_exit_background_description">Ativar reprodutor em segundo plano</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
     <string name="autoplay_title">Reprodução automática</string>
@@ -281,7 +281,7 @@
     <string name="post_processing">pós-processamento</string>
     <string name="overwrite_failed">não é possível sobrescrever o ficheiro</string>
     <string name="invalid_source">Fonte de conteúdo/ficheiro inexistente</string>
-    <string name="app_update_notification_channel_description">Notificações para uma nova versão do NewPipe</string>
+    <string name="app_update_notification_channel_description">Notificações para novas versões do NewPipe</string>
     <string name="action_history">Histórico</string>
     <string name="list">Lista</string>
     <string name="remove_watched_popup_title">Remover vídeos visualizados\?</string>
@@ -351,7 +351,7 @@
         <item quantity="one">%d hora</item>
         <item quantity="other">%d horas</item>
     </plurals>
-    <string name="auto_queue_title">Colocar vídeo seguinte na fila</string>
+    <string name="auto_queue_title">Enfileirar o próximo stream automaticamente</string>
     <string name="peertube_instance_url_summary">Defina as suas instâncias favoritas PeerTube</string>
     <string name="export_data_summary">Exportar histórico, subscrições, listas de reprodução e definições</string>
     <string name="best_resolution">Melhor resolução</string>
@@ -395,7 +395,6 @@
     <string name="max_retry_msg">Tentativas máximas</string>
     <string name="title_activity_history">Histórico</string>
     <string name="playback_pitch">Velocidade</string>
-    <string name="yes">Sim</string>
     <string name="error_download_resource_gone">Não é possível recuperar esta descarga</string>
     <string name="rename_playlist">Mudar nome</string>
     <string name="feed_group_dialog_empty_selection">Nenhuma subscrição selecionada</string>
@@ -444,7 +443,6 @@
     <string name="feed_update_threshold_summary">Tempo após a última atualização antes de a subscrição ser considerada desatualizada - %s</string>
     <string name="search">Pesquisar</string>
     <string name="settings_category_updates_title">Atualizações</string>
-    <string name="list_thumbnail_view_description">Miniatura do vídeo</string>
     <string name="updates_setting_title">Atualizações</string>
     <string name="start_downloads">Iniciar transferências</string>
     <string name="enable_search_history_summary">Guardar termos de pesquisa localmente</string>
@@ -468,7 +466,7 @@
     <string name="feed_group_dialog_select_subscriptions">Selecionar subscrições</string>
     <string name="playlist_add_stream_success">Adicionado à lista de reprodução</string>
     <string name="default_video_format_title">Formato padrão de vídeo</string>
-    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para colocar na fila\"</string>
+    <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para enfileirar\"</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
     <string name="metadata_cache_wipe_summary">Limpar todos os dados da página web</string>
     <string name="drawer_close">Fechar menu</string>
@@ -545,9 +543,8 @@
     <string name="wifi_only">Apenas em Wi-Fi</string>
     <string name="autoplay_summary">Iniciar reprodução automaticamente — %s</string>
     <string name="title_activity_play_queue">Reproduzir fila</string>
-    <string name="settings_category_notification_title">Notificação</string>
     <string name="unsupported_url_dialog_message">URL não reconhecido. Abrir com outra aplicação\?</string>
-    <string name="auto_queue_toggle">Colocar na fila automaticamente</string>
+    <string name="auto_queue_toggle">Enfileiramento automático</string>
     <string name="clear_queue_confirmation_description">A fila do reprodutor ativo será substituída</string>
     <string name="clear_queue_confirmation_summary">Mudar de um reprodutor para outro pode substituir a sua fila</string>
     <string name="clear_queue_confirmation_title">Pedir confirmação antes de limpar uma fila</string>
@@ -641,17 +638,14 @@
     <string name="feed_load_error_account_info">Não foi possível carregar o feed para \'%s\'.</string>
     <string name="feed_load_error">Erro ao carregar o feed</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, apenas o \'Storage Access Framework\' é compatível</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' não é compatível com Android KitKat e versões anteriores</string>
-    <string name="downloads_storage_ask_summary_no_saf_notice">Sempre que transferir um ficheiro, terá que indicar o local para o guardar</string>
+    <string name="downloads_storage_ask_summary_no_saf_notice">Sempre que descarregar um ficheiro, terá que indicar o local para o guardar</string>
     <string name="dont_show">Não mostrar</string>
     <string name="low_quality_smaller">Baixa qualidade (menor)</string>
     <string name="high_quality_larger">Alta qualidade (maior)</string>
     <string name="seekbar_preview_thumbnail_title">Pré-visualização da miniatura da barra de pesquisa</string>
-    <string name="no_dir_yet">Ainda sem pasta de descarregas definida, escolha agora a pasta de descarregas padrão</string>
+    <string name="no_dir_yet">Ainda não foi definida uma pasta de descarregamento, escolha agora a pasta de descarregamento padrão</string>
     <string name="comments_are_disabled">Comentários estão desativados</string>
     <string name="mark_as_watched">Marcar como visto</string>
-    <string name="loading_channel_details">A carregar detalhes do canal…</string>
-    <string name="error_show_channel_details">Erro em Mostrar detalhes do canal</string>
     <string name="show_image_indicators_summary">Mostrar fitas coloridas de Picasso em cima das imagens que indicam a sua fonte: vermelho para rede, azul para disco e verde para memória</string>
     <string name="show_image_indicators_title">Mostrar indicadores de imagem</string>
     <string name="remote_search_suggestions">Sugestões de pesquisa remotas</string>
@@ -665,8 +659,61 @@
         <item quantity="other">%s descargas concluídas</item>
     </plurals>
     <string name="main_page_content_swipe_remove">Deslizar itens para removê-los</string>
-    <string name="start_main_player_fullscreen_summary">Não iniciar vídeos no reprodutor mini, mas ir diretamente para ecrã completo se a rotação automática estiver bloqueada. Ainda pode aceder o reprodutor mini se sair do modo de ecrã completo.</string>
+    <string name="start_main_player_fullscreen_summary">Não iniciar vídeos no reprodutor mini, mas ir diretamente ao ecrã completo se a rotação automática estiver bloqueada. Ainda pode aceder o reprodutor mini se sair do modo de ecrã completo</string>
     <string name="start_main_player_fullscreen_title">Iniciar reprodutor principal em ecrã completo</string>
     <string name="enqueued_next">Enfileirado o próximo</string>
     <string name="enqueue_next_stream">Enfileirar o próximo</string>
+    <string name="processing_may_take_a_moment">A processar… Pode demorar um momento</string>
+    <string name="manual_update_title">Procurar atualizações</string>
+    <string name="manual_update_description">Verificar manualmente se existe uma nova versão</string>
+    <string name="checking_updates_toast">A procurar atualizações…</string>
+    <string name="feed_new_items">Novos itens</string>
+    <string name="crash_the_player">Travar o reprodutor</string>
+    <string name="show_crash_the_player_title">Mostrar \"travar o reprodutor\"</string>
+    <string name="show_crash_the_player_summary">Mostra uma opção de travamento ao usar o reprodutor</string>
+    <string name="error_report_channel_name">Notificação de relatório de erros</string>
+    <string name="error_report_channel_description">Notificações para reportar erros</string>
+    <string name="error_report_notification_title">NewPipe encontrou um erro, toque para relatar</string>
+    <string name="error_report_notification_toast">Ocorreu um erro, veja a notificação</string>
+    <string name="show_error_snackbar">Mostrar um snackbar de erro</string>
+    <string name="create_error_notification">Criar uma notificação de erro</string>
+    <string name="no_appropriate_file_manager_message">Nenhum gestor de ficheiros apropriado foi encontrado para esta ação.
+\nPor favor, instale um gestor de ficheiros ou tente desativar \'%s\' nas configurações de descarregar.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Nenhum gestor de ficheiros apropriado foi encontrado para esta ação.
+\nPor favor, instale um gestor de ficheiros compatível com o Storage Access Framework.</string>
+    <string name="detail_pinned_comment_view_description">Comentário fixado</string>
+    <string name="leak_canary_not_available">LeakCanary não está disponível</string>
+    <string name="progressive_load_interval_summary">Altere o tamanho do intervalo de carregamento (atualmente %s). Um valor menor pode acelerar o carregamento inicial do vídeo. Se fizer alterações é necessário reiniciar.</string>
+    <string name="progressive_load_interval_exoplayer_default">Predefinido do ExoPlayer</string>
+    <string name="notifications">Notificações</string>
+    <string name="loading_stream_details">A carregar detalhes do fluxo…</string>
+    <string name="check_new_streams">Verificar se há novos fluxos</string>
+    <string name="enable_streams_notifications_title">Notificações sobre novos fluxos</string>
+    <string name="streams_notifications_interval_title">Frequência da verificação</string>
+    <string name="delete_downloaded_files_confirm">Apagar todos os ficheiros descarregados do disco\?</string>
+    <string name="notifications_disabled">Notificações são desativadas</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s fluxo novo</item>
+        <item quantity="other">%s fluxos novos</item>
+    </plurals>
+    <string name="enable_streams_notifications_summary">Notificar sobre novos fluxos de assinaturas</string>
+    <string name="streams_notifications_network_title">Conexão de rede necessária</string>
+    <string name="any_network">Qualquer rede</string>
+    <string name="toggle_all">Alternar tudo</string>
+    <string name="streams_notification_channel_description">Notificações sobre novos fluxos para assinaturas</string>
+    <string name="settings_category_player_notification_title">Notificação do reprodutor</string>
+    <string name="settings_category_player_notification_summary">Configurar a notificação da reprodução do fluxo atual</string>
+    <string name="get_notified">Seja notificado</string>
+    <string name="you_successfully_subscribed">Agora assinou este canal</string>
+    <string name="enumeration_comma">,</string>
+    <string name="streams_notification_channel_name">Novos fluxos</string>
+    <string name="percent">Por cento</string>
+    <string name="semitone">Semitom</string>
+    <string name="no_video_streams_available_for_external_players">Não estão disponíveis transmissões de vídeo a reprodutores externos</string>
+    <string name="streams_not_yet_supported_removed">As transmissões que ainda não são suportadas para descarregamento não são mostradas</string>
+    <string name="selected_stream_external_player_not_supported">A transmissão selecionada não é suportada por reprodutores externos</string>
+    <string name="no_audio_streams_available_for_external_players">Não estão disponíveis transmissões de áudio a reprodutores externos</string>
+    <string name="unknown_format">Formato desconhecido</string>
+    <string name="unknown_quality">Qualidade desconhecida</string>
+    <string name="select_quality_external_players">Selecione a qualidade para reprodutores externos</string>
 </resources>

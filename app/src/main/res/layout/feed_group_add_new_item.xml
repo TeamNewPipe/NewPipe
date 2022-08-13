@@ -24,10 +24,10 @@
             android:layout_height="14dp"
             android:layout_gravity="center"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/ic_add"
+            android:src="@drawable/ic_add"
             tools:ignore="ContentDescription" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

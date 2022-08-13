@@ -1,0 +1,2 @@
+Removido o suporte ao MediaParser para corrigir falha de reprodução após buffer no Android 11+.
+Tunelamento de mídia desativado no Philips QM16XE para corrigir problemas de reprodução.

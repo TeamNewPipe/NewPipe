@@ -1,5 +1,7 @@
 package org.schabi.newpipe.settings.custom;
 
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_RECREATE_NOTIFICATION;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -21,18 +22,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.core.widget.TextViewCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceViewHolder;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.player.MainPlayer;
-import org.schabi.newpipe.player.NotificationConstants;
+import org.schabi.newpipe.databinding.ListRadioIconItemBinding;
+import org.schabi.newpipe.databinding.SingleChoiceDialogViewBinding;
+import org.schabi.newpipe.player.notification.NotificationConstants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class NotificationActionsPreference extends Preference {
 
@@ -50,7 +53,7 @@ public class NotificationActionsPreference extends Preference {
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onBindViewHolder(final PreferenceViewHolder holder) {
+    public void onBindViewHolder(@NonNull final PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
 
         holder.itemView.setClickable(false);
@@ -61,7 +64,9 @@ public class NotificationActionsPreference extends Preference {
     public void onDetached() {
         super.onDetached();
         saveChanges();
-        getContext().sendBroadcast(new Intent(MainPlayer.ACTION_RECREATE_NOTIFICATION));
+        // set package to this app's package to prevent the intent from being seen outside
+        getContext().sendBroadcast(new Intent(ACTION_RECREATE_NOTIFICATION)
+                .setPackage(App.PACKAGE_NAME));
     }
 
 
@@ -70,13 +75,11 @@ public class NotificationActionsPreference extends Preference {
     ////////////////////////////////////////////////////////////////////////////
 
     private void setupActions(@NonNull final View view) {
-        compactSlots =
-                NotificationConstants.getCompactSlotsFromPreferences(
-                        getContext(), getSharedPreferences(), 5);
-        notificationSlots = new NotificationSlot[5];
-        for (int i = 0; i < 5; i++) {
-            notificationSlots[i] = new NotificationSlot(i, view);
-        }
+        compactSlots = NotificationConstants.getCompactSlotsFromPreferences(getContext(),
+                getSharedPreferences(), 5);
+        notificationSlots = IntStream.range(0, 5)
+                .mapToObj(i -> new NotificationSlot(i, view))
+                .toArray(NotificationSlot[]::new);
     }
 
 
@@ -190,13 +193,12 @@ public class NotificationActionsPreference extends Preference {
 
         void openActionChooserDialog() {
             final LayoutInflater inflater = LayoutInflater.from(getContext());
-            final LinearLayout rootLayout = (LinearLayout) inflater.inflate(
-                    R.layout.single_choice_dialog_view, null, false);
-            final RadioGroup radioGroup = rootLayout.findViewById(android.R.id.list);
+            final SingleChoiceDialogViewBinding binding =
+                    SingleChoiceDialogViewBinding.inflate(inflater);
 
             final AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                     .setTitle(SLOT_TITLES[i])
-                    .setView(radioGroup)
+                    .setView(binding.getRoot())
                     .setCancelable(true)
                     .create();
 
@@ -208,8 +210,8 @@ public class NotificationActionsPreference extends Preference {
 
             for (int id = 0; id < NotificationConstants.SLOT_ALLOWED_ACTIONS[i].length; ++id) {
                 final int action = NotificationConstants.SLOT_ALLOWED_ACTIONS[i][id];
-                final RadioButton radioButton
-                        = (RadioButton) inflater.inflate(R.layout.list_radio_icon_item, null);
+                final RadioButton radioButton = ListRadioIconItemBinding.inflate(inflater)
+                        .getRoot();
 
                 // if present set action icon with correct color
                 if (NotificationConstants.ACTION_ICONS[action] != 0) {
@@ -219,9 +221,9 @@ public class NotificationActionsPreference extends Preference {
                         final int color = ThemeHelper.resolveColorFromAttr(getContext(),
                                 android.R.attr.textColorPrimary);
                         drawable = DrawableCompat.wrap(drawable).mutate();
-                        DrawableCompat.setTint(drawable, color);
-                        TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(radioButton,
-                                null, null, drawable, null);
+                        drawable.setTint(color);
+                        radioButton.setCompoundDrawablesRelativeWithIntrinsicBounds(null,
+                                null, drawable, null);
                     }
                 }
 
@@ -231,7 +233,7 @@ public class NotificationActionsPreference extends Preference {
                 radioButton.setLayoutParams(new RadioGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 radioButton.setOnClickListener(radioButtonsClickListener);
-                radioGroup.addView(radioButton);
+                binding.list.addView(radioButton);
             }
             alertDialog.show();
 

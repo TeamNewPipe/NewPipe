@@ -1,0 +1,9 @@
+• Tam ekranda oyunçunu birbaşa açmaq üçün seçim əlavə edildi
+ • Hansı növ axtarış təkliflərinin göstərilməsinə icazə verin
+ • Qaranlıq mövzu indi daha tünd + tünd ekran əlavə edildi
+ • Arzuolunmaz faylları bozlaşdırmaq üçün təkmilləşdirilmiş fayl seçicisi 
+• YouTube abunəliklərinin idxalı düzəldildi
+ • Yayımı təkrar oxutmaq üçün təkrar oxutma düyməsinə yenidən toxunmaq lazımdır 
+• Sabit bağlanan audio sessiya 
+• [Android TV] DPad istifadə edərkən uzun axtarış çubuğu atlamaları düzəldildi.
+Əlavə dəyişiklikləri görmək üçün aşağıdakı Linklər sekmesinden dəyişiklik jurnalına (və blog yazısına) baxın.

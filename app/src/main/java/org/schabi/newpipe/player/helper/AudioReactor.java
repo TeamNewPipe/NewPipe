@@ -14,9 +14,8 @@ import androidx.core.content.ContextCompat;
 import androidx.media.AudioFocusRequestCompat;
 import androidx.media.AudioManagerCompat;
 
-import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.analytics.AnalyticsListener;
-import com.google.android.exoplayer2.decoder.DecoderCounters;
 
 public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, AnalyticsListener {
 
@@ -28,14 +27,14 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
     private static final int FOCUS_GAIN_TYPE = AudioManagerCompat.AUDIOFOCUS_GAIN;
     private static final int STREAM_TYPE = AudioManager.STREAM_MUSIC;
 
-    private final SimpleExoPlayer player;
+    private final ExoPlayer player;
     private final Context context;
     private final AudioManager audioManager;
 
     private final AudioFocusRequestCompat request;
 
     public AudioReactor(@NonNull final Context context,
-                        @NonNull final SimpleExoPlayer player) {
+                        @NonNull final ExoPlayer player) {
         this.player = player;
         this.context = context;
         this.audioManager = ContextCompat.getSystemService(context, AudioManager.class);
@@ -150,15 +149,10 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, An
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAudioSessionId(final EventTime eventTime, final int audioSessionId) {
+    public void onAudioSessionIdChanged(@NonNull final EventTime eventTime,
+                                        final int audioSessionId) {
         notifyAudioSessionUpdate(true, audioSessionId);
     }
-
-    @Override
-    public void onAudioDisabled(final EventTime eventTime, final DecoderCounters counters) {
-        notifyAudioSessionUpdate(false, player.getAudioSessionId());
-    }
-
     private void notifyAudioSessionUpdate(final boolean active, final int audioSessionId) {
         if (!PlayerHelper.isUsingDSP()) {
             return;

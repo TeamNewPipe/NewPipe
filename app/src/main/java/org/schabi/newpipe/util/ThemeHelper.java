@@ -23,14 +23,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
@@ -225,6 +228,36 @@ public final class ThemeHelper {
         }
 
         return value.data;
+    }
+
+    /**
+     * Resolves a {@link Drawable} by it's id.
+     *
+     * @param context   Context
+     * @param attrResId Resource id
+     * @return the {@link Drawable}
+     */
+    public static Drawable resolveDrawable(@NonNull final Context context,
+                                           @AttrRes final int attrResId) {
+        final TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(attrResId, typedValue, true);
+        return AppCompatResources.getDrawable(context, typedValue.resourceId);
+    }
+
+    /**
+     * Gets a runtime dimen from the {@code android} package. Should be used for dimens for which
+     * normal accessing with {@code R.dimen.} is not available.
+     *
+     * @param context context
+     * @param name    dimen resource name (e.g. navigation_bar_height)
+     * @return the obtained dimension, in pixels, or 0 if the resource could not be resolved
+     */
+    public static int getAndroidDimenPx(@NonNull final Context context, final String name) {
+        final int resId = context.getResources().getIdentifier(name, "dimen", "android");
+        if (resId <= 0) {
+            return 0;
+        }
+        return context.getResources().getDimensionPixelSize(resId);
     }
 
     private static String getSelectedThemeKey(final Context context) {

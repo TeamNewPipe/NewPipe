@@ -8,8 +8,8 @@ captures/
 *~
 .weblate
 *.class
-**/debug/
-**/release/
+app/debug/
+app/release/
 
 # vscode / eclipse files
 *.classpath

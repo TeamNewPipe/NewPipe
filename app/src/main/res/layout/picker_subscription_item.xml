@@ -17,14 +17,14 @@
         android:orientation="vertical"
         android:padding="4dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/thumbnail_view"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:contentDescription="@string/list_thumbnail_view_description"
-            tools:src="@drawable/buddy_channel_item" />
+            app:shapeAppearance="@style/CircularImageView"
+            tools:src="@drawable/placeholder_person" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/title_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,8 +52,8 @@
             android:layout_gravity="top|center_horizontal"
             android:layout_marginTop="4dp"
             android:scaleType="centerInside"
+            android:src="@drawable/ic_done"
             app:tint="@color/white"
-            app:srcCompat="@drawable/ic_done"
             tools:ignore="ContentDescription" />
     </FrameLayout>
 </FrameLayout>

@@ -37,7 +37,6 @@ public final class PermissionHelper {
         return checkWriteStoragePermissions(activity, requestCode);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean checkReadStoragePermissions(final Activity activity,
                                                       final int requestCode) {
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -123,8 +122,8 @@ public final class PermissionHelper {
     }
 
     public static void showPopupEnablementToast(final Context context) {
-        final Toast toast
-                = Toast.makeText(context, R.string.msg_popup_permission, Toast.LENGTH_LONG);
+        final Toast toast =
+                Toast.makeText(context, R.string.msg_popup_permission, Toast.LENGTH_LONG);
         final TextView messageView = toast.getView().findViewById(android.R.id.message);
         if (messageView != null) {
             messageView.setGravity(Gravity.CENTER);

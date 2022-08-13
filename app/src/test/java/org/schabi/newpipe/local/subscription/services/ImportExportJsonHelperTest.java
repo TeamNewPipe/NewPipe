@@ -1,5 +1,8 @@
 package org.schabi.newpipe.local.subscription.services;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import org.junit.Test;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
@@ -10,9 +13,6 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 /**
  * @see ImportExportJsonHelper
@@ -47,8 +47,8 @@ public class ImportExportJsonHelperTest {
 
                 fail("didn't throw exception");
             } catch (final Exception e) {
-                final boolean isExpectedException
-                        = e instanceof SubscriptionExtractor.InvalidSourceException;
+                final boolean isExpectedException =
+                        e instanceof SubscriptionExtractor.InvalidSourceException;
                 assertTrue("\"" + e.getClass().getSimpleName()
                         + "\" is not the expected exception", isExpectedException);
             }

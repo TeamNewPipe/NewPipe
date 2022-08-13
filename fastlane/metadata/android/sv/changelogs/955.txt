@@ -1,0 +1,3 @@
+[YouTube] Fixade sökningen för vissa användare
+[YouTube] Fixade slumpmässiga dekrypteringsundantag
+[SoundCloud] URL:er som slutar med ett snedstreck analyseras nu korrekt

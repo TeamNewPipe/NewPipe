@@ -1,0 +1,4 @@
+Hotfix
+• Miniaturen en titels herstellen, die worden bijgesneden in rasterlay-out, vanwege een verkeerde berekening van hoeveel video's in één rij passen
+• Herstel downloaddialoog verdwijnt zonder iets te doen indien geopend vanuit het deelmenu
+• Een bibliotheek bijwerken die verband houdt met het openen van externe activiteiten, zoals de bestandskiezer voor Storage Access Framework

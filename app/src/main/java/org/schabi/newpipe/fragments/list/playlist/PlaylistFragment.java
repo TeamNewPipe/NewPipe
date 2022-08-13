@@ -1,6 +1,8 @@
 package org.schabi.newpipe.fragments.list.playlist;
 
-import android.app.Activity;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,17 +17,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.viewbinding.ViewBinding;
+
+import com.google.android.material.shape.CornerFamily;
+import com.google.android.material.shape.ShapeAppearanceModel;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
 import org.schabi.newpipe.databinding.PlaylistHeaderBinding;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
@@ -33,26 +38,25 @@ import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
-import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.info_list.dialog.InfoItemDialog;
+import org.schabi.newpipe.info_list.dialog.StreamDialogDefaultEntry;
+import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
-import org.schabi.newpipe.player.MainPlayer.PlayerType;
-import org.schabi.newpipe.player.helper.PlayerHolder;
+import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
-import org.schabi.newpipe.util.PicassoHelper;
-import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
-import org.schabi.newpipe.util.StreamDialogEntry;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
@@ -60,11 +64,7 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
-import static org.schabi.newpipe.ktx.ViewUtils.animate;
-import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
-
-public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
+public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, PlaylistInfo> {
 
     private static final String PICASSO_PLAYLIST_TAG = "PICASSO_PLAYLIST_TAG";
 
@@ -120,12 +120,12 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected ViewBinding getListHeader() {
+    protected Supplier<View> getListHeaderSupplier() {
         headerBinding = PlaylistHeaderBinding
                 .inflate(activity.getLayoutInflater(), itemsList, false);
         playlistControlBinding = headerBinding.playlistControl;
 
-        return headerBinding;
+        return headerBinding::getRoot;
     }
 
     @Override
@@ -140,54 +140,22 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     }
 
     @Override
-    protected void showStreamDialog(final StreamInfoItem item) {
+    protected void showInfoItemDialog(final StreamInfoItem item) {
         final Context context = getContext();
-        final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || activity == null) {
-            return;
+        try {
+            final InfoItemDialog.Builder dialogBuilder =
+                    new InfoItemDialog.Builder(getActivity(), context, this, item);
+
+            dialogBuilder
+                    .setAction(
+                            StreamDialogDefaultEntry.START_HERE_ON_BACKGROUND,
+                            (f, infoItem) -> NavigationHelper.playOnBackgroundPlayer(
+                                    context, getPlayQueueStartingAt(infoItem), true))
+                    .create()
+                    .show();
+        } catch (final IllegalArgumentException e) {
+            InfoItemDialog.Builder.reportErrorDuringInitialization(e, item);
         }
-
-        final ArrayList<StreamDialogEntry> entries = new ArrayList<>();
-
-        if (PlayerHolder.getInstance().isPlayerOpen()) {
-            entries.add(StreamDialogEntry.enqueue);
-
-            if (PlayerHolder.getInstance().getQueueSize() > 1) {
-                entries.add(StreamDialogEntry.enqueue_next);
-            }
-        }
-
-        if (item.getStreamType() == StreamType.AUDIO_STREAM) {
-            entries.addAll(Arrays.asList(
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share
-            ));
-        } else  {
-            entries.addAll(Arrays.asList(
-                    StreamDialogEntry.start_here_on_background,
-                    StreamDialogEntry.start_here_on_popup,
-                    StreamDialogEntry.append_playlist,
-                    StreamDialogEntry.share
-            ));
-        }
-        entries.add(StreamDialogEntry.open_in_browser);
-        if (KoreUtils.shouldShowPlayWithKodi(context, item.getServiceId())) {
-            entries.add(StreamDialogEntry.play_with_kodi);
-        }
-
-        if (!isNullOrEmpty(item.getUploaderUrl())) {
-            entries.add(StreamDialogEntry.show_channel_details);
-        }
-
-        StreamDialogEntry.setEnabledEntries(entries);
-
-        StreamDialogEntry.start_here_on_background.setCustomAction((fragment, infoItem) ->
-                NavigationHelper.playOnBackgroundPlayer(context,
-                        getPlayQueueStartingAt(infoItem), true));
-
-        new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context),
-                (dialog, which) -> StreamDialogEntry.clickOn(which, this, item)).show();
     }
 
     @Override
@@ -243,7 +211,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
+    protected Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
         return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextPage);
     }
 
@@ -262,10 +230,24 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 ShareUtils.openUrlInBrowser(requireContext(), url);
                 break;
             case R.id.menu_item_share:
-                ShareUtils.shareText(requireContext(), name, url, currentInfo.getThumbnailUrl());
+                if (currentInfo != null) {
+                    ShareUtils.shareText(requireContext(), name, url,
+                            currentInfo.getThumbnailUrl());
+                }
                 break;
             case R.id.menu_item_bookmark:
                 onBookmarkClicked();
+                break;
+            case R.id.menu_item_append_playlist:
+                disposables.add(PlaylistDialog.createCorrespondingDialog(
+                        getContext(),
+                        getPlayQueue()
+                                .getStreams()
+                                .stream()
+                                .map(StreamEntity::new)
+                                .collect(Collectors.toList()),
+                        dialog -> dialog.show(getFM(), TAG)
+                ));
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -304,7 +286,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                         NavigationHelper.openChannelFragment(getFM(), result.getServiceId(),
                                 result.getUploaderUrl(), result.getUploaderName());
                     } catch (final Exception e) {
-                        ErrorActivity.reportUiErrorInSnackbar(this, "Opening channel fragment", e);
+                        ErrorUtil.showUiErrorSnackbar(this, "Opening channel fragment", e);
                     }
                 });
             }
@@ -319,9 +301,12 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 && (YoutubeParsingHelper.isYoutubeMixId(result.getId())
                 || YoutubeParsingHelper.isYoutubeMusicMixId(result.getId()))) {
             // this is an auto-generated playlist (e.g. Youtube mix), so a radio is shown
-            headerBinding.uploaderAvatarView.setDisableCircularTransformation(true);
-            headerBinding.uploaderAvatarView.setBorderColor(
-                    getResources().getColor(R.color.transparent_background_color));
+            final ShapeAppearanceModel model = ShapeAppearanceModel.builder()
+                    .setAllCorners(CornerFamily.ROUNDED, 0f)
+                    .build(); // this turns the image back into a square
+            headerBinding.uploaderAvatarView.setShapeAppearanceModel(model);
+            headerBinding.uploaderAvatarView.setStrokeColor(AppCompatResources
+                    .getColorStateList(requireContext(), R.color.transparent_background_color));
             headerBinding.uploaderAvatarView.setImageDrawable(
                     AppCompatResources.getDrawable(requireContext(),
                     R.drawable.ic_radio)
@@ -404,7 +389,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     }
 
     private Subscriber<List<PlaylistRemoteEntity>> getPlaylistBookmarkSubscriber() {
-        return new Subscriber<List<PlaylistRemoteEntity>>() {
+        return new Subscriber<>() {
             @Override
             public void onSubscribe(final Subscription s) {
                 if (bookmarkReactor != null) {

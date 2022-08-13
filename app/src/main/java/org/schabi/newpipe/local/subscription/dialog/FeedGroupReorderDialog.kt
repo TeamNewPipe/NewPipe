@@ -57,15 +57,12 @@ class FeedGroupReorderDialog : DialogFragment() {
 
         viewModel = ViewModelProvider(this).get(FeedGroupReorderDialogViewModel::class.java)
         viewModel.groupsLiveData.observe(viewLifecycleOwner, Observer(::handleGroups))
-        viewModel.dialogEventLiveData.observe(
-            viewLifecycleOwner,
-            Observer {
-                when (it) {
-                    ProcessingEvent -> disableInput()
-                    SuccessEvent -> dismiss()
-                }
+        viewModel.dialogEventLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                ProcessingEvent -> disableInput()
+                SuccessEvent -> dismiss()
             }
-        )
+        }
 
         binding.feedGroupsList.layoutManager = LinearLayoutManager(requireContext())
         binding.feedGroupsList.adapter = groupAdapter
@@ -112,8 +109,8 @@ class FeedGroupReorderDialog : DialogFragment() {
                 source: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean {
-                val sourceIndex = source.adapterPosition
-                val targetIndex = target.adapterPosition
+                val sourceIndex = source.bindingAdapterPosition
+                val targetIndex = target.bindingAdapterPosition
 
                 groupAdapter.notifyItemMoved(sourceIndex, targetIndex)
                 Collections.swap(groupOrderedIdList, sourceIndex, targetIndex)

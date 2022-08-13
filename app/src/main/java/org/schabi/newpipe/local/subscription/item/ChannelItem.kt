@@ -39,7 +39,7 @@ class ChannelItem(
             itemChannelDescriptionView.text = infoItem.description
         }
 
-        PicassoHelper.loadThumbnail(infoItem.thumbnailUrl).into(itemThumbnailView)
+        PicassoHelper.loadAvatar(infoItem.thumbnailUrl).into(itemThumbnailView)
 
         gesturesListener?.run {
             viewHolder.root.setOnClickListener { selected(infoItem) }
@@ -54,11 +54,9 @@ class ChannelItem(
             context.getString(R.string.subscribers_count_not_available)
         }
 
-        if (itemVersion == ItemVersion.NORMAL) {
-            if (infoItem.streamCount >= 0) {
-                val formattedVideoAmount = Localization.localizeStreamCount(context, infoItem.streamCount)
-                details = Localization.concatenateStrings(details, formattedVideoAmount)
-            }
+        if (itemVersion == ItemVersion.NORMAL && infoItem.streamCount >= 0) {
+            val formattedVideoAmount = Localization.localizeStreamCount(context, infoItem.streamCount)
+            details = Localization.concatenateStrings(details, formattedVideoAmount)
         }
         return details
     }

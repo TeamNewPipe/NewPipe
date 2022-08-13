@@ -1,0 +1,9 @@
+Dodano nowe zachowanie typu „naciśnij dwukrotnie, aby przewinąć”
+Możliwość przeszukiwania ustawień
+Oznaczanie przypiętych komentarzy
+Dodano obsługę otwierania w aplikacji instancji PeerTube FSFE
+Dodano powiadomienia o błędach
+Naprawiono powtarzanie pierwszej pozycji kolejki przy zmianie odtwarzacza
+Wydłużono oczekiwanie podczas buforowania transmisji na żywo, zanim zakończy się ono niepowodzeniem
+Naprawiono kolejność lokalnych wyników wyszukiwania
+Naprawiono puste pozycje w kolejce odtwarzania

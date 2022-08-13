@@ -1,4 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">ଆରମ୍ଭ କରିବା ପାଇଁ \"ସର୍ଚ୍ଚ\" ବଟନ କୁ ଦବାନ୍ତୁ</string>
+    <string name="systems_language">ସିଷ୍ଟମ୍ ଡିଫଲ୍ଟ</string>
+    <string name="rename_playlist">ନାମ ବଦଳାନ୍ତୁ</string>
+    <string name="off">ବନ୍ଦ</string>
+    <string name="metadata_language">ଭାଷା</string>
+    <string name="metadata_support">ସମର୍ଥନ</string>
+    <string name="night_theme_title">ରାତ୍ରି ଥିମ୍</string>
+    <string name="light_theme_title">ହାଲୁକା</string>
+    <string name="black_theme_title">କଳା</string>
+    <string name="title_activity_history">ଇତିବୃତ୍ତି</string>
+    <string name="action_history">ଇତିବୃତ୍ତି</string>
+    <string name="theme_title">ଥିମ୍</string>
+    <string name="dark_theme_title">ଗାଢ଼</string>
+    <plurals name="minutes">
+        <item quantity="one">%d ମିନିଟ୍</item>
+        <item quantity="other">%d ମିନିଟ୍</item>
+    </plurals>
+    <string name="app_language_title">ଆପ୍ ଭାଷା</string>
+    <string name="auto_device_theme_title">ସ୍ୱୟଂଚାଳିତ (ଡିଭାଇସ୍ ଥିମ୍)</string>
+    <string name="metadata_privacy">ଗୋପନୀୟତା</string>
+    <string name="name">ନାମ</string>
+    <string name="play_queue_stream_detail">ବିବରଣୀ</string>
+    <string name="on">ଚାଲୁ</string>
+    <plurals name="hours">
+        <item quantity="one">%d ଘଣ୍ଟା</item>
+        <item quantity="other">%d ଘଣ୍ଟା</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%d ସେକେଣ୍ଡ</item>
+        <item quantity="other">%d ସେକେଣ୍ଡ</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d ଦିନ</item>
+        <item quantity="other">%d ଦିନ</item>
+    </plurals>
+    <string name="feed_create_new_group_button_title">ନୂଆ</string>
 </resources>

@@ -1,0 +1,1 @@
+YouTube-u yararsız hala gətirən regex funksiyasının şifrəsinin açılması düzəldildi.

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਸਰਚ ਦਬਾਓ</string>
+    <string name="main_bg_subtitle">ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਵੱਡਦਰਸ਼ੀ ਕੱਚ ਨੂੰ ਦਬਾਓ</string>
     <string name="upload_date_text">%1$s ਨੂੰ ਜਾਰੀ ਕੀਤੀ ਗਈ</string>
     <string name="no_player_found">ਕੋਈ ਸਟ੍ਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ। ਤੁਸੀਂ ਵੀਐੱਲਸੀ ਸਥਾਪਤ ਕਰਨਾ ਚਾਹੋਗੇ\?</string>
     <string name="no_player_found_toast">ਸਟ੍ਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ (ਤੁਸੀਂ ਵੀਐੱਲਸੀ ਸਥਾਪਤ ਕਰਕੇ ਇਸਨੂੰ ਚਲਾ ਸਕਦੇ ਹੋ)।</string>
@@ -92,7 +92,6 @@
     <string name="downloads_title">ਡਾਊਨਲੋਡਸ</string>
     <string name="error_report_title">Error ਰਿਪੋਰਟ</string>
     <string name="all">ਸਾਰੇ</string>
-    <string name="yes">ਹਾਂ</string>
     <string name="disabled">ਬੰਦ ਕੀਤਾ</string>
     <string name="clear">ਮਿਟਾਓ</string>
     <string name="best_resolution">ਵਧੀਆ Resolution</string>
@@ -147,7 +146,6 @@
     <string name="info_labels">ਕੀ:\\nRequest:\\nContent ਭਾਸ਼ਾ/ਬੋਲੀ:\\nContent Country:\\nApp ਭਾਸ਼ਾ/ਬੋਲੀ:\\nService:\\nGMT ਸਮਾਂ:\\nPackage:\\nVersion:\\nOS version:</string>
     <string name="your_comment">ਤੁਹਾਡੀ ਟਿੱਪਣੀ (ਅੰਗਰੇਜ਼ੀ ਵਿਚ):</string>
     <string name="error_details_headline">ਵੇਰਵੇ:</string>
-    <string name="list_thumbnail_view_description">ਵੀਡੀਓ preview thumbnail</string>
     <string name="detail_thumbnail_view_description">ਵਿਡੀਉ ਚਲਾਓ, ਮਿਆਦ:</string>
     <string name="detail_uploader_thumbnail_view_description">ਅਪਲੋਡਰ ਦਾ ਅਵਤਾਰ thumbnail</string>
     <string name="detail_likes_img_view_description">ਪਸੰਦ</string>
@@ -531,7 +529,6 @@
     <string name="app_language_title">ਐਪ ਭਾਸ਼ਾ</string>
     <string name="choose_instance_prompt">ਕੋਈ ਸਥਿਤੀ ਚੁਣੋ</string>
     <string name="downloads_storage_use_saf_summary_api_29">\'ਸਟੋਰੇਜ ਐਕਸੈੱਸ ਫ਼ਰੇਮਵਰਕ\' ਐਂਡਰਾਇਡ 10 ਤੋਂ ਕੰਮ ਕਰਨਾ ਸ਼ੁਰੂ ਕਰਦਾ ਹੈ</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'ਸਟੋਰੇਜ ਐਕਸੈੱਸ ਫ਼ਰੇਮਵਰਕ\' ਐਂਡਰਾਇਡ ਕਿਟਕੈਟ ਅਤੇ ਇਸਤੋਂ ਹੇਠਾਂ ਦੇ ਵਰਜਨਾਂ \'ਤੇ ਕੰਮ ਨਹੀਂ ਕਰਦਾ</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">ਤੁਹਾਨੂੰ ਹਰ ਵਾਰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਕਿ ਡਾਊਨਲੋਡ ਨੂੰ ਕਿੱਥੇ ਸਾਂਭਣਾ ਹੈ</string>
     <string name="delete_downloaded_files">ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਫ਼ਾਈਲਾਂ ਮਿਟਾਓ</string>
     <string name="clear_download_history">ਡਾਊਨਲੋਡ ਇਤਿਹਾਸ ਸਾਫ਼ ਕਰੋ</string>
@@ -586,7 +583,6 @@
     <string name="youtube_restricted_mode_enabled_summary">ਯੂਟਿਊਬ \"ਪਾਬੰਦੀਸ਼ੁਦਾ ਮੋਡ\" ਉਪਲਬਧ ਕਰਾਉਂਦਾ ਹੈ ਜੋ ਬਾਲਗਾਂ ਵਾਲ਼ੀ ਸਮੱਗਰੀ ਲੁਕਾਉਂਦਾ ਹੈ</string>
     <string name="youtube_restricted_mode_enabled_title">ਯੂਟਿਊਬ ਦਾ ਪਾਬੰਦੀਸ਼ੁਦਾ ਮੋਡ ਚਾਲੂ ਕਰੋ</string>
     <string name="show_age_restricted_content_summary">ਉਹ ਸਮੱਗਰੀ ਵੀ ਵਿਖਾਓ ਜੋ ਉਮਰ-ਸੀਮਾ ਕਰਕੇ ਬੱਚਿਆਂ ਲਈ ਸ਼ਾਇਦ ਸਹੀ ਨਾ ਹੋਵੇ (ਜਿਵੇਂ 18+)</string>
-    <string name="settings_category_notification_title">ਇਤਲਾਹਾਂ</string>
     <string name="peertube_instance_add_exists">ਸਥਿਤੀ ਪਹਿਲਾਂ ਨੂੰ ਮੌਜੂਦ ਹੈ</string>
     <string name="peertube_instance_add_https_only">ਸਿਰਫ਼ HTTP URLs ਹੀ ਮਾਣਨਯੋਗ ਹਨ</string>
     <string name="peertube_instance_add_fail">ਸਥਿਤੀ ਦੀ ਜਾਇਜ਼ਗੀ ਤਸਦੀਕ ਨਹੀਂ ਹੋ ਸਕੀ</string>

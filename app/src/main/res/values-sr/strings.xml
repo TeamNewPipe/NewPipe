@@ -4,9 +4,9 @@
     <string name="no_player_found">Нема плејера токова. Инсталирати ВЛЦ\?</string>
     <string name="install">Инсталирај</string>
     <string name="cancel">Откажи</string>
-    <string name="open_in_browser">Отвори у прегледачу</string>
+    <string name="open_in_browser">Отвори у претраживачу</string>
     <string name="share">Подели</string>
-    <string name="download">Преузимање</string>
+    <string name="download">Преузми</string>
     <string name="search">Тражи</string>
     <string name="settings">Подешавања</string>
     <string name="did_you_mean">Да ли сте мислили: „%1$s“\?</string>
@@ -26,7 +26,6 @@
     <string name="show_next_and_similar_title">Прикажи „следећи“ и „слични“ видео</string>
     <string name="content_language_title">Подразумевани језик садржаја</string>
     <string name="settings_category_video_audio_title">Видео и аудио</string>
-    <string name="list_thumbnail_view_description">Сличица видео прегледа</string>
     <string name="detail_thumbnail_view_description">Пусти видео, трајање:</string>
     <string name="detail_uploader_thumbnail_view_description">Аватар пошиљаоца</string>
     <string name="detail_dislikes_img_view_description">Несвиђања</string>
@@ -62,7 +61,7 @@
     <string name="audio">Аудио</string>
     <string name="retry">Покушај поново</string>
     <string name="duration_live">Уживо</string>
-    <string name="main_bg_subtitle">Тапните на лупу да започнете.</string>
+    <string name="main_bg_subtitle">Кликните на лупу да започнете.</string>
     <string name="start">Почни</string>
     <string name="pause">Паузирај</string>
     <string name="delete">Обриши</string>
@@ -88,7 +87,6 @@
     <string name="short_thousand">хиљ</string>
     <string name="short_million">мил</string>
     <string name="short_billion">млрд</string>
-    <string name="yes">Да</string>
     <string name="open_in_popup_mode">Отвори у искачућем режиму</string>
     <string name="msg_popup_permission">Ова дозвола је потребна за
 \nотварање у искачућем режиму</string>
@@ -194,7 +192,7 @@
     <string name="always">Увек</string>
     <string name="just_once">Само једном</string>
     <string name="unknown_content">[непознато]</string>
-    <string name="show_hold_to_append_title">Прикажи поруку „задржи ради стављања у ред”</string>
+    <string name="show_hold_to_append_title">Прикажи поруку „задржи ради заказивања”</string>
     <string name="donation_title">Донација</string>
     <string name="donation_encouragement">ЊуПајп развијају волонтери у своје слободно време како би вам пружили најбоље искуство. Узвратите им како би наставили са побољшавањем ЊуПајпа док уживају уз шољицу кафе.</string>
     <string name="give_back">Узврати</string>
@@ -486,7 +484,6 @@
     <string name="youtube_restricted_mode_enabled_summary">Јутјуб омогућава „Ограничени режим“ који скрива потенцијални садржај за одрасле</string>
     <string name="youtube_restricted_mode_enabled_title">Укључити Јутјубов „Ограничени режим“</string>
     <string name="show_age_restricted_content_summary">Приказ садржаја који можда није прикладан за децу јер има старосну границу (попут 18+)</string>
-    <string name="settings_category_notification_title">Обавештење</string>
     <string name="settings_category_updates_title">Ажурирања</string>
     <string name="peertube_instance_add_exists">Инстанца већ постоји</string>
     <string name="peertube_instance_add_https_only">Подржане су само HTTPS УРЛ адресе</string>
@@ -507,9 +504,9 @@
     <string name="brightness_gesture_control_title">Контрола осветљености потезом</string>
     <string name="volume_gesture_control_summary">Користите потезе за контролу јачине звука плејера</string>
     <string name="volume_gesture_control_title">Контрола јачине звука потезом</string>
-    <string name="auto_queue_toggle">Аутоматски ред</string>
+    <string name="auto_queue_toggle">Самостално заказивање</string>
     <string name="auto_queue_summary">Наставите да завршавате (не понављајући) ред репродукције додавањем повезаног стрима</string>
-    <string name="auto_queue_title">Аутоматски стави у ред следећи ток</string>
+    <string name="auto_queue_title">Самостално закажи следећи ток</string>
     <string name="metadata_cache_wipe_complete_notice">Кеш метаподатака обрисан</string>
     <string name="show_meta_info_summary">Искључите за сакривање поља мета-података са додатним информацијама о творцу тока, садржају или захтеву за претрагу</string>
     <string name="show_meta_info_title">Прикажи мета-податке</string>
@@ -518,7 +515,7 @@
     <string name="clear_queue_confirmation_description">Редослед активног плејера биће замењен</string>
     <string name="clear_queue_confirmation_summary">Пребацивање на други плејер може променити ваш редослед</string>
     <string name="clear_queue_confirmation_title">Питај за потврду пре пражњења редоследа</string>
-    <string name="seek_duration_title">Време за премотавања напред/назад</string>
+    <string name="seek_duration_title">Период премотавања напред/назад</string>
     <string name="night_theme_title">ноћна тема</string>
     <string name="notification_colorize_summary">Андроид ће прилагодити боју обавештења према главној боји на сличици (није доступно на свим уређајима)</string>
     <string name="notification_colorize_title">Обоји обавештења</string>
@@ -645,11 +642,21 @@
     <string name="feed_load_error_account_info">Не могу да учитам довод за „%s“.</string>
     <string name="feed_load_error">Грешка учитавања довода</string>
     <string name="downloads_storage_use_saf_summary_api_29">Од Андроида 10 само „Storage Access Framework“ је подржан</string>
-    <string name="downloads_storage_use_saf_summary_api_19">„Storage Access Framework“ није подржан на Андроиду 4.4 и старијим</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Питаће вас где да сачувате свако преузимање</string>
     <string name="no_dir_yet">Фасцикла за преузимање није одређена. Изаберите подразумевану фасциклу</string>
     <string name="off">искљ</string>
     <string name="on">укљ</string>
     <string name="tablet_mode_title">Режим таблета</string>
     <string name="feed_toggle_show_played_items">Прикажи пуштано</string>
+    <string name="enqueue_next_stream">Закажи следеће</string>
+    <string name="enqueued_next">Заказано је следеће</string>
+    <string name="local_search_suggestions">Местни предлози претраге</string>
+    <string name="remote_search_suggestions">Удаљени предлози претраге</string>
+    <string name="mark_as_watched">Означи као одгледано</string>
+    <string name="comments_are_disabled">Разговори су онемогућени</string>
+    <string name="processing_may_take_a_moment">Обрађујем… Може потрајати пар тренутака</string>
+    <string name="show_image_indicators_title">Приказуј указиваче слике</string>
+    <string name="start_main_player_fullscreen_summary">Не покрећи видео у малом прозору, већ пређи одмах у пун приказ заслона, уколико је обртање приказа закључано. И даље можете приступити малом приказу извођача изласком из пуног приказа</string>
+    <string name="start_main_player_fullscreen_title">Покрени пуни главни приказ извођача</string>
+    <string name="crash_the_player">Прекините плејер</string>
 </resources>

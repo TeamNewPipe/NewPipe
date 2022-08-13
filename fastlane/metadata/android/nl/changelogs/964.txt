@@ -1,0 +1,8 @@
+- Hoofdstukken in spelerbediening worden ondersteund
+- [PeerTube] Sepia zoeken toegevoegd
+- Delen is terug in video detailweergave. Stream beschrijving verplaatst naar de tab lay-out
+- Als helderheid-gebaar is uitgeschakeld, kan helderheid herstel ook uit
+- Lijst-item 'Afspelen op Kodi'
+- Opgelost : Crash als geen standaardbrowser is ingesteld op sommige toestellen. Dialogen voor delen verbeterd
+- 'Afspelen/Pauze' met spatie-knop in fullscreen speler
+- [media.ccc.de] Reparaties en verbeteringen

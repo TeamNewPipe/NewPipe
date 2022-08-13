@@ -13,13 +13,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.media.session.MediaButtonReceiver;
 
+import com.google.android.exoplayer2.ForwardingPlayer;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
 import org.schabi.newpipe.player.mediasession.PlayQueueNavigator;
-import org.schabi.newpipe.player.mediasession.PlayQueuePlaybackController;
 
 import java.util.Optional;
 
@@ -55,9 +55,18 @@ public class MediaSessionManager {
                 .build());
 
         sessionConnector = new MediaSessionConnector(mediaSession);
-        sessionConnector.setControlDispatcher(new PlayQueuePlaybackController(callback));
         sessionConnector.setQueueNavigator(new PlayQueueNavigator(mediaSession, callback));
-        sessionConnector.setPlayer(player);
+        sessionConnector.setPlayer(new ForwardingPlayer(player) {
+            @Override
+            public void play() {
+                callback.play();
+            }
+
+            @Override
+            public void pause() {
+                callback.pause();
+            }
+        });
     }
 
     @Nullable
@@ -135,9 +144,7 @@ public class MediaSessionManager {
         lastTitleHashCode = title.hashCode();
         lastArtistHashCode = artist.hashCode();
         lastDuration = duration;
-        if (optAlbumArt.isPresent()) {
-            lastAlbumArtHashCode = optAlbumArt.get().hashCode();
-        }
+        optAlbumArt.ifPresent(bitmap -> lastAlbumArtHashCode = bitmap.hashCode());
     }
 
     private boolean checkIfMetadataShouldBeSet(

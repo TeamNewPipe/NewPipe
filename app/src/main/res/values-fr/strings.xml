@@ -25,7 +25,6 @@
     <string name="show_next_and_similar_title">Afficher les vidéos « Suivantes » et « Similaires »</string>
     <string name="unsupported_url">URL non pris en charge</string>
     <string name="settings_category_video_audio_title">Vidéo et audio</string>
-    <string name="list_thumbnail_view_description">Miniature d’aperçu vidéo</string>
     <string name="detail_thumbnail_view_description">Lecture vidéo, durée :</string>
     <string name="detail_dislikes_img_view_description">Je n’aime pas</string>
     <string name="detail_likes_img_view_description">J’aime</string>
@@ -53,7 +52,7 @@
     <string name="duration_live">En direct</string>
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
     <string name="youtube_signature_deobfuscation_error">Impossible de déchiffrer la signature URL de la vidéo</string>
-    <string name="sorry_string">Désolé, cela n\'aurait pas dû se produire.</string>
+    <string name="sorry_string">Désolé, cela n’aurait pas dû se produire.</string>
     <string name="error_report_button_text">Signaler cette erreur par courriel</string>
     <string name="what_device_headline">Information :</string>
     <string name="what_happened_headline">Ce qui s’est passé :</string>
@@ -74,7 +73,7 @@
     <string name="checksum">Somme de contrôle</string>
     <string name="ok">OK</string>
     <string name="msg_name">Nom du fichier</string>
-    <string name="msg_threads">Nombre de connexions simultanées</string>
+    <string name="msg_threads">Connexions simultanées</string>
     <string name="msg_error">Erreur</string>
     <string name="msg_running">NewPipe télécharge</string>
     <string name="msg_running_detail">Appuyer pour plus de détails</string>
@@ -85,9 +84,8 @@
     <string name="all">Tout</string>
     <string name="title_activity_recaptcha">Défi reCAPTCHA</string>
     <string name="recaptcha_request_toast">Défi reCAPTCHA demandé</string>
-    <string name="open_in_popup_mode">Ouvrir en mode pop-up</string>
+    <string name="open_in_popup_mode">Ouvrir en mode flottant</string>
     <string name="popup_playing_toast">Lecture en mode flottant</string>
-    <string name="yes">Oui</string>
     <string name="disabled">Désactivés</string>
     <string name="info_labels">Quoi :\\nRequest :\\nContent Language :\\nContent Country :\\nApp Language :\\nService :\\nGMT Time :\\nPackage :\\nVersion :\\nOS version :</string>
     <string name="short_thousand">k</string>
@@ -143,7 +141,7 @@
     <string name="settings_category_player_title">Lecteur</string>
     <string name="settings_category_player_behavior_title">Comportement</string>
     <string name="settings_category_history_title">Historique et cache</string>
-    <string name="notification_channel_description">Notifications pour les lecteurs en arrière-plan et flottant de NewPipe</string>
+    <string name="notification_channel_description">Notifications pour le lecteur de NewPipe</string>
     <string name="search_no_results">Aucun résultat</string>
     <string name="empty_subscription_feed_subtitle">Aucun contenu</string>
     <string name="no_subscribers">Aucun abonné</string>
@@ -311,7 +309,7 @@
     <string name="delete_search_history_alert">Voulez-vous supprimer entièrement l’historique de recherche \?</string>
     <string name="search_history_deleted">Historique de recherche supprimé</string>
     <string name="one_item_deleted">1 élément supprimé.</string>
-    <string name="app_license">NewPipe est un logiciel sous licence libre copyleft : vous pouvez l’utiliser, l’étudier, le partager et l’améliorer comme bon vous semble. Plus précisément, vous pouvez le redistribuer ou le modifier sous les termes de la licence générale publique GNU, comme publiée par la Free Software Foundation, dans sa version 3, ou, à votre convenance, dans une quelconque version ultérieure.</string>
+    <string name="app_license">NewPipe est un logiciel sous licence libre copyleft : vous pouvez l’utiliser, l’étudier, le partager, et l’améliorer comme bon vous semble. Plus précisément, vous pouvez le redistribuer ou le modifier sous les termes de la licence générale publique GNU, comme publiée par la Free Software Foundation, dans sa version 3, ou, à votre convenance, dans une quelconque version ultérieure.</string>
     <string name="privacy_policy_title">Politique de confidentialité de NewPipe</string>
     <string name="read_privacy_policy">Lire la politique de confidentialité</string>
     <string name="import_settings">Voulez-vous également importer les paramètres \?</string>
@@ -319,7 +317,7 @@
     <string name="decline">Refuser</string>
     <string name="privacy_policy_encouragement">Le projet NewPipe prend votre vie privée très à cœur. Par conséquent, l’application n’envoie aucune donnée sans votre consentement.
 \nLa politique de confidentialité de NewPipe explique en détail quelles données sont envoyées et stockées lorsque vous envoyez un rapport de plantage.</string>
-    <string name="start_accept_privacy_policy">Afin de se conformer au Règlement Général sur la Protection des Données (RGPD), nous attirons votre attention sur la politique de confidentialité de NewPipe. Veuillez la lire attentivement.
+    <string name="start_accept_privacy_policy">Afin de se conformer au Règlement Général sur la Protection des Données (RGPD), nous attirons ici votre attention sur la politique de confidentialité de NewPipe. Veuillez la lire attentivement.
 \nVous devez l’accepter pour nous envoyer le rapport de bogue.</string>
     <string name="limit_data_usage_none_description">Aucune limite</string>
     <string name="limit_mobile_data_usage_title">Limiter la définition lors de l’utilisation des données mobiles</string>
@@ -328,7 +326,7 @@
     <string name="tracks">Morceaux</string>
     <string name="users">Utilisateurs</string>
     <string name="skip_silence_checkbox">Accélérer pendant les silences</string>
-    <string name="playback_step">Étape</string>
+    <string name="playback_step">Graduation</string>
     <string name="playback_reset">Réinitialiser</string>
     <string name="minimize_on_exit_title">Minimiser lors du changement d’application</string>
     <string name="minimize_on_exit_summary">Action lors du basculement à une autre application depuis le lecteur vidéo principal — %s</string>
@@ -344,7 +342,7 @@
     <string name="settings_category_updates_title">Mises à jour</string>
     <string name="file_deleted">Fichier supprimé</string>
     <string name="app_update_notification_channel_name">Notification de mise à jour de l’application</string>
-    <string name="app_update_notification_channel_description">Notifications pour une nouvelle version de NewPipe</string>
+    <string name="app_update_notification_channel_description">Notifications pour des nouvelles versions de NewPipe</string>
     <string name="download_to_sdcard_error_title">Stockage externe indisponible</string>
     <string name="restore_defaults">Restaurer les valeurs par défaut</string>
     <string name="restore_defaults_confirmation">Voulez-vous restaurer les valeurs par défaut \?</string>
@@ -384,7 +382,7 @@
     <string name="pause_downloads_on_mobile_desc">Utile lors du basculement aux données mobiles, bien que certains téléchargements ne peuvent pas être suspendus</string>
     <string name="list_view_mode">Mode de vue en liste</string>
     <string name="post_processing">post-traitement</string>
-    <string name="enqueue">Liste de lecture</string>
+    <string name="enqueue">Mettre en file d\'attente</string>
     <string name="permission_denied">Action refusée par le système</string>
     <string name="error_postprocessing_failed">Le post-traitement a échoué</string>
     <string name="max_retry_msg">Nombre d’essais maximum</string>
@@ -553,8 +551,7 @@
     <string name="unsupported_url_dialog_message">Impossible de reconnaitre l’URL fournie. Voulez-vous l’ouvrir avec une autre application \?</string>
     <string name="auto_queue_toggle">Ajouter automatiquement à la liste de lecture</string>
     <string name="clear_queue_confirmation_description">La liste de lecture du lecteur actif sera remplacée</string>
-    <string name="clear_queue_confirmation_title">Confirmer av. de suppr. la liste de lecture</string>
-    <string name="settings_category_notification_title">Notification</string>
+    <string name="clear_queue_confirmation_title">Confirmer avant de supprimer la liste de lecture</string>
     <string name="notification_action_nothing">Rien</string>
     <string name="notification_action_buffering">Chargement</string>
     <string name="notification_action_shuffle">Lire aléatoirement</string>
@@ -643,7 +640,6 @@
 \nNewPipe ne sera plus en mesure de charger ce flux à l’avenir.
 \nSouhaitez-vous vous désabonner de cette chaîne \?</string>
     <string name="downloads_storage_use_saf_summary_api_29">À partir d’Android 10, seule « l’Infrastructure d’accès au stockage  » est prise en charge</string>
-    <string name="downloads_storage_use_saf_summary_api_19">L’« Infrastructure d’accès au stockage » n’est pas prise en charge par Android KitKat et les versions antérieures</string>
     <string name="feed_load_error_fast_unknown">Le mode flux rapide ne fournit pas plus d’info à ce sujet.</string>
     <string name="comments_are_disabled">Les commentaires sont désactivés</string>
     <string name="dont_show">Ne pas afficher</string>
@@ -652,8 +648,6 @@
     <string name="seekbar_preview_thumbnail_title">Prévisualisation de la barre de progression sur la miniature</string>
     <string name="mark_as_watched">Marquer comme visionné</string>
     <string name="detail_heart_img_view_description">Apprécié par le créateur</string>
-    <string name="loading_channel_details">Chargement des détails du canal…</string>
-    <string name="error_show_channel_details">Erreur lors de l’affichage des détails du canal</string>
     <string name="show_image_indicators_title">Afficher les indicateurs d’image</string>
     <string name="remote_search_suggestions">Suggestions de recherche distante</string>
     <string name="local_search_suggestions">Suggestions de recherche locale</string>
@@ -669,6 +663,60 @@
     <string name="main_page_content_swipe_remove">Balayez un élément pour le supprimer</string>
     <string name="start_main_player_fullscreen_summary">Ne pas lancer les vidéos dans le mini lecteur mais directement en plein écran si la rotation automatique est verrouillée. Vous pouvez toujours accéder au mini-lecteur en quittant le mode plein écran</string>
     <string name="start_main_player_fullscreen_title">Lancer le lecteur principal en plein écran</string>
-    <string name="enqueue_next_stream">Mettre en file d’attente la suivante</string>
-    <string name="enqueued_next">Placé comme suivant dans liste de lecture</string>
+    <string name="enqueue_next_stream">Ajouter à la liste de lecture</string>
+    <string name="enqueued_next">Suivant dans la liste de lecture</string>
+    <string name="processing_may_take_a_moment">Traitement en cours… Veuillez patienter</string>
+    <string name="manual_update_description">Vérifier manuellement de nouvelles versions</string>
+    <string name="checking_updates_toast">Vérification des mises à jour…</string>
+    <string name="manual_update_title">Vérifier les mises à jours</string>
+    <string name="feed_new_items">Nouveaux éléments du flux</string>
+    <string name="crash_the_player">Faire planter le lecteur</string>
+    <string name="show_crash_the_player_title">Afficher « Faire planter le lecteur »</string>
+    <string name="show_crash_the_player_summary">Montrer une option de plantage lors de l\'utilisation du lecteur</string>
+    <string name="error_report_channel_name">Notification de rapport d\'erreur</string>
+    <string name="error_report_channel_description">Notifications pour signaler les erreurs</string>
+    <string name="error_report_notification_title">NewPipe a rencontré une erreur, appuyez pour la signaler</string>
+    <string name="error_report_notification_toast">Une erreur s\'est produite, voir la notification</string>
+    <string name="create_error_notification">Créer une notification d\'erreur</string>
+    <string name="no_appropriate_file_manager_message_android_10">Aucun gestionnaire de fichiers approprié n\'a été trouvé pour cette action.
+\nVeuillez installer un gestionnaire de fichiers compatible avec l\'Infrastructure d\'accès au stockage.</string>
+    <string name="show_error_snackbar">Afficher une barre d’erreur</string>
+    <string name="no_appropriate_file_manager_message">Aucun gestionnaire de fichier approprié n\'a été trouvé pour cette action.
+\nVeuillez installer un gestionnaire de fichiers ou essayez de désactiver \'%s\' dans les paramètres de téléchargement.</string>
+    <string name="detail_pinned_comment_view_description">Commentaire épinglé</string>
+    <string name="leak_canary_not_available">LeakCanary n\'est pas disponible</string>
+    <string name="progressive_load_interval_summary">Modifie la taille de l\'intervalle de chargement (actuellement %s). Une valeur plus faible peut accélérer le chargement initial des vidéos .</string>
+    <string name="progressive_load_interval_exoplayer_default">Valeur par défaut d’ExoPlayer</string>
+    <string name="streams_notification_channel_name">Nouveaux flux</string>
+    <string name="settings_category_player_notification_summary">Configurer la notification du flux en cours de lecture</string>
+    <string name="get_notified">Recevoir des notifications</string>
+    <string name="loading_stream_details">Chargement des détails du flux…</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s nouveau flux</item>
+        <item quantity="other">%s nouveaux flux</item>
+    </plurals>
+    <string name="streams_notifications_network_title">Connexion réseau requise</string>
+    <string name="notifications">Notifications</string>
+    <string name="notifications_disabled">Notifications désactivées</string>
+    <string name="you_successfully_subscribed">Vous vous êtes maintenant abonné à cette chaîne</string>
+    <string name="settings_category_player_notification_title">Notification du Lecteur</string>
+    <string name="streams_notification_channel_description">Notifications pour de nouveaux flux des abonnements</string>
+    <string name="delete_downloaded_files_confirm">Supprimer tous les fichiers téléchargés du disque \?</string>
+    <string name="check_new_streams">Exécuter la vérification de nouveaux flux</string>
+    <string name="enable_streams_notifications_title">Notifications pour de nouveaux flux</string>
+    <string name="any_network">N\'importe quel réseau</string>
+    <string name="streams_notifications_interval_title">Fréquence de vérification</string>
+    <string name="enable_streams_notifications_summary">Notifications pour de nouveaux flux des abonnements</string>
+    <string name="enumeration_comma">,</string>
+    <string name="toggle_all">Tout basculer</string>
+    <string name="percent">Pourcent</string>
+    <string name="semitone">Demi-ton</string>
+    <string name="streams_not_yet_supported_removed">Les flux qui ne sont pas encore supportés ne sont pas montrés</string>
+    <string name="no_audio_streams_available_for_external_players">Aucun flux audio n\'est disponible pour les lecteurs externes</string>
+    <string name="select_quality_external_players">Sélectionner la qualité pour les lecteurs externes</string>
+    <string name="unknown_format">Format inconnu</string>
+    <string name="unknown_quality">Qualité inconnue</string>
+    <string name="selected_stream_external_player_not_supported">Le flux séléctionné n\'est pas supporté par les lecteurs externes</string>
+    <string name="no_video_streams_available_for_external_players">Aucun flux vidéo n\'est disponible pour les lecteurs externes</string>
+    <string name="progressive_load_interval_title">Taille de l\'intervalle de chargement de la lecture</string>
 </resources>

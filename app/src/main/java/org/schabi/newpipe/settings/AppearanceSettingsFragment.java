@@ -2,7 +2,6 @@ package org.schabi.newpipe.settings;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Toast;
@@ -15,14 +14,10 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ThemeHelper;
 
 public class AppearanceSettingsFragment extends BasePreferenceFragment {
-    private static final boolean CAPTIONING_SETTINGS_ACCESSIBLE =
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
-
-    private String captionSettingsKey;
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
-        addPreferencesFromResource(R.xml.appearance_settings);
+        addPreferencesFromResourceRegistry();
 
         final String themeKey = getString(R.string.theme_key);
         // the key of the active theme when settings were opened (or recreated after theme change)
@@ -51,16 +46,11 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
         } else {
             removePreference(nightThemeKey);
         }
-
-        captionSettingsKey = getString(R.string.caption_settings_key);
-        if (!CAPTIONING_SETTINGS_ACCESSIBLE) {
-            removePreference(captionSettingsKey);
-        }
     }
 
     @Override
     public boolean onPreferenceTreeClick(final Preference preference) {
-        if (preference.getKey().equals(captionSettingsKey) && CAPTIONING_SETTINGS_ACCESSIBLE) {
+        if (getString(R.string.caption_settings_key).equals(preference.getKey())) {
             try {
                 startActivity(new Intent(Settings.ACTION_CAPTIONING_SETTINGS));
             } catch (final ActivityNotFoundException e) {
@@ -84,7 +74,7 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
         defaultPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, true).apply();
         defaultPreferences.edit().putString(themeKey, newValue.toString()).apply();
 
-        ThemeHelper.setDayNightMode(getContext(), newValue.toString());
+        ThemeHelper.setDayNightMode(requireContext(), newValue.toString());
 
         if (!newValue.equals(beginningThemeKey) && getActivity() != null) {
             // if it's not the current theme

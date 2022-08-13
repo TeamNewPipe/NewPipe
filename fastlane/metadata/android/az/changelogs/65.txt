@@ -1,0 +1,26 @@
+### Təkmilləşdirmələr
+
+- Burgermenyu ikona animasiyasını deaktiv edin #1486
+
+- yükləmələrin silinməsini geri qaytarın #1472
+- Paylaşım menyusunda yükləmə seçimi #1498
+- Uzun toxunma menyusuna paylaşma seçimi əlavə edildi #1454
+- Çıxışda əsas oyunçunu minimuma endirin #1354 - Kitabxana versiyasının yenilənməsi və verilənlər bazası backup fix #1510
+- ExoPlayer 2.8.2 Yeniləmə #139
+- Daha sürətli sürət dəyişikliyi üçün müxtəlif addım ölçülərini dəstəkləmək üçün oxutma sürətinə nəzarət dialoqu yenidən işlənmişdir.
+- Oynatma sürətinə nəzarətdə səssizliklər zamanı sürətli irəliləməyə keçid əlavə edildi. Bu, audiokitablar və müəyyən musiqi janrları üçün faydalı olmalıdır və əsl qüsursuz təcrübə gətirə bilər (və çoxlu səssizliklərlə mahnını poza bilər =\\).
+- Metaməlumatların əl ilə deyil, pleyerdə daxili media ilə yanaşı ötürülməsinə imkan vermək üçün refaktor edilmiş media mənbəsinin həlli. İndi bizim tək metadata mənbəyimiz var və oxutma başlayanda birbaşa əlçatan olur.
+- Pleylist fraqmenti açıldığında yeni metadata mövcud olduqda uzaqdan pleylist metadatasının yenilənməməsi düzəldildi.
+- Müxtəlif UI düzəlişləri: #1383, fon pleyeri bildirişi indi həmişə ağdır, fırlatmaqla pop-up pleyerini bağlamaq daha asandır
+- Multiservis üçün yenidən işlənmiş arxitekturaya malik yeni çıxarıcıdan istifadə edin
+
+### Düzəlişlər
+
+- Düzəltmə #1440 Sınıq Video Məlumat Düzeni #1491
+- Tarixçəyə baxış düzəlişi #1497
+- #1495, istifadəçi pleylistə daxil olan kimi metadatanı (kiçik şəkil, başlıq və video sayı) yeniləyərək.
+- # 1475, istifadəçi detal fraqmentində xarici pleyerdə videoya başladıqda verilənlər bazasında görünüşü qeydiyyatdan keçirərək.
+- Pop-up rejimi vəziyyətində ekran fasiləsini düzəldin. #1463 (Sabit #640)
+- Əsas video pleyer düzəlişi #1509
+- [#1412] Oyunçu fəaliyyəti fonda olarkən yeni niyyət qəbul edildikdə oyunçu NPE-yə səbəb olan sabit təkrar rejimi.
+- Açılan pəncərəyə icazə verilmədikdə, oyunçunun pop-up üçün minimuma endirilməsi pleyeri məhv etmir.

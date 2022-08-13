@@ -1,0 +1,8 @@
+### Parannukset
+- Lisätty mahdollisuus rajoittaa videon laatua mobiilidataa käytettäessä. #1339
+- Muista istunnon kirkkaus #1442
+- Parannettu lataussuorituskykyä heikommilla suorittimilla #1431
+- lisätty (toimiva) tuki mediaistunnolle #1433
+
+### Korjaukset
+- Korjattu kaatuminen latausten avaamisessa (korjaus nyt saatavilla julkaisuversioissa) #1441

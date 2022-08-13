@@ -21,7 +21,7 @@
             android:scaleType="fitXY"
             app:tint="?attr/actionColor" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/item_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             android:textColor="@color/white"
             android:textSize="12sp" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/item_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
             android:layout_marginRight="4dp"
             android:contentDescription="TODO"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/ic_more_vert"
+            android:src="@drawable/ic_more_vert"
             app:tint="?attr/actionColor" />
 
     </RelativeLayout>

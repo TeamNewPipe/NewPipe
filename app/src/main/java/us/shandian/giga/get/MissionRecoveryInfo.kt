@@ -11,17 +11,17 @@ import java.io.Serializable
 
 @Parcelize
 class MissionRecoveryInfo(
-    var format: MediaFormat,
+    var format: MediaFormat?,
     var desired: String? = null,
     var isDesired2: Boolean = false,
     var desiredBitrate: Int = 0,
     var kind: Char = Char.MIN_VALUE,
     var validateCondition: String? = null
 ) : Serializable, Parcelable {
-    constructor(stream: Stream) : this(format = stream.getFormat()!!) {
+    constructor(stream: Stream) : this(format = stream.format) {
         when (stream) {
             is AudioStream -> {
-                desiredBitrate = stream.average_bitrate
+                desiredBitrate = stream.getAverageBitrate()
                 isDesired2 = false
                 kind = 'a'
             }
@@ -62,7 +62,7 @@ class MissionRecoveryInfo(
             }
         }
         str.append(" format=")
-            .append(format.getName())
+            .append(format?.getName())
             .append(' ')
             .append(info)
             .append('}')

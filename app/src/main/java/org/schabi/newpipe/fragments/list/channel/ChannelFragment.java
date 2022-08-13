@@ -1,6 +1,11 @@
 package org.schabi.newpipe.fragments.list.channel;
 
+import static org.schabi.newpipe.ktx.TextViewUtils.animateTextColor;
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
+import static org.schabi.newpipe.ktx.ViewUtils.animateBackgroundColor;
+
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,19 +22,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
-import androidx.viewbinding.ViewBinding;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.jakewharton.rxbinding4.view.RxView;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.subscription.NotificationMode;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.databinding.ChannelHeaderBinding;
 import org.schabi.newpipe.databinding.FragmentChannelBinding;
 import org.schabi.newpipe.databinding.PlaylistControlBinding;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
@@ -37,19 +42,21 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
-import org.schabi.newpipe.player.MainPlayer.PlayerType;
+import org.schabi.newpipe.local.feed.notifications.NotificationHelper;
+import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -61,11 +68,7 @@ import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-import static org.schabi.newpipe.ktx.TextViewUtils.animateTextColor;
-import static org.schabi.newpipe.ktx.ViewUtils.animate;
-import static org.schabi.newpipe.ktx.ViewUtils.animateBackgroundColor;
-
-public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
+public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, ChannelInfo>
         implements View.OnClickListener {
 
     private static final int BUTTON_DEBOUNCE_INTERVAL = 100;
@@ -73,6 +76,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
     private final CompositeDisposable disposables = new CompositeDisposable();
     private Disposable subscribeButtonMonitor;
+
+    private boolean channelContentNotSupported = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -85,6 +90,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     private PlaylistControlBinding playlistControlBinding;
 
     private MenuItem menuRssButton;
+    private MenuItem menuNotifyButton;
 
     public static ChannelFragment getInstance(final int serviceId, final String url,
                                               final String name) {
@@ -98,11 +104,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     }
 
     @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (activity != null
-                && useAsFrontPage
-                && isVisibleToUser) {
+    public void onResume() {
+        super.onResume();
+        if (activity != null && useAsFrontPage) {
             setTitle(currentInfo != null ? currentInfo.getName() : name);
         }
     }
@@ -128,6 +132,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
         channelBinding = FragmentChannelBinding.bind(rootView);
+        showContentNotSupportedIfNeeded();
     }
 
     @Override
@@ -147,12 +152,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected ViewBinding getListHeader() {
+    protected Supplier<View> getListHeaderSupplier() {
         headerBinding = ChannelHeaderBinding
                 .inflate(activity.getLayoutInflater(), itemsList, false);
         playlistControlBinding = headerBinding.playlistControl;
 
-        return headerBinding;
+        return headerBinding::getRoot;
     }
 
     @Override
@@ -182,13 +187,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                         + "menu = [" + menu + "], inflater = [" + inflater + "]");
             }
             menuRssButton = menu.findItem(R.id.menu_item_rss);
-        }
-    }
-
-    private void openRssFeed() {
-        final ChannelInfo info = currentInfo;
-        if (info != null) {
-            ShareUtils.openUrlInBrowser(requireContext(), info.getFeedUrl(), false);
+            menuNotifyButton = menu.findItem(R.id.menu_item_notify);
         }
     }
 
@@ -198,8 +197,16 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
             case R.id.action_settings:
                 NavigationHelper.openSettings(requireContext());
                 break;
+            case R.id.menu_item_notify:
+                final boolean value = !item.isChecked();
+                item.setEnabled(false);
+                setNotify(value);
+                break;
             case R.id.menu_item_rss:
-                openRssFeed();
+                if (currentInfo != null) {
+                    ShareUtils.openUrlInBrowser(
+                            requireContext(), currentInfo.getFeedUrl(), false);
+                }
                 break;
             case R.id.menu_item_openInBrowser:
                 if (currentInfo != null) {
@@ -239,15 +246,22 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                 .subscribe(getSubscribeUpdateMonitor(info), onError));
 
         disposables.add(observable
-                // Some updates are very rapid
-                // (for example when calling the updateSubscription(info))
-                // so only update the UI for the latest emission
-                // ("sync" the subscribe button's state)
-                .debounce(100, TimeUnit.MILLISECONDS)
+                .map(List::isEmpty)
+                .distinctUntilChanged()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((List<SubscriptionEntity> subscriptionEntities) ->
-                        updateSubscribeButton(!subscriptionEntities.isEmpty()), onError));
+                .subscribe(isEmpty -> updateSubscribeButton(!isEmpty), onError));
 
+        disposables.add(observable
+                .map(List::isEmpty)
+                .distinctUntilChanged()
+                .skip(1) // channel has just been opened
+                .filter(x -> NotificationHelper.areNewStreamsNotificationsEnabled(requireContext()))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(isEmpty -> {
+                    if (!isEmpty) {
+                        showNotifySnackbar();
+                    }
+                }, onError));
     }
 
     private Function<Object, Object> mapOnSubscribe(final SubscriptionEntity subscription,
@@ -327,6 +341,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                         info.getAvatarUrl(),
                         info.getDescription(),
                         info.getSubscriberCount());
+                updateNotifyButton(null);
                 subscribeButtonMonitor = monitorSubscribeButton(
                         headerBinding.channelSubscribeButton, mapOnSubscribe(channel, info));
             } else {
@@ -334,6 +349,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                     Log.d(TAG, "Found subscription to this channel!");
                 }
                 final SubscriptionEntity subscription = subscriptionEntities.get(0);
+                updateNotifyButton(subscription);
                 subscribeButtonMonitor = monitorSubscribeButton(
                         headerBinding.channelSubscribeButton, mapOnUnsubscribe(subscription));
             }
@@ -376,12 +392,51 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                 AnimationType.LIGHT_SCALE_AND_ALPHA);
     }
 
+    private void updateNotifyButton(@Nullable final SubscriptionEntity subscription) {
+        if (menuNotifyButton == null) {
+            return;
+        }
+        if (subscription != null) {
+            menuNotifyButton.setEnabled(
+                    NotificationHelper.areNewStreamsNotificationsEnabled(requireContext())
+            );
+            menuNotifyButton.setChecked(
+                    subscription.getNotificationMode() == NotificationMode.ENABLED
+            );
+        }
+
+        menuNotifyButton.setVisible(subscription != null);
+    }
+
+    private void setNotify(final boolean isEnabled) {
+        disposables.add(
+                subscriptionManager
+                        .updateNotificationMode(
+                                currentInfo.getServiceId(),
+                                currentInfo.getUrl(),
+                                isEnabled ? NotificationMode.ENABLED : NotificationMode.DISABLED)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe()
+        );
+    }
+
+    /**
+     * Show a snackbar with the option to enable notifications on new streams for this channel.
+     */
+    private void showNotifySnackbar() {
+        Snackbar.make(itemsList, R.string.you_successfully_subscribed, Snackbar.LENGTH_LONG)
+                .setAction(R.string.get_notified, v -> setNotify(true))
+                .setActionTextColor(Color.YELLOW)
+                .show();
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Load and handle
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
+    protected Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
         return ExtractorHelper.getMoreChannelItems(serviceId, url, currentNextPage);
     }
 
@@ -409,7 +464,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                                 currentInfo.getParentChannelUrl(),
                                 currentInfo.getParentChannelName());
                     } catch (final Exception e) {
-                        ErrorActivity.reportUiErrorInSnackbar(this, "Opening channel fragment", e);
+                        ErrorUtil.showUiErrorSnackbar(this, "Opening channel fragment", e);
                     }
                 } else if (DEBUG) {
                     Log.i(TAG, "Can't open parent channel because we got no channel URL");
@@ -472,9 +527,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
             playlistControlBinding.getRoot().setVisibility(View.GONE);
         }
 
+        channelContentNotSupported = false;
         for (final Throwable throwable : result.getErrors()) {
             if (throwable instanceof ContentNotSupportedException) {
-                showContentNotSupported();
+                channelContentNotSupported = true;
+                showContentNotSupportedIfNeeded();
+                break;
             }
         }
 
@@ -506,7 +564,13 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         });
     }
 
-    private void showContentNotSupported() {
+    private void showContentNotSupportedIfNeeded() {
+        // channelBinding might not be initialized when handleResult() is called
+        // (e.g. after rotating the screen, #6696)
+        if (!channelContentNotSupported || channelBinding == null) {
+            return;
+        }
+
         channelBinding.errorContentNotSupported.setVisibility(View.VISIBLE);
         channelBinding.channelKaomoji.setText("(︶︹︺)");
         channelBinding.channelKaomoji.setTextSize(TypedValue.COMPLEX_UNIT_SP, 45f);
@@ -514,18 +578,13 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
     }
 
     private PlayQueue getPlayQueue() {
-        return getPlayQueue(0);
-    }
+        final List<StreamInfoItem> streamItems = infoListAdapter.getItemsList().stream()
+                .filter(StreamInfoItem.class::isInstance)
+                .map(StreamInfoItem.class::cast)
+                .collect(Collectors.toList());
 
-    private PlayQueue getPlayQueue(final int index) {
-        final List<StreamInfoItem> streamItems = new ArrayList<>();
-        for (final InfoItem i : infoListAdapter.getItemsList()) {
-            if (i instanceof StreamInfoItem) {
-                streamItems.add((StreamInfoItem) i);
-            }
-        }
         return new ChannelPlayQueue(currentInfo.getServiceId(), currentInfo.getUrl(),
-                currentInfo.getNextPage(), streamItems, index);
+                currentInfo.getNextPage(), streamItems, 0);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

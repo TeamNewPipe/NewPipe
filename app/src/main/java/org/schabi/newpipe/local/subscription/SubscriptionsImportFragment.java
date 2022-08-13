@@ -1,5 +1,11 @@
 package org.schabi.newpipe.local.subscription;
 
+import static org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.ContentSource.CHANNEL_URL;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.CHANNEL_URL_MODE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.INPUT_STREAM_MODE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,13 +29,14 @@ import androidx.core.text.util.LinkifyCompat;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
+import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -38,12 +45,6 @@ import java.util.Collections;
 import java.util.List;
 
 import icepick.State;
-
-import static org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.ContentSource.CHANNEL_URL;
-import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.CHANNEL_URL_MODE;
-import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.INPUT_STREAM_MODE;
-import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE;
-import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE;
 
 public class SubscriptionsImportFragment extends BaseFragment {
     @State
@@ -86,22 +87,19 @@ public class SubscriptionsImportFragment extends BaseFragment {
 
         setupServiceVariables();
         if (supportedSources.isEmpty() && currentServiceId != Constants.NO_SERVICE_ID) {
-            ErrorActivity.reportErrorInSnackbar(activity,
+            ErrorUtil.showSnackbar(activity,
                     new ErrorInfo(new String[]{}, UserAction.SUBSCRIPTION_IMPORT_EXPORT,
-                            NewPipe.getNameOfService(currentServiceId),
+                            ServiceHelper.getNameOfServiceById(currentServiceId),
                             "Service does not support importing subscriptions",
-                            R.string.general_error,
-                            null));
+                            R.string.general_error));
             activity.finish();
         }
     }
 
     @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            setTitle(getString(R.string.import_title));
-        }
+    public void onResume() {
+        super.onResume();
+        setTitle(getString(R.string.import_title));
     }
 
     @Nullable
@@ -177,8 +175,14 @@ public class SubscriptionsImportFragment extends BaseFragment {
     }
 
     public void onImportFile() {
-        // leave */* mime type to support all services with different mime types and file extensions
-        requestImportFileLauncher.launch(StoredFileHelper.getPicker(activity, "*/*"));
+        NoFileManagerSafeGuard.launchSafe(
+                requestImportFileLauncher,
+                // leave */* mime type to support all services
+                // with different mime types and file extensions
+                StoredFileHelper.getPicker(activity, "*/*"),
+                TAG,
+                getContext()
+        );
     }
 
     private void requestImportFileResult(final ActivityResult result) {

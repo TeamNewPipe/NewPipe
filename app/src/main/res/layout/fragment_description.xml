@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true">
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/detail_upload_date_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -38,11 +38,11 @@
             android:contentDescription="@string/description_select_enable"
             android:focusable="true"
             android:padding="5dp"
+            android:src="@drawable/ic_select_all"
             app:layout_constraintBottom_toTopOf="@+id/barrier"
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_select_all" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier"
@@ -52,7 +52,7 @@
             app:barrierDirection="top"
             app:constraint_referenced_ids="detail_description_note_view,detail_description_view" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/detail_description_note_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
             app:layout_constraintTop_toBottomOf="@+id/detail_upload_date_view"
             tools:visibility="visible" />
 
-        <TextView
+        <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/detail_description_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
