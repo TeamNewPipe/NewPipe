@@ -38,10 +38,9 @@
         app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
-        android:defaultValue="false"
-        android:key="@string/enable_ignore_main_queue_key"
-        android:summary="@string/enable_ignore_main_queue_key"
-        android:title="@string/enable_ignore_main_queue_title"
+        android:key="@string/enable_ignore_backstack_key"
+        android:summary="@string/enable_ignore_backstack_key"
+        android:title="@string/enable_ignore_backstack_title"
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 

@@ -1,18 +1,23 @@
 package org.schabi.newpipe.settings;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
+import androidx.preference.PreferenceManager;
+import androidx.preference.SwitchPreferenceCompat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorActivity;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.InfoCache;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -37,6 +42,38 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
         searchHistoryClearKey = getString(R.string.clear_search_history_key);
         recordManager = new HistoryRecordManager(getActivity());
         disposables = new CompositeDisposable();
+
+        final String backstackPreferenceKey = getString(R.string.enable_ignore_backstack_key);
+        final SwitchPreferenceCompat backstackPref = findPreference(backstackPreferenceKey);
+        final Activity activity = this.getActivity();
+
+        if (activity != null) {
+            final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+
+            final boolean retrievedValue = prefs.getBoolean(
+                    getString(R.string.enable_ignore_backstack_key),
+                    DeviceUtils.isTv(activity)
+            );
+
+            // Get the value stored. (Default does not matter)
+            // If the retrieved value matches the default value, use the default.
+            // If not, use the retrieved
+            // This works because now when we call setChecked, and save it,
+            // we either store the proper changed value, or the default value.
+            // However, if the default value is equal to the set-value, we don't actually
+            // change anything even if we "override" the value
+            // Drawback: As soon as the settings are opened, the value is set&saved.
+            // No "default" anymore.
+            // The default is applied exactly once, and then stored
+            boolean valueToSet = DeviceUtils.isTv(activity);
+            if (retrievedValue != valueToSet) {
+                valueToSet = retrievedValue;
+            }
+
+            if (backstackPref != null) {
+                backstackPref.setChecked(valueToSet);
+            }
+        }
     }
 
     @Override
