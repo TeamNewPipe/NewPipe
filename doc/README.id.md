@@ -86,9 +86,6 @@ Dan juga, karena mereka adalah perangkat lunak yang gratis dan sumber terbuka, b
 * Buka di Kodi
 * Tonton/blokir materi yang dibatasi usia
 
-<!-- Span tersembunyi untuk menjaga agar tautan lama tetap kompatibel. -->
-<span id="updates"></span>
-
 ## Instalasi dan Pembaruan
 
 Kamu bisa menginstal NewPipe menggunakan salah satu metode berikut:
