@@ -77,7 +77,7 @@
     <string name="no_available_dir">Tem que definir, nas definições, uma pasta para as descargas</string>
     <string name="ok">OK</string>
     <string name="msg_threads">Processos</string>
-    <string name="msg_running">Descarga NewPipe</string>
+    <string name="msg_running">Descarga Tubular</string>
     <string name="app_ui_crash">Aplicação terminou em erro</string>
     <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nPaís do conteúdo\\nIdioma da aplicação\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nSO Versão:</string>
     <string name="open_in_popup_mode">Abrir no modo popup</string>
@@ -105,7 +105,7 @@
     <string name="show_search_suggestions_title">Sugestões de pesquisa</string>
     <string name="show_search_suggestions_summary">Escolha as sugestões a mostrar ao pesquisar</string>
     <string name="best_resolution">Melhor resolução</string>
-    <string name="title_activity_about">Acerca de NewPipe</string>
+    <string name="title_activity_about">Acerca de Tubular</string>
     <string name="title_licenses">Licenças de terceiros</string>
     <string name="copyright" formatted="true">© %1$s de %2$s nos termos da %3$s</string>
     <string name="tab_about">Acerca</string>
@@ -345,7 +345,7 @@
     <string name="settings_category_updates_title">Atualizações</string>
     <string name="file_deleted">Ficheiro eliminado</string>
     <string name="app_update_notification_channel_name">Notificação de nova versão</string>
-    <string name="app_update_notification_channel_description">Notificações para novas versões do NewPipe</string>
+    <string name="app_update_notification_channel_description">Notificações para novas versões do Tubular</string>
     <string name="download_to_sdcard_error_title">Armazenamento externo indisponível</string>
     <string name="download_to_sdcard_error_message">Não é possível guardar no cartão SD. Repor pasta de descargas\?</string>
     <string name="saved_tabs_invalid_json">Não foi possível ler as guias gravadas, portanto usando as guias predefinidas</string>
@@ -359,7 +359,7 @@
     <string name="list">Lista</string>
     <string name="grid">Grelha</string>
     <string name="auto">Automático</string>
-    <string name="app_update_notification_content_title">Atualização NewPipe disponível!</string>
+    <string name="app_update_notification_content_title">Atualização Tubular disponível!</string>
     <string name="app_update_notification_content_text">Toque para descarregar</string>
     <string name="missions_header_finished">Terminada</string>
     <string name="paused">em pausa</string>
@@ -406,7 +406,7 @@
     <string name="overwrite_unrelated_warning">Já existe um ficheiro com este nome</string>
     <string name="overwrite_failed">não é possível sobrescrever o ficheiro</string>
     <string name="download_already_pending">Existe uma descarga pendente com este nome</string>
-    <string name="error_postprocessing_stopped">NewPipe foi fechado enquanto trabalhava no ficheiro</string>
+    <string name="error_postprocessing_stopped">Tubular foi fechado enquanto trabalhava no ficheiro</string>
     <string name="error_insufficient_storage">Não há espaço livre no dispositivo</string>
     <string name="error_progress_lost">Progresso perdido, o ficheiro foi eliminado</string>
     <string name="error_timeout">Ligação expirada</string>
@@ -463,7 +463,7 @@
     <string name="recaptcha_done_button">Aceitar</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Acha que a fonte demora muito tempo a carregar\? Se sim, tente ativar o carregamento rápido (pode alterar a opção nas definições ou no botão abaixo).
 \n
-\nNewPipe oferece duas estratégias de carregamento:
+\nTubular oferece duas estratégias de carregamento:
 \n- Obter todo o canal de subscrição - lento, mas completo.
 \n- Usar um \'endpoint\' dedicado - mais rápido, mas não completo.
 \n
@@ -520,7 +520,7 @@
     <string name="mute">Sem som</string>
     <string name="help">Ajuda</string>
     <string name="videos_string">Vídeos</string>
-    <string name="content_not_supported">Este conteúdo ainda não é suportado pelo NewPipe. 
+    <string name="content_not_supported">Este conteúdo ainda não é suportado pelo Tubular.
 \n 
 \nEsperamos que seja suportado numa versão futura.</string>
     <string name="infinite_videos">∞ vídeos</string>
@@ -575,7 +575,7 @@
     <string name="show_memory_leaks">Mostrar \'leaks\' de memória</string>
     <string name="enqueued">Colocado na fila</string>
     <string name="enqueue_stream">Colocar na fila</string>
-    <string name="clear_cookie_summary">Limpar cookies que NewPipe armazena quando resolve um reCAPTCHA</string>
+    <string name="clear_cookie_summary">Limpar cookies que Tubular armazena quando resolve um reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Os cookies reCAPTCHA foram limpos</string>
     <string name="clear_cookie_title">Limpar cookies reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">O YouTube fornece um \"Modo restrito\" que oculta o conteúdo destinado a adultos</string>
@@ -600,7 +600,7 @@
     <string name="open_with">Abrir com</string>
     <string name="crash_the_app">A app travou</string>
     <string name="restricted_video_no_stream">Este vídeo tem uma restrição de idade.
-\nDevido às novas políticas do YouTube quanto a vídeos com restrição de idade, o NewPipe não pode aceder as estes vídeos, por isso não consegue reproduzi-lo.</string>
+\nDevido às novas políticas do YouTube quanto a vídeos com restrição de idade, o Tubular não pode aceder as estes vídeos, por isso não consegue reproduzi-lo.</string>
     <string name="paid_content">Este conteúdo só está disponível para utilizadores que pagaram, portanto não pode ser transmitido ou descarregado pelo NewPipe.</string>
     <string name="youtube_music_premium_content">Este vídeo está disponível apenas para os membros do YouTube Music Premium, portanto não pode ser transmitido ou descarregado pelo NewPipe.</string>
     <string name="private_content">Este conteúdo é privado, portanto não pode ser transmitido ou descarregado pelo NewPipe.</string>

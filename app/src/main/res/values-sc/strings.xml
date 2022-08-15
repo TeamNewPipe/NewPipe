@@ -125,7 +125,7 @@
     <string name="msg_copied">Copiadu in punta de billete</string>
     <string name="msg_wait">Iseta…</string>
     <string name="msg_running_detail">Toca pro detàllios</string>
-    <string name="msg_running">NewPipe est iscarrighende</string>
+    <string name="msg_running">Tubular est iscarrighende</string>
     <string name="msg_error">Errore</string>
     <string name="msg_threads">Connessiones simultàneas</string>
     <string name="msg_name">Nùmene de su documentu</string>
@@ -208,7 +208,7 @@
     <string name="no_playlist_bookmarked_yet">Galu perunu sinnalibru de iscalitas</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Pensas chi su carrigamentu de sa fonte de cuntenutos (su feed) siat tropu lentu\? Si est gasi, proa a abilitare su carrigamentu lestru (lu podes mudare in sas impostatziones o incarchende su butone inoghe in suta).
 \n
-\nNewPipe oferit duas istrategias de carrigamentu de sas fontes de cuntenutos:
+\nTubular oferit duas istrategias de carrigamentu de sas fontes de cuntenutos:
 \n • Recuperende totu su canale de iscritzione, cosa chi est lenta ma prus cumprida.
 \n • Impreende unu puntu de essida de unu servìtziu dedicadu, cosa chi est lestra ma, de sòlitu, non cumprida.
 \n
@@ -246,7 +246,7 @@
     <string name="video_detail_by">De %s</string>
     <string name="channel_created_by">Creadu dae %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniadura de avatar de su canale</string>
-    <string name="content_not_supported">Custu cuntenutu no est galu suportadu dae NewPipe.
+    <string name="content_not_supported">Custu cuntenutu no est galu suportadu dae Tubular.
 \n
 \n Isperamus chi at a èssere suportadu in una versione benidora.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Disabìlita sa modalidade lestra</string>
@@ -318,7 +318,7 @@
     <string name="error_timeout">Connessione iscadida</string>
     <string name="error_progress_lost">Su progressu s\'est pèrdidu, ca su documentu est istadu iscantzelladu</string>
     <string name="error_insufficient_storage">Perunu ispàtziu abarradu in su dispositivu</string>
-    <string name="error_postprocessing_stopped">NewPipe est istadu serradu in su mentres chi fiat traballende a su documentu</string>
+    <string name="error_postprocessing_stopped">Tubular est istadu serradu in su mentres chi fiat traballende a su documentu</string>
     <string name="error_postprocessing_failed">Post-protzessamentu fallidu</string>
     <string name="error_http_not_found">No agatadu</string>
     <string name="error_http_unsupported_range">Custu serbidore no atzetat iscarrigamentos a filos mùltiplos, torra a proare cun @string/msg_threads = 1</string>

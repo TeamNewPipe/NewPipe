@@ -335,9 +335,9 @@ public class MainActivity extends AppCompatActivity {
     private void setupDrawerHeader() {
         drawerHeaderBinding.drawerHeaderActionButton.setOnClickListener(view -> toggleServices());
 
-        // If the current app name is bigger than the default "NewPipe" (7 chars),
+        // If the current app name is bigger than the default "Tubular" (7 chars),
         // let the text view grow a little more as well.
-        if (getString(R.string.app_name).length() > "NewPipe".length()) {
+        if (getString(R.string.app_name).length() > "Tubular".length()) {
             final ViewGroup.LayoutParams layoutParams =
                     drawerHeaderBinding.drawerHeaderNewpipeTitle.getLayoutParams();
             layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;

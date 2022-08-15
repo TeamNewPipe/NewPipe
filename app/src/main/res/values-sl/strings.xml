@@ -133,8 +133,8 @@
     <string name="enable_watch_history_summary">Sledi zgodovini predvajanih posnetkov</string>
     <string name="resume_on_audio_focus_gain_title">Nadaljuj predvajanje</string>
     <string name="resume_on_audio_focus_gain_summary">Nadaljuj s predvajanjem po prekinitvi (npr. po telefonskem klicu)</string>
-    <string name="notification_channel_name">Obvestila NewPipe</string>
-    <string name="notification_channel_description">Obvestila predvajalnika NewPipe</string>
+    <string name="notification_channel_name">Obvestila Tubular</string>
+    <string name="notification_channel_description">Obvestila predvajalnika Tubular</string>
     <string name="contribution_title">Doprinos k projektu</string>
     <string name="title_activity_history">Zgodovina</string>
     <string name="action_history">Zgodovina</string>
@@ -214,7 +214,7 @@
     <string name="error_download_resource_gone">Ni mogoče povrniti prenos</string>
     <string name="error_progress_lost">Napredek je izgubljen, ker je bila datoteka izbrisana</string>
     <string name="error_insufficient_storage">Ni več prostora v vaši napravi</string>
-    <string name="error_postprocessing_stopped">NewPipe se je zaprl medtem ko je delal z datoteko</string>
+    <string name="error_postprocessing_stopped">Tubular se je zaprl medtem ko je delal z datoteko</string>
     <string name="error_http_not_found">Ni najden</string>
     <string name="error_http_no_content">Strežnik ne pošilja informacij</string>
     <string name="error_connect_host">Ni mogoče vspostaviti povezavo s strežnikom</string>
@@ -412,7 +412,7 @@
     <string name="recaptcha_cookies_cleared">Piškotki reCAPTCHA so bili izbrisani</string>
     <string name="hash_channel_description">Obvestila za zgoščevanje videa v teku</string>
     <string name="hash_channel_name">Obvestilo hash-a videa</string>
-    <string name="app_update_notification_channel_description">Obvestila za nove verzije NewPipe</string>
+    <string name="app_update_notification_channel_description">Obvestila za nove verzije Tubular</string>
     <string name="artists">Izvajalci</string>
     <string name="albums">Albumi</string>
     <string name="songs">Pesmi</string>
@@ -446,7 +446,7 @@
     <string name="search_showing_result_for">Prikazujem rezultate za %s</string>
     <string name="enqueue">Vrsta</string>
     <string name="queued">V vrsti</string>
-    <string name="app_update_notification_content_title">NewPipe posodobitve so na voljo!</string>
+    <string name="app_update_notification_content_title">Tubular posodobitve so na voljo!</string>
     <string name="auto">Avtomatsko</string>
     <string name="grid">Mreža</string>
     <string name="never">Nikoli</string>

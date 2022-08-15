@@ -7,7 +7,7 @@
     <string name="msg_wait">Ji kerema xwe bisekinin…</string>
     <string name="msg_calculating_hash">Hesab hesibandin</string>
     <string name="msg_running_detail">Ji bo hûrguliyan tap bikin</string>
-    <string name="msg_running">Daxistina NewPipe</string>
+    <string name="msg_running">Daxistina Tubular</string>
     <string name="msg_error">Şaşî</string>
     <string name="msg_threads">Mijar</string>
     <string name="msg_name">Navê pelê</string>
@@ -117,7 +117,7 @@
     <string name="delete_view_history_alert">Tevahiya dîroka temaşekirinê tê jêbirin\?</string>
     <string name="clear_views_history_summary">Dîroka herikên lîstî û helwestên lîstinê jêbirin</string>
     <string name="clear_views_history_title">Dîroka temaşekirinê paqij bikin</string>
-    <string name="clear_cookie_summary">Dema ku hûn reCAPTCHA-yê çareser bikin cookie-yên ku NewPipe tomar dike paqij bikin</string>
+    <string name="clear_cookie_summary">Dema ku hûn reCAPTCHA-yê çareser bikin cookie-yên ku Tubular tomar dike paqij bikin</string>
     <string name="export_data_summary">Dîrok, abone, lîsteyên lîstin û mîhengan hinarde bikin</string>
     <string name="import_data_summary">Dîroka, abonî, lîsteyên lîstinê û mîhengên (vebijarkî) we yên heyî ji holê radike</string>
     <string name="recaptcha_cookies_cleared">çerezên reCAPTCHA hatine paqij kirin</string>
@@ -130,10 +130,10 @@
     <string name="unknown_content">[Nenas]</string>
     <string name="hash_channel_description">Agahdarî ji bo pêşveçûna heşandina vîdyoyê</string>
     <string name="hash_channel_name">Dîtina Agahdariya Vîdyoyê</string>
-    <string name="app_update_notification_channel_description">Notifications ji bo guhertoya nû ya NewPipe</string>
+    <string name="app_update_notification_channel_description">Notifications ji bo guhertoya nû ya Tubular</string>
     <string name="app_update_notification_channel_name">Nûvekirina Agahdariyê Appê</string>
-    <string name="notification_channel_description">Agahdarî ji bo lîstikvanên paşnav û popup ên NewPipe</string>
-    <string name="notification_channel_name">Agahdariya NewPipe</string>
+    <string name="notification_channel_description">Agahdarî ji bo lîstikvanên paşnav û popup ên Tubular</string>
+    <string name="notification_channel_name">Agahdariya Tubular</string>
     <string name="file">Dosî</string>
     <string name="just_once">Tenê Carek</string>
     <string name="always">Herdem</string>
@@ -397,7 +397,7 @@
     <string name="error_timeout">Dema girêdanê</string>
     <string name="error_progress_lost">Pêşkeftin winda bû, ji ber ku pel hate jêbirin</string>
     <string name="error_insufficient_storage">Cih li cîhazê namîne</string>
-    <string name="error_postprocessing_stopped">Dema ku pel dixebitî NewPipe hate girtin</string>
+    <string name="error_postprocessing_stopped">Dema ku pel dixebitî Tubular hate girtin</string>
     <string name="error_postprocessing_failed">Pêvajoya şûnda têk çû</string>
     <string name="error_http_not_found">Peyda nebû</string>
     <string name="error_http_unsupported_range">Pêşkêşker dakêşanên pir-têl qebûl nake, bi @string/msg_threads = 1 re dîsa biceribîne</string>
@@ -425,7 +425,7 @@
     <string name="missions_header_pending">Nexelas</string>
     <string name="missions_header_finished">Qediya</string>
     <string name="app_update_notification_content_text">Tap bikin dakêşin</string>
-    <string name="app_update_notification_content_title">Nûvekirina NewPipe heye!</string>
+    <string name="app_update_notification_content_title">Nûvekirina Tubular heye!</string>
     <string name="auto">Jixweber</string>
     <string name="grid">Qefes</string>
     <string name="list">Rêzok</string>
@@ -539,7 +539,7 @@
     <string name="contribution_encouragement">Ka ramanên we hene; werger, guherandinên sêwiranê, paqijkirina kodê, an guherînên koda giran ên rastîn-alîkarî her gav bi xêr hatî. Ya ku çêdibe çêtir dibe!</string>
     <string name="contribution_title">Paraxwe dayin</string>
     <string name="app_description">Li Android-ê veguhastina ronahiya sivik.</string>
-    <string name="title_activity_about">Derbarê NewPipe</string>
+    <string name="title_activity_about">Derbarê Tubular</string>
     <string name="toast_no_player">Ji bo lîstina vê pelê tu bername nehat saz kirin</string>
     <string name="charset_most_special_characters">Pir karakterên taybetî</string>
     <string name="charset_letters_and_digits">Name û reqem</string>

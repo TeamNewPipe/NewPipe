@@ -176,7 +176,7 @@
     <string name="youtube_restricted_mode_enabled_summary">YouTube provides a \"Restricted Mode\" which hides potentially mature content</string>
     <string name="restricted_video">This video is age restricted.\n\nTurn on \"%1$s\" in the settings if you want to see it.</string>
     <string name="restricted_video_no_stream">This video is age-restricted.
-\nDue to new YouTube policies with age-restricted videos, NewPipe cannot access any of its video streams and thus is unable to play it.</string>
+\nDue to new YouTube policies with age-restricted videos, Tubular cannot access any of its video streams and thus is unable to play it.</string>
     <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -204,10 +204,10 @@
     <string name="just_once">Just Once</string>
     <string name="file">File</string>
     <string name="notifications">Notifications</string>
-    <string name="notification_channel_name">NewPipe notification</string>
-    <string name="notification_channel_description">Notifications for NewPipe\'s player</string>
+    <string name="notification_channel_name">Tubular notification</string>
+    <string name="notification_channel_description">Notifications for Tubular\'s player</string>
     <string name="app_update_notification_channel_name">App update notification</string>
-    <string name="app_update_notification_channel_description">Notifications for new NewPipe versions</string>
+    <string name="app_update_notification_channel_description">Notifications for new Tubular versions</string>
     <string name="hash_channel_name">Video hash notification</string>
     <string name="hash_channel_description">Notifications for video hashing progress</string>
     <string name="streams_notification_channel_name">New streams</string>
@@ -224,7 +224,7 @@
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies have been cleared</string>
     <string name="import_data_summary">Overrides your current history, subscriptions, playlists and (optionally) settings</string>
     <string name="export_data_summary">Export history, subscriptions, playlists and settings</string>
-    <string name="clear_cookie_summary">Clear cookies that NewPipe stores when you solve a reCAPTCHA</string>
+    <string name="clear_cookie_summary">Clear cookies that Tubular stores when you solve a reCAPTCHA</string>
     <string name="clear_views_history_title">Clear watch history</string>
     <string name="clear_views_history_summary">Deletes the history of played streams and the playback positions</string>
     <string name="delete_view_history_alert">Delete entire watch history?</string>
@@ -268,7 +268,7 @@
     <string name="permission_display_over_apps">Give permission to display over other apps</string>
     <string name="invalid_color_toast">Invalid color</string>
     <!-- error activity -->
-    <string name="error_report_notification_title">NewPipe encountered an error, tap to report</string>
+    <string name="error_report_notification_title">Tubular encountered an error, tap to report</string>
     <string name="error_report_notification_toast">An error occurred, see the notification</string>
     <string name="sorry_string">Sorry, that should not have happened.</string>
     <string name="error_report_button_text">Report this error via e-mail</string>
@@ -347,7 +347,7 @@
     <string name="msg_name">Filename</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_error">Error</string>
-    <string name="msg_running">NewPipe Downloading</string>
+    <string name="msg_running">Tubular Downloading</string>
     <string name="msg_running_detail">Tap for details</string>
     <string name="msg_calculating_hash">Calculating hash</string>
     <string name="msg_wait">Please wait…</string>
@@ -371,7 +371,7 @@
     <string name="charset_most_special_characters">Most special characters</string>
     <string name="toast_no_player">No app installed to play this file</string>
     <!-- About -->
-    <string name="title_activity_about">About NewPipe</string>
+    <string name="title_activity_about">About Tubular</string>
     <string name="title_licenses">Third-party Licenses</string>
     <string name="copyright">© %1$s by %2$s under %3$s</string>
     <string name="tab_about">About</string>
@@ -577,7 +577,7 @@
     <string name="low_quality_smaller">Low quality (smaller)</string>
     <string name="dont_show">Don\'t show</string>
     <!-- App update notification -->
-    <string name="app_update_notification_content_title">NewPipe update is available!</string>
+    <string name="app_update_notification_content_title">Tubular update is available!</string>
     <string name="app_update_notification_content_text">Tap to download</string>
     <string name="missions_header_finished">Finished</string>
     <string name="missions_header_pending">Pending</string>
@@ -613,7 +613,7 @@
     <string name="error_http_unsupported_range">The server does not accept multi-threaded downloads, retry with @string/msg_threads = 1</string>
     <string name="error_http_not_found">Not found</string>
     <string name="error_postprocessing_failed">Post-processing failed</string>
-    <string name="error_postprocessing_stopped">NewPipe was closed while working on the file</string>
+    <string name="error_postprocessing_stopped">Tubular was closed while working on the file</string>
     <string name="error_insufficient_storage">No space left on device</string>
     <string name="error_progress_lost">Progress lost, because the file was deleted</string>
     <string name="error_timeout">Connection timeout</string>
@@ -692,7 +692,7 @@
     <string name="feed_update_threshold_option_always_update">Always update</string>
     <string name="feed_load_error">Error loading feed</string>
     <string name="feed_load_error_account_info">Could not load feed for \'%s\'.</string>
-    <string name="feed_load_error_terminated">The author\'s account has been terminated.\nNewPipe will not be able to load this feed in the future.\nDo you want to unsubscribe from this channel?</string>
+    <string name="feed_load_error_terminated">The author\'s account has been terminated.\nTubular will not be able to load this feed in the future.\nDo you want to unsubscribe from this channel?</string>
     <string name="feed_load_error_fast_unknown">The fast feed mode does not provide more info on this.</string>
     <string name="feed_use_dedicated_fetch_method_title">Fetch from dedicated feed when available</string>
     <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited amount of items and often incomplete information (e.g. no duration, item type, no live status)</string>
@@ -700,7 +700,7 @@
     <string name="feed_use_dedicated_fetch_method_disable_button">Disable fast mode</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Do you think feed loading is too slow\? If so, try enabling fast loading (you can change it in settings or by pressing the button below).
 \n
-\nNewPipe offers two feed loading strategies:
+\nTubular offers two feed loading strategies:
 \n• Fetching the whole subscription channel, which is slow but complete.
 \n• Using a dedicated service endpoint, which is fast but usually not complete.
 \n
@@ -711,7 +711,7 @@
 \nSo the choice boils down to what you prefer: speed or precise information.</string>
     <string name="feed_toggle_show_played_items">Show watched items</string>
     <string name="feed_toggle_hide_played_items">Hide watched items</string>
-    <string name="content_not_supported">This content is not yet supported by NewPipe.\n\nIt will hopefully be supported in a future version.</string>
+    <string name="content_not_supported">This content is not yet supported by Tubular.\n\nIt will hopefully be supported in a future version.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
     <string name="channel_created_by">Created by %s</string>
     <string name="video_detail_by">By %s</string>
@@ -726,12 +726,12 @@
     <string name="no_appropriate_file_manager_message_android_10">No appropriate file manager was found for this action.
 \nPlease install a Storage Access Framework compatible file manager</string>
     <string name="georestricted_content">This content is not available in your country.</string>
-    <string name="soundcloud_go_plus_content">This is a SoundCloud Go+ track, at least in your country, so it cannot be streamed or downloaded by NewPipe.</string>
-    <string name="private_content">This content is private, so it cannot be streamed or downloaded by NewPipe.</string>
-    <string name="youtube_music_premium_content">This video is available only to YouTube Music Premium members, so it cannot be streamed or downloaded by NewPipe.</string>
+    <string name="soundcloud_go_plus_content">This is a SoundCloud Go+ track, at least in your country, so it cannot be streamed or downloaded by Tubular.</string>
+    <string name="private_content">This content is private, so it cannot be streamed or downloaded by Tubular.</string>
+    <string name="youtube_music_premium_content">This video is available only to YouTube Music Premium members, so it cannot be streamed or downloaded by Tubular.</string>
     <string name="account_terminated">Account terminated</string>
     <string name="service_provides_reason">%s provides this reason:</string>
-    <string name="paid_content">This content is only available to users who have paid, so it cannot be streamed or downloaded by NewPipe.</string>
+    <string name="paid_content">This content is only available to users who have paid, so it cannot be streamed or downloaded by Tubular.</string>
     <string name="featured">Featured</string>
     <string name="radio">Radio</string>
     <string name="auto_device_theme_title">Automatic (device theme)</string>

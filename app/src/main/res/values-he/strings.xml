@@ -96,8 +96,8 @@
     <string name="best_resolution">רזולוציה מיטבית</string>
     <string name="undo">ביטול</string>
     <string name="play_all">לנגן הכול</string>
-    <string name="notification_channel_name">התראה מ־NewPipe</string>
-    <string name="notification_channel_description">התראות עבור הנגן של NewPipe</string>
+    <string name="notification_channel_name">התראה מ־Tubular</string>
+    <string name="notification_channel_description">התראות עבור הנגן של Tubular</string>
     <string name="unknown_content">[לא ידוע]</string>
     <string name="player_stream_failure">נגינת התזרים לא הצליחה</string>
     <string name="player_unrecoverable_failure">אירעה תקלה בנגן ממנה לא ניתן להשתקם</string>
@@ -145,7 +145,7 @@
     <string name="msg_name">שם קובץ</string>
     <string name="msg_threads">תהליכי משנה</string>
     <string name="msg_error">שגיאה</string>
-    <string name="msg_running">NewPipe בהורדה</string>
+    <string name="msg_running">Tubular בהורדה</string>
     <string name="msg_running_detail">יש לגעת לפרטים נוספים</string>
     <string name="msg_wait">נא להמתין…</string>
     <string name="msg_copied">הועתק ללוח</string>
@@ -160,7 +160,7 @@
     <string name="settings_file_replacement_character_title">תו חלופי</string>
     <string name="charset_letters_and_digits">אותיות וספרות</string>
     <string name="charset_most_special_characters">רוב התווים המיוחדים</string>
-    <string name="title_activity_about">על אודות NewPipe</string>
+    <string name="title_activity_about">על אודות Tubular</string>
     <string name="title_licenses">רישיונות צד שלישי</string>
     <string name="copyright" formatted="true">© %1$s ע״י %2$s תחת %3$s</string>
     <string name="tab_about">על אודות</string>
@@ -335,7 +335,7 @@
     <string name="settings_category_updates_title">עדכונים</string>
     <string name="file_deleted">קובץ נמחק</string>
     <string name="app_update_notification_channel_name">התראת עדכון יישומון</string>
-    <string name="app_update_notification_channel_description">התראות על גרסאות חדשות של NewPipe</string>
+    <string name="app_update_notification_channel_description">התראות על גרסאות חדשות של Tubular</string>
     <string name="download_to_sdcard_error_title">האחסון החיצוני אינו זמין</string>
     <string name="download_to_sdcard_error_message">אין אפשרות להוריד לכרטיס SD. לאפס את מיקום תיקיית ההורדה\?</string>
     <string name="saved_tabs_invalid_json">לא ניתן לקרוא לשוניות שמורות, לכן נעשה שימוש באלו של ברירת המחדל</string>

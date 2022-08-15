@@ -94,7 +94,7 @@
     <string name="msg_name">Tên file</string>
     <string name="msg_threads">Chủ đề</string>
     <string name="msg_error">Lỗi</string>
-    <string name="msg_running">NewPipe đang tải xuống</string>
+    <string name="msg_running">Tubular đang tải xuống</string>
     <string name="msg_running_detail">Chạm để biết chi tiết</string>
     <string name="msg_wait">Đợi chút xíu nha…</string>
     <string name="msg_copied">Đã sao chép vào clipboard</string>
@@ -103,7 +103,7 @@
 \n để hoạt động, hãy bật trong phần cài đặt</string>
     <string name="title_activity_recaptcha">reCAPTCHA</string>
     <string name="recaptcha_request_toast">Yêu cầu reCAPTCHA</string>
-    <string name="title_activity_about">Giới thiệu về NewPipe</string>
+    <string name="title_activity_about">Giới thiệu về Tubular</string>
     <string name="title_licenses">Giấy phép của bên thứ ba</string>
     <string name="copyright" formatted="true">© %1$s bởi %2$s dưới %3$s</string>
     <string name="tab_about">Thông tin</string>
@@ -338,7 +338,7 @@
     <string name="events">Sự kiện</string>
     <string name="file_deleted">Đã xóa tập tin</string>
     <string name="app_update_notification_channel_name">Thông báo cập nhật ứng dụng</string>
-    <string name="app_update_notification_channel_description">Thông báo phiên bản NewPipe mới</string>
+    <string name="app_update_notification_channel_description">Thông báo phiên bản Tubular mới</string>
     <string name="download_to_sdcard_error_title">Bộ nhớ ngoài không khả dụng</string>
     <string name="download_to_sdcard_error_message">Không thể tải vào thẻ SD ngoài. Đặt lại vị trí tải về\?</string>
     <string name="saved_tabs_invalid_json">Không thể đọc tab đã lưu, sử dụng tab mặc định</string>
@@ -400,7 +400,7 @@
     <string name="overwrite_unrelated_warning">Tên file này đã tồn tại</string>
     <string name="overwrite_failed">Không thể ghi đè lên tệp</string>
     <string name="download_already_pending">Có một bản tải xuống đang chờ xử lí với tên này</string>
-    <string name="error_postprocessing_stopped">Newpipe đã bị đóng khi đang xử lí tệp</string>
+    <string name="error_postprocessing_stopped">Tubular đã bị đóng khi đang xử lí tệp</string>
     <string name="error_insufficient_storage">Không đủ dung lượng trên máy</string>
     <string name="error_progress_lost">Quá trình mất, vì tập tin đã bị xoá</string>
     <string name="error_timeout">Kết nối hết thời gian</string>

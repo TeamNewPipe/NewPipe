@@ -96,7 +96,7 @@
     <string name="msg_name">Fitxategi-izena</string>
     <string name="msg_threads">Hariak</string>
     <string name="msg_error">Errorea</string>
-    <string name="msg_running">NewPipe deskargatzen</string>
+    <string name="msg_running">Tubular deskargatzen</string>
     <string name="msg_running_detail">Ukitu xehetasunetarako</string>
     <string name="msg_wait">Itxaron mesedez…</string>
     <string name="msg_copied">Arbelera kopiatuta</string>
@@ -105,7 +105,7 @@
 \nlaster-leiho moduan irekitzeko</string>
     <string name="title_activity_recaptcha">reCAPTCHA erronka</string>
     <string name="recaptcha_request_toast">reCAPTCHA erronka eskatu da</string>
-    <string name="title_activity_about">NewPipe aplikazioari buruz</string>
+    <string name="title_activity_about">Tubular aplikazioari buruz</string>
     <string name="title_licenses">Hirugarrengoen lizentziak</string>
     <string name="copyright" formatted="true">© %1$s %2$s. %3$s</string>
     <string name="tab_about">Honi buruz</string>
@@ -135,7 +135,7 @@
     <string name="enable_search_history_summary">Gorde bilaketak lokalki</string>
     <string name="enable_watch_history_title">Ikustaldien historiala</string>
     <string name="enable_watch_history_summary">Gorde ikusitako bideoen historiala</string>
-    <string name="notification_channel_name">NewPipe jakinarazpena</string>
+    <string name="notification_channel_name">Tubular jakinarazpena</string>
     <string name="settings_category_player_title">Erreproduzigailua</string>
     <string name="settings_category_player_behavior_title">Portaera</string>
     <string name="settings_category_history_title">Historia eta cache-a</string>

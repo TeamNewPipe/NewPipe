@@ -104,8 +104,8 @@
     <string name="always">Sempre</string>
     <string name="just_once">Só unha vez</string>
     <string name="file">Ficheiro</string>
-    <string name="notification_channel_name">Notificación do NewPipe</string>
-    <string name="notification_channel_description">Notificacións para o reprodutor de NewPipe</string>
+    <string name="notification_channel_name">Notificación do Tubular</string>
+    <string name="notification_channel_description">Notificacións para o reprodutor de Tubular</string>
     <string name="unknown_content">[Descoñecido]</string>
     <string name="switch_to_background">Mudar para o segundo plano</string>
     <string name="switch_to_popup">Mudar para o «popup»</string>
@@ -190,7 +190,7 @@
     <string name="msg_name">Nome do ficheiro</string>
     <string name="msg_threads">Fios</string>
     <string name="msg_error">Erro</string>
-    <string name="msg_running">Descarga do NewPipe</string>
+    <string name="msg_running">Descarga do Tubular</string>
     <string name="msg_running_detail">Toque para ver detalles</string>
     <string name="msg_wait">Por favor, agarde…</string>
     <string name="msg_copied">Copiado para o portarretallos</string>
@@ -207,7 +207,7 @@
     <string name="charset_letters_and_digits">Letras e díxitos</string>
     <string name="charset_most_special_characters">A maioría dos caracteres especiais</string>
     <string name="toast_no_player">Non hai ningún aplicativo instalado para reproducir este ficheiro</string>
-    <string name="title_activity_about">Sobre o NewPipe</string>
+    <string name="title_activity_about">Sobre o Tubular</string>
     <string name="title_licenses">Licenzas de terceiros</string>
     <string name="copyright" formatted="true">© %1$s de %2$s, so %3$s</string>
     <string name="tab_about">Sobre</string>
@@ -341,12 +341,12 @@
     <string name="video_detail_by">Por %s</string>
     <string name="channel_created_by">Creado por %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura do avatar da canle</string>
-    <string name="content_not_supported">NewPipe aínda non é compatible con este contido.
+    <string name="content_not_supported">Tubular aínda non é compatible con este contido.
 \n
 \nCon toda esperanza será compatible cunha futura versión.</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Cres que a carga de alimentación é demasiado lenta\? En caso afirmativo, intente habilitar a carga rápida (pode cambiala na configuración ou premendo o botón a continuación).
 \n
-\nNewPipe ofrece dúas estratexias de carga de fontes:
+\nTubular ofrece dúas estratexias de carga de fontes:
 \n• Obtendo toda a canle de subscrición, que é lenta pero completa.
 \n• Usar un punto final de servizo dedicado, rápido pero normalmente non completo.
 \n
@@ -425,7 +425,7 @@
     <string name="error_timeout">O tempo de espera da conexión</string>
     <string name="error_progress_lost">Perdeuse o progreso porque se eliminou o ficheiro</string>
     <string name="error_insufficient_storage">Non queda espazo no dispositivo</string>
-    <string name="error_postprocessing_stopped">NewPipe pechouse mentres se traballaba no ficheiro</string>
+    <string name="error_postprocessing_stopped">Tubular pechouse mentres se traballaba no ficheiro</string>
     <string name="error_postprocessing_failed">Fallou o post-procesamento</string>
     <string name="error_http_not_found">Non se atopou</string>
     <string name="error_http_unsupported_range">O servidor non acepta descargas múltiples con fíos e tente con @ string / msg_threads = 1</string>
@@ -453,7 +453,7 @@
     <string name="missions_header_pending">Pendente</string>
     <string name="missions_header_finished">Rematado</string>
     <string name="app_update_notification_content_text">Prema para descargar</string>
-    <string name="app_update_notification_content_title">A actualización de NewPipe está dispoñible!</string>
+    <string name="app_update_notification_content_title">A actualización de Tubular está dispoñible!</string>
     <string name="auto">Automático</string>
     <string name="enable_playback_state_lists_summary">Amosar indicadores de posición de reprodución en listas</string>
     <string name="brightness_gesture_control_summary">Use xestos para controlar o brillo do reprodutor</string>

@@ -100,8 +100,8 @@
     <string name="always">ਹਮੇਸ਼ਾ</string>
     <string name="just_once">ਸਿਰਫ਼ ਇਸ ਬਾਰ</string>
     <string name="file">ਫਾਈਲ</string>
-    <string name="notification_channel_name">NewPipe ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
-    <string name="notification_channel_description">NewPipe ਬੈਕਗ੍ਰਾਉਂਡ ਅਤੇ ਪੌਪ-ਅਪ ਪਲੇਅਰਾਂ ਲਈ ਸੂਚਨਾਵਾਂ</string>
+    <string name="notification_channel_name">Tubular ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
+    <string name="notification_channel_description">Tubular ਬੈਕਗ੍ਰਾਉਂਡ ਅਤੇ ਪੌਪ-ਅਪ ਪਲੇਅਰਾਂ ਲਈ ਸੂਚਨਾਵਾਂ</string>
     <string name="unknown_content">ਅਣਜਾਣ</string>
     <string name="switch_to_background">ਬੈਕਗਰਾਊਂਡ ਵਿੱਚ ਬਦਲੋ</string>
     <string name="switch_to_popup">ਪੌਪ-ਅਪ ਵਿੱਚ ਬਦਲੋ</string>
@@ -185,7 +185,7 @@
     <string name="msg_name">ਫਾਈਲ ਦਾ ਨਾਮ</string>
     <string name="msg_threads">threads</string>
     <string name="msg_error">ERROR</string>
-    <string name="msg_running">NewPipe ਡਾਊਨਲੋਡ ਹੋ ਰਿਹਾ ਹੈ</string>
+    <string name="msg_running">Tubular ਡਾਊਨਲੋਡ ਹੋ ਰਿਹਾ ਹੈ</string>
     <string name="msg_running_detail">ਵੇਰਵਿਆਂ ਲਈ ਖੋਲੋ</string>
     <string name="msg_wait">ਕ੍ਰਿਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ…</string>
     <string name="msg_copied">ਕਲਿਪ-ਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਹੋ ਗਿਆ ਹੈ</string>
@@ -201,7 +201,7 @@
     <string name="charset_letters_and_digits">ਅੱਖਰ ਅਤੇ ਅੰਕ</string>
     <string name="charset_most_special_characters">ਬਹੁਤੇ ਖ਼ਾਸ ਅੱਖਰ</string>
     <string name="toast_no_player">ਇਸ ਫਾਈਲ ਨੂੰ ਚਲਾਉਣ ਲਈ ਕੋਈ ਐਪ ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ</string>
-    <string name="title_activity_about">NewPipe ਬਾਰੇ</string>
+    <string name="title_activity_about">Tubular ਬਾਰੇ</string>
     <string name="title_licenses">ਥਰਡ-ਪਾਰਟੀ ਲਾਇਸੈਂਸ</string>
     <string name="copyright" formatted="true">© %1$s ਵਲੋਂ %2$s, %3$s ਅਧੀਨ</string>
     <string name="tab_about">ਐਪ ਬਾਰੇ</string>
@@ -336,7 +336,7 @@
     <string name="settings_category_updates_title">ਅਪਡੇਟਾਂ</string>
     <string name="file_deleted">ਫਾਈਲ ਮਿਟਾ ਦਿੱਤੀ ਗਈ ਹੈ</string>
     <string name="app_update_notification_channel_name">ਐਪ ਅੱਪਡੇਟ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
-    <string name="app_update_notification_channel_description">ਨਵੇਂ NewPipe ਸੰਸਕਰਣ ਲਈ ਸੂਚਨਾਵਾਂ</string>
+    <string name="app_update_notification_channel_description">ਨਵੇਂ Tubular ਸੰਸਕਰਣ ਲਈ ਸੂਚਨਾਵਾਂ</string>
     <string name="download_to_sdcard_error_title">ਬਾਹਰੀ ਸਟੋਰੇਜ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
     <string name="download_to_sdcard_error_message">ਬਾਹਰੀ SD ਕਾਰਡ ਤੇ ਡਾਊਨਲੋਡ ਕਰਨਾ ਸੰਭਵ ਨਹੀਂ ਹੈ. ਕੀ ਡਾਊਨਲੋਡ ਫੋਲਡਰ ਦੀ ਸਥਿਤੀ ਨੂੰ ਰੀਸੈਟ ਕੀਤਾ ਜਾਵੇ \?</string>
     <string name="saved_tabs_invalid_json">ਸਾਂਭੀਆਂ ਟੈਬਾਂ ਨਹੀਂ ਪੜ੍ਹ ਹੋਈਆਂ, ਇਸ ਲਈ ਡਿਫਾਲਟ ਟੈਬਾਂ ਦੀ ਵਰਤੋਂ ਹੋ ਰਹੀ ਹੈ</string>
@@ -398,7 +398,7 @@
     <string name="overwrite_finished_warning">ਇਸ ਨਾਮ ਨਾਲ ਡਾਉਨਲੋਡ ਕੀਤੀ ਫਾਈਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ</string>
     <string name="overwrite_failed">ਫਾਈਲ Overwrite ਨਹੀਂ ਹੋ ਸਕਦੀ</string>
     <string name="download_already_pending">ਇਸ ਨਾਮ ਦੇ ਨਾਲ ਇੱਥੇ ਇੱਕ ਬਕਾਇਆ ਡਾਊਨਲੋਡ ਹੈ</string>
-    <string name="error_postprocessing_stopped">ਫਾਈਲ ਤੇ ਕੰਮ ਕਰਦੇ ਸਮੇਂ NewPipe ਬੰਦ ਕੀਤੀ ਗਈ ਸੀ</string>
+    <string name="error_postprocessing_stopped">ਫਾਈਲ ਤੇ ਕੰਮ ਕਰਦੇ ਸਮੇਂ Tubular ਬੰਦ ਕੀਤੀ ਗਈ ਸੀ</string>
     <string name="error_insufficient_storage">ਡਿਵਾਈਸ ਤੇ ਕੋਈ ਜਗ੍ਹਾ ਨਹੀਂ ਬਚੀ ਹੈ</string>
     <string name="error_progress_lost">Progress lost, ਕਿਉਂਕਿ ਫਾਈਲ ਮਿਟ ਗਈ ਸੀ</string>
     <string name="error_timeout">ਕੁਨੈਕਸ਼ਨ timeout</string>

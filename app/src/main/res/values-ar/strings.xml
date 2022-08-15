@@ -96,8 +96,8 @@
     <string name="best_resolution">أفضل دقة</string>
     <string name="undo">تراجع</string>
     <string name="play_all">تشغيل الكل</string>
-    <string name="notification_channel_name">تنبيهات NewPipe</string>
-    <string name="notification_channel_description">تنبيهات مشغل NewPipe</string>
+    <string name="notification_channel_name">تنبيهات Tubular</string>
+    <string name="notification_channel_description">تنبيهات مشغل Tubular</string>
     <string name="unknown_content">[غير معروف]</string>
     <string name="could_not_setup_download_menu">تعذر إعداد قائمة التنزيل</string>
     <string name="app_ui_crash">تعطل التطبيق / واجهة المستخدم</string>
@@ -355,7 +355,7 @@
     <string name="app_update_notification_channel_name">تنبيه تحديث التطبيق</string>
     <string name="volume_gesture_control_title">إيماء التحكم بالصوت</string>
     <string name="events">الأحداث</string>
-    <string name="app_update_notification_channel_description">إشعارات لإصدار NewPipe الجديد</string>
+    <string name="app_update_notification_channel_description">إشعارات لإصدار Tubular الجديد</string>
     <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متوفرة</string>
     <string name="download_to_sdcard_error_message">لا يمكن التنزيل على بطاقة SD الخارجية. هل تريد إعادة تعيين موقع مجلد التنزيل؟</string>
     <string name="saved_tabs_invalid_json">يتم الان استخدام علامات التبويب الافتراضية بعد حدوث خطأ أثناء قراءة علامات التبويب المحفوظة</string>
@@ -370,7 +370,7 @@
     <string name="list">القائمة</string>
     <string name="grid">الشبكة</string>
     <string name="auto">تلقائي</string>
-    <string name="app_update_notification_content_title">تحديث NewPipe متاح!</string>
+    <string name="app_update_notification_content_title">تحديث Tubular متاح!</string>
     <string name="app_update_notification_content_text">اضغط لتنزيل</string>
     <string name="missions_header_finished">انتهى</string>
     <string name="missions_header_pending">ريثما</string>

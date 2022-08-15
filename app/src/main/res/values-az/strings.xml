@@ -127,7 +127,7 @@
     <string name="switch_to_popup">Ani Pəncərəyə Keçid</string>
     <string name="switch_to_background">Arxa Fona Keçid</string>
     <string name="unknown_content">[Naməlum]</string>
-    <string name="app_update_notification_channel_description">Yeni \"NewPipe\" versiyası üçün bildirişlər</string>
+    <string name="app_update_notification_channel_description">Yeni \"Tubular\" versiyası üçün bildirişlər</string>
     <string name="app_update_notification_channel_name">Tətbiq yeniləmə bildirişi</string>
     <string name="notification_channel_description">NewPipe oynadıcısı üçün bildirişlər</string>
     <string name="all">Hamısı</string>

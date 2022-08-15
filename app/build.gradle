@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "org.polymorphicshade.newpipe"
-        resValue "string", "app_name", "NewPipe SponsorBlock"
+        resValue "string", "app_name", "Tubular"
         minSdk 21
         targetSdk 29
         versionCode 990
@@ -38,11 +38,11 @@ android {
             if (normalizedWorkingBranch.isEmpty() || workingBranch == "master" || workingBranch == "dev") {
                 // default values when branch name could not be determined or is master or dev
                 applicationIdSuffix ".debug"
-                resValue "string", "app_name", "NewPipe Debug"
+                resValue "string", "app_name", "Tubular (Debug)"
             } else {
                 applicationIdSuffix ".debug." + normalizedWorkingBranch
-                resValue "string", "app_name", "NewPipe " + workingBranch
-                archivesBaseName = 'NewPipe_' + normalizedWorkingBranch
+                resValue "string", "app_name", "Tubular (" + workingBranch + ")"
+                archivesBaseName = 'Tubular_' + normalizedWorkingBranch
             }
         }
 
@@ -52,8 +52,8 @@ android {
         release {
             if (System.properties.containsKey('packageSuffix')) {
                 applicationIdSuffix System.getProperty('packageSuffix')
-                resValue "string", "app_name", "NewPipe " + System.getProperty('packageSuffix')
-                archivesBaseName = 'NewPipe_' + System.getProperty('packageSuffix')
+                resValue "string", "app_name", "Tubular " + System.getProperty('packageSuffix')
+                archivesBaseName = 'Tubular_' + System.getProperty('packageSuffix')
             }
             minifyEnabled true
             shrinkResources false // disabled to fix F-Droid's reproducible build

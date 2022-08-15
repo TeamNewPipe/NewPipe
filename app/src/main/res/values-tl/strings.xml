@@ -4,7 +4,7 @@
     <string name="dark_theme_title">Madilim</string>
     <string name="restricted_video_no_stream">Ang video na ito ay may paghihigpit sa edad.
 \n
-\nDahil sa mga bagong polisiya ng Youtube, hindi maaring ma-access ng NewPipe ang mga video streams nito, kaya hindi ito maipapalabas.</string>
+\nDahil sa mga bagong polisiya ng Youtube, hindi maaring ma-access ng Tubular ang mga video streams nito, kaya hindi ito maipapalabas.</string>
     <string name="subscription_change_failed">Di-mabago ang subscription</string>
     <string name="show_comments_summary">Patayin upang maitago ang mga puna</string>
     <string name="mark_as_watched">I-tanda bilang napanood na</string>

@@ -73,7 +73,7 @@
     <string name="msg_name">Nazwa pliku</string>
     <string name="msg_threads">Wątki</string>
     <string name="msg_error">Błąd</string>
-    <string name="msg_running">Pobieranie NewPipe</string>
+    <string name="msg_running">Pobieranie Tubular</string>
     <string name="msg_running_detail">Naciśnij, aby zobaczyć szczegóły</string>
     <string name="msg_wait">Proszę czekać…</string>
     <string name="msg_copied">Skopiowano do schowka</string>
@@ -108,7 +108,7 @@
     <string name="settings_category_downloads_title">Pobieranie</string>
     <string name="settings_file_replacement_character_summary">Nieprawidłowe znaki są zastępowane tą wartością</string>
     <string name="charset_letters_and_digits">Litery i cyfry</string>
-    <string name="title_activity_about">O NewPipe</string>
+    <string name="title_activity_about">O Tubular</string>
     <string name="title_licenses">Licencje innych firm</string>
     <string name="tab_about">O aplikacji</string>
     <string name="tab_licenses">Licencje</string>
@@ -134,8 +134,8 @@
     <string name="enable_watch_history_summary">Śledź obejrzane wideo</string>
     <string name="resume_on_audio_focus_gain_title">Wznawiaj odtwarzanie</string>
     <string name="resume_on_audio_focus_gain_summary">Kontynuuj odtwarzanie po przerwaniu (np. po rozmowie telefonicznej)</string>
-    <string name="notification_channel_name">Powiadomienie NewPipe</string>
-    <string name="notification_channel_description">Powiadomienia dla odtwarzacza NewPipe</string>
+    <string name="notification_channel_name">Powiadomienie Tubular</string>
+    <string name="notification_channel_description">Powiadomienia dla odtwarzacza Tubular</string>
     <string name="title_activity_history">Historia</string>
     <string name="action_history">Historia</string>
     <string name="settings_category_player_title">Odtwarzacz</string>
@@ -348,7 +348,7 @@
     <string name="settings_category_updates_title">Aktualizacje</string>
     <string name="file_deleted">Usunięto plik</string>
     <string name="app_update_notification_channel_name">Powiadomienie o aktualizacji aplikacji</string>
-    <string name="app_update_notification_channel_description">Powiadomienia o nowych wersjach NewPipe</string>
+    <string name="app_update_notification_channel_description">Powiadomienia o nowych wersjach Tubular</string>
     <string name="download_to_sdcard_error_title">Pamięć zewnętrzna niedostępna</string>
     <string name="download_to_sdcard_error_message">Pobieranie na kartę SD nie jest możliwe. Zresetować lokalizację folderu zapisywania\?</string>
     <string name="saved_tabs_invalid_json">Nie udało się odczytać zapisanych kart, więc będą używane domyślne</string>
@@ -362,7 +362,7 @@
     <string name="list">Lista</string>
     <string name="grid">Siatka</string>
     <string name="auto">Automatyczny</string>
-    <string name="app_update_notification_content_title">Dostępna jest aktualizacja NewPipe!</string>
+    <string name="app_update_notification_content_title">Dostępna jest aktualizacja Tubular!</string>
     <string name="app_update_notification_content_text">Naciśnij, aby pobrać</string>
     <string name="missions_header_finished">Zakończone</string>
     <string name="paused">wstrzymane</string>
@@ -409,7 +409,7 @@
     <string name="overwrite_unrelated_warning">Plik o tej nazwie już istnieje</string>
     <string name="overwrite_failed">Nie udało się nadpisać pliku</string>
     <string name="download_already_pending">Plik o tej samej nazwie oczekuje na pobranie</string>
-    <string name="error_postprocessing_stopped">NewPipe został zamknięty podczas pracy nad plikiem</string>
+    <string name="error_postprocessing_stopped">Tubular został zamknięty podczas pracy nad plikiem</string>
     <string name="error_insufficient_storage">Brak miejsca na urządzeniu</string>
     <string name="error_progress_lost">Utracono postęp, ponieważ plik został usunięty</string>
     <string name="confirm_prompt">Czy chcesz wyczyścić historię pobierania, czy usunąć wszystkie pobrane pliki\?</string>
@@ -476,7 +476,7 @@
     <string name="unmute">Wyłącz wyciszenie</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Czy uważasz, że ładowanie kanałów jest zbyt powolne\? Jeśli tak, spróbuj włączyć szybkie ładowanie (możesz je zmienić w ustawieniach lub naciskając przycisk poniżej).
 \n
-\nNewPipe oferuje dwie strategie ładowania kanału:
+\nTubular oferuje dwie strategie ładowania kanału:
 \n• Pobieranie całego kanału subskrypcji, co jest powolne, ale kompletne.
 \n• Korzystanie z dedykowanego punktu końcowego usługi, co jest szybkie, ale zwykle nie jest kompletne.
 \n
@@ -525,7 +525,7 @@
         <item quantity="many">%d minut</item>
     </plurals>
     <string name="help">Pomoc</string>
-    <string name="content_not_supported">Ta treść nie jest jeszcze obsługiwana przez NewPipe.
+    <string name="content_not_supported">Ta treść nie jest jeszcze obsługiwana przez Tubular.
 \n
 \nMiejmy nadzieję, że będzie obsługiwana w przyszłej wersji.</string>
     <string name="infinite_videos">∞ wideo</string>
@@ -580,7 +580,7 @@
     <string name="enqueued">Dodano do kolejki</string>
     <string name="enqueue_stream">Dodaj do kolejki</string>
     <string name="show_memory_leaks">Pokaż wycieki pamięci</string>
-    <string name="clear_cookie_summary">Wyczyść ciasteczka, które NewPipe przechowuje po rozwiązaniu reCAPTCHA</string>
+    <string name="clear_cookie_summary">Wyczyść ciasteczka, które Tubular przechowuje po rozwiązaniu reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Ciasteczka reCAPTCHA zostały wyczyszczone</string>
     <string name="clear_cookie_title">Wyczyść ciasteczka reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube udostępnia „Tryb ograniczonego dostępu”, który ukrywa potencjalne treści dla dorosłych</string>

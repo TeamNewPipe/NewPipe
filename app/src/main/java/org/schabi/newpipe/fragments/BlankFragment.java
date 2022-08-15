@@ -15,14 +15,14 @@ public class BlankFragment extends BaseFragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container,
                              final Bundle savedInstanceState) {
-        setTitle("NewPipe");
+        setTitle("Tubular");
         return inflater.inflate(R.layout.fragment_blank, container, false);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        setTitle("NewPipe");
+        setTitle("Tubular");
         // leave this inline. Will make it harder for copy cats.
         // If you are a Copy cat FUCK YOU.
         // I WILL FIND YOU, AND I WILL ...

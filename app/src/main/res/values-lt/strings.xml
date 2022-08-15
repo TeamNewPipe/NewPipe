@@ -402,11 +402,11 @@
 \n2. Eikite šiuo adresu: %1$s
 \n3. Prisijunkite, kai būsite paprašyti
 \n4. Nukopijuokite profilio URL, į kurį buvote nukreipti.</string>
-    <string name="paid_content">Šis turinys prieinamas tik sumokėjusiems naudotojams, todėl \"NewPipe\" negali jo transliuoti ar atsisiųsti.</string>
-    <string name="youtube_music_premium_content">Šis vaizdo įrašas prieinamas tik \"YouTube Music Premium\" nariams, todėl \"NewPipe\" negali jo transliuoti ar atsisiųsti.</string>
+    <string name="paid_content">Šis turinys prieinamas tik sumokėjusiems naudotojams, todėl \"Tubular\" negali jo transliuoti ar atsisiųsti.</string>
+    <string name="youtube_music_premium_content">Šis vaizdo įrašas prieinamas tik \"YouTube Music Premium\" nariams, todėl \"Tubular\" negali jo transliuoti ar atsisiųsti.</string>
     <string name="disable_media_tunneling_summary">Išjunkite medijos tuneliavimą, jei vaizdo įrašo atkūrimo metu atsiranda juodas ekranas arba užstrigimas</string>
     <string name="caption_setting_description">Pakeiskite grotuvo subtitrų teksto mastelį ir fono stilių. Pakeitimai įsigalios iš naujo paleidus programą</string>
-    <string name="private_content">Šis turinys yra privatus, todėl \"NewPipe\" jo negali transliuoti ar atsisiųsti.</string>
+    <string name="private_content">Šis turinys yra privatus, todėl \"Tubular\" jo negali transliuoti ar atsisiųsti.</string>
     <string name="confirm_prompt">Ar norite išvalyti atsisiuntimų istoriją ar ištrinti visus atsisiųstus failus\?</string>
     <string name="feed_update_threshold_summary">Laikas po paskutinio atnaujinimo, po kurio prenumerata laikoma pasenusia — %s</string>
     <string name="error_http_unsupported_range">Serveris nepriima daugiasrautinių atsisiuntimų, pakartokite bandymą su @string/msg_threads = 1</string>
@@ -520,7 +520,7 @@
     <string name="error_report_open_github_notice">Patikrinkite ar apie problemą su kuria susidūrėte dar nėra pranešta. Sukurdami kelis pranešimus apie tą pačią problemą atimate iš mūsų laiką kurį galėtume skirti klaidų taisymui.</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Ar manote, kad kanalas kraunamas per lėtai\? Jei taip, pabandykite įjungti greitąjį įkrovimą (tai galite pakeisti nustatymuose arba paspaudę toliau esantį mygtuką).
 \n
-\n\"NewPipe\" siūlo dvi kanalo įkėlimo strategijas:
+\n\"Tubular\" siūlo dvi kanalo įkėlimo strategijas:
 \n- Visos prenumeratos kanalo atsisiuntimas, kuris yra lėtas, bet išsamus.
 \n- Naudojant specialų paslaugos galinį tašką, kuris yra greitas, bet paprastai neišsamus.
 \n
@@ -534,8 +534,8 @@
     <string name="feed_use_dedicated_fetch_method_summary">Prieinama kai kuriose tarnybose, paprastai yra daug greitesnė, tačiau gali grąžinti ribotą kiekį elementų ir dažnai neišsamią informaciją (pvz., nėra trukmės, elemento tipo, nėra tiesioginės būsenos)</string>
     <string name="remove_watched_popup_warning">Vaizdo įrašai, kurie buvo peržiūrėti prieš juos įtraukiant į grojaraštį ir po to, kai jie buvo įtraukti į grojaraštį, bus pašalinti.
 \nAr tikrai\? To negalima atšaukti!</string>
-    <string name="soundcloud_go_plus_content">Tai \"SoundCloud Go+\" kūrinys, bent jau jūsų šalyje, todėl jo negalima transliuoti ar atsisiųsti per \"NewPipe\".</string>
-    <string name="content_not_supported">Šio turinio \"NewPipe\" dar nepalaiko.
+    <string name="soundcloud_go_plus_content">Tai \"SoundCloud Go+\" kūrinys, bent jau jūsų šalyje, todėl jo negalima transliuoti ar atsisiųsti per \"Tubular\".</string>
+    <string name="content_not_supported">Šio turinio \"Tubular\" dar nepalaiko.
 \n
 \nTikimės, kad jis bus palaikomas būsimoje versijoje.</string>
     <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" leidžia atsisiųsti duomenis į išorinę SD kortelę</string>

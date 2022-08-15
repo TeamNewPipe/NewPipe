@@ -135,7 +135,7 @@
     <string name="content_language_title">Llengua per defecte dels continguts</string>
     <string name="background_player_playing_toast">S\'està reproduint en rerefons</string>
     <string name="popup_playing_toast">S\'està reproduint en mode emergent</string>
-    <string name="notification_channel_name">Notificació de NewPipe</string>
+    <string name="notification_channel_name">Notificació de Tubular</string>
     <string name="notification_channel_description">Notificacions per al reproductor de NewPipe</string>
     <string name="could_not_load_thumbnails">No s\'han pogut carregar totes les miniatures</string>
     <string name="youtube_signature_deobfuscation_error">No s\'ha pogut desxifrar la signatura de l\'URL del vídeo</string>
@@ -185,7 +185,7 @@
     <string name="dismiss">Tanca</string>
     <string name="rename">Canvia el nom</string>
     <string name="msg_threads">Fils</string>
-    <string name="msg_running">Baixada del NewPipe activa</string>
+    <string name="msg_running">Baixada del Tubular activa</string>
     <string name="msg_wait">Un moment…</string>
     <string name="msg_copied">S\'ha copiat al porta-retalls</string>
     <string name="settings_file_charset_title">Caràcters permesos als noms de fitxer</string>
