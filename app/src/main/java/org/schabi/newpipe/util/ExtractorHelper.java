@@ -27,6 +27,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import org.schabi.newpipe.extractor.search.filter.FilterItem;
+
 import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 import androidx.preference.PreferenceManager;
@@ -74,8 +76,8 @@ public final class ExtractorHelper {
     }
 
     public static Single<SearchInfo> searchFor(final int serviceId, final String searchString,
-                                               final List<String> contentFilter,
-                                               final String sortFilter) {
+                                               final List<FilterItem> contentFilter,
+                                               final List<FilterItem> sortFilter) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
                 SearchInfo.getInfo(NewPipe.getService(serviceId),
@@ -87,8 +89,8 @@ public final class ExtractorHelper {
     public static Single<InfoItemsPage<InfoItem>> getMoreSearchItems(
             final int serviceId,
             final String searchString,
-            final List<String> contentFilter,
-            final String sortFilter,
+            final List<FilterItem> contentFilter,
+            final List<FilterItem> sortFilter,
             final Page page) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->

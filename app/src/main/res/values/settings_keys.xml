@@ -1383,6 +1383,28 @@
         <item>@string/card</item>
     </string-array>
 
+    <string name="search_filter_ui_key">search_filter_ui</string>
+    <string name="search_filter_ui_value">@string/search_filter_ui_dialog_key</string>
+
+    <string name="search_filter_ui_dialog_key">dialog</string>
+    <string name="search_filter_ui_option_menu_style_key">style</string>
+    <string name="search_filter_ui_option_menu_legacy_key">legacy</string>
+    <string name="search_filter_ui_chip_dialog_key">chip</string>
+
+    <string-array name="search_filter_ui_values">
+        <item>@string/search_filter_ui_dialog_key</item>
+        <item>@string/search_filter_ui_option_menu_style_key</item>
+        <item>@string/search_filter_ui_option_menu_legacy_key</item>
+        <item>@string/search_filter_ui_chip_dialog_key</item>
+    </string-array>
+
+    <string-array name="search_filter_ui_description">
+        <item>@string/search_filter_ui_dialog</item>
+        <item>@string/search_filter_ui_style</item>
+        <item>@string/search_filter_ui_legacy</item>
+        <item>@string/search_filter_ui_chip_dialog</item>
+    </string-array>
+
     <string name="tablet_mode_key">tablet_mode</string>
 
     <string name="tablet_mode_auto_key">auto</string>

@@ -907,4 +907,16 @@
     <string name="search_filters_yes">Yes</string>
     <string name="search_filters_youtube_music">YouTube Music</string>
     <!-- end - strings for search filter feature (NewPipeExtractor Services) -->
+
+    <!-- begin - strings for search filter UI -->
+    <string name="filter">Filter</string>
+    <string name="filter_search_sort_filters">Sort filters</string>
+    <string name="filter_search_content_filters">Content filters</string>
+    <string name="search_filter_ui">Select Search Filter UI</string>
+    <string name="search_filter_ui_dialog">Simple Dialog (default)</string>
+    <string name="search_filter_ui_style">Action Menu styled Dialog</string>
+    <string name="search_filter_ui_legacy">Action Menu (legacy)</string>
+    <string name="search_filter_ui_chip_dialog">Chip Dialog</string>
+    <!-- end - strings for search filter UI -->
+
 </resources>
