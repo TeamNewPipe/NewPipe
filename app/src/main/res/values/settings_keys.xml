@@ -1339,5 +1339,7 @@
     <string name="streams_notifications_channels_key">streams_notifications_channels</string>
     <string name="player_notification_screen_key">player_notification_screen</string>
 
+    <!-- ExoPlayer settings -->
     <string name="exoplayer_settings_key">exoplayer_settings_key</string>
+    <string name="use_exoplayer_decoder_fallback_key">use_exoplayer_decoder_fallback_key</string>
 </resources>
