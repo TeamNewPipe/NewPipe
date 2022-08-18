@@ -1,15 +1,13 @@
 package org.schabi.newpipe.settings.notifications
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckedTextView
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.schabi.newpipe.R
 import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
+import org.schabi.newpipe.databinding.ItemNotificationConfigBinding
 import org.schabi.newpipe.settings.notifications.NotificationModeConfigAdapter.SubscriptionHolder
 
 /**
@@ -19,85 +17,46 @@ import org.schabi.newpipe.settings.notifications.NotificationModeConfigAdapter.S
  */
 class NotificationModeConfigAdapter(
     private val listener: ModeToggleListener
-) : RecyclerView.Adapter<SubscriptionHolder>() {
-
-    private val differ = AsyncListDiffer(this, DiffCallback())
-
-    init {
-        setHasStableIds(true)
-    }
-
-    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): SubscriptionHolder {
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_notification_config, viewGroup, false)
-        return SubscriptionHolder(view, listener)
-    }
-
-    override fun onBindViewHolder(subscriptionHolder: SubscriptionHolder, i: Int) {
-        subscriptionHolder.bind(differ.currentList[i])
-    }
-
-    fun getItem(position: Int): SubscriptionItem = differ.currentList[position]
-
-    override fun getItemCount() = differ.currentList.size
-
-    override fun getItemId(position: Int): Long {
-        return differ.currentList[position].id
-    }
-
-    fun getCurrentList(): List<SubscriptionItem> = differ.currentList
-
-    fun update(newData: List<SubscriptionEntity>) {
-        differ.submitList(
-            newData.map {
-                SubscriptionItem(
-                    id = it.uid,
-                    title = it.name,
-                    notificationMode = it.notificationMode,
-                    serviceId = it.serviceId,
-                    url = it.url
-                )
-            }
+) : ListAdapter<SubscriptionItem, SubscriptionHolder>(DiffCallback) {
+    override fun onCreateViewHolder(parent: ViewGroup, i: Int): SubscriptionHolder {
+        return SubscriptionHolder(
+            ItemNotificationConfigBinding
+                .inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
-    data class SubscriptionItem(
-        val id: Long,
-        val title: String,
-        @NotificationMode
-        val notificationMode: Int,
-        val serviceId: Int,
-        val url: String
-    )
+    override fun onBindViewHolder(holder: SubscriptionHolder, position: Int) {
+        holder.bind(currentList[position])
+    }
 
-    class SubscriptionHolder(
-        itemView: View,
-        private val listener: ModeToggleListener
-    ) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    fun update(newData: List<SubscriptionEntity>) {
+        val items = newData.map {
+            SubscriptionItem(it.uid, it.name, it.notificationMode, it.serviceId, it.url)
+        }
+        submitList(items)
+    }
 
-        private val checkedTextView = itemView as CheckedTextView
-
+    inner class SubscriptionHolder(
+        private val itemBinding: ItemNotificationConfigBinding
+    ) : RecyclerView.ViewHolder(itemBinding.root) {
         init {
-            itemView.setOnClickListener(this)
+            itemView.setOnClickListener {
+                val mode = if (itemBinding.root.isChecked) {
+                    NotificationMode.DISABLED
+                } else {
+                    NotificationMode.ENABLED
+                }
+                listener.onModeChange(bindingAdapterPosition, mode)
+            }
         }
 
         fun bind(data: SubscriptionItem) {
-            checkedTextView.text = data.title
-            checkedTextView.isChecked = data.notificationMode != NotificationMode.DISABLED
-        }
-
-        override fun onClick(v: View) {
-            val mode = if (checkedTextView.isChecked) {
-                NotificationMode.DISABLED
-            } else {
-                NotificationMode.ENABLED
-            }
-            listener.onModeChange(bindingAdapterPosition, mode)
+            itemBinding.root.text = data.title
+            itemBinding.root.isChecked = data.notificationMode != NotificationMode.DISABLED
         }
     }
 
-    private class DiffCallback : DiffUtil.ItemCallback<SubscriptionItem>() {
-
+    private object DiffCallback : DiffUtil.ItemCallback<SubscriptionItem>() {
         override fun areItemsTheSame(oldItem: SubscriptionItem, newItem: SubscriptionItem): Boolean {
             return oldItem.id == newItem.id
         }
@@ -107,18 +66,27 @@ class NotificationModeConfigAdapter(
         }
 
         override fun getChangePayload(oldItem: SubscriptionItem, newItem: SubscriptionItem): Any? {
-            if (oldItem.notificationMode != newItem.notificationMode) {
-                return newItem.notificationMode
+            return if (oldItem.notificationMode != newItem.notificationMode) {
+                newItem.notificationMode
             } else {
-                return super.getChangePayload(oldItem, newItem)
+                super.getChangePayload(oldItem, newItem)
             }
         }
     }
 
-    interface ModeToggleListener {
+    fun interface ModeToggleListener {
         /**
          * Triggered when the UI representation of a notification mode is changed.
          */
         fun onModeChange(position: Int, @NotificationMode mode: Int)
     }
 }
+
+data class SubscriptionItem(
+    val id: Long,
+    val title: String,
+    @NotificationMode
+    val notificationMode: Int,
+    val serviceId: Int,
+    val url: String
+)
