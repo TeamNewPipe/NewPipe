@@ -157,6 +157,7 @@ public final class VideoDetailFragment
     private static final String COMMENTS_TAB_TAG = "COMMENTS";
     private static final String RELATED_TAB_TAG = "NEXT VIDEO";
     private static final String DESCRIPTION_TAB_TAG = "DESCRIPTION TAB";
+    private static final String SPONSOR_BLOCK_TAB_TAG = "SPONSOR_BLOCK TAB";
     private static final String EMPTY_TAB_TAG = "EMPTY TAB";
 
     private static final String PICASSO_VIDEO_DETAILS_TAG = "PICASSO_VIDEO_DETAILS_TAG";
@@ -165,6 +166,7 @@ public final class VideoDetailFragment
     private boolean showComments;
     private boolean showRelatedItems;
     private boolean showDescription;
+    private boolean showSponsorBlock;
     private String selectedTabTag;
     @AttrRes @NonNull final List<Integer> tabIcons = new ArrayList<>();
     @StringRes @NonNull final List<Integer> tabContentDescriptions = new ArrayList<>();
@@ -225,6 +227,14 @@ public final class VideoDetailFragment
                                    final boolean playAfterConnect) {
         player = connectedPlayer;
         playerService = connectedPlayerService;
+
+        if (showSponsorBlock) {
+            final int sponsorBlockFragmentPosition =
+                    pageAdapter.getItemPositionByTitle(SPONSOR_BLOCK_TAB_TAG);
+            final SponsorBlockFragment fragment =
+                    (SponsorBlockFragment) pageAdapter.getItem(sponsorBlockFragmentPosition);
+            fragment.setPlayer(player);
+        }
 
         // It will do nothing if the player is not in fullscreen mode
         hideSystemUiIfNeeded();
@@ -294,6 +304,7 @@ public final class VideoDetailFragment
         showComments = prefs.getBoolean(getString(R.string.show_comments_key), true);
         showRelatedItems = prefs.getBoolean(getString(R.string.show_next_video_key), true);
         showDescription = prefs.getBoolean(getString(R.string.show_description_key), true);
+        showSponsorBlock = prefs.getBoolean(getString(R.string.sponsor_block_enable_key), false);
         selectedTabTag = prefs.getString(
                 getString(R.string.stream_info_selected_tab_key), COMMENTS_TAB_TAG);
         prefs.registerOnSharedPreferenceChangeListener(this);
@@ -441,6 +452,9 @@ public final class VideoDetailFragment
             tabSettingsChanged = true;
         } else if (key.equals(getString(R.string.show_description_key))) {
             showDescription = sharedPreferences.getBoolean(key, true);
+            tabSettingsChanged = true;
+        } else if (key.equals(getString(R.string.sponsor_block_enable_key))) {
+            showSponsorBlock = sharedPreferences.getBoolean(key, false);
             tabSettingsChanged = true;
         }
     }
@@ -988,6 +1002,13 @@ public final class VideoDetailFragment
             tabContentDescriptions.add(R.string.description_tab_description);
         }
 
+        if (showSponsorBlock) {
+            // temp empty fragment. will be updated in handleResult
+            pageAdapter.addFragment(EmptyFragment.newInstance(false), SPONSOR_BLOCK_TAB_TAG);
+            tabIcons.add(R.drawable.ic_sponsor_block_enable);
+            tabContentDescriptions.add(R.string.sponsor_block_tab_description);
+        }
+
         if (pageAdapter.getCount() == 0) {
             pageAdapter.addFragment(EmptyFragment.newInstance(true), EMPTY_TAB_TAG);
         }
@@ -1034,6 +1055,10 @@ public final class VideoDetailFragment
 
         if (showDescription) {
             pageAdapter.updateItem(DESCRIPTION_TAB_TAG, new DescriptionFragment(info));
+        }
+
+        if (showSponsorBlock) {
+            pageAdapter.updateItem(SPONSOR_BLOCK_TAB_TAG, new SponsorBlockFragment());
         }
 
         binding.viewPager.setVisibility(View.VISIBLE);

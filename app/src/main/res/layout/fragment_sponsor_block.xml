@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    tools:context=".fragments.detail.SponsorBlockFragment">
+    <!--
+        TODO:
+            - submit segment
+                - skip forward/backward 1 frame
+                - mark beginning of new segment
+                - mark end of new segment
+                - submit
+                    - choose a category
+                    - confirm/submit segment
+            - voting
+                - list current segments
+                - vote up/down each segment
+                - mass vote up segments (not down)
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/skipping_is_enabled_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Skipping is enabled" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/channel_is_whitelisted_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Whitelist channel" />
+
+        <!-- TODO: uncomment when ready -->
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:background="?android:attr/listDivider" />-->
+
+<!--        <org.schabi.newpipe.views.NewPipeTextView-->
+<!--            android:id="@+id/detail_upload_date_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:textStyle="bold"-->
+<!--            tools:text="Segments" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/submit_new_segment_button"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:text="Add Segment" />-->
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

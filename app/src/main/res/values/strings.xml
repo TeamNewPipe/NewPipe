@@ -290,6 +290,7 @@
     <string name="comments_tab_description">Comments</string>
     <string name="related_items_tab_description">Related items</string>
     <string name="description_tab_description">Description</string>
+    <string name="sponsor_block_tab_description">SponsorBlock</string>
     <string name="search_no_results">No results</string>
     <string name="empty_subscription_feed_subtitle">Nothing here but crickets</string>
     <string name="detail_drag_description">Drag to reorder</string>

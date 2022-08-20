@@ -126,6 +126,7 @@ import org.schabi.newpipe.util.SponsorBlockMode;
 import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.VideoSegment;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -165,7 +166,6 @@ public final class Player implements PlaybackListener, Listener {
     public static final String PLAY_WHEN_READY = "play_when_ready";
     public static final String PLAYER_TYPE = "player_type";
     public static final String IS_MUTED = "is_muted";
-    public static final String VIDEO_SEGMENTS = "video_segments";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Time constants
@@ -234,6 +234,7 @@ public final class Player implements PlaybackListener, Listener {
     private IntentFilter intentFilter;
     @Nullable private PlayerServiceEventListener fragmentListener = null;
     @Nullable private PlayerEventListener activityListener = null;
+    private PlayerListener playerListener;
 
     @NonNull private final SerialDisposable progressUpdateDisposable = new SerialDisposable();
     @NonNull private final CompositeDisposable databaseUpdateDisposable = new CompositeDisposable();
@@ -1170,6 +1171,10 @@ public final class Player implements PlaybackListener, Listener {
 
         if (playWhenReady) {
             audioReactor.requestAudioFocus();
+        }
+
+        if (playerListener != null) {
+            playerListener.onPlayerPrepared(this);
         }
     }
 
@@ -2400,6 +2405,18 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         return null;
+    }
+
+    public VideoSegment[] getVideoSegments() {
+        if (currentItem == null) {
+            return null;
+        }
+
+        return currentItem.getVideoSegments();
+    }
+
+    public void setPlayerListener(final PlayerListener listener) {
+        this.playerListener = listener;
     }
 
     //endregion
