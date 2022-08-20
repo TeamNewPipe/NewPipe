@@ -1,7 +1,7 @@
 package org.schabi.newpipe.database
 
-import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
+import androidx.core.content.contentValuesOf
 import androidx.room.Room
 import androidx.room.testing.MigrationTestHelper
 import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
@@ -43,28 +43,25 @@ class DatabaseMigrationTest {
         databaseInV2.run {
             insert(
                 "streams", SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    put("service_id", DEFAULT_SERVICE_ID)
-                    put("url", DEFAULT_URL)
-                    put("title", DEFAULT_TITLE)
-                    put("stream_type", DEFAULT_TYPE.name)
-                    put("duration", DEFAULT_DURATION)
-                    put("uploader", DEFAULT_UPLOADER_NAME)
-                    put("thumbnail_url", DEFAULT_THUMBNAIL)
-                }
+                contentValuesOf(
+                    "service_id" to DEFAULT_SERVICE_ID,
+                    "url" to DEFAULT_URL,
+                    "title" to DEFAULT_TITLE,
+                    "stream_type" to DEFAULT_TYPE.name,
+                    "duration" to DEFAULT_DURATION,
+                    "uploader" to DEFAULT_UPLOADER_NAME,
+                    "thumbnail_url" to DEFAULT_THUMBNAIL
+                )
             )
             insert(
                 "streams", SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    put("service_id", DEFAULT_SECOND_SERVICE_ID)
-                    put("url", DEFAULT_SECOND_URL)
-                }
+                contentValuesOf(
+                    "service_id" to DEFAULT_SECOND_SERVICE_ID, "url" to DEFAULT_SECOND_URL
+                )
             )
             insert(
                 "streams", SQLiteDatabase.CONFLICT_FAIL,
-                ContentValues().apply {
-                    put("service_id", DEFAULT_SERVICE_ID)
-                }
+                contentValuesOf("service_id" to DEFAULT_SERVICE_ID)
             )
             close()
         }
@@ -82,6 +79,11 @@ class DatabaseMigrationTest {
         testHelper.runMigrationsAndValidate(
             AppDatabase.DATABASE_NAME, Migrations.DB_VER_5,
             true, Migrations.MIGRATION_4_5
+        )
+
+        testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME, Migrations.DB_VER_6,
+            true, AppDatabase_AutoMigration_5_6_Impl()
         )
 
         val migratedDatabaseV3 = getMigratedDatabase()

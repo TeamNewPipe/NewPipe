@@ -47,9 +47,7 @@ class SubscriptionManager(context: Context) {
     }
 
     fun upsertAll(infoList: List<ChannelInfo>): List<SubscriptionEntity> {
-        val listEntities = subscriptionTable.upsertAll(
-            infoList.map { SubscriptionEntity.from(it) }
-        )
+        val listEntities = subscriptionTable.upsertAll(infoList.map { SubscriptionEntity(it) })
 
         database.runInTransaction {
             infoList.forEachIndexed { index, info ->
@@ -60,12 +58,20 @@ class SubscriptionManager(context: Context) {
         return listEntities
     }
 
-    fun updateChannelInfo(info: ChannelInfo): Completable = subscriptionTable.getSubscription(info.serviceId, info.url)
-        .flatMapCompletable {
+    fun updateChannelInfo(info: ChannelInfo): Completable = subscriptionTable.getSubscription(
+        info.serviceId,
+        info.url
+    )
+        .flatMapCompletable { entity ->
             Completable.fromRunnable {
-                it.setData(info.name, info.avatarUrl, info.description, info.subscriberCount)
-                subscriptionTable.update(it)
-                feedDatabaseManager.upsertAll(it.uid, info.relatedItems)
+                val copy = entity.copy(
+                    name = info.name, avatarUrl = info.avatarUrl, description = info.description,
+                    subscriberCount = info.subscriberCount
+                ).also {
+                    it.notificationMode = entity.notificationMode
+                }
+                subscriptionTable.update(copy)
+                feedDatabaseManager.upsertAll(copy.uid, info.relatedItems)
             }
         }
 
@@ -86,19 +92,19 @@ class SubscriptionManager(context: Context) {
 
     fun updateFromInfo(subscriptionId: Long, info: ListInfo<StreamInfoItem>) {
         val subscriptionEntity = subscriptionTable.getSubscription(subscriptionId)
-
-        if (info is FeedInfo) {
-            subscriptionEntity.name = info.name
-        } else if (info is ChannelInfo) {
-            subscriptionEntity.setData(
-                info.name,
-                info.avatarUrl,
-                info.description,
-                info.subscriberCount
-            )
+        val copy = when (info) {
+            is FeedInfo -> subscriptionEntity.copy(name = info.name).also {
+                it.notificationMode = subscriptionEntity.notificationMode
+            }
+            is ChannelInfo -> subscriptionEntity.copy(
+                name = info.name, avatarUrl = info.avatarUrl,
+                description = info.description, subscriberCount = info.subscriberCount
+            ).also {
+                it.notificationMode = subscriptionEntity.notificationMode
+            }
+            else -> subscriptionEntity
         }
-
-        subscriptionTable.update(subscriptionEntity)
+        subscriptionTable.update(copy)
     }
 
     fun deleteSubscription(serviceId: Int, url: String): Completable {

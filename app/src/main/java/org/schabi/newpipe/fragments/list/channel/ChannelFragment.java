@@ -334,13 +334,7 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
                 if (DEBUG) {
                     Log.d(TAG, "No subscription to this channel!");
                 }
-                final SubscriptionEntity channel = new SubscriptionEntity();
-                channel.setServiceId(info.getServiceId());
-                channel.setUrl(info.getUrl());
-                channel.setData(info.getName(),
-                        info.getAvatarUrl(),
-                        info.getDescription(),
-                        info.getSubscriberCount());
+                final SubscriptionEntity channel = new SubscriptionEntity(info);
                 updateNotifyButton(null);
                 subscribeButtonMonitor = monitorSubscribeButton(
                         headerBinding.channelSubscribeButton, mapOnSubscribe(channel, info));

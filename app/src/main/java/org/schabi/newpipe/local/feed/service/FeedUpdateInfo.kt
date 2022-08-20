@@ -13,15 +13,9 @@ data class FeedUpdateInfo(
     val avatarUrl: String,
     val listInfo: ListInfo<StreamInfoItem>,
 ) {
-    constructor(
-        subscription: SubscriptionEntity,
-        listInfo: ListInfo<StreamInfoItem>,
-    ) : this(
-        uid = subscription.uid,
-        notificationMode = subscription.notificationMode,
-        name = subscription.name,
-        avatarUrl = subscription.avatarUrl,
-        listInfo = listInfo,
+    constructor(subscription: SubscriptionEntity, listInfo: ListInfo<StreamInfoItem>) : this(
+        subscription.uid, subscription.notificationMode, subscription.name.orEmpty(),
+        subscription.avatarUrl.orEmpty(), listInfo,
     )
 
     /**

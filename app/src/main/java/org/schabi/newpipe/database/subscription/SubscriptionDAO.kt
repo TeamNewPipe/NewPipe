@@ -91,22 +91,21 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
 
     @Transaction
     open fun upsertAll(entities: List<SubscriptionEntity>): List<SubscriptionEntity> {
-        val insertUidList = silentInsertAllInternal(entities)
+        val insertUIDs = silentInsertAllInternal(entities)
 
-        insertUidList.forEachIndexed { index: Int, uidFromInsert: Long ->
-            val entity = entities[index]
-
+        return (insertUIDs zip entities).map { (uidFromInsert, entity) ->
             if (uidFromInsert != -1L) {
-                entity.uid = uidFromInsert
+                entity.copy(uid = uidFromInsert).also {
+                    it.notificationMode = entity.notificationMode
+                }
             } else {
                 val subscriptionIdFromDb = getSubscriptionIdInternal(entity.serviceId, entity.url)
                     ?: throw IllegalStateException("Subscription cannot be null just after insertion.")
-                entity.uid = subscriptionIdFromDb
-
-                update(entity)
+                entity.copy(uid = subscriptionIdFromDb).also {
+                    it.notificationMode = entity.notificationMode
+                    update(it)
+                }
             }
         }
-
-        return entities
     }
 }

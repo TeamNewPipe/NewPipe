@@ -20,8 +20,7 @@ import org.schabi.newpipe.settings.notifications.NotificationModeConfigAdapter.S
 class NotificationModeConfigAdapter(
     private val listener: ModeToggleListener
 ) : RecyclerView.Adapter<SubscriptionHolder>() {
-
-    private val differ = AsyncListDiffer(this, DiffCallback())
+    private val differ = AsyncListDiffer(this, DiffCallback)
 
     init {
         setHasStableIds(true)
@@ -50,13 +49,7 @@ class NotificationModeConfigAdapter(
     fun update(newData: List<SubscriptionEntity>) {
         differ.submitList(
             newData.map {
-                SubscriptionItem(
-                    id = it.uid,
-                    title = it.name,
-                    notificationMode = it.notificationMode,
-                    serviceId = it.serviceId,
-                    url = it.url
-                )
+                SubscriptionItem(it.uid, it.name.orEmpty(), it.notificationMode, it.serviceId, it.url)
             }
         )
     }
@@ -96,8 +89,7 @@ class NotificationModeConfigAdapter(
         }
     }
 
-    private class DiffCallback : DiffUtil.ItemCallback<SubscriptionItem>() {
-
+    private object DiffCallback : DiffUtil.ItemCallback<SubscriptionItem>() {
         override fun areItemsTheSame(oldItem: SubscriptionItem, newItem: SubscriptionItem): Boolean {
             return oldItem.id == newItem.id
         }
@@ -107,10 +99,10 @@ class NotificationModeConfigAdapter(
         }
 
         override fun getChangePayload(oldItem: SubscriptionItem, newItem: SubscriptionItem): Any? {
-            if (oldItem.notificationMode != newItem.notificationMode) {
-                return newItem.notificationMode
+            return if (oldItem.notificationMode != newItem.notificationMode) {
+                newItem.notificationMode
             } else {
-                return super.getChangePayload(oldItem, newItem)
+                super.getChangePayload(oldItem, newItem)
             }
         }
     }
