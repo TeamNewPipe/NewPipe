@@ -18,7 +18,7 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:banner="@mipmap/newpipe_tv_banner"
+        android:banner="@mipmap/tubular_tv_banner"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:logo="@mipmap/ic_launcher"
