@@ -853,7 +853,7 @@ public class RouterActivity extends AppCompatActivity {
         private NotificationCompat.Builder createNotification() {
             return new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
                     .setOngoing(true)
-                    .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+                    .setSmallIcon(R.drawable.ic_tubular_white)
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                     .setContentTitle(
                             getString(R.string.preferred_player_fetcher_notification_title))

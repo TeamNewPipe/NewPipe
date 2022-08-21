@@ -128,7 +128,7 @@ public final class NotificationUtil {
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCategory(NotificationCompat.CATEGORY_TRANSPORT)
                 .setShowWhen(false)
-                .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+                .setSmallIcon(R.drawable.ic_tubular_white)
                 .setColor(ContextCompat.getColor(player.getContext(),
                         R.color.dark_background_color))
                 .setColorized(player.getPrefs().getBoolean(

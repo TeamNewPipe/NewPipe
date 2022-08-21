@@ -55,7 +55,7 @@ class NewVersionWorker(
         val pendingIntent = PendingIntent.getActivity(app, 0, intent, 0)
         val channelId = app.getString(R.string.app_update_notification_channel_id)
         val notificationBuilder = NotificationCompat.Builder(app, channelId)
-            .setSmallIcon(R.drawable.ic_newpipe_update)
+            .setSmallIcon(R.drawable.ic_tubular_update)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)

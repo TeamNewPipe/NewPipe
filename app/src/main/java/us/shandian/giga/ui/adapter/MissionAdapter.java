@@ -716,7 +716,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                         = new NotificationCompat.Builder(mContext,
                         mContext.getString(R.string.hash_channel_id))
                         .setPriority(NotificationCompat.PRIORITY_HIGH)
-                        .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+                        .setSmallIcon(R.drawable.ic_tubular_white)
                         .setContentTitle(mContext.getString(R.string.msg_calculating_hash))
                         .setContentText(mContext.getString(R.string.msg_wait))
                         .setProgress(0, 0, true)
