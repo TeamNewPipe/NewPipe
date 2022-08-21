@@ -715,7 +715,6 @@
     <string name="detail_pinned_comment_view_description">Закреплённый комментарий</string>
     <string name="leak_canary_not_available">LeakCanary недоступна</string>
     <string name="progressive_load_interval_exoplayer_default">Стандартное значение ExoPlayer</string>
-    <string name="progressive_load_interval_summary">Изменить интервал загрузки (сейчас %s). Меньшее значение может ускорить запуск видео. Нужен перезапуск плеера</string>
     <string name="loading_stream_details">Загрузка сведений о трансляции…</string>
     <string name="check_new_streams">Проверить наличие новых трансляций</string>
     <string name="delete_downloaded_files_confirm">Удалить все загруженные файлы\?</string>

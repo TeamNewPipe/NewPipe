@@ -696,7 +696,6 @@
     <string name="detail_pinned_comment_view_description">Comentario fijado</string>
     <string name="leak_canary_not_available">LeakCanary no está disponible</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer valor por defecto</string>
-    <string name="progressive_load_interval_summary">Cambie el tamaño del intervalo de carga (actualmente %s). Un valor más bajo puede acelerar la carga inicial de video. Los cambios requieren un reinicio del reproductor</string>
     <string name="notifications">Notificaciones</string>
     <string name="streams_notification_channel_name">Nuevos streams</string>
     <string name="settings_category_player_notification_title">Notificación del reproductor</string>

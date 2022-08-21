@@ -671,7 +671,6 @@
     <string name="manual_update_description">Procurar manualmente novas versións</string>
     <string name="checking_updates_toast">A procurar actualizacións…</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, só o \'Sistema de Acceso ao Almacenamento\' está soportado</string>
-    <string name="progressive_load_interval_summary">Cambial dimensión do intervalo de carga (actualmente %s). Un valor máis baixo pode alixeirala carga inicial do vídeo. Os cambios requiren un reinicio da aplicacion</string>
     <string name="processing_may_take_a_moment">Procesando... Pode devagar un momento</string>
     <string name="create_error_notification">Crear unha notificación de erro</string>
     <string name="show_image_indicators_summary">Amosar fitas coloridas de Picasso na cima das imaxes que indican a súa fonte: vermello para a rede, azul para o disco e verde para a memoria</string>

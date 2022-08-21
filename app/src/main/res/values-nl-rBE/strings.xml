@@ -625,7 +625,6 @@
     <string name="streams_notification_channel_name">Nieuwe streams</string>
     <string name="streams_notification_channel_description">Meldingen over nieuwe streams voor abonnementen</string>
     <string name="error_report_notification_title">NewPipe meldt een fout, tik om te rapporteren</string>
-    <string name="progressive_load_interval_summary">Verander het laadinterval (momenteel %s). Een lagere waarde kan het laden van video versnellen. Vereist een herstart van de speler.</string>
     <plurals name="new_streams">
         <item quantity="one">%s nieuwe stream</item>
         <item quantity="other">%s nieuwe streams</item>

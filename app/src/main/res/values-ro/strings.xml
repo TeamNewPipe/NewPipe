@@ -705,7 +705,6 @@
     <string name="percent">Procent</string>
     <string name="semitone">Semiton</string>
     <string name="progressive_load_interval_exoplayer_default">Implicit ExoPlayer</string>
-    <string name="progressive_load_interval_summary">Modificați dimensiunea intervalului de încărcare (în prezent %s). O valoare mai mică poate accelera încărcarea inițială a videoclipului. Modificările necesită o repornire a playerului</string>
     <string name="crash_the_player">Dați crash player-ului</string>
     <string name="leak_canary_not_available">LeakCanary nu este disponibil</string>
     <string name="notifications">Notificări</string>
