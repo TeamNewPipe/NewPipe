@@ -17,7 +17,7 @@
 <p align="center"><a href="https://newpipe.net">वेबसाइट</a> &bull; <a href="https://newpipe.net/blog/">ब्लॉग</a> &bull; <a href="https://newpipe.net/FAQ/">साधारण सवाल-जवाब</a> &bull; <a href="https://newpipe.net/press/">प्रेस</a></p>
 <hr>
 
-इसे दूसरी भाषाओं में पढ़ें: [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md)।
+इसे दूसरी भाषाओं में पढ़ें: [English](../README.md), [Español](README.es.md), [हिन्दी](README.hi.md), [한국어](README.ko.md), [Soomaali](README.so.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [日本語](README.ja.md), [Română](README.ro.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [Bahasa Indonesia](README.id.md)।
 
 <b>चेतावनी: यह एक बीटा संस्करण है, तो अगर आपको इसमें बग्स नज़र आते हैं, कृपया हमारे GitHub रिपॉज़िटरी के ज़रिए एक समस्या खोल दें।</b>
 
