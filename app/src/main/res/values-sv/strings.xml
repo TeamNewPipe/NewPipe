@@ -681,7 +681,6 @@
     <string name="detail_pinned_comment_view_description">Fäst kommentar</string>
     <string name="leak_canary_not_available">LeakCanary är inte tillgänglig</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer standard</string>
-    <string name="progressive_load_interval_summary">Ändra inläsningsintervallets storlek (för närvarande %s). Ett lägre värde kan påskynda den första videoinläsningen. Ändringar kräver omstart av spelaren</string>
     <string name="streams_notifications_interval_title">Uppdateringsintervall</string>
     <string name="streams_notifications_network_title">Nödvändig nätverksanslutning</string>
     <string name="any_network">Alla nätverk</string>

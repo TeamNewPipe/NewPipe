@@ -729,7 +729,6 @@
     <string name="detail_pinned_comment_view_description">تعليق مثبت</string>
     <string name="leak_canary_not_available">LeakCanary غير متوفر</string>
     <string name="progressive_load_interval_exoplayer_default">الافتراضي ExoPlayer</string>
-    <string name="progressive_load_interval_summary">تغيير حجم الفاصل الزمني للتحميل (حاليا %s). قد تؤدي القيمة الأقل إلى تسريع تحميل الفيديو الأولي. تتطلب التغييرات إعادة تشغيل المشغل</string>
     <string name="settings_category_player_notification_summary">تكوين إشعار مشغل البث الحالي</string>
     <string name="notifications">الإشعارات</string>
     <string name="loading_stream_details">تحميل تفاصيل البث…</string>

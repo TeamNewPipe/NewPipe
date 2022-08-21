@@ -693,7 +693,6 @@
     <string name="detail_pinned_comment_view_description">Commento in primo piano</string>
     <string name="leak_canary_not_available">LeakCanary non è disponibile</string>
     <string name="progressive_load_interval_exoplayer_default">Predefinito ExoPlayer</string>
-    <string name="progressive_load_interval_summary">Cambia la dimensione dell\'intervallo da caricare (attualmente %s). Un valore basso può velocizzare il caricamento iniziale del video. La modifica richiede il riavvio del lettore</string>
     <string name="streams_notification_channel_description">Notifiche di nuovi contenuti dalle iscrizioni</string>
     <string name="streams_notifications_interval_title">Frequenza controllo</string>
     <string name="streams_notifications_network_title">Connessione di rete richiesta</string>

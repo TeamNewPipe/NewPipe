@@ -653,6 +653,5 @@
     <string name="notifications">അറിയിപ്പുകൾ</string>
     <string name="settings_category_player_notification_title">പ്ലേയർ അറിയിപ്പ്</string>
     <string name="streams_notification_channel_name">പുതിയ സ്ട്രീമുകൾ</string>
-    <string name="progressive_load_interval_summary">ലോഡ് ഇടവേള മാറ്റുക (ഇപ്പൊൾ %s). കുറഞ്ഞ മൂല്യം വീഡിയോ വേഗത്തിൽ ലോഡ് ചെയ്യാൻ ഇടയാക്കാം. മാറ്റങ്ങൾ പ്രാഭല്യതിൽ വരുത്താൻ പ്ലേയർ പുനരാരംഭിക്കണം.</string>
     <string name="crash_the_player">പ്ലേയർ തകർക്കുക</string>
 </resources>

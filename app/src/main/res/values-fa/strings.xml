@@ -680,7 +680,6 @@
     <string name="error_report_notification_toast">خطایی رخ داد. آگاهی را ببینید</string>
     <string name="detail_pinned_comment_view_description">نظر سنجاق شده</string>
     <string name="leak_canary_not_available">لیک‌کاناری موجود نیست</string>
-    <string name="progressive_load_interval_summary">تغییر اندازهٔ بازهٔ بار (هم‌اکنون %s). مقداری پایین‌تر، می‌تواند بار کردن نخستین ویدیو را سرعت بخشد. تغییرها نیاز به یک آغاز دوبارهٔ پخش‌کننده دارند</string>
     <string name="progressive_load_interval_exoplayer_default">پیش‌گزیدهٔ اگزوپلیر</string>
     <string name="notifications">آگاهی‌ها</string>
     <string name="loading_stream_details">بار کردن جزییات جریان…</string>

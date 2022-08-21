@@ -690,7 +690,6 @@
     <string name="you_successfully_subscribed">Kanal honetara harpidetu zara</string>
     <string name="enumeration_comma">,</string>
     <string name="toggle_all">Txandakatu denak</string>
-    <string name="progressive_load_interval_summary">Aldatu karga maiztasun tamaina (unean %s). Balio txikiago batek bideoaren hasierako karga azkartu dezake. Erreproduzigailuaren berrabiaraztea behar du</string>
     <string name="enable_streams_notifications_summary">Harpidetzen jario berriei buruz jakinarazi</string>
     <string name="delete_downloaded_files_confirm">Ezabatu deskargatutako fitxategi guztiak biltegitik\?</string>
     <string name="streams_notification_channel_description">Harpidetzentzako jario berrien jakinarazpenak</string>

@@ -681,7 +681,6 @@
     <string name="detail_pinned_comment_view_description">Esiletõstetud kommentaar</string>
     <string name="leak_canary_not_available">LeakCanary pole saadaval</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer\'i vaikimisi väärtused</string>
-    <string name="progressive_load_interval_summary">Muuda video laadimise välpa (hetkel %s). Väiksemast väärtusest võib abi olla, kui tahad et video esitamine algaks varem. Muudatuste jõustamine eeldab rakenduse uuesti käivitamist</string>
     <string name="settings_category_player_notification_title">Meediamängija teavitused</string>
     <string name="notifications_disabled">Teavitused pole kasutusel</string>
     <string name="streams_notifications_interval_title">Kontrollimise sagedus</string>

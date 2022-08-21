@@ -693,7 +693,6 @@
     <string name="show_error_snackbar">Zobraziť krátke oznámenie chyby</string>
     <string name="create_error_notification">Oznámte chybu</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer preddefinovaný</string>
-    <string name="progressive_load_interval_summary">Zmeniť interval načítania (aktuálne %s). Menšia hodnota môže zvýšiť rýchlosť prvotného načítania videa. Zmena vyžaduje reštart</string>
     <string name="notifications">Upozornenia</string>
     <string name="streams_notifications_interval_title">Frekvencia kontroly</string>
     <string name="delete_downloaded_files_confirm">Vymazať všetky stiahnuté súbory z disku\?</string>

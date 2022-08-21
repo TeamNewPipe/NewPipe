@@ -48,7 +48,6 @@
     <string name="notification_action_1_title">Pangalawang action button</string>
     <string name="notification_action_2_title">Pangatlong action button</string>
     <string name="use_inexact_seek_summary">Pinapayagan ng di-saktong seek ang player na mag-seek sa mga posisyon nang mabilis ngunit na may pinababang kasaktuhan. Di ito gagana sa pag-seek nang 5, 15, o 25 segundo.</string>
-    <string name="progressive_load_interval_summary">Baguhin ang laki ng pagitan na ilo-load (kasalukuyang %s). Maaaring mapabilis ang unang pag-load sa video kung mababa ito. Kailangang i-restart ang player para gumana ang pagbabago.</string>
     <string name="download_thumbnail_summary">Patayin para mapigilan ang pag-load sa mga thumbnail, para makatipid ng data at paggamit sa memory. Lilinisin ang parehong image cache na nasa memory at nasa disk</string>
     <string name="show_search_suggestions_summary">Piliin ang mga mungkahing ipapakita habang naghahanap</string>
     <string name="show_description_summary">Patayin para itago ang paglalarawan ng video at karagdagang impormasyon</string>

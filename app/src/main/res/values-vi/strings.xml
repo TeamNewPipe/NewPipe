@@ -666,7 +666,6 @@
 \nVui lòng cài đặt ứng dụng quản lý tệp tương thích với Storage Access Framework.</string>
     <string name="no_appropriate_file_manager_message">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động.
 \nVui lòng cài đặt ứng dụng quản lý tệp hoặc tắt \'%s\' trong cài đặt tải xuống</string>
-    <string name="progressive_load_interval_summary">Thay đổi kích thước khoảng thời gian tải (tầm khoảng %s). Để ở giá trị thấp hơn có thể sẽ tăng tốc độ tải video hơn ban đầu. Khởi động lại trình phát để áp dụng thay đổi</string>
     <string name="leak_canary_not_available">LeakCanary không khả dụng</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer mặc định</string>
     <string name="detail_pinned_comment_view_description">Bình luận được ghim</string>

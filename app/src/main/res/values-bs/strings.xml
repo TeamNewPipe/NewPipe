@@ -70,7 +70,6 @@
     <string name="popup_remember_size_pos_summary">Zapamtite posljednju veličinu i položaj iskočnog prozora</string>
     <string name="use_inexact_seek_title">Koristite brzo neprecizno premotavanje</string>
     <string name="use_inexact_seek_summary">Neprecizno premotavanje dozvoljava pokretaču brže premotavanje s gorom preciznošću. Premotavanje za 5, 15 ili 25 sekundi ne radi s ovim</string>
-    <string name="progressive_load_interval_summary">Promijenite veličinu intervala za učitavanje (trenutačno %s). Niža vrijednost bi vam moglo ubrzat učitavanje videa. Trebate te ponovno učitati pokretač za promjenu.</string>
     <string name="clear_queue_confirmation_summary">Prebacivanje sa jednog pokretača na drugi bi van moglo zamijeniti pokretni red</string>
     <string name="show_comments_summary">Isključite da sakrijete komentare</string>
     <string name="clear_queue_confirmation_title">Pitajte za potvrdu prije isčišćavanja reda</string>

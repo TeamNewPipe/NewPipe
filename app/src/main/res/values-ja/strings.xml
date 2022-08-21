@@ -688,7 +688,6 @@
     <string name="streams_notification_channel_name">新しいストリーム</string>
     <string name="notifications">通知</string>
     <string name="settings_category_player_notification_summary">現在再生しているストリームの通知を構成</string>
-    <string name="progressive_load_interval_summary">読み込み間隔を変更します (現在 %s)。小さくすると再生開始までの時間が短くなります。変更を適用するには再起動が必要です</string>
     <string name="streams_notifications_network_title">必要なネットワークの種類</string>
     <string name="percent">パーセント</string>
     <string name="semitone">半音</string>

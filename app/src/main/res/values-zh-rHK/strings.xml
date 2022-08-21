@@ -646,7 +646,6 @@
     <string name="delete_playback_states_alert">係咪要全部剷走晒播放到邊個位？</string>
     <string name="percent">百分比</string>
     <string name="semitone">半音</string>
-    <string name="progressive_load_interval_summary">更改載入斬件大細 (目前係 %s)。細啲或者可以等條片快啲開波。更改要開過個播放器至生效</string>
     <string name="clear_queue_confirmation_title">問過先至將排隊播清零</string>
     <string name="clear_queue_confirmation_description">目前播放器入面嘅排隊播將會清零</string>
     <string name="peertube_instance_add_title">加一個站</string>
