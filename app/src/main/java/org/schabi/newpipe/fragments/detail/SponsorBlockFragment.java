@@ -18,6 +18,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentSponsorBlockBinding;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.PlayerListener;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.SponsorBlockMode;
 import org.schabi.newpipe.util.VideoSegment;
 
@@ -109,13 +110,18 @@ public class SponsorBlockFragment extends Fragment implements PlayerListener {
     }
 
     @Override
-    public void onPlayerPrepared(final Player player) {
+    public void onPlayerMetadataChanged(final Player player) {
         binding.skippingIsEnabledSwitch
                 .setChecked(currentPlayer.getSponsorBlockMode() == SponsorBlockMode.ENABLED);
 
         binding.channelIsWhitelistedSwitch
                 .setChecked(currentPlayer.getSponsorBlockMode() == SponsorBlockMode.IGNORE);
+    }
 
-        currentVideoSegments = player.getVideoSegments();
+    @Override
+    public void onPlayQueueItemChanged(final PlayQueueItem item) {
+        currentVideoSegments = item == null
+                ? null
+                : item.getVideoSegments();
     }
 }

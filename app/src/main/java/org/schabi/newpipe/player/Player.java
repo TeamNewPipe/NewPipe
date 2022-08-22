@@ -1111,6 +1111,11 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         currentItem = null;
+
+        if (playerListener != null) {
+            playerListener.onPlayQueueItemChanged(currentItem);
+        }
+
         currentMetadata = null;
         simpleExoPlayer.stop();
         isPrepared = false;
@@ -1173,9 +1178,13 @@ public final class Player implements PlaybackListener, Listener {
             audioReactor.requestAudioFocus();
         }
 
+        // TODO: check/fix
         if (playerListener != null) {
             playerListener.onPlayerPrepared(this);
         }
+
+        // TODO: check/fix
+        markSegments(currentItem, binding.playbackSeekBar, context, prefs);
     }
 
     private void onBlocked() {
@@ -1625,6 +1634,10 @@ public final class Player implements PlaybackListener, Listener {
 
         currentItem = item;
 
+        if (playerListener != null) {
+            playerListener.onPlayQueueItemChanged(currentItem);
+        }
+
         if (playQueueIndex != playQueue.getIndex()) {
             // wrong window (this should be impossible, as this method is called with
             // `item=playQueue.getItem()`, so the index of that item must be equal to `getIndex()`)
@@ -1871,6 +1884,11 @@ public final class Player implements PlaybackListener, Listener {
 
         notifyMetadataUpdateToListeners();
         UIs.call(playerUi -> playerUi.onMetadataChanged(info));
+
+        // TODO: check/fix
+        if (playerListener != null) {
+            playerListener.onPlayerMetadataChanged(this);
+        }
     }
 
     @NonNull
