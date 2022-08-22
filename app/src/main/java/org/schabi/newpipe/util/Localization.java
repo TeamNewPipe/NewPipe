@@ -76,16 +76,8 @@ public final class Localization {
 
     public static org.schabi.newpipe.extractor.localization.Localization getPreferredLocalization(
             final Context context) {
-        final String contentLanguage = PreferenceManager
-                .getDefaultSharedPreferences(context)
-                .getString(context.getString(R.string.content_language_key),
-                        context.getString(R.string.default_localization_key));
-        if (contentLanguage.equals(context.getString(R.string.default_localization_key))) {
-            return org.schabi.newpipe.extractor.localization.Localization
-                    .fromLocale(Locale.getDefault());
-        }
         return org.schabi.newpipe.extractor.localization.Localization
-                .fromLocalizationCode(contentLanguage);
+                .fromLocale(getPreferredLocale(context));
     }
 
     public static ContentCountry getPreferredContentCountry(final Context context) {
@@ -98,23 +90,24 @@ public final class Localization {
         return new ContentCountry(contentCountry);
     }
 
-    public static Locale getPreferredLocale(final Context context) {
+    private static Locale getLocaleFromPrefs(final Context context, @StringRes final int prefKey) {
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        final String defaultKey = context.getString(R.string.default_localization_key);
+        final String languageCode = sp.getString(context.getString(prefKey), defaultKey);
 
-        final String languageCode = sp.getString(context.getString(R.string.content_language_key),
-                context.getString(R.string.default_localization_key));
-
-        try {
-            if (languageCode.length() == 2) {
-                return new Locale(languageCode);
-            } else if (languageCode.contains("_")) {
-                final String country = languageCode.substring(languageCode.indexOf("_"));
-                return new Locale(languageCode.substring(0, 2), country);
-            }
-        } catch (final Exception ignored) {
+        if (languageCode.equals(defaultKey)) {
+            return Locale.getDefault();
+        } else {
+            return Locale.forLanguageTag(languageCode);
         }
+    }
 
-        return Locale.getDefault();
+    public static Locale getPreferredLocale(final Context context) {
+        return getLocaleFromPrefs(context, R.string.content_language_key);
+    }
+
+    public static Locale getAppLocale(final Context context) {
+        return getLocaleFromPrefs(context, R.string.app_language_key);
     }
 
     public static String localizeNumber(final Context context, final long number) {
@@ -314,34 +307,15 @@ public final class Localization {
         return prettyTime.formatUnrounded(offsetDateTime);
     }
 
-    private static void changeAppLanguage(final Locale loc, final Resources res) {
+    private static void changeAppLanguage(final Resources res, final Locale loc) {
         final DisplayMetrics dm = res.getDisplayMetrics();
         final Configuration conf = res.getConfiguration();
         conf.setLocale(loc);
         res.updateConfiguration(conf, dm);
     }
 
-    public static Locale getAppLocale(final Context context) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String lang = prefs.getString(context.getString(R.string.app_language_key), "en");
-        final Locale loc;
-        if (lang.equals(context.getString(R.string.default_localization_key))) {
-            loc = Locale.getDefault();
-        } else if (lang.matches(".*-.*")) {
-            //to differentiate different versions of the language
-            //for example, pt (portuguese in Portugal) and pt-br (portuguese in Brazil)
-            final String[] localisation = lang.split("-");
-            lang = localisation[0];
-            final String country = localisation[1];
-            loc = new Locale(lang, country);
-        } else {
-            loc = new Locale(lang);
-        }
-        return loc;
-    }
-
     public static void assureCorrectAppLanguage(final Context c) {
-        changeAppLanguage(getAppLocale(c), c.getResources());
+        changeAppLanguage(c.getResources(), getAppLocale(c));
     }
 
     private static double round(final double value, final int places) {
