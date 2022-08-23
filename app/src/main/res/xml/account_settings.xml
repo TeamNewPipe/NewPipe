@@ -1,0 +1,23 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="Accounts">
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="YouTube"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="@string/youtube_sign_in_settings_key"
+            android:summary="@string/youtube_sign_in_settings_summary"
+            android:title="@string/youtube_sign_in_settings_title"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="@string/youtube_clear_cookies_settings_key"
+            android:title="@string/youtube_clear_cookies_settings_title"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

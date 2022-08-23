@@ -32,6 +32,8 @@ public final class KioskTranslator {
         switch (kioskId) {
             case "Trending":
                 return c.getString(R.string.trending);
+            case "Home":
+                return c.getString(R.string.home);
             case "Top 50":
                 return c.getString(R.string.top_50);
             case "New & hot":
@@ -64,6 +66,7 @@ public final class KioskTranslator {
             case "New & hot":
             case "conferences":
                 return R.drawable.ic_whatshot;
+            case "Home":
             case "Local":
                 return R.drawable.ic_home;
             case "Recently added":

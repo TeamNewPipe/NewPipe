@@ -5,6 +5,12 @@
     android:title="@string/settings">
 
     <PreferenceScreen
+        android:fragment="org.schabi.newpipe.settings.AccountSettingsFragment"
+        android:icon="@drawable/ic_person"
+        android:title="@string/settings_category_accounts_title"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
         android:fragment="org.schabi.newpipe.settings.VideoAudioSettingsFragment"
         android:icon="@drawable/ic_headset"
         android:title="@string/settings_category_video_audio_title"

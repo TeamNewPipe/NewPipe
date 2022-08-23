@@ -36,12 +36,25 @@
             tools:hint="@string/import_soundcloud_instructions_hint"
             tools:visibility="visible" />
 
-        <Button
-            android:id="@+id/input_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            tools:text="@string/import_title" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/input_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                tools:text="@string/import_title" />
+            <Button
+                android:id="@+id/input_button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:layout_marginStart="40dp"
+                tools:text="@string/import_from_account_title" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </LinearLayout>
 

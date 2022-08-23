@@ -118,6 +118,12 @@ class SubscriptionManager(context: Context) {
         subscriptionTable.delete(subscriptionEntity)
     }
 
+    fun deleteAllSubscriptions(): Completable {
+        return Completable.fromCallable { subscriptionTable.deleteAll() }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
     /**
      * Fetches the list of videos for the provided channel and saves them in the database, so that
      * they will be considered as "old"/"already seen" streams and the user will never be notified

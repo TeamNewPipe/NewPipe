@@ -26,6 +26,9 @@
         android:resizeableActivity="true"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".SignInActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask">

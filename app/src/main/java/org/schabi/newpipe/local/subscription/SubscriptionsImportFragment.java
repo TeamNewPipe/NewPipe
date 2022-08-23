@@ -1,13 +1,17 @@
 package org.schabi.newpipe.local.subscription;
 
 import static org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.ContentSource.CHANNEL_URL;
+import static org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.ContentSource.YOUTUBE_URL;
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.CHANNEL_URL_MODE;
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.INPUT_STREAM_MODE;
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE;
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.YOUTUBE_URL_MODE;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.util.Linkify;
@@ -26,6 +30,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.text.util.LinkifyCompat;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
@@ -52,6 +57,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
 
     private List<SubscriptionExtractor.ContentSource> supportedSources;
     private String relatedUrl;
+    private String youtubeCookies;
 
     @StringRes
     private int instructionsString;
@@ -63,6 +69,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
     private TextView infoTextView;
     private EditText inputText;
     private Button inputButton;
+    private Button inputButton2;
 
     private final ActivityResultLauncher<Intent> requestImportFileLauncher =
             registerForActivityResult(new StartActivityForResult(), this::requestImportFileResult);
@@ -119,9 +126,12 @@ public class SubscriptionsImportFragment extends BaseFragment {
         super.initViews(rootView, savedInstanceState);
 
         inputButton = rootView.findViewById(R.id.input_button);
+        inputButton2 = rootView.findViewById(R.id.input_button2);
         inputText = rootView.findViewById(R.id.input_text);
 
         infoTextView = rootView.findViewById(R.id.info_text_view);
+
+        youtubeCookies = getCookies("youtube");
 
         // TODO: Support services that can import from more than one source
         //  (show the option to the user)
@@ -129,6 +139,12 @@ public class SubscriptionsImportFragment extends BaseFragment {
             inputButton.setText(R.string.import_title);
             inputText.setVisibility(View.VISIBLE);
             inputText.setHint(ServiceHelper.getImportInstructionsHint(currentServiceId));
+        } else if (supportedSources.contains(YOUTUBE_URL)) {
+            inputButton.setText(R.string.import_file_title);
+            inputButton2.setText(R.string.import_from_account_title);
+            if (youtubeCookies == null) {
+                inputButton2.setEnabled(false);
+            }
         } else {
             inputButton.setText(R.string.import_file_title);
         }
@@ -154,6 +170,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
     protected void initListeners() {
         super.initListeners();
         inputButton.setOnClickListener(v -> onImportClicked());
+        inputButton2.setOnClickListener(v -> onImportFromAccountClicked());
     }
 
     private void onImportClicked() {
@@ -167,10 +184,20 @@ public class SubscriptionsImportFragment extends BaseFragment {
         }
     }
 
+    private void onImportFromAccountClicked() {
+        onImportYoutube();
+    }
+
     public void onImportUrl(final String value) {
         ImportConfirmationDialog.show(this, new Intent(activity, SubscriptionsImportService.class)
                 .putExtra(KEY_MODE, CHANNEL_URL_MODE)
                 .putExtra(KEY_VALUE, value)
+                .putExtra(Constants.KEY_SERVICE_ID, currentServiceId));
+    }
+
+    public void onImportYoutube() {
+        ImportConfirmationDialog.show(this, new Intent(activity, SubscriptionsImportService.class)
+                .putExtra(KEY_MODE, YOUTUBE_URL_MODE)
                 .putExtra(Constants.KEY_SERVICE_ID, currentServiceId));
     }
 
@@ -224,5 +251,17 @@ public class SubscriptionsImportFragment extends BaseFragment {
     private void setInfoText(final String infoString) {
         infoTextView.setText(infoString);
         LinkifyCompat.addLinks(infoTextView, Linkify.WEB_URLS);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Other
+    ///////////////////////////////////////////////////////////////////////////
+
+    private String getCookies(final String site) {
+        final Context context = getContext();
+        assert context != null;
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        return prefs.getString(site + "_cookies", null);
     }
 }

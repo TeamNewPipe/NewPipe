@@ -14,6 +14,14 @@ import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.util.InfoCache;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +30,8 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -33,6 +43,8 @@ public final class DownloaderImpl extends Downloader {
     public static final String YOUTUBE_RESTRICTED_MODE_COOKIE_KEY =
             "youtube_restricted_mode_key";
     public static final String YOUTUBE_RESTRICTED_MODE_COOKIE = "PREF=f2=8000000";
+    public static final String YOUTUBE_SIGN_IN_COOKIE_KEY
+            = "youtube_sign_in_key";
     public static final String YOUTUBE_DOMAIN = "youtube.com";
 
     private static DownloaderImpl instance;
@@ -71,11 +83,25 @@ public final class DownloaderImpl extends Downloader {
     }
 
     public String getCookies(final String url) {
-        final String youtubeCookie = url.contains(YOUTUBE_DOMAIN)
-                ? getCookie(YOUTUBE_RESTRICTED_MODE_COOKIE_KEY) : null;
+        final List<String> resultCookies = new ArrayList<>();
+        if (url.contains(YOUTUBE_DOMAIN)) {
+            final String youtubeCookie = getCookie(YOUTUBE_RESTRICTED_MODE_COOKIE_KEY);
+            if (youtubeCookie != null) {
+                resultCookies.add(youtubeCookie);
+            }
 
+            final String youtubeSignInCookie = getCookie(YOUTUBE_SIGN_IN_COOKIE_KEY);
+            if (youtubeSignInCookie != null) {
+                resultCookies.add(youtubeSignInCookie);
+            }
+        }
         // Recaptcha cookie is always added TODO: not sure if this is necessary
-        return Stream.of(youtubeCookie, getCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY))
+        final String recaptchaCookie = getCookie(ReCaptchaActivity.RECAPTCHA_COOKIES_KEY);
+        if (recaptchaCookie != null) {
+            resultCookies.add(recaptchaCookie);
+        }
+        return resultCookies
+                .stream()
                 .filter(Objects::nonNull)
                 .flatMap(cookies -> Arrays.stream(cookies.split("; *")))
                 .distinct()
@@ -110,6 +136,17 @@ public final class DownloaderImpl extends Downloader {
             removeCookie(YOUTUBE_RESTRICTED_MODE_COOKIE_KEY);
         }
         InfoCache.getInstance().clearCache();
+    }
+
+    public void updateYoutubeSignInCookies(final Context context) {
+        final String cookies = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString("youtube_cookies", null);
+
+        if (cookies != null) {
+            setCookie(YOUTUBE_SIGN_IN_COOKIE_KEY, cookies);
+        } else {
+            removeCookie(YOUTUBE_SIGN_IN_COOKIE_KEY);
+        }
     }
 
     /**
@@ -149,6 +186,34 @@ public final class DownloaderImpl extends Downloader {
         final String cookies = getCookies(url);
         if (!cookies.isEmpty()) {
             requestBuilder.addHeader("Cookie", cookies);
+
+            // TODO: do better
+            if (url.contains(YOUTUBE_DOMAIN)) {
+                final Pattern pattern = Pattern.compile("SAPISID=(.*?)($|;)");
+                final Matcher matcher = pattern.matcher(cookies);
+                if (matcher.find()) {
+                    final String sApiSid = matcher.group(1);
+                    final String originUrl = "https://www.youtube.com";
+                    final long timestampMs = Instant.now().getEpochSecond() * 1000;
+                    final String authStr = timestampMs + " " + sApiSid + " " + originUrl;
+
+                    try {
+                        final MessageDigest digest = MessageDigest.getInstance("SHA-1");
+                        digest.reset();
+                        digest.update(authStr.getBytes("utf8"));
+                        final String authStrSha1 =
+                                String.format("%040x", new BigInteger(1, digest.digest()));
+
+                        requestBuilder.addHeader(
+                                "Authorization",
+                                "SAPISIDHASH " + timestampMs + "_" + authStrSha1);
+                        requestBuilder.addHeader("X-Origin", originUrl);
+                        requestBuilder.addHeader("X-Youtube-Client-Name", "1");
+                    } catch (final NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
 
         for (final Map.Entry<String, List<String>> pair : headers.entrySet()) {

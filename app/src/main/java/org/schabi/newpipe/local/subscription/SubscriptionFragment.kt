@@ -162,6 +162,13 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
         addMenuItemToSubmenu(exportSubMenu, R.string.file) { onExportSelected() }
             .setIcon(R.drawable.ic_save)
+
+        // -- Clear --
+        val clearSubMenu = menu.add(R.string.clear)
+        clearSubMenu.setOnMenuItemClickListener { _ ->
+            onClearSelected()
+            true
+        }
     }
 
     private fun addMenuItemToSubmenu(
@@ -215,6 +222,17 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             TAG,
             requireContext()
         )
+    }
+
+    private fun onClearSelected() {
+        AlertDialog.Builder(activity)
+            .setMessage(R.string.clear_subscriptions_warning)
+            .setCancelable(true)
+            .setNegativeButton(R.string.cancel, null)
+            .setPositiveButton(R.string.yes) { _, _ ->
+                SubscriptionManager(requireContext()).deleteAllSubscriptions().subscribe()
+            }
+            .show()
     }
 
     private fun openReorderDialog() {

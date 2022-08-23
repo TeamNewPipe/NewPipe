@@ -194,6 +194,10 @@ public class HistoryRecordManager {
             return Maybe.empty();
         }
 
+        if (search.equalsIgnoreCase(":explore:")) {
+            return Maybe.empty();
+        }
+
         final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
         final SearchHistoryEntry newEntry = new SearchHistoryEntry(currentTime, serviceId, search);
 

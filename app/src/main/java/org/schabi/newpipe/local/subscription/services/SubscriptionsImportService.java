@@ -38,6 +38,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
+import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeSubscriptionExtractor;
+import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
 import org.schabi.newpipe.ktx.ExceptionUtils;
 import org.schabi.newpipe.streams.io.SharpInputStream;
@@ -62,6 +64,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
     public static final int CHANNEL_URL_MODE = 0;
     public static final int INPUT_STREAM_MODE = 1;
     public static final int PREVIOUS_EXPORT_MODE = 2;
+    public static final int YOUTUBE_URL_MODE = 3;
     public static final String KEY_MODE = "key_mode";
     public static final String KEY_VALUE = "key_value";
 
@@ -104,7 +107,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
 
         if (currentMode == CHANNEL_URL_MODE) {
             channelUrl = intent.getStringExtra(KEY_VALUE);
-        } else {
+        } else if (currentMode != YOUTUBE_URL_MODE) {
             final Uri uri = intent.getParcelableExtra(KEY_VALUE);
             if (uri == null) {
                 stopAndReportError(new IllegalStateException(
@@ -183,6 +186,9 @@ public class SubscriptionsImportService extends BaseImportExportService {
                 break;
             case PREVIOUS_EXPORT_MODE:
                 flowable = importFromPreviousExport();
+                break;
+            case YOUTUBE_URL_MODE:
+                flowable = importFromYoutube();
                 break;
         }
 
@@ -305,6 +311,19 @@ public class SubscriptionsImportService extends BaseImportExportService {
 
     private Flowable<List<SubscriptionItem>> importFromPreviousExport() {
         return Flowable.fromCallable(() -> ImportExportJsonHelper.readFrom(inputStream, null));
+    }
+
+    private Flowable<List<SubscriptionItem>> importFromYoutube() {
+        return Flowable.fromCallable(() -> {
+            final SubscriptionExtractor extractor = NewPipe.getService(currentServiceId)
+                    .getSubscriptionExtractor();
+
+            if (extractor instanceof YoutubeSubscriptionExtractor) {
+                return ((YoutubeSubscriptionExtractor) extractor).fromYoutubeUrl();
+            }
+
+            return new ArrayList<>();
+        });
     }
 
     protected void handleError(@NonNull final Throwable error) {

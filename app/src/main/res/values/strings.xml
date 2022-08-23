@@ -138,6 +138,7 @@
     <string name="peertube_instance_add_exists">Instance already exists</string>
     <string name="settings_category_player_title">Player</string>
     <string name="settings_category_player_behavior_title">Behavior</string>
+    <string name="settings_category_accounts_title">Accounts</string>
     <string name="settings_category_video_audio_title">Video and audio</string>
     <string name="settings_category_history_title">History and cache</string>
     <string name="settings_category_appearance_title">Appearance</string>
@@ -238,6 +239,7 @@
     <string name="delete_search_history_alert">Delete entire search history?</string>
     <string name="search_history_deleted">Search history deleted</string>
     <string name="help">Help</string>
+    <string name="explore">Explore</string>
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="download_to_sdcard_error_title">External storage unavailable</string>
@@ -421,6 +423,7 @@
     <string name="localization_changes_requires_app_restart">The language will change once the app is restarted</string>
     <!-- Kiosk Names -->
     <string name="trending">Trending</string>
+    <string name="home">Home</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">New and hot</string>
     <string name="local">Local</string>
@@ -500,13 +503,19 @@
     <string name="import_title">Import</string>
     <string name="import_from">Import from</string>
     <string name="export_to">Export to</string>
+    <string name="other">Other</string>
     <string name="import_ongoing">Importing…</string>
     <string name="export_ongoing">Exporting…</string>
-    <string name="import_file_title">Import file</string>
+    <string name="import_file_title">From file</string>
+    <string name="import_from_account_title">From account</string>
     <string name="previous_export">Previous export</string>
     <string name="subscriptions_import_unsuccessful">Could not import subscriptions</string>
     <string name="subscriptions_export_unsuccessful">Could not export subscriptions</string>
-    <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout:
+    <string name="import_youtube_instructions">If you are signed in to YouTube, you may import your YouTube subscriptions directly from your account.
+\n
+\nOR
+\n
+\nYou can import YouTube subscriptions from Google takeout:
 \n
 \n1. Go to this URL: %1$s
 \n2. Log in when asked
@@ -518,6 +527,7 @@
     <string name="import_soundcloud_instructions">Import a SoundCloud profile by typing either the URL or your ID:\n\n1. Enable \"desktop mode\" in a web-browser (the site is not available for mobile devices)\n2. Go to this URL: %1$s\n3. Log in when asked\n4. Copy the profile URL you were redirected to.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">Keep in mind this operation can be network expensive.\n\nDo you want to continue?</string>
+    <string name="clear_subscriptions_warning">Are you sure you want to clear the list of subscriptions?</string>
     <!-- Playback Parameters -->
     <string name="playback_speed_control">Playback Speed Controls</string>
     <string name="playback_tempo">Tempo</string>
@@ -826,4 +836,9 @@
     <string name="disable_error_reports_summary">Prevent all error reporting screens from appearing. This may result in the app behaving unexpectedly. <b>USE AT YOUR OWN RISK!</b></string>
     <string name="enable_return_youtube_dislike_title">Show Dislike Count</string>
     <string name="enable_return_youtube_dislike_summary">Use the ReturnYouTubeDislike API to show the amount of dislikes for a video. This only works for YouTube videos.\n<b>WARNING: Your IP address will be visible to the API. Use at your own risk!</b></string>
+
+    <string name="youtube_sign_in_settings_summary">Opens a web browser to let you sign-in to YouTube.</string>
+    <string name="youtube_sign_in_settings_title">Sign-in</string>
+    <string name="youtube_clear_cookies_settings_title">Clear Cookies</string>
+    <string name="youtube_clear_cookies_prompt">Are you sure you want to clear cookies for this site?</string>
 </resources>

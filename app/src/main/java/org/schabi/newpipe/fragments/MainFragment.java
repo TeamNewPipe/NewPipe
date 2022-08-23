@@ -24,6 +24,7 @@ import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentMainBinding;
 import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
@@ -132,6 +133,13 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
         inflater.inflate(R.menu.menu_main_fragment, menu);
 
+        // hide the explore button if we aren't using the YouTube service
+        if (ServiceHelper.getSelectedServiceId(getContext())
+                != ServiceList.YouTube.getServiceId()) {
+            final MenuItem exploreMenuItem = menu.findItem(R.id.action_explore);
+            exploreMenuItem.setVisible(false);
+        }
+
         final ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(false);
@@ -146,6 +154,15 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                         ServiceHelper.getSelectedServiceId(activity), "");
             } catch (final Exception e) {
                 ErrorUtil.showUiErrorSnackbar(this, "Opening search fragment", e);
+            }
+            return true;
+        } else if (item.getItemId() == R.id.action_explore) {
+            try {
+                NavigationHelper.openSearchFragment(getFM(),
+                        ServiceHelper.getSelectedServiceId(activity), ":explore:");
+            } catch (final Exception e) {
+                ErrorUtil.showUiErrorSnackbar(
+                        this, "Opening search fragment (command: explore)", e);
             }
             return true;
         }

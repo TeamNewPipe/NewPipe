@@ -125,6 +125,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             final Context context = getContext();
             if (context != null) {
                 DownloaderImpl.getInstance().updateYoutubeRestrictedModeCookies(context);
+                DownloaderImpl.getInstance().updateYoutubeSignInCookies(context);
             } else {
                 Log.w(TAG, "onPreferenceTreeClick: null context");
             }

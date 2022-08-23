@@ -1357,4 +1357,7 @@
     </string-array>
     <string name="streams_notifications_channels_key">streams_notifications_channels</string>
     <string name="player_notification_screen_key">player_notification_screen</string>
+
+    <string name="youtube_sign_in_settings_key">youtube_sign_in_settings_key</string>
+    <string name="youtube_clear_cookies_settings_key">youtube_clear_cookies_settings_key</string>
 </resources>
