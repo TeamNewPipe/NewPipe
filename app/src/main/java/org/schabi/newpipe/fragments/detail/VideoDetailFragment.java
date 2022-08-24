@@ -1302,8 +1302,14 @@ public final class VideoDetailFragment
     }
 
     private void tryAddVideoPlayerView() {
-        // do all the null checks in the posted lambda, since the player, the binding and the view
-        // could be set or unset before the lambda gets executed on the next main thread cycle
+        if (isPlayerAvailable() && getView() != null) {
+            // Setup the surface view height, so that it fits the video correctly; this is done also
+            // here, and not only in the Handler, to avoid a choppy fullscreen rotation animation.
+            setHeightThumbnail();
+        }
+
+        // do all the null checks in the posted lambda, too, since the player, the binding and the
+        // view could be set or unset before the lambda gets executed on the next main thread cycle
         new Handler(Looper.getMainLooper()).post(() -> {
             if (!isPlayerAvailable() || getView() == null) {
                 return;
