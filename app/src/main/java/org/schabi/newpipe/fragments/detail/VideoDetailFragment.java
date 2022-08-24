@@ -180,6 +180,8 @@ public final class VideoDetailFragment
     @State
     int bottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
     @State
+    int lastStableBottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
+    @State
     protected boolean autoPlayEnabled = true;
 
     @Nullable
@@ -269,7 +271,7 @@ public final class VideoDetailFragment
 
     public static VideoDetailFragment getInstanceInCollapsedState() {
         final VideoDetailFragment instance = new VideoDetailFragment();
-        instance.bottomSheetState = BottomSheetBehavior.STATE_COLLAPSED;
+        instance.updateBottomSheetState(BottomSheetBehavior.STATE_COLLAPSED);
         return instance;
     }
 
@@ -1170,7 +1172,7 @@ public final class VideoDetailFragment
             // doesn't tell which state it was settling to, and thus the bottom sheet settles to
             // STATE_COLLAPSED. This can be solved by manually setting the state that will be
             // restored (i.e. bottomSheetState) to STATE_EXPANDED.
-            bottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
+            updateBottomSheetState(BottomSheetBehavior.STATE_EXPANDED);
             // toggle landscape in order to open directly in fullscreen
             onScreenRotationButtonClicked();
         }
@@ -2284,7 +2286,9 @@ public final class VideoDetailFragment
 
         final FrameLayout bottomSheetLayout = activity.findViewById(R.id.fragment_player_holder);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
-        bottomSheetBehavior.setState(bottomSheetState);
+        bottomSheetBehavior.setState(lastStableBottomSheetState);
+        updateBottomSheetState(lastStableBottomSheetState);
+
         final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
         if (bottomSheetState != BottomSheetBehavior.STATE_HIDDEN) {
             manageSpaceAtTheBottom(false);
@@ -2300,7 +2304,7 @@ public final class VideoDetailFragment
         bottomSheetCallback = new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull final View bottomSheet, final int newState) {
-                bottomSheetState = newState;
+                updateBottomSheetState(newState);
 
                 switch (newState) {
                     case BottomSheetBehavior.STATE_HIDDEN:
@@ -2440,5 +2444,13 @@ public final class VideoDetailFragment
 
         return player.UIs().get(VideoPlayerUi.class)
                 .map(playerUi -> playerUi.getBinding().getRoot());
+    }
+
+    private void updateBottomSheetState(final int newState) {
+        bottomSheetState = newState;
+        if (newState != BottomSheetBehavior.STATE_DRAGGING
+                && newState != BottomSheetBehavior.STATE_SETTLING) {
+            lastStableBottomSheetState = newState;
+        }
     }
 }
