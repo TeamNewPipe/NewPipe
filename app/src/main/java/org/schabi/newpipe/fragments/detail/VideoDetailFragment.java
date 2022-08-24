@@ -505,12 +505,18 @@ public final class VideoDetailFragment
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
-                autoPlayEnabled = true; // forcefully start playing
-                // FIXME Workaround #7427
-                if (isPlayerAvailable()) {
-                    player.setRecovery();
+                // make sure not to open any player if there is nothing currently loaded!
+                // FIXME removing this `if` causes the player service to start correctly, then stop,
+                //  then restart badly without calling `startForeground()`, causing a crash when
+                //  later closing the detail fragment
+                if (currentInfo != null) {
+                    autoPlayEnabled = true; // forcefully start playing
+                    // FIXME Workaround #7427
+                    if (isPlayerAvailable()) {
+                        player.setRecovery();
+                    }
+                    openVideoPlayerAutoFullscreen();
                 }
-                openVideoPlayerAutoFullscreen();
                 break;
             case R.id.detail_title_root_layout:
                 toggleTitleAndSecondaryControls();
