@@ -29,7 +29,8 @@ public abstract class PlayerUi {
     @NonNull protected final Player player;
 
     /**
-     * @param player the player instance that will be usable throughout the lifetime of this UI
+     * @param player the player instance that will be usable throughout the lifetime of this UI; its
+     *               context should already have been initialized
      */
     protected PlayerUi(@NonNull final Player player) {
         this.context = player.getContext();

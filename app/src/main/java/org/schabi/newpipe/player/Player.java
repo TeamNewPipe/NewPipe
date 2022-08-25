@@ -54,7 +54,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.util.Log;
@@ -99,14 +98,13 @@ import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.LoadController;
-import org.schabi.newpipe.player.helper.MediaSessionManager;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
+import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.player.notification.NotificationPlayerUi;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
-import org.schabi.newpipe.player.playback.PlayerMediaSession;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
@@ -176,6 +174,7 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
 
     public static final int RENDERER_UNAVAILABLE = -1;
+    private static final String PICASSO_PLAYER_THUMBNAIL_TAG = "PICASSO_PLAYER_THUMBNAIL_TAG";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
@@ -196,7 +195,6 @@ public final class Player implements PlaybackListener, Listener {
 
     private ExoPlayer simpleExoPlayer;
     private AudioReactor audioReactor;
-    private MediaSessionManager mediaSessionManager;
 
     @NonNull private final DefaultTrackSelector trackSelector;
     @NonNull private final LoadController loadController;
@@ -224,8 +222,8 @@ public final class Player implements PlaybackListener, Listener {
     // UIs, listeners and disposables
     //////////////////////////////////////////////////////////////////////////*/
 
-    @SuppressWarnings("MemberName") // keep the unusual member name
-    private final PlayerUiList UIs = new PlayerUiList();
+    @SuppressWarnings({"MemberName", "java:S116"}) // keep the unusual member name
+    private final PlayerUiList UIs;
 
     private BroadcastReceiver broadcastReceiver;
     private IntentFilter intentFilter;
@@ -234,6 +232,11 @@ public final class Player implements PlaybackListener, Listener {
 
     @NonNull private final SerialDisposable progressUpdateDisposable = new SerialDisposable();
     @NonNull private final CompositeDisposable databaseUpdateDisposable = new CompositeDisposable();
+
+    // This is the only listener we need for thumbnail loading, since there is always at most only
+    // one thumbnail being loaded at a time. This field is also here to maintain a strong reference,
+    // which would otherwise be garbage collected since Picasso holds weak references to targets.
+    @NonNull private final Target currentThumbnailTarget;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
@@ -265,6 +268,17 @@ public final class Player implements PlaybackListener, Listener {
 
         videoResolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
         audioResolver = new AudioPlaybackResolver(context, dataSource);
+
+        currentThumbnailTarget = getCurrentThumbnailTarget();
+
+        // The UIs added here should always be present. They will be initialized when the player
+        // reaches the initialization step. Make sure the media session ui is before the
+        // notification ui in the UIs list, since the notification depends on the media session in
+        // PlayerUi#initPlayer(), and UIs.call() guarantees UI order is preserved.
+        UIs = new PlayerUiList(
+                new MediaSessionPlayerUi(this),
+                new NotificationPlayerUi(this)
+        );
     }
 
     private VideoPlaybackResolver.QualityResolver getQualityResolver() {
@@ -431,11 +445,6 @@ public final class Player implements PlaybackListener, Listener {
     }
 
     private void initUIsForCurrentPlayerType() {
-        //noinspection SimplifyOptionalCallChains
-        if (!UIs.get(NotificationPlayerUi.class).isPresent()) {
-            UIs.addAndPrepare(new NotificationPlayerUi(this));
-        }
-
         if ((UIs.get(MainPlayerUi.class).isPresent() && playerType == PlayerType.MAIN)
                 || (UIs.get(PopupPlayerUi.class).isPresent() && playerType == PlayerType.POPUP)) {
             // correct UI already in place
@@ -506,8 +515,6 @@ public final class Player implements PlaybackListener, Listener {
         simpleExoPlayer.setHandleAudioBecomingNoisy(true);
 
         audioReactor = new AudioReactor(context, simpleExoPlayer);
-        mediaSessionManager = new MediaSessionManager(context, simpleExoPlayer,
-                new PlayerMediaSession(this));
 
         registerBroadcastReceiver();
 
@@ -558,9 +565,6 @@ public final class Player implements PlaybackListener, Listener {
         if (playQueueManager != null) {
             playQueueManager.dispose();
         }
-        if (mediaSessionManager != null) {
-            mediaSessionManager.dispose();
-        }
     }
 
     public void destroy() {
@@ -577,7 +581,7 @@ public final class Player implements PlaybackListener, Listener {
 
         databaseUpdateDisposable.clear();
         progressUpdateDisposable.set(null);
-        PicassoHelper.cancelTag(PicassoHelper.PLAYER_THUMBNAIL_TAG); // cancel thumbnail loading
+        cancelLoadingCurrentThumbnail();
 
         UIs.destroyAll(Object.class); // destroy every UI: obviously every UI extends Object
     }
@@ -723,11 +727,6 @@ public final class Player implements PlaybackListener, Listener {
                     Log.d(TAG, "ACTION_CONFIGURATION_CHANGED received");
                 }
                 break;
-            case Intent.ACTION_HEADSET_PLUG: //FIXME
-                /*notificationManager.cancel(NOTIFICATION_ID);
-                mediaSessionManager.dispose();
-                mediaSessionManager.enable(getBaseContext(), basePlayerImpl.simpleExoPlayer);*/
-                break;
         }
 
         UIs.call(playerUi -> playerUi.onBroadcastReceived(intent));
@@ -756,44 +755,63 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
     //region Thumbnail loading
 
-    private void initThumbnail(final String url) {
-        if (DEBUG) {
-            Log.d(TAG, "Thumbnail - initThumbnail() called with url = ["
-                    + (url == null ? "null" : url) + "]");
-        }
-        if (isNullOrEmpty(url)) {
-            return;
-        }
-
-        // scale down the notification thumbnail for performance
-        PicassoHelper.loadScaledDownThumbnail(context, url).into(new Target() {
+    private Target getCurrentThumbnailTarget() {
+        // a Picasso target is just a listener for thumbnail loading events
+        return new Target() {
             @Override
             public void onBitmapLoaded(final Bitmap bitmap, final Picasso.LoadedFrom from) {
                 if (DEBUG) {
-                    Log.d(TAG, "Thumbnail - onLoadingComplete() called with: url = [" + url
-                            + "], " + "loadedImage = [" + bitmap + " -> " + bitmap.getWidth() + "x"
-                            + bitmap.getHeight() + "], from = [" + from + "]");
+                    Log.d(TAG, "Thumbnail - onBitmapLoaded() called with: bitmap = [" + bitmap
+                            + " -> " + bitmap.getWidth() + "x" + bitmap.getHeight() + "], from = ["
+                            + from + "]");
                 }
-
                 currentThumbnail = bitmap;
-                // there is a new thumbnail, so changed the end screen thumbnail, too.
+                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
                 UIs.call(playerUi -> playerUi.onThumbnailLoaded(bitmap));
             }
 
             @Override
             public void onBitmapFailed(final Exception e, final Drawable errorDrawable) {
-                Log.e(TAG, "Thumbnail - onBitmapFailed() called: url = [" + url + "]", e);
+                Log.e(TAG, "Thumbnail - onBitmapFailed() called", e);
                 currentThumbnail = null;
+                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
                 UIs.call(playerUi -> playerUi.onThumbnailLoaded(null));
             }
 
             @Override
             public void onPrepareLoad(final Drawable placeHolderDrawable) {
                 if (DEBUG) {
-                    Log.d(TAG, "Thumbnail - onPrepareLoad() called: url = [" + url + "]");
+                    Log.d(TAG, "Thumbnail - onPrepareLoad() called");
                 }
             }
-        });
+        };
+    }
+
+    private void loadCurrentThumbnail(final String url) {
+        if (DEBUG) {
+            Log.d(TAG, "Thumbnail - loadCurrentThumbnail() called with url = ["
+                    + (url == null ? "null" : url) + "]");
+        }
+
+        // first cancel any previous loading
+        cancelLoadingCurrentThumbnail();
+
+        // Unset currentThumbnail, since it is now outdated. This ensures it is not used in media
+        // session metadata while the new thumbnail is being loaded by Picasso.
+        currentThumbnail = null;
+        if (isNullOrEmpty(url)) {
+            return;
+        }
+
+        // scale down the notification thumbnail for performance
+        PicassoHelper.loadScaledDownThumbnail(context, url)
+                .tag(PICASSO_PLAYER_THUMBNAIL_TAG)
+                .into(currentThumbnailTarget);
+    }
+
+    private void cancelLoadingCurrentThumbnail() {
+        // cancel the Picasso job associated with the player thumbnail, if any
+        PicassoHelper.cancelTag(PICASSO_PLAYER_THUMBNAIL_TAG);
     }
     //endregion
 
@@ -1735,17 +1753,8 @@ public final class Player implements PlaybackListener, Listener {
 
         maybeAutoQueueNextStream(info);
 
-        initThumbnail(info.getThumbnailUrl());
+        loadCurrentThumbnail(info.getThumbnailUrl());
         registerStreamViewed();
-
-        final boolean showThumbnail = prefs.getBoolean(
-                context.getString(R.string.show_thumbnail_key), true);
-        mediaSessionManager.setMetadata(
-                getVideoTitle(),
-                getUploaderName(),
-                showThumbnail ? Optional.ofNullable(getThumbnail()) : Optional.empty(),
-                StreamTypeUtil.isLiveStream(info.getStreamType()) ? -1 : info.getDuration()
-        );
 
         notifyMetadataUpdateToListeners();
         UIs.call(playerUi -> playerUi.onMetadataChanged(info));
@@ -1786,10 +1795,6 @@ public final class Player implements PlaybackListener, Listener {
 
     @Nullable
     public Bitmap getThumbnail() {
-        if (currentThumbnail == null) {
-            currentThumbnail = BitmapFactory.decodeResource(
-                    context.getResources(), R.drawable.placeholder_thumbnail_video);
-        }
         return currentThumbnail;
     }
     //endregion
@@ -2192,10 +2197,6 @@ public final class Player implements PlaybackListener, Listener {
     @NonNull
     public SharedPreferences getPrefs() {
         return prefs;
-    }
-
-    public MediaSessionManager getMediaSessionManager() {
-        return mediaSessionManager;
     }
 
 
