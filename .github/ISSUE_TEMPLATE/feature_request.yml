@@ -8,7 +8,6 @@ body:
         Thank you for helping to make NewPipe better by suggesting a feature. :hugs:
 
         Your ideas are highly welcome! The app is made for you, the users, after all.
-        
   - type: checkboxes
     id: checklist
     attributes:
@@ -45,7 +44,7 @@ body:
         Describe any problem or limitation you come across while using the app which would be solved by this feature.
     validations:
       required: true
-      
+
   - type: textarea
     id: additional-information
     attributes:
