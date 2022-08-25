@@ -1,0 +1,2 @@
+• [YouTube] Fix videos loading indefinitely
+• Upgrade the jsoup library to 1.15.3, which includes a security fix
