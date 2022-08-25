@@ -1,5 +1,9 @@
 package org.schabi.newpipe.player.mediasession;
 
+import static android.support.v4.media.session.PlaybackStateCompat.ACTION_SKIP_TO_NEXT;
+import static android.support.v4.media.session.PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS;
+import static android.support.v4.media.session.PlaybackStateCompat.ACTION_SKIP_TO_QUEUE_ITEM;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ResultReceiver;
@@ -13,18 +17,14 @@ import androidx.annotation.Nullable;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import com.google.android.exoplayer2.util.Util;
 
+import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
-import static android.support.v4.media.session.PlaybackStateCompat.ACTION_SKIP_TO_NEXT;
-import static android.support.v4.media.session.PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS;
-import static android.support.v4.media.session.PlaybackStateCompat.ACTION_SKIP_TO_QUEUE_ITEM;
-
-import org.schabi.newpipe.player.Player;
-import org.schabi.newpipe.player.playqueue.PlayQueue;
-import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
 public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator {
     private static final int MAX_QUEUE_SIZE = 10;
@@ -132,7 +132,7 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
         additionalMetadata.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, item.getUploader());
         additionalMetadata
                 .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, item.getDuration() * 1000);
-        additionalMetadata.putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, index + 1);
+        additionalMetadata.putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, index + 1L);
         additionalMetadata
                 .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, player.getPlayQueue().size());
         descBuilder.setExtras(additionalMetadata);

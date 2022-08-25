@@ -222,7 +222,7 @@ public final class Player implements PlaybackListener, Listener {
     // UIs, listeners and disposables
     //////////////////////////////////////////////////////////////////////////*/
 
-    @SuppressWarnings("MemberName") // keep the unusual member name
+    @SuppressWarnings({"MemberName", "java:S116"}) // keep the unusual member name
     private final PlayerUiList UIs;
 
     private BroadcastReceiver broadcastReceiver;

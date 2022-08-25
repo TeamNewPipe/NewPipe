@@ -65,12 +65,6 @@ public class MediaSessionPlayerUi extends PlayerUi {
     }
 
     @Override
-    public void onBroadcastReceived(final Intent intent) {
-        super.onBroadcastReceived(intent);
-        // TODO decide whether to handle ACTION_HEADSET_PLUG or not
-    }
-
-    @Override
     public void onThumbnailLoaded(@Nullable final Bitmap bitmap) {
         super.onThumbnailLoaded(bitmap);
         if (sessionConnector != null) {
