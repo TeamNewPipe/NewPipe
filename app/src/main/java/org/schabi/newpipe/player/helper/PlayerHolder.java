@@ -92,6 +92,13 @@ public final class PlayerHolder {
         return player.getPlayQueue().size();
     }
 
+    public int getQueuePosition() {
+        if (player == null || player.getPlayQueue() == null) {
+            return 0;
+        }
+        return player.getPlayQueue().getIndex();
+    }
+
     public void setListener(@Nullable final PlayerServiceExtendedEventListener newListener) {
         listener = newListener;
 
