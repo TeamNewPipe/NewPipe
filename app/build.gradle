@@ -109,7 +109,7 @@ ext {
 
     leakCanaryVersion = '2.5'
     stethoVersion = '1.6.0'
-    mockitoVersion = '4.0.0'
+    mockitoVersion = '4.6.1'
     assertJVersion = '3.23.1'
 }
 
@@ -179,7 +179,7 @@ sonarqube {
 
 dependencies {
 /** Desugaring **/
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.6'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
 
 /** NewPipe libraries **/
     // You can use a local version by uncommenting a few lines in settings.gradle
@@ -198,17 +198,17 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}"
 
 /** AndroidX **/
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.documentfile:documentfile:1.0.1'
-    implementation 'androidx.fragment:fragment-ktx:1.4.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.2'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${androidxLifecycleVersion}"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${androidxLifecycleVersion}"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
     implementation 'androidx.media:media:1.6.0'
-    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.preference:preference-ktx:1.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation "androidx.room:room-runtime:${androidxRoomVersion}"
     implementation "androidx.room:room-rxjava3:${androidxRoomVersion}"

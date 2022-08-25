@@ -205,6 +205,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     // Menu
     // /////////////////////////////////////////////////////////////////////////
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
@@ -217,6 +218,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         updateToggleFutureItemsButton(menu.findItem(R.id.menu_item_feed_toggle_future_items))
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_item_feed_help) {
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -254,6 +256,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         return super.onOptionsItemSelected(item)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onDestroyOptionsMenu() {
         super.onDestroyOptionsMenu()
         activity?.supportActionBar?.subtitle = null
