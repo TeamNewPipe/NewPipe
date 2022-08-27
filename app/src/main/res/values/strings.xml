@@ -792,7 +792,7 @@
     <string name="sponsor_block">SponsorBlock</string>
     <string name="sponsor_block_home_page_title">View Website</string>
     <string name="sponsor_block_home_page_summary">View the official SponsorBlock website.</string>
-    <string name="sponsor_block_enable_title">Skip Sponsors</string>
+    <string name="sponsor_block_enable_title">Enable SponsorBlock</string>
     <string name="sponsor_block_enable_summary">Use the SponsorBlock API to automatically skip sponsors in videos. This currently only works for YouTube videos.</string>
     <string name="sponsor_block_api_url_title">API Url</string>
     <string name="sponsor_block_api_url_summary">The url to use when querying the SponsorBlock API. This must be set for SponsorBlock to work.</string>

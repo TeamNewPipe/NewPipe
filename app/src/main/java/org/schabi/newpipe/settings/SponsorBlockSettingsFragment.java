@@ -3,11 +3,8 @@ package org.schabi.newpipe.settings;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
@@ -39,14 +36,6 @@ public class SponsorBlockSettingsFragment extends BasePreferenceFragment {
             return true;
         });
 
-        final Preference sponsorBlockApiUrlPreference =
-                findPreference(getString(R.string.sponsor_block_api_url_key));
-        sponsorBlockApiUrlPreference
-                .setOnPreferenceChangeListener((preference, newValue) -> {
-                    updateDependencies(preference, newValue);
-                    return true;
-                });
-
         final Preference sponsorBlockClearWhitelistPreference =
                 findPreference(getString(R.string.sponsor_block_clear_whitelist_key));
         sponsorBlockClearWhitelistPreference.setOnPreferenceClickListener((Preference p) -> {
@@ -69,38 +58,5 @@ public class SponsorBlockSettingsFragment extends BasePreferenceFragment {
                     .show();
             return true;
         });
-    }
-
-    @Override
-    public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        final Preference sponsorBlockApiUrlPreference =
-                findPreference(getString(R.string.sponsor_block_api_url_key));
-        final String sponsorBlockApiUrlPreferenceValue =
-                getPreferenceManager()
-                        .getSharedPreferences()
-                        .getString(getString(R.string.sponsor_block_api_url_key), null);
-        updateDependencies(sponsorBlockApiUrlPreference, sponsorBlockApiUrlPreferenceValue);
-    }
-
-    private void updateDependencies(final Preference preference, final Object newValue) {
-        // This is a workaround to force dependency updates for custom preferences.
-
-        // sponsor_block_api_url_key
-        if (preference.getKey().equals(getString(R.string.sponsor_block_api_url_key))) {
-            findPreference(getString(R.string.sponsor_block_enable_key))
-                    .onDependencyChanged(preference,
-                            newValue == null || newValue.equals(""));
-            findPreference(getString(R.string.sponsor_block_notifications_key))
-                    .onDependencyChanged(preference,
-                            newValue == null || newValue.equals(""));
-            findPreference(getString(R.string.sponsor_block_categories_key))
-                    .onDependencyChanged(preference,
-                            newValue == null || newValue.equals(""));
-            findPreference(getString(R.string.sponsor_block_clear_whitelist_key))
-                    .onDependencyChanged(preference,
-                            newValue == null || newValue.equals(""));
-        }
     }
 }

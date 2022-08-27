@@ -28,6 +28,7 @@ import java.util.Set;
 public class SponsorBlockFragment extends Fragment implements PlayerListener {
     FragmentSponsorBlockBinding binding;
     private Player currentPlayer;
+    private SponsorBlockMode currentSponsorBlockMode;
 
     // TODO: use when ready
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
@@ -43,24 +44,31 @@ public class SponsorBlockFragment extends Fragment implements PlayerListener {
                              @Nullable final Bundle savedInstanceState) {
         binding = FragmentSponsorBlockBinding.inflate(inflater, container, false);
 
-        return binding.getRoot();
-    }
-
-    public void setPlayer(final Player player) {
-        this.currentPlayer = player;
-
-        this.currentPlayer.setPlayerListener(this);
-
+        binding.skippingIsEnabledSwitch
+                .setChecked(currentSponsorBlockMode == SponsorBlockMode.ENABLED);
         binding.skippingIsEnabledSwitch
                 .setOnCheckedChangeListener((compoundButton, b) ->
                         updatePlayerSetSponsorBlockEnabled(b));
 
         binding.channelIsWhitelistedSwitch
+                .setChecked(currentSponsorBlockMode == SponsorBlockMode.IGNORE);
+        binding.channelIsWhitelistedSwitch
                 .setOnCheckedChangeListener(((compoundButton, b) ->
                         updatePlayerSetWhitelistForChannelEnabled(b)));
+
+        return binding.getRoot();
+    }
+
+    public void setPlayer(final Player player) {
+        this.currentPlayer = player;
+        this.currentPlayer.setPlayerListener(this);
     }
 
     private void updatePlayerSetSponsorBlockEnabled(final boolean value) {
+        if (currentPlayer == null) {
+            return;
+        }
+
         currentPlayer.setSponsorBlockMode(value
                 ? SponsorBlockMode.ENABLED
                 : SponsorBlockMode.DISABLED);
@@ -70,6 +78,10 @@ public class SponsorBlockFragment extends Fragment implements PlayerListener {
         final Context context = getContext();
 
         if (context == null) {
+            return;
+        }
+
+        if (currentPlayer == null) {
             return;
         }
 
@@ -111,11 +123,16 @@ public class SponsorBlockFragment extends Fragment implements PlayerListener {
 
     @Override
     public void onPlayerMetadataChanged(final Player player) {
-        binding.skippingIsEnabledSwitch
-                .setChecked(currentPlayer.getSponsorBlockMode() == SponsorBlockMode.ENABLED);
+        currentSponsorBlockMode = player.getSponsorBlockMode();
 
+        if (binding == null) {
+            return;
+        }
+
+        binding.skippingIsEnabledSwitch
+                .setChecked(currentSponsorBlockMode == SponsorBlockMode.ENABLED);
         binding.channelIsWhitelistedSwitch
-                .setChecked(currentPlayer.getSponsorBlockMode() == SponsorBlockMode.IGNORE);
+                .setChecked(currentSponsorBlockMode == SponsorBlockMode.IGNORE);
     }
 
     @Override

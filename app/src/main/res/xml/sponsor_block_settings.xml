@@ -19,31 +19,32 @@
         android:layout="@layout/settings_category_header_layout"
         android:title="@string/settings">
 
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="false"
+            android:key="@string/sponsor_block_enable_key"
+            android:summary="@string/sponsor_block_enable_summary"
+            android:title="@string/sponsor_block_enable_title"/>
+
         <org.schabi.newpipe.settings.custom.SponsorBlockApiUrlPreference
             app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_enable_key"
+            android:defaultValue="@string/sponsor_block_default_api_url"
             android:key="@string/sponsor_block_api_url_key"
             android:summary="@string/sponsor_block_api_url_summary"
             android:title="@string/sponsor_block_api_url_title"/>
 
         <SwitchPreference
             app:iconSpaceReserved="false"
-            android:dependency="@string/sponsor_block_api_url_key"
-            android:defaultValue="false"
-            android:key="@string/sponsor_block_enable_key"
-            android:summary="@string/sponsor_block_enable_summary"
-            android:title="@string/sponsor_block_enable_title"/>
-
-        <SwitchPreference
-            app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_enable_key"
             android:defaultValue="true"
-            android:dependency="@string/sponsor_block_api_url_key"
             android:key="@string/sponsor_block_notifications_key"
             android:summary="@string/sponsor_block_notifications_summary"
             android:title="@string/sponsor_block_notifications_title"/>
 
         <PreferenceScreen
             app:iconSpaceReserved="false"
-            android:dependency="@string/sponsor_block_api_url_key"
+            android:dependency="@string/sponsor_block_enable_key"
             android:fragment="org.schabi.newpipe.settings.SponsorBlockCategoriesSettingsFragment"
             android:key="@string/sponsor_block_categories_key"
             android:title="@string/settings_category_sponsor_block_categories_title"
@@ -51,6 +52,7 @@
 
         <Preference
             app:iconSpaceReserved="false"
+            android:dependency="@string/sponsor_block_enable_key"
             android:key="@string/sponsor_block_clear_whitelist_key"
             android:summary="@string/sponsor_block_clear_whitelist_summary"
             android:title="@string/sponsor_block_clear_whitelist_title"/>
