@@ -725,8 +725,6 @@
     <string name="force_auto_fullscreen_summary">Se abilitato, quando il dispositivo è in orizzontale forza la modalità a schermo intero anche se il dispositivo è un tablet o una TV.</string>
     <string name="disable_error_reports_title">Disabilita segnalazione errori</string>
     <string name="disable_error_reports_summary">Previene la comparsa delle schermate di errore. Potrebbe provocare malfunzionamenti dell\'app, <b>USA A TUO RISCHIO E PERICOLO!</b></string>
-    <string name="enable_return_youtube_dislike_title">Mostra numero dislike</string>
-    <string name="enable_return_youtube_dislike_summary">Usa l\'API di ReturnYouTubeDislike per mostrare il numero di dislike dei video. Funziona solo nei video di YouTube. <b>ATTENZIONE: Il tuo indirizzo IP sarà visibile all\'API. Usa a tuo rischio e pericolo!</b></string>
     <string name="settings_category_sponsor_block_category_enable_title">Abilita</string>
     <string name="settings_category_sponsor_block_category_color">Colore barra di avanzamento</string>
     <string name="settings_category_sponsor_block_category_sponsor_title">Sponsor</string>

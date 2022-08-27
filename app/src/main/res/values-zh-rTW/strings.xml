@@ -767,6 +767,4 @@
     <string name="force_auto_fullscreen_summary">啟用後，當裝置為橫向時會強制全螢幕</string>
     <string name="disable_error_reports_title">禁用錯誤回報</string>
     <string name="disable_error_reports_summary">防止出現所有錯誤報告畫面。這可能導致應用程式出現意料之外的行為。<b>風險自負！</b></string>
-    <string name="enable_return_youtube_dislike_title">顯示倒讚按鈕</string>
-    <string name="enable_return_youtube_dislike_summary">使用 ReturnYouTubeDislike API 來顯示影片約略不喜歡的數量。只作用在 YouTube 的影片。\n<b>警告：你的 IP 會被第三方 API 知曉。風險自負！</b></string>
 </resources>

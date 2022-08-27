@@ -75,6 +75,7 @@ public final class NewPipeSettings {
         PreferenceManager.setDefaultValues(context, R.xml.debug_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.sponsor_block_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.sponsor_block_category_settings, true);
+        PreferenceManager.setDefaultValues(context, R.xml.ryd_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.extra_settings, true);
 
         saveDefaultVideoDownloadDirectory(context);

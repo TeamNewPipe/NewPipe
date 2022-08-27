@@ -774,8 +774,6 @@
     <string name="force_auto_fullscreen_summary">Se ativado, quando o dispositivo estiver no modo paisagem, força o modo de tela cheia mesmo se o dispositivo for um tablet ou TV.</string>
     <string name="disable_error_reports_title">Desativar relatório de erros</string>
     <string name="disable_error_reports_summary">Impede que todas as telas de relatório de erros apareçam. Isso pode fazer com que o aplicativo se comporte inesperadamente. <b>USE POR SUA CONTA E RISCO!</b></string>
-    <string name="enable_return_youtube_dislike_title">Mostrar contagem de não gostei</string>
-    <string name="enable_return_youtube_dislike_summary">Utiliza a API ReturnYouTubeDislike para exibir o número de não gostei de um vídeo. Isso só funciona com vídeos do YouTube.\n<b>AVISO: seu endereço IP ficará visível para a API. Use por sua conta e risco.</b></string>
     <string name="percent">Por cento</string>
     <string name="semitone">Semitom</string>
     <string name="selected_stream_external_player_not_supported">A transmissão selecionada não é compatível com players externos</string>

@@ -16,7 +16,6 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 
 public final class ReturnYouTubeDislikeUtils {
 
-    private static final String API_URL = "https://returnyoutubedislikeapi.com/votes?videoId=";
     private static final String TAG = ReturnYouTubeDislikeUtils.class.getSimpleName();
     private static final boolean DEBUG = MainActivity.DEBUG;
 
@@ -29,13 +28,18 @@ public final class ReturnYouTubeDislikeUtils {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         final boolean isReturnYouTubeDislikeEnabled = prefs.getBoolean(context
-                .getString(R.string.enable_return_youtube_dislike_key), false);
+                .getString(R.string.ryd_enable_key), false);
 
         if (!isReturnYouTubeDislikeEnabled) {
             return -1;
         }
 
-        if (!streamInfo.getUrl().startsWith("https://www.youtube.com")) {
+        final String apiUrl = prefs.getString(context
+                .getString(R.string.ryd_api_url_key), null);
+
+        if (!streamInfo.getUrl().startsWith("https://www.youtube.com")
+                || apiUrl == null
+                || apiUrl.isEmpty()) {
             return -1;
         }
 
@@ -46,7 +50,7 @@ public final class ReturnYouTubeDislikeUtils {
                     DownloaderImpl
                             .getInstance()
                             .setCustomTimeout(3)
-                            .get(API_URL + streamInfo.getId())
+                            .get(apiUrl + "votes?videoId=" + streamInfo.getId())
                             .responseBody();
 
             response = JsonParser.object().from(responseBody);

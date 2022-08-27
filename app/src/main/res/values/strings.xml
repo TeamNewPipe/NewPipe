@@ -824,6 +824,20 @@
     <string name="sponsor_block_confirm_clear_whitelist">Are you sure you want to clear the whitelist?</string>
     <string name="sponsor_block_confirm_reset_colors">Are you sure you want to reset the category colors?</string>
     <string name="sponsor_block_reset_colors_toast">Colors reset.</string>
+    <!-- ReturnYouTubeDislike -->
+    <string name="ryd_home_page_title">View Website</string>
+    <string name="ryd_home_page_summary">View the official RYD website.</string>
+    <string name="ryd_security_faq_title">View Security FAQ</string>
+    <string name="ryd_security_faq_summary">If you care about your privacy, it is recommended that you view RYD\'s FAQ about security and what they track.</string>
+    <string name="ryd_enable_title">Enable RYD</string>
+    <string name="ryd_enable_summary">Use the ReturnYouTubeDislike API to show the amount of dislikes for a video. This only works for YouTube videos.</string>
+    <string name="ryd_default_api_url">https://returnyoutubedislikeapi.com/</string>
+    <string name="ryd_api_url_title">API Url</string>
+    <string name="ryd_api_url_summary">The url to use when querying the ReturnYouTubeDislike API. This must be set for RYD to work.</string>
+    <string name="ryd_api_url_help_text">This is the URL that will be queried when the application determines the dislike count on a YouTube video.\n\nYou can set the official URL by clicking the \'Use Official\' option below, though it is highly recommended you view RYD\'s security FAQ before you do.</string>
+    <string name="ryd_privacy_policy_text">RYD Security FAQ</string>
+    <string name="ryd_home_page_url">https://returnyoutubedislike.com/</string>
+    <string name="ryd_security_faq_url">https://github.com/Anarios/return-youtube-dislike/blob/main/Docs/SECURITY-FAQ.md</string>
     <!-- Extras -->
     <string name="extras">Extras</string>
     <string name="extras_todo_summary">Tweaks, workarounds, and other miscellaneous settings belong here.</string>
@@ -834,8 +848,6 @@
     <string name="force_auto_fullscreen_summary">If enabled, when the device is set to landscape, force fullscreen mode even if the device is a tablet or TV.</string>
     <string name="disable_error_reports_title">Disable Error Reporting</string>
     <string name="disable_error_reports_summary">Prevent all error reporting screens from appearing. This may result in the app behaving unexpectedly. <b>USE AT YOUR OWN RISK!</b></string>
-    <string name="enable_return_youtube_dislike_title">Show Dislike Count</string>
-    <string name="enable_return_youtube_dislike_summary">Use the ReturnYouTubeDislike API to show the amount of dislikes for a video. This only works for YouTube videos.\n<b>WARNING: Your IP address will be visible to the API. Use at your own risk!</b></string>
 
     <string name="youtube_sign_in_settings_summary">Opens a web browser to let you sign-in to YouTube.</string>
     <string name="youtube_sign_in_settings_title">Sign-in</string>

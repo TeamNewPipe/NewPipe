@@ -716,8 +716,6 @@
     <string name="force_auto_fullscreen_summary">Jika diaktifkan, ketika perangkat diatur ke lanskap, paksa mode layar penuh bahkan jika perangkat adalah tablet atau TV.</string>
     <string name="disable_error_reports_title">Matikan Pelaporan Error</string>
     <string name="disable_error_reports_summary">Cegah semua layar pelaporan kesalahan dari muncul. Ini dapat mengakibatkan aplikasi berperilaku tak terduga.<b>GUNAKAN DENGAN RISIKO ANDA SENDIRI!</b></string>
-    <string name="enable_return_youtube_dislike_title">Tampilkan Jumlah Dislike</string>
-    <string name="enable_return_youtube_dislike_summary">Gunakan API ReturnYouTubeDislike untuk menampilkan jumlah dislike untuk video. Ini hanya bekerja untuk video YouTube.\n<b>PERHATIAN: Alamat IP Anda akan terlihat oleh API. Gunakan dengan risiko Anda sendiri!</b></string>
     <string name="playback_tempo_step">Langkah tempo</string>
     <string name="progressive_load_interval_exoplayer_default">Default ExoPlayer</string>
     <string name="progressive_load_interval_summary">Ubah ukuran interval pemuatan (saat ini %s). Nilai yang rendah mungkin dapat membuat pemuatan video awal lebih cepat. Perubahan membutuhkan pemutar dimulai ulang</string>

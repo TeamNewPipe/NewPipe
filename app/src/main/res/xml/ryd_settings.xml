@@ -1,0 +1,37 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="ReturnYouTubeDislike">
+    <Preference
+        app:iconSpaceReserved="false"
+        android:key="@string/ryd_home_page_key"
+        android:summary="@string/ryd_home_page_summary"
+        android:title="@string/ryd_home_page_title"/>
+
+    <Preference
+        app:iconSpaceReserved="false"
+        android:key="@string/ryd_security_faq_key"
+        android:summary="@string/ryd_security_faq_summary"
+        android:title="@string/ryd_security_faq_title"/>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/settings">
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="false"
+            android:key="@string/ryd_enable_key"
+            android:summary="@string/ryd_enable_summary"
+            android:title="@string/ryd_enable_title"/>
+
+        <org.schabi.newpipe.settings.custom.ReturnYouTubeDislikeApiUrlPreference
+            app:iconSpaceReserved="false"
+            android:dependency="@string/ryd_enable_key"
+            android:defaultValue="@string/ryd_default_api_url"
+            android:key="@string/ryd_api_url_key"
+            android:summary="@string/ryd_api_url_summary"
+            android:title="@string/ryd_api_url_title"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

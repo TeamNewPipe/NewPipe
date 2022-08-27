@@ -781,6 +781,4 @@
     <string name="force_auto_fullscreen_summary">Si se activa, cuando el dispositivo está en modo horizontal, fuerza el modo de pantalla completa, incluso si el dispositivo es una tableta o un televisor.</string>
     <string name="disable_error_reports_title">Desactivar el Informe de Errores</string>
     <string name="disable_error_reports_summary">Evitar que aparezcan todas las pantallas de informe de errores. Esto puede hacer que la aplicación se comporte de forma inesperada. <b>¡UTILÍCELO BAJO SU PROPIO RIESGO!</b></string>
-    <string name="enable_return_youtube_dislike_title">Mostrar Conteo de No Me Gusta</string>
-    <string name="enable_return_youtube_dislike_summary">Utilizar el API de ReturnYouTubeDislike API para mostrar la cantidad de no me gusta de un video. Esto solo funciona con videos de YouTube.\n<b>ADVERTENCIA: Su dirección IP será visible para la API. Utilícelo bajo su propio riesgo.</b></string>
 </resources>
