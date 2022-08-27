@@ -1,0 +1,7 @@
+načtení dostatečného množství počátečních položek v seznamech, aby zaplnily celou obrazovku, a oprava posouvání na tabletech a televizorech.
+Oprava náhodných pádů při procházení seznamů
+Nechat překryvný oblouk rychlého vyhledávání hráče přejít pod uživatelské rozhraní systému
+Vrátit změny výřezů při přehrávání ve více oknech, které způsobovaly regresi chybně umístěného přehrávače na některých telefonech
+Zvýšit compileSdk z 30 na 31
+Aktualizovat knihovnu pro hlášení chyb
+-

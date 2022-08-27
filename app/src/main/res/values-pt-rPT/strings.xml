@@ -716,4 +716,6 @@
     <string name="unknown_format">Formato desconhecido</string>
     <string name="unknown_quality">Qualidade desconhecida</string>
     <string name="select_quality_external_players">Selecione a qualidade para reprodutores externos</string>
+    <string name="progressive_load_interval_title">Tamanho do intervalo de carregamento da reprodução</string>
+    <string name="feed_toggle_show_future_items">Mostrar vídeos futuros</string>
 </resources>

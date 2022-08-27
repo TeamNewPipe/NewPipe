@@ -560,8 +560,8 @@
     <string name="notification_action_shuffle">Casuale</string>
     <string name="notification_action_nothing">Niente</string>
     <string name="notification_action_repeat">Ripeti</string>
-    <string name="notification_scale_to_square_image_title">Ridimensiona copertina alla proporzione 1:1</string>
-    <string name="notification_scale_to_square_image_summary">Modifica la proporzione della copertina del video mostrata nella notifica da 16:9 a 1:1 (può introdurre distorsioni)</string>
+    <string name="notification_scale_to_square_image_title">Ritaglia copertina con proporzione 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Ritaglia la copertina del video mostrata nella notifica, cambiando la proporzione da 16:9 a 1:1</string>
     <string name="show_memory_leaks">Mostra memory leak</string>
     <string name="enqueued">Aggiunto alla coda</string>
     <string name="enqueue_stream">Accoda</string>
@@ -716,5 +716,6 @@
     <string name="select_quality_external_players">Seleziona qualità per lettori esterni</string>
     <string name="unknown_quality">Qualità sconosciuta</string>
     <string name="unknown_format">Formato sconosciuto</string>
-    <string name="progressive_load_interval_title">Dimensione dell\'intervallo di caricamento della riproduzione</string>
+    <string name="progressive_load_interval_title">Dimensione intervallo di caricamento della riproduzione</string>
+    <string name="feed_toggle_show_future_items">Mostra video futuri</string>
 </resources>

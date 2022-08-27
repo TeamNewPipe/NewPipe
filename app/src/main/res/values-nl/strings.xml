@@ -709,4 +709,12 @@
     </plurals>
     <string name="you_successfully_subscribed">Je bent nu geabonneerd op dit kanaal</string>
     <string name="delete_downloaded_files_confirm">Alle gedownloade bestanden van schijf wissen\?</string>
+    <string name="selected_stream_external_player_not_supported">De gekozen stream wordt niet ondersteund door externe spelers</string>
+    <string name="no_video_streams_available_for_external_players">Er zijn geen videostreams beschikbaar voor externe spelers</string>
+    <string name="unknown_quality">Onbekende kwaliteit</string>
+    <string name="streams_not_yet_supported_removed">Streams die nog niet kunnen worden opgeslagen, worden niet getoond</string>
+    <string name="no_audio_streams_available_for_external_players">Geen audiostreams beschikbaar voor externe spelers</string>
+    <string name="select_quality_external_players">Kies kwaliteit voor externe spelers</string>
+    <string name="unknown_format">Onbekend bestandstype</string>
+    <string name="progressive_load_interval_title">Intervalgrootte tijdens afspelen</string>
 </resources>

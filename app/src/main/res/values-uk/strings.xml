@@ -558,7 +558,7 @@
     <string name="notification_action_2_title">Кнопка третьої дії</string>
     <string name="notification_action_1_title">Кнопка другої дії</string>
     <string name="notification_action_0_title">Кнопка першої дії</string>
-    <string name="notification_scale_to_square_image_title">Збільшити ескіз до масштабу 1:1</string>
+    <string name="notification_scale_to_square_image_title">Обрізати ескіз до пропорцій 1:1</string>
     <string name="open_with">Відкрити через</string>
     <string name="download_has_started">Завантаження почалося</string>
     <string name="night_theme_summary">Виберіть нічну тему — %s</string>
@@ -616,7 +616,7 @@
     <string name="notification_colorize_title">Кольорове сповіщення</string>
     <string name="notification_actions_at_most_three">У компактному сповіщенні є не більше трьох дій!</string>
     <string name="notification_actions_summary">Дії можна змінити, натиснувши на них. Позначте не більше трьох для показу в компактному сповіщенні</string>
-    <string name="notification_scale_to_square_image_summary">Масштабувати мініатюру відео 16: 9 до 1:1 (можливі спотворення)</string>
+    <string name="notification_scale_to_square_image_summary">Обрізати мініатюру відео показувану в сповіщенні з пропорцій 16: 9 до 1:1</string>
     <string name="disable_media_tunneling_summary">Вимкнення тунелювання медіаданих за наявності чорного екрана або гальмування під час відтворення відео</string>
     <string name="disable_media_tunneling_title">Вимкнути тунелювання медіа</string>
     <string name="downloads_storage_use_saf_summary_api_29">«Фреймворк доступу до сховища» (SAF) підтримується лише починаючи з Android 10</string>
@@ -734,4 +734,5 @@
     <string name="select_quality_external_players">Виберіть якість для зовнішніх програвачів</string>
     <string name="unknown_quality">Невідома якість</string>
     <string name="progressive_load_interval_title">Розмір інтервалу завантаження відтворення</string>
+    <string name="feed_toggle_show_future_items">Показати наступні відео</string>
 </resources>

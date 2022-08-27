@@ -1,0 +1,10 @@
+- Přidána možnost přímého otevření přehrávače ve fullscreenu
+- Umožňuje vybrat, které typy návrhů vyhledávání se mají zobrazit
+- Tmavé téma je nyní tmavší + přidána tmavá úvodní obrazovka
+- Vylepšený nástroj pro výběr souborů, který šedě označuje nechtěné soubory
+- Opraven import odběrů YouTube
+- Opakované přehrávání streamu vyžaduje opětovné klepnutí na tlačítko přehrávání
+- Opraveno ukončení zvukové relace
+-
+-
+-.

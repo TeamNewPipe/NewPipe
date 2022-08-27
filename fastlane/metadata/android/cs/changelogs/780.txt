@@ -1,0 +1,11 @@
+Změny ve verzi 0.17.3
+
+Vylepšené stránky
+- Přidána možnost vymazat stavy přehrávání #2550
+- Zobrazení skrytých adresářů ve výběru souborů #2591
+- Podpora otevírání adres URL z instancí `invidio.us` pomocí NewPipe #2488 
+- Přidána podpora pro adresy URL `music.youtube.com` TeamNewPipe/NewPipeExtractor#194
+
+Opraveno
+- YouTube] Opraveno 'java.lang.IllegalArgumentException #192
+- YouTube] Opraveno nefunkční živé vysílání TeamNewPipe/NewPipeExtractor#195

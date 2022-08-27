@@ -550,8 +550,8 @@
     <string name="notification_action_2_title">第三操作按钮</string>
     <string name="notification_action_1_title">第二操作按钮</string>
     <string name="notification_action_0_title">第一操作按钮</string>
-    <string name="notification_scale_to_square_image_summary">将通知中视频缩略图的长宽比从 16:9 强制缩放到 1:1（可能会导致失真）</string>
-    <string name="notification_scale_to_square_image_title">强制缩放缩略图至 1:1 比例</string>
+    <string name="notification_scale_to_square_image_summary">将通知中视频缩略图的长宽比从 16:9 裁剪到 1:1</string>
+    <string name="notification_scale_to_square_image_title">裁剪缩略图至 1:1 比例</string>
     <string name="show_memory_leaks">显示内存泄漏</string>
     <string name="enqueued">已加入播放队列</string>
     <string name="enqueue_stream">加入播放队列</string>
@@ -704,4 +704,6 @@
     <string name="no_video_streams_available_for_external_players">没有视频流可用于外部播放器</string>
     <string name="streams_not_yet_supported_removed">不显示下载器尚不支持的串流</string>
     <string name="unknown_quality">未知画质</string>
+    <string name="progressive_load_interval_title">回放加载间隔大小</string>
+    <string name="feed_toggle_show_future_items">显示未来视频</string>
 </resources>

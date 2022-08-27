@@ -1,0 +1,1 @@
+Aktualizováno klient_id služby SoundCloud pro opravu problémů se službou SoundCloud.

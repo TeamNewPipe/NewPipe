@@ -1,0 +1,1 @@
+Opraveno provádění kontroly nové verze NewPipe. Tato kontrola se někdy prováděla příliš brzy, a proto vedla k pádu aplikace. To by nyní mělo být opraveno.

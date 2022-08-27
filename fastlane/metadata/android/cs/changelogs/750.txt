@@ -1,0 +1,14 @@
+New
+Playback resume #2288
+• Resume streams where you stopped last time
+Downloader Enhancements #2149 
+• Use Storage Access Framework to store downloads on external SD-cards
+• New mp4 muxer
+• Optionally change the download directory before starting a download
+• Respect metered networks 
+
+
+Improved
+• Removed gema strings #2295
+• Handle (auto)rotation changes during activity lifecycle #2444
+• Make long-press menus consistent #2368

@@ -1,0 +1,5 @@
+Hotfix
+- Oprava problémů s vyrovnávací pamětí způsobených škrcením YouTube
+- Oprava extrakce komentářů YouTube a pádů s vypnutými komentáři
+- Oprava vyhledávání hudby na YouTube
+- Oprava živých přenosů PeerTube

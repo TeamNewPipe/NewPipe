@@ -562,8 +562,8 @@
     <string name="notification_action_2_title">Hirugarren ekintzaren botoia</string>
     <string name="notification_action_1_title">Bigarren ekintzaren botoia</string>
     <string name="notification_action_0_title">Lehenego ekintzaren botoia</string>
-    <string name="notification_scale_to_square_image_summary">Eskalatu jakinarazpenetan erakusten den bideo miniaturaren formatu-ratioa 16:9tik 1:1era (distortsioak sor ditzake)</string>
-    <string name="notification_scale_to_square_image_title">Miniatura 1:1 formatu-ratiora eskalatu</string>
+    <string name="notification_scale_to_square_image_summary">Ebaki jakinarazpenetan erakusten den bideo miniaturaren formatu-ratioa 16:9tik 1:1era</string>
+    <string name="notification_scale_to_square_image_title">Miniatura 1:1 formatu-ratiora ebaki</string>
     <string name="search_showing_result_for">%s bilaketaren erantzunak erakusten</string>
     <string name="enqueued">Ilaran jarri da</string>
     <string name="enqueue_stream">Jarri ilaran</string>
@@ -709,4 +709,13 @@
     <string name="streams_notifications_network_title">Beharrezko sare konexioa</string>
     <string name="percent">Portzentaia</string>
     <string name="semitone">Semitonoa</string>
+    <string name="progressive_load_interval_title">Erreprodukzioaren kargatze-tartearen tamaina</string>
+    <string name="streams_not_yet_supported_removed">Deskargatzaileak onartzen ez dituen jarioak ez dira erakusten</string>
+    <string name="selected_stream_external_player_not_supported">Hautatutako jarioa ez dago kanpoko erreproduzigailu batengatik onartuta</string>
+    <string name="no_audio_streams_available_for_external_players">Ez dago kanpoko erreproduzigailu batengatik onartuta dagoen audio jariorik</string>
+    <string name="no_video_streams_available_for_external_players">Ez dago kanpoko erreproduzigailu batengatik onartuta dagoen bideo jariorik</string>
+    <string name="unknown_format">Formatu ezezaguna</string>
+    <string name="unknown_quality">Kalitate ezezaguna</string>
+    <string name="feed_toggle_show_future_items">Erakutsi etorkizuneko bideoak</string>
+    <string name="select_quality_external_players">Hautatu kanpoko erreproduzigailuen kalitatea</string>
 </resources>

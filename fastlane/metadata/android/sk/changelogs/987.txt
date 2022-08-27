@@ -1,0 +1,12 @@
+Novinky
+• Podpora spôsobov poskytovania iných ako progresívnych HTTP: rýchlejší čas načítania prehrávania, opravy pre PeerTube a SoundCloud, prehrávanie nedávno ukončených priamych prenosov YouTube
+• Tlačidlo Pridať na pridanie vzdialeného zoznamu skladieb k lokálnemu
+• Ukážka obrázka v zdieľanom hárku so systémom Android 10+
+
+Vylepšenia
+• Vylepšené dialógové okno parametrov prehrávania
+• Presunuté tlačidlá importu/exportu odberov do ponuky (tri bodky)
+
+Opravy
+• Oprava odstraňovania kompletne prehraných videí zo zoznamu videí
+• Oprava témy v ponuke zdieľania a pri položke „pridať do zoznamu skladieb“

@@ -378,8 +378,8 @@
     <string name="notification_action_2_title">Al treilea buton de acțiune</string>
     <string name="notification_action_1_title">Al doilea buton de acțiune</string>
     <string name="notification_action_0_title">Primul buton de acțiune</string>
-    <string name="notification_scale_to_square_image_summary">Scalați miniatura video afișată în notificare de la raportul de aspect 16:9 la 1:1 (poate introduce distorsiuni)</string>
-    <string name="notification_scale_to_square_image_title">Scalare miniatură la raport aspect 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Tăiați miniatura video afișată în notificare de la raportul de aspect 16:9 la 1:1 (poate introduce distorsiuni)</string>
+    <string name="notification_scale_to_square_image_title">Tăiere miniatură la raportul de aspect 1:1</string>
     <string name="search_showing_result_for">Se arată rezultate pentru:%s</string>
     <string name="no_app_to_open_intent">Nicio aplicație de pe dispozitivul dvs. nu poate deschide acesta</string>
     <string name="chapters">Capitole</string>
@@ -722,4 +722,13 @@
     <string name="you_successfully_subscribed">V-ați abonat la acest canal</string>
     <string name="toggle_all">Comutați toate</string>
     <string name="enumeration_comma">,</string>
+    <string name="streams_not_yet_supported_removed">Fluxurile care încă nu pot fi descărcate nu sunt afișate</string>
+    <string name="selected_stream_external_player_not_supported">Fluxul selectat nu este acceptat de playerele externe</string>
+    <string name="no_audio_streams_available_for_external_players">Nu sunt disponibile fluxuri audio pentru playerele externe</string>
+    <string name="no_video_streams_available_for_external_players">Nu sunt disponibile fluxuri video pentru playerele externe</string>
+    <string name="select_quality_external_players">Selectați calitatea pentru playerele externe</string>
+    <string name="unknown_format">Format necunoscut</string>
+    <string name="unknown_quality">Calitate necunoscută</string>
+    <string name="progressive_load_interval_title">Dimensiunea intervalului de încărcare de redare</string>
+    <string name="feed_toggle_show_future_items">Afișați videoclipurile din viitor</string>
 </resources>

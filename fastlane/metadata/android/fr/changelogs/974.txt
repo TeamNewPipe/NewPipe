@@ -1,0 +1,5 @@
+Correctifs
+• Correction des problèmes de mise en mémoire tampon causés par la restriction de débit de YouTube
+• Correction de l'extraction des commentaires de YouTube et des plantages avec les commentaires désactivés
+• Correction de la recherche de musique sur YouTube
+• Correction des directs PeerTube

@@ -1,0 +1,8 @@
+• Dodano wsparcie rozdziałów w kontrolkach odtwarzacza
+• [PeerTube] Dodano wyszukiwarkę Sepia
+• Dodano ponownie przycisk udostępniania w sekcji szczegółów i przeniesiono informacje o strumieniu do układu karty
+• Wyłączono przywracanie jasności przy wyłączonych gestach regulacji jasności
+• Dodano element listy umożliwiający odtworzenie wideo w Kodi
+• Naprawiono błąd przy braku domyślnej przeglądarki na niektórych urządzeniach i usprawniono menu udostępniania
+• Przełączanie odtwarzanie/pauza poprzez wciśnięcie spacji na klawiaturze fizycznej w odtwarzaczu pełnoekranowym
+• [media.cc.de] Różne poprawki i usprawnienia

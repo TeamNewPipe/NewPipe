@@ -1,0 +1,2 @@
+[YouTube] Oprava chyby "Nelze načíst žádný stream" při pokusu o přehrání jakéhokoli videa
+[YouTube] Oprava zprávy "Následující obsah není v této aplikaci k dispozici." zobrazené místo požadovaného videa

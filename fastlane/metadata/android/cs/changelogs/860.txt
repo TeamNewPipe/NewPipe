@@ -1,0 +1,7 @@
+Vylepšené stránky
+- Uložení a obnovení, zda je výška tónu a tempo odpojeno, nebo ne
+- Podpora výřezu displeje v přehrávači
+- Kulaté zobrazení a počet účastníků
+- Optimalizováno pro YouTube tak, aby využívalo méně dat
+
+V této verzi bylo opraveno více než 15 chyb souvisejících s YouTube.
