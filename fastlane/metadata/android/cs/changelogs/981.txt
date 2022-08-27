@@ -1,0 +1,2 @@
+Odstraněna podpora MediaParser, aby se opravilo selhání obnovení přehrávání po vyrovnávací paměti v systému Android 11+.
+Zakázáno tunelování médií na přehrávači Philips QM16XE, aby se odstranily problémy s přehráváním.

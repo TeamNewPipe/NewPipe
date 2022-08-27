@@ -498,8 +498,8 @@
     <string name="notification_action_2_title">Κουμπί τρίτης ενέργειας</string>
     <string name="notification_action_1_title">Κουμπί δεύτερης ενέργειας</string>
     <string name="notification_action_0_title">Κουμπί πρώτης ενέργειας</string>
-    <string name="notification_scale_to_square_image_summary">Κλιμάκωση της μικρογραφίας βίντεο που εμφανίζεται στην ειδοποίηση από 16:9 σε αναλογία διαστάσεων 1:1 (μπορεί να προκαλέσει παραμορφώσεις)</string>
-    <string name="notification_scale_to_square_image_title">Κλιμάκωση μικρογραφίας σε αναλογία διαστάσεων 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Περικοπή της μικρογραφίας βίντεο που εμφανίζεται στην ειδοποίηση από 16:9 σε αναλογία διαστάσεων 1:1</string>
+    <string name="notification_scale_to_square_image_title">Περικοπή μικρογραφίας σε αναλογία διαστάσεων 1:1</string>
     <string name="notification_action_buffering">Φόρτωση</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Πιστεύετε ότι η ροή φορτώνει πολύ αργά; Δοκιμάστε να ενεργοποιήσετε τη γρήγορη φόρτωση (από τις ρυθμίσεις ή πατώντας το παρακάτω κουμπί).
 \n
@@ -717,4 +717,5 @@
     <string name="unknown_format">Άγνωστος τύπος αρχείου</string>
     <string name="unknown_quality">Άγνωστη ποιότητα</string>
     <string name="progressive_load_interval_title">Μέγεθος διαστήματος φόρτωσης αναπαραγωγής</string>
+    <string name="feed_toggle_show_future_items">Εμφάνιση μελλοντικών βίντεο</string>
 </resources>

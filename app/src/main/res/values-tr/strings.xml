@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Başlamak için büyütece dokunun.</string>
+    <string name="main_bg_subtitle">Başlamak için büyütece dokun.</string>
     <string name="upload_date_text">%1$s tarihinde yayınlandı</string>
-    <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC yüklensin mi\?</string>
+    <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC kurulsun mu\?</string>
     <string name="install">Yükle</string>
     <string name="cancel">İptal</string>
     <string name="open_in_browser">Tarayıcıda aç</string>
@@ -13,14 +13,14 @@
     <string name="did_you_mean">Bunu mu demek istediniz: \"%1$s\"\?</string>
     <string name="share_dialog_title">Şununla paylaş</string>
     <string name="use_external_video_player_title">Dış video oynatıcı kullan</string>
-    <string name="use_external_audio_player_title">Dış ses oynatıcı kullanın</string>
+    <string name="use_external_audio_player_title">Dış ses oynatıcı kullan</string>
     <string name="download_path_title">Video indirme klasörü</string>
     <string name="download_path_summary">İndirilen video dosyaları burada depolanır</string>
     <string name="download_path_dialog_title">Video dosyaları için indirme klasörünü seç</string>
     <string name="download_path_audio_title">Ses indirme klasörü</string>
     <string name="download_path_audio_summary">İndirilen ses dosyaları burada depolanır</string>
     <string name="download_path_audio_dialog_title">Ses dosyaları için indirme klasörünü seç</string>
-    <string name="default_resolution_title">Varsayılan çözünürlük</string>
+    <string name="default_resolution_title">Öntanımlı çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Eksik Kore uygulaması yüklensin mi\?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile oynat\" seçeneğini göster</string>
@@ -103,7 +103,7 @@
     <string name="popup_remember_size_pos_summary">Açılan pencerenin son boyutunu ve konumunu hatırla</string>
     <string name="use_external_video_player_summary">Bazı çözünürlüklerde sesi kaldırır</string>
     <string name="show_search_suggestions_title">Arama önerileri</string>
-    <string name="show_search_suggestions_summary">Arama yaparken gösterilecek önerileri seçin</string>
+    <string name="show_search_suggestions_summary">Ararken gösterilecek önerileri seç</string>
     <string name="best_resolution">En iyi çözünürlük</string>
     <string name="title_activity_about">NewPipe Hakkında</string>
     <string name="title_licenses">Üçüncü Taraf Lisansları</string>
@@ -130,7 +130,7 @@
     <string name="tab_subscriptions">Abonelikler</string>
     <string name="fragment_feed_title">Yenilikler</string>
     <string name="enable_search_history_title">Arama geçmişi</string>
-    <string name="enable_search_history_summary">Arama sorgularını yerel olarak saklayın</string>
+    <string name="enable_search_history_summary">Arama sorgularını yerel olarak sakla</string>
     <string name="enable_watch_history_title">İzleme geçmişi</string>
     <string name="enable_watch_history_summary">İzlenen videoların kaydını tut</string>
     <string name="resume_on_audio_focus_gain_title">Oynatmayı sürdür</string>
@@ -191,7 +191,7 @@
     <string name="switch_to_main">Ana Görünüme Geç</string>
     <string name="drawer_open">Çekmeceyi Aç</string>
     <string name="drawer_close">Çekmeceyi Kapat</string>
-    <string name="no_player_found_toast">Akış oynatıcı bulunamadı (Oynatmak için VLC yükleyebilirsiniz).</string>
+    <string name="no_player_found_toast">Akış oynatıcı bulunamadı (Oynatmak için VLC kurabilirsiniz).</string>
     <string name="always">Her Zaman</string>
     <string name="just_once">Yalnızca Bir Kez</string>
     <string name="external_player_unsupported_link_type">Dış oynatıcılar bu tür bağlantıları desteklemez</string>
@@ -560,8 +560,8 @@
     <string name="notification_action_2_title">Üçüncü eylem düğmesi</string>
     <string name="notification_action_1_title">İkinci eylem düğmesi</string>
     <string name="notification_action_0_title">Birinci eylem düğmesi</string>
-    <string name="notification_scale_to_square_image_summary">Bildirimde gösterilen video küçük resmini 16:9\'dan 1:1 en/boy oranına ölçeklendir (bozulmalara neden olabilir)</string>
-    <string name="notification_scale_to_square_image_title">Küçük resmi 1:1 en/boy oranına ölçeklendir</string>
+    <string name="notification_scale_to_square_image_summary">Bildirimde gösterilen video küçük resmini 16:9\'dan 1:1 en boy oranına kırp</string>
+    <string name="notification_scale_to_square_image_title">Küçük resmi 1:1 en boy oranına kırp</string>
     <string name="show_memory_leaks">Bellek sızıntılarını göster</string>
     <string name="enqueued">Sıraya eklendi</string>
     <string name="enqueue_stream">Kuyruğa ekle</string>
@@ -578,7 +578,7 @@
     <string name="hash_channel_description">Video dosya özetleme süreci için bildirimler</string>
     <string name="hash_channel_name">Video dosya özeti bildirimi</string>
     <string name="recent">En Son</string>
-    <string name="show_meta_info_summary">Akış oluşturucu, akış içeriği veya bir arama isteği hakkında ek bilgiler içeren meta bilgi kutularını gizlemek için kapatın</string>
+    <string name="show_meta_info_summary">Akış oluşturucu, akış içeriği veya arama isteğiyle ilgili ek bilgiler içeren üst veri bilgi kutularını gizlemek için kapat</string>
     <string name="show_meta_info_title">Üst bilgiyi göster</string>
     <string name="chapters">Bölümler</string>
     <string name="description_tab_description">Açıklama</string>
@@ -693,7 +693,7 @@
     </plurals>
     <string name="check_new_streams">Yeni akışları denetlemeyi çalıştır</string>
     <string name="settings_category_player_notification_title">Oynatıcı bildirimi</string>
-    <string name="settings_category_player_notification_summary">Oynatılan akış bildirimini yapılandırın</string>
+    <string name="settings_category_player_notification_summary">Oynatılan akış bildirimini yapılandır</string>
     <string name="streams_notification_channel_name">Yeni akışlar</string>
     <string name="loading_stream_details">Akış ayrıntıları yükleniyor…</string>
     <string name="streams_notification_channel_description">Abonelikler için yeni akışlarla ilgili bildirimler</string>
@@ -701,7 +701,7 @@
     <string name="notifications_disabled">Bildirimler devre dışı</string>
     <string name="get_notified">Bildirim alın</string>
     <string name="you_successfully_subscribed">Artık bu kanala abone oldunuz</string>
-    <string name="enable_streams_notifications_summary">Aboneliklerden yeni akışlar hakkında bildirim gönder</string>
+    <string name="enable_streams_notifications_summary">Aboneliklerden yeni akışlarla ilgili bildirim gönder</string>
     <string name="streams_notifications_interval_title">Denetleme sıklığı</string>
     <string name="any_network">Herhangi bir ağ</string>
     <string name="delete_downloaded_files_confirm">İndirilen tüm dosyalar diskten silinsin mi\?</string>
@@ -709,12 +709,13 @@
     <string name="toggle_all">Tümünü değiştir</string>
     <string name="percent">Yüzde</string>
     <string name="semitone">Ara ton</string>
-    <string name="selected_stream_external_player_not_supported">Seçilen yayın harici oynatıcılar tarafından desteklenmiyor</string>
-    <string name="streams_not_yet_supported_removed">İndirici tarafından henüz desteklenmeyen yayınlar gösterilmez</string>
-    <string name="no_audio_streams_available_for_external_players">Harici oynatıcılar için ses yayını yok</string>
-    <string name="no_video_streams_available_for_external_players">Harici oynatıcılar için video yayını yok</string>
-    <string name="select_quality_external_players">Harici oynatıcılar için kalite seçin</string>
+    <string name="selected_stream_external_player_not_supported">Seçilen akış dış oynatıcılarca desteklenmiyor</string>
+    <string name="streams_not_yet_supported_removed">İndiricice henüz desteklenmeyen akışlar gösterilmez</string>
+    <string name="no_audio_streams_available_for_external_players">Dış oynatıcılar için ses akışı yok</string>
+    <string name="no_video_streams_available_for_external_players">Dış oynatıcılar için video akışı yok</string>
+    <string name="select_quality_external_players">Dış oynatıcılar için nitelik seç</string>
     <string name="unknown_format">Bilinmeyen biçim</string>
-    <string name="unknown_quality">Bilinmeyen kalite</string>
+    <string name="unknown_quality">Bilinmeyen nitelik</string>
     <string name="progressive_load_interval_title">Oynatma yükleme aralığı boyutu</string>
+    <string name="feed_toggle_show_future_items">Gelecekteki videoları göster</string>
 </resources>

@@ -557,8 +557,8 @@
     <string name="notification_action_2_title">سومین دکمه کنشی</string>
     <string name="notification_action_1_title">دومین دکمه کنشی</string>
     <string name="notification_action_0_title">اولین دکمه کنشی</string>
-    <string name="notification_scale_to_square_image_summary">تصویر بندانگشتی ویدیو که در اعلان نمایش می‌یابد، از نسبت ۱۶:۹ به ۱:۱ تغییر اندازه پیدا کند (ممکن است منجر به اعوجاج شود)</string>
-    <string name="notification_scale_to_square_image_title">تغییر مقیاس تصویر بندانگشتی به نسبت ۱:۱</string>
+    <string name="notification_scale_to_square_image_summary">تصویر بندانگشتی ویدیو که در اعلان نمایش می‌یابد، از نسبت ۱۶:۹ به ۱:۱ بریده می‌شود</string>
+    <string name="notification_scale_to_square_image_title">برش تصویر بندانگشتی به نسبت ۱:۱</string>
     <string name="low_quality_smaller">کیفیت پایین (کوچک‌تر)</string>
     <string name="high_quality_larger">کیفیت بالا (بزرگ‌تر)</string>
     <string name="comments_are_disabled">نظرها از کار افتاده‌اند</string>
@@ -716,4 +716,6 @@
     <string name="select_quality_external_players">گزینش کیفیت برای پخش‌کننده‌های خارجی</string>
     <string name="unknown_format">قالب ناشناخته</string>
     <string name="unknown_quality">کیفیت ناشناخته</string>
+    <string name="progressive_load_interval_title">اندازهٔ دورهٔ بار کردن پخش</string>
+    <string name="feed_toggle_show_future_items">نمایش ویدیوهای آینده</string>
 </resources>

@@ -6,7 +6,7 @@
     <string name="download">Télécharger</string>
     <string name="download_path_title">Dossier de téléchargement vidéo</string>
     <string name="download_path_dialog_title">Choisissez le dossier de téléchargement des vidéos</string>
-    <string name="download_path_summary">Les fichiers vidéo téléchargés sont stockées ici</string>
+    <string name="download_path_summary">Les vidéos téléchargées sont stockées ici</string>
     <string name="install">Installer</string>
     <string name="kore_not_found">Installer l’application Kore manquante \?</string>
     <string name="no_player_found">Aucun lecteur de flux trouvé. Installer VLC \?</string>
@@ -99,7 +99,7 @@
     <string name="show_higher_resolutions_summary">Seuls certains appareils peuvent lire des vidéos 2K/4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
     <string name="popup_remember_size_pos_title">Mémoriser les propriétés de la fenêtre flottante</string>
-    <string name="popup_remember_size_pos_summary">Mémorise les dernières taille et position de la fenêtre flottante</string>
+    <string name="popup_remember_size_pos_summary">Mémoriser les dernières taille et position de la fenêtre flottante</string>
     <string name="clear">Effacer</string>
     <string name="short_billion">G</string>
     <string name="use_external_video_player_summary">Le son peut être absent à certaines définitions</string>
@@ -551,7 +551,7 @@
     <string name="unsupported_url_dialog_message">Impossible de reconnaitre l’URL fournie. Voulez-vous l’ouvrir avec une autre application \?</string>
     <string name="auto_queue_toggle">Ajouter automatiquement à la liste de lecture</string>
     <string name="clear_queue_confirmation_description">La liste de lecture du lecteur actif sera remplacée</string>
-    <string name="clear_queue_confirmation_title">Confirmer avant de supprimer la liste de lecture</string>
+    <string name="clear_queue_confirmation_title">Confirmer avant de supprimer une liste de lecture</string>
     <string name="notification_action_nothing">Rien</string>
     <string name="notification_action_buffering">Chargement</string>
     <string name="notification_action_shuffle">Lire aléatoirement</string>
@@ -563,8 +563,8 @@
     <string name="notification_action_2_title">Troisième bouton d’action</string>
     <string name="notification_action_1_title">Deuxième bouton d’action</string>
     <string name="notification_action_0_title">Premier bouton d’action</string>
-    <string name="notification_scale_to_square_image_summary">Mettre à l\'échelle la miniature de la vidéo affichée dans la notification du format 16:9 au format 1:1 (peut provoquer des déformations)</string>
-    <string name="notification_scale_to_square_image_title">Redimensionner la miniature au format 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Recadrer la miniature de la vidéo affichée dans la notification du format 16:9 au format 1:1</string>
+    <string name="notification_scale_to_square_image_title">Recadrer la miniature au format 1:1</string>
     <string name="show_memory_leaks">Afficher les fuites de mémoire</string>
     <string name="enqueued">Ajouté à la file d’attente</string>
     <string name="enqueue_stream">Ajouter à la file d’attente</string>
@@ -663,8 +663,8 @@
     <string name="main_page_content_swipe_remove">Balayez un élément pour le supprimer</string>
     <string name="start_main_player_fullscreen_summary">Ne pas lancer les vidéos dans le mini lecteur mais directement en plein écran si la rotation automatique est verrouillée. Vous pouvez toujours accéder au mini-lecteur en quittant le mode plein écran</string>
     <string name="start_main_player_fullscreen_title">Lancer le lecteur principal en plein écran</string>
-    <string name="enqueue_next_stream">Ajouter à la liste de lecture</string>
-    <string name="enqueued_next">Suivant dans la liste de lecture</string>
+    <string name="enqueue_next_stream">Lire consécutivement</string>
+    <string name="enqueued_next">Video placée après la lecture</string>
     <string name="processing_may_take_a_moment">Traitement en cours… Veuillez patienter</string>
     <string name="manual_update_description">Vérifier manuellement de nouvelles versions</string>
     <string name="checking_updates_toast">Vérification des mises à jour…</string>
@@ -719,4 +719,5 @@
     <string name="selected_stream_external_player_not_supported">Le flux séléctionné n\'est pas supporté par les lecteurs externes</string>
     <string name="no_video_streams_available_for_external_players">Aucun flux vidéo n\'est disponible pour les lecteurs externes</string>
     <string name="progressive_load_interval_title">Taille de l\'intervalle de chargement de la lecture</string>
+    <string name="feed_toggle_show_future_items">Afficher les futures vidéos</string>
 </resources>

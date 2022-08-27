@@ -622,4 +622,6 @@
     <string name="no_audio_streams_available_for_external_players">বাহ্যিক প্লেয়ারের জন্য কোনো অডিও স্ট্রিম নেই</string>
     <string name="no_video_streams_available_for_external_players">বাহ্যিক প্লেয়ারের জন্য কোনো ভিডিও স্ট্রিম নেই</string>
     <string name="unknown_quality">অজ্ঞাত মান</string>
+    <string name="enable_streams_notifications_title">নতুন ধারার বিজ্ঞপ্তি</string>
+    <string name="streams_notifications_network_title">নেটওয়ার্ক সংযোগ দরকার</string>
 </resources>

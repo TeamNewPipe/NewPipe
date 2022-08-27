@@ -426,8 +426,8 @@
     <string name="notification_action_2_title">Kolmas tegevusnupp</string>
     <string name="notification_action_1_title">Teine tegevusnupp</string>
     <string name="notification_action_0_title">Esimene tegevusnupp</string>
-    <string name="notification_scale_to_square_image_summary">Skaleeri teavituses kuvatav video pisipilt 16:9 külgede suhtest 1:1 suhtesse (võib põhjustada häireid)</string>
-    <string name="notification_scale_to_square_image_title">Skaleeri pisipilt 1:1 küljesuhtesse</string>
+    <string name="notification_scale_to_square_image_summary">Kadreeri teavituses kuvatav video pisipilt 16:9 külgede suhtest 1:1 suhtesse</string>
+    <string name="notification_scale_to_square_image_title">Kadreeri pisipilt 1:1 küljesuhtesse</string>
     <string name="msg_calculating_hash">Arvutan räsi</string>
     <string name="recent">Hiljutised</string>
     <string name="description_tab_description">Kirjeldus</string>
@@ -716,4 +716,6 @@
     <string name="selected_stream_external_player_not_supported">Valitud meediavood ei ole toetatud välises pleieris</string>
     <string name="percent">Protsent</string>
     <string name="semitone">Pooltoon</string>
+    <string name="progressive_load_interval_title">Taasesituseks vajalike andmete laadimise samm</string>
+    <string name="feed_toggle_show_future_items">Näita tulevasi videoid</string>
 </resources>

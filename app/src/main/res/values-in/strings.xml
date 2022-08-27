@@ -121,7 +121,7 @@
     <string name="contribution_encouragement">Terlepas apakah Anda memiliki ide untuk; terjemahan, perubahan desain, pembersihan kode, atau perubahan kode yang signifikan, segala bantuan akan selalu diterima. Semakin banyak akan semakin baik jadinya!</string>
     <string name="read_full_license">Baca lisensi</string>
     <string name="contribution_title">Kontribusi</string>
-    <string name="subscribe_button_title">Subscribe</string>
+    <string name="subscribe_button_title">Berlangganan</string>
     <string name="subscribed_button_title">Disubscribe</string>
     <string name="fragment_feed_title">Apa Yang Baru</string>
     <string name="resume_on_audio_focus_gain_title">Lanjutkan pemutaran</string>
@@ -550,7 +550,7 @@
     <string name="notification_action_2_title">Tombol tindakan ketiga</string>
     <string name="notification_action_1_title">Tombol tindakan kedua</string>
     <string name="notification_action_0_title">Tombol tindakan pertama</string>
-    <string name="notification_scale_to_square_image_summary">Ubah ukuran thumbnail yang ditampilkan di notifikasi dari rasio aspek 16:9 ke 1:1 (mungkin terdistorsi)</string>
+    <string name="notification_scale_to_square_image_summary">Ubah ukuran thumbnail yang ditampilkan di notifikasi dari rasio aspek 16:9 ke 1:1</string>
     <string name="notification_scale_to_square_image_title">Ubah ukuran thumbnail ke rasio aspek 1:1</string>
     <string name="show_memory_leaks">Tampilkan kebocoran memori</string>
     <string name="enqueued">Ditambahkan</string>
@@ -704,4 +704,5 @@
     <string name="select_quality_external_players">Pilih kualitas untuk pemain eksternal</string>
     <string name="unknown_format">Format tidak diketahui</string>
     <string name="progressive_load_interval_title">Ukuran interval pemuatan playback</string>
+    <string name="feed_toggle_show_future_items">Tampilkan video mendatang</string>
 </resources>

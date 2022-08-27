@@ -12,7 +12,7 @@
     <string name="download">I-download</string>
     <string name="controls_download_desc">I-download ang stream file</string>
     <string name="search">Maghanap</string>
-    <string name="settings">Ayos ng App</string>
+    <string name="settings">Pagsasaayos</string>
     <string name="did_you_mean">\"%1$s\" ba ang tinutukoy mo\?</string>
     <string name="share_dialog_title">Ibahagi sa</string>
     <string name="use_external_video_player_title">Gumamit ng ibang video player</string>
@@ -30,7 +30,7 @@
     <string name="tab_choose">Pumili ng Tab</string>
     <string name="fragment_feed_title">Anong Bago</string>
     <string name="controls_background_title">Likuran</string>
-    <string name="controls_popup_title">Popup</string>
+    <string name="controls_popup_title">Naka-lutang</string>
     <string name="controls_add_to_playlist_title">Idagdag sa</string>
     <string name="download_path_title">Download folder ng mga video</string>
     <string name="download_path_dialog_title">Pumili ng download folder para sa mga video file</string>
@@ -257,4 +257,7 @@
     <string name="settings_category_player_notification_title">Notipikasyon ng player</string>
     <string name="tracks">Mga track</string>
     <string name="users">Mga gumagamit</string>
+    <string name="metadata_age_limit">Hangganan ng Edad</string>
+    <string name="remove_watched_popup_yes_and_partially_watched_videos">Oo, pati na rin ang mga napanood nang video</string>
+    <string name="auto_device_theme_title">Kusa (tema ng device)</string>
 </resources>

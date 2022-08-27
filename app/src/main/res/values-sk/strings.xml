@@ -722,4 +722,12 @@
     <string name="semitone">Poltón</string>
     <string name="loading_stream_details">Nahrávanie podrobností streamu…</string>
     <string name="percent">Percent</string>
+    <string name="selected_stream_external_player_not_supported">Vybraný stream nie je podporovaný externými prehrávačmi</string>
+    <string name="no_audio_streams_available_for_external_players">Žiadne audio streamy nie sú k dispozícií pre externé prehrávače</string>
+    <string name="select_quality_external_players">Vybrať kvalitu pre externé prehrávače</string>
+    <string name="unknown_format">Neznámy formát</string>
+    <string name="progressive_load_interval_title">Interval medzipamäte</string>
+    <string name="streams_not_yet_supported_removed">Streamy nepodporované sťahovačom sa nezobrazujú</string>
+    <string name="no_video_streams_available_for_external_players">Žiadne video streamy nie sú k dispozícií pre externé prehrávače</string>
+    <string name="unknown_quality">Neznáma kvalita</string>
 </resources>

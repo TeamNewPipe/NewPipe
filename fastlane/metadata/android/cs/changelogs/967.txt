@@ -1,0 +1,1 @@
+Opraveno nesprávné fungování služby YouTube v EU. To bylo způsobeno novým systémem souborů cookie a souhlasu s ochranou osobních údajů, který vyžaduje, aby NewPipe nastavil soubor cookie CONSENT.

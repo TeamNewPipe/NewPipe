@@ -580,8 +580,8 @@
     <string name="notification_action_2_title">כפתור פעולה שלישי</string>
     <string name="notification_action_0_title">כפתור פעולה ראשון</string>
     <string name="notification_action_1_title">כפתור פעולה שני</string>
-    <string name="notification_scale_to_square_image_summary">לשנות את יחס התצוגה הממוזערת שמופיעה בהתראות מיחס תצוגה של 16:9 ל־1:1 (עשוי לעוות את התמונה)</string>
-    <string name="notification_scale_to_square_image_title">שינוי גודל התצוגה הממוזערת ליחס תצוגה 1:1</string>
+    <string name="notification_scale_to_square_image_summary">חיתוך התצוגה הממוזערת שמופיעה בהתראות מיחס תצוגה של 16:9 ל־1:1</string>
+    <string name="notification_scale_to_square_image_title">חיתוך התצוגה הממוזערת ליחס תצוגה 1:1</string>
     <string name="show_memory_leaks">הצגת דליפות זיכרון</string>
     <string name="enqueued">נוסף לתור</string>
     <string name="enqueue_stream">הוספה לתור</string>
@@ -742,4 +742,6 @@
     <string name="no_video_streams_available_for_external_players">אין תזרימי וידאו שזמינים לנגנים חיצוניים</string>
     <string name="select_quality_external_players">בחירת איכות לנגנים חיצוניים</string>
     <string name="unknown_format">תצורה לא מוכרת</string>
+    <string name="progressive_load_interval_title">גודל משך טעינת נגינה</string>
+    <string name="feed_toggle_show_future_items">הצגת סרטונים עתידיים</string>
 </resources>

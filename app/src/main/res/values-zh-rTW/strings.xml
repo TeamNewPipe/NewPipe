@@ -550,8 +550,8 @@
     <string name="notification_action_2_title">第三動作按鈕</string>
     <string name="notification_action_1_title">第二動作按鈕</string>
     <string name="notification_action_0_title">第一動作按鈕</string>
-    <string name="notification_scale_to_square_image_summary">將通知中顯示的影片縮圖從 16:9 縮放到 1:1（可能會導致變形）</string>
-    <string name="notification_scale_to_square_image_title">把縮圖縮放到 1:1 的長寬比</string>
+    <string name="notification_scale_to_square_image_summary">將通知中顯示的影片縮圖從 16:9 裁剪到 1:1</string>
+    <string name="notification_scale_to_square_image_title">將縮圖裁剪為 1:1 的長寬比</string>
     <string name="show_memory_leaks">顯示記憶體洩漏</string>
     <string name="enqueued">已加入佇列</string>
     <string name="enqueue_stream">加入佇列</string>
@@ -704,4 +704,5 @@
     <string name="no_video_streams_available_for_external_players">沒有可用於外部播放程式的視訊串流</string>
     <string name="select_quality_external_players">選取外部播放程式的畫質</string>
     <string name="progressive_load_interval_title">播放載入間隔大小</string>
+    <string name="feed_toggle_show_future_items">顯示未來影片</string>
 </resources>

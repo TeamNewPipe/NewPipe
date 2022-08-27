@@ -524,9 +524,9 @@
     <string name="channel_created_by">Skapad av %s</string>
     <string name="no_playlist_bookmarked_yet">Ingen spellista har bokmärkts än</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Visa endast prenumerationer som inte grupperats</string>
-    <string name="notification_scale_to_square_image_title">Skala miniatyrbild till 1: 1 bildförhållande</string>
+    <string name="notification_scale_to_square_image_title">Beskär miniatyrbild till 1: 1 bildförhållande</string>
     <string name="wifi_only">Endast över Wi-Fi</string>
-    <string name="notification_scale_to_square_image_summary">Skala videominiatyrbilden som visas i aviseringen från 16:9- till 1:1-förhållande (kan orsaka bildförvrängning)</string>
+    <string name="notification_scale_to_square_image_summary">Beskär videominiatyrbilden som visas i aviseringen från 16:9 till 1:1 bildförhållande</string>
     <string name="autoplay_summary">Starta uppspelning automatiskt — %s</string>
     <string name="title_activity_play_queue">Uppspelningskö</string>
     <string name="unsupported_url_dialog_message">Kunde inte känna igen URL:en. Vill du öppna med annan app\?</string>
@@ -713,4 +713,9 @@
     <string name="unknown_quality">Okänd kvalitet</string>
     <string name="no_audio_streams_available_for_external_players">Inga ljudströmmar tillgängliga för externa spelare</string>
     <string name="unknown_format">Okänt format</string>
+    <string name="streams_not_yet_supported_removed">Videoströmmar som ännu inte stöds av nedladdaren visas inte</string>
+    <string name="progressive_load_interval_title">Inläsningsintervalls storlek</string>
+    <string name="select_quality_external_players">Välj kvalitet för externa spelare</string>
+    <string name="feed_toggle_show_future_items">Visa framtida videor</string>
+    <string name="selected_stream_external_player_not_supported">Den valda videoströmmen stöds inte av externa spelare</string>
 </resources>

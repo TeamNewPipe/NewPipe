@@ -1,0 +1,8 @@
+• Ajout bouton "lecture suivante" au menu de la pression longue
+• Ajout préfixe du chemin des shorts YouTube au filtre d'intention
+• Correction importation des paramètres
+• Permutation position barre de recherche avec boutons du lecteur dans l'écran de la file d'attente
+• Corrections liées à MediasessionManager
+• Correction barre de progression qui ne se termine pas après fin de vidéo
+• Désactivation tunneling média sur RealtekATV
+• Élargissement zone cliquable des boutons de lecture minimisés

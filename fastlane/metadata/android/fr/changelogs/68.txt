@@ -1,0 +1,31 @@
+# Modifications v0.14.1
+
+### Corrections
+- Échec du décryptage de l'URL vidéo #1659 
+- Lien de description, ne s'extrayait pas bien #1657
+
+# Modifications v0.14.0
+
+### Nouveautés
+- Design du dossier #1461
+- Page d'accueil personnalisable #1461
+
+### Améliorations
+- Contrôles gestuels retravaillés #1604
+- Nouvelle façon de fermer le lecteur popup #1597
+
+### Corrections
+- Erreur lorsque le nombre d'abonnements n'est pas disponible. Ferme #1649.
+  - Affiche "le nombre d'abonnés non disponible" dans ces cas.
+- NPE lorsqu'une liste de lecture YouTube est vide.
+- Kiosques dans SoundCloud
+- Refactor et correction du bug #1623 
+- Résultat de recherche cyclique #1562
+- Barre de recherche qui n'est pas mise en page de manière statique
+- Vidéos YT Premium qui ne sont pas bloquées correctement
+- Vidéos qui ne se chargent pas toujours (à cause du parsing DASH)
+- Liens dans la description des vidéos
+- Afficher un avertissement lorsque quelqu'un essaie de télécharger vers une carte SD externe
+- Exception "rien indiqué" qui déclenche un rapport
+- La vignette ne s'affiche pas dans le lecteur de fond pour Android 8.1 [voir ici](https://github.com/TeamNewPipe/NewPipe/issues/943)
+- Enregistrement du récepteur de diffusion. Ferme le dossier #1641.

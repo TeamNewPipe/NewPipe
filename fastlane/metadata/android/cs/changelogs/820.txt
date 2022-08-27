@@ -1,0 +1,1 @@
+Opraven regex názvu dešifrovací funkce, který znemožňuje použití služby YouTube.

@@ -548,8 +548,8 @@
     <string name="notification_action_2_title">Terceiro botón de acción</string>
     <string name="notification_action_3_title">Cuarto botón de acción</string>
     <string name="notification_action_4_title">Quinto botón de acción</string>
-    <string name="notification_scale_to_square_image_summary">Escalar a miniatura do vídeo amosado na notificación da relación de aspecto 16:9 a 1:1 (pode intruducir distorsións)</string>
-    <string name="notification_scale_to_square_image_title">Escala miniatura á relación de aspecto 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Cortar a miniatura do vídeo amosado na notificación da relación de aspecto 16:9 a 1:1</string>
+    <string name="notification_scale_to_square_image_title">Cortar miniatura á relación de aspecto 1:1</string>
     <string name="off">Apagado</string>
     <string name="tablet_mode_title">Modo tableta</string>
     <string name="open_website_license">Abrir sitio Web</string>
@@ -709,4 +709,13 @@
     <string name="notifications_disabled">As notificacións están desactivadas</string>
     <string name="get_notified">Recibir notificacións</string>
     <string name="you_successfully_subscribed">Agora está subscrito a esta canle</string>
+    <string name="streams_not_yet_supported_removed">Emisións non soportadas polo descarregador non son mostradas</string>
+    <string name="select_quality_external_players">Seleccione a calidade para reprodutores externos</string>
+    <string name="unknown_format">Formato descoñecido</string>
+    <string name="unknown_quality">Calidade descoñecida</string>
+    <string name="progressive_load_interval_title">Tamaño do intervalo de carregamento da reprodución</string>
+    <string name="selected_stream_external_player_not_supported">As emisións seleccionadas non son soportadas polos reprodutores externos</string>
+    <string name="no_video_streams_available_for_external_players">Non hai emisións de vídeo dispoñíbeis para reprodutores externos</string>
+    <string name="feed_toggle_show_future_items">Ver futuros vídeos</string>
+    <string name="no_audio_streams_available_for_external_players">Non hai emisións de audio dispoñíbeis para reprodutores externos</string>
 </resources>

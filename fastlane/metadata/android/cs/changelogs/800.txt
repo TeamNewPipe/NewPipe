@@ -1,0 +1,10 @@
+Nový
+- Podpora PeerTube bez P2P (#2201) [Beta]:
+  ◦ Sledování a stahování videí z instancí PeerTube
+  ◦ Přidání instancí v nastavení pro přístup ke kompletnímu světu PeerTube
+  ◦ V systémech Android 4.4 a 7.1 mohou být při přístupu k některým instancím problémy s přenosem SSL, což může vést k chybě sítě.
+
+- Downloader (#2679):
+  ◦ Vypočítat předpokládaný čas stahování
+  ◦ Stáhnout opus (soubory webm) jako ogg
+  ◦ Obnovení vypršených odkazů ke stažení pro obnovení stahování po dlouhé pauze

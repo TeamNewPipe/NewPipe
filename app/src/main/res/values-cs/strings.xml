@@ -366,7 +366,7 @@
     <string name="missions_header_pending">Vyčkávání</string>
     <string name="paused">Pozastaveno</string>
     <string name="queued">ve frontě</string>
-    <string name="post_processing">post-processing</string>
+    <string name="post_processing">zpracování</string>
     <string name="enqueue">Zařadit do fronty</string>
     <string name="permission_denied">Akce odmítnuta systémem</string>
     <string name="download_failed">Stahování se nezdařilo</string>
@@ -384,7 +384,7 @@
     <string name="error_http_no_content">Server neposílá data</string>
     <string name="error_http_unsupported_range">Server neakceptuje vícevláknové stahování, opakujte akci s @string/msg_threads = 1</string>
     <string name="error_http_not_found">Nenalezeno</string>
-    <string name="error_postprocessing_failed">Post-processing selhal</string>
+    <string name="error_postprocessing_failed">Zpracování selhalo</string>
     <string name="stop">Zastavit</string>
     <string name="max_retry_msg">Maximální počet pokusů o opakování</string>
     <string name="max_retry_desc">Maximální počet pokusů před zrušením stahování</string>
@@ -570,8 +570,8 @@
     <string name="notification_action_2_title">Třetí akční tlačítko</string>
     <string name="notification_action_1_title">Druhé akční tlačítko</string>
     <string name="notification_action_0_title">První akční tlačítko</string>
-    <string name="notification_scale_to_square_image_summary">Zmenšit miniaturu videa zobrazenou v oznámení z poměru stran 16: 9 na 1: 1 (může způsobit zkreslení)</string>
-    <string name="notification_scale_to_square_image_title">Změnit poměr stran miniatury na 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Oříznout miniaturu videa zobrazenou v oznámení z poměru stran 16:9 na 1:1</string>
+    <string name="notification_scale_to_square_image_title">Oříznout poměr stran miniatury na 1:1</string>
     <string name="show_memory_leaks">Ukázat memory leaks</string>
     <string name="enqueued">Zařazeno do fronty</string>
     <string name="enqueue_stream">Zařadit do fronty</string>
@@ -584,10 +584,10 @@
     <string name="notification_colorize_title">Přibarvit oznámení</string>
     <string name="show_thumbnail_summary">Použít miniaturu pro pozadí zamknuté obrazovky a oznámení</string>
     <string name="show_thumbnail_title">Zobrazit miniaturu</string>
-    <string name="hash_channel_name">Oznámení o hašování videa</string>
+    <string name="hash_channel_name">Oznámení o hashování</string>
     <string name="recent">Nedávné</string>
-    <string name="msg_calculating_hash">Počítám haš</string>
-    <string name="hash_channel_description">Oznámení o postupu hašování videa</string>
+    <string name="msg_calculating_hash">Počítám hash</string>
+    <string name="hash_channel_description">Oznámení o postupu hashování videa</string>
     <string name="show_meta_info_summary">Vypnout, abyste skryli rámečky s meta informací s údaji o autorovi streamu, obsahu streamu nebo požadavků hledání</string>
     <string name="show_meta_info_title">Zobrazit meta informaci</string>
     <string name="chapters">Kapitoly</string>
@@ -596,7 +596,7 @@
     <string name="show_description_title">Zobrazit popis</string>
     <string name="open_with">Otevřít s</string>
     <string name="no_app_to_open_intent">Na Vašem zařízení není aplikace, která to umí otevřít</string>
-    <string name="related_items_tab_description">Podobné strýmy</string>
+    <string name="related_items_tab_description">Podobné položky</string>
     <string name="show_description_summary">Vypnout pro skrytí popisu videa a doplňkové informace</string>
     <string name="crash_the_app">Zbořit aplikaci</string>
     <string name="download_has_started">Stahování bylo zahájeno</string>
@@ -683,7 +683,7 @@
     <string name="create_error_notification">Vytvořit oznámení o chybě</string>
     <string name="checking_updates_toast">Kontrola aktualizací…</string>
     <string name="show_crash_the_player_title">Ukázat „Shodit přehrávač“</string>
-    <string name="feed_new_items">Nové položky feedů</string>
+    <string name="feed_new_items">Nové položky</string>
     <string name="no_appropriate_file_manager_message_android_10">Pro tuto akci nebyl nalezen žádný vhodný správce souborů.
 \nProsím, nainstalujte správce souborů kompatibilní se Storage Access Framework.</string>
     <string name="error_report_channel_name">Oznámení o hlášení chyb</string>
@@ -697,29 +697,38 @@
     <string name="progressive_load_interval_summary">Změnit interval načítání (aktuálně %s). Menší hodnota může zrychlit počáteční načítání videa. Změna vyžaduje restart přehrávače.</string>
     <string name="leak_canary_not_available">LeakCanary není dostupné</string>
     <string name="progressive_load_interval_exoplayer_default">Výchozí ExoPlayer</string>
-    <string name="settings_category_player_notification_summary">Nastavit oznámení k právě přehrávanému strýmu</string>
-    <string name="enable_streams_notifications_title">Oznámení o nových strýmech</string>
-    <string name="enable_streams_notifications_summary">Oznámit o nových strýmech k objednání</string>
+    <string name="settings_category_player_notification_summary">Nastavit oznámení o právě přehrávaném streamu</string>
+    <string name="enable_streams_notifications_title">Oznámení o nových streamech</string>
+    <string name="enable_streams_notifications_summary">Oznámit o nových strýmech od vašich odběrů</string>
     <string name="streams_notifications_interval_title">Frekvence kontroly</string>
     <string name="any_network">Jakákoli síť</string>
     <string name="streams_notifications_network_title">Nutné síťové připojení</string>
     <string name="delete_downloaded_files_confirm">Smazat všechny stažené soubory z disku\?</string>
     <string name="you_successfully_subscribed">Objednali jste si nyní tento kanál</string>
     <string name="toggle_all">Všechny přepnout</string>
-    <string name="streams_notification_channel_name">Nové strýmy</string>
-    <string name="streams_notification_channel_description">Oznámení o nových strýmech k objednání</string>
-    <string name="check_new_streams">Spustit kontrolu nových strýmů</string>
-    <string name="settings_category_player_notification_title">Oznámení přehrávače</string>
+    <string name="streams_notification_channel_name">Nové streamy</string>
+    <string name="streams_notification_channel_description">Oznámení o nových streamech od odběrů</string>
+    <string name="check_new_streams">Spustit kontrolu nových streamů</string>
+    <string name="settings_category_player_notification_title">Upozornění přehrávače</string>
     <string name="notifications">Oznámení</string>
-    <string name="loading_stream_details">Načítám podrobnosti o strýmu…</string>
+    <string name="loading_stream_details">Načítám podrobnosti o streamu…</string>
     <string name="notifications_disabled">Oznámení jsou vypnuta</string>
     <string name="get_notified">Přijímat oznámení</string>
     <string name="enumeration_comma">,</string>
     <plurals name="new_streams">
-        <item quantity="one">%s nový strým</item>
-        <item quantity="few">%s nové strýmy</item>
-        <item quantity="other">%s nových strýmů</item>
+        <item quantity="one">%s nový stream</item>
+        <item quantity="few">%s nové streamy</item>
+        <item quantity="other">%s nových streamů</item>
     </plurals>
     <string name="percent">Procento</string>
     <string name="semitone">Půltón</string>
+    <string name="progressive_load_interval_title">Velikost intervalu načtení přehrávání</string>
+    <string name="selected_stream_external_player_not_supported">Vybraný stream není podporován externími přehrávači</string>
+    <string name="no_audio_streams_available_for_external_players">U externích přehrávačů nejsou dostupné žádné zvukové streamy</string>
+    <string name="unknown_format">Neznámý formát</string>
+    <string name="unknown_quality">Neznámá kvalita</string>
+    <string name="feed_toggle_show_future_items">Zobrazit nadcházející videa</string>
+    <string name="streams_not_yet_supported_removed">Streamy, které zatím nejsou podporovány systémem stahování, nebudou zobrazeny</string>
+    <string name="select_quality_external_players">Vyberte kvalitu pro externí přehrávače</string>
+    <string name="no_video_streams_available_for_external_players">U externích přehrávačů nejsou dostupné žádné video streamy</string>
 </resources>
