@@ -154,6 +154,16 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     protected void initListeners() {
         super.initListeners();
 
+        binding.screenRotationButton.setOnClickListener(makeOnClickListener(() -> {
+            // Only if it's not a vertical video or vertical video but in landscape with locked
+            // orientation a screen orientation can be changed automatically
+            if (!isVerticalVideo || (isLandscape() && globalScreenOrientationLocked(context))) {
+                player.getFragmentListener()
+                        .ifPresent(PlayerServiceEventListener::onScreenRotationButtonClicked);
+            } else {
+                toggleFullscreen();
+            }
+        }));
         binding.queueButton.setOnClickListener(v -> onQueueClicked());
         binding.segmentsButton.setOnClickListener(v -> onSegmentsClicked());
 
@@ -173,6 +183,14 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                 settingsContentObserver);
 
         binding.getRoot().addOnLayoutChangeListener(this);
+
+        binding.moreOptionsButton.setOnLongClickListener(v -> {
+            player.getFragmentListener()
+                    .ifPresent(PlayerServiceEventListener::onMoreOptionsLongClicked);
+            hideControls(0, 0);
+            hideSystemUIIfNeeded();
+            return true;
+        });
     }
 
     @Override
@@ -847,23 +865,6 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     //region Click listeners
 
     @Override
-    public void onClick(final View v) {
-        if (v.getId() == binding.screenRotationButton.getId()) {
-            // Only if it's not a vertical video or vertical video but in landscape with locked
-            // orientation a screen orientation can be changed automatically
-            if (!isVerticalVideo || (isLandscape() && globalScreenOrientationLocked(context))) {
-                player.getFragmentListener().ifPresent(
-                        PlayerServiceEventListener::onScreenRotationButtonClicked);
-            } else {
-                toggleFullscreen();
-            }
-        }
-
-        // call it later since it calls manageControlsAfterOnClick at the end
-        super.onClick(v);
-    }
-
-    @Override
     protected void onPlaybackSpeedClicked() {
         final AppCompatActivity activity = getParentActivity().orElse(null);
         if (activity == null) {
@@ -873,18 +874,6 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(), player.getPlaybackPitch(),
                 player.getPlaybackSkipSilence(), player::setPlaybackParameters)
                 .show(activity.getSupportFragmentManager(), null);
-    }
-
-    @Override
-    public boolean onLongClick(final View v) {
-        if (v.getId() == binding.moreOptionsButton.getId() && isFullscreen) {
-            player.getFragmentListener().ifPresent(
-                    PlayerServiceEventListener::onMoreOptionsLongClicked);
-            hideControls(0, 0);
-            hideSystemUIIfNeeded();
-            return true;
-        }
-        return super.onLongClick(v);
     }
 
     @Override
