@@ -1509,48 +1509,50 @@ public final class Player implements PlaybackListener, Listener {
             Log.d(TAG, "Playback - onPlaybackSynchronize(was blocked: " + wasBlocked
                     + ") called with item=[" + item.getTitle() + "], url=[" + item.getUrl() + "]");
         }
-        if (exoPlayerIsNull() || playQueue == null) {
-            return;
+        if (exoPlayerIsNull() || playQueue == null || currentItem == item) {
+            return; // nothing to synchronize
         }
 
-        final boolean hasPlayQueueItemChanged = currentItem != item;
+        final int playQueueIndex = playQueue.indexOf(item);
+        final int playlistIndex = simpleExoPlayer.getCurrentMediaItemIndex();
+        final int playlistSize = simpleExoPlayer.getCurrentTimeline().getWindowCount();
+        final boolean removeThumbnailBeforeSync = currentItem == null
+                || currentItem.getServiceId() != item.getServiceId()
+                || !currentItem.getUrl().equals(item.getUrl());
 
-        final int currentPlayQueueIndex = playQueue.indexOf(item);
-        final int currentPlaylistIndex = simpleExoPlayer.getCurrentMediaItemIndex();
-        final int currentPlaylistSize = simpleExoPlayer.getCurrentTimeline().getWindowCount();
-
-        // If nothing to synchronize
-        if (!hasPlayQueueItemChanged) {
-            return;
-        }
         currentItem = item;
 
-        // Check if on wrong window
-        if (currentPlayQueueIndex != playQueue.getIndex()) {
-            Log.e(TAG, "Playback - Play Queue may be desynchronized: item "
-                    + "index=[" + currentPlayQueueIndex + "], "
-                    + "queue index=[" + playQueue.getIndex() + "]");
+        if (playQueueIndex != playQueue.getIndex()) {
+            // wrong window (this should be impossible, as this method is called with
+            // `item=playQueue.getItem()`, so the index of that item must be equal to `getIndex()`)
+            Log.e(TAG, "Playback - Play Queue may be not in sync: item index=["
+                    + playQueueIndex + "], " + "queue index=[" + playQueue.getIndex() + "]");
 
-            // Check if bad seek position
-        } else if ((currentPlaylistSize > 0 && currentPlayQueueIndex >= currentPlaylistSize)
-                || currentPlayQueueIndex < 0) {
-            Log.e(TAG, "Playback - Trying to seek to invalid "
-                    + "index=[" + currentPlayQueueIndex + "] with "
-                    + "playlist length=[" + currentPlaylistSize + "]");
+        } else if ((playlistSize > 0 && playQueueIndex >= playlistSize) || playQueueIndex < 0) {
+            // the queue and the player's timeline are not in sync, since the play queue index
+            // points outside of the timeline
+            Log.e(TAG, "Playback - Trying to seek to invalid index=[" + playQueueIndex
+                    + "] with playlist length=[" + playlistSize + "]");
 
-        } else if (wasBlocked || currentPlaylistIndex != currentPlayQueueIndex || !isPlaying()) {
+        } else if (wasBlocked || playlistIndex != playQueueIndex || !isPlaying()) {
+            // either the player needs to be unblocked, or the play queue index has just been
+            // changed and needs to be synchronized, or the player is not playing
             if (DEBUG) {
-                Log.d(TAG, "Playback - Rewinding to correct "
-                        + "index=[" + currentPlayQueueIndex + "], "
-                        + "from=[" + currentPlaylistIndex + "], "
-                        + "size=[" + currentPlaylistSize + "].");
+                Log.d(TAG, "Playback - Rewinding to correct index=[" + playQueueIndex + "], "
+                        + "from=[" + playlistIndex + "], size=[" + playlistSize + "].");
             }
 
+            if (removeThumbnailBeforeSync) {
+                // unset the current (now outdated) thumbnail to ensure it is not used during sync
+                onThumbnailLoaded(null);
+            }
+
+            // sync the player index with the queue index, and seek to the correct position
             if (item.getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
-                simpleExoPlayer.seekTo(currentPlayQueueIndex, item.getRecoveryPosition());
-                playQueue.unsetRecovery(currentPlayQueueIndex);
+                simpleExoPlayer.seekTo(playQueueIndex, item.getRecoveryPosition());
+                playQueue.unsetRecovery(playQueueIndex);
             } else {
-                simpleExoPlayer.seekToDefaultPosition(currentPlayQueueIndex);
+                simpleExoPlayer.seekToDefaultPosition(playQueueIndex);
             }
         }
     }
