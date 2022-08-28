@@ -24,6 +24,8 @@ import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static androidx.media.app.NotificationCompat.MediaStyle;
@@ -40,8 +42,6 @@ import static org.schabi.newpipe.player.notification.NotificationConstants.ACTIO
 
 /**
  * This is a utility class for player notifications.
- *
- * @author cool-student
  */
 public final class NotificationUtil {
     private static final String TAG = NotificationUtil.class.getSimpleName();
@@ -77,6 +77,19 @@ public final class NotificationUtil {
         }
         updateNotification();
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
+    }
+
+    public synchronized void updateThumbnail() {
+        if (notificationBuilder != null) {
+            if (DEBUG) {
+                Log.d(TAG, "updateThumbnail() called with thumbnail = [" + Integer.toHexString(
+                        Optional.ofNullable(player.getThumbnail()).map(Objects::hashCode).orElse(0))
+                        + "], title = [" + player.getVideoTitle() + "]");
+            }
+
+            setLargeIcon(notificationBuilder);
+            notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
+        }
     }
 
     private synchronized NotificationCompat.Builder createNotification() {
@@ -123,6 +136,9 @@ public final class NotificationUtil {
                 .setDeleteIntent(PendingIntent.getBroadcast(player.getContext(), NOTIFICATION_ID,
                         new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT));
 
+        // set the initial value for the video thumbnail, updatable with updateNotificationThumbnail
+        setLargeIcon(builder);
+
         return builder;
     }
 
@@ -142,7 +158,6 @@ public final class NotificationUtil {
         notificationBuilder.setTicker(player.getVideoTitle());
 
         updateActions(notificationBuilder);
-        setLargeIcon(notificationBuilder);
     }
 
 
