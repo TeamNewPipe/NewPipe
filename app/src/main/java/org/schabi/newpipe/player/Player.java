@@ -765,17 +765,15 @@ public final class Player implements PlaybackListener, Listener {
                             + " -> " + bitmap.getWidth() + "x" + bitmap.getHeight() + "], from = ["
                             + from + "]");
                 }
-                currentThumbnail = bitmap;
                 // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
-                UIs.call(playerUi -> playerUi.onThumbnailLoaded(bitmap));
+                onThumbnailLoaded(bitmap);
             }
 
             @Override
             public void onBitmapFailed(final Exception e, final Drawable errorDrawable) {
                 Log.e(TAG, "Thumbnail - onBitmapFailed() called", e);
-                currentThumbnail = null;
                 // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
-                UIs.call(playerUi -> playerUi.onThumbnailLoaded(null));
+                onThumbnailLoaded(null);
             }
 
             @Override
@@ -798,7 +796,7 @@ public final class Player implements PlaybackListener, Listener {
 
         // Unset currentThumbnail, since it is now outdated. This ensures it is not used in media
         // session metadata while the new thumbnail is being loaded by Picasso.
-        currentThumbnail = null;
+        onThumbnailLoaded(null);
         if (isNullOrEmpty(url)) {
             return;
         }
@@ -812,6 +810,16 @@ public final class Player implements PlaybackListener, Listener {
     private void cancelLoadingCurrentThumbnail() {
         // cancel the Picasso job associated with the player thumbnail, if any
         PicassoHelper.cancelTag(PICASSO_PLAYER_THUMBNAIL_TAG);
+    }
+
+    private void onThumbnailLoaded(@Nullable final Bitmap bitmap) {
+        // Avoid useless thumbnail updates, if the thumbnail has not actually changed. Based on the
+        // thumbnail loading code, this if would be skipped only when both bitmaps are `null`, since
+        // onThumbnailLoaded won't be called twice with the same nonnull bitmap by Picasso's target.
+        if (currentThumbnail != bitmap) {
+            currentThumbnail = bitmap;
+            UIs.call(playerUi -> playerUi.onThumbnailLoaded(bitmap));
+        }
     }
     //endregion
 
