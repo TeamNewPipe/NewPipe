@@ -341,21 +341,22 @@ public abstract class PlayQueue implements Serializable {
         final int currentIndex = queueIndex.get();
         final int size = size();
 
+        int nextIndex = currentIndex;
         if (currentIndex > removeIndex) {
-            queueIndex.decrementAndGet();
+            nextIndex = currentIndex - 1;
+            queueIndex.set(nextIndex);
 
         } else if (currentIndex >= size) {
-            queueIndex.set(currentIndex % (size - 1));
+            nextIndex = currentIndex % (size - 1);
+            queueIndex.set(nextIndex);
 
         } else if (currentIndex == removeIndex && currentIndex == size - 1) {
-            queueIndex.set(0);
+            queueIndex.set(nextIndex = 0);
         }
 
         if (backup != null) {
             backup.remove(getItem(removeIndex));
         }
-
-        final int nextIndex = queueIndex.get();
         history.remove(streams.remove(removeIndex));
         if (streams.size() > nextIndex) {
             history.add(streams.get(nextIndex));
