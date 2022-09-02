@@ -233,8 +233,8 @@ public abstract class PlayQueue implements Serializable {
      * @return an immutable view of the play queue
      */
     @NonNull
-    public synchronized List<PlayQueueItem> getStreams() { // todo: iterator race
-        return Collections.unmodifiableList(streams);
+    public synchronized List<PlayQueueItem> getStreams() {
+        return Collections.unmodifiableList(new ArrayList<>(streams));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
