@@ -283,20 +283,22 @@ public abstract class PlayQueue implements Serializable {
      *
      * @param items {@link PlayQueueItem}s to append
      */
-    public synchronized void append(@NonNull final List<PlayQueueItem> items) {
+    public void append(@NonNull final List<PlayQueueItem> items) {
         final List<PlayQueueItem> itemList = new ArrayList<>(items);
 
-        if (isShuffled()) {
-            backup.addAll(itemList);
-            Collections.shuffle(itemList);
-        }
-        if (!streams.isEmpty() && streams.get(streams.size() - 1).isAutoQueued()
-                && !itemList.get(0).isAutoQueued()) {
-            streams.remove(streams.size() - 1);
-        }
-        streams.addAll(itemList);
+        synchronized (this) {
+            if (isShuffled()) {
+                backup.addAll(itemList);
+                Collections.shuffle(itemList);
+            }
+            if (!streams.isEmpty() && streams.get(streams.size() - 1).isAutoQueued()
+                    && !itemList.get(0).isAutoQueued()) {
+                streams.remove(streams.size() - 1);
+            }
+            streams.addAll(itemList);
 
-        broadcast(new AppendEvent(itemList.size()));
+            broadcast(new AppendEvent(itemList.size()));
+        }
     }
 
     /**
@@ -327,12 +329,12 @@ public abstract class PlayQueue implements Serializable {
      * </p>
      */
     public synchronized void error() {
-        final int oldIndex = getIndex();
-        queueIndex.incrementAndGet();
-        if (streams.size() > queueIndex.get()) {
-            history.add(streams.get(queueIndex.get()));
+        final int oldIndex = queueIndex.getAndIncrement();
+        final int nextIndex = oldIndex + 1;
+        if (streams.size() > nextIndex) {
+            history.add(streams.get(nextIndex));
         }
-        broadcast(new ErrorEvent(oldIndex, getIndex()));
+        broadcast(new ErrorEvent(oldIndex, nextIndex));
     }
 
     private synchronized void removeInternal(final int removeIndex) {
@@ -353,9 +355,10 @@ public abstract class PlayQueue implements Serializable {
             backup.remove(getItem(removeIndex));
         }
 
+        final int nextIndex = queueIndex.get();
         history.remove(streams.remove(removeIndex));
-        if (streams.size() > queueIndex.get()) {
-            history.add(streams.get(queueIndex.get()));
+        if (streams.size() > nextIndex) {
+            history.add(streams.get(nextIndex));
         }
     }
 
@@ -372,27 +375,29 @@ public abstract class PlayQueue implements Serializable {
      * @param source the original index of the item
      * @param target the new index of the item
      */
-    public synchronized void move(final int source, final int target) {
+    public void move(final int source, final int target) {
         if (source < 0 || target < 0) {
             return;
         }
-        if (source >= streams.size() || target >= streams.size()) {
-            return;
-        }
+        synchronized (this) {
+            if (source >= streams.size() || target >= streams.size()) {
+                return;
+            }
 
-        final int current = getIndex();
-        if (source == current) {
-            queueIndex.set(target);
-        } else if (source < current && target >= current) {
-            queueIndex.decrementAndGet();
-        } else if (source > current && target <= current) {
-            queueIndex.incrementAndGet();
-        }
+            final int current = getIndex();
+            if (source == current) {
+                queueIndex.set(target);
+            } else if (source < current && target >= current) {
+                queueIndex.decrementAndGet();
+            } else if (source > current && target <= current) {
+                queueIndex.incrementAndGet();
+            }
 
-        final PlayQueueItem playQueueItem = streams.remove(source);
-        playQueueItem.setAutoQueued(false);
-        streams.add(target, playQueueItem);
-        broadcast(new MoveEvent(source, target));
+            final PlayQueueItem playQueueItem = streams.remove(source);
+            playQueueItem.setAutoQueued(false);
+            streams.add(target, playQueueItem);
+            broadcast(new MoveEvent(source, target));
+        }
     }
 
     /**
@@ -452,7 +457,7 @@ public abstract class PlayQueue implements Serializable {
         }
 
         final int originalIndex = getIndex();
-        final PlayQueueItem currentItem = getItem();
+        final PlayQueueItem currentItem = getItem(originalIndex);
 
         Collections.shuffle(streams);
 
@@ -481,22 +486,21 @@ public abstract class PlayQueue implements Serializable {
             return;
         }
         final int originIndex = getIndex();
-        final PlayQueueItem current = getItem();
+        final PlayQueueItem current = getItem(originIndex);
 
         streams = backup;
         backup = null;
 
         final int newIndex = streams.indexOf(current);
-        if (newIndex != -1) {
-            queueIndex.set(newIndex);
-        } else {
-            queueIndex.set(0);
-        }
-        if (streams.size() > queueIndex.get()) {
-            history.add(streams.get(queueIndex.get()));
+        final int nextIndex = newIndex != -1 ? newIndex : 0;
+
+        queueIndex.set(nextIndex);
+
+        if (streams.size() > nextIndex) {
+            history.add(streams.get(nextIndex));
         }
 
-        broadcast(new ReorderEvent(originIndex, queueIndex.get()));
+        broadcast(new ReorderEvent(originIndex, nextIndex));
     }
 
     /**
@@ -508,13 +512,14 @@ public abstract class PlayQueue implements Serializable {
      * @return true if history is not empty and the item can be played
      * */
     public synchronized boolean previous() {
-        if (history.size() <= 1) {
+        final int sz = history.size();
+        if (sz <= 1) {
             return false;
         }
 
-        history.remove(history.size() - 1);
+        history.remove(sz - 1);
 
-        final PlayQueueItem last = history.remove(history.size() - 1);
+        final PlayQueueItem last = history.remove(sz - 1);
         setIndex(indexOf(last));
 
         return true;
