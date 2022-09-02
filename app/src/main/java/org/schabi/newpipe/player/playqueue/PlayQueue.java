@@ -40,8 +40,8 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject;
  */
 public abstract class PlayQueue implements Serializable {
     public static final boolean DEBUG = MainActivity.DEBUG;
-    @NonNull
-    private final AtomicInteger queueIndex;
+
+    private volatile int queueIndex;
     private final List<PlayQueueItem> history;
 
     // volatile is needed for the isShuffled method
@@ -64,7 +64,7 @@ public abstract class PlayQueue implements Serializable {
 
         streams = new ArrayList<>(startWith);
 
-        queueIndex = new AtomicInteger(index);
+        queueIndex = index;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -123,7 +123,7 @@ public abstract class PlayQueue implements Serializable {
      * @return the current index that should be played
      */
     public int getIndex() {
-        return queueIndex.get();
+        return queueIndex;
     }
 
     /**
@@ -159,7 +159,7 @@ public abstract class PlayQueue implements Serializable {
             newIndex = streams.size() - 1;
         }
 
-        queueIndex.set(newIndex);
+        queueIndex = newIndex;
 
         if (oldIndex != newIndex) {
             history.add(streams.get(newIndex));
@@ -329,8 +329,8 @@ public abstract class PlayQueue implements Serializable {
      * </p>
      */
     public synchronized void error() {
-        final int oldIndex = queueIndex.getAndIncrement();
-        final int nextIndex = oldIndex + 1;
+        final int oldIndex = queueIndex;
+        final int nextIndex = queueIndex = oldIndex + 1;
         if (streams.size() > nextIndex) {
             history.add(streams.get(nextIndex));
         }
@@ -338,20 +338,18 @@ public abstract class PlayQueue implements Serializable {
     }
 
     private synchronized void removeInternal(final int removeIndex) {
-        final int currentIndex = queueIndex.get();
+        final int currentIndex = queueIndex;
         final int size = size();
 
         int nextIndex = currentIndex;
         if (currentIndex > removeIndex) {
-            nextIndex = currentIndex - 1;
-            queueIndex.set(nextIndex);
+            queueIndex = nextIndex = currentIndex - 1;
 
         } else if (currentIndex >= size) {
-            nextIndex = currentIndex % (size - 1);
-            queueIndex.set(nextIndex);
+            queueIndex = nextIndex = currentIndex % (size - 1);
 
         } else if (currentIndex == removeIndex && currentIndex == size - 1) {
-            queueIndex.set(nextIndex = 0);
+            queueIndex = nextIndex = 0;
         }
 
         if (backup != null) {
@@ -385,13 +383,13 @@ public abstract class PlayQueue implements Serializable {
                 return;
             }
 
-            final int current = getIndex();
+            final int current = queueIndex;
             if (source == current) {
-                queueIndex.set(target);
+                queueIndex = target;
             } else if (source < current && target >= current) {
-                queueIndex.decrementAndGet();
+                queueIndex = current - 1;
             } else if (source > current && target <= current) {
-                queueIndex.incrementAndGet();
+                queueIndex = current + 1;
             }
 
             final PlayQueueItem playQueueItem = streams.remove(source);
@@ -465,7 +463,7 @@ public abstract class PlayQueue implements Serializable {
         // Move currentItem to the head of the queue
         streams.remove(currentItem);
         streams.add(0, currentItem);
-        queueIndex.set(0);
+        queueIndex = 0;
 
         history.add(currentItem);
 
@@ -495,7 +493,7 @@ public abstract class PlayQueue implements Serializable {
         final int newIndex = streams.indexOf(current);
         final int nextIndex = newIndex != -1 ? newIndex : 0;
 
-        queueIndex.set(nextIndex);
+        queueIndex = nextIndex;
 
         if (streams.size() > nextIndex) {
             history.add(streams.get(nextIndex));
