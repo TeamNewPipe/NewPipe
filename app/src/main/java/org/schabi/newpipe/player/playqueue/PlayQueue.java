@@ -77,19 +77,21 @@ public abstract class PlayQueue implements Serializable {
      * Also starts a self reporter for logging if debug mode is enabled.
      * </p>
      */
-    public synchronized void init() { // todo: cas mechanics
-        BehaviorSubject<PlayQueueEvent> b = BehaviorSubject.create();
+    public synchronized void init() {
+        if (broadcastReceiver == null || eventBroadcast == null) {
+            BehaviorSubject<PlayQueueEvent> b = BehaviorSubject.create();
 
-        broadcastReceiver = b.toFlowable(BackpressureStrategy.BUFFER)
-                .observeOn(AndroidSchedulers.mainThread())
-                .startWithItem(new InitEvent());
-        eventBroadcast = b;
+            broadcastReceiver = b.toFlowable(BackpressureStrategy.BUFFER)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .startWithItem(new InitEvent());
+            eventBroadcast = b;
+        }
     }
 
     /**
      * Dispose the play queue by stopping all message buses.
      */
-    public synchronized void dispose() { // todo: cas mechanics
+    public synchronized void dispose() {
         if (eventBroadcast != null) {
             eventBroadcast.onComplete();
         }
@@ -447,9 +449,9 @@ public abstract class PlayQueue implements Serializable {
         // Create a backup if it doesn't already exist
         // Note: The backup-list has to be created at all cost (even when size <= 2).
         // Otherwise it's not possible to enter shuffle-mode!
-        if (backup == null) {
-            backup = new ArrayList<>(streams);
-        }
+
+        List<PlayQueueItem> copy = backup == null ? new ArrayList<>(streams) : null;
+
         // Can't shuffle a list that's empty or only has one element
         if (size() <= 2) {
             return;
@@ -466,6 +468,9 @@ public abstract class PlayQueue implements Serializable {
         queueIndex = 0;
 
         history.add(currentItem);
+
+        if (copy != null)
+            backup = copy;
 
         broadcast(new ReorderEvent(originalIndex, 0));
     }
@@ -488,6 +493,7 @@ public abstract class PlayQueue implements Serializable {
         final PlayQueueItem current = getItem(originIndex);
 
         streams = backup;
+        // storeStoreFence
         backup = null;
 
         final int newIndex = streams.indexOf(current);
@@ -535,10 +541,11 @@ public abstract class PlayQueue implements Serializable {
             return false;
         }
         synchronized (this) {
-            if (size() != other.size()) {
+            final int size = size();
+            if (size != other.size()) {
                 return false;
             }
-            for (int i = 0; i < size(); i++) {
+            for (int i = 0; i < size; i++) {
                 final PlayQueueItem stream = streams.get(i);
                 final PlayQueueItem otherStream = other.streams.get(i);
                 // Check is based on serviceId and URL
