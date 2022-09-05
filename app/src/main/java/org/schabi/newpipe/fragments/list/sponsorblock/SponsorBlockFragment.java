@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.detail;
+package org.schabi.newpipe.fragments.list.sponsorblock;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -29,13 +29,19 @@ public class SponsorBlockFragment extends Fragment implements PlayerListener {
     FragmentSponsorBlockBinding binding;
     private Player currentPlayer;
     private SponsorBlockMode currentSponsorBlockMode;
-
-    // TODO: use when ready
-    @SuppressWarnings({"FieldCanBeLocal", "unused"})
-    private VideoSegment[] currentVideoSegments;
+    private SponsorBlockSegmentListAdapter segmentListAdapter;
+    private VideoSegment[] currentSegments;
 
     public SponsorBlockFragment() {
         // required
+    }
+
+    @Override
+    public void onAttach(@NonNull final Context context) {
+        super.onAttach(context);
+
+        segmentListAdapter = new SponsorBlockSegmentListAdapter(context);
+        segmentListAdapter.setItems(currentSegments);
     }
 
     @Override
@@ -44,17 +50,22 @@ public class SponsorBlockFragment extends Fragment implements PlayerListener {
                              @Nullable final Bundle savedInstanceState) {
         binding = FragmentSponsorBlockBinding.inflate(inflater, container, false);
 
+        // skipping enabled switch
         binding.skippingIsEnabledSwitch
                 .setChecked(currentSponsorBlockMode == SponsorBlockMode.ENABLED);
         binding.skippingIsEnabledSwitch
                 .setOnCheckedChangeListener((compoundButton, b) ->
                         updatePlayerSetSponsorBlockEnabled(b));
 
+        // whitelist switch
         binding.channelIsWhitelistedSwitch
                 .setChecked(currentSponsorBlockMode == SponsorBlockMode.IGNORE);
         binding.channelIsWhitelistedSwitch
                 .setOnCheckedChangeListener(((compoundButton, b) ->
                         updatePlayerSetWhitelistForChannelEnabled(b)));
+
+        // segment list
+        binding.segmentList.setAdapter(segmentListAdapter);
 
         return binding.getRoot();
     }
@@ -137,8 +148,12 @@ public class SponsorBlockFragment extends Fragment implements PlayerListener {
 
     @Override
     public void onPlayQueueItemChanged(final PlayQueueItem item) {
-        currentVideoSegments = item == null
+        currentSegments = item == null
                 ? null
                 : item.getVideoSegments();
+
+        if (segmentListAdapter != null) {
+            segmentListAdapter.setItems(currentSegments);
+        }
     }
 }

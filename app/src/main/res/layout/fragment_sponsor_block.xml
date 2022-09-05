@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
-    tools:context=".fragments.detail.SponsorBlockFragment">
+    tools:context=".fragments.list.sponsorblock.SponsorBlockFragment">
     <!--
         TODO:
             - submit segment
@@ -41,13 +42,13 @@
             android:layout_marginBottom="16dp"
             android:text="Whitelist channel" />
 
-        <!-- TODO: uncomment when ready -->
-<!--        <View-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="1dp"-->
-<!--            android:layout_marginBottom="16dp"-->
-<!--            android:background="?android:attr/listDivider" />-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="16dp"
+            android:background="?android:attr/listDivider" />
 
+        <!-- TODO: uncomment when ready -->
 <!--        <org.schabi.newpipe.views.NewPipeTextView-->
 <!--            android:id="@+id/detail_upload_date_view"-->
 <!--            android:layout_width="match_parent"-->
@@ -62,5 +63,12 @@
 <!--            android:layout_height="wrap_content"-->
 <!--            android:layout_marginBottom="16dp"-->
 <!--            android:text="Add Segment" />-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/segment_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/list_segments_item"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
