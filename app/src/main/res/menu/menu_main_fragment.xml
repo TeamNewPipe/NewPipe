@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/ic_search"
-        android:orderInCategory="1"
-        android:title="@string/search"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/action_explore"
         android:icon="@drawable/ic_explore"
         android:orderInCategory="1"
         android:title="@string/explore"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:orderInCategory="1"
+        android:title="@string/search"
         app:showAsAction="always" />
 </menu>
