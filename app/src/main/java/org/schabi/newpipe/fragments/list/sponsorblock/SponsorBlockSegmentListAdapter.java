@@ -10,10 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.SponsorBlockUtils;
 import org.schabi.newpipe.util.VideoSegment;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 
 public class SponsorBlockSegmentListAdapter extends
         RecyclerView.Adapter<SponsorBlockSegmentListAdapter.SponsorBlockSegmentItemViewHolder> {
@@ -57,16 +59,51 @@ public class SponsorBlockSegmentListAdapter extends
     }
 
     public static class SponsorBlockSegmentItemViewHolder extends RecyclerView.ViewHolder {
-        private final TextView segmentNameTextView;
+        private final View itemSegmentColorView;
+        private final TextView itemSegmentNameTextView;
+        private final TextView itemSegmentStartTimeTextView;
+        private final TextView itemSegmentEndTimeTextView;
 
         public SponsorBlockSegmentItemViewHolder(@NonNull final View itemView) {
             super(itemView);
 
-            segmentNameTextView = itemView.findViewById(R.id.category_name);
+            itemSegmentColorView = itemView.findViewById(R.id.item_segment_color_view);
+            itemSegmentNameTextView = itemView.findViewById(
+                    R.id.item_segment_category_name_textview);
+            itemSegmentStartTimeTextView = itemView.findViewById(
+                    R.id.item_segment_start_time_textview);
+            itemSegmentEndTimeTextView = itemView.findViewById(R.id.item_segment_end_time_textview);
         }
 
         private void updateFrom(final VideoSegment segment) {
-            segmentNameTextView.setText(segment.category);
+            // category color
+            final Integer segmentColor =
+                    SponsorBlockUtils.parseSegmentCategory(segment.category, itemView.getContext());
+            if (segmentColor != null) {
+                itemSegmentColorView.setBackgroundColor(segmentColor);
+            }
+
+            // category name
+            final String friendlyCategoryName =
+                    SponsorBlockUtils.getFriendlyCategoryName(segment.category);
+            itemSegmentNameTextView.setText(friendlyCategoryName);
+
+            // from
+            final String startText = millisecondsToString(segment.startTime);
+            itemSegmentStartTimeTextView.setText(startText);
+
+            // to
+            final String endText = millisecondsToString(segment.endTime);
+            itemSegmentEndTimeTextView.setText(endText);
+        }
+
+        private String millisecondsToString(final double milliseconds) {
+            final int seconds = (int) (milliseconds / 1000) % 60;
+            final int minutes = (int) ((milliseconds / (1000 * 60)) % 60);
+            final int hours   = (int) ((milliseconds / (1000 * 60 * 60)) % 24);
+
+            return String.format(Locale.getDefault(),
+                    "%02d:%02d:%02d", hours, minutes, seconds);
         }
     }
 }

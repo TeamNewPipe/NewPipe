@@ -211,13 +211,13 @@ public final class SponsorBlockUtils {
         }
     }
 
-    static Integer parseSegmentCategory(
+    public static Integer parseSegmentCategory(
             final String category,
-            final Context context,
-            final SharedPreferences prefs
+            final Context context
     ) {
         String key;
         final String colorStr;
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         switch (category) {
             case "sponsor":
                 key = context.getString(R.string.sponsor_block_category_sponsor_key);
@@ -307,8 +307,7 @@ public final class SponsorBlockUtils {
     public static void markSegments(
             final PlayQueueItem currentItem,
             final MarkableSeekBar seekBar,
-            final Context context,
-            final SharedPreferences prefs
+            final Context context
     ) {
         seekBar.clearMarkers();
 
@@ -323,7 +322,7 @@ public final class SponsorBlockUtils {
         }
 
         for (final VideoSegment segment : segments) {
-            final Integer color = parseSegmentCategory(segment.category, context, prefs);
+            final Integer color = parseSegmentCategory(segment.category, context);
 
             // if null, then this category should not be marked
             if (color == null) {
@@ -340,5 +339,29 @@ public final class SponsorBlockUtils {
         }
 
         seekBar.drawMarkers();
+    }
+
+    // TODO: translate?
+    public static String getFriendlyCategoryName(final String category) {
+        switch (category) {
+            case "sponsor":
+                return "Sponsor";
+            case "intro":
+                return "Intro";
+            case "outro":
+                return "Outro";
+            case "interaction":
+                return "Interaction";
+            case "selfpromo":
+                return "Self Promo";
+            case "music_offtopic":
+                return "Non-music";
+            case "preview":
+                return "Preview";
+            case "filler":
+                return "Filler";
+        }
+
+        return null;
     }
 }

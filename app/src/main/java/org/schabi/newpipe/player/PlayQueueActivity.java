@@ -8,7 +8,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
@@ -21,7 +20,6 @@ import android.widget.SeekBar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -224,9 +222,7 @@ public final class PlayQueueActivity extends AppCompatActivity
                     if (player != null) {
                         final PlayQueueItem item = player.getPlayQueue().getItem();
                         final Context context = getApplicationContext();
-                        final SharedPreferences prefs =
-                                PreferenceManager.getDefaultSharedPreferences(context);
-                        markSegments(item, queueControlBinding.seekBar, context, prefs);
+                        markSegments(item, queueControlBinding.seekBar, context);
 
                         player.setActivityListener(PlayQueueActivity.this);
                     }

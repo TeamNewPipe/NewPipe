@@ -1184,7 +1184,7 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         // TODO: check/fix
-        markSegments(currentItem, binding.playbackSeekBar, context, prefs);
+        markSegments(currentItem, binding.playbackSeekBar, context);
     }
 
     private void onBlocked() {
