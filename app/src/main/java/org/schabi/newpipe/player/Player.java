@@ -123,6 +123,9 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.SponsorBlockMode;
+import org.schabi.newpipe.util.SponsorBlockSegment;
+import org.schabi.newpipe.views.ExpandableSurfaceView;
+import org.schabi.newpipe.views.player.PlayerFastSeekOverlay;
 import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.VideoSegment;
 
@@ -932,15 +935,16 @@ public final class Player implements PlaybackListener, Listener {
                 simpleExoPlayer.getBufferedPercentage());
 
         if (sponsorBlockMode == SponsorBlockMode.ENABLED && isPrepared) {
-            final VideoSegment segment = getSkippableSegment(currentProgress);
-            if (segment == null) {
+            final SponsorBlockSegment sponsorBlockSegment =
+                    getSkippableSponsorBlockSegment(currentProgress);
+            if (sponsorBlockSegment == null) {
                 lastSkipTarget = -1;
                 return;
             }
 
             int skipTarget = isRewind
-                    ? (int) Math.ceil((segment.startTime)) - 1
-                    : (int) Math.ceil((segment.endTime));
+                    ? (int) Math.ceil((sponsorBlockSegment.startTime)) - 1
+                    : (int) Math.ceil((sponsorBlockSegment.endTime));
 
             if (skipTarget < 0) {
                 skipTarget = 0;
@@ -964,7 +968,7 @@ public final class Player implements PlaybackListener, Listener {
                     context.getString(R.string.sponsor_block_notifications_key), false)) {
                 String toastText = "";
 
-                switch (segment.category) {
+                switch (sponsorBlockSegment.category) {
                     case "sponsor":
                         toastText = context
                                 .getString(R.string.sponsor_block_skip_sponsor_toast);
@@ -2399,38 +2403,38 @@ public final class Player implements PlaybackListener, Listener {
         sponsorBlockMode = mode;
     }
 
-    public VideoSegment getSkippableSegment(final int progress) {
+    public SponsorBlockSegment getSkippableSponsorBlockSegment(final int progress) {
         // currentItem may get set to something later (asynchronously)
         if (currentItem == null) {
             return null;
         }
 
-        final VideoSegment[] videoSegments = currentItem.getVideoSegments();
-        if (videoSegments == null) {
+        final SponsorBlockSegment[] sponsorBlockSegments = currentItem.getSponsorBlockSegments();
+        if (sponsorBlockSegments == null) {
             return null;
         }
 
-        for (final VideoSegment segment : videoSegments) {
-            if (progress < segment.startTime) {
+        for (final SponsorBlockSegment sponsorBlockSegment : sponsorBlockSegments) {
+            if (progress < sponsorBlockSegment.startTime) {
                 continue;
             }
 
-            if (progress > segment.endTime) {
+            if (progress > sponsorBlockSegment.endTime) {
                 continue;
             }
 
-            return segment;
+            return sponsorBlockSegment;
         }
 
         return null;
     }
 
-    public VideoSegment[] getVideoSegments() {
+    public SponsorBlockSegment[] getSponsorBlockSegments() {
         if (currentItem == null) {
             return null;
         }
 
-        return currentItem.getVideoSegments();
+        return currentItem.getSponsorBlockSegments();
     }
 
     public void setPlayerListener(final PlayerListener listener) {

@@ -444,7 +444,8 @@ public class MediaSourceManager {
             final long expiration = System.currentTimeMillis()
                     + ServiceHelper.getCacheExpirationMillis(streamInfo.getServiceId());
 
-            stream.setVideoSegments(SponsorBlockUtils.getYouTubeVideoSegments(context, streamInfo));
+            stream.setSponsorBlockSegments(
+                    SponsorBlockUtils.getSponsorBlockSegments(context, streamInfo));
 
             return new LoadedMediaSource(source, tag, stream, expiration);
         }).onErrorReturn(throwable -> {

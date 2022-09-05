@@ -38,8 +38,8 @@ public final class SponsorBlockUtils {
     }
 
     @SuppressWarnings("CheckStyle")
-    public static VideoSegment[] getYouTubeVideoSegments(final Context context,
-                                                         final StreamInfo streamInfo)
+    public static SponsorBlockSegment[] getSponsorBlockSegments(final Context context,
+                                                                final StreamInfo streamInfo)
             throws UnsupportedEncodingException {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
@@ -146,7 +146,7 @@ public final class SponsorBlockUtils {
             return null;
         }
 
-        final ArrayList<VideoSegment> result = new ArrayList<>();
+        final ArrayList<SponsorBlockSegment> result = new ArrayList<>();
 
         for (final Object obj1 : responseArray) {
             final JsonObject jObj1 = (JsonObject) obj1;
@@ -169,16 +169,18 @@ public final class SponsorBlockUtils {
                     continue;
                 }
 
+                final String uuid = jObj2.getString("UUID");
                 final double startTime = segmentInfo.getDouble(0) * 1000;
                 final double endTime = segmentInfo.getDouble(1) * 1000;
                 final String category = jObj2.getString("category");
 
-                final VideoSegment segment = new VideoSegment(startTime, endTime, category);
-                result.add(segment);
+                final SponsorBlockSegment sponsorBlockSegment =
+                        new SponsorBlockSegment(uuid, startTime, endTime, category);
+                result.add(sponsorBlockSegment);
             }
         }
 
-        return result.toArray(new VideoSegment[0]);
+        return result.toArray(new SponsorBlockSegment[0]);
     }
 
     private static boolean isConnected() {
@@ -315,14 +317,14 @@ public final class SponsorBlockUtils {
             return;
         }
 
-        final VideoSegment[] segments = currentItem.getVideoSegments();
+        final SponsorBlockSegment[] sponsorBlockSegments = currentItem.getSponsorBlockSegments();
 
-        if (segments == null || segments.length == 0) {
+        if (sponsorBlockSegments == null || sponsorBlockSegments.length == 0) {
             return;
         }
 
-        for (final VideoSegment segment : segments) {
-            final Integer color = parseSegmentCategory(segment.category, context);
+        for (final SponsorBlockSegment sponsorBlockSegment : sponsorBlockSegments) {
+            final Integer color = parseSegmentCategory(sponsorBlockSegment.category, context);
 
             // if null, then this category should not be marked
             if (color == null) {
@@ -333,7 +335,7 @@ public final class SponsorBlockUtils {
             final int length = (int) currentItem.getDuration() * 1000;
 
             final SeekBarMarker seekBarMarker =
-                    new SeekBarMarker(segment.startTime, segment.endTime,
+                    new SeekBarMarker(sponsorBlockSegment.startTime, sponsorBlockSegment.endTime,
                             length, color);
             seekBar.seekBarMarkers.add(seekBarMarker);
         }

@@ -2,8 +2,6 @@ package us.shandian.giga.get;
 
 import androidx.annotation.NonNull;
 
-import org.schabi.newpipe.util.VideoSegment;
-
 import java.io.Serializable;
 import java.util.Calendar;
 

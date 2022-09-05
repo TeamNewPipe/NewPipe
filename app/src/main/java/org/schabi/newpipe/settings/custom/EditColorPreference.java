@@ -60,7 +60,7 @@ public class EditColorPreference extends EditTextPreference
 
         final int color = Color.parseColor(colorStr);
 
-        final View view = viewHolder.findViewById(R.id.segment_color_view);
+        final View view = viewHolder.findViewById(R.id.sponsor_block_segment_color_view);
         view.setBackgroundColor(color);
     }
 
@@ -69,7 +69,7 @@ public class EditColorPreference extends EditTextPreference
         try {
             final int color = Color.parseColor((String) newValue);
 
-            final View view = viewHolder.findViewById(R.id.segment_color_view);
+            final View view = viewHolder.findViewById(R.id.sponsor_block_segment_color_view);
             view.setBackgroundColor(color);
 
             return true;

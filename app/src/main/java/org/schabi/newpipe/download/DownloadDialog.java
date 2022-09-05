@@ -69,7 +69,7 @@ import org.schabi.newpipe.util.SimpleOnSeekBarChangeListener;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 import org.schabi.newpipe.util.ThemeHelper;
-import org.schabi.newpipe.util.VideoSegment;
+import org.schabi.newpipe.util.SponsorBlockSegment;
 
 import java.io.File;
 import java.io.IOException;
@@ -127,7 +127,7 @@ public class DownloadDialog extends DialogFragment
 
     private SharedPreferences prefs;
 
-    private VideoSegment[] segments;
+    private SponsorBlockSegment[] sponsorBlockSegments;
 
     // Variables for file name and MIME type when picking new folder because it's not set yet
     private String filenameTmp;
@@ -177,8 +177,8 @@ public class DownloadDialog extends DialogFragment
         this.selectedVideoIndex = ListHelper.getDefaultResolutionIndex(context, videoStreams);
     }
 
-    public void setVideoSegments(final VideoSegment[] seg) {
-        this.segments = seg;
+    public void setVideoSegments(final SponsorBlockSegment[] value) {
+        this.sponsorBlockSegments = value;
     }
 
     /**
@@ -1032,7 +1032,7 @@ public class DownloadDialog extends DialogFragment
 
         DownloadManagerService.startMission(context, urls, storage, kind, threads,
                 currentInfo.getUrl(), psName, psArgs, nearLength, recoveryInfo,
-                segments);
+                sponsorBlockSegments);
 
         Toast.makeText(context, getString(R.string.download_has_started),
                 Toast.LENGTH_SHORT).show();

@@ -20,7 +20,7 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.PlayerListener;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.SponsorBlockMode;
-import org.schabi.newpipe.util.VideoSegment;
+import org.schabi.newpipe.util.SponsorBlockSegment;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,7 +30,7 @@ public class SponsorBlockFragment extends Fragment implements PlayerListener {
     private Player currentPlayer;
     private SponsorBlockMode currentSponsorBlockMode;
     private SponsorBlockSegmentListAdapter segmentListAdapter;
-    private VideoSegment[] currentSegments;
+    private SponsorBlockSegment[] sponsorBlockSegments;
 
     public SponsorBlockFragment() {
         // required
@@ -41,7 +41,7 @@ public class SponsorBlockFragment extends Fragment implements PlayerListener {
         super.onAttach(context);
 
         segmentListAdapter = new SponsorBlockSegmentListAdapter(context);
-        segmentListAdapter.setItems(currentSegments);
+        segmentListAdapter.setItems(sponsorBlockSegments);
     }
 
     @Override
@@ -148,12 +148,12 @@ public class SponsorBlockFragment extends Fragment implements PlayerListener {
 
     @Override
     public void onPlayQueueItemChanged(final PlayQueueItem item) {
-        currentSegments = item == null
+        sponsorBlockSegments = item == null
                 ? null
-                : item.getVideoSegments();
+                : item.getSponsorBlockSegments();
 
         if (segmentListAdapter != null) {
-            segmentListAdapter.setItems(currentSegments);
+            segmentListAdapter.setItems(sponsorBlockSegments);
         }
     }
 }

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.SponsorBlockUtils;
-import org.schabi.newpipe.util.VideoSegment;
+import org.schabi.newpipe.util.SponsorBlockSegment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,16 +20,16 @@ import java.util.Locale;
 public class SponsorBlockSegmentListAdapter extends
         RecyclerView.Adapter<SponsorBlockSegmentListAdapter.SponsorBlockSegmentItemViewHolder> {
     private final Context context;
-    private final ArrayList<VideoSegment> segments = new ArrayList<>();
+    private final ArrayList<SponsorBlockSegment> sponsorBlockSegments = new ArrayList<>();
 
     public SponsorBlockSegmentListAdapter(final Context context) {
         this.context = context;
     }
-    public void setItems(final VideoSegment[] items) {
-        this.segments.clear();
+    public void setItems(final SponsorBlockSegment[] items) {
+        this.sponsorBlockSegments.clear();
 
         if (items != null) {
-            Collections.addAll(this.segments, items);
+            Collections.addAll(this.sponsorBlockSegments, items);
         }
 
         notifyDataSetChanged();
@@ -49,13 +49,13 @@ public class SponsorBlockSegmentListAdapter extends
     public void onBindViewHolder(
             @NonNull final SponsorBlockSegmentListAdapter.SponsorBlockSegmentItemViewHolder holder,
             final int position) {
-        final VideoSegment segment = segments.get(position);
-        holder.updateFrom(segment);
+        final SponsorBlockSegment sponsorBlockSegment = sponsorBlockSegments.get(position);
+        holder.updateFrom(sponsorBlockSegment);
     }
 
     @Override
     public int getItemCount() {
-        return segments.size();
+        return sponsorBlockSegments.size();
     }
 
     public static class SponsorBlockSegmentItemViewHolder extends RecyclerView.ViewHolder {
@@ -75,25 +75,26 @@ public class SponsorBlockSegmentListAdapter extends
             itemSegmentEndTimeTextView = itemView.findViewById(R.id.item_segment_end_time_textview);
         }
 
-        private void updateFrom(final VideoSegment segment) {
+        private void updateFrom(final SponsorBlockSegment sponsorBlockSegment) {
             // category color
             final Integer segmentColor =
-                    SponsorBlockUtils.parseSegmentCategory(segment.category, itemView.getContext());
+                    SponsorBlockUtils.parseSegmentCategory(
+                            sponsorBlockSegment.category, itemView.getContext());
             if (segmentColor != null) {
                 itemSegmentColorView.setBackgroundColor(segmentColor);
             }
 
             // category name
             final String friendlyCategoryName =
-                    SponsorBlockUtils.getFriendlyCategoryName(segment.category);
+                    SponsorBlockUtils.getFriendlyCategoryName(sponsorBlockSegment.category);
             itemSegmentNameTextView.setText(friendlyCategoryName);
 
             // from
-            final String startText = millisecondsToString(segment.startTime);
+            final String startText = millisecondsToString(sponsorBlockSegment.startTime);
             itemSegmentStartTimeTextView.setText(startText);
 
             // to
-            final String endText = millisecondsToString(segment.endTime);
+            final String endText = millisecondsToString(sponsorBlockSegment.endTime);
             itemSegmentEndTimeTextView.setText(endText);
         }
 

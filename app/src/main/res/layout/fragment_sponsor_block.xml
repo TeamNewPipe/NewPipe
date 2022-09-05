@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Skipping is enabled" />
+            android:text="Skip marked segments" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/channel_is_whitelisted_switch"

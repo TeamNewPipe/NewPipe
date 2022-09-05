@@ -20,7 +20,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.util.VideoSegment;
+import org.schabi.newpipe.util.SponsorBlockSegment;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -43,7 +43,7 @@ public class LocalPlayer implements com.google.android.exoplayer2.Player.Listene
     private final SharedPreferences mPrefs;
     private SimpleExoPlayer simpleExoPlayer;
     private SerialDisposable progressUpdateReactor;
-    private VideoSegment[] videoSegments;
+    private SponsorBlockSegment[] sponsorBlockSegments;
     private LocalPlayerListener listener;
     private int lastCurrentProgress = -1;
     private int lastSkipTarget = -1;
@@ -53,8 +53,9 @@ public class LocalPlayer implements com.google.android.exoplayer2.Player.Listene
         this.mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public void initialize(final String uri, final VideoSegment[] segments) {
-        this.videoSegments = segments;
+    public void initialize(final String uri,
+                           final SponsorBlockSegment[] initialSponsorBlockSegments) {
+        this.sponsorBlockSegments = initialSponsorBlockSegments;
         this.progressUpdateReactor = new SerialDisposable();
 
         simpleExoPlayer = new SimpleExoPlayer
@@ -264,15 +265,16 @@ public class LocalPlayer implements com.google.android.exoplayer2.Player.Listene
             return;
         }
 
-        final VideoSegment segment = getSkippableSegment(currentProgress);
-        if (segment == null) {
+        final SponsorBlockSegment sponsorBlockSegment =
+                getSkippableSponsorBlockSegment(currentProgress);
+        if (sponsorBlockSegment == null) {
             lastSkipTarget = -1;
             return;
         }
 
         int skipTarget = isRewind
-                ? (int) Math.ceil((segment.startTime)) - 1
-                : (int) Math.ceil((segment.endTime));
+                ? (int) Math.ceil((sponsorBlockSegment.startTime)) - 1
+                : (int) Math.ceil((sponsorBlockSegment.endTime));
 
         if (skipTarget < 0) {
             skipTarget = 0;
@@ -296,7 +298,7 @@ public class LocalPlayer implements com.google.android.exoplayer2.Player.Listene
                 context.getString(R.string.sponsor_block_notifications_key), false)) {
             String toastText = "";
 
-            switch (segment.category) {
+            switch (sponsorBlockSegment.category) {
                 case "sponsor":
                     toastText = context
                             .getString(R.string.sponsor_block_skip_sponsor_toast);
@@ -348,21 +350,21 @@ public class LocalPlayer implements com.google.android.exoplayer2.Player.Listene
         }
     }
 
-    private VideoSegment getSkippableSegment(final int progress) {
-        if (videoSegments == null) {
+    private SponsorBlockSegment getSkippableSponsorBlockSegment(final int progress) {
+        if (sponsorBlockSegments == null) {
             return null;
         }
 
-        for (final VideoSegment segment : videoSegments) {
-            if (progress < segment.startTime) {
+        for (final SponsorBlockSegment sponsorBlockSegment : sponsorBlockSegments) {
+            if (progress < sponsorBlockSegment.startTime) {
                 continue;
             }
 
-            if (progress > segment.endTime) {
+            if (progress > sponsorBlockSegment.endTime) {
                 continue;
             }
 
-            return segment;
+            return sponsorBlockSegment;
         }
 
         return null;

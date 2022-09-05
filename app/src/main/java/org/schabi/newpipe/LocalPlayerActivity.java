@@ -24,7 +24,7 @@ import org.schabi.newpipe.player.LocalPlayer;
 import org.schabi.newpipe.player.LocalPlayerListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.util.ThemeHelper;
-import org.schabi.newpipe.util.VideoSegment;
+import org.schabi.newpipe.util.SponsorBlockSegment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,10 +46,11 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Lis
         final Intent intent = getIntent();
 
         final String uri = parseUriFromIntent(intent);
-        final VideoSegment[] segments = parseSegmentsFromIntent(intent);
+        final SponsorBlockSegment[] sponsorBlockSegments =
+                parseSponsorBlockSegmentsFromIntent(intent);
 
         localPlayer = new LocalPlayer(this);
-        localPlayer.initialize(uri, segments);
+        localPlayer.initialize(uri, sponsorBlockSegments);
         localPlayer.setListener(this);
 
         playerView = findViewById(R.id.player_view);
@@ -130,8 +131,8 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Lis
         return intent.getDataString();
     }
 
-    private static VideoSegment[] parseSegmentsFromIntent(final Intent intent) {
-        final List<VideoSegment> result = new ArrayList<>();
+    private static SponsorBlockSegment[] parseSponsorBlockSegmentsFromIntent(final Intent intent) {
+        final List<SponsorBlockSegment> result = new ArrayList<>();
 
         final String segmentsJson = intent.getStringExtra("segments");
 
@@ -141,20 +142,20 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Lis
 
                 for (final Object item : obj.getArray("segments")) {
                     final JsonObject itemObject = (JsonObject) item;
-
+                    final String uuid = itemObject.getString("UUID");
                     final double startTime = itemObject.getDouble("start");
                     final double endTime = itemObject.getDouble("end");
                     final String category = itemObject.getString("category");
-
-                    final VideoSegment segment = new VideoSegment(startTime, endTime, category);
-                    result.add(segment);
+                    final SponsorBlockSegment sponsorBlockSegment =
+                            new SponsorBlockSegment(uuid, startTime, endTime, category);
+                    result.add(sponsorBlockSegment);
                 }
             } catch (final Exception e) {
                 Log.e(TAG, "Error initializing segments", e);
             }
         }
 
-        return result.toArray(new VideoSegment[0]);
+        return result.toArray(new SponsorBlockSegment[0]);
     }
 
     private void setKeepScreenOn(final boolean keepScreenOn) {

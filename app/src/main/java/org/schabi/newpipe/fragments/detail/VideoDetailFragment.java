@@ -104,7 +104,7 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ReturnYouTubeDislikeUtils;
-import org.schabi.newpipe.util.VideoSegment;
+import org.schabi.newpipe.util.SponsorBlockSegment;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
@@ -1759,18 +1759,18 @@ public final class VideoDetailFragment
         }
 
         videoSegmentsSubscriber = Single.fromCallable(() -> {
-            VideoSegment[] videoSegments = null;
+            SponsorBlockSegment[] sponsorBlockSegments = null;
 
             try {
-                videoSegments =
-                        SponsorBlockUtils.getYouTubeVideoSegments(getContext(), currentInfo);
+                sponsorBlockSegments =
+                        SponsorBlockUtils.getSponsorBlockSegments(getContext(), currentInfo);
             } catch (final Exception e) {
                 // TODO: handle?
             }
 
-            return videoSegments == null
-                    ? new VideoSegment[0]
-                    : videoSegments;
+            return sponsorBlockSegments == null
+                    ? new SponsorBlockSegment[0]
+                    : sponsorBlockSegments;
         })
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
