@@ -50,6 +50,13 @@
             android:title="@string/settings_category_sponsor_block_categories_title"
             android:summary="@string/settings_category_sponsor_block_categories_summary"/>
 
+        <EditTextPreference
+            android:key="@string/sponsor_block_username_key"
+            android:summary="@string/sponsor_block_username_summary"
+            android:title="@string/sponsor_block_username_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
         <Preference
             app:iconSpaceReserved="false"
             android:dependency="@string/sponsor_block_enable_key"

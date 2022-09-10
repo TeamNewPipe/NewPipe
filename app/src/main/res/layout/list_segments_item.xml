@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:maxWidth="100dp"
         android:textAlignment="center"
-        tools:text="sponsor" />
+        tools:text="Sponsor" />
 
     <Space
         android:layout_width="0dp"

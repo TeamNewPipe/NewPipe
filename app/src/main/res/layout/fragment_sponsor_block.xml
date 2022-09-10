@@ -10,15 +10,11 @@
         TODO:
             - submit segment
                 - skip forward/backward 1 frame
-                - mark beginning of new segment
-                - mark end of new segment
+                - set beginning of new segment
+                - set end of new segment
                 - submit
                     - choose a category
                     - confirm/submit segment
-            - voting
-                - list current segments
-                - vote up/down each segment
-                - mass vote up segments (not down)
     -->
     <LinearLayout
         android:layout_width="match_parent"

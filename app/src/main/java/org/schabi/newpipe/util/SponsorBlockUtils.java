@@ -13,12 +13,14 @@ import androidx.preference.PreferenceManager;
 import com.grack.nanojson.JsonArray;
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
+import com.grack.nanojson.JsonWriter;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.utils.RandomStringFromAlphabetGenerator;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.views.MarkableSeekBar;
 import org.schabi.newpipe.views.SeekBarMarker;
@@ -27,12 +29,17 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Random;
 
 public final class SponsorBlockUtils {
     private static final Application APP = App.getApp();
     private static final String TAG = SponsorBlockUtils.class.getSimpleName();
     private static final boolean DEBUG = MainActivity.DEBUG;
+    private static Random numberGenerator = new SecureRandom();
+    private static final String ALPHABET =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     private SponsorBlockUtils() {
     }
@@ -365,5 +372,48 @@ public final class SponsorBlockUtils {
         }
 
         return null;
+    }
+
+    public static boolean submitSegmentVote(final Context context,
+                                            final String uuid,
+                                            final int vote) {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final String apiUrl = prefs.getString(context
+                .getString(R.string.sponsor_block_api_url_key), null);
+        String userId = prefs.getString(
+                context.getString(R.string.sponsor_block_username_key), null);
+
+        if (userId == null) {
+            userId = RandomStringFromAlphabetGenerator.generate(
+                    ALPHABET, 32, numberGenerator);
+        }
+
+        if (apiUrl == null || apiUrl.isEmpty()) {
+            return false;
+        }
+
+        try {
+            // @formatter:off
+            DownloaderImpl
+                    .getInstance()
+                    .post(apiUrl + "voteOnSponsorTime",
+                            null,
+                            JsonWriter.string()
+                                        .object()
+                                            .value("UUID", uuid)
+                                            .value("userID", userId)
+                                            .value("type", vote)
+                                        .end()
+                                    .done()
+                                    .getBytes())
+                    .responseBody();
+            // @formatter:on
+            return true;
+        } catch (final Exception ex) {
+            if (DEBUG) {
+                Log.w(TAG, Log.getStackTraceString(ex));
+            }
+            return false;
+        }
     }
 }
