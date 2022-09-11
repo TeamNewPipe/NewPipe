@@ -149,6 +149,12 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    public void setInfoItemList(final List<? extends InfoItem> data) {
+        infoItemList.clear();
+        infoItemList.addAll(data);
+        notifyDataSetChanged();
+    }
+
     public void clearStreamItemList() {
         if (infoItemList.isEmpty()) {
             return;

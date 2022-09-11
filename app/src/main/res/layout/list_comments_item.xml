@@ -108,4 +108,32 @@
         android:textSize="@dimen/video_item_search_upload_date_text_size"
         tools:text="1 year ago" />
 
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/showReplies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/itemCommentContentView"
+        android:layout_alignEnd="@+id/itemCommentContentView"
+        android:layout_alignBottom="@+id/itemPublishedTime"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="0sp"
+        android:layout_marginEnd="0sp"
+        android:layout_marginBottom="0sp"
+        android:layout_toEndOf="@+id/itemPublishedTime"
+        android:text="@string/show_replies"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textSize="@dimen/video_item_search_upload_date_text_size" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/replyRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/showReplies"
+        android:layout_alignStart="@+id/itemCommentContentView"
+        android:layout_alignEnd="@+id/itemCommentContentView"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp" />
+
 </RelativeLayout>
