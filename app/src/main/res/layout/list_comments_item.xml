@@ -122,7 +122,8 @@
         android:layout_toEndOf="@+id/itemPublishedTime"
         android:text="@string/show_replies"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textSize="@dimen/video_item_search_upload_date_text_size" />
+        android:textSize="@dimen/video_item_search_upload_date_text_size"
+        android:gravity="center_vertical|right" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/replyRecycleView"

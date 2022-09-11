@@ -1,6 +1,7 @@
 package org.schabi.newpipe.info_list.holder;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
@@ -68,14 +70,14 @@ public class RepliesHandler {
     }
 
     private SingleObserver<ListExtractor.InfoItemsPage<CommentsInfoItem>>
-    repliesObserver(final CommentsInfoItem parentInfoItem) {
+    repliesObserver(final Context context, final CommentsInfoItem parentInfoItem) {
 
         return new SingleObserver<>() {
 
             @SuppressLint("SetTextI18n")
             @Override
             public void onSubscribe(@NonNull final Disposable d) {
-                showReplies.setText("Collapse");
+                showReplies.setText(context.getString(R.string.collapse));
             }
 
             @Override
@@ -99,7 +101,7 @@ public class RepliesHandler {
     }
 
     private SingleObserver<CommentsInfo>
-    repliesInfoObserver(final CommentsInfoItem parentInfoItem) {
+    repliesInfoObserver(final Context context, final CommentsInfoItem parentInfoItem) {
 
         return new SingleObserver<>() {
             @Override
@@ -114,7 +116,7 @@ public class RepliesHandler {
                         repliesSingle(commentsInfo, parentInfoItem);
 
                 final SingleObserver<ListExtractor.InfoItemsPage<CommentsInfoItem>>
-                        getRepliesInfoObserver = repliesObserver(parentInfoItem);
+                        getRepliesInfoObserver = repliesObserver(context, parentInfoItem);
 
                 getRepliesInfoSingle
                         .subscribeOn(Schedulers.io())
@@ -144,7 +146,7 @@ public class RepliesHandler {
         repliesView.setVisibility(View.VISIBLE);
     }
 
-    public void downloadReplies(final CommentsInfoItem parentInfoItem) {
+    public void downloadReplies(final Context context, final CommentsInfoItem parentInfoItem) {
 
         final Single<CommentsInfo> parentInfoSingle = ExtractorHelper.getCommentsInfo(
                 parentInfoItem.getServiceId(),
@@ -153,7 +155,7 @@ public class RepliesHandler {
         );
 
         final SingleObserver<CommentsInfo> singleInfoRepliesInfoObserver
-                = repliesInfoObserver(parentInfoItem);
+                = repliesInfoObserver(context, parentInfoItem);
 
         parentInfoSingle
                 .subscribeOn(Schedulers.io())
@@ -161,13 +163,13 @@ public class RepliesHandler {
                 .subscribe(singleInfoRepliesInfoObserver);
     }
 
-    public void addReplies(final CommentsInfoItem parentInfoItem) {
+    public void addReplies(final Context context, final CommentsInfoItem parentInfoItem) {
         if (parentInfoItem.getReplies() == null) {
             return;
         }
 
         if (cachedReplies.isEmpty()) {
-            downloadReplies(parentInfoItem);
+            downloadReplies(context, parentInfoItem);
             addRepliesToUI(parentInfoItem);
             showReplies.setText("Collapse");
         } else {
@@ -177,14 +179,14 @@ public class RepliesHandler {
         }
     }
 
-    public void checkForReplies(final CommentsInfoItem item) {
+    public void checkForReplies(final Context context, final CommentsInfoItem item) {
         if (item.getReplies() == null) {
             repliesView.setVisibility(View.GONE);
             showReplies.setVisibility(View.GONE);
         } else {
             repliesView.setVisibility(View.GONE);
             showReplies.setVisibility(View.VISIBLE);
-            showReplies.setOnClickListener(v -> addReplies(item));
+            showReplies.setOnClickListener(v -> addReplies(context, item));
         }
     }
 }

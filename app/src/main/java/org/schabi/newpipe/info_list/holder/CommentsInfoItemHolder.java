@@ -1,5 +1,6 @@
 package org.schabi.newpipe.info_list.holder;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -34,13 +35,16 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
  */
 
 public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
-    public final TextView itemTitleView;
+    private final Context context;
+    private final TextView itemTitleView;
     private final ImageView itemHeartView;
     private final ImageView itemPinnedView;
     private final RepliesHandler repliesHandler;
 
     public CommentsInfoItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
         super(infoItemBuilder, R.layout.list_comments_item, parent);
+
+        context = parent.getContext();
 
         itemTitleView = itemView.findViewById(R.id.itemTitleView);
         itemHeartView = itemView.findViewById(R.id.detail_heart_image_view);
@@ -67,6 +71,6 @@ public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
 
         itemPinnedView.setVisibility(item.isPinned() ? View.VISIBLE : View.GONE);
 
-        repliesHandler.checkForReplies(item);
+        repliesHandler.checkForReplies(context, item);
     }
 }
