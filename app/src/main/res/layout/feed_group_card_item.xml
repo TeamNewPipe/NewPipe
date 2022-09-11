@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="64dp"
     android:layout_height="48dp"
+    android:layout_marginEnd="10dp"
     android:layout_gravity="center_vertical"
     android:clickable="true"
     android:focusable="true"
