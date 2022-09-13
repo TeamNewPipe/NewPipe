@@ -9,6 +9,12 @@
         <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
     </style>
 
+    <!-- Blue Theme -->
+    <style name="BlueTheme.YouTube" parent="BlueTheme" tools:keep="@style/BlueTheme_YouTube">
+        <item name="colorPrimaryDark">@color/blue_youtube_primary_color</item>
+    </style>
+
+
     <style name="BlackTheme.YouTube" parent="BlackTheme" tools:keep="@style/BlackTheme_YouTube">
         <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
     </style>

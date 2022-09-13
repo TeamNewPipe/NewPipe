@@ -9,7 +9,7 @@
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
     <style name="Base.OpeningTheme" parent="Base.V21.OpeningTheme">
-        <item name="android:navigationBarColor">@color/light_youtube_primary_color</item>
+        <item name="android:navigationBarColor">@color/blue_youtube_primary_color</item>
     </style>
     <style name="OpeningTheme" parent="Base.OpeningTheme" />
 
@@ -20,7 +20,37 @@
         <item name="toolbarSearchColor">@color/white</item>
         <item name="colorControlActivated">?attr/colorPrimary</item>
     </style>
-    <style name="Base" parent="Base.V21"/>
+
+    <!-- Blue Theme -->
+    <style name="Base.V21.BlueTheme" parent="Base">
+        <item name="colorPrimary">@color/blue_youtube_primary_color</item>
+        <item name="colorPrimaryDark">@color/blue_youtube_primary_color</item>
+        <item name="colorAccent">@color/blue_youtube_accent_color</item>
+        <item name="android:windowBackground">@color/blue_background_color</item>
+        <item name="windowBackground">@color/blue_background_color</item>
+        <item name="separator_color">@color/blue_separator_color</item>
+        <item name="contrast_background_color">@color/blue_contrast_background_color</item>
+        <item name="checked_selector">@drawable/selector_checked_dark</item>
+        <item name="focused_selector">@drawable/selector_focused_dark</item>
+        <item name="toolbar_shadow">@drawable/toolbar_shadow_dark</item>
+        <item name="selector">@drawable/selector_dark</item>
+        <item name="colorControlHighlight">@color/blue_ripple_color</item>
+        <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_dark</item>
+        <item name="card_item_background_color">@color/blue_card_item_background_color</item>
+        <item name="card_item_contrast_color">@color/blue_card_item_contrast_color</item>
+        <item name="border_color">@color/blue_border_color</item>
+        <item name="dashed_border">@drawable/dashed_border_dark</item>
+        <item name="toolbarSearchColor">@color/testBlack</item>
+        <item name="android:textColor">@color/testBlack</item>
+        <item name="android:textColorSecondary">@color/testBlack</item>
+        <item name="colorButtonNormal">@color/testBlue</item>
+        <item name="actionColor">@color/testBlack</item>
+        <item name="android:colorForeground">@color/testBlack</item>
+
+    </style>
+    <style name="Base.BlueTheme" parent="Base.V21.BlueTheme" />
+    <style name="BlueTheme" parent="Base.BlueTheme"/>
+
 
     <!-- Light Theme -->
     <style name="Base.V21.LightTheme" parent="Base">
@@ -29,7 +59,6 @@
         <item name="colorAccent">@color/light_youtube_accent_color</item>
         <item name="android:windowBackground">@color/light_background_color</item>
         <item name="windowBackground">@color/light_background_color</item>
-
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
         <item name="checked_selector">@drawable/selector_checked_light</item>
@@ -132,6 +161,11 @@
         <item name="colorAccent">@color/black_settings_accent_color</item>
     </style>
 
+    <!-- Blue Theme Settings -->
+    <style name="BlueSettingsTheme" parent="BlueTheme">
+        <item name="colorAccent">@color/blue_settings_accent_color</item>
+    </style>
+
     <!-- Router Activity -->
     <style name="Base.RouterActivityThemeLight" parent="LightTheme">
         <item name="android:windowNoTitle">true</item>
@@ -155,4 +189,16 @@
 
     <style name="RouterActivityThemeDark" parent="Base.RouterActivityThemeDark" />
 
+
+    <!-- Blue Theme Router Activity -->
+    <style name="Base.RouterActivityThemeBlue" parent="BlueTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="RouterActivityThemeBlue" parent="Base.RouterActivityThemeBlue" />
 </resources>

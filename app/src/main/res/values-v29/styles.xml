@@ -24,4 +24,9 @@
     </style>
     <style name="Base.BlackTheme" parent="Base.V29.BlackTheme" />
 
+    <!-- Blue Theme -->
+    <style name="Base.V29.BlueTheme" parent="Base.V27.BlueTheme">
+
+    </style>
+    <style name="Base.BlueTheme" parent="Base.V29.BlueTheme" />
 </resources>

@@ -25,4 +25,9 @@
     </style>
     <style name="Base.BlackTheme" parent="Base.V27.BlackTheme" />
 
+    <!-- Blue Theme -->
+    <style name="Base.V27.BlueTheme" parent="Base.V21.BlueTheme">
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+    <style name="Base.BlueTheme" parent="Base.V27.BlueTheme" />
 </resources>

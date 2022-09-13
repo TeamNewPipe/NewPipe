@@ -212,6 +212,7 @@
     <string name="night_theme_key">night_theme</string>
     <string name="light_theme_key">light_theme</string>
     <string name="dark_theme_key">dark_theme</string>
+    <string name="blue_theme_key">blue_theme</string>
     <string name="black_theme_key">black_theme</string>
     <string name="auto_device_theme_key">auto_device_theme</string>
     <string name="default_theme_value">@string/auto_device_theme_key</string>
@@ -220,12 +221,14 @@
         <item>@string/light_theme_key</item>
         <item>@string/dark_theme_key</item>
         <item>@string/black_theme_key</item>
+        <item>@string/blue_theme_key</item>
         <item>@string/auto_device_theme_key</item>
     </string-array>
     <string-array name="theme_description_list">
         <item>@string/light_theme_title</item>
         <item>@string/dark_theme_title</item>
         <item>@string/black_theme_title</item>
+        <item>@string/blue_theme_title</item>
         <item>@string/auto_device_theme_title</item>
     </string-array>
     <string-array name="night_theme_values_list">

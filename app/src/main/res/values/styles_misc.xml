@@ -11,10 +11,9 @@
 
     <!--File picker styles-->
     <style name="FilePickerThemeLight" parent="NNF_BaseTheme.Light">
-        <item name="colorPrimary">@color/light_youtube_primary_color</item>
+        <item name="colorPrimary">@color/blue_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
         <item name="colorAccent">@color/light_settings_accent_color</item>
-
         <item name="actionColor">@color/white</item>
         <item name="nnf_toolbarTheme">@style/ToolbarTheme</item>
 

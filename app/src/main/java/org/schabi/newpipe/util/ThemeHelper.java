@@ -125,6 +125,7 @@ public final class ThemeHelper {
         final Resources res = context.getResources();
         final String lightThemeKey = res.getString(R.string.light_theme_key);
         final String blackThemeKey = res.getString(R.string.black_theme_key);
+        final String blueThemeKey = res.getString(R.string.blue_theme_key);
         final String automaticDeviceThemeKey = res.getString(R.string.auto_device_theme_key);
 
         final String selectedThemeKey = getSelectedThemeKey(context);
@@ -133,6 +134,8 @@ public final class ThemeHelper {
         int baseTheme = R.style.DarkTheme; // default to dark theme
         if (selectedThemeKey.equals(lightThemeKey)) {
             baseTheme = R.style.LightTheme;
+        } else if (selectedThemeKey.equals(blueThemeKey)) {
+            baseTheme = R.style.BlueTheme;
         } else if (selectedThemeKey.equals(blackThemeKey)) {
             baseTheme = R.style.BlackTheme;
         } else if (selectedThemeKey.equals(automaticDeviceThemeKey)) {
@@ -165,6 +168,8 @@ public final class ThemeHelper {
         String themeName = "DarkTheme"; // default
         if (baseTheme == R.style.LightTheme) {
             themeName = "LightTheme";
+        } else if (baseTheme == R.style.BlueTheme) {
+            themeName = "BlueTheme";
         } else if (baseTheme == R.style.BlackTheme) {
             themeName = "BlackTheme";
         }
@@ -184,6 +189,7 @@ public final class ThemeHelper {
         final Resources res = context.getResources();
         final String lightTheme = res.getString(R.string.light_theme_key);
         final String blackTheme = res.getString(R.string.black_theme_key);
+        final String blueTheme = res.getString(R.string.blue_theme_key);
         final String automaticDeviceTheme = res.getString(R.string.auto_device_theme_key);
 
 
@@ -191,6 +197,8 @@ public final class ThemeHelper {
 
         if (selectedTheme.equals(lightTheme)) {
             return R.style.LightSettingsTheme;
+        } else if (selectedTheme.equals(blueTheme)) {
+            return R.style.BlueSettingsTheme;
         } else if (selectedTheme.equals(blackTheme)) {
             return R.style.BlackSettingsTheme;
         } else if (selectedTheme.equals(automaticDeviceTheme)) {
@@ -268,6 +276,13 @@ public final class ThemeHelper {
     }
 
     private static String getSelectedNightThemeKey(final Context context) {
+        final String nightThemeKey = context.getString(R.string.night_theme_key);
+        final String defaultNightTheme = context.getResources()
+                .getString(R.string.default_night_theme_value);
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(nightThemeKey, defaultNightTheme);
+    }
+    private static String setNavThemeKey(final Context context) {
         final String nightThemeKey = context.getString(R.string.night_theme_key);
         final String defaultNightTheme = context.getResources()
                 .getString(R.string.default_night_theme_value);
