@@ -41,6 +41,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
 import androidx.core.os.bundleOf
+import androidx.core.view.MenuItemCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
@@ -286,6 +287,15 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             requireContext(),
             if (showPlayedItems) R.drawable.ic_visibility_on else R.drawable.ic_visibility_off
         )
+        MenuItemCompat.setTooltipText(
+            menuItem,
+            getString(
+                if (showPlayedItems)
+                    R.string.feed_toggle_hide_played_items
+                else
+                    R.string.feed_toggle_show_played_items
+            )
+        )
     }
 
     private fun updateToggleFutureItemsButton(menuItem: MenuItem) {
@@ -293,6 +303,15 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         menuItem.icon = AppCompatResources.getDrawable(
             requireContext(),
             if (showFutureItems) R.drawable.ic_history_future else R.drawable.ic_history
+        )
+        MenuItemCompat.setTooltipText(
+            menuItem,
+            getString(
+                if (showPlayedItems)
+                    R.string.feed_toggle_hide_future_items
+                else
+                    R.string.feed_toggle_show_future_items
+            )
         )
     }
 
