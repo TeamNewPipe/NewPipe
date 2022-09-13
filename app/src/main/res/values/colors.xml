@@ -4,7 +4,7 @@
     <color name="contrastColor">@color/black</color>
     <color name="defaultIconTint">@color/black</color>
 
-    <color name="ic_launcher_background">#61e8e1</color>
+    <color name="ic_launcher_background">#CD201F</color>
 
     <color name="placeholder_background">#999999</color>
     <color name="placeholder_foreground">#6C6C6C</color>
@@ -73,7 +73,7 @@
 
     <!-- Miscellaneous -->
     <color name="queue_background_color">@color/dark_queue_background_color</color>
-    <color name="drawer_header_font_color">#000000</color>
+    <color name="drawer_header_font_color">#F2FFFFFF</color>
     <color name="duration_background_color">#aa000000</color>
     <color name="live_duration_background_color">#c8E53935</color>
     <color name="playlist_stream_count_background_color">#e6000000</color>
