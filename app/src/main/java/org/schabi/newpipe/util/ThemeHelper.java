@@ -299,13 +299,6 @@ public final class ThemeHelper {
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(nightThemeKey, defaultNightTheme);
     }
-    private static String setNavThemeKey(final Context context) {
-        final String nightThemeKey = context.getString(R.string.night_theme_key);
-        final String defaultNightTheme = context.getResources()
-                .getString(R.string.default_night_theme_value);
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(nightThemeKey, defaultNightTheme);
-    }
 
     /**
      * Sets the title to the activity, if the activity is an {@link AppCompatActivity} and has an
