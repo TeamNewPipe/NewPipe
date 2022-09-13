@@ -124,6 +124,14 @@
         <item name="windowBackground">@color/light_dialog_background_color</item>
     </style>
 
+    <style name="BlueDialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="colorPrimary">@color/blue_youtube_primary_color</item>
+        <item name="colorPrimaryDark">@color/testWhite</item>
+        <item name="colorAccent">@color/blue_youtube_accent_color</item>
+        <item name="android:windowBackground">@color/blue_dialog_background_color</item>
+        <item name="windowBackground">@color/blue_dialog_background_color</item>
+    </style>
+
     <style name="DarkDialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
         <item name="colorPrimary">@color/dark_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>

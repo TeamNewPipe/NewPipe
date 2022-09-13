@@ -88,6 +88,14 @@ public final class ThemeHelper {
                 || (selectedThemeKey.equals(res.getString(R.string.auto_device_theme_key))
                 && !isDeviceDarkThemeEnabled(context));
     }
+    public static boolean isBlueThemeSelected(final Context context) {
+        final String selectedThemeKey = getSelectedThemeKey(context);
+        final Resources res = context.getResources();
+
+        return selectedThemeKey.equals(res.getString(R.string.blue_theme_key))
+                || (selectedThemeKey.equals(res.getString(R.string.auto_device_theme_key))
+                && !isDeviceDarkThemeEnabled(context));
+    }
 
     /**
      * Return a dialog theme styled according to the (default) selected theme.
@@ -97,7 +105,16 @@ public final class ThemeHelper {
      */
     @StyleRes
     public static int getDialogTheme(final Context context) {
-        return isLightThemeSelected(context) ? R.style.LightDialogTheme : R.style.DarkDialogTheme;
+        // If the Blue Dialog Theme is not selected
+        if (!isBlueThemeSelected(context)) {
+            // Check if the light theme is selected.
+            return isLightThemeSelected(context)  ? R.style.LightDialogTheme
+                    : R.style.DarkDialogTheme;
+        } else {
+            // return Blue Dialog Theme if Blue Dialog is selected
+            return R.style.BlueDialogTheme;
+        }
+
     }
 
     /**
