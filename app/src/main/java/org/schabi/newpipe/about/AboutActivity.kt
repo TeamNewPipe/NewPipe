@@ -129,6 +129,11 @@ class AboutActivity : AppCompatActivity() {
                 "https://developer.android.com/jetpack", StandardLicenses.APACHE2
             ),
             SoftwareComponent(
+                "Cronet", "2015", "The Chromium Authors",
+                "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/components/cronet/",
+                License("Chromium BSD 3-Clause", "Chromium BSD 3-Clause", "chromium_bsd_3-clause.html")
+            ),
+            SoftwareComponent(
                 "ExoPlayer", "2014 - 2020", "Google, Inc.",
                 "https://github.com/google/ExoPlayer", StandardLicenses.APACHE2
             ),

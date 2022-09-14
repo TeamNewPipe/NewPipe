@@ -8,6 +8,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.database.StandaloneDatabaseProvider;
+import com.google.android.exoplayer2.ext.cronet.CronetDataSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
@@ -18,7 +19,7 @@ import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSource;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
+import com.google.android.exoplayer2.upstream.ResolvingDataSource;
 import com.google.android.exoplayer2.upstream.TransferListener;
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
@@ -28,9 +29,10 @@ import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.Youtub
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubePostLiveStreamDvrDashManifestCreator;
 import org.schabi.newpipe.extractor.services.youtube.dashmanifestcreators.YoutubeProgressiveDashManifestCreator;
 import org.schabi.newpipe.player.datasource.NonUriHlsDataSourceFactory;
-import org.schabi.newpipe.player.datasource.YoutubeHttpDataSource;
+import org.schabi.newpipe.player.datasource.YoutubeDataSourceResolver;
 
 import java.io.File;
+import java.util.concurrent.Executors;
 
 public class PlayerDataSource {
     public static final String TAG = PlayerDataSource.class.getSimpleName();
@@ -72,7 +74,8 @@ public class PlayerDataSource {
     private final CacheFactory cacheDataSourceFactory;
 
     // YouTube-specific Data Source Factories (with cache)
-    // They use YoutubeHttpDataSource.Factory, with different parameters each
+    // They use ResolvingDataSource.Factory with a YoutubeDataSourceResolver instance, each one
+    // with different parameters
     private final CacheFactory ytHlsCacheDataSourceFactory;
     private final CacheFactory ytDashCacheDataSourceFactory;
     private final CacheFactory ytProgressiveDashCacheDataSourceFactory;
@@ -86,20 +89,26 @@ public class PlayerDataSource {
         // make sure the static cache was created: needed by CacheFactories below
         instantiateCacheIfNeeded(context);
 
-        // generic data source factories use DefaultHttpDataSource.Factory
-        cachelessDataSourceFactory = new DefaultDataSource.Factory(context,
-                new DefaultHttpDataSource.Factory().setUserAgent(DownloaderImpl.USER_AGENT))
+        final DataSource.Factory cronetDataSourceFactory =
+                new CronetDataSource.Factory(DownloaderImpl.getInstance().getCronetEngine(),
+                        Executors.newSingleThreadExecutor())
+                        .setTransferListener(transferListener)
+                        .setConnectionTimeoutMs(DownloaderImpl.DEFAULT_CONNECT_TIMEOUT_MILLIS)
+                        .setReadTimeoutMs(DownloaderImpl.DEFAULT_READ_TIMEOUT_MILLIS);
+
+        // generic data source factories use CronetDataSource.Factory
+        cachelessDataSourceFactory = new DefaultDataSource.Factory(context, cronetDataSourceFactory)
                 .setTransferListener(transferListener);
         cacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                new DefaultHttpDataSource.Factory().setUserAgent(DownloaderImpl.USER_AGENT));
+                cronetDataSourceFactory);
 
-        // YouTube-specific data source factories use getYoutubeHttpDataSourceFactory()
+        // YouTube-specific data source factories use getYoutubeCronetDataSourceFactory()
         ytHlsCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                getYoutubeHttpDataSourceFactory(false, false));
+                getYoutubeCronetDataSourceFactory(cronetDataSourceFactory, false, false));
         ytDashCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                getYoutubeHttpDataSourceFactory(true, true));
+                getYoutubeCronetDataSourceFactory(cronetDataSourceFactory, true, true));
         ytProgressiveDashCacheDataSourceFactory = new CacheFactory(context, transferListener, cache,
-                getYoutubeHttpDataSourceFactory(false, true));
+                getYoutubeCronetDataSourceFactory(cronetDataSourceFactory, false, true));
 
         // set the maximum size to manifest creators
         YoutubeProgressiveDashManifestCreator.getCache().setMaximumSize(MAX_MANIFEST_CACHE_SIZE);
@@ -190,12 +199,12 @@ public class PlayerDataSource {
         return new DefaultDashChunkSource.Factory(dataSourceFactory);
     }
 
-    private static YoutubeHttpDataSource.Factory getYoutubeHttpDataSourceFactory(
+    private static ResolvingDataSource.Factory getYoutubeCronetDataSourceFactory(
+            final DataSource.Factory cronetDataSourceFactory,
             final boolean rangeParameterEnabled,
             final boolean rnParameterEnabled) {
-        return new YoutubeHttpDataSource.Factory()
-                .setRangeParameterEnabled(rangeParameterEnabled)
-                .setRnParameterEnabled(rnParameterEnabled);
+        return new ResolvingDataSource.Factory(cronetDataSourceFactory,
+                new YoutubeDataSourceResolver(rangeParameterEnabled, rnParameterEnabled));
     }
 
     private static void instantiateCacheIfNeeded(final Context context) {
