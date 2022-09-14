@@ -29,4 +29,12 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/use_exoplayer_old_codec_selection_key"
+        android:summary="@string/use_exoplayer_old_codec_selection_summary"
+        android:title="@string/use_exoplayer_old_codec_selection_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
 </PreferenceScreen>

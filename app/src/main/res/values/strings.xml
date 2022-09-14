@@ -766,5 +766,7 @@
     <string name="settings_category_exoplayer_title">ExoPlayer settings</string>
     <string name="settings_category_exoplayer_summary">Manage some ExoPlayer settings. These changes require a player restart to take effect</string>
     <string name="use_exoplayer_decoder_fallback_title">Use ExoPlayer\'s decoder fallback feature</string>
-    <string name="use_exoplayer_decoder_fallback_summary">Enable this option if you have decoder initialization issues, which falls back to lower-priority decoders if primary decoders initialization fail. This may result in poor playback performance than when using primary decoders</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Enable this option if you have decoder initialization issues, which falls back to lower-priority decoders if primary decoders initialization fail. This may result in poor playback performance than when using primary decoders\n\nThis option doesn\'t have an effect when the old codec selection one is enabled</string>
+    <string name="use_exoplayer_old_codec_selection_title">Use ExoPlayer\'s old codec selection</string>
+    <string name="use_exoplayer_old_codec_selection_summary">Use ExoPlayer\'s old codec selection which only uses the primary decoder found by ExoPlayer\'s current codec selection system. This option could help to resolve shuttering video issues for devices on which decoders information is not properly returned to ExoPlayer</string>
 </resources>

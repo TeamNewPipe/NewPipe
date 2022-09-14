@@ -1342,4 +1342,5 @@
     <string name="exoplayer_settings_key">exoplayer_settings_key</string>
     <string name="disable_media_tunneling_key">disable_media_tunneling_key</string>
     <string name="use_exoplayer_decoder_fallback_key">use_exoplayer_decoder_fallback_key</string>
+    <string name="use_exoplayer_old_codec_selection_key">use_exoplayer_old_codec_selection_key</string>
 </resources>

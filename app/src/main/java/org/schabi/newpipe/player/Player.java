@@ -72,6 +72,7 @@ import com.google.android.exoplayer2.Player.PositionInfo;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.Tracks;
+import com.google.android.exoplayer2.mediacodec.MediaCodecSelector;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.text.CueGroup;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
@@ -96,6 +97,7 @@ import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.LoadController;
+import org.schabi.newpipe.player.helper.OldMediaCodecSelector;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
@@ -262,6 +264,9 @@ public final class Player implements PlaybackListener, Listener {
                 new DefaultBandwidthMeter.Builder(context).build());
         loadController = new LoadController();
         renderFactory = new DefaultRenderersFactory(context)
+                .setMediaCodecSelector(prefs.getBoolean(
+                        context.getString(R.string.use_exoplayer_old_codec_selection_key), false)
+                        ? OldMediaCodecSelector.INSTANCE : MediaCodecSelector.DEFAULT)
                 .setEnableDecoderFallback(prefs.getBoolean(
                         context.getString(R.string.use_exoplayer_decoder_fallback_key), false));
 
