@@ -340,6 +340,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         super.initViews(rootView, savedInstanceState);
 
         searchBinding.suggestionsList.setAdapter(suggestionListAdapter);
+        // animations are just strange and useless, since the suggestions keep changing too much
+        searchBinding.suggestionsList.setItemAnimator(null);
         new ItemTouchHelper(new ItemTouchHelper.Callback() {
             @Override
             public int getMovementFlags(@NonNull final RecyclerView recyclerView,
