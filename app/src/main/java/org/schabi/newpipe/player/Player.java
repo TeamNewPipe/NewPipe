@@ -237,7 +237,6 @@ public final class Player implements PlaybackListener, Listener {
     private IntentFilter intentFilter;
     @Nullable private PlayerServiceEventListener fragmentListener = null;
     @Nullable private PlayerEventListener activityListener = null;
-    private PlayerListener playerListener;
 
     @NonNull private final SerialDisposable progressUpdateDisposable = new SerialDisposable();
     @NonNull private final CompositeDisposable databaseUpdateDisposable = new CompositeDisposable();
@@ -1115,10 +1114,6 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         currentItem = null;
-
-        if (playerListener != null) {
-            playerListener.onPlayQueueItemChanged(currentItem);
-        }
 
         currentMetadata = null;
         simpleExoPlayer.stop();
@@ -2435,10 +2430,6 @@ public final class Player implements PlaybackListener, Listener {
         }
 
         return currentItem.getSponsorBlockSegments();
-    }
-
-    public void setPlayerListener(final PlayerListener listener) {
-        this.playerListener = listener;
     }
 
     //endregion

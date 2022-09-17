@@ -105,6 +105,7 @@ import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ReturnYouTubeDislikeUtils;
 import org.schabi.newpipe.util.SponsorBlockSegment;
+import org.schabi.newpipe.util.SponsorBlockUtils;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
@@ -112,7 +113,6 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.StreamTypeUtil;
-import org.schabi.newpipe.util.SponsorBlockUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -218,6 +218,7 @@ public final class VideoDetailFragment
     private PlayerService playerService;
     private Player player;
     private final PlayerHolder playerHolder = PlayerHolder.getInstance();
+    private SponsorBlockFragment sponsorBlockFragment;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service management
@@ -228,14 +229,6 @@ public final class VideoDetailFragment
                                    final boolean playAfterConnect) {
         player = connectedPlayer;
         playerService = connectedPlayerService;
-
-        if (showSponsorBlock) {
-            final int sponsorBlockFragmentPosition =
-                    pageAdapter.getItemPositionByTitle(SPONSOR_BLOCK_TAB_TAG);
-            final SponsorBlockFragment fragment =
-                    (SponsorBlockFragment) pageAdapter.getItem(sponsorBlockFragmentPosition);
-            fragment.setPlayer(player);
-        }
 
         // It will do nothing if the player is not in fullscreen mode
         hideSystemUiIfNeeded();
@@ -1059,7 +1052,8 @@ public final class VideoDetailFragment
         }
 
         if (showSponsorBlock) {
-            pageAdapter.updateItem(SPONSOR_BLOCK_TAB_TAG, new SponsorBlockFragment());
+            sponsorBlockFragment = new SponsorBlockFragment(player, playQueue);
+            pageAdapter.updateItem(SPONSOR_BLOCK_TAB_TAG, sponsorBlockFragment);
         }
 
         binding.viewPager.setVisibility(View.VISIBLE);
@@ -1897,6 +1891,12 @@ public final class VideoDetailFragment
             } // else continue below
         }
 
+        if (stackPeek != null) {
+            if (sponsorBlockFragment != null) {
+                sponsorBlockFragment.update(player, playQueue);
+            }
+        }
+
         @Nullable final StackItem stackWithQueue = findQueueInStack(queue);
         if (stackWithQueue != null) {
             // On every MainPlayer service's destroy() playQueue gets disposed and
@@ -1956,6 +1956,10 @@ public final class VideoDetailFragment
         // a service listener and will receive initial call to onMetadataUpdate()
         if (!queue.equals(playQueue)) {
             return;
+        }
+
+        if (sponsorBlockFragment != null) {
+            sponsorBlockFragment.update(player, playQueue);
         }
 
         updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnailUrl());

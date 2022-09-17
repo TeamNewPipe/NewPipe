@@ -12,12 +12,13 @@ import androidx.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.FragmentSponsorBlockBinding;
 import org.schabi.newpipe.player.Player;
-import org.schabi.newpipe.player.PlayerListener;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.SponsorBlockMode;
 import org.schabi.newpipe.util.SponsorBlockSegment;
@@ -25,15 +26,21 @@ import org.schabi.newpipe.util.SponsorBlockSegment;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SponsorBlockFragment extends Fragment implements PlayerListener {
+public class SponsorBlockFragment
+        extends Fragment
+        implements CompoundButton.OnCheckedChangeListener {
     FragmentSponsorBlockBinding binding;
     private Player currentPlayer;
-    private SponsorBlockMode currentSponsorBlockMode;
+    private PlayQueue currentPlayQueue;
     private SponsorBlockSegmentListAdapter segmentListAdapter;
     private SponsorBlockSegment[] sponsorBlockSegments;
 
     public SponsorBlockFragment() {
-        // required
+    }
+
+    public SponsorBlockFragment(final Player player, final PlayQueue playQueue) {
+        currentPlayer = player;
+        currentPlayQueue = playQueue;
     }
 
     @Override
@@ -49,30 +56,53 @@ public class SponsorBlockFragment extends Fragment implements PlayerListener {
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
         binding = FragmentSponsorBlockBinding.inflate(inflater, container, false);
-
-        // skipping enabled switch
-        binding.skippingIsEnabledSwitch
-                .setChecked(currentSponsorBlockMode == SponsorBlockMode.ENABLED);
-        binding.skippingIsEnabledSwitch
-                .setOnCheckedChangeListener((compoundButton, b) ->
-                        updatePlayerSetSponsorBlockEnabled(b));
-
-        // whitelist switch
-        binding.channelIsWhitelistedSwitch
-                .setChecked(currentSponsorBlockMode == SponsorBlockMode.IGNORE);
-        binding.channelIsWhitelistedSwitch
-                .setOnCheckedChangeListener(((compoundButton, b) ->
-                        updatePlayerSetWhitelistForChannelEnabled(b)));
-
-        // segment list
+        binding.skippingIsEnabledSwitch.setOnCheckedChangeListener(this);
+        binding.channelIsWhitelistedSwitch.setOnCheckedChangeListener(this);
         binding.segmentList.setAdapter(segmentListAdapter);
+
+        if (currentPlayer != null && currentPlayQueue != null) {
+            update(currentPlayer, currentPlayQueue);
+        }
 
         return binding.getRoot();
     }
 
-    public void setPlayer(final Player player) {
-        this.currentPlayer = player;
-        this.currentPlayer.setPlayerListener(this);
+    @Override
+    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+        if (buttonView.getId() == R.id.skipping_is_enabled_switch) {
+            updatePlayerSetSponsorBlockEnabled(isChecked);
+        } else if (buttonView.getId() == R.id.channel_is_whitelisted_switch) {
+            updatePlayerSetWhitelistForChannelEnabled(isChecked);
+        }
+    }
+
+    public void update(final Player player, final PlayQueue playQueue) {
+        currentPlayer = player;
+        currentPlayQueue = playQueue;
+
+        binding.skippingIsEnabledSwitch.setOnCheckedChangeListener(null);
+        binding.channelIsWhitelistedSwitch.setOnCheckedChangeListener(null);
+        binding.skippingIsEnabledSwitch
+                .setChecked(currentPlayer.getSponsorBlockMode() == SponsorBlockMode.ENABLED);
+        binding.channelIsWhitelistedSwitch
+                .setChecked(currentPlayer.getSponsorBlockMode() == SponsorBlockMode.IGNORE);
+        binding.skippingIsEnabledSwitch.setOnCheckedChangeListener(this);
+        binding.channelIsWhitelistedSwitch.setOnCheckedChangeListener(this);
+
+        if (binding.channelIsWhitelistedSwitch.isChecked()) {
+            binding.skippingIsEnabledSwitch.setEnabled(false);
+        }
+
+        if (currentPlayQueue != null) {
+            final PlayQueueItem item = currentPlayQueue.getItem();
+            sponsorBlockSegments = item == null
+                    ? null
+                    : item.getSponsorBlockSegments();
+
+            if (segmentListAdapter != null) {
+                segmentListAdapter.setItems(sponsorBlockSegments);
+            }
+        }
     }
 
     private void updatePlayerSetSponsorBlockEnabled(final boolean value) {
@@ -130,30 +160,5 @@ public class SponsorBlockFragment extends Fragment implements PlayerListener {
                 .apply();
 
         Toast.makeText(context, toastText, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onPlayerMetadataChanged(final Player player) {
-        currentSponsorBlockMode = player.getSponsorBlockMode();
-
-        if (binding == null) {
-            return;
-        }
-
-        binding.skippingIsEnabledSwitch
-                .setChecked(currentSponsorBlockMode == SponsorBlockMode.ENABLED);
-        binding.channelIsWhitelistedSwitch
-                .setChecked(currentSponsorBlockMode == SponsorBlockMode.IGNORE);
-    }
-
-    @Override
-    public void onPlayQueueItemChanged(final PlayQueueItem item) {
-        sponsorBlockSegments = item == null
-                ? null
-                : item.getSponsorBlockSegments();
-
-        if (segmentListAdapter != null) {
-            segmentListAdapter.setItems(sponsorBlockSegments);
-        }
     }
 }
