@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player.playqueue;
 
+import org.schabi.newpipe.extractor.IInfoItemFilter;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
@@ -30,14 +31,15 @@ public final class PlaylistPlayQueue extends AbstractInfoPlayQueue<PlaylistInfo>
     }
 
     @Override
-    public void fetch() {
+    public void fetch(final IInfoItemFilter<StreamInfoItem> filter) {
         if (this.isInitial) {
-            ExtractorHelper.getPlaylistInfo(this.serviceId, this.baseUrl, false)
+            ExtractorHelper.getPlaylistInfo(this.serviceId, this.baseUrl, false, filter)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(getHeadListObserver());
         } else {
-            ExtractorHelper.getMorePlaylistItems(this.serviceId, this.baseUrl, this.nextPage)
+            ExtractorHelper.getMorePlaylistItems(
+                    this.serviceId, this.baseUrl, this.nextPage, filter)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(getNextPageObserver());

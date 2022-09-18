@@ -3,6 +3,7 @@ package org.schabi.newpipe.player.playqueue;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.schabi.newpipe.extractor.IInfoItemFilter;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 
@@ -31,7 +32,7 @@ public class PlayQueueTest {
             }
 
             @Override
-            public void fetch() {
+            public void fetch(final IInfoItemFilter<StreamInfoItem> filter) {
                 throw new UnsupportedOperationException();
             }
         };

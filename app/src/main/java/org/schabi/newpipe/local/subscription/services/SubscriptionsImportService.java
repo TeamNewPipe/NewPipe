@@ -23,6 +23,7 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
 import static org.schabi.newpipe.streams.io.StoredFileHelper.DEFAULT_MIME;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
@@ -30,14 +31,17 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.preference.PreferenceManager;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
+import org.schabi.newpipe.extractor.IInfoItemFilter;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
+import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeSubscriptionExtractor;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
@@ -176,10 +180,16 @@ public class SubscriptionsImportService extends BaseImportExportService {
     private void startImport() {
         showToast(R.string.import_ongoing);
 
+        final SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(this);
+
+        final boolean hideShorts =
+                sharedPreferences.getBoolean(getString(R.string.hide_shorts_key), false);
+
         Flowable<List<SubscriptionItem>> flowable = null;
         switch (currentMode) {
             case CHANNEL_URL_MODE:
-                flowable = importFromChannelUrl();
+                flowable = importFromChannelUrl(infoItem -> true);
                 break;
             case INPUT_STREAM_MODE:
                 flowable = importFromInputStream();
@@ -209,7 +219,8 @@ public class SubscriptionsImportService extends BaseImportExportService {
                     try {
                         return Notification.createOnNext(ExtractorHelper
                                 .getChannelInfo(subscriptionItem.getServiceId(),
-                                        subscriptionItem.getUrl(), true)
+                                        subscriptionItem.getUrl(), true,
+                                        infoItem -> !hideShorts || !infoItem.isShort())
                                 .blockingGet());
                     } catch (final Throwable e) {
                         return Notification.createOnError(e);
@@ -294,10 +305,11 @@ public class SubscriptionsImportService extends BaseImportExportService {
         };
     }
 
-    private Flowable<List<SubscriptionItem>> importFromChannelUrl() {
+    private Flowable<List<SubscriptionItem>> importFromChannelUrl(
+            final IInfoItemFilter<ChannelInfoItem> filter) {
         return Flowable.fromCallable(() -> NewPipe.getService(currentServiceId)
                 .getSubscriptionExtractor()
-                .fromChannelUrl(channelUrl));
+                .fromChannelUrl(channelUrl, filter));
     }
 
     private Flowable<List<SubscriptionItem>> importFromInputStream() {

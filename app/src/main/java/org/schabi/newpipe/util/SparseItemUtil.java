@@ -102,7 +102,7 @@ public final class SparseItemUtil {
                                                         @NonNull final String url,
                                                         final Consumer<StreamInfo> callback) {
         Toast.makeText(context, R.string.loading_stream_details, Toast.LENGTH_SHORT).show();
-        ExtractorHelper.getStreamInfo(serviceId, url, false)
+        ExtractorHelper.getStreamInfo(serviceId, url, false, infoItem -> true)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {

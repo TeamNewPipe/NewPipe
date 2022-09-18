@@ -268,6 +268,7 @@
     <string name="content_country_key">content_country</string>
     <string name="show_age_restricted_content">show_age_restricted_content</string>
     <string name="youtube_restricted_mode_enabled">youtube_restricted_mode_enabled</string>
+    <string name="hide_shorts_key">hide_shorts_key</string>
     <string name="enable_search_history_key">enable_search_history</string>
     <string name="enable_watch_history_key">enable_watch_history</string>
     <string name="main_page_content_key">main_page_content</string>

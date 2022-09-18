@@ -5,6 +5,7 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateBackgroundColor;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.jakewharton.rxbinding4.view.RxView;
@@ -437,12 +439,33 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
 
     @Override
     protected Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreChannelItems(serviceId, url, currentNextPage);
+        final Context context = getContext();
+        if (context == null) {
+            return ExtractorHelper.getMoreChannelItems(
+                    serviceId, url, currentNextPage, infoItem -> true);
+        }
+        final SharedPreferences preferenceManager =
+                PreferenceManager.getDefaultSharedPreferences(getContext());
+        final boolean hideShorts =
+                preferenceManager.getBoolean(
+                        context.getString(R.string.hide_shorts_key), false);
+        return ExtractorHelper.getMoreChannelItems(
+                serviceId, url, currentNextPage, infoItem -> !hideShorts || !infoItem.isShort());
     }
 
     @Override
     protected Single<ChannelInfo> loadResult(final boolean forceLoad) {
-        return ExtractorHelper.getChannelInfo(serviceId, url, forceLoad);
+        final Context context = getContext();
+        if (context == null) {
+            return ExtractorHelper.getChannelInfo(serviceId, url, forceLoad, infoItem -> true);
+        }
+        final SharedPreferences preferenceManager =
+                PreferenceManager.getDefaultSharedPreferences(getContext());
+        final boolean hideShorts =
+                preferenceManager.getBoolean(
+                        context.getString(R.string.hide_shorts_key), false);
+        return ExtractorHelper.getChannelInfo(
+                serviceId, url, forceLoad, infoItem -> !hideShorts || !infoItem.isShort());
     }
 
     /*//////////////////////////////////////////////////////////////////////////

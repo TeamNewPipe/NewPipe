@@ -1,17 +1,20 @@
 package org.schabi.newpipe.player.playback;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.ArraySet;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.source.MediaSource;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediasource.FailedMediaSource;
@@ -282,7 +285,12 @@ public class MediaSourceManager {
 
         if (!isPlayQueueReady()) {
             maybeBlock();
-            playQueue.fetch();
+            final SharedPreferences preferences =
+                    PreferenceManager.getDefaultSharedPreferences(context);
+            final boolean hideShorts =
+                    preferences.getBoolean(
+                            context.getString(R.string.hide_shorts_key), false);
+            playQueue.fetch(infoItem -> !hideShorts || !infoItem.isShort());
         }
         playQueueReactor.request(1);
     }

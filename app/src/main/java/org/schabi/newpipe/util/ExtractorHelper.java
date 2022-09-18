@@ -32,6 +32,7 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.IInfoItemFilter;
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor.InfoItemsPage;
@@ -76,19 +77,22 @@ public final class ExtractorHelper {
 
     public static Single<SearchInfo> searchFor(final int serviceId, final String searchString,
                                                final List<String> contentFilter,
+                                               final IInfoItemFilter<InfoItem> filter,
                                                final String sortFilter) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
                 SearchInfo.getInfo(NewPipe.getService(serviceId),
                         NewPipe.getService(serviceId)
                                 .getSearchQHFactory()
-                                .fromQuery(searchString, contentFilter, sortFilter)));
+                                .fromQuery(searchString, contentFilter, sortFilter),
+                        filter));
     }
 
     public static Single<InfoItemsPage<InfoItem>> getMoreSearchItems(
             final int serviceId,
             final String searchString,
             final List<String> contentFilter,
+            final IInfoItemFilter<InfoItem> filter,
             final String sortFilter,
             final Page page) {
         checkServiceId(serviceId);
@@ -96,7 +100,7 @@ public final class ExtractorHelper {
                 SearchInfo.getMoreItems(NewPipe.getService(serviceId),
                         NewPipe.getService(serviceId)
                                 .getSearchQHFactory()
-                                .fromQuery(searchString, contentFilter, sortFilter), page));
+                                .fromQuery(searchString, contentFilter, sortFilter), page, filter));
 
     }
 
@@ -112,30 +116,35 @@ public final class ExtractorHelper {
     }
 
     public static Single<StreamInfo> getStreamInfo(final int serviceId, final String url,
-                                                   final boolean forceLoad) {
+                                                   final boolean forceLoad,
+                                                   final IInfoItemFilter<StreamInfoItem> filter) {
         checkServiceId(serviceId);
         return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.STREAM,
-                Single.fromCallable(() -> StreamInfo.getInfo(NewPipe.getService(serviceId), url)));
+                Single.fromCallable(() -> StreamInfo.getInfo(
+                        NewPipe.getService(serviceId), url, filter)));
     }
 
     public static Single<ChannelInfo> getChannelInfo(final int serviceId, final String url,
-                                                     final boolean forceLoad) {
+                                                     final boolean forceLoad,
+                                                     final IInfoItemFilter<StreamInfoItem> filter) {
         checkServiceId(serviceId);
         return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.CHANNEL,
                 Single.fromCallable(() ->
-                        ChannelInfo.getInfo(NewPipe.getService(serviceId), url)));
+                        ChannelInfo.getInfo(NewPipe.getService(serviceId), url, filter)));
     }
 
-    public static Single<InfoItemsPage<StreamInfoItem>> getMoreChannelItems(final int serviceId,
-                                                                            final String url,
-                                                                            final Page nextPage) {
+    public static Single<InfoItemsPage<StreamInfoItem>> getMoreChannelItems(
+            final int serviceId,
+            final String url,
+            final Page nextPage,
+            final IInfoItemFilter<StreamInfoItem> filter) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
-                ChannelInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage));
+                ChannelInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage, filter));
     }
 
     public static Single<ListInfo<StreamInfoItem>> getFeedInfoFallbackToChannelInfo(
-            final int serviceId, final String url) {
+            final int serviceId, final String url, final IInfoItemFilter<StreamInfoItem> filter) {
         final Maybe<ListInfo<StreamInfoItem>> maybeFeedInfo = Maybe.fromCallable(() -> {
             final StreamingService service = NewPipe.getService(serviceId);
             final FeedExtractor feedExtractor = service.getFeedExtractor(url);
@@ -144,57 +153,71 @@ public final class ExtractorHelper {
                 return null;
             }
 
-            return FeedInfo.getInfo(feedExtractor);
+            return FeedInfo.getInfo(feedExtractor, filter);
         });
 
-        return maybeFeedInfo.switchIfEmpty(getChannelInfo(serviceId, url, true));
+        return maybeFeedInfo.switchIfEmpty(getChannelInfo(serviceId, url, true, filter));
     }
 
-    public static Single<CommentsInfo> getCommentsInfo(final int serviceId, final String url,
-                                                       final boolean forceLoad) {
+    public static Single<CommentsInfo> getCommentsInfo(
+            final int serviceId,
+            final String url,
+            final boolean forceLoad,
+            final IInfoItemFilter<CommentsInfoItem> filter) {
         checkServiceId(serviceId);
         return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.COMMENT,
                 Single.fromCallable(() ->
-                        CommentsInfo.getInfo(NewPipe.getService(serviceId), url)));
+                        CommentsInfo.getInfo(NewPipe.getService(serviceId), url, filter)));
     }
 
     public static Single<InfoItemsPage<CommentsInfoItem>> getMoreCommentItems(
             final int serviceId,
             final CommentsInfo info,
-            final Page nextPage) {
+            final Page nextPage,
+            final IInfoItemFilter<CommentsInfoItem> filter) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
-                CommentsInfo.getMoreItems(NewPipe.getService(serviceId), info, nextPage));
+                CommentsInfo.getMoreItems(NewPipe.getService(serviceId), info, nextPage, filter));
     }
 
-    public static Single<PlaylistInfo> getPlaylistInfo(final int serviceId,
-                                                       final String url,
-                                                       final boolean forceLoad) {
+    public static Single<PlaylistInfo> getPlaylistInfo(
+            final int serviceId,
+            final String url,
+            final boolean forceLoad,
+            final IInfoItemFilter<StreamInfoItem> filter) {
         checkServiceId(serviceId);
         return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.PLAYLIST,
                 Single.fromCallable(() ->
-                        PlaylistInfo.getInfo(NewPipe.getService(serviceId), url)));
+                        PlaylistInfo.getInfo(NewPipe.getService(serviceId), url, filter)));
     }
 
-    public static Single<InfoItemsPage<StreamInfoItem>> getMorePlaylistItems(final int serviceId,
-                                                                             final String url,
-                                                                             final Page nextPage) {
+    public static Single<InfoItemsPage<StreamInfoItem>> getMorePlaylistItems(
+            final int serviceId,
+            final String url,
+            final Page nextPage,
+            final IInfoItemFilter<StreamInfoItem> filter) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
-                PlaylistInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage));
+                PlaylistInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage, filter));
     }
 
-    public static Single<KioskInfo> getKioskInfo(final int serviceId, final String url,
-                                                 final boolean forceLoad) {
+    public static Single<KioskInfo> getKioskInfo(
+            final int serviceId,
+            final String url,
+            final boolean forceLoad,
+            final IInfoItemFilter<StreamInfoItem> filter) {
         return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.PLAYLIST,
-                Single.fromCallable(() -> KioskInfo.getInfo(NewPipe.getService(serviceId), url)));
+                Single.fromCallable(() -> KioskInfo.getInfo(
+                        NewPipe.getService(serviceId), url, filter)));
     }
 
-    public static Single<InfoItemsPage<StreamInfoItem>> getMoreKioskItems(final int serviceId,
-                                                                          final String url,
-                                                                          final Page nextPage) {
+    public static Single<InfoItemsPage<StreamInfoItem>> getMoreKioskItems(
+            final int serviceId,
+            final String url,
+            final Page nextPage,
+            final IInfoItemFilter<StreamInfoItem> filter) {
         return Single.fromCallable(() ->
-                KioskInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage));
+                KioskInfo.getMoreItems(NewPipe.getService(serviceId), url, nextPage, filter));
     }
 
     /*//////////////////////////////////////////////////////////////////////////

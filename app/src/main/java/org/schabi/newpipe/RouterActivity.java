@@ -643,7 +643,15 @@ public class RouterActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT)
                 .show();
 
-        disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, false)
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final boolean hideShorts = preferences.getBoolean(
+                getString(R.string.hide_shorts_key), false);
+
+        disposables.add(ExtractorHelper.getStreamInfo(
+                currentServiceId,
+                        currentUrl,
+                        false,
+                        infoItem -> !hideShorts || !infoItem.isShort())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -671,7 +679,15 @@ public class RouterActivity extends AppCompatActivity {
 
     @SuppressLint("CheckResult")
     private void openDownloadDialog() {
-        disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final boolean hideShorts = preferences.getBoolean(
+                getString(R.string.hide_shorts_key), false);
+
+        disposables.add(ExtractorHelper.getStreamInfo(
+                currentServiceId,
+                        currentUrl,
+                        true,
+                        infoItem -> !hideShorts || !infoItem.isShort())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
@@ -768,17 +784,32 @@ public class RouterActivity extends AppCompatActivity {
             Single<? extends Info> single = null;
             UserAction userAction = UserAction.SOMETHING_ELSE;
 
+            final SharedPreferences preferences = PreferenceManager
+                    .getDefaultSharedPreferences(this);
+            final boolean hideShorts = preferences.getBoolean(
+                    this.getString(R.string.hide_shorts_key), false);
+
             switch (choice.linkType) {
                 case STREAM:
-                    single = ExtractorHelper.getStreamInfo(choice.serviceId, choice.url, false);
+                    single = ExtractorHelper.getStreamInfo(
+                            choice.serviceId,
+                            choice.url,
+                            false,
+                            infoItem -> !hideShorts || !infoItem.isShort());
                     userAction = UserAction.REQUESTED_STREAM;
                     break;
                 case CHANNEL:
-                    single = ExtractorHelper.getChannelInfo(choice.serviceId, choice.url, false);
+                    single = ExtractorHelper.getChannelInfo(choice.serviceId,
+                            choice.url,
+                            false,
+                            infoItem -> !hideShorts || !infoItem.isShort());
                     userAction = UserAction.REQUESTED_CHANNEL;
                     break;
                 case PLAYLIST:
-                    single = ExtractorHelper.getPlaylistInfo(choice.serviceId, choice.url, false);
+                    single = ExtractorHelper.getPlaylistInfo(choice.serviceId,
+                            choice.url,
+                            false,
+                            infoItem -> !hideShorts || !infoItem.isShort());
                     userAction = UserAction.REQUESTED_PLAYLIST;
                     break;
             }

@@ -52,10 +52,16 @@ class FeedLoadManager(private val context: Context) {
     fun startLoading(
         groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
         ignoreOutdatedThreshold: Boolean = false,
+        force: Boolean = false
     ): Single<List<Notification<FeedUpdateInfo>>> {
         val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val useFeedExtractor = defaultSharedPreferences.getBoolean(
             context.getString(R.string.feed_use_dedicated_fetch_method_key),
+            false
+        )
+
+        val hideShorts = defaultSharedPreferences.getBoolean(
+            context.getString(R.string.hide_shorts_key),
             false
         )
 
@@ -71,18 +77,28 @@ class FeedLoadManager(private val context: Context) {
             OffsetDateTime.now(ZoneOffset.UTC).minusSeconds(thresholdOutdatedSeconds.toLong())
         }
 
-        /**
-         * subscriptions which have not been updated within the feed updated threshold
-         */
-        val outdatedSubscriptions = when (groupId) {
-            FeedGroupEntity.GROUP_ALL_ID -> feedDatabaseManager.outdatedSubscriptions(outdatedThreshold)
-            GROUP_NOTIFICATION_ENABLED -> feedDatabaseManager.outdatedSubscriptionsWithNotificationMode(
-                outdatedThreshold, NotificationMode.ENABLED
-            )
-            else -> feedDatabaseManager.outdatedSubscriptionsForGroup(groupId, outdatedThreshold)
+        val subscriptions = if (force) {
+            Flowable
+                .fromCallable {
+                    feedDatabaseManager.clear()
+                }
+                .flatMap {
+                    feedDatabaseManager.allSubscriptions()
+                }
+        } else {
+            /**
+             * subscriptions which have not been updated within the feed updated threshold
+             */
+            when (groupId) {
+                FeedGroupEntity.GROUP_ALL_ID -> feedDatabaseManager.outdatedSubscriptions(outdatedThreshold)
+                GROUP_NOTIFICATION_ENABLED -> feedDatabaseManager.outdatedSubscriptionsWithNotificationMode(
+                    outdatedThreshold, NotificationMode.ENABLED
+                )
+                else -> feedDatabaseManager.outdatedSubscriptionsForGroup(groupId, outdatedThreshold)
+            }
         }
 
-        return outdatedSubscriptions
+        return subscriptions
             .take(1)
             .doOnNext {
                 currentProgress.set(0)
@@ -110,7 +126,13 @@ class FeedLoadManager(private val context: Context) {
                             .getFeedInfoFallbackToChannelInfo(
                                 subscriptionEntity.serviceId,
                                 subscriptionEntity.url
-                            )
+                            ) {
+                                if (hideShorts) {
+                                    !it.isShort
+                                } else {
+                                    true
+                                }
+                            }
                             .onErrorReturn {
                                 error = it // store error, otherwise wrapped into RuntimeException
                                 throw it
@@ -122,7 +144,13 @@ class FeedLoadManager(private val context: Context) {
                                 subscriptionEntity.serviceId,
                                 subscriptionEntity.url,
                                 true
-                            )
+                            ) {
+                                if (hideShorts) {
+                                    !it.isShort
+                                } else {
+                                    true
+                                }
+                            }
                             .onErrorReturn {
                                 error = it // store error, otherwise wrapped into RuntimeException
                                 throw it

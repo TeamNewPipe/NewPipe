@@ -4,6 +4,7 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
@@ -212,12 +214,34 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
     @Override
     protected Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
-        return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextPage);
+        final Context context = getContext();
+        if (context == null) {
+            return ExtractorHelper.getMorePlaylistItems(
+                    serviceId, url, currentNextPage, infoItem -> true);
+        }
+        final SharedPreferences preferenceManager =
+                PreferenceManager.getDefaultSharedPreferences(getContext());
+        final boolean hideShorts =
+                preferenceManager.getBoolean(
+                        context.getString(R.string.hide_shorts_key), false);
+        return ExtractorHelper.getMorePlaylistItems(
+                serviceId, url, currentNextPage, infoItem -> !hideShorts || !infoItem.isShort());
     }
 
     @Override
     protected Single<PlaylistInfo> loadResult(final boolean forceLoad) {
-        return ExtractorHelper.getPlaylistInfo(serviceId, url, forceLoad);
+        final Context context = getContext();
+        if (context == null) {
+            return ExtractorHelper.getPlaylistInfo(
+                    serviceId, url, forceLoad, infoItem -> true);
+        }
+        final SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(context);
+        final boolean hideShorts =
+                sharedPreferences.getBoolean(
+                        context.getString(R.string.hide_shorts_key), false);
+        return ExtractorHelper.getPlaylistInfo(
+                serviceId, url, forceLoad, infoItem -> !hideShorts || !infoItem.isShort());
     }
 
     @Override

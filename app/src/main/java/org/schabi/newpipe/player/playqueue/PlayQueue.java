@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.extractor.IInfoItemFilter;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.player.playqueue.events.AppendEvent;
 import org.schabi.newpipe.player.playqueue.events.ErrorEvent;
 import org.schabi.newpipe.player.playqueue.events.InitEvent;
@@ -104,8 +106,10 @@ public abstract class PlayQueue implements Serializable {
 
     /**
      * Load partial queue in the background, does nothing if the queue is complete.
+     *
+     * @param filter
      */
-    public abstract void fetch();
+    public abstract void fetch(IInfoItemFilter<StreamInfoItem> filter);
 
     /*//////////////////////////////////////////////////////////////////////////
     // Readonly ops

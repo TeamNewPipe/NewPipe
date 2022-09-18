@@ -175,6 +175,8 @@
     <string name="show_age_restricted_content_summary">Show content possibly unsuitable for children because it has an age limit (like 18+)</string>
     <string name="youtube_restricted_mode_enabled_title">Turn on YouTube\'s \"Restricted Mode\"</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube provides a \"Restricted Mode\" which hides potentially mature content</string>
+    <string name="hide_shorts_title">Hide Shorts</string>
+    <string name="hide_shorts_summary">Prevent \"Shorts\" from appearing in the app (i.e. YouTube Shorts). Changing this setting will force any feeds to refresh. Currently only works for things like playlists and subscriptions, but not search results.</string>
     <string name="restricted_video">This video is age restricted.\n\nTurn on \"%1$s\" in the settings if you want to see it.</string>
     <string name="restricted_video_no_stream">This video is age-restricted.
 \nDue to new YouTube policies with age-restricted videos, Tubular cannot access any of its video streams and thus is unable to play it.</string>

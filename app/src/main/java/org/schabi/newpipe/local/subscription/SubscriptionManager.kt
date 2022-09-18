@@ -130,7 +130,10 @@ class SubscriptionManager(context: Context) {
      * about any one of them.
      */
     private fun rememberAllStreams(subscription: SubscriptionEntity): Completable {
-        return ExtractorHelper.getChannelInfo(subscription.serviceId, subscription.url, false)
+        return ExtractorHelper
+            .getChannelInfo(subscription.serviceId, subscription.url, false) {
+                true
+            }
             .map { channel -> channel.relatedItems.map { stream -> StreamEntity(stream) } }
             .flatMapCompletable { entities ->
                 Completable.fromAction {

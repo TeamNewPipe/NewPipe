@@ -863,12 +863,12 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         searchDisposable = ExtractorHelper.searchFor(serviceId,
                 searchString,
                 Arrays.asList(contentFilter),
+                infoItem -> true, // TODO: figure out how to filter shorts here
                 sortFilter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((searchResult, throwable) -> isLoading.set(false))
                 .subscribe(this::handleResult, this::onItemError);
-
     }
 
     @Override
@@ -885,6 +885,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 serviceId,
                 searchString,
                 asList(contentFilter),
+                infoItem -> true, // TODO: figure out how to filter shorts here
                 sortFilter,
                 nextPage)
                 .subscribeOn(Schedulers.io())

@@ -105,7 +105,8 @@ public class HistoryRecordManager {
                 final StreamInfo completeInfo = ExtractorHelper.getStreamInfo(
                         info.getServiceId(),
                         info.getUrl(),
-                        false
+                        false,
+                        infoItem -> true
                 )
                         .subscribeOn(Schedulers.io())
                         .blockingGet();

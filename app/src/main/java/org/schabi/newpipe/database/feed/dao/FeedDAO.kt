@@ -180,6 +180,13 @@ abstract class FeedDAO {
     @Query(
         """
         SELECT s.* FROM subscriptions s
+        """
+    )
+    abstract fun getAll(): Flowable<List<SubscriptionEntity>>
+
+    @Query(
+        """
+        SELECT s.* FROM subscriptions s
 
         INNER JOIN feed_group_subscription_join fgs
         ON s.uid = fgs.subscription_id AND fgs.group_id = :groupId

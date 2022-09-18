@@ -8,6 +8,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
@@ -20,6 +21,7 @@ import android.widget.SeekBar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -279,12 +281,15 @@ public final class PlayQueueActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     private OnScrollBelowItemsListener getQueueScrollListener() {
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final boolean hideShorts =
+                preferences.getBoolean(getString(R.string.hide_shorts_key), false);
         return new OnScrollBelowItemsListener() {
             @Override
             public void onScrolledDown(final RecyclerView recyclerView) {
                 if (player != null && player.getPlayQueue() != null
                         && !player.getPlayQueue().isComplete()) {
-                    player.getPlayQueue().fetch();
+                    player.getPlayQueue().fetch(infoItem -> !hideShorts || !infoItem.isShort());
                 } else {
                     queueControlBinding.playQueue.clearOnScrollListeners();
                 }

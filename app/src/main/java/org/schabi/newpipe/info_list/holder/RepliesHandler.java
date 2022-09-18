@@ -55,7 +55,8 @@ public class RepliesHandler {
 
         @Override
         public ListExtractor.InfoItemsPage<CommentsInfoItem> call() throws Exception {
-            return CommentsInfo.getMoreItems(parentCommentInfo, parentInfoItem.getReplies());
+            return CommentsInfo.getMoreItems(
+                    parentCommentInfo, parentInfoItem.getReplies(), infoItem -> true);
         }
     }
 
@@ -151,7 +152,8 @@ public class RepliesHandler {
         final Single<CommentsInfo> parentInfoSingle = ExtractorHelper.getCommentsInfo(
                 parentInfoItem.getServiceId(),
                 parentInfoItem.getUrl(),
-                false
+                false,
+                infoItem -> true
         );
 
         final SingleObserver<CommentsInfo> singleInfoRepliesInfoObserver

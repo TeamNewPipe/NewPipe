@@ -69,12 +69,13 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
 
     @Override
     protected Single<ListExtractor.InfoItemsPage<CommentsInfoItem>> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreCommentItems(serviceId, currentInfo, currentNextPage);
+        return ExtractorHelper.getMoreCommentItems(
+                serviceId, currentInfo, currentNextPage, infoItem -> true);
     }
 
     @Override
     protected Single<CommentsInfo> loadResult(final boolean forceLoad) {
-        return ExtractorHelper.getCommentsInfo(serviceId, url, forceLoad);
+        return ExtractorHelper.getCommentsInfo(serviceId, url, forceLoad, infoItem -> true);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

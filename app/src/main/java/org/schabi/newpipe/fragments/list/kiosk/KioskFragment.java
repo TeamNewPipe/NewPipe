@@ -1,5 +1,7 @@
 package org.schabi.newpipe.fragments.list.kiosk;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -141,13 +144,27 @@ public class KioskFragment extends BaseListInfoFragment<StreamInfoItem, KioskInf
 
     @Override
     public Single<KioskInfo> loadResult(final boolean forceReload) {
-        contentCountry = Localization.getPreferredContentCountry(requireContext());
-        return ExtractorHelper.getKioskInfo(serviceId, url, forceReload);
+        final Context context = requireContext();
+        contentCountry = Localization.getPreferredContentCountry(context);
+        final SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(context);
+        final boolean hideShorts =
+                sharedPreferences.getBoolean(
+                        context.getString(R.string.hide_shorts_key), false);
+        return ExtractorHelper.getKioskInfo(
+                serviceId, url, forceReload, infoItem -> !hideShorts || !infoItem.isShort());
     }
 
     @Override
     public Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreKioskItems(serviceId, url, currentNextPage);
+        final Context context = requireContext();
+        final SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(context);
+        final boolean hideShorts =
+                sharedPreferences.getBoolean(
+                        context.getString(R.string.hide_shorts_key), false);
+        return ExtractorHelper.getMoreKioskItems(
+                serviceId, url, currentNextPage, infoItem -> !hideShorts || !infoItem.isShort());
     }
 
     /*//////////////////////////////////////////////////////////////////////////

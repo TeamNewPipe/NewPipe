@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player.playqueue;
 
+import org.schabi.newpipe.extractor.IInfoItemFilter;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 
@@ -38,6 +39,6 @@ public final class SinglePlayQueue extends PlayQueue {
     }
 
     @Override
-    public void fetch() {
+    public void fetch(final IInfoItemFilter<StreamInfoItem> filter) {
     }
 }
