@@ -80,13 +80,14 @@ public class SuggestionListAdapter
         @Override
         public boolean areItemsTheSame(@NonNull final SuggestionItem oldItem,
                                        @NonNull final SuggestionItem newItem) {
-            return oldItem.query.equals(newItem.query);
+            return oldItem.fromHistory == newItem.fromHistory
+                    && oldItem.query.equals(newItem.query);
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull final SuggestionItem oldItem,
                                           @NonNull final SuggestionItem newItem) {
-            return oldItem.equals(newItem);
+            return true; // items' contents never change; the list of items themselves does
         }
     }
 }
