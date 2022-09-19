@@ -307,7 +307,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         MenuItemCompat.setTooltipText(
             menuItem,
             getString(
-                if (showPlayedItems)
+                if (showFutureItems)
                     R.string.feed_toggle_hide_future_items
                 else
                     R.string.feed_toggle_show_future_items
