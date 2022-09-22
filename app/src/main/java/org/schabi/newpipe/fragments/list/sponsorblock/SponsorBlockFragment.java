@@ -80,6 +80,10 @@ public class SponsorBlockFragment
         currentPlayer = player;
         currentPlayQueue = playQueue;
 
+        if (binding == null) {
+            return;
+        }
+
         binding.skippingIsEnabledSwitch.setOnCheckedChangeListener(null);
         binding.channelIsWhitelistedSwitch.setOnCheckedChangeListener(null);
         binding.skippingIsEnabledSwitch
