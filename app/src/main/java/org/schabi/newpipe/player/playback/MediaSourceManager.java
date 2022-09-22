@@ -1,20 +1,21 @@
 package org.schabi.newpipe.player.playback;
 
+import static org.schabi.newpipe.player.mediasource.FailedMediaSource.MediaSourceResolutionException;
+import static org.schabi.newpipe.player.mediasource.FailedMediaSource.StreamInfoLoadException;
+import static org.schabi.newpipe.player.playqueue.PlayQueue.DEBUG;
+
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.ArraySet;
-import androidx.preference.PreferenceManager;
 
 import com.google.android.exoplayer2.source.MediaSource;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
 import org.schabi.newpipe.player.mediasource.FailedMediaSource;
@@ -27,6 +28,8 @@ import org.schabi.newpipe.player.playqueue.events.MoveEvent;
 import org.schabi.newpipe.player.playqueue.events.PlayQueueEvent;
 import org.schabi.newpipe.player.playqueue.events.RemoveEvent;
 import org.schabi.newpipe.player.playqueue.events.ReorderEvent;
+import org.schabi.newpipe.util.FilterOptions;
+import org.schabi.newpipe.util.FilterUtils;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.SponsorBlockUtils;
 
@@ -44,10 +47,6 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.internal.subscriptions.EmptySubscription;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.reactivex.rxjava3.subjects.PublishSubject;
-
-import static org.schabi.newpipe.player.mediasource.FailedMediaSource.MediaSourceResolutionException;
-import static org.schabi.newpipe.player.mediasource.FailedMediaSource.StreamInfoLoadException;
-import static org.schabi.newpipe.player.playqueue.PlayQueue.DEBUG;
 
 public class MediaSourceManager {
     @NonNull
@@ -285,12 +284,9 @@ public class MediaSourceManager {
 
         if (!isPlayQueueReady()) {
             maybeBlock();
-            final SharedPreferences preferences =
-                    PreferenceManager.getDefaultSharedPreferences(context);
-            final boolean hideShorts =
-                    preferences.getBoolean(
-                            context.getString(R.string.hide_shorts_key), false);
-            playQueue.fetch(infoItem -> !hideShorts || !infoItem.isShort());
+            final FilterOptions filterOptions = FilterOptions.fromPreferences(context);
+            playQueue.fetch(infoItem ->
+                    FilterUtils.filter(infoItem, filterOptions));
         }
         playQueueReactor.request(1);
     }

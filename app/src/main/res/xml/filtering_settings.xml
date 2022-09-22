@@ -1,0 +1,56 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="Video Filtering">
+    <Preference
+        android:persistent="false"
+        android:selectable="false"
+        android:summary="@string/filtering_summary"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:summary="foo"
+        android:title="Simple Filtering">
+        <EditTextPreference
+            android:key="@string/simple_video_title_filter_key"
+            android:summary="@string/simple_video_title_filter_summary"
+            android:title="@string/simple_video_title_filter_title"
+            app:iconSpaceReserved="false" />
+        <EditTextPreference
+            android:key="@string/simple_uploader_name_filter_key"
+            android:summary="@string/simple_uploader_name_filter_summary"
+            android:title="@string/simple_uploader_name_filter_title"
+            app:iconSpaceReserved="false" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/hide_shorts_key"
+            android:summary="@string/hide_shorts_summary"
+            android:title="@string/hide_shorts_title"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="Advanced Filtering">
+        <EditTextPreference
+            android:key="@string/regex_video_title_filter_key"
+            android:summary="@string/regex_video_title_filter_summary"
+            android:title="@string/regex_video_title_filter_title"
+            app:iconSpaceReserved="false" />
+        <EditTextPreference
+            android:key="@string/regex_uploader_name_filter_key"
+            android:summary="@string/regex_uploader_name_filter_summary"
+            android:title="@string/regex_uploader_name_filter_title"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout">
+        <Preference
+            android:key="@string/reset_video_filters_key"
+            android:title="Reset Filters"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -65,14 +65,6 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
-    <SwitchPreferenceCompat
-        android:defaultValue="false"
-        android:key="@string/hide_shorts_key"
-        android:summary="@string/hide_shorts_summary"
-        android:title="@string/hide_shorts_title"
-        app:singleLineTitle="false"
-        app:iconSpaceReserved="false" />
-
     <MultiSelectListPreference
         android:key="@string/show_search_suggestions_key"
         android:summary="@string/show_search_suggestions_summary"

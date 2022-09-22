@@ -444,6 +444,13 @@
     <string name="ryd_enable_key" translatable="false">ryd_enable</string>
     <string name="ryd_api_url_key" translatable="false">ryd_api_url</string>
 
+    <!-- Video Filtering -->
+    <string name="reset_video_filters_key" translatable="false">reset_video_filters</string>
+    <string name="simple_video_title_filter_key" translatable="false">simple_video_title_filter</string>
+    <string name="simple_uploader_name_filter_key" translatable="false">simple_uploader_name_filter</string>
+    <string name="regex_video_title_filter_key" translatable="false">regex_video_title_filter</string>
+    <string name="regex_uploader_name_filter_key" translatable="false">regex_uploader_name_filter</string>
+
     <!-- Extras -->
     <string name="enable_local_player_key" translatable="false">enable_local_player</string>
     <string name="force_auto_fullscreen_key" translatable="false">force_auto_fullscreen</string>

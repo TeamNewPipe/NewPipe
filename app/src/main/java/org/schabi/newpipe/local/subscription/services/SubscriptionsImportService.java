@@ -23,7 +23,6 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
 import static org.schabi.newpipe.streams.io.StoredFileHelper.DEFAULT_MIME;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
@@ -31,7 +30,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.preference.PreferenceManager;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -50,6 +48,8 @@ import org.schabi.newpipe.streams.io.SharpInputStream;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.FilterOptions;
+import org.schabi.newpipe.util.FilterUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -180,11 +180,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
     private void startImport() {
         showToast(R.string.import_ongoing);
 
-        final SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(this);
-
-        final boolean hideShorts =
-                sharedPreferences.getBoolean(getString(R.string.hide_shorts_key), false);
+        final FilterOptions filterOptions = FilterOptions.fromPreferences(this);
 
         Flowable<List<SubscriptionItem>> flowable = null;
         switch (currentMode) {
@@ -220,7 +216,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
                         return Notification.createOnNext(ExtractorHelper
                                 .getChannelInfo(subscriptionItem.getServiceId(),
                                         subscriptionItem.getUrl(), true,
-                                        infoItem -> !hideShorts || !infoItem.isShort())
+                                        infoItem -> FilterUtils.filter(infoItem, filterOptions))
                                 .blockingGet());
                     } catch (final Throwable e) {
                         return Notification.createOnError(e);

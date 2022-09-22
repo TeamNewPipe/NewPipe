@@ -4,7 +4,6 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateHideRecyclerViewAllowingScrolling;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,7 +17,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.preference.PreferenceManager;
 
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
@@ -49,6 +47,8 @@ import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.FilterOptions;
+import org.schabi.newpipe.util.FilterUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
@@ -219,13 +219,10 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
             return ExtractorHelper.getMorePlaylistItems(
                     serviceId, url, currentNextPage, infoItem -> true);
         }
-        final SharedPreferences preferenceManager =
-                PreferenceManager.getDefaultSharedPreferences(getContext());
-        final boolean hideShorts =
-                preferenceManager.getBoolean(
-                        context.getString(R.string.hide_shorts_key), false);
+        final FilterOptions filterOptions = FilterOptions.fromPreferences(context);
         return ExtractorHelper.getMorePlaylistItems(
-                serviceId, url, currentNextPage, infoItem -> !hideShorts || !infoItem.isShort());
+                serviceId, url, currentNextPage, infoItem ->
+                        FilterUtils.filter(infoItem, filterOptions));
     }
 
     @Override
@@ -235,13 +232,10 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
             return ExtractorHelper.getPlaylistInfo(
                     serviceId, url, forceLoad, infoItem -> true);
         }
-        final SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(context);
-        final boolean hideShorts =
-                sharedPreferences.getBoolean(
-                        context.getString(R.string.hide_shorts_key), false);
+        final FilterOptions filterOptions = FilterOptions.fromPreferences(context);
         return ExtractorHelper.getPlaylistInfo(
-                serviceId, url, forceLoad, infoItem -> !hideShorts || !infoItem.isShort());
+                serviceId, url, forceLoad, infoItem ->
+                        FilterUtils.filter(infoItem, filterOptions));
     }
 
     @Override

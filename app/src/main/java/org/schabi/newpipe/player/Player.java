@@ -118,6 +118,8 @@ import org.schabi.newpipe.player.ui.PlayerUiList;
 import org.schabi.newpipe.player.ui.PopupPlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.DeviceUtils;
+import org.schabi.newpipe.util.FilterOptions;
+import org.schabi.newpipe.util.FilterUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;

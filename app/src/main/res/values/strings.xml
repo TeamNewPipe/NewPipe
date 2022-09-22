@@ -175,8 +175,6 @@
     <string name="show_age_restricted_content_summary">Show content possibly unsuitable for children because it has an age limit (like 18+)</string>
     <string name="youtube_restricted_mode_enabled_title">Turn on YouTube\'s \"Restricted Mode\"</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube provides a \"Restricted Mode\" which hides potentially mature content</string>
-    <string name="hide_shorts_title">Hide Shorts</string>
-    <string name="hide_shorts_summary">Prevent \"Shorts\" from appearing in the app (i.e. YouTube Shorts). Changing this setting will force any feeds to refresh. Currently only works for things like playlists and subscriptions, but not search results.</string>
     <string name="restricted_video">This video is age restricted.\n\nTurn on \"%1$s\" in the settings if you want to see it.</string>
     <string name="restricted_video_no_stream">This video is age-restricted.
 \nDue to new YouTube policies with age-restricted videos, Tubular cannot access any of its video streams and thus is unable to play it.</string>
@@ -847,6 +845,22 @@
     <string name="ryd_privacy_policy_text">RYD Security FAQ</string>
     <string name="ryd_home_page_url">https://returnyoutubedislike.com/</string>
     <string name="ryd_security_faq_url">https://github.com/Anarios/return-youtube-dislike/blob/main/Docs/SECURITY-FAQ.md</string>
+    <!-- Video Filtering -->
+    <string name="filtering_summary">Here you can customize how videos are hidden from the app.\n\nIt is recommended that you refresh your feeds when prompted, otherwise videos that would normally be hidden could remain in your feeds.</string>
+    <string name="hide_shorts_title">Hide Shorts</string>
+    <string name="hide_shorts_summary">Hide videos that are considered \"Shorts\" (i.e. YouTube Shorts).</string>
+    <string name="simple_video_title_filter_title">Keywords - Video Titles</string>
+    <string name="simple_video_title_filter_summary">Hide videos with titles containing the specified keywords. Keywords are separated by commas.</string>
+    <string name="simple_uploader_name_filter_title">Keywords - Uploader Names</string>
+    <string name="simple_uploader_name_filter_summary">Hide videos with uploader names (a.k.a. channel names) that contain the specified keywords. Keywords are separated by commas.</string>
+    <string name="regex_video_title_filter_title">Regex - Video Titles</string>
+    <string name="regex_video_title_filter_summary">Hide videos with titles matching the specified regular expression (Java syntax).</string>
+    <string name="regex_uploader_name_filter_title">Regex - Uploader Names</string>
+    <string name="regex_uploader_name_filter_summary">Hide videos with uploader names (a.k.a. channel names) that match the specified regular expression  (Java syntax).</string>
+    <string name="filter_settings_changed_prompt_title">Filter settings changed</string>
+    <string name="filter_settings_changed_prompt_message">Would you like to clear and refresh your feeds?</string>
+    <string name="filter_settings_reset_prompt_message">Are you sure you want to clear all filters?</string>
+    <string name="filter_settings_reset_toast">Filters reset</string>
     <!-- Extras -->
     <string name="extras">Extras</string>
     <string name="extras_todo_summary">Tweaks, workarounds, and other miscellaneous settings belong here.</string>

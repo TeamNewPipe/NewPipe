@@ -54,6 +54,7 @@ import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.search.SearchInfo;
 import org.schabi.newpipe.extractor.services.peertube.linkHandler.PeertubeSearchQueryHandlerFactory;
 import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubeSearchQueryHandlerFactory;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.ktx.AnimationType;
@@ -63,6 +64,8 @@ import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.FilterOptions;
+import org.schabi.newpipe.util.FilterUtils;
 import org.schabi.newpipe.util.KeyboardUtil;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -860,10 +863,18 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (searchDisposable != null) {
             searchDisposable.dispose();
         }
+
+        final FilterOptions filterOptions = FilterOptions.fromPreferences(getContext());
+
         searchDisposable = ExtractorHelper.searchFor(serviceId,
                 searchString,
                 Arrays.asList(contentFilter),
-                infoItem -> true, // TODO: figure out how to filter shorts here
+                infoItem -> {
+                    if (infoItem instanceof StreamInfoItem) {
+                        return FilterUtils.filter((StreamInfoItem) infoItem, filterOptions);
+                    }
+                    return true;
+                },
                 sortFilter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -881,11 +892,19 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         if (searchDisposable != null) {
             searchDisposable.dispose();
         }
+
+        final FilterOptions filterOptions = FilterOptions.fromPreferences(getContext());
+
         searchDisposable = ExtractorHelper.getMoreSearchItems(
                 serviceId,
                 searchString,
                 asList(contentFilter),
-                infoItem -> true, // TODO: figure out how to filter shorts here
+                        infoItem -> {
+                            if (infoItem instanceof StreamInfoItem) {
+                                return FilterUtils.filter((StreamInfoItem) infoItem, filterOptions);
+                            }
+                            return true;
+                        },
                 sortFilter,
                 nextPage)
                 .subscribeOn(Schedulers.io())

@@ -5,7 +5,6 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.ktx.ViewUtils.animateBackgroundColor;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -23,7 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
-import androidx.preference.PreferenceManager;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.jakewharton.rxbinding4.view.RxView;
@@ -49,6 +47,8 @@ import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.FilterOptions;
+import org.schabi.newpipe.util.FilterUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
@@ -444,13 +444,10 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
             return ExtractorHelper.getMoreChannelItems(
                     serviceId, url, currentNextPage, infoItem -> true);
         }
-        final SharedPreferences preferenceManager =
-                PreferenceManager.getDefaultSharedPreferences(getContext());
-        final boolean hideShorts =
-                preferenceManager.getBoolean(
-                        context.getString(R.string.hide_shorts_key), false);
+        final FilterOptions filterOptions = FilterOptions.fromPreferences(getContext());
         return ExtractorHelper.getMoreChannelItems(
-                serviceId, url, currentNextPage, infoItem -> !hideShorts || !infoItem.isShort());
+                serviceId, url, currentNextPage, infoItem ->
+                        FilterUtils.filter(infoItem, filterOptions));
     }
 
     @Override
@@ -459,13 +456,9 @@ public class ChannelFragment extends BaseListInfoFragment<StreamInfoItem, Channe
         if (context == null) {
             return ExtractorHelper.getChannelInfo(serviceId, url, forceLoad, infoItem -> true);
         }
-        final SharedPreferences preferenceManager =
-                PreferenceManager.getDefaultSharedPreferences(getContext());
-        final boolean hideShorts =
-                preferenceManager.getBoolean(
-                        context.getString(R.string.hide_shorts_key), false);
+        final FilterOptions filterOptions = FilterOptions.fromPreferences(getContext());
         return ExtractorHelper.getChannelInfo(
-                serviceId, url, forceLoad, infoItem -> !hideShorts || !infoItem.isShort());
+                serviceId, url, forceLoad, infoItem -> FilterUtils.filter(infoItem, filterOptions));
     }
 
     /*//////////////////////////////////////////////////////////////////////////

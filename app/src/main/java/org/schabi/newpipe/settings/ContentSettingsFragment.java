@@ -23,15 +23,12 @@ import androidx.preference.PreferenceManager;
 import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.feed.model.FeedGroupEntity;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
-import org.schabi.newpipe.local.feed.service.FeedLoadService;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
-import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.ZipHelper;
@@ -98,19 +95,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     getContext()
             );
 
-            return true;
-        });
-
-        final Preference hideShortsPreference = requirePreference(R.string.hide_shorts_key);
-        hideShortsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            InfoCache.getInstance().clearCache();
-            final Intent intent =
-                    new Intent(requireContext(), FeedLoadService.class);
-            intent.putExtra(
-                    FeedLoadService.EXTRA_GROUP_ID, FeedGroupEntity.GROUP_ALL_ID);
-            intent.putExtra(
-                    FeedLoadService.FORCE, true);
-            requireActivity().startService(intent);
             return true;
         });
 

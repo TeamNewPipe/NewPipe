@@ -1,7 +1,6 @@
 package org.schabi.newpipe.fragments.list.kiosk;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,7 +11,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
@@ -27,6 +25,8 @@ import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.FilterOptions;
+import org.schabi.newpipe.util.FilterUtils;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
 
@@ -146,25 +146,18 @@ public class KioskFragment extends BaseListInfoFragment<StreamInfoItem, KioskInf
     public Single<KioskInfo> loadResult(final boolean forceReload) {
         final Context context = requireContext();
         contentCountry = Localization.getPreferredContentCountry(context);
-        final SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(context);
-        final boolean hideShorts =
-                sharedPreferences.getBoolean(
-                        context.getString(R.string.hide_shorts_key), false);
+        final FilterOptions filterOptions = FilterOptions.fromPreferences(context);
         return ExtractorHelper.getKioskInfo(
-                serviceId, url, forceReload, infoItem -> !hideShorts || !infoItem.isShort());
+                serviceId, url, forceReload, infoItem ->
+                        FilterUtils.filter(infoItem, filterOptions));
     }
 
     @Override
     public Single<ListExtractor.InfoItemsPage<StreamInfoItem>> loadMoreItemsLogic() {
-        final Context context = requireContext();
-        final SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(context);
-        final boolean hideShorts =
-                sharedPreferences.getBoolean(
-                        context.getString(R.string.hide_shorts_key), false);
+        final FilterOptions filterOptions = FilterOptions.fromPreferences(requireContext());
         return ExtractorHelper.getMoreKioskItems(
-                serviceId, url, currentNextPage, infoItem -> !hideShorts || !infoItem.isShort());
+                serviceId, url, currentNextPage, infoItem ->
+                        FilterUtils.filter(infoItem, filterOptions));
     }
 
     /*//////////////////////////////////////////////////////////////////////////

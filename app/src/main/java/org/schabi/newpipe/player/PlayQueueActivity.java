@@ -3,12 +3,12 @@ package org.schabi.newpipe.player;
 import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
+import static org.schabi.newpipe.util.SponsorBlockUtils.markSegments;
 
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
@@ -21,7 +21,6 @@ import android.widget.SeekBar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,13 +40,13 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemBuilder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
+import org.schabi.newpipe.util.FilterOptions;
+import org.schabi.newpipe.util.FilterUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
-
-import static org.schabi.newpipe.util.SponsorBlockUtils.markSegments;
 
 public final class PlayQueueActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,
@@ -281,15 +280,14 @@ public final class PlayQueueActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     private OnScrollBelowItemsListener getQueueScrollListener() {
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        final boolean hideShorts =
-                preferences.getBoolean(getString(R.string.hide_shorts_key), false);
+        final FilterOptions filterOptions = FilterOptions.fromPreferences(this);
         return new OnScrollBelowItemsListener() {
             @Override
             public void onScrolledDown(final RecyclerView recyclerView) {
                 if (player != null && player.getPlayQueue() != null
                         && !player.getPlayQueue().isComplete()) {
-                    player.getPlayQueue().fetch(infoItem -> !hideShorts || !infoItem.isShort());
+                    player.getPlayQueue().fetch(infoItem ->
+                            FilterUtils.filter(infoItem, filterOptions));
                 } else {
                     queueControlBinding.playQueue.clearOnScrollListeners();
                 }

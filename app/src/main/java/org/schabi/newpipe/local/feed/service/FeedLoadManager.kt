@@ -18,6 +18,8 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.util.ExtractorHelper
+import org.schabi.newpipe.util.FilterOptions
+import org.schabi.newpipe.util.FilterUtils
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.util.concurrent.atomic.AtomicBoolean
@@ -60,10 +62,7 @@ class FeedLoadManager(private val context: Context) {
             false
         )
 
-        val hideShorts = defaultSharedPreferences.getBoolean(
-            context.getString(R.string.hide_shorts_key),
-            false
-        )
+        val filterOptions = FilterOptions.fromPreferences(context)
 
         val outdatedThreshold = if (ignoreOutdatedThreshold) {
             OffsetDateTime.now(ZoneOffset.UTC)
@@ -127,11 +126,7 @@ class FeedLoadManager(private val context: Context) {
                                 subscriptionEntity.serviceId,
                                 subscriptionEntity.url
                             ) {
-                                if (hideShorts) {
-                                    !it.isShort
-                                } else {
-                                    true
-                                }
+                                FilterUtils.filter(it, filterOptions)
                             }
                             .onErrorReturn {
                                 error = it // store error, otherwise wrapped into RuntimeException
@@ -145,11 +140,7 @@ class FeedLoadManager(private val context: Context) {
                                 subscriptionEntity.url,
                                 true
                             ) {
-                                if (hideShorts) {
-                                    !it.isShort
-                                } else {
-                                    true
-                                }
+                                FilterUtils.filter(it, filterOptions)
                             }
                             .onErrorReturn {
                                 error = it // store error, otherwise wrapped into RuntimeException
