@@ -39,6 +39,7 @@
     <color name="dark_card_item_background_color">#313131</color>
     <color name="dark_card_item_contrast_color">#474747</color>
     <color name="dark_border_color">#33FFFFFF</color>
+    <color name="dark_bottom_sheet_color">#424242</color>
 
     <!-- Black Theme -->
     <color name="black_background_color">#000000</color>
@@ -48,6 +49,7 @@
     <color name="black_card_item_background_color">#0F0F0F</color>
     <color name="black_card_item_contrast_color">#202020</color>
     <color name="black_border_color">#25FFFFFF</color>
+    <color name="black_bottom_sheet_color">#121212</color>
 
     <!-- Miscellaneous -->
     <color name="queue_background_color">@color/dark_queue_background_color</color>
