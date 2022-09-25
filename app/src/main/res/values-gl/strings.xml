@@ -548,8 +548,8 @@
     <string name="notification_action_2_title">Terceiro botón de acción</string>
     <string name="notification_action_3_title">Cuarto botón de acción</string>
     <string name="notification_action_4_title">Quinto botón de acción</string>
-    <string name="notification_scale_to_square_image_summary">Escalar a miniatura do vídeo amosado na notificación da relación de aspecto 16:9 a 1:1 (pode intruducir distorsións)</string>
-    <string name="notification_scale_to_square_image_title">Escala miniatura á relación de aspecto 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Cortar a miniatura do vídeo amosado na notificación da relación de aspecto 16:9 a 1:1</string>
+    <string name="notification_scale_to_square_image_title">Cortar miniatura á relación de aspecto 1:1</string>
     <string name="off">Apagado</string>
     <string name="tablet_mode_title">Modo tableta</string>
     <string name="open_website_license">Abrir sitio Web</string>
@@ -657,8 +657,7 @@
     <string name="start_main_player_fullscreen_title">Inciar reprodutor principal en pantalla completa</string>
     <string name="start_main_player_fullscreen_summary">Non iniciar vídeos no reprodutor mini, mais cambiar a pantalla completa directamente, se a rotación estiver bloqueada. Aínda pode acceder o reprodutor mini ao saír da pantalla completa</string>
     <string name="main_page_content_swipe_remove">Deslice os elementos para removelos</string>
-    <string name="no_appropriate_file_manager_message">Non foi atopado ningún xestor de arquivos adecuado para esta acción.
-\nPor favor instale un ou tente deshabilitar \'%s\' nas opcións de descarregamento.</string>
+    <string name="no_appropriate_file_manager_message">Non se atopou ningún xestor de ficheiros axeitado para esta acción. Instala un xestor de ficheiros ou intenta desactivar \'%s\' na configuración de descarga</string>
     <string name="no_appropriate_file_manager_message_android_10">Non foi atopado ningún xestor de arquivos adecuado para esta acción.
 \nPor favor instale un compatíbel co Sistema de Acceso ao Almacenamento.</string>
     <string name="detail_heart_img_view_description">Valorado polo creador</string>
@@ -678,7 +677,6 @@
     <string name="processing_may_take_a_moment">Procesando... Pode devagar un momento</string>
     <string name="create_error_notification">Crear unha notificación de erro</string>
     <string name="show_image_indicators_summary">Amosar fitas coloridas de Picasso na cima das imaxes que indican a súa fonte: vermello para a rede, azul para o disco e verde para a memoria</string>
-    <string name="downloads_storage_use_saf_summary_api_19">O \'Sistema de Acceso ao almacenamento\' non está soportado en Android KitKat e anteriores</string>
     <string name="feed_new_items">Novos elementos</string>
     <string name="progressive_load_interval_exoplayer_default">Predefinido do ExoPlayer</string>
     <string name="show_crash_the_player_title">Amosar \"Travar o reprodutor\"</string>
@@ -710,4 +708,13 @@
     <string name="notifications_disabled">As notificacións están desactivadas</string>
     <string name="get_notified">Recibir notificacións</string>
     <string name="you_successfully_subscribed">Agora está subscrito a esta canle</string>
+    <string name="streams_not_yet_supported_removed">Emisións non soportadas polo descarregador non son mostradas</string>
+    <string name="select_quality_external_players">Seleccione a calidade para reprodutores externos</string>
+    <string name="unknown_format">Formato descoñecido</string>
+    <string name="unknown_quality">Calidade descoñecida</string>
+    <string name="progressive_load_interval_title">Tamaño do intervalo de carregamento da reprodución</string>
+    <string name="selected_stream_external_player_not_supported">As emisións seleccionadas non son soportadas polos reprodutores externos</string>
+    <string name="no_video_streams_available_for_external_players">Non hai emisións de vídeo dispoñíbeis para reprodutores externos</string>
+    <string name="feed_toggle_show_future_items">Ver futuros vídeos</string>
+    <string name="no_audio_streams_available_for_external_players">Non hai emisións de audio dispoñíbeis para reprodutores externos</string>
 </resources>

@@ -85,7 +85,7 @@
     <string name="default_video_format_title">預設影片檔案格式</string>
     <string name="black_theme_title">純黑</string>
     <string name="popup_playing_toast">浮面播緊</string>
-    <string name="all">所有</string>
+    <string name="all">魂＆我</string>
     <string name="app_ui_crash">App/界面閃退</string>
     <string name="info_labels">經過：\\n請求：\\n內容語言：\\n內容國家：\\nApp 語言：\\n服務：\\nGMT 時間：\\n封裝：\\n版本：\\nOS 版本：</string>
     <string name="short_thousand">千</string>
@@ -142,12 +142,12 @@
     <string name="local_search_suggestions">本機搜尋建議</string>
     <string name="remote_search_suggestions">遠端搜尋建議</string>
     <string name="enable_search_history_summary">喺本機儲存搵過嘅查詢</string>
-    <string name="enable_watch_history_title">睇過嘅紀錄</string>
+    <string name="enable_watch_history_title">睇過有紀錄</string>
     <string name="enable_playback_resume_title">恢復播放</string>
     <string name="enable_playback_resume_summary">返返最後播放到去嗰個位</string>
     <string name="enable_playback_state_lists_title">清單度睇到播到去邊</string>
-    <string name="notification_scale_to_square_image_title">縮圖放到去 1:1 長寬比</string>
-    <string name="notification_scale_to_square_image_summary">顯示喺通知嘅影片縮圖由 16:9 放到去 1:1 長寬比 (話唔定會鬆郁矇)</string>
+    <string name="notification_scale_to_square_image_title">縮圖以 1:1 長寬比框起</string>
+    <string name="notification_scale_to_square_image_summary">顯示喺通知嘅影片縮圖由 16:9 剪成 1:1 長寬比</string>
     <string name="notification_colorize_title">通知色彩化</string>
     <string name="notification_colorize_summary">等 Android 根據縮圖嘅主色自訂通知嘅顏色 (注意：唔係部部機都用得)</string>
     <string name="night_theme_title">夜色</string>
@@ -200,7 +200,7 @@
     <string name="switch_to_popup">撈起去浮面</string>
     <string name="import_data_title">匯入資料庫</string>
     <string name="start_main_player_fullscreen_title">主播放器用全螢幕開啟</string>
-    <string name="start_main_player_fullscreen_summary">如果自動旋轉鎖定，開啟影片嘅時候唔用袖珍播放器就直接飛去全螢幕模式。您仍可結束全螢幕返返去袖珍播放器</string>
+    <string name="start_main_player_fullscreen_summary">開啟影片嘅時候唔用袖珍播放器就直接飛去全螢幕模式，如果自動旋轉鎖定嘅話。您仍可結束全螢幕返返去袖珍播放器</string>
     <string name="unsupported_url_dialog_message">認唔出呢個 URL。要唔要用另一個 app 開？</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube 提供嘅「嚴格篩選模式」可以過濾潛在嘅成人內容</string>
     <string name="show_age_restricted_content_summary">有年齡限制 (例如 18+) 故可能兒童不宜嘅內容都照顯示</string>
@@ -308,7 +308,7 @@
     <string name="missions_header_finished">完成咗</string>
     <string name="no_videos">無影片</string>
     <string name="video_player">影片播放器</string>
-    <string name="wifi_only">僅限用 Wi-Fi 嘅時候</string>
+    <string name="wifi_only">淨係用 Wi-Fi 嗰陣</string>
     <string name="high_quality_larger">高畫質 (大格啲)</string>
     <string name="no_subscribers">無訂閱者</string>
     <plurals name="subscribers">
@@ -322,7 +322,7 @@
     <string name="more_than_100_videos">100+ 部影片</string>
     <string name="infinite_videos">∞ 部影片</string>
     <string name="comments_are_disabled">未開放留言</string>
-    <string name="create">建立</string>
+    <string name="create">加新</string>
     <string name="no_dir_yet">未設定下載資料夾，請立即揀選預設嘅下載資料夾</string>
     <string name="one_item_deleted">刪除咗 1 個項目。</string>
     <string name="recaptcha_solve">執執佢</string>
@@ -394,7 +394,7 @@
     <string name="settings_category_downloads_title">下載</string>
     <string name="donation_title">課金</string>
     <string name="subscriptions_export_unsuccessful">匯出唔到訂閱</string>
-    <string name="caption_setting_description">修改播放器字幕啲字嘅大細同背景款式。要重新開過個 app 先會生效</string>
+    <string name="caption_setting_description">修改播放器字幕大細同背景款式。要重新開過個 app 先會生效</string>
     <string name="subtitle_activity_recaptcha">執好就撳一下「搞掂」</string>
     <string name="mute">靜音</string>
     <string name="processing_may_take_a_moment">處理緊… 可能要等等</string>
@@ -466,7 +466,7 @@
     <string name="start_here_on_background">喺幕後開始播放</string>
     <string name="error_insufficient_storage">部機冇晒位</string>
     <string name="max_retry_msg">頂櫳重試幾多次</string>
-    <string name="pause_downloads_on_mobile_desc">若然有機會用到流動數據嘅時候，或者用得著，雖則有啲下載或者冇得暫停</string>
+    <string name="pause_downloads_on_mobile_desc">若然有機會用到流動數據嘅時候，可能會用得著，雖則有啲下載或者冇得暫停</string>
     <string name="enable_queue_limit">輪住下載</string>
     <string name="metadata_privacy_internal">內部</string>
     <string name="metadata_privacy_private">私人</string>
@@ -503,9 +503,9 @@
     <string name="feed_toggle_show_played_items">顯示睇過嘅項目</string>
     <string name="service_provides_reason">%s 話理由如下：</string>
     <string name="no_appropriate_file_manager_message">搵唔到合適嘅檔案總管進行呢個動作。
-\n請安裝一個檔案管理程式，又或者試下喺下載設定度停用「%s」。</string>
+\n請安裝一個檔案管理程式，又或者試下喺下載設定度停用「%s」</string>
     <string name="no_appropriate_file_manager_message_android_10">搵唔到合適嘅檔案總管進行呢個動作。
-\n請安裝一個與儲存空間存取框架兼容嘅檔案管理程式。</string>
+\n請安裝一個與儲存空間存取框架兼容嘅檔案管理程式</string>
     <string name="georestricted_content">呢部內容限區，喺您所在國家未有提供。</string>
     <string name="soundcloud_go_plus_content">呢首 (至少喺您所在國家而言) 係 SoundCloud Go+ 單曲，因此 NewPipe 未能串流或下載。</string>
     <string name="private_content">呢部內容屬於私人，因此 NewPipe 未能串流或下載。</string>
@@ -563,7 +563,6 @@
     <string name="preferred_open_action_settings_summary">預設開啟內容嘅時候做咩好 — %s</string>
     <string name="unhook_checkbox">脫鈎 (聲音可能會失真)</string>
     <string name="playback_step">飛前一格</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Android KitKat 以及樓下唔支援「儲存空間存取框架」</string>
     <string name="no_playlist_bookmarked_yet">未有收起嘅播放清單</string>
     <string name="play_all">照單全播</string>
     <string name="no_channel_subscribed_yet">未有頻道訂閱</string>
@@ -592,8 +591,8 @@
     <string name="loading_stream_details">載入緊串流詳細資料…</string>
     <string name="enable_streams_notifications_summary">通知訂閱有新加串流</string>
     <string name="streams_notifications_interval_title">檢查頻率</string>
-    <string name="streams_notifications_network_title">須要網絡連線</string>
-    <string name="any_network">不拘任何網絡</string>
+    <string name="streams_notifications_network_title">用咩網絡連線</string>
+    <string name="any_network">咩網絡都無所謂</string>
     <string name="get_notified">收取通知</string>
     <string name="you_successfully_subscribed">您而家訂閱咗呢個頻道</string>
     <string name="toggle_all">全部切換</string>
@@ -616,7 +615,7 @@
     <string name="minimize_on_exit_summary">當喺主影片播放器轉去第個 app 嘅時候點做好 — %s</string>
     <string name="minimize_on_exit_background_description">借過幕後播</string>
     <string name="minimize_on_exit_popup_description">借過浮面播</string>
-    <string name="autoplay_summary">自動開啟播放 — %s</string>
+    <string name="autoplay_summary">自動開始播放 — %s</string>
     <string name="minimize_on_exit_none_description">上返行人路</string>
     <string name="seekbar_preview_thumbnail_title">時間軸預覽縮圖</string>
     <string name="feed_notification_loading">載入緊摘要…</string>
@@ -645,12 +644,12 @@
     <string name="feed_load_error_terminated">著作者嘅帳戶已經被終止。
 \nNewPipe 日後唔會載入到呢個摘要。
 \n您要唔要取消訂閱呢個頻道？</string>
-    <string name="feed_use_dedicated_fetch_method_summary">某啲服務會提供，通常快趣好多，但項目數量可能有限兼詳情欠奉 (例如片長、項目類型、直播狀態)</string>
+    <string name="feed_use_dedicated_fetch_method_summary">某啲服務有提供，通常會快趣好多，但項目數量可能有限兼欠奉詳情 (例如片長、項目類型、直播狀態)</string>
     <string name="clear_playback_states_title">剷走播放到邊個位</string>
     <string name="delete_playback_states_alert">係咪要全部剷走晒播放到邊個位？</string>
     <string name="percent">百分比</string>
     <string name="semitone">半音</string>
-    <string name="progressive_load_interval_summary">更改載入相距大細 (目前係 %s)。細啲或者會加快影片一開波嘅載入。更改要開過個播放器至生效。</string>
+    <string name="progressive_load_interval_summary">更改載入斬件大細 (目前係 %s)。細啲或者可以等條片快啲開波。更改要開過個播放器至生效</string>
     <string name="clear_queue_confirmation_title">問過先至將排隊播清零</string>
     <string name="clear_queue_confirmation_description">目前播放器入面嘅排隊播將會清零</string>
     <string name="peertube_instance_add_title">加一個站</string>
@@ -663,4 +662,47 @@
     <string name="choose_instance_prompt">揀選一個站</string>
     <string name="clear_queue_confirmation_summary">轉換播放器嘅時候，排隊播可能會清零</string>
     <string name="app_license">NewPipe 係「著佐權」(copyleft) 自由軟件：您可以隨意使用、考究、分享同改進佢。具體而言，您可以依據自由軟件基金會發佈嘅《GNU 通用公眾特許條款》第 3 版或 (按您選擇) 之後任一版本之下嘅條款，重新分發及/或修改呢個軟件。</string>
+    <string name="progressive_load_interval_title">載入斬件大細</string>
+    <string name="kiosk_page_summary">互動頁面</string>
+    <string name="default_kiosk_page_summary">預設嘅互動站</string>
+    <string name="import_soundcloud_instructions">輸入 URL 或者您嘅 ID 去匯入 SoundCloud 個人檔案：
+\n
+\n一、喺網頁瀏覽器啟用「桌面版模式」(個網唔支援手機版)
+\n二、去呢個網址：%1$s
+\n三、叫您就登入
+\n四、複製佢彈返您去個人檔案嗰版個 URL。</string>
+    <string name="import_soundcloud_instructions_hint">您個 ID、soundcloud.com/您個id</string>
+    <string name="select_a_kiosk">揀選互動站</string>
+    <string name="show_original_time_ago_title">顯示返項目原底話時隔幾耐</string>
+    <string name="disable_media_tunneling_title">停用多媒體隧道</string>
+    <string name="feed_groups_header_title">頻道成軍</string>
+    <string name="feed_group_dialog_empty_name">成軍名留空</string>
+    <string name="feed_create_new_group_button_title">黃袍</string>
+    <string name="feed_group_dialog_delete_message">您係咪要刪除呢個成軍？</string>
+    <string name="feed_group_show_only_ungrouped_subscriptions">淨係顯示未成軍嘅訂閱</string>
+    <string name="show_image_indicators_summary">啲圖都要騷 Picasso 三色碼顯示源頭：紅碼係網絡上高落嚟，藍碼係儲存喺磁碟本地，綠碼係潛伏喺記憶體中</string>
+    <string name="show_original_time_ago_summary">服務原底嘅字會騷返喺串流項目上面</string>
+    <string name="show_image_indicators_title">影像要推三色碼</string>
+    <string name="feed_toggle_show_future_items">顯示定預告上畫嘅影片</string>
+    <string name="disable_media_tunneling_summary">若果播片嘅時候窒下窒下或者黑畫面，就停用多媒體隧道啦</string>
+    <string name="import_youtube_instructions">點樣用 Google 匯出嚟匯入 YouTube 訂閱：
+\n
+\n一、去呢個網址：%1$s
+\n二、叫您就登入
+\n三、撳一下「包含所有資料」，再撳一下「全部不選」，之後淨係剔返「訂閱」，然後撳「確定」
+\n四、撳一下「下一步」然後揀「建立匯出」
+\n五、個掣騷出嚟嘅時候就撳一下「下載」
+\n六、返返嚟呢度，喺下低撳「匯入檔案」，揀返下載咗嗰個 .zip 檔案
+\n七、[個 .zip 匯入唔到點算好] 將個 .csv 檔案解壓縮抽返出嚟 (通常係擺喺「YouTube and YouTube Music/subscriptions/subscriptions.csv」)，喺下低撳「匯入檔案」，揀返抽出嚟個 csv 檔案</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">係咪覺得摘要「懸浮於半路太久，可否再快兩步」？可以試下啟用快速載入 (您可以喺設定度更改，又或者撳一下下低個掣)。
+\n
+\nNewPipe 提供兩種載入摘要嘅方針：
+\n• 攞晒成個訂閱頻道，慢得嚟志在夠完整。
+\n• 用特設嘅服務終端，快得嚟啲料爭少少。
+\n
+\n兩者嘅分別在於，快趣嗰個通常都係爭噉啲料：譬如話項目嘅片長同類型 (分唔到係直播定上載)，同埋攞返嚟數目可能會少啲。
+\n
+\nYouTube 就係其中一個服務，有用 RSS 摘要提供呢個快趣嘅門路。
+\n
+\n所以就睇您點揀：想快定要準。</string>
 </resources>

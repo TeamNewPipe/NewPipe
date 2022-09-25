@@ -9,6 +9,10 @@ on:
     # Run daily at midnight.
     - cron: '0 0 * * *'
 
+permissions:
+  issues: write
+  pull-requests: write
+
 jobs:
   noResponse:
     runs-on: ubuntu-latest
@@ -17,4 +21,4 @@ jobs:
         with:
           token: ${{ github.token }}
           daysUntilClose: 14
-          responseRequiredLabel: waiting-for-author
+          responseRequiredLabel: waiting for author

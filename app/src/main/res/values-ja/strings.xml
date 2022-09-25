@@ -14,7 +14,7 @@
     <string name="download_path_title">動画を保存するフォルダー</string>
     <string name="download_path_summary">ダウンロードした動画をここに保存します</string>
     <string name="download_path_dialog_title">動画ファイルをダウンロードするフォルダーを選択して下さい</string>
-    <string name="default_resolution_title">デフォルトの解像度</string>
+    <string name="default_resolution_title">デフォルトの画質</string>
     <string name="play_with_kodi_title">Kodi で再生</string>
     <string name="kore_not_found">Kore をインストールしますか？</string>
     <string name="show_play_with_kodi_title">「Kodi で再生」オプションを表示</string>
@@ -24,7 +24,7 @@
     <string name="download_dialog_title">ダウンロード</string>
     <string name="show_next_and_similar_title">「次の動画」と「関連動画」を表示</string>
     <string name="unsupported_url">対応していないURLです</string>
-    <string name="content_language_title">デフォルトの言語</string>
+    <string name="content_language_title">デフォルトの言語設定</string>
     <string name="settings_category_video_audio_title">動画と音声</string>
     <string name="detail_thumbnail_view_description">ビデオ再生、時間:</string>
     <string name="detail_uploader_thumbnail_view_description">投稿者アイコンのサムネイル</string>
@@ -49,8 +49,8 @@
     <string name="could_not_setup_download_menu">保存メニューを設定できませんでした</string>
     <string name="content">コンテンツ</string>
     <string name="show_age_restricted_content_title">年齢制限のあるコンテンツを表示</string>
-    <string name="sorry_string">申し訳ありません。発生すべきでものではありませんでした。</string>
-    <string name="error_report_button_text">メールで不具合を報告</string>
+    <string name="sorry_string">申し訳ありません。想定外のエラーが発生しました。</string>
+    <string name="error_report_button_text">不具合をメールで報告</string>
     <string name="error_snackbar_message">申し訳ありません、不具合が発生しました。</string>
     <string name="error_snackbar_action">報告</string>
     <string name="what_device_headline">情報:</string>
@@ -70,15 +70,15 @@
     <string name="msg_name">ファイル名</string>
     <string name="msg_threads">同時接続数</string>
     <string name="msg_error">エラー</string>
-    <string name="msg_running">NewPipe ダウンロード中</string>
+    <string name="msg_running">ダウンロード中 (NewPipe)</string>
     <string name="msg_running_detail">タップして詳細を表示</string>
     <string name="msg_wait">お待ちください…</string>
     <string name="msg_copied">クリップボードにコピーしました</string>
-    <string name="no_available_dir">後ほど設定でダウンロードフォルダを定義してください</string>
+    <string name="no_available_dir">後ほど、ダウンロードフォルダーを設定してください</string>
     <string name="downloads">ダウンロード</string>
     <string name="downloads_title">ダウンロード</string>
     <string name="error_report_title">不具合報告</string>
-    <string name="app_ui_crash">アプリ/UI がクラッシュしました</string>
+    <string name="app_ui_crash">アプリ(UI)がクラッシュしました</string>
     <string name="info_labels">どんな問題:\\nリクエスト:\\nコンテンツ言語:\\nコンテンツ国:\\nアプリ言語:\\nサービス:\\nGMT 時間:\\nパッケージ:\\nバージョン:\\nOSバージョン:</string>
     <string name="title_activity_recaptcha">reCAPTCHA の要求</string>
     <string name="recaptcha_request_toast">reCAPTCHA を要求しました</string>
@@ -93,18 +93,18 @@
     <string name="popup_playing_toast">ポップアップモードで再生中</string>
     <string name="disabled">無効</string>
     <string name="default_video_format_title">デフォルトの動画形式</string>
-    <string name="default_popup_resolution_title">デフォルトのポップアップ解像度</string>
-    <string name="show_higher_resolutions_title">より高い解像度を表示</string>
-    <string name="show_higher_resolutions_summary">一部のデバイスのみ2K/4K動画を再生できます</string>
+    <string name="default_popup_resolution_title">デフォルトの画質 (ポップアップ表示)</string>
+    <string name="show_higher_resolutions_title">より高い画質を表示</string>
+    <string name="show_higher_resolutions_summary">2K/4K動画は一部のデバイスでのみ再生できます</string>
     <string name="controls_background_title">バックグラウンド</string>
     <string name="controls_popup_title">ポップアップ</string>
     <string name="clear">消去</string>
-    <string name="popup_remember_size_pos_title">ポップアップの属性を記憶</string>
-    <string name="popup_remember_size_pos_summary">ポップアップしたサイズと位置を記憶します</string>
+    <string name="popup_remember_size_pos_title">ポップアップの属性を記憶する</string>
+    <string name="popup_remember_size_pos_summary">ポップアップのサイズと位置を記憶する</string>
     <string name="use_external_video_player_summary">一部の解像度では音声がありません</string>
     <string name="show_search_suggestions_title">検索候補の表示</string>
     <string name="show_search_suggestions_summary">検索時に表示する候補を選択します</string>
-    <string name="best_resolution">最高の解像度</string>
+    <string name="best_resolution">最高</string>
     <string name="title_activity_about">NewPipe について</string>
     <string name="title_licenses">サードパーティー ライセンス</string>
     <string name="copyright" formatted="true">© %1$s 作者 %2$s ライセンス %3$s</string>
@@ -125,8 +125,8 @@
     <string name="fragment_feed_title">新着</string>
     <string name="enable_search_history_title">検索履歴</string>
     <string name="enable_search_history_summary">検索履歴を記憶します</string>
-    <string name="enable_watch_history_title">視聴履歴</string>
-    <string name="enable_watch_history_summary">再生した履歴を記憶します</string>
+    <string name="enable_watch_history_title">再生履歴</string>
+    <string name="enable_watch_history_summary">再生履歴を記憶します</string>
     <string name="resume_on_audio_focus_gain_title">再生の再開</string>
     <string name="resume_on_audio_focus_gain_summary">電話などによる中断の後、再生を再開します</string>
     <string name="settings_category_player_title">プレイヤー</string>
@@ -138,9 +138,9 @@
     <string name="notification_channel_name">NewPipe の通知</string>
     <string name="unknown_content">[不明]</string>
     <string name="player_stream_failure">動画の再生ができませんでした</string>
-    <string name="player_unrecoverable_failure">回復不能な再生エラーが発生しました</string>
-    <string name="search_no_results">何も見つかりませんでした</string>
-    <string name="no_subscribers">チャンネル登録なし</string>
+    <string name="player_unrecoverable_failure">回復不能なエラーが発生しました</string>
+    <string name="search_no_results">一致する結果はありませんでした</string>
+    <string name="no_subscribers">チャンネル登録者なし</string>
     <string name="no_videos">動画がありません</string>
     <string name="settings_category_downloads_title">保存</string>
     <string name="settings_file_charset_title">ファイル名に使用可能な文字</string>
@@ -178,7 +178,7 @@
     <string name="export_data_title">データベースをエクスポート</string>
     <string name="import_data_summary">既存の履歴、登録リスト、プレイリストおよび (任意) 設定は上書きされます</string>
     <string name="export_data_summary">再生履歴、登録チャンネル一覧、プレイリストおよび設定をエクスポートします</string>
-    <string name="player_recoverable_failure">再生エラーからの回復中</string>
+    <string name="player_recoverable_failure">エラーから回復中です</string>
     <string name="external_player_unsupported_link_type">外部プレイヤーは、これらのタイプのリンクをサポートしていません</string>
     <string name="export_complete_toast">エクスポートしました</string>
     <string name="import_complete_toast">インポートしました</string>
@@ -201,7 +201,7 @@
     <string name="metadata_cache_wipe_title">キャッシュを消去</string>
     <string name="metadata_cache_wipe_summary">アプリ内のキャッシュデータをすべて削除します</string>
     <string name="metadata_cache_wipe_complete_notice">キャッシュが消去されました</string>
-    <string name="auto_queue_title">次のを自動でキューに追加する</string>
+    <string name="auto_queue_title">次の動画を自動でキューに追加する</string>
     <string name="settings_category_debug_title">デバッグ</string>
     <string name="file">ファイル</string>
     <string name="video_streams_empty">動画が見つかりません</string>
@@ -255,7 +255,7 @@
     <string name="read_privacy_policy">プライバシーポリシーを確認</string>
     <string name="use_inexact_seek_title">おおまかなシーク</string>
     <string name="use_inexact_seek_summary">おおまかなシークを使用することで精度が下がる代わりに高速にシークができます。5 秒、15 秒または 25 秒間隔のシークはできません</string>
-    <string name="download_thumbnail_summary">すべてのサムネイルの読み込みと保存を無効化します。このオプションを切り替えるとメモリおよびディスク上の画像キャッシュが消去されます</string>
+    <string name="download_thumbnail_summary">サムネイルの読み込みと保存を無効化します。(このオプションを切り替えるとメモリとディスク上の画像キャッシュが消去されます)</string>
     <string name="auto_queue_summary">キューに関連動画を追加して再生を続ける (繰り返ししない場合)</string>
     <string name="delete_view_history_alert">すべての再生履歴を削除しますか？</string>
     <string name="delete_search_history_alert">すべての検索履歴を削除しますか？</string>
@@ -276,11 +276,11 @@
     <string name="title_most_played">最も再生された動画</string>
     <string name="resize_zoom">拡大</string>
     <string name="controls_add_to_playlist_title">プレイリスト</string>
-    <string name="show_hold_to_append_title">「長押ししてキュー」のヒントを表示</string>
+    <string name="show_hold_to_append_title">「長押しでキューに追加」のヒントを表示</string>
     <string name="tracks">トラック</string>
     <string name="notification_channel_description">NewPipe のプレイヤーの通知</string>
     <string name="new_and_hot">新着と人気</string>
-    <string name="hold_to_append">長押ししてキューに追加</string>
+    <string name="hold_to_append">長押しでキューに追加</string>
     <string name="start_here_on_popup">ポップアップで連続再生を開始</string>
     <string name="preferred_open_action_settings_title">お好みの「開く」アクション</string>
     <string name="preferred_open_action_settings_summary">コンテンツを開くときのデフォルト動作 — %s</string>
@@ -302,7 +302,7 @@
     <string name="accept">同意する</string>
     <string name="decline">拒否する</string>
     <string name="limit_data_usage_none_description">制限なし</string>
-    <string name="limit_mobile_data_usage_title">モバイルデータ使用時の解像度の制限</string>
+    <string name="limit_mobile_data_usage_title">モバイルネットワーク使用時の画質</string>
     <string name="minimize_on_exit_title">アプリ切り替え時の最小化</string>
     <string name="minimize_on_exit_summary">プレイヤーから他のアプリに切り替え時の動作 — %s</string>
     <string name="minimize_on_exit_none_description">何もしない</string>
@@ -345,7 +345,7 @@
     <string name="app_update_notification_content_title">NewPipe のアップデートがあります！</string>
     <string name="app_update_notification_content_text">タップでダウンロード</string>
     <string name="missions_header_finished">完了</string>
-    <string name="missions_header_pending">保留中</string>
+    <string name="missions_header_pending">順番に処理中</string>
     <string name="paused">一時停止</string>
     <string name="queued">順番待ちに追加しました</string>
     <string name="post_processing">保存処理をしています</string>
@@ -397,7 +397,7 @@
     <string name="watch_history_states_deleted">再生位置を削除しました</string>
     <string name="missing_file">ファイルが移動または削除されました</string>
     <string name="overwrite_failed">ファイルを上書きできません</string>
-    <string name="download_already_pending">この名前の保留中のダウンロードがあります</string>
+    <string name="download_already_pending">同じファイル名のダウンロードが既に進行中です</string>
     <string name="error_postprocessing_stopped">ファイルの作業中に NewPipe が閉じられました</string>
     <string name="error_insufficient_storage">デバイスに空き容量がありません</string>
     <string name="error_progress_lost">ファイルが削除されたため、進行状況が失われました</string>
@@ -428,7 +428,7 @@
         <item quantity="other">%s 人が聴取中</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">アプリを再起動すると、言語が変更されます</string>
-    <string name="seek_duration_title">高速早送り/巻き戻し時間</string>
+    <string name="seek_duration_title">高速早送り/巻き戻し間隔</string>
     <string name="peertube_instance_url_title">PeerTube インスタンス</string>
     <string name="peertube_instance_url_summary">PeerTube インスタンスを選択する</string>
     <string name="peertube_instance_url_help">あなたに最適なインスタンスを探す: %s</string>
@@ -531,7 +531,7 @@
     <string name="playlist_page_summary">プレイリスト ページ</string>
     <string name="select_a_playlist">プレイリストを選択してください</string>
     <string name="autoplay_summary">自動的に再生を開始します — %s</string>
-    <string name="auto_queue_toggle">自動キュー</string>
+    <string name="auto_queue_toggle">自動でキューに追加</string>
     <string name="clear_queue_confirmation_description">アクティブなプレイヤーのキューが入れ替わります</string>
     <string name="clear_queue_confirmation_summary">プレイヤーを別のプレイヤーに切り替えるとキューが置き換わる可能性があります</string>
     <string name="never">しない</string>
@@ -539,8 +539,8 @@
     <string name="title_activity_play_queue">キューを再生</string>
     <string name="clear_queue_confirmation_title">キューを消去する前に確認する</string>
     <string name="unsupported_url_dialog_message">URL を認識できませんでした。他のアプリで開きますか？</string>
-    <string name="notification_scale_to_square_image_summary">通知に表示される動画サムネイルを 16:9 から 1:1 のアスペクト比にスケールします (ゆがみが生じるかもしれません)</string>
-    <string name="notification_scale_to_square_image_title">サムネイルを 1:1 のアスペクト比にスケールする</string>
+    <string name="notification_scale_to_square_image_summary">通知に表示されるサムネイルを 16:9 から正方形にします</string>
+    <string name="notification_scale_to_square_image_title">サムネイルを正方形にする</string>
     <string name="notification_actions_summary">以下をタップして通知のアクションを編集します。右側にあるチェックボックスを使用してコンパクトな通知に表示するものを 3 つまで選択します</string>
     <string name="notification_actions_at_most_three">コンパクトな通知に表示されるアクションは 3 つまで選ぶことができます！</string>
     <string name="notification_action_4_title">5 番目のアクションボタン</string>
@@ -569,8 +569,8 @@
     <string name="hash_channel_name">動画のハッシュ化通知</string>
     <string name="hash_channel_description">動画のハッシュ化進行状況の通知</string>
     <string name="comments_tab_description">コメント</string>
-    <string name="show_description_summary">無効にするとビデオの概要と追加情報を非表示にします</string>
-    <string name="show_description_title">説明を表示</string>
+    <string name="show_description_summary">無効にすると動画の概要欄と追加情報を非表示にします</string>
+    <string name="show_description_title">概要欄を表示</string>
     <string name="recent">最近</string>
     <string name="open_with">開く</string>
     <string name="description_tab_description">説明</string>
@@ -612,9 +612,8 @@
     <string name="metadata_thumbnail_url">サムネイルの URL</string>
     <string name="open_website_license">ウェブサイトを開く</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">ダウンロードのたびに保存する場所を尋ねます</string>
-    <string name="no_dir_yet">ダウンロードフォルダがまだ設定されていません。今すぐデフォルトのフォルダを選択してください</string>
+    <string name="no_dir_yet">ダウンロードフォルダーがまだ設定されていません。今すぐデフォルトのフォルダーを選択してください</string>
     <string name="downloads_storage_use_saf_summary_api_29">Android 10 以降は \'Storage Access Framework\' のみがサポートされます</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' は Android KitKat 以下ではサポートされていません</string>
     <string name="feed_load_error_fast_unknown">高速モードでこの情報の詳細は提供されません。</string>
     <string name="feed_load_error_account_info">\'%s\' のフィードを読み込めませんでした。</string>
     <string name="feed_load_error">フィードの読み込みエラー</string>
@@ -634,13 +633,13 @@
     <string name="low_quality_smaller">低品質 (小)</string>
     <string name="high_quality_larger">高品質 (大)</string>
     <string name="seekbar_preview_thumbnail_title">シークバーのサムネイルプレビュー</string>
-    <string name="comments_are_disabled">コメントは無効です</string>
+    <string name="comments_are_disabled">コメントは無効になっています</string>
     <string name="mark_as_watched">視聴済みとしてマーク</string>
     <string name="remote_search_suggestions">リモート検索候補</string>
     <string name="local_search_suggestions">ローカル検索候補</string>
     <string name="main_page_content_swipe_remove">アイテムをスワイプして削除</string>
     <string name="start_main_player_fullscreen_summary">直接フルスクリーンモードに切り替えて、ミニプレイヤーで動画を開始しません。自動回転がロックされている場合でも、フルスクリーンを終了することでミニプレイヤーにアクセスできます</string>
-    <string name="start_main_player_fullscreen_title">フルスクリーンでメインプレイヤーを開始</string>
+    <string name="start_main_player_fullscreen_title">プレイヤーをフルスクリーンで開始</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="other">%1$s つのダウンロードを削除しました</item>
     </plurals>
@@ -661,7 +660,7 @@
     <string name="feed_new_items">新しいフィードアイテム</string>
     <string name="error_report_channel_name">エラー報告通知</string>
     <string name="error_report_notification_toast">エラーが発生しました。通知をご覧ください</string>
-    <string name="error_report_notification_title">NewPipe はエラーに遭遇しました。タップして報告</string>
+    <string name="error_report_notification_title">エラーが発生しました (タップすると報告できます)</string>
     <string name="show_error_snackbar">スナックバーにエラーを表示</string>
     <string name="detail_pinned_comment_view_description">固定されたコメント</string>
     <string name="no_appropriate_file_manager_message_android_10">この動作に適切なファイルマネージャが見つかりませんでした。
@@ -692,9 +691,18 @@
     <string name="streams_notification_channel_name">新しいストリーム</string>
     <string name="notifications">通知</string>
     <string name="settings_category_player_notification_summary">現在再生しているストリームの通知を構成</string>
-    <string name="progressive_load_interval_summary">読み込む間隔を変更します (現在 %s)。小さい値にすると初回読み込み時間が短くなります。変更にはプレイヤーの再起動が必要です。</string>
+    <string name="progressive_load_interval_summary">読み込み間隔を変更します (現在 %s)。小さくすると再生開始までの時間が短くなります。変更を適用するには再起動が必要です。</string>
     <string name="streams_notifications_network_title">必要なネットワークの種類</string>
     <string name="percent">パーセント</string>
     <string name="semitone">半音</string>
     <string name="any_network">すべてのネットワーク</string>
+    <string name="progressive_load_interval_title">データの読み込み間隔</string>
+    <string name="unknown_format">未知の形式</string>
+    <string name="unknown_quality">未知の品質</string>
+    <string name="streams_not_yet_supported_removed">サポートされてない動画は表示されていません</string>
+    <string name="selected_stream_external_player_not_supported">選択された動画は外部プレイヤーではサポートされていません</string>
+    <string name="no_audio_streams_available_for_external_players">外部プレイヤーで利用できる音声情報がありません</string>
+    <string name="no_video_streams_available_for_external_players">外部プレイヤーで利用できる映像情報がありません</string>
+    <string name="select_quality_external_players">外部プレイヤーでの品質を選択</string>
+    <string name="feed_toggle_show_future_items">次の動画を表示する</string>
 </resources>

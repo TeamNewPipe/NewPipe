@@ -1,0 +1,8 @@
+Nový
+- Přidán volič jazyka pro změnu jazyka aplikace
+- Přidáno tlačítko odeslat do Kodi do skládací nabídky přehrávače
+- Přidána možnost kopírování komentářů při dlouhém stisknutí
+
+Vylepšena stránka
+- Oprava aktivity ReCaptcha a správné ukládání získaných souborů cookie
+- Odstraněna nabídka s tečkami ve prospěch šuplíku a skrytí tlačítka historie, pokud není v nastavení povolena historie sledování

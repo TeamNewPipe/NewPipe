@@ -1,0 +1,3 @@
+Hotfix
+- Zvětšení vyrovnávací paměti pro přehrávání po obnovení vyrovnávací paměti
+- Opraven pád na tabletech a televizorech při kliknutí na ikonu přehrávání v přehrávači

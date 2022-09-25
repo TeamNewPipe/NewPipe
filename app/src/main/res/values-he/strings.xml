@@ -580,8 +580,8 @@
     <string name="notification_action_2_title">כפתור פעולה שלישי</string>
     <string name="notification_action_0_title">כפתור פעולה ראשון</string>
     <string name="notification_action_1_title">כפתור פעולה שני</string>
-    <string name="notification_scale_to_square_image_summary">לשנות את יחס התצוגה הממוזערת שמופיעה בהתראות מיחס תצוגה של 16:9 ל־1:1 (עשוי לעוות את התמונה)</string>
-    <string name="notification_scale_to_square_image_title">שינוי גודל התצוגה הממוזערת ליחס תצוגה 1:1</string>
+    <string name="notification_scale_to_square_image_summary">חיתוך התצוגה הממוזערת שמופיעה בהתראות מיחס תצוגה של 16:9 ל־1:1</string>
+    <string name="notification_scale_to_square_image_title">חיתוך התצוגה הממוזערת ליחס תצוגה 1:1</string>
     <string name="show_memory_leaks">הצגת דליפות זיכרון</string>
     <string name="enqueued">נוסף לתור</string>
     <string name="enqueue_stream">הוספה לתור</string>
@@ -653,7 +653,6 @@
     <string name="feed_load_error_account_info">לא ניתן לטעון את ההזנה עבור ‚%s’.</string>
     <string name="feed_load_error">שגיאה בהורדת ההזנה</string>
     <string name="downloads_storage_use_saf_summary_api_29">התמיכה ב‚תשתית גישה לאחסון’ נתמכת מ־Android 10 בלבד</string>
-    <string name="downloads_storage_use_saf_summary_api_19">‚תשתית הגישה לאחסון’ אינה נתמכת על ידי Android KitKat ומטה</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">תופיע שאלה לאן לשמור כל הורדה</string>
     <string name="no_dir_yet">טרם הוגדרה תיקיית הורדה, נא לבחור את תיקיית ההורדה כעת</string>
     <string name="off">כבוי</string>
@@ -702,14 +701,14 @@
     <string name="error_report_notification_title">NewPipe נתקל בשגיאה, לחיצה תדווח על כך</string>
     <string name="error_report_notification_toast">אירעה שגיאה, נא לקרוא את ההתראה</string>
     <string name="no_appropriate_file_manager_message">לא נמצא מנהל קבצים מתאים לפעולה זו.
-\nנא להתקין מנהל קבצים או לנסות להשבית את ‚%s’ בהגדרות ההורדה.</string>
+\nנא להתקין מנהל קבצים או לנסות להשבית את ‚%s’ בהגדרות ההורדה</string>
     <string name="error_report_channel_name">התראת דיווח שגיאה</string>
     <string name="no_appropriate_file_manager_message_android_10">לא נמצאו מנהלי קבצים שמתאימים לפעולה הזאת.
-\nנא להתקין מנהל קבצים שתומך בתשתית גישה לאחסון.</string>
+\nנא להתקין מנהל קבצים שתומך בתשתית גישה לאחסון</string>
     <string name="detail_pinned_comment_view_description">הערה ננעצה</string>
     <string name="leak_canary_not_available">LeakCanary אינה זמינה</string>
     <string name="progressive_load_interval_exoplayer_default">ברירת מחדל של ExoPlayer</string>
-    <string name="progressive_load_interval_summary">שינוי גודל מרווח הטעינה (כרגע %s). ערך נמוך יותר עשוי להאיץ את טעינת הווידאו הראשונית. שינויים דורשים את הפעלת הנגן מחדש.</string>
+    <string name="progressive_load_interval_summary">שינוי גודל מרווח הטעינה (כרגע %s). ערך נמוך יותר עשוי להאיץ את טעינת הווידאו הראשונית. שינויים דורשים את הפעלת הנגן מחדש</string>
     <string name="streams_notification_channel_description">התראות על תזרימים חדשים להרשמה</string>
     <string name="streams_notifications_interval_title">תדירות בדיקה</string>
     <string name="streams_notifications_network_title">נדרש חיבור לרשת</string>
@@ -743,4 +742,6 @@
     <string name="no_video_streams_available_for_external_players">אין תזרימי וידאו שזמינים לנגנים חיצוניים</string>
     <string name="select_quality_external_players">בחירת איכות לנגנים חיצוניים</string>
     <string name="unknown_format">תצורה לא מוכרת</string>
+    <string name="progressive_load_interval_title">גודל משך טעינת נגינה</string>
+    <string name="feed_toggle_show_future_items">הצגת סרטונים עתידיים</string>
 </resources>

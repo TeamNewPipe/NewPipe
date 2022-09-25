@@ -3,8 +3,6 @@ package org.schabi.newpipe.settings.preferencesearch;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -12,9 +10,9 @@ import java.util.stream.Stream;
 public class PreferenceSearchConfiguration {
     private PreferenceSearchFunction searcher = new PreferenceFuzzySearchFunction();
 
-    private final List<String> parserIgnoreElements = Collections.singletonList(
+    private final List<String> parserIgnoreElements = List.of(
             PreferenceCategory.class.getSimpleName());
-    private final List<String> parserContainerElements = Arrays.asList(
+    private final List<String> parserContainerElements = List.of(
             PreferenceCategory.class.getSimpleName(),
             PreferenceScreen.class.getSimpleName());
 

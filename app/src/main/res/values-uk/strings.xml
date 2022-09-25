@@ -558,7 +558,7 @@
     <string name="notification_action_2_title">Кнопка третьої дії</string>
     <string name="notification_action_1_title">Кнопка другої дії</string>
     <string name="notification_action_0_title">Кнопка першої дії</string>
-    <string name="notification_scale_to_square_image_title">Збільшити ескіз до масштабу 1:1</string>
+    <string name="notification_scale_to_square_image_title">Обрізати ескіз до пропорцій 1:1</string>
     <string name="open_with">Відкрити через</string>
     <string name="download_has_started">Завантаження почалося</string>
     <string name="night_theme_summary">Виберіть нічну тему — %s</string>
@@ -616,11 +616,10 @@
     <string name="notification_colorize_title">Кольорове сповіщення</string>
     <string name="notification_actions_at_most_three">У компактному сповіщенні є не більше трьох дій!</string>
     <string name="notification_actions_summary">Дії можна змінити, натиснувши на них. Позначте не більше трьох для показу в компактному сповіщенні</string>
-    <string name="notification_scale_to_square_image_summary">Масштабувати мініатюру відео 16: 9 до 1:1 (можливі спотворення)</string>
+    <string name="notification_scale_to_square_image_summary">Обрізати мініатюру відео показувану в сповіщенні з пропорцій 16: 9 до 1:1</string>
     <string name="disable_media_tunneling_summary">Вимкнення тунелювання медіаданих за наявності чорного екрана або гальмування під час відтворення відео</string>
     <string name="disable_media_tunneling_title">Вимкнути тунелювання медіа</string>
     <string name="downloads_storage_use_saf_summary_api_29">«Фреймворк доступу до сховища» (SAF) підтримується лише починаючи з Android 10</string>
-    <string name="downloads_storage_use_saf_summary_api_19">«Фреймворк доступу до сховища» (SAF) не підтримується в KitKat і нижче</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Вас питатиме, куди зберігати кожне завантаження</string>
     <string name="no_dir_yet">Не вказано теки завантаження, оберіть типову теку завантаження зараз</string>
     <string name="open_website_license">Відкрити вебсайт</string>
@@ -693,15 +692,15 @@
     <string name="error_report_notification_title">Сталася помилка NewPipe, торкніться, щоб звітувати</string>
     <string name="error_report_notification_toast">Сталася помилка. Перегляньте сповіщення</string>
     <string name="no_appropriate_file_manager_message">Для цієї дії не знайдено відповідного файлового менеджера.
-\nУстановіть файловий менеджер або спробуйте вимкнути «%s» у налаштуваннях завантажень.</string>
+\nУстановіть файловий менеджер або спробуйте вимкнути «%s» у налаштуваннях завантажень</string>
     <string name="no_appropriate_file_manager_message_android_10">Для цієї дії не знайдено відповідного файлового менеджера.
-\nУстановіть файловий менеджер, сумісний зі Storage Access Framework.</string>
+\nУстановіть файловий менеджер, сумісний зі Storage Access Framework</string>
     <string name="show_error_snackbar">Показати панель помилок</string>
     <string name="create_error_notification">Створити сповіщення про помилку</string>
     <string name="detail_pinned_comment_view_description">Закріплений коментар</string>
     <string name="leak_canary_not_available">LeakCanary недоступний</string>
     <string name="progressive_load_interval_exoplayer_default">Типовий ExoPlayer</string>
-    <string name="progressive_load_interval_summary">Змінити розмір інтервалу завантаження (наразі %s). Менше значення може прискорити початкове завантаження відео. Зміни вимагають перезапуску програвача.</string>
+    <string name="progressive_load_interval_summary">Змінити розмір інтервалу завантаження (наразі %s). Менше значення може прискорити початкове завантаження відео. Зміни вимагають перезапуску програвача</string>
     <string name="you_successfully_subscribed">Ви підписалися на цей канал</string>
     <string name="enumeration_comma">,</string>
     <string name="streams_notification_channel_description">Сповіщення про нові трансляції для підписок</string>
@@ -735,4 +734,5 @@
     <string name="select_quality_external_players">Виберіть якість для зовнішніх програвачів</string>
     <string name="unknown_quality">Невідома якість</string>
     <string name="progressive_load_interval_title">Розмір інтервалу завантаження відтворення</string>
+    <string name="feed_toggle_show_future_items">Показати наступні відео</string>
 </resources>

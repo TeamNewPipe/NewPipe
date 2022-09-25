@@ -17,8 +17,8 @@
             android:layout_height="70dp"
             android:background="@android:color/black"
             android:fitsSystemWindows="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/channel_banner"
+            android:scaleType="fitCenter"
+            android:src="@drawable/placeholder_channel_banner"
             tools:ignore="ContentDescription" />
 
         <FrameLayout
@@ -33,7 +33,7 @@
                 android:layout_width="@dimen/channel_avatar_size"
                 android:layout_height="@dimen/channel_avatar_size"
                 android:padding="1dp"
-                android:src="@drawable/buddy"
+                android:src="@drawable/placeholder_person"
                 app:shapeAppearance="@style/CircularImageView"
                 app:strokeColor="#ffffff"
                 app:strokeWidth="2dp" />
@@ -44,7 +44,7 @@
                 android:layout_height="@dimen/sub_channel_avatar_size"
                 android:layout_gravity="bottom|right"
                 android:padding="1dp"
-                android:src="@drawable/buddy"
+                android:src="@drawable/placeholder_person"
                 android:visibility="gone"
                 app:shapeAppearance="@style/CircularImageView"
                 app:strokeColor="#ffffff"

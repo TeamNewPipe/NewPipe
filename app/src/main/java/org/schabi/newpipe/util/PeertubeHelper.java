@@ -17,7 +17,6 @@ import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public final class PeertubeHelper {
@@ -29,7 +28,7 @@ public final class PeertubeHelper {
         final String savedInstanceListKey = context.getString(R.string.peertube_instance_list_key);
         final String savedJson = sharedPreferences.getString(savedInstanceListKey, null);
         if (null == savedJson) {
-            return Collections.singletonList(getCurrentInstance());
+            return List.of(getCurrentInstance());
         }
 
         try {
@@ -45,17 +44,16 @@ public final class PeertubeHelper {
             }
             return result;
         } catch (final JsonParserException e) {
-            return Collections.singletonList(getCurrentInstance());
+            return List.of(getCurrentInstance());
         }
-
     }
 
     public static PeertubeInstance selectInstance(final PeertubeInstance instance,
                                                   final Context context) {
         final SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        final String selectedInstanceKey
-                = context.getString(R.string.peertube_selected_instance_key);
+        final String selectedInstanceKey =
+                context.getString(R.string.peertube_selected_instance_key);
         final JsonStringWriter jsonWriter = JsonWriter.string().object();
         jsonWriter.value("name", instance.getName());
         jsonWriter.value("url", instance.getUrl());

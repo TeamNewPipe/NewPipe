@@ -1,0 +1,2 @@
+[YouTube] Arreglo error "No se pudo obtener flujo" al intentar reproducir videos
+[YouTube] Arreglo el mensaje "Siguiente contenido no disponible en esta aplicación" en lugar de video solicitado

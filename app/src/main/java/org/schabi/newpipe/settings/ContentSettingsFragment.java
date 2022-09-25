@@ -43,8 +43,8 @@ import java.util.Objects;
 public class ContentSettingsFragment extends BasePreferenceFragment {
     private static final String ZIP_MIME_TYPE = "application/zip";
 
-    private final SimpleDateFormat exportDateFormat
-            = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
+    private final SimpleDateFormat exportDateFormat =
+            new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
 
     private ContentSettingsManager manager;
 
@@ -160,8 +160,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             // will be saved only on success
             final Uri lastExportDataUri = result.getData().getData();
 
-            final StoredFileHelper file
-                    = new StoredFileHelper(getContext(), result.getData().getData(), ZIP_MIME_TYPE);
+            final StoredFileHelper file =
+                    new StoredFileHelper(getContext(), result.getData().getData(), ZIP_MIME_TYPE);
 
             exportDatabase(file, lastExportDataUri);
         }
@@ -173,8 +173,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             // will be saved only on success
             final Uri lastImportDataUri = result.getData().getData();
 
-            final StoredFileHelper file
-                    = new StoredFileHelper(getContext(), result.getData().getData(), ZIP_MIME_TYPE);
+            final StoredFileHelper file =
+                    new StoredFileHelper(getContext(), result.getData().getData(), ZIP_MIME_TYPE);
 
             new AlertDialog.Builder(requireActivity())
                     .setMessage(R.string.override_current_data)

@@ -14,8 +14,8 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
@@ -111,8 +111,9 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
                             final HistoryRecordManager historyRecordManager) {
         final StreamInfoItem item = (StreamInfoItem) infoItem;
 
-        final StreamStateEntity state
-                = historyRecordManager.loadStreamState(infoItem).blockingGet()[0];
+        final StreamStateEntity state = historyRecordManager
+                .loadStreamState(infoItem)
+                .blockingGet()[0];
         if (state != null && item.getDuration() > 0
                 && !StreamTypeUtil.isLiveStream(item.getStreamType())) {
             itemProgressView.setMax((int) item.getDuration());

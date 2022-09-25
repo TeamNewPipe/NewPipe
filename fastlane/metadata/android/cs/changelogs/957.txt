@@ -1,0 +1,8 @@
+- Sjednocení specifických akcí enqueue do jedné
+- Gesto dvěma prsty pro zavření přehrávače
+- Povolení vymazání souborů cookie reCAPTCHA
+- Možnost nezabarvovat oznámení
+- Vylepšení způsobu otevírání detailů videa s cílem opravit nekonečné vyrovnávací paměti, chybné chování při sdílení do NewPipe a další nesrovnalosti
+- Zrychlení videí na YouTube a oprava videí s věkovým omezením
+- Oprava pádu při rychlém převíjení vpřed/vzad
+- Nepřeuspořádávat seznamy přetahováním miniatur

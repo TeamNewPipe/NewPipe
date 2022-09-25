@@ -17,8 +17,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
-        android:scaleType="centerCrop"
-        android:src="@drawable/dummy_thumbnail"
+        android:scaleType="fitCenter"
+        android:src="@drawable/placeholder_thumbnail_video"
         tools:ignore="RtlHardcoded" />
 
     <org.schabi.newpipe.views.NewPipeTextView

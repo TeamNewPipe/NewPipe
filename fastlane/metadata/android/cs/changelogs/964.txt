@@ -1,0 +1,8 @@
+- Přidána podpora kapitol v ovládání hráče
+- [PeerTube] Přidáno vyhledávání v sépiové barvě
+- Znovu přidáno tlačítko pro sdílení v zobrazení detailu videa a popis streamu přesunut do rozložení karet
+- Zakázáno obnovení jasu, pokud je gesto jasu zakázáno
+- Přidána položka seznamu pro přehrávání videa v Kodi
+- Opraven pád v případě, že na některých zařízeních není nastaven výchozí prohlížeč, a vylepšeny dialogy sdílení
+-
+-

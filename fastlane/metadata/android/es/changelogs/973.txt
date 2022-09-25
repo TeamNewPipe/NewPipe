@@ -1,0 +1,4 @@
+Corrección en caliente
+- Corrección de miniaturas y títulos recortados en diseño de cuadrícula, por cálculo erróneo de cuántos vídeos caben en 1 fila
+- Corrección de diálogo de descarga que desaparece sin hacer nada si se abre desde menú compartir
+- Actualización de biblioteca relacionada con apertura de actividades externas, como selector de archivos de Marco de Acceso a Almacenamiento

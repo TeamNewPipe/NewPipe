@@ -16,8 +16,9 @@ import com.google.android.exoplayer2.PlaybackParameters;
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.player.MainPlayer;
+import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.Player;
+import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -42,17 +43,17 @@ public final class PlayerHolder {
 
     private final PlayerServiceConnection serviceConnection = new PlayerServiceConnection();
     private boolean bound;
-    @Nullable private MainPlayer playerService;
+    @Nullable private PlayerService playerService;
     @Nullable private Player player;
 
     /**
-     * Returns the current {@link MainPlayer.PlayerType} of the {@link MainPlayer} service,
-     * otherwise `null` if no service running.
+     * Returns the current {@link PlayerType} of the {@link PlayerService} service,
+     * otherwise `null` if no service is running.
      *
      * @return Current PlayerType
      */
     @Nullable
-    public MainPlayer.PlayerType getType() {
+    public PlayerType getType() {
         if (player == null) {
             return null;
         }
@@ -122,7 +123,7 @@ public final class PlayerHolder {
         // and NullPointerExceptions inside the service because the service will be
         // bound twice. Prevent it with unbinding first
         unbind(context);
-        ContextCompat.startForegroundService(context, new Intent(context, MainPlayer.class));
+        ContextCompat.startForegroundService(context, new Intent(context, PlayerService.class));
         serviceConnection.doPlayAfterConnect(playAfterConnect);
         bind(context);
     }
@@ -130,7 +131,7 @@ public final class PlayerHolder {
     public void stopService() {
         final Context context = getCommonContext();
         unbind(context);
-        context.stopService(new Intent(context, MainPlayer.class));
+        context.stopService(new Intent(context, PlayerService.class));
     }
 
     class PlayerServiceConnection implements ServiceConnection {
@@ -156,7 +157,7 @@ public final class PlayerHolder {
             if (DEBUG) {
                 Log.d(TAG, "Player service is connected");
             }
-            final MainPlayer.LocalBinder localBinder = (MainPlayer.LocalBinder) service;
+            final PlayerService.LocalBinder localBinder = (PlayerService.LocalBinder) service;
 
             playerService = localBinder.getService();
             player = localBinder.getPlayer();
@@ -172,7 +173,7 @@ public final class PlayerHolder {
             Log.d(TAG, "bind() called");
         }
 
-        final Intent serviceIntent = new Intent(context, MainPlayer.class);
+        final Intent serviceIntent = new Intent(context, PlayerService.class);
         bound = context.bindService(serviceIntent, serviceConnection,
                 Context.BIND_AUTO_CREATE);
         if (!bound) {
@@ -211,6 +212,13 @@ public final class PlayerHolder {
 
     private final PlayerServiceEventListener internalListener =
             new PlayerServiceEventListener() {
+                @Override
+                public void onViewCreated() {
+                    if (listener != null) {
+                        listener.onViewCreated();
+                    }
+                }
+
                 @Override
                 public void onFullscreenStateChanged(final boolean fullscreen) {
                     if (listener != null) {

@@ -529,7 +529,6 @@
     <string name="app_language_title">ਐਪ ਭਾਸ਼ਾ</string>
     <string name="choose_instance_prompt">ਕੋਈ ਸਥਿਤੀ ਚੁਣੋ</string>
     <string name="downloads_storage_use_saf_summary_api_29">\'ਸਟੋਰੇਜ ਐਕਸੈੱਸ ਫ਼ਰੇਮਵਰਕ\' ਐਂਡਰਾਇਡ 10 ਤੋਂ ਕੰਮ ਕਰਨਾ ਸ਼ੁਰੂ ਕਰਦਾ ਹੈ</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'ਸਟੋਰੇਜ ਐਕਸੈੱਸ ਫ਼ਰੇਮਵਰਕ\' ਐਂਡਰਾਇਡ ਕਿਟਕੈਟ ਅਤੇ ਇਸਤੋਂ ਹੇਠਾਂ ਦੇ ਵਰਜਨਾਂ \'ਤੇ ਕੰਮ ਨਹੀਂ ਕਰਦਾ</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">ਤੁਹਾਨੂੰ ਹਰ ਵਾਰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਕਿ ਡਾਊਨਲੋਡ ਨੂੰ ਕਿੱਥੇ ਸਾਂਭਣਾ ਹੈ</string>
     <string name="delete_downloaded_files">ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਫ਼ਾਈਲਾਂ ਮਿਟਾਓ</string>
     <string name="clear_download_history">ਡਾਊਨਲੋਡ ਇਤਿਹਾਸ ਸਾਫ਼ ਕਰੋ</string>

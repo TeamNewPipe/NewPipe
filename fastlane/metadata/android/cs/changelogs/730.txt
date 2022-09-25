@@ -1,0 +1,2 @@
+# Fixed
+- Znovu opravte chybu funkce dešifrování.

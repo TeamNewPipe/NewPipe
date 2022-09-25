@@ -1,0 +1,26 @@
+### Improvements
+
+- Disable burgermenu icon animation #1486 
+- undo delete of downloads #1472 
+- Download option in share menu #1498
+- Added share option to long tap menu #1454 
+- Minimize main player on exit #1354 
+- Library version update and database backup fix #1510 
+- ExoPlayer 2.8.2 Update #1392
+  - Reworked the playback speed control dialog to support different step sizes for faster speed change.
+  - 
+  - 
+  - 
+  - 
+- 
+-
+-
+-
+- 
+- 
+  -
+  -
+- 
+- 
+  -
+  -.

@@ -1,0 +1,5 @@
+Naprawiono błąd przy zmianie kolejności grup kanałów.
+Naprawiono pobieranie kolejnych wideo z kanałów i playlist.
+Naprawiono pobieranie komentarzy w YouTube. Dodano wsparcie dla ścieżek /watch/, /v/ oraz /w/ w URL-ach YouTube.
+Naprawiono pobieranie ID użytkownika SoundCloud i zawartości z ograniczeniami geograficznymi.
+Dodano język północnokurdyjski.

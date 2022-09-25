@@ -560,8 +560,8 @@
     <string name="notification_action_2_title">Terceiro botão de ação</string>
     <string name="notification_action_1_title">Segundo botão de ação</string>
     <string name="notification_action_0_title">Primeiro botão de ação</string>
-    <string name="notification_scale_to_square_image_summary">Ajustar miniatura de vídeo mostrada na notificação de 16:9 para 1:1 (pode introduzir distorções)</string>
-    <string name="notification_scale_to_square_image_title">Ajustar miniatura à proporção de 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Cortar a miniatura de vídeo mostrada na notificação de 16:9 a 1:1</string>
+    <string name="notification_scale_to_square_image_title">Cortar miniatura na proporção 1:1</string>
     <string name="show_memory_leaks">Mostrar \'leaks\' de memória</string>
     <string name="enqueued">Colocado na fila</string>
     <string name="enqueue_stream">Colocar na fila</string>
@@ -638,7 +638,6 @@
     <string name="feed_load_error_account_info">Não foi possível carregar o feed para \'%s\'.</string>
     <string name="feed_load_error">Erro ao carregar o feed</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, apenas o \'Storage Access Framework\' é compatível</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' não é compatível com Android KitKat e versões anteriores</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Sempre que descarregar um ficheiro, terá que indicar o local para o guardar</string>
     <string name="dont_show">Não mostrar</string>
     <string name="low_quality_smaller">Baixa qualidade (menor)</string>
@@ -717,4 +716,6 @@
     <string name="unknown_format">Formato desconhecido</string>
     <string name="unknown_quality">Qualidade desconhecida</string>
     <string name="select_quality_external_players">Selecione a qualidade para reprodutores externos</string>
+    <string name="progressive_load_interval_title">Tamanho do intervalo de carregamento da reprodução</string>
+    <string name="feed_toggle_show_future_items">Mostrar vídeos futuros</string>
 </resources>

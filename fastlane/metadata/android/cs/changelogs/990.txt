@@ -1,0 +1,14 @@
+V této verzi byla zrušena podpora Androidu 4.4 KitKat, nyní je minimální verzí Android 5 Lollipop!
+
+Nové
+• Stahování z nabídky dlouhého stisknutí
+• Skrytí nadcházejících videí ve zdroji
+• Sdílení místních seznamů skladeb
+
+Vylepšení
+• Přepracování kódu přehrávače na malé komponenty: menší využití RAM, méně chyb
+• Vylepšení režimu měřítka miniatur
+• Vektorizace zástupných symbolů obrázků
+
+Opravy
+• Oprava různých problémů s oznámeními: neaktuální/chybějící informace o médiích, zkreslené miniatury

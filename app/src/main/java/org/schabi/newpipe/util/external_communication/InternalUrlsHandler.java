@@ -153,13 +153,13 @@ public final class InternalUrlsHandler {
             return false;
         }
 
-        final Single<StreamInfo> single
-                = ExtractorHelper.getStreamInfo(service.getServiceId(), cleanUrl, false);
+        final Single<StreamInfo> single =
+                ExtractorHelper.getStreamInfo(service.getServiceId(), cleanUrl, false);
         disposables.add(single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
-                    final PlayQueue playQueue
-                            = new SinglePlayQueue(info, seconds * 1000L);
+                    final PlayQueue playQueue =
+                            new SinglePlayQueue(info, seconds * 1000L);
                     NavigationHelper.playOnPopupPlayer(context, playQueue, false);
                 }, throwable -> {
                     if (DEBUG) {

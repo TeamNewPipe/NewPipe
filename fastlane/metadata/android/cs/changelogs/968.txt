@@ -1,0 +1,7 @@
+Do nabídky dlouhého stisknutí tlačítka byla přidána možnost Podrobnosti o kanálu.
+Přidána funkce přejmenování názvu seznamu skladeb z rozhraní seznamu skladeb.
+Umožňuje uživateli pozastavit video během jeho ukládání do vyrovnávací paměti.
+Vyleštěn bílý motiv.
+Opraveno překrývání písem při použití větší velikosti písma.
+Opraveno chybějící video na zařízeních Formuler a Zephier.
+Opraveny různé pády.

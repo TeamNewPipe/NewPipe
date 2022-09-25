@@ -1,0 +1,14 @@
+Změny ve verzi 0.17.1
+
+Nové stránky
+- Thajská lokalizace
+
+
+Vylepšené stránky
+- Znovu přidána akce "začít přehrávat zde" v nabídkách pro dlouhé stisknutí pro seznamy skladeb #2518
+- Přidání přepínače pro výběr souborů SAF / legacy #2521
+
+Opraveno
+- Oprava mizení tlačítek v zobrazení stahování při přepínání aplikací #2487
+- Oprava pozice přehrávání se ukládá, i když je vypnutá historie sledování
+- Oprava sníženého výkonu způsobeného pozicí přehrávání v zobrazeních seznamu #2517

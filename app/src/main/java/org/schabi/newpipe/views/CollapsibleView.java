@@ -21,7 +21,6 @@ package org.schabi.newpipe.views;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.os.Build;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -29,7 +28,6 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 import org.schabi.newpipe.ktx.ViewUtils;
 
@@ -76,7 +74,6 @@ public class CollapsibleView extends LinearLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public CollapsibleView(final Context context, final AttributeSet attrs, final int defStyleAttr,
                            final int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);

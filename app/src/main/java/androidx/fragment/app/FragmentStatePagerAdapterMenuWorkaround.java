@@ -282,11 +282,9 @@ public abstract class FragmentStatePagerAdapterMenuWorkaround extends PagerAdapt
     @Nullable
     public Parcelable saveState() {
         Bundle state = null;
-        if (mSavedState.size() > 0) {
+        if (!mSavedState.isEmpty()) {
             state = new Bundle();
-            final Fragment.SavedState[] fss = new Fragment.SavedState[mSavedState.size()];
-            mSavedState.toArray(fss);
-            state.putParcelableArray("states", fss);
+            state.putParcelableArray("states", mSavedState.toArray(new Fragment.SavedState[0]));
         }
         for (int i = 0; i < mFragments.size(); i++) {
             final Fragment f = mFragments.get(i);

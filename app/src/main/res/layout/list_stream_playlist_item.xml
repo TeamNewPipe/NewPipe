@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
@@ -18,8 +17,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
-        android:scaleType="centerCrop"
-        android:src="@drawable/dummy_thumbnail"
+        android:scaleType="fitCenter"
+        android:src="@drawable/placeholder_thumbnail_video"
         tools:ignore="RtlHardcoded" />
 
     <org.schabi.newpipe.views.NewPipeTextView
@@ -50,7 +49,7 @@
         android:contentDescription="@string/detail_drag_description"
         android:paddingLeft="@dimen/video_item_search_image_right_margin"
         android:scaleType="center"
-        app:srcCompat="@drawable/ic_drag_handle"
+        android:src="@drawable/ic_drag_handle"
         tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     <org.schabi.newpipe.views.NewPipeTextView

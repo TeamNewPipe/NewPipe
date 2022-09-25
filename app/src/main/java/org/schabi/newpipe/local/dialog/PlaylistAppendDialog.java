@@ -13,12 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.local.LocalItemListAdapter;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
-import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.List;
 
@@ -63,18 +61,10 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                 new LocalPlaylistManager(NewPipeDatabase.getInstance(requireContext()));
 
         playlistAdapter = new LocalItemListAdapter(getActivity());
-        playlistAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
-            @Override
-            public void selected(final LocalItem selectedItem) {
-                if (!(selectedItem instanceof PlaylistMetadataEntry)
-                        || getStreamEntities() == null) {
-                    return;
-                }
-                onPlaylistSelected(
-                        playlistManager,
-                        (PlaylistMetadataEntry) selectedItem,
-                        getStreamEntities()
-                );
+        playlistAdapter.setSelectedListener(selectedItem -> {
+            final List<StreamEntity> entities = getStreamEntities();
+            if (selectedItem instanceof PlaylistMetadataEntry && entities != null) {
+                onPlaylistSelected(playlistManager, (PlaylistMetadataEntry) selectedItem, entities);
             }
         });
 
@@ -138,14 +128,11 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     private void onPlaylistSelected(@NonNull final LocalPlaylistManager manager,
                                     @NonNull final PlaylistMetadataEntry playlist,
                                     @NonNull final List<StreamEntity> streams) {
-        if (getStreamEntities() == null) {
-            return;
-        }
-
         final Toast successToast = Toast.makeText(getContext(),
                 R.string.playlist_add_stream_success, Toast.LENGTH_SHORT);
 
-        if (playlist.thumbnailUrl.equals("drawable://" + R.drawable.dummy_thumbnail_playlist)) {
+        if (playlist.thumbnailUrl
+                .equals("drawable://" + R.drawable.placeholder_thumbnail_playlist)) {
             playlistDisposables.add(manager
                     .changePlaylistThumbnail(playlist.uid, streams.get(0).getThumbnailUrl())
                     .observeOn(AndroidSchedulers.mainThread())

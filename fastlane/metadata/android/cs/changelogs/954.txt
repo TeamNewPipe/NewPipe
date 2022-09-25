@@ -1,0 +1,6 @@
+- nový pracovní postup aplikace: přehrávání videí na stránce s detailem, přejetí prstem dolů pro minimalizaci přehrávače
+- Oznámení MediaStyle: přizpůsobitelné akce v oznámeních, zlepšení výkonu
+- základní změna velikosti při používání aplikace NewPipe jako aplikace pro stolní počítače
+
+- zobrazení dialogu s možnostmi otevření v případě přípitku nepodporované adresy URL
+- Zlepšení zkušeností s návrhy vyhledávání, pokud nelze načíst ty vzdálené

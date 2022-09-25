@@ -9,4 +9,4 @@ Verbesserte
 
 Behoben
 - Fix: Entfernen vollständig angesehener Videos aus der Wiedergabeliste
-- Repariert das Thema des Freigabemenüs und den Eintrag "Zur Wiedergabeliste hinzufügen".
+- Repariert das Thema des Freigabemenüs und den Eintrag "Zur Wiedergabeliste hinzufügen"

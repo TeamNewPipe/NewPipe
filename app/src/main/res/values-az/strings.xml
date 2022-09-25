@@ -405,7 +405,7 @@
     <string name="skip_silence_checkbox">Sükut zamanı sürətlə irəlilə</string>
     <string name="enable_streams_notifications_title">Yeni yayım bildirişləri</string>
     <string name="enable_streams_notifications_summary">Abunəliklərdən yeni yayımlar haqqında bildiriş göndər</string>
-    <string name="streams_notifications_interval_title">Tezliyin yoxlanılması</string>
+    <string name="streams_notifications_interval_title">Yoxlama tezliyi</string>
     <string name="streams_notifications_network_title">Tələb olunan şəbəkə bağlantısı</string>
     <string name="any_network">İstənilən şəbəkə</string>
     <string name="minimize_on_exit_title">Tətbiq keçidində kiçildin</string>
@@ -463,7 +463,6 @@
     <string name="error_http_no_content">Server məlumat göndərmir</string>
     <string name="error_download_resource_gone">Bu endirməni bərpa etmək mümkün deyil</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Sizdən hər endirmənin harada saxlanacağı soruşulacaq</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Yaddaş Giriş Çərçivəsi\' Android KitKat və ondan aşağı versiyalarda dəstəklənmir</string>
     <string name="downloads_storage_use_saf_summary_api_29">\"Yaddaş Giriş Çərçivəsi\"yalnız Android 10\'dan başlayaraq dəstəklənir</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar miniatürü</string>
     <string name="select_night_theme_toast">Sevdiyiniz gecə mövzusunu aşağıda seçə bilərsiniz</string>
@@ -497,8 +496,8 @@
     <string name="video_player">Video oynadıcı</string>
     <string name="hash_channel_description">Video fayl xülasəsi prosesi üçün bildirişlər</string>
     <string name="on">Açın</string>
-    <string name="notification_scale_to_square_image_title">Kiçik şəkili 1:1 aspekt nisbətinə ölçün</string>
-    <string name="progressive_load_interval_summary">Yükləmə intervalının həcmini dəyişdirin (hazırda %s). Daha aşağı dəyər ilkin video yükləməni sürətləndirə bilər. Dəyişikliklər oynadıcının yenidən başladılmasını tələb edir.</string>
+    <string name="notification_scale_to_square_image_title">Miniatürü 1:1 aspekt nisbətinə kəsin</string>
+    <string name="progressive_load_interval_summary">Yükləmə intervalının həcmini dəyişdirin (hazırda %s). Daha aşağı dəyər ilkin video yükləməni sürətləndirə bilər. Dəyişikliklər oynadıcının yenidən başladılmasını tələb edir</string>
     <string name="show_meta_info_summary">Yayım yaradıcısı, məzmunu və ya axtarış sorğusu haqqında əlavə məlumat olan üst məlumat qutularını gizlətmək üçün söndürün</string>
     <string name="auto_queue_summary">Əlaqədar yayımı əlavə etməklə (təkrar etməyən) sonlanacaq oynatma sırasını davam etdir</string>
     <string name="remote_search_suggestions">Kənar axtarış təklifləri</string>
@@ -701,13 +700,13 @@
     <string name="new_seek_duration_toast">ExoPlayer məhdudiyyətlərinə görə axtarış müddəti %d saniyəyə təyin edildi</string>
     <string name="feed_use_dedicated_fetch_method_summary">Bəzi xidmətlərdə mövcuddur, adətən daha sürətli olur, lakin məhdud sayda elementləri və çox vaxt natamam məlumatı qaytara bilər (məsələn, müddət, element növü, canlı status yoxdur)</string>
     <string name="no_appropriate_file_manager_message">Bu əməliyyat üçün uyğun fayl meneceri tapılmadı.
-\nZəhmət olmasa, fayl menecerini quraşdırın və ya endirmə tənzimləmələrində \'%s\'-i deaktiv etməyə çalışın.</string>
+\nZəhmət olmasa, fayl menecerini quraşdırın və ya endirmə tənzimləmələrində \'%s\'-i deaktiv etməyə çalışın</string>
     <string name="feed_load_error_account_info">\'%s\' üçün axın yükləmək mümkün olmadı.</string>
     <string name="no_appropriate_file_manager_message_android_10">Bu əməliyyat üçün uyğun fayl meneceri tapılmadı.
-\nZəhmət olmasa ,Yaddaş Giriş Çərçivəsinə uyğun fayl menecerini quraşdırın.</string>
+\nZəhmət olmasa ,Yaddaş Giriş Çərçivəsinə uyğun fayl menecerini quraşdırın</string>
     <string name="youtube_music_premium_content">Bu video yalnız YouTube Music Premium üzvləri üçün əlçatandır, ona görə də NewPipe tərəfindən yayımlamaq və ya endirmək mümkün deyil.</string>
     <string name="description_select_note">İndi açıqlamadakı mətni seçə bilərsiniz. Nəzərə alın ki, seçim rejimində səhifə titrəyə bilər və keçidlər kliklənməyə bilər.</string>
-    <string name="notification_scale_to_square_image_summary">Bildirişdə göstərilən video miniatürünü 16:9-dan 1:1 nisbətinə qədər ölçün (pozuntulara səbəb ola bilər)</string>
+    <string name="notification_scale_to_square_image_summary">Bildirişdə göstərilən video miniatürünü 16:9-dan 1:1 nisbətinə qədər kəsin</string>
     <string name="notification_actions_summary">Aşağıdakı bildiriş fəaliyyətini hər birinin üzərinə toxunaraq redaktə edin. Sağdakı təsdiq qutularından istifadə edərək yığcam bildirişdə göstərilməsi üçün onlardan üçə qədərini seçin</string>
     <string name="invalid_source">Belə fayl/məzmun mənbəyi yoxdur</string>
     <string name="selected_stream_external_player_not_supported">Seçilmiş yayım xarici oynadıcılar tərəfindən dəstəklənmir</string>
@@ -718,4 +717,5 @@
     <string name="unknown_format">Naməlum format</string>
     <string name="unknown_quality">Naməlum keyfiyyət</string>
     <string name="progressive_load_interval_title">Oynatma yükləmə intervalı həcmi</string>
+    <string name="feed_toggle_show_future_items">Gələcək videoları göstərin</string>
 </resources>

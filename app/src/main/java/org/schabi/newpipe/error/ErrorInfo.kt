@@ -14,8 +14,6 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor.DeobfuscateException
 import org.schabi.newpipe.ktx.isNetworkRelated
 import org.schabi.newpipe.util.ServiceHelper
-import java.io.PrintWriter
-import java.io.StringWriter
 
 @Parcelize
 class ErrorInfo(
@@ -80,19 +78,10 @@ class ErrorInfo(
     companion object {
         const val SERVICE_NONE = "none"
 
-        private fun getStackTrace(throwable: Throwable): String {
-            StringWriter().use { stringWriter ->
-                PrintWriter(stringWriter, true).use { printWriter ->
-                    throwable.printStackTrace(printWriter)
-                    return stringWriter.buffer.toString()
-                }
-            }
-        }
+        fun throwableToStringList(throwable: Throwable) = arrayOf(throwable.stackTraceToString())
 
-        fun throwableToStringList(throwable: Throwable) = arrayOf(getStackTrace(throwable))
-
-        fun throwableListToStringList(throwable: List<Throwable>) =
-            Array(throwable.size) { i -> getStackTrace(throwable[i]) }
+        fun throwableListToStringList(throwableList: List<Throwable>) =
+            throwableList.map { it.stackTraceToString() }.toTypedArray()
 
         private fun getInfoServiceName(info: Info?) =
             if (info == null) SERVICE_NONE else ServiceHelper.getNameOfServiceById(info.serviceId)

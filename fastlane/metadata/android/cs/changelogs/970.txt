@@ -1,0 +1,11 @@
+Nový
+- Zobrazení metadat obsahu (značky, kategorie, licence, ...) pod popisem
+- Přidána možnost "Zobrazit podrobnosti o kanálu" ve vzdálených (nelokálních) seznamech skladeb
+- Přidána možnost "Otevřít v prohlížeči" do nabídky dlouhého stisknutí tlačítka
+
+Opravena stránka
+- Opraven pád při otáčení na stránce s podrobnostmi o videu
+- Opraveno tlačítko "Přehrát s Kodi" v přehrávači, které vždy vyzve k instalaci aplikace Kore
+- Opraveno a vylepšeno nastavení cest pro import a export
+-
+-

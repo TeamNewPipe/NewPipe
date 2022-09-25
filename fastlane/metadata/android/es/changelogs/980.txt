@@ -1,0 +1,13 @@
+Nuevos
+- Opción añadida "Añadir a lista de reproducción" a menú compartir
+- Soporte añadido para enlaces cortos de y2u.be y PeerTube
+
+Mejorados
+- Controles de velocidad de reproducción más compactos
+- Feed destaca ahora nuevos elementos
+- Ahora se guarda la opción "Mostrar elementos vistos" en feed
+
+Corregidos
+- Extracción corregida de "likes" y "dislikes" de YouTube
+- Repetición automática corregida después de volver del fondo
+Y mucho más

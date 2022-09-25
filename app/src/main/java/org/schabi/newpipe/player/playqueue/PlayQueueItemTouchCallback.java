@@ -1,5 +1,7 @@
 package org.schabi.newpipe.player.playqueue;
 
+import androidx.annotation.NonNull;
+import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,18 +18,21 @@ public abstract class PlayQueueItemTouchCallback extends ItemTouchHelper.SimpleC
     public abstract void onSwiped(int index);
 
     @Override
-    public int interpolateOutOfBoundsScroll(final RecyclerView recyclerView, final int viewSize,
-                                            final int viewSizeOutOfBounds, final int totalSize,
+    public int interpolateOutOfBoundsScroll(@NonNull final RecyclerView recyclerView,
+                                            final int viewSize,
+                                            final int viewSizeOutOfBounds,
+                                            final int totalSize,
                                             final long msSinceStartScroll) {
         final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView, viewSize,
                 viewSizeOutOfBounds, totalSize, msSinceStartScroll);
-        final int clampedAbsVelocity = Math.max(MINIMUM_INITIAL_DRAG_VELOCITY,
-                Math.min(Math.abs(standardSpeed), MAXIMUM_INITIAL_DRAG_VELOCITY));
+        final int clampedAbsVelocity = MathUtils.clamp(Math.abs(standardSpeed),
+                MINIMUM_INITIAL_DRAG_VELOCITY, MAXIMUM_INITIAL_DRAG_VELOCITY);
         return clampedAbsVelocity * (int) Math.signum(viewSizeOutOfBounds);
     }
 
     @Override
-    public boolean onMove(final RecyclerView recyclerView, final RecyclerView.ViewHolder source,
+    public boolean onMove(@NonNull final RecyclerView recyclerView,
+                          final RecyclerView.ViewHolder source,
                           final RecyclerView.ViewHolder target) {
         if (source.getItemViewType() != target.getItemViewType()) {
             return false;

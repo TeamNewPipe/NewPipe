@@ -425,4 +425,29 @@
     <string name="playlist_no_uploader">స్వయంచాలకంగా రూపొందించబడింది (ఎక్కించినవారు కనబడుటలేదు)</string>
     <string name="caption_auto_generated">స్వయంచాలకంగా రూపొందించబడింది</string>
     <string name="caption_setting_title">శీర్షికలు</string>
+    <string name="streams_notification_channel_description">సభ్యత్వాల కోసం కొత్త స్ట్రీమ్‌ల గురించి నోటిఫికేషన్‌లు</string>
+    <string name="playback_reset">స్థితి పునరుద్ధరణ</string>
+    <string name="playback_tempo">లయ</string>
+    <string name="streams_notification_channel_name">కొత్త స్ట్రీమ్స్</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s కొత్త స్ట్రీమ్</item>
+        <item quantity="other">%s కొత్త స్ట్రీమ్స్</item>
+    </plurals>
+    <string name="loading_stream_details">స్ట్రీమ్ వివరాలను లోడ్ చేస్తోంది…</string>
+    <string name="show_memory_leaks">మెమరీ లీక్‌లను చూపించు</string>
+    <string name="enable_disposed_exceptions_title">జీవితచక్రం లేని లోపాలను నివేదించండి</string>
+    <string name="import_network_expensive_warning">ఈ చర్య నెట్‌వర్క్ ఖరీదైనదని గుర్తుంచుకోండి.
+\n
+\nమీరు కొనసాగించాలనుకుంటున్నారా\?</string>
+    <string name="percent">శాతం</string>
+    <string name="semitone">అర్ధరాగం</string>
+    <string name="progressive_load_interval_title">ప్లేబ్యాక్ లోడ్ విరామం పరిమాణం</string>
+    <string name="show_original_time_ago_title">వస్తువులపై అసలు క్రిత సమయాన్ని చూపుము</string>
+    <string name="enable_disposed_exceptions_summary">పారవేయడం తర్వాత ఫ్రాగ్మెంట్ లేదా యాక్టివిటీ లైఫ్‌సైకిల్ వెలుపల బట్వాడా చేయలేని Rx మినహాయింపులను బలవంతంగా నివేదించడం</string>
+    <string name="enable_leak_canary_summary">మెమరీ లీక్ మానిటరింగ్ హీప్ డంపింగ్ చేసినప్పుడు యాప్ స్పందించక పోవడానికి కారణం కావచ్చు</string>
+    <string name="playback_pitch">శృతి</string>
+    <string name="unhook_checkbox">అన్‌హుక్ (వక్రీకరణకు కారణం కావచ్చు)</string>
+    <string name="playback_step">అడుగు</string>
+    <string name="skip_silence_checkbox">నిశ్శబ్ద సమయంలో వేగంగా ముందుకు వెళ్లుము</string>
+    <string name="playback_speed_control">ప్లేబ్యాక్ స్పీడ్ నియంత్రణలు</string>
 </resources>

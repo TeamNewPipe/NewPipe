@@ -1,0 +1,12 @@
+- [YouTube] Podpora mixu
+- [YouTube] Zobrazení informací o veřejnoprávních vysílatelích a Covid-19
+- [media.ccc.de] Přidána nejnovější videa
+- Přidán somálský překlad
+
+- Mnoho interních vylepšení
+
+- Opraveno sdílení videí z přehrávače
+- Opraveno prázdné webové zobrazení ReCaptcha
+- Opraven pád, ke kterému docházelo při odebírání streamu ze seznamu
+- [PeerTube] Opraveny související streamy
+- YouTube] Opraveno vyhledávání hudby na YouTube

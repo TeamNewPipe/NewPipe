@@ -1,0 +1,15 @@
+Cette mise à jour abandonne la prise en charge d'Android 4.4 KitKat, la nouvelle version minimum est Android 5 Lollipop !
+
+Nouveautés
+• Télécharger depuis le menu d'appuis long
+• Cacher les futures vidéos dans le flux
+• Partager des listes de lecture locales
+
+Améliorations
+• Réusinage du code du lecteur en petits composants : moins de mémoire vive utilisée, moins de bogues
+• Meilleur redimension des miniatures
+• Vectorisation des emplacements des images
+
+Corrections
+• Notifications
+• Plein écran
