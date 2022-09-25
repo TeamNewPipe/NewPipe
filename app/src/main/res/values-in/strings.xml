@@ -664,15 +664,15 @@
     <string name="error_report_notification_toast">Sebuah kegalatan terjadi, lihat notifikasinya</string>
     <string name="show_error_snackbar">Menampilkan sebuah snackbar kegalatan</string>
     <string name="create_error_notification">Buat sebuah notifikasi kegalatan</string>
-    <string name="no_appropriate_file_manager_message">Tidak ada manajer file yang ditemukan untuk tindakan ini.
-\nMohon instal sebuah manajer file atau coba menonaktifkan \'%s\' di pengaturan unduhan.</string>
+    <string name="no_appropriate_file_manager_message">Tidak ada pengelola berkas yang ditemukan untuk tindakan ini.
+\nSilakan pasang pengelola berkas atau coba nonaktifkan \'%s\' di pengaturan unduhan</string>
     <string name="error_report_notification_title">NewPipe mengalami sebuah kegalatan, ketuk untuk melaporkan</string>
-    <string name="no_appropriate_file_manager_message_android_10">Tidak ada manajer file yang ditemukan untuk tindakan ini.
-\nMohon instal sebuah manajer file yang kompatibel dengan Storage Access Framework.</string>
+    <string name="no_appropriate_file_manager_message_android_10">Tidak ada pengelola berkas yang ditemukan untuk tindakan ini.
+\nSilakan pasang pengelola berkas yang kompatibel dengan Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Komentar dipin</string>
     <string name="leak_canary_not_available">LeakCanary tidak tersedia</string>
     <string name="progressive_load_interval_exoplayer_default">Default ExoPlayer</string>
-    <string name="progressive_load_interval_summary">Ubah ukuran interval pemuatan (saat ini %s). Sebuah nilai yang rendah mungkin dapat membuat pemuatan video awal lebih cepat. Membutuhkan sebuah pemulaian ulang pada pemain.</string>
+    <string name="progressive_load_interval_summary">Ubah ukuran interval pemuatan (saat ini %s). Nilai yang rendah mungkin dapat membuat pemuatan video awal lebih cepat. Perubahan membutuhkan pemutar dimulai ulang</string>
     <string name="loading_stream_details">Memuat detail stream…</string>
     <string name="streams_notifications_interval_title">Frekuensi pemeriksaan</string>
     <string name="streams_notifications_network_title">Dibutuhkan koneksi jaringan</string>

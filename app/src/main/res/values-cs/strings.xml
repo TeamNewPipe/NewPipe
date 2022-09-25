@@ -685,16 +685,16 @@
     <string name="show_crash_the_player_title">Ukázat „Shodit přehrávač“</string>
     <string name="feed_new_items">Nové položky</string>
     <string name="no_appropriate_file_manager_message_android_10">Pro tuto akci nebyl nalezen žádný vhodný správce souborů.
-\nProsím, nainstalujte správce souborů kompatibilní se Storage Access Framework.</string>
+\nNainstalujte správce souborů kompatibilní se Storage Access Framework</string>
     <string name="error_report_channel_name">Oznámení o hlášení chyb</string>
     <string name="error_report_channel_description">Oznámení za účelem hlášení chyb</string>
     <string name="no_appropriate_file_manager_message">Pro tuto akci nebyl nalezen žádný vhodný správce souborů.
-\nProsím, nainstalujte správce souborů nebo zkuste vypnout %s v nastaveních stahování.</string>
+\nNainstalujte správce souborů nebo zkuste vypnout \'%s\' v nastavení stahování</string>
     <string name="show_crash_the_player_summary">Ukáže volbu pro zřícení během používání přehrávače</string>
     <string name="show_error_snackbar">Ukázat krátké oznámení o chybě</string>
     <string name="detail_pinned_comment_view_description">Připnutý komentář</string>
     <string name="crash_the_player">Shodit přehrávač</string>
-    <string name="progressive_load_interval_summary">Změnit interval načítání (aktuálně %s). Menší hodnota může zrychlit počáteční načítání videa. Změna vyžaduje restart přehrávače.</string>
+    <string name="progressive_load_interval_summary">Změnit interval načítání (aktuálně %s). Menší hodnota může zrychlit počáteční načítání videa. Změna vyžaduje restart přehrávače</string>
     <string name="leak_canary_not_available">LeakCanary není dostupné</string>
     <string name="progressive_load_interval_exoplayer_default">Výchozí ExoPlayer</string>
     <string name="settings_category_player_notification_summary">Nastavit oznámení o právě přehrávaném streamu</string>

@@ -121,7 +121,7 @@
     <string name="settings_file_replacement_character_summary">Ongeldige tekens worden vervangen door deze waarde</string>
     <string name="settings_file_replacement_character_title">Vervangend teken</string>
     <string name="charset_letters_and_digits">Letters en cijfers</string>
-    <string name="charset_most_special_characters">Speciaalste tekens</string>
+    <string name="charset_most_special_characters">Speciale tekens</string>
     <string name="subscribe_button_title">Abonneren</string>
     <string name="subscribed_button_title">Geabonneerd</string>
     <string name="channel_unsubscribed">Abonnement opgezegd</string>
@@ -559,7 +559,7 @@
     <string name="notification_action_2_title">Derde actieknop</string>
     <string name="notification_action_1_title">Tweede actieknop</string>
     <string name="notification_action_0_title">Eerste actieknop</string>
-    <string name="notification_scale_to_square_image_summary">Schaal de miniatuurafbeelding van de video die getoond wordt in de notificatie van verhouding 16:9 naar 1:1 (dit kan vervorming creëren)</string>
+    <string name="notification_scale_to_square_image_summary">Schaal de miniatuurafbeelding van de video die getoond wordt in de notificatie van verhouding 16:9 naar 1:1</string>
     <string name="notification_scale_to_square_image_title">Schaal de miniatuurafbeelding tot verhouding 1:1</string>
     <string name="auto_queue_toggle">Automatisch in de wachtrij plaatsen</string>
     <string name="show_memory_leaks">Toon memory leaks</string>
@@ -709,12 +709,13 @@
     </plurals>
     <string name="you_successfully_subscribed">Je bent nu geabonneerd op dit kanaal</string>
     <string name="delete_downloaded_files_confirm">Alle gedownloade bestanden van schijf wissen\?</string>
-    <string name="selected_stream_external_player_not_supported">De gekozen stream wordt niet ondersteund door externe spelers</string>
+    <string name="selected_stream_external_player_not_supported">De geselecteerde stream wordt niet ondersteund door externe spelers</string>
     <string name="no_video_streams_available_for_external_players">Er zijn geen videostreams beschikbaar voor externe spelers</string>
     <string name="unknown_quality">Onbekende kwaliteit</string>
-    <string name="streams_not_yet_supported_removed">Streams die nog niet kunnen worden opgeslagen, worden niet getoond</string>
-    <string name="no_audio_streams_available_for_external_players">Geen audiostreams beschikbaar voor externe spelers</string>
-    <string name="select_quality_external_players">Kies kwaliteit voor externe spelers</string>
-    <string name="unknown_format">Onbekend bestandstype</string>
+    <string name="streams_not_yet_supported_removed">Streams die niet ondersteund worden door de downloader, worden niet getoond</string>
+    <string name="no_audio_streams_available_for_external_players">Er zijn geen geluidsstreams beschikbaar voor externe spelers</string>
+    <string name="select_quality_external_players">Selecteer kwaliteit voor externe spelers</string>
+    <string name="unknown_format">Onbekend formaat</string>
     <string name="progressive_load_interval_title">Intervalgrootte tijdens afspelen</string>
+    <string name="feed_toggle_show_future_items">Toon toekomstige video\'s</string>
 </resources>

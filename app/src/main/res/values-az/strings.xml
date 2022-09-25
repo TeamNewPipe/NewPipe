@@ -497,7 +497,7 @@
     <string name="hash_channel_description">Video fayl xülasəsi prosesi üçün bildirişlər</string>
     <string name="on">Açın</string>
     <string name="notification_scale_to_square_image_title">Miniatürü 1:1 aspekt nisbətinə kəsin</string>
-    <string name="progressive_load_interval_summary">Yükləmə intervalının həcmini dəyişdirin (hazırda %s). Daha aşağı dəyər ilkin video yükləməni sürətləndirə bilər. Dəyişikliklər oynadıcının yenidən başladılmasını tələb edir.</string>
+    <string name="progressive_load_interval_summary">Yükləmə intervalının həcmini dəyişdirin (hazırda %s). Daha aşağı dəyər ilkin video yükləməni sürətləndirə bilər. Dəyişikliklər oynadıcının yenidən başladılmasını tələb edir</string>
     <string name="show_meta_info_summary">Yayım yaradıcısı, məzmunu və ya axtarış sorğusu haqqında əlavə məlumat olan üst məlumat qutularını gizlətmək üçün söndürün</string>
     <string name="auto_queue_summary">Əlaqədar yayımı əlavə etməklə (təkrar etməyən) sonlanacaq oynatma sırasını davam etdir</string>
     <string name="remote_search_suggestions">Kənar axtarış təklifləri</string>
@@ -700,10 +700,10 @@
     <string name="new_seek_duration_toast">ExoPlayer məhdudiyyətlərinə görə axtarış müddəti %d saniyəyə təyin edildi</string>
     <string name="feed_use_dedicated_fetch_method_summary">Bəzi xidmətlərdə mövcuddur, adətən daha sürətli olur, lakin məhdud sayda elementləri və çox vaxt natamam məlumatı qaytara bilər (məsələn, müddət, element növü, canlı status yoxdur)</string>
     <string name="no_appropriate_file_manager_message">Bu əməliyyat üçün uyğun fayl meneceri tapılmadı.
-\nZəhmət olmasa, fayl menecerini quraşdırın və ya endirmə tənzimləmələrində \'%s\'-i deaktiv etməyə çalışın.</string>
+\nZəhmət olmasa, fayl menecerini quraşdırın və ya endirmə tənzimləmələrində \'%s\'-i deaktiv etməyə çalışın</string>
     <string name="feed_load_error_account_info">\'%s\' üçün axın yükləmək mümkün olmadı.</string>
     <string name="no_appropriate_file_manager_message_android_10">Bu əməliyyat üçün uyğun fayl meneceri tapılmadı.
-\nZəhmət olmasa ,Yaddaş Giriş Çərçivəsinə uyğun fayl menecerini quraşdırın.</string>
+\nZəhmət olmasa ,Yaddaş Giriş Çərçivəsinə uyğun fayl menecerini quraşdırın</string>
     <string name="youtube_music_premium_content">Bu video yalnız YouTube Music Premium üzvləri üçün əlçatandır, ona görə də NewPipe tərəfindən yayımlamaq və ya endirmək mümkün deyil.</string>
     <string name="description_select_note">İndi açıqlamadakı mətni seçə bilərsiniz. Nəzərə alın ki, seçim rejimində səhifə titrəyə bilər və keçidlər kliklənməyə bilər.</string>
     <string name="notification_scale_to_square_image_summary">Bildirişdə göstərilən video miniatürünü 16:9-dan 1:1 nisbətinə qədər kəsin</string>

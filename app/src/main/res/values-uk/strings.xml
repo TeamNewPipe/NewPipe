@@ -692,15 +692,15 @@
     <string name="error_report_notification_title">Сталася помилка NewPipe, торкніться, щоб звітувати</string>
     <string name="error_report_notification_toast">Сталася помилка. Перегляньте сповіщення</string>
     <string name="no_appropriate_file_manager_message">Для цієї дії не знайдено відповідного файлового менеджера.
-\nУстановіть файловий менеджер або спробуйте вимкнути «%s» у налаштуваннях завантажень.</string>
+\nУстановіть файловий менеджер або спробуйте вимкнути «%s» у налаштуваннях завантажень</string>
     <string name="no_appropriate_file_manager_message_android_10">Для цієї дії не знайдено відповідного файлового менеджера.
-\nУстановіть файловий менеджер, сумісний зі Storage Access Framework.</string>
+\nУстановіть файловий менеджер, сумісний зі Storage Access Framework</string>
     <string name="show_error_snackbar">Показати панель помилок</string>
     <string name="create_error_notification">Створити сповіщення про помилку</string>
     <string name="detail_pinned_comment_view_description">Закріплений коментар</string>
     <string name="leak_canary_not_available">LeakCanary недоступний</string>
     <string name="progressive_load_interval_exoplayer_default">Типовий ExoPlayer</string>
-    <string name="progressive_load_interval_summary">Змінити розмір інтервалу завантаження (наразі %s). Менше значення може прискорити початкове завантаження відео. Зміни вимагають перезапуску програвача.</string>
+    <string name="progressive_load_interval_summary">Змінити розмір інтервалу завантаження (наразі %s). Менше значення може прискорити початкове завантаження відео. Зміни вимагають перезапуску програвача</string>
     <string name="you_successfully_subscribed">Ви підписалися на цей канал</string>
     <string name="enumeration_comma">,</string>
     <string name="streams_notification_channel_description">Сповіщення про нові трансляції для підписок</string>

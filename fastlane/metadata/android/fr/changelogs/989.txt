@@ -1,0 +1,3 @@
+• [YouTube] Correction du chargement infini lors de la lecture d'une vidéo
+• [YouTube] Correction de l'accélération de certaines vidéos
+• Mise à jour 1.15.3 de la bibliothèque jsoup contenant une correction de sécurité

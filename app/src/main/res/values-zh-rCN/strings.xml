@@ -665,13 +665,13 @@
     <string name="show_error_snackbar">显示错误警示SnackBar</string>
     <string name="create_error_notification">创建一条错误通知</string>
     <string name="no_appropriate_file_manager_message">找不到适合此操作的文件管理器。
-\n请安装一文件管理器或尝试在下载设置中禁用“%s”。</string>
+\n请安装一文件管理器或尝试在下载设置中禁用“%s”</string>
     <string name="no_appropriate_file_manager_message_android_10">找不到适合此操作的文件管理器。
-\n请安装与存储访问框架(SAF)兼容的文件管理器。</string>
+\n请安装兼容存储访问框架(SAF)的文件管理器</string>
     <string name="error_report_notification_title">NewPipe 遇到了一个错误，点击此处报告此错误</string>
     <string name="detail_pinned_comment_view_description">置顶评论</string>
     <string name="leak_canary_not_available">LeakCanary 不可用</string>
-    <string name="progressive_load_interval_summary">更改加载间隔的大小（当前为 %s），较低的值可以加快视频的首次加载速度。更改需要重启播放器。</string>
+    <string name="progressive_load_interval_summary">更改加载间隔的大小（当前为 %s），较低的值可以加快视频的首次加载速度。更改需要重启播放器</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer 默认</string>
     <string name="settings_category_player_notification_summary">配置当前正在播放的串流的通知</string>
     <string name="enable_streams_notifications_title">新串流通知</string>
@@ -685,8 +685,7 @@
     <string name="notifications">通知</string>
     <string name="streams_notification_channel_name">新的串流</string>
     <plurals name="new_streams">
-        <item quantity="one">%s 条新串流</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 个新音视频流</item>
     </plurals>
     <string name="streams_notification_channel_description">被订阅的新串流的通知</string>
     <string name="loading_stream_details">正在加载串流详情…</string>
