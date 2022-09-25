@@ -135,7 +135,7 @@ public class StatisticsPlaylistFragment
     protected void initListeners() {
         super.initListeners();
 
-        itemListAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
+        itemListAdapter.setSelectedListener(new OnClickGesture<>() {
             @Override
             public void selected(final LocalItem selectedItem) {
                 if (selectedItem instanceof StreamStatisticsEntry) {

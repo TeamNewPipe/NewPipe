@@ -207,8 +207,8 @@
     <string name="notification_action_2_title">மூன்றாம் செயல் பொத்தான்</string>
     <string name="notification_action_1_title">இரண்டாம் செயல் பொத்தான்</string>
     <string name="notification_action_0_title">முதல் செயல் பொத்தான்</string>
-    <string name="notification_scale_to_square_image_summary">அறிவிப்பில் தெரியும் காணொளி சிறுபடத்தை 16: 9 முதல் 1: 1 அம்ச விகிதம் வரை அளவிடு (சிதைவுகளை அறிமுகப்படுத்தலாம்)</string>
-    <string name="notification_scale_to_square_image_title">சிறுபடத்தை 1: 1 அம்ச விகிதத்திற்கு அளவிடு</string>
+    <string name="notification_scale_to_square_image_summary">அறிவிப்பில் தெரியும் காணொளி முகப்புபடத்தை 16: 9 முதல் 1: 1 அம்ச விகிதம் வரை அளவிட்டு பிரித்து எது</string>
+    <string name="notification_scale_to_square_image_title">அட்டைப் படத்தை 1:1 விகிதத்தில் செதுக்கவும்</string>
     <string name="search_showing_result_for">%s :க்கான முடிவுகளைக் காட்டுகிறது</string>
     <string name="open_with">இதனுடன் திற</string>
     <string name="tab_about">பற்றி</string>
@@ -359,4 +359,5 @@
     <string name="feed_group_dialog_select_subscriptions">சந்தாக்களைத் தேர்ந்தெடு</string>
     <string name="settings_file_replacement_character_summary">செல்லா வரியுருக்கள் இம்மதிப்புடன் மாற்றீடுசெய்யப்படும்</string>
     <string name="preferred_open_action_settings_title">நயமான \'திற\' செயல்</string>
+    <string name="progressive_load_interval_title">பின்னணி சுழர்சி யின் கால அலவு</string>
 </resources>

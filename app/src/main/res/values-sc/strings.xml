@@ -550,7 +550,7 @@
     <string name="clear_queue_confirmation_title">Pedi una cunfirma in antis de iscantzellare una lista</string>
     <string name="notification_action_shuffle">Òrdine casuale</string>
     <string name="notification_actions_summary">Modìfica cada atzione de notìfica inoghe in suta incarchende·la. Ischerta·nde finas a tres de ammustrare in sa notìfica cumpata impreende sas casellas de controllu a destra</string>
-    <string name="notification_scale_to_square_image_summary">Iscala sa miniadura ammustrada in sa notìfica dae su formadu in 16:9 a cussu 1:1 (diat pòdere causare istorchimentos)</string>
+    <string name="notification_scale_to_square_image_summary">Sega sa miniadura ammustrada in sa notìfica dae su formadu in 16:9 a cussu 1:1</string>
     <string name="notification_action_nothing">Nudda</string>
     <string name="notification_action_buffering">Carrighende</string>
     <string name="notification_action_repeat">Repite</string>
@@ -560,7 +560,7 @@
     <string name="notification_action_2_title">Su de tres butones de atzione</string>
     <string name="notification_action_1_title">Su de duos butones de atzione</string>
     <string name="notification_action_0_title">Su de unu butone de atzione</string>
-    <string name="notification_scale_to_square_image_title">Pone in iscala sa miniadura in formadu 1:1</string>
+    <string name="notification_scale_to_square_image_title">Sega sa miniadura in formadu 1:1</string>
     <string name="show_memory_leaks">Ammustra sas pèrdidas de memòria</string>
     <string name="enqueued">Annànghidu a sa lista</string>
     <string name="enqueue_stream">Pone in lista</string>
@@ -633,7 +633,6 @@
 \nCheres bogare s\'iscritzione a custu canale\?</string>
     <string name="feed_load_error_account_info">Carrigamentu de su flussu pro \'%s\' fallidu.</string>
     <string name="feed_load_error">Errore carrighende su flussu</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Su \'Storage Access Framework\' no est suportadu in Android KitKat e versiones prus betzas</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">T\'at a bènnere pedidu in ue sarvare cada documentu</string>
     <string name="no_dir_yet">Non b\'at galu peruna cartella de iscarrigamentu impostada. Issèbera como sa cartella de iscarrigamentu predefinida</string>
     <string name="off">Istudadu</string>
@@ -717,4 +716,6 @@
     <string name="unknown_format">Formadu disconnotu</string>
     <string name="unknown_quality">Calidade disconnota</string>
     <string name="selected_stream_external_player_not_supported">Su flussu seletzionadu no est galu suportadu dae letores esternos</string>
+    <string name="progressive_load_interval_title">Mannària de s\'intervallu de carrigamentu de sa riprodutzione</string>
+    <string name="feed_toggle_show_future_items">Ammustra sos vìdeos imbenientes</string>
 </resources>

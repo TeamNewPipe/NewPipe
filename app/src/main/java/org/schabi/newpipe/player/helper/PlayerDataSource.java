@@ -208,8 +208,8 @@ public class PlayerDataSource {
                 Log.w(TAG, "instantiateCacheIfNeeded: could not create cache dir");
             }
 
-            final LeastRecentlyUsedCacheEvictor evictor
-                    = new LeastRecentlyUsedCacheEvictor(PlayerHelper.getPreferredCacheSize());
+            final LeastRecentlyUsedCacheEvictor evictor =
+                    new LeastRecentlyUsedCacheEvictor(PlayerHelper.getPreferredCacheSize());
             cache = new SimpleCache(cacheDir, evictor, new StandaloneDatabaseProvider(context));
         }
     }

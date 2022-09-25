@@ -1,0 +1,12 @@
+Nový
+- Podpora jiných způsobů doručování než progresivního HTTP: rychlejší načítání přehrávání, opravy pro PeerTube a SoundCloud, přehrávání nedávno ukončených živých přenosů na YouTube.
+- Tlačítko Přidat pro přidání vzdáleného seznamu skladeb do místního seznamu skladeb
+- Náhled obrázku ve sdíleném listu systému Android 10+
+
+Vylepšená stránka
+- Vylepšení dialogového okna s parametry přehrávání
+- Přesunutí tlačítek pro import/export předplatného do nabídky se třemi tečkami
+
+Opraveno
+-
+-

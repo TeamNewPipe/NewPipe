@@ -459,4 +459,5 @@
     <string name="mark_as_watched">দেখা হিসেবে মার্ক করো</string>
     <string name="metadata_tags">ট্যাগসমূহ</string>
     <string name="notification_colorize_summary">অ্যান্ড্রয়েডকে থাম্বনেইলের প্রধান রং অনুযায়ী রঙিন করুন (উল্লেখ্য যে, এটি সব ডিভাইসে উপলব্ধ নয়)</string>
+    <string name="unknown_format">অজানা ধরন</string>
 </resources>

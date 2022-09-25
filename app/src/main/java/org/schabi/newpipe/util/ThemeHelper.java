@@ -244,6 +244,22 @@ public final class ThemeHelper {
         return AppCompatResources.getDrawable(context, typedValue.resourceId);
     }
 
+    /**
+     * Gets a runtime dimen from the {@code android} package. Should be used for dimens for which
+     * normal accessing with {@code R.dimen.} is not available.
+     *
+     * @param context context
+     * @param name    dimen resource name (e.g. navigation_bar_height)
+     * @return the obtained dimension, in pixels, or 0 if the resource could not be resolved
+     */
+    public static int getAndroidDimenPx(@NonNull final Context context, final String name) {
+        final int resId = context.getResources().getIdentifier(name, "dimen", "android");
+        if (resId <= 0) {
+            return 0;
+        }
+        return context.getResources().getDimensionPixelSize(resId);
+    }
+
     private static String getSelectedThemeKey(final Context context) {
         final String themeKey = context.getString(R.string.theme_key);
         final String defaultTheme = context.getResources().getString(R.string.default_theme_value);

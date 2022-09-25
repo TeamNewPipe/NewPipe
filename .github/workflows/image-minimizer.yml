@@ -6,6 +6,10 @@ on:
   issues:
     types: [opened, edited]
 
+permissions:
+  issues: write
+  pull-requests: write
+
 jobs:
   try-minimize:
     runs-on: ubuntu-latest

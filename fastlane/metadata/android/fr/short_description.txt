@@ -1,1 +1,1 @@
-Un lecteur multimédia libre et léger pour Android.
+Une interface pour YouTube libre et légère sur Android.

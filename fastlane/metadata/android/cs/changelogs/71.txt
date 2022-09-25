@@ -1,0 +1,7 @@
+### Vylepšení
+* Přidání oznámení o aktualizaci aplikace pro sestavení na GitHubu (#1608 by @krtkush)
+* Různá vylepšení downloaderu (#1944 by @kapodamy):
+  * přidat chybějící bílé ikony a použít hardcorový způsob změny barev ikon
+  * kontrola, zda je iterátor inicializován (oprava #2031)
+  * umožnit opakování stahování při chybě "post-processing failed" v novém muxeru
+  * nový muxer MPEG-4 opravuje nesynchronní video a audio toky (#2039)

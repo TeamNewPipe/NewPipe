@@ -570,8 +570,8 @@
     <string name="notification_action_2_title">Akčné tlačidlo tri</string>
     <string name="notification_action_1_title">Akčné tlačidlo dva</string>
     <string name="notification_action_0_title">Akčné tlačidlo jedna</string>
-    <string name="notification_scale_to_square_image_summary">Zmeniť pomer strán videa zobrazovaného v miniatúre z 16:9 na 1:1 (čo môže spôsobovať skreslenie)</string>
-    <string name="notification_scale_to_square_image_title">Zmenšiť pomer strán miniatúry na 1: 1</string>
+    <string name="notification_scale_to_square_image_summary">Orezať pomer strán videa zobrazovaného v miniatúre z 16:9 na 1:1</string>
+    <string name="notification_scale_to_square_image_title">Orezať pomer strán miniatúry na 1: 1</string>
     <string name="show_memory_leaks">Zobraziť memory leaks</string>
     <string name="enqueued">Zaradené do poradia</string>
     <string name="enqueue_stream">Zaradiť do poradia</string>
@@ -643,7 +643,6 @@
     <string name="feed_load_error_account_info">Nemožno načítať informačný kanál \'%s\'.</string>
     <string name="feed_load_error">Chyba pri načítaní kanála</string>
     <string name="downloads_storage_use_saf_summary_api_29">\'Storage Access Framework\' je podporovaný len od Androidu 10 a vyššie</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' nie je podporovaný v systéme Android KitKat a ani v starších verziách</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Pri každom sťahovaní sa zobrazí výzva kam uložiť súbor</string>
     <string name="no_dir_yet">Nie je nastavený adresár na sťahovanie, nastavte ho teraz</string>
     <string name="mark_as_watched">Označiť ako videné</string>
@@ -682,7 +681,7 @@
     <string name="checking_updates_toast">Kontrolujú sa aktualizácie…</string>
     <string name="feed_new_items">Nové položky informačného kanála</string>
     <string name="no_appropriate_file_manager_message">Pre túto akciu sa nenašiel vhodný správca súborov.
-\nNainštalujte si správcu súborov alebo skúste vypnúť \'%s\' v nastaveniach sťahovania.</string>
+\nNainštalujte si správcu súborov alebo skúste vypnúť \'%s\' v nastaveniach sťahovania</string>
     <string name="show_crash_the_player_title">Zobraziť „zlyhať prehrávač“</string>
     <string name="leak_canary_not_available">LeakCanary nie je k dispozícii</string>
     <string name="no_appropriate_file_manager_message_android_10">Pre túto akciu sa nenašiel vhodný správca súborov.
@@ -697,7 +696,7 @@
     <string name="show_error_snackbar">Zobraziť krátke oznámenie chyby</string>
     <string name="create_error_notification">Oznámte chybu</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer preddefinovaný</string>
-    <string name="progressive_load_interval_summary">Zmeniť interval načítania (aktuálne %s). Menšia hodnota môže zvýšiť rýchlosť prvotného načítania videa. Zmena vyžaduje reštart.</string>
+    <string name="progressive_load_interval_summary">Zmeniť interval načítania (aktuálne %s). Menšia hodnota môže zvýšiť rýchlosť prvotného načítania videa. Zmena vyžaduje reštart</string>
     <string name="notifications">Upozornenia</string>
     <string name="streams_notifications_interval_title">Frekvencia kontroly</string>
     <string name="delete_downloaded_files_confirm">Vymazať všetky stiahnuté súbory z disku\?</string>
@@ -723,4 +722,13 @@
     <string name="semitone">Poltón</string>
     <string name="loading_stream_details">Nahrávanie podrobností streamu…</string>
     <string name="percent">Percent</string>
+    <string name="selected_stream_external_player_not_supported">Vybraný stream nie je podporovaný externými prehrávačmi</string>
+    <string name="no_audio_streams_available_for_external_players">Žiadne audio streamy nie sú k dispozícií pre externé prehrávače</string>
+    <string name="select_quality_external_players">Vybrať kvalitu pre externé prehrávače</string>
+    <string name="unknown_format">Neznámy formát</string>
+    <string name="progressive_load_interval_title">Interval medzipamäte</string>
+    <string name="streams_not_yet_supported_removed">Streamy nepodporované sťahovačom sa nezobrazujú</string>
+    <string name="no_video_streams_available_for_external_players">Žiadne video streamy nie sú k dispozícií pre externé prehrávače</string>
+    <string name="unknown_quality">Neznáma kvalita</string>
+    <string name="feed_toggle_show_future_items">Zobraziť budúce videá</string>
 </resources>

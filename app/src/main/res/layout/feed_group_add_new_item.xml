@@ -24,7 +24,7 @@
             android:layout_height="14dp"
             android:layout_gravity="center"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/ic_add"
+            android:src="@drawable/ic_add"
             tools:ignore="ContentDescription" />
 
         <org.schabi.newpipe.views.NewPipeTextView

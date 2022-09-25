@@ -19,7 +19,7 @@
     <string name="notification_action_2_title">Batoonka hawsha sadexaad</string>
     <string name="notification_action_1_title">Batoonka hawsha labaad</string>
     <string name="notification_action_0_title">Batoonka hawsha koowaad</string>
-    <string name="notification_scale_to_square_image_summary">La ekaysii galka muuqaalka xaga ogaysiisyada ka muuqda cabirka 1:1 ayadoo laga soo baddalayo 16:9 (wuxuu keeni karaa shucaac)</string>
+    <string name="notification_scale_to_square_image_summary">La ekaysii galka muuqaalka xaga ogaysiisyada ka muuqda cabirka 1:1 ayadoo laga soo baddalayo 16:9</string>
     <string name="notification_scale_to_square_image_title">Galka la ekaysii cabirka 1:1</string>
     <string name="show_play_with_kodi_summary">Soo bandhig istikhyaar ah in muuqaalka lagu furo xarunta madadaalada Kodi</string>
     <string name="show_play_with_kodi_title">Soodhig istikhyaarka \"Ku fur Kodi\"</string>
@@ -633,7 +633,6 @@
     <string name="feed_load_error_account_info">Lama soo kicin karo bandhigga: \'%s\'.</string>
     <string name="feed_load_error">Khalad ayaa ka dhacay sookicintii</string>
     <string name="downloads_storage_use_saf_summary_api_29">Laga bilaabo Android 10 kaliya waxaa la isticmaali \'SAF\'</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'SAF\' kuma shaqeeyo Android KitKat iyo wixii ka hooseeya</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Dajin walba meeshii lagu kaydin lahaa ayaa lagu waydiin</string>
     <string name="disable_media_tunneling_summary">Iska xidh kala-leexinta muuqaalada/dhagaysiga hadaad lakulanto shaashad madow ama muuqaalka oo isistaaga</string>
     <string name="disable_media_tunneling_title">Xidh kala-leexinta</string>
@@ -650,4 +649,6 @@
     <string name="show_image_indicators_title">Tus tilmaamayaasha sawirka</string>
     <string name="remote_search_suggestions">Soojeedinada raadinta banaanka</string>
     <string name="local_search_suggestions">Soojeedinada raadinta gudaha</string>
+    <string name="progressive_load_interval_title">Cabirka soodaarida udhexeeya</string>
+    <string name="crash_the_player">Jabi Daareha</string>
 </resources>

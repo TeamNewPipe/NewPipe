@@ -642,7 +642,6 @@
     <string name="feed_load_error_account_info">Не могу да учитам довод за „%s“.</string>
     <string name="feed_load_error">Грешка учитавања довода</string>
     <string name="downloads_storage_use_saf_summary_api_29">Од Андроида 10 само „Storage Access Framework“ је подржан</string>
-    <string name="downloads_storage_use_saf_summary_api_19">„Storage Access Framework“ није подржан на Андроиду 4.4 и старијим</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Питаће вас где да сачувате свако преузимање</string>
     <string name="no_dir_yet">Фасцикла за преузимање није одређена. Изаберите подразумевану фасциклу</string>
     <string name="off">искљ</string>

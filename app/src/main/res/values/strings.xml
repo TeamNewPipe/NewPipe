@@ -50,8 +50,8 @@
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
     <string name="crash_the_player">Crash the player</string>
-    <string name="notification_scale_to_square_image_title">Scale thumbnail to 1:1 aspect ratio</string>
-    <string name="notification_scale_to_square_image_summary">Scale the video thumbnail shown in the notification from 16:9 to 1:1 aspect ratio (may introduce distortions)</string>
+    <string name="notification_scale_to_square_image_title">Crop thumbnail to 1:1 aspect ratio</string>
+    <string name="notification_scale_to_square_image_summary">Crop the video thumbnail shown in the notification from 16:9 to 1:1 aspect ratio</string>
     <string name="notification_action_0_title">First action button</string>
     <string name="notification_action_1_title">Second action button</string>
     <string name="notification_action_2_title">Third action button</string>
@@ -79,7 +79,7 @@
     <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision. Seeking for 5, 15 or 25 seconds doesn\'t work with this</string>
     <string name="seek_duration_title">Fast-forward/-rewind seek duration</string>
     <string name="progressive_load_interval_title">Playback load interval size</string>
-    <string name="progressive_load_interval_summary">Change the load interval size (currently %s). A lower value may speed up initial video loading. Changes require a player restart.</string>
+    <string name="progressive_load_interval_summary">Change the load interval size (currently %s). A lower value may speed up initial video loading. Changes require a player restart</string>
     <string name="clear_queue_confirmation_title">Ask for confirmation before clearing a queue</string>
     <string name="clear_queue_confirmation_summary">Switching from one player to another may replace your queue</string>
     <string name="clear_queue_confirmation_description">The active player queue will be replaced</string>
@@ -615,7 +615,6 @@
     <string name="downloads_storage_ask_summary_no_saf_notice">You will be asked where to save each download</string>
     <string name="downloads_storage_use_saf_title">Use system folder picker (SAF)</string>
     <string name="downloads_storage_use_saf_summary">The \'Storage Access Framework\' allows downloads to an external SD card</string>
-    <string name="downloads_storage_use_saf_summary_api_19">The \'Storage Access Framework\' is not supported on Android KitKat and below</string>
     <string name="downloads_storage_use_saf_summary_api_29">Starting from Android 10 only \'Storage Access Framework\' is supported</string>
     <string name="choose_instance_prompt">Choose an instance</string>
     <string name="app_language_title">App language</string>
@@ -685,6 +684,7 @@
 \n
 \nSo the choice boils down to what you prefer: speed or precise information.</string>
     <string name="feed_toggle_show_played_items">Show watched items</string>
+    <string name="feed_toggle_hide_played_items">Hide watched items</string>
     <string name="content_not_supported">This content is not yet supported by NewPipe.\n\nIt will hopefully be supported in a future version.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
     <string name="channel_created_by">Created by %s</string>
@@ -695,8 +695,10 @@
     <string name="recent">Recent</string>
     <string name="chapters">Chapters</string>
     <string name="no_app_to_open_intent">No app on your device can open this</string>
-    <string name="no_appropriate_file_manager_message">No appropriate file manager was found for this action.\nPlease install a file manager or try to disable \'%s\' in the download settings.</string>
-    <string name="no_appropriate_file_manager_message_android_10">No appropriate file manager was found for this action.\nPlease install a Storage Access Framework compatible file manager.</string>
+    <string name="no_appropriate_file_manager_message">No appropriate file manager was found for this action.
+\nPlease install a file manager or try to disable \'%s\' in the download settings</string>
+    <string name="no_appropriate_file_manager_message_android_10">No appropriate file manager was found for this action.
+\nPlease install a Storage Access Framework compatible file manager</string>
     <string name="georestricted_content">This content is not available in your country.</string>
     <string name="soundcloud_go_plus_content">This is a SoundCloud Go+ track, at least in your country, so it cannot be streamed or downloaded by NewPipe.</string>
     <string name="private_content">This content is private, so it cannot be streamed or downloaded by NewPipe.</string>
@@ -747,4 +749,6 @@
     <string name="select_quality_external_players">Select quality for external players</string>
     <string name="unknown_format">Unknown format</string>
     <string name="unknown_quality">Unknown quality</string>
+    <string name="feed_toggle_show_future_items">Show future items</string>
+    <string name="feed_toggle_hide_future_items">Hide future items</string>
 </resources>

@@ -1,0 +1,3 @@
+[YouTube] Oprava vyhledávání pro některé uživatele
+[YouTube] Oprava náhodných výjimek při dešifrování
+[SoundCloud] Adresy URL, které končí lomítkem, jsou nyní zpracovávány správně

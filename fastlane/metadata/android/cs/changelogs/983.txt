@@ -1,0 +1,9 @@
+Přidání nového uživatelského rozhraní a chování při hledání dvojitým klepnutím
+Možnost vyhledávání v nastavení
+Zvýraznění připnutých komentářů jako takových
+Přidat podporu open-with-app pro instanci FSFE PeerTube
+Přidat oznámení o chybách
+Oprava přehrávání první položky fronty při změně hráče
+Při vyrovnávací paměti během živých přenosů čekat déle, než dojde k selhání
+Oprava pořadí výsledků místního vyhledávání
+Oprava prázdných políček položek ve frontě přehrávání

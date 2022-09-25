@@ -41,6 +41,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
 import androidx.core.os.bundleOf
+import androidx.core.view.MenuItemCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
@@ -98,6 +99,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     private lateinit var groupAdapter: GroupieAdapter
     @State @JvmField var showPlayedItems: Boolean = true
+    @State @JvmField var showFutureItems: Boolean = true
 
     private var onSettingsChangeListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
     private var updateListViewModeOnResume = false
@@ -134,9 +136,10 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         _feedBinding = FragmentFeedBinding.bind(rootView)
         super.onViewCreated(rootView, savedInstanceState)
 
-        val factory = FeedViewModel.Factory(requireContext(), groupId)
-        viewModel = ViewModelProvider(this, factory).get(FeedViewModel::class.java)
+        val factory = FeedViewModel.getFactory(requireContext(), groupId)
+        viewModel = ViewModelProvider(this, factory)[FeedViewModel::class.java]
         showPlayedItems = viewModel.getShowPlayedItemsFromPreferences()
+        showFutureItems = viewModel.getShowFutureItemsFromPreferences()
         viewModel.stateLiveData.observe(viewLifecycleOwner) { it?.let(::handleResult) }
 
         groupAdapter = GroupieAdapter().apply {
@@ -212,6 +215,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
         inflater.inflate(R.menu.menu_feed_fragment, menu)
         updateTogglePlayedItemsButton(menu.findItem(R.id.menu_item_feed_toggle_played_items))
+        updateToggleFutureItemsButton(menu.findItem(R.id.menu_item_feed_toggle_future_items))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -241,6 +245,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             updateTogglePlayedItemsButton(item)
             viewModel.togglePlayedItems(showPlayedItems)
             viewModel.saveShowPlayedItemsToPreferences(showPlayedItems)
+        } else if (item.itemId == R.id.menu_item_feed_toggle_future_items) {
+            showFutureItems = !item.isChecked
+            updateToggleFutureItemsButton(item)
+            viewModel.toggleFutureItems(showFutureItems)
+            viewModel.saveShowFutureItemsToPreferences(showFutureItems)
         }
 
         return super.onOptionsItemSelected(item)
@@ -277,6 +286,32 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         menuItem.icon = AppCompatResources.getDrawable(
             requireContext(),
             if (showPlayedItems) R.drawable.ic_visibility_on else R.drawable.ic_visibility_off
+        )
+        MenuItemCompat.setTooltipText(
+            menuItem,
+            getString(
+                if (showPlayedItems)
+                    R.string.feed_toggle_hide_played_items
+                else
+                    R.string.feed_toggle_show_played_items
+            )
+        )
+    }
+
+    private fun updateToggleFutureItemsButton(menuItem: MenuItem) {
+        menuItem.isChecked = showFutureItems
+        menuItem.icon = AppCompatResources.getDrawable(
+            requireContext(),
+            if (showFutureItems) R.drawable.ic_history_future else R.drawable.ic_history
+        )
+        MenuItemCompat.setTooltipText(
+            menuItem,
+            getString(
+                if (showFutureItems)
+                    R.string.feed_toggle_hide_future_items
+                else
+                    R.string.feed_toggle_show_future_items
+            )
         )
     }
 

@@ -539,7 +539,7 @@
     <string name="copy_for_github">ഫോർമാറ്റുചെയ്‌ത റിപ്പോർട്ട് പകർത്തുക</string>
     <string name="playlist_page_summary">പ്ലേലിസ്റ്റ് പേജ്</string>
     <string name="error_report_open_issue_button_text">GitHub- ൽ റിപ്പോർട്ട് ചെയ്യുക</string>
-    <string name="notification_scale_to_square_image_title">ലഘുചിത്രം 1: 1 വീക്ഷണാനുപാതത്തിലേക്ക് സ്കെയിൽ ചെയ്യുക</string>
+    <string name="notification_scale_to_square_image_title">ലഘുചിത്രം 1: 1 വീക്ഷണാനുപാതത്തിലേക്ക് ക്രോപ് ചെയ്യുക</string>
     <string name="notification_colorize_summary">വീഡിയോ കവർ ചിത്രത്തിന്റെ പ്രധാന നിറത്തിന് അനുസരിച്ചു നോട്ടിഫിക്കേഷന്റെ കളർ മാറ്റാൻ ആൻഡ്രോയ്ഡിനെ അനുവദിക്കുക (ഇത് എല്ലാം ഉപകരണങ്ങളിലും ലഭ്യമല്ല )</string>
     <string name="notification_colorize_title">നോട്ടിഫിക്കേഷൻ വർണ്ണാഭമാകുക</string>
     <string name="notification_action_nothing">ഒന്നുമില്ല</string>
@@ -547,7 +547,7 @@
     <string name="notification_action_repeat">ആവർത്തിക്കുക</string>
     <string name="notification_actions_at_most_three">കോം‌പാക്റ്റ് അറിയിപ്പിൽ‌ കാണിക്കുന്നതിന് നിങ്ങൾക്ക് പരമാവധി മൂന്ന് പ്രവർ‌ത്തനങ്ങൾ‌ തിരഞ്ഞെടുക്കാനാകും!</string>
     <string name="open_with">ഇതിനോടൊപ്പം തുറക്കുക</string>
-    <string name="notification_scale_to_square_image_summary">നോട്ടിഫിക്കേഷനിൽ കാണിക്കുന്ന വീഡിയോ കവർ ചിത്രം 16:9 എന്ന അനുപാതത്തിൽ നിന്നും 1:1 ലേക്ക് മാറ്റാം (പ്രശ്നങ്ങൾ ഉണ്ടാവാൻ സാധ്യത )</string>
+    <string name="notification_scale_to_square_image_summary">നോട്ടിഫിക്കേഷനിൽ കാണിക്കുന്ന വീഡിയോ കവർ ചിത്രം 16:9 എന്ന അനുപാതത്തിൽ നിന്നും 1:1 ലേക്ക് ക്രോപ് ചെയ്യുക</string>
     <string name="download_has_started">ഡൗൺലോഡ് ആരംഭിച്ചു</string>
     <string name="select_night_theme_toast">ചുവടെ നിങ്ങളുടെ പ്രിയപ്പെട്ട രാത്രി തീം തിരഞ്ഞെടുക്കാം</string>
     <string name="night_theme_summary">നിങ്ങളുടെ പ്രിയപ്പെട്ട രാത്രി തീം തിരഞ്ഞെടുക്കുക — %s</string>
@@ -639,7 +639,6 @@
     <string name="feed_load_error">ഫീഡ് ലോഡ് ചെയ്യുന്നതിൽ പിശക് സംഭവിച്ചിരിക്കുന്നു</string>
     <string name="downloads_storage_use_saf_summary_api_29">ആൻഡ്രോയ്ഡ് 10 മുതൽ മാത്രമേ \"സ്റ്റോറേജ് അക്സസ് ഫ്രെയിംവർക്ക്\" പിന്തുണക്കു</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">എവിടെ ആണ് ഡൌൺലോഡ് ചെയ്യ്യപെടുന്ന ഓരോ ഫയൽലും സംരക്ഷിക്കപ്പെടേണ്ടത് എന്ന് തങ്കളോട് ചോദിക്കും</string>
-    <string name="downloads_storage_use_saf_summary_api_19">ആൻഡ്രോയ്ഡ് കിറ്റ് ക്യാറ്റോ അതിനു താഴെക്കോ ഉള്ളതിൽ \"സ്റ്റോറേജ് ആസസ്സ് ഫ്രെയിംവർക്ക് പിന്തുണക്കുന്നില്ല</string>
     <string name="dont_show">കാണിക്കരുത്</string>
     <string name="low_quality_smaller">കുറഞ്ഞ നിലവാരം (ചെറുത് )</string>
     <string name="high_quality_larger">ഉയർന്ന നിലവാരം (വലിയത് )</string>

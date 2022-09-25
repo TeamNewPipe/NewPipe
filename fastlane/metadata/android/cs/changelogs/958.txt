@@ -1,0 +1,15 @@
+Nové a vylepšené:
+- Znovu přidána možnost skrýt miniaturu na zamykací obrazovce
+- Tažení pro obnovení kanálu
+- Vylepšený výkon při načítání místních seznamů
+
+Opraveno:
+- Opraven pád při spuštění aplikace NewPipe po jejím vyjmutí z paměti RAM
+- Opraven pád při spuštění, když není připojení k internetu
+- Opraveno: Respektování nastavení jasu a nastavení hlasitosti
+- YouTube] Opraveny dlouhé seznamy skladeb
+
+Ostatní:
+- Vyčištění kódu a několik interních vylepšení
+- Aktualizace závislostí
+-

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.SurfaceHolder;
 
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.video.DummySurface;
+import com.google.android.exoplayer2.video.PlaceholderSurface;
 
 /**
  * Prevent error message: 'Unrecoverable player error occurred'
@@ -26,7 +26,7 @@ public final class SurfaceHolderCallback implements SurfaceHolder.Callback {
 
     private final Context context;
     private final Player player;
-    private DummySurface dummySurface;
+    private PlaceholderSurface placeholderSurface;
 
     public SurfaceHolderCallback(final Context context, final Player player) {
         this.context = context;
@@ -47,16 +47,16 @@ public final class SurfaceHolderCallback implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(final SurfaceHolder holder) {
-        if (dummySurface == null) {
-            dummySurface = DummySurface.newInstanceV17(context, false);
+        if (placeholderSurface == null) {
+            placeholderSurface = PlaceholderSurface.newInstanceV17(context, false);
         }
-        player.setVideoSurface(dummySurface);
+        player.setVideoSurface(placeholderSurface);
     }
 
     public void release() {
-        if (dummySurface != null) {
-            dummySurface.release();
-            dummySurface = null;
+        if (placeholderSurface != null) {
+            placeholderSurface.release();
+            placeholderSurface = null;
         }
     }
 }

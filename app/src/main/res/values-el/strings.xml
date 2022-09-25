@@ -498,8 +498,8 @@
     <string name="notification_action_2_title">Κουμπί τρίτης ενέργειας</string>
     <string name="notification_action_1_title">Κουμπί δεύτερης ενέργειας</string>
     <string name="notification_action_0_title">Κουμπί πρώτης ενέργειας</string>
-    <string name="notification_scale_to_square_image_summary">Κλιμάκωση της μικρογραφίας βίντεο που εμφανίζεται στην ειδοποίηση από 16:9 σε αναλογία διαστάσεων 1:1 (μπορεί να προκαλέσει παραμορφώσεις)</string>
-    <string name="notification_scale_to_square_image_title">Κλιμάκωση μικρογραφίας σε αναλογία διαστάσεων 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Περικοπή της μικρογραφίας βίντεο που εμφανίζεται στην ειδοποίηση από 16:9 σε αναλογία διαστάσεων 1:1</string>
+    <string name="notification_scale_to_square_image_title">Περικοπή μικρογραφίας σε αναλογία διαστάσεων 1:1</string>
     <string name="notification_action_buffering">Φόρτωση</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Πιστεύετε ότι η ροή φορτώνει πολύ αργά; Δοκιμάστε να ενεργοποιήσετε τη γρήγορη φόρτωση (από τις ρυθμίσεις ή πατώντας το παρακάτω κουμπί).
 \n
@@ -632,7 +632,6 @@
     <string name="feed_load_error_account_info">Αδυναμία φόρτωσης τροφοδοσίας για \'%s\'.</string>
     <string name="feed_load_error">Σφάλμα φόρτωσης τροφοδοσίας</string>
     <string name="downloads_storage_use_saf_summary_api_29">Από το Android 10 και μετά, μόνο το SAF υποστηρίζεται</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Το «Πλαίσιο Πρόσβασης Αποθήκευσης» δεν υποστηρίζεται σε Android KitKat και παλαιότερο</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Θα ερωτηθείτε πού να αποθηκεύσετε κάθε λήψη</string>
     <string name="no_dir_yet">Δεν έχει ορισθεί φάκελος λήψεων ακόμα, eπιλέξτε τον προεπιλεγμένο φάκελο τώρα</string>
     <string name="metadata_host">Host</string>
@@ -717,4 +716,6 @@
     <string name="select_quality_external_players">Επιλογή ποιότητας εξωτερικών αναπαραγωγών</string>
     <string name="unknown_format">Άγνωστος τύπος αρχείου</string>
     <string name="unknown_quality">Άγνωστη ποιότητα</string>
+    <string name="progressive_load_interval_title">Μέγεθος διαστήματος φόρτωσης αναπαραγωγής</string>
+    <string name="feed_toggle_show_future_items">Εμφάνιση μελλοντικών βίντεο</string>
 </resources>

@@ -1,6 +1,6 @@
 name: Question
 description: Ask about anything NewPipe-related
-labels: [question]
+labels: [question, needs triage]
 body:
   - type: markdown
     attributes:
@@ -16,6 +16,8 @@ body:
       options:
         - label: "I made sure that there are *no existing issues* - [open](https://github.com/TeamNewPipe/NewPipe/issues) or [closed](https://github.com/TeamNewPipe/NewPipe/issues?q=is%3Aissue+is%3Aclosed) - which I could contribute my information to."
           required: true
+        - label: "I have read the [FAQ](https://newpipe.net/FAQ/) and my question isn't listed."
+          required: true
         - label: "I have taken the time to fill in all the required details. I understand that the question will be dismissed otherwise."
           required: true
         - label: "I have read and understood the [contribution guidelines](https://github.com/TeamNewPipe/NewPipe/blob/dev/.github/CONTRIBUTING.md)."
@@ -27,7 +29,7 @@ body:
       label: What is/are your question(s)?
     validations:
       required: true
-      
+
   - type: textarea
     id: additional-information
     attributes:

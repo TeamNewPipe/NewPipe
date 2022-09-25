@@ -10,7 +10,7 @@
     <string name="search">सर्च करे</string>
     <string name="settings">सेटिंग्स</string>
     <string name="subscribe_button_title">सब्सक्राइब करें</string>
-    <string name="subscribed_button_title">सब्सक्राइबड</string>
+    <string name="subscribed_button_title">सस्क्राइब्ड</string>
     <string name="channel_unsubscribed">चैनल अनसब्सक्राइब हुआ</string>
     <string name="tab_subscriptions">सब्सक्रिप्शनस</string>
     <string name="controls_background_title">बैकग्राउंड</string>
@@ -57,10 +57,10 @@
     <string name="default_popup_resolution_title">पॉपअप का डिफ़ॉल्ट रिज़ॉल्यूशन</string>
     <string name="show_higher_resolutions_title">उच्च रिज़ॉल्यूशनस दिखाएं</string>
     <string name="show_higher_resolutions_summary">केवल कुछ ही डिवाइस 2K/4K मे विडियो चला सकते हैं</string>
-    <string name="play_with_kodi_title">Kodi से चलायें</string>
+    <string name="play_with_kodi_title">Kodi मे प्ले करे</string>
     <string name="kore_not_found">Kore ऐप नहीं मिली, इसे इनस्टॉल करें\?</string>
-    <string name="show_play_with_kodi_title">\"Kodi से चलायें\" वाला विकल्प दिखाएँ</string>
-    <string name="show_play_with_kodi_summary">Kodi मीडिया सेंटर से विडियो चलाने के लिए विकल्प प्रदर्शित करें</string>
+    <string name="show_play_with_kodi_title">\"Kodi मे प्ले करे\" वाला विकल्प दिखाएँ</string>
+    <string name="show_play_with_kodi_summary">Kodi मीडिया सेंटर से विडियो प्ले करने के लिए विकल्प प्रदर्शित करें</string>
     <string name="default_audio_format_title">डिफ़ॉल्ट ऑडियो फॉर्मेट</string>
     <string name="default_video_format_title">डिफ़ॉल्ट विडियो फॉर्मेट</string>
     <string name="theme_title">ऐप थीम</string>
@@ -187,7 +187,7 @@
     <string name="controls_download_desc">स्ट्रीम फाइल डाउनलोड करें</string>
     <string name="show_info">जानकारी दिखाएं</string>
     <string name="tab_bookmarks">बुकमार्क किये गए प्लेलिस्टस</string>
-    <string name="controls_add_to_playlist_title">में जोड़े</string>
+    <string name="controls_add_to_playlist_title">में एड करे</string>
     <string name="default_content_country_title">डिफ़ॉल्ट देश का विषय</string>
     <string name="always">हमेशा के लिए</string>
     <string name="just_once">सिर्फ एक बार के लिए</string>
@@ -518,9 +518,9 @@
     <string name="hash_channel_description">विडीओ हैशिंग की प्रगति की सूचना</string>
     <string name="hash_channel_name">वीडियो हैश अधिसूचना</string>
     <string name="show_meta_info_summary">स्ट्रीम निर्माता, स्ट्रीम विषय सूची या खोज अनुरोध के बारे में अतिरिक्त जानकारी के साथ मेटा जानकारी बक्से को छिपाने के लिए बंद करें.</string>
-    <string name="show_meta_info_title">मेटा जानकारी दिखाएँ</string>
+    <string name="show_meta_info_title">Meta info दिखाएँ</string>
     <string name="show_description_summary">वीडियो का विवरण और अतिरिक्त जानकारी छिपाने के लिए इसे बंद करें</string>
-    <string name="show_description_title">विवरण दिखाएं</string>
+    <string name="show_description_title">डिस्क्रिप्शन दिखाएं</string>
     <string name="clear_queue_confirmation_description">सक्रिय प्लेअर की क़तार बदल दी जाएगी</string>
     <string name="clear_queue_confirmation_summary">एक प्लेअर से दूसरे प्लेअर में जाने से आपकी कतार बदल सकती है</string>
     <string name="open_with">मे खोलें</string>

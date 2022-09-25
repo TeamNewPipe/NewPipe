@@ -16,7 +16,6 @@ import org.schabi.newpipe.player.playqueue.events.SelectEvent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -258,13 +257,10 @@ public abstract class PlayQueue implements Serializable {
     }
 
     /**
-     * Appends the given {@link PlayQueueItem}s to the current play queue.
-     *
-     * @see #append(List items)
-     * @param items {@link PlayQueueItem}s to append
+     * Notifies that a change has occurred.
      */
-    public synchronized void append(@NonNull final PlayQueueItem... items) {
-        append(Arrays.asList(items));
+    public synchronized void notifyChange() {
+        broadcast(new AppendEvent(0));
     }
 
     /**

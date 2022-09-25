@@ -21,10 +21,6 @@ import org.schabi.newpipe.MainActivity
 
 private const val TAG = "ViewUtils"
 
-inline var View.backgroundTintListCompat: ColorStateList?
-    get() = ViewCompat.getBackgroundTintList(this)
-    set(value) = ViewCompat.setBackgroundTintList(this, value)
-
 /**
  * Animate the view.
  *
@@ -96,62 +92,43 @@ fun View.animateBackgroundColor(duration: Long, @ColorInt colorStart: Int, @Colo
     if (MainActivity.DEBUG) {
         Log.d(
             TAG,
-            "animateBackgroundColor() called with: " +
-                "view = [" + this + "], duration = [" + duration + "], " +
-                "colorStart = [" + colorStart + "], colorEnd = [" + colorEnd + "]"
+            "animateBackgroundColor() called with: view = [$this], duration = [$duration], " +
+                "colorStart = [$colorStart], colorEnd = [$colorEnd]"
         )
     }
-    val empty = arrayOf(IntArray(0))
     val viewPropertyAnimator = ValueAnimator.ofObject(ArgbEvaluator(), colorStart, colorEnd)
     viewPropertyAnimator.interpolator = FastOutSlowInInterpolator()
     viewPropertyAnimator.duration = duration
-    viewPropertyAnimator.addUpdateListener { animation: ValueAnimator ->
-        backgroundTintListCompat = ColorStateList(empty, intArrayOf(animation.animatedValue as Int))
+
+    fun listenerAction(color: Int) {
+        ViewCompat.setBackgroundTintList(this, ColorStateList.valueOf(color))
     }
-    viewPropertyAnimator.addListener(
-        onCancel = { backgroundTintListCompat = ColorStateList(empty, intArrayOf(colorEnd)) },
-        onEnd = { backgroundTintListCompat = ColorStateList(empty, intArrayOf(colorEnd)) }
-    )
+    viewPropertyAnimator.addUpdateListener { listenerAction(it.animatedValue as Int) }
+    viewPropertyAnimator.addListener(onCancel = { listenerAction(colorEnd) }, onEnd = { listenerAction(colorEnd) })
     viewPropertyAnimator.start()
 }
 
 fun View.animateHeight(duration: Long, targetHeight: Int): ValueAnimator {
     if (MainActivity.DEBUG) {
-        Log.d(
-            TAG,
-            "animateHeight: duration = [" + duration + "], " +
-                "from " + height + " to → " + targetHeight + " in: " + this
-        )
+        Log.d(TAG, "animateHeight: duration = [$duration], from $height to → $targetHeight in: $this")
     }
     val animator = ValueAnimator.ofFloat(height.toFloat(), targetHeight.toFloat())
     animator.interpolator = FastOutSlowInInterpolator()
     animator.duration = duration
-    animator.addUpdateListener { animation: ValueAnimator ->
-        val value = animation.animatedValue as Float
-        layoutParams.height = value.toInt()
+
+    fun listenerAction(value: Int) {
+        layoutParams.height = value
         requestLayout()
     }
-    animator.addListener(
-        onCancel = {
-            layoutParams.height = targetHeight
-            requestLayout()
-        },
-        onEnd = {
-            layoutParams.height = targetHeight
-            requestLayout()
-        }
-    )
+    animator.addUpdateListener { listenerAction((it.animatedValue as Float).toInt()) }
+    animator.addListener(onCancel = { listenerAction(targetHeight) }, onEnd = { listenerAction(targetHeight) })
     animator.start()
     return animator
 }
 
 fun View.animateRotation(duration: Long, targetRotation: Int) {
     if (MainActivity.DEBUG) {
-        Log.d(
-            TAG,
-            "animateRotation: duration = [" + duration + "], " +
-                "from " + rotation + " to → " + targetRotation + " in: " + this
-        )
+        Log.d(TAG, "animateRotation: duration = [$duration], from $rotation to → $targetRotation in: $this")
     }
     animate().setListener(null).cancel()
     animate()
@@ -172,20 +149,13 @@ private fun View.animateAlpha(enterOrExit: Boolean, duration: Long, delay: Long,
     if (enterOrExit) {
         animate().setInterpolator(FastOutSlowInInterpolator()).alpha(1f)
             .setDuration(duration).setStartDelay(delay)
-            .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    execOnEnd?.run()
-                }
-            }).start()
+            .setListener(ExecOnEndListener(execOnEnd))
+            .start()
     } else {
         animate().setInterpolator(FastOutSlowInInterpolator()).alpha(0f)
             .setDuration(duration).setStartDelay(delay)
-            .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    isGone = true
-                    execOnEnd?.run()
-                }
-            }).start()
+            .setListener(HideAndExecOnEndListener(this, execOnEnd))
+            .start()
     }
 }
 
@@ -197,11 +167,8 @@ private fun View.animateScaleAndAlpha(enterOrExit: Boolean, duration: Long, dela
             .setInterpolator(FastOutSlowInInterpolator())
             .alpha(1f).scaleX(1f).scaleY(1f)
             .setDuration(duration).setStartDelay(delay)
-            .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    execOnEnd?.run()
-                }
-            }).start()
+            .setListener(ExecOnEndListener(execOnEnd))
+            .start()
     } else {
         scaleX = 1f
         scaleY = 1f
@@ -209,12 +176,8 @@ private fun View.animateScaleAndAlpha(enterOrExit: Boolean, duration: Long, dela
             .setInterpolator(FastOutSlowInInterpolator())
             .alpha(0f).scaleX(.8f).scaleY(.8f)
             .setDuration(duration).setStartDelay(delay)
-            .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    isGone = true
-                    execOnEnd?.run()
-                }
-            }).start()
+            .setListener(HideAndExecOnEndListener(this, execOnEnd))
+            .start()
     }
 }
 
@@ -227,11 +190,8 @@ private fun View.animateLightScaleAndAlpha(enterOrExit: Boolean, duration: Long,
             .setInterpolator(FastOutSlowInInterpolator())
             .alpha(1f).scaleX(1f).scaleY(1f)
             .setDuration(duration).setStartDelay(delay)
-            .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    execOnEnd?.run()
-                }
-            }).start()
+            .setListener(ExecOnEndListener(execOnEnd))
+            .start()
     } else {
         alpha = 1f
         scaleX = 1f
@@ -240,12 +200,8 @@ private fun View.animateLightScaleAndAlpha(enterOrExit: Boolean, duration: Long,
             .setInterpolator(FastOutSlowInInterpolator())
             .alpha(0f).scaleX(.95f).scaleY(.95f)
             .setDuration(duration).setStartDelay(delay)
-            .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    isGone = true
-                    execOnEnd?.run()
-                }
-            }).start()
+            .setListener(HideAndExecOnEndListener(this, execOnEnd))
+            .start()
     }
 }
 
@@ -256,22 +212,15 @@ private fun View.animateSlideAndAlpha(enterOrExit: Boolean, duration: Long, dela
         animate()
             .setInterpolator(FastOutSlowInInterpolator()).alpha(1f).translationY(0f)
             .setDuration(duration).setStartDelay(delay)
-            .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    execOnEnd?.run()
-                }
-            }).start()
+            .setListener(ExecOnEndListener(execOnEnd))
+            .start()
     } else {
         animate()
             .setInterpolator(FastOutSlowInInterpolator())
             .alpha(0f).translationY(-height.toFloat())
             .setDuration(duration).setStartDelay(delay)
-            .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    isGone = true
-                    execOnEnd?.run()
-                }
-            }).start()
+            .setListener(HideAndExecOnEndListener(this, execOnEnd))
+            .start()
     }
 }
 
@@ -282,21 +231,14 @@ private fun View.animateLightSlideAndAlpha(enterOrExit: Boolean, duration: Long,
         animate()
             .setInterpolator(FastOutSlowInInterpolator()).alpha(1f).translationY(0f)
             .setDuration(duration).setStartDelay(delay)
-            .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    execOnEnd?.run()
-                }
-            }).start()
+            .setListener(ExecOnEndListener(execOnEnd))
+            .start()
     } else {
         animate().setInterpolator(FastOutSlowInInterpolator())
             .alpha(0f).translationY(-height / 2.0f)
             .setDuration(duration).setStartDelay(delay)
-            .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    isGone = true
-                    execOnEnd?.run()
-                }
-            }).start()
+            .setListener(HideAndExecOnEndListener(this, execOnEnd))
+            .start()
     }
 }
 
@@ -318,11 +260,7 @@ fun View.slideUp(
         .setStartDelay(delay)
         .setDuration(duration)
         .setInterpolator(FastOutSlowInInterpolator())
-        .setListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                execOnEnd?.run()
-            }
-        })
+        .setListener(ExecOnEndListener(execOnEnd))
         .start()
 }
 
@@ -334,6 +272,20 @@ fun View.slideUp(
 fun View.animateHideRecyclerViewAllowingScrolling() {
     // not hiding normally because the view needs to still capture touches and allow scroll
     animate().alpha(0.0f).setDuration(200).start()
+}
+
+private open class ExecOnEndListener(private val execOnEnd: Runnable?) : AnimatorListenerAdapter() {
+    override fun onAnimationEnd(animation: Animator) {
+        execOnEnd?.run()
+    }
+}
+
+private class HideAndExecOnEndListener(private val view: View, execOnEnd: Runnable?) :
+    ExecOnEndListener(execOnEnd) {
+    override fun onAnimationEnd(animation: Animator) {
+        view.isGone = true
+        super.onAnimationEnd(animation)
+    }
 }
 
 enum class AnimationType {

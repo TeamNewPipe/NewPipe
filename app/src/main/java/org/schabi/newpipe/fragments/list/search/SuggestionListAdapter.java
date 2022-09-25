@@ -1,34 +1,22 @@
 package org.schabi.newpipe.fragments.list.search;
 
-import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.R;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.schabi.newpipe.databinding.ItemSearchSuggestionBinding;
 
 public class SuggestionListAdapter
-        extends RecyclerView.Adapter<SuggestionListAdapter.SuggestionItemHolder> {
-    private final ArrayList<SuggestionItem> items = new ArrayList<>();
-    private final Context context;
+        extends ListAdapter<SuggestionItem, SuggestionListAdapter.SuggestionItemHolder> {
     private OnSuggestionItemSelected listener;
 
-    public SuggestionListAdapter(final Context context) {
-        this.context = context;
-    }
-
-    public void setItems(final List<SuggestionItem> items) {
-        this.items.clear();
-        this.items.addAll(items);
-        notifyDataSetChanged();
+    public SuggestionListAdapter() {
+        super(new SuggestionItemCallback());
     }
 
     public void setListener(final OnSuggestionItemSelected listener) {
@@ -39,43 +27,30 @@ public class SuggestionListAdapter
     @Override
     public SuggestionItemHolder onCreateViewHolder(@NonNull final ViewGroup parent,
                                                    final int viewType) {
-        return new SuggestionItemHolder(LayoutInflater.from(context)
-                .inflate(R.layout.item_search_suggestion, parent, false));
+        return new SuggestionItemHolder(ItemSearchSuggestionBinding
+                .inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
     public void onBindViewHolder(final SuggestionItemHolder holder, final int position) {
         final SuggestionItem currentItem = getItem(position);
         holder.updateFrom(currentItem);
-        holder.queryView.setOnClickListener(v -> {
+        holder.itemBinding.suggestionSearch.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onSuggestionItemSelected(currentItem);
             }
         });
-        holder.queryView.setOnLongClickListener(v -> {
+        holder.itemBinding.suggestionSearch.setOnLongClickListener(v -> {
             if (listener != null) {
                 listener.onSuggestionItemLongClick(currentItem);
             }
             return true;
         });
-        holder.insertView.setOnClickListener(v -> {
+        holder.itemBinding.suggestionInsert.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onSuggestionItemInserted(currentItem);
             }
         });
-    }
-
-    SuggestionItem getItem(final int position) {
-        return items.get(position);
-    }
-
-    @Override
-    public int getItemCount() {
-        return items.size();
-    }
-
-    public boolean isEmpty() {
-        return getItemCount() == 0;
     }
 
     public interface OnSuggestionItemSelected {
@@ -87,30 +62,32 @@ public class SuggestionListAdapter
     }
 
     public static final class SuggestionItemHolder extends RecyclerView.ViewHolder {
-        private final TextView itemSuggestionQuery;
-        private final ImageView suggestionIcon;
-        private final View queryView;
-        private final View insertView;
+        private final ItemSearchSuggestionBinding itemBinding;
 
-        // Cache some ids, as they can potentially be constantly updated/recycled
-        private final int historyResId;
-        private final int searchResId;
-
-        private SuggestionItemHolder(final View rootView) {
-            super(rootView);
-            suggestionIcon = rootView.findViewById(R.id.item_suggestion_icon);
-            itemSuggestionQuery = rootView.findViewById(R.id.item_suggestion_query);
-
-            queryView = rootView.findViewById(R.id.suggestion_search);
-            insertView = rootView.findViewById(R.id.suggestion_insert);
-
-            historyResId = R.drawable.ic_history;
-            searchResId = R.drawable.ic_search;
+        private SuggestionItemHolder(final ItemSearchSuggestionBinding binding) {
+            super(binding.getRoot());
+            this.itemBinding = binding;
         }
 
         private void updateFrom(final SuggestionItem item) {
-            suggestionIcon.setImageResource(item.fromHistory ? historyResId : searchResId);
-            itemSuggestionQuery.setText(item.query);
+            itemBinding.itemSuggestionIcon.setImageResource(item.fromHistory ? R.drawable.ic_history
+                    : R.drawable.ic_search);
+            itemBinding.itemSuggestionQuery.setText(item.query);
+        }
+    }
+
+    private static class SuggestionItemCallback extends DiffUtil.ItemCallback<SuggestionItem> {
+        @Override
+        public boolean areItemsTheSame(@NonNull final SuggestionItem oldItem,
+                                       @NonNull final SuggestionItem newItem) {
+            return oldItem.fromHistory == newItem.fromHistory
+                    && oldItem.query.equals(newItem.query);
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull final SuggestionItem oldItem,
+                                          @NonNull final SuggestionItem newItem) {
+            return true; // items' contents never change; the list of items themselves does
         }
     }
 }

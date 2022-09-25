@@ -4,11 +4,14 @@ import android.app.UiModeManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.Point;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.TypedValue;
 import android.view.KeyEvent;
+import android.view.WindowInsets;
+import android.view.WindowManager;
 
 import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
@@ -65,7 +68,7 @@ public final class DeviceUtils {
         boolean isTv = ContextCompat.getSystemService(context, UiModeManager.class)
                 .getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION
                 || isFireTv()
-                || pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION);
+                || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
 
         // from https://stackoverflow.com/a/58932366
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -75,10 +78,6 @@ public final class DeviceUtils {
                     && !pm.hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN)
                     && pm.hasSystemFeature(PackageManager.FEATURE_USB_HOST)
                     && pm.hasSystemFeature(PackageManager.FEATURE_ETHERNET));
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            isTv = isTv || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
         }
 
         DeviceUtils.isTV = isTv;
@@ -131,11 +130,10 @@ public final class DeviceUtils {
     /**
      * Some devices have broken tunneled video playback but claim to support it.
      * See https://github.com/TeamNewPipe/NewPipe/issues/5911
-     * @return false if Kitkat (does not support tunneling) or affected device
+     * @return false if affected device
      */
     public static boolean shouldSupportMediaTunneling() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                && !HI3798MV200
+        return !HI3798MV200
                 && !CVT_MT5886_EU_1G
                 && !REALTEKATV
                 && !QM16XE_U;
@@ -155,5 +153,19 @@ public final class DeviceUtils {
                 context.getContentResolver(),
                 Settings.Global.ANIMATOR_DURATION_SCALE,
                 1F) != 0F;
+    }
+
+    public static int getWindowHeight(@NonNull final WindowManager windowManager) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            final var windowMetrics = windowManager.getCurrentWindowMetrics();
+            final var windowInsets = windowMetrics.getWindowInsets();
+            final var insets = windowInsets.getInsetsIgnoringVisibility(
+                    WindowInsets.Type.navigationBars() | WindowInsets.Type.displayCutout());
+            return windowMetrics.getBounds().height() - (insets.top + insets.bottom);
+        } else {
+            final Point point = new Point();
+            windowManager.getDefaultDisplay().getSize(point);
+            return point.y;
+        }
     }
 }

@@ -4,6 +4,8 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
@@ -11,6 +13,8 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
+import com.squareup.picasso.Picasso
+import com.squareup.picasso.Target
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
@@ -26,6 +30,8 @@ class NotificationHelper(val context: Context) {
     private val manager = context.getSystemService(
         Context.NOTIFICATION_SERVICE
     ) as NotificationManager
+
+    private val iconLoadingTargets = ArrayList<Target>()
 
     /**
      * Show a notification about new streams from a single channel.
@@ -77,10 +83,29 @@ class NotificationHelper(val context: Context) {
             )
         )
 
-        PicassoHelper.loadNotificationIcon(data.avatarUrl) { bitmap ->
-            bitmap?.let { builder.setLargeIcon(it) } // set only if != null
-            manager.notify(data.pseudoId, builder.build())
+        // a Target is like a listener for image loading events
+        val target = object : Target {
+            override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom) {
+                builder.setLargeIcon(bitmap) // set only if there is actually one
+                manager.notify(data.pseudoId, builder.build())
+                iconLoadingTargets.remove(this) // allow it to be garbage-collected
+            }
+
+            override fun onBitmapFailed(e: Exception, errorDrawable: Drawable) {
+                manager.notify(data.pseudoId, builder.build())
+                iconLoadingTargets.remove(this) // allow it to be garbage-collected
+            }
+
+            override fun onPrepareLoad(placeHolderDrawable: Drawable) {
+                // Nothing to do
+            }
         }
+
+        // add the target to the list to hold a strong reference and prevent it from being garbage
+        // collected, since Picasso only holds weak references to targets
+        iconLoadingTargets.add(target)
+
+        PicassoHelper.loadNotificationIcon(data.avatarUrl).into(target)
     }
 
     companion object {

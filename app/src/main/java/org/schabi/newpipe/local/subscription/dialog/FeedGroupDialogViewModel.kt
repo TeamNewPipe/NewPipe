@@ -122,7 +122,7 @@ class FeedGroupDialogViewModel(
         private val initialShowOnlyUngrouped: Boolean = false
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return FeedGroupDialogViewModel(
                 context.applicationContext,
                 groupId, initialQuery, initialShowOnlyUngrouped

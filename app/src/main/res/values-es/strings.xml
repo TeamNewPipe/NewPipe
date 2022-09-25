@@ -544,7 +544,7 @@
     <string name="copy_for_github">Copiar informe con formato</string>
     <string name="search_showing_result_for">Mostrando resultados para: %s</string>
     <string name="notification_action_shuffle">Orden aleatorio</string>
-    <string name="notification_scale_to_square_image_title">Escalar miniatura a relación de aspecto 1:1</string>
+    <string name="notification_scale_to_square_image_title">Recortar miniatura a relación de aspecto 1:1</string>
     <string name="never">Nunca</string>
     <string name="wifi_only">Solo en Wi-Fi</string>
     <string name="autoplay_summary">Comenzar reproducción automáticamente — %s</string>
@@ -558,13 +558,13 @@
     <string name="notification_action_buffering">Almacenar en memoria (búfer)</string>
     <string name="notification_action_repeat">Repetir</string>
     <string name="notification_actions_at_most_three">¡Puedes seleccionar como máximo tres acciones para mostrar en la notificación compacta!</string>
-    <string name="notification_actions_summary">Edita cada acción de notificación debajo pulsando sobre ella. Selecciona hasta tres de ellas para que aparezcan en la notificación compacta usando las casillas de verificación a la derecha</string>
+    <string name="notification_actions_summary">Edita cada una de las acciones en la notificación pulsando sobre ellas. Selecciona hasta tres de ellas para mostrarlas en la notificación compacta usando las casillas de verificación de la derecha.</string>
     <string name="notification_action_4_title">Botón de quinta acción</string>
     <string name="notification_action_3_title">Botón de cuarta acción</string>
     <string name="notification_action_2_title">Botón de tercera acción</string>
     <string name="notification_action_1_title">Botón de segunda acción</string>
     <string name="notification_action_0_title">Botón de primera acción</string>
-    <string name="notification_scale_to_square_image_summary">Escalar la relación de aspecto de la miniatura del vídeo mostrada en la notificación de 16:9 a 1:1 (puede ocasionar distorsiones)</string>
+    <string name="notification_scale_to_square_image_summary">Recortar la relación de aspecto de la miniatura del vídeo mostrada en la notificación de 16:9 a 1:1</string>
     <string name="clear_cookie_summary">Vaciar las cookies que NewPipe guarda al resolver un reCAPTCHA</string>
     <string name="show_age_restricted_content_summary">Mostrar contenido inapropiado para niños porque tiene un limite de edad (como 18+)</string>
     <string name="show_memory_leaks">Mostrar pérdidas de memoria</string>
@@ -574,7 +574,7 @@
     <string name="clear_cookie_title">Limpiar las cookies reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube provee un «Modo restringido», el cual oculta contenido potencialmente solo apto para adultos</string>
     <string name="notification_colorize_title">Ajustar color de notificación</string>
-    <string name="notification_colorize_summary">Permitir a Android personalizar el color de la notificación con el color principal de la imagen (ten en cuenta que esta opción no funciona en todos los dispositivos)</string>
+    <string name="notification_colorize_summary">Permitir a Android personalizar el color de la notificación usando el color principal de la miniatura (ten en cuenta que esta opción no funciona en todos los dispositivos)</string>
     <string name="show_thumbnail_summary">Usar miniatura como fondo de pantalla de bloqueo y notificaciones</string>
     <string name="show_thumbnail_title">Mostrar vista previa</string>
     <string name="show_meta_info_summary">Desactivar para ocultar información adicional sobre el creador o contenido de la transmisión</string>
@@ -603,7 +603,7 @@
     <string name="download_has_started">La descarga ha comenzado</string>
     <string name="recaptcha_solve">Resolver</string>
     <string name="select_night_theme_toast">Puedes seleccionar tu tema nocturno favorito a continuación</string>
-    <string name="night_theme_title">Tema de Noche</string>
+    <string name="night_theme_title">Modo oscuro</string>
     <string name="night_theme_summary">Selecciona tu tema nocturno favorito — %s</string>
     <string name="auto_device_theme_title">Automático (tema del dispositivo)</string>
     <string name="show_channel_details">Mostrar detalles del canal</string>
@@ -633,7 +633,6 @@
 \n¿Desea desuscribirse de este canal\?</string>
     <string name="feed_load_error">Error al cargar el muro</string>
     <string name="downloads_storage_use_saf_summary_api_29">Desde Android 10 solo el \'Sistema de Acceso al Almacenamiento\' es soportado</string>
-    <string name="downloads_storage_use_saf_summary_api_19">El \'Sistema de Acceso al Almacenamiento\' no es sorportado en Android KitKat o versiones anteriores</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Se le preguntará dónde guardar cada descarga</string>
     <string name="disable_media_tunneling_summary">Deshabilitar el túnel de medios si experimenta una pantalla negra o interrupciones en la reproduccción de videos</string>
     <string name="disable_media_tunneling_title">Deshabilitar el túnel de medios</string>
@@ -681,14 +680,12 @@
     <string name="error_report_notification_toast">Se produjo un error, vea la notificación</string>
     <string name="create_error_notification">Crear una notificación de error</string>
     <string name="show_error_snackbar">Mostrar un snackbar de error</string>
-    <string name="no_appropriate_file_manager_message">No se encontró ningún gestor de archivos adecuado para esta acción.
-\nPor favor instale un gestor de archivos o intente deshabilitar \"%s\" en lo ajustes de descargas.</string>
-    <string name="no_appropriate_file_manager_message_android_10">No se encontró ningún gestor de archivos adecuado para esta acción.
-\nPor favor instale un gestor de archivos compatible con \"Sistema de Acceso al Almacenamiento\".</string>
+    <string name="no_appropriate_file_manager_message">No se encontró ningún administrador de archivos apropiado para esta acción. Instale un administrador de archivos o intente deshabilitar \'%s\' en la configuración de descarga</string>
+    <string name="no_appropriate_file_manager_message_android_10">No se encontró ningún administrador de archivos apropiado para esta acción. Instale un administrador de archivos compatible con Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Comentario fijado</string>
     <string name="leak_canary_not_available">LeakCanary no está disponible</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer valor por defecto</string>
-    <string name="progressive_load_interval_summary">Cambia el tamaño del intervalo de carga (actualmente %s). Un valor más bajo puede acelerar la carga inicial del vídeo. Los cambios requieren un reinicio del reproductor.</string>
+    <string name="progressive_load_interval_summary">Cambie el tamaño del intervalo de carga (actualmente %s). Un valor más bajo puede acelerar la carga inicial de video. Los cambios requieren un reinicio del reproductor</string>
     <string name="notifications">Notificaciones</string>
     <string name="streams_notification_channel_name">Nuevos streams</string>
     <string name="settings_category_player_notification_title">Notificación del reproductor</string>
@@ -720,4 +717,6 @@
     <string name="select_quality_external_players">Elija la calidad para reproductores externos</string>
     <string name="unknown_format">Formato desconocido</string>
     <string name="unknown_quality">Calidad desconocida</string>
+    <string name="feed_toggle_show_future_items">Mostrar videos futuros</string>
+    <string name="progressive_load_interval_title">Tamaño del intervalo de carga de reproducción</string>
 </resources>

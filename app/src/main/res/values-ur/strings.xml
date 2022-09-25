@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">شروع کرنے کے لیے \"تلاش\" پر ٹیپ کریں</string>
+    <string name="main_bg_subtitle">شروع کرنے کے لیے \"کلاں نما شیشہ\" پر ٹیپ کریں</string>
     <string name="upload_date_text">%1$s کو شائع ہوا</string>
     <string name="install">انسٹال</string>
     <string name="cancel">منسوخ کریں</string>
@@ -494,8 +494,10 @@
     <string name="notification_action_2_title">تیسرا ایکشن بٹن</string>
     <string name="notification_action_1_title">دوسرا ایکشن بٹن</string>
     <string name="notification_action_0_title">پہلا ایکشن بٹن</string>
-    <string name="notification_scale_to_square_image_summary">نوٹیفیکیشن میں دکھائے جانے والے ویڈیو تھمب نیل کو 16: 9 سے 1:1 پہلو تناسب (شاید بگاڑ پیدا ہوسکتا ہے) میں اسکیل کریں</string>
+    <string name="notification_scale_to_square_image_summary">نوٹیفیکیشن میں دکھائے جانے والے ویڈیو تھمب نیل کو 16: 9 سے 1:1 پہلو تناسب میں اسکیل کریں</string>
     <string name="notification_scale_to_square_image_title">تھمب نیل کو 1:1 کی تناسب میں رکھیں</string>
     <string name="search_showing_result_for">%s کے لئے نتائج دکھا رہا ہے</string>
     <string name="open_with">کے ساتھ کھولیں</string>
+    <string name="crash_the_player">ویڈیو پلیئر کو کریش کریں</string>
+    <string name="mark_as_watched">دیکھے ہوئے کو نشان لگائیں</string>
 </resources>

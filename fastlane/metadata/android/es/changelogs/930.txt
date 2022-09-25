@@ -1,0 +1,19 @@
+Nuevo
+- Búsqueda en YouTube Music
+- Soporte básico de Android TV
+
+Mejorías de
+- Añadida la opción de borrar todos los vídeos vistos de lista de reproducción local
+- Mostrar mensaje cuando el contenido aún no es compatible en lugar de caída
+- Mejora del tamaño del reproductor emergente con gestos de pellizco
+- Puesta en cola de flujos con presión prolongada de botones de fondo y emergentes en el canal
+- Mejora de la gestión del tamaño del título de la cabecera de cajón
+
+Corregido
+- Arreglado ajuste restringido de contenido por edad que no funciona
+- Corregidos ciertos tipos de reCAPTCHAs
+- Fallo corregido al abrir marcadores mientras lista de reproducción es "nula".
+- Corregida la detección de excepciones relacionadas con la red
+- Corregida visibilidad de botón de clasificación de grupos en fragmento de suscripciones
+
+y más

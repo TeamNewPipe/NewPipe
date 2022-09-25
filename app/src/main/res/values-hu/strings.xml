@@ -319,7 +319,7 @@
     <string name="dismiss">Eltüntetés</string>
     <string name="bookmark_playlist">Lejátszási lista könyvjelzőzése</string>
     <string name="auto_queue_summary">Egy hasonló videó hozzáadása a befejeződő (nem ismétlődő) lejátszási sorhoz</string>
-    <string name="enqueue">Sor</string>
+    <string name="enqueue">Sorba állítás</string>
     <string name="overwrite_failed">a fájl nem írható felül</string>
     <string name="seek_duration_title">Az előre- és visszatekerés időtartama</string>
     <string name="enable_playback_resume_summary">Utolsó lejátszási pozíció visszaállítása</string>
@@ -362,11 +362,11 @@
     <string name="error_http_not_found">Nincs talalat</string>
     <string name="error_http_unsupported_range">A kiszolgáló nem fogad többszálú letöltést, próbálkozzon újra ezzel: @string/msg_threads = 1</string>
     <string name="error_http_no_content">A kiszolgáló nem küld adatokat</string>
-    <string name="error_connect_host">Nem lehet csatlakozni a kiszolgálóhoz</string>
+    <string name="error_connect_host">A kiszolgáló szerver nem elérhető</string>
     <string name="error_unknown_host">A kiszolgáló nem található</string>
     <string name="error_ssl_exception">Nem sikerült biztonságos kapcsolatot létesíteni</string>
     <string name="error_path_creation">A célmappa nem hozható létre</string>
-    <string name="error_file_creation">A fájlt nem lehet létrehozni</string>
+    <string name="error_file_creation">A fájlt nem sikerült létrehozni</string>
     <string name="show_error">Hiba megjelenítése</string>
     <string name="download_already_pending">Ezzel a névvel egy letöltés már várakozik</string>
     <string name="download_already_running">Ezzel a névvel egy letöltés már folyamatban van</string>
@@ -582,7 +582,6 @@
     <string name="disable_media_tunneling_summary">Tiltsa le a médiacsatornázást, ha fekete képernyőt vagy akadozást tapasztal videólejátszáskor</string>
     <string name="show_image_indicators_summary">Picasso színes szalagok megjelenítése a képek fölött, megjelölve a forrásukat: piros a hálózathoz, kék a lemezhez, zöld a memóriához</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Minden letöltésnél meg fogja kérdezni, hogy hova mentse el</string>
-    <string name="downloads_storage_use_saf_summary_api_19">A „Storage Access Framework” nem támogatott Android KitKaten vagy régebbin</string>
     <string name="choose_instance_prompt">Válasszon egy példányt</string>
     <string name="feed_oldest_subscription_update">Lista legutóbbi frissítése: %s</string>
     <string name="feed_notification_loading">Lista betöltése…</string>
@@ -684,4 +683,39 @@
     </plurals>
     <string name="detail_pinned_comment_view_description">Rögzített megjegyzés</string>
     <string name="leak_canary_not_available">LeakCanary nem elérhető</string>
+    <string name="settings_category_player_notification_title">Lejátszó értesítés</string>
+    <string name="progressive_load_interval_summary">Módosítsa a betöltési intervallum méretét (jelenleg %s). Az alacsonyabb érték felgyorsíthatja a videó kezdeti betöltését. A változtatásokhoz a lejátszó újraindítása szükséges.</string>
+    <string name="settings_category_player_notification_summary">Az aktuális lejátszás konfigurálása értesítés</string>
+    <string name="notifications">Értesítések</string>
+    <string name="streams_notification_channel_name">Új élő közvetítések</string>
+    <string name="streams_notification_channel_description">Értesítések új élő közvetítésekről a feliratkozott csatornák esetén</string>
+    <string name="loading_stream_details">Élő közvetítés betöltése.…</string>
+    <string name="check_new_streams">Keressen új élő közvetítést</string>
+    <string name="enable_streams_notifications_title">Új élő közvetítés értesítések</string>
+    <string name="enable_streams_notifications_summary">Értesítésen új élő közvetítés esetén a feliratkozott csatornákhoz</string>
+    <string name="streams_notifications_interval_title">Ellenőrzési gyakoriság</string>
+    <string name="streams_notifications_network_title">Szükséges hálózati kapcsolat</string>
+    <string name="any_network">Bármilyen hálózat</string>
+    <string name="delete_downloaded_files_confirm">Törli az összes letöltött fájlt a lemezről\?</string>
+    <string name="get_notified">Értesítsen</string>
+    <string name="notifications_disabled">Értesítéstek kikapcsolva</string>
+    <string name="progressive_load_interval_title">Lejátszási intervallum mérete</string>
+    <string name="percent">Százaléka</string>
+    <plurals name="new_streams">
+        <item quantity="one">%s új elő közvetítés</item>
+        <item quantity="other">%s új elő közvetítések</item>
+    </plurals>
+    <string name="progressive_load_interval_exoplayer_default">ExoPlayer alapértelmezett</string>
+    <string name="you_successfully_subscribed">Feliratkoztál erre a csatornára</string>
+    <string name="enumeration_comma">,</string>
+    <string name="streams_not_yet_supported_removed">Azok az élő adások melyek nem támogatottak a letöltő által, rejtve vannak.</string>
+    <string name="selected_stream_external_player_not_supported">A választott élő adást nem lehet külső lejátszóval lejátszani.</string>
+    <string name="toggle_all">Összes váltása</string>
+    <string name="no_audio_streams_available_for_external_players">Külső lejátszók számára nem érhető el az hang csatorna</string>
+    <string name="no_video_streams_available_for_external_players">Külső lejátszók számára nem érhető el videó</string>
+    <string name="select_quality_external_players">Válassz minőséget külső lejátszókhoz</string>
+    <string name="unknown_format">Ismeretlen formátum</string>
+    <string name="unknown_quality">Ismeretlen minőség</string>
+    <string name="semitone">Félhang</string>
+    <string name="feed_toggle_show_future_items">Jövőbeli videók megjelenítése</string>
 </resources>

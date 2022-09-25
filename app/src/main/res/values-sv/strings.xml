@@ -524,9 +524,9 @@
     <string name="channel_created_by">Skapad av %s</string>
     <string name="no_playlist_bookmarked_yet">Ingen spellista har bokmärkts än</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Visa endast prenumerationer som inte grupperats</string>
-    <string name="notification_scale_to_square_image_title">Skala miniatyrbild till 1: 1 bildförhållande</string>
+    <string name="notification_scale_to_square_image_title">Beskär miniatyrbild till 1: 1 bildförhållande</string>
     <string name="wifi_only">Endast över Wi-Fi</string>
-    <string name="notification_scale_to_square_image_summary">Skala videominiatyrbilden som visas i aviseringen från 16:9- till 1:1-förhållande (kan orsaka bildförvrängning)</string>
+    <string name="notification_scale_to_square_image_summary">Beskär videominiatyrbilden som visas i aviseringen från 16:9 till 1:1 bildförhållande</string>
     <string name="autoplay_summary">Starta uppspelning automatiskt — %s</string>
     <string name="title_activity_play_queue">Uppspelningskö</string>
     <string name="unsupported_url_dialog_message">Kunde inte känna igen URL:en. Vill du öppna med annan app\?</string>
@@ -633,7 +633,6 @@
     <string name="feed_toggle_show_played_items">Visa sedda objekt</string>
     <string name="feed_load_error_fast_unknown">Det snabba flödesläget ger inte mer information om detta.</string>
     <string name="feed_load_error">Fel vid inläsning av flödet</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\"Storage Access Framework\" är inte tillgängligt på Android KitKat och tidigare versioner</string>
     <string name="mark_as_watched">Markera som sedd</string>
     <string name="metadata_privacy_unlisted">Ej listad</string>
     <string name="featured">Aktuellt</string>
@@ -677,34 +676,34 @@
     <string name="error_report_notification_title">NewPipe stötte på ett fel, tryck för att rapportera</string>
     <string name="error_report_notification_toast">Ett fel uppstod, se aviseringen</string>
     <string name="show_error_snackbar">Visa en fel snackbar</string>
-    <string name="create_error_notification">Skapa en fel avisering</string>
+    <string name="create_error_notification">Skapa en felavisering</string>
     <string name="no_appropriate_file_manager_message">Ingen lämplig filhanterare hittades för denna åtgärd.
-\nInstallera en filhanterare eller testa att inaktivera \'%s\' i nedladdningsinställningarna.</string>
+\nInstallera en filhanterare eller testa att inaktivera \'%s\' i nedladdningsinställningarna</string>
     <string name="no_appropriate_file_manager_message_android_10">Ingen lämplig filhanterare hittades för denna åtgärd.
-\nInstallera en filhanterare som är kompatibel med Storage Access Framework.</string>
+\nInstallera en filhanterare som är kompatibel med Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Fäst kommentar</string>
     <string name="leak_canary_not_available">LeakCanary är inte tillgänglig</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer standard</string>
-    <string name="progressive_load_interval_summary">Ändra inläsningsintervallets storlek (för närvarande %s). Ett lägre värde kan påskynda den första videoinläsningen. Ändringar kräver omstart av spelaren.</string>
-    <string name="streams_notifications_interval_title">Validera frekvens</string>
-    <string name="streams_notifications_network_title">Kräver nätverksanslutning</string>
+    <string name="progressive_load_interval_summary">Ändra inläsningsintervallets storlek (för närvarande %s). Ett lägre värde kan påskynda den första videoinläsningen. Ändringar kräver omstart av spelaren</string>
+    <string name="streams_notifications_interval_title">Uppdateringsintervall</string>
+    <string name="streams_notifications_network_title">Nödvändig nätverksanslutning</string>
     <string name="any_network">Alla nätverk</string>
     <string name="delete_downloaded_files_confirm">Radera alla nedladdade filer från disken\?</string>
-    <string name="notifications_disabled">Notifikationer är avstängda</string>
+    <string name="notifications_disabled">Aviseringar är avstängda</string>
     <string name="get_notified">Bli meddelad</string>
     <string name="you_successfully_subscribed">Du har nu prenumenerat till denna kanalen</string>
-    <string name="streams_notification_channel_description">Notifikationer om nya strömmar för prenumenanter</string>
+    <string name="streams_notification_channel_description">Avisering om nya strömmar för prenumenanter</string>
     <plurals name="new_streams">
         <item quantity="one">%s Ny ström</item>
         <item quantity="other">%s Nya strömmar</item>
     </plurals>
     <string name="settings_category_player_notification_summary">Konfigurera meddelande om aktuell ström som spelas upp</string>
     <string name="check_new_streams">Kör leta efter nya strömmar</string>
-    <string name="enable_streams_notifications_summary">Meddela om nya strömmar från prenumeranter</string>
-    <string name="notifications">Notifikationer</string>
+    <string name="enable_streams_notifications_summary">Meddela om nya strömmar från prenumerationer</string>
+    <string name="notifications">Aviseringar</string>
     <string name="streams_notification_channel_name">Nya strömmar</string>
     <string name="loading_stream_details">Laddar strömdetaljer…</string>
-    <string name="enable_streams_notifications_title">Nya strömmnings notifikationer</string>
+    <string name="enable_streams_notifications_title">Avisering om nya strömmar</string>
     <string name="enumeration_comma">,</string>
     <string name="settings_category_player_notification_title">Spelaravisering</string>
     <string name="toggle_all">Växla alla</string>
@@ -714,4 +713,9 @@
     <string name="unknown_quality">Okänd kvalitet</string>
     <string name="no_audio_streams_available_for_external_players">Inga ljudströmmar tillgängliga för externa spelare</string>
     <string name="unknown_format">Okänt format</string>
+    <string name="streams_not_yet_supported_removed">Videoströmmar som ännu inte stöds av nedladdaren visas inte</string>
+    <string name="progressive_load_interval_title">Inläsningsintervalls storlek</string>
+    <string name="select_quality_external_players">Välj kvalitet för externa spelare</string>
+    <string name="feed_toggle_show_future_items">Visa framtida videor</string>
+    <string name="selected_stream_external_player_not_supported">Den valda videoströmmen stöds inte av externa spelare</string>
 </resources>

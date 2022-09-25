@@ -24,196 +24,106 @@ import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJ
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SKIP;
 import static com.google.android.exoplayer2.Player.DiscontinuityReason;
 import static com.google.android.exoplayer2.Player.Listener;
-import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ONE;
 import static com.google.android.exoplayer2.Player.RepeatMode;
-import static org.schabi.newpipe.QueueItemMenuUtil.openPopupMenu;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
-import static org.schabi.newpipe.ktx.ViewUtils.animate;
-import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_CLOSE;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_FORWARD;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_FAST_REWIND;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_NEXT;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_PAUSE;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_PLAY_PREVIOUS;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_RECREATE_NOTIFICATION;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_REPEAT;
-import static org.schabi.newpipe.player.MainPlayer.ACTION_SHUFFLE;
-import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
-import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
-import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
-import static org.schabi.newpipe.player.helper.PlayerHelper.buildCloseOverlayLayoutParams;
-import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
-import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimizeOnExitAction;
-import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimumVideoHeight;
-import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
-import static org.schabi.newpipe.player.helper.PlayerHelper.globalScreenOrientationLocked;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isPlaybackResumeEnabled;
 import static org.schabi.newpipe.player.helper.PlayerHelper.nextRepeatMode;
-import static org.schabi.newpipe.player.helper.PlayerHelper.nextResizeModeAndSaveToPrefs;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlaybackParametersFromPrefs;
-import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePlayerTypeFromIntent;
-import static org.schabi.newpipe.player.helper.PlayerHelper.retrievePopupLayoutParamsFromPrefs;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
 import static org.schabi.newpipe.player.helper.PlayerHelper.savePlaybackParametersToPrefs;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_CLOSE;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_FAST_FORWARD;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_FAST_REWIND;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_PLAY_NEXT;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_PLAY_PAUSE;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_PLAY_PREVIOUS;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_RECREATE_NOTIFICATION;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_REPEAT;
+import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_SHUFFLE;
 import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
 import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
 import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.database.ContentObserver;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Handler;
-import android.provider.Settings;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.GestureDetector;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.Surface;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.animation.AnticipateInterpolator;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.SeekBar;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.appcompat.view.ContextThemeWrapper;
-import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.PopupMenu;
-import androidx.collection.ArraySet;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.FragmentManager;
+import androidx.core.math.MathUtils;
 import androidx.preference.PreferenceManager;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.PositionInfo;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.TracksInfo;
+import com.google.android.exoplayer2.Tracks;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.text.Cue;
+import com.google.android.exoplayer2.text.CueGroup;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
-import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
-import com.google.android.exoplayer2.ui.CaptionStyleCompat;
-import com.google.android.exoplayer2.ui.SubtitleView;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.util.Util;
 import com.google.android.exoplayer2.video.VideoSize;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.PlayerBinding;
-import org.schabi.newpipe.databinding.PlayerPopupCloseOverlayBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.extractor.Info;
-import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.StreamSegment;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
-import org.schabi.newpipe.info_list.StreamSegmentAdapter;
-import org.schabi.newpipe.ktx.AnimationType;
-import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.player.MainPlayer.PlayerType;
-import org.schabi.newpipe.player.event.DisplayPortion;
 import org.schabi.newpipe.player.event.PlayerEventListener;
-import org.schabi.newpipe.player.event.PlayerGestureListener;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.LoadController;
-import org.schabi.newpipe.player.helper.MediaSessionManager;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.player.listeners.view.PlaybackSpeedClickListener;
-import org.schabi.newpipe.player.listeners.view.QualityClickListener;
 import org.schabi.newpipe.player.mediaitem.MediaItemTag;
+import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
+import org.schabi.newpipe.player.notification.NotificationPlayerUi;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
-import org.schabi.newpipe.player.playback.PlayerMediaSession;
-import org.schabi.newpipe.player.playback.SurfaceHolderCallback;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
-import org.schabi.newpipe.player.playqueue.PlayQueueAdapter;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
-import org.schabi.newpipe.player.playqueue.PlayQueueItemBuilder;
-import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
-import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver.SourceType;
-import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHelper;
-import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHolder;
+import org.schabi.newpipe.player.ui.MainPlayerUi;
+import org.schabi.newpipe.player.ui.PlayerUi;
+import org.schabi.newpipe.player.ui.PlayerUiList;
+import org.schabi.newpipe.player.ui.PopupPlayerUi;
+import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PicassoHelper;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.StreamTypeUtil;
-import org.schabi.newpipe.util.external_communication.KoreUtils;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
-import org.schabi.newpipe.views.ExpandableSurfaceView;
-import org.schabi.newpipe.views.player.PlayerFastSeekOverlay;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -222,14 +132,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.disposables.SerialDisposable;
 
-public final class Player implements
-        PlaybackListener,
-        Listener,
-        SeekBar.OnSeekBarChangeListener,
-        View.OnClickListener,
-        PopupMenu.OnMenuItemClickListener,
-        PopupMenu.OnDismissListener,
-        View.OnLongClickListener {
+public final class Player implements PlaybackListener, Listener {
     public static final boolean DEBUG = MainActivity.DEBUG;
     public static final String TAG = Player.class.getSimpleName();
 
@@ -265,18 +168,13 @@ public final class Player implements
 
     public static final int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
     public static final int PROGRESS_LOOP_INTERVAL_MILLIS = 1000; // 1 second
-    public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
-    public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
-    public static final int DPAD_CONTROLS_HIDE_TIME = 7000;  // 7 Seconds
-    public static final int SEEK_OVERLAY_DURATION = 450; // 450 millis
 
     /*//////////////////////////////////////////////////////////////////////////
     // Other constants
     //////////////////////////////////////////////////////////////////////////*/
 
-    private static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f};
-
-    private static final int RENDERER_UNAVAILABLE = -1;
+    public static final int RENDERER_UNAVAILABLE = -1;
+    private static final String PICASSO_PLAYER_THUMBNAIL_TAG = "PICASSO_PLAYER_THUMBNAIL_TAG";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
@@ -284,8 +182,6 @@ public final class Player implements
 
     // play queue might be null e.g. while player is starting
     @Nullable private PlayQueue playQueue;
-    private PlayQueueAdapter playQueueAdapter;
-    private StreamSegmentAdapter segmentAdapter;
 
     @Nullable private MediaSourceManager playQueueManager;
 
@@ -299,8 +195,6 @@ public final class Player implements
 
     private ExoPlayer simpleExoPlayer;
     private AudioReactor audioReactor;
-    private MediaSessionManager mediaSessionManager;
-    @Nullable private SurfaceHolderCallback surfaceHolderCallback;
 
     @NonNull private final DefaultTrackSelector trackSelector;
     @NonNull private final LoadController loadController;
@@ -309,13 +203,13 @@ public final class Player implements
     @NonNull private final VideoPlaybackResolver videoResolver;
     @NonNull private final AudioPlaybackResolver audioResolver;
 
-    private final MainPlayer service; //TODO try to remove and replace everything with context
+    private final PlayerService service; //TODO try to remove and replace everything with context
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player states
     //////////////////////////////////////////////////////////////////////////*/
 
-    private PlayerType playerType = PlayerType.VIDEO;
+    private PlayerType playerType = PlayerType.MAIN;
     private int currentState = STATE_PREFLIGHT;
 
     // audio only mode does not mean that player type is background, but that the player was
@@ -323,84 +217,26 @@ public final class Player implements
     private boolean isAudioOnly = false;
     private boolean isPrepared = false;
     private boolean wasPlaying = false;
-    private boolean isFullscreen = false;
-    private boolean isVerticalVideo = false;
-    private boolean fragmentIsVisible = false;
-
-    private List<VideoStream> availableStreams;
-    private int selectedStreamIndex;
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Views
+    // UIs, listeners and disposables
     //////////////////////////////////////////////////////////////////////////*/
 
-    private PlayerBinding binding;
-
-    private final Handler controlsVisibilityHandler = new Handler();
-
-    // fullscreen player
-    private boolean isQueueVisible = false;
-    private boolean areSegmentsVisible = false;
-    private ItemTouchHelper itemTouchHelper;
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Popup menus ("popup" means that they pop up, not that they belong to the popup player)
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private static final int POPUP_MENU_ID_QUALITY = 69;
-    private static final int POPUP_MENU_ID_PLAYBACK_SPEED = 79;
-    private static final int POPUP_MENU_ID_CAPTION = 89;
-
-    private boolean isSomePopupMenuVisible = false;
-    private PopupMenu qualityPopupMenu;
-    private PopupMenu playbackSpeedPopupMenu;
-    private PopupMenu captionPopupMenu;
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Popup player
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private PlayerPopupCloseOverlayBinding closeOverlayBinding;
-
-    private boolean isPopupClosing = false;
-
-    private float screenWidth;
-    private float screenHeight;
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Popup player window manager
-    //////////////////////////////////////////////////////////////////////////*/
-
-    public static final int IDLE_WINDOW_FLAGS = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-            | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
-    public static final int ONGOING_PLAYBACK_WINDOW_FLAGS = IDLE_WINDOW_FLAGS
-            | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
-
-    @Nullable private WindowManager.LayoutParams popupLayoutParams; // null if player is not popup
-    @Nullable private final WindowManager windowManager;
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Gestures
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private static final float MAX_GESTURE_LENGTH = 0.75f;
-
-    private int maxGestureLength; // scaled
-    private GestureDetector gestureDetector;
-    private PlayerGestureListener playerGestureListener;
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Listeners and disposables
-    //////////////////////////////////////////////////////////////////////////*/
+    @SuppressWarnings({"MemberName", "java:S116"}) // keep the unusual member name
+    private final PlayerUiList UIs;
 
     private BroadcastReceiver broadcastReceiver;
     private IntentFilter intentFilter;
-    private PlayerServiceEventListener fragmentListener;
-    private PlayerEventListener activityListener;
-    private ContentObserver settingsContentObserver;
+    @Nullable private PlayerServiceEventListener fragmentListener = null;
+    @Nullable private PlayerEventListener activityListener = null;
 
     @NonNull private final SerialDisposable progressUpdateDisposable = new SerialDisposable();
     @NonNull private final CompositeDisposable databaseUpdateDisposable = new CompositeDisposable();
+
+    // This is the only listener we need for thumbnail loading, since there is always at most only
+    // one thumbnail being loaded at a time. This field is also here to maintain a strong reference,
+    // which would otherwise be garbage collected since Picasso holds weak references to targets.
+    @NonNull private final Target currentThumbnailTarget;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
@@ -410,16 +246,13 @@ public final class Player implements
     @NonNull private final SharedPreferences prefs;
     @NonNull private final HistoryRecordManager recordManager;
 
-    @NonNull private final SeekbarPreviewThumbnailHolder seekbarPreviewThumbnailHolder =
-            new SeekbarPreviewThumbnailHolder();
-
 
     /*//////////////////////////////////////////////////////////////////////////
     // Constructor
     //////////////////////////////////////////////////////////////////////////*/
     //region Constructor
 
-    public Player(@NonNull final MainPlayer service) {
+    public Player(@NonNull final PlayerService service) {
         this.service = service;
         context = service;
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -436,7 +269,16 @@ public final class Player implements
         videoResolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
         audioResolver = new AudioPlaybackResolver(context, dataSource);
 
-        windowManager = ContextCompat.getSystemService(context, WindowManager.class);
+        currentThumbnailTarget = getCurrentThumbnailTarget();
+
+        // The UIs added here should always be present. They will be initialized when the player
+        // reaches the initialization step. Make sure the media session ui is before the
+        // notification ui in the UIs list, since the notification depends on the media session in
+        // PlayerUi#initPlayer(), and UIs.call() guarantees UI order is preserved.
+        UIs = new PlayerUiList(
+                new MediaSessionPlayerUi(this),
+                new NotificationPlayerUi(this)
+        );
     }
 
     private VideoPlaybackResolver.QualityResolver getQualityResolver() {
@@ -462,234 +304,6 @@ public final class Player implements
 
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Setup and initialization
-    //////////////////////////////////////////////////////////////////////////*/
-    //region Setup and initialization
-
-    public void setupFromView(@NonNull final PlayerBinding playerBinding) {
-        initViews(playerBinding);
-        if (exoPlayerIsNull()) {
-            initPlayer(true);
-        }
-        initListeners();
-
-        setupPlayerSeekOverlay();
-    }
-
-    private void initViews(@NonNull final PlayerBinding playerBinding) {
-        binding = playerBinding;
-        setupSubtitleView();
-
-        binding.resizeTextView
-                .setText(PlayerHelper.resizeTypeOf(context, binding.surfaceView.getResizeMode()));
-
-        binding.playbackSeekBar.getThumb()
-                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_IN));
-        binding.playbackSeekBar.getProgressDrawable()
-                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY));
-
-        final ContextThemeWrapper themeWrapper = new ContextThemeWrapper(getContext(),
-                R.style.DarkPopupMenu);
-
-        qualityPopupMenu = new PopupMenu(themeWrapper, binding.qualityTextView);
-        playbackSpeedPopupMenu = new PopupMenu(context, binding.playbackSpeed);
-        captionPopupMenu = new PopupMenu(themeWrapper, binding.captionTextView);
-
-        binding.progressBarLoadingPanel.getIndeterminateDrawable()
-                .setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY));
-
-        binding.titleTextView.setSelected(true);
-        binding.channelTextView.setSelected(true);
-
-        // Prevent hiding of bottom sheet via swipe inside queue
-        binding.itemsList.setNestedScrollingEnabled(false);
-    }
-
-    private void initPlayer(final boolean playOnReady) {
-        if (DEBUG) {
-            Log.d(TAG, "initPlayer() called with: playOnReady = [" + playOnReady + "]");
-        }
-
-        simpleExoPlayer = new ExoPlayer.Builder(context, renderFactory)
-                .setTrackSelector(trackSelector)
-                .setLoadControl(loadController)
-                .build();
-        simpleExoPlayer.addListener(this);
-        simpleExoPlayer.setPlayWhenReady(playOnReady);
-        simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
-        simpleExoPlayer.setWakeMode(C.WAKE_MODE_NETWORK);
-        simpleExoPlayer.setHandleAudioBecomingNoisy(true);
-
-        audioReactor = new AudioReactor(context, simpleExoPlayer);
-        mediaSessionManager = new MediaSessionManager(context, simpleExoPlayer,
-                new PlayerMediaSession(this));
-
-        registerBroadcastReceiver();
-
-        // Setup video view
-        setupVideoSurface();
-
-        // enable media tunneling
-        if (DEBUG && PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(context.getString(R.string.disable_media_tunneling_key), false)) {
-            Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] "
-                    + "media tunneling disabled in debug preferences");
-        } else if (DeviceUtils.shouldSupportMediaTunneling()) {
-            trackSelector.setParameters(trackSelector.buildUponParameters()
-                    .setTunnelingEnabled(true));
-        } else if (DEBUG) {
-            Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] does not support media tunneling");
-        }
-    }
-
-    private void initListeners() {
-        binding.qualityTextView.setOnClickListener(
-                new QualityClickListener(this, qualityPopupMenu));
-        binding.playbackSpeed.setOnClickListener(
-                new PlaybackSpeedClickListener(this, playbackSpeedPopupMenu));
-
-        binding.playbackSeekBar.setOnSeekBarChangeListener(this);
-        binding.captionTextView.setOnClickListener(this);
-        binding.resizeTextView.setOnClickListener(this);
-        binding.playbackLiveSync.setOnClickListener(this);
-
-        playerGestureListener = new PlayerGestureListener(this, service);
-        gestureDetector = new GestureDetector(context, playerGestureListener);
-        binding.getRoot().setOnTouchListener(playerGestureListener);
-
-        binding.queueButton.setOnClickListener(v -> onQueueClicked());
-        binding.segmentsButton.setOnClickListener(v -> onSegmentsClicked());
-        binding.repeatButton.setOnClickListener(v -> onRepeatClicked());
-        binding.shuffleButton.setOnClickListener(v -> onShuffleClicked());
-        binding.addToPlaylistButton.setOnClickListener(v -> {
-            if (getParentActivity() != null) {
-                onAddToPlaylistClicked(getParentActivity().getSupportFragmentManager());
-            }
-        });
-
-        binding.playPauseButton.setOnClickListener(this);
-        binding.playPreviousButton.setOnClickListener(this);
-        binding.playNextButton.setOnClickListener(this);
-
-        binding.moreOptionsButton.setOnClickListener(this);
-        binding.moreOptionsButton.setOnLongClickListener(this);
-        binding.share.setOnClickListener(this);
-        binding.share.setOnLongClickListener(this);
-        binding.fullScreenButton.setOnClickListener(this);
-        binding.screenRotationButton.setOnClickListener(this);
-        binding.playWithKodi.setOnClickListener(this);
-        binding.openInBrowser.setOnClickListener(this);
-        binding.playerCloseButton.setOnClickListener(this);
-        binding.switchMute.setOnClickListener(this);
-
-        settingsContentObserver = new ContentObserver(new Handler()) {
-            @Override
-            public void onChange(final boolean selfChange) {
-                setupScreenRotationButton();
-            }
-        };
-        context.getContentResolver().registerContentObserver(
-                Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), false,
-                settingsContentObserver);
-        binding.getRoot().addOnLayoutChangeListener(this::onLayoutChange);
-
-        ViewCompat.setOnApplyWindowInsetsListener(binding.itemsListPanel, (view, windowInsets) -> {
-            final Insets cutout = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout());
-            if (!cutout.equals(Insets.NONE)) {
-                view.setPadding(cutout.left, cutout.top, cutout.right, cutout.bottom);
-            }
-            return windowInsets;
-        });
-
-        // PlaybackControlRoot already consumed window insets but we should pass them to
-        // player_overlays and fast_seek_overlay too. Without it they will be off-centered.
-        binding.playbackControlRoot.addOnLayoutChangeListener(
-                (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
-                    binding.playerOverlays.setPadding(
-                            v.getPaddingLeft(),
-                            v.getPaddingTop(),
-                            v.getPaddingRight(),
-                            v.getPaddingBottom());
-
-                    // If we added padding to the fast seek overlay, too, it would not go under the
-                    // system ui. Instead we apply negative margins equal to the window insets of
-                    // the opposite side, so that the view covers all of the player (overflowing on
-                    // some sides) and its center coincides with the center of other controls.
-                    final RelativeLayout.LayoutParams fastSeekParams = (RelativeLayout.LayoutParams)
-                            binding.fastSeekOverlay.getLayoutParams();
-                    fastSeekParams.leftMargin = -v.getPaddingRight();
-                    fastSeekParams.topMargin = -v.getPaddingBottom();
-                    fastSeekParams.rightMargin = -v.getPaddingLeft();
-                    fastSeekParams.bottomMargin = -v.getPaddingTop();
-                });
-    }
-
-    /**
-     * Initializes the Fast-For/Backward overlay.
-     */
-    private void setupPlayerSeekOverlay() {
-        binding.fastSeekOverlay
-                .seekSecondsSupplier(() -> retrieveSeekDurationFromPreferences(this) / 1000)
-                .performListener(new PlayerFastSeekOverlay.PerformListener() {
-
-                    @Override
-                    public void onDoubleTap() {
-                        animate(binding.fastSeekOverlay, true, SEEK_OVERLAY_DURATION);
-                    }
-
-                    @Override
-                    public void onDoubleTapEnd() {
-                        animate(binding.fastSeekOverlay, false, SEEK_OVERLAY_DURATION);
-                    }
-
-                    @NonNull
-                    @Override
-                    public FastSeekDirection getFastSeekDirection(
-                            @NonNull final DisplayPortion portion
-                    ) {
-                        if (exoPlayerIsNull()) {
-                            // Abort seeking
-                            playerGestureListener.endMultiDoubleTap();
-                            return FastSeekDirection.NONE;
-                        }
-                        if (portion == DisplayPortion.LEFT) {
-                            // Check if it's possible to rewind
-                            // Small puffer to eliminate infinite rewind seeking
-                            if (simpleExoPlayer.getCurrentPosition() < 500L) {
-                                return FastSeekDirection.NONE;
-                            }
-                            return FastSeekDirection.BACKWARD;
-                        } else if (portion == DisplayPortion.RIGHT) {
-                            // Check if it's possible to fast-forward
-                            if (currentState == STATE_COMPLETED
-                                    || simpleExoPlayer.getCurrentPosition()
-                                    >= simpleExoPlayer.getDuration()) {
-                                return FastSeekDirection.NONE;
-                            }
-                            return FastSeekDirection.FORWARD;
-                        }
-                        /* portion == DisplayPortion.MIDDLE */
-                        return FastSeekDirection.NONE;
-                    }
-
-                    @Override
-                    public void seek(final boolean forward) {
-                        playerGestureListener.keepInDoubleTapMode();
-                        if (forward) {
-                            fastForward();
-                        } else {
-                            fastRewind();
-                        }
-                    }
-                });
-        playerGestureListener.doubleTapControls(binding.fastSeekOverlay);
-    }
-
-    //endregion
-
-
-
-    /*//////////////////////////////////////////////////////////////////////////
     // Playback initialization via intent
     //////////////////////////////////////////////////////////////////////////*/
     //region Playback initialization via intent
@@ -707,7 +321,8 @@ public final class Player implements
         }
 
         final PlayerType oldPlayerType = playerType;
-        playerType = retrievePlayerTypeFromIntent(intent);
+        playerType = PlayerType.retrieveFromIntent(intent);
+        initUIsForCurrentPlayerType();
         // We need to setup audioOnly before super(), see "sourceOf"
         isAudioOnly = audioPlayerSelected();
 
@@ -727,9 +342,6 @@ public final class Player implements
             playQueue.move(playQueue.size() - 1, currentIndex + 1);
             return;
         }
-
-        // needed for tablets, check the function for a better explanation
-        directlyOpenFullscreenIfNeeded();
 
         final PlaybackParameters savedParameters = retrievePlaybackParametersFromPrefs(this);
         final float playbackSpeed = savedParameters.speed;
@@ -828,46 +440,39 @@ public final class Player implements
             reloadPlayQueueManager();
         }
 
-        setupElementsVisibility();
-        setupElementsSize();
-
-        if (audioPlayerSelected()) {
-            service.removeViewFromParent();
-        } else if (popupPlayerSelected()) {
-            binding.getRoot().setVisibility(View.VISIBLE);
-            initPopup();
-            initPopupCloseOverlay();
-            binding.playPauseButton.requestFocus();
-        } else {
-            binding.getRoot().setVisibility(View.VISIBLE);
-            initVideoPlayer();
-            closeItemsList();
-            // Android TV: without it focus will frame the whole player
-            binding.playPauseButton.requestFocus();
-
-            // Note: This is for automatically playing (when "Resume playback" is off), see #6179
-            if (getPlayWhenReady()) {
-                play();
-            } else {
-                pause();
-            }
-        }
+        UIs.call(PlayerUi::setupAfterIntent);
         NavigationHelper.sendPlayerStartedEvent(context);
     }
 
-    /**
-     * Open fullscreen on tablets where the option to have the main player start automatically in
-     * fullscreen mode is on. Rotating the device to landscape is already done in {@link
-     * VideoDetailFragment#openVideoPlayer(boolean)} when the thumbnail is clicked, and that's
-     * enough for phones, but not for tablets since the mini player can be also shown in landscape.
-     */
-    private void directlyOpenFullscreenIfNeeded() {
-        if (fragmentListener != null
-                && PlayerHelper.isStartMainPlayerFullscreenEnabled(service)
-                && DeviceUtils.isTablet(service)
-                && videoPlayerSelected()
-                && PlayerHelper.globalScreenOrientationLocked(service)) {
-            fragmentListener.onScreenRotationButtonClicked();
+    private void initUIsForCurrentPlayerType() {
+        if ((UIs.get(MainPlayerUi.class).isPresent() && playerType == PlayerType.MAIN)
+                || (UIs.get(PopupPlayerUi.class).isPresent() && playerType == PlayerType.POPUP)) {
+            // correct UI already in place
+            return;
+        }
+
+        // try to reuse binding if possible
+        final PlayerBinding binding = UIs.get(VideoPlayerUi.class).map(VideoPlayerUi::getBinding)
+                .orElseGet(() -> {
+                    if (playerType == PlayerType.AUDIO) {
+                        return null;
+                    } else {
+                        return PlayerBinding.inflate(LayoutInflater.from(context));
+                    }
+                });
+
+        switch (playerType) {
+            case MAIN:
+                UIs.destroyAll(PopupPlayerUi.class);
+                UIs.addAndPrepare(new MainPlayerUi(this, binding));
+                break;
+            case POPUP:
+                UIs.destroyAll(MainPlayerUi.class);
+                UIs.addAndPrepare(new PopupPlayerUi(this, binding));
+                break;
+            case AUDIO:
+                UIs.destroyAll(VideoPlayerUi.class);
+                break;
         }
     }
 
@@ -881,22 +486,52 @@ public final class Player implements
         destroyPlayer();
         initPlayer(playOnReady);
         setRepeatMode(repeatMode);
-        // #6825 - Ensure that the shuffle-button is in the correct state on the UI
-        setShuffleButton(binding.shuffleButton, simpleExoPlayer.getShuffleModeEnabled());
         setPlaybackParameters(playbackSpeed, playbackPitch, playbackSkipSilence);
 
         playQueue = queue;
         playQueue.init();
         reloadPlayQueueManager();
 
-        if (playQueueAdapter != null) {
-            playQueueAdapter.dispose();
-        }
-        playQueueAdapter = new PlayQueueAdapter(context, playQueue);
-        segmentAdapter = new StreamSegmentAdapter(getStreamSegmentListener());
+        UIs.call(PlayerUi::initPlayback);
 
         simpleExoPlayer.setVolume(isMuted ? 0 : 1);
         notifyQueueUpdateToListeners();
+    }
+
+    private void initPlayer(final boolean playOnReady) {
+        if (DEBUG) {
+            Log.d(TAG, "initPlayer() called with: playOnReady = [" + playOnReady + "]");
+        }
+
+        simpleExoPlayer = new ExoPlayer.Builder(context, renderFactory)
+                .setTrackSelector(trackSelector)
+                .setLoadControl(loadController)
+                .setUsePlatformDiagnostics(false)
+                .build();
+        simpleExoPlayer.addListener(this);
+        simpleExoPlayer.setPlayWhenReady(playOnReady);
+        simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
+        simpleExoPlayer.setWakeMode(C.WAKE_MODE_NETWORK);
+        simpleExoPlayer.setHandleAudioBecomingNoisy(true);
+
+        audioReactor = new AudioReactor(context, simpleExoPlayer);
+
+        registerBroadcastReceiver();
+
+        // Setup UIs
+        UIs.call(PlayerUi::initPlayer);
+
+        // enable media tunneling
+        if (DEBUG && PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.disable_media_tunneling_key), false)) {
+            Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] "
+                    + "media tunneling disabled in debug preferences");
+        } else if (DeviceUtils.shouldSupportMediaTunneling()) {
+            trackSelector.setParameters(trackSelector.buildUponParameters()
+                    .setTunnelingEnabled(true));
+        } else if (DEBUG) {
+            Log.d(TAG, "[" + Util.DEVICE_DEBUG_INFO + "] does not support media tunneling");
+        }
     }
     //endregion
 
@@ -911,8 +546,7 @@ public final class Player implements
         if (DEBUG) {
             Log.d(TAG, "destroyPlayer() called");
         }
-
-        cleanupVideoSurface();
+        UIs.call(PlayerUi::destroyPlayer);
 
         if (!exoPlayerIsNull()) {
             simpleExoPlayer.removeListener(this);
@@ -931,32 +565,25 @@ public final class Player implements
         if (playQueueManager != null) {
             playQueueManager.dispose();
         }
-        if (mediaSessionManager != null) {
-            mediaSessionManager.dispose();
-        }
-
-        if (playQueueAdapter != null) {
-            playQueueAdapter.unsetSelectedListener();
-            playQueueAdapter.dispose();
-        }
     }
 
     public void destroy() {
         if (DEBUG) {
             Log.d(TAG, "destroy() called");
         }
+
+        saveStreamProgressState();
+        setRecovery();
+        stopActivityBinding();
+
         destroyPlayer();
         unregisterBroadcastReceiver();
 
         databaseUpdateDisposable.clear();
         progressUpdateDisposable.set(null);
-        PicassoHelper.cancelTag(PicassoHelper.PLAYER_THUMBNAIL_TAG); // cancel thumbnail loading
+        cancelLoadingCurrentThumbnail();
 
-        if (binding != null) {
-            binding.endScreen.setImageBitmap(null);
-        }
-
-        context.getContentResolver().unregisterContentObserver(settingsContentObserver);
+        UIs.destroyAll(Object.class); // destroy every UI: obviously every UI extends Object
     }
 
     public void setRecovery() {
@@ -969,11 +596,11 @@ public final class Player implements
         final long duration = simpleExoPlayer.getDuration();
 
         // No checks due to https://github.com/TeamNewPipe/NewPipe/pull/7195#issuecomment-962624380
-        setRecovery(queuePos, Math.max(0, Math.min(windowPos, duration)));
+        setRecovery(queuePos, MathUtils.clamp(windowPos, 0, duration));
     }
 
     private void setRecovery(final int queuePos, final long windowPos) {
-        if (playQueue.size() <= queuePos) {
+        if (playQueue == null || playQueue.size() <= queuePos) {
             return;
         }
 
@@ -983,7 +610,7 @@ public final class Player implements
         playQueue.setRecovery(queuePos, windowPos);
     }
 
-    private void reloadPlayQueueManager() {
+    public void reloadPlayQueueManager() {
         if (playQueueManager != null) {
             playQueueManager.dispose();
         }
@@ -1002,185 +629,11 @@ public final class Player implements
         service.stopService();
     }
 
-    public void smoothStopPlayer() {
+    public void smoothStopForImmediateReusing() {
         // Pausing would make transition from one stream to a new stream not smooth, so only stop
         simpleExoPlayer.stop();
-    }
-    //endregion
-
-
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Player type specific setup
-    //////////////////////////////////////////////////////////////////////////*/
-    //region Player type specific setup
-
-    private void initVideoPlayer() {
-        // restore last resize mode
-        setResizeMode(PlayerHelper.retrieveResizeModeFromPrefs(this));
-        binding.getRoot().setLayoutParams(new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
-    }
-
-    @SuppressLint("RtlHardcoded")
-    private void initPopup() {
-        if (DEBUG) {
-            Log.d(TAG, "initPopup() called");
-        }
-
-        // Popup is already added to windowManager
-        if (popupHasParent()) {
-            return;
-        }
-
-        updateScreenSize();
-
-        popupLayoutParams = retrievePopupLayoutParamsFromPrefs(this);
-        binding.surfaceView.setHeights(popupLayoutParams.height, popupLayoutParams.height);
-
-        checkPopupPositionBounds();
-
-        binding.loadingPanel.setMinimumWidth(popupLayoutParams.width);
-        binding.loadingPanel.setMinimumHeight(popupLayoutParams.height);
-
-        service.removeViewFromParent();
-        Objects.requireNonNull(windowManager).addView(binding.getRoot(), popupLayoutParams);
-
-        // Popup doesn't have aspectRatio selector, using FIT automatically
-        setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
-    }
-
-    @SuppressLint("RtlHardcoded")
-    private void initPopupCloseOverlay() {
-        if (DEBUG) {
-            Log.d(TAG, "initPopupCloseOverlay() called");
-        }
-
-        // closeOverlayView is already added to windowManager
-        if (closeOverlayBinding != null) {
-            return;
-        }
-
-        closeOverlayBinding = PlayerPopupCloseOverlayBinding.inflate(LayoutInflater.from(context));
-
-        final WindowManager.LayoutParams closeOverlayLayoutParams = buildCloseOverlayLayoutParams();
-        closeOverlayBinding.closeButton.setVisibility(View.GONE);
-        Objects.requireNonNull(windowManager).addView(
-                closeOverlayBinding.getRoot(), closeOverlayLayoutParams);
-    }
-    //endregion
-
-
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Elements visibility and size: popup and main players have different look
-    //////////////////////////////////////////////////////////////////////////*/
-    //region Elements visibility and size: popup and main players have different look
-
-    /**
-     * This method ensures that popup and main players have different look.
-     * We use one layout for both players and need to decide what to show and what to hide.
-     * Additional measuring should be done inside {@link #setupElementsSize}.
-     */
-    private void setupElementsVisibility() {
-        if (popupPlayerSelected()) {
-            binding.fullScreenButton.setVisibility(View.VISIBLE);
-            binding.screenRotationButton.setVisibility(View.GONE);
-            binding.resizeTextView.setVisibility(View.GONE);
-            binding.getRoot().findViewById(R.id.metadataView).setVisibility(View.GONE);
-            binding.queueButton.setVisibility(View.GONE);
-            binding.segmentsButton.setVisibility(View.GONE);
-            binding.moreOptionsButton.setVisibility(View.GONE);
-            binding.topControls.setOrientation(LinearLayout.HORIZONTAL);
-            binding.primaryControls.getLayoutParams().width
-                    = LinearLayout.LayoutParams.WRAP_CONTENT;
-            binding.secondaryControls.setAlpha(1.0f);
-            binding.secondaryControls.setVisibility(View.VISIBLE);
-            binding.secondaryControls.setTranslationY(0);
-            binding.share.setVisibility(View.GONE);
-            binding.playWithKodi.setVisibility(View.GONE);
-            binding.openInBrowser.setVisibility(View.GONE);
-            binding.switchMute.setVisibility(View.GONE);
-            binding.playerCloseButton.setVisibility(View.GONE);
-            binding.topControls.bringToFront();
-            binding.topControls.setClickable(false);
-            binding.topControls.setFocusable(false);
-            binding.bottomControls.bringToFront();
-            closeItemsList();
-        } else if (videoPlayerSelected()) {
-            binding.fullScreenButton.setVisibility(View.GONE);
-            setupScreenRotationButton();
-            binding.resizeTextView.setVisibility(View.VISIBLE);
-            binding.getRoot().findViewById(R.id.metadataView).setVisibility(View.VISIBLE);
-            binding.moreOptionsButton.setVisibility(View.VISIBLE);
-            binding.topControls.setOrientation(LinearLayout.VERTICAL);
-            binding.primaryControls.getLayoutParams().width
-                    = LinearLayout.LayoutParams.MATCH_PARENT;
-            binding.secondaryControls.setVisibility(View.INVISIBLE);
-            binding.moreOptionsButton.setImageDrawable(AppCompatResources.getDrawable(context,
-                    R.drawable.ic_expand_more));
-            binding.share.setVisibility(View.VISIBLE);
-            binding.openInBrowser.setVisibility(View.VISIBLE);
-            binding.switchMute.setVisibility(View.VISIBLE);
-            binding.playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
-            // Top controls have a large minHeight which is allows to drag the player
-            // down in fullscreen mode (just larger area to make easy to locate by finger)
-            binding.topControls.setClickable(true);
-            binding.topControls.setFocusable(true);
-        }
-        showHideKodiButton();
-
-        if (isFullscreen) {
-            binding.titleTextView.setVisibility(View.VISIBLE);
-            binding.channelTextView.setVisibility(View.VISIBLE);
-        } else {
-            binding.titleTextView.setVisibility(View.GONE);
-            binding.channelTextView.setVisibility(View.GONE);
-        }
-        setMuteButton(binding.switchMute, isMuted());
-
-        animateRotation(binding.moreOptionsButton, DEFAULT_CONTROLS_DURATION, 0);
-    }
-
-    /**
-     * Changes padding, size of elements based on player selected right now.
-     * Popup player has small padding in comparison with the main player
-     */
-    private void setupElementsSize() {
-        final Resources res = context.getResources();
-        final int buttonsMinWidth;
-        final int playerTopPad;
-        final int controlsPad;
-        final int buttonsPad;
-
-        if (popupPlayerSelected()) {
-            buttonsMinWidth = 0;
-            playerTopPad = 0;
-            controlsPad = res.getDimensionPixelSize(R.dimen.player_popup_controls_padding);
-            buttonsPad = res.getDimensionPixelSize(R.dimen.player_popup_buttons_padding);
-        } else if (videoPlayerSelected()) {
-            buttonsMinWidth = res.getDimensionPixelSize(R.dimen.player_main_buttons_min_width);
-            playerTopPad = res.getDimensionPixelSize(R.dimen.player_main_top_padding);
-            controlsPad = res.getDimensionPixelSize(R.dimen.player_main_controls_padding);
-            buttonsPad = res.getDimensionPixelSize(R.dimen.player_main_buttons_padding);
-        } else {
-            return;
-        }
-
-        binding.topControls.setPaddingRelative(controlsPad, playerTopPad, controlsPad, 0);
-        binding.bottomControls.setPaddingRelative(controlsPad, 0, controlsPad, 0);
-        binding.qualityTextView.setPadding(buttonsPad, buttonsPad, buttonsPad, buttonsPad);
-        binding.playbackSpeed.setPadding(buttonsPad, buttonsPad, buttonsPad, buttonsPad);
-        binding.playbackSpeed.setMinimumWidth(buttonsMinWidth);
-        binding.captionTextView.setPadding(buttonsPad, buttonsPad, buttonsPad, buttonsPad);
-    }
-
-    private void showHideKodiButton() {
-        // show kodi button if it supports the current service and it is enabled in settings
-        binding.playWithKodi.setVisibility(videoPlayerSelected()
-                && playQueue != null && playQueue.getItem() != null
-                && KoreUtils.shouldShowPlayWithKodi(context, playQueue.getItem().getServiceId())
-                ? View.VISIBLE : View.GONE);
+        setRecovery();
+        UIs.call(PlayerUi::smoothStopForImmediateReusing);
     }
     //endregion
 
@@ -1191,6 +644,12 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Broadcast receiver
 
+    /**
+     * This function prepares the broadcast receiver and is called only in the constructor.
+     * Therefore if you want any PlayerUi to receive a broadcast action, you should add it here,
+     * even if that player ui might never be added to the player. In that case the received
+     * broadcast would not do anything.
+     */
     private void setupBroadcastReceiver() {
         if (DEBUG) {
             Log.d(TAG, "setupBroadcastReceiver() called");
@@ -1243,11 +702,6 @@ public final class Player implements
                 break;
             case ACTION_PLAY_PAUSE:
                 playPause();
-                if (!fragmentIsVisible) {
-                    // Ensure that we have audio-only stream playing when a user
-                    // started to play from notification's play button from outside of the app
-                    onFragmentStopped();
-                }
                 break;
             case ACTION_PLAY_PREVIOUS:
                 playPrevious();
@@ -1262,62 +716,20 @@ public final class Player implements
                 fastForward();
                 break;
             case ACTION_REPEAT:
-                onRepeatClicked();
+                cycleNextRepeatMode();
                 break;
             case ACTION_SHUFFLE:
-                onShuffleClicked();
-                break;
-            case ACTION_RECREATE_NOTIFICATION:
-                NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, true);
-                break;
-            case VideoDetailFragment.ACTION_VIDEO_FRAGMENT_RESUMED:
-                fragmentIsVisible = true;
-                useVideoSource(true);
-                break;
-            case VideoDetailFragment.ACTION_VIDEO_FRAGMENT_STOPPED:
-                fragmentIsVisible = false;
-                onFragmentStopped();
+                toggleShuffleModeEnabled();
                 break;
             case Intent.ACTION_CONFIGURATION_CHANGED:
                 assureCorrectAppLanguage(service);
                 if (DEBUG) {
-                    Log.d(TAG, "onConfigurationChanged() called");
+                    Log.d(TAG, "ACTION_CONFIGURATION_CHANGED received");
                 }
-                if (popupPlayerSelected()) {
-                    updateScreenSize();
-                    changePopupSize(popupLayoutParams.width);
-                    checkPopupPositionBounds();
-                }
-                // Close it because when changing orientation from portrait
-                // (in fullscreen mode) the size of queue layout can be larger than the screen size
-                closeItemsList();
-                // When the orientation changed, the screen height might be smaller.
-                // If the end screen thumbnail is not re-scaled,
-                // it can be larger than the current screen height
-                // and thus enlarging the whole player.
-                // This causes the seekbar to be ouf the visible area.
-                updateEndScreenThumbnail();
-                break;
-            case Intent.ACTION_SCREEN_ON:
-                // Interrupt playback only when screen turns on
-                // and user is watching video in popup player.
-                // Same actions for video player will be handled in ACTION_VIDEO_FRAGMENT_RESUMED
-                if (popupPlayerSelected() && (isPlaying() || isLoading())) {
-                    useVideoSource(true);
-                }
-                break;
-            case Intent.ACTION_SCREEN_OFF:
-                // Interrupt playback only when screen turns off with popup player working
-                if (popupPlayerSelected() && (isPlaying() || isLoading())) {
-                    useVideoSource(false);
-                }
-                break;
-            case Intent.ACTION_HEADSET_PLUG: //FIXME
-                /*notificationManager.cancel(NOTIFICATION_ID);
-                mediaSessionManager.dispose();
-                mediaSessionManager.enable(getBaseContext(), basePlayerImpl.simpleExoPlayer);*/
                 break;
         }
+
+        UIs.call(playerUi -> playerUi.onBroadcastReceived(intent));
     }
 
     private void registerBroadcastReceiver() {
@@ -1343,294 +755,71 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Thumbnail loading
 
-    private void initThumbnail(final String url) {
-        if (DEBUG) {
-            Log.d(TAG, "Thumbnail - initThumbnail() called with url = ["
-                    + (url == null ? "null" : url) + "]");
-        }
-        if (isNullOrEmpty(url)) {
-            return;
-        }
-
-        // scale down the notification thumbnail for performance
-        PicassoHelper.loadScaledDownThumbnail(context, url).into(new Target() {
+    private Target getCurrentThumbnailTarget() {
+        // a Picasso target is just a listener for thumbnail loading events
+        return new Target() {
             @Override
             public void onBitmapLoaded(final Bitmap bitmap, final Picasso.LoadedFrom from) {
                 if (DEBUG) {
-                    Log.d(TAG, "Thumbnail - onLoadingComplete() called with: url = [" + url
-                            + "], " + "loadedImage = [" + bitmap + " -> " + bitmap.getWidth() + "x"
-                            + bitmap.getHeight() + "], from = [" + from + "]");
+                    Log.d(TAG, "Thumbnail - onBitmapLoaded() called with: bitmap = [" + bitmap
+                            + " -> " + bitmap.getWidth() + "x" + bitmap.getHeight() + "], from = ["
+                            + from + "]");
                 }
-
-                currentThumbnail = bitmap;
-                NotificationUtil.getInstance()
-                        .createNotificationIfNeededAndUpdate(Player.this, false);
-                // there is a new thumbnail, so changed the end screen thumbnail, too.
-                updateEndScreenThumbnail();
+                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
+                onThumbnailLoaded(bitmap);
             }
 
             @Override
             public void onBitmapFailed(final Exception e, final Drawable errorDrawable) {
-                Log.e(TAG, "Thumbnail - onBitmapFailed() called with: url = [" + url + "]", e);
-                currentThumbnail = null;
-                NotificationUtil.getInstance()
-                        .createNotificationIfNeededAndUpdate(Player.this, false);
+                Log.e(TAG, "Thumbnail - onBitmapFailed() called", e);
+                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
+                onThumbnailLoaded(null);
             }
 
             @Override
             public void onPrepareLoad(final Drawable placeHolderDrawable) {
                 if (DEBUG) {
-                    Log.d(TAG, "Thumbnail - onLoadingStarted() called with: url = [" + url + "]");
+                    Log.d(TAG, "Thumbnail - onPrepareLoad() called");
                 }
             }
-        });
+        };
     }
 
-    /**
-     * Scale the player audio / end screen thumbnail down if necessary.
-     * <p>
-     * This is necessary when the thumbnail's height is larger than the device's height
-     * and thus is enlarging the player's height
-     * causing the bottom playback controls to be out of the visible screen.
-     * </p>
-     */
-    public void updateEndScreenThumbnail() {
-        if (currentThumbnail == null) {
+    private void loadCurrentThumbnail(final String url) {
+        if (DEBUG) {
+            Log.d(TAG, "Thumbnail - loadCurrentThumbnail() called with url = ["
+                    + (url == null ? "null" : url) + "]");
+        }
+
+        // first cancel any previous loading
+        cancelLoadingCurrentThumbnail();
+
+        // Unset currentThumbnail, since it is now outdated. This ensures it is not used in media
+        // session metadata while the new thumbnail is being loaded by Picasso.
+        onThumbnailLoaded(null);
+        if (isNullOrEmpty(url)) {
             return;
         }
 
-        final float endScreenHeight = calculateMaxEndScreenThumbnailHeight();
-
-        final Bitmap endScreenBitmap = Bitmap.createScaledBitmap(
-                currentThumbnail,
-                (int) (currentThumbnail.getWidth()
-                        / (currentThumbnail.getHeight() / endScreenHeight)),
-                (int) endScreenHeight,
-                true);
-
-        if (DEBUG) {
-            Log.d(TAG, "Thumbnail - updateEndScreenThumbnail() called with: "
-                    + "currentThumbnail = [" + currentThumbnail + "], "
-                    + currentThumbnail.getWidth() + "x" + currentThumbnail.getHeight()
-                    + ", scaled end screen height = " + endScreenHeight
-                    + ", scaled end screen width = " + endScreenBitmap.getWidth());
-        }
-
-        binding.endScreen.setImageBitmap(endScreenBitmap);
+        // scale down the notification thumbnail for performance
+        PicassoHelper.loadScaledDownThumbnail(context, url)
+                .tag(PICASSO_PLAYER_THUMBNAIL_TAG)
+                .into(currentThumbnailTarget);
     }
 
-    /**
-     * Calculate the maximum allowed height for the {@link R.id.endScreen}
-     * to prevent it from enlarging the player.
-     * <p>
-     * The calculating follows these rules:
-     * <ul>
-     * <li>
-     *     Show at least stream title and content creator on TVs and tablets
-     *     when in landscape (always the case for TVs) and not in fullscreen mode.
-     *     This requires to have at least <code>85dp</code> free space for {@link R.id.detail_root}
-     *     and additional space for the stream title text size
-     *     ({@link R.id.detail_title_root_layout}).
-     *     The text size is <code>15sp</code> on tablets and <code>16sp</code> on TVs,
-     *     see {@link R.id.titleTextView}.
-     * </li>
-     * <li>
-     *     Otherwise, the max thumbnail height is the screen height.
-     * </li>
-     * </ul>
-     *
-     * @return the maximum height for the end screen thumbnail
-     */
-    private float calculateMaxEndScreenThumbnailHeight() {
-        // ensure that screenHeight is initialized and thus not 0
-        updateScreenSize();
-
-        if (DeviceUtils.isTv(context) && !isFullscreen) {
-            final int videoInfoHeight =
-                    DeviceUtils.dpToPx(85, context) + DeviceUtils.spToPx(16, context);
-            return Math.min(currentThumbnail.getHeight(), screenHeight - videoInfoHeight);
-        } else if (DeviceUtils.isTablet(context) && service.isLandscape() && !isFullscreen) {
-            final int videoInfoHeight =
-                    DeviceUtils.dpToPx(85, context) + DeviceUtils.spToPx(15, context);
-            return Math.min(currentThumbnail.getHeight(), screenHeight - videoInfoHeight);
-        } else { // fullscreen player: max height is the device height
-            return Math.min(currentThumbnail.getHeight(), screenHeight);
-        }
-    }
-    //endregion
-
-
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Popup player utils
-    //////////////////////////////////////////////////////////////////////////*/
-    //region Popup player utils
-
-    /**
-     * Check if {@link #popupLayoutParams}' position is within a arbitrary boundary
-     * that goes from (0, 0) to (screenWidth, screenHeight).
-     * <p>
-     * If it's out of these boundaries, {@link #popupLayoutParams}' position is changed
-     * and {@code true} is returned to represent this change.
-     * </p>
-     */
-    public void checkPopupPositionBounds() {
-        if (DEBUG) {
-            Log.d(TAG, "checkPopupPositionBounds() called with: "
-                    + "screenWidth = [" + screenWidth + "], "
-                    + "screenHeight = [" + screenHeight + "]");
-        }
-        if (popupLayoutParams == null) {
-            return;
-        }
-
-        if (popupLayoutParams.x < 0) {
-            popupLayoutParams.x = 0;
-        } else if (popupLayoutParams.x > screenWidth - popupLayoutParams.width) {
-            popupLayoutParams.x = (int) (screenWidth - popupLayoutParams.width);
-        }
-
-        if (popupLayoutParams.y < 0) {
-            popupLayoutParams.y = 0;
-        } else if (popupLayoutParams.y > screenHeight - popupLayoutParams.height) {
-            popupLayoutParams.y = (int) (screenHeight - popupLayoutParams.height);
-        }
+    private void cancelLoadingCurrentThumbnail() {
+        // cancel the Picasso job associated with the player thumbnail, if any
+        PicassoHelper.cancelTag(PICASSO_PLAYER_THUMBNAIL_TAG);
     }
 
-    public void updateScreenSize() {
-        if (windowManager != null) {
-            final DisplayMetrics metrics = new DisplayMetrics();
-            windowManager.getDefaultDisplay().getMetrics(metrics);
-
-            screenWidth = metrics.widthPixels;
-            screenHeight = metrics.heightPixels;
-            if (DEBUG) {
-                Log.d(TAG, "updateScreenSize() called: screenWidth = ["
-                        + screenWidth + "], screenHeight = [" + screenHeight + "]");
-            }
+    private void onThumbnailLoaded(@Nullable final Bitmap bitmap) {
+        // Avoid useless thumbnail updates, if the thumbnail has not actually changed. Based on the
+        // thumbnail loading code, this if would be skipped only when both bitmaps are `null`, since
+        // onThumbnailLoaded won't be called twice with the same nonnull bitmap by Picasso's target.
+        if (currentThumbnail != bitmap) {
+            currentThumbnail = bitmap;
+            UIs.call(playerUi -> playerUi.onThumbnailLoaded(bitmap));
         }
-    }
-
-    /**
-     * Changes the size of the popup based on the width.
-     * @param width the new width, height is calculated with
-     *              {@link PlayerHelper#getMinimumVideoHeight(float)}
-     */
-    public void changePopupSize(final int width) {
-        if (DEBUG) {
-            Log.d(TAG, "changePopupSize() called with: width = [" + width + "]");
-        }
-
-        if (anyPopupViewIsNull()) {
-            return;
-        }
-
-        final float minimumWidth = context.getResources().getDimension(R.dimen.popup_minimum_width);
-        final int actualWidth = (int) (width > screenWidth ? screenWidth
-                : (width < minimumWidth ? minimumWidth : width));
-        final int actualHeight = (int) getMinimumVideoHeight(width);
-        if (DEBUG) {
-            Log.d(TAG, "updatePopupSize() updated values:"
-                    + "  width = [" + actualWidth + "], height = [" + actualHeight + "]");
-        }
-
-        popupLayoutParams.width = actualWidth;
-        popupLayoutParams.height = actualHeight;
-        binding.surfaceView.setHeights(popupLayoutParams.height, popupLayoutParams.height);
-        Objects.requireNonNull(windowManager)
-                .updateViewLayout(binding.getRoot(), popupLayoutParams);
-    }
-
-    private void changePopupWindowFlags(final int flags) {
-        if (DEBUG) {
-            Log.d(TAG, "changePopupWindowFlags() called with: flags = [" + flags + "]");
-        }
-
-        if (!anyPopupViewIsNull()) {
-            popupLayoutParams.flags = flags;
-            Objects.requireNonNull(windowManager)
-                    .updateViewLayout(binding.getRoot(), popupLayoutParams);
-        }
-    }
-
-    public void closePopup() {
-        if (DEBUG) {
-            Log.d(TAG, "closePopup() called, isPopupClosing = " + isPopupClosing);
-        }
-        if (isPopupClosing) {
-            return;
-        }
-        isPopupClosing = true;
-
-        saveStreamProgressState();
-        Objects.requireNonNull(windowManager).removeView(binding.getRoot());
-
-        animatePopupOverlayAndFinishService();
-    }
-
-    public void removePopupFromView() {
-        if (windowManager != null) {
-            // wrap in try-catch since it could sometimes generate errors randomly
-            try {
-                if (popupHasParent()) {
-                    windowManager.removeView(binding.getRoot());
-                }
-            } catch (final IllegalArgumentException e) {
-                Log.w(TAG, "Failed to remove popup from window manager", e);
-            }
-
-            try {
-                final boolean closeOverlayHasParent = closeOverlayBinding != null
-                        && closeOverlayBinding.getRoot().getParent() != null;
-                if (closeOverlayHasParent) {
-                    windowManager.removeView(closeOverlayBinding.getRoot());
-                }
-            } catch (final IllegalArgumentException e) {
-                Log.w(TAG, "Failed to remove popup overlay from window manager", e);
-            }
-        }
-    }
-
-    private void animatePopupOverlayAndFinishService() {
-        final int targetTranslationY =
-                (int) (closeOverlayBinding.closeButton.getRootView().getHeight()
-                        - closeOverlayBinding.closeButton.getY());
-
-        closeOverlayBinding.closeButton.animate().setListener(null).cancel();
-        closeOverlayBinding.closeButton.animate()
-                .setInterpolator(new AnticipateInterpolator())
-                .translationY(targetTranslationY)
-                .setDuration(400)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationCancel(final Animator animation) {
-                        end();
-                    }
-
-                    @Override
-                    public void onAnimationEnd(final Animator animation) {
-                        end();
-                    }
-
-                    private void end() {
-                        Objects.requireNonNull(windowManager)
-                                .removeView(closeOverlayBinding.getRoot());
-                        closeOverlayBinding = null;
-                        service.stopService();
-                    }
-                }).start();
-    }
-
-    private boolean popupHasParent() {
-        return binding != null
-                && binding.getRoot().getLayoutParams() instanceof WindowManager.LayoutParams
-                && binding.getRoot().getParent() != null;
-    }
-
-    private boolean anyPopupViewIsNull() {
-        // TODO understand why checking getParentActivity() != null
-        return popupLayoutParams == null || windowManager == null
-                || getParentActivity() != null || binding.getRoot().getParent() == null;
     }
     //endregion
 
@@ -1645,7 +834,7 @@ public final class Player implements
         return getPlaybackParameters().speed;
     }
 
-    private void setPlaybackSpeed(final float speed) {
+    public void setPlaybackSpeed(final float speed) {
         setPlaybackParameters(speed, getPlaybackPitch(), getPlaybackSkipSilence());
     }
 
@@ -1694,40 +883,13 @@ public final class Player implements
     private void onUpdateProgress(final int currentProgress,
                                   final int duration,
                                   final int bufferPercent) {
-        if (!isPrepared) {
-            return;
-        }
-
-        if (duration != binding.playbackSeekBar.getMax()) {
-            setVideoDurationToControls(duration);
-        }
-        if (currentState != STATE_PAUSED) {
-            updatePlayBackElementsCurrentDuration(currentProgress);
-        }
-        if (simpleExoPlayer.isLoading() || bufferPercent > 90) {
-            binding.playbackSeekBar.setSecondaryProgress(
-                    (int) (binding.playbackSeekBar.getMax() * ((float) bufferPercent / 100)));
-        }
-        if (DEBUG && bufferPercent % 20 == 0) { //Limit log
-            Log.d(TAG, "notifyProgressUpdateToListeners() called with: "
-                    + "isVisible = " + isControlsVisible() + ", "
-                    + "currentProgress = [" + currentProgress + "], "
-                    + "duration = [" + duration + "], bufferPercent = [" + bufferPercent + "]");
-        }
-        binding.playbackLiveSync.setClickable(!isLiveEdge());
-
-        notifyProgressUpdateToListeners(currentProgress, duration, bufferPercent);
-
-        if (areSegmentsVisible) {
-            segmentAdapter.selectSegmentAt(getNearestStreamSegmentPosition(currentProgress));
-        }
-
-        if (isQueueVisible) {
-            updateQueueTime(currentProgress);
+        if (isPrepared) {
+            UIs.call(ui -> ui.onUpdateProgress(currentProgress, duration, bufferPercent));
+            notifyProgressUpdateToListeners(currentProgress, duration, bufferPercent);
         }
     }
 
-    private void startProgressLoop() {
+    public void startProgressLoop() {
         progressUpdateDisposable.set(getProgressUpdateDisposable());
     }
 
@@ -1735,11 +897,11 @@ public final class Player implements
         progressUpdateDisposable.set(null);
     }
 
-    private boolean isProgressLoopRunning() {
+    public boolean isProgressLoopRunning() {
         return progressUpdateDisposable.get() != null;
     }
 
-    private void triggerProgressUpdate() {
+    public void triggerProgressUpdate() {
         if (exoPlayerIsNull()) {
             return;
         }
@@ -1756,229 +918,12 @@ public final class Player implements
                         error -> Log.e(TAG, "Progress update failure: ", error));
     }
 
-    @Override // seekbar listener
-    public void onProgressChanged(final SeekBar seekBar, final int progress,
-                                  final boolean fromUser) {
-        // Currently we don't need method execution when fromUser is false
-        if (!fromUser) {
-            return;
-        }
-        if (DEBUG) {
-            Log.d(TAG, "onProgressChanged() called with: "
-                    + "seekBar = [" + seekBar + "], progress = [" + progress + "]");
-        }
-
-        binding.currentDisplaySeek.setText(getTimeString(progress));
-
-        // Seekbar Preview Thumbnail
-        SeekbarPreviewThumbnailHelper
-                .tryResizeAndSetSeekbarPreviewThumbnail(
-                        getContext(),
-                        seekbarPreviewThumbnailHolder.getBitmapAt(progress),
-                        binding.currentSeekbarPreviewThumbnail,
-                        binding.subtitleView::getWidth);
-
-        adjustSeekbarPreviewContainer();
-    }
-
-    private void adjustSeekbarPreviewContainer() {
-        try {
-            // Should only be required when an error occurred before
-            // and the layout was positioned in the center
-            binding.bottomSeekbarPreviewLayout.setGravity(Gravity.NO_GRAVITY);
-
-            // Calculate the current left position of seekbar progress in px
-            // More info: https://stackoverflow.com/q/20493577
-            final int currentSeekbarLeft =
-                    binding.playbackSeekBar.getLeft()
-                            + binding.playbackSeekBar.getPaddingLeft()
-                            + binding.playbackSeekBar.getThumb().getBounds().left;
-
-            // Calculate the (unchecked) left position of the container
-            final int uncheckedContainerLeft =
-                    currentSeekbarLeft - (binding.seekbarPreviewContainer.getWidth() / 2);
-
-            // Fix the position so it's within the boundaries
-            final int checkedContainerLeft =
-                    Math.max(
-                            Math.min(
-                                    uncheckedContainerLeft,
-                                    // Max left
-                                    binding.playbackWindowRoot.getWidth()
-                                            - binding.seekbarPreviewContainer.getWidth()
-                            ),
-                            0 // Min left
-                    );
-
-            // See also: https://stackoverflow.com/a/23249734
-            final LinearLayout.LayoutParams params =
-                    new LinearLayout.LayoutParams(
-                            binding.seekbarPreviewContainer.getLayoutParams());
-            params.setMarginStart(checkedContainerLeft);
-            binding.seekbarPreviewContainer.setLayoutParams(params);
-        } catch (final Exception ex) {
-            Log.e(TAG, "Failed to adjust seekbarPreviewContainer", ex);
-            // Fallback - position in the middle
-            binding.bottomSeekbarPreviewLayout.setGravity(Gravity.CENTER);
-        }
-    }
-
-    @Override // seekbar listener
-    public void onStartTrackingTouch(final SeekBar seekBar) {
-        if (DEBUG) {
-            Log.d(TAG, "onStartTrackingTouch() called with: seekBar = [" + seekBar + "]");
-        }
-        if (currentState != STATE_PAUSED_SEEK) {
-            changeState(STATE_PAUSED_SEEK);
-        }
-
-        saveWasPlaying();
-        if (isPlaying()) {
-            simpleExoPlayer.pause();
-        }
-
-        showControls(0);
-        animate(binding.currentDisplaySeek, true, DEFAULT_CONTROLS_DURATION,
-                AnimationType.SCALE_AND_ALPHA);
-        animate(binding.currentSeekbarPreviewThumbnail, true, DEFAULT_CONTROLS_DURATION,
-                AnimationType.SCALE_AND_ALPHA);
-    }
-
-    @Override // seekbar listener
-    public void onStopTrackingTouch(final SeekBar seekBar) {
-        if (DEBUG) {
-            Log.d(TAG, "onStopTrackingTouch() called with: seekBar = [" + seekBar + "]");
-        }
-
-        seekTo(seekBar.getProgress());
-        if (wasPlaying || simpleExoPlayer.getDuration() == seekBar.getProgress()) {
-            simpleExoPlayer.play();
-        }
-
-        binding.playbackCurrentTime.setText(getTimeString(seekBar.getProgress()));
-        animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
-        animate(binding.currentSeekbarPreviewThumbnail, false, 200, AnimationType.SCALE_AND_ALPHA);
-
-        if (currentState == STATE_PAUSED_SEEK) {
-            changeState(STATE_BUFFERING);
-        }
-        if (!isProgressLoopRunning()) {
-            startProgressLoop();
-        }
-        if (wasPlaying) {
-            showControlsThenHide();
-        }
-    }
-
     public void saveWasPlaying() {
         this.wasPlaying = getPlayWhenReady();
     }
-    //endregion
 
-
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Controls showing / hiding
-    //////////////////////////////////////////////////////////////////////////*/
-    //region Controls showing / hiding
-
-    public boolean isControlsVisible() {
-        return binding != null && binding.playbackControlRoot.getVisibility() == View.VISIBLE;
-    }
-
-    public void showControlsThenHide() {
-        if (DEBUG) {
-            Log.d(TAG, "showControlsThenHide() called");
-        }
-        showOrHideButtons();
-        showSystemUIPartially();
-
-        final int hideTime = binding.playbackControlRoot.isInTouchMode()
-                ? DEFAULT_CONTROLS_HIDE_TIME
-                : DPAD_CONTROLS_HIDE_TIME;
-
-        showHideShadow(true, DEFAULT_CONTROLS_DURATION);
-        animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
-                AnimationType.ALPHA, 0, () -> hideControls(DEFAULT_CONTROLS_DURATION, hideTime));
-    }
-
-    public void showControls(final long duration) {
-        if (DEBUG) {
-            Log.d(TAG, "showControls() called");
-        }
-        showOrHideButtons();
-        showSystemUIPartially();
-        controlsVisibilityHandler.removeCallbacksAndMessages(null);
-        showHideShadow(true, duration);
-        animate(binding.playbackControlRoot, true, duration);
-    }
-
-    public void hideControls(final long duration, final long delay) {
-        if (DEBUG) {
-            Log.d(TAG, "hideControls() called with: duration = [" + duration
-                    + "], delay = [" + delay + "]");
-        }
-
-        showOrHideButtons();
-
-        controlsVisibilityHandler.removeCallbacksAndMessages(null);
-        controlsVisibilityHandler.postDelayed(() -> {
-            showHideShadow(false, duration);
-            animate(binding.playbackControlRoot, false, duration, AnimationType.ALPHA,
-                    0, this::hideSystemUIIfNeeded);
-        }, delay);
-    }
-
-    public void showHideShadow(final boolean show, final long duration) {
-        animate(binding.playbackControlsShadow, show, duration, AnimationType.ALPHA, 0, null);
-        animate(binding.playerTopShadow, show, duration, AnimationType.ALPHA, 0, null);
-        animate(binding.playerBottomShadow, show, duration, AnimationType.ALPHA, 0, null);
-    }
-
-    private void showOrHideButtons() {
-        if (playQueue == null) {
-            return;
-        }
-
-        final boolean showPrev = playQueue.getIndex() != 0;
-        final boolean showNext = playQueue.getIndex() + 1 != playQueue.getStreams().size();
-        final boolean showQueue = playQueue.getStreams().size() > 1 && !popupPlayerSelected();
-        /* only when stream has segments and is not playing in popup player */
-        final boolean showSegment = !popupPlayerSelected()
-                && !getCurrentStreamInfo()
-                .map(StreamInfo::getStreamSegments)
-                .map(List::isEmpty)
-                .orElse(/*no stream info=*/true);
-
-        binding.playPreviousButton.setVisibility(showPrev ? View.VISIBLE : View.INVISIBLE);
-        binding.playPreviousButton.setAlpha(showPrev ? 1.0f : 0.0f);
-        binding.playNextButton.setVisibility(showNext ? View.VISIBLE : View.INVISIBLE);
-        binding.playNextButton.setAlpha(showNext ? 1.0f : 0.0f);
-        binding.queueButton.setVisibility(showQueue ? View.VISIBLE : View.GONE);
-        binding.queueButton.setAlpha(showQueue ? 1.0f : 0.0f);
-        binding.segmentsButton.setVisibility(showSegment ? View.VISIBLE : View.GONE);
-        binding.segmentsButton.setAlpha(showSegment ? 1.0f : 0.0f);
-    }
-
-    private void showSystemUIPartially() {
-        final AppCompatActivity activity = getParentActivity();
-        if (isFullscreen && activity != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
-                activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);
-            }
-            final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
-            activity.getWindow().getDecorView().setSystemUiVisibility(visibility);
-            activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
-    }
-
-    private void hideSystemUIIfNeeded() {
-        if (fragmentListener != null) {
-            fragmentListener.hideSystemUiIfNeeded();
-        }
+    public boolean wasPlaying() {
+        return wasPlaying;
     }
     //endregion
 
@@ -2012,7 +957,7 @@ public final class Player implements
 
     private void updatePlaybackState(final boolean playWhenReady, final int playbackState) {
         if (DEBUG) {
-            Log.d(TAG, "ExoPlayer - onPlayerStateChanged() called with: "
+            Log.d(TAG, "ExoPlayer - updatePlaybackState() called with: "
                     + "playWhenReady = [" + playWhenReady + "], "
                     + "playbackState = [" + playbackState + "]");
         }
@@ -2123,9 +1068,7 @@ public final class Player implements
             Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
         }
 
-        setVideoDurationToControls((int) simpleExoPlayer.getDuration());
-
-        binding.playbackSpeed.setText(formatSpeed(getPlaybackSpeed()));
+        UIs.call(PlayerUi::onPrepared);
 
         if (playWhenReady) {
             audioReactor.requestAudioFocus();
@@ -2140,22 +1083,7 @@ public final class Player implements
             startProgressLoop();
         }
 
-        // if we are e.g. switching players, hide controls
-        hideControls(DEFAULT_CONTROLS_DURATION, 0);
-
-        binding.playbackSeekBar.setEnabled(false);
-        binding.playbackSeekBar.getThumb()
-                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_IN));
-
-        binding.loadingPanel.setBackgroundColor(Color.BLACK);
-        animate(binding.loadingPanel, true, 0);
-        animate(binding.surfaceForeground, true, 100);
-
-        binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow);
-        animatePlayButtons(false, 100);
-        binding.getRoot().setKeepScreenOn(false);
-
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
+        UIs.call(PlayerUi::onBlocked);
     }
 
     private void onPlaying() {
@@ -2166,44 +1094,15 @@ public final class Player implements
             startProgressLoop();
         }
 
-        updateStreamRelatedViews();
-
-        binding.playbackSeekBar.setEnabled(true);
-        binding.playbackSeekBar.getThumb()
-                .setColorFilter(new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_IN));
-
-        binding.loadingPanel.setVisibility(View.GONE);
-
-        animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
-
-        animate(binding.playPauseButton, false, 80, AnimationType.SCALE_AND_ALPHA, 0,
-                () -> {
-                    binding.playPauseButton.setImageResource(R.drawable.ic_pause);
-                    animatePlayButtons(true, 200);
-                    if (!isQueueVisible) {
-                        binding.playPauseButton.requestFocus();
-                    }
-                });
-
-        changePopupWindowFlags(ONGOING_PLAYBACK_WINDOW_FLAGS);
-        checkLandscape();
-        binding.getRoot().setKeepScreenOn(true);
-
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
+        UIs.call(PlayerUi::onPlaying);
     }
 
     private void onBuffering() {
         if (DEBUG) {
             Log.d(TAG, "onBuffering() called");
         }
-        binding.loadingPanel.setBackgroundColor(Color.TRANSPARENT);
-        binding.loadingPanel.setVisibility(View.VISIBLE);
 
-        binding.getRoot().setKeepScreenOn(true);
-
-        if (NotificationUtil.getInstance().shouldUpdateBufferingSlot()) {
-            NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-        }
+        UIs.call(PlayerUi::onBuffering);
     }
 
     private void onPaused() {
@@ -2215,43 +1114,14 @@ public final class Player implements
             stopProgressLoop();
         }
 
-        // Don't let UI elements popup during double tap seeking. This state is entered sometimes
-        // during seeking/loading. This if-else check ensures that the controls aren't popping up.
-        if (!playerGestureListener.isDoubleTapping()) {
-            showControls(400);
-            binding.loadingPanel.setVisibility(View.GONE);
-
-            animate(binding.playPauseButton, false, 80, AnimationType.SCALE_AND_ALPHA, 0,
-                    () -> {
-                        binding.playPauseButton.setImageResource(R.drawable.ic_play_arrow);
-                        animatePlayButtons(true, 200);
-                        if (!isQueueVisible) {
-                            binding.playPauseButton.requestFocus();
-                        }
-                    });
-        }
-        changePopupWindowFlags(IDLE_WINDOW_FLAGS);
-
-        // Remove running notification when user does not want minimization to background or popup
-        if (PlayerHelper.getMinimizeOnExitAction(context) == MINIMIZE_ON_EXIT_MODE_NONE
-                && videoPlayerSelected()) {
-            NotificationUtil.getInstance().cancelNotificationAndStopForeground(service);
-        } else {
-            NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-        }
-
-        binding.getRoot().setKeepScreenOn(false);
+        UIs.call(PlayerUi::onPaused);
     }
 
     private void onPausedSeek() {
         if (DEBUG) {
             Log.d(TAG, "onPausedSeek() called");
         }
-
-        animatePlayButtons(false, 100);
-        binding.getRoot().setKeepScreenOn(true);
-
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
+        UIs.call(PlayerUi::onPausedSeek);
     }
 
     private void onCompleted() {
@@ -2262,57 +1132,13 @@ public final class Player implements
             return;
         }
 
-        animate(binding.playPauseButton, false, 0, AnimationType.SCALE_AND_ALPHA, 0,
-                () -> {
-                    binding.playPauseButton.setImageResource(R.drawable.ic_replay);
-                    animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
-                });
-
-        binding.getRoot().setKeepScreenOn(false);
-        changePopupWindowFlags(IDLE_WINDOW_FLAGS);
-
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-        if (isFullscreen) {
-            toggleFullscreen();
-        }
+        UIs.call(PlayerUi::onCompleted);
 
         if (playQueue.getIndex() < playQueue.size() - 1) {
             playQueue.offsetIndex(+1);
         }
         if (isProgressLoopRunning()) {
             stopProgressLoop();
-        }
-
-        // When a (short) video ends the elements have to display the correct values - see #6180
-        updatePlayBackElementsCurrentDuration(binding.playbackSeekBar.getMax());
-
-        showControls(500);
-        animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
-        binding.loadingPanel.setVisibility(View.GONE);
-        animate(binding.surfaceForeground, true, 100);
-    }
-
-    private void animatePlayButtons(final boolean show, final int duration) {
-        animate(binding.playPauseButton, show, duration, AnimationType.SCALE_AND_ALPHA);
-
-        boolean showQueueButtons = show;
-        if (playQueue == null) {
-            showQueueButtons = false;
-        }
-
-        if (!showQueueButtons || playQueue.getIndex() > 0) {
-            animate(
-                    binding.playPreviousButton,
-                    showQueueButtons,
-                    duration,
-                    AnimationType.SCALE_AND_ALPHA);
-        }
-        if (!showQueueButtons || playQueue.getIndex() + 1 < playQueue.getStreams().size()) {
-            animate(
-                    binding.playNextButton,
-                    showQueueButtons,
-                    duration,
-                    AnimationType.SCALE_AND_ALPHA);
         }
     }
     //endregion
@@ -2324,33 +1150,19 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Repeat and shuffle
 
-    public void onRepeatClicked() {
-        if (DEBUG) {
-            Log.d(TAG, "onRepeatClicked() called");
-        }
-        setRepeatMode(nextRepeatMode(getRepeatMode()));
-    }
-
-    public void onShuffleClicked() {
-        if (DEBUG) {
-            Log.d(TAG, "onShuffleClicked() called");
-        }
-
-        if (exoPlayerIsNull()) {
-            return;
-        }
-        simpleExoPlayer.setShuffleModeEnabled(!simpleExoPlayer.getShuffleModeEnabled());
-    }
-
     @RepeatMode
     public int getRepeatMode() {
         return exoPlayerIsNull() ? REPEAT_MODE_OFF : simpleExoPlayer.getRepeatMode();
     }
 
-    private void setRepeatMode(@RepeatMode final int repeatMode) {
+    public void setRepeatMode(@RepeatMode final int repeatMode) {
         if (!exoPlayerIsNull()) {
             simpleExoPlayer.setRepeatMode(repeatMode);
         }
+    }
+
+    public void cycleNextRepeatMode() {
+        setRepeatMode(nextRepeatMode(getRepeatMode()));
     }
 
     @Override
@@ -2359,8 +1171,8 @@ public final class Player implements
             Log.d(TAG, "ExoPlayer - onRepeatModeChanged() called with: "
                     + "repeatMode = [" + repeatMode + "]");
         }
-        setRepeatModeButton(binding.repeatButton, repeatMode);
-        onShuffleOrRepeatModeChanged();
+        UIs.call(playerUi -> playerUi.onRepeatModeChanged(repeatMode));
+        notifyPlaybackUpdateToListeners();
     }
 
     @Override
@@ -2378,57 +1190,13 @@ public final class Player implements
             }
         }
 
-        setShuffleButton(binding.shuffleButton, shuffleModeEnabled);
-        onShuffleOrRepeatModeChanged();
-    }
-
-    private void onShuffleOrRepeatModeChanged() {
+        UIs.call(playerUi -> playerUi.onShuffleModeEnabledChanged(shuffleModeEnabled));
         notifyPlaybackUpdateToListeners();
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
     }
 
-    private void setRepeatModeButton(final AppCompatImageButton imageButton,
-                                     @RepeatMode final int repeatMode) {
-        switch (repeatMode) {
-            case REPEAT_MODE_OFF:
-                imageButton.setImageResource(R.drawable.exo_controls_repeat_off);
-                break;
-            case REPEAT_MODE_ONE:
-                imageButton.setImageResource(R.drawable.exo_controls_repeat_one);
-                break;
-            case REPEAT_MODE_ALL:
-                imageButton.setImageResource(R.drawable.exo_controls_repeat_all);
-                break;
-        }
-    }
-
-    private void setShuffleButton(@NonNull final ImageButton button, final boolean shuffled) {
-        button.setImageAlpha(shuffled ? 255 : 77);
-    }
-    //endregion
-
-
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Playlist append
-    //////////////////////////////////////////////////////////////////////////*/
-    //region Playlist append
-
-    public void onAddToPlaylistClicked(@NonNull final FragmentManager fragmentManager) {
-        if (DEBUG) {
-            Log.d(TAG, "onAddToPlaylistClicked() called");
-        }
-
-        if (getPlayQueue() != null) {
-            PlaylistDialog.createCorrespondingDialog(
-                    getContext(),
-                    getPlayQueue()
-                            .getStreams()
-                            .stream()
-                            .map(StreamEntity::new)
-                            .collect(Collectors.toList()),
-                    dialog -> dialog.show(fragmentManager, TAG)
-            );
+    public void toggleShuffleModeEnabled() {
+        if (!exoPlayerIsNull()) {
+            simpleExoPlayer.setShuffleModeEnabled(!simpleExoPlayer.getShuffleModeEnabled());
         }
     }
     //endregion
@@ -2440,22 +1208,15 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Mute / Unmute
 
-    public void onMuteUnmuteButtonClicked() {
-        if (DEBUG) {
-            Log.d(TAG, "onMuteUnmuteButtonClicked() called");
-        }
-        simpleExoPlayer.setVolume(isMuted() ? 1 : 0);
+    public void toggleMute() {
+        final boolean wasMuted = isMuted();
+        simpleExoPlayer.setVolume(wasMuted ? 1 : 0);
+        UIs.call(playerUi -> playerUi.onMuteUnmuteChanged(!wasMuted));
         notifyPlaybackUpdateToListeners();
-        setMuteButton(binding.switchMute, isMuted());
     }
 
-    boolean isMuted() {
+    public boolean isMuted() {
         return !exoPlayerIsNull() && simpleExoPlayer.getVolume() == 0;
-    }
-
-    private void setMuteButton(@NonNull final ImageButton button, final boolean isMuted) {
-        button.setImageDrawable(AppCompatResources.getDrawable(context, isMuted
-                ? R.drawable.ic_volume_off : R.drawable.ic_volume_up));
     }
     //endregion
 
@@ -2515,12 +1276,12 @@ public final class Player implements
     }
 
     @Override
-    public void onTracksInfoChanged(@NonNull final TracksInfo tracksInfo) {
+    public void onTracksChanged(@NonNull final Tracks tracks) {
         if (DEBUG) {
             Log.d(TAG, "ExoPlayer - onTracksChanged(), "
-                    + "track group size = " + tracksInfo.getTrackGroupInfos().size());
+                    + "track group size = " + tracks.getGroups().size());
         }
-        onTextTracksChanged(tracksInfo);
+        UIs.call(playerUi -> playerUi.onTextTracksChanged(tracks));
     }
 
     @Override
@@ -2529,7 +1290,7 @@ public final class Player implements
             Log.d(TAG, "ExoPlayer - playbackParameters(), speed = [" + playbackParameters.speed
                     + "], pitch = [" + playbackParameters.pitch + "]");
         }
-        binding.playbackSpeed.setText(formatSpeed(playbackParameters.speed));
+        UIs.call(playerUi -> playerUi.onPlaybackParametersChanged(playbackParameters));
     }
 
     @Override
@@ -2581,13 +1342,12 @@ public final class Player implements
 
     @Override
     public void onRenderedFirstFrame() {
-        //TODO check if this causes black screen when switching to fullscreen
-        animate(binding.surfaceForeground, false, DEFAULT_CONTROLS_DURATION);
+        UIs.call(PlayerUi::onRenderedFirstFrame);
     }
 
     @Override
-    public void onCues(@NonNull final List<Cue> cues) {
-        binding.subtitleView.onCues(cues);
+    public void onCues(@NonNull final CueGroup cueGroup) {
+        UIs.call(playerUi -> playerUi.onCues(cueGroup.cues));
     }
     //endregion
 
@@ -2628,7 +1388,7 @@ public final class Player implements
     // Any error code not explicitly covered here are either unrelated to NewPipe use case
     // (e.g. DRM) or not recoverable (e.g. Decoder error). In both cases, the player should
     // shutdown.
-    @SuppressLint("SwitchIntDef")
+    @SuppressWarnings("SwitchIntDef")
     @Override
     public void onPlayerError(@NonNull final PlaybackException error) {
         Log.e(TAG, "ExoPlayer - onPlayerError() called with:", error);
@@ -2707,18 +1467,6 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Playback position and seek
 
-    /**
-     * Sets the current duration into the corresponding elements.
-     * @param currentProgress
-     */
-    private void updatePlayBackElementsCurrentDuration(final int currentProgress) {
-        // Don't set seekbar progress while user is seeking
-        if (currentState != STATE_PAUSED_SEEK) {
-            binding.playbackSeekBar.setProgress(currentProgress);
-        }
-        binding.playbackCurrentTime.setText(getTimeString(currentProgress));
-    }
-
     @Override // own playback listener (this is a getter)
     public boolean isApproachingPlaybackEdge(final long timeToEndMillis) {
         // If live, then not near playback edge
@@ -2761,48 +1509,50 @@ public final class Player implements
             Log.d(TAG, "Playback - onPlaybackSynchronize(was blocked: " + wasBlocked
                     + ") called with item=[" + item.getTitle() + "], url=[" + item.getUrl() + "]");
         }
-        if (exoPlayerIsNull() || playQueue == null) {
-            return;
+        if (exoPlayerIsNull() || playQueue == null || currentItem == item) {
+            return; // nothing to synchronize
         }
 
-        final boolean hasPlayQueueItemChanged = currentItem != item;
+        final int playQueueIndex = playQueue.indexOf(item);
+        final int playlistIndex = simpleExoPlayer.getCurrentMediaItemIndex();
+        final int playlistSize = simpleExoPlayer.getCurrentTimeline().getWindowCount();
+        final boolean removeThumbnailBeforeSync = currentItem == null
+                || currentItem.getServiceId() != item.getServiceId()
+                || !currentItem.getUrl().equals(item.getUrl());
 
-        final int currentPlayQueueIndex = playQueue.indexOf(item);
-        final int currentPlaylistIndex = simpleExoPlayer.getCurrentMediaItemIndex();
-        final int currentPlaylistSize = simpleExoPlayer.getCurrentTimeline().getWindowCount();
-
-        // If nothing to synchronize
-        if (!hasPlayQueueItemChanged) {
-            return;
-        }
         currentItem = item;
 
-        // Check if on wrong window
-        if (currentPlayQueueIndex != playQueue.getIndex()) {
-            Log.e(TAG, "Playback - Play Queue may be desynchronized: item "
-                    + "index=[" + currentPlayQueueIndex + "], "
-                    + "queue index=[" + playQueue.getIndex() + "]");
+        if (playQueueIndex != playQueue.getIndex()) {
+            // wrong window (this should be impossible, as this method is called with
+            // `item=playQueue.getItem()`, so the index of that item must be equal to `getIndex()`)
+            Log.e(TAG, "Playback - Play Queue may be not in sync: item index=["
+                    + playQueueIndex + "], " + "queue index=[" + playQueue.getIndex() + "]");
 
-            // Check if bad seek position
-        } else if ((currentPlaylistSize > 0 && currentPlayQueueIndex >= currentPlaylistSize)
-                || currentPlayQueueIndex < 0) {
-            Log.e(TAG, "Playback - Trying to seek to invalid "
-                    + "index=[" + currentPlayQueueIndex + "] with "
-                    + "playlist length=[" + currentPlaylistSize + "]");
+        } else if ((playlistSize > 0 && playQueueIndex >= playlistSize) || playQueueIndex < 0) {
+            // the queue and the player's timeline are not in sync, since the play queue index
+            // points outside of the timeline
+            Log.e(TAG, "Playback - Trying to seek to invalid index=[" + playQueueIndex
+                    + "] with playlist length=[" + playlistSize + "]");
 
-        } else if (wasBlocked || currentPlaylistIndex != currentPlayQueueIndex || !isPlaying()) {
+        } else if (wasBlocked || playlistIndex != playQueueIndex || !isPlaying()) {
+            // either the player needs to be unblocked, or the play queue index has just been
+            // changed and needs to be synchronized, or the player is not playing
             if (DEBUG) {
-                Log.d(TAG, "Playback - Rewinding to correct "
-                        + "index=[" + currentPlayQueueIndex + "], "
-                        + "from=[" + currentPlaylistIndex + "], "
-                        + "size=[" + currentPlaylistSize + "].");
+                Log.d(TAG, "Playback - Rewinding to correct index=[" + playQueueIndex + "], "
+                        + "from=[" + playlistIndex + "], size=[" + playlistSize + "].");
             }
 
+            if (removeThumbnailBeforeSync) {
+                // unset the current (now outdated) thumbnail to ensure it is not used during sync
+                onThumbnailLoaded(null);
+            }
+
+            // sync the player index with the queue index, and seek to the correct position
             if (item.getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
-                simpleExoPlayer.seekTo(currentPlayQueueIndex, item.getRecoveryPosition());
-                playQueue.unsetRecovery(currentPlayQueueIndex);
+                simpleExoPlayer.seekTo(playQueueIndex, item.getRecoveryPosition());
+                playQueue.unsetRecovery(playQueueIndex);
             } else {
-                simpleExoPlayer.seekToDefaultPosition(currentPlayQueueIndex);
+                simpleExoPlayer.seekToDefaultPosition(playQueueIndex);
             }
         }
     }
@@ -2813,14 +1563,8 @@ public final class Player implements
         }
         if (!exoPlayerIsNull()) {
             // prevent invalid positions when fast-forwarding/-rewinding
-            long normalizedPositionMillis = positionMillis;
-            if (normalizedPositionMillis < 0) {
-                normalizedPositionMillis = 0;
-            } else if (normalizedPositionMillis > simpleExoPlayer.getDuration()) {
-                normalizedPositionMillis = simpleExoPlayer.getDuration();
-            }
-
-            simpleExoPlayer.seekTo(normalizedPositionMillis);
+            simpleExoPlayer.seekTo(MathUtils.clamp(positionMillis, 0,
+                    simpleExoPlayer.getDuration()));
         }
     }
 
@@ -2835,20 +1579,6 @@ public final class Player implements
         if (!exoPlayerIsNull()) {
             simpleExoPlayer.seekToDefaultPosition();
         }
-    }
-
-    /**
-     * Sets the video duration time into all control components (e.g. seekbar).
-     * @param duration
-     */
-    private void setVideoDurationToControls(final int duration) {
-        binding.playbackEndTime.setText(getTimeString(duration));
-
-        binding.playbackSeekBar.setMax(duration);
-        // This is important for Android TVs otherwise it would apply the default from
-        // setMax/Min methods which is (max - min) / 20
-        binding.playbackSeekBar.setKeyProgressIncrement(
-                PlayerHelper.retrieveSeekDurationFromPreferences(this));
     }
     //endregion
 
@@ -2973,6 +1703,7 @@ public final class Player implements
     }
 
     private void saveStreamProgressState(final long progressMillis) {
+        //noinspection SimplifyOptionalCallChains
         if (!getCurrentStreamInfo().isPresent()
                 || !prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
             return;
@@ -3022,66 +1753,33 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Metadata
 
-    private void onMetadataChanged(@NonNull final StreamInfo info) {
+    private void updateMetadataWith(@NonNull final StreamInfo info) {
         if (DEBUG) {
             Log.d(TAG, "Playback - onMetadataChanged() called, playing: " + info.getName());
         }
-
-        initThumbnail(info.getThumbnailUrl());
-        registerStreamViewed();
-        updateStreamRelatedViews();
-        showHideKodiButton();
-
-        binding.titleTextView.setText(info.getName());
-        binding.channelTextView.setText(info.getUploaderName());
-
-        this.seekbarPreviewThumbnailHolder.resetFrom(this.getContext(), info.getPreviewFrames());
-
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-
-        final boolean showThumbnail = prefs.getBoolean(
-                context.getString(R.string.show_thumbnail_key), true);
-        mediaSessionManager.setMetadata(
-                getVideoTitle(),
-                getUploaderName(),
-                showThumbnail ? Optional.ofNullable(getThumbnail()) : Optional.empty(),
-                StreamTypeUtil.isLiveStream(info.getStreamType()) ? -1 : info.getDuration()
-        );
-
-        notifyMetadataUpdateToListeners();
-
-        if (areSegmentsVisible) {
-            if (segmentAdapter.setItems(info)) {
-                final int adapterPosition = getNearestStreamSegmentPosition(
-                        simpleExoPlayer.getCurrentPosition());
-                segmentAdapter.selectSegmentAt(adapterPosition);
-                binding.itemsList.scrollToPosition(adapterPosition);
-            } else {
-                closeItemsList();
-            }
-        }
-    }
-
-    private void updateMetadataWith(@NonNull final StreamInfo streamInfo) {
         if (exoPlayerIsNull()) {
             return;
         }
 
-        maybeAutoQueueNextStream(streamInfo);
-        onMetadataChanged(streamInfo);
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, true);
+        maybeAutoQueueNextStream(info);
+
+        loadCurrentThumbnail(info.getThumbnailUrl());
+        registerStreamViewed();
+
+        notifyMetadataUpdateToListeners();
+        UIs.call(playerUi -> playerUi.onMetadataChanged(info));
     }
 
     @NonNull
-    private String getVideoUrl() {
+    public String getVideoUrl() {
         return currentMetadata == null
                 ? context.getString(R.string.unknown_content)
                 : currentMetadata.getStreamUrl();
     }
 
     @NonNull
-    private String getVideoUrlAtCurrentTime() {
-        final int timeSeconds = binding.playbackSeekBar.getProgress() / 1000;
+    public String getVideoUrlAtCurrentTime() {
+        final long timeSeconds = simpleExoPlayer.getCurrentPosition() / 1000;
         String videoUrl = getVideoUrl();
         if (!isLive() && timeSeconds >= 0 && currentMetadata != null
                 && currentMetadata.getServiceId() == YouTube.getServiceId()) {
@@ -3107,10 +1805,6 @@ public final class Player implements
 
     @Nullable
     public Bitmap getThumbnail() {
-        if (currentThumbnail == null) {
-            currentThumbnail = BitmapFactory.decodeResource(
-                    context.getResources(), R.drawable.dummy_thumbnail);
-        }
         return currentThumbnail;
     }
     //endregion
@@ -3157,188 +1851,7 @@ public final class Player implements
     @Override
     public void onPlayQueueEdited() {
         notifyPlaybackUpdateToListeners();
-        showOrHideButtons();
-        NotificationUtil.getInstance().createNotificationIfNeededAndUpdate(this, false);
-    }
-
-    private void onQueueClicked() {
-        isQueueVisible = true;
-
-        hideSystemUIIfNeeded();
-        buildQueue();
-
-        binding.itemsListHeaderTitle.setVisibility(View.GONE);
-        binding.itemsListHeaderDuration.setVisibility(View.VISIBLE);
-        binding.shuffleButton.setVisibility(View.VISIBLE);
-        binding.repeatButton.setVisibility(View.VISIBLE);
-        binding.addToPlaylistButton.setVisibility(View.VISIBLE);
-
-        hideControls(0, 0);
-        binding.itemsListPanel.requestFocus();
-        animate(binding.itemsListPanel, true, DEFAULT_CONTROLS_DURATION,
-                AnimationType.SLIDE_AND_ALPHA);
-
-        binding.itemsList.scrollToPosition(playQueue.getIndex());
-
-        updateQueueTime((int) simpleExoPlayer.getCurrentPosition());
-    }
-
-    private void buildQueue() {
-        binding.itemsList.setAdapter(playQueueAdapter);
-        binding.itemsList.setClickable(true);
-        binding.itemsList.setLongClickable(true);
-
-        binding.itemsList.clearOnScrollListeners();
-        binding.itemsList.addOnScrollListener(getQueueScrollListener());
-
-        itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
-        itemTouchHelper.attachToRecyclerView(binding.itemsList);
-
-        playQueueAdapter.setSelectedListener(getOnSelectedListener());
-
-        binding.itemsListClose.setOnClickListener(view -> closeItemsList());
-    }
-
-    private void onSegmentsClicked() {
-        areSegmentsVisible = true;
-
-        hideSystemUIIfNeeded();
-        buildSegments();
-
-        binding.itemsListHeaderTitle.setVisibility(View.VISIBLE);
-        binding.itemsListHeaderDuration.setVisibility(View.GONE);
-        binding.shuffleButton.setVisibility(View.GONE);
-        binding.repeatButton.setVisibility(View.GONE);
-        binding.addToPlaylistButton.setVisibility(View.GONE);
-
-        hideControls(0, 0);
-        binding.itemsListPanel.requestFocus();
-        animate(binding.itemsListPanel, true, DEFAULT_CONTROLS_DURATION,
-                AnimationType.SLIDE_AND_ALPHA);
-
-        final int adapterPosition = getNearestStreamSegmentPosition(simpleExoPlayer
-                .getCurrentPosition());
-        segmentAdapter.selectSegmentAt(adapterPosition);
-        binding.itemsList.scrollToPosition(adapterPosition);
-    }
-
-    private void buildSegments() {
-        binding.itemsList.setAdapter(segmentAdapter);
-        binding.itemsList.setClickable(true);
-        binding.itemsList.setLongClickable(false);
-
-        binding.itemsList.clearOnScrollListeners();
-        if (itemTouchHelper != null) {
-            itemTouchHelper.attachToRecyclerView(null);
-        }
-
-        getCurrentStreamInfo().ifPresent(segmentAdapter::setItems);
-
-        binding.shuffleButton.setVisibility(View.GONE);
-        binding.repeatButton.setVisibility(View.GONE);
-        binding.addToPlaylistButton.setVisibility(View.GONE);
-        binding.itemsListClose.setOnClickListener(view -> closeItemsList());
-    }
-
-    public void closeItemsList() {
-        if (isQueueVisible || areSegmentsVisible) {
-            isQueueVisible = false;
-            areSegmentsVisible = false;
-
-            if (itemTouchHelper != null) {
-                itemTouchHelper.attachToRecyclerView(null);
-            }
-
-            animate(binding.itemsListPanel, false, DEFAULT_CONTROLS_DURATION,
-                    AnimationType.SLIDE_AND_ALPHA, 0, () -> {
-                        // Even when queueLayout is GONE it receives touch events
-                        // and ruins normal behavior of the app. This line fixes it
-                        binding.itemsListPanel.setTranslationY(
-                                -binding.itemsListPanel.getHeight() * 5);
-                    });
-
-            // clear focus, otherwise a white rectangle remains on top of the player
-            binding.itemsListClose.clearFocus();
-            binding.playPauseButton.requestFocus();
-        }
-    }
-
-    private OnScrollBelowItemsListener getQueueScrollListener() {
-        return new OnScrollBelowItemsListener() {
-            @Override
-            public void onScrolledDown(final RecyclerView recyclerView) {
-                if (playQueue != null && !playQueue.isComplete()) {
-                    playQueue.fetch();
-                } else if (binding != null) {
-                    binding.itemsList.clearOnScrollListeners();
-                }
-            }
-        };
-    }
-
-    private StreamSegmentAdapter.StreamSegmentListener getStreamSegmentListener() {
-        return (item, seconds) -> {
-            segmentAdapter.selectSegment(item);
-            seekTo(seconds * 1000L);
-            triggerProgressUpdate();
-        };
-    }
-
-    private int getNearestStreamSegmentPosition(final long playbackPosition) {
-        int nearestPosition = 0;
-        final List<StreamSegment> segments = getCurrentStreamInfo()
-                .map(StreamInfo::getStreamSegments)
-                .orElse(Collections.emptyList());
-
-        for (int i = 0; i < segments.size(); i++) {
-            if (segments.get(i).getStartTimeSeconds() * 1000L > playbackPosition) {
-                break;
-            }
-            nearestPosition++;
-        }
-        return Math.max(0, nearestPosition - 1);
-    }
-
-    private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
-        return new PlayQueueItemTouchCallback() {
-            @Override
-            public void onMove(final int sourceIndex, final int targetIndex) {
-                if (playQueue != null) {
-                    playQueue.move(sourceIndex, targetIndex);
-                }
-            }
-
-            @Override
-            public void onSwiped(final int index) {
-                if (index != -1) {
-                    playQueue.remove(index);
-                }
-            }
-        };
-    }
-
-    private PlayQueueItemBuilder.OnSelectedListener getOnSelectedListener() {
-        return new PlayQueueItemBuilder.OnSelectedListener() {
-            @Override
-            public void selected(final PlayQueueItem item, final View view) {
-                selectQueueItem(item);
-            }
-
-            @Override
-            public void held(final PlayQueueItem item, final View view) {
-                if (playQueue.indexOf(item) != -1) {
-                    openPopupMenu(playQueue, item, view, true,
-                            getParentActivity().getSupportFragmentManager(), context);
-                }
-            }
-
-            @Override
-            public void onStartDrag(final PlayQueueItemHolder viewHolder) {
-                if (itemTouchHelper != null) {
-                    itemTouchHelper.startDrag(viewHolder);
-                }
-            }
-        };
+        UIs.call(PlayerUi::onPlayQueueEdited);
     }
 
     @Override // own playback listener
@@ -3373,279 +1886,21 @@ public final class Player implements
 
     @Nullable
     public VideoStream getSelectedVideoStream() {
-        return (selectedStreamIndex >= 0 && availableStreams != null
-                && availableStreams.size() > selectedStreamIndex)
-                ? availableStreams.get(selectedStreamIndex) : null;
-    }
-
-    private void updateStreamRelatedViews() {
-        if (!getCurrentStreamInfo().isPresent()) {
-            return;
-        }
-        final StreamInfo info = getCurrentStreamInfo().get();
-
-        binding.qualityTextView.setVisibility(View.GONE);
-        binding.playbackSpeed.setVisibility(View.GONE);
-
-        binding.playbackEndTime.setVisibility(View.GONE);
-        binding.playbackLiveSync.setVisibility(View.GONE);
-
-        switch (info.getStreamType()) {
-            case AUDIO_STREAM:
-            case POST_LIVE_AUDIO_STREAM:
-                binding.surfaceView.setVisibility(View.GONE);
-                binding.endScreen.setVisibility(View.VISIBLE);
-                binding.playbackEndTime.setVisibility(View.VISIBLE);
-                break;
-
-            case AUDIO_LIVE_STREAM:
-                binding.surfaceView.setVisibility(View.GONE);
-                binding.endScreen.setVisibility(View.VISIBLE);
-                binding.playbackLiveSync.setVisibility(View.VISIBLE);
-                break;
-
-            case LIVE_STREAM:
-                binding.surfaceView.setVisibility(View.VISIBLE);
-                binding.endScreen.setVisibility(View.GONE);
-                binding.playbackLiveSync.setVisibility(View.VISIBLE);
-                break;
-
-            case VIDEO_STREAM:
-            case POST_LIVE_STREAM:
-                if (currentMetadata == null
-                        || !currentMetadata.getMaybeQuality().isPresent()
-                        || (info.getVideoStreams().isEmpty()
-                        && info.getVideoOnlyStreams().isEmpty())) {
-                    break;
-                }
-
-                availableStreams = currentMetadata.getMaybeQuality().get().getSortedVideoStreams();
-                selectedStreamIndex =
-                        currentMetadata.getMaybeQuality().get().getSelectedVideoStreamIndex();
-                buildQualityMenu();
-
-                binding.qualityTextView.setVisibility(View.VISIBLE);
-                binding.surfaceView.setVisibility(View.VISIBLE);
-            default:
-                binding.endScreen.setVisibility(View.GONE);
-                binding.playbackEndTime.setVisibility(View.VISIBLE);
-                break;
+        @Nullable final MediaItemTag.Quality quality = Optional.ofNullable(currentMetadata)
+                .flatMap(MediaItemTag::getMaybeQuality)
+                .orElse(null);
+        if (quality == null) {
+            return null;
         }
 
-        buildPlaybackSpeedMenu();
-        binding.playbackSpeed.setVisibility(View.VISIBLE);
-    }
+        final List<VideoStream> availableStreams = quality.getSortedVideoStreams();
+        final int selectedStreamIndex = quality.getSelectedVideoStreamIndex();
 
-    private void updateQueueTime(final int currentTime) {
-        final int currentStream = playQueue.getIndex();
-        int before = 0;
-        int after = 0;
-
-        final List<PlayQueueItem> streams = playQueue.getStreams();
-        final int nStreams = streams.size();
-
-        for (int i = 0; i < nStreams; i++) {
-            if (i < currentStream) {
-                before += streams.get(i).getDuration();
-            } else {
-                after += streams.get(i).getDuration();
-            }
+        if (selectedStreamIndex >= 0 && availableStreams.size() > selectedStreamIndex) {
+            return availableStreams.get(selectedStreamIndex);
+        } else {
+            return null;
         }
-
-        before *= 1000;
-        after *= 1000;
-
-        binding.itemsListHeaderDuration.setText(
-                String.format("%s/%s",
-                        getTimeString(currentTime + before),
-                        getTimeString(before + after)
-                ));
-    }
-    //endregion
-
-
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Popup menus ("popup" means that they pop up, not that they belong to the popup player)
-    //////////////////////////////////////////////////////////////////////////*/
-    //region Popup menus ("popup" means that they pop up, not that they belong to the popup player)
-
-    private void buildQualityMenu() {
-        if (qualityPopupMenu == null) {
-            return;
-        }
-        qualityPopupMenu.getMenu().removeGroup(POPUP_MENU_ID_QUALITY);
-
-        for (int i = 0; i < availableStreams.size(); i++) {
-            final VideoStream videoStream = availableStreams.get(i);
-            qualityPopupMenu.getMenu().add(POPUP_MENU_ID_QUALITY, i, Menu.NONE, MediaFormat
-                    .getNameById(videoStream.getFormatId()) + " " + videoStream.getResolution());
-        }
-        if (getSelectedVideoStream() != null) {
-            binding.qualityTextView.setText(getSelectedVideoStream().getResolution());
-        }
-        qualityPopupMenu.setOnMenuItemClickListener(this);
-        qualityPopupMenu.setOnDismissListener(this);
-    }
-
-    private void buildPlaybackSpeedMenu() {
-        if (playbackSpeedPopupMenu == null) {
-            return;
-        }
-        playbackSpeedPopupMenu.getMenu().removeGroup(POPUP_MENU_ID_PLAYBACK_SPEED);
-
-        for (int i = 0; i < PLAYBACK_SPEEDS.length; i++) {
-            playbackSpeedPopupMenu.getMenu().add(POPUP_MENU_ID_PLAYBACK_SPEED, i, Menu.NONE,
-                    formatSpeed(PLAYBACK_SPEEDS[i]));
-        }
-        binding.playbackSpeed.setText(formatSpeed(getPlaybackSpeed()));
-        playbackSpeedPopupMenu.setOnMenuItemClickListener(this);
-        playbackSpeedPopupMenu.setOnDismissListener(this);
-    }
-
-    private void buildCaptionMenu(@NonNull final List<String> availableLanguages) {
-        if (captionPopupMenu == null) {
-            return;
-        }
-        captionPopupMenu.getMenu().removeGroup(POPUP_MENU_ID_CAPTION);
-        captionPopupMenu.setOnDismissListener(this);
-
-        // Add option for turning off caption
-        final MenuItem captionOffItem = captionPopupMenu.getMenu().add(POPUP_MENU_ID_CAPTION,
-                0, Menu.NONE, R.string.caption_none);
-        captionOffItem.setOnMenuItemClickListener(menuItem -> {
-            final int textRendererIndex = getCaptionRendererIndex();
-            if (textRendererIndex != RENDERER_UNAVAILABLE) {
-                trackSelector.setParameters(trackSelector.buildUponParameters()
-                        .setRendererDisabled(textRendererIndex, true));
-            }
-            prefs.edit().remove(context.getString(R.string.caption_user_set_key)).apply();
-            return true;
-        });
-
-        // Add all available captions
-        for (int i = 0; i < availableLanguages.size(); i++) {
-            final String captionLanguage = availableLanguages.get(i);
-            final MenuItem captionItem = captionPopupMenu.getMenu().add(POPUP_MENU_ID_CAPTION,
-                    i + 1, Menu.NONE, captionLanguage);
-            captionItem.setOnMenuItemClickListener(menuItem -> {
-                final int textRendererIndex = getCaptionRendererIndex();
-                if (textRendererIndex != RENDERER_UNAVAILABLE) {
-                    // DefaultTrackSelector will select for text tracks in the following order.
-                    // When multiple tracks share the same rank, a random track will be chosen.
-                    // 1. ANY track exactly matching preferred language name
-                    // 2. ANY track exactly matching preferred language stem
-                    // 3. ROLE_FLAG_CAPTION track matching preferred language stem
-                    // 4. ROLE_FLAG_DESCRIBES_MUSIC_AND_SOUND track matching preferred language stem
-                    // This means if a caption track of preferred language is not available,
-                    // then an auto-generated track of that language will be chosen automatically.
-                    trackSelector.setParameters(trackSelector.buildUponParameters()
-                            .setPreferredTextLanguages(captionLanguage,
-                                    PlayerHelper.captionLanguageStemOf(captionLanguage))
-                            .setPreferredTextRoleFlags(C.ROLE_FLAG_CAPTION)
-                            .setRendererDisabled(textRendererIndex, false));
-                    prefs.edit().putString(context.getString(R.string.caption_user_set_key),
-                            captionLanguage).apply();
-                }
-                return true;
-            });
-        }
-
-        // apply caption language from previous user preference
-        final int textRendererIndex = getCaptionRendererIndex();
-        if (textRendererIndex == RENDERER_UNAVAILABLE) {
-            return;
-        }
-
-        // If user prefers to show no caption, then disable the renderer.
-        // Otherwise, DefaultTrackSelector may automatically find an available caption
-        // and display that.
-        final String userPreferredLanguage =
-                prefs.getString(context.getString(R.string.caption_user_set_key), null);
-        if (userPreferredLanguage == null) {
-            trackSelector.setParameters(trackSelector.buildUponParameters()
-                    .setRendererDisabled(textRendererIndex, true));
-            return;
-        }
-
-        // Only set preferred language if it does not match the user preference,
-        // otherwise there might be an infinite cycle at onTextTracksChanged.
-        final List<String> selectedPreferredLanguages =
-                trackSelector.getParameters().preferredTextLanguages;
-        if (!selectedPreferredLanguages.contains(userPreferredLanguage)) {
-            trackSelector.setParameters(trackSelector.buildUponParameters()
-                    .setPreferredTextLanguages(userPreferredLanguage,
-                            PlayerHelper.captionLanguageStemOf(userPreferredLanguage))
-                    .setPreferredTextRoleFlags(C.ROLE_FLAG_CAPTION)
-                    .setRendererDisabled(textRendererIndex, false));
-        }
-    }
-
-    /**
-     * Called when an item of the quality selector or the playback speed selector is selected.
-     */
-    @Override
-    public boolean onMenuItemClick(@NonNull final MenuItem menuItem) {
-        if (DEBUG) {
-            Log.d(TAG, "onMenuItemClick() called with: "
-                    + "menuItem = [" + menuItem + "], "
-                    + "menuItem.getItemId = [" + menuItem.getItemId() + "]");
-        }
-
-        if (menuItem.getGroupId() == POPUP_MENU_ID_QUALITY) {
-            final int menuItemIndex = menuItem.getItemId();
-            if (selectedStreamIndex == menuItemIndex || availableStreams == null
-                    || availableStreams.size() <= menuItemIndex) {
-                return true;
-            }
-
-            saveStreamProgressState(); //TODO added, check if good
-            final String newResolution = availableStreams.get(menuItemIndex).getResolution();
-            setRecovery();
-            setPlaybackQuality(newResolution);
-            reloadPlayQueueManager();
-
-            binding.qualityTextView.setText(menuItem.getTitle());
-            return true;
-        } else if (menuItem.getGroupId() == POPUP_MENU_ID_PLAYBACK_SPEED) {
-            final int speedIndex = menuItem.getItemId();
-            final float speed = PLAYBACK_SPEEDS[speedIndex];
-
-            setPlaybackSpeed(speed);
-            binding.playbackSpeed.setText(formatSpeed(speed));
-        }
-
-        return false;
-    }
-
-    /**
-     * Called when some popup menu is dismissed.
-     */
-    @Override
-    public void onDismiss(@Nullable final PopupMenu menu) {
-        if (DEBUG) {
-            Log.d(TAG, "onDismiss() called with: menu = [" + menu + "]");
-        }
-        isSomePopupMenuVisible = false; //TODO check if this works
-        if (getSelectedVideoStream() != null) {
-            binding.qualityTextView.setText(getSelectedVideoStream().getResolution());
-        }
-        if (isPlaying()) {
-            hideControls(DEFAULT_CONTROLS_DURATION, 0);
-            hideSystemUIIfNeeded();
-        }
-    }
-
-    private void onCaptionClicked() {
-        if (DEBUG) {
-            Log.d(TAG, "onCaptionClicked() called");
-        }
-        captionPopupMenu.show();
-        isSomePopupMenuVisible = true;
-    }
-
-    private void setPlaybackQuality(@Nullable final String quality) {
-        videoResolver.setPlaybackQuality(quality);
     }
     //endregion
 
@@ -3656,67 +1911,7 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Captions (text tracks)
 
-    private void setupSubtitleView() {
-        final float captionScale = PlayerHelper.getCaptionScale(context);
-        final CaptionStyleCompat captionStyle = PlayerHelper.getCaptionStyle(context);
-        if (popupPlayerSelected()) {
-            final float captionRatio = (captionScale - 1.0f) / 5.0f + 1.0f;
-            binding.subtitleView.setFractionalTextSize(
-                    SubtitleView.DEFAULT_TEXT_SIZE_FRACTION * captionRatio);
-        } else {
-            final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-            final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
-            final float captionRatioInverse = 20f + 4f * (1.0f - captionScale);
-            binding.subtitleView.setFixedTextSize(
-                    TypedValue.COMPLEX_UNIT_PX, minimumLength / captionRatioInverse);
-        }
-        binding.subtitleView.setApplyEmbeddedStyles(captionStyle == CaptionStyleCompat.DEFAULT);
-        binding.subtitleView.setStyle(captionStyle);
-    }
-
-    private void onTextTracksChanged(@NonNull final TracksInfo currentTrackInfo) {
-        if (binding == null) {
-            return;
-        }
-
-        if (trackSelector.getCurrentMappedTrackInfo() == null
-                || !currentTrackInfo.isTypeSupportedOrEmpty(C.TRACK_TYPE_TEXT)) {
-            binding.captionTextView.setVisibility(View.GONE);
-            return;
-        }
-
-        // Extract all loaded languages
-        final List<TracksInfo.TrackGroupInfo> textTracks = currentTrackInfo
-                .getTrackGroupInfos()
-                .stream()
-                .filter(trackGroupInfo -> C.TRACK_TYPE_TEXT == trackGroupInfo.getTrackType())
-                .collect(Collectors.toList());
-        final List<String> availableLanguages = textTracks.stream()
-                .map(TracksInfo.TrackGroupInfo::getTrackGroup)
-                .filter(textTrack -> textTrack.length > 0)
-                .map(textTrack -> textTrack.getFormat(0).language)
-                .collect(Collectors.toList());
-
-        // Find selected text track
-        final Optional<Format> selectedTracks = textTracks.stream()
-                .filter(TracksInfo.TrackGroupInfo::isSelected)
-                .filter(info -> info.getTrackGroup().length >= 1)
-                .map(info -> info.getTrackGroup().getFormat(0))
-                .findFirst();
-
-        // Build UI
-        buildCaptionMenu(availableLanguages);
-        if (trackSelector.getParameters().getRendererDisabled(getCaptionRendererIndex())
-                || !selectedTracks.isPresent()) {
-            binding.captionTextView.setText(R.string.caption_none);
-        } else {
-            binding.captionTextView.setText(selectedTracks.get().language);
-        }
-        binding.captionTextView.setVisibility(
-                availableLanguages.isEmpty() ? View.GONE : View.VISIBLE);
-    }
-
-    private int getCaptionRendererIndex() {
+    public int getCaptionRendererIndex() {
         if (exoPlayerIsNull()) {
             return RENDERER_UNAVAILABLE;
         }
@@ -3732,218 +1927,10 @@ public final class Player implements
     //endregion
 
 
-
     /*//////////////////////////////////////////////////////////////////////////
-    // Click listeners
+    // Video size
     //////////////////////////////////////////////////////////////////////////*/
-    //region Click listeners
-
-    @Override
-    public void onClick(final View v) {
-        if (DEBUG) {
-            Log.d(TAG, "onClick() called with: v = [" + v + "]");
-        }
-        if (v.getId() == binding.resizeTextView.getId()) {
-            onResizeClicked();
-        } else if (v.getId() == binding.captionTextView.getId()) {
-            onCaptionClicked();
-        } else if (v.getId() == binding.playbackLiveSync.getId()) {
-            seekToDefault();
-        } else if (v.getId() == binding.playPauseButton.getId()) {
-            playPause();
-        } else if (v.getId() == binding.playPreviousButton.getId()) {
-            playPrevious();
-        } else if (v.getId() == binding.playNextButton.getId()) {
-            playNext();
-        } else if (v.getId() == binding.moreOptionsButton.getId()) {
-            onMoreOptionsClicked();
-        } else if (v.getId() == binding.share.getId()) {
-            ShareUtils.shareText(context, getVideoTitle(), getVideoUrlAtCurrentTime(),
-                            currentItem.getThumbnailUrl());
-        } else if (v.getId() == binding.playWithKodi.getId()) {
-            onPlayWithKodiClicked();
-        } else if (v.getId() == binding.openInBrowser.getId()) {
-            onOpenInBrowserClicked();
-        } else if (v.getId() == binding.fullScreenButton.getId()) {
-            setRecovery();
-            NavigationHelper.playOnMainPlayer(context, playQueue, true);
-            return;
-        } else if (v.getId() == binding.screenRotationButton.getId()) {
-            // Only if it's not a vertical video or vertical video but in landscape with locked
-            // orientation a screen orientation can be changed automatically
-            if (!isVerticalVideo
-                    || (service.isLandscape() && globalScreenOrientationLocked(context))) {
-                fragmentListener.onScreenRotationButtonClicked();
-            } else {
-                toggleFullscreen();
-            }
-        } else if (v.getId() == binding.switchMute.getId()) {
-            onMuteUnmuteButtonClicked();
-        } else if (v.getId() == binding.playerCloseButton.getId()) {
-            context.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
-        }
-
-        manageControlsAfterOnClick(v);
-    }
-
-    /**
-     * Manages the controls after a click occurred on the player UI.
-     * @param v – The view that was clicked
-     */
-    public void manageControlsAfterOnClick(@NonNull final View v) {
-        if (currentState == STATE_COMPLETED) {
-            return;
-        }
-
-        controlsVisibilityHandler.removeCallbacksAndMessages(null);
-        showHideShadow(true, DEFAULT_CONTROLS_DURATION);
-        animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
-                AnimationType.ALPHA, 0, () -> {
-                    if (currentState == STATE_PLAYING && !isSomePopupMenuVisible) {
-                        if (v.getId() == binding.playPauseButton.getId()
-                                // Hide controls in fullscreen immediately
-                                || (v.getId() == binding.screenRotationButton.getId()
-                                && isFullscreen)) {
-                            hideControls(0, 0);
-                        } else {
-                            hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-                        }
-                    }
-                });
-    }
-
-    @Override
-    public boolean onLongClick(final View v) {
-        if (v.getId() == binding.moreOptionsButton.getId() && isFullscreen) {
-            fragmentListener.onMoreOptionsLongClicked();
-            hideControls(0, 0);
-            hideSystemUIIfNeeded();
-        } else if (v.getId() == binding.share.getId()) {
-            ShareUtils.copyToClipboard(context, getVideoUrlAtCurrentTime());
-        }
-        return true;
-    }
-
-    public boolean onKeyDown(final int keyCode) {
-        switch (keyCode) {
-            default:
-                break;
-            case KeyEvent.KEYCODE_SPACE:
-                if (isFullscreen) {
-                    playPause();
-                    if (isPlaying()) {
-                        hideControls(0, 0);
-                    }
-                    return true;
-                }
-                break;
-            case KeyEvent.KEYCODE_BACK:
-                if (DeviceUtils.isTv(context) && isControlsVisible()) {
-                    hideControls(0, 0);
-                    return true;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_UP:
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-            case KeyEvent.KEYCODE_DPAD_CENTER:
-                if ((binding.getRoot().hasFocus() && !binding.playbackControlRoot.hasFocus())
-                        || isQueueVisible) {
-                    // do not interfere with focus in playlist and play queue etc.
-                    return false;
-                }
-
-                if (currentState == Player.STATE_BLOCKED) {
-                    return true;
-                }
-
-                if (isControlsVisible()) {
-                    hideControls(DEFAULT_CONTROLS_DURATION, DPAD_CONTROLS_HIDE_TIME);
-                } else {
-                    binding.playPauseButton.requestFocus();
-                    showControlsThenHide();
-                    showSystemUIPartially();
-                    return true;
-                }
-                break;
-        }
-
-        return false;
-    }
-
-    private void onMoreOptionsClicked() {
-        if (DEBUG) {
-            Log.d(TAG, "onMoreOptionsClicked() called");
-        }
-
-        final boolean isMoreControlsVisible =
-                binding.secondaryControls.getVisibility() == View.VISIBLE;
-
-        animateRotation(binding.moreOptionsButton, DEFAULT_CONTROLS_DURATION,
-                isMoreControlsVisible ? 0 : 180);
-        animate(binding.secondaryControls, !isMoreControlsVisible, DEFAULT_CONTROLS_DURATION,
-                AnimationType.SLIDE_AND_ALPHA, 0, () -> {
-                    // Fix for a ripple effect on background drawable.
-                    // When view returns from GONE state it takes more milliseconds than returning
-                    // from INVISIBLE state. And the delay makes ripple background end to fast
-                    if (isMoreControlsVisible) {
-                        binding.secondaryControls.setVisibility(View.INVISIBLE);
-                    }
-                });
-        showControls(DEFAULT_CONTROLS_DURATION);
-    }
-
-    private void onPlayWithKodiClicked() {
-        if (currentMetadata != null) {
-            pause();
-            try {
-                NavigationHelper.playWithKore(context, Uri.parse(getVideoUrl()));
-            } catch (final Exception e) {
-                if (DEBUG) {
-                    Log.i(TAG, "Failed to start kore", e);
-                }
-                KoreUtils.showInstallKoreDialog(getParentActivity());
-            }
-        }
-    }
-
-    private void onOpenInBrowserClicked() {
-        getCurrentStreamInfo()
-                .map(Info::getOriginalUrl)
-                .ifPresent(originalUrl -> ShareUtils.openUrlInBrowser(
-                        Objects.requireNonNull(getParentActivity()), originalUrl));
-    }
-    //endregion
-
-
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Video size, resize, orientation, fullscreen
-    //////////////////////////////////////////////////////////////////////////*/
-    //region Video size, resize, orientation, fullscreen
-
-    private void setupScreenRotationButton() {
-        binding.screenRotationButton.setVisibility(videoPlayerSelected()
-                && (globalScreenOrientationLocked(context) || isVerticalVideo
-                        || DeviceUtils.isTablet(context))
-                ? View.VISIBLE : View.GONE);
-        binding.screenRotationButton.setImageDrawable(AppCompatResources.getDrawable(context,
-                isFullscreen ? R.drawable.ic_fullscreen_exit
-                : R.drawable.ic_fullscreen));
-    }
-
-    private void setResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode) {
-        binding.surfaceView.setResizeMode(resizeMode);
-        binding.resizeTextView.setText(PlayerHelper.resizeTypeOf(context, resizeMode));
-    }
-
-    void onResizeClicked() {
-        if (binding != null) {
-            setResizeMode(nextResizeModeAndSaveToPrefs(this, binding.surfaceView.getResizeMode()));
-        }
-    }
-
+    //region Video size
     @Override // exoplayer listener
     public void onVideoSizeChanged(@NonNull final VideoSize videoSize) {
         if (DEBUG) {
@@ -3954,135 +1941,9 @@ public final class Player implements
                     + "pixelWidthHeightRatio = [" + videoSize.pixelWidthHeightRatio + "]");
         }
 
-        binding.surfaceView.setAspectRatio(((float) videoSize.width) / videoSize.height);
-        isVerticalVideo = videoSize.width < videoSize.height;
-
-        if (globalScreenOrientationLocked(context)
-                && isFullscreen
-                && service.isLandscape() == isVerticalVideo
-                && !DeviceUtils.isTv(context)
-                && !DeviceUtils.isTablet(context)
-                && fragmentListener != null) {
-            // set correct orientation
-            fragmentListener.onScreenRotationButtonClicked();
-        }
-
-        setupScreenRotationButton();
-    }
-
-    public void toggleFullscreen() {
-        if (DEBUG) {
-            Log.d(TAG, "toggleFullscreen() called");
-        }
-        if (popupPlayerSelected() || exoPlayerIsNull() || fragmentListener == null) {
-            return;
-        }
-
-        isFullscreen = !isFullscreen;
-        if (!isFullscreen) {
-            // Apply window insets because Android will not do it when orientation changes
-            // from landscape to portrait (open vertical video to reproduce)
-            binding.playbackControlRoot.setPadding(0, 0, 0, 0);
-        } else {
-            // Android needs tens milliseconds to send new insets but a user is able to see
-            // how controls changes it's position from `0` to `nav bar height` padding.
-            // So just hide the controls to hide this visual inconsistency
-            hideControls(0, 0);
-        }
-        fragmentListener.onFullscreenStateChanged(isFullscreen);
-
-        if (isFullscreen) {
-            binding.titleTextView.setVisibility(View.VISIBLE);
-            binding.channelTextView.setVisibility(View.VISIBLE);
-            binding.playerCloseButton.setVisibility(View.GONE);
-        } else {
-            binding.titleTextView.setVisibility(View.GONE);
-            binding.channelTextView.setVisibility(View.GONE);
-            binding.playerCloseButton.setVisibility(
-                    videoPlayerSelected() ? View.VISIBLE : View.GONE);
-        }
-        setupScreenRotationButton();
-    }
-
-    public void checkLandscape() {
-        final AppCompatActivity parent = getParentActivity();
-        final boolean videoInLandscapeButNotInFullscreen =
-                service.isLandscape() && !isFullscreen && videoPlayerSelected() && !isAudioOnly;
-
-        final boolean notPaused = currentState != STATE_COMPLETED && currentState != STATE_PAUSED;
-        if (parent != null
-                && videoInLandscapeButNotInFullscreen
-                && notPaused
-                && !DeviceUtils.isTablet(context)) {
-            toggleFullscreen();
-        }
+        UIs.call(playerUi -> playerUi.onVideoSizeChanged(videoSize));
     }
     //endregion
-
-
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Gestures
-    //////////////////////////////////////////////////////////////////////////*/
-    //region Gestures
-
-    @SuppressWarnings("checkstyle:ParameterNumber")
-    private void onLayoutChange(final View view, final int l, final int t, final int r, final int b,
-                                final int ol, final int ot, final int or, final int ob) {
-        if (l != ol || t != ot || r != or || b != ob) {
-            // Use smaller value to be consistent between screen orientations
-            // (and to make usage easier)
-            final int width = r - l;
-            final int height = b - t;
-            final int min = Math.min(width, height);
-            maxGestureLength = (int) (min * MAX_GESTURE_LENGTH);
-
-            if (DEBUG) {
-                Log.d(TAG, "maxGestureLength = " + maxGestureLength);
-            }
-
-            binding.volumeProgressBar.setMax(maxGestureLength);
-            binding.brightnessProgressBar.setMax(maxGestureLength);
-
-            setInitialGestureValues();
-            binding.itemsListPanel.getLayoutParams().height
-                    = height - binding.itemsListPanel.getTop();
-        }
-    }
-
-    private void setInitialGestureValues() {
-        if (audioReactor != null) {
-            final float currentVolumeNormalized =
-                    (float) audioReactor.getVolume() / audioReactor.getMaxVolume();
-            binding.volumeProgressBar.setProgress(
-                    (int) (binding.volumeProgressBar.getMax() * currentVolumeNormalized));
-        }
-    }
-
-    private int distanceFromCloseButton(@NonNull final MotionEvent popupMotionEvent) {
-        final int closeOverlayButtonX = closeOverlayBinding.closeButton.getLeft()
-                + closeOverlayBinding.closeButton.getWidth() / 2;
-        final int closeOverlayButtonY = closeOverlayBinding.closeButton.getTop()
-                + closeOverlayBinding.closeButton.getHeight() / 2;
-
-        final float fingerX = popupLayoutParams.x + popupMotionEvent.getX();
-        final float fingerY = popupLayoutParams.y + popupMotionEvent.getY();
-
-        return (int) Math.sqrt(Math.pow(closeOverlayButtonX - fingerX, 2)
-                + Math.pow(closeOverlayButtonY - fingerY, 2));
-    }
-
-    private float getClosingRadius() {
-        final int buttonRadius = closeOverlayBinding.closeButton.getWidth() / 2;
-        // 20% wider than the button itself
-        return buttonRadius * 1.2f;
-    }
-
-    public boolean isInsideClosingRadius(@NonNull final MotionEvent popupMotionEvent) {
-        return distanceFromCloseButton(popupMotionEvent) <= getClosingRadius();
-    }
-    //endregion
-
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -4092,13 +1953,7 @@ public final class Player implements
 
     public void setFragmentListener(final PlayerServiceEventListener listener) {
         fragmentListener = listener;
-        fragmentIsVisible = true;
-        // Apply window insets because Android will not do it when orientation changes
-        // from landscape to portrait
-        if (!isFullscreen) {
-            binding.playbackControlRoot.setPadding(0, 0, 0, 0);
-        }
-        binding.itemsListPanel.setPadding(0, 0, 0, 0);
+        UIs.call(PlayerUi::onFragmentListenerSet);
         notifyQueueUpdateToListeners();
         notifyMetadataUpdateToListeners();
         notifyPlaybackUpdateToListeners();
@@ -4133,28 +1988,6 @@ public final class Player implements
         if (activityListener != null) {
             activityListener.onServiceStopped();
             activityListener = null;
-        }
-    }
-
-    /**
-     * This will be called when a user goes to another app/activity, turns off a screen.
-     * We don't want to interrupt playback and don't want to see notification so
-     * next lines of code will enable audio-only playback only if needed
-     */
-    private void onFragmentStopped() {
-        if (videoPlayerSelected() && (isPlaying() || isLoading())) {
-            switch (getMinimizeOnExitAction(context)) {
-                case MINIMIZE_ON_EXIT_MODE_BACKGROUND:
-                    useVideoSource(false);
-                    break;
-                case MINIMIZE_ON_EXIT_MODE_POPUP:
-                    setRecovery();
-                    NavigationHelper.playOnPopupPlayer(getParentActivity(), playQueue, true);
-                    break;
-                case MINIMIZE_ON_EXIT_MODE_NONE: default:
-                    pause();
-                    break;
-            }
         }
     }
 
@@ -4200,27 +2033,12 @@ public final class Player implements
         }
     }
 
-    @Nullable
-    public AppCompatActivity getParentActivity() {
-        // ! instanceof ViewGroup means that view was added via windowManager for Popup
-        if (binding == null || !(binding.getRoot().getParent() instanceof ViewGroup)) {
-            return null;
-        }
-
-        return (AppCompatActivity) ((ViewGroup) binding.getRoot().getParent()).getContext();
-    }
-
-    private void useVideoSource(final boolean videoEnabled) {
+    public void useVideoSource(final boolean videoEnabled) {
         if (playQueue == null || isAudioOnly == !videoEnabled || audioPlayerSelected()) {
             return;
         }
 
         isAudioOnly = !videoEnabled;
-        // When a user returns from background, controls could be hidden but SystemUI will be shown
-        // 100%. Hide it.
-        if (!isAudioOnly && !isControlsVisible()) {
-            hideSystemUIIfNeeded();
-        }
 
         // The current metadata may be null sometimes (for e.g. when using an unstable connection
         // in livestreams) so we will be not able to execute the block below.
@@ -4249,20 +2067,12 @@ public final class Player implements
                 return;
             }
 
-            final DefaultTrackSelector.ParametersBuilder parametersBuilder =
+            final DefaultTrackSelector.Parameters.Builder parametersBuilder =
                     trackSelector.buildUponParameters();
 
-            if (videoEnabled) {
-                // Enable again the video track and the subtitles, if there is one selected
-                parametersBuilder.setDisabledTrackTypes(Collections.emptySet());
-            } else {
-                // Disable the video track and the ability to select subtitles
-                // Use an ArraySet because we can't use Set.of() on all supported APIs by the app
-                final ArraySet<Integer> disabledTracks = new ArraySet<>();
-                disabledTracks.add(C.TRACK_TYPE_TEXT);
-                disabledTracks.add(C.TRACK_TYPE_VIDEO);
-                parametersBuilder.setDisabledTrackTypes(disabledTracks);
-            }
+            // Enable/disable the video track and the ability to select subtitles
+            parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_TEXT, !videoEnabled);
+            parametersBuilder.setTrackTypeDisabled(C.TRACK_TYPE_VIDEO, !videoEnabled);
 
             trackSelector.setParameters(parametersBuilder);
         }
@@ -4340,7 +2150,7 @@ public final class Player implements
     //////////////////////////////////////////////////////////////////////////*/
     //region Getters
 
-    private Optional<StreamInfo> getCurrentStreamInfo() {
+    public Optional<StreamInfo> getCurrentStreamInfo() {
         return Optional.ofNullable(currentMetadata).flatMap(MediaItemTag::getMaybeStreamInfo);
     }
 
@@ -4350,6 +2160,10 @@ public final class Player implements
 
     public boolean exoPlayerIsNull() {
         return simpleExoPlayer == null;
+    }
+
+    public ExoPlayer getExoPlayer() {
+        return simpleExoPlayer;
     }
 
     public boolean isStopped() {
@@ -4364,7 +2178,7 @@ public final class Player implements
         return !exoPlayerIsNull() && simpleExoPlayer.getPlayWhenReady();
     }
 
-    private boolean isLoading() {
+    public boolean isLoading() {
         return !exoPlayerIsNull() && simpleExoPlayer.isLoading();
     }
 
@@ -4380,6 +2194,10 @@ public final class Player implements
         }
     }
 
+    public void setPlaybackQuality(@Nullable final String quality) {
+        videoResolver.setPlaybackQuality(quality);
+    }
+
 
     @NonNull
     public Context getContext() {
@@ -4389,10 +2207,6 @@ public final class Player implements
     @NonNull
     public SharedPreferences getPrefs() {
         return prefs;
-    }
-
-    public MediaSessionManager getMediaSessionManager() {
-        return mediaSessionManager;
     }
 
 
@@ -4405,7 +2219,7 @@ public final class Player implements
     }
 
     public boolean videoPlayerSelected() {
-        return playerType == PlayerType.VIDEO;
+        return playerType == PlayerType.MAIN;
     }
 
     public boolean popupPlayerSelected() {
@@ -4422,156 +2236,40 @@ public final class Player implements
         return audioReactor;
     }
 
-    public GestureDetector getGestureDetector() {
-        return gestureDetector;
+    public PlayerService getService() {
+        return service;
     }
 
-    public boolean isFullscreen() {
-        return isFullscreen;
+    public boolean isAudioOnly() {
+        return isAudioOnly;
     }
 
-    public boolean isVerticalVideo() {
-        return isVerticalVideo;
-    }
-
-    public boolean isPopupClosing() {
-        return isPopupClosing;
-    }
-
-
-    public boolean isSomePopupMenuVisible() {
-        return isSomePopupMenuVisible;
-    }
-
-    public void setSomePopupMenuVisible(final boolean somePopupMenuVisible) {
-        isSomePopupMenuVisible = somePopupMenuVisible;
-    }
-
-    public ImageButton getPlayPauseButton() {
-        return binding.playPauseButton;
-    }
-
-    public View getClosingOverlayView() {
-        return binding.closingOverlay;
-    }
-
-    public ProgressBar getVolumeProgressBar() {
-        return binding.volumeProgressBar;
-    }
-
-    public ProgressBar getBrightnessProgressBar() {
-        return binding.brightnessProgressBar;
-    }
-
-    public int getMaxGestureLength() {
-        return maxGestureLength;
-    }
-
-    public ImageView getVolumeImageView() {
-        return binding.volumeImageView;
-    }
-
-    public RelativeLayout getVolumeRelativeLayout() {
-        return binding.volumeRelativeLayout;
-    }
-
-    public ImageView getBrightnessImageView() {
-        return binding.brightnessImageView;
-    }
-
-    public RelativeLayout getBrightnessRelativeLayout() {
-        return binding.brightnessRelativeLayout;
-    }
-
-    public FloatingActionButton getCloseOverlayButton() {
-        return closeOverlayBinding.closeButton;
-    }
-
-    public View getLoadingPanel() {
-        return binding.loadingPanel;
-    }
-
-    public TextView getCurrentDisplaySeek() {
-        return binding.currentDisplaySeek;
-    }
-
-    public PlayerFastSeekOverlay getFastSeekOverlay() {
-        return binding.fastSeekOverlay;
+    @NonNull
+    public DefaultTrackSelector getTrackSelector() {
+        return trackSelector;
     }
 
     @Nullable
-    public WindowManager.LayoutParams getPopupLayoutParams() {
-        return popupLayoutParams;
+    public MediaItemTag getCurrentMetadata() {
+        return currentMetadata;
     }
 
     @Nullable
-    public WindowManager getWindowManager() {
-        return windowManager;
+    public PlayQueueItem getCurrentItem() {
+        return currentItem;
     }
 
-    public float getScreenWidth() {
-        return screenWidth;
+    public Optional<PlayerServiceEventListener> getFragmentListener() {
+        return Optional.ofNullable(fragmentListener);
     }
 
-    public float getScreenHeight() {
-        return screenHeight;
+    /**
+     * @return the user interfaces connected with the player
+     */
+    @SuppressWarnings("MethodName") // keep the unusual method name
+    public PlayerUiList UIs() {
+        return UIs;
     }
-
-    public View getRootView() {
-        return binding.getRoot();
-    }
-
-    public ExpandableSurfaceView getSurfaceView() {
-        return binding.surfaceView;
-    }
-
-    public PlayQueueAdapter getPlayQueueAdapter() {
-        return playQueueAdapter;
-    }
-
-    public PlayerBinding getBinding() {
-        return binding;
-    }
-
-    //endregion
-
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // SurfaceHolderCallback helpers
-    //////////////////////////////////////////////////////////////////////////*/
-    //region SurfaceHolderCallback helpers
-
-    private void setupVideoSurface() {
-        // make sure there is nothing left over from previous calls
-        cleanupVideoSurface();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // >=API23
-            surfaceHolderCallback = new SurfaceHolderCallback(context, simpleExoPlayer);
-            binding.surfaceView.getHolder().addCallback(surfaceHolderCallback);
-            final Surface surface = binding.surfaceView.getHolder().getSurface();
-            // ensure player is using an unreleased surface, which the surfaceView might not be
-            // when starting playback on background or during player switching
-            if (surface.isValid()) {
-                // initially set the surface manually otherwise
-                // onRenderedFirstFrame() will not be called
-                simpleExoPlayer.setVideoSurface(surface);
-            }
-        } else {
-            simpleExoPlayer.setVideoSurfaceView(binding.surfaceView);
-        }
-    }
-
-    private void cleanupVideoSurface() {
-        // Only for API >= 23
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && surfaceHolderCallback != null) {
-            if (binding != null) {
-                binding.surfaceView.getHolder().removeCallback(surfaceHolderCallback);
-            }
-            surfaceHolderCallback.release();
-            surfaceHolderCallback = null;
-        }
-    }
-    //endregion
 
     /**
      * Get the video renderer index of the current playing stream.
@@ -4600,4 +2298,5 @@ public final class Player implements
                 // No video renderer index with at least one track found: return unavailable index
                 .orElse(RENDERER_UNAVAILABLE);
     }
+    //endregion
 }

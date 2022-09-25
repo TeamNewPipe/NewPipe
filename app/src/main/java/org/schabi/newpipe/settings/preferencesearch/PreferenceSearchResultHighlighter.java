@@ -6,7 +6,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -65,8 +64,7 @@ public final class PreferenceSearchResultHighlighter {
                             recyclerView.findViewHolderForAdapterPosition(position);
                     if (holder != null) {
                         final Drawable background = holder.itemView.getBackground();
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                                && background instanceof RippleDrawable) {
+                        if (background instanceof RippleDrawable) {
                             showRippleAnimation((RippleDrawable) background);
                             return;
                         }

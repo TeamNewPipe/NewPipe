@@ -23,9 +23,9 @@ import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.external_communication.TimestampExtractor;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.PicassoHelper;
+import org.schabi.newpipe.util.external_communication.ShareUtils;
+import org.schabi.newpipe.util.external_communication.TimestampExtractor;
 
 import java.util.regex.Matcher;
 
@@ -204,8 +204,9 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         boolean hasEllipsis = false;
 
         if (itemContentView.getLineCount() > COMMENT_DEFAULT_LINES) {
-            final int endOfLastLine
-                    = itemContentView.getLayout().getLineEnd(COMMENT_DEFAULT_LINES - 1);
+            final int endOfLastLine = itemContentView
+                    .getLayout()
+                    .getLineEnd(COMMENT_DEFAULT_LINES - 1);
             int end = itemContentView.getText().toString().lastIndexOf(' ', endOfLastLine - 2);
             if (end == -1) {
                 end = Math.max(endOfLastLine - 2, 0);

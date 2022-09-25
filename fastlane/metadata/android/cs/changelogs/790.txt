@@ -1,0 +1,9 @@
+Vylepšené stránky
+- Přidání více nadpisů pro zlepšení přístupnosti pro nevidomé #2655
+- Udělejte jazyk nastavení složky pro stahování konzistentnější a méně nejednoznačný #2637
+
+Opraveno
+- Kontrola, zda je stažen poslední bajt v bloku #2646
+- Opraveno posouvání ve fragmentu detailu videa #2672
+- Odstranění dvojité animace vymazání vyhledávacího pole na jednu #2695
+- [SoundCloud] Oprava extrakce client_id #2745

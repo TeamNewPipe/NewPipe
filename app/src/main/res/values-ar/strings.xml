@@ -200,7 +200,7 @@
     <string name="copyright" formatted="true">© %1$sبواسطة%2$sتحت%3$s</string>
     <string name="kiosk_page_summary">صفحة الكشك</string>
     <string name="select_a_kiosk">حدد كشك</string>
-    <string name="start_here_on_background">ابدأ التشغيل في الخلفية</string>
+    <string name="start_here_on_background">بدأ التشغيل في الخلفية</string>
     <string name="default_content_country_title">المحتوى الإفتراضي حسب البلد</string>
     <string name="switch_to_background">الإنتقال إلى التشغيل في الخلفية</string>
     <string name="switch_to_popup">الإنتقال إلى التشغيل في النافذة المنبثقة</string>
@@ -250,7 +250,7 @@
     <string name="file_name_empty_error">لا يمكن أن يكون اسم الملف فارغًا</string>
     <string name="error_occurred_detail">حدث خطأٌ ما: %1$s</string>
     <string name="no_valid_zip_file">ملف مضغوط ZIP غير صالح</string>
-    <string name="unbookmark_playlist">إزالة الفواصل المرجعية</string>
+    <string name="unbookmark_playlist">إزالة الإشارة المرجعية</string>
     <string name="resize_fit">تناسب مع الشاشة</string>
     <string name="caption_auto_generated">توليد تلقائي</string>
     <string name="import_title">إستيراد</string>
@@ -600,8 +600,8 @@
     <string name="notification_action_2_title">زر الإجراء الثالث</string>
     <string name="notification_action_1_title">زر الإجراء الثاني</string>
     <string name="notification_action_0_title">زر الإجراء الأول</string>
-    <string name="notification_scale_to_square_image_summary">قياس الصورة المصغرة للفيديو المعروض في الإشعار من 16:9 إلى 1:1 نسبة العرض إلى الارتفاع (قد يؤدي إلى تشوهات)</string>
-    <string name="notification_scale_to_square_image_title">مقياس الصورة المصغرة إلى نسبة عرض إلى ارتفاع 1:1</string>
+    <string name="notification_scale_to_square_image_summary">قم بقص الصورة المصغرة للفيديو الموضحة في الإشعار من نسبة العرض إلى الارتفاع 16: 9 إلى 1: 1</string>
+    <string name="notification_scale_to_square_image_title">اقتصاص الصورة المصغرة إلى نسبة العرض إلى الارتفاع 1:1</string>
     <string name="clear_cookie_summary">امسح ملفات تعريف الارتباط التي يخزنها NewPipe عند حل reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">تم مسح ملفات تعريف الارتباط reCAPTCHA</string>
     <string name="clear_cookie_title">امسح ملفات تعريف الارتباط reCAPTCHA</string>
@@ -673,7 +673,6 @@
     <string name="feed_load_error_account_info">تعذر تحميل تغذية لـ\'%s\'.</string>
     <string name="feed_load_error">خطأ في تحميل الخلاصة</string>
     <string name="downloads_storage_use_saf_summary_api_29">بدءًا من Android 10، يتم دعم \"Storage Access Framework\" فقط</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\"Storage Access Framework\" غير مدعوم على Android KitKat والإصدارات الأقدم</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">سيتم سؤالك عن مكان حفظ كل تنزيل</string>
     <string name="no_dir_yet">لم يتم تعيين مجلد التحميل، الرجاء اختيار مجلد التحميل الافتراضي الآن</string>
     <string name="off">إيقاف</string>
@@ -685,7 +684,7 @@
     <string name="low_quality_smaller">جودة منخفضة (أصغر)</string>
     <string name="high_quality_larger">جودة عالية (أكبر)</string>
     <string name="seekbar_preview_thumbnail_title">معاينة مصغرة على شريط التمرير</string>
-    <string name="mark_as_watched">علّمه كفيديو تمت مشاهدته</string>
+    <string name="mark_as_watched">تعليم كفيديو تمت مشاهدته</string>
     <string name="detail_heart_img_view_description">أُعجب بها منشئ المحتوى</string>
     <string name="show_image_indicators_summary">أظهر أشرطة ملونة لبيكاسو أعلى الصور تشير إلى مصدرها: الأحمر للشبكة والأزرق للقرص والأخضر للذاكرة</string>
     <string name="show_image_indicators_title">إظهار مؤشرات الصور</string>
@@ -726,14 +725,14 @@
     <string name="error_report_notification_toast">حدث خطأ، انظر للإشعار</string>
     <string name="create_error_notification">قم بإنشاء تنبيه بالخطأ</string>
     <string name="no_appropriate_file_manager_message">لم يتم العثور على مدير ملفات مناسب لهذا الإجراء.
-\nالرجاء تثبيت مدير ملفات أو محاولة تعطيل \"%s\" في إعدادات التنزيل.</string>
+\nيرجى تثبيت مدير ملفات أو محاولة تعطيل \"%s\" في إعدادات التنزيل</string>
     <string name="show_error_snackbar">إظهار خطأ snackbar</string>
     <string name="no_appropriate_file_manager_message_android_10">لم يتم العثور على مدير ملفات مناسب لهذا الإجراء.
-\nالرجاء تثبيت مدير ملفات متوافق مع Storage Access Framework.</string>
+\nالرجاء تثبيت مدير ملفات متوافق مع إطار عمل الوصول إلى التخزين</string>
     <string name="detail_pinned_comment_view_description">تعليق مثبت</string>
     <string name="leak_canary_not_available">LeakCanary غير متوفر</string>
     <string name="progressive_load_interval_exoplayer_default">الافتراضي ExoPlayer</string>
-    <string name="progressive_load_interval_summary">تغيير حجم الفاصل الزمني للتحميل (حاليا %s). قد تؤدي القيمة الأقل إلى تسريع تحميل الفيديو الأولي. تتطلب التغييرات إعادة تشغيل المشغل.</string>
+    <string name="progressive_load_interval_summary">تغيير حجم الفاصل الزمني للتحميل (حاليا %s). قد تؤدي القيمة الأقل إلى تسريع تحميل الفيديو الأولي. تتطلب التغييرات إعادة تشغيل المشغل</string>
     <string name="settings_category_player_notification_summary">تكوين إشعار مشغل البث الحالي</string>
     <string name="notifications">الإشعارات</string>
     <string name="loading_stream_details">تحميل تفاصيل البث…</string>
@@ -770,4 +769,5 @@
     <string name="unknown_format">تنسيق غير معروف</string>
     <string name="unknown_quality">جودة غير معروفة</string>
     <string name="progressive_load_interval_title">حجم الفاصل الزمني لتحميل التشغيل</string>
+    <string name="feed_toggle_show_future_items">عرض مقاطع الفيديو المستقبلية</string>
 </resources>

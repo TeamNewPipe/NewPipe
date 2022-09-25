@@ -550,8 +550,8 @@
     <string name="notification_action_2_title">第三動作按鈕</string>
     <string name="notification_action_1_title">第二動作按鈕</string>
     <string name="notification_action_0_title">第一動作按鈕</string>
-    <string name="notification_scale_to_square_image_summary">將通知中顯示的影片縮圖從 16:9 縮放到 1:1（可能會導致變形）</string>
-    <string name="notification_scale_to_square_image_title">把縮圖縮放到 1:1 的長寬比</string>
+    <string name="notification_scale_to_square_image_summary">將通知中顯示的影片縮圖從 16:9 裁剪到 1:1</string>
+    <string name="notification_scale_to_square_image_title">將縮圖裁剪為 1:1 的長寬比</string>
     <string name="show_memory_leaks">顯示記憶體洩漏</string>
     <string name="enqueued">已加入佇列</string>
     <string name="enqueue_stream">加入佇列</string>
@@ -623,7 +623,6 @@
     <string name="feed_load_error_account_info">無法載入「%s」。</string>
     <string name="feed_load_error">載入 feed 時發生錯誤</string>
     <string name="downloads_storage_use_saf_summary_api_29">從 Android 10 開始僅支援「儲存空間存取框架」</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Android KitKat 或更舊的版本不支援「儲存空間存取框架」</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">每次下載都會詢問您要下載到哪裡</string>
     <string name="no_dir_yet">尚未設定下載資料夾，立刻選擇預設的下載資料夾</string>
     <string name="off">關閉</string>
@@ -665,15 +664,15 @@
     <string name="show_error_snackbar">顯示錯誤 SnackBar</string>
     <string name="create_error_notification">建立錯誤通知</string>
     <string name="no_appropriate_file_manager_message_android_10">找不到適合此動作的檔案管理程式。
-\n請安裝相容於儲存空間存取框架的檔案管理員。</string>
+\n請安裝相容於儲存空間存取框架的檔案管理員</string>
     <string name="no_appropriate_file_manager_message">找不到適合此動作的檔案管理程式。
-\n請安裝檔案管理程式或在下載設定嘗試停用「%s」。</string>
+\n請安裝檔案管理程式或在下載設定嘗試停用「%s」</string>
     <string name="error_report_notification_title">NewPipe 遇到錯誤，點擊以回報</string>
     <string name="error_report_notification_toast">發生錯誤，請檢視通知</string>
     <string name="detail_pinned_comment_view_description">釘選的留言</string>
     <string name="leak_canary_not_available">LeakCanary 無法使用</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer 預設值</string>
-    <string name="progressive_load_interval_summary">變更載入間隔大小（目前為 %s）。較低的值可能會提昇初始影片載入速度。變更需要重新啟動播放器。</string>
+    <string name="progressive_load_interval_summary">變更載入間隔大小（目前為 %s）。較低的值可能會提昇初始影片載入速度。變更需要重新啟動播放器</string>
     <string name="settings_category_player_notification_title">播放器通知</string>
     <string name="notifications">通知</string>
     <string name="loading_stream_details">正在載入串流詳細資訊……</string>
@@ -705,4 +704,5 @@
     <string name="no_video_streams_available_for_external_players">沒有可用於外部播放程式的視訊串流</string>
     <string name="select_quality_external_players">選取外部播放程式的畫質</string>
     <string name="progressive_load_interval_title">播放載入間隔大小</string>
+    <string name="feed_toggle_show_future_items">顯示未來影片</string>
 </resources>

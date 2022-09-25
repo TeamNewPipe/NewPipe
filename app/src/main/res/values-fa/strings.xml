@@ -557,8 +557,8 @@
     <string name="notification_action_2_title">سومین دکمه کنشی</string>
     <string name="notification_action_1_title">دومین دکمه کنشی</string>
     <string name="notification_action_0_title">اولین دکمه کنشی</string>
-    <string name="notification_scale_to_square_image_summary">تصویر بندانگشتی ویدیو که در اعلان نمایش می‌یابد، از نسبت ۱۶:۹ به ۱:۱ تغییر اندازه پیدا کند (ممکن است منجر به اعوجاج شود)</string>
-    <string name="notification_scale_to_square_image_title">تغییر مقیاس تصویر بندانگشتی به نسبت ۱:۱</string>
+    <string name="notification_scale_to_square_image_summary">تصویر بندانگشتی ویدیو که در اعلان نمایش می‌یابد، از نسبت ۱۶:۹ به ۱:۱ بریده می‌شود</string>
+    <string name="notification_scale_to_square_image_title">برش تصویر بندانگشتی به نسبت ۱:۱</string>
     <string name="low_quality_smaller">کیفیت پایین (کوچک‌تر)</string>
     <string name="high_quality_larger">کیفیت بالا (بزرگ‌تر)</string>
     <string name="comments_are_disabled">نظرها از کار افتاده‌اند</string>
@@ -636,7 +636,6 @@
     <string name="description_select_note">اکنون می‌توانید متن درون شرخ را برگزینید. به یاد داشته باشید که در حالت گزینش، ممکن است صفحه چشمک زده و پیوندها قابل کلیک نباشند.</string>
     <string name="no_dir_yet">هنوز شاخهٔ بارگیری‌ای تنظیم نشده. اکنون شاخهٔ بارگیری پیش‌گزیده را برگزینید</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">برای ذخیرهٔ هر بارگیری از شما پرسیده خواهد شد</string>
-    <string name="downloads_storage_use_saf_summary_api_19">«چارچوب دسترسی ذخیره» روی اندروید کیت‌کت و پایین‌تر پشتیبانی نمی‌شود</string>
     <string name="downloads_storage_use_saf_summary_api_29">از اندروید ۱۰، تنها «چارچوب دسترسی ذخیره» پشتیبانی می‌شود</string>
     <string name="feed_load_error_account_info">نتوانست خوراک را برای «%s» بار کند.</string>
     <string name="feed_load_error_terminated">حساب این نگارنده نابود شده است.
@@ -717,4 +716,6 @@
     <string name="select_quality_external_players">گزینش کیفیت برای پخش‌کننده‌های خارجی</string>
     <string name="unknown_format">قالب ناشناخته</string>
     <string name="unknown_quality">کیفیت ناشناخته</string>
+    <string name="progressive_load_interval_title">اندازهٔ دورهٔ بار کردن پخش</string>
+    <string name="feed_toggle_show_future_items">نمایش ویدیوهای آینده</string>
 </resources>

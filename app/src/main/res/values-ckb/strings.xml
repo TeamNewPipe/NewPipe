@@ -557,8 +557,8 @@
     <string name="notification_action_2_title">سێیه‌م كرداری دوگمه‌</string>
     <string name="notification_action_1_title">دووه‌م كرداری دوگمه‌</string>
     <string name="notification_action_0_title">یه‌كه‌م كرداری دوگمه‌</string>
-    <string name="notification_scale_to_square_image_summary">وێنۆچكه‌ی ڤیدیۆ پێوانه‌ ده‌كرێته‌وه‌ له‌ پەیامەکاندا له‌ ڕه‌هه‌ندی 16:9 ه‌وه‌ بۆ ڕه‌هه‌ندی 1:1</string>
-    <string name="notification_scale_to_square_image_title">پێوانەكردنی وێنۆچكه‌ بۆ ڕه‌هه‌ندی 1:1</string>
+    <string name="notification_scale_to_square_image_summary">وێنۆچكه‌ی ڤیدیۆ دەبڕدرێت له‌ پەیامەکاندا له‌ ڕه‌هه‌ندی 16:9 ه‌وه‌ بۆ ڕه‌هه‌ندی 1:1</string>
+    <string name="notification_scale_to_square_image_title">بڕینی وێنۆچكه‌ بۆ ڕه‌هه‌ندی ڕێژەیی 1:1</string>
     <string name="search_showing_result_for">پیشاندانی ئەنجامەکانی: %s</string>
     <string name="open_with">كردنه‌وه‌ له‌</string>
     <string name="show_meta_info_summary">ناكارایبكه‌ بۆ شاردنه‌وه‌ی چوارگۆشه‌ی مێتا و زانیاری زیاده‌ له‌سه‌ر بابەتی په‌خش و داواكاری گه‌ڕان</string>
@@ -625,7 +625,6 @@
     <string name="downloads_storage_ask_summary_no_saf_notice">بۆ دابه‌زاندنی هه‌ر بابه‌تێك پرست پێ ده‌كرێت له‌باره‌ی شوێنی دابه‌زاندنیان</string>
     <string name="disable_media_tunneling_title">ناكاراكردنی تونێلكردنی میدیا</string>
     <string name="show_age_restricted_content_summary">ئه‌و بابه‌تانه‌ی نه‌گونجاون بۆ منداڵان پیشان بدرێن كه‌ سنووری ته‌مه‌ن ده‌یانگرێته‌وه‌ (وه‌ك +18)</string>
-    <string name="downloads_storage_use_saf_summary_api_19">\'Storage Access Framework\' پشتگیری نه‌كراوه‌ له‌سه‌ر وه‌شانه‌كانی ئه‌ندرۆید كیتكات و نزمتر</string>
     <string name="crash_the_app">كڕاشی به‌رنامه‌كه‌</string>
     <string name="show_memory_leaks">پیشاندانی دزه‌كردنی بیرگه‌</string>
     <string name="enqueued">له‌نۆبه‌ت دانرا</string>

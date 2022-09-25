@@ -28,7 +28,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -86,7 +85,6 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
-import org.schabi.newpipe.util.TLSSocketFactoryCompat;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
 
@@ -129,11 +127,6 @@ public class MainActivity extends AppCompatActivity {
         if (DEBUG) {
             Log.d(TAG, "onCreate() called with: "
                     + "savedInstanceState = [" + savedInstanceState + "]");
-        }
-
-        // enable TLS1.1/1.2 for kitkat devices, to fix download and play for media.ccc.de sources
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
-            TLSSocketFactoryCompat.setAsDefault();
         }
 
         ThemeHelper.setDayNightMode(this);
@@ -381,8 +374,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showServices() {
         for (final StreamingService s : NewPipe.getServices()) {
-            final String title = s.getServiceInfo().getName()
-                    + (ServiceHelper.isBeta(s) ? " (beta)" : "");
+            final String title = s.getServiceInfo().getName();
 
             final MenuItem menuItem = drawerLayoutBinding.navigation.getMenu()
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
@@ -390,7 +382,7 @@ public class MainActivity extends AppCompatActivity {
 
             // peertube specifics
             if (s.getServiceId() == 3) {
-                enhancePeertubeMenu(s, menuItem);
+                enhancePeertubeMenu(menuItem);
             }
         }
         drawerLayoutBinding.navigation.getMenu()
@@ -398,9 +390,9 @@ public class MainActivity extends AppCompatActivity {
                 .setChecked(true);
     }
 
-    private void enhancePeertubeMenu(final StreamingService s, final MenuItem menuItem) {
+    private void enhancePeertubeMenu(final MenuItem menuItem) {
         final PeertubeInstance currentInstance = PeertubeHelper.getCurrentInstance();
-        menuItem.setTitle(currentInstance.getName() + (ServiceHelper.isBeta(s) ? " (beta)" : ""));
+        menuItem.setTitle(currentInstance.getName());
         final Spinner spinner = InstanceSpinnerLayoutBinding.inflate(LayoutInflater.from(this))
                 .getRoot();
         final List<PeertubeInstance> instances = PeertubeHelper.getInstanceList(this);
@@ -480,8 +472,8 @@ public class MainActivity extends AppCompatActivity {
             ErrorUtil.showUiErrorSnackbar(this, "Setting up service toggle", e);
         }
 
-        final SharedPreferences sharedPreferences
-                = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
             if (DEBUG) {
                 Log.d(TAG, "Theme has changed, recreating activity...");
@@ -653,8 +645,8 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onCreateOptionsMenu(menu);
 
-        final Fragment fragment
-                = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+        final Fragment fragment =
+                getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
         if (!(fragment instanceof SearchFragment)) {
             toolbarLayoutBinding.toolbarSearchContainer.getRoot().setVisibility(View.GONE);
         }

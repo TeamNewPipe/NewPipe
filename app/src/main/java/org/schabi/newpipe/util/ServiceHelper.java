@@ -169,15 +169,6 @@ public final class ServiceHelper {
         }
     }
 
-    public static boolean isBeta(final StreamingService s) {
-        switch (s.getServiceInfo().getName()) {
-            case "YouTube":
-                return false;
-            default:
-                return true;
-        }
-    }
-
     public static void initService(final Context context, final int serviceId) {
         if (serviceId == ServiceList.PeerTube.getServiceId()) {
             final SharedPreferences sharedPreferences = PreferenceManager

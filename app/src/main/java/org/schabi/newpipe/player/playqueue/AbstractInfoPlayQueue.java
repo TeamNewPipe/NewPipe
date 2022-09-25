@@ -82,7 +82,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo<StreamInfoItem>>
             public void onError(@NonNull final Throwable e) {
                 Log.e(getTag(), "Error fetching more playlist, marking playlist as complete.", e);
                 isComplete = true;
-                append(); // Notify change
+                notifyChange();
             }
         };
     }
@@ -117,7 +117,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo<StreamInfoItem>>
             public void onError(@NonNull final Throwable e) {
                 Log.e(getTag(), "Error fetching more playlist, marking playlist as complete.", e);
                 isComplete = true;
-                append(); // Notify change
+                notifyChange();
             }
         };
     }

@@ -560,8 +560,8 @@
     <string name="notification_action_shuffle">Casuale</string>
     <string name="notification_action_nothing">Niente</string>
     <string name="notification_action_repeat">Ripeti</string>
-    <string name="notification_scale_to_square_image_title">Ridimensiona copertina alla proporzione 1:1</string>
-    <string name="notification_scale_to_square_image_summary">Modifica la proporzione della copertina del video mostrata nella notifica da 16:9 a 1:1 (può introdurre distorsioni)</string>
+    <string name="notification_scale_to_square_image_title">Ritaglia copertina con proporzione 1:1</string>
+    <string name="notification_scale_to_square_image_summary">Ritaglia la copertina del video mostrata nella notifica, cambiando la proporzione da 16:9 a 1:1</string>
     <string name="show_memory_leaks">Mostra memory leak</string>
     <string name="enqueued">Aggiunto alla coda</string>
     <string name="enqueue_stream">Accoda</string>
@@ -633,7 +633,6 @@
     <string name="feed_load_error_account_info">Impossibile caricare feed per \"%s\".</string>
     <string name="feed_load_error">Errore caricamento feed</string>
     <string name="downloads_storage_use_saf_summary_api_29">A partire da Android 10 è supportato solo il Framework di accesso all\'archiviazione</string>
-    <string name="downloads_storage_use_saf_summary_api_19">Il Framework di accesso all\'archiviazione non è supportato su Android KitKat e versioni precedenti</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">È necessario specificare la destinazione di ogni dowload</string>
     <string name="no_dir_yet">Non è impostata alcuna cartella per i file scaricati, scegliere quella predefinita</string>
     <string name="off">Disattivata</string>
@@ -675,17 +674,17 @@
     <string name="error_report_notification_title">NewPipe ha riscontrato un errore, tocca per segnalarlo</string>
     <string name="show_error_snackbar">Mostra un messaggio di errore</string>
     <string name="no_appropriate_file_manager_message">Non è stato trovato alcun gestore di file appropriato per questa azione.
-\nInstallane uno prova a disattivare \"%s\" nelle impostazioni di download.</string>
+\nInstallane uno prova a disattivare \"%s\" nelle impostazioni di download</string>
     <string name="error_report_channel_name">Notifica per segnalazione errori</string>
     <string name="error_report_channel_description">Notifiche per segnalare errori</string>
     <string name="error_report_notification_toast">Si è verificato un errore, vedi la notifica</string>
     <string name="create_error_notification">Crea una notifica di errore</string>
     <string name="no_appropriate_file_manager_message_android_10">Non è stato trovato alcun gestore di file appropriato per questa azione.
-\nInstallane uno compatibile con Storage Access Framework.</string>
+\nInstallane uno compatibile con Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Commento in primo piano</string>
     <string name="leak_canary_not_available">LeakCanary non è disponibile</string>
     <string name="progressive_load_interval_exoplayer_default">Predefinito ExoPlayer</string>
-    <string name="progressive_load_interval_summary">Cambia la dimensione dell\'intervallo da caricare (attualmente %s). Un valore basso può velocizzare il caricamento iniziale del video. La modifica richiede il riavvio del lettore.</string>
+    <string name="progressive_load_interval_summary">Cambia la dimensione dell\'intervallo da caricare (attualmente %s). Un valore basso può velocizzare il caricamento iniziale del video. La modifica richiede il riavvio del lettore</string>
     <string name="streams_notification_channel_description">Notifiche di nuovi contenuti dalle iscrizioni</string>
     <string name="streams_notifications_interval_title">Frequenza controllo</string>
     <string name="streams_notifications_network_title">Connessione di rete richiesta</string>
@@ -717,5 +716,6 @@
     <string name="select_quality_external_players">Seleziona qualità per lettori esterni</string>
     <string name="unknown_quality">Qualità sconosciuta</string>
     <string name="unknown_format">Formato sconosciuto</string>
-    <string name="progressive_load_interval_title">Dimensione dell\'intervallo di caricamento della riproduzione</string>
+    <string name="progressive_load_interval_title">Dimensione intervallo di caricamento della riproduzione</string>
+    <string name="feed_toggle_show_future_items">Mostra video futuri</string>
 </resources>
