@@ -743,7 +743,6 @@
     <string name="settings_category_sponsor_block_category_non_music_summary">Solo per video musicali. Include introduzioni e outro nei video musicali.</string>
     <string name="later">Più tardi</string>
     <string name="invalid_color_toast">Colore non valido</string>
-    <string name="adjust_by_semitones_checkbox">Regola il tono secondo i semitoni musicali</string>
     <string name="progressive_load_interval_exoplayer_default">Predefinito ExoPlayer</string>
     <string name="progressive_load_interval_summary">Cambia la dimensione dell\'intervallo da caricare (attualmente %s). Un valore basso può velocizzare il caricamento iniziale del video. La modifica richiede il riavvio del lettore</string>
     <string name="streams_notification_channel_description">Notifiche di nuovi contenuti dalle iscrizioni</string>
@@ -779,4 +778,10 @@
     <string name="unknown_format">Formato sconosciuto</string>
     <string name="progressive_load_interval_title">Dimensione intervallo di caricamento della riproduzione</string>
     <string name="feed_toggle_show_future_items">Mostra video futuri</string>
+    <string name="settings_category_sponsor_block_category_filler_title">Riempitivi irrilevanti/battute</string>
+    <string name="settings_category_sponsor_block_category_filler_summary">Le scene riempitive sono aggiunte solo per riempire o per umorismo e non sono richieste per comprendere il contenuto principale del video.</string>
+    <string name="settings_category_sponsor_block_category_preview_title">Anteprima/riepilogo</string>
+    <string name="settings_category_sponsor_block_category_preview_summary">Riepilogo rapido degli episodi precedenti, o un\'anteprima di ciò che sta arrivando più tardi nel video attuale. Inteso per segmenti video, non per riassunti a voce.</string>
+    <string name="sponsor_block_skip_preview_toast">Saltato anteprima/riepilogo</string>
+    <string name="sponsor_block_skip_filler_toast">Saltato riempitivo</string>
 </resources>
