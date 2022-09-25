@@ -22,7 +22,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 import icepick.State;
 
@@ -85,13 +84,12 @@ public class CommentReplyDialog extends BottomSheetDialogFragment {
         this.serviceId = sid;
         this.url = u;
         this.name = !TextUtils.isEmpty(title) ? title : "";
-        this.comment = clone(preComment);
+        this.comment = clone(preComment); // clone comment object to avoid replies actually set null
         comment.setReplies(null);
         this.replies = repliesPage;
     }
 
-    @NonNull
-    private <T extends Serializable> T clone(@NonNull final T item) throws Exception {
+    private CommentsInfoItem clone(final CommentsInfoItem item) throws Exception {
         final ByteArrayOutputStream bytesOutput = new ByteArrayOutputStream();
         try (ObjectOutputStream objectOutput = new ObjectOutputStream(bytesOutput)) {
             objectOutput.writeObject(item);
@@ -99,6 +97,6 @@ public class CommentReplyDialog extends BottomSheetDialogFragment {
         }
         final Object clone = new ObjectInputStream(
                 new ByteArrayInputStream(bytesOutput.toByteArray())).readObject();
-        return ((Class<T>) CommentsInfoItem.class).cast(clone);
+        return (CommentsInfoItem) clone;
     }
 }

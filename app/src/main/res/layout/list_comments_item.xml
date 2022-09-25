@@ -117,9 +117,9 @@
         android:layout_toEndOf="@+id/itemThumbnailView"
         android:background="@color/transparent_background_color"
         android:layout="@id/detail_heart_image_view"
+        android:text="@string/show_comment_reply"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="@dimen/comment_item_content_text_size"
-        tools:text="1 REPLAY" />
+        android:textSize="@dimen/comment_item_content_text_size" />
 
 </RelativeLayout>

@@ -145,7 +145,6 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
         if (item.getReplies() != null) {
             itemContentReplyButton.setVisibility(View.VISIBLE);
-            itemContentReplyButton.setText(R.string.show_comment_reply);
             itemContentReplyButton.setOnClickListener(
                     view -> itemBuilder.getOnCommentsReplyListener().selected(item)
             );
