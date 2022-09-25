@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
@@ -288,9 +287,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         infoListAdapter.setOnCommentsReplyListener(selectedItem -> {
             try {
                 onItemSelected(selectedItem);
-                final Page reply = selectedItem.getReplies();
-                CommentReplyDialog.show(getFM(), selectedItem.getServiceId(),
-                        reply != null ? reply.getUrl() : null, selectedItem.getName(), reply);
+                CommentReplyDialog.show(getFM(), selectedItem);
             } catch (final Exception e) {
                 ErrorUtil.showUiErrorSnackbar(this, "Opening comment reply fragment", e);
             }

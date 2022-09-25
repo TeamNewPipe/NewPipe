@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.Page;
+import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.util.Constants;
 
 import icepick.State;
@@ -28,19 +29,23 @@ public class CommentReplyDialog extends BottomSheetDialogFragment {
     @State
     protected String url;
     @State
+    protected CommentsInfoItem comment;
+    @State
     protected Page replies;
 
     public static CommentReplyDialog getInstance(final int serviceId, final String url,
-                                                 final String name, final Page replies) {
+                                                 final String name,
+                                                 final CommentsInfoItem comment,
+                                                 final Page replies) {
         final CommentReplyDialog instance = new CommentReplyDialog();
-        instance.setInitialData(serviceId, url, name, replies);
+        instance.setInitialData(serviceId, url, name, comment, replies);
         return instance;
     }
 
-    public static void show(final FragmentManager fragmentManager,
-                            final int serviceId, final String url,
-                            final String name, final Page replies) {
-        final CommentReplyDialog instance = getInstance(serviceId, url, name, replies);
+    public static void show(final FragmentManager fragmentManager, final CommentsInfoItem comment) {
+        final Page reply = comment.getReplies();
+        final CommentReplyDialog instance = getInstance(comment.getServiceId(),
+                comment.getUrl(), comment.getName(), comment, reply);
         instance.show(fragmentManager, instance.getTag());
     }
 
@@ -49,24 +54,30 @@ public class CommentReplyDialog extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
-
         final View view = inflater.inflate(R.layout.dialog_comment_reply, container,
                 false);
         final ImageButton backButton = view.findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> dismiss());
         final CommentsFragment commentsFragment = CommentsFragment.getInstance(
+                serviceId, url, name, comment
+        );
+        final CommentsFragment commentsReplyFragment = CommentsFragment.getInstance(
                 serviceId, url, name, replies
         );
         getChildFragmentManager().beginTransaction()
                 .add(R.id.commentFragment, commentsFragment).commit();
+        getChildFragmentManager().beginTransaction()
+                .add(R.id.commentReplyFragment, commentsReplyFragment).commit();
         return view;
     }
 
-    protected void setInitialData(final int sid,
-                                  final String u, final String title, final Page repliesPage) {
+    protected void setInitialData(final int sid, final String u, final String title,
+                                  final CommentsInfoItem preComment, final Page repliesPage) {
         this.serviceId = sid;
         this.url = u;
         this.name = !TextUtils.isEmpty(title) ? title : "";
+        preComment.setReplies(null);
+        this.comment = preComment;
         this.replies = repliesPage;
     }
 }

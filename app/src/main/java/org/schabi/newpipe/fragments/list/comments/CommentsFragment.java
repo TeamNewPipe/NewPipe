@@ -21,6 +21,8 @@ import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.ktx.ViewUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 
+import java.util.List;
+
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
@@ -28,13 +30,29 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
     private final CompositeDisposable disposables = new CompositeDisposable();
 
     private Page replies;
+    private CommentsInfoItem preComment = null;
 
     private TextView emptyStateDesc;
 
     public static CommentsFragment getInstance(final int serviceId, final String url,
+                                               final String name) {
+        final CommentsFragment instance = new CommentsFragment();
+        instance.setInitialData(serviceId, url, name, null, null);
+        return instance;
+    }
+
+    public static CommentsFragment getInstance(final int serviceId, final String url,
+                                               final String name,
+                                               final CommentsInfoItem preComment) {
+        final CommentsFragment instance = new CommentsFragment();
+        instance.setInitialData(serviceId, url, name, null, preComment);
+        return instance;
+    }
+
+    public static CommentsFragment getInstance(final int serviceId, final String url,
                                                final String name, final Page replyPage) {
         final CommentsFragment instance = new CommentsFragment();
-        instance.setInitialData(serviceId, url, name, replyPage);
+        instance.setInitialData(serviceId, url, name, replyPage, null);
         return instance;
     }
 
@@ -42,9 +60,10 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
         super(UserAction.REQUESTED_COMMENTS);
     }
 
-    protected void setInitialData(final int sid, final String u,
-                                  final String title, final Page repliesPage) {
+    protected void setInitialData(final int sid, final String u, final String title,
+                                  final Page repliesPage, final CommentsInfoItem comment) {
         this.replies = repliesPage;
+        this.preComment = comment;
         super.setInitialData(sid, u, title);
     }
 
@@ -84,7 +103,19 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
     @Override
     protected Single<CommentsInfo> loadResult(final boolean forceLoad) {
         if (replies == null) {
-            return ExtractorHelper.getCommentsInfo(serviceId, url, forceLoad);
+            if (preComment == null) {
+                return ExtractorHelper.getCommentsInfo(serviceId, url, forceLoad);
+            } else {
+                return Single.fromCallable(() -> {
+                    // get a info template
+                    final var info = ExtractorHelper.getCommentsInfo(
+                            serviceId, url, forceLoad).blockingGet();
+                    // push preComment
+                    info.setRelatedItems(List.of(preComment));
+                    info.setNextPage(null);
+                    return info;
+                });
+            }
         } else {
             return ExtractorHelper.getCommentsReplyInfo(serviceId, url, forceLoad, replies);
         }

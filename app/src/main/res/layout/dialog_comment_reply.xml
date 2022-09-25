@@ -29,10 +29,27 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/channel_item_detail_title_text_size" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/commentFragment"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/backButton" />
+        android:layout_below="@+id/backButton">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/commentFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/commentReplyFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/video_item_search_avatar_left_margin" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>
