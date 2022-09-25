@@ -18,6 +18,12 @@ import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.util.Constants;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 import icepick.State;
 
 public class CommentReplyDialog extends BottomSheetDialogFragment {
@@ -36,13 +42,15 @@ public class CommentReplyDialog extends BottomSheetDialogFragment {
     public static CommentReplyDialog getInstance(final int serviceId, final String url,
                                                  final String name,
                                                  final CommentsInfoItem comment,
-                                                 final Page replies) {
+                                                 final Page replies) throws Exception {
         final CommentReplyDialog instance = new CommentReplyDialog();
         instance.setInitialData(serviceId, url, name, comment, replies);
         return instance;
     }
 
-    public static void show(final FragmentManager fragmentManager, final CommentsInfoItem comment) {
+    public static void show(
+            final FragmentManager fragmentManager,
+            final CommentsInfoItem comment) throws Exception {
         final Page reply = comment.getReplies();
         final CommentReplyDialog instance = getInstance(comment.getServiceId(),
                 comment.getUrl(), comment.getName(), comment, reply);
@@ -72,12 +80,25 @@ public class CommentReplyDialog extends BottomSheetDialogFragment {
     }
 
     protected void setInitialData(final int sid, final String u, final String title,
-                                  final CommentsInfoItem preComment, final Page repliesPage) {
+                                  final CommentsInfoItem preComment,
+                                  final Page repliesPage) throws Exception {
         this.serviceId = sid;
         this.url = u;
         this.name = !TextUtils.isEmpty(title) ? title : "";
-        preComment.setReplies(null);
-        this.comment = preComment;
+        this.comment = clone(preComment);
+        comment.setReplies(null);
         this.replies = repliesPage;
+    }
+
+    @NonNull
+    private <T extends Serializable> T clone(@NonNull final T item) throws Exception {
+        final ByteArrayOutputStream bytesOutput = new ByteArrayOutputStream();
+        try (ObjectOutputStream objectOutput = new ObjectOutputStream(bytesOutput)) {
+            objectOutput.writeObject(item);
+            objectOutput.flush();
+        }
+        final Object clone = new ObjectInputStream(
+                new ByteArrayInputStream(bytesOutput.toByteArray())).readObject();
+        return ((Class<T>) CommentsInfoItem.class).cast(clone);
     }
 }

@@ -111,6 +111,10 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
                     final var info = ExtractorHelper.getCommentsInfo(
                             serviceId, url, forceLoad).blockingGet();
                     // push preComment
+                    final var comment = info.getRelatedItems().get(0);
+                    if (comment == null) {
+                        getActivity().getSupportFragmentManager().popBackStack();
+                    }
                     info.setRelatedItems(List.of(preComment));
                     info.setNextPage(null);
                     return info;
