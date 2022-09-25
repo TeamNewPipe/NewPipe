@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.ListExtractor;
+import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
@@ -26,17 +27,25 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, CommentsInfo> {
     private final CompositeDisposable disposables = new CompositeDisposable();
 
+    private Page replies;
+
     private TextView emptyStateDesc;
 
     public static CommentsFragment getInstance(final int serviceId, final String url,
-                                               final String name) {
+                                               final String name, final Page replyPage) {
         final CommentsFragment instance = new CommentsFragment();
-        instance.setInitialData(serviceId, url, name);
+        instance.setInitialData(serviceId, url, name, replyPage);
         return instance;
     }
 
     public CommentsFragment() {
         super(UserAction.REQUESTED_COMMENTS);
+    }
+
+    protected void setInitialData(final int sid, final String u,
+                                  final String title, final Page repliesPage) {
+        this.replies = repliesPage;
+        super.setInitialData(sid, u, title);
     }
 
     @Override
@@ -74,7 +83,11 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
 
     @Override
     protected Single<CommentsInfo> loadResult(final boolean forceLoad) {
-        return ExtractorHelper.getCommentsInfo(serviceId, url, forceLoad);
+        if (replies == null) {
+            return ExtractorHelper.getCommentsInfo(serviceId, url, forceLoad);
+        } else {
+            return ExtractorHelper.getCommentsReplyInfo(serviceId, url, forceLoad, replies);
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -99,11 +112,13 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void setTitle(final String title) { }
+    public void setTitle(final String title) {
+    }
 
     @Override
     public void onCreateOptionsMenu(@NonNull final Menu menu,
-                                    @NonNull final MenuInflater inflater) { }
+                                    @NonNull final MenuInflater inflater) {
+    }
 
     @Override
     protected boolean isGridLayout() {

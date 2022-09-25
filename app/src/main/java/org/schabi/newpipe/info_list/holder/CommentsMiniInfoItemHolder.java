@@ -1,5 +1,6 @@
 package org.schabi.newpipe.info_list.holder;
 
+import android.content.res.Resources;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
@@ -7,6 +8,7 @@ import android.text.util.Linkify;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -43,6 +45,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private final TextView itemContentView;
     private final TextView itemLikesCountView;
     private final TextView itemPublishedTime;
+    private final Button itemContentReplyButton;
 
     private String commentText;
     private String streamUrl;
@@ -77,6 +80,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
         itemPublishedTime = itemView.findViewById(R.id.itemPublishedTime);
         itemContentView = itemView.findViewById(R.id.itemCommentContentView);
+        itemContentReplyButton = itemView.findViewById(R.id.itemContentReplyButton);
 
         commentHorizontalPadding = (int) infoItemBuilder.getContext()
                 .getResources().getDimension(R.dimen.comments_horizontal_padding);
@@ -138,6 +142,21 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                     .offsetDateTime()));
         } else {
             itemPublishedTime.setText(item.getTextualUploadDate());
+        }
+
+        if (item.getReplies() != null) {
+            final Resources resources = itemView.getResources();
+            final String commentCountText = resources.getQuantityString(
+                    R.plurals.comment_reply_count,
+                    1, 1
+            );
+            itemContentReplyButton.setVisibility(View.VISIBLE);
+            itemContentReplyButton.setText(commentCountText);
+            itemContentReplyButton.setOnClickListener(
+                    view -> itemBuilder.getOnCommentsReplyListener().selected(item)
+            );
+        } else {
+            itemContentReplyButton.setVisibility(View.GONE);
         }
 
         itemView.setOnClickListener(view -> {

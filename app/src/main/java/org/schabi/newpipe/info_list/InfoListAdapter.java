@@ -110,6 +110,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         infoItemBuilder.setOnCommentsSelectedListener(listener);
     }
 
+    public void setOnCommentsReplyListener(final OnClickGesture<CommentsInfoItem> listener) {
+        infoItemBuilder.setOnCommentsReplyListener(listener);
+    }
+
     public void setUseMiniVariant(final boolean useMiniVariant) {
         this.useMiniVariant = useMiniVariant;
     }

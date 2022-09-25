@@ -108,4 +108,18 @@
         android:textSize="@dimen/video_item_search_upload_date_text_size"
         tools:text="1 year ago" />
 
+    <Button
+        android:id="@+id/itemContentReplyButton"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detail_thumbs_up_img_view"
+        android:layout_toEndOf="@+id/itemThumbnailView"
+        android:background="@color/transparent_background_color"
+        android:layout="@id/detail_heart_image_view"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="@dimen/comment_item_content_text_size"
+        tools:text="1 REPLAY" />
+
 </RelativeLayout>

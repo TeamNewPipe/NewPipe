@@ -54,6 +54,7 @@ public class InfoItemBuilder {
     private OnClickGesture<ChannelInfoItem> onChannelSelectedListener;
     private OnClickGesture<PlaylistInfoItem> onPlaylistSelectedListener;
     private OnClickGesture<CommentsInfoItem> onCommentsSelectedListener;
+    private OnClickGesture<CommentsInfoItem> onCommentsReplyListener;
 
     public InfoItemBuilder(final Context context) {
         this.context = context;
@@ -129,5 +130,14 @@ public class InfoItemBuilder {
     public void setOnCommentsSelectedListener(
             final OnClickGesture<CommentsInfoItem> onCommentsSelectedListener) {
         this.onCommentsSelectedListener = onCommentsSelectedListener;
+    }
+
+    public OnClickGesture<CommentsInfoItem> getOnCommentsReplyListener() {
+        return onCommentsReplyListener;
+    }
+
+    public void setOnCommentsReplyListener(
+            final OnClickGesture<CommentsInfoItem> onCommentsReplyListener) {
+        this.onCommentsReplyListener = onCommentsReplyListener;
     }
 }
