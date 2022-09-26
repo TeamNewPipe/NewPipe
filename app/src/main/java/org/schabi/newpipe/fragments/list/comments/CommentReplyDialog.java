@@ -18,20 +18,13 @@ import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.util.Constants;
 
-import icepick.State;
-
 public class CommentReplyDialog extends BottomSheetDialogFragment {
 
-    @State
-    protected int serviceId = Constants.NO_SERVICE_ID;
-    @State
-    protected String name;
-    @State
-    protected String url;
-    @State
-    protected CommentsInfoItem comment;
-    @State
-    protected Page replies;
+    private int serviceId = Constants.NO_SERVICE_ID;
+    private String name;
+    private String url;
+    private CommentsInfoItem comment;
+    private Page replies;
 
     public static CommentReplyDialog getInstance(final int serviceId, final String url,
                                                  final String name,
@@ -58,6 +51,10 @@ public class CommentReplyDialog extends BottomSheetDialogFragment {
                              @Nullable final Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.dialog_comment_reply, container,
                 false);
+        if (serviceId == Constants.NO_SERVICE_ID) {
+            dismiss();
+            return view;
+        }
         final ImageButton backButton = view.findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> dismiss());
         final CommentsFragment commentsFragment = CommentsFragment.getInstance(
