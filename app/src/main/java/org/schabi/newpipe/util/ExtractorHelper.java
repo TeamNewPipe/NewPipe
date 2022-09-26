@@ -163,10 +163,10 @@ public final class ExtractorHelper {
                             // use CommentsInfo make a info template
                             final var replies = CommentsInfo.getMoreItems(
                                     NewPipe.getService(serviceId), info, replyPage);
-                            info.setRelatedItems(replies.getItems());
                             // push replies to info, replace original comments
-                            info.setNextPage(null);
-                            // comment replies haven't next page
+                            info.setRelatedItems(replies.getItems());
+                            // set next page
+                            info.setNextPage(replies.getNextPage());
                             return info;
                         }
                 ));
