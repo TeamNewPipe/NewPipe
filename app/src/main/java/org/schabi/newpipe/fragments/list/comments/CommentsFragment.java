@@ -30,7 +30,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
     private final CompositeDisposable disposables = new CompositeDisposable();
 
     private Page replies;
-    private CommentsInfoItem preComment = null;
+    private CommentsInfoItem preComment;
 
     private TextView emptyStateDesc;
 
@@ -50,7 +50,8 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
     }
 
     public static CommentsFragment getInstance(final int serviceId, final String url,
-                                               final String name, final Page replyPage) {
+                                               final String name,
+                                               final Page replyPage) {
         final CommentsFragment instance = new CommentsFragment();
         instance.setInitialData(serviceId, url, name, replyPage, null);
         return instance;
@@ -108,8 +109,10 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
             } else {
                 return Single.fromCallable(() -> {
                     // get a info template
-                    final var info = ExtractorHelper.getCommentsInfo(
+                    var info = ExtractorHelper.getCommentsInfo(
                             serviceId, url, forceLoad).blockingGet();
+                    // clone comment object to avoid relatedItems and nextPage actually set null
+                    info = CommentUtils.clone(info);
                     // push preComment
                     info.setRelatedItems(List.of(preComment));
                     info.setNextPage(null);
