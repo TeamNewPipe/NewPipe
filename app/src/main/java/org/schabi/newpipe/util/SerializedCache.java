@@ -8,6 +8,7 @@ import androidx.collection.LruCache;
 
 import org.schabi.newpipe.MainActivity;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -93,7 +94,8 @@ public final class SerializedCache {
 
     @NonNull
     private <T extends Serializable> T clone(@NonNull final T item,
-                                             @NonNull final Class<T> type) throws Exception {
+                                             @NonNull final Class<T> type
+    ) throws IOException, SecurityException, NullPointerException, ClassNotFoundException {
         return SerializedUtils.clone(item, type);
     }
 
