@@ -9,8 +9,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:gravity="center_vertical"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ToolbarTheme">
+        android:minHeight="?attr/actionBarSize">
 
         <ImageButton
             android:id="@+id/backButton"
