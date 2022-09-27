@@ -64,6 +64,8 @@
     <color name="subscribed_background_color">#d6d6d6</color>
     <color name="subscribed_text_color">#717171</color>
 
+    <color name="show_replies_button_text_color">#0276aa</color>
+
     <color name="transparent_background_color">#00000000</color>
     <color name="selected_background_color">#96717171</color>
 

@@ -111,7 +111,7 @@
     <Button
         android:id="@+id/itemContentReplyButton"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/detail_thumbs_up_img_view"
         android:layout_toEndOf="@+id/itemThumbnailView"
@@ -119,7 +119,12 @@
         android:layout="@id/detail_heart_image_view"
         android:text="@string/show_comment_reply"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="@dimen/comment_item_content_text_size" />
+        android:textColor="@color/show_replies_button_text_color"
+        android:textSize="@dimen/comment_item_content_text_size"
+        android:gravity="start|center_vertical"
+        android:layout_marginTop="4dp"
+        android:minHeight="0dp"
+        android:paddingVertical="6dp"
+        android:paddingHorizontal="4dp" />
 
 </RelativeLayout>
