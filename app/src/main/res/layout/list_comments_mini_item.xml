@@ -72,17 +72,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/detail_thumbs_up_img_view"
+        android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/itemThumbnailView"
         android:background="?attr/selectableItemBackground"
+        android:gravity="start|center_vertical"
         android:layout="@id/detail_heart_image_view"
+        android:minHeight="0dp"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="6dp"
         android:text="@string/show_comment_reply"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/show_replies_button_text_color"
-        android:textSize="@dimen/comment_item_content_text_size"
-        android:gravity="start|center_vertical"
-        android:layout_marginTop="4dp"
-        android:minHeight="0dp"
-        android:paddingVertical="6dp"
-        android:paddingHorizontal="4dp" />
+        android:textSize="@dimen/file_picker_items_text_size" />
+
 
 </RelativeLayout>
