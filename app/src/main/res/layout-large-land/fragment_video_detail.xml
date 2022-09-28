@@ -321,7 +321,6 @@
                                         android:singleLine="true"
                                         android:textAppearance="?android:attr/textAppearanceLarge"
                                         android:textSize="@dimen/video_item_detail_uploader_text_size"
-                                        android:textStyle="bold"
                                         tools:ignore="RtlHardcoded"
                                         tools:text="Uploader" />
                                 </LinearLayout>
