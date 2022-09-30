@@ -1,4 +1,4 @@
-package org.schabi.newpipe.util.activity;
+package org.schabi.newpipe.util;
 
 import android.app.Activity;
 import android.app.PictureInPictureParams;
@@ -10,8 +10,8 @@ import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 
-public final class ActivityHelper {
-    private ActivityHelper() {
+public final class PictureInPictureHelper {
+    private PictureInPictureHelper() {
     }
 
     public static boolean isAndroidPictureInPictureEnabled(@NonNull final Context context) {

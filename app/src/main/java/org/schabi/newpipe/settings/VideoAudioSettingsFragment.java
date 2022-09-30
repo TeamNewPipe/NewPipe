@@ -1,6 +1,7 @@
 package org.schabi.newpipe.settings;
 
 import static org.schabi.newpipe.util.PermissionHelper.checkSystemAlertWindowPermission;
+import static org.schabi.newpipe.util.PictureInPictureHelper.isAndroidPictureInPictureEnabled;
 
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.preference.ListPreference;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.schabi.newpipe.R;
@@ -27,16 +29,16 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
                 // and the app doesn't have display over other apps permission,
                 // show a snackbar to let the user give permission
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                        && key.equals(getString(R.string.minimize_on_exit_key))) {
+                        && key.equals(getString(R.string.minimize_on_exit_key))
+                        // If Android picture-in-picture is enabled, this permission is not needed.
+                        && !isAndroidPictureInPictureEnabled(requireContext())) {
                     final String newSetting = sharedPreferences.getString(key, null);
-                    if (newSetting != null
-                            && newSetting.equals(getString(R.string.minimize_on_exit_popup_key))
-                            && !Settings.canDrawOverlays(getContext())) {
-
+                    if (getString(R.string.minimize_on_exit_popup_key).equals(newSetting)
+                            && !Settings.canDrawOverlays(requireContext())) {
                         Snackbar.make(getListView(), R.string.permission_display_over_apps,
-                                        Snackbar.LENGTH_INDEFINITE)
+                                        BaseTransientBottomBar.LENGTH_INDEFINITE)
                                 .setAction(R.string.settings,
-                                        view -> checkSystemAlertWindowPermission(getContext()))
+                                        view -> checkSystemAlertWindowPermission(requireContext()))
                                 .show();
                     }
                 } else if (getString(R.string.use_inexact_seek_key).equals(key)) {

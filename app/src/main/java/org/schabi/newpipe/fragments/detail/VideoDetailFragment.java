@@ -101,7 +101,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.player.ui.MainPlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
-import org.schabi.newpipe.util.activity.ActivityHelper;
+import org.schabi.newpipe.util.PictureInPictureHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -1067,8 +1067,8 @@ public final class VideoDetailFragment
     }
 
     private void openPopupPlayer(final boolean append) {
-        if (ActivityHelper.isAndroidPictureInPictureEnabled(requireActivity())) {
-            ActivityHelper.enterPictureInPictureMode(requireActivity());
+        if (PictureInPictureHelper.isAndroidPictureInPictureEnabled(requireActivity())) {
+            PictureInPictureHelper.enterPictureInPictureMode(requireActivity());
             player.setRecovery();
             player.UIs().get(VideoPlayerUi.class)
                     .ifPresent(ui -> ui.togglePictureInPictureMode(true));

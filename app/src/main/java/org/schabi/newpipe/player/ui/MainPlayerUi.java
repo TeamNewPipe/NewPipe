@@ -71,7 +71,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.activity.ActivityHelper;
+import org.schabi.newpipe.util.PictureInPictureHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
@@ -375,7 +375,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                 case MINIMIZE_ON_EXIT_MODE_POPUP:
                     getParentActivity().ifPresent(activity -> {
                         player.setRecovery();
-                        if (!ActivityHelper.isAndroidPictureInPictureEnabled(activity)) {
+                        if (!PictureInPictureHelper.isAndroidPictureInPictureEnabled(activity)) {
                             NavigationHelper.playOnPopupPlayer(activity, player.getPlayQueue(),
                                     true);
                         }
