@@ -15,7 +15,6 @@ import static org.schabi.newpipe.util.NavigationHelper.openPlayQueue;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.PictureInPictureParams;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -102,6 +101,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.player.ui.MainPlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
+import org.schabi.newpipe.util.activity.ActivityHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -1067,27 +1067,14 @@ public final class VideoDetailFragment
     }
 
     private void openPopupPlayer(final boolean append) {
-        // The setting can't be changed if the device is running Android Go.
-        final var popupMode = PreferenceManager.getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.popup_configuration_key),
-                        getString(R.string.popup_mode_legacy));
-        final var isPipEnabled = popupMode.equals(getString(R.string.popup_mode_pip));
-
-        if (isPipEnabled) {
-            switchToPipMode();
+        if (ActivityHelper.isAndroidPictureInPictureEnabled(requireActivity())) {
+            ActivityHelper.enterPictureInPictureMode(requireActivity());
+            player.setRecovery();
+            player.UIs().get(VideoPlayerUi.class)
+                    .ifPresent(ui -> ui.togglePictureInPictureMode(true));
         } else {
             openPreNougatPopupPlayer(append);
         }
-    }
-
-    private void switchToPipMode() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            final var pipParams = new PictureInPictureParams.Builder();
-            requireActivity().enterPictureInPictureMode(pipParams.build());
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            requireActivity().enterPictureInPictureMode();
-        }
-        player.UIs().get(VideoPlayerUi.class).ifPresent(ui -> ui.togglePictureInPictureMode(true));
     }
 
     private void openPreNougatPopupPlayer(final boolean append) {
@@ -2466,7 +2453,7 @@ public final class VideoDetailFragment
     }
 
     // helpers to check the state of player and playerService
-    boolean isPlayerAvailable() {
+    public boolean isPlayerAvailable() {
         return player != null;
     }
 

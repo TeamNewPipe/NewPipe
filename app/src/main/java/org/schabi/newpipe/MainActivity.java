@@ -86,6 +86,7 @@ import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.activity.ActivityHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.ArrayList;
@@ -497,6 +498,18 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.enable_watch_history_key), true);
         drawerLayoutBinding.navigation.getMenu().findItem(ITEM_ID_HISTORY)
                 .setVisible(isHistoryEnabled);
+    }
+
+    @Override
+    protected void onUserLeaveHint() {
+        // Enter picture-in-picture mode when the home button is pressed, if it is enabled.
+        final var currentFragment = getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_player_holder);
+        if (ActivityHelper.isAndroidPictureInPictureEnabled(this)
+                && currentFragment instanceof VideoDetailFragment
+                && ((VideoDetailFragment) currentFragment).isPlayerAvailable()) {
+            ActivityHelper.enterPictureInPictureMode(this);
+        }
     }
 
     @Override
